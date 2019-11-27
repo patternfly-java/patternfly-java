@@ -33,6 +33,7 @@ public interface Constants {
     String chipGroup = "chip-group";
     String clipper = "clipper";
     String col = "col";
+    String collapsed = "collapsed";
     String compact = "compact";
     String content = "content";
     String contextSelector = "context-selector";

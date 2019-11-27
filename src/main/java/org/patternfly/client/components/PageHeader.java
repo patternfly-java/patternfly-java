@@ -1,19 +1,19 @@
 package org.patternfly.client.components;
 
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.jboss.gwt.elemento.core.builder.ElementBuilder;
 import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.patternfly.client.resources.CSS;
 import org.patternfly.client.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
 import static org.jboss.gwt.elemento.core.Elements.header;
 import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.patternfly.client.components.Components.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
-import static org.patternfly.client.resources.Constants.button;
 import static org.patternfly.client.resources.Constants.header;
-import static org.patternfly.client.resources.Constants.label;
 import static org.patternfly.client.resources.Constants.nav;
+import static org.patternfly.client.resources.Constants.toggle;
 import static org.patternfly.client.resources.Constants.*;
 
 /**
@@ -47,31 +47,28 @@ public class PageHeader extends BaseComponent<HTMLElement, PageHeader>
         return instance;
     }
 
+    private final HTMLDivElement toggleContainer;
+    private final Button toggleButton;
+    private PageSidebar sidebar;
+
     // ------------------------------------------------------ page instance
 
-    private final HTMLElement toggle;
-    private final HTMLElement brandLink;
-    private final HTMLElement csContainer;
-    private final HTMLElement navContainer;
-
+    @SuppressWarnings("WeakerAccess")
     PageHeader(HTMLElement brand, String homeLink) {
         super(header().css(component(page, header)).attr(role, banner).element(), "PageHeader");
-
-        toggle = div().css(component(page, header, Constants.brand, Constants.toggle))
-                .add(button().css(component(button), CSS.modifier(plain))
-                        .aria(expanded, true_).aria(label, "Global Navigation")
-                        .add(i().css(fas("bars")).aria(hidden, true_))).element();
-
         add(div().css(component(page, header, Constants.brand))
-                .add(brandLink = a(homeLink).css(
-                        component(page, header, Constants.brand, link))
-                        .add(brand).element()));
-        add(navContainer = div().css(component(page, header, nav))
-                .add(csContainer = div().css(component(page, header, selector))
-                        // TODO remove styles once https://github.com/patternfly/patternfly-next/issues/1900 is fixed
-                        .style("margin-right: var(--pf-c-page__header-nav--lg--MarginRight); " +
-                                "margin-top: -10px").element()).element());
-        add(div().css(component(page, header, Constants.tools)));
+                .add(toggleContainer = div().css(component(page, header, Constants.brand, toggle))
+                        .add(toggleButton = Button.icon(icon(fas("bars")), "Global Navigation")
+                                .aria(expanded, false_)
+                                .onClick(() -> {
+                                    if (sidebar != null) {
+                                        sidebar.toggle();
+                                    }
+                                }))
+                        .element())
+                .add(a(homeLink).css(component(page, header, Constants.brand, link))
+                        .add(brand)));
+        hideSidebarToggle();
     }
 
     @Override
@@ -81,13 +78,56 @@ public class PageHeader extends BaseComponent<HTMLElement, PageHeader>
 
     // ------------------------------------------------------ public API
 
-    public PageHeader contextSelector(ContextSelector contextSelector) {
-        csContainer.appendChild(contextSelector.element());
-        return this;
+    public PageHeader add(Navigation navigation) {
+        return add(div().css(component(page, header, nav)).add(navigation));
     }
 
-    public PageHeader navigation(Navigation navigation) {
-        navContainer.appendChild(navigation.element());
-        return this;
+    public PageHeader add(Tools tools) {
+        return add(tools);
+    }
+
+    // ------------------------------------------------------ internals
+
+    void setSidebar(PageSidebar sidebar) {
+        this.sidebar = sidebar;
+        if (this.sidebar == null) {
+            toggleButton.aria(expanded, false_);
+            toggleButton.element().removeAttribute("aria-controls");
+        } else {
+            String sidebarId = sidebar.element().id;
+            if (sidebarId == null || sidebarId.length() == 0) {
+                sidebarId = uniqueId(Constants.sidebar);
+                sidebar.id(sidebarId);
+            }
+            toggleButton.aria(expanded, false_);
+            toggleButton.aria(controls, sidebarId);
+        }
+    }
+
+    void showSidebarToggle() {
+        setVisible(toggleContainer, true);
+    }
+
+    void hideSidebarToggle() {
+        setVisible(toggleContainer, false);
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public static Tools tools() {
+        return new Tools();
+    }
+
+    public static class Tools extends ElementBuilder<HTMLDivElement, Tools>
+            implements HtmlContent<HTMLDivElement, Tools> {
+
+        private Tools() {
+            super(div().css(component(page, header, Constants.tools)).element());
+        }
+
+        @Override
+        public Tools that() {
+            return this;
+        }
     }
 }

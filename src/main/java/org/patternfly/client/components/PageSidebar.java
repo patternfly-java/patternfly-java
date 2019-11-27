@@ -11,31 +11,31 @@ import static org.patternfly.client.resources.Constants.*;
 import static org.patternfly.client.resources.Theme.DARK;
 
 /**
- * = PatternFly Sidebar Component
- * <p>
- * The sidebar component holds the vertical navigation. By default the sidebar uses the dark theme and is expanded. The
- * collapsed / expanded state is controlled by the {@link PageHeader}.
- * <p>
- * == Usage
- * <p>
- * [source,java] -- Page page = new Page() .header(new PageHeader()) .sidebar(new PageSidebar(new Navigation()))
- * .section(new PageSection()); --
+ * PatternFly page sidebar component.
  *
- * @see https://www.patternfly.org/v4/documentation/core/components/page
+ * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/page">https://www.patternfly.org/v4/documentation/core/components/page</a>
  */
 public class PageSidebar extends BaseComponent<HTMLDivElement, PageSidebar>
         implements HtmlContent<HTMLDivElement, PageSidebar> {
 
-    PageSidebar(Navigation navigation) {
-        this(navigation, DARK);
+    // ------------------------------------------------------ factory methods
+
+    public static PageSidebar pageSidebar(Navigation navigation) {
+        return new PageSidebar(navigation, DARK);
     }
 
+    public static PageSidebar pageSidebar(Navigation navigation, Theme theme) {
+        return new PageSidebar(navigation, theme);
+    }
+
+    // ------------------------------------------------------ instance
+
     PageSidebar(Navigation navigation, Theme theme) {
-        super(div().css(component(page, sidebar), modifier(expanded)).element(), "PageSidebar");
+        super(div().css(component(page, sidebar)).element(), "PageSidebar");
         add(div().css(component(page, sidebar, body))
                 .add(navigation)).element();
         if (theme == DARK) {
-            element.classList.add(modifier(dark));
+            css(modifier(dark));
             navigation.css(modifier(dark));
         }
     }
@@ -43,5 +43,25 @@ public class PageSidebar extends BaseComponent<HTMLDivElement, PageSidebar>
     @Override
     public PageSidebar that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internals
+
+    void toggle() {
+        if (element.classList.contains(modifier(collapsed))) {
+            expand();
+        } else if (element.classList.contains(modifier(expanded))) {
+            collapse();
+        }
+    }
+
+    void expand() {
+        element.classList.remove(modifier(collapsed));
+        element.classList.add(modifier(expanded));
+    }
+
+    void collapse() {
+        element.classList.remove(modifier(expanded));
+        element.classList.add(modifier(collapsed));
     }
 }

@@ -86,7 +86,7 @@ public final class Components {
     }
 
     public static PageSidebar pageSidebar(Navigation navigation) {
-        return new PageSidebar(navigation);
+        return new PageSidebar(navigation, Theme.DARK);
     }
 
     public static PageSidebar pageSidebar(Navigation navigation, Theme theme) {
