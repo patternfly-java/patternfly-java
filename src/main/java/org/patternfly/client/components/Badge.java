@@ -12,22 +12,9 @@ import static org.patternfly.client.resources.Constants.read;
 import static org.patternfly.client.resources.Constants.unread;
 
 /**
- * = PatternFly Badge Component
- * <p>
- * A https://www.patternfly.org/v4/documentation/core/components/badge[badge] is used to annotate other information like
- * a label or an object name. Badges are typically used to reflect a count, e.g. number of object, number of events,
- * number of unread, etc.
- * <p>
- * == Usage
- * <p>
- * [source,java] -- // Creates an unread badge of 5 Badge unread = new Badge(5);
- * <p>
- * // Creates a read badge of 2 Badge read = new Badge(2, true);
- * <p>
- * // Creates an unread badge of 3, marks it as read and modifies the count. Badge badge = new Badge(3);
- * badge.read().count(7); --
+ * PatternFly badge component.
  *
- * @see https://www.patternfly.org/v4/documentation/core/components/badge
+ * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/badge">https://www.patternfly.org/v4/documentation/core/components/badge</a>
  */
 public class Badge extends BaseComponent<HTMLElement, Badge>
         implements HtmlContent<HTMLElement, Badge> {
@@ -50,7 +37,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
         return new Badge(text, false);
     }
 
-    // ------------------------------------------------------ badge instance
+    // ------------------------------------------------------ instance
 
     Badge(int count) {
         this(String.valueOf(count));
@@ -72,34 +59,26 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
 
     // ------------------------------------------------------ public API
 
-    /**
-     * Marks the badge as read.
-     */
+    /** Marks the badge as read. */
     public Badge read() {
         element.classList.remove(modifier(unread));
         element.classList.add(modifier(read));
         return this;
     }
 
-    /**
-     * Marks the badge as unread.
-     */
+    /** Marks the badge as unread. */
     public Badge unread() {
         element.classList.remove(modifier(read));
         element.classList.add(modifier(unread));
         return this;
     }
 
-    /**
-     * Modifies the count of this badge.
-     */
+    /** Modifies the count of this badge. */
     public Badge count(int count) {
         return text(String.valueOf(count));
     }
 
-    /**
-     * Modifies the text of this badge.
-     */
+    /** Modifies the text of this badge. */
     public Badge text(String text) {
         element.textContent = text;
         return this;

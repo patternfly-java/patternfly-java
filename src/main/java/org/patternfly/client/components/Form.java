@@ -19,6 +19,18 @@ import static org.patternfly.client.resources.Constants.group;
 public class Form extends BaseComponent<HTMLFormElement, Form>
         implements HtmlContent<HTMLFormElement, Form> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Form form() {
+        return new Form();
+    }
+
+    public static Group group() {
+        return new Group();
+    }
+
+    // ------------------------------------------------------ instance
+
     Form() {
         super(form().css(component(form)).element(), "Form");
     }
@@ -29,10 +41,6 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
     }
 
     // ------------------------------------------------------ inner classes
-
-    public static Group group() {
-        return new Group();
-    }
 
     public static class Group extends ElementBuilder<HTMLDivElement, Group>
             implements HtmlContent<HTMLDivElement, Group> {

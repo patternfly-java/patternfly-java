@@ -16,7 +16,7 @@ import static org.jboss.gwt.elemento.core.Elements.input;
 import static org.jboss.gwt.elemento.core.Elements.nav;
 import static org.jboss.gwt.elemento.core.Elements.*;
 import static org.jboss.gwt.elemento.core.InputType.number;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.CSS.modifier;
@@ -32,6 +32,14 @@ import static org.patternfly.client.resources.Constants.*;
  */
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         implements HtmlContent<HTMLDivElement, Pagination>, Disable<Pagination> {
+
+    // ------------------------------------------------------ factory methods
+
+    public static Pagination pagination() {
+        return new Pagination();
+    }
+
+    // ------------------------------------------------------ instance
 
     private final HTMLElement infoElement;
     private final SingleOptionsMenu<Integer> pageSizeMenu;
@@ -115,6 +123,8 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         return this;
     }
 
+    // ------------------------------------------------------ public API
+
     @Override
     public Pagination disable() {
         pageSizeMenu.disable();
@@ -144,14 +154,14 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         return css(modifier(compact));
     }
 
+    // ------------------------------------------------------ events
+
     public Pagination onPageSize(Consumer<Integer> pageSizeHandler) {
         this.pageSizeHandler = pageSizeHandler;
         return this;
     }
 
-    /**
-     * Consumer is called with 0-based page index.
-     */
+    /** Consumer is called with 0-based page index. */
     public Pagination onGotoPage(Consumer<Integer> gotoPageHandler) {
         this.gotoPageHandler = gotoPageHandler;
         return this;
@@ -176,6 +186,8 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         this.lastPageHandler = lastPageHandler;
         return this;
     }
+
+    // ------------------------------------------------------ internals
 
     void update(PageInfo pageInfo) {
         HTMLElement[] elements = new HTMLElement[]{infoElement, pageSizeMenu.textElement()};

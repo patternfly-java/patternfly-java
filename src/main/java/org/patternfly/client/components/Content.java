@@ -15,6 +15,14 @@ import static org.patternfly.client.resources.Constants.content;
 public class Content extends BaseComponent<HTMLDivElement, Content>
         implements HtmlContent<HTMLDivElement, Content> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Content content() {
+        return new Content();
+    }
+
+    // ------------------------------------------------------ instance
+
     Content() {
         super(div().css(component(content)).element(), "Content");
     }

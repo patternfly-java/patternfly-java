@@ -14,7 +14,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.input;
 import static org.jboss.gwt.elemento.core.Key.Enter;
 import static org.patternfly.client.components.Button.control;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.Constants.formControl;
@@ -28,6 +28,14 @@ import static org.patternfly.client.resources.Constants.title;
  */
 public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
         implements HtmlContent<HTMLDivElement, InputGroup> {
+
+    // ------------------------------------------------------ factory methods
+
+    public static InputGroup inputGroup() {
+        return new InputGroup();
+    }
+
+    // ------------------------------------------------------ instance
 
     InputGroup() {
         super(div().css(component(inputGroup)).element(), "InputGroup");

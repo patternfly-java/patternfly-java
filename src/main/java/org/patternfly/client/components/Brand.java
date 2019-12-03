@@ -12,6 +12,14 @@ import static org.patternfly.client.resources.Constants.brand;
  */
 public class Brand extends BaseComponent<HTMLImageElement, Brand> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Brand brand(String src) {
+        return new Brand(src);
+    }
+
+    // ------------------------------------------------------ instance
+
     Brand(String src) {
         super(img(src).css(brand).element(), "Brand");
     }

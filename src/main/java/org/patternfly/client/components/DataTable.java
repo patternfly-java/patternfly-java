@@ -32,7 +32,7 @@ import org.patternfly.client.resources.Constants;
 import static org.jboss.gwt.elemento.core.Elements.*;
 import static org.jboss.gwt.elemento.core.EventType.bind;
 import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.CSS.modifier;
@@ -87,6 +87,74 @@ import static org.patternfly.client.resources.Dataset.dataTableSort;
  */
 public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         implements HtmlContent<HTMLTableElement, DataTable<T>>, Display<T> {
+
+    // ------------------------------------------------------ factory methods
+
+    public static <T> DataTable<T> dataTable(DataProvider<T> dataProvider) {
+        return new DataTable<>(dataProvider, null);
+    }
+
+    public static <T> DataTable<T> dataTable(DataProvider<T> dataProvider, String caption) {
+        return new DataTable<>(dataProvider, caption);
+    }
+
+    public static <T> Column<T> expandColumn() {
+        return new Column<>(EXPAND_COLUMN, null, null,
+                (td, dataProvider, item) -> {
+                    String iconClass = fas(angleDown) + " " + component(table, toggle, Constants.icon);
+                    td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
+                }, null);
+    }
+
+    public static <T> Column<T> checkboxColumn() {
+        return new Column<>(CHECKBOX_COLUMN, null,
+                th -> th.css(component(table, check))
+                        .add(input(InputType.checkbox)
+                                .aria(label, "Select all rows")),
+                (td, dataProvider, item) -> td.css(component(table, check))
+                        .add(input(InputType.checkbox)
+                                .name(buildId(dataProvider.getId(item), "select"))
+                                .aria(labelledBy, dataProvider.getId(item))),
+                null);
+    }
+
+    public static <T> Column<T> iconColumn(Icon icon) {
+        return iconColumn((td, dataProvider, item) -> td.add(icon));
+    }
+
+    public static <T> Column<T> iconColumn(BodyDisplay<T> bodyDisplay) {
+        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, icon));
+        return new Column<>(uniqueId("icon"), null,
+                th -> th.css(component(table, icon)).attr(scope, col), css.andThen(bodyDisplay), null);
+    }
+
+    public static <T> Column<T> actionsColumn(BodyDisplay<T> bodyDisplay) {
+        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, action));
+        return new Column<>(ACTIONS_COLUMN, null, null, css.andThen(bodyDisplay), null);
+    }
+
+    public static <T> Column<T> column(String name, BodyDisplay<T> bodyDisplay) {
+        return new Column<>(name, null, th -> th.attr(scope, col).textContent(name), bodyDisplay, null);
+    }
+
+    public static <T> Column<T> column(String name, Comparator<T> comparator, BodyDisplay<T> bodyDisplay) {
+        return new Column<>(name, comparator,
+                th -> th.css(component(table, sort))
+                        .aria(sort, none)
+                        .attr(scope, col)
+                        .add(button().css(component(button), modifier(plain))
+                                .data(dataTableSort, buildId(name)) // keep in sync with Column constructor!
+                                .add(name)
+                                .add(span().css(component(table, sort, indicator))
+                                        .add(i().css(fas("arrows-alt-v"))))),
+                bodyDisplay, null);
+    }
+
+    public static <T> Column<T> column(String name, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay) {
+        return new Column<>(name, null, headDisplay, bodyDisplay, null);
+    }
+
+    // ------------------------------------------------------ instance
 
     private static final String ARIA = "aria-";
     private static final String ARIA_SORT = "aria-sort";
@@ -419,62 +487,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     // ------------------------------------------------------ inner classes
-
-    public static <T> Column<T> expandColumn() {
-        return new Column<>(EXPAND_COLUMN, null, null,
-                (td, dataProvider, item) -> {
-                    String iconClass = fas(angleDown) + " " + component(table, toggle, Constants.icon);
-                    td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
-                }, null);
-    }
-
-    public static <T> Column<T> checkboxColumn() {
-        return new Column<>(CHECKBOX_COLUMN, null,
-                th -> th.css(component(table, check))
-                        .add(input(InputType.checkbox)
-                                .aria(label, "Select all rows")),
-                (td, dataProvider, item) -> td.css(component(table, check))
-                        .add(input(InputType.checkbox)
-                                .name(buildId(dataProvider.getId(item), "select"))
-                                .aria(labelledBy, dataProvider.getId(item))),
-                null);
-    }
-
-    public static <T> Column<T> iconColumn(Icon icon) {
-        return iconColumn((td, dataProvider, item) -> td.add(icon));
-    }
-
-    public static <T> Column<T> iconColumn(BodyDisplay<T> bodyDisplay) {
-        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, icon));
-        return new Column<>(uniqueId("icon"), null,
-                th -> th.css(component(table, icon)).attr(scope, col), css.andThen(bodyDisplay), null);
-    }
-
-    public static <T> Column<T> actionsColumn(BodyDisplay<T> bodyDisplay) {
-        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, action));
-        return new Column<>(ACTIONS_COLUMN, null, null, css.andThen(bodyDisplay), null);
-    }
-
-    public static <T> Column<T> column(String name, BodyDisplay<T> bodyDisplay) {
-        return new Column<>(name, null, th -> th.attr(scope, col).textContent(name), bodyDisplay, null);
-    }
-
-    public static <T> Column<T> column(String name, Comparator<T> comparator, BodyDisplay<T> bodyDisplay) {
-        return new Column<>(name, comparator,
-                th -> th.css(component(table, sort))
-                        .aria(sort, none)
-                        .attr(scope, col)
-                        .add(button().css(component(button), modifier(plain))
-                                .data(dataTableSort, buildId(name)) // keep in sync with Column constructor!
-                                .add(name)
-                                .add(span().css(component(table, sort, indicator))
-                                        .add(i().css(fas("arrows-alt-v"))))),
-                bodyDisplay, null);
-    }
-
-    public static <T> Column<T> column(String name, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay) {
-        return new Column<>(name, null, headDisplay, bodyDisplay, null);
-    }
 
     @FunctionalInterface
     public interface HeadDisplay {

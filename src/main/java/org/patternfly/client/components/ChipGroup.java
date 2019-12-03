@@ -24,6 +24,18 @@ import static org.patternfly.client.resources.Constants.chipGroup;
 public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
         implements HtmlContent<HTMLElement, ChipGroup> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static ChipGroup chipGroup() {
+        return new ChipGroup();
+    }
+
+    public static ChipGroup chipGroup(int max) {
+        return new ChipGroup(max);
+    }
+
+    // ------------------------------------------------------ instance
+
     private final int max;
     private boolean expanded;
     private Chip overflow;
@@ -50,6 +62,8 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
         return this;
     }
 
+    // ------------------------------------------------------ public API
+
     public ChipGroup add(Chip chip) {
         Chip liChip = chip.cloneAsLi();
 
@@ -63,6 +77,8 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
         }
         return this;
     }
+
+    // ------------------------------------------------------ internals
 
     private void redraw() {
         AtomicInteger index = new AtomicInteger(0);

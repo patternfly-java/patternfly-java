@@ -182,7 +182,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
             Element icon = find(e, By.selector(".fas.fa-check"));
             if (itemId.equals(e.dataset.get(singleOptionsMenuItem))) {
                 if (icon == null) {
-                    e.appendChild(Components.icon(fas(check))
+                    e.appendChild(Icon.icon(fas(check))
                             .css(component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
                             .aria(hidden, true_).element());
                 }

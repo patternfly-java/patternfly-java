@@ -17,6 +17,18 @@ import static org.patternfly.client.resources.Constants.label;
 public class Label extends BaseComponent<HTMLElement, Label>
         implements HtmlContent<HTMLElement, Label> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Label label(String text) {
+        return new Label(text);
+    }
+
+    public static Label label(String text, boolean compact) {
+        return new Label(text, compact);
+    }
+
+    // ------------------------------------------------------ instance
+
     Label(String text) {
         this(text, false);
     }

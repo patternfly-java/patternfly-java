@@ -34,6 +34,14 @@ import static org.patternfly.client.resources.Dataset.contextSelectorItem;
 public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSelector<T>>
         implements HtmlContent<HTMLDivElement, ContextSelector<T>>, Disable<ContextSelector<T>>, HasValue<T> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static <T> ContextSelector<T> contextSelector(String text) {
+        return new ContextSelector<>(text);
+    }
+
+    // ------------------------------------------------------ instance
+
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
     private T value;

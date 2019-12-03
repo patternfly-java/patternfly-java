@@ -17,9 +17,7 @@ import static org.patternfly.client.resources.Constants.false_;
 import static org.patternfly.client.resources.Constants.hidden;
 import static org.patternfly.client.resources.Constants.true_;
 
-/**
- * Reusable class for components which have a collapsible / expandable UI element
- */
+/** Reusable class for components which have a collapsible / expandable UI element */
 class CollapseExpandHandler {
 
     private HandlerRegistration closeHandler;

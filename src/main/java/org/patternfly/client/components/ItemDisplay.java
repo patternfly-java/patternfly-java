@@ -8,9 +8,7 @@ import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.buildId;
 
-/**
- * Reusable class for typed components to customize the item ID and display
- */
+/** Reusable class for typed components to customize the item ID and display. */
 class ItemDisplay<E extends HTMLElement, T> {
 
     Function<T, String> identifier;

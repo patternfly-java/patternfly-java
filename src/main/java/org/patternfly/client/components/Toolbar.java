@@ -35,7 +35,7 @@ import static org.jboss.gwt.elemento.core.Elements.button;
 import static org.jboss.gwt.elemento.core.Elements.*;
 import static org.jboss.gwt.elemento.core.EventType.bind;
 import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.CSS.modifier;
@@ -49,6 +49,38 @@ import static org.patternfly.client.resources.Constants.*;
  */
 public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         implements HtmlContent<HTMLDivElement, Toolbar<T>>, Display<T>, Attachable {
+
+    // ------------------------------------------------------ factory methods
+
+    public static <T> Toolbar<T> toolbar() {
+        return new Toolbar<>(null);
+    }
+
+    public static <T> Toolbar<T> toolbar(DataProvider<T> dataProvider) {
+        return new Toolbar<>(dataProvider);
+    }
+
+    public static Content content() {
+        return new Content();
+    }
+
+    public static Group group() {
+        return new Group();
+    }
+
+    public static Item item() {
+        return new Item();
+    }
+
+    public static BulkSelect bulkSelect() {
+        return new BulkSelect();
+    }
+
+    public static <T> SortMenu<T> sortMenu(SortOptions<T> sortOptions) {
+        return new SortMenu<>(sortOptions);
+    }
+
+    // ------------------------------------------------------ instance
 
     private static final By TOGGLE_GROUP_SELECTOR = By.classname(modifier(toggleGroup));
     private static final By TOGGLE_SELECTOR = By.classname(component(dataToolbar, toggle))
@@ -80,6 +112,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     public Toolbar<T> that() {
         return this;
     }
+
+    // ------------------------------------------------------ public API
 
     public Toolbar<T> add(Content content) {
         add(content.element());
@@ -181,28 +215,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             toggleGroupHandler.removeHandler();
             toggleGroupHandler = null;
         }
-    }
-
-    // ------------------------------------------------------ factory methods
-
-    public static Content content() {
-        return new Content();
-    }
-
-    public static Group group() {
-        return new Group();
-    }
-
-    public static Item item() {
-        return new Item();
-    }
-
-    public static BulkSelect bulkSelect() {
-        return new BulkSelect();
-    }
-
-    public static <T> SortMenu<T> sortMenu(SortOptions<T> sortOptions) {
-        return new SortMenu<>(sortOptions);
     }
 
     // ------------------------------------------------------ inner classes (content)
@@ -437,7 +449,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private final Group<SortDirection> sortDirection;
 
         private SortMenu(SortOptions<T> sortOptions) {
-            super(null, Components.icon(fas("sort-amount-down")), false);
+            super(null, Icon.icon(fas("sort-amount-down")), false);
             this.sortOptions = sortOptions;
             this.sortBy = new Group<SortOption<T>>("Sort by")
                     .display((html1, sortOption) -> html1.textContent(sortOption.name))

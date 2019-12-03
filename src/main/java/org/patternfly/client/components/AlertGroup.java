@@ -27,7 +27,6 @@ import static org.patternfly.client.resources.Dataset.alert;
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/alertgroup">https://www.patternfly.org/v4/documentation/core/components/alertgroup</a>
  */
-@SuppressWarnings("WeakerAccess")
 public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
         implements HtmlContent<HTMLUListElement, AlertGroup>, IsElement<HTMLUListElement> {
 
@@ -47,7 +46,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
         return new AlertGroup(0);
     }
 
-    // ------------------------------------------------------ alert group instance
+    // ------------------------------------------------------ instance
 
     private static final double DEFAULT_TIMEOUT = 8000; // ms
 

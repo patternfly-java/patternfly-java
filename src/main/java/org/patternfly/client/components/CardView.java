@@ -13,7 +13,7 @@ import org.patternfly.client.dataprovider.SortInfo;
 import static org.jboss.gwt.elemento.core.Elements.closest;
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.removeChildrenFrom;
-import static org.patternfly.client.components.Components.card;
+import static org.patternfly.client.components.Card.card;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.layout;
 import static org.patternfly.client.resources.CSS.modifier;
@@ -44,6 +44,14 @@ import static org.patternfly.client.resources.Dataset.cardViewItem;
  */
 public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         implements HtmlContent<HTMLDivElement, CardView<T>>, Display<T> {
+
+    // ------------------------------------------------------ cactory methods
+
+    public static <T> CardView<T> cardView(DataProvider<T> dataProvider, Display<T> display) {
+        return new CardView<>(dataProvider, display);
+    }
+
+    // ------------------------------------------------------ instance
 
     private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
             .desc(By.classname(component(card, actions)))

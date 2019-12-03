@@ -11,6 +11,18 @@ import static org.patternfly.client.resources.Constants.*;
 public class Spinner extends BaseComponent<HTMLElement, Spinner>
         implements HtmlContent<HTMLElement, Spinner> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Spinner spinner() {
+        return new Spinner(null);
+    }
+
+    public static Spinner spinner(Size size) {
+        return new Spinner(size);
+    }
+
+    // ------------------------------------------------------ instance
+
     Spinner(Size size) {
         super(span().css(component(spinner)).element(), "Spinner");
         if (size != null) {

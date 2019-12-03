@@ -5,16 +5,25 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MediaQueryList;
 import elemental2.dom.MutationRecord;
 import org.jboss.gwt.elemento.core.Attachable;
+import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.gwt.elemento.core.builder.ElementBuilder;
 import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.patternfly.client.resources.CSS;
 import org.patternfly.client.resources.Constants;
 import org.patternfly.client.resources.Theme;
 
 import static elemental2.dom.DomGlobal.window;
+import static org.jboss.gwt.elemento.core.Elements.main;
 import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.gwt.elemento.core.Elements.section;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
-import static org.patternfly.client.resources.Constants.page;
-import static org.patternfly.client.resources.Constants.role;
-import static org.patternfly.client.resources.Constants.tabindex;
+import static org.patternfly.client.resources.CSS.fas;
+import static org.patternfly.client.resources.CSS.modifier;
+import static org.patternfly.client.resources.Constants.nav;
+import static org.patternfly.client.resources.Constants.toggle;
+import static org.patternfly.client.resources.Constants.*;
+import static org.patternfly.client.resources.Theme.DARK;
 
 /**
  * PatternFly page component
@@ -37,11 +46,39 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return instance;
     }
 
+    public static Header header(String brand, String homeLink) {
+        return new Header(span().textContent(brand).element(), homeLink);
+    }
+
+    public static Header header(Brand brand, String homeLink) {
+        return new Header(brand.element(), homeLink);
+    }
+
+    public static Header header(HTMLElement brand, String homeLink) {
+        return new Header(brand, homeLink);
+    }
+
+    public static Tools tools() {
+        return new Tools();
+    }
+
+    public static PageSidebar sidebar(Navigation navigation) {
+        return new PageSidebar(navigation, Theme.DARK);
+    }
+
+    public static PageSidebar sidebar(Navigation navigation, Theme theme) {
+        return new PageSidebar(navigation, theme);
+    }
+
+    public static Section section() {
+        return new Section();
+    }
+
     // ------------------------------------------------------ page instance
 
     private final HTMLElement main;
     private final MediaQueryList mediaQueryList;
-    private PageHeader header;
+    private Header header;
     private PageSidebar sidebar;
 
     Page(String mainContainerId) {
@@ -73,7 +110,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ public API
 
-    public Page header(PageHeader header) {
+    public Page add(Header header) {
         failSafeRemoveFromParent(this.header);
         this.header = header;
         insertFirst(element, this.header);
@@ -81,16 +118,16 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
     }
 
     /** Shortcut for {@code add(new PageSidebar(navigation))} */
-    public Page sidebar(Navigation navigation) {
-        return sidebar(PageSidebar.pageSidebar(navigation));
+    public Page add(Navigation navigation) {
+        return add(sidebar(navigation));
     }
 
     /** Shortcut for {@code add(new PageSidebar(navigation, theme))} */
-    public Page sidebar(Navigation navigation, Theme theme) {
-        return sidebar(PageSidebar.pageSidebar(navigation, theme));
+    public Page add(Navigation navigation, Theme theme) {
+        return add(sidebar(navigation, theme));
     }
 
-    public Page sidebar(PageSidebar sidebar) {
+    public Page add(PageSidebar sidebar) {
         // TODO only insert if this.sidebar != sidebar?
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
@@ -111,15 +148,23 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public Page section(PageSection firstSection, PageSection... moreSections) {
+    public Page add(Section firstSection, Section... moreSections) {
         removeChildrenFrom(main);
         main.appendChild(firstSection.element());
         if (moreSections != null) {
-            for (PageSection section : moreSections) {
+            for (Section section : moreSections) {
                 main.appendChild(section.element());
             }
         }
         return this;
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public PageSidebar getSidebar() {
+        return sidebar;
     }
 
     // ------------------------------------------------------ internals
@@ -141,6 +186,135 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
             if (sidebar != null) {
                 sidebar.expand();
             }
+        }
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public static class Header extends BaseComponent<HTMLElement, Header>
+            implements HtmlContent<HTMLElement, Header> {
+
+        private final HTMLDivElement toggleContainer;
+        private final Button toggleButton;
+        private PageSidebar sidebar;
+
+        Header(HTMLElement brand, String homeLink) {
+            super(Elements.header().css(CSS.component(page, Constants.header)).attr(role, banner).element(),
+                    "PageHeader");
+            add(div().css(component(page, Constants.header, Constants.brand))
+                    .add(toggleContainer = div().css(component(page, Constants.header, Constants.brand, toggle))
+                            .add(toggleButton = Button.icon(icon(fas("bars")), "Global Navigation")
+                                    .aria(expanded, false_)
+                                    .onClick(() -> {
+                                        if (sidebar != null) {
+                                            sidebar.toggle();
+                                        }
+                                    }))
+                            .element())
+                    .add(a(homeLink).css(component(page, Constants.header, Constants.brand, link))
+                            .add(brand)));
+            hideSidebarToggle();
+        }
+
+        @Override
+        public Header that() {
+            return this;
+        }
+
+        public Header add(Navigation navigation) {
+            return add(div().css(component(page, Constants.header, nav)).add(navigation));
+        }
+
+        public Header add(Tools tools) {
+            return add(tools);
+        }
+
+        void setSidebar(PageSidebar sidebar) {
+            this.sidebar = sidebar;
+            if (this.sidebar == null) {
+                toggleButton.aria(expanded, false_);
+                toggleButton.element().removeAttribute("aria-controls");
+            } else {
+                String sidebarId = sidebar.element().id;
+                if (sidebarId == null || sidebarId.length() == 0) {
+                    sidebarId = uniqueId(Constants.sidebar);
+                    sidebar.id(sidebarId);
+                }
+                toggleButton.aria(expanded, false_);
+                toggleButton.aria(controls, sidebarId);
+            }
+        }
+
+        void showSidebarToggle() {
+            setVisible(toggleContainer, true);
+        }
+
+        void hideSidebarToggle() {
+            setVisible(toggleContainer, false);
+        }
+
+    }
+
+    public static class Tools extends ElementBuilder<HTMLDivElement, Tools>
+            implements HtmlContent<HTMLDivElement, Tools> {
+
+        private Tools() {
+            super(div().css(component(page, Constants.header, tools)).element());
+        }
+
+        @Override
+        public Tools that() {
+            return this;
+        }
+    }
+
+    public static class PageSidebar extends BaseComponent<HTMLDivElement, PageSidebar>
+            implements HtmlContent<HTMLDivElement, PageSidebar> {
+
+        PageSidebar(Navigation navigation, Theme theme) {
+            super(div().css(CSS.component(page, Constants.sidebar)).element(), "PageSidebar");
+            add(div().css(component(page, Constants.sidebar, body))
+                    .add(navigation)).element();
+            if (theme == DARK) {
+                css(modifier(dark));
+                navigation.css(modifier(dark));
+            }
+        }
+
+        @Override
+        public PageSidebar that() {
+            return this;
+        }
+
+        void toggle() {
+            if (element.classList.contains(modifier(collapsed))) {
+                expand();
+            } else if (element.classList.contains(modifier(expanded))) {
+                collapse();
+            }
+        }
+
+        void expand() {
+            element.classList.remove(modifier(collapsed));
+            element.classList.add(modifier(expanded));
+        }
+
+        void collapse() {
+            element.classList.remove(modifier(expanded));
+            element.classList.add(modifier(collapsed));
+        }
+    }
+
+    public static class Section extends BaseComponent<HTMLElement, Section>
+            implements HtmlContent<HTMLElement, Section> {
+
+        Section() {
+            super(Elements.section().css(component(page, mainSection)).element(), "PageSection");
+        }
+
+        @Override
+        public Section that() {
+            return this;
         }
     }
 }

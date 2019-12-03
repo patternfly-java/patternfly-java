@@ -13,11 +13,11 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
-    public static void populate(HTMLElement element, String component) {
-        populate(element, component, null);
+    public static void component(HTMLElement element, String component) {
+        component(element, component, null);
     }
 
-    public static void populate(HTMLElement element, String component, String id) {
+    public static void component(HTMLElement element, String component, String id) {
         if (isSupported()) {
             element.dataset.set("ouiaComponentType", component);
             if (id != null) {

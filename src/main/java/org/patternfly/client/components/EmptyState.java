@@ -11,7 +11,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.insertAfter;
 import static org.jboss.gwt.elemento.core.Elements.insertFirst;
 import static org.patternfly.client.components.Button.button;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.Size.lg;
 import static org.patternfly.client.resources.CSS.Size.sm;
 import static org.patternfly.client.resources.CSS.component;
@@ -44,7 +44,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         EmptyState loading = new EmptyState(null, title).large();
         insertFirst(loading.element(),
                 div().css(component(emptyState, icon))
-                        .add(Components.spinner()).element());
+                        .add(Spinner.spinner()).element());
         return loading;
     }
 
@@ -58,7 +58,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
                 .primary(Button.link("Clear all filters").onClick(callback));
     }
 
-    // ------------------------------------------------------ empty state instance
+    // ------------------------------------------------------ instance
 
     private HTMLElement body;
     private HTMLElement primaryContainer;
@@ -69,7 +69,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         if (icon != null) {
             add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true_));
         }
-        add(Components.title(1, title, lg));
+        add(Title.title(1, title, lg));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         return this;
     }
 
-    // ------------------------------------------------------ pubic API
+    // ------------------------------------------------------ public API
 
     public EmptyState body(String body) {
         return body(body().textContent(body));

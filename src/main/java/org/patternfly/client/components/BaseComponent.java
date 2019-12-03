@@ -16,7 +16,7 @@ abstract class BaseComponent<E extends HTMLElement, B extends ElementBuilder<E, 
 
     BaseComponent(E element, String component, String id) {
         super(element);
-        Ouia.populate(element, component, id);
+        Ouia.component(element, component, id);
     }
 
     @Override

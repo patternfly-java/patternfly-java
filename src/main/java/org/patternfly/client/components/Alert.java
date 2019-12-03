@@ -17,7 +17,7 @@ import static org.jboss.gwt.elemento.core.Elements.h;
 import static org.jboss.gwt.elemento.core.Elements.span;
 import static org.jboss.gwt.elemento.core.EventType.bind;
 import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.patternfly.client.components.Components.icon;
+import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.CSS.modifier;
@@ -39,7 +39,6 @@ import static org.patternfly.client.resources.Constants.warning;
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
-@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Alert extends BaseComponent<HTMLDivElement, Alert>
         implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
 
@@ -65,7 +64,11 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return new Alert(Type.DANGER, title);
     }
 
-    // ------------------------------------------------------ alert instance
+    public static Description description() {
+        return new Description();
+    }
+
+    // ------------------------------------------------------ instance
 
     private final Type type;
     private final String title;
@@ -167,10 +170,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
             this.modifier = modifier;
             this.aria = aria;
         }
-    }
-
-    public static Description description() {
-        return new Description();
     }
 
     public static class Description extends ElementBuilder<HTMLDivElement, Description>

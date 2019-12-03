@@ -16,9 +16,7 @@ import static org.jboss.gwt.elemento.core.Elements.findAll;
 import static org.jboss.gwt.elemento.core.EventType.bind;
 import static org.jboss.gwt.elemento.core.EventType.click;
 
-/**
- * Reusable class for data components w/ select checkboxes.
- */
+/** Reusable class for data components w/ select checkboxes. */
 class ItemSelect {
 
     private final HTMLElement root;

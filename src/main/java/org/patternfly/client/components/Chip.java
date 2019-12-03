@@ -46,7 +46,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
         return new Chip(div().element(), text, -1, true, false);
     }
 
-    // ------------------------------------------------------ chip instance
+    // ------------------------------------------------------ instance
 
     private final int count;
     private final boolean overflow;
@@ -56,7 +56,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     private final HTMLElement text;
     private Badge badge;
 
-    private Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
+    Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
         super(element, "Chip");
         this.count = count;
         this.overflow = overflow;
@@ -119,9 +119,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
 
     // ------------------------------------------------------ public API
 
-    /**
-     * Called after the chip has been removed.
-     */
+    /** Called after the chip has been removed. */
     public Chip onClose(Callback callback) {
         this.callback = callback;
         return this;

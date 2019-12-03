@@ -18,26 +18,15 @@ import static org.patternfly.client.resources.Constants.*;
 public class Card extends BaseComponent<HTMLDivElement, Card>
         implements HtmlContent<HTMLDivElement, Card> {
 
-    Card() {
-        super(div().css(component(card)).element(), "Card");
+    // ------------------------------------------------------ factory methods
+
+    public static Card card() {
+        return new Card();
     }
 
-    @Override
-    public Card that() {
-        return this;
+    public static Head head() {
+        return new Head();
     }
-
-    public Card compact() {
-        element.classList.add(modifier(compact));
-        return this;
-    }
-
-    public Card hoverable() {
-        element.classList.add(modifier(hoverable));
-        return this;
-    }
-
-    // ------------------------------------------------------ inner classes
 
     public static Header header() {
         return new Header();
@@ -51,9 +40,30 @@ public class Card extends BaseComponent<HTMLDivElement, Card>
         return new Footer();
     }
 
-    public static Head head() {
-        return new Head();
+    // ------------------------------------------------------ instance
+
+    Card() {
+        super(div().css(component(card)).element(), "Card");
     }
+
+    @Override
+    public Card that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ modifiers
+
+    public Card compact() {
+        element.classList.add(modifier(compact));
+        return this;
+    }
+
+    public Card hoverable() {
+        element.classList.add(modifier(hoverable));
+        return this;
+    }
+
+    // ------------------------------------------------------ inner classes
 
     public static class Head extends ElementBuilder<HTMLDivElement, Head>
             implements HtmlContent<HTMLDivElement, Head> {

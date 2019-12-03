@@ -21,6 +21,14 @@ import static org.patternfly.client.resources.Constants.toolbar;
 public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolbar>
         implements HtmlContent<HTMLElement, ChipGroupToolbar> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static ChipGroupToolbar chipGroupToolbar() {
+        return new ChipGroupToolbar();
+    }
+
+    // ------------------------------------------------------ instance
+
     ChipGroupToolbar() {
         super(ul().css(component(chipGroup), modifier(toolbar)).element(), "ChipGroupToolbar");
     }
@@ -29,6 +37,8 @@ public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolba
     public ChipGroupToolbar that() {
         return this;
     }
+
+    // ------------------------------------------------------ public API
 
     public ChipGroupToolbar add(String category, ChipGroup chipGroup) {
         add(li()

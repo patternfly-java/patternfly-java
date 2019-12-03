@@ -28,6 +28,14 @@ import static org.patternfly.client.resources.Constants.*;
 public class Expandable extends BaseComponent<HTMLDivElement, Expandable>
         implements HtmlContent<HTMLDivElement, Expandable> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Expandable expandable() {
+        return new Expandable("Show more", "Show less");
+    }
+
+    // ------------------------------------------------------ instance
+
     private final CollapseExpandHandler ceh;
     private final Consumer<Boolean> toggleText;
 

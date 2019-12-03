@@ -16,6 +16,14 @@ import static org.patternfly.client.resources.Constants.title;
 public class Title extends BaseComponent<HTMLHeadingElement, Title>
         implements HtmlContent<HTMLHeadingElement, Title> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Title title(int level, String text, Size size) {
+        return new Title(level, text, size);
+    }
+
+    // ------------------------------------------------------ instance
+
     Title(int level, String text, Size size) {
         super(h(level, text).css(component(title), size.modifier()).element(), "Title");
     }

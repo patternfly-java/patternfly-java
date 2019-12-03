@@ -51,11 +51,11 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     public static <T> Dropdown<T> kebab() {
-        return new Dropdown<>(null, Components.icon(fas("ellipsis-v")), false, false);
+        return new Dropdown<>(null, Icon.icon(fas("ellipsis-v")), false, false);
     }
 
     public static <T> Dropdown<T> kebab(boolean grouped) {
-        return new Dropdown<>(null, Components.icon(fas("ellipsis-v")), grouped, false);
+        return new Dropdown<>(null, Icon.icon(fas("ellipsis-v")), grouped, false);
     }
 
     public static <T> Dropdown<T> icon(Icon icon) {
@@ -82,7 +82,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return new Dropdown<>(text, null, grouped, true);
     }
 
-    // ------------------------------------------------------ dropdown instance
+    // ------------------------------------------------------ instance
 
     private static final String UNNAMED_GROUP = "org.patternfly.dropdown.unnamedGroup";
 
@@ -148,7 +148,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         add(toggle);
         setText(text);
 
-        HtmlContentBuilder menuBuilder;
+        HtmlContentBuilder<?> menuBuilder;
         if (grouped) {
             menuBuilder = div();
         } else {

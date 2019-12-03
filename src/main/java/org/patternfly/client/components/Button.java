@@ -107,13 +107,13 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return new Button(Elements.button().css(modifier(control)).add(element));
     }
 
-    // ------------------------------------------------------ button instance
+    // ------------------------------------------------------ instance
 
     private final HTMLButtonElement button;
     private final HTMLAnchorElement a;
     private Callback callback;
 
-    Button(HtmlContentBuilder builder) {
+    <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
         super(builder.css(component(Constants.button)).element(), "Button");
         on(click, e -> {
             if (callback != null) {
@@ -208,9 +208,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    /**
-     * Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}
-     */
+    /** Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}. */
     public Button clear() {
         element.classList.remove(modifier(active));
         element.classList.remove(modifier(focus));
@@ -226,7 +224,6 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     // ------------------------------------------------------ inner classes
-
 
     public enum Type {
         SUBMIT("submit"),

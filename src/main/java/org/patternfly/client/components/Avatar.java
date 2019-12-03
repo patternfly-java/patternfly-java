@@ -13,6 +13,14 @@ import static org.patternfly.client.resources.Constants.avatar;
  */
 public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
+    // ------------------------------------------------------ factory methods
+
+    public static Avatar avatar(String src, String alt) {
+        return new Avatar(src, alt);
+    }
+
+    // ------------------------------------------------------ instance
+
     Avatar(String src, String alt) {
         super(img(src).css(component(avatar)).element(), "Avatar");
         element.alt = alt;
