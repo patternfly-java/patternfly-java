@@ -71,9 +71,7 @@ public class DataProvider<T> {
 
     // ------------------------------------------------------ items
 
-    /**
-     * Replaces the items, resets the paging and selection and applies the current filter and sort order.
-     */
+    /** Replaces the items, resets the paging and selection and applies the current filter and sort order. */
     public void update(T[] items) {
         reset();
         for (T item : items) {
@@ -82,9 +80,7 @@ public class DataProvider<T> {
         internalUpdate();
     }
 
-    /**
-     * Replaces the items, resets the paging and selection and applies the current filter and sort order.
-     */
+    /** Replaces the items, resets the paging and selection and applies the current filter and sort order. */
     public void update(Iterable<T> items) {
         reset();
         for (T item : items) {
@@ -131,27 +127,21 @@ public class DataProvider<T> {
         this.selectHandler.add(selectHandler);
     }
 
-    /**
-     * Selects all items if {@code multiSelect == true}. Does not fire selection events
-     */
+    /** Selects all items if {@code multiSelect == true}. Does not fire selection events. */
     public void selectAll() {
         selectionInfo.reset();
         filteredItems.forEach((id, item) -> selectInternal(id, item, true));
         updateSelection();
     }
 
-    /**
-     * Selects all visible items if {@code multiSelect == true}. Does not fire selection events
-     */
+    /** Selects all visible items if {@code multiSelect == true}. Does not fire selection events. */
     public void selectVisible() {
         selectionInfo.reset();
         visibleItems.forEach((id, item) -> selectInternal(id, item, true));
         updateSelection();
     }
 
-    /**
-     * Clears the selection for all items
-     */
+    /** Clears the selection for all items. */
     public void clearAllSelection() {
         if (selectionInfo.hasSelection()) {
             selectionInfo.reset();
@@ -160,9 +150,7 @@ public class DataProvider<T> {
         }
     }
 
-    /**
-     * Clears the selection for all visible items
-     */
+    /** Clears the selection for all visible items. */
     public void clearVisibleSelection() {
         if (selectionInfo.hasSelection()) {
             selectionInfo.reset();
@@ -171,9 +159,7 @@ public class DataProvider<T> {
         }
     }
 
-    /**
-     * (De)selects the specified item and fires a selection event if {@code select == true}
-     */
+    /** (De)selects the specified item and fires a selection event if {@code select == true}. */
     public void select(T item, boolean select) {
         selectInternal(getId(item), item, select);
         if (select) {
@@ -348,7 +334,6 @@ public class DataProvider<T> {
     }
 
     // ------------------------------------------------------ inner classes
-
 
     private static class Partition<T> extends AbstractList<List<T>> {
 

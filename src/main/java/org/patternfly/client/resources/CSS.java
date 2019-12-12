@@ -1,8 +1,6 @@
 package org.patternfly.client.resources;
 
-/**
- * Methods to build PatternFly CSS classes.
- */
+/** Methods to build PatternFly CSS classes. */
 public interface CSS {
 
     static String component(String component, String... elements) {

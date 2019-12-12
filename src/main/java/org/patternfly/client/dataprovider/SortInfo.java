@@ -2,9 +2,7 @@ package org.patternfly.client.dataprovider;
 
 import java.util.Comparator;
 
-/**
- * Holds the current sort option in a {@link DataProvider}.
- */
+/** Holds the current sort option in a {@link DataProvider}. */
 public class SortInfo<T> {
 
     private static final String EMPTY = "empty-sort-info";

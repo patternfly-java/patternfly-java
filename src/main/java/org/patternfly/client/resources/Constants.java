@@ -1,8 +1,6 @@
 package org.patternfly.client.resources;
 
-/**
- * UI constants and PatternFly components, modifiers and elements
- */
+/** UI constants and PatternFly components, modifiers and elements. */
 public interface Constants {
 
     String _1 = "-1";

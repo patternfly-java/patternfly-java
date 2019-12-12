@@ -21,9 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-/**
- * Holds the selected items in a {@link DataProvider}.
- */
+/** Holds the selected items in a {@link DataProvider}. */
 public class SelectionInfo<T> {
 
     private final Function<T, String> identifier;

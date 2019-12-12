@@ -11,28 +11,14 @@ import org.patternfly.client.core.Aria;
 import org.patternfly.client.core.Callback;
 import org.patternfly.client.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.failSafeRemoveFromParent;
-import static org.jboss.gwt.elemento.core.Elements.h;
-import static org.jboss.gwt.elemento.core.Elements.span;
+import static org.jboss.gwt.elemento.core.Elements.*;
 import static org.jboss.gwt.elemento.core.EventType.bind;
 import static org.jboss.gwt.elemento.core.EventType.click;
 import static org.patternfly.client.components.Icon.icon;
 import static org.patternfly.client.resources.CSS.component;
 import static org.patternfly.client.resources.CSS.fas;
 import static org.patternfly.client.resources.CSS.modifier;
-import static org.patternfly.client.resources.Constants.action;
-import static org.patternfly.client.resources.Constants.alert;
-import static org.patternfly.client.resources.Constants.danger;
-import static org.patternfly.client.resources.Constants.description;
-import static org.patternfly.client.resources.Constants.hidden;
-import static org.patternfly.client.resources.Constants.icon;
-import static org.patternfly.client.resources.Constants.info;
-import static org.patternfly.client.resources.Constants.inline;
-import static org.patternfly.client.resources.Constants.label;
-import static org.patternfly.client.resources.Constants.success;
-import static org.patternfly.client.resources.Constants.true_;
-import static org.patternfly.client.resources.Constants.warning;
+import static org.patternfly.client.resources.Constants.*;
 
 /**
  * PatternFly alert component.
@@ -70,9 +56,12 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     // ------------------------------------------------------ instance
 
+    public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
+
     private final Type type;
     private final String title;
     private Callback callback;
+    private Button closeButton;
 
     Alert(Type type, String title) {
         super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
@@ -106,7 +95,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     public Alert closable() {
         String label = "close " + type.aria + ": " + title;
-        return action(Button.icon(icon(fas("times")), label).element(), this::close);
+        closeButton = Button.icon(icon(fas("times")), label);
+        return action(closeButton.element(), this::close);
     }
 
     public void close() {
@@ -144,12 +134,19 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return aria(Constants.label, label);
     }
 
+    @Override
+    public Alert label(String target, String label) {
+        if (CLOSE_BUTTON.equals(target)) {
+            closeButton.label(label);
+        }
+        return this;
+    }
 
     // ------------------------------------------------------ internals
 
     boolean hasClose() {
         By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
-        return Elements.find(element, selector) != null;
+        return find(element, selector) != null;
     }
 
     // ------------------------------------------------------ inner classes

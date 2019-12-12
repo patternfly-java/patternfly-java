@@ -252,7 +252,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         void hideSidebarToggle() {
             setVisible(toggleContainer, false);
         }
-
     }
 
     public static class Tools extends ElementBuilder<HTMLDivElement, Tools>

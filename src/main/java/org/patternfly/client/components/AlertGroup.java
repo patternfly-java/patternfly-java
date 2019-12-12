@@ -104,6 +104,9 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     private void remove(String id) {
         HTMLElement e = find(element, By.data(alert, id));
         failSafeRemoveFromParent(e);
-        messageIds.remove(id);
+        Double timeoutHandle = messageIds.remove(id);
+        if (timeoutHandle != null) {
+            clearTimeout(timeoutHandle);
+        }
     }
 }

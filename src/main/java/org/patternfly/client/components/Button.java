@@ -6,6 +6,7 @@ import elemental2.dom.HTMLElement;
 import org.jboss.gwt.elemento.core.Elements;
 import org.jboss.gwt.elemento.core.builder.HtmlContent;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.patternfly.client.core.Aria;
 import org.patternfly.client.core.Callback;
 import org.patternfly.client.core.Disable;
 import org.patternfly.client.resources.Constants;
@@ -22,7 +23,7 @@ import static org.patternfly.client.resources.Constants.*;
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
-        implements HtmlContent<HTMLElement, Button>, Disable<Button> {
+        implements HtmlContent<HTMLElement, Button>, Aria<Button>, Disable<Button> {
 
     // ------------------------------------------------------ factory methods
 
@@ -164,6 +165,11 @@ public class Button extends BaseComponent<HTMLElement, Button>
             a.removeAttribute(tabindex);
         }
         return this;
+    }
+
+    @Override
+    public Button label(String label) {
+        return aria(Constants.label, label);
     }
 
     // ------------------------------------------------------ modifiers

@@ -15,9 +15,7 @@
  */
 package org.patternfly.client.dataprovider;
 
-/**
- * Displays items managed by a {@link DataProvider}
- */
+/** Displays items managed by a {@link DataProvider}. */
 public interface Display<T> {
 
     void showItems(Iterable<T> items, PageInfo pageInfo);
