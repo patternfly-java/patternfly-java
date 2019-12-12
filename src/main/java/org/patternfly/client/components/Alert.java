@@ -3,7 +3,6 @@ package org.patternfly.client.components;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.Elements;
 import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.core.builder.ElementBuilder;
 import org.jboss.gwt.elemento.core.builder.HtmlContent;
