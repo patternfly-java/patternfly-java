@@ -44,8 +44,37 @@ import static org.patternfly.resources.Constants.*;
 
 /**
  * PatternFly data toolbar component.
+ * <p>
+ * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a
+ * toolbar should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML
+ * elements):
+ * <pre>
+ * toolbar           = content, { content } ;
+ * content           = { group | item | node } ;
+ * group             = { group | item | node } ;
+ * item              = bulk_select | filter | sort_menu | pagination ;
+ * node              = ? HTML node ? ;
+ * filter            = basic_filter
+ *                   | attribute_value
+ *                   | faceted_filter
+ *                   | type_ahead_filter
+ *                   | multiple_filter ;
+ * basic_filter      = single_value | multi_value | date_range ;
+ * attribute_value   = ? dropdown ?, basic_filter ;
+ * faceted_filter    = ? grouped multi select ? ;
+ * type_ahead_filter = ? type ahead single select ?
+ *                   | ? type ahead multi select ? ;
+ * multiple_filter   = named_filter, { named_filter }, clear_filter ;
+ * single_value      = ? search box ?
+ *                   | ? single select ? ;
+ * multi_value       = ? multi select ? ;
+ * date_range        = ? date picker ? ;
+ * named_filter      = ? label ?, basic_filter ;
+ * clear_filter      = ? clear filter link ? ;
+ * </pre>
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
+ * @see <a href="https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
+ * @see <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus–Naur form</a>
  */
 public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         implements HtmlContent<HTMLDivElement, Toolbar<T>>, Display<T>, Attachable {
@@ -246,7 +275,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return add(item.element());
         }
 
-        private void bindToolbar(Toolbar toolbar) {
+        private <T> void bindToolbar(Toolbar<T> toolbar) {
             for (Group group : groups) {
                 group.bindToolbar(toolbar);
             }
@@ -302,7 +331,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                             .add(Button.icon(icon(fas(filter)), "Show filters")));
         }
 
-        private void bindToolbar(Toolbar toolbar) {
+        private <T> void bindToolbar(Toolbar<T> toolbar) {
             for (Group group : groups) {
                 group.bindToolbar(toolbar);
             }
@@ -315,6 +344,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     public static class Item extends ElementBuilder<HTMLDivElement, Item>
             implements HtmlContent<HTMLDivElement, Item> {
 
+        @SuppressWarnings("rawtypes")
         private final Stack<Consumer<Toolbar>> tlc; // the poor man's thread local context
 
         private Item() {
@@ -327,6 +357,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return this;
         }
 
+        @SuppressWarnings("unchecked")
         public Item add(BulkSelect bulkSelect) {
             tlc.push(toolbar -> {
                 toolbar.bulkSelect = bulkSelect;
@@ -375,7 +406,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return css(modifier(separator));
         }
 
-        private void bindToolbar(Toolbar toolbar) {
+        private <T> void bindToolbar(Toolbar<T> toolbar) {
             while (!tlc.isEmpty()) {
                 tlc.pop().accept(toolbar);
             }
@@ -398,7 +429,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                     .add(SELECT_ALL);
         }
 
-        private void bindToolbar(Toolbar toolbar) {
+        private <T> void bindToolbar(Toolbar<T> toolbar) {
             onSelect(item -> {
                 if (SELECT_NONE.equals(item)) {
                     toolbar.dataProvider.clearAllSelection();
@@ -463,8 +494,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             add(sortDirection);
         }
 
-        @SuppressWarnings("unchecked")
-        private void bindToolbar(Toolbar toolbar) {
+        private void bindToolbar(Toolbar<T> toolbar) {
             sortBy.onSelect(so -> sort(toolbar.dataProvider, so, sortDirection.value()));
             sortDirection.onSelect(so -> sort(toolbar.dataProvider, sortBy.value(), so));
         }
