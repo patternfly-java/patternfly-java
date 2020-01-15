@@ -8,13 +8,11 @@ import org.elemento.Attachable;
 import org.elemento.ElementBuilder;
 import org.elemento.Elements;
 import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Theme;
 
 import static elemental2.dom.DomGlobal.window;
-import static org.elemento.Elements.main;
 import static org.elemento.Elements.*;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
@@ -42,8 +40,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return instance;
     }
 
-    public static Page page(String mainContainerId) {
-        instance = new Page(mainContainerId);
+    public static Page page() {
+        instance = new Page();
         return instance;
     }
 
@@ -71,24 +69,24 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return new PageSidebar(navigation, theme);
     }
 
+    public static Main main(String id) {
+        return new Main(id);
+    }
+
     public static Section section() {
         return new Section();
     }
 
     // ------------------------------------------------------ page instance
 
-    private final HtmlContentBuilder<HTMLElement> main;
     private final MediaQueryList mediaQueryList;
     private Header header;
     private PageSidebar sidebar;
     private Navigation navigation;
+    private Main main;
 
-    Page(String mainContainerId) {
+    Page() {
         super(div().css(component(page)).element(), "Page");
-        add(main = main().id(mainContainerId).css(component(page, Constants.main))
-                .attr(role, Constants.main)
-                .attr(tabindex, "-1"));
-
         mediaQueryList = window.matchMedia("(max-width: 768px)");
         mediaQueryList.addListener(this::onResize);
         Attachable.register(element(), this);
@@ -111,31 +109,60 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ public API
 
-    public Header getHeader() {
-        return header;
-    }
-
-    public Page setHeader(Header header) {
+    /** Adds the given header and removes the previous one (if any). */
+    public Page add(Header header) {
         failSafeRemoveFromParent(this.header);
         this.header = header;
         insertFirst(element, this.header);
         return this;
     }
 
-    public PageSidebar getSidebar() {
-        return sidebar;
-    }
-
-    public Page setSidebar(PageSidebar sidebar) {
+    /** Adds the given sidebar and removes the previous one (if any). */
+    public Page add(PageSidebar sidebar) {
         // TODO only insert if this.sidebar != sidebar?
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
-        insertBefore(this.sidebar, main.element());
+        if (main != null) {
+            insertBefore(this.sidebar, main.element());
+        } else {
+            add(this.sidebar.element());
+        }
         if (header != null) {
             header.setSidebar(this.sidebar);
         }
         onResize(mediaQueryList);
         return this;
+    }
+
+    /** Adds the given navigation and removes the previous one (if any). */
+    public Page add(Navigation navigation) {
+        return add(sidebar(navigation));
+    }
+
+    /** Adds the given navigation and removes the previous one (if any). */
+    public Page add(Navigation navigation, Theme theme) {
+        return add(sidebar(navigation, theme));
+    }
+
+    /** Adds the main container. */
+    public Page add(Main main) {
+        return add(main.element());
+    }
+
+    public Header header() {
+        return header;
+    }
+
+    public PageSidebar sidebar() {
+        return sidebar;
+    }
+
+    public Navigation navigation() {
+        return navigation;
+    }
+
+    public Main main() {
+        return main;
     }
 
     public void removeSidebar() {
@@ -145,26 +172,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
             header.setSidebar(null);
             header.hideSidebarToggle();
         }
-    }
-
-    public Page setNavigation(Navigation navigation) {
-        return setSidebar(sidebar(navigation));
-    }
-
-    public Page setNavigation(Navigation navigation, Theme theme) {
-        return setSidebar(sidebar(navigation, theme));
-    }
-
-    public Navigation getNavigation() {
-        return navigation;
-    }
-
-    public HtmlContentBuilder<HTMLElement> getMain() {
-        return main;
-    }
-
-    public void clearMain() {
-        removeChildrenFrom(main);
     }
 
     // ------------------------------------------------------ internals
@@ -301,6 +308,24 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         void collapse() {
             element.classList.remove(modifier(expanded));
             element.classList.add(modifier(collapsed));
+        }
+    }
+
+    public static class Main extends BaseComponent<HTMLElement, Main>
+            implements HtmlContent<HTMLElement, Main> {
+
+        Main(String id) {
+            super(Elements.main()
+                            .id(id)
+                            .css(component(page, Constants.main))
+                            .attr(role, Constants.main)
+                            .attr(tabindex, "-1").element(),
+                    "PageMain");
+        }
+
+        @Override
+        public Main that() {
+            return this;
         }
     }
 
