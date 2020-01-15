@@ -1,9 +1,9 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.HtmlContent;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.elemento.Elements.div;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.Constants.content;
 

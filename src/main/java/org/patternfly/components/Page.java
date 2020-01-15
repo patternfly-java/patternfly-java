@@ -4,22 +4,23 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MediaQueryList;
 import elemental2.dom.MutationRecord;
-import org.jboss.gwt.elemento.core.Attachable;
-import org.jboss.gwt.elemento.core.Elements;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.Attachable;
+import org.elemento.ElementBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Theme;
 
 import static elemental2.dom.DomGlobal.window;
-import static org.jboss.gwt.elemento.core.Elements.main;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.Elements.section;
+import static org.elemento.Elements.main;
+import static org.elemento.Elements.*;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.body;
 import static org.patternfly.resources.Constants.nav;
 import static org.patternfly.resources.Constants.toggle;
 import static org.patternfly.resources.Constants.*;
@@ -76,17 +77,17 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ page instance
 
-    private final HTMLElement main;
+    private final HtmlContentBuilder<HTMLElement> main;
     private final MediaQueryList mediaQueryList;
     private Header header;
     private PageSidebar sidebar;
+    private Navigation navigation;
 
     Page(String mainContainerId) {
         super(div().css(component(page)).element(), "Page");
         add(main = main().id(mainContainerId).css(component(page, Constants.main))
                 .attr(role, Constants.main)
-                .attr(tabindex, "-1")
-                .element());
+                .attr(tabindex, "-1"));
 
         mediaQueryList = window.matchMedia("(max-width: 768px)");
         mediaQueryList.addListener(this::onResize);
@@ -110,28 +111,26 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ public API
 
-    public Page add(Header header) {
+    public Header getHeader() {
+        return header;
+    }
+
+    public Page setHeader(Header header) {
         failSafeRemoveFromParent(this.header);
         this.header = header;
         insertFirst(element, this.header);
         return this;
     }
 
-    /** Shortcut for {@code add(new PageSidebar(navigation))} */
-    public Page add(Navigation navigation) {
-        return add(sidebar(navigation));
+    public PageSidebar getSidebar() {
+        return sidebar;
     }
 
-    /** Shortcut for {@code add(new PageSidebar(navigation, theme))} */
-    public Page add(Navigation navigation, Theme theme) {
-        return add(sidebar(navigation, theme));
-    }
-
-    public Page add(PageSidebar sidebar) {
+    public Page setSidebar(PageSidebar sidebar) {
         // TODO only insert if this.sidebar != sidebar?
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
-        insertBefore(this.sidebar, main);
+        insertBefore(this.sidebar, main.element());
         if (header != null) {
             header.setSidebar(this.sidebar);
         }
@@ -148,23 +147,24 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public Page add(Section firstSection, Section... moreSections) {
+    public Page setNavigation(Navigation navigation) {
+        return setSidebar(sidebar(navigation));
+    }
+
+    public Page setNavigation(Navigation navigation, Theme theme) {
+        return setSidebar(sidebar(navigation, theme));
+    }
+
+    public Navigation getNavigation() {
+        return navigation;
+    }
+
+    public HtmlContentBuilder<HTMLElement> getMain() {
+        return main;
+    }
+
+    public void clearMain() {
         removeChildrenFrom(main);
-        main.appendChild(firstSection.element());
-        if (moreSections != null) {
-            for (Section section : moreSections) {
-                main.appendChild(section.element());
-            }
-        }
-        return this;
-    }
-
-    public Header getHeader() {
-        return header;
-    }
-
-    public PageSidebar getSidebar() {
-        return sidebar;
     }
 
     // ------------------------------------------------------ internals
@@ -221,12 +221,12 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
             return this;
         }
 
-        public Header add(Navigation navigation) {
+        public Header setNavigation(Navigation navigation) {
             return add(div().css(component(page, Constants.header, nav)).add(navigation));
         }
 
-        public Header add(Tools tools) {
-            return add(tools);
+        public Header setTools(Tools tools) {
+            return add(tools.element());
         }
 
         void setSidebar(PageSidebar sidebar) {

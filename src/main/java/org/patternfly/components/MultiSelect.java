@@ -1,5 +1,6 @@
 package org.patternfly.components;
 
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -7,25 +8,22 @@ import java.util.function.Function;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
+import org.patternfly.core.HasValues;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.fieldset;
-import static org.jboss.gwt.elemento.core.Elements.form;
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.label;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.jboss.gwt.elemento.core.InputType.checkbox;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.label;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
+import static org.elemento.InputType.checkbox;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.fieldset;
-import static org.patternfly.resources.Constants.form;
 import static org.patternfly.resources.Constants.input;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.select;
@@ -39,25 +37,28 @@ import static org.patternfly.resources.Dataset.multiSelectItem;
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
-        implements HtmlContent<HTMLDivElement, MultiSelect<T>>, Disable<MultiSelect<T>> {
+        implements HtmlContent<HTMLDivElement, MultiSelect<T>>, Disable<MultiSelect<T>>, HasValues<T> {
 
     // ------------------------------------------------------ factory methods
 
-    public static <T> MultiSelect<T> simple(String text) {
-        return new MultiSelect<>(text, null, false);
+    public static <T> MultiSelect<T> multi(String text) {
+        return new MultiSelect<>(null, text, false);
     }
 
-    public static <T> MultiSelect<T> simple(String text, boolean typeahead) {
-        return new MultiSelect<>(text, null, true);
+    public static <T> MultiSelect<T> multi(Icon icon, String text) {
+        return new MultiSelect<>(icon, text, true);
     }
 
-    public static <T> MultiSelect<T> checkbox(String text) {
-        return new MultiSelect<>(text, null, false);
+/*
+    NYI
+    public static <T>MultiSelect<T> typeahead(String placeholder) {
+        return new MultiSelect<>(null, placeholder, true);
     }
 
-    public static <T> MultiSelect<T> checkbox(String text, boolean grouped) {
-        return null;
+    public static <T> MultiSelect<T> typeahead(Icon icon, String placeholder) {
+        return new MultiSelect<>(icon, placeholder, true);
     }
+*/
 
     // ------------------------------------------------------ select instance
 
@@ -70,7 +71,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     private final HTMLElement text;
     private final HTMLElement menu;
 
-    MultiSelect(String text, Icon icon, boolean typeahead) {
+    MultiSelect(Icon icon, String text, boolean typeahead) {
         super(div().css(component(select)).element(), "Select");
         this.typeahead = typeahead;
         this.ceh = new CollapseExpandHandler();
@@ -89,11 +90,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
                                 .textContent(text).element()))
                 .add(i().css(CSS.fas(caretDown), component(select, toggle, arrow))
                         .aria(hidden, true_)).element());
-        add(div().css(component(select, Constants.menu))
-                .add(form().css(component(form)).apply(f -> f.noValidate = true)
-                        .add(div().css(component(form, group))
-                                .add(menu = fieldset().css(component(component(form, fieldset)))
-                                        .aria(label, "Select input").element()))));
+        add(menu = div().css(component(select, Constants.menu)).hidden(true).element());
 
         if (icon != null) {
             insertBefore(span().css(component(select, toggle, Constants.icon))
@@ -119,19 +116,31 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
 
     public MultiSelect<T> add(Iterable<T> items) {
         for (T item : items) {
-            add(item);
+            add(null, item);
         }
         return this;
     }
 
     public MultiSelect<T> add(T[] items) {
         for (T item : items) {
-            add(item);
+            add(null, item);
         }
         return this;
     }
 
     public MultiSelect<T> add(T item) {
+        return add(null, item);
+    }
+
+    public MultiSelect<T> add(String group, Iterable<T> items) {
+        return this;
+    }
+
+    public MultiSelect<T> add(String group, T[] items) {
+        return this;
+    }
+
+    public MultiSelect<T> add(String group, T item) {
         HtmlContentBuilder<HTMLElement> span = span().css(component(check, label));
         itemDisplay.display.accept(span, item);
 
@@ -146,8 +155,30 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         return this;
     }
 
+    @Override
+    public Set<T> values() {
+        return null;
+    }
+
+    public MultiSelect<T> select(T item) {
+        return select(item, true);
+    }
+
+    public MultiSelect<T> select(T item, boolean fireOnSelect) {
+        text.textContent = itemDisplay.asString.apply(item);
+        if (fireOnSelect && onSelect != null) {
+            onSelect.onSelect(item);
+        }
+        return this;
+    }
+
     public MultiSelect<T> identifier(Function<T, String> identifier) {
         itemDisplay.identifier = identifier;
+        return this;
+    }
+
+    public MultiSelect<T> asString(Function<T, String> asString) {
+        itemDisplay.asString = asString;
         return this;
     }
 
@@ -156,28 +187,10 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         return this;
     }
 
-    public MultiSelect<T> plain() {
-        return this;
-    }
-
-    public MultiSelect<T> icon() {
-        return this;
-    }
+    // ------------------------------------------------------ modifier
 
     public MultiSelect<T> up() {
         element.classList.add(modifier(top));
-        return this;
-    }
-
-    public MultiSelect<T> select(T item) {
-        return select(item, true);
-    }
-
-    public MultiSelect<T> select(T item, boolean fireOnSelect) {
-        text.textContent = itemDisplay.identifier.apply(item);
-        if (fireOnSelect && onSelect != null) {
-            onSelect.onSelect(item);
-        }
         return this;
     }
 
@@ -191,6 +204,12 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     public MultiSelect<T> enable() {
         button.disabled = false;
         return this;
+    }
+
+    public void disable(T item) {
+    }
+
+    public void enable(T item) {
     }
 
     // ------------------------------------------------------ events

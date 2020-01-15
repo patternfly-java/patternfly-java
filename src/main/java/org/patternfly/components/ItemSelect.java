@@ -7,14 +7,13 @@ import java.util.function.Function;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
+import org.elemento.By;
+import org.elemento.Elements;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
-import org.jboss.gwt.elemento.core.By;
 
-import static org.jboss.gwt.elemento.core.Elements.find;
-import static org.jboss.gwt.elemento.core.Elements.findAll;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
 
 /** Reusable class for data components w/ select checkboxes. */
 class ItemSelect {
@@ -29,7 +28,7 @@ class ItemSelect {
     void bindSelectHandler(By selector, Function<HTMLInputElement, String> closestId,
             BiConsumer<String, Boolean> selection) {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement e : findAll(root, selector)) {
+        for (HTMLElement e : Elements.findAll(root, selector)) {
             handler.add(bind(e, click, evt -> {
                 HTMLInputElement checkbox = (HTMLInputElement) e;
                 String id = closestId.apply(checkbox);
@@ -52,7 +51,7 @@ class ItemSelect {
     }
 
     void updateSelection(By selector, boolean selected) {
-        HTMLInputElement checkbox = find(root, selector);
+        HTMLInputElement checkbox = Elements.find(root, selector);
         if (checkbox != null) {
             checkbox.checked = selected;
         }

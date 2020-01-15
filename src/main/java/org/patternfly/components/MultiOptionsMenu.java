@@ -9,18 +9,18 @@ import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.IsElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -192,8 +192,8 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ inner classes
 
-
-    public static class Group<T> implements HasValue<T>, IsElement<HTMLUListElement> {
+    public static class Group<T> extends BaseComponent<HTMLUListElement, Group<T>>
+            implements HtmlContent<HTMLUListElement, Group<T>>, HasValue<T> {
 
         private final String text;
         private final List<T> items;
@@ -201,18 +201,16 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         private T value;
         private SelectHandler<T> onSelect;
 
-        private final HTMLUListElement root;
-
         public Group(String text) {
+            super(ul().element(), "OptionsMenuGroup");
             this.text = text;
             this.items = new ArrayList<>();
             this.itemDisplay = new ItemDisplay<>();
-            this.root = ul().element();
         }
 
         @Override
-        public HTMLUListElement element() {
-            return root;
+        public Group<T> that() {
+            return this;
         }
 
         public Group<T> add(Iterable<T> items) {
@@ -244,6 +242,11 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
             return this;
         }
 
+        public Group<T> asString(Function<T, String> asString) {
+            itemDisplay.asString = asString;
+            return this;
+        }
+
         public Group<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
             this.itemDisplay.display = display;
             return this;
@@ -261,7 +264,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         public Group<T> select(T item, boolean fireEvent) {
             value = item;
             String itemId = itemDisplay.itemId(item);
-            for (HTMLElement e : findAll(root,
+            for (HTMLElement e : Elements.findAll(element,
                     By.classname(component(optionsMenu, Constants.menu, Constants.item, icon)))) {
                 setVisible(e, itemId.equals(e.dataset.get(multiOptionsMenuCheck)));
             }
@@ -274,7 +277,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
         public Group<T> clearSelection() {
             value = null;
-            for (HTMLElement e : findAll(root, By.classname(component(optionsMenu, Constants.menu, item, icon)))) {
+            for (HTMLElement e : Elements.findAll(element, By.classname(component(optionsMenu, Constants.menu, item, icon)))) {
                 setVisible(e, false);
             }
             return this;

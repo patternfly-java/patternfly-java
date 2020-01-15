@@ -13,12 +13,13 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.KeyboardEvent;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.EventType;
-import org.jboss.gwt.elemento.core.InputType;
-import org.jboss.gwt.elemento.core.Key;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.EventType;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
+import org.elemento.InputType;
+import org.elemento.Key;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -27,14 +28,14 @@ import org.patternfly.resources.Constants;
 
 import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.form;
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.blur;
-import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.jboss.gwt.elemento.core.EventType.keydown;
-import static org.jboss.gwt.elemento.core.EventType.submit;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.form;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.blur;
+import static org.elemento.EventType.click;
+import static org.elemento.EventType.keydown;
+import static org.elemento.EventType.submit;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -203,7 +204,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                 });
         itemDisplay.display.accept(button, item);
         if (typeahead) {
-            String filter = typeaheadFilter != null ? typeaheadFilter.apply(item) : itemDisplay.identifier.apply(item);
+            String filter = typeaheadFilter != null ? typeaheadFilter.apply(item) : itemDisplay.asString.apply(item);
             button.data(singleSelectFilter, filter);
         }
         menu.appendChild(li().attr(role, presentation)
@@ -211,19 +212,9 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         return this;
     }
 
-    public SingleSelect<T> identifier(Function<T, String> identifier) {
-        itemDisplay.identifier = identifier;
-        return this;
-    }
-
-    public SingleSelect<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
-        itemDisplay.display = display;
-        return this;
-    }
-
-    public SingleSelect<T> typeaheadFilter(Function<T, String> typeaheadFilter) {
-        this.typeaheadFilter = typeaheadFilter;
-        return this;
+    @Override
+    public T value() {
+        return value;
     }
 
     public SingleSelect<T> select(T item) {
@@ -233,8 +224,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     public SingleSelect<T> select(T item, boolean fireOnSelect) {
         value = item;
         String itemId = itemDisplay.itemId(item);
-        for (HTMLElement e : findAll(menu, By.data(singleSelectItem))) {
-            Element icon = find(e, By.selector(".fas.fa-check"));
+        for (HTMLElement e : Elements.findAll(menu, By.data(singleSelectItem))) {
+            Element icon = Elements.find(e, By.selector(".fas.fa-check"));
             if (itemId.equals(e.dataset.get(singleSelectItem))) {
                 e.classList.add(modifier(selected));
                 if (icon == null) {
@@ -248,9 +239,9 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             }
         }
         if (typeahead) {
-            input.value = itemDisplay.identifier.apply(item);
+            input.value = itemDisplay.asString.apply(item);
         } else {
-            text.textContent = itemDisplay.identifier.apply(item);
+            text.textContent = itemDisplay.asString.apply(item);
         }
 
         if (fireOnSelect && onSelect != null) {
@@ -258,6 +249,28 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         }
         return this;
     }
+
+    public SingleSelect<T> identifier(Function<T, String> identifier) {
+        itemDisplay.identifier = identifier;
+        return this;
+    }
+
+    public SingleSelect<T> asString(Function<T, String> asString) {
+        itemDisplay.asString = asString;
+        return this;
+    }
+
+    public SingleSelect<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+        itemDisplay.display = display;
+        return this;
+    }
+
+    public SingleSelect<T> typeaheadFilter(Function<T, String> typeaheadFilter) {
+        this.typeaheadFilter = typeaheadFilter;
+        return this;
+    }
+
+    // ------------------------------------------------------ modifier
 
     public SingleSelect<T> up() {
         element.classList.add(CSS.modifier(Constants.top));
@@ -290,11 +303,6 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         }
     }
 
-    @Override
-    public T value() {
-        return value;
-    }
-
     // ------------------------------------------------------ events
 
     public SingleSelect<T> onToggle(Consumer<Boolean> onToggle) {
@@ -311,7 +319,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     private HTMLButtonElement itemElement(T item) {
         String itemId = itemDisplay.itemId(item);
-        return find(menu, By.data(singleSelectItem, itemId));
+        return Elements.find(menu, By.data(singleSelectItem, itemId));
     }
 
     private void onTypeahead(KeyboardEvent e, String value) {
@@ -347,7 +355,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     private void filter(String text) {
         console.log("filter for '" + text + "'");
         AtomicInteger count = new AtomicInteger();
-        for (HTMLElement e : findAll(menu, By.data(singleSelectFilter))) {
+        for (HTMLElement e : Elements.findAll(menu, By.data(singleSelectFilter))) {
             String filter = e.dataset.get(singleSelectFilter);
             if (filter.toLowerCase().contains(text.toLowerCase())) {
                 count.incrementAndGet();

@@ -2,17 +2,17 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 
-import static org.jboss.gwt.elemento.core.Elements.closest;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.removeChildrenFrom;
+import static org.elemento.Elements.div;
+import static org.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.components.Card.card;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.layout;
@@ -97,7 +97,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
 
         itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
                 checkbox -> {
-                    HTMLElement itemElement = closest(checkbox, By.data(cardViewItem));
+                    HTMLElement itemElement = Elements.closest(checkbox, By.data(cardViewItem));
                     if (itemElement != null) {
                         return itemElement.dataset.get(cardViewItem);
                     }

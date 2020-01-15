@@ -2,7 +2,7 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLImageElement;
 
-import static org.jboss.gwt.elemento.core.Elements.img;
+import static org.elemento.Elements.img;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.Constants.avatar;
 

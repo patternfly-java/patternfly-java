@@ -2,14 +2,14 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.ElementBuilder;
+import org.elemento.HtmlContent;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.insertAfter;
-import static org.jboss.gwt.elemento.core.Elements.insertFirst;
+import static org.elemento.Elements.div;
+import static org.elemento.Elements.insertAfter;
+import static org.elemento.Elements.insertFirst;
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.Size.lg;

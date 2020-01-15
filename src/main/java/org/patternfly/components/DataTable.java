@@ -14,14 +14,14 @@ import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableElement;
 import elemental2.dom.HTMLTableRowElement;
 import elemental2.dom.HTMLTableSectionElement;
+import org.elemento.By;
+import org.elemento.ElementBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
+import org.elemento.InputType;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.Elements;
-import org.jboss.gwt.elemento.core.InputType;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -29,9 +29,24 @@ import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.buildId;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.caption;
+import static org.elemento.Elements.div;
+import static org.elemento.Elements.i;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.removeChildrenFrom;
+import static org.elemento.Elements.setVisible;
+import static org.elemento.Elements.span;
+import static org.elemento.Elements.table;
+import static org.elemento.Elements.tbody;
+import static org.elemento.Elements.td;
+import static org.elemento.Elements.th;
+import static org.elemento.Elements.thead;
+import static org.elemento.Elements.tr;
+import static org.elemento.Elements.uniqueId;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -216,11 +231,11 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         if (column.headDisplay != null) {
             column.headDisplay.render(th);
             if (column.comparator != null) {
-                Element sortButton = find(th, By.data(dataTableSort, column.id));
+                Element sortButton = Elements.find(th, By.data(dataTableSort, column.id));
                 if (sortButton != null) {
                     bind(sortButton, click, e -> {
                         HTMLButtonElement b = (HTMLButtonElement) e.currentTarget;
-                        HTMLElement sortTh = closest(b, By.classname(component(table, sort)));
+                        HTMLElement sortTh = Elements.closest(b, By.classname(component(table, sort)));
                         if (sortTh != null) {
                             boolean descending = "descending".equals(sortTh.getAttribute(ARIA_SORT));
                             Comparator<T> c = descending ? column.comparator.reversed() : column.comparator;
@@ -287,7 +302,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             expandHandler.removeHandler();
         }
         if (expandableColumn) {
-            findAll(element, By.element("tbody")).forEach(Elements::failSafeRemoveFromParent);
+            Elements.findAll(element, By.element("tbody")).forEach(Elements::failSafeRemoveFromParent);
         } else {
             removeChildrenFrom(tbody.element());
         }
@@ -344,7 +359,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
         itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
                 checkbox -> {
-                    HTMLElement itemElement = closest(checkbox, By.data(dataTableItem));
+                    HTMLElement itemElement = Elements.closest(checkbox, By.data(dataTableItem));
                     if (itemElement != null) {
                         return itemElement.dataset.get(dataTableItem);
                     }
@@ -370,9 +385,9 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     @Override
     public void updateSortInfo(SortInfo<T> sortInfo) {
-        for (HTMLElement e : findAll(theadRow, SORT_SELECTOR)) {
-            HTMLButtonElement button = find(e, By.data(dataTableSort));
-            HTMLElement tsi = find(e, By.classname(component(table, sort, indicator)));
+        for (HTMLElement e : Elements.findAll(theadRow, SORT_SELECTOR)) {
+            HTMLButtonElement button = Elements.find(e, By.data(dataTableSort));
+            HTMLElement tsi = Elements.find(e, By.classname(component(table, sort, indicator)));
             if (button != null && tsi != null) {
                 removeChildrenFrom(tsi);
                 if (sortInfo.getId().equals(button.dataset.get(dataTableSort))) {
@@ -404,7 +419,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     public DataTable<T> noSelectAll() {
-        HTMLElement selectAll = find(element, SELECT_ALL_SELECTOR);
+        HTMLElement selectAll = Elements.find(element, SELECT_ALL_SELECTOR);
         if (selectAll != null) {
             setVisible(selectAll, false);
         }
@@ -414,7 +429,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     // ------------------------------------------------------ internals
 
     private void bindSelectAllHandler() {
-        HTMLInputElement checkbox = find(theadRow, SELECT_ALL_SELECTOR);
+        HTMLInputElement checkbox = Elements.find(theadRow, SELECT_ALL_SELECTOR);
         if (checkbox != null) {
             selectAllHandler = bind(checkbox, click,
                     e -> {
@@ -437,8 +452,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     private void bindExpandHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement e : findAll(element, TOGGLE_SELECTOR)) {
-            HTMLElement itemElement = closest(e, By.data(dataTableItem));
+        for (HTMLElement e : Elements.findAll(element, TOGGLE_SELECTOR)) {
+            HTMLElement itemElement = Elements.closest(e, By.data(dataTableItem));
             if (itemElement != null) {
                 HTMLElement tbody = (HTMLElement) itemElement.parentNode;
                 HTMLElement contentRow = (HTMLElement) itemElement.nextElementSibling;

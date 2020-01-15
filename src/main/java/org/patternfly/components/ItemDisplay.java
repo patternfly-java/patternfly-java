@@ -4,23 +4,28 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContentBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.buildId;
+import static org.elemento.Elements.buildId;
 
-/** Reusable class for typed components to customize the item ID and display. */
+/** Reusable class for typed components to customize the item ID, string value and display. */
 class ItemDisplay<E extends HTMLElement, T> {
 
     Function<T, String> identifier;
+    Function<T, String> asString;
     BiConsumer<HtmlContentBuilder<E>, T> display;
 
     ItemDisplay() {
-        this.identifier = String::valueOf;
-        this.display = (element, item) -> element.textContent(identifier.apply(item));
+        this.identifier = item -> Elements.buildId(String.valueOf(item));
+        this.asString = String::valueOf;
+        this.display = (element, item) -> element.textContent(asString.apply(item));
     }
 
-    ItemDisplay(Function<T, String> identifier, BiConsumer<HtmlContentBuilder<E>, T> display) {
+    ItemDisplay(Function<T, String> identifier, Function<T, String> asString,
+            BiConsumer<HtmlContentBuilder<E>, T> display) {
         this.identifier = identifier;
+        this.asString = asString;
         this.display = display;
     }
 

@@ -1,9 +1,9 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.IsElement;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.TypedBuilder;
+import org.elemento.ElementBuilder;
+import org.elemento.IsElement;
+import org.elemento.TypedBuilder;
 import org.patternfly.core.Ouia;
 
 abstract class BaseComponent<E extends HTMLElement, B extends ElementBuilder<E, B>>

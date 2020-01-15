@@ -1,14 +1,14 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;

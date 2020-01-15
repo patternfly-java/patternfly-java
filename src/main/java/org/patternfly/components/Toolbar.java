@@ -16,13 +16,14 @@ import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
+import org.elemento.Attachable;
+import org.elemento.By;
+import org.elemento.ElementBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
-import org.jboss.gwt.elemento.core.Attachable;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -31,10 +32,10 @@ import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
 import static java.lang.Boolean.parseBoolean;
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -47,7 +48,7 @@ import static org.patternfly.resources.Constants.*;
  * <p>
  * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a
  * toolbar should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML
- * elements):
+ * nodes):
  * <pre>
  * toolbar           = content, { content } ;
  * content           = { group | item | node } ;
@@ -184,7 +185,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
     private void bindToggleGroupHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement htmlElement : findAll(element, TOGGLE_GROUP_SELECTOR)) {
+        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_GROUP_SELECTOR)) {
             HTMLElement toggleGroupParent = (HTMLElement) htmlElement.parentNode;
             toggleGroupParent.classList.add(toggleGroupContainer);
 
@@ -199,7 +200,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             toggleGroupParent.appendChild(expandableContent.element());
 
             // wire aria attributes and add expand / collapse handler
-            HTMLButtonElement e = find(htmlElement, TOGGLE_SELECTOR);
+            HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
             if (e != null) {
                 HtmlContentBuilder<HTMLButtonElement> button = button(e);
                 button.aria(hasPopup, false_)
@@ -366,6 +367,10 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return add(bulkSelect.element());
         }
 
+        public <T> Item add(Filter filter) {
+            return this;
+        }
+
         @SuppressWarnings("unchecked")
         public <T> Item add(String id, String placeholder, Function<String, Predicate<T>> filterFn) {
             InputGroup.Search search = new InputGroup.Search(placeholder);
@@ -411,6 +416,10 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                 tlc.pop().accept(toolbar);
             }
         }
+    }
+
+    private static class Filter {
+
     }
 
     private static class BulkSelect extends Dropdown<BulkSelectOption> {

@@ -7,17 +7,18 @@ import java.util.function.Function;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.nav;
-import static org.jboss.gwt.elemento.core.Elements.section;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.nav;
+import static org.elemento.Elements.section;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -41,32 +42,22 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     // ------------------------------------------------------ factory methods
 
-    public static Navigation simple() {
-        return new Navigation(true, false, false, false, false);
-    }
-
-    public static Navigation grouped() {
-        return new Navigation(true, false, false, true, false);
-    }
-
-    public static Navigation expandable() {
-        return new Navigation(true, false, false, true, true);
-    }
-
     public static Navigation horizontal() {
-        return new Navigation(true, true, false, false, false);
+        return new Navigation(Orientation.HORIZONTAL, false, true, false);
     }
 
     public static Navigation tertiary() {
-        return new Navigation(false, true, true, false, false);
+        return new Navigation(Orientation.HORIZONTAL, false, false, true);
+    }
+
+    public static Navigation vertical(boolean expandable) {
+        return new Navigation(Orientation.VERTICAL, expandable, true, false);
     }
 
     // ------------------------------------------------------ navigation instance
 
     private static final String A_TAG = "a";
-    private final boolean horizontal;
-    private final boolean tertiary;
-    private final boolean grouped;
+    private final Orientation orientation;
     private final boolean expandable;
     private final Map<String, NavigationItem> items;
     private final ItemDisplay<HTMLAnchorElement, NavigationItem> itemDisplay;
@@ -75,25 +66,21 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     private HTMLElement ul;
     private HTMLElement lastGroup;
 
-    Navigation(boolean global, boolean horizontal, boolean tertiary, boolean grouped, boolean expandable) {
+    Navigation(Orientation orientation, boolean expandable, boolean global, boolean tertiary) {
         super(nav().css(component(nav)).aria(label, global ? "Global" : "Local").element(), "Navigation");
-        this.horizontal = horizontal;
-        this.tertiary = tertiary;
-        this.grouped = grouped;
+        this.orientation = orientation;
         this.expandable = expandable;
         this.items = new HashMap<>();
         this.itemDisplay = new ItemDisplay<>();
 
-        if (horizontal || tertiary) {
+        if (orientation == Orientation.HORIZONTAL) {
             add(button().css(component(nav, scroll, button))
                     .aria(label, "Scroll left")
                     .on(click, e -> scrollLeft())
                     .add(i().css(fas("angle-left")).aria(hidden, true_)));
-
-            if (tertiary) { // tertiary (and horizontal)
+            if (tertiary) {
                 add(ul = ul().css(component(nav, Constants.tertiary, list)).element());
-
-            } else { // horizontal (and not tertiary)
+            } else {
                 add(ul = ul().css(component(nav, Constants.horizontal, list)).element());
             }
             add(button().css(component(nav, scroll, button))
@@ -102,14 +89,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                     .add(i().css(fas("angle-right")).aria(hidden, true_)));
 
         } else {
-            if (grouped) {
-                if (expandable) { // expandable (and grouped)
-                    add(ul = ul().css(component(nav, list)).element());
-                } // nothing to do for grouped
-
-            } else { // simple
-                add(ul = ul().css(component(nav, simple, list)).element());
-            }
+            // use simple() modifier for simple navigation
+            add(ul = ul().css(component(nav, list)).element());
         }
     }
 
@@ -141,7 +122,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     public Navigation add(String group, NavigationItem item) {
         String groupId = groupId(group);
-        lastGroup = find(element, By.element("ul").and(By.data(navGroup, groupId)));
+        lastGroup = Elements.find(element, By.element("ul").and(By.data(navGroup, groupId)));
         if (lastGroup == null) {
             lastGroup = ul().css(component(nav, simple, list))
                     .data(navGroup, groupId).element();
@@ -176,38 +157,51 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
-    public void setCurrent(NavigationItem item) {
-        setCurrent(item.getId());
+    public void select(String itemId) {
+        select(items.get(itemId), true);
     }
 
-    public void setCurrent(String itemId) {
-        for (HTMLElement e : findAll(element, By.element(A_TAG).and(By.data(navItem)))) {
-            String value = e.dataset.get(navItem);
-            if (itemId.equals(value)) {
-                e.classList.add(modifier(current));
-                e.setAttribute("aria-current", page);
-                e.scrollIntoView();
-            } else {
-                e.classList.remove(modifier(current));
-                e.removeAttribute("aria-current");
+    public void select(String itemId, boolean fireEvent) {
+        select(items.get(itemId), fireEvent);
+    }
+
+    public void select(NavigationItem item) {
+        select(item, true);
+    }
+
+    public void select(NavigationItem item, boolean fireEvent) {
+        if (item != null) {
+            String itemId = item.getId();
+            for (HTMLElement e : Elements.findAll(element, By.element(A_TAG).and(By.data(navItem)))) {
+                String value = e.dataset.get(navItem);
+                if (itemId.equals(value)) {
+                    e.classList.add(modifier(current));
+                    e.setAttribute("aria-current", page);
+                    e.scrollIntoView();
+                    if (fireEvent && onSelect != null) {
+                        onSelect.onSelect(item);
+                    }
+                } else {
+                    e.classList.remove(modifier(current));
+                    e.removeAttribute("aria-current");
+                }
             }
-        }
-        if (expandable) {
-            HTMLElement a = find(element, By.element(A_TAG).and(By.data(navItem, itemId)));
-            if (a != null) {
-                String groupId = a.dataset.get(navGroup);
-                if (groupId != null) {
-                    for (HTMLElement e : findAll(element, By.element("li").and(By.data(navGroupExpandable)))) {
-                        if (groupId.equals(e.dataset.get(navGroupExpandable))) {
-                            e.classList.add(modifier(current));
-                            expand(groupId);
-                        } else {
-                            e.classList.remove(modifier(current));
+            if (expandable) {
+                HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navItem, itemId)));
+                if (a != null) {
+                    String groupId = a.dataset.get(navGroup);
+                    if (groupId != null) {
+                        for (HTMLElement e : Elements.findAll(element, By.element("li").and(By.data(navGroupExpandable)))) {
+                            if (groupId.equals(e.dataset.get(navGroupExpandable))) {
+                                e.classList.add(modifier(current));
+                                expand(groupId);
+                            } else {
+                                e.classList.remove(modifier(current));
+                            }
                         }
                     }
                 }
             }
-
         }
     }
 
@@ -220,8 +214,23 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
+    public Navigation asString(Function<NavigationItem, String> asString) {
+        itemDisplay.asString = asString;
+        return this;
+    }
+
     public Navigation display(BiConsumer<HtmlContentBuilder<HTMLAnchorElement>, NavigationItem> display) {
         itemDisplay.display = display;
+        return this;
+    }
+
+    // ------------------------------------------------------ modifiers
+
+    public Navigation simple() {
+        if (orientation == Orientation.VERTICAL) {
+            ul.classList.remove(component(nav, list));
+            ul.classList.add(component(nav, simple, list));
+        }
         return this;
     }
 
@@ -236,8 +245,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     private void addInternal(HTMLElement ul, String group, NavigationItem item) {
         items.put(item.getId(), item);
-        if (NavigationItem.SEPARATOR.equals(item) && (!horizontal && !tertiary)) {
-            HTMLElement element = (grouped || expandable) ? lastGroup : ul;
+        if (NavigationItem.SEPARATOR.equals(item) && orientation == Orientation.VERTICAL) {
+            HTMLElement element = (expandable) ? lastGroup : ul;
             if (element != null) {
                 element.appendChild(li().css(divider).attr(role, separator).element());
             }
@@ -258,16 +267,16 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                 a.data(navGroup, groupId(group));
             }
             ul.appendChild(li().css(component(nav, Constants.item)).add(a).element());
-            if (horizontal || tertiary) {
+            if (orientation == Orientation.HORIZONTAL) {
                 // TODO add / remove "pf-m-start pf-m-end" to root element
             }
         }
     }
 
     private void toggleGroup(String groupId) {
-        HTMLElement li = find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = find(element, By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = find(element, By.element("section").and(By.data(navGroupSection, groupId)));
+        HTMLElement li = Elements.find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
+        HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navGroupLink)));
+        HTMLElement section = Elements.find(element, By.element("section").and(By.data(navGroupSection, groupId)));
         if (li != null && a != null && section != null) {
             if (li.classList.contains(modifier(expanded))) {
                 // collapse
@@ -285,9 +294,9 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     }
 
     private void expand(String groupId) {
-        HTMLElement li = find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = find(element, By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = find(element, By.element("section").and(By.data(navGroupSection, groupId)));
+        HTMLElement li = Elements.find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
+        HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navGroupLink)));
+        HTMLElement section = Elements.find(element, By.element("section").and(By.data(navGroupSection, groupId)));
         if (li != null && a != null && section != null) {
             li.classList.add(modifier(expanded));
             a.setAttribute("aria-expanded", true_);
@@ -305,5 +314,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     private void scrollRight() {
         // TODO add / remove "pf-m-start pf-m-end" to root element
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    private enum Orientation {
+        HORIZONTAL, VERTICAL;
     }
 }

@@ -9,21 +9,22 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.label;
-import static org.jboss.gwt.elemento.core.Elements.section;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.change;
-import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.jboss.gwt.elemento.core.InputType.checkbox;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.label;
+import static org.elemento.Elements.section;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.change;
+import static org.elemento.EventType.click;
+import static org.elemento.InputType.checkbox;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -195,6 +196,8 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return add(item, false);
     }
 
+    // TODO Cleanup API: Is this method really necessary? Could be replaced by
+    //   dropdown.add("Item").disable("Item");
     public Dropdown<T> add(T item, boolean disabled) {
         if (grouped) {
             add(UNNAMED_GROUP, item, disabled);
@@ -208,10 +211,12 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return add(group, item, false);
     }
 
+    // TODO Cleanup API: Is this method really necessary? Could be replaced by
+    //   dropdown.add("Group", "Item").disable("Item");
     public Dropdown<T> add(String group, T item, boolean disabled) {
         String groupId = buildId(group);
         By selector = By.element("section").and(By.data(dropdownGroup, groupId)).desc(By.element("ul"));
-        lastMenu = find(menu, selector);
+        lastMenu = Elements.find(menu, selector);
         if (lastMenu == null) {
             HtmlContentBuilder<HTMLElement> builder = section().css(component(dropdown, Constants.group))
                     .data(dropdownGroup, groupId);
@@ -235,6 +240,11 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
     public Dropdown<T> identifier(Function<T, String> identifier) {
         itemDisplay.identifier = identifier;
+        return this;
+    }
+
+    public Dropdown<T> asString(Function<T, String> asString) {
+        itemDisplay.asString = asString;
         return this;
     }
 
@@ -339,14 +349,14 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         if (text == null) {
             clearText();
         } else {
-            HTMLElement textElement = find(button, By.classname(component(dropdown, Constants.toggle, Constants.text)));
+            HTMLElement textElement = Elements.find(button, By.classname(component(dropdown, Constants.toggle, Constants.text)));
             if (textElement != null) {
                 textElement.textContent = text;
             } else {
                 insertFirst(button, span().css(component(dropdown, Constants.toggle, Constants.text))
                         .textContent(text).element());
             }
-            HTMLElement iconElement = find(button, By.selector(".fas.fa-caret-down"));
+            HTMLElement iconElement = Elements.find(button, By.selector(".fas.fa-caret-down"));
             if (iconElement != null) {
                 iconElement.classList.add(component(dropdown, Constants.toggle, icon));
             }
@@ -354,9 +364,9 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     public void clearText() {
-        HTMLElement element = find(button, By.classname(component(dropdown, Constants.toggle, text)));
+        HTMLElement element = Elements.find(button, By.classname(component(dropdown, Constants.toggle, text)));
         failSafeRemoveFromParent(element);
-        HTMLElement iconElement = find(button, By.selector(".fas.fa-caret-down"));
+        HTMLElement iconElement = Elements.find(button, By.selector(".fas.fa-caret-down"));
         if (iconElement != null) {
             iconElement.classList.remove(component(dropdown, Constants.toggle, icon));
         }
@@ -407,6 +417,6 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
     private HTMLButtonElement itemElement(T item) {
         String itemId = itemDisplay.itemId(item);
-        return find(menu, By.data(dropdownItem, itemId));
+        return Elements.find(menu, By.data(dropdownItem, itemId));
     }
 }

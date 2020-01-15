@@ -2,22 +2,37 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.IsElement;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.By;
+import org.elemento.ElementBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.IsElement;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.div;
+import static org.elemento.Elements.failSafeRemoveFromParent;
+import static org.elemento.Elements.h;
+import static org.elemento.Elements.span;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.resources.Constants.action;
+import static org.patternfly.resources.Constants.alert;
+import static org.patternfly.resources.Constants.danger;
+import static org.patternfly.resources.Constants.description;
+import static org.patternfly.resources.Constants.hidden;
+import static org.patternfly.resources.Constants.icon;
+import static org.patternfly.resources.Constants.info;
+import static org.patternfly.resources.Constants.inline;
+import static org.patternfly.resources.Constants.label;
+import static org.patternfly.resources.Constants.success;
+import static org.patternfly.resources.Constants.true_;
+import static org.patternfly.resources.Constants.warning;
 
 /**
  * PatternFly alert component.
@@ -145,7 +160,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     boolean hasClose() {
         By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
-        return find(element, selector) != null;
+        return Elements.find(element, selector) != null;
     }
 
     // ------------------------------------------------------ inner classes

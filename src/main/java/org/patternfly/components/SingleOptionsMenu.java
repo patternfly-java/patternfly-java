@@ -8,18 +8,18 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.Elements;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -170,16 +170,25 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         return this;
     }
 
+    public SingleOptionsMenu<T> asString(Function<T, String> asString) {
+        itemDisplay.asString = asString;
+        return this;
+    }
+
     public SingleOptionsMenu<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }
 
     public SingleOptionsMenu<T> select(T item) {
+        return select(item, true);
+    }
+
+    public SingleOptionsMenu<T> select(T item, boolean fireOnSelect) {
         value = item;
         String itemId = itemDisplay.itemId(item);
-        for (HTMLElement e : findAll(menu, By.data(singleOptionsMenuItem))) {
-            Element icon = find(e, By.selector(".fas.fa-check"));
+        for (HTMLElement e : Elements.findAll(menu, By.data(singleOptionsMenuItem))) {
+            Element icon = Elements.find(e, By.selector(".fas.fa-check"));
             if (itemId.equals(e.dataset.get(singleOptionsMenuItem))) {
                 if (icon == null) {
                     e.appendChild(Icon.icon(fas(check))
@@ -191,7 +200,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
             }
         }
 
-        if (onSelect != null) {
+        if (fireOnSelect && onSelect != null) {
             onSelect.onSelect(value);
         }
         return this;
@@ -265,6 +274,6 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
     private HTMLButtonElement itemElement(T item) {
         String itemId = itemDisplay.itemId(item);
-        return find(menu, By.data(singleOptionsMenuItem, itemId));
+        return Elements.find(menu, By.data(singleOptionsMenuItem, itemId));
     }
 }

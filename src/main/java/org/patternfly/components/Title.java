@@ -1,10 +1,10 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLHeadingElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.HtmlContent;
 import org.patternfly.resources.CSS.Size;
 
-import static org.jboss.gwt.elemento.core.Elements.h;
+import static org.elemento.Elements.h;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.Constants.title;
 
@@ -18,6 +18,10 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title>
 
     // ------------------------------------------------------ factory methods
 
+    public static Title title(int level, String text) {
+        return new Title(level, text, null);
+    }
+
     public static Title title(int level, String text, Size size) {
         return new Title(level, text, size);
     }
@@ -25,7 +29,10 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title>
     // ------------------------------------------------------ instance
 
     Title(int level, String text, Size size) {
-        super(h(level, text).css(component(title), size.modifier()).element(), "Title");
+        super(h(level, text).css(component(title)).element(), "Title");
+        if (size != null) {
+            css(size.modifier());
+        }
     }
 
     @Override

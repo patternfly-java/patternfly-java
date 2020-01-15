@@ -6,11 +6,10 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import org.gwtproject.event.shared.HandlerRegistration;
 
-import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.document;
-import static org.jboss.gwt.elemento.core.Elements.setVisible;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.setVisible;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.expanded;
 import static org.patternfly.resources.Constants.false_;
@@ -28,7 +27,6 @@ class CollapseExpandHandler {
             closeHandler = bind(document, click, e -> {
                 boolean clickInside = root.contains((Node) e.target);
                 if (!clickInside) {
-                    console.log("collapse after clicked outside");
                     collapse(root, button, menu);
                 }
             });
@@ -45,7 +43,7 @@ class CollapseExpandHandler {
     }
 
     void collapse(HTMLElement root, HTMLElement button, HTMLElement menu) {
-        if (root.classList.contains(modifier(expanded))) {
+        if (expanded(root)) {
             root.classList.remove(modifier(expanded));
             button.setAttribute("aria-expanded", false_);
             menu.hidden = true;

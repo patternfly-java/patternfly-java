@@ -6,17 +6,18 @@ import java.util.Map;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.IsElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.IsElement;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Dataset;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.mouseout;
-import static org.jboss.gwt.elemento.core.EventType.mouseover;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.mouseout;
+import static org.elemento.EventType.mouseover;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.alertGroup;
@@ -102,7 +103,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     }
 
     private void remove(String id) {
-        HTMLElement e = find(element, By.data(alert, id));
+        HTMLElement e = Elements.find(element, By.data(alert, id));
         failSafeRemoveFromParent(e);
         Double timeoutHandle = messageIds.remove(id);
         if (timeoutHandle != null) {

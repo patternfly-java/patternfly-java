@@ -7,17 +7,18 @@ import java.util.function.Function;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.By;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.button;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.click;
+import static org.elemento.Elements.button;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.Constants.input;
@@ -127,6 +128,11 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         return this;
     }
 
+    public ContextSelector<T> asString(Function<T, String> asString) {
+        itemDisplay.asString = asString;
+        return this;
+    }
+
     public ContextSelector<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
@@ -138,7 +144,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     public ContextSelector<T> select(T item, boolean fireOnSelect) {
         value = item;
-        text.textContent = itemDisplay.identifier.apply(item);
+        text.textContent = itemDisplay.asString.apply(item);
         if (fireOnSelect && onSelect != null) {
             onSelect.onSelect(value);
         }
@@ -177,7 +183,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     // ------------------------------------------------------ internals
 
     private void filter(String value) {
-        for (HTMLElement e : findAll(menu,
+        for (HTMLElement e : Elements.findAll(menu,
                 By.element("button").and(By.classname(component(contextSelector, Constants.menu, list, item))))) {
             HTMLElement parent = (HTMLElement) e.parentNode;
             setVisible(parent, e.textContent.toLowerCase().contains(value.toLowerCase()));
@@ -186,7 +192,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     private void clearFilter() {
         search.clear();
-        for (HTMLElement e : findAll(menu,
+        for (HTMLElement e : Elements.findAll(menu,
                 By.element("button").and(By.classname(component(contextSelector, Constants.menu, list, item))))) {
             HTMLElement parent = (HTMLElement) e.parentNode;
             setVisible(parent, true);

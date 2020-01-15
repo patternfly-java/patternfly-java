@@ -7,12 +7,13 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
+import org.elemento.By;
+import org.elemento.ElementBuilder;
+import org.elemento.Elements;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
-import org.jboss.gwt.elemento.core.By;
-import org.jboss.gwt.elemento.core.builder.ElementBuilder;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -20,12 +21,12 @@ import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.section;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.EventType.bind;
-import static org.jboss.gwt.elemento.core.EventType.click;
-import static org.jboss.gwt.elemento.core.InputType.checkbox;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.section;
+import static org.elemento.Elements.*;
+import static org.elemento.EventType.bind;
+import static org.elemento.EventType.click;
+import static org.elemento.InputType.checkbox;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -140,7 +141,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
         itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
                 checkbox -> {
-                    HTMLElement itemElement = closest(checkbox, By.data(dataListItem));
+                    HTMLElement itemElement = Elements.closest(checkbox, By.data(dataListItem));
                     if (itemElement != null) {
                         return itemElement.dataset.get(dataListItem);
                     }
@@ -173,10 +174,10 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
     private void bindExpandHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement htmlElement : findAll(element, TOGGLE_SELECTOR)) {
-            HTMLElement itemElement = closest(htmlElement, By.classname(component(dataList, item)));
+        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_SELECTOR)) {
+            HTMLElement itemElement = Elements.closest(htmlElement, By.classname(component(dataList, item)));
             if (itemElement != null) {
-                HTMLElement contentElement = find(itemElement, EXPANDABLE_CONTENT_SELECTOR);
+                HTMLElement contentElement = Elements.find(itemElement, EXPANDABLE_CONTENT_SELECTOR);
                 if (contentElement != null) {
                     String itemId = itemElement.dataset.get(dataListItem);
                     if (itemId != null) {

@@ -5,17 +5,17 @@ import java.util.function.Consumer;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
-import org.jboss.gwt.elemento.core.EventType;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.elemento.EventType;
+import org.elemento.HtmlContent;
+import org.elemento.HtmlContentBuilder;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.dataprovider.PageInfo;
 
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.nav;
-import static org.jboss.gwt.elemento.core.Elements.*;
-import static org.jboss.gwt.elemento.core.InputType.number;
+import static org.elemento.Elements.input;
+import static org.elemento.Elements.nav;
+import static org.elemento.Elements.*;
+import static org.elemento.InputType.number;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -97,7 +97,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
                                 .on(EventType.change, e -> {
                                     if (gotoPageHandler != null) {
                                         try {
-                                            Integer page = Integer.valueOf(((HTMLInputElement) e.currentTarget).value);
+                                            int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
                                             gotoPageHandler.accept(page - 1);
                                         } catch (NumberFormatException ignored) {
                                         }

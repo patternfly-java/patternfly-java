@@ -4,15 +4,15 @@ import java.util.function.Consumer;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLInputElement;
+import org.elemento.EventType;
+import org.elemento.HtmlContent;
+import org.elemento.InputBuilder;
+import org.elemento.InputType;
 import org.gwtproject.event.shared.HandlerRegistration;
-import org.jboss.gwt.elemento.core.EventType;
-import org.jboss.gwt.elemento.core.InputType;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
-import org.jboss.gwt.elemento.core.builder.InputBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Key.Enter;
+import static org.elemento.Elements.div;
+import static org.elemento.Elements.input;
+import static org.elemento.Key.Enter;
 import static org.patternfly.components.Button.control;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;

@@ -1,12 +1,12 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.builder.HtmlContent;
+import org.elemento.HtmlContent;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.gwt.elemento.core.Elements.h;
-import static org.jboss.gwt.elemento.core.Elements.li;
-import static org.jboss.gwt.elemento.core.Elements.ul;
+import static org.elemento.Elements.h;
+import static org.elemento.Elements.li;
+import static org.elemento.Elements.ul;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.chipGroup;
