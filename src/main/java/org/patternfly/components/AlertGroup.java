@@ -6,18 +6,18 @@ import java.util.Map;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.IsElement;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.IsElement;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Dataset;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.mouseout;
-import static org.elemento.EventType.mouseover;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.mouseout;
+import static org.jboss.elemento.EventType.mouseover;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.alertGroup;
@@ -33,6 +33,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
 
     // ------------------------------------------------------ factory methods
 
+    private static final double DEFAULT_TIMEOUT = 8000; // ms
     private static AlertGroup toast;
 
     public static AlertGroup toast() {
@@ -43,14 +44,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
         return toast;
     }
 
+    // ------------------------------------------------------ instance
+
     public static AlertGroup embedded() {
         return new AlertGroup(0);
     }
-
-    // ------------------------------------------------------ instance
-
-    private static final double DEFAULT_TIMEOUT = 8000; // ms
-
     private final double timeout;
     private final Map<String, Double> messageIds;
 

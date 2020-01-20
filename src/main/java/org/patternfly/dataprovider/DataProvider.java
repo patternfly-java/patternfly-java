@@ -40,6 +40,57 @@ import static java.util.stream.Collectors.toMap;
  */
 public class DataProvider<T> {
 
+    private static class Partition<T> extends AbstractList<List<T>> {
+
+        private static int divide(int p, int q) {
+            if (q == 0) {
+                throw new ArithmeticException("/ by zero");
+            }
+
+            int div = p / q;
+            int rem = p - q * div; // equal to p % q
+            if (rem == 0) {
+                return div;
+            }
+
+            int signum = 1 | ((p ^ q) >> (Integer.SIZE - 1));
+            boolean increment = signum > 0;
+            return increment ? div + signum : div;
+        }
+        final List<T> list;
+        final int size;
+
+        Partition(List<T> list, int size) {
+            this.list = list;
+            this.size = size;
+        }
+
+        @Override
+        public List<T> get(int index) {
+            checkElementIndex(index, size());
+            int start = index * size;
+            int end = Math.min(start + size, list.size());
+            return list.subList(start, end);
+        }
+
+        @Override
+        public int size() {
+            return divide(list.size(), size);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return list.isEmpty();
+        }
+
+        private void checkElementIndex(int index, int size) {
+            if (index < 0) {
+                throw new IndexOutOfBoundsException("Index " + index + " must not be negative");
+            } else if (index >= size) {
+                throw new IndexOutOfBoundsException("Index (" + index + ") must be less than size (" + size + ")");
+            }
+        }
+    }
     private final Function<T, String> identifier;
     private final PageInfo pageInfo;
     private final SelectionInfo<T> selectionInfo;
@@ -55,6 +106,8 @@ public class DataProvider<T> {
         this(identifier, PageInfo.DEFAULT_PAGE_SIZE);
     }
 
+    // ------------------------------------------------------ items
+
     public DataProvider(Function<T, String> identifier, int pageSize) {
         this.identifier = identifier;
         this.pageInfo = new PageInfo(pageSize);
@@ -68,8 +121,6 @@ public class DataProvider<T> {
         this.displays = new ArrayList<>();
         reset();
     }
-
-    // ------------------------------------------------------ items
 
     /** Replaces the items, resets the paging and selection and applies the current filter and sort order. */
     public void update(T[] items) {
@@ -117,11 +168,11 @@ public class DataProvider<T> {
         return filteredItems.values();
     }
 
+    // ------------------------------------------------------ selection
+
     public Iterable<T> getVisibleItems() {
         return visibleItems.values();
     }
-
-    // ------------------------------------------------------ selection
 
     public void onSelect(SelectHandler<T> selectHandler) {
         this.selectHandler.add(selectHandler);
@@ -186,13 +237,13 @@ public class DataProvider<T> {
         }
     }
 
+    // ------------------------------------------------------ filter
+
     private void updateSelection() {
         for (Display<T> display : displays) {
             display.updateSelection(selectionInfo);
         }
     }
-
-    // ------------------------------------------------------ filter
 
     public void addFilter(String id, Predicate<T> filter) {
         filters.put(id, filter);
@@ -213,18 +264,18 @@ public class DataProvider<T> {
         }
     }
 
+    // ------------------------------------------------------ sort
+
     public boolean hasFilters() {
         return !filters.isEmpty();
     }
 
-    // ------------------------------------------------------ sort
+    // ------------------------------------------------------ paging
 
     public void sort(SortInfo<T> sortInfo) {
         this.sortInfo = sortInfo;
         internalUpdate();
     }
-
-    // ------------------------------------------------------ paging
 
     public void setPageSize(int pageSize) {
         int oldPageSize = pageInfo.getPageSize();
@@ -263,6 +314,8 @@ public class DataProvider<T> {
         return pages.get(min(pageInfo.getPage(), pages.size() - 1));
     }
 
+    // ------------------------------------------------------ displays
+
     private List<List<T>> partition(List<T> list, int size) {
         if (list != null) {
             if (size > 0) {
@@ -272,13 +325,11 @@ public class DataProvider<T> {
         return emptyList();
     }
 
-    // ------------------------------------------------------ displays
+    // ------------------------------------------------------ internal state
 
     public void addDisplay(Display<T> display) {
         displays.add(display);
     }
-
-    // ------------------------------------------------------ internal state
 
     private void reset() {
         allItems.clear();
@@ -324,6 +375,8 @@ public class DataProvider<T> {
         }
     }
 
+    // ------------------------------------------------------ inner classes
+
     private Collector<T, ?, Map<String, T>> toLinkedMap(Function<? super T, ? extends String> keyMapper,
             Function<? super T, ? extends T> valueMapper) {
         return toMap(keyMapper, valueMapper,
@@ -331,60 +384,5 @@ public class DataProvider<T> {
                     throw new IllegalStateException("Duplicate key " + u); //NON-NLS
                 },
                 LinkedHashMap::new);
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    private static class Partition<T> extends AbstractList<List<T>> {
-
-        final List<T> list;
-        final int size;
-
-        Partition(List<T> list, int size) {
-            this.list = list;
-            this.size = size;
-        }
-
-        @Override
-        public List<T> get(int index) {
-            checkElementIndex(index, size());
-            int start = index * size;
-            int end = Math.min(start + size, list.size());
-            return list.subList(start, end);
-        }
-
-        @Override
-        public int size() {
-            return divide(list.size(), size);
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return list.isEmpty();
-        }
-
-        private void checkElementIndex(int index, int size) {
-            if (index < 0) {
-                throw new IndexOutOfBoundsException("Index " + index + " must not be negative");
-            } else if (index >= size) {
-                throw new IndexOutOfBoundsException("Index (" + index + ") must be less than size (" + size + ")");
-            }
-        }
-
-        private static int divide(int p, int q) {
-            if (q == 0) {
-                throw new ArithmeticException("/ by zero");
-            }
-
-            int div = p / q;
-            int rem = p - q * div; // equal to p % q
-            if (rem == 0) {
-                return div;
-            }
-
-            int signum = 1 | ((p ^ q) >> (Integer.SIZE - 1));
-            boolean increment = signum > 0;
-            return increment ? div + signum : div;
-        }
     }
 }

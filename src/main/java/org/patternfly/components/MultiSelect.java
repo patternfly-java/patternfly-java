@@ -8,20 +8,20 @@ import java.util.function.Function;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.input;
-import static org.elemento.Elements.label;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.click;
-import static org.elemento.InputType.checkbox;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.input;
@@ -65,11 +65,10 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     private final boolean typeahead;
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLElement, T> itemDisplay;
-    private SelectHandler<T> onSelect;
-
     private final HTMLButtonElement button;
     private final HTMLElement text;
     private final HTMLElement menu;
+    private SelectHandler<T> onSelect;
 
     MultiSelect(Icon icon, String text, boolean typeahead) {
         super(div().css(component(select)).element(), "Select");

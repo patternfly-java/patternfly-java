@@ -3,6 +3,26 @@ package org.patternfly.resources;
 /** Methods to build PatternFly CSS classes. */
 public interface CSS {
 
+    enum Size {
+        _4xl("4xl"),
+        _3xl("3xl"),
+        _2xl("2xl"),
+        xl("xl"),
+        lg("lg"),
+        md("md"),
+        sm("sm");
+
+        private final String modifier;
+
+        Size(String modifier) {
+            this.modifier = CSS.modifier(modifier);
+        }
+
+        public String modifier() {
+            return modifier;
+        }
+    }
+
     static String component(String component, String... elements) {
         StringBuilder builder = new StringBuilder();
         builder.append("pf-c-").append(component);
@@ -37,25 +57,5 @@ public interface CSS {
      */
     static String fas(String name) {
         return "fas fa-" + name;
-    }
-
-    enum Size {
-        _4xl("4xl"),
-        _3xl("3xl"),
-        _2xl("2xl"),
-        xl("xl"),
-        lg("lg"),
-        md("md"),
-        sm("sm");
-
-        private final String modifier;
-
-        Size(String modifier) {
-            this.modifier = CSS.modifier(modifier);
-        }
-
-        public String modifier() {
-            return modifier;
-        }
     }
 }

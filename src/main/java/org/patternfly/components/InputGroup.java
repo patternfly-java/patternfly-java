@@ -4,15 +4,15 @@ import java.util.function.Consumer;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLInputElement;
-import org.elemento.EventType;
-import org.elemento.HtmlContent;
-import org.elemento.InputBuilder;
-import org.elemento.InputType;
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.EventType;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.InputBuilder;
+import org.jboss.elemento.InputType;
 
-import static org.elemento.Elements.div;
-import static org.elemento.Elements.input;
-import static org.elemento.Key.Enter;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Key.Enter;
 import static org.patternfly.components.Button.control;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
@@ -30,23 +30,6 @@ public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
         implements HtmlContent<HTMLDivElement, InputGroup> {
 
     // ------------------------------------------------------ factory methods
-
-    public static InputGroup inputGroup() {
-        return new InputGroup();
-    }
-
-    // ------------------------------------------------------ instance
-
-    InputGroup() {
-        super(div().css(component(inputGroup)).element(), "InputGroup");
-    }
-
-    @Override
-    public InputGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ inner classes
 
     public static class Search extends InputGroup {
 
@@ -100,5 +83,22 @@ public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
             });
             control.onClick(() -> consumer.accept(input.element().value));
         }
+    }
+
+    // ------------------------------------------------------ instance
+
+    public static InputGroup inputGroup() {
+        return new InputGroup();
+    }
+
+    InputGroup() {
+        super(div().css(component(inputGroup)).element(), "InputGroup");
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    @Override
+    public InputGroup that() {
+        return this;
     }
 }

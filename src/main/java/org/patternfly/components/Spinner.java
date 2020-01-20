@@ -1,10 +1,10 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
-import org.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContent;
 import org.patternfly.resources.CSS.Size;
 
-import static org.elemento.Elements.span;
+import static org.jboss.elemento.Elements.span;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.Constants.*;
 

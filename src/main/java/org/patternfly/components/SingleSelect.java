@@ -13,13 +13,13 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.KeyboardEvent;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.EventType;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
-import org.elemento.InputType;
-import org.elemento.Key;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.EventType;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.InputType;
+import org.jboss.elemento.Key;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -28,14 +28,14 @@ import org.patternfly.resources.Constants;
 
 import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.form;
-import static org.elemento.Elements.input;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.blur;
-import static org.elemento.EventType.click;
-import static org.elemento.EventType.keydown;
-import static org.elemento.EventType.submit;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.form;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.blur;
+import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.EventType.submit;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -57,12 +57,13 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     // ------------------------------------------------------ factory methods
 
+    private static final HTMLLIElement NO_RESULTS = li().attr(role, presentation)
+            .add(button().css(component(select, Constants.menu, item), modifier(disabled))
+                    .attr(role, option)
+                    .textContent("No results found")).element();
+
     public static <T> SingleSelect<T> single(String text) {
         return new SingleSelect<>(null, text, false);
-    }
-
-    public static <T> SingleSelect<T> single(Icon icon, String text) {
-        return new SingleSelect<>(icon, text, false);
     }
 
 /*
@@ -78,22 +79,19 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     // ------------------------------------------------------ select instance
 
-    private static final HTMLLIElement NO_RESULTS = li().attr(role, presentation)
-            .add(button().css(component(select, Constants.menu, item), modifier(disabled))
-                    .attr(role, option)
-                    .textContent("No results found")).element();
-
+    public static <T> SingleSelect<T> single(Icon icon, String text) {
+        return new SingleSelect<>(icon, text, false);
+    }
     private final boolean typeahead;
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
-    private T value;
-    private SelectHandler<T> onSelect;
-    private Function<T, String> typeaheadFilter;
-
     private final HTMLButtonElement button;
     private final HTMLElement text;
     private final HTMLInputElement input;
     private final HTMLElement menu;
+    private T value;
+    private SelectHandler<T> onSelect;
+    private Function<T, String> typeaheadFilter;
 
     SingleSelect(Icon icon, String text, boolean typeahead) {
         super(div().css(component(select)).element(), "Select");

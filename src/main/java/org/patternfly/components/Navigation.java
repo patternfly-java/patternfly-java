@@ -7,18 +7,18 @@ import java.util.function.Function;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.nav;
-import static org.elemento.Elements.section;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.nav;
+import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -42,9 +42,16 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     // ------------------------------------------------------ factory methods
 
+    private enum Orientation {
+        HORIZONTAL, VERTICAL
+    }
+    private static final String A_TAG = "a";
+
     public static Navigation horizontal() {
         return new Navigation(Orientation.HORIZONTAL, false, true, false);
     }
+
+    // ------------------------------------------------------ navigation instance
 
     public static Navigation tertiary() {
         return new Navigation(Orientation.HORIZONTAL, false, false, true);
@@ -53,16 +60,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     public static Navigation vertical(boolean expandable) {
         return new Navigation(Orientation.VERTICAL, expandable, true, false);
     }
-
-    // ------------------------------------------------------ navigation instance
-
-    private static final String A_TAG = "a";
     private final Orientation orientation;
     private final boolean expandable;
     private final Map<String, NavigationItem> items;
     private final ItemDisplay<HTMLAnchorElement, NavigationItem> itemDisplay;
     private SelectHandler<NavigationItem> onSelect;
-
     private HTMLElement ul;
     private HTMLElement lastGroup;
 
@@ -94,12 +96,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         }
     }
 
+    // ------------------------------------------------------ public API
+
     @Override
     public Navigation that() {
         return this;
     }
-
-    // ------------------------------------------------------ public API
 
     public Navigation add(Iterable<NavigationItem> items) {
         for (NavigationItem item : items) {
@@ -191,7 +193,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                 if (a != null) {
                     String groupId = a.dataset.get(navGroup);
                     if (groupId != null) {
-                        for (HTMLElement e : Elements.findAll(element, By.element("li").and(By.data(navGroupExpandable)))) {
+                        for (HTMLElement e : Elements.findAll(element,
+                                By.element("li").and(By.data(navGroupExpandable)))) {
                             if (groupId.equals(e.dataset.get(navGroupExpandable))) {
                                 e.classList.add(modifier(current));
                                 expand(groupId);
@@ -219,12 +222,14 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
+    // ------------------------------------------------------ modifiers
+
     public Navigation display(BiConsumer<HtmlContentBuilder<HTMLAnchorElement>, NavigationItem> display) {
         itemDisplay.display = display;
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ events
 
     public Navigation simple() {
         if (orientation == Orientation.VERTICAL) {
@@ -234,14 +239,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
-    // ------------------------------------------------------ events
+    // ------------------------------------------------------ internals
 
     public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
         this.onSelect = onSelect;
         return this;
     }
-
-    // ------------------------------------------------------ internals
 
     private void addInternal(HTMLElement ul, String group, NavigationItem item) {
         items.put(item.getId(), item);
@@ -312,13 +315,9 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         // TODO add / remove "pf-m-start pf-m-end" to root element
     }
 
-    private void scrollRight() {
-        // TODO add / remove "pf-m-start pf-m-end" to root element
-    }
-
     // ------------------------------------------------------ inner classes
 
-    private enum Orientation {
-        HORIZONTAL, VERTICAL;
+    private void scrollRight() {
+        // TODO add / remove "pf-m-start pf-m-end" to root element
     }
 }

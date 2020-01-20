@@ -1,14 +1,14 @@
 package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -51,9 +51,8 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     private final int count;
     private final boolean overflow;
     private final boolean readOnly;
-    private Callback callback;
-
     private final HTMLElement text;
+    private Callback callback;
     private Badge badge;
 
     Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {

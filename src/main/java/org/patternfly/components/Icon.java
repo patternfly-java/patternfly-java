@@ -2,7 +2,7 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLElement;
 
-import static org.elemento.Elements.i;
+import static org.jboss.elemento.Elements.i;
 
 public class Icon extends BaseComponent<HTMLElement, Icon> {
 

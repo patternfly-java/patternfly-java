@@ -3,16 +3,16 @@ package org.patternfly.components;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.span;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.*;
@@ -26,6 +26,18 @@ public class Button extends BaseComponent<HTMLElement, Button>
         implements HtmlContent<HTMLElement, Button>, Aria<Button>, Disable<Button> {
 
     // ------------------------------------------------------ factory methods
+
+    public enum Type {
+        SUBMIT("submit"),
+        RESET("reset"),
+        DEFAULT("default");
+
+        private final String attributeValue;
+
+        Type(String attributeValue) {
+            this.attributeValue = attributeValue;
+        }
+    }
 
     public static Button button(String text) {
         return new Button(Elements.button().css(modifier(primary)).textContent(text));
@@ -104,12 +116,11 @@ public class Button extends BaseComponent<HTMLElement, Button>
                 .add(text));
     }
 
+    // ------------------------------------------------------ instance
+
     public static Button control(HTMLElement element) {
         return new Button(Elements.button().css(modifier(control)).add(element));
     }
-
-    // ------------------------------------------------------ instance
-
     private final HTMLButtonElement button;
     private final HTMLAnchorElement a;
     private Callback callback;
@@ -131,12 +142,12 @@ public class Button extends BaseComponent<HTMLElement, Button>
         }
     }
 
+    // ------------------------------------------------------ public API
+
     @Override
     public Button that() {
         return this;
     }
-
-    // ------------------------------------------------------ public API
 
     public Button type(Type type) {
         if (button != null) {
@@ -167,12 +178,12 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
+    // ------------------------------------------------------ modifiers
+
     @Override
     public Button label(String label) {
         return aria(Constants.label, label);
     }
-
-    // ------------------------------------------------------ modifiers
 
     public Button active() {
         element.classList.add(modifier(active));
@@ -214,6 +225,8 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
+    // ------------------------------------------------------ event handler
+
     /** Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}. */
     public Button clear() {
         element.classList.remove(modifier(active));
@@ -222,24 +235,10 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    // ------------------------------------------------------ event handler
+    // ------------------------------------------------------ inner classes
 
     public Button onClick(Callback callback) {
         this.callback = callback;
         return this;
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    public enum Type {
-        SUBMIT("submit"),
-        RESET("reset"),
-        DEFAULT("default");
-
-        private final String attributeValue;
-
-        Type(String attributeValue) {
-            this.attributeValue = attributeValue;
-        }
     }
 }

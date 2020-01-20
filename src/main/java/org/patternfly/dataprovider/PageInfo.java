@@ -45,24 +45,6 @@ public class PageInfo {
         total = 0;
     }
 
-    void setPageSize(int pageSize) {
-        this.pageSize = max(1, pageSize);
-    }
-
-    void setPage(int page) {
-        int safePage = max(0, page);
-        this.page = min(safePage, getPages() - 1);
-    }
-
-    void setVisible(int visible) {
-        this.visible = min(total, visible);
-    }
-
-    void setTotal(int total) {
-        this.total = total;
-        this.page = min(this.page, getPages() - 1);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,6 +93,11 @@ public class PageInfo {
         return page;
     }
 
+    void setPage(int page) {
+        int safePage = max(0, page);
+        this.page = min(safePage, getPages() - 1);
+    }
+
     public int getPages() {
         int pages = total / pageSize;
         if (total % pageSize != 0) {
@@ -123,11 +110,24 @@ public class PageInfo {
         return pageSize;
     }
 
+    void setPageSize(int pageSize) {
+        this.pageSize = max(1, pageSize);
+    }
+
     public int getVisible() {
         return visible;
     }
 
+    void setVisible(int visible) {
+        this.visible = min(total, visible);
+    }
+
     public int getTotal() {
         return total;
+    }
+
+    void setTotal(int total) {
+        this.total = total;
+        this.page = min(this.page, getPages() - 1);
     }
 }

@@ -2,14 +2,14 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.ElementBuilder;
-import org.elemento.HtmlContent;
+import org.jboss.elemento.ElementBuilder;
+import org.jboss.elemento.HtmlContent;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.div;
-import static org.elemento.Elements.insertAfter;
-import static org.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.Size.lg;
@@ -32,6 +32,19 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
 
     // ------------------------------------------------------ factory methods
 
+    public static class Body extends ElementBuilder<HTMLElement, Body>
+            implements HtmlContent<HTMLElement, Body> {
+
+        private Body() {
+            super(div().css(component(emptyState, Constants.body)).element());
+        }
+
+        @Override
+        public Body that() {
+            return this;
+        }
+    }
+
     public static EmptyState emptyState(Icon icon, String title) {
         return new EmptyState(icon, title);
     }
@@ -52,17 +65,22 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         return noResults("No results found", callback);
     }
 
+    // ------------------------------------------------------ instance
+
     public static EmptyState noResults(String title, Callback callback) {
         return new EmptyState(icon(fas("search")), title).large()
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
                 .primary(Button.link("Clear all filters").onClick(callback));
     }
 
-    // ------------------------------------------------------ instance
-
+    public static Body body() {
+        return new Body();
+    }
     private HTMLElement body;
     private HTMLElement primaryContainer;
     private HTMLElement secondaryContainer;
+
+    // ------------------------------------------------------ public API
 
     EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
@@ -76,8 +94,6 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     public EmptyState that() {
         return this;
     }
-
-    // ------------------------------------------------------ public API
 
     public EmptyState body(String body) {
         return body(body().textContent(body));
@@ -124,30 +140,13 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         return this;
     }
 
+    // ------------------------------------------------------ inner classes
+
     public EmptyState small() {
         return css(sm.modifier());
     }
 
     public EmptyState large() {
         return css(lg.modifier());
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    public static Body body() {
-        return new Body();
-    }
-
-    public static class Body extends ElementBuilder<HTMLElement, Body>
-            implements HtmlContent<HTMLElement, Body> {
-
-        private Body() {
-            super(div().css(component(emptyState, Constants.body)).element());
-        }
-
-        @Override
-        public Body that() {
-            return this;
-        }
     }
 }

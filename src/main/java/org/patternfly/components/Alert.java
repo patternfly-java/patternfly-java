@@ -2,21 +2,21 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.By;
-import org.elemento.ElementBuilder;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.IsElement;
+import org.jboss.elemento.By;
+import org.jboss.elemento.ElementBuilder;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.IsElement;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.div;
-import static org.elemento.Elements.failSafeRemoveFromParent;
-import static org.elemento.Elements.h;
-import static org.elemento.Elements.span;
-import static org.elemento.EventType.bind;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
@@ -43,127 +43,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
 
     // ------------------------------------------------------ factory methods
-
-    public static Alert default_(String title) {
-        return new Alert(Type.DEFAULT, title);
-    }
-
-    public static Alert info(String title) {
-        return new Alert(Type.INFO, title);
-    }
-
-    public static Alert success(String title) {
-        return new Alert(Type.SUCCESS, title);
-    }
-
-    public static Alert warning(String title) {
-        return new Alert(Type.WARNING, title);
-    }
-
-    public static Alert danger(String title) {
-        return new Alert(Type.DANGER, title);
-    }
-
-    public static Description description() {
-        return new Description();
-    }
-
-    // ------------------------------------------------------ instance
-
-    public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
-
-    private final Type type;
-    private final String title;
-    private Callback callback;
-    private Button closeButton;
-
-    Alert(Type type, String title) {
-        super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
-        this.type = type;
-        this.title = title;
-
-        if (type.modifier != null) {
-            element.classList.add(type.modifier);
-        }
-        add(div().css(component(alert, icon))
-                .add(icon(type.icon).aria(hidden, true_)));
-        add(h(4).css(component(alert, Constants.title))
-                .add(span().css("pf-screen-reader").textContent(type.aria))
-                .add(title));
-    }
-
-    @Override
-    public Alert that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
-    public Alert inline() {
-        return css(modifier(inline));
-    }
-
-    public Alert description(String description) {
-        return add(description().textContent(description));
-    }
-
-    public Alert closable() {
-        String label = "close " + type.aria + ": " + title;
-        closeButton = Button.icon(icon(fas("times")), label);
-        return action(closeButton.element(), this::close);
-    }
-
-    public void close() {
-        failSafeRemoveFromParent(element);
-        if (callback != null) {
-            callback.call();
-        }
-    }
-
-    public Alert action(String action, Callback callback) {
-        return action(Button.link(action), callback);
-    }
-
-    public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
-        return action(action.element(), callback);
-    }
-
-    public Alert action(HTMLElement action, Callback callback) {
-        bind(action, click, e -> callback.call());
-        return add(div().css(component(alert, Constants.action))
-                .add(action));
-    }
-
-    // ------------------------------------------------------ events
-
-    public Alert onClose(Callback callback) {
-        this.callback = callback;
-        return this;
-    }
-
-    // ------------------------------------------------------ aria
-
-    @Override
-    public Alert label(String label) {
-        return aria(Constants.label, label);
-    }
-
-    @Override
-    public Alert label(String target, String label) {
-        if (CLOSE_BUTTON.equals(target)) {
-            closeButton.label(label);
-        }
-        return this;
-    }
-
-    // ------------------------------------------------------ internals
-
-    boolean hasClose() {
-        By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
-        return Elements.find(element, selector) != null;
-    }
-
-    // ------------------------------------------------------ inner classes
 
     public enum Type {
         DEFAULT(fas("bell"), null, "default alert"),
@@ -194,5 +73,124 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         public Description that() {
             return this;
         }
+    }
+    public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
+
+    public static Alert default_(String title) {
+        return new Alert(Type.DEFAULT, title);
+    }
+
+    public static Alert info(String title) {
+        return new Alert(Type.INFO, title);
+    }
+
+    public static Alert success(String title) {
+        return new Alert(Type.SUCCESS, title);
+    }
+
+    // ------------------------------------------------------ instance
+
+    public static Alert warning(String title) {
+        return new Alert(Type.WARNING, title);
+    }
+
+    public static Alert danger(String title) {
+        return new Alert(Type.DANGER, title);
+    }
+
+    public static Description description() {
+        return new Description();
+    }
+    private final Type type;
+    private final String title;
+    private Callback callback;
+    private Button closeButton;
+
+    // ------------------------------------------------------ public API
+
+    Alert(Type type, String title) {
+        super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
+        this.type = type;
+        this.title = title;
+
+        if (type.modifier != null) {
+            element.classList.add(type.modifier);
+        }
+        add(div().css(component(alert, icon))
+                .add(icon(type.icon).aria(hidden, true_)));
+        add(h(4).css(component(alert, Constants.title))
+                .add(span().css("pf-screen-reader").textContent(type.aria))
+                .add(title));
+    }
+
+    @Override
+    public Alert that() {
+        return this;
+    }
+
+    public Alert inline() {
+        return css(modifier(inline));
+    }
+
+    public Alert description(String description) {
+        return add(description().textContent(description));
+    }
+
+    public Alert closable() {
+        String label = "close " + type.aria + ": " + title;
+        closeButton = Button.icon(icon(fas("times")), label);
+        return action(closeButton.element(), this::close);
+    }
+
+    public void close() {
+        failSafeRemoveFromParent(element);
+        if (callback != null) {
+            callback.call();
+        }
+    }
+
+    public Alert action(String action, Callback callback) {
+        return action(Button.link(action), callback);
+    }
+
+    // ------------------------------------------------------ events
+
+    public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
+        return action(action.element(), callback);
+    }
+
+    // ------------------------------------------------------ aria
+
+    public Alert action(HTMLElement action, Callback callback) {
+        bind(action, click, e -> callback.call());
+        return add(div().css(component(alert, Constants.action))
+                .add(action));
+    }
+
+    public Alert onClose(Callback callback) {
+        this.callback = callback;
+        return this;
+    }
+
+    // ------------------------------------------------------ internals
+
+    @Override
+    public Alert label(String label) {
+        return aria(Constants.label, label);
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    @Override
+    public Alert label(String target, String label) {
+        if (CLOSE_BUTTON.equals(target)) {
+            closeButton.label(label);
+        }
+        return this;
+    }
+
+    boolean hasClose() {
+        By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
+        return Elements.find(element, selector) != null;
     }
 }

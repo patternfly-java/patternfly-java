@@ -8,18 +8,18 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -54,14 +54,13 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
-    private T value;
-    private SelectHandler<T> onSelect;
-    private boolean collapseOnSelect;
-
     private final HTMLButtonElement button;
     private final HTMLElement plain;
     private final HTMLElement text;
     private final HTMLElement menu;
+    private T value;
+    private SelectHandler<T> onSelect;
+    private boolean collapseOnSelect;
 
     SingleOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");

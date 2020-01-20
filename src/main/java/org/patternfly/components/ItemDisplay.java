@@ -4,10 +4,10 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import elemental2.dom.HTMLElement;
-import org.elemento.Elements;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.elemento.Elements.buildId;
+import static org.jboss.elemento.Elements.buildId;
 
 /** Reusable class for typed components to customize the item ID, string value and display. */
 class ItemDisplay<E extends HTMLElement, T> {

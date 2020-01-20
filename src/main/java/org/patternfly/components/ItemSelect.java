@@ -7,13 +7,13 @@ import java.util.function.Function;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
-import org.elemento.By;
-import org.elemento.Elements;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 
-import static org.elemento.EventType.bind;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.click;
 
 /** Reusable class for data components w/ select checkboxes. */
 class ItemSelect {

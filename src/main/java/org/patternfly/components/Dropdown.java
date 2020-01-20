@@ -9,22 +9,22 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
-import org.elemento.HtmlContentBuilder;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Disable;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.elemento.Elements.button;
-import static org.elemento.Elements.input;
-import static org.elemento.Elements.label;
-import static org.elemento.Elements.section;
-import static org.elemento.Elements.*;
-import static org.elemento.EventType.change;
-import static org.elemento.EventType.click;
-import static org.elemento.InputType.checkbox;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.change;
+import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -42,6 +42,8 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         implements HtmlContent<HTMLDivElement, Dropdown<T>>, Disable<Dropdown<T>> {
 
     // ------------------------------------------------------ factory methods
+
+    private static final String UNNAMED_GROUP = "org.patternfly.dropdown.unnamedGroup";
 
     public static <T> Dropdown<T> text(String text) {
         return new Dropdown<>(text, null, false, false);
@@ -79,25 +81,21 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return new Dropdown<>(text, null, false, true);
     }
 
+    // ------------------------------------------------------ instance
+
     public static <T> Dropdown<T> split(String text, boolean grouped) {
         return new Dropdown<>(text, null, grouped, true);
     }
-
-    // ------------------------------------------------------ instance
-
-    private static final String UNNAMED_GROUP = "org.patternfly.dropdown.unnamedGroup";
-
     private final boolean grouped;
     private final boolean split;
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
-    private Consumer<Boolean> onChange;
-    private SelectHandler<T> onSelect;
-
     private final HTMLElement toggle;
     private final HTMLInputElement input;
     private final HTMLButtonElement button;
     private final HTMLElement menu;
+    private Consumer<Boolean> onChange;
+    private SelectHandler<T> onSelect;
     private HTMLElement lastMenu;
 
     Dropdown(String text, Icon icon, boolean grouped, boolean split) {
@@ -349,7 +347,8 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         if (text == null) {
             clearText();
         } else {
-            HTMLElement textElement = Elements.find(button, By.classname(component(dropdown, Constants.toggle, Constants.text)));
+            HTMLElement textElement = Elements.find(button,
+                    By.classname(component(dropdown, Constants.toggle, Constants.text)));
             if (textElement != null) {
                 textElement.textContent = text;
             } else {

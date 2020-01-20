@@ -19,6 +19,7 @@ public interface Constants {
     String banner = "banner";
     String block = "block";
     String body = "body";
+    String bottom = "bottom";
     String brand = "brand";
     String bulkSelect = "bulk-select";
     String button = "button";
@@ -89,6 +90,7 @@ public interface Constants {
     String label = "label";
     String labelledBy = "labelledby";
     String leadBall = "lead-ball";
+    String left = "left";
     String light = "light";
     String link = "link";
     String list = "list";
@@ -108,11 +110,13 @@ public interface Constants {
     String page = "page";
     String pagination = "pagination";
     String plain = "plain";
+    String popover = "popover";
     String presentation = "presentation";
     String primary = "primary";
     String progressbar = "progressbar";
     String read = "read";
     String readOnly = "read-only";
+    String right = "right";
     String role = "role";
     String scope = "scope";
     String scroll = "scroll";
@@ -134,12 +138,14 @@ public interface Constants {
     String tailBall = "tail-ball";
     String tertiary = "tertiary";
     String text = "text";
+    String textLeftAligned = "textLeftAligned";
     String title = "title";
     String toast = "toast";
     String toggle = "toggle";
     String toggleGroup = "toggle-group";
     String toggleGroupContainer = "toggle-group-container";
     String toolbar = "toolbar";
+    String tooltip = "tooltip";
     String tools = "tools";
     String top = "top";
     String totalItems = "total-items";

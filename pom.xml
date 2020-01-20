@@ -71,13 +71,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.elemento</groupId>
-                <artifactId>elemento-bom</artifactId>
-                <version>${elemento.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt</artifactId>
                 <version>${gwt.version}</version>
@@ -89,8 +82,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.elemento</groupId>
+            <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-core</artifactId>
+            <version>${elemento.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
@@ -116,24 +110,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>checkstyle</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>

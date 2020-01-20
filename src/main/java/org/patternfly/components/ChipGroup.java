@@ -4,15 +4,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import elemental2.dom.HTMLElement;
-import org.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContent;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 
 import static java.lang.Math.abs;
-import static org.elemento.Elements.insertBefore;
-import static org.elemento.Elements.setVisible;
-import static org.elemento.Elements.stream;
-import static org.elemento.Elements.ul;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.stream;
+import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.Constants.chipGroup;
 

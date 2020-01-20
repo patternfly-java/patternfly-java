@@ -2,17 +2,17 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.elemento.By;
-import org.elemento.Elements;
-import org.elemento.HtmlContent;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.HtmlContent;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 
-import static org.elemento.Elements.div;
-import static org.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.components.Card.card;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.layout;
@@ -47,16 +47,19 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
 
     // ------------------------------------------------------ cactory methods
 
-    public static <T> CardView<T> cardView(DataProvider<T> dataProvider, Display<T> display) {
-        return new CardView<>(dataProvider, display);
+    public interface Display<T> {
+
+        void render(Card card, DataProvider<T> dataProvider, T item);
     }
 
     // ------------------------------------------------------ instance
-
     private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
             .desc(By.classname(component(card, actions)))
             .desc(By.element("input").and(By.attribute("type", "checkbox")));
 
+    public static <T> CardView<T> cardView(DataProvider<T> dataProvider, Display<T> display) {
+        return new CardView<>(dataProvider, display);
+    }
     private final DataProvider<T> dataProvider;
     private final Display<T> display;
     private final ItemSelect itemSelect;
@@ -70,12 +73,12 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         this.itemSelect = new ItemSelect(element);
     }
 
+    // ------------------------------------------------------ display API
+
     @Override
     public CardView<T> that() {
         return this;
     }
-
-    // ------------------------------------------------------ display API
 
     @Override
     public void showItems(Iterable<T> items, PageInfo pageInfo) {
@@ -120,27 +123,22 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         }
     }
 
+    // ------------------------------------------------------ modifiers
+
     @Override
     public void updateSortInfo(SortInfo<T> sortInfo) {
         // nothing to do
     }
-
-    // ------------------------------------------------------ modifiers
 
     public CardView<T> compact() {
         this.compact = true;
         return this;
     }
 
+    // ------------------------------------------------------ inner classes
+
     public CardView<T> hoverable() {
         this.hoverable = true;
         return this;
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    public interface Display<T> {
-
-        void render(Card card, DataProvider<T> dataProvider, T item);
     }
 }

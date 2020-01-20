@@ -7,9 +7,9 @@ import elemental2.dom.Node;
 import org.gwtproject.event.shared.HandlerRegistration;
 
 import static elemental2.dom.DomGlobal.document;
-import static org.elemento.Elements.setVisible;
-import static org.elemento.EventType.bind;
-import static org.elemento.EventType.click;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.expanded;
 import static org.patternfly.resources.Constants.false_;
@@ -19,8 +19,8 @@ import static org.patternfly.resources.Constants.true_;
 /** Reusable class for components which have a collapsible / expandable UI element */
 class CollapseExpandHandler {
 
-    private HandlerRegistration closeHandler;
     Consumer<Boolean> onToggle;
+    private HandlerRegistration closeHandler;
 
     void expand(HTMLElement root, HTMLElement button, HTMLElement menu) {
         if (!expanded(root)) {
