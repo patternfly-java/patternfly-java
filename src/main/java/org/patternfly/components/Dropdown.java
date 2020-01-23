@@ -245,11 +245,11 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     public Group<T> getGroup(String name) {
-        HTMLElement section = Elements.find(menu, By.data(dropdownGroup, buildId(group)));
+        HTMLElement section = Elements.find(menu, By.data(dropdownGroup, buildId(name)));
         if (section != null) {
             return new Group<>(this, section);
         }
-        return null;
+        return unnamedGroup();
     }
 
     // ------------------------------------------------------ select and update items
