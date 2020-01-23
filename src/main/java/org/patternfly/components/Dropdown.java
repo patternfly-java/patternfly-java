@@ -1,8 +1,8 @@
 package org.patternfly.components;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -451,7 +451,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             implements HtmlContent<HTMLElement, Group<T>>, Disable<Group<T>> {
 
         private final Dropdown<T> dropdown;
-        private final Stack<Consumer<Dropdown<T>>> recorder;
+        private final List<Consumer<Dropdown<T>>> recorder;
         private final HTMLHeadingElement header;
         private final HTMLUListElement menu;
 
@@ -459,7 +459,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             super(section().css(component(Constants.dropdown, group))
                     .data(dropdownGroup, buildId(text)).element(), "DropdownGroup");
             this.dropdown = null;
-            this.recorder = new Stack<>();
+            this.recorder = new ArrayList<>();
             add(header = h(1, text).css(component(Constants.dropdown, group, title)).aria(hidden, true_).element());
             add(menu = ul().attr(role, none).element());
         }
@@ -483,8 +483,10 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
         private void playback(Dropdown<T> dropdown) {
             if (recorder != null) {
-                while (!recorder.isEmpty()) {
-                    recorder.pop().accept(dropdown);
+                for (Iterator<Consumer<Dropdown<T>>> iterator = recorder.iterator(); iterator.hasNext(); ) {
+                    Consumer<Dropdown<T>> consumer = iterator.next();
+                    consumer.accept(dropdown);
+                    iterator.remove();
                 }
             }
         }
@@ -514,7 +516,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             if (dropdown != null) {
                 menu.appendChild(newItem(dropdown, item));
             } else if (recorder != null) {
-                recorder.push(dd -> menu.appendChild(newItem(dd, item)));
+                recorder.add(dd -> menu.appendChild(newItem(dd, item)));
             }
             return this;
         }
@@ -525,7 +527,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
                         .add(div().css(component(Constants.dropdown, separator)))
                         .element());
             } else if (recorder != null) {
-                recorder.push(dd -> menu.appendChild(li().attr(role, separator)
+                recorder.add(dd -> menu.appendChild(li().attr(role, separator)
                         .add(div().css(component(Constants.dropdown, separator)))
                         .element()));
             }
