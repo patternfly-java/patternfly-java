@@ -2,11 +2,11 @@ package org.patternfly.components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import com.google.gwt.dom.client.ButtonElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -191,10 +191,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
     public Dropdown<T> add(T item) {
         if (grouped) {
-            Group<T> group = unnamedGroup();
-            if (group != null) {
-                group.add(item);
-            }
+            unnamedGroup().add(item);
         } else {
             backupItems.add(item);
             menu.appendChild(newItem(item));
@@ -202,37 +199,9 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return this;
     }
 
-    public Dropdown<T> add(Group<T> group) {
-        Group<T> localGroup = group;
-        if (!grouped) {
-            // this is our first group
-            if (!backupItems.isEmpty()) {
-                // 1. clear the dropdown
-                failSafeRemoveFromParent(menu);
-                // 2. switch menu from <ul/> to <div/>
-                menu = div().css(component(dropdown, Constants.menu))
-                        .aria(labelledBy, buttonId)
-                        .attr(role, Constants.menu)
-                        .hidden(true)
-                        .element();
-                add(menu);
-                // 3. add the existing items to the unnamed group
-                localGroup = new Group<T>().add(backupItems);
-                backupItems.clear();
-            }
-            // mark as grouped.
-            grouped = true;
-        }
-        menu.appendChild(localGroup.element());
-        return this;
-    }
-
     public Dropdown<T> addSeparator() {
         if (grouped) {
-            Group<T> group = unnamedGroup();
-            if (group != null) {
-                group.addSeparator();
-            }
+            unnamedGroup().addSeparator();
         } else {
             menu.appendChild(li().attr(role, separator)
                     .add(div().css(component(dropdown, separator))).element());
@@ -240,21 +209,47 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return this;
     }
 
-    // ------------------------------------------------------ groups
-
-    public Group<T> getGroup(String name) {
-        String id = (name == null || name.length() == 0) ? UNNAMED_GROUP_ID : buildId(group);
-        HTMLElement section = Elements.find(menu, By.data(dropdownGroup, id));
-        if (section != null) {
-            Group<T> group = new Group<>(section);
-            group.bindDropdown(this);
-            return group;
+    public Dropdown<T> add(Group<T> group) {
+        if (!grouped) {
+            // this is our first group
+            // 1. clear the dropdown
+            failSafeRemoveFromParent(menu);
+            // 2. switch menu from <ul/> to <div/>
+            add(menu = div().css(component(dropdown, Constants.menu))
+                    .aria(labelledBy, buttonId)
+                    .attr(role, Constants.menu)
+                    .hidden(true)
+                    .element());
+            // 3. add the existing items to the unnamed group
+            if (!backupItems.isEmpty()) {
+                unnamedGroup().add(backupItems);
+                backupItems.clear();
+            }
+            // mark as grouped.
+            grouped = true;
         }
-        return null;
+        menu.appendChild(group.element());
+        group.playback(this);
+        return this;
     }
 
     public Group<T> unnamedGroup() {
-        return getGroup(null);
+        HTMLElement section = Elements.find(menu, By.data(dropdownGroup, UNNAMED_GROUP_ID));
+        if (section == null) {
+            Group<T> unnamed = new Group<>(this);
+            menu.appendChild(unnamed.element());
+            return unnamed;
+        } else {
+            return new Group<>(this, section);
+        }
+    }
+
+    public Group<T> getGroup(String name) {
+        HTMLElement section = Elements.find(menu, By.data(dropdownGroup, buildId(group)));
+        if (section != null) {
+            return new Group<>(this, section);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ select and update items
@@ -337,7 +332,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     @Override
     public Dropdown<T> disable() {
         button.disabled = true;
-        if (!(splitCheckbox || splitAction)) {
+        if (splitCheckbox || splitAction) {
             toggle.classList.add(modifier(disabled));
             if (input != null) {
                 input.disabled = true;
@@ -455,34 +450,43 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     public static class Group<T> extends BaseComponent<HTMLElement, Group<T>>
             implements HtmlContent<HTMLElement, Group<T>>, Disable<Group<T>> {
 
+        private final Dropdown<T> dropdown;
+        private final Stack<Consumer<Dropdown<T>>> recorder;
         private final HTMLHeadingElement header;
         private final HTMLUListElement menu;
-        private Dropdown<T> dropdown;
-
-        private Group() {
-            this(UNNAMED_GROUP_ID);
-        }
 
         private Group(String text) {
             super(section().css(component(Constants.dropdown, group))
                     .data(dropdownGroup, buildId(text)).element(), "DropdownGroup");
-            if (UNNAMED_GROUP_ID.equals(text)) {
-                header = null;
-            } else {
-                header = h(1, text).css(component(Constants.dropdown, group, title)).aria(hidden, true_).element();
-            }
-            add(header);
+            this.dropdown = null;
+            this.recorder = new Stack<>();
+            add(header = h(1, text).css(component(Constants.dropdown, group, title)).aria(hidden, true_).element());
             add(menu = ul().attr(role, none).element());
         }
 
-        private Group(HTMLElement section) {
+        private Group(Dropdown<T> dropdown) {
+            super(section().css(component(Constants.dropdown, group))
+                    .data(dropdownGroup, UNNAMED_GROUP_ID).element(), "DropdownGroup");
+            this.dropdown = dropdown;
+            this.recorder = null;
+            this.header = null;
+            add(menu = ul().attr(role, none).element());
+        }
+
+        private Group(Dropdown<T> dropdown, HTMLElement section) {
             super(section, "DropdownGroup");
+            this.dropdown = dropdown;
+            this.recorder = null;
             header = find(By.element("h1"));
             menu = find(By.element("ul"));
         }
 
-        private void bindDropdown(Dropdown<T> dropdown) {
-            this.dropdown = dropdown;
+        private void playback(Dropdown<T> dropdown) {
+            if (recorder != null) {
+                while (!recorder.isEmpty()) {
+                    recorder.pop().accept(dropdown);
+                }
+            }
         }
 
         @Override
@@ -507,14 +511,24 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         }
 
         public Group<T> add(T item) {
-
+            if (dropdown != null) {
+                menu.appendChild(newItem(dropdown, item));
+            } else if (recorder != null) {
+                recorder.push(dd -> menu.appendChild(newItem(dd, item)));
+            }
             return this;
         }
 
         public Group<T> addSeparator() {
-            menu.appendChild(li().attr(role, separator)
-                    .add(div().css(component(Constants.dropdown, separator)))
-                    .element());
+            if (dropdown != null) {
+                menu.appendChild(li().attr(role, separator)
+                        .add(div().css(component(Constants.dropdown, separator)))
+                        .element());
+            } else if (recorder != null) {
+                recorder.push(dd -> menu.appendChild(li().attr(role, separator)
+                        .add(div().css(component(Constants.dropdown, separator)))
+                        .element()));
+            }
             return this;
         }
 
@@ -525,15 +539,19 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         }
 
         public Group<T> select(T item, boolean fireEvent) {
-            if (fireEvent && dropdown.onSelect != null) {
-                dropdown.onSelect.onSelect(item);
+            if (dropdown != null) {
+                if (fireEvent && dropdown.onSelect != null) {
+                    dropdown.onSelect.onSelect(item);
+                }
             }
             return this;
         }
 
         public void update(T item) {
-            HTMLButtonElement element = itemElement(item);
-            dropdown.itemDisplay.display.accept(button(element), item);
+            if (dropdown != null) {
+                HTMLButtonElement element = itemElement(item);
+                dropdown.itemDisplay.display.accept(button(element), item);
+            }
         }
 
         // ------------------------------------------------------ modifiers
@@ -587,24 +605,27 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
         // ------------------------------------------------------ internals
 
-        private HTMLLIElement newItem(T item) {
+        private HTMLLIElement newItem(Dropdown<T> dd, T item) {
             HtmlContentBuilder<HTMLButtonElement> button = button().css(
                     component(Constants.dropdown, Constants.menu, Constants.item))
                     .attr(tabindex, _1)
-                    .data(dropdownItem, dropdown.itemDisplay.itemId(item))
+                    .data(dropdownItem, dd.itemDisplay.itemId(item))
                     .on(click, e -> {
-                        dropdown.ceh.collapse(element(), dropdown.buttonElement(), dropdown.menuElement());
-                        if (dropdown.onSelect != null) {
-                            dropdown.onSelect.onSelect(item);
+                        dd.ceh.collapse(element(), dd.buttonElement(), dd.menuElement());
+                        if (dd.onSelect != null) {
+                            dd.onSelect.onSelect(item);
                         }
                     });
-            dropdown.itemDisplay.display.accept(button, item);
+            dd.itemDisplay.display.accept(button, item);
             return li().attr(role, menuitem).add(button).element();
         }
 
         private HTMLButtonElement itemElement(T item) {
-            String itemId = dropdown.itemDisplay.itemId(item);
-            return Elements.find(menu, By.data(dropdownItem, itemId));
+            if (dropdown != null) {
+                String itemId = dropdown.itemDisplay.itemId(item);
+                return Elements.find(menu, By.data(dropdownItem, itemId));
+            }
+            return null;
         }
     }
 }

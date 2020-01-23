@@ -348,11 +348,11 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             implements HtmlContent<HTMLDivElement, Item> {
 
         @SuppressWarnings("rawtypes")
-        private final Stack<Consumer<Toolbar>> tlc; // the poor man's thread local context
+        private final Stack<Consumer<Toolbar>> delayedInit;
 
         private Item() {
             super(div().css(component(dataToolbar, item)).element());
-            this.tlc = new Stack<>();
+            this.delayedInit = new Stack<>();
         }
 
         @Override
@@ -362,7 +362,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
         @SuppressWarnings("unchecked")
         public Item add(BulkSelect bulkSelect) {
-            tlc.push(toolbar -> {
+            delayedInit.push(toolbar -> {
                 toolbar.bulkSelect = bulkSelect;
                 bulkSelect.bindToolbar(toolbar);
             });
@@ -376,7 +376,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         @SuppressWarnings("unchecked")
         public <T> Item add(String id, String placeholder, Function<String, Predicate<T>> filterFn) {
             InputGroup.Search search = new InputGroup.Search(placeholder);
-            tlc.push(toolbar -> search.onSearch(query -> {
+            delayedInit.push(toolbar -> search.onSearch(query -> {
                 if (query == null || query.length() == 0) {
                     toolbar.dataProvider.removeFilter(id);
                 } else {
@@ -388,7 +388,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
         @SuppressWarnings("unchecked")
         public <T> Item add(SortMenu<T> sortMenu) {
-            tlc.push(toolbar -> {
+            delayedInit.push(toolbar -> {
                 toolbar.sortMenu = sortMenu;
                 sortMenu.bindToolbar(toolbar);
             });
@@ -396,7 +396,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
 
         public Item add(Pagination pagination) {
-            tlc.push(toolbar -> {
+            delayedInit.push(toolbar -> {
                 toolbar.pagination = pagination;
                 pagination
                         .onFirstPage(toolbar.dataProvider::gotoFirstPage)
@@ -414,8 +414,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
 
         private <T> void bindToolbar(Toolbar<T> toolbar) {
-            while (!tlc.isEmpty()) {
-                tlc.pop().accept(toolbar);
+            while (!delayedInit.isEmpty()) {
+                delayedInit.pop().accept(toolbar);
             }
         }
     }
