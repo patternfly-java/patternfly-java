@@ -613,7 +613,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
                     .attr(tabindex, _1)
                     .data(dropdownItem, dd.itemDisplay.itemId(item))
                     .on(click, e -> {
-                        dd.ceh.collapse(element(), dd.buttonElement(), dd.menuElement());
+                        dd.ceh.collapse(dd.element(), dd.buttonElement(), dd.menuElement());
                         if (dd.onSelect != null) {
                             dd.onSelect.onSelect(item);
                         }
