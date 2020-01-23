@@ -121,6 +121,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     public static Button control(HTMLElement element) {
         return new Button(Elements.button().css(modifier(control)).add(element));
     }
+
     private final HTMLButtonElement button;
     private final HTMLAnchorElement a;
     private Callback callback;
@@ -227,7 +228,9 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     // ------------------------------------------------------ event handler
 
-    /** Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}. */
+    /**
+     * Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}.
+     */
     public Button clear() {
         element.classList.remove(modifier(active));
         element.classList.remove(modifier(focus));

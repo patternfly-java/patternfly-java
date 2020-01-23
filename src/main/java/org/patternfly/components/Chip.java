@@ -118,7 +118,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
 
     // ------------------------------------------------------ public API
 
-    /** Called after the chip has been removed. */
+    /**
+     * Called after the chip has been removed.
+     */
     public Chip onClose(Callback callback) {
         this.callback = callback;
         return this;

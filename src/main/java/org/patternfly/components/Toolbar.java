@@ -82,22 +82,174 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
     // ------------------------------------------------------ factory methods
 
-    private enum SortDirection {
-        ASCENDING("Ascending", true), DESCENDING("Descending", false);
+    public static <T> Toolbar<T> toolbar() {
+        return new Toolbar<>(null);
+    }
 
-        private final String text;
-        private final boolean ascending;
+    public static <T> Toolbar<T> toolbar(DataProvider<T> dataProvider) {
+        return new Toolbar<>(dataProvider);
+    }
 
-        SortDirection(String text, boolean ascending) {
-            this.text = text;
-            this.ascending = ascending;
+    public static Content content() {
+        return new Content();
+    }
+
+    public static Group group() {
+        return new Group();
+    }
+
+    public static Item item() {
+        return new Item();
+    }
+
+    public static BulkSelect bulkSelect() {
+        return new BulkSelect();
+    }
+
+    public static <T> SortMenu<T> sortMenu(SortOptions<T> sortOptions) {
+        return new SortMenu<>(sortOptions);
+    }
+
+    // ------------------------------------------------------ instance
+
+    private static final By TOGGLE_GROUP_SELECTOR = By.classname(modifier(toggleGroup));
+    private static final By TOGGLE_SELECTOR = By.classname(component(dataToolbar, toggle))
+            .desc(By.element("button"));
+
+    private final DataProvider<T> dataProvider;
+    private BulkSelect bulkSelect;
+    private SortMenu<T> sortMenu;
+    private Pagination pagination;
+    private HandlerRegistration toggleGroupHandler;
+
+
+    Toolbar(DataProvider<T> dataProvider) {
+        super(div().css(component(dataToolbar)).element(), "Toolbar");
+        this.dataProvider = dataProvider;
+        Attachable.register(element, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        bindToggleGroupHandler();
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        removeToggleGroupHandler();
+    }
+
+    @Override
+    public Toolbar<T> that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ public API
+
+    public Toolbar<T> add(Content content) {
+        add(content.element());
+        content.bindToolbar(this);
+        return this;
+    }
+
+    // ------------------------------------------------------ display API
+
+    @Override
+    public void showItems(Iterable<T> items, PageInfo pageInfo) {
+        if (pagination != null) {
+            pagination.update(pageInfo);
         }
-
-        @Override
-        public String toString() {
-            return text;
+        if (bulkSelect != null) {
+            bulkSelect.update(pageInfo);
         }
     }
+
+
+    @Override
+    public void updateSelection(SelectionInfo<T> selectionInfo) {
+        if (bulkSelect != null) {
+            int selected = selectionInfo.getSelectionCount();
+            int filtered = (int) StreamSupport.stream(dataProvider.getFilteredItems().spliterator(), false).count();
+            int visible = (int) StreamSupport.stream(dataProvider.getVisibleItems().spliterator(), false).count();
+            int all = (int) StreamSupport.stream(dataProvider.getAllItems().spliterator(), false).count();
+            bulkSelect.update(selected, filtered, visible, all);
+        }
+    }
+
+    @Override
+    public void updateSortInfo(SortInfo<T> sortInfo) {
+        if (sortMenu != null) {
+            sortMenu.update(sortInfo);
+        }
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void bindToggleGroupHandler() {
+        List<HandlerRegistration> handler = new ArrayList<>();
+        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_GROUP_SELECTOR)) {
+            HTMLElement toggleGroupParent = (HTMLElement) htmlElement.parentNode;
+            toggleGroupParent.classList.add(toggleGroupContainer);
+
+            // add expandable content
+            String expandableContentId = uniqueId(dataToolbar, expandableContent);
+            HTMLElement expandableContentGroup = group().element();
+            HtmlContentBuilder<HTMLDivElement> expandableContent = div().css(component(dataToolbar,
+                    Constants.expandableContent))
+                    .id(expandableContentId)
+                    .add(expandableContentGroup);
+            setVisible(expandableContent.element(), false);
+            toggleGroupParent.appendChild(expandableContent.element());
+
+            // wire aria attributes and add expand / collapse handler
+            HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
+            if (e != null) {
+                HtmlContentBuilder<HTMLButtonElement> button = button(e);
+                button.aria(hasPopup, false_)
+                        .aria(expanded, false_)
+                        .aria(controls, expandableContentId);
+                handler.add(bind(button.element(), click, evt -> {
+                    boolean expanded = parseBoolean(button.element().getAttribute("aria-expanded"));
+                    if (expanded) {
+                        // collapse:
+                        // 1. move all content from expandable content to toggle group
+                        // 2. hide expandable content
+                        for (HTMLElement element : children(expandableContentGroup)) {
+                            htmlElement.appendChild(element);
+                        }
+                        button.aria(Constants.expanded, false_);
+                        expandableContent.toggle(modifier(Constants.expanded));
+                        setVisible(expandableContent.element(), false);
+                    } else {
+                        // expand:
+                        // 1. move all elements but the toggle from toggle group to expandable content
+                        // 2. show expandable content
+                        for (HTMLElement element : children(htmlElement)) {
+                            if (element.classList.contains(component(dataToolbar, toggle))) {
+                                continue;
+                            }
+                            expandableContentGroup.appendChild(element);
+                        }
+                        button.aria(Constants.expanded, true_);
+                        expandableContent.toggle(modifier(Constants.expanded));
+                        setVisible(expandableContent.element(), true);
+                    }
+                }));
+            }
+        }
+        if (!handler.isEmpty()) {
+            toggleGroupHandler = HandlerRegistrations.compose(handler.toArray(new HandlerRegistration[0]));
+        }
+    }
+
+    private void removeToggleGroupHandler() {
+        if (toggleGroupHandler != null) {
+            toggleGroupHandler.removeHandler();
+            toggleGroupHandler = null;
+        }
+    }
+
+    // ------------------------------------------------------ inner classes (content)
 
     public static class Content extends ElementBuilder<HTMLDivElement, Content>
             implements HtmlContent<HTMLDivElement, Content> {
@@ -272,6 +424,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
     }
 
+    // ------------------------------------------------------ inner classes (options)
+
     private static class BulkSelect extends Dropdown<BulkSelectOption> {
 
         private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none",
@@ -280,7 +434,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private static final BulkSelectOption SELECT_ALL = new BulkSelectOption("select-all", "Select all");
 
         private BulkSelect() {
-            super(null, null, false, true);
+            super(null, null, true, false);
             identifier(bso -> bso.id)
                     .display((html, bso) -> html.textContent(bso.text))
                     .add(SELECT_NONE)
@@ -329,6 +483,39 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                 }
                 setText(selected + " selected");
             }
+        }
+    }
+
+    private static class BulkSelectOption {
+
+        private final String id;
+        private String text;
+
+        private BulkSelectOption(String id, String text) {
+            this.id = id;
+            this.text = text;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof BulkSelectOption)) {
+                return false;
+            }
+            BulkSelectOption that = (BulkSelectOption) o;
+            return id.equals(that.id);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
+        }
+
+        @Override
+        public String toString() {
+            return text;
         }
     }
 
@@ -383,7 +570,22 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
-    // ------------------------------------------------------ instance
+    private enum SortDirection {
+        ASCENDING("Ascending", true), DESCENDING("Descending", false);
+
+        private final String text;
+        private final boolean ascending;
+
+        SortDirection(String text, boolean ascending) {
+            this.text = text;
+            this.ascending = ascending;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
 
     public static class SortOptions<T> implements Iterable<SortOption<T>> {
 
@@ -424,205 +626,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         @Override
         public String toString() {
             return name;
-        }
-    }
-
-    private static class BulkSelectOption {
-
-        private final String id;
-        private String text;
-
-        private BulkSelectOption(String id, String text) {
-            this.id = id;
-            this.text = text;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof BulkSelectOption)) {
-                return false;
-            }
-            BulkSelectOption that = (BulkSelectOption) o;
-            return id.equals(that.id);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(id);
-        }
-
-        @Override
-        public String toString() {
-            return text;
-        }
-    }
-    private static final By TOGGLE_GROUP_SELECTOR = By.classname(modifier(toggleGroup));
-    private static final By TOGGLE_SELECTOR = By.classname(component(dataToolbar, toggle))
-            .desc(By.element("button"));
-
-    public static <T> Toolbar<T> toolbar() {
-        return new Toolbar<>(null);
-    }
-
-    public static <T> Toolbar<T> toolbar(DataProvider<T> dataProvider) {
-        return new Toolbar<>(dataProvider);
-    }
-
-    public static Content content() {
-        return new Content();
-    }
-
-    public static Group group() {
-        return new Group();
-    }
-
-    public static Item item() {
-        return new Item();
-    }
-
-    public static BulkSelect bulkSelect() {
-        return new BulkSelect();
-    }
-
-    // ------------------------------------------------------ public API
-
-    public static <T> SortMenu<T> sortMenu(SortOptions<T> sortOptions) {
-        return new SortMenu<>(sortOptions);
-    }
-
-    // ------------------------------------------------------ display API
-    private final DataProvider<T> dataProvider;
-    private BulkSelect bulkSelect;
-    private SortMenu<T> sortMenu;
-
-    // ------------------------------------------------------ internal
-    private Pagination pagination;
-    private HandlerRegistration toggleGroupHandler;
-
-    // ------------------------------------------------------ inner classes (content)
-
-    Toolbar(DataProvider<T> dataProvider) {
-        super(div().css(component(dataToolbar)).element(), "Toolbar");
-        this.dataProvider = dataProvider;
-        Attachable.register(element, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        bindToggleGroupHandler();
-    }
-
-    @Override
-    public void detach(MutationRecord mutationRecord) {
-        removeToggleGroupHandler();
-    }
-
-    @Override
-    public Toolbar<T> that() {
-        return this;
-    }
-
-    public Toolbar<T> add(Content content) {
-        add(content.element());
-        content.bindToolbar(this);
-        return this;
-    }
-
-    @Override
-    public void showItems(Iterable<T> items, PageInfo pageInfo) {
-        if (pagination != null) {
-            pagination.update(pageInfo);
-        }
-        if (bulkSelect != null) {
-            bulkSelect.update(pageInfo);
-        }
-    }
-
-
-    // ------------------------------------------------------ inner classes (options)
-
-    @Override
-    public void updateSelection(SelectionInfo<T> selectionInfo) {
-        if (bulkSelect != null) {
-            int selected = selectionInfo.getSelectionCount();
-            int filtered = (int) StreamSupport.stream(dataProvider.getFilteredItems().spliterator(), false).count();
-            int visible = (int) StreamSupport.stream(dataProvider.getVisibleItems().spliterator(), false).count();
-            int all = (int) StreamSupport.stream(dataProvider.getAllItems().spliterator(), false).count();
-            bulkSelect.update(selected, filtered, visible, all);
-        }
-    }
-
-    @Override
-    public void updateSortInfo(SortInfo<T> sortInfo) {
-        if (sortMenu != null) {
-            sortMenu.update(sortInfo);
-        }
-    }
-
-    private void bindToggleGroupHandler() {
-        List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_GROUP_SELECTOR)) {
-            HTMLElement toggleGroupParent = (HTMLElement) htmlElement.parentNode;
-            toggleGroupParent.classList.add(toggleGroupContainer);
-
-            // add expandable content
-            String expandableContentId = uniqueId(dataToolbar, expandableContent);
-            HTMLElement expandableContentGroup = group().element();
-            HtmlContentBuilder<HTMLDivElement> expandableContent = div().css(component(dataToolbar,
-                    Constants.expandableContent))
-                    .id(expandableContentId)
-                    .add(expandableContentGroup);
-            setVisible(expandableContent.element(), false);
-            toggleGroupParent.appendChild(expandableContent.element());
-
-            // wire aria attributes and add expand / collapse handler
-            HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
-            if (e != null) {
-                HtmlContentBuilder<HTMLButtonElement> button = button(e);
-                button.aria(hasPopup, false_)
-                        .aria(expanded, false_)
-                        .aria(controls, expandableContentId);
-                handler.add(bind(button.element(), click, evt -> {
-                    boolean expanded = parseBoolean(button.element().getAttribute("aria-expanded"));
-                    if (expanded) {
-                        // collapse:
-                        // 1. move all content from expandable content to toggle group
-                        // 2. hide expandable content
-                        for (HTMLElement element : children(expandableContentGroup)) {
-                            htmlElement.appendChild(element);
-                        }
-                        button.aria(Constants.expanded, false_);
-                        expandableContent.toggle(modifier(Constants.expanded));
-                        setVisible(expandableContent.element(), false);
-                    } else {
-                        // expand:
-                        // 1. move all elements but the toggle from toggle group to expandable content
-                        // 2. show expandable content
-                        for (HTMLElement element : children(htmlElement)) {
-                            if (element.classList.contains(component(dataToolbar, toggle))) {
-                                continue;
-                            }
-                            expandableContentGroup.appendChild(element);
-                        }
-                        button.aria(Constants.expanded, true_);
-                        expandableContent.toggle(modifier(Constants.expanded));
-                        setVisible(expandableContent.element(), true);
-                    }
-                }));
-            }
-        }
-        if (!handler.isEmpty()) {
-            toggleGroupHandler = HandlerRegistrations.compose(handler.toArray(new HandlerRegistration[0]));
-        }
-    }
-
-    private void removeToggleGroupHandler() {
-        if (toggleGroupHandler != null) {
-            toggleGroupHandler.removeHandler();
-            toggleGroupHandler = null;
         }
     }
 }

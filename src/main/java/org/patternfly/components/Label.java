@@ -12,7 +12,7 @@ import static org.patternfly.resources.Constants.label;
 /**
  * PatternFly label component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/react/components/label/">https://www.patternfly.org/v4/documentation/react/components/label</a>
+ * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/label/">https://www.patternfly.org/v4/documentation/core/components/label</a>
  */
 public class Label extends BaseComponent<HTMLElement, Label>
         implements HtmlContent<HTMLElement, Label> {

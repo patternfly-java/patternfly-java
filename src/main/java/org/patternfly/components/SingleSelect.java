@@ -66,7 +66,11 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         return new SingleSelect<>(null, text, false);
     }
 
-/*
+    public static <T> SingleSelect<T> single(Icon icon, String text) {
+        return new SingleSelect<>(icon, text, false);
+    }
+
+    /*
     NYI
     public static <T> SingleSelect<T> typeahead(String placeholder) {
         return new SingleSelect<>(null, placeholder, true);
@@ -79,9 +83,6 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     // ------------------------------------------------------ select instance
 
-    public static <T> SingleSelect<T> single(Icon icon, String text) {
-        return new SingleSelect<>(icon, text, false);
-    }
     private final boolean typeahead;
     private final CollapseExpandHandler ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;

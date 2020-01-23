@@ -37,21 +37,15 @@ import static org.patternfly.resources.Dataset.*;
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/nav">https://www.patternfly.org/v4/documentation/core/components/nav</a>
  */
+// TODO Use static inner class Group instead of add(String group, NavigationItem item)
 public class Navigation extends BaseComponent<HTMLElement, Navigation>
         implements HtmlContent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ factory methods
 
-    private enum Orientation {
-        HORIZONTAL, VERTICAL
-    }
-    private static final String A_TAG = "a";
-
     public static Navigation horizontal() {
         return new Navigation(Orientation.HORIZONTAL, false, true, false);
     }
-
-    // ------------------------------------------------------ navigation instance
 
     public static Navigation tertiary() {
         return new Navigation(Orientation.HORIZONTAL, false, false, true);
@@ -60,6 +54,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     public static Navigation vertical(boolean expandable) {
         return new Navigation(Orientation.VERTICAL, expandable, true, false);
     }
+
+    // ------------------------------------------------------ navigation instance
+
+    private static final String A_TAG = "a";
     private final Orientation orientation;
     private final boolean expandable;
     private final Map<String, NavigationItem> items;
@@ -96,12 +94,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         }
     }
 
-    // ------------------------------------------------------ public API
-
     @Override
     public Navigation that() {
         return this;
     }
+
+    // ------------------------------------------------------ public API
 
     public Navigation add(Iterable<NavigationItem> items) {
         for (NavigationItem item : items) {
@@ -132,7 +130,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
             if (expandable) {
                 ul.appendChild(li().css(component(nav, Constants.item), modifier(Constants.expandable))
                         .data(navGroupExpandable, groupId)
-                        .add(a("#").css(component(nav, link))
+                        .add(a().css(component(nav, link))
                                 .id(labelId)
                                 .data(navGroupLink, groupId)
                                 .textContent(group)
@@ -179,7 +177,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                 if (itemId.equals(value)) {
                     e.classList.add(modifier(current));
                     e.setAttribute("aria-current", page);
-                    e.scrollIntoView();
+                    e.scrollIntoView(false);
                     if (fireEvent && onSelect != null) {
                         onSelect.onSelect(item);
                     }
@@ -222,14 +220,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
-
     public Navigation display(BiConsumer<HtmlContentBuilder<HTMLAnchorElement>, NavigationItem> display) {
         itemDisplay.display = display;
         return this;
     }
 
-    // ------------------------------------------------------ events
+    // ------------------------------------------------------ modifiers
 
     public Navigation simple() {
         if (orientation == Orientation.VERTICAL) {
@@ -239,7 +235,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ events
 
     public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
         this.onSelect = onSelect;
@@ -275,6 +271,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
             }
         }
     }
+
+    // ------------------------------------------------------ internals
 
     private void toggleGroup(String groupId) {
         HTMLElement li = Elements.find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
@@ -315,9 +313,13 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         // TODO add / remove "pf-m-start pf-m-end" to root element
     }
 
-    // ------------------------------------------------------ inner classes
-
     private void scrollRight() {
         // TODO add / remove "pf-m-start pf-m-end" to root element
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    private enum Orientation {
+        HORIZONTAL, VERTICAL
     }
 }

@@ -49,6 +49,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     public static AlertGroup embedded() {
         return new AlertGroup(0);
     }
+
     private final double timeout;
     private final Map<String, Double> messageIds;
 

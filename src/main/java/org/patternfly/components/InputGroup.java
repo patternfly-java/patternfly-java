@@ -24,12 +24,37 @@ import static org.patternfly.resources.Constants.title;
 /**
  * PatternFly input group component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/react/components/inputgroup/">https://www.patternfly.org/v4/documentation/react/components/inputgroup</a>
+ * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/inputgroup/">https://www.patternfly.org/v4/documentation/core/components/inputgroup</a>
  */
 public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
         implements HtmlContent<HTMLDivElement, InputGroup> {
 
     // ------------------------------------------------------ factory methods
+
+    public static InputGroup inputGroup() {
+        return new InputGroup();
+    }
+
+    public static Search search() {
+        return new Search();
+    }
+
+    public static Search search(String placeholder) {
+        return new Search(placeholder);
+    }
+
+    // ------------------------------------------------------ instance
+
+    InputGroup() {
+        super(div().css(component(inputGroup)).element(), "InputGroup");
+    }
+
+    @Override
+    public InputGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ inner classes
 
     public static class Search extends InputGroup {
 
@@ -38,11 +63,11 @@ public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
         private HandlerRegistration searchHandler;
         private HandlerRegistration keyupHandler;
 
-        public Search() {
+        Search() {
             this("Search");
         }
 
-        public Search(String placeholder) {
+        Search(String placeholder) {
             add(input = input(InputType.search).css(component(formControl))
                     .placeholder(placeholder));
             add(control = control(icon(fas("search")).aria(title, placeholder)));
@@ -83,22 +108,5 @@ public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup>
             });
             control.onClick(() -> consumer.accept(input.element().value));
         }
-    }
-
-    // ------------------------------------------------------ instance
-
-    public static InputGroup inputGroup() {
-        return new InputGroup();
-    }
-
-    InputGroup() {
-        super(div().css(component(inputGroup)).element(), "InputGroup");
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    @Override
-    public InputGroup that() {
-        return this;
     }
 }

@@ -161,7 +161,9 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         return this;
     }
 
-    /** Consumer is called with 0-based page index. */
+    /**
+     * Consumer is called with 0-based page index.
+     */
     public Pagination onGotoPage(Consumer<Integer> gotoPageHandler) {
         this.gotoPageHandler = gotoPageHandler;
         return this;

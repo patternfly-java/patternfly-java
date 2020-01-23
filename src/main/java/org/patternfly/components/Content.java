@@ -10,7 +10,7 @@ import static org.patternfly.resources.Constants.content;
 /**
  * PatternFly content component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/react/components/content/">https://www.patternfly.org/v4/documentation/react/components/content</a>
+ * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/content/">https://www.patternfly.org/v4/documentation/core/components/content</a>
  */
 public class Content extends BaseComponent<HTMLDivElement, Content>
         implements HtmlContent<HTMLDivElement, Content> {

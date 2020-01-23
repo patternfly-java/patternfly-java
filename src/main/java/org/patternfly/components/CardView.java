@@ -60,6 +60,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     public static <T> CardView<T> cardView(DataProvider<T> dataProvider, Display<T> display) {
         return new CardView<>(dataProvider, display);
     }
+
     private final DataProvider<T> dataProvider;
     private final Display<T> display;
     private final ItemSelect itemSelect;

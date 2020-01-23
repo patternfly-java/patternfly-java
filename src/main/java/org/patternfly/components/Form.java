@@ -20,37 +20,37 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
 
     // ------------------------------------------------------ factory methods
 
-    public static class Group extends ElementBuilder<HTMLDivElement, Group>
+    public static Form form() {
+        return new Form();
+    }
+
+    public static Group group() {
+        return new Group();
+    }
+
+    // ------------------------------------------------------ instance
+
+    Form() {
+        super(form().css(component(form)).element(), "Form");
+    }
+
+    @Override
+    public Form that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public static class Group extends BaseComponent<HTMLDivElement, Group>
             implements HtmlContent<HTMLDivElement, Group> {
 
         private Group() {
-            super(div().css(component(form, group)).element());
+            super(div().css(component(form, group)).element(), "FormGroup");
         }
 
         @Override
         public Group that() {
             return this;
         }
-    }
-
-    public static Form form() {
-        return new Form();
-    }
-
-    // ------------------------------------------------------ instance
-
-    public static Group group() {
-        return new Group();
-    }
-
-    Form() {
-        super(form().css(component(form)).element(), "Form");
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    @Override
-    public Form that() {
-        return this;
     }
 }

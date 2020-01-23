@@ -40,6 +40,159 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ factory methods
 
+    public static MultiOptionsMenu text(String text) {
+        return new MultiOptionsMenu(text, null, false);
+    }
+
+    public static MultiOptionsMenu icon(Icon icon) {
+        return new MultiOptionsMenu(null, icon, false);
+    }
+
+    public static MultiOptionsMenu plain(String text) {
+        return new MultiOptionsMenu(text, null, true);
+    }
+
+    // ------------------------------------------------------ options menu instance
+
+    private final CollapseExpandHandler ceh;
+    private final HTMLButtonElement button;
+    private final HTMLElement plain;
+    private final HTMLElement menu;
+    private boolean collapseOnSelect;
+
+    MultiOptionsMenu(String text, Icon icon, boolean plain) {
+        super(div().css(component(optionsMenu)).element(), "OptionsMenu");
+        this.ceh = new CollapseExpandHandler();
+        this.collapseOnSelect = false;
+
+        String buttonId = uniqueId(optionsMenu, Constants.button);
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button()
+                .id(buttonId)
+                .aria(expanded, false_)
+                .aria(hasPopup, listbox)
+                .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
+
+        HTMLElement trigger;
+        if (icon != null) {
+            this.plain = null;
+            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
+                    .add(icon.aria(hidden, true_)).element();
+            trigger = button;
+
+        } else { // text != null
+            if (plain) {
+                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain),
+                        modifier(Constants.text))
+                        .add(span().css(component(optionsMenu, toggle, Constants.text))
+                                .textContent(text))
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button))
+                                .aria(label, text)
+                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element()).element();
+                trigger = this.plain;
+
+            } else {
+                this.plain = null;
+                this.button = buttonBuilder.css(component(optionsMenu, toggle))
+                        .aria(label, text)
+                        .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon))
+                                .aria(hidden, true_)).element();
+                trigger = button;
+            }
+        }
+
+        add(trigger);
+        add(menu = ul().css(component(optionsMenu, Constants.menu))
+                .hidden(true)
+                .aria(labelledBy, buttonId)
+                .attr(role, Constants.menu).element());
+    }
+
+    @Override
+    public MultiOptionsMenu that() {
+        return this;
+    }
+
+    private HTMLElement buttonElement() {
+        return button;
+    }
+
+    private HTMLElement menuElement() {
+        return menu;
+    }
+
+    // ------------------------------------------------------ public API
+
+    public <T> MultiOptionsMenu add(Group<T> group) {
+        if (menu.childNodes.length != 0) {
+            menu.appendChild(li().css(component(optionsMenu, separator)).attr(role, separator).element());
+        }
+        menu.appendChild(li()
+                .aria(label, group.text)
+                .add(group).element());
+
+        for (T item : group.items) {
+            HtmlContentBuilder<HTMLButtonElement> button = button()
+                    .css(component(optionsMenu, Constants.menu, Constants.item))
+                    .attr(Constants.tabindex, _1)
+                    .data(multiOptionsMenuItem, group.itemDisplay.itemId(item))
+                    .on(click, e -> {
+                        if (collapseOnSelect) {
+                            ceh.collapse(element(), buttonElement(), menuElement());
+                        }
+                        group.select(item);
+                    });
+            group.itemDisplay.display.accept(button, item);
+            HTMLElement icon;
+            button.add(icon = i().css(
+                    fas(check), component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
+                    .aria(hidden, true_)
+                    .data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
+            setVisible(icon, false);
+
+            group.element().appendChild(li().attr(role, menuitem)
+                    .add(button).element());
+        }
+        return this;
+    }
+
+    // ------------------------------------------------------ modifiers
+
+    public MultiOptionsMenu up() {
+        element.classList.add(modifier(top));
+        return this;
+    }
+
+    public MultiOptionsMenu right() {
+        menu.classList.add(modifier(alignRight));
+        return this;
+    }
+
+    public MultiOptionsMenu collapseOnSelect() {
+        this.collapseOnSelect = true;
+        return this;
+    }
+
+    @Override
+    public MultiOptionsMenu disable() {
+        button.disabled = true;
+        if (plain != null) {
+            plain.classList.add(modifier(disabled));
+        }
+        return this;
+    }
+
+    @Override
+    public MultiOptionsMenu enable() {
+        button.disabled = false;
+        if (plain != null) {
+            plain.classList.remove(modifier(disabled));
+        }
+        return this;
+    }
+
+    // ------------------------------------------------------ inner classes
+
     public static class Group<T> extends BaseComponent<HTMLUListElement, Group<T>>
             implements HtmlContent<HTMLUListElement, Group<T>>, HasValue<T> {
 
@@ -131,155 +284,5 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
             }
             return this;
         }
-    }
-
-    public static MultiOptionsMenu text(String text) {
-        return new MultiOptionsMenu(text, null, false);
-    }
-
-    public static MultiOptionsMenu icon(Icon icon) {
-        return new MultiOptionsMenu(null, icon, false);
-    }
-
-    // ------------------------------------------------------ options menu instance
-
-    public static MultiOptionsMenu plain(String text) {
-        return new MultiOptionsMenu(text, null, true);
-    }
-    private final CollapseExpandHandler ceh;
-    private final HTMLButtonElement button;
-    private final HTMLElement plain;
-    private final HTMLElement menu;
-    private boolean collapseOnSelect;
-
-    MultiOptionsMenu(String text, Icon icon, boolean plain) {
-        super(div().css(component(optionsMenu)).element(), "OptionsMenu");
-        this.ceh = new CollapseExpandHandler();
-        this.collapseOnSelect = false;
-
-        String buttonId = uniqueId(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button()
-                .id(buttonId)
-                .aria(expanded, false_)
-                .aria(hasPopup, listbox)
-                .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
-
-        HTMLElement trigger;
-        if (icon != null) {
-            this.plain = null;
-            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
-                    .add(icon.aria(hidden, true_)).element();
-            trigger = button;
-
-        } else { // text != null
-            if (plain) {
-                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain),
-                        modifier(Constants.text))
-                        .add(span().css(component(optionsMenu, toggle, Constants.text))
-                                .textContent(text))
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button))
-                                .aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element()).element();
-                trigger = this.plain;
-
-            } else {
-                this.plain = null;
-                this.button = buttonBuilder.css(component(optionsMenu, toggle))
-                        .aria(label, text)
-                        .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon))
-                                .aria(hidden, true_)).element();
-                trigger = button;
-            }
-        }
-
-        add(trigger);
-        add(menu = ul().css(component(optionsMenu, Constants.menu))
-                .hidden(true)
-                .aria(labelledBy, buttonId)
-                .attr(role, Constants.menu).element());
-    }
-
-    @Override
-    public MultiOptionsMenu that() {
-        return this;
-    }
-
-    private HTMLElement buttonElement() {
-        return button;
-    }
-
-    // ------------------------------------------------------ public API
-
-    private HTMLElement menuElement() {
-        return menu;
-    }
-
-    public <T> MultiOptionsMenu add(Group<T> group) {
-        if (menu.childNodes.length != 0) {
-            menu.appendChild(li().css(component(optionsMenu, separator)).attr(role, separator).element());
-        }
-        menu.appendChild(li()
-                .aria(label, group.text)
-                .add(group).element());
-
-        for (T item : group.items) {
-            HtmlContentBuilder<HTMLButtonElement> button = button()
-                    .css(component(optionsMenu, Constants.menu, Constants.item))
-                    .attr(Constants.tabindex, _1)
-                    .data(multiOptionsMenuItem, group.itemDisplay.itemId(item))
-                    .on(click, e -> {
-                        if (collapseOnSelect) {
-                            ceh.collapse(element(), buttonElement(), menuElement());
-                        }
-                        group.select(item);
-                    });
-            group.itemDisplay.display.accept(button, item);
-            HTMLElement icon;
-            button.add(icon = i().css(
-                    fas(check), component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                    .aria(hidden, true_)
-                    .data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
-            setVisible(icon, false);
-
-            group.element().appendChild(li().attr(role, menuitem)
-                    .add(button).element());
-        }
-        return this;
-    }
-
-    public MultiOptionsMenu up() {
-        element.classList.add(modifier(top));
-        return this;
-    }
-
-    public MultiOptionsMenu right() {
-        menu.classList.add(modifier(alignRight));
-        return this;
-    }
-
-    public MultiOptionsMenu collapseOnSelect() {
-        this.collapseOnSelect = true;
-        return this;
-    }
-
-    @Override
-    public MultiOptionsMenu disable() {
-        button.disabled = true;
-        if (plain != null) {
-            plain.classList.add(modifier(disabled));
-        }
-        return this;
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    @Override
-    public MultiOptionsMenu enable() {
-        button.disabled = false;
-        if (plain != null) {
-            plain.classList.remove(modifier(disabled));
-        }
-        return this;
     }
 }

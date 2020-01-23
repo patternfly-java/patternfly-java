@@ -34,6 +34,170 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ factory methods
 
+    private static Page instance;
+
+    public static Page instance() {
+        return instance;
+    }
+
+    public static Page page() {
+        instance = new Page();
+        return instance;
+    }
+
+    public static Header header(String brand, String homeLink) {
+        return new Header(span().textContent(brand).element(), homeLink);
+    }
+
+    public static Header header(Brand brand, String homeLink) {
+        return new Header(brand.element(), homeLink);
+    }
+
+    public static Header header(HTMLElement brand, String homeLink) {
+        return new Header(brand, homeLink);
+    }
+
+    public static Tools tools() {
+        return new Tools();
+    }
+
+    public static PageSidebar sidebar(Navigation navigation) {
+        return new PageSidebar(navigation, Theme.DARK);
+    }
+
+    public static PageSidebar sidebar(Navigation navigation, Theme theme) {
+        return new PageSidebar(navigation, theme);
+    }
+
+    public static Main main(String id) {
+        return new Main(id);
+    }
+
+    public static Section section() {
+        return new Section();
+    }
+
+    // ------------------------------------------------------ page instance
+
+    private final MediaQueryList mediaQueryList;
+    private Header header;
+    private PageSidebar sidebar;
+    private Navigation navigation;
+    private Main main;
+
+    Page() {
+        super(div().css(component(page)).element(), "Page");
+        mediaQueryList = window.matchMedia("(max-width: 768px)");
+        mediaQueryList.addListener(this::onResize);
+        Attachable.register(element(), this);
+    }
+
+    @Override
+    public Page that() {
+        return this;
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        onResize(mediaQueryList);
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        mediaQueryList.removeListener(this::onResize);
+    }
+
+    // ------------------------------------------------------ public API
+
+    /** Adds the given header and removes the previous one (if any). */
+    public Page add(Header header) {
+        failSafeRemoveFromParent(this.header);
+        this.header = header;
+        insertFirst(element, this.header);
+        return this;
+    }
+
+    /** Adds the given sidebar and removes the previous one (if any). */
+    public Page add(PageSidebar sidebar) {
+        // TODO only insert if this.sidebar != sidebar?
+        failSafeRemoveFromParent(this.sidebar);
+        this.sidebar = sidebar;
+        if (main != null) {
+            insertBefore(this.sidebar, main.element());
+        } else {
+            add(this.sidebar.element());
+        }
+        if (header != null) {
+            header.setSidebar(this.sidebar);
+        }
+        onResize(mediaQueryList);
+        return this;
+    }
+
+    /** Adds the given navigation and removes the previous one (if any). */
+    public Page add(Navigation navigation) {
+        return add(sidebar(navigation));
+    }
+
+    /** Adds the given navigation and removes the previous one (if any). */
+    public Page add(Navigation navigation, Theme theme) {
+        return add(sidebar(navigation, theme));
+    }
+
+    /** Adds the main container. */
+    public Page add(Main main) {
+        return add(main.element());
+    }
+
+    public Header header() {
+        return header;
+    }
+
+    public PageSidebar sidebar() {
+        return sidebar;
+    }
+
+    public Navigation navigation() {
+        return navigation;
+    }
+
+    public Main main() {
+        return main;
+    }
+
+    public void removeSidebar() {
+        failSafeRemoveFromParent(sidebar);
+        sidebar = null;
+        if (header != null) {
+            header.setSidebar(null);
+            header.hideSidebarToggle();
+        }
+    }
+
+    // ------------------------------------------------------ internals
+
+    private void onResize(MediaQueryList mql) {
+        if (mql.matches) {
+            // < 768px
+            if (header != null && sidebar != null) {
+                header.showSidebarToggle();
+            }
+            if (sidebar != null) {
+                sidebar.collapse();
+            }
+        } else {
+            // > 768px
+            if (header != null) {
+                header.hideSidebarToggle();
+            }
+            if (sidebar != null) {
+                sidebar.expand();
+            }
+        }
+    }
+
+    // ------------------------------------------------------ inner classes
+
     public static class Header extends BaseComponent<HTMLElement, Header>
             implements HtmlContent<HTMLElement, Header> {
 
@@ -175,168 +339,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         @Override
         public Section that() {
             return this;
-        }
-    }
-    private static Page instance;
-
-    public static Page instance() {
-        return instance;
-    }
-
-    public static Page page() {
-        instance = new Page();
-        return instance;
-    }
-
-    public static Header header(String brand, String homeLink) {
-        return new Header(span().textContent(brand).element(), homeLink);
-    }
-
-    public static Header header(Brand brand, String homeLink) {
-        return new Header(brand.element(), homeLink);
-    }
-
-    public static Header header(HTMLElement brand, String homeLink) {
-        return new Header(brand, homeLink);
-    }
-
-    // ------------------------------------------------------ page instance
-
-    public static Tools tools() {
-        return new Tools();
-    }
-
-    public static PageSidebar sidebar(Navigation navigation) {
-        return new PageSidebar(navigation, Theme.DARK);
-    }
-
-    public static PageSidebar sidebar(Navigation navigation, Theme theme) {
-        return new PageSidebar(navigation, theme);
-    }
-
-    public static Main main(String id) {
-        return new Main(id);
-    }
-
-    public static Section section() {
-        return new Section();
-    }
-    private final MediaQueryList mediaQueryList;
-    private Header header;
-    private PageSidebar sidebar;
-    private Navigation navigation;
-
-    // ------------------------------------------------------ public API
-    private Main main;
-
-    Page() {
-        super(div().css(component(page)).element(), "Page");
-        mediaQueryList = window.matchMedia("(max-width: 768px)");
-        mediaQueryList.addListener(this::onResize);
-        Attachable.register(element(), this);
-    }
-
-    @Override
-    public Page that() {
-        return this;
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        onResize(mediaQueryList);
-    }
-
-    @Override
-    public void detach(MutationRecord mutationRecord) {
-        mediaQueryList.removeListener(this::onResize);
-    }
-
-    /** Adds the given header and removes the previous one (if any). */
-    public Page add(Header header) {
-        failSafeRemoveFromParent(this.header);
-        this.header = header;
-        insertFirst(element, this.header);
-        return this;
-    }
-
-    /** Adds the given sidebar and removes the previous one (if any). */
-    public Page add(PageSidebar sidebar) {
-        // TODO only insert if this.sidebar != sidebar?
-        failSafeRemoveFromParent(this.sidebar);
-        this.sidebar = sidebar;
-        if (main != null) {
-            insertBefore(this.sidebar, main.element());
-        } else {
-            add(this.sidebar.element());
-        }
-        if (header != null) {
-            header.setSidebar(this.sidebar);
-        }
-        onResize(mediaQueryList);
-        return this;
-    }
-
-    /** Adds the given navigation and removes the previous one (if any). */
-    public Page add(Navigation navigation) {
-        return add(sidebar(navigation));
-    }
-
-    /** Adds the given navigation and removes the previous one (if any). */
-    public Page add(Navigation navigation, Theme theme) {
-        return add(sidebar(navigation, theme));
-    }
-
-    /** Adds the main container. */
-    public Page add(Main main) {
-        return add(main.element());
-    }
-
-    // ------------------------------------------------------ internals
-
-    public Header header() {
-        return header;
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    public PageSidebar sidebar() {
-        return sidebar;
-    }
-
-    public Navigation navigation() {
-        return navigation;
-    }
-
-    public Main main() {
-        return main;
-    }
-
-    public void removeSidebar() {
-        failSafeRemoveFromParent(sidebar);
-        sidebar = null;
-        if (header != null) {
-            header.setSidebar(null);
-            header.hideSidebarToggle();
-        }
-    }
-
-    private void onResize(MediaQueryList mql) {
-        if (mql.matches) {
-            // < 768px
-            if (header != null && sidebar != null) {
-                header.showSidebarToggle();
-            }
-            if (sidebar != null) {
-                sidebar.collapse();
-            }
-        } else {
-            // > 768px
-            if (header != null) {
-                header.hideSidebarToggle();
-            }
-            if (sidebar != null) {
-                sidebar.expand();
-            }
         }
     }
 }

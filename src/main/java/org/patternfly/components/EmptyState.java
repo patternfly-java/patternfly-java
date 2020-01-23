@@ -32,19 +32,6 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
 
     // ------------------------------------------------------ factory methods
 
-    public static class Body extends ElementBuilder<HTMLElement, Body>
-            implements HtmlContent<HTMLElement, Body> {
-
-        private Body() {
-            super(div().css(component(emptyState, Constants.body)).element());
-        }
-
-        @Override
-        public Body that() {
-            return this;
-        }
-    }
-
     public static EmptyState emptyState(Icon icon, String title) {
         return new EmptyState(icon, title);
     }
@@ -65,8 +52,6 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         return noResults("No results found", callback);
     }
 
-    // ------------------------------------------------------ instance
-
     public static EmptyState noResults(String title, Callback callback) {
         return new EmptyState(icon(fas("search")), title).large()
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
@@ -76,11 +61,17 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     public static Body body() {
         return new Body();
     }
+
+    // ------------------------------------------------------ instance
+
     private HTMLElement body;
     private HTMLElement primaryContainer;
     private HTMLElement secondaryContainer;
 
-    // ------------------------------------------------------ public API
+    @Override
+    public EmptyState that() {
+        return this;
+    }
 
     EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
@@ -90,10 +81,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         add(Title.title(1, title, lg));
     }
 
-    @Override
-    public EmptyState that() {
-        return this;
-    }
+    // ------------------------------------------------------ public API
 
     public EmptyState body(String body) {
         return body(body().textContent(body));
@@ -140,13 +128,26 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
         return this;
     }
 
-    // ------------------------------------------------------ inner classes
-
     public EmptyState small() {
         return css(sm.modifier());
     }
 
     public EmptyState large() {
         return css(lg.modifier());
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public static class Body extends ElementBuilder<HTMLElement, Body>
+            implements HtmlContent<HTMLElement, Body> {
+
+        private Body() {
+            super(div().css(component(emptyState, Constants.body)).element());
+        }
+
+        @Override
+        public Body that() {
+            return this;
+        }
     }
 }

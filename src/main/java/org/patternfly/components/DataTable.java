@@ -175,6 +175,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             this.compoundDisplay = compoundDisplay;
         }
     }
+
     private static final String ARIA = "aria-";
     private static final String ARIA_SORT = "aria-sort";
     private static final String CHECKBOX_COLUMN = "checkbox";
@@ -252,6 +253,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     public static <T> Column<T> column(String name, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay) {
         return new Column<>(name, null, headDisplay, bodyDisplay, null);
     }
+
     private final DataProvider<T> dataProvider;
     private final List<Column<T>> columns;
     private final ItemSelect itemSelect;

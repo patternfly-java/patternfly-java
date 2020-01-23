@@ -36,6 +36,7 @@ import static org.patternfly.resources.Dataset.multiSelectItem;
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
+// TODO Use static inner class Group instead of add(String group, T item)
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
         implements HtmlContent<HTMLDivElement, MultiSelect<T>>, Disable<MultiSelect<T>>, HasValues<T> {
 
@@ -76,13 +77,11 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String labelId = uniqueId(select, label);
         String buttonId = uniqueId(select, Constants.button);
-        add(span().id(labelId).hidden(true).textContent(text));
         add(button = button().css(component(select, toggle))
                 .id(buttonId)
                 .aria(expanded, false_)
-                .aria(labelledBy, labelId + " " + buttonId)
+                .aria(labelledBy, buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                 .add(div().css(component(select, toggle, wrapper))
                         .add(this.text = span().css(component(select, toggle, Constants.text))
@@ -93,8 +92,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
 
         if (icon != null) {
             insertBefore(span().css(component(select, toggle, Constants.icon))
-                            .add(icon.aria(hidden, true_)).element(),
-                    this.text);
+                    .add(icon.aria(hidden, true_)).element(), this.text);
         }
     }
 

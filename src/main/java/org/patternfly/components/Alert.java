@@ -74,6 +74,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
             return this;
         }
     }
+
     public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
 
     public static Alert default_(String title) {
@@ -101,6 +102,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     public static Description description() {
         return new Description();
     }
+
     private final Type type;
     private final String title;
     private Callback callback;
