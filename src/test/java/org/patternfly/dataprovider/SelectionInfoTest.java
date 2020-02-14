@@ -21,7 +21,6 @@ import java.util.function.Function;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.google.common.primitives.Ints.toArray;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -69,7 +68,10 @@ class SelectionInfoTest {
     private void assertSelection(SelectionInfo<Integer> selectionInfo, int... expected) {
         assertTrue(selectionInfo.hasSelection());
         assertFalse(selectionInfo.getSelection().isEmpty());
-        int[] actual = toArray(selectionInfo.getSelection());
+        int[] actual = new int[selectionInfo.getSelectionCount()];
+        for (int i = 0; i < selectionInfo.getSelection().size(); i++) {
+            actual[i] = selectionInfo.getSelection().get(i);
+        }
         Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }

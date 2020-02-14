@@ -274,7 +274,7 @@ public class DataProvider<T> {
 
     // ------------------------------------------------------ displays
 
-    public void addDisplay(Display<T> display) {
+    public void bindDisplay(Display<T> display) {
         displays.add(display);
     }
 

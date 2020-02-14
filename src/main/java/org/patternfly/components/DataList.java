@@ -259,16 +259,12 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
             super(div().css(component(dataList, itemControl)).element());
         }
 
-        /**
-         * Adds a checkbox to select the current item.
-         */
+        /** Adds a checkbox to select the current item. */
         public ItemControl checkbox() {
             return add(div().css(component(dataList, check)).add(input(checkbox)));
         }
 
-        /**
-         * Adds an expandable icon.
-         */
+        /** Adds an expandable icon. */
         public ItemControl expandable() {
             Icon icon = icon(fas(angleRight) + " " + component(dataList, toggle, Constants.icon));
             return (add(div().css(component(dataList, toggle)).add(Button.icon(icon, "Toggle details"))));

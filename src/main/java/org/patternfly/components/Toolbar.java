@@ -164,7 +164,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
-
     @Override
     public void updateSelection(SelectionInfo<T> selectionInfo) {
         if (bulkSelect != null) {

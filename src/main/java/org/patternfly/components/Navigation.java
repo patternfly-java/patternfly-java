@@ -55,6 +55,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         return new Navigation(Orientation.VERTICAL, expandable, true, false);
     }
 
+    public static Group group() {
+        return new Group();
+    }
+
     // ------------------------------------------------------ navigation instance
 
     private static final String A_TAG = "a";
@@ -89,7 +93,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                     .add(i().css(fas("angle-right")).aria(hidden, true_)));
 
         } else {
-            // use simple() modifier for simple navigation
             add(ul = ul().css(component(nav, list)).element());
         }
     }
@@ -318,6 +321,19 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     }
 
     // ------------------------------------------------------ inner classes
+
+    public static class Group extends BaseComponent<HTMLElement, Group>
+            implements HtmlContent<HTMLElement, Group> {
+
+        Group() {
+            super(section().element(), "NavigationGroup");
+        }
+
+        @Override
+        public Group that() {
+            return this;
+        }
+    }
 
     private enum Orientation {
         HORIZONTAL, VERTICAL
