@@ -1,13 +1,16 @@
 package org.patternfly.components;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MediaQueryList;
 import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.IsElement;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Theme;
@@ -326,6 +329,41 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         @Override
         public Main that() {
             return this;
+        }
+
+        public Main replace(Node element) {
+            removeChildrenFrom(element());
+            return add(element);
+        }
+
+        public Main replace(IsElement<?> element) {
+            removeChildrenFrom(element());
+            return add(element);
+        }
+
+        public Main replaceAll(Node... nodes) {
+            removeChildrenFrom(element());
+            return addAll(nodes);
+        }
+
+        public Main replaceAll(Element... elements) {
+            removeChildrenFrom(element());
+            return addAll(elements);
+        }
+
+        public Main replaceAll(HTMLElement... elements) {
+            removeChildrenFrom(element());
+            return addAll(elements);
+        }
+
+        public Main replaceAll(IsElement<?>... elements) {
+            removeChildrenFrom(element());
+            return addAll(elements);
+        }
+
+        public Main replaceAll(Iterable<?> elements) {
+            removeChildrenFrom(element());
+            return addAll(elements);
         }
     }
 
