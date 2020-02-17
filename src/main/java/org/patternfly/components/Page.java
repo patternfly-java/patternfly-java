@@ -10,6 +10,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.IsElement;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
@@ -21,7 +22,6 @@ import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.body;
 import static org.patternfly.resources.Constants.nav;
 import static org.patternfly.resources.Constants.toggle;
 import static org.patternfly.resources.Constants.*;
@@ -39,12 +39,11 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     private static Page instance;
 
-    public static Page instance() {
-        return instance;
-    }
-
+    /** Create or returns the page singleton. */
     public static Page page() {
-        instance = new Page();
+        if (instance == null) {
+            instance = new Page();
+        }
         return instance;
     }
 
@@ -64,12 +63,12 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return new Tools();
     }
 
-    public static PageSidebar sidebar(Navigation navigation) {
-        return new PageSidebar(navigation, Theme.DARK);
+    public static PageSidebar sidebar() {
+        return new PageSidebar(Theme.DARK);
     }
 
-    public static PageSidebar sidebar(Navigation navigation, Theme theme) {
-        return new PageSidebar(navigation, theme);
+    public static PageSidebar sidebar(Theme theme) {
+        return new PageSidebar(theme);
     }
 
     public static Main main(String id) {
@@ -122,7 +121,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     /** Adds the given sidebar and removes the previous one (if any). */
     public Page add(PageSidebar sidebar) {
-        // TODO only insert if this.sidebar != sidebar?
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
         if (main != null) {
@@ -131,20 +129,10 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
             add(this.sidebar.element());
         }
         if (header != null) {
-            header.setSidebar(this.sidebar);
+            header.registerSidebar(this.sidebar);
         }
         onResize(mediaQueryList);
         return this;
-    }
-
-    /** Adds the given navigation and removes the previous one (if any). */
-    public Page add(Navigation navigation) {
-        return add(sidebar(navigation));
-    }
-
-    /** Adds the given navigation and removes the previous one (if any). */
-    public Page add(Navigation navigation, Theme theme) {
-        return add(sidebar(navigation, theme));
     }
 
     /** Adds the main container. */
@@ -152,29 +140,28 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return add(main.element());
     }
 
-    public Header header() {
-        return header;
-    }
-
-    public PageSidebar sidebar() {
-        return sidebar;
-    }
-
-    public Navigation navigation() {
-        return navigation;
-    }
-
-    public Main main() {
-        return main;
-    }
-
     public void removeSidebar() {
         failSafeRemoveFromParent(sidebar);
         sidebar = null;
         if (header != null) {
-            header.setSidebar(null);
-            header.hideSidebarToggle();
+            header.unregisterSidebar();
         }
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public PageSidebar getSidebar() {
+        return sidebar;
+    }
+
+    public Navigation getNavigation() {
+        return navigation;
+    }
+
+    public Main getMain() {
+        return main;
     }
 
     // ------------------------------------------------------ internals
@@ -206,6 +193,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
         private final HTMLDivElement toggleContainer;
         private final Button toggleButton;
+        private Navigation navigation;
+        private Tools tools;
         private PageSidebar sidebar;
 
         Header(HTMLElement brand, String homeLink) {
@@ -231,20 +220,35 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
             return this;
         }
 
-        public Header setNavigation(Navigation navigation) {
+        // ------------------------------------------------------ public API
+
+        /** Adds the given navigation and removes the previous one (if any). */
+        public Header add(Navigation navigation) {
+            failSafeRemoveFromParent(this.navigation);
+            this.navigation = navigation;
             return add(div().css(component(page, Constants.header, nav)).add(navigation));
         }
 
-        public Header setTools(Tools tools) {
+        /** Adds the given tools and removes the previous one (if any). */
+        public Header add(Tools tools) {
+            failSafeRemoveFromParent(this.tools);
+            this.tools = tools;
             return add(tools.element());
         }
 
-        void setSidebar(PageSidebar sidebar) {
-            this.sidebar = sidebar;
-            if (this.sidebar == null) {
-                toggleButton.aria(expanded, false_);
-                toggleButton.element().removeAttribute("aria-controls");
-            } else {
+        public Navigation getNavigation() {
+            return navigation;
+        }
+
+        public Tools getTools() {
+            return tools;
+        }
+
+        // ------------------------------------------------------ internals
+
+        void registerSidebar(PageSidebar sidebar) {
+            if (sidebar != null) {
+                this.sidebar = sidebar;
                 String sidebarId = sidebar.element().id;
                 if (sidebarId == null || sidebarId.length() == 0) {
                     sidebarId = uniqueId(Constants.sidebar);
@@ -253,6 +257,13 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
                 toggleButton.aria(expanded, false_);
                 toggleButton.aria(controls, sidebarId);
             }
+        }
+
+        void unregisterSidebar() {
+            this.sidebar = null;
+            toggleButton.aria(expanded, false_);
+            toggleButton.element().removeAttribute("aria-controls");
+            hideSidebarToggle();
         }
 
         void showSidebarToggle() {
@@ -277,23 +288,52 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public static class PageSidebar extends BaseComponent<HTMLDivElement, PageSidebar>
-            implements HtmlContent<HTMLDivElement, PageSidebar> {
+    public static class PageSidebar extends BaseComponent<HTMLElement, PageSidebar>
+            implements HtmlContent<HTMLElement, PageSidebar> {
 
-        PageSidebar(Navigation navigation, Theme theme) {
-            super(div().css(CSS.component(page, Constants.sidebar)).element(), "PageSidebar");
-            add(div().css(component(page, Constants.sidebar, body))
-                    .add(navigation)).element();
+        private final Theme theme;
+        private final HtmlContentBuilder<HTMLDivElement> body;
+        private Navigation navigation;
+
+        PageSidebar(Theme theme) {
+            super(aside().css(CSS.component(page, Constants.sidebar)).element(), "PageSidebar");
+            this.theme = theme;
             if (theme == DARK) {
                 css(modifier(dark));
-                navigation.css(modifier(dark));
             }
+            add(body = div().css(component(page, Constants.sidebar, Constants.body)));
         }
 
         @Override
         public PageSidebar that() {
             return this;
         }
+
+        // ------------------------------------------------------ public API
+
+        /**
+         * Adds the navigation to the sidebar's body and removes the previous one (if any). Shortcut for {@code
+         * getBody().add(navigation)}.
+         */
+        public PageSidebar add(Navigation navigation) {
+            failSafeRemoveFromParent(this.navigation);
+            this.navigation = navigation;
+            if (theme == DARK) {
+                navigation.css(modifier(dark));
+            }
+            body.add(navigation);
+            return that();
+        }
+
+        public HtmlContentBuilder<HTMLDivElement> getBody() {
+            return body;
+        }
+
+        public Navigation getNavigation() {
+            return navigation;
+        }
+
+        // ------------------------------------------------------ internals
 
         void toggle() {
             if (element.classList.contains(modifier(collapsed))) {
@@ -330,6 +370,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         public Main that() {
             return this;
         }
+
+        // ------------------------------------------------------ public API
 
         public Main replace(Node element) {
             removeChildrenFrom(element());
