@@ -63,7 +63,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         return new Tools();
     }
 
-    public static PageSidebar sidebar() {
+    public static PageSidebar sidebarDark() {
         return new PageSidebar(Theme.DARK);
     }
 
@@ -137,6 +137,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     /** Adds the main container. */
     public Page add(Main main) {
+        failSafeRemoveFromParent(this.main);
+        this.main = main;
         return add(main.element());
     }
 
@@ -148,19 +150,19 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public Header getHeader() {
+    public Header header() {
         return header;
     }
 
-    public PageSidebar getSidebar() {
+    public PageSidebar sidebar() {
         return sidebar;
     }
 
-    public Navigation getNavigation() {
+    public Navigation navigation() {
         return navigation;
     }
 
-    public Main getMain() {
+    public Main main() {
         return main;
     }
 
