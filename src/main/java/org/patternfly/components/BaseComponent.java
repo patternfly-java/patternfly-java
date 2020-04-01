@@ -11,12 +11,8 @@ abstract class BaseComponent<E extends HTMLElement, B extends ElementBuilder<E, 
         implements TypedBuilder<E, B>, IsElement<E> {
 
     BaseComponent(E element, String component) {
-        this(element, component, null);
-    }
-
-    BaseComponent(E element, String component, String id) {
         super(element);
-        Ouia.component(element, component, id);
+        Ouia.component(element, component);
     }
 
     @Override

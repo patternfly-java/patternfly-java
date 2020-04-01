@@ -11,6 +11,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -47,19 +48,19 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLElement text;
     private final HTMLButtonElement button;
-    private final InputGroup.Search search;
+    private final Search search;
     private final HTMLElement menu;
     private final HTMLElement ul;
     private T value;
     private SelectHandler<T> onSelect;
 
-    ContextSelector(String text) {
+    private ContextSelector(String text) {
         super(div().css(component(contextSelector)).element(), "ContextSelector");
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String labelId = uniqueId(contextSelector, label);
-        String buttonId = uniqueId(contextSelector, Constants.button);
+        String labelId = Id.unique(contextSelector, label);
+        String buttonId = Id.unique(contextSelector, Constants.button);
 
         add(span().id(labelId).hidden(true).textContent(text));
         add(button = button().css(component(contextSelector, toggle))
@@ -74,7 +75,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         add(menu = div().css(component(contextSelector, Constants.menu))
                 .attr(hidden, "")
                 .add(div().css(component(contextSelector, Constants.menu, input))
-                        .add(search = new InputGroup.Search("Search").onFilter(this::filter)))
+                        .add(search = new Search("Search").onFilter(this::filter)))
                 .add(ul = ul().css(component(contextSelector, Constants.menu, list))
                         .attr(role, Constants.menu).element()).element());
     }

@@ -18,6 +18,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.core.Disable;
@@ -100,7 +101,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String buttonId = uniqueId(select, Constants.button);
+        String buttonId = Id.unique(select, Constants.button);
         if (typeahead) {
             HTMLDivElement wrapperElement;
             add(div().css(component(select, toggle), modifier(Constants.typeahead))

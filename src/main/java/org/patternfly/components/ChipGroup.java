@@ -40,11 +40,11 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
     private boolean expanded;
     private Chip overflow;
 
-    ChipGroup() {
+    private ChipGroup() {
         this(-1);
     }
 
-    ChipGroup(int max) {
+    private ChipGroup(int max) {
         super(ul().css(component(chipGroup)).element(), "ChipGroup");
 
         this.max = max > 1 ? max : -1; // assert max > 1

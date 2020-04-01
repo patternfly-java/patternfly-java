@@ -11,6 +11,7 @@ import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
@@ -253,7 +254,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
                 this.sidebar = sidebar;
                 String sidebarId = sidebar.element().id;
                 if (sidebarId == null || sidebarId.length() == 0) {
-                    sidebarId = uniqueId(Constants.sidebar);
+                    sidebarId = Id.unique(Constants.sidebar);
                     sidebar.id(sidebarId);
                 }
                 toggleButton.aria(expanded, false_);

@@ -21,7 +21,7 @@ public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
     // ------------------------------------------------------ instance
 
-    Avatar(String src, String alt) {
+    private Avatar(String src, String alt) {
         super(img(src).css(component(avatar)).element(), "Avatar");
         element.alt = alt;
     }

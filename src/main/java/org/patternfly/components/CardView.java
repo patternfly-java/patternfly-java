@@ -47,19 +47,15 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
 
     // ------------------------------------------------------ cactory methods
 
-    public interface Display<T> {
-
-        void render(Card card, DataProvider<T> dataProvider, T item);
-    }
-
-    // ------------------------------------------------------ instance
-    private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
-            .desc(By.classname(component(card, actions)))
-            .desc(By.element("input").and(By.attribute("type", "checkbox")));
-
     public static <T> CardView<T> cardView(DataProvider<T> dataProvider, Display<T> display) {
         return new CardView<>(dataProvider, display);
     }
+
+    // ------------------------------------------------------ instance
+
+    private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
+            .desc(By.classname(component(card, actions)))
+            .desc(By.element("input").and(By.attribute("type", "checkbox")));
 
     private final DataProvider<T> dataProvider;
     private final Display<T> display;
@@ -67,19 +63,19 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     private boolean compact;
     private boolean hoverable;
 
-    CardView(DataProvider<T> dataProvider, Display<T> display) {
+    private CardView(DataProvider<T> dataProvider, Display<T> display) {
         super(div().css(layout(gallery), modifier(gutter)).element(), "CardView");
         this.dataProvider = dataProvider;
         this.display = display;
         this.itemSelect = new ItemSelect(element);
     }
 
-    // ------------------------------------------------------ display API
-
     @Override
     public CardView<T> that() {
         return this;
     }
+
+    // ------------------------------------------------------ display API
 
     @Override
     public void showItems(Iterable<T> items, PageInfo pageInfo) {
@@ -124,22 +120,27 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         }
     }
 
-    // ------------------------------------------------------ modifiers
-
     @Override
     public void updateSortInfo(SortInfo<T> sortInfo) {
         // nothing to do
     }
+
+    // ------------------------------------------------------ modifiers
 
     public CardView<T> compact() {
         this.compact = true;
         return this;
     }
 
-    // ------------------------------------------------------ inner classes
-
     public CardView<T> hoverable() {
         this.hoverable = true;
         return this;
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public interface Display<T> {
+
+        void render(Card card, DataProvider<T> dataProvider, T item);
     }
 }

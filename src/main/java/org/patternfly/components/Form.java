@@ -2,7 +2,6 @@ package org.patternfly.components;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLFormElement;
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 
@@ -31,7 +30,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
 
     // ------------------------------------------------------ instance
 
-    Form() {
+    private Form() {
         super(Elements.form().css(component(form)).element(), "Form");
     }
 

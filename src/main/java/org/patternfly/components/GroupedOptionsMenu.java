@@ -32,25 +32,25 @@ import static org.patternfly.resources.Dataset.multiOptionsMenuCheck;
 import static org.patternfly.resources.Dataset.multiOptionsMenuItem;
 
 /**
- * PatternFly options menu (grouped, multiple selections).
+ * PatternFly options menu (grouped, single selection).
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
-public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptionsMenu>
-        implements HtmlContent<HTMLDivElement, MultiOptionsMenu>, Disable<MultiOptionsMenu> {
+public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOptionsMenu>
+        implements HtmlContent<HTMLDivElement, GroupedOptionsMenu>, Disable<GroupedOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 
-    public static MultiOptionsMenu text(String text) {
-        return new MultiOptionsMenu(text, null, false);
+    public static GroupedOptionsMenu text(String text) {
+        return new GroupedOptionsMenu(text, null, false);
     }
 
-    public static MultiOptionsMenu icon(Icon icon) {
-        return new MultiOptionsMenu(null, icon, false);
+    public static GroupedOptionsMenu icon(Icon icon) {
+        return new GroupedOptionsMenu(null, icon, false);
     }
 
-    public static MultiOptionsMenu plain(String text) {
-        return new MultiOptionsMenu(text, null, true);
+    public static GroupedOptionsMenu plain(String text) {
+        return new GroupedOptionsMenu(text, null, true);
     }
 
     // ------------------------------------------------------ options menu instance
@@ -61,7 +61,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
     private final HTMLElement menu;
     private boolean collapseOnSelect;
 
-    MultiOptionsMenu(String text, Icon icon, boolean plain) {
+    GroupedOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");
         this.ceh = new CollapseExpandHandler();
         this.collapseOnSelect = false;
@@ -103,14 +103,14 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         }
 
         add(trigger);
-        add(menu = ul().css(component(optionsMenu, Constants.menu))
+        add(menu = div().css(component(optionsMenu, Constants.menu))
                 .hidden(true)
                 .aria(labelledBy, buttonId)
                 .attr(role, Constants.menu).element());
     }
 
     @Override
-    public MultiOptionsMenu that() {
+    public GroupedOptionsMenu that() {
         return this;
     }
 
@@ -124,7 +124,9 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ public API
 
-    public <T> MultiOptionsMenu add(Group<T> group) {
+    public <T> GroupedOptionsMenu add(Group<T> group) {
+
+
         if (menu.childNodes.length != 0) {
             menu.appendChild(li().css(component(optionsMenu, separator)).attr(role, separator).element());
         }
@@ -159,23 +161,23 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ modifiers
 
-    public MultiOptionsMenu up() {
+    public GroupedOptionsMenu up() {
         element.classList.add(modifier(top));
         return this;
     }
 
-    public MultiOptionsMenu right() {
+    public GroupedOptionsMenu right() {
         menu.classList.add(modifier(alignRight));
         return this;
     }
 
-    public MultiOptionsMenu collapseOnSelect() {
+    public GroupedOptionsMenu collapseOnSelect() {
         this.collapseOnSelect = true;
         return this;
     }
 
     @Override
-    public MultiOptionsMenu disable() {
+    public GroupedOptionsMenu disable() {
         button.disabled = true;
         if (plain != null) {
             plain.classList.add(modifier(disabled));
@@ -184,7 +186,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
     }
 
     @Override
-    public MultiOptionsMenu enable() {
+    public GroupedOptionsMenu enable() {
         button.disabled = false;
         if (plain != null) {
             plain.classList.remove(modifier(disabled));
@@ -194,8 +196,8 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ inner classes
 
-    public static class Group<T> extends BaseComponent<HTMLUListElement, Group<T>>
-            implements HtmlContent<HTMLUListElement, Group<T>>, HasValue<T> {
+    public static class Group<T> extends BaseComponent<HTMLElement, Group<T>>
+            implements HtmlContent<HTMLElement, Group<T>>, HasValue<T> {
 
         private final String text;
         private final List<T> items;
@@ -203,8 +205,12 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         private T value;
         private SelectHandler<T> onSelect;
 
+        public Group() {
+            this(null);
+        }
+
         public Group(String text) {
-            super(ul().element(), "MultiOptionsMenuGroup");
+            super(section().element(), "GroupedOptionsMenuGroup");
             this.text = text;
             this.items = new ArrayList<>();
             this.itemDisplay = new ItemDisplay<>();

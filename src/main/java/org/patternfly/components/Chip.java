@@ -3,6 +3,7 @@ package org.patternfly.components;
 import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
 
@@ -55,7 +56,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     private Callback callback;
     private Badge badge;
 
-    Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
+    private Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
         super(element, "Chip");
         this.count = count;
         this.overflow = overflow;
@@ -79,8 +80,8 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
                     .element());
 
         } else {
-            String textId = uniqueId(chip, Constants.text);
-            String buttonId = uniqueId(chip, Constants.button);
+            String textId = Id.unique(chip, Constants.text);
+            String buttonId = Id.unique(chip, Constants.button);
 
             HtmlContentBuilder<HTMLElement> builder = span().css(component(chip, Constants.text))
                     .id(textId)
@@ -118,9 +119,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
 
     // ------------------------------------------------------ public API
 
-    /**
-     * Called after the chip has been removed.
-     */
+    /** Called after the chip has been removed. */
     public Chip onClose(Callback callback) {
         this.callback = callback;
         return this;

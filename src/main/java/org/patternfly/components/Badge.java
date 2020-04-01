@@ -39,15 +39,15 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
 
     // ------------------------------------------------------ instance
 
-    Badge(int count) {
+    private Badge(int count) {
         this(String.valueOf(count));
     }
 
-    Badge(String text) {
+    private Badge(String text) {
         super(span().css(component(badge)).textContent(text).element(), "Badge");
     }
 
-    Badge(String text, boolean read) {
+    private Badge(String text, boolean read) {
         super(span().css(component(badge), read ? modifier(Constants.read) : modifier(unread))
                 .textContent(text).element(), "Badge");
     }
@@ -59,34 +59,26 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
 
     // ------------------------------------------------------ public API
 
-    /**
-     * Marks the badge as read.
-     */
+    /** Marks the badge as read. */
     public Badge read() {
         element.classList.remove(modifier(unread));
         element.classList.add(modifier(read));
         return this;
     }
 
-    /**
-     * Marks the badge as unread.
-     */
+    /** Marks the badge as unread. */
     public Badge unread() {
         element.classList.remove(modifier(read));
         element.classList.add(modifier(unread));
         return this;
     }
 
-    /**
-     * Modifies the count of this badge.
-     */
+    /** Modifies the count of this badge. */
     public Badge count(int count) {
         return text(String.valueOf(count));
     }
 
-    /**
-     * Modifies the text of this badge.
-     */
+    /** Modifies the text of this badge. */
     public Badge text(String text) {
         element.textContent = text;
         return this;

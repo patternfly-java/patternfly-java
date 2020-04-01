@@ -27,7 +27,7 @@
 
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java</artifactId>
-    <version>0.0.1</version>
+    <version>2.43.1</version>
     <name>PatternFly Java</name>
     <description>Java implementation of PatternFly 4</description>
     <packaging>jar</packaging>

@@ -12,6 +12,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -29,7 +30,7 @@ import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.singleOptionsMenuItem;
 
 /**
- * PatternFly options menu component.
+ * PatternFly options menu (not grouped, single selection).
  *
  * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
@@ -68,7 +69,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         this.itemDisplay = new ItemDisplay<>();
         this.collapseOnSelect = false;
 
-        String buttonId = Elements.uniqueId(optionsMenu, Constants.button);
+        String buttonId = Id.unique(optionsMenu, Constants.button);
         HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button()
                 .id(buttonId)
                 .aria(expanded, false_)
@@ -205,6 +206,13 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         return this;
     }
 
+    @Override
+    public T value() {
+        return value;
+    }
+
+    // ------------------------------------------------------ modifier
+
     public SingleOptionsMenu<T> up() {
         element.classList.add(modifier(top));
         return this;
@@ -250,11 +258,6 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         if (element != null) {
             element.disabled = false;
         }
-    }
-
-    @Override
-    public T value() {
-        return value;
     }
 
     // ------------------------------------------------------ events

@@ -4,10 +4,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import elemental2.dom.HTMLElement;
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContentBuilder;
-
-import static org.jboss.elemento.Elements.buildId;
+import org.jboss.elemento.Id;
 
 /** Reusable class for typed components to customize the item ID, string value and display. */
 class ItemDisplay<E extends HTMLElement, T> {
@@ -17,7 +15,7 @@ class ItemDisplay<E extends HTMLElement, T> {
     BiConsumer<HtmlContentBuilder<E>, T> display;
 
     ItemDisplay() {
-        this.identifier = item -> Elements.buildId(String.valueOf(item));
+        this.identifier = item -> Id.build(String.valueOf(item));
         this.asString = String::valueOf;
         this.display = (element, item) -> element.textContent(asString.apply(item));
     }
@@ -30,6 +28,6 @@ class ItemDisplay<E extends HTMLElement, T> {
     }
 
     String itemId(T item) {
-        return buildId(identifier.apply(item));
+        return Id.build(identifier.apply(item));
     }
 }

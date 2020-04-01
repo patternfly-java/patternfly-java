@@ -29,11 +29,11 @@ public class Label extends BaseComponent<HTMLElement, Label>
 
     // ------------------------------------------------------ instance
 
-    Label(String text) {
+    private Label(String text) {
         this(text, false);
     }
 
-    Label(String text, boolean compact) {
+    private Label(String text, boolean compact) {
         super(span().css(component(label)).textContent(text).element(), "Label");
         if (compact) {
             element.classList.add(modifier(Constants.compact));

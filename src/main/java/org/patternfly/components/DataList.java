@@ -14,6 +14,7 @@ import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -109,7 +110,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     private final ItemSelect itemSelect;
     private HandlerRegistration expandHandler;
 
-    DataList(DataProvider<T> dataProvider, Display<T> display) {
+    private DataList(DataProvider<T> dataProvider, Display<T> display) {
         super(ul().css(component(dataList)).attr(role, list).element(), "DataList");
         this.dataProvider = dataProvider;
         this.display = display;
@@ -180,8 +181,8 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
                 if (contentElement != null) {
                     String itemId = itemElement.dataset.get(dataListItem);
                     if (itemId != null) {
-                        String buttonId = buildId(itemId, toggle);
-                        String contentId = buildId(itemId, expandableContent);
+                        String buttonId = Id.build(itemId, toggle);
+                        String contentId = Id.build(itemId, expandableContent);
                         htmlElement.id = buttonId;
                         htmlElement.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
                         htmlElement.setAttribute(ARIA + expanded, false_);

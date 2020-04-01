@@ -27,18 +27,6 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     // ------------------------------------------------------ factory methods
 
-    public enum Type {
-        SUBMIT("submit"),
-        RESET("reset"),
-        DEFAULT("default");
-
-        private final String attributeValue;
-
-        Type(String attributeValue) {
-            this.attributeValue = attributeValue;
-        }
-    }
-
     public static Button button(String text) {
         return new Button(Elements.button().css(modifier(primary)).textContent(text));
     }
@@ -116,17 +104,17 @@ public class Button extends BaseComponent<HTMLElement, Button>
                 .add(text));
     }
 
-    // ------------------------------------------------------ instance
-
     public static Button control(HTMLElement element) {
         return new Button(Elements.button().css(modifier(control)).add(element));
     }
+
+    // ------------------------------------------------------ instance
 
     private final HTMLButtonElement button;
     private final HTMLAnchorElement a;
     private Callback callback;
 
-    <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
+    private <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
         super(builder.css(component(Constants.button)).element(), "Button");
         on(click, e -> {
             if (callback != null) {
@@ -143,17 +131,18 @@ public class Button extends BaseComponent<HTMLElement, Button>
         }
     }
 
-    // ------------------------------------------------------ public API
-
     @Override
     public Button that() {
         return this;
     }
 
-    public Button type(Type type) {
-        if (button != null) {
-            button.setAttribute("type", type.attributeValue);
-        }
+    // ------------------------------------------------------ public API
+
+    /** Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}. */
+    public Button clear() {
+        element.classList.remove(modifier(active));
+        element.classList.remove(modifier(focus));
+        element.classList.remove(modifier(expanded));
         return this;
     }
 
@@ -180,11 +169,6 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     // ------------------------------------------------------ modifiers
-
-    @Override
-    public Button label(String label) {
-        return aria(Constants.label, label);
-    }
 
     public Button active() {
         element.classList.add(modifier(active));
@@ -226,22 +210,38 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    // ------------------------------------------------------ event handler
-
-    /**
-     * Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}.
-     */
-    public Button clear() {
-        element.classList.remove(modifier(active));
-        element.classList.remove(modifier(focus));
-        element.classList.remove(modifier(expanded));
+    public Button type(Type type) {
+        if (button != null) {
+            button.type = type.attributeValue;
+        }
         return this;
     }
 
-    // ------------------------------------------------------ inner classes
+    // ------------------------------------------------------ event handler
 
     public Button onClick(Callback callback) {
         this.callback = callback;
         return this;
+    }
+
+    // ------------------------------------------------------ aria
+
+    @Override
+    public Button label(String label) {
+        return aria(Constants.label, label);
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public enum Type {
+        SUBMIT("submit"),
+        RESET("reset"),
+        DEFAULT("default");
+
+        private final String attributeValue;
+
+        Type(String attributeValue) {
+            this.attributeValue = attributeValue;
+        }
     }
 }

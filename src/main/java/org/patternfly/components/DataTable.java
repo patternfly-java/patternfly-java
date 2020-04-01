@@ -21,6 +21,7 @@ import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
@@ -29,7 +30,6 @@ import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.elemento.Elements.buildId;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.caption;
 import static org.jboss.elemento.Elements.div;
@@ -44,7 +44,6 @@ import static org.jboss.elemento.Elements.td;
 import static org.jboss.elemento.Elements.th;
 import static org.jboss.elemento.Elements.thead;
 import static org.jboss.elemento.Elements.tr;
-import static org.jboss.elemento.Elements.uniqueId;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
@@ -105,91 +104,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     // ------------------------------------------------------ factory methods
 
-    @FunctionalInterface
-    public interface HeadDisplay {
-
-        void render(HtmlContentBuilder<HTMLTableCellElement> th);
-
-        default HeadDisplay andThen(HeadDisplay after) {
-            return th -> {
-                render(th);
-                after.render(th);
-            };
-        }
-    }
-
-    @FunctionalInterface
-    public interface BodyDisplay<T> {
-
-        void render(HtmlContentBuilder<HTMLTableCellElement> td, DataProvider<T> dataProvider, T item);
-
-        default BodyDisplay<T> andThen(BodyDisplay<T> after) {
-            return (td, dataProvider, item) -> {
-                render(td, dataProvider, item);
-                after.render(td, dataProvider, item);
-            };
-        }
-    }
-
-    @FunctionalInterface
-    public interface ExpandableDisplay<T> {
-
-        void render(HtmlContentBuilder<HTMLDivElement> html, DataProvider<T> dataProvider, T item);
-
-        default ExpandableDisplay<T> andThen(ExpandableDisplay<T> after) {
-            return (html, dataProvider, item) -> {
-                render(html, dataProvider, item);
-                after.render(html, dataProvider, item);
-            };
-        }
-    }
-
-    @FunctionalInterface
-    public interface CompoundDisplay<T> {
-
-        void render(HtmlContentBuilder<HTMLTableCellElement> html, DataProvider<T> dataProvider, T item);
-
-        default CompoundDisplay<T> andThen(CompoundDisplay<T> after) {
-            return (html, dataProvider, item) -> {
-                render(html, dataProvider, item);
-                after.render(html, dataProvider, item);
-            };
-        }
-    }
-
-    public static class Column<T> {
-
-        private final String id;
-        private final Comparator<T> comparator;
-        private final HeadDisplay headDisplay;
-        private final BodyDisplay<T> bodyDisplay;
-        // TODO support compound expandable
-        private final CompoundDisplay<T> compoundDisplay;
-
-        private Column(String name, Comparator<T> comparator, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay,
-                CompoundDisplay<T> compoundDisplay) {
-            this.id = buildId(name);
-            this.comparator = comparator;
-            this.headDisplay = headDisplay;
-            this.bodyDisplay = bodyDisplay;
-            this.compoundDisplay = compoundDisplay;
-        }
-    }
-
-    private static final String ARIA = "aria-";
-    private static final String ARIA_SORT = "aria-sort";
-    private static final String CHECKBOX_COLUMN = "checkbox";
-    private static final String EXPAND_COLUMN = "expand";
-    private static final String ACTIONS_COLUMN = "actions";
-
-    // ------------------------------------------------------ instance
-    private static final By SORT_SELECTOR = By.classname(component(table, sort));
-    private static final By TOGGLE_SELECTOR = By.classname(component(table, toggle)).child(By.element("button"));
-    private static final By CHECK_SELECTOR = By.classname(component(table, check))
-            .desc(By.element("input").and(By.attribute("type", "checkbox")));
-    private static final By SELECT_ALL_SELECTOR = By.element("thead").desc(CHECK_SELECTOR);
-    private static final By SELECT_ITEM_SELECTOR = By.element("tbody").desc(CHECK_SELECTOR);
-
     public static <T> DataTable<T> dataTable(DataProvider<T> dataProvider) {
         return new DataTable<>(dataProvider, null);
     }
@@ -213,7 +127,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                                 .aria(label, "Select all rows")),
                 (td, dataProvider, item) -> td.css(component(table, check))
                         .add(input(InputType.checkbox)
-                                .name(buildId(dataProvider.getId(item), "select"))
+                                .name(Id.build(dataProvider.getId(item), "select"))
                                 .aria(labelledBy, dataProvider.getId(item))),
                 null);
     }
@@ -224,7 +138,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     public static <T> Column<T> iconColumn(BodyDisplay<T> bodyDisplay) {
         BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, icon));
-        return new Column<>(uniqueId("icon"), null,
+        return new Column<>(Id.unique("icon"), null,
                 th -> th.css(component(table, icon)).attr(scope, col), css.andThen(bodyDisplay), null);
     }
 
@@ -243,7 +157,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                         .aria(sort, none)
                         .attr(scope, col)
                         .add(button().css(component(button), modifier(plain))
-                                .data(dataTableSort, buildId(name)) // keep in sync with Column constructor!
+                                .data(dataTableSort, Id.build(name)) // keep in sync with Column constructor!
                                 .add(name)
                                 .add(span().css(component(table, sort, indicator))
                                         .add(i().css(fas("arrows-alt-v"))))),
@@ -253,6 +167,21 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     public static <T> Column<T> column(String name, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay) {
         return new Column<>(name, null, headDisplay, bodyDisplay, null);
     }
+
+    // ------------------------------------------------------ instance
+
+    private static final String ARIA = "aria-";
+    private static final String ARIA_SORT = "aria-sort";
+    private static final String CHECKBOX_COLUMN = "checkbox";
+    private static final String EXPAND_COLUMN = "expand";
+    private static final String ACTIONS_COLUMN = "actions";
+
+    private static final By SORT_SELECTOR = By.classname(component(table, sort));
+    private static final By TOGGLE_SELECTOR = By.classname(component(table, toggle)).child(By.element("button"));
+    private static final By CHECK_SELECTOR = By.classname(component(table, check))
+            .desc(By.element("input").and(By.attribute("type", "checkbox")));
+    private static final By SELECT_ALL_SELECTOR = By.element("thead").desc(CHECK_SELECTOR);
+    private static final By SELECT_ITEM_SELECTOR = By.element("tbody").desc(CHECK_SELECTOR);
 
     private final DataProvider<T> dataProvider;
     private final List<Column<T>> columns;
@@ -266,13 +195,11 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private boolean expandableFullWidth;
     private boolean expandableNoPadding;
     private boolean expandableColumn;
-
-    // ------------------------------------------------------ add components
     private boolean checkboxColumn;
     private boolean actionsColumn;
     private int noContentColumns;
 
-    DataTable(DataProvider<T> dataProvider, String caption) {
+    private DataTable(DataProvider<T> dataProvider, String caption) {
         super(table().css(component(table))
                 .attr(role, grid).element());
         this.dataProvider = dataProvider;
@@ -293,6 +220,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     public DataTable<T> that() {
         return this;
     }
+
+    // ------------------------------------------------------ add components
 
     public DataTable<T> add(Column<T> column) {
         columns.add(column);
@@ -336,8 +265,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         return expandableRow(null, false, false, expandableDisplay);
     }
 
-    // ------------------------------------------------------ display API
-
     public DataTable<T> expandableRow(boolean fullWidth, ExpandableDisplay<T> expandableDisplay) {
         return expandableRow(null, fullWidth, false, expandableDisplay);
     }
@@ -349,8 +276,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     public DataTable<T> expandableRow(Predicate<T> expandable, ExpandableDisplay<T> expandableDisplay) {
         return expandableRow(expandable, false, false, expandableDisplay);
     }
-
-    // ------------------------------------------------------ modifiers
 
     public DataTable<T> expandableRow(Predicate<T> expandable, boolean fullWidth,
             ExpandableDisplay<T> expandableDisplay) {
@@ -366,6 +291,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         this.expandableDisplay = expandableDisplay;
         return this;
     }
+
+    // ------------------------------------------------------ display API
 
     @Override
     public void showItems(Iterable<T> items, PageInfo pageInfo) {
@@ -446,8 +373,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         bindExpandHandler();
     }
 
-    // ------------------------------------------------------ internals
-
     @Override
     public void updateSelection(SelectionInfo<T> selectionInfo) {
         for (T item : dataProvider.getVisibleItems()) {
@@ -482,6 +407,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         }
     }
 
+    // ------------------------------------------------------ modifiers
+
     public DataTable<T> compact() {
         return css(modifier(compact));
     }
@@ -490,8 +417,6 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         return css(modifier(noBorderRows));
     }
 
-    // ------------------------------------------------------ inner classes
-
     public DataTable<T> noSelectAll() {
         HTMLElement selectAll = Elements.find(element, SELECT_ALL_SELECTOR);
         if (selectAll != null) {
@@ -499,6 +424,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         }
         return this;
     }
+
+    // ------------------------------------------------------ internals
 
     private void bindSelectAllHandler() {
         HTMLInputElement checkbox = Elements.find(theadRow, SELECT_ALL_SELECTOR);
@@ -531,8 +458,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                 HTMLElement contentRow = (HTMLElement) itemElement.nextElementSibling;
                 if (tbody != null && contentRow != null) {
                     String itemId = itemElement.dataset.get(dataTableItem);
-                    String buttonId = buildId(itemId, toggle);
-                    String contentId = buildId(itemId, expandableContent);
+                    String buttonId = Id.build(itemId, toggle);
+                    String contentId = Id.build(itemId, expandableContent);
                     e.id = buttonId;
                     e.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
                     e.setAttribute(ARIA + expanded, false_);
@@ -570,6 +497,79 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         if (expandHandler != null) {
             expandHandler.removeHandler();
             expandHandler = null;
+        }
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    @FunctionalInterface
+    public interface HeadDisplay {
+
+        void render(HtmlContentBuilder<HTMLTableCellElement> th);
+
+        default HeadDisplay andThen(HeadDisplay after) {
+            return th -> {
+                render(th);
+                after.render(th);
+            };
+        }
+    }
+
+    @FunctionalInterface
+    public interface BodyDisplay<T> {
+
+        void render(HtmlContentBuilder<HTMLTableCellElement> td, DataProvider<T> dataProvider, T item);
+
+        default BodyDisplay<T> andThen(BodyDisplay<T> after) {
+            return (td, dataProvider, item) -> {
+                render(td, dataProvider, item);
+                after.render(td, dataProvider, item);
+            };
+        }
+    }
+
+    @FunctionalInterface
+    public interface ExpandableDisplay<T> {
+
+        void render(HtmlContentBuilder<HTMLDivElement> html, DataProvider<T> dataProvider, T item);
+
+        default ExpandableDisplay<T> andThen(ExpandableDisplay<T> after) {
+            return (html, dataProvider, item) -> {
+                render(html, dataProvider, item);
+                after.render(html, dataProvider, item);
+            };
+        }
+    }
+
+    @FunctionalInterface
+    public interface CompoundDisplay<T> {
+
+        void render(HtmlContentBuilder<HTMLTableCellElement> html, DataProvider<T> dataProvider, T item);
+
+        default CompoundDisplay<T> andThen(CompoundDisplay<T> after) {
+            return (html, dataProvider, item) -> {
+                render(html, dataProvider, item);
+                after.render(html, dataProvider, item);
+            };
+        }
+    }
+
+    public static class Column<T> {
+
+        private final String id;
+        private final Comparator<T> comparator;
+        private final HeadDisplay headDisplay;
+        private final BodyDisplay<T> bodyDisplay;
+        // TODO support compound expandable
+        private final CompoundDisplay<T> compoundDisplay;
+
+        private Column(String name, Comparator<T> comparator, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay,
+                CompoundDisplay<T> compoundDisplay) {
+            this.id = Id.build(name);
+            this.comparator = comparator;
+            this.headDisplay = headDisplay;
+            this.bodyDisplay = bodyDisplay;
+            this.compoundDisplay = compoundDisplay;
         }
     }
 }

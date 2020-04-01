@@ -9,13 +9,17 @@ import elemental2.dom.HTMLUListElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Dataset;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
 import static org.patternfly.resources.CSS.component;
@@ -44,16 +48,16 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
         return toast;
     }
 
-    // ------------------------------------------------------ instance
-
     public static AlertGroup embedded() {
         return new AlertGroup(0);
     }
 
+    // ------------------------------------------------------ instance
+
     private final double timeout;
     private final Map<String, Double> messageIds;
 
-    AlertGroup(double timeout) {
+    private AlertGroup(double timeout) {
         super(ul().css(component(alertGroup)).element(), "AlertGroup");
         this.timeout = timeout;
         this.messageIds = new HashMap<>();
@@ -68,7 +72,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
 
     public AlertGroup add(Alert alert) {
         if (timeout > 100) {
-            String id = uniqueId();
+            String id = Id.unique();
             alert.data(Dataset.alert, id);
             alert.onClose(() -> stopMessageTimeout(id));
 

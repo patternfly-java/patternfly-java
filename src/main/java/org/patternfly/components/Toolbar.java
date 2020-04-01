@@ -24,6 +24,7 @@ import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -33,14 +34,15 @@ import org.patternfly.resources.Constants;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.children;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.toggle;
 import static org.patternfly.resources.Constants.*;
 
 /**
@@ -191,7 +193,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             toggleGroupParent.classList.add(toggleGroupContainer);
 
             // add expandable content
-            String expandableContentId = uniqueId(dataToolbar, expandableContent);
+            String expandableContentId = Id.unique(dataToolbar, expandableContent);
             HTMLElement expandableContentGroup = group().element();
             HtmlContentBuilder<HTMLDivElement> expandableContent = div().css(component(dataToolbar,
                     Constants.expandableContent))
@@ -326,6 +328,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return css(modifier(iconButtonGroup));
         }
 
+        @Override
         public Group toggle(String breakpoint) {
             String bpModifier = breakpoint.startsWith("pf-m-") ? breakpoint : modifier(breakpoint);
             return css(modifier(toggleGroup), bpModifier)
@@ -346,7 +349,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     public static class Item extends ElementBuilder<HTMLDivElement, Item>
             implements HtmlContent<HTMLDivElement, Item> {
 
-        @SuppressWarnings("rawtypes")
         private final Stack<Consumer<Toolbar>> delayedInit;
 
         private Item() {
@@ -359,7 +361,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return this;
         }
 
-        @SuppressWarnings("unchecked")
         public Item add(BulkSelect bulkSelect) {
             delayedInit.push(toolbar -> {
                 toolbar.bulkSelect = bulkSelect;
@@ -372,9 +373,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return this;
         }
 
-        @SuppressWarnings("unchecked")
         public <T> Item add(String id, String placeholder, Function<String, Predicate<T>> filterFn) {
-            InputGroup.Search search = new InputGroup.Search(placeholder);
+            Search search = new Search(placeholder);
             delayedInit.push(toolbar -> search.onSearch(query -> {
                 if (query == null || query.length() == 0) {
                     toolbar.dataProvider.removeFilter(id);
@@ -385,7 +385,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             return add(search.element());
         }
 
-        @SuppressWarnings("unchecked")
         public <T> Item add(SortMenu<T> sortMenu) {
             delayedInit.push(toolbar -> {
                 toolbar.sortMenu = sortMenu;
@@ -604,7 +603,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
 
         @Override
-        @SuppressWarnings("NullableProblems")
         public Iterator<SortOption<T>> iterator() {
             return sortOptions.values().iterator();
         }
@@ -617,7 +615,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private final Comparator<T> comparator;
 
         public SortOption(String name, Comparator<T> comparator) {
-            this.id = buildId(name);
+            this.id = Id.build(name);
             this.name = name;
             this.comparator = comparator;
         }

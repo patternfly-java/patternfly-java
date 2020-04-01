@@ -68,17 +68,17 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     private HTMLElement primaryContainer;
     private HTMLElement secondaryContainer;
 
-    @Override
-    public EmptyState that() {
-        return this;
-    }
-
-    EmptyState(Icon icon, String title) {
+    private EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
         if (icon != null) {
             add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true_));
         }
         add(Title.title(1, title, lg));
+    }
+
+    @Override
+    public EmptyState that() {
+        return this;
     }
 
     // ------------------------------------------------------ public API

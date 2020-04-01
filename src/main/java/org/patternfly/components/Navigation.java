@@ -11,6 +11,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
@@ -129,7 +130,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         if (lastGroup == null) {
             lastGroup = ul().css(component(nav, simple, list))
                     .data(navGroup, groupId).element();
-            String labelId = uniqueId(nav, Constants.group, label);
+            String labelId = Id.unique(nav, Constants.group, label);
             if (expandable) {
                 ul.appendChild(li().css(component(nav, Constants.item), modifier(Constants.expandable))
                         .data(navGroupExpandable, groupId)
@@ -309,7 +310,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     }
 
     private String groupId(String group) {
-        return buildId(group);
+        return Id.build(group);
     }
 
     private void scrollLeft() {

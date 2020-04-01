@@ -10,6 +10,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
 import org.patternfly.core.SelectHandler;
@@ -77,7 +78,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String buttonId = uniqueId(select, Constants.button);
+        String buttonId = Id.unique(select, Constants.button);
         add(button = button().css(component(select, toggle))
                 .id(buttonId)
                 .aria(expanded, false_)

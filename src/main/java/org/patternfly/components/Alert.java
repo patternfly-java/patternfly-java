@@ -44,37 +44,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     // ------------------------------------------------------ factory methods
 
-    public enum Type {
-        DEFAULT(fas("bell"), null, "default alert"),
-        INFO(fas("info-circle"), modifier(info), "info alert"),
-        SUCCESS(fas("check-circle"), modifier(success), "success alert"),
-        WARNING(fas("exclamation-triangle"), modifier(warning), "warning alert"),
-        DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
-
-        private final String icon;
-        private final String modifier;
-        private final String aria;
-
-        Type(String icon, String modifier, String aria) {
-            this.icon = icon;
-            this.modifier = modifier;
-            this.aria = aria;
-        }
-    }
-
-    public static class Description extends ElementBuilder<HTMLDivElement, Description>
-            implements HtmlContent<HTMLDivElement, Description> {
-
-        Description() {
-            super(div().css(component(alert, description)).element());
-        }
-
-        @Override
-        public Description that() {
-            return this;
-        }
-    }
-
     public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
 
     public static Alert default_(String title) {
@@ -89,8 +58,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return new Alert(Type.SUCCESS, title);
     }
 
-    // ------------------------------------------------------ instance
-
     public static Alert warning(String title) {
         return new Alert(Type.WARNING, title);
     }
@@ -103,14 +70,14 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return new Description();
     }
 
+    // ------------------------------------------------------ instance
+
     private final Type type;
     private final String title;
     private Callback callback;
     private Button closeButton;
 
-    // ------------------------------------------------------ public API
-
-    Alert(Type type, String title) {
+    private Alert(Type type, String title) {
         super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
         this.type = type;
         this.title = title;
@@ -130,18 +97,20 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return this;
     }
 
-    public Alert inline() {
-        return css(modifier(inline));
+    // ------------------------------------------------------ public API
+
+    public Alert action(String action, Callback callback) {
+        return action(Button.link(action), callback);
     }
 
-    public Alert description(String description) {
-        return add(description().textContent(description));
+    public Alert action(HTMLElement action, Callback callback) {
+        bind(action, click, e -> callback.call());
+        return add(div().css(component(alert, Constants.action))
+                .add(action));
     }
 
-    public Alert closable() {
-        String label = "close " + type.aria + ": " + title;
-        closeButton = Button.icon(icon(fas("times")), label);
-        return action(closeButton.element(), this::close);
+    public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
+        return action(action.element(), callback);
     }
 
     public void close() {
@@ -151,37 +120,26 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         }
     }
 
-    public Alert action(String action, Callback callback) {
-        return action(Button.link(action), callback);
+    public Alert closable() {
+        String label = "close " + type.aria + ": " + title;
+        closeButton = Button.icon(icon(fas("times")), label);
+        return action(closeButton.element(), this::close);
     }
 
-    // ------------------------------------------------------ events
+    public Alert description(String description) {
+        return add(description().textContent(description));
+    }
 
-    public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
-        return action(action.element(), callback);
+    public Alert inline() {
+        return css(modifier(inline));
     }
 
     // ------------------------------------------------------ aria
-
-    public Alert action(HTMLElement action, Callback callback) {
-        bind(action, click, e -> callback.call());
-        return add(div().css(component(alert, Constants.action))
-                .add(action));
-    }
-
-    public Alert onClose(Callback callback) {
-        this.callback = callback;
-        return this;
-    }
-
-    // ------------------------------------------------------ internals
 
     @Override
     public Alert label(String label) {
         return aria(Constants.label, label);
     }
-
-    // ------------------------------------------------------ inner classes
 
     @Override
     public Alert label(String target, String label) {
@@ -191,8 +149,50 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    public Alert onClose(Callback callback) {
+        this.callback = callback;
+        return this;
+    }
+
+    // ------------------------------------------------------ internals
+
     boolean hasClose() {
         By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
         return Elements.find(element, selector) != null;
+    }
+
+    // ------------------------------------------------------ inner classes
+
+    public static class Description extends ElementBuilder<HTMLDivElement, Description>
+            implements HtmlContent<HTMLDivElement, Description> {
+
+        Description() {
+            super(div().css(component(alert, description)).element());
+        }
+
+        @Override
+        public Description that() {
+            return this;
+        }
+    }
+
+    public enum Type {
+        DEFAULT(fas("bell"), null, "default alert"),
+        INFO(fas("info-circle"), modifier(info), "info alert"),
+        SUCCESS(fas("check-circle"), modifier(success), "success alert"),
+        WARNING(fas("exclamation-triangle"), modifier(warning), "warning alert"),
+        DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
+
+        private final String icon;
+        private final String modifier;
+        private final String aria;
+
+        Type(String icon, String modifier, String aria) {
+            this.icon = icon;
+            this.modifier = modifier;
+            this.aria = aria;
+        }
     }
 }
