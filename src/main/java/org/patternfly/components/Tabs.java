@@ -19,6 +19,7 @@ import org.patternfly.resources.Constants;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
@@ -43,21 +44,23 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
 
     public static final String ARIA_SCROLL_LEFT = "ARIA_SCROLL_LEFT";
     public static final String ARIA_SCROLL_RIGHT = "ARIA_SCROLL_RIGHT";
-    private final Button scrollLeft;
-    private final Button scrollRight;
+    private final HTMLButtonElement scrollLeft;
+    private final HTMLButtonElement scrollRight;
     private final HtmlContentBuilder<HTMLUListElement> tabs;
     private SelectHandler<TabContent> onSelect;
 
     Tabs() {
         super(div().element(), "Tabs");
-        this.scrollLeft = Button.button(Icon.icon(fas(angleLeft))
+        this.scrollLeft = button()
                 .css(component(Constants.tabs, scrollButton))
                 .aria(label, "Scroll left")
-                .element());
-        this.scrollRight = Button.button(Icon.icon(fas(angleRight))
+                .add(Icon.icon(fas(angleLeft)))
+                .element();
+        this.scrollRight = button()
                 .css(component(Constants.tabs, scrollButton))
                 .aria(label, "Scroll right")
-                .element());
+                .add(Icon.icon(fas(angleRight)))
+                .element();
         this.tabs = ul().css(component(Constants.tabs, list));
         add(div().css(component(Constants.tabs))
                 .add(scrollLeft)
@@ -100,13 +103,14 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
     public Tabs add(String id, Consumer<HtmlContentBuilder<HTMLButtonElement>> tabDisplay,
             Consumer<HtmlContentBuilder<HTMLElement>> panelDisplay) {
         String tabId = Id.build(id, tab);
-        String contentId = Id.unique(id, content);
+        String contentId = Id.build(id, content);
 
-        HtmlContentBuilder<HTMLButtonElement> tab = button().css(Constants.tabs, Constants.button)
+        HtmlContentBuilder<HTMLButtonElement> tab = button().css(component(Constants.tabs, Constants.button))
                 .id(tabId)
-                .aria(controls, contentId);
+                .aria(controls, contentId)
+                .on(click, e -> select(id));
         tabDisplay.accept(tab);
-        tabs.add(li().css(Constants.tabs, item).add(tab));
+        tabs.add(li().css(component(Constants.tabs, item)).add(tab));
 
         HtmlContentBuilder<HTMLElement> panel = section().css(component(tabContent))
                 .id(contentId)
@@ -114,6 +118,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
                 .attr(role, tabpanel)
                 .attr(tabindex, _0);
         panelDisplay.accept(panel);
+        panel.element().hidden = true;
         add(panel);
 
         if (tabs.element().childElementCount == 1) {
@@ -128,7 +133,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
 
     public Tabs select(String id, boolean fireEvent) {
         String tabId = Id.build(id, tab);
-        String contentId = Id.unique(id, content);
+        String contentId = Id.build(id, content);
         HTMLButtonElement button = tabs.find(By.id(tabId));
         HTMLElement content = find(By.id(contentId));
 
@@ -171,10 +176,10 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
     public Tabs label(String target, String label) {
         switch (target) {
             case ARIA_SCROLL_LEFT:
-                scrollLeft.label(label);
+                button(scrollLeft).aria(Constants.label, label);
                 break;
             case ARIA_SCROLL_RIGHT:
-                scrollRight.label(label);
+                button(scrollRight).aria(Constants.label, label);
                 break;
         }
         return this;
