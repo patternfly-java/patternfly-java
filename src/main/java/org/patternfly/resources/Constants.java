@@ -3,6 +3,7 @@ package org.patternfly.resources;
 /** UI constants and PatternFly components, modifiers and elements. */
 public interface Constants {
 
+    String _0 = "0";
     String _1 = "-1";
     String action = "action";
     String actionGroup = "action-group";
@@ -12,6 +13,7 @@ public interface Constants {
     String alertGroup = "alert-group";
     String alignRight = "align-right";
     String angleDown = "angle-down";
+    String angleLeft = "angle-left";
     String angleRight = "angle-right";
     String arrow = "arrow";
     String avatar = "avatar";
@@ -120,6 +122,7 @@ public interface Constants {
     String role = "role";
     String scope = "scope";
     String scroll = "scroll";
+    String scrollButton = "scroll-button";
     String secondary = "secondary";
     String section = "section";
     String select = "select";
@@ -135,6 +138,10 @@ public interface Constants {
     String success = "success";
     String tabindex = "tabindex";
     String table = "table";
+    String tab = "tab";
+    String tabContent = "tab-content";
+    String tabpanel = "tabpanel";
+    String tabs = "tabs";
     String tailBall = "tail-ball";
     String tertiary = "tertiary";
     String text = "text";

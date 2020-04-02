@@ -63,7 +63,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     private boolean compact;
     private boolean hoverable;
 
-    private CardView(DataProvider<T> dataProvider, Display<T> display) {
+    CardView(DataProvider<T> dataProvider, Display<T> display) {
         super(div().css(layout(gallery), modifier(gutter)).element(), "CardView");
         this.dataProvider = dataProvider;
         this.display = display;

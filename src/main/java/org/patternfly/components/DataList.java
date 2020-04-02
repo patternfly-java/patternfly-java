@@ -110,7 +110,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     private final ItemSelect itemSelect;
     private HandlerRegistration expandHandler;
 
-    private DataList(DataProvider<T> dataProvider, Display<T> display) {
+    DataList(DataProvider<T> dataProvider, Display<T> display) {
         super(ul().css(component(dataList)).attr(role, list).element(), "DataList");
         this.dataProvider = dataProvider;
         this.display = display;

@@ -36,11 +36,11 @@ public class Search extends InputGroup {
     private HandlerRegistration searchHandler;
     private HandlerRegistration keyupHandler;
 
-    private Search() {
+    Search() {
         this("Search");
     }
 
-    private Search(String placeholder) {
+    Search(String placeholder) {
         super();
         add(input = input(InputType.search).css(component(formControl))
                 .placeholder(placeholder));

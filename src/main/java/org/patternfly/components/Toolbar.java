@@ -25,6 +25,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.IsElement;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -123,7 +124,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     private SortMenu<T> sortMenu;
     private Pagination pagination;
     private HandlerRegistration toggleGroupHandler;
-
 
     Toolbar(DataProvider<T> dataProvider) {
         super(div().css(component(dataToolbar)).element(), "Toolbar");
@@ -346,6 +346,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static class Item extends ElementBuilder<HTMLDivElement, Item>
             implements HtmlContent<HTMLDivElement, Item> {
 
@@ -424,24 +425,31 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
     // ------------------------------------------------------ inner classes (options)
 
-    private static class BulkSelect extends Dropdown<BulkSelectOption> {
+    private static class BulkSelect implements IsElement<HTMLDivElement> {
 
         private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none",
                 "Select none (0 items)");
         private static final BulkSelectOption SELECT_PAGE = new BulkSelectOption("select-page", "Select page");
         private static final BulkSelectOption SELECT_ALL = new BulkSelectOption("select-all", "Select all");
 
+        private final Dropdown<BulkSelectOption> dropdown;
+
         private BulkSelect() {
-            super(null, null, true, false);
-            identifier(bso -> bso.id)
+            this.dropdown = Dropdown.<BulkSelectOption>splitCheckbox()
+                    .identifier(bso -> bso.id)
                     .display((html, bso) -> html.textContent(bso.text))
                     .add(SELECT_NONE)
                     .add(SELECT_PAGE)
                     .add(SELECT_ALL);
         }
 
+        @Override
+        public HTMLDivElement element() {
+            return dropdown.element();
+        }
+
         private <T> void bindToolbar(Toolbar<T> toolbar) {
-            onSelect(item -> {
+            dropdown.onSelect(item -> {
                 if (SELECT_NONE.equals(item)) {
                     toolbar.dataProvider.clearAllSelection();
                 } else if (SELECT_PAGE.equals(item)) {
@@ -450,7 +458,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                     toolbar.dataProvider.selectAll();
                 }
             });
-            onChange(all -> {
+            dropdown.onChange(all -> {
                 if (all) {
                     toolbar.dataProvider.selectAll();
                 } else {
@@ -462,24 +470,24 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private void update(PageInfo pageInfo) {
             SELECT_PAGE.text = "Select page (" + pageInfo.getVisible() + " items)";
             SELECT_ALL.text = "Select all (" + pageInfo.getTotal() + " items)";
-            update(SELECT_PAGE);
-            update(SELECT_ALL);
+            dropdown.update(SELECT_PAGE);
+            dropdown.update(SELECT_ALL);
         }
 
         private void update(int selected, int filtered, int visible, int all) {
             if (selected == 0) {
-                check(false);
-                indeterminate(false);
-                clearText();
+                dropdown.check(false);
+                dropdown.indeterminate(false);
+                dropdown.clearText();
             } else {
                 if (selected == all || (selected == filtered && filtered == visible)) {
-                    check(true, false);
-                    indeterminate(false);
+                    dropdown.check(true, false);
+                    dropdown.indeterminate(false);
                 } else {
-                    check(false, false);
-                    indeterminate(true);
+                    dropdown.check(false, false);
+                    dropdown.indeterminate(true);
                 }
-                setText(selected + " selected");
+                dropdown.setText(selected + " selected");
             }
         }
     }
@@ -517,25 +525,31 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
-    private static class SortMenu<T> extends MultiOptionsMenu {
+    private static class SortMenu<T> implements IsElement<HTMLDivElement> {
 
         private final SortOptions<T> sortOptions;
-        private final Group<SortOption<T>> sortBy;
-        private final Group<SortDirection> sortDirection;
+        private final MultiOptionsMenu.Group<SortOption<T>> sortBy;
+        private final MultiOptionsMenu.Group<SortDirection> sortDirection;
+        private final MultiOptionsMenu mom;
 
         private SortMenu(SortOptions<T> sortOptions) {
-            super(null, Icon.icon(fas("sort-amount-down")), false);
             this.sortOptions = sortOptions;
-            this.sortBy = new Group<SortOption<T>>("Sort by")
-                    .display((html1, sortOption) -> html1.textContent(sortOption.name))
+            this.sortBy = new MultiOptionsMenu.Group<SortOption<T>>("Sort by")
+                    .display((html, sortOption) -> html.textContent(sortOption.name))
                     .add(sortOptions);
-            this.sortDirection = new Group<SortDirection>("Sort direction")
-                    .display((html2, sortDirection) -> html2.textContent(sortDirection.text))
+            this.sortDirection = new MultiOptionsMenu.Group<SortDirection>("Sort direction")
+                    .display((html, sortDirection) -> html.textContent(sortDirection.text))
                     .add(SortDirection.ASCENDING)
                     .add(SortDirection.DESCENDING);
+            this.mom = MultiOptionsMenu.icon(Icon.icon(fas("sort-amount-down")));
 
-            add(sortBy);
-            add(sortDirection);
+            mom.add(sortBy);
+            mom.add(sortDirection);
+        }
+
+        @Override
+        public HTMLDivElement element() {
+            return mom.element();
         }
 
         private void bindToolbar(Toolbar<T> toolbar) {
@@ -564,7 +578,6 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                 sortDirection.select(sortInfo.isAscending() ? SortDirection.ASCENDING : SortDirection.DESCENDING,
                         false);
             }
-
         }
     }
 

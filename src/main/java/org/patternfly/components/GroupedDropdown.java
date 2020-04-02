@@ -101,7 +101,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     private Consumer<Boolean> onChange;
     private SelectHandler<T> onSelect;
 
-    private GroupedDropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
+    GroupedDropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
         super(div().css(component(dropdown)).element(), "Dropdown");
         this.splitCheckbox = splitCheckbox;
         this.splitAction = splitAction;

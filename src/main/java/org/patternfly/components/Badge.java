@@ -39,15 +39,15 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
 
     // ------------------------------------------------------ instance
 
-    private Badge(int count) {
+    Badge(int count) {
         this(String.valueOf(count));
     }
 
-    private Badge(String text) {
+    Badge(String text) {
         super(span().css(component(badge)).textContent(text).element(), "Badge");
     }
 
-    private Badge(String text, boolean read) {
+    Badge(String text, boolean read) {
         super(span().css(component(badge), read ? modifier(Constants.read) : modifier(unread))
                 .textContent(text).element(), "Badge");
     }

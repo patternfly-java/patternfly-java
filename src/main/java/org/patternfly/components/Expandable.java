@@ -43,7 +43,7 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable>
     private final HTMLElement text;
     private final HtmlContentBuilder<HTMLDivElement> content;
 
-    private Expandable(String expandText, String collapseText) {
+    Expandable(String expandText, String collapseText) {
         super(div().css(component(expandable)).element(), "Expandable");
         this.ceh = new CollapseExpandHandler();
         this.toggleText = expanded -> textElement().textContent = expanded ? collapseText : expandText;

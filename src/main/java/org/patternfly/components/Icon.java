@@ -14,7 +14,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     // ------------------------------------------------------ instance
 
-    private Icon(String iconClass) {
+    Icon(String iconClass) {
         super(i().css(iconClass).element(), "Icon");
     }
 

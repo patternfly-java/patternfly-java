@@ -44,8 +44,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     // ------------------------------------------------------ factory methods
 
-    public static final String CLOSE_BUTTON = "CLOSE_BUTTON";
-
     public static Alert default_(String title) {
         return new Alert(Type.DEFAULT, title);
     }
@@ -72,12 +70,14 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     // ------------------------------------------------------ instance
 
+    public static final String ARIA_CLOSE_BUTTON = "ARIA_CLOSE_BUTTON";
+
     private final Type type;
     private final String title;
     private Callback callback;
     private Button closeButton;
 
-    private Alert(Type type, String title) {
+    Alert(Type type, String title) {
         super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
         this.type = type;
         this.title = title;
@@ -143,7 +143,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     @Override
     public Alert label(String target, String label) {
-        if (CLOSE_BUTTON.equals(target)) {
+        if (ARIA_CLOSE_BUTTON.equals(target)) {
             closeButton.label(label);
         }
         return this;

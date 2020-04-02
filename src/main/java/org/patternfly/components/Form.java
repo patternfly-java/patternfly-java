@@ -30,7 +30,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
 
     // ------------------------------------------------------ instance
 
-    private Form() {
+    Form() {
         super(Elements.form().css(component(form)).element(), "Form");
     }
 

@@ -28,17 +28,17 @@ public class Button extends BaseComponent<HTMLElement, Button>
     // ------------------------------------------------------ factory methods
 
     public static Button button(String text) {
-        return new Button(Elements.button().css(modifier(primary)).textContent(text));
+        return new Button(Elements.button().textContent(text));
     }
 
     public static Button button(Icon icon, String text) {
-        return new Button(Elements.button().css(modifier(primary))
+        return new Button(Elements.button()
                 .add(span().css(component(Constants.button, Constants.icon)).add(icon))
                 .add(text));
     }
 
     public static Button button(HTMLElement element) {
-        return new Button(Elements.button().css(modifier(primary)).add(element));
+        return new Button(Elements.button().add(element));
     }
 
     public static Button link(String text) {
@@ -114,7 +114,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     private final HTMLAnchorElement a;
     private Callback callback;
 
-    private <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
+    <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
         super(builder.css(component(Constants.button)).element(), "Button");
         on(click, e -> {
             if (callback != null) {

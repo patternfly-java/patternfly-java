@@ -23,7 +23,7 @@ public class Content extends BaseComponent<HTMLDivElement, Content>
 
     // ------------------------------------------------------ instance
 
-    private Content() {
+    Content() {
         super(div().css(component(content)).element(), "Content");
     }
 

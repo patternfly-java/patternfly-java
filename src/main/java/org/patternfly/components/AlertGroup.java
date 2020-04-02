@@ -57,7 +57,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     private final double timeout;
     private final Map<String, Double> messageIds;
 
-    private AlertGroup(double timeout) {
+    AlertGroup(double timeout) {
         super(ul().css(component(alertGroup)).element(), "AlertGroup");
         this.timeout = timeout;
         this.messageIds = new HashMap<>();

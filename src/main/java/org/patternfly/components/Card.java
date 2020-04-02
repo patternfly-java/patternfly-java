@@ -42,7 +42,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card>
 
     // ------------------------------------------------------ instance
 
-    private Card() {
+    Card() {
         super(div().css(component(card)).element(), "Card");
     }
 

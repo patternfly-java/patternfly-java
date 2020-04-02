@@ -199,7 +199,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private boolean actionsColumn;
     private int noContentColumns;
 
-    private DataTable(DataProvider<T> dataProvider, String caption) {
+    DataTable(DataProvider<T> dataProvider, String caption) {
         super(table().css(component(table))
                 .attr(role, grid).element());
         this.dataProvider = dataProvider;

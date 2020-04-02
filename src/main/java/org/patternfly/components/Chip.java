@@ -56,7 +56,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     private Callback callback;
     private Badge badge;
 
-    private Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
+    Chip(HTMLElement element, String text, int count, boolean overflow, boolean readOnly) {
         super(element, "Chip");
         this.count = count;
         this.overflow = overflow;
