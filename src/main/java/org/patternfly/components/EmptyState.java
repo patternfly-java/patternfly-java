@@ -53,7 +53,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     }
 
     public static EmptyState noResults(String title, Callback callback) {
-        return new EmptyState(icon(fas("search")), title).large()
+        return new EmptyState(icon(fas("search")), title)
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
                 .primary(Button.link("Clear all filters").onClick(callback));
     }
