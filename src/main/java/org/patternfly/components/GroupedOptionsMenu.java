@@ -8,7 +8,6 @@ import java.util.function.Function;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLUListElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -20,6 +19,7 @@ import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
@@ -61,7 +61,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
     private final HTMLElement menu;
     private boolean collapseOnSelect;
 
-    GroupedOptionsMenu(String text, Icon icon, boolean plain) {
+    protected GroupedOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");
         this.ceh = new CollapseExpandHandler();
         this.collapseOnSelect = false;

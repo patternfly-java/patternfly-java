@@ -58,7 +58,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
     private Callback nextPageHandler;
     private Callback lastPageHandler;
 
-    Pagination() {
+    protected Pagination() {
         super(div().css(component(pagination)).element(), "Pagination");
 
         infoElement = div().css(component(pagination, totalItems)).element();

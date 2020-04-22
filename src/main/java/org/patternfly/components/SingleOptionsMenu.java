@@ -63,7 +63,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     private SelectHandler<T> onSelect;
     private boolean collapseOnSelect;
 
-    SingleOptionsMenu(String text, Icon icon, boolean plain) {
+    protected SingleOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();

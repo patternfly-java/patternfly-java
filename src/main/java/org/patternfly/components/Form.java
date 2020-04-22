@@ -30,7 +30,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
 
     // ------------------------------------------------------ instance
 
-    Form() {
+    protected Form() {
         super(Elements.form().css(component(form)).element(), "Form");
     }
 
@@ -44,7 +44,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form>
     public static class Group extends BaseComponent<HTMLDivElement, Group>
             implements HtmlContent<HTMLDivElement, Group> {
 
-        private Group() {
+        protected Group() {
             super(div().css(component(form, group)).element(), "FormGroup");
         }
 

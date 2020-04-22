@@ -28,7 +28,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title>
 
     // ------------------------------------------------------ instance
 
-    Title(int level, String text, Size size) {
+    protected Title(int level, String text, Size size) {
         super(h(level, text).css(component(title)).element(), "Title");
         if (size != null) {
             css(size.modifier());

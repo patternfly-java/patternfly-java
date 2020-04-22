@@ -23,7 +23,7 @@ public class Spinner extends BaseComponent<HTMLElement, Spinner>
 
     // ------------------------------------------------------ instance
 
-    Spinner(Size size) {
+    protected Spinner(Size size) {
         super(span().css(component(spinner)).element(), "Spinner");
         if (size != null) {
             css().add(size.modifier());

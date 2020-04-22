@@ -68,7 +68,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     private HTMLElement primaryContainer;
     private HTMLElement secondaryContainer;
 
-    EmptyState(Icon icon, String title) {
+    protected EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
         if (icon != null) {
             add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true_));
@@ -141,7 +141,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
     public static class Body extends ElementBuilder<HTMLElement, Body>
             implements HtmlContent<HTMLElement, Body> {
 
-        private Body() {
+        protected Body() {
             super(div().css(component(emptyState, Constants.body)).element());
         }
 

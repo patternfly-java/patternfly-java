@@ -101,7 +101,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     private Consumer<Boolean> onChange;
     private SelectHandler<T> onSelect;
 
-    GroupedDropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
+    protected GroupedDropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
         super(div().css(component(dropdown)).element(), "Dropdown");
         this.splitCheckbox = splitCheckbox;
         this.splitAction = splitAction;
@@ -456,7 +456,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         private final HTMLHeadingElement header;
         private final HTMLUListElement menu;
 
-        private Group(String text) {
+        protected Group(String text) {
             super(section().css(component(Constants.dropdown, group))
                     .data(dropdownGroup, Id.build(text)).element(), "DropdownGroup");
             this.dropdown = null;
@@ -465,7 +465,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             add(menu = ul().attr(role, none).element());
         }
 
-        private Group(GroupedDropdown<T> dropdown) {
+        protected Group(GroupedDropdown<T> dropdown) {
             super(section().css(component(Constants.dropdown, group))
                     .data(dropdownGroup, UNNAMED_GROUP_ID).element(), "DropdownGroup");
             this.dropdown = dropdown;
@@ -474,7 +474,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             add(menu = ul().attr(role, none).element());
         }
 
-        private Group(GroupedDropdown<T> dropdown, HTMLElement section) {
+        protected Group(GroupedDropdown<T> dropdown, HTMLElement section) {
             super(section, "DropdownGroup");
             this.dropdown = dropdown;
             this.recorder = null;

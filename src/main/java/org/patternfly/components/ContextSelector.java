@@ -54,7 +54,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     private T value;
     private SelectHandler<T> onSelect;
 
-    ContextSelector(String text) {
+    protected ContextSelector(String text) {
         super(div().css(component(contextSelector)).element(), "ContextSelector");
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();

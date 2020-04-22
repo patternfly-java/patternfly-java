@@ -95,7 +95,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     private SelectHandler<T> onSelect;
     private Function<T, String> typeaheadFilter;
 
-    SingleSelect(Icon icon, String text, boolean typeahead) {
+    protected SingleSelect(Icon icon, String text, boolean typeahead) {
         super(div().css(component(select)).element(), "Select");
         this.typeahead = typeahead;
         this.ceh = new CollapseExpandHandler();

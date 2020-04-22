@@ -29,7 +29,7 @@ public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolba
 
     // ------------------------------------------------------ instance
 
-    ChipGroupToolbar() {
+    protected ChipGroupToolbar() {
         super(ul().css(component(chipGroup), modifier(toolbar)).element(), "ChipGroupToolbar");
     }
 

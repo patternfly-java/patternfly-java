@@ -84,7 +84,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     private Consumer<Boolean> onChange;
     private SelectHandler<T> onSelect;
 
-    Dropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
+    protected Dropdown(String text, Icon icon, boolean splitCheckbox, boolean splitAction) {
         super(div().css(component(dropdown)).element(), "Dropdown");
         this.splitCheckbox = splitCheckbox;
         this.splitAction = splitAction;

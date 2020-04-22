@@ -110,7 +110,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     private final ItemSelect itemSelect;
     private HandlerRegistration expandHandler;
 
-    DataList(DataProvider<T> dataProvider, Display<T> display) {
+    protected DataList(DataProvider<T> dataProvider, Display<T> display) {
         super(ul().css(component(dataList)).attr(role, list).element(), "DataList");
         this.dataProvider = dataProvider;
         this.display = display;
@@ -230,7 +230,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class Item extends ElementBuilder<HTMLLIElement, Item>
             implements HtmlContent<HTMLLIElement, Item> {
 
-        private Item() {
+        protected Item() {
             super(li().css(component(dataList, item)).element());
         }
 
@@ -243,7 +243,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ItemRow extends ElementBuilder<HTMLDivElement, ItemRow>
             implements HtmlContent<HTMLDivElement, ItemRow> {
 
-        private ItemRow() {
+        protected ItemRow() {
             super(div().css(component(dataList, itemRow)).element());
         }
 
@@ -256,7 +256,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ItemControl extends ElementBuilder<HTMLDivElement, ItemControl>
             implements HtmlContent<HTMLDivElement, ItemControl> {
 
-        private ItemControl() {
+        protected ItemControl() {
             super(div().css(component(dataList, itemControl)).element());
         }
 
@@ -280,7 +280,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ItemContent extends ElementBuilder<HTMLDivElement, ItemContent>
             implements HtmlContent<HTMLDivElement, ItemContent> {
 
-        private ItemContent() {
+        protected ItemContent() {
             super(div().css(component(dataList, itemContent)).element());
         }
 
@@ -293,7 +293,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ItemAction extends ElementBuilder<HTMLDivElement, ItemAction>
             implements HtmlContent<HTMLDivElement, ItemAction> {
 
-        private ItemAction() {
+        protected ItemAction() {
             super(div().css(component(dataList, itemAction)).element());
         }
 
@@ -306,7 +306,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ItemCell extends ElementBuilder<HTMLDivElement, ItemCell>
             implements HtmlContent<HTMLDivElement, ItemCell> {
 
-        private ItemCell() {
+        protected ItemCell() {
             super(div().css(component(dataList, cell)).element());
         }
 
@@ -319,7 +319,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ExpandableContent extends ElementBuilder<HTMLElement, ExpandableContent>
             implements HtmlContent<HTMLElement, ExpandableContent> {
 
-        private ExpandableContent() {
+        protected ExpandableContent() {
             super(section().css(component(dataList, expandableContent)).element());
         }
 
@@ -332,7 +332,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public static class ExpandableBody extends ElementBuilder<HTMLDivElement, ExpandableBody>
             implements HtmlContent<HTMLDivElement, ExpandableBody> {
 
-        private ExpandableBody() {
+        protected ExpandableBody() {
             super(div().css(component(dataList, expandableContent, body)).element());
         }
 

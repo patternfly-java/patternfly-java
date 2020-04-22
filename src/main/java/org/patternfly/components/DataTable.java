@@ -199,7 +199,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private boolean actionsColumn;
     private int noContentColumns;
 
-    DataTable(DataProvider<T> dataProvider, String caption) {
+    protected DataTable(DataProvider<T> dataProvider, String caption) {
         super(table().css(component(table))
                 .attr(role, grid).element());
         this.dataProvider = dataProvider;
@@ -563,7 +563,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         // TODO support compound expandable
         private final CompoundDisplay<T> compoundDisplay;
 
-        private Column(String name, Comparator<T> comparator, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay,
+        protected Column(String name, Comparator<T> comparator, HeadDisplay headDisplay, BodyDisplay<T> bodyDisplay,
                 CompoundDisplay<T> compoundDisplay) {
             this.id = Id.build(name);
             this.comparator = comparator;

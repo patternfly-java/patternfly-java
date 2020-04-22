@@ -71,7 +71,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     private HTMLElement ul;
     private HTMLElement lastGroup;
 
-    Navigation(Orientation orientation, boolean expandable, boolean global, boolean tertiary) {
+    protected Navigation(Orientation orientation, boolean expandable, boolean global, boolean tertiary) {
         super(nav().css(component(nav)).aria(label, global ? "Global" : "Local").element(), "Navigation");
         this.orientation = orientation;
         this.expandable = expandable;
@@ -326,7 +326,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
     public static class Group extends BaseComponent<HTMLElement, Group>
             implements HtmlContent<HTMLElement, Group> {
 
-        Group() {
+        protected Group() {
             super(section().element(), "NavigationGroup");
         }
 

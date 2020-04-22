@@ -40,7 +40,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover>
 
     // ------------------------------------------------------ instance
 
-    Popover(Position position, HTMLElement target) {
+    protected Popover(Position position, HTMLElement target) {
         super(div().css(component(tooltip), position.modifier).element(), "Tooltip");
     }
 

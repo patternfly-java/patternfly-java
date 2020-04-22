@@ -49,7 +49,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip>
 
     private final HtmlContentBuilder<HTMLDivElement> content;
 
-    Tooltip(Position position, HTMLElement target, String text) {
+    protected Tooltip(Position position, HTMLElement target, String text) {
         super(div().css(component(tooltip), position.modifier)
                         .attr(role, "tooltip")
                         .element(),

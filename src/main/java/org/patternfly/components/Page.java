@@ -88,7 +88,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
     private Navigation navigation;
     private Main main;
 
-    Page() {
+    protected Page() {
         super(div().css(component(page)).element(), "Page");
         mediaQueryList = window.matchMedia("(max-width: 768px)");
         mediaQueryList.addListener(this::onResize);
@@ -200,7 +200,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         private Tools tools;
         private PageSidebar sidebar;
 
-        Header(HTMLElement brand, String homeLink) {
+        protected Header(HTMLElement brand, String homeLink) {
             super(Elements.header().css(CSS.component(page, Constants.header)).attr(role, banner).element(),
                     "PageHeader");
             add(div().css(component(page, Constants.header, Constants.brand))
@@ -281,7 +281,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
     public static class Tools extends ElementBuilder<HTMLDivElement, Tools>
             implements HtmlContent<HTMLDivElement, Tools> {
 
-        private Tools() {
+        protected Tools() {
             super(div().css(component(page, Constants.header, tools)).element());
         }
 
@@ -298,7 +298,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         private final HtmlContentBuilder<HTMLDivElement> body;
         private Navigation navigation;
 
-        PageSidebar(Theme theme) {
+        protected PageSidebar(Theme theme) {
             super(aside().css(CSS.component(page, Constants.sidebar)).element(), "PageSidebar");
             this.theme = theme;
             if (theme == DARK) {
@@ -360,7 +360,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
     public static class Main extends BaseComponent<HTMLElement, Main>
             implements HtmlContent<HTMLElement, Main> {
 
-        Main(String id) {
+        protected Main(String id) {
             super(Elements.main()
                             .id(id)
                             .css(component(page, Constants.main))
@@ -415,7 +415,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
     public static class Section extends BaseComponent<HTMLElement, Section>
             implements HtmlContent<HTMLElement, Section> {
 
-        Section() {
+        protected Section() {
             super(Elements.section().css(component(page, mainSection)).element(), "PageSection");
         }
 

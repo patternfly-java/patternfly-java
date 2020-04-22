@@ -49,7 +49,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
     private final HtmlContentBuilder<HTMLUListElement> tabs;
     private SelectHandler<TabContent> onSelect;
 
-    Tabs() {
+    protected Tabs() {
         super(div().element(), "Tabs");
         this.scrollLeft = button()
                 .css(component(Constants.tabs, scrollButton))

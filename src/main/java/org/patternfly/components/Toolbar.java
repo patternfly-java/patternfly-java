@@ -125,7 +125,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     private Pagination pagination;
     private HandlerRegistration toggleGroupHandler;
 
-    Toolbar(DataProvider<T> dataProvider) {
+    protected Toolbar(DataProvider<T> dataProvider) {
         super(div().css(component(dataToolbar)).element(), "Toolbar");
         this.dataProvider = dataProvider;
         Attachable.register(element, this);
@@ -258,7 +258,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private final List<Group> groups;
         private final List<Item> items;
 
-        private Content() {
+        protected Content() {
             super(div().css(component(dataToolbar, content)).element());
             groups = new ArrayList<>();
             items = new ArrayList<>();
@@ -295,7 +295,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private final List<Group> groups;
         private final List<Item> items;
 
-        private Group() {
+        protected Group() {
             super(div().css(component(dataToolbar, group)).element());
             groups = new ArrayList<>();
             items = new ArrayList<>();
@@ -352,7 +352,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
         private final Stack<Consumer<Toolbar>> delayedInit;
 
-        private Item() {
+        protected Item() {
             super(div().css(component(dataToolbar, item)).element());
             this.delayedInit = new Stack<>();
         }
@@ -434,7 +434,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
         private final Dropdown<BulkSelectOption> dropdown;
 
-        private BulkSelect() {
+        protected BulkSelect() {
             this.dropdown = Dropdown.<BulkSelectOption>splitCheckbox()
                     .identifier(bso -> bso.id)
                     .display((html, bso) -> html.textContent(bso.text))
