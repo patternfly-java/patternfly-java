@@ -1,8 +1,20 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLAnchorElement;
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
@@ -10,6 +22,10 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.resources.Constants;
+
+import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
@@ -20,7 +36,8 @@ import static org.patternfly.resources.Constants.*;
 /**
  * PatternFly button component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
         implements HtmlContent<HTMLElement, Button>, Aria<Button>, Disable<Button> {
@@ -32,9 +49,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button button(Icon icon, String text) {
-        return new Button(Elements.button()
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon))
-                .add(text));
+        return new Button(Elements.button().add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
     }
 
     public static Button button(HTMLElement element) {
@@ -47,8 +62,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     public static Button link(Icon icon, String text) {
         return new Button(Elements.button().css(modifier(link))
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon))
-                .add(text));
+                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
     }
 
     public static Button link(HTMLElement element) {
@@ -64,10 +78,8 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button link(Icon icon, String text, String href, String target) {
-        return new Button(Elements.a(href)
-                .attr("target", target)
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon))
-                .add(text));
+        return new Button(Elements.a(href).attr("target", target)
+                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
     }
 
     public static Button link(HTMLElement element, String href) {
@@ -100,8 +112,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     public static Button control(Icon icon, String text) {
         return new Button(Elements.button().css(modifier(control))
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon))
-                .add(text));
+                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
     }
 
     public static Button control(HTMLElement element) {
@@ -234,9 +245,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     // ------------------------------------------------------ inner classes
 
     public enum Type {
-        SUBMIT("submit"),
-        RESET("reset"),
-        DEFAULT("default");
+        SUBMIT("submit"), RESET("reset"), DEFAULT("default");
 
         private final String attributeValue;
 

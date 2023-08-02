@@ -1,11 +1,20 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
-import elemental2.dom.Element;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.MediaQueryList;
-import elemental2.dom.MutationRecord;
-import elemental2.dom.Node;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
@@ -17,24 +26,31 @@ import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 import org.patternfly.resources.Theme;
 
+import elemental2.dom.Element;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.MediaQueryList;
+import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
+
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.*;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.nav;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Theme.DARK;
 
 /**
  * PatternFly page component
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/page">https://www.patternfly.org/v4/documentation/core/components/page</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/page">https://www.patternfly.org/v4/documentation/core/components/page</a>
  */
-public class Page extends BaseComponent<HTMLDivElement, Page>
-        implements HtmlContent<HTMLDivElement, Page>, Attachable {
+public class Page extends BaseComponent<HTMLDivElement, Page> implements HtmlContent<HTMLDivElement, Page>, Attachable {
 
     // ------------------------------------------------------ factory methods
 
@@ -191,8 +207,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
 
     // ------------------------------------------------------ inner classes
 
-    public static class Header extends BaseComponent<HTMLElement, Header>
-            implements HtmlContent<HTMLElement, Header> {
+    public static class Header extends BaseComponent<HTMLElement, Header> implements HtmlContent<HTMLElement, Header> {
 
         private final HTMLDivElement toggleContainer;
         private final Button toggleButton;
@@ -201,20 +216,17 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         private PageSidebar sidebar;
 
         protected Header(HTMLElement brand, String homeLink) {
-            super(Elements.header().css(CSS.component(page, Constants.header)).attr(role, banner).element(),
-                    "PageHeader");
+            super(Elements.header().css(CSS.component(page, Constants.header)).attr(role, banner).element(), "PageHeader");
             add(div().css(component(page, Constants.header, Constants.brand))
                     .add(toggleContainer = div().css(component(page, Constants.header, Constants.brand, toggle))
-                            .add(toggleButton = Button.icon(icon(fas("bars")), "Global Navigation")
-                                    .aria(expanded, false_)
+                            .add(toggleButton = Button.icon(icon(fas("bars")), "Global Navigation").aria(expanded, false_)
                                     .onClick(() -> {
                                         if (sidebar != null) {
                                             sidebar.toggle();
                                         }
                                     }))
                             .element())
-                    .add(a(homeLink).css(component(page, Constants.header, Constants.brand, link))
-                            .add(brand)));
+                    .add(a(homeLink).css(component(page, Constants.header, Constants.brand, link)).add(brand)));
             hideSidebarToggle();
         }
 
@@ -278,8 +290,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public static class Tools extends ElementBuilder<HTMLDivElement, Tools>
-            implements HtmlContent<HTMLDivElement, Tools> {
+    public static class Tools extends ElementBuilder<HTMLDivElement, Tools> implements HtmlContent<HTMLDivElement, Tools> {
 
         protected Tools() {
             super(div().css(component(page, Constants.header, tools)).element());
@@ -357,16 +368,11 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public static class Main extends BaseComponent<HTMLElement, Main>
-            implements HtmlContent<HTMLElement, Main> {
+    public static class Main extends BaseComponent<HTMLElement, Main> implements HtmlContent<HTMLElement, Main> {
 
         protected Main(String id) {
-            super(Elements.main()
-                            .id(id)
-                            .css(component(page, Constants.main))
-                            .attr(role, Constants.main)
-                            .attr(tabindex, "-1").element(),
-                    "PageMain");
+            super(Elements.main().id(id).css(component(page, Constants.main)).attr(role, Constants.main).attr(tabindex, "-1")
+                    .element(), "PageMain");
         }
 
         @Override
@@ -412,8 +418,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page>
         }
     }
 
-    public static class Section extends BaseComponent<HTMLElement, Section>
-            implements HtmlContent<HTMLElement, Section> {
+    public static class Section extends BaseComponent<HTMLElement, Section> implements HtmlContent<HTMLElement, Section> {
 
         protected Section() {
             super(Elements.section().css(component(page, mainSection)).element(), "PageSection");

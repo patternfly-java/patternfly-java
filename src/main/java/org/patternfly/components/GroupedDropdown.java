@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.ArrayList;
@@ -7,13 +22,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLHeadingElement;
-import elemental2.dom.HTMLInputElement;
-import elemental2.dom.HTMLLIElement;
-import elemental2.dom.HTMLUListElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -23,11 +31,19 @@ import org.patternfly.core.Disable;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLHeadingElement;
+import elemental2.dom.HTMLInputElement;
+import elemental2.dom.HTMLLIElement;
+import elemental2.dom.HTMLUListElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.section;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
@@ -41,7 +57,8 @@ import static org.patternfly.resources.Dataset.dropdownItem;
 /**
  * PatternFly dropdown component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDropdown<T>>
@@ -110,41 +127,33 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button()
-                .id(buttonId)
-                .aria(expanded, false_)
-                .aria(hasPopup, true_)
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false_).aria(hasPopup, true_)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         if (splitCheckbox || splitAction) {
             String inputId = Id.unique(dropdown, Constants.input);
             toggle = div().css(component(dropdown, Constants.toggle), modifier(splitButton))
-                    .add(label().css(component(dropdown, Constants.toggle, check))
-                            .apply(l -> l.htmlFor = inputId)
-                            .add(div().css(component(check))
-                                    .add(input = input(checkbox).css(component(check, Constants.input))
-                                            .id(inputId)
-                                            .aria(invalid, false_)
-                                            .aria(Constants.label, "Select")
-                                            .on(change, e -> {
-                                                if (onChange != null) {
-                                                    onChange.accept(((HTMLInputElement) e.target).checked);
-                                                }
-                                            }).element())))
+                    .add(label().css(component(dropdown, Constants.toggle, check)).apply(l -> l.htmlFor = inputId)
+                            .add(div().css(component(check)).add(input = input(checkbox).css(component(check, Constants.input))
+                                    .id(inputId).aria(invalid, false_).aria(Constants.label, "Select").on(change, e -> {
+                                        if (onChange != null) {
+                                            onChange.accept(((HTMLInputElement) e.target).checked);
+                                        }
+                                    }).element())))
                     .add(button = buttonBuilder.css(component(dropdown, Constants.toggle, Constants.button))
-                            .aria(Constants.label, "Select")
-                            .add(i().css(fas(caretDown)).aria(hidden, true_)).element()).element();
+                            .aria(Constants.label, "Select").add(i().css(fas(caretDown)).aria(hidden, true_)).element())
+                    .element();
 
         } else {
             input = null;
             buttonBuilder.css(component(dropdown, Constants.toggle));
             if (text != null) {
                 button = buttonBuilder
-                        .add(i().css(fas(caretDown), component(dropdown, Constants.toggle, Constants.icon))
-                                .aria(hidden, true_)).element();
+                        .add(i().css(fas(caretDown), component(dropdown, Constants.toggle, Constants.icon)).aria(hidden, true_))
+                        .element();
             } else { // icon != null
-                button = buttonBuilder.css(modifier(plain)).aria(Constants.label, "Actions")
-                        .add(icon.aria(hidden, true_)).element();
+                button = buttonBuilder.css(modifier(plain)).aria(Constants.label, "Actions").add(icon.aria(hidden, true_))
+                        .element();
             }
             toggle = button;
         }
@@ -153,10 +162,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
         // assume an ungrouped dropdown
         grouped = false;
-        menu = ul().css(component(dropdown, Constants.menu))
-                .aria(labelledBy, buttonId)
-                .attr(role, Constants.menu)
-                .hidden(true)
+        menu = ul().css(component(dropdown, Constants.menu)).aria(labelledBy, buttonId).attr(role, Constants.menu).hidden(true)
                 .element();
         add(menu);
     }
@@ -204,8 +210,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         if (grouped) {
             unnamedGroup().addSeparator();
         } else {
-            menu.appendChild(li().attr(role, separator)
-                    .add(div().css(component(dropdown, separator))).element());
+            menu.appendChild(li().attr(role, separator).add(div().css(component(dropdown, separator))).element());
         }
         return this;
     }
@@ -216,11 +221,8 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             // 1. clear the dropdown
             failSafeRemoveFromParent(menu);
             // 2. switch menu from <ul/> to <div/>
-            add(menu = div().css(component(dropdown, Constants.menu))
-                    .aria(labelledBy, buttonId)
-                    .attr(role, Constants.menu)
-                    .hidden(true)
-                    .element());
+            add(menu = div().css(component(dropdown, Constants.menu)).aria(labelledBy, buttonId).attr(role, Constants.menu)
+                    .hidden(true).element());
             // 3. add the existing items to the unnamed group
             if (!backupItems.isEmpty()) {
                 unnamedGroup().add(backupItems);
@@ -379,8 +381,8 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             if (textElement != null) {
                 textElement.textContent = text;
             } else {
-                insertFirst(button, span().css(component(dropdown, Constants.toggle, Constants.text))
-                        .textContent(text).element());
+                insertFirst(button,
+                        span().css(component(dropdown, Constants.toggle, Constants.text)).textContent(text).element());
             }
             HTMLElement iconElement = Elements.find(button, By.selector(".fas.fa-caret-down"));
             if (iconElement != null) {
@@ -429,9 +431,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
     private HTMLLIElement newItem(T item) {
         HtmlContentBuilder<HTMLButtonElement> button = button().css(component(dropdown, Constants.menu, Constants.item))
-                .attr(tabindex, _1)
-                .data(dropdownItem, itemDisplay.itemId(item))
-                .on(click, e -> {
+                .attr(tabindex, _1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
                     if (onSelect != null) {
                         onSelect.onSelect(item);
@@ -457,8 +457,8 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         private final HTMLUListElement menu;
 
         protected Group(String text) {
-            super(section().css(component(Constants.dropdown, group))
-                    .data(dropdownGroup, Id.build(text)).element(), "DropdownGroup");
+            super(section().css(component(Constants.dropdown, group)).data(dropdownGroup, Id.build(text)).element(),
+                    "DropdownGroup");
             this.dropdown = null;
             this.recorder = new ArrayList<>();
             add(header = h(1, text).css(component(Constants.dropdown, group, title)).aria(hidden, true_).element());
@@ -466,8 +466,8 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         }
 
         protected Group(GroupedDropdown<T> dropdown) {
-            super(section().css(component(Constants.dropdown, group))
-                    .data(dropdownGroup, UNNAMED_GROUP_ID).element(), "DropdownGroup");
+            super(section().css(component(Constants.dropdown, group)).data(dropdownGroup, UNNAMED_GROUP_ID).element(),
+                    "DropdownGroup");
             this.dropdown = dropdown;
             this.recorder = null;
             this.header = null;
@@ -484,7 +484,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
         private void playback(GroupedDropdown<T> dropdown) {
             if (recorder != null) {
-                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext(); ) {
+                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext();) {
                     Consumer<GroupedDropdown<T>> consumer = iterator.next();
                     consumer.accept(dropdown);
                     iterator.remove();
@@ -524,13 +524,10 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
         public Group<T> addSeparator() {
             if (dropdown != null) {
-                menu.appendChild(li().attr(role, separator)
-                        .add(div().css(component(Constants.dropdown, separator)))
-                        .element());
+                menu.appendChild(li().attr(role, separator).add(div().css(component(Constants.dropdown, separator))).element());
             } else if (recorder != null) {
-                recorder.add(dd -> menu.appendChild(li().attr(role, separator)
-                        .add(div().css(component(Constants.dropdown, separator)))
-                        .element()));
+                recorder.add(dd -> menu.appendChild(
+                        li().attr(role, separator).add(div().css(component(Constants.dropdown, separator))).element()));
             }
             return this;
         }
@@ -609,11 +606,9 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         // ------------------------------------------------------ internals
 
         private HTMLLIElement newItem(GroupedDropdown<T> dd, T item) {
-            HtmlContentBuilder<HTMLButtonElement> button = button().css(
-                    component(Constants.dropdown, Constants.menu, Constants.item))
-                    .attr(tabindex, _1)
-                    .data(dropdownItem, dd.itemDisplay.itemId(item))
-                    .on(click, e -> {
+            HtmlContentBuilder<HTMLButtonElement> button = button()
+                    .css(component(Constants.dropdown, Constants.menu, Constants.item)).attr(tabindex, _1)
+                    .data(dropdownItem, dd.itemDisplay.itemId(item)).on(click, e -> {
                         dd.ceh.collapse(dd.element(), dd.buttonElement(), dd.menuElement());
                         if (dd.onSelect != null) {
                             dd.onSelect.onSelect(item);

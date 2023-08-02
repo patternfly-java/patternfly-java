@@ -1,12 +1,28 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
+
+import elemental2.dom.HTMLElement;
 
 import static java.lang.Math.abs;
 import static org.jboss.elemento.Elements.insertBefore;
@@ -19,10 +35,10 @@ import static org.patternfly.resources.Constants.chipGroup;
 /**
  * PatternFly chip group component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/chipgroup">https://www.patternfly.org/v4/documentation/core/components/chipgroup</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/chipgroup">https://www.patternfly.org/v4/documentation/core/components/chipgroup</a>
  */
-public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
-        implements HtmlContent<HTMLElement, ChipGroup> {
+public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements HtmlContent<HTMLElement, ChipGroup> {
 
     // ------------------------------------------------------ factory methods
 
@@ -102,8 +118,8 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup>
     }
 
     private Stream<HTMLElement> chips() {
-        return stream(element).filter(e -> e.classList.contains(component(Constants.chip)) &&
-                !e.classList.contains(CSS.modifier(Constants.overflow)));
+        return stream(element).filter(e -> e.classList.contains(component(Constants.chip))
+                && !e.classList.contains(CSS.modifier(Constants.overflow)));
     }
 
     private boolean constrained() {

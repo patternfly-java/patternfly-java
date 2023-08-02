@@ -1,13 +1,24 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import elemental2.dom.Element;
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -18,21 +29,27 @@ import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
-import static org.jboss.elemento.Elements.button;
+import elemental2.dom.Element;
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+
 import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.singleOptionsMenuItem;
 
 /**
  * PatternFly options menu (not grouped, single selection).
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOptionsMenu<T>>
         implements HtmlContent<HTMLDivElement, SingleOptionsMenu<T>>, HasValue<T>, Disable<SingleOptionsMenu<T>> {
@@ -70,11 +87,8 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button()
-                .id(buttonId)
-                .aria(expanded, false_)
-                .aria(hasPopup, listbox)
-                .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false_)
+                .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
         if (icon != null) {
@@ -86,31 +100,25 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
         } else { // text != null
             if (plain) {
-                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain),
-                        modifier(Constants.text))
-                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text))
-                                .textContent(text).element())
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button))
-                                .aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element()).element();
+                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain), modifier(Constants.text))
+                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button)).aria(label, text)
+                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element())
+                        .element();
                 trigger = this.plain;
 
             } else {
                 this.plain = null;
-                this.button = buttonBuilder.css(component(optionsMenu, toggle))
-                        .aria(label, text)
-                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text))
-                                .textContent(text).element())
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon))
-                                .aria(hidden, true_)).element();
+                this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria(label, text)
+                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true_))
+                        .element();
                 trigger = button;
             }
         }
 
         add(trigger);
-        add(menu = ul().css(component(optionsMenu, Constants.menu))
-                .hidden(true)
-                .aria(labelledBy, buttonId)
+        add(menu = ul().css(component(optionsMenu, Constants.menu)).hidden(true).aria(labelledBy, buttonId)
                 .attr(role, Constants.menu).element());
     }
 
@@ -149,19 +157,15 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
     public SingleOptionsMenu<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button()
-                .css(component(optionsMenu, Constants.menu, Constants.item))
-                .attr(tabindex, _1)
-                .data(singleOptionsMenuItem, itemId)
-                .on(click, e -> {
+        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Constants.menu, Constants.item))
+                .attr(tabindex, _1).data(singleOptionsMenuItem, itemId).on(click, e -> {
                     if (collapseOnSelect) {
                         ceh.collapse(element(), buttonElement(), menuElement());
                     }
                     select(item);
                 });
         itemDisplay.display.accept(button, item);
-        menu.appendChild(li().attr(role, presentation)
-                .add(button).element());
+        menu.appendChild(li().attr(role, presentation).add(button).element());
         return this;
     }
 
@@ -191,9 +195,9 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
             Element icon = Elements.find(e, By.selector(".fas.fa-check"));
             if (itemId.equals(e.dataset.get(singleOptionsMenuItem))) {
                 if (icon == null) {
-                    e.appendChild(Icon.icon(fas(check))
-                            .css(component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                            .aria(hidden, true_).element());
+                    e.appendChild(
+                            Icon.icon(fas(check)).css(component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
+                                    .aria(hidden, true_).element());
                 }
             } else {
                 failSafeRemove(e, icon);

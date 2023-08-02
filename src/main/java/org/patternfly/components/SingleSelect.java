@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -5,14 +20,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import elemental2.dom.Element;
-import elemental2.dom.Event;
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLInputElement;
-import elemental2.dom.HTMLLIElement;
-import elemental2.dom.KeyboardEvent;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
@@ -27,12 +34,21 @@ import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.Element;
+import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
+import elemental2.dom.HTMLLIElement;
+import elemental2.dom.KeyboardEvent;
+
 import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setTimeout;
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.form;
 import static org.jboss.elemento.Elements.input;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.blur;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
@@ -41,17 +57,18 @@ import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.option;
 import static org.patternfly.resources.Constants.select;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.singleSelectFilter;
 import static org.patternfly.resources.Dataset.singleSelectItem;
 
 /**
  * PatternFly single select component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
         implements HtmlContent<HTMLDivElement, SingleSelect<T>>, Disable<SingleSelect<T>>, HasValue<T> {
@@ -59,9 +76,9 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     // ------------------------------------------------------ factory methods
 
     private static final HTMLLIElement NO_RESULTS = li().attr(role, presentation)
-            .add(button().css(component(select, Constants.menu, item), modifier(disabled))
-                    .attr(role, option)
-                    .textContent("No results found")).element();
+            .add(button().css(component(select, Constants.menu, item), modifier(disabled)).attr(role, option)
+                    .textContent("No results found"))
+            .element();
 
     public static <T> SingleSelect<T> single(String text) {
         return new SingleSelect<>(null, text, false);
@@ -72,15 +89,12 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     }
 
     /*
-    NYI
-    public static <T> SingleSelect<T> typeahead(String placeholder) {
-        return new SingleSelect<>(null, placeholder, true);
-    }
-
-    public static <T> SingleSelect<T> typeahead(Icon icon, String placeholder) {
-        return new SingleSelect<>(icon, placeholder, true);
-    }
-*/
+     * NYI public static <T> SingleSelect<T> typeahead(String placeholder) { return new SingleSelect<>(null, placeholder, true);
+     * }
+     *
+     * public static <T> SingleSelect<T> typeahead(Icon icon, String placeholder) { return new SingleSelect<>(icon, placeholder,
+     * true); }
+     */
 
     // ------------------------------------------------------ select instance
 
@@ -104,62 +118,48 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         String buttonId = Id.unique(select, Constants.button);
         if (typeahead) {
             HTMLDivElement wrapperElement;
-            add(div().css(component(select, toggle), modifier(Constants.typeahead))
+            add(div()
+                    .css(component(select, toggle),
+                            modifier(Constants.typeahead))
                     .add(wrapperElement = div().css(component(select, toggle, wrapper))
-                            .add(form()
-                                    .on(submit, Event::preventDefault)
+                            .add(form().on(submit, Event::preventDefault)
                                     .add(input = input(InputType.text)
                                             .css(component(formControl), component(select, toggle, Constants.typeahead))
-                                            .placeholder(text)
-                                            .autocomplete("off")
-                                            .on(keydown, e -> {
+                                            .placeholder(text).autocomplete("off").on(keydown, e -> {
                                                 console.log("input keydown(" + e.code + ")");
                                                 onTypeahead(e, ((HTMLInputElement) e.currentTarget).value);
-                                            })
-                                            .on(EventType.focus, e -> {
+                                            }).on(EventType.focus, e -> {
                                                 console.log("input focus");
                                                 if (!ceh.expanded(element)) {
                                                     ceh.expand(element, buttonElement(), menuElement());
                                                 }
-                                            })
-                                            .on(blur, e -> {
+                                            }).on(blur, e -> {
                                                 console.log("input blur");
-                                                setTimeout((o) -> ceh.collapse(element, buttonElement(), menuElement()),
-                                                        222);
-                                            }).element())).element())
+                                                setTimeout((o) -> ceh.collapse(element, buttonElement(), menuElement()), 222);
+                                            }).element()))
+                            .element())
                     .add(button = (HTMLButtonElement) Button.icon(icon(fas(caretDown)), "Options menu")
-                            .css(component(select, toggle, Constants.button))
-                            .id(buttonId)
-                            .aria(expanded, false_)
-                            .aria(hasPopup, listbox)
-                            .on(click, e -> ceh.expand(element, buttonElement(), menuElement())).element()));
+                            .css(component(select, toggle, Constants.button)).id(buttonId).aria(expanded, false_)
+                            .aria(hasPopup, listbox).on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
+                            .element()));
             if (icon != null) {
-                insertFirst(wrapperElement, span().css(component(select, toggle, Constants.icon))
-                        .add(icon).element());
+                insertFirst(wrapperElement, span().css(component(select, toggle, Constants.icon)).add(icon).element());
             }
             this.text = null;
         } else {
-            add(button = button().css(component(select, toggle))
-                    .id(buttonId)
-                    .aria(expanded, false_)
-                    .aria(hasPopup, listbox)
+            add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false_).aria(hasPopup, listbox)
                     .on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
                     .add(div().css(component(select, toggle, wrapper))
-                            .add(this.text = span().css(component(select, toggle, Constants.text))
-                                    .textContent(text).element()))
-                    .add(i().css(fas(caretDown), component(select, toggle, arrow))
-                            .aria(hidden, true_)).element());
+                            .add(this.text = span().css(component(select, toggle, Constants.text)).textContent(text).element()))
+                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria(hidden, true_)).element());
             if (icon != null) {
-                insertBefore(span().css(component(select, toggle, Constants.icon))
-                                .add(icon.aria(hidden, true_)).element(),
+                insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true_)).element(),
                         this.text);
             }
             this.input = null;
         }
-        add(menu = ul().css(component(select, Constants.menu))
-                .hidden(true)
-                .aria(labelledBy, buttonId)
-                .attr(role, listbox).element());
+        add(menu = ul().css(component(select, Constants.menu)).hidden(true).aria(labelledBy, buttonId).attr(role, listbox)
+                .element());
 
     }
 
@@ -194,11 +194,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     public SingleSelect<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button()
-                .css(component(select, Constants.menu, Constants.item))
-                .attr(role, option)
-                .data(singleSelectItem, itemId)
-                .on(click, e -> {
+        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(select, Constants.menu, Constants.item))
+                .attr(role, option).data(singleSelectItem, itemId).on(click, e -> {
                     ceh.collapse(element, buttonElement(), menuElement());
                     select(item);
                 });
@@ -207,8 +204,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             String filter = typeaheadFilter != null ? typeaheadFilter.apply(item) : itemDisplay.asString.apply(item);
             button.data(singleSelectFilter, filter);
         }
-        menu.appendChild(li().attr(role, presentation)
-                .add(button).element());
+        menu.appendChild(li().attr(role, presentation).add(button).element());
         return this;
     }
 
@@ -229,8 +225,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             if (itemId.equals(e.dataset.get(singleSelectItem))) {
                 e.classList.add(modifier(selected));
                 if (icon == null) {
-                    e.appendChild(icon(fas(check))
-                            .css(component(select, Constants.menu, Constants.item, Constants.icon))
+                    e.appendChild(icon(fas(check)).css(component(select, Constants.menu, Constants.item, Constants.icon))
                             .aria(hidden, true_).element());
                 }
             } else {

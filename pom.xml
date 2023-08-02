@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2019 Red Hat, Inc, and individual contributors.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ https://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
+
+     Copyright 2023 Red Hat
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -22,29 +24,30 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>36</version>
+        <version>39</version>
     </parent>
 
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java</artifactId>
-    <version>2.43.1</version>
+    <version>5.0.0</version>
     <name>PatternFly Java</name>
     <description>Java implementation of PatternFly 4</description>
     <packaging>jar</packaging>
-
-    <url>https://github.com/patternfly-java/patternfly-java</url>
-    <organization>
-        <name>JBoss, a division of Red Hat</name>
-        <url>http://www.jboss.org</url>
-    </organization>
+    <url>https://patternfly-java.github.io/showcase/</url>
+    <inceptionYear>2023</inceptionYear>
 
     <licenses>
         <license>
             <name>Apache License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <organization>
+        <name>Red Hat</name>
+        <url>https://developers.redhat.com/</url>
+    </organization>
 
     <developers>
         <developer>
@@ -56,39 +59,75 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:git@github.com:patternfly-java/patternfly-java.git</connection>
+        <developerConnection>scm:git:git@github.com:patternfly-java/patternfly-java.git</developerConnection>
+        <url>https://github.com/patternfly-java/patternfly-java</url>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/patternfly-java/patternfly-java/issues</url>
+    </issueManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
-        <!-- project / plugin related properties -->
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Dependency versions -->
+        <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
+        <version.elemento>1.0.11</version.elemento>
+        <version.gwt.event>1.0.0-RC1</version.gwt.event>
+        <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
+        <version.junit>5.10.0</version.junit>
 
-        <!-- plugin versions -->
-        <nexus-staging.version>1.6.3</nexus-staging.version>
+        <!-- Plugin versions -->
+        <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
+        <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
+        <version.formatter.plugin>2.23.0</version.formatter.plugin>
+        <version.impsort.plugin>1.9.0</version.impsort.plugin>
+        <version.keepachangelog>2.1.1</version.keepachangelog>
+        <version.license.plugin>4.2</version.license.plugin>
+        <version.nexus.staging.plugin>1.6.13</version.nexus.staging.plugin>
 
-        <!-- dependency versions -->
-        <elemento.version>HEAD-SNAPSHOT</elemento.version>
-        <junit.jupiter.version>5.6.0</junit.jupiter.version>
-        <mockito.version>3.2.4</mockito.version>
+        <!-- Build related -->
+        <encoding>UTF-8</encoding>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.min.version>3.2.5</maven.min.version>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${version.junit}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-core</artifactId>
-            <version>${elemento.version}</version>
+            <version>${version.elemento}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -107,6 +146,197 @@
                 </includes>
             </resource>
         </resources>
+
+        <pluginManagement>
+            <plugins>
+                <!-- Ordered by artifactID -->
+                <plugin>
+                    <groupId>net.revelc.code.formatter</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>${version.formatter.plugin}</version>
+                    <configuration>
+                        <configFile>etc/eclipse-formatter-config.xml</configFile>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>net.revelc.code</groupId>
+                    <artifactId>impsort-maven-plugin</artifactId>
+                    <version>${version.impsort.plugin}</version>
+                    <configuration>
+                        <groups>java.,javax.,jakarta.,org.,io.,com.</groups>
+                        <removeUnused>true</removeUnused>
+                        <staticAfter>true</staticAfter>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>co.enear.maven.plugins</groupId>
+                    <artifactId>keepachangelog-maven-plugin</artifactId>
+                    <version>${version.keepachangelog}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${version.license.plugin}</version>
+                    <configuration>
+                        <aggregate>true</aggregate>
+                        <strictCheck>true</strictCheck>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <licenseSets>
+                            <licenseSet>
+                                <header>etc/license.txt</header>
+                                <excludes>
+                                    <exclude>LICENSE</exclude>
+                                    <exclude>sed/*.sed</exclude>
+                                    <exclude>**/*license*.txt</exclude>
+                                </excludes>
+                            </licenseSet>
+                        </licenseSets>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <configuration>
+                        <configLocation>wildfly-checkstyle/checkstyle.xml</configLocation>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        <excludes>**/*$logger.java,**/*$bundle.java</excludes>
+                        <suppressionsLocation>etc/checkstyle-suppressions.xml</suppressionsLocation>
+                        <useFile/>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.wildfly.checkstyle</groupId>
+                            <artifactId>wildfly-checkstyle-config</artifactId>
+                            <version>${version.checkstyle.config}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <configuration>
+                        <rules>
+                            <bannedRepositories>
+                                <message>To build this project, don't use maven repositories over HTTP. Please use HTTPS
+                                    in your settings.xml or run the build with property insecure.repositories=WARN
+                                </message>
+                                <level>ERROR</level>
+                                <bannedRepositories>
+                                    <bannedRepository>http://*</bannedRepository>
+                                </bannedRepositories>
+                                <bannedPluginRepositories>
+                                    <bannedPluginRepository>http://*</bannedPluginRepository>
+                                </bannedPluginRepositories>
+                            </bannedRepositories>
+                            <requireMavenVersion>
+                                <message>To build this project Maven ${maven.min.version} (or greater) is required.
+                                    Please install it.
+                                </message>
+                                <version>${maven.min.version}</version>
+                            </requireMavenVersion>
+                            <requireJavaVersion>
+                                <message>To build this project JDK ${maven.compiler.source} (or greater) is required.
+                                    Please install it.
+                                </message>
+                                <version>${maven.compiler.source}</version>
+                            </requireJavaVersion>
+                        </rules>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- Ordered by artifactID -->
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>formatter-format</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>formatter-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.revelc.code</groupId>
+                <artifactId>impsort-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>impsort-sort</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>sort</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>impsort-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>license-format</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>license-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>checkstyle-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforcer-enforce</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
@@ -114,6 +344,18 @@
             <id>release</id>
             <build>
                 <plugins>
+                    <!-- Semantically ordered -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <configuration>
+                            <rules>
+                                <requireReleaseDeps>
+                                    <message>No Snapshots Allowed!</message>
+                                </requireReleaseDeps>
+                            </rules>
+                        </configuration>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -157,13 +399,20 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- Prevent gpg from using pinentry programs -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging.version}</version>
+                        <version>${version.nexus.staging.plugin}</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>

@@ -1,11 +1,22 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.function.Consumer;
 
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLUListElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -16,23 +27,28 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLUListElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.section;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.*;
+import static org.patternfly.resources.Constants.label;
 
 /**
  * PatternFly label component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/label/">https://www.patternfly.org/v4/documentation/core/components/label</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/label/">https://www.patternfly.org/v4/documentation/core/components/label</a>
  */
-public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
-        implements HtmlContent<HTMLDivElement, Tabs>, Aria<Tabs> {
+public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlContent<HTMLDivElement, Tabs>, Aria<Tabs> {
 
     // ------------------------------------------------------ factory methods
 
@@ -51,21 +67,12 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
 
     protected Tabs() {
         super(div().element(), "Tabs");
-        this.scrollLeft = button()
-                .css(component(Constants.tabs, scrollButton))
-                .aria(label, "Scroll left")
-                .add(Icon.icon(fas(angleLeft)))
-                .element();
-        this.scrollRight = button()
-                .css(component(Constants.tabs, scrollButton))
-                .aria(label, "Scroll right")
-                .add(Icon.icon(fas(angleRight)))
-                .element();
+        this.scrollLeft = button().css(component(Constants.tabs, scrollButton)).aria(label, "Scroll left")
+                .add(Icon.icon(fas(angleLeft))).element();
+        this.scrollRight = button().css(component(Constants.tabs, scrollButton)).aria(label, "Scroll right")
+                .add(Icon.icon(fas(angleRight))).element();
         this.tabs = ul().css(component(Constants.tabs, list));
-        add(div().css(component(Constants.tabs))
-                .add(scrollLeft)
-                .add(tabs)
-                .add(scrollRight));
+        add(div().css(component(Constants.tabs)).add(scrollLeft).add(tabs).add(scrollRight));
     }
 
     @Override
@@ -105,18 +112,13 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs>
         String tabId = Id.build(id, tab);
         String contentId = Id.build(id, content);
 
-        HtmlContentBuilder<HTMLButtonElement> tab = button().css(component(Constants.tabs, Constants.button))
-                .id(tabId)
-                .aria(controls, contentId)
-                .on(click, e -> select(id));
+        HtmlContentBuilder<HTMLButtonElement> tab = button().css(component(Constants.tabs, Constants.button)).id(tabId)
+                .aria(controls, contentId).on(click, e -> select(id));
         tabDisplay.accept(tab);
         tabs.add(li().css(component(Constants.tabs, item)).add(tab));
 
-        HtmlContentBuilder<HTMLElement> panel = section().css(component(tabContent))
-                .id(contentId)
-                .aria(labelledBy, tabId)
-                .attr(role, tabpanel)
-                .attr(tabindex, _0);
+        HtmlContentBuilder<HTMLElement> panel = section().css(component(tabContent)).id(contentId).aria(labelledBy, tabId)
+                .attr(role, tabpanel).attr(tabindex, _0);
         panelDisplay.accept(panel);
         panel.element().hidden = true;
         add(panel);

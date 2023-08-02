@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.Set;
@@ -5,9 +20,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
@@ -17,25 +29,30 @@ import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.CSS;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.label;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.input;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.select;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.multiSelectItem;
 
 /**
  * PatternFly multi select component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 // TODO Use static inner class Group instead of add(String group, T item)
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
@@ -51,16 +68,12 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         return new MultiSelect<>(icon, text, true);
     }
 
-/*
-    NYI
-    public static <T>MultiSelect<T> typeahead(String placeholder) {
-        return new MultiSelect<>(null, placeholder, true);
-    }
-
-    public static <T> MultiSelect<T> typeahead(Icon icon, String placeholder) {
-        return new MultiSelect<>(icon, placeholder, true);
-    }
-*/
+    /*
+     * NYI public static <T>MultiSelect<T> typeahead(String placeholder) { return new MultiSelect<>(null, placeholder, true); }
+     *
+     * public static <T> MultiSelect<T> typeahead(Icon icon, String placeholder) { return new MultiSelect<>(icon, placeholder,
+     * true); }
+     */
 
     // ------------------------------------------------------ select instance
 
@@ -79,21 +92,16 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(select, Constants.button);
-        add(button = button().css(component(select, toggle))
-                .id(buttonId)
-                .aria(expanded, false_)
-                .aria(labelledBy, buttonId)
+        add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false_).aria(labelledBy, buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                 .add(div().css(component(select, toggle, wrapper))
-                        .add(this.text = span().css(component(select, toggle, Constants.text))
-                                .textContent(text).element()))
-                .add(i().css(CSS.fas(caretDown), component(select, toggle, arrow))
-                        .aria(hidden, true_)).element());
+                        .add(this.text = span().css(component(select, toggle, Constants.text)).textContent(text).element()))
+                .add(i().css(CSS.fas(caretDown), component(select, toggle, arrow)).aria(hidden, true_)).element());
         add(menu = div().css(component(select, Constants.menu)).hidden(true).element());
 
         if (icon != null) {
-            insertBefore(span().css(component(select, toggle, Constants.icon))
-                    .add(icon.aria(hidden, true_)).element(), this.text);
+            insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true_)).element(),
+                    this.text);
         }
     }
 
@@ -142,14 +150,11 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         HtmlContentBuilder<HTMLElement> span = span().css(component(check, label));
         itemDisplay.display.accept(span, item);
 
-        menu.appendChild(label().css(component(check), component(select, Constants.menu, Constants.item))
-                .add(input(checkbox).css(component(check, input))
-                        .data(multiSelectItem, itemDisplay.itemId(item))
-                        .on(click, e -> {
-                            ceh.collapse(element(), buttonElement(), menuElement());
-                            select(item);
-                        }))
-                .add(span().css(component(check, label)).textContent(Constants.text)).element());
+        menu.appendChild(label().css(component(check), component(select, Constants.menu, Constants.item)).add(
+                input(checkbox).css(component(check, input)).data(multiSelectItem, itemDisplay.itemId(item)).on(click, e -> {
+                    ceh.collapse(element(), buttonElement(), menuElement());
+                    select(item);
+                })).add(span().css(component(check, label)).textContent(Constants.text)).element());
         return this;
     }
 

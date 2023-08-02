@@ -1,12 +1,23 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLLIElement;
-import elemental2.dom.HTMLUListElement;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.By;
@@ -22,9 +33,14 @@ import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLLIElement;
+import elemental2.dom.HTMLUListElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.section;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
@@ -32,18 +48,18 @@ import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.body;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.dataListItem;
 
 /**
  * PatternFly data list.
  *
  * <p>
- * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the
- * data provider:
+ * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the data
+ * provider:
  * </p>
  *
  * <pre>
@@ -54,7 +70,8 @@ import static org.patternfly.resources.Dataset.dataListItem;
  * dataProvider.update(...);
  * </pre>
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
  */
 public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         implements HtmlContent<HTMLUListElement, DataList<T>>, Display<T> {
@@ -132,27 +149,24 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
         for (T item : items) {
             String id = dataProvider.getId(item);
-            HtmlContentBuilder<HTMLLIElement> li = li().css(component(dataList, Constants.item))
-                    .data(dataListItem, id)
+            HtmlContentBuilder<HTMLLIElement> li = li().css(component(dataList, Constants.item)).data(dataListItem, id)
                     .aria(labelledBy, id);
             display.render(li, dataProvider, item);
             add(li);
         }
 
-        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
-                checkbox -> {
-                    HTMLElement itemElement = Elements.closest(checkbox, By.data(dataListItem));
-                    if (itemElement != null) {
-                        return itemElement.dataset.get(dataListItem);
-                    }
-                    return null;
-                },
-                (id, selected) -> {
-                    T item = dataProvider.getItem(id);
-                    if (item != null) {
-                        dataProvider.select(item, selected);
-                    }
-                });
+        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR, checkbox -> {
+            HTMLElement itemElement = Elements.closest(checkbox, By.data(dataListItem));
+            if (itemElement != null) {
+                return itemElement.dataset.get(dataListItem);
+            }
+            return null;
+        }, (id, selected) -> {
+            T item = dataProvider.getItem(id);
+            if (item != null) {
+                dataProvider.select(item, selected);
+            }
+        });
         bindExpandHandler();
     }
 
@@ -160,8 +174,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public void updateSelection(SelectionInfo<T> selectionInfo) {
         for (T item : dataProvider.getVisibleItems()) {
             String id = dataProvider.getId(item);
-            itemSelect.updateSelection(By.data(dataListItem, id).desc(SELECT_ITEM_SELECTOR),
-                    selectionInfo.isSelected(item));
+            itemSelect.updateSelection(By.data(dataListItem, id).desc(SELECT_ITEM_SELECTOR), selectionInfo.isSelected(item));
         }
     }
 
@@ -227,8 +240,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         void render(HtmlContentBuilder<HTMLLIElement> li, DataProvider<T> dataProvider, T item);
     }
 
-    public static class Item extends ElementBuilder<HTMLLIElement, Item>
-            implements HtmlContent<HTMLLIElement, Item> {
+    public static class Item extends ElementBuilder<HTMLLIElement, Item> implements HtmlContent<HTMLLIElement, Item> {
 
         protected Item() {
             super(li().css(component(dataList, item)).element());

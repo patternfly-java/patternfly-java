@@ -1,10 +1,22 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.function.Consumer;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLInputElement;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
@@ -12,23 +24,28 @@ import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.dataprovider.PageInfo;
 
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.nav;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.InputType.number;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.nav;
 import static org.patternfly.resources.Constants.select;
-import static org.patternfly.resources.Constants.*;
 
 /**
  * PatternFly pagination component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         implements HtmlContent<HTMLDivElement, Pagination>, Disable<Pagination> {
@@ -62,60 +79,45 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         super(div().css(component(pagination)).element(), "Pagination");
 
         infoElement = div().css(component(pagination, totalItems)).element();
-        pageSizeMenu = SingleOptionsMenu.<Integer>plain("")
-                .collapseOnSelect()
-                .display((html, pageSize) -> {
-                    html.add(String.valueOf(pageSize));
-                    html.add(span().css(component(pagination, menu, text)).textContent("per page"));
-                })
-                .add(new Integer[]{10, 20, 50, 100})
-                .onSelect(pageSize -> {
-                    if (pageSizeHandler != null) {
-                        pageSizeHandler.accept(pageSize);
-                    }
-                });
+        pageSizeMenu = SingleOptionsMenu.<Integer> plain("").collapseOnSelect().display((html, pageSize) -> {
+            html.add(String.valueOf(pageSize));
+            html.add(span().css(component(pagination, menu, text)).textContent("per page"));
+        }).add(new Integer[] { 10, 20, 50, 100 }).onSelect(pageSize -> {
+            if (pageSizeHandler != null) {
+                pageSizeHandler.accept(pageSize);
+            }
+        });
 
         element.appendChild(infoElement);
         element.appendChild(pageSizeMenu.element());
         element.appendChild(nav().css(component(pagination, nav))
-                .add(firstPageButton = Button.icon(icon(fas("angle-double-left")), "Go to first page")
-                        .onClick(() -> {
-                            if (firstPageHandler != null) {
-                                firstPageHandler.call();
+                .add(firstPageButton = Button.icon(icon(fas("angle-double-left")), "Go to first page").onClick(() -> {
+                    if (firstPageHandler != null) {
+                        firstPageHandler.call();
+                    }
+                })).add(previousPageButton = Button.icon(icon(fas("angle-left")), "Go to previous page").onClick(() -> {
+                    if (previousPageHandler != null) {
+                        previousPageHandler.call();
+                    }
+                })).add(navPageSelect = div().css(component(pagination, nav, page, select)).add(gotoPageInput = input(number)
+                        .css(component(formControl)).aria(label, "Current page").min(1).on(EventType.change, e -> {
+                            if (gotoPageHandler != null) {
+                                try {
+                                    int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
+                                    gotoPageHandler.accept(page - 1);
+                                } catch (NumberFormatException ignored) {
+                                }
                             }
-                        }))
-                .add(previousPageButton = Button.icon(icon(fas("angle-left")), "Go to previous page")
-                        .onClick(() -> {
-                            if (previousPageHandler != null) {
-                                previousPageHandler.call();
-                            }
-                        }))
-                .add(navPageSelect = div().css(component(pagination, nav, page, select))
-                        .add(gotoPageInput = input(number).css(component(formControl))
-                                .aria(label, "Current page")
-                                .min(1)
-                                .on(EventType.change, e -> {
-                                    if (gotoPageHandler != null) {
-                                        try {
-                                            int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
-                                            gotoPageHandler.accept(page - 1);
-                                        } catch (NumberFormatException ignored) {
-                                        }
-                                    }
-                                }).element())
-                        .add(pagesElement = span().aria(hidden, true_).element()).element())
-                .add(nextPageButton = Button.icon(icon(fas("angle-right")), "Go to next page")
-                        .onClick(() -> {
-                            if (nextPageHandler != null) {
-                                nextPageHandler.call();
-                            }
-                        }))
-                .add(lastPageButton = Button.icon(icon(fas("angle-double-right")), "Go to last page")
-                        .onClick(() -> {
-                            if (lastPageHandler != null) {
-                                lastPageHandler.call();
-                            }
-                        })).element());
+                        }).element()).add(pagesElement = span().aria(hidden, true_).element()).element())
+                .add(nextPageButton = Button.icon(icon(fas("angle-right")), "Go to next page").onClick(() -> {
+                    if (nextPageHandler != null) {
+                        nextPageHandler.call();
+                    }
+                })).add(lastPageButton = Button.icon(icon(fas("angle-double-right")), "Go to last page").onClick(() -> {
+                    if (lastPageHandler != null) {
+                        lastPageHandler.call();
+                    }
+                })).element());
     }
 
     @Override
@@ -192,13 +194,11 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
     // ------------------------------------------------------ internals
 
     void update(PageInfo pageInfo) {
-        HTMLElement[] elements = new HTMLElement[]{infoElement, pageSizeMenu.textElement()};
+        HTMLElement[] elements = new HTMLElement[] { infoElement, pageSizeMenu.textElement() };
         for (HTMLElement element : elements) {
             removeChildrenFrom(element);
             HtmlContentBuilder<HTMLElement> builder = new HtmlContentBuilder<>(element);
-            builder
-                    .add(b().textContent(pageInfo.getFrom() + " - " + pageInfo.getTo()))
-                    .add(" of ")
+            builder.add(b().textContent(pageInfo.getFrom() + " - " + pageInfo.getTo())).add(" of ")
                     .add(b().textContent(String.valueOf(pageInfo.getTotal())));
         }
 

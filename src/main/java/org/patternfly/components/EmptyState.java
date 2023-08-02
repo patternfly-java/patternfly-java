@@ -1,21 +1,37 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.Size.lg;
-import static org.patternfly.resources.CSS.Size.sm;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
+import static org.patternfly.resources.CSS.Size.lg;
+import static org.patternfly.resources.CSS.Size.sm;
 import static org.patternfly.resources.Constants.emptyState;
 import static org.patternfly.resources.Constants.hidden;
 import static org.patternfly.resources.Constants.icon;
@@ -25,10 +41,10 @@ import static org.patternfly.resources.Constants.true_;
 /**
  * PatternFly empty state component.
  *
- * @see <a href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
+ * @see <a
+ *      href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
  */
-public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
-        implements HtmlContent<HTMLDivElement, EmptyState> {
+public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implements HtmlContent<HTMLDivElement, EmptyState> {
 
     // ------------------------------------------------------ factory methods
 
@@ -42,9 +58,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
 
     public static EmptyState spinner(String title) {
         EmptyState loading = new EmptyState(null, title).large();
-        insertFirst(loading.element(),
-                div().css(component(emptyState, icon))
-                        .add(Spinner.spinner()).element());
+        insertFirst(loading.element(), div().css(component(emptyState, icon)).add(Spinner.spinner()).element());
         return loading;
     }
 
@@ -138,8 +152,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState>
 
     // ------------------------------------------------------ inner classes
 
-    public static class Body extends ElementBuilder<HTMLElement, Body>
-            implements HtmlContent<HTMLElement, Body> {
+    public static class Body extends ElementBuilder<HTMLElement, Body> implements HtmlContent<HTMLElement, Body> {
 
         protected Body() {
             super(div().css(component(emptyState, Constants.body)).element());

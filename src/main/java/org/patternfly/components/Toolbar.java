@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.ArrayList;
@@ -12,10 +27,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
 
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.MutationRecord;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.Attachable;
@@ -33,6 +44,11 @@ import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
+
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.children;
@@ -49,9 +65,9 @@ import static org.patternfly.resources.Constants.*;
 /**
  * PatternFly data toolbar component.
  * <p>
- * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a
- * toolbar should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML
- * nodes):
+ * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a toolbar
+ * should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML nodes):
+ *
  * <pre>
  * toolbar           = content, { content } ;
  * content           = { group | item | node } ;
@@ -77,7 +93,8 @@ import static org.patternfly.resources.Constants.*;
  * clear_filter      = ? clear filter link ? ;
  * </pre>
  *
- * @see <a href="https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
  * @see <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus–Naur form</a>
  */
 public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
@@ -116,8 +133,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
     // ------------------------------------------------------ instance
 
     private static final By TOGGLE_GROUP_SELECTOR = By.classname(modifier(toggleGroup));
-    private static final By TOGGLE_SELECTOR = By.classname(component(dataToolbar, toggle))
-            .desc(By.element("button"));
+    private static final By TOGGLE_SELECTOR = By.classname(component(dataToolbar, toggle)).desc(By.element("button"));
 
     private final DataProvider<T> dataProvider;
     private BulkSelect bulkSelect;
@@ -195,9 +211,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             // add expandable content
             String expandableContentId = Id.unique(dataToolbar, expandableContent);
             HTMLElement expandableContentGroup = group().element();
-            HtmlContentBuilder<HTMLDivElement> expandableContent = div().css(component(dataToolbar,
-                    Constants.expandableContent))
-                    .id(expandableContentId)
+            HtmlContentBuilder<HTMLDivElement> expandableContent = div()
+                    .css(component(dataToolbar, Constants.expandableContent)).id(expandableContentId)
                     .add(expandableContentGroup);
             setVisible(expandableContent.element(), false);
             toggleGroupParent.appendChild(expandableContent.element());
@@ -206,9 +221,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
             HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
             if (e != null) {
                 HtmlContentBuilder<HTMLButtonElement> button = button(e);
-                button.aria(hasPopup, false_)
-                        .aria(expanded, false_)
-                        .aria(controls, expandableContentId);
+                button.aria(hasPopup, false_).aria(expanded, false_).aria(controls, expandableContentId);
                 handler.add(bind(button.element(), click, evt -> {
                     boolean expanded = parseBoolean(button.element().getAttribute("aria-expanded"));
                     if (expanded) {
@@ -289,8 +302,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
-    public static class Group extends ElementBuilder<HTMLDivElement, Group>
-            implements HtmlContent<HTMLDivElement, Group> {
+    public static class Group extends ElementBuilder<HTMLDivElement, Group> implements HtmlContent<HTMLDivElement, Group> {
 
         private final List<Group> groups;
         private final List<Item> items;
@@ -332,8 +344,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         public Group toggle(String breakpoint) {
             String bpModifier = breakpoint.startsWith("pf-m-") ? breakpoint : modifier(breakpoint);
             return css(modifier(toggleGroup), bpModifier)
-                    .add(div().css(component(dataToolbar, toggle))
-                            .add(Button.icon(icon(fas(filter)), "Show filters")));
+                    .add(div().css(component(dataToolbar, toggle)).add(Button.icon(icon(fas(filter)), "Show filters")));
         }
 
         private <T> void bindToolbar(Toolbar<T> toolbar) {
@@ -346,9 +357,8 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         }
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public static class Item extends ElementBuilder<HTMLDivElement, Item>
-            implements HtmlContent<HTMLDivElement, Item> {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static class Item extends ElementBuilder<HTMLDivElement, Item> implements HtmlContent<HTMLDivElement, Item> {
 
         private final Stack<Consumer<Toolbar>> delayedInit;
 
@@ -397,12 +407,9 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         public Item add(Pagination pagination) {
             delayedInit.push(toolbar -> {
                 toolbar.pagination = pagination;
-                pagination
-                        .onFirstPage(toolbar.dataProvider::gotoFirstPage)
-                        .onPreviousPage(toolbar.dataProvider::gotoPreviousPage)
-                        .onNextPage(toolbar.dataProvider::gotoNextPage)
-                        .onLastPage(toolbar.dataProvider::gotoLastPage)
-                        .onGotoPage(toolbar.dataProvider::gotoPage)
+                pagination.onFirstPage(toolbar.dataProvider::gotoFirstPage)
+                        .onPreviousPage(toolbar.dataProvider::gotoPreviousPage).onNextPage(toolbar.dataProvider::gotoNextPage)
+                        .onLastPage(toolbar.dataProvider::gotoLastPage).onGotoPage(toolbar.dataProvider::gotoPage)
                         .onPageSize(toolbar.dataProvider::setPageSize);
             });
             return css(modifier(Constants.pagination)).add(pagination.element());
@@ -427,20 +434,15 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
 
     private static class BulkSelect implements IsElement<HTMLDivElement> {
 
-        private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none",
-                "Select none (0 items)");
+        private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none", "Select none (0 items)");
         private static final BulkSelectOption SELECT_PAGE = new BulkSelectOption("select-page", "Select page");
         private static final BulkSelectOption SELECT_ALL = new BulkSelectOption("select-all", "Select all");
 
         private final Dropdown<BulkSelectOption> dropdown;
 
         protected BulkSelect() {
-            this.dropdown = Dropdown.<BulkSelectOption>splitCheckbox()
-                    .identifier(bso -> bso.id)
-                    .display((html, bso) -> html.textContent(bso.text))
-                    .add(SELECT_NONE)
-                    .add(SELECT_PAGE)
-                    .add(SELECT_ALL);
+            this.dropdown = Dropdown.<BulkSelectOption> splitCheckbox().identifier(bso -> bso.id)
+                    .display((html, bso) -> html.textContent(bso.text)).add(SELECT_NONE).add(SELECT_PAGE).add(SELECT_ALL);
         }
 
         @Override
@@ -535,11 +537,9 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
         private SortMenu(SortOptions<T> sortOptions) {
             this.sortOptions = sortOptions;
             this.sortBy = new MultiOptionsMenu.Group<SortOption<T>>("Sort by")
-                    .display((html, sortOption) -> html.textContent(sortOption.name))
-                    .add(sortOptions);
+                    .display((html, sortOption) -> html.textContent(sortOption.name)).add(sortOptions);
             this.sortDirection = new MultiOptionsMenu.Group<SortDirection>("Sort direction")
-                    .display((html, sortDirection) -> html.textContent(sortDirection.text))
-                    .add(SortDirection.ASCENDING)
+                    .display((html, sortDirection) -> html.textContent(sortDirection.text)).add(SortDirection.ASCENDING)
                     .add(SortDirection.DESCENDING);
             this.mom = MultiOptionsMenu.icon(Icon.icon(fas("sort-amount-down")));
 
@@ -575,8 +575,7 @@ public class Toolbar<T> extends BaseComponent<HTMLDivElement, Toolbar<T>>
                 }
             }
             if (sortDirection != null) {
-                sortDirection.select(sortInfo.isAscending() ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-                        false);
+                sortDirection.select(sortInfo.isAscending() ? SortDirection.ASCENDING : SortDirection.DESCENDING, false);
             }
         }
     }

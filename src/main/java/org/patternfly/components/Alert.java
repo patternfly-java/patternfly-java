@@ -1,7 +1,20 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
@@ -10,6 +23,9 @@ import org.jboss.elemento.IsElement;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.resources.Constants;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -37,10 +53,10 @@ import static org.patternfly.resources.Constants.warning;
 /**
  * PatternFly alert component.
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
-public class Alert extends BaseComponent<HTMLDivElement, Alert>
-        implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
 
     // ------------------------------------------------------ factory methods
 
@@ -85,11 +101,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
         if (type.modifier != null) {
             element.classList.add(type.modifier);
         }
-        add(div().css(component(alert, icon))
-                .add(icon(type.icon).aria(hidden, true_)));
-        add(h(4).css(component(alert, Constants.title))
-                .add(span().css("pf-screen-reader").textContent(type.aria))
-                .add(title));
+        add(div().css(component(alert, icon)).add(icon(type.icon).aria(hidden, true_)));
+        add(h(4).css(component(alert, Constants.title)).add(span().css("pf-screen-reader").textContent(type.aria)).add(title));
     }
 
     @Override
@@ -105,8 +118,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     public Alert action(HTMLElement action, Callback callback) {
         bind(action, click, e -> callback.call());
-        return add(div().css(component(alert, Constants.action))
-                .add(action));
+        return add(div().css(component(alert, Constants.action)).add(action));
     }
 
     public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
@@ -179,11 +191,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     }
 
     public enum Type {
-        DEFAULT(fas("bell"), null, "default alert"),
-        INFO(fas("info-circle"), modifier(info), "info alert"),
-        SUCCESS(fas("check-circle"), modifier(success), "success alert"),
-        WARNING(fas("exclamation-triangle"), modifier(warning), "warning alert"),
-        DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
+        DEFAULT(fas("bell"), null, "default alert"), INFO(fas("info-circle"), modifier(info), "info alert"), SUCCESS(
+                fas("check-circle"), modifier(success), "success alert"), WARNING(fas("exclamation-triangle"),
+                        modifier(warning),
+                        "warning alert"), DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
 
         private final String icon;
         private final String modifier;

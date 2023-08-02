@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.HashMap;
@@ -5,8 +20,6 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import elemental2.dom.HTMLAnchorElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -15,20 +28,23 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
 
+import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.HTMLElement;
+
+import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.section;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Constants.button;
 import static org.patternfly.resources.Constants.label;
 import static org.patternfly.resources.Constants.nav;
 import static org.patternfly.resources.Constants.section;
 import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Constants.*;
 import static org.patternfly.resources.Dataset.*;
 
 /**
@@ -36,11 +52,11 @@ import static org.patternfly.resources.Dataset.*;
  * <p>
  * Identifiers for items need to be unique across groups!
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/nav">https://www.patternfly.org/v4/documentation/core/components/nav</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/nav">https://www.patternfly.org/v4/documentation/core/components/nav</a>
  */
 // TODO Use static inner class Group instead of add(String group, NavigationItem item)
-public class Navigation extends BaseComponent<HTMLElement, Navigation>
-        implements HtmlContent<HTMLElement, Navigation> {
+public class Navigation extends BaseComponent<HTMLElement, Navigation> implements HtmlContent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ factory methods
 
@@ -79,18 +95,14 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         this.itemDisplay = new ItemDisplay<>();
 
         if (orientation == Orientation.HORIZONTAL) {
-            add(button().css(component(nav, scroll, button))
-                    .aria(label, "Scroll left")
-                    .on(click, e -> scrollLeft())
+            add(button().css(component(nav, scroll, button)).aria(label, "Scroll left").on(click, e -> scrollLeft())
                     .add(i().css(fas("angle-left")).aria(hidden, true_)));
             if (tertiary) {
                 add(ul = ul().css(component(nav, Constants.tertiary, list)).element());
             } else {
                 add(ul = ul().css(component(nav, Constants.horizontal, list)).element());
             }
-            add(button().css(component(nav, scroll, button))
-                    .aria(label, "Scroll right")
-                    .on(click, e -> scrollRight())
+            add(button().css(component(nav, scroll, button)).aria(label, "Scroll right").on(click, e -> scrollRight())
                     .add(i().css(fas("angle-right")).aria(hidden, true_)));
 
         } else {
@@ -128,33 +140,22 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
         String groupId = groupId(group);
         lastGroup = Elements.find(element, By.element("ul").and(By.data(navGroup, groupId)));
         if (lastGroup == null) {
-            lastGroup = ul().css(component(nav, simple, list))
-                    .data(navGroup, groupId).element();
+            lastGroup = ul().css(component(nav, simple, list)).data(navGroup, groupId).element();
             String labelId = Id.unique(nav, Constants.group, label);
             if (expandable) {
                 ul.appendChild(li().css(component(nav, Constants.item), modifier(Constants.expandable))
                         .data(navGroupExpandable, groupId)
-                        .add(a().css(component(nav, link))
-                                .id(labelId)
-                                .data(navGroupLink, groupId)
-                                .textContent(group)
+                        .add(a().css(component(nav, link)).id(labelId).data(navGroupLink, groupId).textContent(group)
                                 .on(click, e -> toggleGroup(groupId))
-                                .add(span().css(component(nav, toggle))
-                                        .add(i().css(fas(angleRight))
-                                                .aria(hidden, true_))))
-                        .add(section().css(component(nav, subnav))
-                                .hidden(true)
-                                .aria(labelledBy, labelId)
-                                .data(navGroupSection, groupId)
-                                .add(lastGroup)).element());
+                                .add(span().css(component(nav, toggle)).add(i().css(fas(angleRight)).aria(hidden, true_))))
+                        .add(section().css(component(nav, subnav)).hidden(true).aria(labelledBy, labelId)
+                                .data(navGroupSection, groupId).add(lastGroup))
+                        .element());
 
             } else { // grouped
-                add(section().css(component(nav, section))
-                        .aria(labelledBy, labelId)
-                        .add(h(2, group).css(component(nav, section, title))
-                                .id(labelId)
-                                .textContent(group))
-                        .add(lastGroup).element());
+                add(section().css(component(nav, section)).aria(labelledBy, labelId)
+                        .add(h(2, group).css(component(nav, section, title)).id(labelId).textContent(group)).add(lastGroup)
+                        .element());
             }
         }
         addInternal(lastGroup, group, item);
@@ -195,8 +196,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                 if (a != null) {
                     String groupId = a.dataset.get(navGroup);
                     if (groupId != null) {
-                        for (HTMLElement e : Elements.findAll(element,
-                                By.element("li").and(By.data(navGroupExpandable)))) {
+                        for (HTMLElement e : Elements.findAll(element, By.element("li").and(By.data(navGroupExpandable)))) {
                             if (groupId.equals(e.dataset.get(navGroupExpandable))) {
                                 e.classList.add(modifier(current));
                                 expand(groupId);
@@ -254,14 +254,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
                 element.appendChild(li().css(divider).attr(role, separator).element());
             }
         } else {
-            HtmlContentBuilder<HTMLAnchorElement> a = a().css(component(nav, link))
-                    .on(click, e -> {
-                        ((HTMLElement) e.currentTarget).scrollIntoView(true);
-                        if (onSelect != null) {
-                            onSelect.onSelect(item);
-                        }
-                    })
-                    .data(navItem, item.getId());
+            HtmlContentBuilder<HTMLAnchorElement> a = a().css(component(nav, link)).on(click, e -> {
+                ((HTMLElement) e.currentTarget).scrollIntoView(true);
+                if (onSelect != null) {
+                    onSelect.onSelect(item);
+                }
+            }).data(navItem, item.getId());
             if (item.getHref() != null) {
                 a.attr("href", item.getHref());
             }
@@ -323,8 +321,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation>
 
     // ------------------------------------------------------ inner classes
 
-    public static class Group extends BaseComponent<HTMLElement, Group>
-            implements HtmlContent<HTMLElement, Group> {
+    public static class Group extends BaseComponent<HTMLElement, Group> implements HtmlContent<HTMLElement, Group> {
 
         protected Group() {
             super(section().element(), "NavigationGroup");

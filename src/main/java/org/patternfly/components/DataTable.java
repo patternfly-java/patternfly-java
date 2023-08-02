@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
 import java.util.ArrayList;
@@ -5,15 +20,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-import elemental2.dom.Element;
-import elemental2.dom.HTMLButtonElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLInputElement;
-import elemental2.dom.HTMLTableCellElement;
-import elemental2.dom.HTMLTableElement;
-import elemental2.dom.HTMLTableRowElement;
-import elemental2.dom.HTMLTableSectionElement;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.By;
@@ -29,6 +35,16 @@ import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
 import org.patternfly.resources.Constants;
+
+import elemental2.dom.Element;
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
+import elemental2.dom.HTMLTableCellElement;
+import elemental2.dom.HTMLTableElement;
+import elemental2.dom.HTMLTableRowElement;
+import elemental2.dom.HTMLTableSectionElement;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.caption;
@@ -85,8 +101,8 @@ import static org.patternfly.resources.Dataset.dataTableSort;
  * PatternFly data table.
  *
  * <p>
- * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the
- * data provider:
+ * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the data
+ * provider:
  * </p>
  *
  * <pre>
@@ -97,7 +113,8 @@ import static org.patternfly.resources.Dataset.dataTableSort;
  * dataProvider.update(...);
  * </pre>
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
  */
 public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         implements HtmlContent<HTMLTableElement, DataTable<T>>, Display<T> {
@@ -113,22 +130,18 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     public static <T> Column<T> expandColumn() {
-        return new Column<>(EXPAND_COLUMN, null, null,
-                (td, dataProvider, item) -> {
-                    String iconClass = fas(angleDown) + " " + component(table, toggle, Constants.icon);
-                    td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
-                }, null);
+        return new Column<>(EXPAND_COLUMN, null, null, (td, dataProvider, item) -> {
+            String iconClass = fas(angleDown) + " " + component(table, toggle, Constants.icon);
+            td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
+        }, null);
     }
 
     public static <T> Column<T> checkboxColumn() {
         return new Column<>(CHECKBOX_COLUMN, null,
-                th -> th.css(component(table, check))
-                        .add(input(InputType.checkbox)
-                                .aria(label, "Select all rows")),
-                (td, dataProvider, item) -> td.css(component(table, check))
-                        .add(input(InputType.checkbox)
-                                .name(Id.build(dataProvider.getId(item), "select"))
-                                .aria(labelledBy, dataProvider.getId(item))),
+                th -> th.css(component(table, check)).add(input(InputType.checkbox).aria(label, "Select all rows")),
+                (td, dataProvider,
+                        item) -> td.css(component(table, check)).add(input(InputType.checkbox)
+                                .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
                 null);
     }
 
@@ -138,8 +151,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     public static <T> Column<T> iconColumn(BodyDisplay<T> bodyDisplay) {
         BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, icon));
-        return new Column<>(Id.unique("icon"), null,
-                th -> th.css(component(table, icon)).attr(scope, col), css.andThen(bodyDisplay), null);
+        return new Column<>(Id.unique("icon"), null, th -> th.css(component(table, icon)).attr(scope, col),
+                css.andThen(bodyDisplay), null);
     }
 
     public static <T> Column<T> actionsColumn(BodyDisplay<T> bodyDisplay) {
@@ -152,15 +165,10 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     public static <T> Column<T> column(String name, Comparator<T> comparator, BodyDisplay<T> bodyDisplay) {
-        return new Column<>(name, comparator,
-                th -> th.css(component(table, sort))
-                        .aria(sort, none)
-                        .attr(scope, col)
-                        .add(button().css(component(button), modifier(plain))
-                                .data(dataTableSort, Id.build(name)) // keep in sync with Column constructor!
-                                .add(name)
-                                .add(span().css(component(table, sort, indicator))
-                                        .add(i().css(fas("arrows-alt-v"))))),
+        return new Column<>(name, comparator, th -> th.css(component(table, sort)).aria(sort, none).attr(scope, col)
+                .add(button().css(component(button), modifier(plain)).data(dataTableSort, Id.build(name)) // keep in sync with
+                                                                                                          // Column constructor!
+                        .add(name).add(span().css(component(table, sort, indicator)).add(i().css(fas("arrows-alt-v"))))),
                 bodyDisplay, null);
     }
 
@@ -200,8 +208,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private int noContentColumns;
 
     protected DataTable(DataProvider<T> dataProvider, String caption) {
-        super(table().css(component(table))
-                .attr(role, grid).element());
+        super(table().css(component(table)).attr(role, grid).element());
         this.dataProvider = dataProvider;
         this.columns = new ArrayList<>();
         this.itemSelect = new ItemSelect(element);
@@ -277,8 +284,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         return expandableRow(expandable, false, false, expandableDisplay);
     }
 
-    public DataTable<T> expandableRow(Predicate<T> expandable, boolean fullWidth,
-            ExpandableDisplay<T> expandableDisplay) {
+    public DataTable<T> expandableRow(Predicate<T> expandable, boolean fullWidth, ExpandableDisplay<T> expandableDisplay) {
         return expandableRow(expandable, fullWidth, false, expandableDisplay);
     }
 
@@ -311,9 +317,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             HtmlContentBuilder<HTMLTableRowElement> tr = tr().data(dataTableItem, id);
             for (Column<T> column : columns) {
                 HtmlContentBuilder<HTMLTableCellElement> td = td();
-                if (!EXPAND_COLUMN.equals(column.id) ||
-                        expandablePredicate == null ||
-                        expandablePredicate.test(item)) {
+                if (!EXPAND_COLUMN.equals(column.id) || expandablePredicate == null || expandablePredicate.test(item)) {
                     if (column.bodyDisplay != null) {
                         column.bodyDisplay.render(td, dataProvider, item);
                     }
@@ -325,8 +329,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                 HtmlContentBuilder<HTMLTableSectionElement> tbody = tbody().add(tr);
                 if (expandableDisplay != null) {
                     if (expandablePredicate == null || expandablePredicate.test(item)) {
-                        HtmlContentBuilder<HTMLTableRowElement> etr = tr().css(component(table, expandableRow))
-                                .hidden(true);
+                        HtmlContentBuilder<HTMLTableRowElement> etr = tr().css(component(table, expandableRow)).hidden(true);
                         HtmlContentBuilder<HTMLTableCellElement> etd = td();
                         HtmlContentBuilder<HTMLDivElement> ec = div().css(component(table, expandableRow, content));
                         expandableDisplay.render(ec, dataProvider, item);
@@ -356,20 +359,18 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             }
         }
 
-        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
-                checkbox -> {
-                    HTMLElement itemElement = Elements.closest(checkbox, By.data(dataTableItem));
-                    if (itemElement != null) {
-                        return itemElement.dataset.get(dataTableItem);
-                    }
-                    return null;
-                },
-                (id, selected) -> {
-                    T item = dataProvider.getItem(id);
-                    if (item != null) {
-                        dataProvider.select(item, selected);
-                    }
-                });
+        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR, checkbox -> {
+            HTMLElement itemElement = Elements.closest(checkbox, By.data(dataTableItem));
+            if (itemElement != null) {
+                return itemElement.dataset.get(dataTableItem);
+            }
+            return null;
+        }, (id, selected) -> {
+            T item = dataProvider.getItem(id);
+            if (item != null) {
+                dataProvider.select(item, selected);
+            }
+        });
         bindExpandHandler();
     }
 
@@ -377,8 +378,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     public void updateSelection(SelectionInfo<T> selectionInfo) {
         for (T item : dataProvider.getVisibleItems()) {
             String id = dataProvider.getId(item);
-            itemSelect.updateSelection(By.data(dataTableItem, id).desc(CHECK_SELECTOR),
-                    selectionInfo.isSelected(item));
+            itemSelect.updateSelection(By.data(dataTableItem, id).desc(CHECK_SELECTOR), selectionInfo.isSelected(item));
         }
     }
 
@@ -430,15 +430,14 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private void bindSelectAllHandler() {
         HTMLInputElement checkbox = Elements.find(theadRow, SELECT_ALL_SELECTOR);
         if (checkbox != null) {
-            selectAllHandler = bind(checkbox, click,
-                    e -> {
-                        boolean selectAll = ((HTMLInputElement) e.currentTarget).checked;
-                        if (selectAll) {
-                            dataProvider.selectVisible();
-                        } else {
-                            dataProvider.clearVisibleSelection();
-                        }
-                    });
+            selectAllHandler = bind(checkbox, click, e -> {
+                boolean selectAll = ((HTMLInputElement) e.currentTarget).checked;
+                if (selectAll) {
+                    dataProvider.selectVisible();
+                } else {
+                    dataProvider.clearVisibleSelection();
+                }
+            });
         }
     }
 

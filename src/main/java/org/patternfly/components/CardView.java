@@ -1,7 +1,20 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
@@ -10,6 +23,9 @@ import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
@@ -28,8 +44,8 @@ import static org.patternfly.resources.Dataset.cardViewItem;
  * PatternFly card view.
  *
  * <p>
- * The card view does not manage data by itself. Use a {@link DataProvider} and add the card view as a display to the
- * data provider:
+ * The card view does not manage data by itself. Use a {@link DataProvider} and add the card view as a display to the data
+ * provider:
  * </p>
  *
  * <pre>
@@ -40,7 +56,8 @@ import static org.patternfly.resources.Dataset.cardViewItem;
  * dataProvider.update(...);
  * </pre>
  *
- * @see <a href= "https://www.patternfly.org/v4/documentation/core/demos/cardview">https://www.patternfly.org/v4/documentation/core/demos/cardview</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/v4/documentation/core/demos/cardview">https://www.patternfly.org/v4/documentation/core/demos/cardview</a>
  */
 public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         implements HtmlContent<HTMLDivElement, CardView<T>>, Display<T> {
@@ -54,8 +71,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     // ------------------------------------------------------ instance
 
     private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
-            .desc(By.classname(component(card, actions)))
-            .desc(By.element("input").and(By.attribute("type", "checkbox")));
+            .desc(By.classname(component(card, actions))).desc(By.element("input").and(By.attribute("type", "checkbox")));
 
     private final DataProvider<T> dataProvider;
     private final Display<T> display;
@@ -95,20 +111,18 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
             add(card);
         }
 
-        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR,
-                checkbox -> {
-                    HTMLElement itemElement = Elements.closest(checkbox, By.data(cardViewItem));
-                    if (itemElement != null) {
-                        return itemElement.dataset.get(cardViewItem);
-                    }
-                    return null;
-                },
-                (id, selected) -> {
-                    T item = dataProvider.getItem(id);
-                    if (item != null) {
-                        dataProvider.select(item, selected);
-                    }
-                });
+        itemSelect.bindSelectHandler(SELECT_ITEM_SELECTOR, checkbox -> {
+            HTMLElement itemElement = Elements.closest(checkbox, By.data(cardViewItem));
+            if (itemElement != null) {
+                return itemElement.dataset.get(cardViewItem);
+            }
+            return null;
+        }, (id, selected) -> {
+            T item = dataProvider.getItem(id);
+            if (item != null) {
+                dataProvider.select(item, selected);
+            }
+        });
     }
 
     @Override
