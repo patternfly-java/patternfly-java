@@ -1,4 +1,4 @@
-name: Release Elemento
+name: Release PatternFly Java
 
 on:
   push:
