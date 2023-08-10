@@ -15,26 +15,14 @@
  */
 package org.patternfly.resources;
 
+import org.patternfly.core.PatternFly;
+
 /** Methods to build PatternFly CSS classes. */
 public interface CSS {
 
-    enum Size {
-        _4xl("4xl"), _3xl("3xl"), _2xl("2xl"), xl("xl"), lg("lg"), md("md"), sm("sm");
-
-        private final String modifier;
-
-        Size(String modifier) {
-            this.modifier = CSS.modifier(modifier);
-        }
-
-        public String modifier() {
-            return modifier;
-        }
-    }
-
     static String component(String component, String... elements) {
         StringBuilder builder = new StringBuilder();
-        builder.append("pf-c-").append(component);
+        builder.append("pf-").append(PatternFly.VERSION).append("-c-").append(component);
         if (elements != null && elements.length != 0) {
             builder.append("__");
             for (int i = 0; i < elements.length; i++) {
@@ -48,15 +36,19 @@ public interface CSS {
     }
 
     static String layout(String layout) {
-        return "pf-l-" + layout;
+        return "pf-" + PatternFly.VERSION + "-l-" + layout;
     }
 
     static String modifier(String modifier) {
         return "pf-m-" + modifier;
     }
 
+    static String modifier(String modifier, Breakpoint breakpoint) {
+        return "pf-m-" + modifier + "-on-" + breakpoint.value;
+    }
+
     static String util(String utility) {
-        return "pf-u-" + utility;
+        return "pf-" + PatternFly.VERSION + "-u-" + utility;
     }
 
     /**

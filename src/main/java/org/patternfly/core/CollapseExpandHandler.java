@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.core;
 
 import java.util.function.Consumer;
 
@@ -27,18 +27,17 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.ariaExpanded;
 import static org.patternfly.resources.Constants.expanded;
-import static org.patternfly.resources.Constants.false_;
 import static org.patternfly.resources.Constants.hidden;
-import static org.patternfly.resources.Constants.true_;
 
 /** Reusable class for components which have a collapsible / expandable UI element */
-class CollapseExpandHandler {
+public class CollapseExpandHandler {
 
-    Consumer<Boolean> onToggle;
+    public Consumer<Boolean> onToggle;
     private HandlerRegistration closeHandler;
 
-    void expand(HTMLElement root, HTMLElement button, HTMLElement menu) {
+    public void expand(HTMLElement root, HTMLElement button, HTMLElement menu) {
         if (!expanded(root)) {
             closeHandler = bind(document, click, e -> {
                 boolean clickInside = root.contains((Node) e.target);
@@ -47,7 +46,7 @@ class CollapseExpandHandler {
                 }
             });
             root.classList.add(modifier(expanded));
-            button.setAttribute("aria-expanded", true_);
+            button.setAttribute(ariaExpanded, true);
             menu.removeAttribute(hidden);
             setVisible(menu, true);
             if (onToggle != null) {
@@ -58,10 +57,10 @@ class CollapseExpandHandler {
         }
     }
 
-    void collapse(HTMLElement root, HTMLElement button, HTMLElement menu) {
+    public void collapse(HTMLElement root, HTMLElement button, HTMLElement menu) {
         if (expanded(root)) {
             root.classList.remove(modifier(expanded));
-            button.setAttribute("aria-expanded", false_);
+            button.setAttribute(ariaExpanded, false);
             menu.hidden = true;
             setVisible(menu, false);
             closeHandler.removeHandler();
@@ -71,7 +70,7 @@ class CollapseExpandHandler {
         }
     }
 
-    boolean expanded(HTMLElement root) {
+    public boolean expanded(HTMLElement root) {
         return root.classList.contains(modifier(expanded));
     }
 }

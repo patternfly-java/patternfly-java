@@ -25,6 +25,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -84,14 +85,14 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false_)
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
         if (icon != null) {
             this.plain = null;
             this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
-                    .add(icon.aria(hidden, true_)).element();
+                    .add(icon.aria(hidden, true)).element();
             trigger = button;
 
         } else { // text != null
@@ -99,7 +100,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
                 this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain), modifier(Constants.text))
                         .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
                         .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button)).aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element())
+                                .add(i().css(fas(caretDown)).aria(hidden, true)).element())
                         .element();
                 trigger = this.plain;
 
@@ -107,7 +108,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
                 this.plain = null;
                 this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria(label, text)
                         .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true_))
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true))
                         .element();
                 trigger = button;
             }
@@ -141,7 +142,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
         for (T item : group.items) {
             HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Constants.menu, Constants.item))
-                    .attr(Constants.tabindex, _1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
+                    .attr(Constants.tabindex, -1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
                         if (collapseOnSelect) {
                             ceh.collapse(element(), buttonElement(), menuElement());
                         }
@@ -150,7 +151,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
             group.itemDisplay.display.accept(button, item);
             HTMLElement icon;
             button.add(icon = i().css(fas(check), component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                    .aria(hidden, true_).data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
+                    .aria(hidden, true).data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
             setVisible(icon, false);
 
             group.element().appendChild(li().attr(role, menuitem).add(button).element());

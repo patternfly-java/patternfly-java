@@ -24,6 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -80,12 +81,12 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         String buttonId = Id.unique(contextSelector, Constants.button);
 
         add(span().id(labelId).hidden(true).textContent(text));
-        add(button = button().css(component(contextSelector, toggle)).id(buttonId).aria(expanded, false_)
+        add(button = button().css(component(contextSelector, toggle)).id(buttonId).aria(expanded, false)
                 .aria(labelledBy, labelId + " " + buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                 .add(this.text = span().css(component(contextSelector, toggle, Constants.text)).textContent("Please select")
                         .element())
-                .add(i().css(fas(caretDown), component(contextSelector, toggle, icon)).aria(hidden, true_)).element());
+                .add(i().css(fas(caretDown), component(contextSelector, toggle, icon)).aria(hidden, true)).element());
         add(menu = div().css(component(contextSelector, Constants.menu)).attr(hidden, "")
                 .add(div().css(component(contextSelector, Constants.menu, input))
                         .add(search = new Search("Search").onFilter(this::filter)))

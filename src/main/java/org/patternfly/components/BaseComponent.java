@@ -22,25 +22,25 @@ import org.patternfly.core.Ouia;
 
 import elemental2.dom.HTMLElement;
 
-abstract class BaseComponent<E extends HTMLElement, B extends ElementBuilder<E, B>> extends ElementBuilder<E, B>
-        implements TypedBuilder<E, B>, IsElement<E> {
+public abstract class BaseComponent<E extends HTMLElement, B extends ElementBuilder<E, B>> extends ElementBuilder<E, B>
+        implements Component, TypedBuilder<E, B>, IsElement<E> {
 
-    BaseComponent(E element, String component) {
+    private final ComponentType componentType;
+
+    // TODO Remove, once all components have been migrated to PF 5
+    protected BaseComponent(E element, String component) {
         super(element);
-        Ouia.component(element, component);
+        this.componentType = ComponentType.Unknown;
+    }
+
+    protected BaseComponent(E element, ComponentType componentType) {
+        super(element);
+        this.componentType = componentType;
+        Ouia.component(element, componentType);
     }
 
     @Override
-    public B id() {
-        super.id();
-        Ouia.id(element, element.id);
-        return that();
-    }
-
-    @Override
-    public B id(String id) {
-        super.id(id);
-        Ouia.id(element, element.id);
-        return that();
+    public ComponentType componentType() {
+        return componentType;
     }
 }

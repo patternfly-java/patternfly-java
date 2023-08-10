@@ -30,13 +30,12 @@ import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.Size.lg;
-import static org.patternfly.resources.CSS.Size.sm;
+import static org.patternfly.resources.Size.lg;
+import static org.patternfly.resources.Size.sm;
 import static org.patternfly.resources.Constants.emptyState;
 import static org.patternfly.resources.Constants.hidden;
 import static org.patternfly.resources.Constants.icon;
 import static org.patternfly.resources.Constants.primary;
-import static org.patternfly.resources.Constants.true_;
 
 /**
  * PatternFly empty state component.
@@ -85,7 +84,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
     protected EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
         if (icon != null) {
-            add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true_));
+            add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true));
         }
         add(Title.title(1, title, lg));
     }
@@ -143,11 +142,11 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
     }
 
     public EmptyState small() {
-        return css(sm.modifier());
+        return css(sm.modifier);
     }
 
     public EmptyState large() {
-        return css(lg.modifier());
+        return css(lg.modifier);
     }
 
     // ------------------------------------------------------ inner classes

@@ -16,7 +16,7 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.CSS.Size;
+import org.patternfly.resources.Size;
 
 import elemental2.dom.HTMLElement;
 
@@ -41,7 +41,7 @@ public class Spinner extends BaseComponent<HTMLElement, Spinner> implements Html
     protected Spinner(Size size) {
         super(span().css(component(spinner)).element(), "Spinner");
         if (size != null) {
-            css().add(size.modifier());
+            css().add(size.modifier);
         }
         aria(valueText, "Loading...");
         attr(role, progressbar);

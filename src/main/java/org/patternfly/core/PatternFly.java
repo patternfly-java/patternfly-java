@@ -23,4 +23,6 @@ public interface PatternFly {
 
     // TODO Use in components
     Strategy STRATEGY = Strategy.SHOW_HIDE;
+
+    String VERSION = "v5";
 }

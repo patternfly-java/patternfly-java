@@ -108,7 +108,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
                                 } catch (NumberFormatException ignored) {
                                 }
                             }
-                        }).element()).add(pagesElement = span().aria(hidden, true_).element()).element())
+                        }).element()).add(pagesElement = span().aria(hidden, true).element()).element())
                 .add(nextPageButton = Button.icon(icon(fas("angle-right")), "Go to next page").onClick(() -> {
                     if (nextPageHandler != null) {
                         nextPageHandler.call();

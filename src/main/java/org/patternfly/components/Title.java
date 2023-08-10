@@ -16,7 +16,7 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.CSS.Size;
+import org.patternfly.resources.Size;
 
 import elemental2.dom.HTMLHeadingElement;
 
@@ -47,7 +47,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements H
     protected Title(int level, String text, Size size) {
         super(h(level, text).css(component(title)).element(), "Title");
         if (size != null) {
-            css(size.modifier());
+            css(size.modifier);
         }
     }
 

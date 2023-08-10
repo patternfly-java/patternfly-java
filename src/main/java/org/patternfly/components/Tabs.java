@@ -118,7 +118,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlCon
         tabs.add(li().css(component(Constants.tabs, item)).add(tab));
 
         HtmlContentBuilder<HTMLElement> panel = section().css(component(tabContent)).id(contentId).aria(labelledBy, tabId)
-                .attr(role, tabpanel).attr(tabindex, _0);
+                .attr(role, tabpanel).attr(tabindex, 0);
         panelDisplay.accept(panel);
         panel.element().hidden = true;
         add(panel);

@@ -23,6 +23,7 @@ import java.util.function.Function;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
 import org.patternfly.core.SelectHandler;
@@ -92,15 +93,15 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(select, Constants.button);
-        add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false_).aria(labelledBy, buttonId)
+        add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false).aria(labelledBy, buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                 .add(div().css(component(select, toggle, wrapper))
                         .add(this.text = span().css(component(select, toggle, Constants.text)).textContent(text).element()))
-                .add(i().css(CSS.fas(caretDown), component(select, toggle, arrow)).aria(hidden, true_)).element());
+                .add(i().css(CSS.fas(caretDown), component(select, toggle, arrow)).aria(hidden, true)).element());
         add(menu = div().css(component(select, Constants.menu)).hidden(true).element());
 
         if (icon != null) {
-            insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true_)).element(),
+            insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true)).element(),
                     this.text);
         }
     }

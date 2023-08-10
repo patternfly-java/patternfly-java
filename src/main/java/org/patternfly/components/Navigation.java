@@ -96,14 +96,14 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
         if (orientation == Orientation.HORIZONTAL) {
             add(button().css(component(nav, scroll, button)).aria(label, "Scroll left").on(click, e -> scrollLeft())
-                    .add(i().css(fas("angle-left")).aria(hidden, true_)));
+                    .add(i().css(fas("angle-left")).aria(hidden, true)));
             if (tertiary) {
                 add(ul = ul().css(component(nav, Constants.tertiary, list)).element());
             } else {
                 add(ul = ul().css(component(nav, Constants.horizontal, list)).element());
             }
             add(button().css(component(nav, scroll, button)).aria(label, "Scroll right").on(click, e -> scrollRight())
-                    .add(i().css(fas("angle-right")).aria(hidden, true_)));
+                    .add(i().css(fas("angle-right")).aria(hidden, true)));
 
         } else {
             add(ul = ul().css(component(nav, list)).element());
@@ -147,7 +147,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                         .data(navGroupExpandable, groupId)
                         .add(a().css(component(nav, link)).id(labelId).data(navGroupLink, groupId).textContent(group)
                                 .on(click, e -> toggleGroup(groupId))
-                                .add(span().css(component(nav, toggle)).add(i().css(fas(angleRight)).aria(hidden, true_))))
+                                .add(span().css(component(nav, toggle)).add(i().css(fas(angleRight)).aria(hidden, true))))
                         .add(section().css(component(nav, subnav)).hidden(true).aria(labelledBy, labelId)
                                 .data(navGroupSection, groupId).add(lastGroup))
                         .element());
@@ -284,13 +284,13 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
             if (li.classList.contains(modifier(expanded))) {
                 // collapse
                 li.classList.remove(modifier(expanded));
-                a.setAttribute("aria-expanded", false_);
+                a.setAttribute("aria-expanded", false);
                 section.hidden = true;
 
             } else {
                 // expand
                 li.classList.add(modifier(expanded));
-                a.setAttribute("aria-expanded", true_);
+                a.setAttribute("aria-expanded", true);
                 section.removeAttribute(hidden);
             }
         }
@@ -302,7 +302,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         HTMLElement section = Elements.find(element, By.element("section").and(By.data(navGroupSection, groupId)));
         if (li != null && a != null && section != null) {
             li.classList.add(modifier(expanded));
-            a.setAttribute("aria-expanded", true_);
+            a.setAttribute("aria-expanded", true);
             section.removeAttribute(hidden);
         }
     }

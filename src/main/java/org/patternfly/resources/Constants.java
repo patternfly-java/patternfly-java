@@ -15,11 +15,11 @@
  */
 package org.patternfly.resources;
 
+import org.patternfly.core.PatternFly;
+
 /** UI constants and PatternFly components, modifiers and elements. */
 public interface Constants {
 
-    String _0 = "0";
-    String _1 = "-1";
     String action = "action";
     String actionGroup = "action-group";
     String actions = "actions";
@@ -30,6 +30,7 @@ public interface Constants {
     String angleDown = "angle-down";
     String angleLeft = "angle-left";
     String angleRight = "angle-right";
+    String ariaExpanded = "aria-expanded";
     String arrow = "arrow";
     String avatar = "avatar";
     String badge = "badge";
@@ -38,6 +39,7 @@ public interface Constants {
     String body = "body";
     String bottom = "bottom";
     String brand = "brand";
+    String breadcrumb = "breadcrumb";
     String bulkSelect = "bulk-select";
     String button = "button";
     String buttonGroup = "button-group";
@@ -56,8 +58,8 @@ public interface Constants {
     String control = "control";
     String controls = "controls";
     String current = "current";
+    String custom = "custom";
     String danger = "danger";
-    String dark = "dark";
     String dataList = "data-list";
     String dataToolbar = "data-toolbar";
     String description = "description";
@@ -70,7 +72,6 @@ public interface Constants {
     String expandableContent = "expandable-content";
     String expandableRow = "expandable-row";
     String expanded = "expanded";
-    String false_ = "false";
     String fieldset = "fieldset";
     String fill = "fill";
     String filter = "filter";
@@ -82,6 +83,7 @@ public interface Constants {
     String formControl = "form-control";
     String gallery = "gallery";
     String global = "global";
+    String globalNavigation = "Global Navigation";
     String grid = "grid";
     String group = "group";
     String gutter = "gutter";
@@ -108,12 +110,14 @@ public interface Constants {
     String labelledBy = "labelledby";
     String leadBall = "lead-ball";
     String left = "left";
-    String light = "light";
+    String limitWidth = "limit-width";
     String link = "link";
     String list = "list";
     String listbox = "listbox";
     String main = "main";
     String mainSection = "main-section";
+    String masthead = "masthead";
+    String maxLines = "max-lines";
     String menu = "menu";
     String menuitem = "menuitem";
     String nav = "nav";
@@ -124,6 +128,7 @@ public interface Constants {
     String option = "option";
     String optionsMenu = "options-menu";
     String overflow = "overflow";
+    String overflowScroll = "overflow-scroll";
     String page = "page";
     String pagination = "pagination";
     String plain = "plain";
@@ -136,6 +141,7 @@ public interface Constants {
     String right = "right";
     String role = "role";
     String scope = "scope";
+    String screenReader = "pf-" + PatternFly.VERSION + "-screen-reader";
     String scroll = "scroll";
     String scrollButton = "scroll-button";
     String secondary = "secondary";
@@ -151,10 +157,10 @@ public interface Constants {
     String splitButton = "split-button";
     String subnav = "subnav";
     String success = "success";
-    String tabindex = "tabindex";
-    String table = "table";
     String tab = "tab";
     String tabContent = "tab-content";
+    String tabindex = "tabindex";
+    String table = "table";
     String tabpanel = "tabpanel";
     String tabs = "tabs";
     String tailBall = "tail-ball";
@@ -167,16 +173,24 @@ public interface Constants {
     String toggleGroup = "toggle-group";
     String toggleGroupContainer = "toggle-group-container";
     String toolbar = "toolbar";
-    String tooltip = "tooltip";
     String tools = "tools";
+    String tooltip = "tooltip";
     String top = "top";
     String totalItems = "total-items";
-    String true_ = "true";
+    String truncate = "truncate";
     String type = "type";
     String typeahead = "typeahead";
     String unread = "unread";
     String valueText = "value-text";
     String warning = "warning";
+    String wizard = "wizard";
     String wrap = "wrap";
     String wrapper = "wrapper";
+    String pageInsets = "page-insets";
+    String insetNone = "inset-none";
+    String inset = "inset";
+    String padding = "padding";
+    String shadowTop = "shadow-top";
+    String shadowBottom = "shadow-bottom";
+    String stack = "stack";
 }

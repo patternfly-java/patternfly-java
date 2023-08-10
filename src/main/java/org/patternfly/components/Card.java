@@ -23,7 +23,7 @@ import elemental2.dom.HTMLDivElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.CSS.Size.md;
+import static org.patternfly.resources.Size.md;
 import static org.patternfly.resources.Constants.*;
 
 /**
@@ -113,7 +113,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
     public static class Header extends ElementBuilder<HTMLDivElement, Header> implements HtmlContent<HTMLDivElement, Header> {
 
         private Header() {
-            super(div().css(component(card, header), component(title), md.modifier()).element());
+            super(div().css(component(card, header), component(title), md.modifier).element());
         }
 
         @Override

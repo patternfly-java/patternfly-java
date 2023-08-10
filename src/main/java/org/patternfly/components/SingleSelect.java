@@ -28,6 +28,7 @@ import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -139,7 +140,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                                             }).element()))
                             .element())
                     .add(button = (HTMLButtonElement) Button.icon(icon(fas(caretDown)), "Options menu")
-                            .css(component(select, toggle, Constants.button)).id(buttonId).aria(expanded, false_)
+                            .css(component(select, toggle, Constants.button)).id(buttonId).aria(expanded, false)
                             .aria(hasPopup, listbox).on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
                             .element()));
             if (icon != null) {
@@ -147,13 +148,13 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             }
             this.text = null;
         } else {
-            add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false_).aria(hasPopup, listbox)
+            add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false).aria(hasPopup, listbox)
                     .on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
                     .add(div().css(component(select, toggle, wrapper))
                             .add(this.text = span().css(component(select, toggle, Constants.text)).textContent(text).element()))
-                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria(hidden, true_)).element());
+                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria(hidden, true)).element());
             if (icon != null) {
-                insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true_)).element(),
+                insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true)).element(),
                         this.text);
             }
             this.input = null;
@@ -226,7 +227,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                 e.classList.add(modifier(selected));
                 if (icon == null) {
                     e.appendChild(icon(fas(check)).css(component(select, Constants.menu, Constants.item, Constants.icon))
-                            .aria(hidden, true_).element());
+                            .aria(hidden, true).element());
                 }
             } else {
                 e.classList.remove(modifier(selected));

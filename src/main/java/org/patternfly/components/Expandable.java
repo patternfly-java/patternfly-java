@@ -21,6 +21,7 @@ import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.IsElement;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.resources.Constants;
 
 import elemental2.dom.HTMLDivElement;
@@ -65,7 +66,7 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> implem
         this.toggleText = expanded -> textElement().textContent = expanded ? collapseText : expandText;
         this.ceh.onToggle = this.toggleText;
 
-        button = button().css(component(expandable, toggle)).aria(expanded, false_)
+        button = button().css(component(expandable, toggle)).aria(expanded, false)
                 .on(click, e -> ceh.expand(element(), buttonElement(), contentElement()))
                 .add(i().css(component(expandable, toggle, icon), fas(angleRight)))
                 .add(text = span().textContent(expandText).element()).element();

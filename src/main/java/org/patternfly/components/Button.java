@@ -27,6 +27,7 @@ import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.resources.CSS.component;
@@ -60,6 +61,10 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return new Button(Elements.button().css(modifier(link)).textContent(text));
     }
 
+    public static Button plain(String text) {
+        return new Button(Elements.button().css(modifier(plain)).textContent(text));
+    }
+
     public static Button link(Icon icon, String text) {
         return new Button(Elements.button().css(modifier(link))
                 .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
@@ -90,6 +95,14 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return new Button(Elements.a(href).attr("target", target).add(element));
     }
 
+    public static Button icon(String iconClass) {
+        return new Button(Elements.button().css(modifier(plain)).add(i().css(iconClass)));
+    }
+
+    public static Button icon(String iconClass, String label) {
+        return new Button(Elements.button().css(modifier(plain)).aria(Constants.label, label).add(i().css(iconClass)));
+    }
+
     public static Button icon(Icon icon) {
         return new Button(Elements.button().css(modifier(plain)).add(icon));
     }
@@ -107,7 +120,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button control(Icon icon) {
-        return new Button(Elements.button().css(modifier(control)).add(icon.aria(hidden, true_)));
+        return new Button(Elements.button().css(modifier(control)).add(icon.aria(hidden, true)));
     }
 
     public static Button control(Icon icon, String text) {
@@ -126,7 +139,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     private Callback callback;
 
     <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
-        super(builder.css(component(Constants.button)).element(), "Button");
+        super(builder.css(component(Constants.button)).element(), ComponentType.Button);
         on(click, e -> {
             if (callback != null) {
                 callback.call();
@@ -163,8 +176,9 @@ public class Button extends BaseComponent<HTMLElement, Button>
             button.disabled = true;
         } else if (a != null) {
             a.classList.add(disabled);
-            a.setAttribute(tabindex, _1);
+            a.setAttribute(tabindex, -1);
         }
+        aria(disabled, true);
         return this;
     }
 
@@ -176,6 +190,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
             a.classList.remove(disabled);
             a.removeAttribute(tabindex);
         }
+        aria(disabled, false);
         return this;
     }
 
@@ -245,7 +260,12 @@ public class Button extends BaseComponent<HTMLElement, Button>
     // ------------------------------------------------------ inner classes
 
     public enum Type {
-        SUBMIT("submit"), RESET("reset"), DEFAULT("default");
+
+        SUBMIT("submit"),
+
+        RESET("reset"),
+
+        DEFAULT("default");
 
         private final String attributeValue;
 

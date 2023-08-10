@@ -1,0 +1,109 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package org.patternfly.components.page;
+
+import org.jboss.elemento.ElementBuilder;
+import org.jboss.elemento.HtmlContent;
+import org.patternfly.resources.Brightness;
+
+import elemental2.dom.HTMLElement;
+
+import static org.jboss.elemento.Elements.aside;
+import static org.patternfly.resources.CSS.component;
+import static org.patternfly.resources.CSS.modifier;
+import static org.patternfly.resources.Constants.*;
+
+/**
+ * Container for the page sidebar.
+ *
+ * @see <a href=
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ */
+public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
+        implements HtmlContent<HTMLElement, PageSidebar> {
+
+    // ------------------------------------------------------ factory methods
+
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static PageSidebar pageSidebar() {
+        return new PageSidebar();
+    }
+
+    // ------------------------------------------------------ instance
+
+    PageSidebar() {
+        super(aside().css(component(page, sidebar))
+                .aria(hidden, false)
+                .element());
+    }
+
+    @Override
+    public PageSidebar that() {
+        return this;
+    }
+
+    /**
+     * Toggles the collapse/expanded state of the sidebar.
+     */
+    public void toggle() {
+        if (element.classList.contains(modifier(collapsed))) {
+            expanded();
+        } else if (element.classList.contains(modifier(expanded))) {
+            collapsed();
+        }
+    }
+
+    // ------------------------------------------------------ add methods
+
+    /**
+     * Adds a {@link PageSidebarBody} to this component.
+     */
+    public PageSidebar addBody(PageSidebarBody body) {
+        return add(body);
+    }
+
+    // ------------------------------------------------------ modifiers
+
+    /**
+     * Modifies the sidebar for the expanded state.
+     */
+    public PageSidebar expanded() {
+        element.classList.remove(modifier(collapsed));
+        element.classList.add(modifier(expanded));
+        aria(hidden, false);
+        return this;
+    }
+
+    /**
+     * Modifies the sidebar for the collapsed state.
+     */
+    public PageSidebar collapsed() {
+        element.classList.remove(modifier(expanded));
+        element.classList.add(modifier(collapsed));
+        aria(hidden, true);
+        return this;
+    }
+
+    /**
+     * Modifies the sidebar to have a light theme. Note: for use with a light themed
+     * {@link org.patternfly.components.Navigation} component.
+     */
+    public PageSidebar light() {
+        return css(Brightness.light.modifier);
+    }
+}

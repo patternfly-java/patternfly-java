@@ -16,39 +16,36 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.IsElement;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
+import org.patternfly.core.Ouia;
 import org.patternfly.resources.Constants;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLParagraphElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.components.AlertActionGroup.alertActionGroup;
+import static org.patternfly.components.AlertDescription.alertDescription;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.resources.CSS.component;
 import static org.patternfly.resources.CSS.fas;
 import static org.patternfly.resources.CSS.modifier;
 import static org.patternfly.resources.Constants.action;
 import static org.patternfly.resources.Constants.alert;
-import static org.patternfly.resources.Constants.danger;
-import static org.patternfly.resources.Constants.description;
 import static org.patternfly.resources.Constants.hidden;
 import static org.patternfly.resources.Constants.icon;
-import static org.patternfly.resources.Constants.info;
 import static org.patternfly.resources.Constants.inline;
 import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.success;
-import static org.patternfly.resources.Constants.true_;
-import static org.patternfly.resources.Constants.warning;
+import static org.patternfly.resources.Constants.screenReader;
+import static org.patternfly.resources.Constants.truncate;
 
 /**
  * PatternFly alert component.
@@ -56,53 +53,55 @@ import static org.patternfly.resources.Constants.warning;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
-public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
+public class Alert extends BaseComponent<HTMLDivElement, Alert>
+        implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Alert default_(String title) {
-        return new Alert(Type.DEFAULT, title);
+    public static Alert custom(String title) {
+        return new Alert(AlertType.CUSTOM, title);
     }
 
     public static Alert info(String title) {
-        return new Alert(Type.INFO, title);
+        return new Alert(AlertType.INFO, title);
     }
 
     public static Alert success(String title) {
-        return new Alert(Type.SUCCESS, title);
+        return new Alert(AlertType.SUCCESS, title);
     }
 
     public static Alert warning(String title) {
-        return new Alert(Type.WARNING, title);
+        return new Alert(AlertType.WARNING, title);
     }
 
     public static Alert danger(String title) {
-        return new Alert(Type.DANGER, title);
-    }
-
-    public static Description description() {
-        return new Description();
+        return new Alert(AlertType.DANGER, title);
     }
 
     // ------------------------------------------------------ instance
 
     public static final String ARIA_CLOSE_BUTTON = "ARIA_CLOSE_BUTTON";
 
-    private final Type type;
+    private final AlertType alertType;
     private final String title;
+    private final HtmlContentBuilder<HTMLParagraphElement> titleElement;
     private Callback callback;
     private Button closeButton;
 
-    Alert(Type type, String title) {
-        super(div().css(component(alert)).aria(label, type.aria).element(), "Alert");
-        this.type = type;
+    Alert(AlertType alertType, String title) {
+        super(div().css(component(alert)).aria(label, alertType.aria).element(), ComponentType.Alert);
+        this.alertType = alertType;
         this.title = title;
+        Ouia.safe(element(), true);
 
-        if (type.modifier != null) {
-            element.classList.add(type.modifier);
+        if (alertType.modifier != null) {
+            element.classList.add(alertType.modifier);
         }
-        add(div().css(component(alert, icon)).add(icon(type.icon).aria(hidden, true_)));
-        add(h(4).css(component(alert, Constants.title)).add(span().css("pf-screen-reader").textContent(type.aria)).add(title));
+        add(div().css(component(alert, icon)).add(icon(alertType.icon).aria(hidden, true)));
+        add(titleElement = p().css(component(alert, Constants.title))
+                .add(span().css(screenReader)
+                        .textContent(alertType.aria + ":"))
+                .add(title));
     }
 
     @Override
@@ -112,19 +111,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlC
 
     // ------------------------------------------------------ public API
 
-    public Alert action(String action, Callback callback) {
-        return action(Button.link(action), callback);
-    }
-
-    public Alert action(HTMLElement action, Callback callback) {
-        bind(action, click, e -> callback.call());
-        return add(div().css(component(alert, Constants.action)).add(action));
-    }
-
-    public <E extends HTMLElement> Alert action(IsElement<E> action, Callback callback) {
-        return action(action.element(), callback);
-    }
-
     public void close() {
         failSafeRemoveFromParent(element);
         if (callback != null) {
@@ -133,17 +119,61 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlC
     }
 
     public Alert closable() {
-        String label = "close " + type.aria + ": " + title;
-        closeButton = Button.icon(icon(fas("times")), label);
-        return action(closeButton.element(), this::close);
+        return closable(null);
     }
 
-    public Alert description(String description) {
-        return add(description().textContent(description));
+    public Alert closable(Callback callback) {
+        return add(div().css(component(alert, Constants.action))
+                .add(closeButton = Button.icon(fas("times"), "close " + alertType.aria + ": " + title)
+                        .on(click, e -> {
+                            if (callback != null) {
+                                callback.call();
+                            }
+                            close();
+                        })));
     }
 
     public Alert inline() {
         return css(modifier(inline));
+    }
+
+    public Alert truncate() {
+        return truncate(1);
+    }
+
+    public Alert truncate(int lines) {
+        titleElement.css(modifier(truncate));
+        if (lines != 1) {
+            titleElement.style("--pf-v5-c-alert__title--max-lines: " + lines);
+        }
+        return this;
+    }
+
+    /**
+     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
+     * action.
+     */
+    public Alert addAction(Button action) {
+        return add(alertActionGroup().add(action));
+    }
+
+    public Alert addActionGroup(AlertActionGroup actionGroup) {
+        return add(actionGroup);
+    }
+
+    /**
+     * Wraps the description inside a {@code
+     *
+    <p/>
+     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
+     * simple string.
+     */
+    public Alert addDescription(String description) {
+        return add(alertDescription().add(p().textContent(description)));
+    }
+
+    public Alert addDescription(AlertDescription description) {
+        return add(description);
     }
 
     // ------------------------------------------------------ aria
@@ -155,7 +185,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlC
 
     @Override
     public Alert label(String target, String label) {
-        if (ARIA_CLOSE_BUTTON.equals(target)) {
+        if (ARIA_CLOSE_BUTTON.equals(target) && closeButton != null) {
             closeButton.label(label);
         }
         return this;
@@ -173,37 +203,5 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements HtmlC
     boolean hasClose() {
         By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
         return Elements.find(element, selector) != null;
-    }
-
-    // ------------------------------------------------------ inner classes
-
-    public static class Description extends ElementBuilder<HTMLDivElement, Description>
-            implements HtmlContent<HTMLDivElement, Description> {
-
-        Description() {
-            super(div().css(component(alert, description)).element());
-        }
-
-        @Override
-        public Description that() {
-            return this;
-        }
-    }
-
-    public enum Type {
-        DEFAULT(fas("bell"), null, "default alert"), INFO(fas("info-circle"), modifier(info), "info alert"), SUCCESS(
-                fas("check-circle"), modifier(success), "success alert"), WARNING(fas("exclamation-triangle"),
-                        modifier(warning),
-                        "warning alert"), DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
-
-        private final String icon;
-        private final String modifier;
-        private final String aria;
-
-        Type(String icon, String modifier, String aria) {
-            this.icon = icon;
-            this.modifier = modifier;
-            this.aria = aria;
-        }
     }
 }

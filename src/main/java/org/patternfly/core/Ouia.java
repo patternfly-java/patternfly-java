@@ -15,6 +15,9 @@
  */
 package org.patternfly.core;
 
+import org.jboss.elemento.Id;
+import org.patternfly.components.ComponentType;
+
 import elemental2.dom.HTMLElement;
 import elemental2.webstorage.Storage;
 import elemental2.webstorage.WebStorageWindow;
@@ -29,22 +32,16 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
-    public static void component(HTMLElement element, String component) {
-        component(element, component, null);
-    }
-
-    public static void component(HTMLElement element, String component, String id) {
-        if (isSupported()) {
-            element.dataset.set("ouiaComponentType", component);
-            if (id != null) {
-                element.dataset.set("ouiaComponentId", id);
-            }
+    public static void component(HTMLElement element, ComponentType componentType) {
+        if (element != null && isSupported()) {
+            element.dataset.set("ouiaComponentType", componentType.componentName);
+            element.dataset.set("ouiaComponentId", Id.unique("ouia", componentType.id));
         }
     }
 
-    public static void id(HTMLElement element, String id) {
-        if (isSupported()) {
-            element.dataset.set("ouiaComponentId", id);
+    public static void safe(HTMLElement element, boolean safe) {
+        if (element != null && isSupported()) {
+            element.dataset.set("ouiaComponentSafe", String.valueOf(safe));
         }
     }
 

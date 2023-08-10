@@ -24,6 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
@@ -87,7 +88,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false_)
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
@@ -95,7 +96,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
             this.plain = null;
             this.text = null;
             this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
-                    .add(icon.aria(hidden, true_)).element();
+                    .add(icon.aria(hidden, true)).element();
             trigger = button;
 
         } else { // text != null
@@ -103,7 +104,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
                 this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain), modifier(Constants.text))
                         .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
                         .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button)).aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true_)).element())
+                                .add(i().css(fas(caretDown)).aria(hidden, true)).element())
                         .element();
                 trigger = this.plain;
 
@@ -111,7 +112,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
                 this.plain = null;
                 this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria(label, text)
                         .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true_))
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true))
                         .element();
                 trigger = button;
             }
@@ -158,7 +159,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     public SingleOptionsMenu<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
         HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Constants.menu, Constants.item))
-                .attr(tabindex, _1).data(singleOptionsMenuItem, itemId).on(click, e -> {
+                .attr(tabindex, -1).data(singleOptionsMenuItem, itemId).on(click, e -> {
                     if (collapseOnSelect) {
                         ceh.collapse(element(), buttonElement(), menuElement());
                     }
@@ -197,7 +198,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
                 if (icon == null) {
                     e.appendChild(
                             Icon.icon(fas(check)).css(component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                                    .aria(hidden, true_).element());
+                                    .aria(hidden, true).element());
                 }
             } else {
                 failSafeRemove(e, icon);

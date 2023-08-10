@@ -78,7 +78,6 @@ import static org.patternfly.resources.Constants.expandable;
 import static org.patternfly.resources.Constants.expandableContent;
 import static org.patternfly.resources.Constants.expandableRow;
 import static org.patternfly.resources.Constants.expanded;
-import static org.patternfly.resources.Constants.false_;
 import static org.patternfly.resources.Constants.grid;
 import static org.patternfly.resources.Constants.icon;
 import static org.patternfly.resources.Constants.indicator;
@@ -461,7 +460,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                     String contentId = Id.build(itemId, expandableContent);
                     e.id = buttonId;
                     e.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
-                    e.setAttribute(ARIA + expanded, false_);
+                    e.setAttribute(ARIA + expanded, false);
                     e.setAttribute(ARIA + controls, contentId);
                     contentRow.id = contentId;
                     contentRow.hidden = true;

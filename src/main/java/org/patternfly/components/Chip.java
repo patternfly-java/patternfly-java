@@ -110,7 +110,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlConten
                             if (callback != null) {
                                 callback.call();
                             }
-                        }).add(i().css(fas("times-circle")).aria(hidden, true_)).element());
+                        }).add(i().css(fas("times-circle")).aria(hidden, true)).element());
             }
         }
     }

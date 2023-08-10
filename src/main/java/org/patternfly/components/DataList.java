@@ -198,7 +198,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
                         String contentId = Id.build(itemId, expandableContent);
                         htmlElement.id = buttonId;
                         htmlElement.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
-                        htmlElement.setAttribute(ARIA + expanded, false_);
+                        htmlElement.setAttribute(ARIA + expanded, false);
                         htmlElement.setAttribute(ARIA + controls, contentId);
                         contentElement.id = contentId;
                         contentElement.hidden = true;
@@ -208,12 +208,12 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
                             if (itemElement.classList.contains(modifier(expanded))) {
                                 // collapse
                                 itemElement.classList.remove(modifier(expanded));
-                                htmlElement.setAttribute(ARIA + expanded, false_);
+                                htmlElement.setAttribute(ARIA + expanded, false);
                                 contentElement.hidden = true;
                             } else {
                                 // expand
                                 itemElement.classList.add(modifier(expanded));
-                                htmlElement.setAttribute(ARIA + expanded, true_);
+                                htmlElement.setAttribute(ARIA + expanded, true);
                                 contentElement.removeAttribute(hidden);
                             }
                         }));

@@ -24,6 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.resources.Constants;
@@ -109,7 +110,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(dropdown, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false_).aria(hasPopup, true_)
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false).aria(hasPopup, true)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         if (splitCheckbox || splitAction) {
@@ -117,13 +118,13 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             toggle = div().css(component(dropdown, Constants.toggle), modifier(splitButton))
                     .add(label().css(component(dropdown, Constants.toggle, check)).apply(l -> l.htmlFor = inputId)
                             .add(div().css(component(check)).add(input = input(checkbox).css(component(check, Constants.input))
-                                    .id(inputId).aria(invalid, false_).aria(Constants.label, "Select").on(change, e -> {
+                                    .id(inputId).aria(invalid, false).aria(Constants.label, "Select").on(change, e -> {
                                         if (onChange != null) {
                                             onChange.accept(((HTMLInputElement) e.target).checked);
                                         }
                                     }).element())))
                     .add(button = buttonBuilder.css(component(dropdown, Constants.toggle, Constants.button))
-                            .aria(Constants.label, "Select").add(i().css(fas(caretDown)).aria(hidden, true_)).element())
+                            .aria(Constants.label, "Select").add(i().css(fas(caretDown)).aria(hidden, true)).element())
                     .element();
 
         } else {
@@ -131,10 +132,10 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             buttonBuilder.css(component(dropdown, Constants.toggle));
             if (text != null) {
                 button = buttonBuilder
-                        .add(i().css(fas(caretDown), component(dropdown, Constants.toggle, Constants.icon)).aria(hidden, true_))
+                        .add(i().css(fas(caretDown), component(dropdown, Constants.toggle, Constants.icon)).aria(hidden, true))
                         .element();
             } else { // icon != null
-                button = buttonBuilder.css(modifier(plain)).aria(Constants.label, "Actions").add(icon.aria(hidden, true_))
+                button = buttonBuilder.css(modifier(plain)).aria(Constants.label, "Actions").add(icon.aria(hidden, true))
                         .element();
             }
             toggle = button;
@@ -363,7 +364,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
 
     private HTMLLIElement newItem(T item) {
         HtmlContentBuilder<HTMLButtonElement> button = button().css(component(dropdown, Constants.menu, Constants.item))
-                .attr(tabindex, _1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
+                .attr(tabindex, -1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
                     if (onSelect != null) {
                         onSelect.onSelect(item);
