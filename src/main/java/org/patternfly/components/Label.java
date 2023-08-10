@@ -16,14 +16,13 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.label;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
 
 /**
  * PatternFly label component.
@@ -50,9 +49,9 @@ public class Label extends BaseComponent<HTMLElement, Label> implements HtmlCont
     }
 
     Label(String text, boolean compact) {
-        super(span().css(component(label)).textContent(text).element(), "Label");
+        super(span().css(component("label")).textContent(text).element(), "Label");
         if (compact) {
-            element.classList.add(modifier(Constants.compact));
+            element.classList.add(modifier(Classes.compact));
         }
     }
 

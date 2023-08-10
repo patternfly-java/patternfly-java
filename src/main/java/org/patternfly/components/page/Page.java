@@ -15,19 +15,21 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLDivElement;
 import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 
+import elemental2.dom.HTMLDivElement;
+
 import static org.jboss.elemento.Elements.*;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.page;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.page;
 
 /**
  * The page component is used to define the basic layout of a page with either vertical or horizontal navigation.
  * <p>
- * Usage: {@snippet class = PageDemo region = page}
+ * Usage:
+ * {@snippet class = PageDemo region = page}
  *
  * @see <a href="https://www.patternfly.org/components/page/html">https://www.patternfly.org/components/page/html</a>
  */

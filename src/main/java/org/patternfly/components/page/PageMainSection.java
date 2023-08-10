@@ -15,29 +15,22 @@
  */
 package org.patternfly.components.page;
 
-import org.patternfly.resources.Alignment;
-import org.patternfly.resources.Breakpoint;
-import org.patternfly.resources.Brightness;
+import org.patternfly.layout.Breakpoint;
+import org.patternfly.layout.Brightness;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.fill;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.noFill;
-import static org.patternfly.resources.Constants.noPadding;
-import static org.patternfly.resources.Constants.padding;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Constants.section;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
  * will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection>
         implements PageSection<HTMLElement, PageMainSection> {
@@ -67,7 +60,7 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
      * modifier.
      */
     public PageMainSection center() {
-        return css(modifier(Alignment.center.modifier));
+        return css(modifier(center));
     }
 
     /**

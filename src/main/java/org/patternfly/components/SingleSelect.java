@@ -32,8 +32,8 @@ import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.CSS;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.Icons;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -55,15 +55,15 @@ import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.EventType.submit;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.option;
-import static org.patternfly.resources.Constants.select;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.singleSelectFilter;
-import static org.patternfly.resources.Dataset.singleSelectItem;
+import static org.patternfly.core.Dataset.singleSelectFilter;
+import static org.patternfly.core.Dataset.singleSelectItem;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.option;
+import static org.patternfly.layout.Classes.select;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Icons.caretDown;
+import static org.patternfly.layout.Icons.check;
+import static org.patternfly.layout.Icons.fas;
 
 /**
  * PatternFly single select component.
@@ -76,8 +76,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     // ------------------------------------------------------ factory methods
 
-    private static final HTMLLIElement NO_RESULTS = li().attr(role, presentation)
-            .add(button().css(component(select, Constants.menu, item), modifier(disabled)).attr(role, option)
+    private static final HTMLLIElement NO_RESULTS = li().attr("role", presentation)
+            .add(button().css(component(select, Classes.menu, item), modifier(disabled)).attr("role", option)
                     .textContent("No results found"))
             .element();
 
@@ -116,16 +116,16 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String buttonId = Id.unique(select, Constants.button);
+        String buttonId = Id.unique(select, Classes.button);
         if (typeahead) {
             HTMLDivElement wrapperElement;
             add(div()
                     .css(component(select, toggle),
-                            modifier(Constants.typeahead))
+                            modifier(Classes.typeahead))
                     .add(wrapperElement = div().css(component(select, toggle, wrapper))
                             .add(form().on(submit, Event::preventDefault)
                                     .add(input = input(InputType.text)
-                                            .css(component(formControl), component(select, toggle, Constants.typeahead))
+                                            .css(component(formControl), component(select, toggle, Classes.typeahead))
                                             .placeholder(text).autocomplete("off").on(keydown, e -> {
                                                 console.log("input keydown(" + e.code + ")");
                                                 onTypeahead(e, ((HTMLInputElement) e.currentTarget).value);
@@ -140,26 +140,26 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                                             }).element()))
                             .element())
                     .add(button = (HTMLButtonElement) Button.icon(icon(fas(caretDown)), "Options menu")
-                            .css(component(select, toggle, Constants.button)).id(buttonId).aria(expanded, false)
+                            .css(component(select, toggle, Classes.button)).id(buttonId).aria("expanded", false)
                             .aria(hasPopup, listbox).on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
                             .element()));
             if (icon != null) {
-                insertFirst(wrapperElement, span().css(component(select, toggle, Constants.icon)).add(icon).element());
+                insertFirst(wrapperElement, span().css(component(select, toggle, "icon")).add(icon).element());
             }
             this.text = null;
         } else {
-            add(button = button().css(component(select, toggle)).id(buttonId).aria(expanded, false).aria(hasPopup, listbox)
+            add(button = button().css(component(select, toggle)).id(buttonId).aria("expanded", false).aria(hasPopup, listbox)
                     .on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
                     .add(div().css(component(select, toggle, wrapper))
-                            .add(this.text = span().css(component(select, toggle, Constants.text)).textContent(text).element()))
-                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria(hidden, true)).element());
+                            .add(this.text = span().css(component(select, toggle, Classes.text)).textContent(text).element()))
+                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria("hidden", true)).element());
             if (icon != null) {
-                insertBefore(span().css(component(select, toggle, Constants.icon)).add(icon.aria(hidden, true)).element(),
+                insertBefore(span().css(component(select, toggle, "icon")).add(icon.aria("hidden", true)).element(),
                         this.text);
             }
             this.input = null;
         }
-        add(menu = ul().css(component(select, Constants.menu)).hidden(true).aria(labelledBy, buttonId).attr(role, listbox)
+        add(menu = ul().css(component(select, Classes.menu)).hidden(true).aria(labelledBy, buttonId).attr("role", listbox)
                 .element());
 
     }
@@ -195,8 +195,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     public SingleSelect<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(select, Constants.menu, Constants.item))
-                .attr(role, option).data(singleSelectItem, itemId).on(click, e -> {
+        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(select, Classes.menu, Classes.item))
+                .attr("role", option).data(singleSelectItem, itemId).on(click, e -> {
                     ceh.collapse(element, buttonElement(), menuElement());
                     select(item);
                 });
@@ -205,7 +205,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             String filter = typeaheadFilter != null ? typeaheadFilter.apply(item) : itemDisplay.asString.apply(item);
             button.data(singleSelectFilter, filter);
         }
-        menu.appendChild(li().attr(role, presentation).add(button).element());
+        menu.appendChild(li().attr("role", presentation).add(button).element());
         return this;
     }
 
@@ -226,8 +226,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
             if (itemId.equals(e.dataset.get(singleSelectItem))) {
                 e.classList.add(modifier(selected));
                 if (icon == null) {
-                    e.appendChild(icon(fas(check)).css(component(select, Constants.menu, Constants.item, Constants.icon))
-                            .aria(hidden, true).element());
+                    e.appendChild(icon(fas(check)).css(component(select, Classes.menu, Classes.item, "icon"))
+                            .aria("hidden", true).element());
                 }
             } else {
                 e.classList.remove(modifier(selected));
@@ -269,7 +269,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     // ------------------------------------------------------ modifier
 
     public SingleSelect<T> up() {
-        element.classList.add(CSS.modifier(Constants.top));
+        element.classList.add(modifier(Classes.top));
         return this;
     }
 

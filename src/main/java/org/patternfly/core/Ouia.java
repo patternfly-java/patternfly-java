@@ -25,10 +25,11 @@ import elemental2.webstorage.WebStorageWindow;
 import static elemental2.dom.DomGlobal.window;
 
 /**
- * Support for OUIA tests.
+ * Support for Open UI Automation.
  *
+ * @see <a href= "https://ouia.readthedocs.io/">https://ouia.readthedocs.io/</a>
  * @see <a href=
- *      "https://forum.patternfly.org/t/open-web-ui-design-specification-for-enabling-automation-ouia/154">https://forum.patternfly.org/t/open-web-ui-design-specification-for-enabling-automation-ouia/154</a>
+ *      "https://www.patternfly.org/developer-resources/open-ui-automation">https://www.patternfly.org/developer-resources/open-ui-automation</a>
  */
 public final class Ouia {
 
@@ -36,6 +37,7 @@ public final class Ouia {
         if (element != null && isSupported()) {
             element.dataset.set("ouiaComponentType", componentType.componentName);
             element.dataset.set("ouiaComponentId", Id.unique("ouia", componentType.id));
+            element.dataset.set("ouiaComponentSafe", "true");
         }
     }
 

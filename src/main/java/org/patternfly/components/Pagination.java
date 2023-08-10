@@ -23,6 +23,7 @@ import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.dataprovider.PageInfo;
+import org.patternfly.layout.Icons;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -33,13 +34,9 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.InputType.number;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.nav;
-import static org.patternfly.resources.Constants.select;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.select;
+import static org.patternfly.layout.Icons.*;
 
 /**
  * PatternFly pagination component.
@@ -90,17 +87,18 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
 
         element.appendChild(infoElement);
         element.appendChild(pageSizeMenu.element());
-        element.appendChild(nav().css(component(pagination, nav))
-                .add(firstPageButton = Button.icon(icon(fas("angle-double-left")), "Go to first page").onClick(() -> {
+        element.appendChild(nav().css(component(pagination, "nav"))
+                .add(firstPageButton = Button.icon(icon(fas(angleDoubleLeft)), "Go to first page").onClick(() -> {
                     if (firstPageHandler != null) {
                         firstPageHandler.call();
                     }
-                })).add(previousPageButton = Button.icon(icon(fas("angle-left")), "Go to previous page").onClick(() -> {
+                })).add(previousPageButton = Button.icon(icon(fas(Icons.angleLeft)), "Go to previous page").onClick(() -> {
                     if (previousPageHandler != null) {
                         previousPageHandler.call();
                     }
-                })).add(navPageSelect = div().css(component(pagination, nav, page, select)).add(gotoPageInput = input(number)
-                        .css(component(formControl)).aria(label, "Current page").min(1).on(EventType.change, e -> {
+                }))
+                .add(navPageSelect = div().css(component(pagination, "nav", "page", select)).add(gotoPageInput = input(number)
+                        .css(component(formControl)).aria("label", "Current page").min(1).on(EventType.change, e -> {
                             if (gotoPageHandler != null) {
                                 try {
                                     int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
@@ -108,12 +106,12 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
                                 } catch (NumberFormatException ignored) {
                                 }
                             }
-                        }).element()).add(pagesElement = span().aria(hidden, true).element()).element())
-                .add(nextPageButton = Button.icon(icon(fas("angle-right")), "Go to next page").onClick(() -> {
+                        }).element()).add(pagesElement = span().aria("hidden", true).element()).element())
+                .add(nextPageButton = Button.icon(icon(fas(angleRight)), "Go to next page").onClick(() -> {
                     if (nextPageHandler != null) {
                         nextPageHandler.call();
                     }
-                })).add(lastPageButton = Button.icon(icon(fas("angle-double-right")), "Go to last page").onClick(() -> {
+                })).add(lastPageButton = Button.icon(icon(fas(angleDoubleRight)), "Go to last page").onClick(() -> {
                     if (lastPageHandler != null) {
                         lastPageHandler.call();
                     }

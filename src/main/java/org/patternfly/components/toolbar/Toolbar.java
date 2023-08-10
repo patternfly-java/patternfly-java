@@ -13,27 +13,30 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.toolbar;
 
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.layout.Classes;
+import org.patternfly.components.BaseComponent;
+import org.patternfly.components.ComponentType;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.tools;
+import static org.patternfly.layout.Classes.toolbar;
 
-public class OldPageTools
-        extends ElementBuilder<HTMLDivElement, OldPageTools> implements HtmlContent<HTMLDivElement, OldPageTools> {
+public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> implements HtmlContent<HTMLDivElement, Toolbar> {
 
-    protected OldPageTools() {
-        super(div().css(component("page", Classes.header, tools)).element());
+    public static Toolbar toolbar() {
+        return new Toolbar();
+    }
+
+    Toolbar() {
+        super(div().css(component(toolbar)).element(), ComponentType.Toolbar);
     }
 
     @Override
-    public OldPageTools that() {
+    public Toolbar that() {
         return this;
     }
 }

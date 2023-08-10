@@ -17,9 +17,9 @@ package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
-import org.patternfly.resources.CSS;
-import org.patternfly.resources.Constants;
-import org.patternfly.resources.Theme;
+import org.patternfly.components.navigation.Navigation;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.Theme;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -27,12 +27,9 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.aside;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.collapsed;
-import static org.patternfly.resources.Constants.expanded;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Theme.DARK;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Theme.DARK;
 
 public class OldPageSidebar extends BaseComponent<HTMLElement, OldPageSidebar>
         implements HtmlContent<HTMLElement, OldPageSidebar> {
@@ -42,12 +39,12 @@ public class OldPageSidebar extends BaseComponent<HTMLElement, OldPageSidebar>
     private Navigation navigation;
 
     protected OldPageSidebar(Theme theme) {
-        super(aside().css(CSS.component(page, Constants.sidebar)).element(), "PageSidebar");
+        super(aside().css(Classes.component("page", "sidebar")).element(), "PageSidebar");
         this.theme = theme;
         if (theme == DARK) {
             css(modifier("dark"));
         }
-        add(body = div().css(component(page, Constants.sidebar, Constants.body)));
+        add(body = div().css(component("page", "sidebar", "body")));
     }
 
     @Override
@@ -82,20 +79,20 @@ public class OldPageSidebar extends BaseComponent<HTMLElement, OldPageSidebar>
     // ------------------------------------------------------ internals
 
     void toggle() {
-        if (element.classList.contains(modifier(collapsed))) {
+        if (element.classList.contains(modifier("collapsed"))) {
             expand();
-        } else if (element.classList.contains(modifier(expanded))) {
+        } else if (element.classList.contains(modifier("expanded"))) {
             collapse();
         }
     }
 
     void expand() {
-        element.classList.remove(modifier(collapsed));
-        element.classList.add(modifier(expanded));
+        element.classList.remove(modifier("collapsed"));
+        element.classList.add(modifier("expanded"));
     }
 
     void collapse() {
-        element.classList.remove(modifier(expanded));
-        element.classList.add(modifier(collapsed));
+        element.classList.remove(modifier("expanded"));
+        element.classList.add(modifier("collapsed"));
     }
 }

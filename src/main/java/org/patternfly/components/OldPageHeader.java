@@ -18,8 +18,8 @@ package org.patternfly.components;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.Id;
-import org.patternfly.resources.CSS;
-import org.patternfly.resources.Constants;
+import org.patternfly.components.navigation.Navigation;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -29,9 +29,10 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.bars;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.*;
 
 public class OldPageHeader
         extends BaseComponent<HTMLElement, OldPageHeader> implements HtmlContent<HTMLElement, OldPageHeader> {
@@ -43,17 +44,17 @@ public class OldPageHeader
     private OldPageSidebar sidebar;
 
     protected OldPageHeader(HTMLElement brand, String homeLink) {
-        super(Elements.header().css(CSS.component(page, header)).attr(role, banner).element(), "PageHeader");
-        add(div().css(component(page, header, Constants.brand))
-                .add(toggleContainer = div().css(component(page, header, Constants.brand, toggle))
-                        .add(toggleButton = Button.icon(icon(fas("bars")), "Global Navigation").aria(expanded, false)
+        super(Elements.header().css(component("page", header)).attr("role", banner).element(), "PageHeader");
+        add(div().css(component("page", header, Classes.brand))
+                .add(toggleContainer = div().css(component("page", header, Classes.brand, toggle))
+                        .add(toggleButton = Button.icon(icon(fas(bars)), "Global Navigation").aria("expanded", false)
                                 .onClick(() -> {
                                     if (sidebar != null) {
                                         sidebar.toggle();
                                     }
                                 }))
                         .element())
-                .add(a(homeLink).css(component(page, header, Constants.brand, link)).add(brand)));
+                .add(a(homeLink).css(component("page", header, Classes.brand, link)).add(brand)));
         hideSidebarToggle();
     }
 
@@ -68,7 +69,7 @@ public class OldPageHeader
     public OldPageHeader add(Navigation navigation) {
         failSafeRemoveFromParent(this.navigation);
         this.navigation = navigation;
-        return add(div().css(component(page, header, nav)).add(navigation));
+        return add(div().css(component("page", header, "nav")).add(navigation));
     }
 
     /** Adds the given tools and removes the previous one (if any). */
@@ -93,17 +94,17 @@ public class OldPageHeader
             this.sidebar = sidebar;
             String sidebarId = sidebar.element().id;
             if (sidebarId == null || sidebarId.length() == 0) {
-                sidebarId = Id.unique(Constants.sidebar);
+                sidebarId = Id.unique("sidebar");
                 sidebar.id(sidebarId);
             }
-            toggleButton.aria(expanded, false);
+            toggleButton.aria("expanded", false);
             toggleButton.aria(controls, sidebarId);
         }
     }
 
     void unregisterSidebar() {
         this.sidebar = null;
-        toggleButton.aria(expanded, false);
+        toggleButton.aria("expanded", false);
         toggleButton.element().removeAttribute("aria-controls");
         hideSidebarToggle();
     }

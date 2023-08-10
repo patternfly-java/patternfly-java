@@ -13,21 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.layout;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.bottom;
-import static org.patternfly.layout.Classes.left;
-import static org.patternfly.layout.Classes.right;
-import static org.patternfly.layout.Classes.top;
+public enum Sticky {
 
-/** Position used by {@link Popover} and {@link Tooltip}. */
-enum Position {
-    AUTO(""), TOP(modifier(top)), RIGHT(modifier(right)), BOTTOM(modifier(bottom)), LEFT(modifier(left));
+    top("sticky-top"),
 
-    final String modifier;
+    bottom("sticky-bottom");
 
-    Position(String modifier) {
-        this.modifier = modifier;
+    public final String value;
+    public final String modifier;
+
+    Sticky(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
+
+    public String onHeight(Breakpoint breakpoint) {
+        return Classes.modifier(value, breakpoint) + "-height";
     }
 }

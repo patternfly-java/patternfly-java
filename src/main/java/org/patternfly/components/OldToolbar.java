@@ -42,12 +42,13 @@ import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
+import org.patternfly.layout.Icons;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
@@ -57,10 +58,12 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Icons.filter;
+import static org.patternfly.layout.Icons.sortAmountDown;
 
 /**
  * PatternFly data toolbar component.
@@ -212,7 +215,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
             String expandableContentId = Id.unique(dataToolbar, expandableContent);
             HTMLElement expandableContentGroup = group().element();
             HtmlContentBuilder<HTMLDivElement> expandableContent = div()
-                    .css(component(dataToolbar, Constants.expandableContent)).id(expandableContentId)
+                    .css(component(dataToolbar, Classes.expandableContent)).id(expandableContentId)
                     .add(expandableContentGroup);
             setVisible(expandableContent.element(), false);
             toggleGroupParent.appendChild(expandableContent.element());
@@ -221,7 +224,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
             HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
             if (e != null) {
                 HtmlContentBuilder<HTMLButtonElement> button = button(e);
-                button.aria(hasPopup, false).aria(expanded, false).aria(controls, expandableContentId);
+                button.aria(hasPopup, false).aria("expanded", false).aria(controls, expandableContentId);
                 handler.add(bind(button.element(), click, evt -> {
                     boolean expanded = parseBoolean(button.element().getAttribute("aria-expanded"));
                     if (expanded) {
@@ -231,8 +234,8 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
                         for (HTMLElement element : children(expandableContentGroup)) {
                             htmlElement.appendChild(element);
                         }
-                        button.aria(Constants.expanded, false);
-                        expandableContent.toggle(modifier(Constants.expanded));
+                        button.aria("expanded", false);
+                        expandableContent.toggle(modifier("expanded"));
                         setVisible(expandableContent.element(), false);
                     } else {
                         // expand:
@@ -244,8 +247,8 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
                             }
                             expandableContentGroup.appendChild(element);
                         }
-                        button.aria(Constants.expanded, true);
-                        expandableContent.toggle(modifier(Constants.expanded));
+                        button.aria("expanded", true);
+                        expandableContent.toggle(modifier("expanded"));
                         setVisible(expandableContent.element(), true);
                     }
                 }));
@@ -308,7 +311,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         private final List<Item> items;
 
         protected Group() {
-            super(div().css(component(dataToolbar, group)).element());
+            super(div().css(component(dataToolbar, "group")).element());
             groups = new ArrayList<>();
             items = new ArrayList<>();
         }
@@ -412,7 +415,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
                         .onLastPage(toolbar.dataProvider::gotoLastPage).onGotoPage(toolbar.dataProvider::gotoPage)
                         .onPageSize(toolbar.dataProvider::setPageSize);
             });
-            return css(modifier(Constants.pagination)).add(pagination.element());
+            return css(modifier(Classes.pagination)).add(pagination.element());
         }
 
         public Item separator() {
@@ -541,7 +544,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
             this.sortDirection = new MultiOptionsMenu.Group<SortDirection>("Sort direction")
                     .display((html, sortDirection) -> html.textContent(sortDirection.text)).add(SortDirection.ASCENDING)
                     .add(SortDirection.DESCENDING);
-            this.mom = MultiOptionsMenu.icon(Icon.icon(fas("sort-amount-down")));
+            this.mom = MultiOptionsMenu.icon(Icon.icon(fas(sortAmountDown)));
 
             mom.add(sortBy);
             mom.add(sortDirection);

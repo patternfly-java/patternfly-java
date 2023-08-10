@@ -20,8 +20,8 @@ import org.jboss.elemento.HtmlContent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.content;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.content;
 
 /**
  * PatternFly content component.

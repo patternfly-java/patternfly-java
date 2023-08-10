@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.alert;
 
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
@@ -21,24 +21,23 @@ import org.jboss.elemento.HtmlContent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.actionGroup;
-import static org.patternfly.resources.Constants.alert;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.alert;
+import static org.patternfly.layout.Classes.description;
 
-public class AlertActionGroup extends ElementBuilder<HTMLDivElement, AlertActionGroup>
-        implements HtmlContent<HTMLDivElement, AlertActionGroup> {
+public class AlertDescription extends ElementBuilder<HTMLDivElement, AlertDescription>
+        implements HtmlContent<HTMLDivElement, AlertDescription> {
 
-    public static AlertActionGroup alertActionGroup() {
-        return new AlertActionGroup();
+    public static AlertDescription alertDescription() {
+        return new AlertDescription();
     }
 
-    AlertActionGroup() {
-        super(div().css(component(alert, actionGroup)).element());
+    AlertDescription() {
+        super(div().css(component(alert, description)).element());
     }
 
     @Override
-    public AlertActionGroup that() {
+    public AlertDescription that() {
         return this;
     }
-
 }

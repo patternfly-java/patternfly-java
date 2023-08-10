@@ -13,9 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.resources;
+package org.patternfly.layout;
 
-public interface Texts {
+public enum Size {
 
-    String skipToContent = "Skip to content";
+    sm("sm"),
+
+    md("md"),
+
+    lg("lg"),
+
+    xl("xl"),
+
+    _2xl("2xl"),
+
+    _3xl("3xl"),
+
+    _4xl("4xl");
+
+    public final String value;
+    public final String modifier;
+
+    Size(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
 }

@@ -24,25 +24,26 @@ import org.jboss.elemento.Id;
 import elemental2.dom.HTMLElement;
 
 /** Reusable class for typed components to customize the item ID, string value and display. */
-class ItemDisplay<E extends HTMLElement, T> {
+public class ItemDisplay<E extends HTMLElement, T> {
 
-    Function<T, String> identifier;
-    Function<T, String> asString;
-    BiConsumer<HtmlContentBuilder<E>, T> display;
+    public Function<T, String> identifier;
+    public Function<T, String> asString;
+    public BiConsumer<HtmlContentBuilder<E>, T> display;
 
-    ItemDisplay() {
+    public ItemDisplay() {
         this.identifier = item -> Id.build(String.valueOf(item));
         this.asString = String::valueOf;
         this.display = (element, item) -> element.textContent(asString.apply(item));
     }
 
-    ItemDisplay(Function<T, String> identifier, Function<T, String> asString, BiConsumer<HtmlContentBuilder<E>, T> display) {
+    public ItemDisplay(Function<T, String> identifier, Function<T, String> asString,
+            BiConsumer<HtmlContentBuilder<E>, T> display) {
         this.identifier = identifier;
         this.asString = asString;
         this.display = display;
     }
 
-    String itemId(T item) {
+    public String itemId(T item) {
         return Id.build(identifier.apply(item));
     }
 }

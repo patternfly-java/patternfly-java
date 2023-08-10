@@ -23,7 +23,6 @@ import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.components.Button.link;
-import static org.patternfly.resources.Texts.skipToContent;
 
 /**
  * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.
@@ -34,13 +33,26 @@ import static org.patternfly.resources.Texts.skipToContent;
 public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent>
         implements HtmlContent<HTMLDivElement, SkipToContent> {
 
+    // ------------------------------------------------------ factory methods
+
+    /**
+     * Creates a new component with the given main ID and a default text.
+     */
     public static SkipToContent skipToContent(String mainId) {
-        return new SkipToContent(mainId);
+        return new SkipToContent(mainId, "Skip to content");
     }
 
-    SkipToContent(String mainId) {
-        super(div().add(link(skipToContent, "#" + mainId).primary()).element(),
-                ComponentType.SkipToContent);
+    /**
+     * Creates a new component with the given main ID and a text.
+     */
+    public static SkipToContent skipToContent(String mainId, String text) {
+        return new SkipToContent(mainId, text);
+    }
+
+    // ------------------------------------------------------ instance
+
+    SkipToContent(String mainId, String text) {
+        super(div().add(link(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
     }
 
     @Override

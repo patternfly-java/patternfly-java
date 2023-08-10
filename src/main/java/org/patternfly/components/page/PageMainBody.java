@@ -15,24 +15,26 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLDivElement;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
 
+import elemental2.dom.HTMLDivElement;
+
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.body;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.page;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.body;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.page;
 
 /**
  * Container for the body of a {@link PageSection} container. Required if the {@link PageSection} has a
  * {@link PageSectionBuilder#limitWidth()} modifier.
  * <p>
- * Usage: {@snippet class = PageDemo region = pageMainBody}
+ * Usage:
+ * {@snippet class = PageDemo region = pageMainBody}
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainBody extends ElementBuilder<HTMLDivElement, PageMainBody>
         implements HtmlContent<HTMLDivElement, PageMainBody> {

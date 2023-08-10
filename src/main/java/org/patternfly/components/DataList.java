@@ -31,12 +31,13 @@ import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.input;
@@ -45,14 +46,13 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.body;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.dataListItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.angleRight;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.core.Dataset.dataListItem;
 
 /**
  * PatternFly data list.
@@ -128,7 +128,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     private HandlerRegistration expandHandler;
 
     protected DataList(DataProvider<T> dataProvider, Display<T> display) {
-        super(ul().css(component(dataList)).attr(role, list).element(), "DataList");
+        super(ul().css(component(dataList)).attr("role", list).element(), "DataList");
         this.dataProvider = dataProvider;
         this.display = display;
         this.itemSelect = new ItemSelect(element);
@@ -149,7 +149,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
         for (T item : items) {
             String id = dataProvider.getId(item);
-            HtmlContentBuilder<HTMLLIElement> li = li().css(component(dataList, Constants.item)).data(dataListItem, id)
+            HtmlContentBuilder<HTMLLIElement> li = li().css(component(dataList, Classes.item)).data(dataListItem, id)
                     .aria(labelledBy, id);
             display.render(li, dataProvider, item);
             add(li);
@@ -198,23 +198,23 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
                         String contentId = Id.build(itemId, expandableContent);
                         htmlElement.id = buttonId;
                         htmlElement.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
-                        htmlElement.setAttribute(ARIA + expanded, false);
+                        htmlElement.setAttribute(ARIA + "expanded", false);
                         htmlElement.setAttribute(ARIA + controls, contentId);
                         contentElement.id = contentId;
                         contentElement.hidden = true;
-                        contentElement.setAttribute(ARIA + label, "Details");
+                        contentElement.setAttribute(ARIA + "label", "Details");
 
                         handler.add(bind(htmlElement, click, evt -> {
-                            if (itemElement.classList.contains(modifier(expanded))) {
+                            if (itemElement.classList.contains(modifier("expanded"))) {
                                 // collapse
-                                itemElement.classList.remove(modifier(expanded));
-                                htmlElement.setAttribute(ARIA + expanded, false);
+                                itemElement.classList.remove(modifier("expanded"));
+                                htmlElement.setAttribute(ARIA + "expanded", false);
                                 contentElement.hidden = true;
                             } else {
                                 // expand
-                                itemElement.classList.add(modifier(expanded));
-                                htmlElement.setAttribute(ARIA + expanded, true);
-                                contentElement.removeAttribute(hidden);
+                                itemElement.classList.add(modifier("expanded"));
+                                htmlElement.setAttribute(ARIA + "expanded", true);
+                                contentElement.removeAttribute("hidden");
                             }
                         }));
                     }
@@ -279,7 +279,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
         /** Adds an expandable icon. */
         public ItemControl expandable() {
-            Icon icon = icon(fas(angleRight) + " " + component(dataList, toggle, Constants.icon));
+            Icon icon = icon(fas(angleRight) + " " + component(dataList, toggle, "icon"));
             return (add(div().css(component(dataList, toggle)).add(Button.icon(icon, "Toggle details"))));
         }
 
@@ -345,7 +345,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
             implements HtmlContent<HTMLDivElement, ExpandableBody> {
 
         protected ExpandableBody() {
-            super(div().css(component(dataList, expandableContent, body)).element());
+            super(div().css(component(dataList, expandableContent, "body")).element());
         }
 
         @Override

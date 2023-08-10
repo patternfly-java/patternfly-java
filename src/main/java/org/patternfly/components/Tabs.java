@@ -25,22 +25,24 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.Aria;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.label;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.angleLeft;
+import static org.patternfly.layout.Icons.angleRight;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * PatternFly label component.
@@ -67,12 +69,12 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlCon
 
     protected Tabs() {
         super(div().element(), "Tabs");
-        this.scrollLeft = button().css(component(Constants.tabs, scrollButton)).aria(label, "Scroll left")
+        this.scrollLeft = button().css(component("tabs", scrollButton)).aria("label", "Scroll left")
                 .add(Icon.icon(fas(angleLeft))).element();
-        this.scrollRight = button().css(component(Constants.tabs, scrollButton)).aria(label, "Scroll right")
+        this.scrollRight = button().css(component("tabs", scrollButton)).aria("label", "Scroll right")
                 .add(Icon.icon(fas(angleRight))).element();
-        this.tabs = ul().css(component(Constants.tabs, list));
-        add(div().css(component(Constants.tabs)).add(scrollLeft).add(tabs).add(scrollRight));
+        this.tabs = ul().css(component("tabs", list));
+        add(div().css(component("tabs")).add(scrollLeft).add(tabs).add(scrollRight));
     }
 
     @Override
@@ -112,13 +114,13 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlCon
         String tabId = Id.build(id, tab);
         String contentId = Id.build(id, content);
 
-        HtmlContentBuilder<HTMLButtonElement> tab = button().css(component(Constants.tabs, Constants.button)).id(tabId)
+        HtmlContentBuilder<HTMLButtonElement> tab = button().css(component("tabs", Classes.button)).id(tabId)
                 .aria(controls, contentId).on(click, e -> select(id));
         tabDisplay.accept(tab);
-        tabs.add(li().css(component(Constants.tabs, item)).add(tab));
+        tabs.add(li().css(component("tabs", item)).add(tab));
 
         HtmlContentBuilder<HTMLElement> panel = section().css(component(tabContent)).id(contentId).aria(labelledBy, tabId)
-                .attr(role, tabpanel).attr(tabindex, 0);
+                .attr("role", tabpanel).attr("tabindex", 0);
         panelDisplay.accept(panel);
         panel.element().hidden = true;
         add(panel);
@@ -164,7 +166,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlCon
     // ------------------------------------------------------ modifier
 
     public Tabs fill() {
-        return css(modifier(fill));
+        return css(modifier("fill"));
     }
 
     // ------------------------------------------------------ aria
@@ -178,10 +180,10 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements HtmlCon
     public Tabs label(String target, String label) {
         switch (target) {
             case ARIA_SCROLL_LEFT:
-                button(scrollLeft).aria(Constants.label, label);
+                button(scrollLeft).aria("label", label);
                 break;
             case ARIA_SCROLL_RIGHT:
-                button(scrollRight).aria(Constants.label, label);
+                button(scrollRight).aria("label", label);
                 break;
         }
         return this;

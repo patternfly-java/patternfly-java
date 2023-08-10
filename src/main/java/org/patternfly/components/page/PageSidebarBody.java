@@ -15,14 +15,15 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
 
+import elemental2.dom.HTMLElement;
+
 import static org.jboss.elemento.Elements.aside;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * Container within the {@link PageSidebar} to hold content. Note: By default, the last/only body will grow to fill the

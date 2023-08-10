@@ -22,9 +22,8 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLFormElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.form;
-import static org.patternfly.resources.Constants.group;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.form;
 
 /**
  * PatternFly form component.
@@ -60,7 +59,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements HtmlCo
     public static class Group extends BaseComponent<HTMLDivElement, Group> implements HtmlContent<HTMLDivElement, Group> {
 
         protected Group() {
-            super(div().css(component(form, group)).element(), "FormGroup");
+            super(div().css(component(form, "group")).element(), "FormGroup");
         }
 
         @Override

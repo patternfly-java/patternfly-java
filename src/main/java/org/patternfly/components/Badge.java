@@ -16,16 +16,16 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.badge;
-import static org.patternfly.resources.Constants.read;
-import static org.patternfly.resources.Constants.unread;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.badge;
+import static org.patternfly.layout.Classes.read;
+import static org.patternfly.layout.Classes.unread;
 
 /**
  * PatternFly badge component.
@@ -64,7 +64,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements HtmlCont
     }
 
     Badge(String text, boolean read) {
-        super(span().css(component(badge), read ? modifier(Constants.read) : modifier(unread)).textContent(text).element(),
+        super(span().css(component(badge), read ? modifier(Classes.read) : modifier(unread)).textContent(text).element(),
                 "Badge");
     }
 

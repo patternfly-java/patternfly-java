@@ -30,15 +30,15 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.components.Card.card;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.layout;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.actions;
-import static org.patternfly.resources.Constants.card;
-import static org.patternfly.resources.Constants.gallery;
-import static org.patternfly.resources.Constants.gutter;
-import static org.patternfly.resources.Constants.head;
-import static org.patternfly.resources.Dataset.cardViewItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.layout;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.actions;
+import static org.patternfly.layout.Classes.card;
+import static org.patternfly.layout.Classes.gallery;
+import static org.patternfly.layout.Classes.gutter;
+import static org.patternfly.layout.Classes.head;
+import static org.patternfly.core.Dataset.cardViewItem;
 
 /**
  * PatternFly card view.

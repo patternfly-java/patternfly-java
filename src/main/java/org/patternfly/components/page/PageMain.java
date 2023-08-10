@@ -15,25 +15,27 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
 
+import elemental2.dom.HTMLElement;
+
 import static org.jboss.elemento.Elements.main;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Constants.role;
-import static org.patternfly.resources.Constants.tabindex;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Constants.role;
+import static org.patternfly.layout.Constants.tabindex;
 
 /**
  * Container for the main page area. The page main container typically contains multiple {@link PageMainGroup}s and/or
  * {@link PageMainSection}s.
  * <p>
- * Usage: {@snippet class = PageDemo region = pageMain}
+ * Usage:
+ * {@snippet class = PageDemo region = pageMain}
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMain extends ElementBuilder<HTMLElement, PageMain>
         implements HtmlContent<HTMLElement, PageMain> {

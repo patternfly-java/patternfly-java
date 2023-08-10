@@ -16,13 +16,12 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Size;
+import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.title;
+import static org.patternfly.layout.Classes.component;
 
 /**
  * PatternFly title component.
@@ -45,7 +44,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements H
     // ------------------------------------------------------ instance
 
     protected Title(int level, String text, Size size) {
-        super(h(level, text).css(component(title)).element(), "Title");
+        super(h(level, text).css(component("title")).element(), "Title");
         if (size != null) {
             css(size.modifier);
         }

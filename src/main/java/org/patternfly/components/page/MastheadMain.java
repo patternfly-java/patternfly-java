@@ -21,9 +21,9 @@ import org.jboss.elemento.HtmlContent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.masthead;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.masthead;
 
 /**
  * Container for the main area of a {@link Masthead} component. This container represents the smaller area taken up by a logo,

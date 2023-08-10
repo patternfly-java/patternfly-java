@@ -16,13 +16,13 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Size;
+import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.*;
 
 public class Spinner extends BaseComponent<HTMLElement, Spinner> implements HtmlContent<HTMLElement, Spinner> {
 
@@ -44,7 +44,7 @@ public class Spinner extends BaseComponent<HTMLElement, Spinner> implements Html
             css().add(size.modifier);
         }
         aria(valueText, "Loading...");
-        attr(role, progressbar);
+        attr("role", progressbar);
         add(span().css(component(spinner, clipper)));
         add(span().css(component(spinner, leadBall)));
         add(span().css(component(spinner, tailBall)));

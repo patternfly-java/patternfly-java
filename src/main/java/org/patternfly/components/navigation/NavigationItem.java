@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.navigation;
 
 import java.util.Objects;
 
@@ -22,9 +22,9 @@ public class NavigationItem {
     public static final NavigationItem SEPARATOR = new NavigationItem("org.patternfly.navigationItem.separator",
             "NavigationItem");
 
-    private final String id;
-    private String title;
-    private String href;
+    public final String id;
+    public String title;
+    public String href;
 
     public NavigationItem(String id, String title) {
         this(id, title, null);
@@ -55,26 +55,6 @@ public class NavigationItem {
 
     @Override
     public String toString() {
-        return getTitle();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
     }
 }

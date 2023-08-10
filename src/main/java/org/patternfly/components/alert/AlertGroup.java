@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.alert;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +23,9 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
-import org.patternfly.resources.Constants;
-import org.patternfly.resources.Dataset;
+import org.patternfly.components.BaseComponent;
+import org.patternfly.layout.Classes;
+import org.patternfly.core.Dataset;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
@@ -38,10 +39,10 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.alertGroup;
-import static org.patternfly.resources.Dataset.alert;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.alertGroup;
+import static org.patternfly.core.Dataset.alert;
 
 /**
  * PatternFly alert group component.
@@ -60,7 +61,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     public static AlertGroup toast() {
         if (toast == null) {
             toast = new AlertGroup(DEFAULT_TIMEOUT);
-            toast.element.classList.add(modifier(Constants.toast));
+            toast.element.classList.add(modifier(Classes.toast));
         }
         return toast;
     }
@@ -98,7 +99,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
             alert.on(mouseout, e -> startMessageTimeout(id));
         }
 
-        HTMLLIElement item = li().css(component(alertGroup, Constants.item)).add(alert).element();
+        HTMLLIElement item = li().css(component(alertGroup, Classes.item)).add(alert).element();
         if (this == toast && !alert.hasClose()) {
             alert.closable();
             insertFirst(element, item);

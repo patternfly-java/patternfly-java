@@ -29,24 +29,26 @@ import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.multiOptionsMenuCheck;
-import static org.patternfly.resources.Dataset.multiOptionsMenuItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.caretDown;
+import static org.patternfly.layout.Icons.check;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.core.Dataset.multiOptionsMenuCheck;
+import static org.patternfly.core.Dataset.multiOptionsMenuItem;
 
 /**
  * PatternFly options menu (grouped, single selection).
@@ -84,39 +86,39 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         this.ceh = new CollapseExpandHandler();
         this.collapseOnSelect = false;
 
-        String buttonId = Id.unique(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false)
+        String buttonId = Id.unique(optionsMenu, Classes.button);
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
         if (icon != null) {
             this.plain = null;
-            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
-                    .add(icon.aria(hidden, true)).element();
+            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Classes.plain))
+                    .add(icon.aria("hidden", true)).element();
             trigger = button;
 
         } else { // text != null
             if (plain) {
-                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain), modifier(Constants.text))
-                        .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button)).aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true)).element())
+                this.plain = div().css(component(optionsMenu, toggle), modifier(Classes.plain), modifier(Classes.text))
+                        .add(span().css(component(optionsMenu, toggle, Classes.text)).textContent(text))
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button)).aria("label", text)
+                                .add(i().css(fas(caretDown)).aria("hidden", true)).element())
                         .element();
                 trigger = this.plain;
 
             } else {
                 this.plain = null;
-                this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria(label, text)
-                        .add(span().css(component(optionsMenu, toggle, Constants.text)).textContent(text))
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true))
+                this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria("label", text)
+                        .add(span().css(component(optionsMenu, toggle, Classes.text)).textContent(text))
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, "icon")).aria("hidden", true))
                         .element();
                 trigger = button;
             }
         }
 
         add(trigger);
-        add(menu = div().css(component(optionsMenu, Constants.menu)).hidden(true).aria(labelledBy, buttonId)
-                .attr(role, Constants.menu).element());
+        add(menu = div().css(component(optionsMenu, Classes.menu)).hidden(true).aria(labelledBy, buttonId)
+                .attr("role", Classes.menu).element());
     }
 
     @Override
@@ -137,13 +139,13 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
     public <T> GroupedOptionsMenu add(Group<T> group) {
 
         if (menu.childNodes.length != 0) {
-            menu.appendChild(li().css(component(optionsMenu, separator)).attr(role, separator).element());
+            menu.appendChild(li().css(component(optionsMenu, separator)).attr("role", separator).element());
         }
-        menu.appendChild(li().aria(label, group.text).add(group).element());
+        menu.appendChild(li().aria("label", group.text).add(group).element());
 
         for (T item : group.items) {
-            HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Constants.menu, Constants.item))
-                    .attr(Constants.tabindex, -1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
+            HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
+                    .attr("tabindex", -1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
                         if (collapseOnSelect) {
                             ceh.collapse(element(), buttonElement(), menuElement());
                         }
@@ -151,11 +153,11 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
                     });
             group.itemDisplay.display.accept(button, item);
             HTMLElement icon;
-            button.add(icon = i().css(fas(check), component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                    .aria(hidden, true).data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
+            button.add(icon = i().css(fas(check), component(optionsMenu, Classes.menu, Classes.item, "icon"))
+                    .aria("hidden", true).data(multiOptionsMenuCheck, group.itemDisplay.itemId(item)).element());
             setVisible(icon, false);
 
-            group.element().appendChild(li().attr(role, menuitem).add(button).element());
+            group.element().appendChild(li().attr("role", menuitem).add(button).element());
         }
         return this;
     }
@@ -274,7 +276,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
             value = item;
             String itemId = itemDisplay.itemId(item);
             for (HTMLElement e : Elements.findAll(element,
-                    By.classname(component(optionsMenu, Constants.menu, Constants.item, icon)))) {
+                    By.classname(component(optionsMenu, Classes.menu, Classes.item, "icon")))) {
                 setVisible(e, itemId.equals(e.dataset.get(multiOptionsMenuCheck)));
             }
 
@@ -286,7 +288,8 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
 
         public Group<T> clearSelection() {
             value = null;
-            for (HTMLElement e : Elements.findAll(element, By.classname(component(optionsMenu, Constants.menu, item, icon)))) {
+            for (HTMLElement e : Elements.findAll(element, By.classname(component(optionsMenu, Classes.menu, item,
+                    "icon")))) {
                 setVisible(e, false);
             }
             return this;

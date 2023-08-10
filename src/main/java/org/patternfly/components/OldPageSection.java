@@ -20,15 +20,14 @@ import org.jboss.elemento.HtmlContent;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.mainSection;
-import static org.patternfly.resources.Constants.page;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.mainSection;
 
 public class OldPageSection extends BaseComponent<HTMLElement, OldPageSection> implements
         HtmlContent<HTMLElement, OldPageSection> {
 
     protected OldPageSection() {
-        super(Elements.section().css(component(page, mainSection)).element(), "PageSection");
+        super(Elements.section().css(component("page", mainSection)).element(), "PageSection");
     }
 
     @Override

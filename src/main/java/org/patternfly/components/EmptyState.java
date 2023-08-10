@@ -18,7 +18,7 @@ package org.patternfly.components;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
 import org.patternfly.core.Callback;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -28,14 +28,13 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Size.lg;
-import static org.patternfly.resources.Size.sm;
-import static org.patternfly.resources.Constants.emptyState;
-import static org.patternfly.resources.Constants.hidden;
-import static org.patternfly.resources.Constants.icon;
-import static org.patternfly.resources.Constants.primary;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.emptyState;
+import static org.patternfly.layout.Classes.primary;
+import static org.patternfly.layout.Icons.search;
+import static org.patternfly.layout.Size.lg;
+import static org.patternfly.layout.Size.sm;
 
 /**
  * PatternFly empty state component.
@@ -57,7 +56,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
 
     public static EmptyState spinner(String title) {
         EmptyState loading = new EmptyState(null, title).large();
-        insertFirst(loading.element(), div().css(component(emptyState, icon)).add(Spinner.spinner()).element());
+        insertFirst(loading.element(), div().css(component(emptyState, "icon")).add(Spinner.spinner()).element());
         return loading;
     }
 
@@ -66,7 +65,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
     }
 
     public static EmptyState noResults(String title, Callback callback) {
-        return new EmptyState(icon(fas("search")), title)
+        return new EmptyState(icon(fas(search)), title)
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
                 .primary(Button.link("Clear all filters").onClick(callback));
     }
@@ -84,7 +83,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
     protected EmptyState(Icon icon, String title) {
         super(div().css(component(emptyState)).element(), "EmptyState");
         if (icon != null) {
-            add(icon.css(component(emptyState, Constants.icon)).aria(hidden, true));
+            add(icon.css(component(emptyState, "icon")).aria("hidden", true));
         }
         add(Title.title(1, title, lg));
     }
@@ -135,7 +134,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
 
     public EmptyState secondary(HTMLElement element) {
         if (secondaryContainer == null) {
-            add(secondaryContainer = div().css(component(emptyState, Constants.secondary)).element());
+            add(secondaryContainer = div().css(component(emptyState, Classes.secondary)).element());
         }
         secondaryContainer.appendChild(element);
         return this;
@@ -154,7 +153,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
     public static class Body extends ElementBuilder<HTMLElement, Body> implements HtmlContent<HTMLElement, Body> {
 
         protected Body() {
-            super(div().css(component(emptyState, Constants.body)).element());
+            super(div().css(component(emptyState, "body")).element());
         }
 
         @Override

@@ -19,19 +19,20 @@ import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.Callback;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.button;
-import static org.patternfly.resources.Constants.label;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Constants.hidden;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.button;
+import static org.patternfly.layout.Icons.timesCircle;
 
 /**
  * PatternFly chip component.
@@ -80,9 +81,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlConten
 
         element.classList.add(component(chip));
         if (readOnly) {
-            element.classList.add(modifier(Constants.readOnly));
+            element.classList.add(modifier(Classes.readOnly));
         } else if (overflow) {
-            element.classList.add(modifier(Constants.overflow));
+            element.classList.add(modifier(Classes.overflow));
         }
 
         if (overflow) {
@@ -90,13 +91,13 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlConten
                 if (callback != null) {
                     callback.call();
                 }
-            }).add(this.text = span().css(component(chip, Constants.text)).textContent(text).element()).element());
+            }).add(this.text = span().css(component(chip, Classes.text)).textContent(text).element()).element());
 
         } else {
-            String textId = Id.unique(chip, Constants.text);
-            String buttonId = Id.unique(chip, Constants.button);
+            String textId = Id.unique(chip, Classes.text);
+            String buttonId = Id.unique(chip, Classes.button);
 
-            HtmlContentBuilder<HTMLElement> builder = span().css(component(chip, Constants.text)).id(textId).title(text);
+            HtmlContentBuilder<HTMLElement> builder = span().css(component(chip, Classes.text)).id(textId).title(text);
             builder.add(text);
             if (count > 0) {
                 badge = Badge.read(count);
@@ -105,12 +106,12 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlConten
             element.appendChild(this.text = builder.element());
             if (!readOnly) {
                 element.appendChild(button().css(component(button), modifier(plain)).id(buttonId)
-                        .aria(labelledBy, buttonId + " " + textId).aria(label, "Remove").on(click, e -> {
+                        .aria(labelledBy, buttonId + " " + textId).aria("label", "Remove").on(click, e -> {
                             failSafeRemoveFromParent(element);
                             if (callback != null) {
                                 callback.call();
                             }
-                        }).add(i().css(fas("times-circle")).aria(hidden, true)).element());
+                        }).add(i().css(fas(timesCircle)).aria(hidden, true)).element());
             }
         }
     }

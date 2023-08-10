@@ -28,23 +28,25 @@ import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.singleOptionsMenuItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.caretDown;
+import static org.patternfly.layout.Icons.check;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.core.Dataset.singleOptionsMenuItem;
 
 /**
  * PatternFly options menu (not grouped, single selection).
@@ -87,40 +89,40 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         this.itemDisplay = new ItemDisplay<>();
         this.collapseOnSelect = false;
 
-        String buttonId = Id.unique(optionsMenu, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false)
+        String buttonId = Id.unique(optionsMenu, Classes.button);
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
         if (icon != null) {
             this.plain = null;
             this.text = null;
-            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Constants.plain))
-                    .add(icon.aria(hidden, true)).element();
+            this.button = buttonBuilder.css(component(optionsMenu, toggle), modifier(Classes.plain))
+                    .add(icon.aria("hidden", true)).element();
             trigger = button;
 
         } else { // text != null
             if (plain) {
-                this.plain = div().css(component(optionsMenu, toggle), modifier(Constants.plain), modifier(Constants.text))
-                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Constants.button)).aria(label, text)
-                                .add(i().css(fas(caretDown)).aria(hidden, true)).element())
+                this.plain = div().css(component(optionsMenu, toggle), modifier(Classes.plain), modifier(Classes.text))
+                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text)).textContent(text).element())
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button)).aria("label", text)
+                                .add(i().css(fas(caretDown)).aria("hidden", true)).element())
                         .element();
                 trigger = this.plain;
 
             } else {
                 this.plain = null;
-                this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria(label, text)
-                        .add(this.text = span().css(component(optionsMenu, toggle, Constants.text)).textContent(text).element())
-                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, Constants.icon)).aria(hidden, true))
+                this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria("label", text)
+                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text)).textContent(text).element())
+                        .add(i().css(fas(caretDown), component(optionsMenu, toggle, "icon")).aria("hidden", true))
                         .element();
                 trigger = button;
             }
         }
 
         add(trigger);
-        add(menu = ul().css(component(optionsMenu, Constants.menu)).hidden(true).aria(labelledBy, buttonId)
-                .attr(role, Constants.menu).element());
+        add(menu = ul().css(component(optionsMenu, Classes.menu)).hidden(true).aria(labelledBy, buttonId)
+                .attr("role", Classes.menu).element());
     }
 
     @Override
@@ -158,15 +160,15 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
     public SingleOptionsMenu<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Constants.menu, Constants.item))
-                .attr(tabindex, -1).data(singleOptionsMenuItem, itemId).on(click, e -> {
+        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
+                .attr("tabindex", -1).data(singleOptionsMenuItem, itemId).on(click, e -> {
                     if (collapseOnSelect) {
                         ceh.collapse(element(), buttonElement(), menuElement());
                     }
                     select(item);
                 });
         itemDisplay.display.accept(button, item);
-        menu.appendChild(li().attr(role, presentation).add(button).element());
+        menu.appendChild(li().attr("role", presentation).add(button).element());
         return this;
     }
 
@@ -197,8 +199,8 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
             if (itemId.equals(e.dataset.get(singleOptionsMenuItem))) {
                 if (icon == null) {
                     e.appendChild(
-                            Icon.icon(fas(check)).css(component(optionsMenu, Constants.menu, Constants.item, Constants.icon))
-                                    .aria(hidden, true).element());
+                            Icon.icon(fas(check)).css(component(optionsMenu, Classes.menu, Classes.item, "icon"))
+                                    .aria("hidden", true).element());
                 }
             } else {
                 failSafeRemove(e, icon);
@@ -237,7 +239,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     public SingleOptionsMenu<T> disable() {
         button.disabled = true;
         if (plain != null) {
-            plain.classList.add(modifier(Constants.disabled));
+            plain.classList.add(modifier(Classes.disabled));
         }
         return this;
     }
@@ -246,7 +248,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     public SingleOptionsMenu<T> enable() {
         button.disabled = false;
         if (plain != null) {
-            plain.classList.remove(modifier(Constants.disabled));
+            plain.classList.remove(modifier(Classes.disabled));
         }
         return this;
     }

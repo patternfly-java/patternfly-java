@@ -13,28 +13,28 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.navigation;
 
 import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.BaseComponent;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.toolbar;
+import static org.jboss.elemento.Elements.section;
 
-public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> implements HtmlContent<HTMLDivElement, Toolbar> {
+public class NavigationGroup extends BaseComponent<HTMLElement, NavigationGroup>
+        implements HtmlContent<HTMLElement, NavigationGroup> {
 
-    public static Toolbar toolbar() {
-        return new Toolbar();
+    public static NavigationGroup group() {
+        return new NavigationGroup();
     }
 
-    Toolbar() {
-        super(div().css(component(toolbar)).element(), ComponentType.Toolbar);
+    NavigationGroup() {
+        super(section().element(), "NavigationGroup");
     }
 
     @Override
-    public Toolbar that() {
+    public NavigationGroup that() {
         return this;
     }
 }

@@ -13,23 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.alert;
 
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Icons.*;
 
 public enum AlertType {
 
-    CUSTOM(fas("bell"), modifier(custom), "custom alert"),
+    CUSTOM(fas(bell), modifier(custom), "custom alert"),
 
-    INFO(fas("info-circle"), modifier(info), "info alert"),
+    INFO(fas(infoCircle), modifier(info), "info alert"),
 
-    SUCCESS(fas("check-circle"), modifier(success), "success alert"),
+    SUCCESS(fas(checkCircle), modifier(success), "success alert"),
 
-    WARNING(fas("exclamation-triangle"), modifier(warning), "warning alert"),
+    WARNING(fas(exclamationTriangle), modifier(warning), "warning alert"),
 
-    DANGER(fas("exclamation-circle"), modifier(danger), "danger alert");
+    DANGER(fas(exclamationCircle), modifier(danger), "danger alert");
 
     final String icon;
     final String modifier;

@@ -19,8 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.CSS;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
@@ -29,8 +28,8 @@ import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.stream;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.chipGroup;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.chipGroup;
 
 /**
  * PatternFly chip group component.
@@ -118,8 +117,8 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements 
     }
 
     private Stream<HTMLElement> chips() {
-        return stream(element).filter(e -> e.classList.contains(component(Constants.chip))
-                && !e.classList.contains(CSS.modifier(Constants.overflow)));
+        return stream(element).filter(e -> e.classList.contains(component(Classes.chip))
+                && !e.classList.contains(Classes.modifier(Classes.overflow)));
     }
 
     private boolean constrained() {

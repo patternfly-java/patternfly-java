@@ -15,114 +15,112 @@
  */
 package org.patternfly.components;
 
-import static org.patternfly.resources.CSS.component;
-
 public enum ComponentType {
 
-    Accordion("ac", component("accordion"), null),
+    Accordion("ac", null),
 
-    ActionList("al", component("action-list"), null),
+    ActionList("al", null),
 
-    Alert("at", component("alert"), "PF5/Alert"),
+    Alert("at", "PF5/Alert"),
 
-    AlertGroup("ag", component("alert-group"), null),
+    AlertGroup("ag", null),
 
-    Avatar("av", component("avatar"), null),
+    Avatar("av", null),
 
-    Badge("bdg", component("badge"), null),
+    Badge("bdg", null),
 
-    Brand("bnd", component("brand"), null),
+    Brand("bnd", null),
 
-    Breadcrumb("bc", component("breadcrumb"), null),
+    Breadcrumb("bc", null),
 
-    Button("btn", component("button"), null),
+    Button("btn", null),
 
-    Card("crd", component("card"), null),
+    Card("crd", null),
 
-    CardView("cv", null, null),
+    CardView("cv", null),
 
-    Checkbox("chb", component("check"), null),
+    Checkbox("chb", null),
 
-    Chip("chp", component("chip"), null),
+    Chip("chp", null),
 
-    ChipGroup("cpg", component("chip-group"), null),
+    ChipGroup("cpg", null),
 
-    ContextSelector("cs", component("context-selector"), null),
+    ContextSelector("cs", null),
 
-    DataList("dl", component("data-list"), null),
+    DataList("dl", null),
 
-    DataTable("dt", component("table"), null),
+    DataTable("dt", null),
 
-    Drawer("dw", component("drawer"), null),
+    Drawer("dw", null),
 
-    Dropdown("dd", component("dropdown"), null),
+    Dropdown("dd", null),
 
-    EmptyState("es", component("empty-state"), null),
+    EmptyState("es", null),
 
-    Form("frm", component("form"), null),
+    Form("frm", null),
 
-    Icon("icn", null, null),
+    Icon("icn", null),
 
-    InputGroup("ig", component("input-group"), null),
+    InputGroup("ig", null),
 
-    Label("lbl", component("label"), null),
+    Label("lbl", null),
 
-    LabelGroup("lbg", component("label-group"), null),
+    LabelGroup("lbg", null),
 
-    List("lst", component("list"), null),
+    List("lst", null),
 
-    Masthead("mh", component("masthead"), null),
+    Masthead("mh", null),
 
-    Menu("mu", component("menu"), null),
+    Menu("mu", null),
 
-    Navigation("nav", component("nav"), null),
+    Navigation("nav", null),
 
-    NotificationBadge("nb", component("button"), null),
+    NavigationItem("ni", null),
 
-    OptionsMenu("opt", component("options-menu"), null),
+    NotificationBadge("nb", null),
 
-    Page("pg", component("page"), "PF5/Page"),
+    OptionsMenu("opt", null),
 
-    Pagination("pgn", component("pagination"), null),
+    Page("pg", "PF5/Page"),
 
-    Select("sel", component("select"), null),
+    Pagination("pgn", null),
 
-    Sidebar("sb", component("page", "sidebar"), null),
+    Select("sel", null),
 
-    Skeleton("sk", component("skeleton"), null),
+    Sidebar("sb", null),
 
-    SkipToContent("stc", component("skip-to-content"), null),
+    Skeleton("sk", null),
 
-    Slider("sld", component("slider"), null),
+    SkipToContent("stc", null),
 
-    Spinner("sp", component("spinner"), null),
+    Slider("sld", null),
 
-    Switch("sw", component("switch"), null),
+    Spinner("sp", null),
 
-    Tabs("tbs", null, null),
+    Switch("sw", null),
 
-    TextContent("tc", component("content"), null),
+    Tabs("tbs", null),
 
-    Title("tlt", component("title"), null),
+    TextContent("tc", null),
 
-    ToggleGroup("tg", component("toggle-group"), null),
+    Title("tlt", null),
 
-    Toolbar("tb", component("toolbar"), null),
+    ToggleGroup("tg", null),
 
-    TreeView("tv", component("tree-view"), null),
+    Toolbar("tb", null),
 
-    Wizard("wzd", component("wizard"), "PF5/Wizard"),
+    TreeView("tv", null),
+
+    Wizard("wzd", "PF5/Wizard"),
 
     // TODO Remove, once all components have been migrated to PF 5
-    Unknown("ukn", null, null);
+    Unknown("ukn", null);
 
     public final String id;
-    public final String baseClass;
     public final String componentName;
 
-    ComponentType(String id, String baseClass, String componentName) {
+    ComponentType(String id, String componentName) {
         this.id = id;
-        this.baseClass = baseClass;
         this.componentName = componentName;
     }
 }

@@ -21,10 +21,10 @@ import org.jboss.elemento.HtmlContent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Size.md;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Size.md;
 
 /**
  * PatternFly card component.
@@ -113,7 +113,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
     public static class Header extends ElementBuilder<HTMLDivElement, Header> implements HtmlContent<HTMLDivElement, Header> {
 
         private Header() {
-            super(div().css(component(card, header), component(title), md.modifier).element());
+            super(div().css(component(card, header), component("title"), md.modifier).element());
         }
 
         @Override
@@ -125,7 +125,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
     public static class Body extends ElementBuilder<HTMLDivElement, Body> implements HtmlContent<HTMLDivElement, Body> {
 
         private Body() {
-            super(div().css(component(card, body)).element());
+            super(div().css(component(card, "body")).element());
         }
 
         @Override

@@ -21,8 +21,8 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.tooltip;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.tooltip;
 
 /**
  * PatternFly popover component.

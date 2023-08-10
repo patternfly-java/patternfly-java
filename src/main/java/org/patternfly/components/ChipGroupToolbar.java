@@ -16,18 +16,17 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.chipGroup;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.toolbar;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.chipGroup;
+import static org.patternfly.layout.Classes.toolbar;
 
 /**
  * PatternFly chip group toolbar component.
@@ -58,7 +57,7 @@ public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolba
     // ------------------------------------------------------ public API
 
     public ChipGroupToolbar add(String category, ChipGroup chipGroup) {
-        add(li().add(h(4, category).css(component(Constants.chipGroup, label))).add(chipGroup).element());
+        add(li().add(h(4, category).css(component(Classes.chipGroup, "label"))).add(chipGroup).element());
         return this;
     }
 }

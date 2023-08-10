@@ -13,12 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.resources;
+package org.patternfly.layout;
 
 import org.patternfly.core.PatternFly;
 
-/** UI constants and PatternFly components, modifiers and elements. */
-public interface Constants {
+public interface Classes {
 
     String action = "action";
     String actionGroup = "action-group";
@@ -27,9 +26,6 @@ public interface Constants {
     String alert = "alert";
     String alertGroup = "alert-group";
     String alignRight = "align-right";
-    String angleDown = "angle-down";
-    String angleLeft = "angle-left";
-    String angleRight = "angle-right";
     String ariaExpanded = "aria-expanded";
     String arrow = "arrow";
     String avatar = "avatar";
@@ -44,8 +40,8 @@ public interface Constants {
     String button = "button";
     String buttonGroup = "button-group";
     String card = "card";
-    String caretDown = "caret-down";
     String cell = "cell";
+    String center = "center";
     String check = "check";
     String chip = "chip";
     String chipGroup = "chip-group";
@@ -74,7 +70,6 @@ public interface Constants {
     String expanded = "expanded";
     String fieldset = "fieldset";
     String fill = "fill";
-    String filter = "filter";
     String filterGroup = "filter-group";
     String flex = "flex";
     String focus = "focus";
@@ -90,7 +85,6 @@ public interface Constants {
     String hasPopup = "haspopup";
     String head = "head";
     String header = "header";
-    String hidden = "hidden";
     String horizontal = "horizontal";
     String hoverable = "hoverable";
     String icon = "icon";
@@ -100,6 +94,8 @@ public interface Constants {
     String inline = "inline";
     String input = "input";
     String inputGroup = "input-group";
+    String inset = "inset";
+    String insetNone = "inset-none";
     String invalid = "invalid";
     String item = "item";
     String itemAction = "item-action";
@@ -129,7 +125,9 @@ public interface Constants {
     String optionsMenu = "options-menu";
     String overflow = "overflow";
     String overflowScroll = "overflow-scroll";
+    String padding = "padding";
     String page = "page";
+    String pageInsets = "page-insets";
     String pagination = "pagination";
     String plain = "plain";
     String popover = "popover";
@@ -139,7 +137,6 @@ public interface Constants {
     String read = "read";
     String readOnly = "read-only";
     String right = "right";
-    String role = "role";
     String scope = "scope";
     String screenReader = "pf-" + PatternFly.VERSION + "-screen-reader";
     String scroll = "scroll";
@@ -150,16 +147,18 @@ public interface Constants {
     String selected = "selected";
     String selector = "selector";
     String separator = "separator";
+    String shadowBottom = "shadow-bottom";
+    String shadowTop = "shadow-top";
     String sidebar = "sidebar";
     String simple = "simple";
     String sort = "sort";
     String spinner = "spinner";
     String splitButton = "split-button";
+    String stack = "stack";
     String subnav = "subnav";
     String success = "success";
     String tab = "tab";
     String tabContent = "tab-content";
-    String tabindex = "tabindex";
     String table = "table";
     String tabpanel = "tabpanel";
     String tabs = "tabs";
@@ -186,11 +185,35 @@ public interface Constants {
     String wizard = "wizard";
     String wrap = "wrap";
     String wrapper = "wrapper";
-    String pageInsets = "page-insets";
-    String insetNone = "inset-none";
-    String inset = "inset";
-    String padding = "padding";
-    String shadowTop = "shadow-top";
-    String shadowBottom = "shadow-bottom";
-    String stack = "stack";
+
+    static String component(String component, String... elements) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("pf-").append(PatternFly.VERSION).append("-c-").append(component);
+        if (elements != null && elements.length != 0) {
+            builder.append("__");
+            for (int i = 0; i < elements.length; i++) {
+                builder.append(elements[i]);
+                if (i < elements.length - 1) {
+                    builder.append("-");
+                }
+            }
+        }
+        return builder.toString();
+    }
+
+    static String layout(String layout) {
+        return "pf-" + PatternFly.VERSION + "-l-" + layout;
+    }
+
+    static String modifier(String modifier) {
+        return "pf-m-" + modifier;
+    }
+
+    static String modifier(String modifier, Breakpoint breakpoint) {
+        return "pf-m-" + modifier + "-on-" + breakpoint.value;
+    }
+
+    static String util(String utility) {
+        return "pf-" + PatternFly.VERSION + "-u-" + utility;
+    }
 }

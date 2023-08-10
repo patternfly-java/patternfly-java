@@ -15,22 +15,21 @@
  */
 package org.patternfly.components.page;
 
-import org.patternfly.resources.Brightness;
+import org.patternfly.layout.Brightness;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Constants.wizard;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Classes.wizard;
 
 /**
- * Container to nest a {@link org.patternfly.components.Wizard} in a {@link PageMainGroup} or
- * {@link PageMain} container.
+ * Container to nest a {@link org.patternfly.components.Wizard} in a {@link PageMainGroup} or {@link PageMain} container.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWizard>
         implements PageSection<HTMLElement, PageMainWizard> {

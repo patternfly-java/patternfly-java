@@ -28,22 +28,24 @@ import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.patternfly.layout.Constants;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Constants.input;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.contextSelectorItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Constants.hidden;
+import static org.patternfly.layout.Icons.caretDown;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.input;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.core.Dataset.contextSelectorItem;
 
 /**
  * PatternFly context selector component.
@@ -77,20 +79,20 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String labelId = Id.unique(contextSelector, label);
-        String buttonId = Id.unique(contextSelector, Constants.button);
+        String labelId = Id.unique(contextSelector, "label");
+        String buttonId = Id.unique(contextSelector, Classes.button);
 
         add(span().id(labelId).hidden(true).textContent(text));
-        add(button = button().css(component(contextSelector, toggle)).id(buttonId).aria(expanded, false)
+        add(button = button().css(component(contextSelector, toggle)).id(buttonId).aria("expanded", false)
                 .aria(labelledBy, labelId + " " + buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
-                .add(this.text = span().css(component(contextSelector, toggle, Constants.text)).textContent("Please select")
+                .add(this.text = span().css(component(contextSelector, toggle, Classes.text)).textContent("Please select")
                         .element())
                 .add(i().css(fas(caretDown), component(contextSelector, toggle, icon)).aria(hidden, true)).element());
-        add(menu = div().css(component(contextSelector, Constants.menu)).attr(hidden, "")
-                .add(div().css(component(contextSelector, Constants.menu, input))
+        add(menu = div().css(component(contextSelector, Classes.menu)).attr(hidden, "")
+                .add(div().css(component(contextSelector, Classes.menu, input))
                         .add(search = new Search("Search").onFilter(this::filter)))
-                .add(ul = ul().css(component(contextSelector, Constants.menu, list)).attr(role, Constants.menu).element())
+                .add(ul = ul().css(component(contextSelector, Classes.menu, list)).attr("role", Classes.menu).element())
                 .element());
     }
 
@@ -125,13 +127,13 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     public ContextSelector<T> add(T item) {
         HtmlContentBuilder<HTMLButtonElement> button = button()
-                .css(component(contextSelector, Constants.menu, list, Constants.item))
+                .css(component(contextSelector, Classes.menu, list, Classes.item))
                 .data(contextSelectorItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
                     select(item);
                 });
         itemDisplay.display.accept(button, item);
-        ul.appendChild(li().attr(role, none).add(button).element());
+        ul.appendChild(li().attr("role", none).add(button).element());
         return this;
     }
 
@@ -196,7 +198,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     private void filter(String value) {
         for (HTMLElement e : Elements.findAll(menu,
-                By.element("button").and(By.classname(component(contextSelector, Constants.menu, list, item))))) {
+                By.element("button").and(By.classname(component(contextSelector, Classes.menu, list, item))))) {
             HTMLElement parent = (HTMLElement) e.parentNode;
             setVisible(parent, e.textContent.toLowerCase().contains(value.toLowerCase()));
         }
@@ -205,7 +207,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     private void clearFilter() {
         search.clear();
         for (HTMLElement e : Elements.findAll(menu,
-                By.element("button").and(By.classname(component(contextSelector, Constants.menu, list, item))))) {
+                By.element("button").and(By.classname(component(contextSelector, Classes.menu, list, item))))) {
             HTMLElement parent = (HTMLElement) e.parentNode;
             setVisible(parent, true);
         }

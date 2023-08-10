@@ -13,39 +13,37 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.alert;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.patternfly.components.BaseComponent;
+import org.patternfly.components.Button;
+import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
-import org.patternfly.core.Ouia;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLParagraphElement;
+import org.patternfly.layout.Constants;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.components.AlertActionGroup.alertActionGroup;
-import static org.patternfly.components.AlertDescription.alertDescription;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.action;
-import static org.patternfly.resources.Constants.alert;
-import static org.patternfly.resources.Constants.hidden;
-import static org.patternfly.resources.Constants.icon;
-import static org.patternfly.resources.Constants.inline;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.screenReader;
-import static org.patternfly.resources.Constants.truncate;
+import static org.patternfly.components.alert.AlertActionGroup.alertActionGroup;
+import static org.patternfly.components.alert.AlertDescription.alertDescription;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.screenReader;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Icons.times;
 
 /**
  * PatternFly alert component.
@@ -89,16 +87,20 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     private Button closeButton;
 
     Alert(AlertType alertType, String title) {
-        super(div().css(component(alert)).aria(label, alertType.aria).element(), ComponentType.Alert);
+        super(div().css(component(alert))
+                .aria(label, alertType.aria)
+                .element(),
+                ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
-        Ouia.safe(element(), true);
 
         if (alertType.modifier != null) {
             element.classList.add(alertType.modifier);
         }
-        add(div().css(component(alert, icon)).add(icon(alertType.icon).aria(hidden, true)));
-        add(titleElement = p().css(component(alert, Constants.title))
+        add(div().css(component(alert, icon))
+                .add(icon(alertType.icon)
+                        .aria(Constants.hidden, true)));
+        add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
                         .textContent(alertType.aria + ":"))
                 .add(title));
@@ -123,8 +125,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     }
 
     public Alert closable(Callback callback) {
-        return add(div().css(component(alert, Constants.action))
-                .add(closeButton = Button.icon(fas("times"), "close " + alertType.aria + ": " + title)
+        return add(div().css(component(alert, Classes.action))
+                .add(closeButton = Button.icon(fas(times), "close " + alertType.aria + ": " + title)
                         .on(click, e -> {
                             if (callback != null) {
                                 callback.call();
@@ -164,6 +166,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     /**
      * Wraps the description inside a {@code
      *
+    <p>
+     *
     <p/>
      * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
      * simple string.
@@ -180,7 +184,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     @Override
     public Alert label(String label) {
-        return aria(Constants.label, label);
+        return aria(Classes.label, label);
     }
 
     @Override
@@ -201,7 +205,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     // ------------------------------------------------------ internals
 
     boolean hasClose() {
-        By selector = By.classname(component(alert, action)).desc(By.classname(fas("times")));
+        By selector = By.classname(component(alert, action)).desc(By.classname(fas(times)));
         return Elements.find(element, selector) != null;
     }
 }

@@ -17,7 +17,7 @@ package org.patternfly.components;
 
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -27,9 +27,9 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.blur;
 import static org.jboss.elemento.EventType.mouseenter;
 import static org.jboss.elemento.EventType.mouseleave;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * PatternFly tooltip component.
@@ -66,10 +66,10 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements H
     private final HtmlContentBuilder<HTMLDivElement> content;
 
     protected Tooltip(Position position, HTMLElement target, String text) {
-        super(div().css(component(tooltip), position.modifier).attr(role, "tooltip").element(), "Tooltip");
+        super(div().css(component(tooltip), position.modifier).attr("role", "tooltip").element(), "Tooltip");
 
         add(div().css(component(tooltip, arrow)));
-        add(content = div().css(tooltip, Constants.content).textContent(text));
+        add(content = div().css(tooltip, Classes.content).textContent(text));
 
         if (target != null) {
             bind(target, mouseenter, e -> show());

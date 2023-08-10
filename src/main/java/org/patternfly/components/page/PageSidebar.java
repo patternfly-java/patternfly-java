@@ -17,14 +17,15 @@ package org.patternfly.components.page;
 
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Brightness;
+import org.patternfly.layout.Brightness;
 
 import elemental2.dom.HTMLElement;
+import org.patternfly.layout.Constants;
 
 import static org.jboss.elemento.Elements.aside;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * Container for the page sidebar.
@@ -48,7 +49,7 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
 
     PageSidebar() {
         super(aside().css(component(page, sidebar))
-                .aria(hidden, false)
+                .aria(Constants.hidden, false)
                 .element());
     }
 
@@ -85,7 +86,7 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
     public PageSidebar expanded() {
         element.classList.remove(modifier(collapsed));
         element.classList.add(modifier(expanded));
-        aria(hidden, false);
+        aria(Constants.hidden, false);
         return this;
     }
 
@@ -95,13 +96,13 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
     public PageSidebar collapsed() {
         element.classList.remove(modifier(expanded));
         element.classList.add(modifier(collapsed));
-        aria(hidden, true);
+        aria(Constants.hidden, true);
         return this;
     }
 
     /**
      * Modifies the sidebar to have a light theme. Note: for use with a light themed
-     * {@link org.patternfly.components.Navigation} component.
+     * {@link org.patternfly.components.navigation.Navigation} component.
      */
     public PageSidebar light() {
         return css(Brightness.light.modifier);

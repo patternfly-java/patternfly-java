@@ -15,35 +15,36 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.Brand;
 import org.patternfly.components.ComponentType;
-import org.patternfly.components.Toolbar;
-import org.patternfly.resources.Breakpoint;
-import org.patternfly.resources.Brightness;
-import org.patternfly.resources.Constants;
-import org.patternfly.resources.Size;
+import org.patternfly.components.toolbar.Toolbar;
+import org.patternfly.layout.Breakpoint;
+import org.patternfly.layout.Brightness;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.Size;
+
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.header;
 import static org.patternfly.components.page.MastheadContent.mastheadContent;
 import static org.patternfly.components.page.MastheadMain.mastheadMain;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
- * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is
- * accessible from all parts of the application.
+ * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is accessible
+ * from all parts of the application.
  * <p>
  * All pages should share a common masthead. Use {@link Page#masthead()} to get the masthead.
  * <p>
- * Usage: {@snippet class = PageDemo region = masthead}
+ * Usage:
+ * {@snippet class = PageDemo region = masthead}
  *
- * @see <a href=
- * "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
+ * @see <a href= "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
  */
 public class Masthead extends BaseComponent<HTMLElement, Masthead> implements HtmlContent<HTMLElement, Masthead> {
 
@@ -85,32 +86,31 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements Ht
     }
 
     /**
-     * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component
-     * and finally adds the {@link MastheadMain} to this component.
+     * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component and
+     * finally adds the {@link MastheadMain} to this component.
      * <p>
      * Shortcut for
      * {@snippet :
-     * add(mastheadMain()
-     *         .add(a(homeLink).css(component(masthead, Constants.brand))
+     * import org.patternfly.layout.Classes;add(mastheadMain()
+     *         .add(a(homeLink).css(Classes.component(masthead, Classes.brand))
      *                 .add(brand)));
      *}
      */
     public Masthead addBrand(Brand brand, String homeLink) {
         add(mastheadMain()
-                .add(a(homeLink).css(component(masthead, Constants.brand))
+                .add(a(homeLink).css(component(masthead, Classes.brand))
                         .add(brand)));
         return this;
     }
 
     /**
-     * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this
-     * component.
+     * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this component.
      * <p>
      * Shortcut for
      * {@snippet :
      * add(mastheadContent())
      *         .add(toolbar);
-     *}
+     * }
      */
     public Masthead addToolbar(Toolbar toolbar) {
         add(mastheadContent())
@@ -156,16 +156,14 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements Ht
     }
 
     /**
-     * Modifies this component to have a light theme with a background color of
-     * {@code --pf-v5-global--BackgroundColor--200}.
+     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--200}.
      */
     public Masthead light() {
         return css(Brightness.light.opacity(200));
     }
 
     /**
-     * Modifies this component to have a light theme with a background color of
-     * {@code --pf-v5-global--BackgroundColor--100}.
+     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--100}.
      */
     public Masthead lighter() {
         return css(Brightness.light.modifier);

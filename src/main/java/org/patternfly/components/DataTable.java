@@ -34,7 +34,6 @@ import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
-import org.patternfly.resources.Constants;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
@@ -45,6 +44,7 @@ import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableElement;
 import elemental2.dom.HTMLTableRowElement;
 import elemental2.dom.HTMLTableSectionElement;
+import org.patternfly.layout.Classes;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.caption;
@@ -63,38 +63,31 @@ import static org.jboss.elemento.Elements.tr;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.action;
-import static org.patternfly.resources.Constants.angleDown;
-import static org.patternfly.resources.Constants.button;
-import static org.patternfly.resources.Constants.check;
-import static org.patternfly.resources.Constants.col;
-import static org.patternfly.resources.Constants.compact;
-import static org.patternfly.resources.Constants.content;
-import static org.patternfly.resources.Constants.controls;
-import static org.patternfly.resources.Constants.expandable;
-import static org.patternfly.resources.Constants.expandableContent;
-import static org.patternfly.resources.Constants.expandableRow;
-import static org.patternfly.resources.Constants.expanded;
-import static org.patternfly.resources.Constants.grid;
-import static org.patternfly.resources.Constants.icon;
-import static org.patternfly.resources.Constants.indicator;
-import static org.patternfly.resources.Constants.label;
-import static org.patternfly.resources.Constants.labelledBy;
-import static org.patternfly.resources.Constants.noBorderRows;
-import static org.patternfly.resources.Constants.noPadding;
-import static org.patternfly.resources.Constants.none;
-import static org.patternfly.resources.Constants.plain;
-import static org.patternfly.resources.Constants.role;
-import static org.patternfly.resources.Constants.scope;
-import static org.patternfly.resources.Constants.selected;
-import static org.patternfly.resources.Constants.sort;
-import static org.patternfly.resources.Constants.table;
-import static org.patternfly.resources.Constants.toggle;
-import static org.patternfly.resources.Dataset.dataTableItem;
-import static org.patternfly.resources.Dataset.dataTableSort;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.button;
+import static org.patternfly.layout.Classes.check;
+import static org.patternfly.layout.Classes.col;
+import static org.patternfly.layout.Classes.compact;
+import static org.patternfly.layout.Classes.content;
+import static org.patternfly.layout.Classes.controls;
+import static org.patternfly.layout.Classes.expandable;
+import static org.patternfly.layout.Classes.expandableContent;
+import static org.patternfly.layout.Classes.expandableRow;
+import static org.patternfly.layout.Classes.grid;
+import static org.patternfly.layout.Classes.indicator;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.noBorderRows;
+import static org.patternfly.layout.Classes.none;
+import static org.patternfly.layout.Classes.plain;
+import static org.patternfly.layout.Classes.scope;
+import static org.patternfly.layout.Classes.selected;
+import static org.patternfly.layout.Classes.sort;
+import static org.patternfly.layout.Classes.table;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.core.Dataset.dataTableItem;
+import static org.patternfly.core.Dataset.dataTableSort;
+import static org.patternfly.layout.Icons.*;
 
 /**
  * PatternFly data table.
@@ -130,14 +123,14 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     public static <T> Column<T> expandColumn() {
         return new Column<>(EXPAND_COLUMN, null, null, (td, dataProvider, item) -> {
-            String iconClass = fas(angleDown) + " " + component(table, toggle, Constants.icon);
+            String iconClass = fas(angleDown) + " " + component(table, toggle, Classes.icon);
             td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
         }, null);
     }
 
     public static <T> Column<T> checkboxColumn() {
         return new Column<>(CHECKBOX_COLUMN, null,
-                th -> th.css(component(table, check)).add(input(InputType.checkbox).aria(label, "Select all rows")),
+                th -> th.css(component(table, check)).add(input(InputType.checkbox).aria("label", "Select all rows")),
                 (td, dataProvider,
                         item) -> td.css(component(table, check)).add(input(InputType.checkbox)
                                 .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
@@ -149,13 +142,13 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     public static <T> Column<T> iconColumn(BodyDisplay<T> bodyDisplay) {
-        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, icon));
-        return new Column<>(Id.unique("icon"), null, th -> th.css(component(table, icon)).attr(scope, col),
+        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, "icon"));
+        return new Column<>(Id.unique("icon"), null, th -> th.css(component(table, "icon")).attr(scope, col),
                 css.andThen(bodyDisplay), null);
     }
 
     public static <T> Column<T> actionsColumn(BodyDisplay<T> bodyDisplay) {
-        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, action));
+        BodyDisplay<T> css = (td, dataProvider, item) -> td.css(component(table, "action"));
         return new Column<>(ACTIONS_COLUMN, null, null, css.andThen(bodyDisplay), null);
     }
 
@@ -167,7 +160,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         return new Column<>(name, comparator, th -> th.css(component(table, sort)).aria(sort, none).attr(scope, col)
                 .add(button().css(component(button), modifier(plain)).data(dataTableSort, Id.build(name)) // keep in sync with
                                                                                                           // Column constructor!
-                        .add(name).add(span().css(component(table, sort, indicator)).add(i().css(fas("arrows-alt-v"))))),
+                        .add(name).add(span().css(component(table, sort, indicator)).add(i().css(fas(arrowsAltV))))),
                 bodyDisplay, null);
     }
 
@@ -207,7 +200,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private int noContentColumns;
 
     protected DataTable(DataProvider<T> dataProvider, String caption) {
-        super(table().css(component(table)).attr(role, grid).element());
+        super(table().css(component(table)).attr("role", grid).element());
         this.dataProvider = dataProvider;
         this.columns = new ArrayList<>();
         this.itemSelect = new ItemSelect(element);
@@ -333,7 +326,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                         HtmlContentBuilder<HTMLDivElement> ec = div().css(component(table, expandableRow, content));
                         expandableDisplay.render(ec, dataProvider, item);
                         if (expandableNoPadding) {
-                            etd.css(modifier(noPadding));
+                            etd.css(modifier("no-padding"));
                         }
                         if (expandableFullWidth) {
                             etr.add(etd.apply(e -> e.colSpan = columns.size()).add(ec));
@@ -392,15 +385,15 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                     e.classList.add(modifier(selected));
                     if (sortInfo.isAscending()) {
                         e.setAttribute(ARIA_SORT, "descending");
-                        tsi.appendChild(i().css(fas("long-arrow-alt-up")).element());
+                        tsi.appendChild(i().css(fas(longArrowAltUp)).element());
                     } else {
                         e.setAttribute(ARIA_SORT, "ascending");
-                        tsi.appendChild(i().css(fas("long-arrow-alt-down")).element());
+                        tsi.appendChild(i().css(fas(longArrowAltDown)).element());
                     }
                 } else {
                     e.classList.remove(modifier(selected));
                     e.setAttribute(ARIA_SORT, none);
-                    tsi.appendChild(i().css(fas("arrows-alt-v")).element());
+                    tsi.appendChild(i().css(fas(arrowsAltV)).element());
                 }
             }
         }
@@ -460,26 +453,26 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                     String contentId = Id.build(itemId, expandableContent);
                     e.id = buttonId;
                     e.setAttribute(ARIA + labelledBy, itemId + " " + buttonId);
-                    e.setAttribute(ARIA + expanded, false);
+                    e.setAttribute(ARIA + "expanded", false);
                     e.setAttribute(ARIA + controls, contentId);
                     contentRow.id = contentId;
                     contentRow.hidden = true;
-                    contentRow.setAttribute(ARIA + label, "Details");
+                    contentRow.setAttribute(ARIA + "label", "Details");
 
                     handler.add(bind(e, click, evt -> {
-                        if (tbody.classList.contains(modifier(expanded))) {
+                        if (tbody.classList.contains(modifier("expanded"))) {
                             // collapse
-                            tbody.classList.remove(modifier(expanded));
-                            e.classList.remove(modifier(expanded));
+                            tbody.classList.remove(modifier("expanded"));
+                            e.classList.remove(modifier("expanded"));
                             e.setAttribute(ARIA + "expanded", false);
-                            contentRow.classList.remove(modifier(expanded));
+                            contentRow.classList.remove(modifier("expanded"));
                             contentRow.hidden = true;
                         } else {
                             // expand
-                            tbody.classList.add(modifier(expanded));
-                            e.classList.add(modifier(expanded));
+                            tbody.classList.add(modifier("expanded"));
+                            e.classList.add(modifier("expanded"));
                             e.setAttribute(ARIA + "expanded", true);
-                            contentRow.classList.add(modifier(expanded));
+                            contentRow.classList.add(modifier("expanded"));
                             contentRow.hidden = false;
                         }
                     }));

@@ -18,17 +18,17 @@ package org.patternfly.components.page;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Constants.tabs;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Classes.tabs;
 
 /**
- * Container to nest a {@link org.patternfly.components.Tabs} component in a {@link PageMainGroup} or
- * {@link PageMain} container.
+ * Container to nest a {@link org.patternfly.components.Tabs} component in a {@link PageMainGroup} or {@link PageMain}
+ * container.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs>
         implements PageSection<HTMLElement, PageMainTabs> {

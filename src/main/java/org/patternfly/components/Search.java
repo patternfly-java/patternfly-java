@@ -28,10 +28,10 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Key.Enter;
 import static org.patternfly.components.Button.control;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Constants.formControl;
-import static org.patternfly.resources.Constants.title;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.formControl;
+import static org.patternfly.layout.Icons.search;
 
 public class Search extends InputGroup {
 
@@ -59,7 +59,7 @@ public class Search extends InputGroup {
     protected Search(String placeholder) {
         super();
         add(input = input(InputType.search).css(component(formControl)).placeholder(placeholder));
-        add(control = control(icon(fas("search")).aria(title, placeholder)));
+        add(control = control(icon(fas(search)).aria("title", placeholder)));
     }
 
     // ------------------------------------------------------ public API

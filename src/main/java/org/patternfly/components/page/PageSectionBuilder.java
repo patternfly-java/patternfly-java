@@ -16,16 +16,16 @@
 package org.patternfly.components.page;
 
 import org.jboss.elemento.ElementBuilder;
-import org.patternfly.resources.Breakpoint;
-import org.patternfly.resources.Sticky;
+import org.patternfly.layout.Breakpoint;
+import org.patternfly.layout.Sticky;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.limitWidth;
-import static org.patternfly.resources.Constants.overflowScroll;
-import static org.patternfly.resources.Constants.shadowBottom;
-import static org.patternfly.resources.Constants.shadowTop;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.limitWidth;
+import static org.patternfly.layout.Classes.overflowScroll;
+import static org.patternfly.layout.Classes.shadowBottom;
+import static org.patternfly.layout.Classes.shadowTop;
 
 /**
  * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.

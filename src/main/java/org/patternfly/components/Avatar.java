@@ -18,8 +18,8 @@ package org.patternfly.components;
 import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.avatar;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.avatar;
 
 /**
  * PatternFly avatar component.

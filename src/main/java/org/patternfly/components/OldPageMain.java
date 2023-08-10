@@ -18,17 +18,13 @@ package org.patternfly.components;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.IsElement;
-import org.patternfly.resources.Constants;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 
 import static org.jboss.elemento.Elements.removeChildrenFrom;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.page;
-import static org.patternfly.resources.Constants.role;
-import static org.patternfly.resources.Constants.tabindex;
+import static org.patternfly.layout.Classes.component;
 
 public class OldPageMain extends BaseComponent<HTMLElement, OldPageMain> implements
         HtmlContent<HTMLElement, OldPageMain> {
@@ -36,9 +32,9 @@ public class OldPageMain extends BaseComponent<HTMLElement, OldPageMain> impleme
     protected OldPageMain(String id) {
         super(Elements.main()
                 .id(id)
-                .css(component(page, Constants.main))
-                .attr(role, Constants.main)
-                .attr(tabindex, "-1")
+                .css(component("page", "main"))
+                .attr("role", "main")
+                .attr("tabindex", "-1")
                 .element(), "PageMain");
     }
 

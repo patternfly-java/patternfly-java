@@ -13,9 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.resources;
+package org.patternfly.layout;
 
-public enum Theme {
+public enum Breakpoint {
 
-    DARK, LIGHT
+    sm("sm"),
+
+    md("md"),
+
+    lg("lg"),
+
+    xl("xl"),
+
+    _2xl("2xl");
+
+    public final String value;
+
+    Breakpoint(String value) {
+        this.value = value;
+    }
 }

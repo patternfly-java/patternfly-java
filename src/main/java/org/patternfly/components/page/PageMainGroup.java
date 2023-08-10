@@ -15,26 +15,28 @@
  */
 package org.patternfly.components.page;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.HtmlContent;
-import org.patternfly.resources.Breakpoint;
-import org.patternfly.resources.Sticky;
+import org.patternfly.layout.Breakpoint;
+import org.patternfly.layout.Sticky;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
- * Container to group multiple {@link PageSection} containers. Can be used in combination with the
- * {@link #sticky(Sticky)} modifier to make multiple sections sticky.
+ * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Sticky)}
+ * modifier to make multiple sections sticky.
  * <p>
- * Usage: {@snippet class = PageDemo region = pageMainGroup}
+ * Usage:
+ * {@snippet class = PageDemo region = pageMainGroup}
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainGroup extends ElementBuilder<HTMLDivElement, PageMainGroup>
         implements HtmlContent<HTMLDivElement, PageMainGroup> {

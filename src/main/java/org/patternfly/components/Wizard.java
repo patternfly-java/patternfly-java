@@ -15,21 +15,19 @@
  */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 
+import elemental2.dom.HTMLDivElement;
+
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.nav;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.breadcrumb;
-import static org.patternfly.resources.Constants.wizard;
+import static org.patternfly.layout.Classes.component;
 
 /**
- * A wizard provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming experience.
+ * A wizard provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of
+ * steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming
+ * experience.
  *
- * @see <a href=
- * "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
+ * @see <a href= "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
  */
 public class Wizard extends BaseComponent<HTMLDivElement, Wizard>
         implements HtmlContent<HTMLDivElement, Wizard> {
@@ -46,7 +44,7 @@ public class Wizard extends BaseComponent<HTMLDivElement, Wizard>
     // ------------------------------------------------------ instance
 
     Wizard() {
-        super(div().css(component(wizard)).element(), ComponentType.Wizard);
+        super(div().css(component("wizard")).element(), ComponentType.Wizard);
     }
 
     @Override

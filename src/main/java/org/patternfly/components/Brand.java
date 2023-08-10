@@ -18,7 +18,7 @@ package org.patternfly.components;
 import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;
-import static org.patternfly.resources.Constants.brand;
+import static org.patternfly.layout.Classes.brand;
 
 /**
  * PatternFly brand component.

@@ -27,13 +27,14 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.SelectHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
@@ -42,11 +43,13 @@ import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
-import static org.patternfly.resources.Dataset.dropdownItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.caretDown;
+import static org.patternfly.layout.Icons.ellipsisV;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
+import static org.patternfly.core.Dataset.dropdownItem;
 
 /**
  * PatternFly dropdown component.
@@ -65,7 +68,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     public static <T> Dropdown<T> kebab() {
-        return new Dropdown<>(null, Icon.icon(fas("ellipsis-v")), false, false);
+        return new Dropdown<>(null, Icon.icon(fas(ellipsisV)), false, false);
     }
 
     public static <T> Dropdown<T> icon(Icon icon) {
@@ -109,33 +112,34 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         this.ceh = new CollapseExpandHandler();
         this.itemDisplay = new ItemDisplay<>();
 
-        String buttonId = Id.unique(dropdown, Constants.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria(expanded, false).aria(hasPopup, true)
+        String buttonId = Id.unique(dropdown, Classes.button);
+        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false).aria(hasPopup, true)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         if (splitCheckbox || splitAction) {
-            String inputId = Id.unique(dropdown, Constants.input);
-            toggle = div().css(component(dropdown, Constants.toggle), modifier(splitButton))
-                    .add(label().css(component(dropdown, Constants.toggle, check)).apply(l -> l.htmlFor = inputId)
-                            .add(div().css(component(check)).add(input = input(checkbox).css(component(check, Constants.input))
-                                    .id(inputId).aria(invalid, false).aria(Constants.label, "Select").on(change, e -> {
+            String inputId = Id.unique(dropdown, Classes.input);
+            toggle = div().css(component(dropdown, Classes.toggle), modifier(splitButton))
+                    .add(label().css(component(dropdown, Classes.toggle, check)).apply(l -> l.htmlFor = inputId)
+                            .add(div().css(component(check)).add(input = input(checkbox).css(component(check, Classes.input))
+                                    .id(inputId).aria(invalid, false).aria("label", "Select").on(change, e -> {
                                         if (onChange != null) {
                                             onChange.accept(((HTMLInputElement) e.target).checked);
                                         }
                                     }).element())))
-                    .add(button = buttonBuilder.css(component(dropdown, Constants.toggle, Constants.button))
-                            .aria(Constants.label, "Select").add(i().css(fas(caretDown)).aria(hidden, true)).element())
+                    .add(button = buttonBuilder.css(component(dropdown, Classes.toggle, Classes.button))
+                            .aria("label", "Select").add(i().css(fas(caretDown)).aria("hidden", true)).element())
                     .element();
 
         } else {
             input = null;
-            buttonBuilder.css(component(dropdown, Constants.toggle));
+            buttonBuilder.css(component(dropdown, Classes.toggle));
             if (text != null) {
                 button = buttonBuilder
-                        .add(i().css(fas(caretDown), component(dropdown, Constants.toggle, Constants.icon)).aria(hidden, true))
+                        .add(i().css(fas(caretDown), component(dropdown, Classes.toggle, "icon")).aria(
+                                "hidden", true))
                         .element();
             } else { // icon != null
-                button = buttonBuilder.css(modifier(plain)).aria(Constants.label, "Actions").add(icon.aria(hidden, true))
+                button = buttonBuilder.css(modifier(plain)).aria("label", "Actions").add(icon.aria("hidden", true))
                         .element();
             }
             toggle = button;
@@ -144,7 +148,8 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         setText(text);
 
         // assume an ungrouped dropdown
-        menu = ul().css(component(dropdown, Constants.menu)).aria(labelledBy, buttonId).attr(role, Constants.menu).hidden(true)
+        menu = ul().css(component(dropdown, Classes.menu)).aria(labelledBy, buttonId).attr("role", Classes.menu)
+                .hidden(true)
                 .element();
         add(menu);
     }
@@ -184,7 +189,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     public Dropdown<T> addSeparator() {
-        menu.appendChild(li().attr(role, separator).add(div().css(component(dropdown, separator))).element());
+        menu.appendChild(li().attr("role", separator).add(div().css(component(dropdown, separator))).element());
         return this;
     }
 
@@ -310,16 +315,16 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
             clearText();
         } else {
             HTMLElement textElement = Elements.find(button,
-                    By.classname(component(dropdown, Constants.toggle, Constants.text)));
+                    By.classname(component(dropdown, Classes.toggle, Classes.text)));
             if (textElement != null) {
                 textElement.textContent = text;
             } else {
                 insertFirst(button,
-                        span().css(component(dropdown, Constants.toggle, Constants.text)).textContent(text).element());
+                        span().css(component(dropdown, Classes.toggle, Classes.text)).textContent(text).element());
             }
             HTMLElement iconElement = Elements.find(button, By.selector(".fas.fa-caret-down"));
             if (iconElement != null) {
-                iconElement.classList.add(component(dropdown, Constants.toggle, icon));
+                iconElement.classList.add(component(dropdown, Classes.toggle, "icon"));
             }
         }
     }
@@ -327,11 +332,11 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     /** Removes the text from a dropdown created with {@link Dropdown#splitCheckbox()}. */
     public void clearText() {
         if (splitCheckbox) {
-            HTMLElement element = Elements.find(button, By.classname(component(dropdown, Constants.toggle, text)));
+            HTMLElement element = Elements.find(button, By.classname(component(dropdown, Classes.toggle, text)));
             failSafeRemoveFromParent(element);
             HTMLElement iconElement = Elements.find(button, By.selector(".fas.fa-caret-down"));
             if (iconElement != null) {
-                iconElement.classList.remove(component(dropdown, Constants.toggle, icon));
+                iconElement.classList.remove(component(dropdown, Classes.toggle, "icon"));
             }
         }
     }
@@ -363,15 +368,15 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     // ------------------------------------------------------ internals
 
     private HTMLLIElement newItem(T item) {
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(dropdown, Constants.menu, Constants.item))
-                .attr(tabindex, -1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
+        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(dropdown, Classes.menu, Classes.item))
+                .attr("tabindex", -1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
                     if (onSelect != null) {
                         onSelect.onSelect(item);
                     }
                 });
         itemDisplay.display.accept(button, item);
-        return li().attr(role, menuitem).add(button).element();
+        return li().attr("role", menuitem).add(button).element();
     }
 
     private HTMLButtonElement itemElement(T item) {

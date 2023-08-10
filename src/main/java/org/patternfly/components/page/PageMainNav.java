@@ -15,20 +15,21 @@
  */
 package org.patternfly.components.page;
 
+import org.patternfly.components.navigation.Navigation;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.main;
-import static org.patternfly.resources.Constants.nav;
-import static org.patternfly.resources.Constants.page;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.nav;
+import static org.patternfly.layout.Classes.page;
 
 /**
- * Container to nest a {@link org.patternfly.components.Navigation} in a {@link PageMainGroup} or
- * {@link PageMain} container.
+ * Container to nest a {@link Navigation} in a {@link PageMainGroup} or {@link PageMain} container.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav>
         implements PageSection<HTMLElement, PageMainNav> {

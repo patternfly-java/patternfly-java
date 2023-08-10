@@ -22,20 +22,22 @@ import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.HtmlContentBuilder;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.CollapseExpandHandler;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
+import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.angleRight;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * PatternFly expandable component.
@@ -66,11 +68,11 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> implem
         this.toggleText = expanded -> textElement().textContent = expanded ? collapseText : expandText;
         this.ceh.onToggle = this.toggleText;
 
-        button = button().css(component(expandable, toggle)).aria(expanded, false)
+        button = button().css(component(expandable, toggle)).aria("expanded", false)
                 .on(click, e -> ceh.expand(element(), buttonElement(), contentElement()))
-                .add(i().css(component(expandable, toggle, icon), fas(angleRight)))
+                .add(i().css(component(expandable, toggle, "icon"), fas(angleRight)))
                 .add(text = span().textContent(expandText).element()).element();
-        content = div().css(component(expandable, Constants.content)).hidden(true);
+        content = div().css(component(expandable, Classes.content)).hidden(true);
 
         // Don't use add() it's overridden!
         element.appendChild(button);

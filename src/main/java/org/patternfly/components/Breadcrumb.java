@@ -15,19 +15,19 @@
  */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLElement;
 import org.jboss.elemento.HtmlContent;
 
+import elemental2.dom.HTMLElement;
+
 import static org.jboss.elemento.Elements.nav;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.Constants.breadcrumb;
+import static org.patternfly.layout.Classes.component;
 
 /**
- * A breadcrumb provides page context to help users navigate more efficiently and understand where they are in the
- * application hierarchy.
+ * A breadcrumb provides page context to help users navigate more efficiently and understand where they are in the application
+ * hierarchy.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/breadcrumb/html">https://www.patternfly.org/components/breadcrumb/html</a>
+ *      "https://www.patternfly.org/components/breadcrumb/html">https://www.patternfly.org/components/breadcrumb/html</a>
  */
 public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb>
         implements HtmlContent<HTMLElement, Breadcrumb> {
@@ -44,7 +44,7 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb>
     // ------------------------------------------------------ instance
 
     Breadcrumb() {
-        super(nav().css(component(breadcrumb)).element(), ComponentType.Breadcrumb);
+        super(nav().css(component("breadcrumb")).element(), ComponentType.Breadcrumb);
     }
 
     @Override

@@ -21,7 +21,7 @@ import org.jboss.elemento.HtmlContentBuilder;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
-import org.patternfly.resources.Constants;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -30,9 +30,9 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.modifier;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * PatternFly button component.
@@ -50,7 +50,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button button(Icon icon, String text) {
-        return new Button(Elements.button().add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
+        return new Button(Elements.button().add(span().css(component(Classes.button, "icon")).add(icon)).add(text));
     }
 
     public static Button button(HTMLElement element) {
@@ -67,7 +67,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     public static Button link(Icon icon, String text) {
         return new Button(Elements.button().css(modifier(link))
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
+                .add(span().css(component(Classes.button, "icon")).add(icon)).add(text));
     }
 
     public static Button link(HTMLElement element) {
@@ -84,7 +84,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     public static Button link(Icon icon, String text, String href, String target) {
         return new Button(Elements.a(href).attr("target", target)
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
+                .add(span().css(component(Classes.button, "icon")).add(icon)).add(text));
     }
 
     public static Button link(HTMLElement element, String href) {
@@ -100,7 +100,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button icon(String iconClass, String label) {
-        return new Button(Elements.button().css(modifier(plain)).aria(Constants.label, label).add(i().css(iconClass)));
+        return new Button(Elements.button().css(modifier(plain)).aria("label", label).add(i().css(iconClass)));
     }
 
     public static Button icon(Icon icon) {
@@ -108,11 +108,11 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button icon(Icon icon, String label) {
-        return new Button(Elements.button().css(modifier(plain)).aria(Constants.label, label).add(icon));
+        return new Button(Elements.button().css(modifier(plain)).aria("label", label).add(icon));
     }
 
     public static Button inline(String text) {
-        return new Button(Elements.button().css(modifier(inline), modifier(link)).textContent(text));
+        return new Button(Elements.button().css(modifier("inline"), modifier(link)).textContent(text));
     }
 
     public static Button control(String text) {
@@ -120,12 +120,12 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button control(Icon icon) {
-        return new Button(Elements.button().css(modifier(control)).add(icon.aria(hidden, true)));
+        return new Button(Elements.button().css(modifier(control)).add(icon.aria("hidden", true)));
     }
 
     public static Button control(Icon icon, String text) {
         return new Button(Elements.button().css(modifier(control))
-                .add(span().css(component(Constants.button, Constants.icon)).add(icon)).add(text));
+                .add(span().css(component(Classes.button, "icon")).add(icon)).add(text));
     }
 
     public static Button control(HTMLElement element) {
@@ -139,7 +139,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     private Callback callback;
 
     <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
-        super(builder.css(component(Constants.button)).element(), ComponentType.Button);
+        super(builder.css(component(Classes.button)).element(), ComponentType.Button);
         on(click, e -> {
             if (callback != null) {
                 callback.call();
@@ -166,7 +166,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     public Button clear() {
         element.classList.remove(modifier(active));
         element.classList.remove(modifier(focus));
-        element.classList.remove(modifier(expanded));
+        element.classList.remove(modifier("expanded"));
         return this;
     }
 
@@ -176,7 +176,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
             button.disabled = true;
         } else if (a != null) {
             a.classList.add(disabled);
-            a.setAttribute(tabindex, -1);
+            a.setAttribute("tabindex", -1);
         }
         aria(disabled, true);
         return this;
@@ -188,7 +188,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
             button.disabled = false;
         } else if (a != null) {
             a.classList.remove(disabled);
-            a.removeAttribute(tabindex);
+            a.removeAttribute("tabindex");
         }
         aria(disabled, false);
         return this;
@@ -212,7 +212,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public Button expanded() {
-        element.classList.add(modifier(expanded));
+        element.classList.add(modifier("expanded"));
         return this;
     }
 
@@ -254,7 +254,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     @Override
     public Button label(String label) {
-        return aria(Constants.label, label);
+        return aria("label", label);
     }
 
     // ------------------------------------------------------ inner classes

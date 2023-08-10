@@ -24,9 +24,10 @@ import elemental2.dom.HTMLDivElement;
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.components.page.Page.page;
-import static org.patternfly.resources.CSS.component;
-import static org.patternfly.resources.CSS.fas;
-import static org.patternfly.resources.Constants.*;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Icons.bars;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.*;
 
 /**
  * Container for the toggle of a {@link Masthead} component. The component contains a toggle button that calls
@@ -54,7 +55,7 @@ public class MastheadToggle extends ElementBuilder<HTMLDivElement, MastheadToggl
     MastheadToggle() {
         super(div().css(component(masthead, toggle)).element());
         add(div().css(component(masthead, toggle))
-                .add(toggleButton = Button.icon(fas("bars"), globalNavigation)
+                .add(toggleButton = Button.icon(fas(bars), globalNavigation)
                         .aria(expanded, false)
                         .onClick(this::toggle)));
     }
