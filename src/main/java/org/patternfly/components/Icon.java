@@ -22,7 +22,6 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Constants.hidden;
 
 /**
