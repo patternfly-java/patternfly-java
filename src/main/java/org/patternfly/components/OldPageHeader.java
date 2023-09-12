@@ -16,7 +16,6 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.Id;
 import org.patternfly.components.navigation.Navigation;
 import org.patternfly.layout.Classes;
@@ -29,13 +28,16 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.components.Icon.icon;
+import static org.patternfly.layout.Classes.banner;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.controls;
+import static org.patternfly.layout.Classes.header;
+import static org.patternfly.layout.Classes.link;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Icons.bars;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.*;
 
-public class OldPageHeader
-        extends BaseComponent<HTMLElement, OldPageHeader> implements HtmlContent<HTMLElement, OldPageHeader> {
+public class OldPageHeader extends BaseComponent<HTMLElement, OldPageHeader> {
 
     private final HTMLDivElement toggleContainer;
     private final Button toggleButton;

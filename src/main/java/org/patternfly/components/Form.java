@@ -16,7 +16,6 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLFormElement;
@@ -31,7 +30,7 @@ import static org.patternfly.layout.Classes.form;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/form">https://www.patternfly.org/v4/documentation/core/components/form</a>
  */
-public class Form extends BaseComponent<HTMLFormElement, Form> implements HtmlContent<HTMLFormElement, Form> {
+public class Form extends BaseComponent<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ factory methods
 
@@ -56,7 +55,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements HtmlCo
 
     // ------------------------------------------------------ inner classes
 
-    public static class Group extends BaseComponent<HTMLDivElement, Group> implements HtmlContent<HTMLDivElement, Group> {
+    public static class Group extends BaseComponent<HTMLDivElement, Group> {
 
         protected Group() {
             super(div().css(component(form, "group")).element(), "FormGroup");

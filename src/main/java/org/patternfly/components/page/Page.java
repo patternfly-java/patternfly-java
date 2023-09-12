@@ -15,26 +15,27 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 
 import elemental2.dom.HTMLDivElement;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.page;
 
 /**
  * The page component is used to define the basic layout of a page with either vertical or horizontal navigation.
  * <p>
- * Usage:
  * {@snippet class = PageDemo region = page}
  *
  * @see <a href="https://www.patternfly.org/components/page/html">https://www.patternfly.org/components/page/html</a>
  */
-public class Page
-        extends BaseComponent<HTMLDivElement, Page> implements HtmlContent<HTMLDivElement, Page> {
+public class Page extends BaseComponent<HTMLDivElement, Page> {
 
     // ------------------------------------------------------ factory methods
 
@@ -70,7 +71,7 @@ public class Page
     public Page addSkipToContent(SkipToContent skipToContent) {
         failSafeRemoveFromParent(this.skipToContent);
         this.skipToContent = skipToContent;
-        insertFirst(element, this.skipToContent);
+        insertFirst(element(), this.skipToContent);
         return this;
     }
 
@@ -81,7 +82,7 @@ public class Page
         if (skipToContent != null) {
             insertAfter(this.masthead, skipToContent.element());
         } else {
-            insertFirst(element, this.masthead);
+            insertFirst(element(), this.masthead);
         }
         return this;
     }

@@ -15,15 +15,14 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.layout.Classes.badge;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.badge;
 import static org.patternfly.layout.Classes.read;
 import static org.patternfly.layout.Classes.unread;
 
@@ -33,7 +32,7 @@ import static org.patternfly.layout.Classes.unread;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/badge">https://www.patternfly.org/v4/documentation/core/components/badge</a>
  */
-public class Badge extends BaseComponent<HTMLElement, Badge> implements HtmlContent<HTMLElement, Badge> {
+public class Badge extends BaseComponent<HTMLElement, Badge> {
 
     // ------------------------------------------------------ factory methods
 
@@ -64,7 +63,9 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements HtmlCont
     }
 
     Badge(String text, boolean read) {
-        super(span().css(component(badge), read ? modifier(Classes.read) : modifier(unread)).textContent(text).element(),
+        super(span().css(component(badge), read ? modifier(Classes.read) : modifier(unread))
+                .textContent(text)
+                .element(),
                 "Badge");
     }
 
@@ -77,15 +78,15 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements HtmlCont
 
     /** Marks the badge as read. */
     public Badge read() {
-        element.classList.remove(modifier(unread));
-        element.classList.add(modifier(read));
+        element().classList.remove(modifier(unread));
+        element().classList.add(modifier(read));
         return this;
     }
 
     /** Marks the badge as unread. */
     public Badge unread() {
-        element.classList.remove(modifier(read));
-        element.classList.add(modifier(unread));
+        element().classList.remove(modifier(read));
+        element().classList.add(modifier(unread));
         return this;
     }
 
@@ -96,7 +97,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements HtmlCont
 
     /** Modifies the text of this badge. */
     public Badge text(String text) {
-        element.textContent = text;
+        element().textContent = text;
         return this;
     }
 }

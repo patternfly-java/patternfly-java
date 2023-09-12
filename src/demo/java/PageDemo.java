@@ -1,6 +1,5 @@
 import static org.patternfly.components.Brand.brand;
 import static org.patternfly.components.Content.content;
-import static org.patternfly.components.toolbar.Toolbar.toolbar;
 import static org.patternfly.components.page.Masthead.pageMasthead;
 import static org.patternfly.components.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.components.page.Page.page;
@@ -11,6 +10,7 @@ import static org.patternfly.components.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.components.page.PageMainSection.pageMainSection;
 import static org.patternfly.components.page.PageSidebar.pageSidebar;
 import static org.patternfly.components.page.SkipToContent.skipToContent;
+import static org.patternfly.components.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
 

@@ -13,21 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.layout;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.bottom;
-import static org.patternfly.layout.Classes.left;
-import static org.patternfly.layout.Classes.right;
-import static org.patternfly.layout.Classes.top;
+public enum Status {
 
-/** Position used by {@link Popover} and {@link Tooltip}. */
-enum Position {
-    AUTO(""), TOP(modifier(top)), RIGHT(modifier(right)), BOTTOM(modifier(bottom)), LEFT(modifier(left));
+    danger("danger"),
 
-    final String modifier;
+    warning("warning"),
 
-    Position(String modifier) {
-        this.modifier = modifier;
+    success("success"),
+
+    info("info"),
+
+    custom("custom");
+
+    public final String modifier;
+
+    Status(String value) {
+        this.modifier = Classes.modifier(value);
     }
 }

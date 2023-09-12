@@ -15,15 +15,17 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.HtmlContent;
+import org.jboss.elemento.Container;
+import org.jboss.elemento.Finder;
+import org.jboss.elemento.HasElement;
+import org.jboss.elemento.HasHTMLElement;
 
 import elemental2.dom.HTMLElement;
 
 /**
  * Common interface for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
  */
-public interface PageSection<E extends HTMLElement, P extends PageSection<E, P>> extends HtmlContent<E, P> {
+public interface PageSection<E extends HTMLElement, P extends PageSection<E, P>>
+        extends HasElement<E, P>, HasHTMLElement<E, P>, Finder<E>, Container<E, P> {
 
-    /** In order to make builders work with inheritance, sub-builders must return a reference to their instance. */
-    P that();
 }

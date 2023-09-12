@@ -15,18 +15,16 @@
  */
 package org.patternfly.components.alert;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.alert;
+import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.description;
 
-public class AlertDescription extends ElementBuilder<HTMLDivElement, AlertDescription>
-        implements HtmlContent<HTMLDivElement, AlertDescription> {
+public class AlertDescription extends SubComponent<HTMLDivElement, AlertDescription> {
 
     public static AlertDescription alertDescription() {
         return new AlertDescription();

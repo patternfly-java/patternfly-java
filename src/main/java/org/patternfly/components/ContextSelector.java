@@ -21,31 +21,40 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.patternfly.layout.Constants;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Dataset.contextSelectorItem;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.contextSelector;
+import static org.patternfly.layout.Classes.icon;
+import static org.patternfly.layout.Classes.input;
+import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.list;
+import static org.patternfly.layout.Classes.none;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Constants.hidden;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.input;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.contextSelectorItem;
 
 /**
  * PatternFly context selector component.
@@ -54,7 +63,7 @@ import static org.patternfly.core.Dataset.contextSelectorItem;
  *      "https://www.patternfly.org/v4/documentation/core/components/contextselector">https://www.patternfly.org/v4/documentation/core/components/contextselector</a>
  */
 public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSelector<T>>
-        implements HtmlContent<HTMLDivElement, ContextSelector<T>>, Disable<ContextSelector<T>>, HasValue<T> {
+        implements Disable<ContextSelector<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -126,7 +135,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     }
 
     public ContextSelector<T> add(T item) {
-        HtmlContentBuilder<HTMLButtonElement> button = button()
+        HTMLContainerBuilder<HTMLButtonElement> button = button()
                 .css(component(contextSelector, Classes.menu, list, Classes.item))
                 .data(contextSelectorItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
@@ -147,7 +156,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         return this;
     }
 
-    public ContextSelector<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+    public ContextSelector<T> display(BiConsumer<HTMLContainerBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }

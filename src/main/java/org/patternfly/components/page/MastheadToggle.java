@@ -15,19 +15,22 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.Button;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.components.page.Page.page;
+import static org.patternfly.layout.Classes.ariaExpanded;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.expanded;
+import static org.patternfly.layout.Classes.globalNavigation;
+import static org.patternfly.layout.Classes.masthead;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Icons.bars;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.*;
 
 /**
  * Container for the toggle of a {@link Masthead} component. The component contains a toggle button that calls
@@ -36,8 +39,7 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadToggle extends ElementBuilder<HTMLDivElement, MastheadToggle>
-        implements HtmlContent<HTMLDivElement, MastheadToggle> {
+public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle> {
 
     // ------------------------------------------------------ factory methods
 

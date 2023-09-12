@@ -21,41 +21,54 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
-import org.patternfly.components.ItemDisplay;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.Icons;
 import org.patternfly.layout.Orientation;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Dataset.navGroup;
+import static org.patternfly.core.Dataset.navGroupExpandable;
+import static org.patternfly.core.Dataset.navGroupLink;
+import static org.patternfly.core.Dataset.navGroupSection;
+import static org.patternfly.core.Dataset.navItem;
+import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.current;
+import static org.patternfly.layout.Classes.divider;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.link;
+import static org.patternfly.layout.Classes.list;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.scroll;
+import static org.patternfly.layout.Classes.separator;
+import static org.patternfly.layout.Classes.simple;
+import static org.patternfly.layout.Classes.subnav;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Icons.angleLeft;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.button;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.*;
 
 /**
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
  * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
- * Usage:
  * {@snippet class = NavigationDemo region = horizontal}
  * {@snippet class = NavigationDemo region = vertical}
  *
@@ -63,7 +76,7 @@ import static org.patternfly.core.Dataset.*;
  *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
  */
 // TODO Use static inner class Group instead of add(String group, NavigationItem item)
-public class Navigation extends BaseComponent<HTMLElement, Navigation> implements HtmlContent<HTMLElement, Navigation> {
+public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ factory methods
 
@@ -143,7 +156,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public Navigation addGroup(String group, NavigationItem item) {
         String groupId = groupId(group);
-        lastGroup = Elements.find(element, By.element("ul").and(By.data(navGroup, groupId)));
+        lastGroup = find(By.element("ul").and(By.data(navGroup, groupId)));
         if (lastGroup == null) {
             lastGroup = ul().css(component("nav", simple, list)).data(navGroup, groupId).element();
             String labelId = Id.unique("nav", "group", "label");
@@ -178,7 +191,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                 element.appendChild(li().css(divider).attr("role", separator).element());
             }
         } else {
-            HtmlContentBuilder<HTMLAnchorElement> a = a().css(component("nav", link)).on(click, e -> {
+            HTMLContainerBuilder<HTMLAnchorElement> a = a().css(component("nav", link)).on(click, e -> {
                 ((HTMLElement) e.currentTarget).scrollIntoView(true);
                 if (onSelect != null) {
                     onSelect.onSelect(item);
@@ -225,7 +238,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     public void select(NavigationItem item, boolean fireEvent) {
         if (item != null) {
             String itemId = item.id;
-            for (HTMLElement e : Elements.findAll(element, By.element(A_TAG).and(By.data(navItem)))) {
+            for (HTMLElement e : findAll(By.element(A_TAG).and(By.data(navItem)))) {
                 String value = e.dataset.get(navItem);
                 if (itemId.equals(value)) {
                     e.classList.add(modifier(current));
@@ -240,12 +253,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                 }
             }
             if (expandable) {
-                HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navItem, itemId)));
+                HTMLElement a = find(By.element(A_TAG).and(By.data(navItem, itemId)));
                 if (a != null) {
                     String groupId = a.dataset.get(navGroup);
                     if (groupId != null) {
-                        for (HTMLElement e : Elements.findAll(element,
-                                By.element("li").and(By.data(navGroupExpandable)))) {
+                        for (HTMLElement e : findAll(By.element("li").and(By.data(navGroupExpandable)))) {
                             if (groupId.equals(e.dataset.get(navGroupExpandable))) {
                                 e.classList.add(modifier(current));
                                 expand(groupId);
@@ -276,7 +288,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         return this;
     }
 
-    public Navigation display(BiConsumer<HtmlContentBuilder<HTMLAnchorElement>, NavigationItem> display) {
+    public Navigation display(BiConsumer<HTMLContainerBuilder<HTMLAnchorElement>, NavigationItem> display) {
         itemDisplay.display = display;
         return this;
     }
@@ -290,9 +302,9 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     // ------------------------------------------------------ internals
 
     private void toggleGroup(String groupId) {
-        HTMLElement li = Elements.find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = Elements.find(element, By.element("section").and(By.data(navGroupSection, groupId)));
+        HTMLElement li = find(By.element("li").and(By.data(navGroupExpandable, groupId)));
+        HTMLElement a = find(By.element(A_TAG).and(By.data(navGroupLink)));
+        HTMLElement section = find(By.element("section").and(By.data(navGroupSection, groupId)));
         if (li != null && a != null && section != null) {
             if (li.classList.contains(modifier("expanded"))) {
                 // collapse
@@ -310,9 +322,9 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     private void expand(String groupId) {
-        HTMLElement li = Elements.find(element, By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = Elements.find(element, By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = Elements.find(element, By.element("section").and(By.data(navGroupSection, groupId)));
+        HTMLElement li = find(By.element("li").and(By.data(navGroupExpandable, groupId)));
+        HTMLElement a = find(By.element(A_TAG).and(By.data(navGroupLink)));
+        HTMLElement section = find(By.element("section").and(By.data(navGroupSection, groupId)));
         if (li != null && a != null && section != null) {
             li.classList.add(modifier("expanded"));
             a.setAttribute("aria-expanded", true);

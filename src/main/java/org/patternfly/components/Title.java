@@ -15,7 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLHeadingElement;
@@ -29,7 +28,7 @@ import static org.patternfly.layout.Classes.component;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/title">https://www.patternfly.org/v4/documentation/core/components/title</a>
  */
-public class Title extends BaseComponent<HTMLHeadingElement, Title> implements HtmlContent<HTMLHeadingElement, Title> {
+public class Title extends BaseComponent<HTMLHeadingElement, Title> {
 
     // ------------------------------------------------------ factory methods
 

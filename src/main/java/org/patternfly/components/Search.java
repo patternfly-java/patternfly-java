@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
-import org.jboss.elemento.InputBuilder;
+import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
 
 import elemental2.dom.HTMLInputElement;
@@ -29,8 +29,8 @@ import static org.jboss.elemento.Key.Enter;
 import static org.patternfly.components.Button.control;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Classes.formControl;
+import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Icons.search;
 
 public class Search extends InputGroup {
@@ -47,7 +47,7 @@ public class Search extends InputGroup {
 
     // ------------------------------------------------------ instance
 
-    private final InputBuilder<HTMLInputElement> input;
+    private final InputElementBuilder<HTMLInputElement> input;
     private final Button control;
     private HandlerRegistration searchHandler;
     private HandlerRegistration keyupHandler;

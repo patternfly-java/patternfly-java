@@ -15,16 +15,20 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.layout.Classes.clipper;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.leadBall;
+import static org.patternfly.layout.Classes.progressbar;
+import static org.patternfly.layout.Classes.spinner;
+import static org.patternfly.layout.Classes.tailBall;
+import static org.patternfly.layout.Classes.valueText;
 
-public class Spinner extends BaseComponent<HTMLElement, Spinner> implements HtmlContent<HTMLElement, Spinner> {
+public class Spinner extends BaseComponent<HTMLElement, Spinner> {
 
     // ------------------------------------------------------ factory methods
 

@@ -16,8 +16,7 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
@@ -30,9 +29,19 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.layout.Classes.active;
+import static org.patternfly.layout.Classes.block;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.control;
+import static org.patternfly.layout.Classes.danger;
+import static org.patternfly.layout.Classes.disabled;
+import static org.patternfly.layout.Classes.focus;
+import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.plain;
+import static org.patternfly.layout.Classes.primary;
+import static org.patternfly.layout.Classes.secondary;
+import static org.patternfly.layout.Classes.tertiary;
 
 /**
  * PatternFly button component.
@@ -41,7 +50,7 @@ import static org.patternfly.layout.Classes.*;
  *      "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
-        implements HtmlContent<HTMLElement, Button>, Aria<Button>, Disable<Button> {
+        implements Aria<Button>, Disable<Button> {
 
     // ------------------------------------------------------ factory methods
 
@@ -138,7 +147,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
     private final HTMLAnchorElement a;
     private Callback callback;
 
-    <E extends HTMLElement> Button(HtmlContentBuilder<E> builder) {
+    <E extends HTMLElement> Button(HTMLContainerBuilder<E> builder) {
         super(builder.css(component(Classes.button)).element(), ComponentType.Button);
         on(click, e -> {
             if (callback != null) {
@@ -146,11 +155,11 @@ public class Button extends BaseComponent<HTMLElement, Button>
             }
         });
 
-        if (element.tagName.equalsIgnoreCase("button")) {
+        if (element().tagName.equalsIgnoreCase("button")) {
             a = null;
-            button = (HTMLButtonElement) element;
+            button = (HTMLButtonElement) element();
         } else {
-            a = (HTMLAnchorElement) element;
+            a = (HTMLAnchorElement) element();
             button = null;
         }
     }
@@ -164,9 +173,9 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     /** Removes modifiers added by @{@link #active()}, @{@link #expanded()} or @{@link #focus()}. */
     public Button clear() {
-        element.classList.remove(modifier(active));
-        element.classList.remove(modifier(focus));
-        element.classList.remove(modifier("expanded"));
+        element().classList.remove(modifier(active));
+        element().classList.remove(modifier(focus));
+        element().classList.remove(modifier("expanded"));
         return this;
     }
 
@@ -197,42 +206,42 @@ public class Button extends BaseComponent<HTMLElement, Button>
     // ------------------------------------------------------ modifiers
 
     public Button active() {
-        element.classList.add(modifier(active));
+        element().classList.add(modifier(active));
         return this;
     }
 
     public Button block() {
-        element.classList.add(modifier(block));
+        element().classList.add(modifier(block));
         return this;
     }
 
     public Button danger() {
-        element.classList.add(modifier(danger));
+        element().classList.add(modifier(danger));
         return this;
     }
 
     public Button expanded() {
-        element.classList.add(modifier("expanded"));
+        element().classList.add(modifier("expanded"));
         return this;
     }
 
     public Button focus() {
-        element.classList.add(modifier(focus));
+        element().classList.add(modifier(focus));
         return this;
     }
 
     public Button primary() {
-        element.classList.add(modifier(primary));
+        element().classList.add(modifier(primary));
         return this;
     }
 
     public Button secondary() {
-        element.classList.add(modifier(secondary));
+        element().classList.add(modifier(secondary));
         return this;
     }
 
     public Button tertiary() {
-        element.classList.add(modifier(tertiary));
+        element().classList.add(modifier(tertiary));
         return this;
     }
 

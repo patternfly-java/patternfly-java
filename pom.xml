@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.0.14-SNAPSHOT</version.elemento>
+        <version.elemento>1.2.0</version.elemento>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.junit>5.10.0</version.junit>
@@ -101,7 +101,8 @@
 
         <!-- Build related -->
         <encoding>UTF-8</encoding>
-        <java.version>19</java.version>
+        <java.version>11</java.version>
+        <javadoc.options/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.min.version>3.2.5</maven.min.version>
@@ -111,6 +112,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jboss.elemento</groupId>
+                <artifactId>elemento-bom</artifactId>
+                <version>${version.elemento}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -125,7 +133,10 @@
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-core</artifactId>
-            <version>${version.elemento}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-svg</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -253,15 +264,18 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${version.javadoc.plugin}</version>
                     <configuration combine.self="override">
-                        <additionalOptions>--snippet-path ${project.basedir}/src/demo/java</additionalOptions>
+                        <additionalOptions>${javadoc.options}</additionalOptions>
                         <detectLinks>true</detectLinks>
                         <doclint>none</doclint>
                         <failOnError>false</failOnError>
                         <links>
                             <link>https://hal.github.io/elemento/</link>
-                            <link>https://www.javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
-                            <link>https://www.javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
-                            <link>https://www.javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/</link>
+                            <link>https://www.gwtproject.org/javadoc/latest/</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}</link>
+                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
+                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
+                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/</link>
                         </links>
                         <show>public</show>
                     </configuration>
@@ -379,6 +393,16 @@
     </build>
 
     <profiles>
+        <!--
+            Profile to be used to generate Javadoc with code snippets. Requires Java 18!
+            Used for building the online documentation published to GitHub pages
+        -->
+        <profile>
+            <id>snippets</id>
+            <properties>
+                <javadoc.options>--snippet-path ${project.basedir}/src/demo/java</javadoc.options>
+            </properties>
+        </profile>
         <profile>
             <id>release</id>
             <build>

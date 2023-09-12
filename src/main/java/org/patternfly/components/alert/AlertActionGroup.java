@@ -15,18 +15,16 @@
  */
 package org.patternfly.components.alert;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.actionGroup;
 import static org.patternfly.layout.Classes.alert;
+import static org.patternfly.layout.Classes.component;
 
-public class AlertActionGroup extends ElementBuilder<HTMLDivElement, AlertActionGroup>
-        implements HtmlContent<HTMLDivElement, AlertActionGroup> {
+public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> {
 
     public static AlertActionGroup alertActionGroup() {
         return new AlertActionGroup();
@@ -40,5 +38,4 @@ public class AlertActionGroup extends ElementBuilder<HTMLDivElement, AlertAction
     public AlertActionGroup that() {
         return this;
     }
-
 }

@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.nav;
@@ -29,8 +27,7 @@ import static org.patternfly.layout.Classes.component;
  * @see <a href=
  *      "https://www.patternfly.org/components/breadcrumb/html">https://www.patternfly.org/components/breadcrumb/html</a>
  */
-public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb>
-        implements HtmlContent<HTMLElement, Breadcrumb> {
+public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
 
     // ------------------------------------------------------ factory methods
 

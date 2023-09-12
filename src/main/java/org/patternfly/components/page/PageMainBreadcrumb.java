@@ -20,8 +20,8 @@ import org.patternfly.components.Breadcrumb;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.breadcrumb;
+import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;
 
@@ -31,8 +31,7 @@ import static org.patternfly.layout.Classes.page;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMainBreadcrumb>
-        implements PageSection<HTMLElement, PageMainBreadcrumb> {
+public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMainBreadcrumb> {
 
     // ------------------------------------------------------ factory methods
 

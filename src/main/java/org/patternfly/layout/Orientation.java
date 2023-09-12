@@ -16,5 +16,8 @@
 package org.patternfly.layout;
 
 public enum Orientation {
-    horizontal, vertical
+
+    horizontal,
+
+    vertical
 }

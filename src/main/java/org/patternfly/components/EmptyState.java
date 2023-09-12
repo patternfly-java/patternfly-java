@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
 
@@ -29,9 +27,9 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Classes.emptyState;
 import static org.patternfly.layout.Classes.primary;
+import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Icons.search;
 import static org.patternfly.layout.Size.lg;
 import static org.patternfly.layout.Size.sm;
@@ -42,7 +40,7 @@ import static org.patternfly.layout.Size.sm;
  * @see <a
  *      href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
  */
-public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implements HtmlContent<HTMLDivElement, EmptyState> {
+public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
 
     // ------------------------------------------------------ factory methods
 
@@ -150,7 +148,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> implem
 
     // ------------------------------------------------------ inner classes
 
-    public static class Body extends ElementBuilder<HTMLElement, Body> implements HtmlContent<HTMLElement, Body> {
+    public static class Body extends SubComponent<HTMLElement, Body> {
 
         protected Body() {
             super(div().css(component(emptyState, "body")).element());

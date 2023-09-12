@@ -15,7 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -30,7 +29,7 @@ import static org.patternfly.layout.Classes.modifier;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/label/">https://www.patternfly.org/v4/documentation/core/components/label</a>
  */
-public class Label extends BaseComponent<HTMLElement, Label> implements HtmlContent<HTMLElement, Label> {
+public class Label extends BaseComponent<HTMLElement, Label> {
 
     // ------------------------------------------------------ factory methods
 
@@ -51,7 +50,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements HtmlCont
     Label(String text, boolean compact) {
         super(span().css(component("label")).textContent(text).element(), "Label");
         if (compact) {
-            element.classList.add(modifier(Classes.compact));
+            element().classList.add(modifier(Classes.compact));
         }
     }
 

@@ -21,10 +21,8 @@ import java.util.List;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
@@ -37,22 +35,35 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
-import org.patternfly.layout.Icons;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.components.Icon.icon;
+import static org.patternfly.core.Dataset.dataListItem;
+import static org.patternfly.layout.Classes.cell;
+import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.controls;
+import static org.patternfly.layout.Classes.dataList;
+import static org.patternfly.layout.Classes.expandableContent;
+import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.Classes.itemAction;
+import static org.patternfly.layout.Classes.itemContent;
+import static org.patternfly.layout.Classes.itemControl;
+import static org.patternfly.layout.Classes.itemRow;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.list;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.dataListItem;
 
 /**
  * PatternFly data list.
@@ -74,7 +85,7 @@ import static org.patternfly.core.Dataset.dataListItem;
  *      "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
  */
 public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
-        implements HtmlContent<HTMLUListElement, DataList<T>>, Display<T> {
+        implements Display<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -131,7 +142,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         super(ul().css(component(dataList)).attr("role", list).element(), "DataList");
         this.dataProvider = dataProvider;
         this.display = display;
-        this.itemSelect = new ItemSelect(element);
+        this.itemSelect = new ItemSelect(element());
     }
 
     @Override
@@ -145,11 +156,11 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public void showItems(Iterable<T> items, PageInfo pageInfo) {
         itemSelect.removeSelectHandler();
         removeExpandHandler();
-        removeChildrenFrom(element);
+        removeChildrenFrom(element());
 
         for (T item : items) {
             String id = dataProvider.getId(item);
-            HtmlContentBuilder<HTMLLIElement> li = li().css(component(dataList, Classes.item)).data(dataListItem, id)
+            HTMLContainerBuilder<HTMLLIElement> li = li().css(component(dataList, Classes.item)).data(dataListItem, id)
                     .aria(labelledBy, id);
             display.render(li, dataProvider, item);
             add(li);
@@ -174,7 +185,8 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
     public void updateSelection(SelectionInfo<T> selectionInfo) {
         for (T item : dataProvider.getVisibleItems()) {
             String id = dataProvider.getId(item);
-            itemSelect.updateSelection(By.data(dataListItem, id).desc(SELECT_ITEM_SELECTOR), selectionInfo.isSelected(item));
+            itemSelect.updateSelection(By.data(dataListItem, id).desc(SELECT_ITEM_SELECTOR),
+                    selectionInfo.isSelected(item));
         }
     }
 
@@ -187,7 +199,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
     private void bindExpandHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_SELECTOR)) {
+        for (HTMLElement htmlElement : Elements.findAll(element(), TOGGLE_SELECTOR)) {
             HTMLElement itemElement = Elements.closest(htmlElement, By.classname(component(dataList, item)));
             if (itemElement != null) {
                 HTMLElement contentElement = Elements.find(itemElement, EXPANDABLE_CONTENT_SELECTOR);
@@ -237,10 +249,10 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
     public interface Display<T> {
 
-        void render(HtmlContentBuilder<HTMLLIElement> li, DataProvider<T> dataProvider, T item);
+        void render(HTMLContainerBuilder<HTMLLIElement> li, DataProvider<T> dataProvider, T item);
     }
 
-    public static class Item extends ElementBuilder<HTMLLIElement, Item> implements HtmlContent<HTMLLIElement, Item> {
+    public static class Item extends SubComponent<HTMLLIElement, Item> {
 
         protected Item() {
             super(li().css(component(dataList, item)).element());
@@ -252,8 +264,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ItemRow extends ElementBuilder<HTMLDivElement, ItemRow>
-            implements HtmlContent<HTMLDivElement, ItemRow> {
+    public static class ItemRow extends SubComponent<HTMLDivElement, ItemRow> {
 
         protected ItemRow() {
             super(div().css(component(dataList, itemRow)).element());
@@ -265,8 +276,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ItemControl extends ElementBuilder<HTMLDivElement, ItemControl>
-            implements HtmlContent<HTMLDivElement, ItemControl> {
+    public static class ItemControl extends SubComponent<HTMLDivElement, ItemControl> {
 
         protected ItemControl() {
             super(div().css(component(dataList, itemControl)).element());
@@ -289,8 +299,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ItemContent extends ElementBuilder<HTMLDivElement, ItemContent>
-            implements HtmlContent<HTMLDivElement, ItemContent> {
+    public static class ItemContent extends SubComponent<HTMLDivElement, ItemContent> {
 
         protected ItemContent() {
             super(div().css(component(dataList, itemContent)).element());
@@ -302,8 +311,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ItemAction extends ElementBuilder<HTMLDivElement, ItemAction>
-            implements HtmlContent<HTMLDivElement, ItemAction> {
+    public static class ItemAction extends SubComponent<HTMLDivElement, ItemAction> {
 
         protected ItemAction() {
             super(div().css(component(dataList, itemAction)).element());
@@ -315,8 +323,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ItemCell extends ElementBuilder<HTMLDivElement, ItemCell>
-            implements HtmlContent<HTMLDivElement, ItemCell> {
+    public static class ItemCell extends SubComponent<HTMLDivElement, ItemCell> {
 
         protected ItemCell() {
             super(div().css(component(dataList, cell)).element());
@@ -328,8 +335,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ExpandableContent extends ElementBuilder<HTMLElement, ExpandableContent>
-            implements HtmlContent<HTMLElement, ExpandableContent> {
+    public static class ExpandableContent extends SubComponent<HTMLElement, ExpandableContent> {
 
         protected ExpandableContent() {
             super(section().css(component(dataList, expandableContent)).element());
@@ -341,8 +347,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         }
     }
 
-    public static class ExpandableBody extends ElementBuilder<HTMLDivElement, ExpandableBody>
-            implements HtmlContent<HTMLDivElement, ExpandableBody> {
+    public static class ExpandableBody extends SubComponent<HTMLDivElement, ExpandableBody> {
 
         protected ExpandableBody() {
             super(div().css(component(dataList, expandableContent, "body")).element());

@@ -15,22 +15,20 @@
  */
 package org.patternfly.components.navigation;
 
-import org.jboss.elemento.HtmlContent;
-import org.patternfly.components.BaseComponent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
 
-public class NavigationGroup extends BaseComponent<HTMLElement, NavigationGroup>
-        implements HtmlContent<HTMLElement, NavigationGroup> {
+public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> {
 
     public static NavigationGroup group() {
         return new NavigationGroup();
     }
 
     NavigationGroup() {
-        super(section().element(), "NavigationGroup");
+        super(section().element());
     }
 
     @Override

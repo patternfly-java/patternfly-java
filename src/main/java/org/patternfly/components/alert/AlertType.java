@@ -15,29 +15,34 @@
  */
 package org.patternfly.components.alert;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Icons.*;
+import org.patternfly.layout.Status;
+
+import static org.patternfly.layout.Icons.bell;
+import static org.patternfly.layout.Icons.checkCircle;
+import static org.patternfly.layout.Icons.exclamationCircle;
+import static org.patternfly.layout.Icons.exclamationTriangle;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Icons.infoCircle;
 
 public enum AlertType {
 
-    CUSTOM(fas(bell), modifier(custom), "custom alert"),
+    custom(fas(bell), Status.custom, "custom alert"),
 
-    INFO(fas(infoCircle), modifier(info), "info alert"),
+    info(fas(infoCircle), Status.info, "info alert"),
 
-    SUCCESS(fas(checkCircle), modifier(success), "success alert"),
+    success(fas(checkCircle), Status.success, "success alert"),
 
-    WARNING(fas(exclamationTriangle), modifier(warning), "warning alert"),
+    warning(fas(exclamationTriangle), Status.warning, "warning alert"),
 
-    DANGER(fas(exclamationCircle), modifier(danger), "danger alert");
+    danger(fas(exclamationCircle), Status.danger, "danger alert");
 
     final String icon;
-    final String modifier;
+    final Status status;
     final String aria;
 
-    AlertType(String icon, String modifier, String aria) {
+    AlertType(String icon, Status status, String aria) {
         this.icon = icon;
-        this.modifier = modifier;
+        this.status = status;
         this.aria = aria;
     }
 }

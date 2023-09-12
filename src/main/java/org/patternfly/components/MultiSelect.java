@@ -20,33 +20,40 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
+import org.patternfly.layout.Icons;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.patternfly.layout.Icons;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.core.Dataset.multiSelectItem;
+import static org.patternfly.layout.Classes.arrow;
+import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
 import static org.patternfly.layout.Classes.input;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.multiSelectItem;
+import static org.patternfly.layout.Classes.top;
+import static org.patternfly.layout.Classes.wrapper;
 import static org.patternfly.layout.Icons.caretDown;
 
 /**
@@ -57,7 +64,7 @@ import static org.patternfly.layout.Icons.caretDown;
  */
 // TODO Use static inner class Group instead of add(String group, T item)
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
-        implements HtmlContent<HTMLDivElement, MultiSelect<T>>, Disable<MultiSelect<T>>, HasValues<T> {
+        implements Disable<MultiSelect<T>>, HasValues<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -93,11 +100,17 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(select, Classes.button);
-        add(button = button().css(component(select, toggle)).id(buttonId).aria("expanded", false).aria(labelledBy, buttonId)
+        add(button = button().css(component(select, toggle))
+                .id(buttonId)
+                .aria("expanded", false)
+                .aria(labelledBy, buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                 .add(div().css(component(select, toggle, wrapper))
-                        .add(this.text = span().css(component(select, toggle, Classes.text)).textContent(text).element()))
-                .add(i().css(Icons.fas(caretDown), component(select, toggle, arrow)).aria("hidden", true)).element());
+                        .add(this.text = span().css(component(select, toggle, Classes.text))
+                                .textContent(text)
+                                .element()))
+                .add(i().css(Icons.fas(caretDown), component(select, toggle, arrow)).aria("hidden", true))
+                .element());
         add(menu = div().css(component(select, Classes.menu)).hidden(true).element());
 
         if (icon != null) {
@@ -148,14 +161,17 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     }
 
     public MultiSelect<T> add(String group, T item) {
-        HtmlContentBuilder<HTMLElement> span = span().css(component(check, "label"));
+        HTMLContainerBuilder<HTMLElement> span = span().css(component(check, "label"));
         itemDisplay.display.accept(span, item);
 
         menu.appendChild(label().css(component(check), component(select, Classes.menu, Classes.item)).add(
-                input(checkbox).css(component(check, input)).data(multiSelectItem, itemDisplay.itemId(item)).on(click, e -> {
-                    ceh.collapse(element(), buttonElement(), menuElement());
-                    select(item);
-                })).add(span().css(component(check, "label")).textContent(Classes.text)).element());
+                input(checkbox).css(component(check, input))
+                        .data(multiSelectItem, itemDisplay.itemId(item))
+                        .on(click, e -> {
+                            ceh.collapse(element(), buttonElement(), menuElement());
+                            select(item);
+                        }))
+                .add(span().css(component(check, "label")).textContent(Classes.text)).element());
         return this;
     }
 
@@ -186,7 +202,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         return this;
     }
 
-    public MultiSelect<T> display(BiConsumer<HtmlContentBuilder<HTMLElement>, T> display) {
+    public MultiSelect<T> display(BiConsumer<HTMLContainerBuilder<HTMLElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }
@@ -194,7 +210,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     // ------------------------------------------------------ modifier
 
     public MultiSelect<T> up() {
-        element.classList.add(modifier(top));
+        element().classList.add(modifier(top));
         return this;
     }
 

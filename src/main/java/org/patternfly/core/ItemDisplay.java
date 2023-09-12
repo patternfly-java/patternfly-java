@@ -13,12 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.core;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 
 import elemental2.dom.HTMLElement;
@@ -28,7 +28,7 @@ public class ItemDisplay<E extends HTMLElement, T> {
 
     public Function<T, String> identifier;
     public Function<T, String> asString;
-    public BiConsumer<HtmlContentBuilder<E>, T> display;
+    public BiConsumer<HTMLContainerBuilder<E>, T> display;
 
     public ItemDisplay() {
         this.identifier = item -> Id.build(String.valueOf(item));
@@ -37,7 +37,7 @@ public class ItemDisplay<E extends HTMLElement, T> {
     }
 
     public ItemDisplay(Function<T, String> identifier, Function<T, String> asString,
-            BiConsumer<HtmlContentBuilder<E>, T> display) {
+            BiConsumer<HTMLContainerBuilder<E>, T> display) {
         this.identifier = identifier;
         this.asString = asString;
         this.display = display;

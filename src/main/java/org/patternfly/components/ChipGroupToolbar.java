@@ -15,7 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -23,9 +22,9 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.layout.Classes.chipGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.chipGroup;
 import static org.patternfly.layout.Classes.toolbar;
 
 /**
@@ -34,8 +33,7 @@ import static org.patternfly.layout.Classes.toolbar;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/chipgroup">https://www.patternfly.org/v4/documentation/core/components/chipgroup</a>
  */
-public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolbar>
-        implements HtmlContent<HTMLElement, ChipGroupToolbar> {
+public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolbar> {
 
     // ------------------------------------------------------ factory methods
 

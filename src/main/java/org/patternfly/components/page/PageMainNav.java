@@ -31,8 +31,7 @@ import static org.patternfly.layout.Classes.page;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav>
-        implements PageSection<HTMLElement, PageMainNav> {
+public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav> {
 
     // ------------------------------------------------------ factory methods
 

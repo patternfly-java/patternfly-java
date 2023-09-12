@@ -21,9 +21,16 @@ import org.patternfly.layout.Brightness;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
+import static org.patternfly.layout.Classes.center;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.fill;
+import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.noFill;
+import static org.patternfly.layout.Classes.noPadding;
+import static org.patternfly.layout.Classes.padding;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Classes.section;
 
 /**
  * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
@@ -32,8 +39,7 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection>
-        implements PageSection<HTMLElement, PageMainSection> {
+public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> {
 
     // ------------------------------------------------------ factory methods
 

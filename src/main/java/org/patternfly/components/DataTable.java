@@ -23,10 +23,8 @@ import java.util.function.Predicate;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.patternfly.dataprovider.DataProvider;
@@ -34,6 +32,7 @@ import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.dataprovider.SelectionInfo;
 import org.patternfly.dataprovider.SortInfo;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
@@ -44,7 +43,6 @@ import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableElement;
 import elemental2.dom.HTMLTableRowElement;
 import elemental2.dom.HTMLTableSectionElement;
-import org.patternfly.layout.Classes;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.caption;
@@ -63,12 +61,13 @@ import static org.jboss.elemento.Elements.tr;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.core.Dataset.dataTableItem;
+import static org.patternfly.core.Dataset.dataTableSort;
 import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.col;
 import static org.patternfly.layout.Classes.compact;
+import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.controls;
 import static org.patternfly.layout.Classes.expandable;
@@ -77,6 +76,7 @@ import static org.patternfly.layout.Classes.expandableRow;
 import static org.patternfly.layout.Classes.grid;
 import static org.patternfly.layout.Classes.indicator;
 import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.noBorderRows;
 import static org.patternfly.layout.Classes.none;
 import static org.patternfly.layout.Classes.plain;
@@ -85,9 +85,11 @@ import static org.patternfly.layout.Classes.selected;
 import static org.patternfly.layout.Classes.sort;
 import static org.patternfly.layout.Classes.table;
 import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.dataTableItem;
-import static org.patternfly.core.Dataset.dataTableSort;
-import static org.patternfly.layout.Icons.*;
+import static org.patternfly.layout.Icons.angleDown;
+import static org.patternfly.layout.Icons.arrowsAltV;
+import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Icons.longArrowAltDown;
+import static org.patternfly.layout.Icons.longArrowAltUp;
 
 /**
  * PatternFly data table.
@@ -108,8 +110,8 @@ import static org.patternfly.layout.Icons.*;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
  */
-public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
-        implements HtmlContent<HTMLTableElement, DataTable<T>>, Display<T> {
+public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
+        implements Display<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -158,9 +160,11 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     public static <T> Column<T> column(String name, Comparator<T> comparator, BodyDisplay<T> bodyDisplay) {
         return new Column<>(name, comparator, th -> th.css(component(table, sort)).aria(sort, none).attr(scope, col)
-                .add(button().css(component(button), modifier(plain)).data(dataTableSort, Id.build(name)) // keep in sync with
-                                                                                                          // Column constructor!
-                        .add(name).add(span().css(component(table, sort, indicator)).add(i().css(fas(arrowsAltV))))),
+                .add(button().css(component(button), modifier(plain))
+                        .data(dataTableSort, Id.build(name)) // keep in sync with
+                        // Column constructor!
+                        .add(name)
+                        .add(span().css(component(table, sort, indicator)).add(i().css(fas(arrowsAltV))))),
                 bodyDisplay, null);
     }
 
@@ -186,8 +190,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private final DataProvider<T> dataProvider;
     private final List<Column<T>> columns;
     private final ItemSelect itemSelect;
-    private final HtmlContentBuilder<HTMLTableRowElement> theadRow;
-    private final HtmlContentBuilder<HTMLTableSectionElement> tbody;
+    private final HTMLContainerBuilder<HTMLTableRowElement> theadRow;
+    private final HTMLContainerBuilder<HTMLTableSectionElement> tbody;
     private HandlerRegistration selectAllHandler;
     private HandlerRegistration expandHandler;
     private Predicate<T> expandablePredicate;
@@ -200,19 +204,19 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     private int noContentColumns;
 
     protected DataTable(DataProvider<T> dataProvider, String caption) {
-        super(table().css(component(table)).attr("role", grid).element());
+        super(table().css(component(table)).attr("role", grid).element(), ComponentType.DataTable);
         this.dataProvider = dataProvider;
         this.columns = new ArrayList<>();
-        this.itemSelect = new ItemSelect(element);
+        this.itemSelect = new ItemSelect(element());
         this.noContentColumns = 0;
 
         if (caption != null) {
-            element.appendChild(caption().textContent(caption).element());
+            element().appendChild(caption().textContent(caption).element());
         }
         theadRow = tr();
         tbody = tbody();
-        element.appendChild(thead().add(theadRow).element());
-        element.appendChild(tbody.element());
+        element().appendChild(thead().add(theadRow).element());
+        element().appendChild(tbody.element());
     }
 
     @Override
@@ -224,7 +228,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     public DataTable<T> add(Column<T> column) {
         columns.add(column);
-        HtmlContentBuilder<HTMLTableCellElement> th = th();
+        HTMLContainerBuilder<HTMLTableCellElement> th = th();
         theadRow.add(th);
         if (column.headDisplay != null) {
             column.headDisplay.render(th);
@@ -276,7 +280,8 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
         return expandableRow(expandable, false, false, expandableDisplay);
     }
 
-    public DataTable<T> expandableRow(Predicate<T> expandable, boolean fullWidth, ExpandableDisplay<T> expandableDisplay) {
+    public DataTable<T> expandableRow(Predicate<T> expandable, boolean fullWidth,
+            ExpandableDisplay<T> expandableDisplay) {
         return expandableRow(expandable, fullWidth, false, expandableDisplay);
     }
 
@@ -299,16 +304,16 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             expandHandler.removeHandler();
         }
         if (expandableColumn) {
-            Elements.findAll(element, By.element("tbody")).forEach(Elements::failSafeRemoveFromParent);
+            Elements.findAll(element(), By.element("tbody")).forEach(Elements::failSafeRemoveFromParent);
         } else {
             removeChildrenFrom(tbody.element());
         }
 
         for (T item : items) {
             String id = dataProvider.getId(item);
-            HtmlContentBuilder<HTMLTableRowElement> tr = tr().data(dataTableItem, id);
+            HTMLContainerBuilder<HTMLTableRowElement> tr = tr().data(dataTableItem, id);
             for (Column<T> column : columns) {
-                HtmlContentBuilder<HTMLTableCellElement> td = td();
+                HTMLContainerBuilder<HTMLTableCellElement> td = td();
                 if (!EXPAND_COLUMN.equals(column.id) || expandablePredicate == null || expandablePredicate.test(item)) {
                     if (column.bodyDisplay != null) {
                         column.bodyDisplay.render(td, dataProvider, item);
@@ -318,12 +323,13 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
             }
 
             if (expandableColumn) {
-                HtmlContentBuilder<HTMLTableSectionElement> tbody = tbody().add(tr);
+                HTMLContainerBuilder<HTMLTableSectionElement> tbody = tbody().add(tr);
                 if (expandableDisplay != null) {
                     if (expandablePredicate == null || expandablePredicate.test(item)) {
-                        HtmlContentBuilder<HTMLTableRowElement> etr = tr().css(component(table, expandableRow)).hidden(true);
-                        HtmlContentBuilder<HTMLTableCellElement> etd = td();
-                        HtmlContentBuilder<HTMLDivElement> ec = div().css(component(table, expandableRow, content));
+                        HTMLContainerBuilder<HTMLTableRowElement> etr = tr().css(component(table, expandableRow))
+                                .hidden(true);
+                        HTMLContainerBuilder<HTMLTableCellElement> etd = td();
+                        HTMLContainerBuilder<HTMLDivElement> ec = div().css(component(table, expandableRow, content));
                         expandableDisplay.render(ec, dataProvider, item);
                         if (expandableNoPadding) {
                             etd.css(modifier("no-padding"));
@@ -345,7 +351,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
                         tbody.add(etr);
                     }
                 }
-                element.appendChild(tbody.element());
+                element().appendChild(tbody.element());
             } else {
                 tbody.add(tr);
             }
@@ -410,7 +416,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     }
 
     public DataTable<T> noSelectAll() {
-        HTMLElement selectAll = Elements.find(element, SELECT_ALL_SELECTOR);
+        HTMLElement selectAll = Elements.find(element(), SELECT_ALL_SELECTOR);
         if (selectAll != null) {
             setVisible(selectAll, false);
         }
@@ -442,7 +448,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
 
     private void bindExpandHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement e : Elements.findAll(element, TOGGLE_SELECTOR)) {
+        for (HTMLElement e : Elements.findAll(element(), TOGGLE_SELECTOR)) {
             HTMLElement itemElement = Elements.closest(e, By.data(dataTableItem));
             if (itemElement != null) {
                 HTMLElement tbody = (HTMLElement) itemElement.parentNode;
@@ -496,7 +502,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     @FunctionalInterface
     public interface HeadDisplay {
 
-        void render(HtmlContentBuilder<HTMLTableCellElement> th);
+        void render(HTMLContainerBuilder<HTMLTableCellElement> th);
 
         default HeadDisplay andThen(HeadDisplay after) {
             return th -> {
@@ -509,7 +515,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     @FunctionalInterface
     public interface BodyDisplay<T> {
 
-        void render(HtmlContentBuilder<HTMLTableCellElement> td, DataProvider<T> dataProvider, T item);
+        void render(HTMLContainerBuilder<HTMLTableCellElement> td, DataProvider<T> dataProvider, T item);
 
         default BodyDisplay<T> andThen(BodyDisplay<T> after) {
             return (td, dataProvider, item) -> {
@@ -522,7 +528,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     @FunctionalInterface
     public interface ExpandableDisplay<T> {
 
-        void render(HtmlContentBuilder<HTMLDivElement> html, DataProvider<T> dataProvider, T item);
+        void render(HTMLContainerBuilder<HTMLDivElement> html, DataProvider<T> dataProvider, T item);
 
         default ExpandableDisplay<T> andThen(ExpandableDisplay<T> after) {
             return (html, dataProvider, item) -> {
@@ -535,7 +541,7 @@ public class DataTable<T> extends ElementBuilder<HTMLTableElement, DataTable<T>>
     @FunctionalInterface
     public interface CompoundDisplay<T> {
 
-        void render(HtmlContentBuilder<HTMLTableCellElement> html, DataProvider<T> dataProvider, T item);
+        void render(HTMLContainerBuilder<HTMLTableCellElement> html, DataProvider<T> dataProvider, T item);
 
         default CompoundDisplay<T> andThen(CompoundDisplay<T> after) {
             return (html, dataProvider, item) -> {

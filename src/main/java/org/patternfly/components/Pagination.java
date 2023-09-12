@@ -18,8 +18,7 @@ package org.patternfly.components;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.EventType;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Callback;
 import org.patternfly.core.Disable;
 import org.patternfly.dataprovider.PageInfo;
@@ -29,14 +28,28 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.b;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.nav;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.InputType.number;
 import static org.patternfly.components.Icon.icon;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.compact;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.formControl;
+import static org.patternfly.layout.Classes.menu;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.pagination;
 import static org.patternfly.layout.Classes.select;
-import static org.patternfly.layout.Icons.*;
+import static org.patternfly.layout.Classes.text;
+import static org.patternfly.layout.Classes.totalItems;
+import static org.patternfly.layout.Icons.angleDoubleLeft;
+import static org.patternfly.layout.Icons.angleDoubleRight;
+import static org.patternfly.layout.Icons.angleRight;
+import static org.patternfly.layout.Icons.fas;
 
 /**
  * PatternFly pagination component.
@@ -45,7 +58,7 @@ import static org.patternfly.layout.Icons.*;
  *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
-        implements HtmlContent<HTMLDivElement, Pagination>, Disable<Pagination> {
+        implements Disable<Pagination> {
 
     // ------------------------------------------------------ factory methods
 
@@ -85,37 +98,47 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
             }
         });
 
-        element.appendChild(infoElement);
-        element.appendChild(pageSizeMenu.element());
-        element.appendChild(nav().css(component(pagination, "nav"))
+        element().appendChild(infoElement);
+        element().appendChild(pageSizeMenu.element());
+        element().appendChild(nav().css(component(pagination, "nav"))
                 .add(firstPageButton = Button.icon(icon(fas(angleDoubleLeft)), "Go to first page").onClick(() -> {
                     if (firstPageHandler != null) {
                         firstPageHandler.call();
                     }
-                })).add(previousPageButton = Button.icon(icon(fas(Icons.angleLeft)), "Go to previous page").onClick(() -> {
+                }))
+                .add(previousPageButton = Button.icon(icon(fas(Icons.angleLeft)), "Go to previous page").onClick(() -> {
                     if (previousPageHandler != null) {
                         previousPageHandler.call();
                     }
                 }))
-                .add(navPageSelect = div().css(component(pagination, "nav", "page", select)).add(gotoPageInput = input(number)
-                        .css(component(formControl)).aria("label", "Current page").min(1).on(EventType.change, e -> {
-                            if (gotoPageHandler != null) {
-                                try {
-                                    int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
-                                    gotoPageHandler.accept(page - 1);
-                                } catch (NumberFormatException ignored) {
-                                }
-                            }
-                        }).element()).add(pagesElement = span().aria("hidden", true).element()).element())
+                .add(navPageSelect = div().css(component(pagination, "nav", "page", select))
+                        .add(gotoPageInput = input(number)
+                                .css(component(formControl))
+                                .aria("label", "Current page")
+                                .min(1)
+                                .on(EventType.change, e -> {
+                                    if (gotoPageHandler != null) {
+                                        try {
+                                            int page = Integer.parseInt(((HTMLInputElement) e.currentTarget).value);
+                                            gotoPageHandler.accept(page - 1);
+                                        } catch (NumberFormatException ignored) {
+                                        }
+                                    }
+                                })
+                                .element())
+                        .add(pagesElement = span().aria("hidden", true).element())
+                        .element())
                 .add(nextPageButton = Button.icon(icon(fas(angleRight)), "Go to next page").onClick(() -> {
                     if (nextPageHandler != null) {
                         nextPageHandler.call();
                     }
-                })).add(lastPageButton = Button.icon(icon(fas(angleDoubleRight)), "Go to last page").onClick(() -> {
+                }))
+                .add(lastPageButton = Button.icon(icon(fas(angleDoubleRight)), "Go to last page").onClick(() -> {
                     if (lastPageHandler != null) {
                         lastPageHandler.call();
                     }
-                })).element());
+                }))
+                .element());
     }
 
     @Override
@@ -195,7 +218,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         HTMLElement[] elements = new HTMLElement[] { infoElement, pageSizeMenu.textElement() };
         for (HTMLElement element : elements) {
             removeChildrenFrom(element);
-            HtmlContentBuilder<HTMLElement> builder = new HtmlContentBuilder<>(element);
+            HTMLContainerBuilder<HTMLElement> builder = new HTMLContainerBuilder<>(element);
             builder.add(b().textContent(pageInfo.getFrom() + " - " + pageInfo.getTo())).add(" of ")
                     .add(b().textContent(String.valueOf(pageInfo.getTotal())));
         }

@@ -21,11 +21,11 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -34,22 +34,40 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
-import org.patternfly.layout.Icons;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.core.Dataset.dropdownItem;
+import static org.patternfly.layout.Classes.alignRight;
+import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.disabled;
+import static org.patternfly.layout.Classes.dropdown;
+import static org.patternfly.layout.Classes.hasPopup;
+import static org.patternfly.layout.Classes.invalid;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.menuitem;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.plain;
+import static org.patternfly.layout.Classes.primary;
+import static org.patternfly.layout.Classes.separator;
+import static org.patternfly.layout.Classes.splitButton;
+import static org.patternfly.layout.Classes.text;
+import static org.patternfly.layout.Classes.top;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.ellipsisV;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.core.Dataset.dropdownItem;
 
 /**
  * PatternFly dropdown component.
@@ -59,7 +77,7 @@ import static org.patternfly.core.Dataset.dropdownItem;
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
-        implements HtmlContent<HTMLDivElement, Dropdown<T>>, Disable<Dropdown<T>> {
+        implements Disable<Dropdown<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -113,19 +131,21 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(dropdown, Classes.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false).aria(hasPopup, true)
+        HTMLContainerBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
+                .aria(hasPopup, true)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         if (splitCheckbox || splitAction) {
             String inputId = Id.unique(dropdown, Classes.input);
             toggle = div().css(component(dropdown, Classes.toggle), modifier(splitButton))
                     .add(label().css(component(dropdown, Classes.toggle, check)).apply(l -> l.htmlFor = inputId)
-                            .add(div().css(component(check)).add(input = input(checkbox).css(component(check, Classes.input))
-                                    .id(inputId).aria(invalid, false).aria("label", "Select").on(change, e -> {
-                                        if (onChange != null) {
-                                            onChange.accept(((HTMLInputElement) e.target).checked);
-                                        }
-                                    }).element())))
+                            .add(div().css(component(check))
+                                    .add(input = input(checkbox).css(component(check, Classes.input))
+                                            .id(inputId).aria(invalid, false).aria("label", "Select").on(change, e -> {
+                                                if (onChange != null) {
+                                                    onChange.accept(((HTMLInputElement) e.target).checked);
+                                                }
+                                            }).element())))
                     .add(button = buttonBuilder.css(component(dropdown, Classes.toggle, Classes.button))
                             .aria("label", "Select").add(i().css(fas(caretDown)).aria("hidden", true)).element())
                     .element();
@@ -223,7 +243,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return this;
     }
 
-    public Dropdown<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+    public Dropdown<T> display(BiConsumer<HTMLContainerBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }
@@ -254,7 +274,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     // ------------------------------------------------------ modifiers
 
     public Dropdown<T> up() {
-        element.classList.add(modifier(top));
+        element().classList.add(modifier(top));
         return this;
     }
 
@@ -368,7 +388,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     // ------------------------------------------------------ internals
 
     private HTMLLIElement newItem(T item) {
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(dropdown, Classes.menu, Classes.item))
+        HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(dropdown, Classes.menu, Classes.item))
                 .attr("tabindex", -1).data(dropdownItem, itemDisplay.itemId(item)).on(click, e -> {
                     ceh.collapse(element(), buttonElement(), menuElement());
                     if (onSelect != null) {

@@ -15,7 +15,6 @@
  */
 package org.patternfly.components.toolbar;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 
@@ -25,11 +24,27 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.toolbar;
 
-public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> implements HtmlContent<HTMLDivElement, Toolbar> {
+/**
+ * A toolbar allows a user to manage and manipulate a data set. Data can be presented in any valid presentation, a table, a
+ * list, or a data visualization (chart), for example. The toolbar responsively accommodates controls and displays applied
+ * filters in chip groups.
+ * <p>
+ * {@snippet class = ToolbarDemo region = toolbar}
+ *
+ * @see <a href="https://www.patternfly.org/components/toolbar/html">https://www.patternfly.org/components/toolbar/html</a>
+ */
+public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
 
+    // ------------------------------------------------------ factory methods
+
+    /**
+     * Factory method to create a new instance of this component.
+     */
     public static Toolbar toolbar() {
         return new Toolbar();
     }
+
+    // ------------------------------------------------------ instance
 
     Toolbar() {
         super(div().css(component(toolbar)).element(), ComponentType.Toolbar);

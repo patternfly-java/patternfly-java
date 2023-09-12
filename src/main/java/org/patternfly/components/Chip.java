@@ -15,23 +15,28 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.layout.Classes.button;
+import static org.patternfly.layout.Classes.chip;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.plain;
 import static org.patternfly.layout.Constants.hidden;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Icons.timesCircle;
 
 /**
@@ -40,7 +45,7 @@ import static org.patternfly.layout.Icons.timesCircle;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/chip">https://www.patternfly.org/v4/documentation/core/components/chip</a>
  */
-public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlContent<HTMLElement, Chip> {
+public class Chip extends BaseComponent<HTMLElement, Chip> {
 
     // ------------------------------------------------------ factory methods
 
@@ -97,7 +102,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements HtmlConten
             String textId = Id.unique(chip, Classes.text);
             String buttonId = Id.unique(chip, Classes.button);
 
-            HtmlContentBuilder<HTMLElement> builder = span().css(component(chip, Classes.text)).id(textId).title(text);
+            HTMLContainerBuilder<HTMLElement> builder = span().css(component(chip, Classes.text))
+                    .id(textId)
+                    .title(text);
             builder.add(text);
             if (count > 0) {
                 badge = Badge.read(count);

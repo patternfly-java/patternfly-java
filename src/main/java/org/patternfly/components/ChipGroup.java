@@ -18,7 +18,6 @@ package org.patternfly.components;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -28,8 +27,8 @@ import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.stream;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.chipGroup;
+import static org.patternfly.layout.Classes.component;
 
 /**
  * PatternFly chip group component.
@@ -37,7 +36,7 @@ import static org.patternfly.layout.Classes.chipGroup;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/chipgroup">https://www.patternfly.org/v4/documentation/core/components/chipgroup</a>
  */
-public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements HtmlContent<HTMLElement, ChipGroup> {
+public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> {
 
     // ------------------------------------------------------ factory methods
 
@@ -67,7 +66,7 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements 
 
         if (constrained()) {
             overflow = Chip.overflow("").cloneAsLi().onClose(this::toggle);
-            element.appendChild(overflow.element()); // do not use add(overflow)!
+            element().appendChild(overflow.element()); // do not use add(overflow)!
             setVisible(overflow.element(), false);
         }
     }
@@ -88,7 +87,7 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements 
             insertBefore(liChip.element(), overflow.element());
             redraw();
         } else {
-            element.appendChild(liChip.element());
+            element().appendChild(liChip.element());
         }
         return this;
     }
@@ -117,7 +116,7 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> implements 
     }
 
     private Stream<HTMLElement> chips() {
-        return stream(element).filter(e -> e.classList.contains(component(Classes.chip))
+        return stream(element()).filter(e -> e.classList.contains(component(Classes.chip))
                 && !e.classList.contains(Classes.modifier(Classes.overflow)));
     }
 

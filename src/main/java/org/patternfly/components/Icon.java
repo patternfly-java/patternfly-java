@@ -15,14 +15,31 @@
  */
 package org.patternfly.components;
 
+import org.patternfly.layout.Size;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.span;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Constants.hidden;
 
+/**
+ * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
+ * other without shifting surrounding content.
+ * <p>
+ * {@snippet class = IconDemo region = icon}
+ *
+ * @see <a href="https://www.patternfly.org/components/icon/html">https://www.patternfly.org/components/icon/html</a>
+ */
 public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     // ------------------------------------------------------ factory methods
 
+    /**
+     * Factory method to create a new instance of this component.
+     */
     public static Icon icon(String iconClass) {
         return new Icon(iconClass);
     }
@@ -30,11 +47,26 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
     // ------------------------------------------------------ instance
 
     Icon(String iconClass) {
-        super(i().css(iconClass).element(), "Icon");
+        super(span().css(component("icon"))
+                .add(span().css(component("icon", "content"))
+                        .add(i().css(iconClass)
+                                .aria(hidden, true)))
+                .element(),
+                ComponentType.Icon);
     }
 
     @Override
     public Icon that() {
         return this;
     }
+
+    // ------------------------------------------------------ modifiers
+
+    /**
+     * Modifies the size of this component.
+     */
+    public Icon size(Size size) {
+        return css(size.modifier);
+    }
+
 }

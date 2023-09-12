@@ -17,5 +17,7 @@ package org.patternfly.layout;
 
 public enum Theme {
 
-    DARK, LIGHT
+    dark,
+
+    light
 }

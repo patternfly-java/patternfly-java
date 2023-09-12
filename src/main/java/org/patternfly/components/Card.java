@@ -15,15 +15,18 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.layout.Classes.actions;
+import static org.patternfly.layout.Classes.card;
+import static org.patternfly.layout.Classes.compact;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.footer;
+import static org.patternfly.layout.Classes.head;
+import static org.patternfly.layout.Classes.header;
+import static org.patternfly.layout.Classes.hoverable;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
 import static org.patternfly.layout.Size.md;
 
 /**
@@ -32,7 +35,7 @@ import static org.patternfly.layout.Size.md;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/card">https://www.patternfly.org/v4/documentation/core/components/card</a>
  */
-public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlContent<HTMLDivElement, Card> {
+public class Card extends BaseComponent<HTMLDivElement, Card> {
 
     // ------------------------------------------------------ factory methods
 
@@ -70,21 +73,20 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
     // ------------------------------------------------------ modifiers
 
     public Card compact() {
-        element.classList.add(modifier(compact));
+        element().classList.add(modifier(compact));
         return this;
     }
 
     public Card hoverable() {
-        element.classList.add(modifier(hoverable));
+        element().classList.add(modifier(hoverable));
         return this;
     }
 
     // ------------------------------------------------------ inner classes
 
-    public static class Head extends ElementBuilder<HTMLDivElement, Head> implements HtmlContent<HTMLDivElement, Head> {
+    public static class Head extends SubComponent<HTMLDivElement, Head> {
 
-        public static class Actions extends ElementBuilder<HTMLDivElement, Actions>
-                implements HtmlContent<HTMLDivElement, Actions> {
+        public static class Actions extends SubComponent<HTMLDivElement, Actions> {
 
             private Actions() {
                 super(div().css(component(card, actions)).element());
@@ -110,7 +112,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
         }
     }
 
-    public static class Header extends ElementBuilder<HTMLDivElement, Header> implements HtmlContent<HTMLDivElement, Header> {
+    public static class Header extends SubComponent<HTMLDivElement, Header> {
 
         private Header() {
             super(div().css(component(card, header), component("title"), md.modifier).element());
@@ -122,7 +124,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
         }
     }
 
-    public static class Body extends ElementBuilder<HTMLDivElement, Body> implements HtmlContent<HTMLDivElement, Body> {
+    public static class Body extends SubComponent<HTMLDivElement, Body> {
 
         private Body() {
             super(div().css(component(card, "body")).element());
@@ -134,7 +136,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements HtmlCon
         }
     }
 
-    public static class Footer extends ElementBuilder<HTMLDivElement, Footer> implements HtmlContent<HTMLDivElement, Footer> {
+    public static class Footer extends SubComponent<HTMLDivElement, Footer> {
 
         private Footer() {
             super(div().css(component(card, footer)).element());

@@ -18,8 +18,8 @@ package org.patternfly.components;
 import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.avatar;
+import static org.patternfly.layout.Classes.component;
 
 /**
  * PatternFly avatar component.
@@ -39,7 +39,7 @@ public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
     Avatar(String src, String alt) {
         super(img(src).css(component(avatar)).element(), "Avatar");
-        element.alt = alt;
+        element().alt = alt;
     }
 
     @Override

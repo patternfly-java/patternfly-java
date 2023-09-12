@@ -17,7 +17,6 @@ package org.patternfly.components;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -30,15 +29,15 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.components.Card.card;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.core.Dataset.cardViewItem;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.card;
+import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.gallery;
 import static org.patternfly.layout.Classes.gutter;
 import static org.patternfly.layout.Classes.head;
-import static org.patternfly.core.Dataset.cardViewItem;
+import static org.patternfly.layout.Classes.layout;
+import static org.patternfly.layout.Classes.modifier;
 
 /**
  * PatternFly card view.
@@ -60,7 +59,7 @@ import static org.patternfly.core.Dataset.cardViewItem;
  *      "https://www.patternfly.org/v4/documentation/core/demos/cardview">https://www.patternfly.org/v4/documentation/core/demos/cardview</a>
  */
 public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
-        implements HtmlContent<HTMLDivElement, CardView<T>>, Display<T> {
+        implements Display<T> {
 
     // ------------------------------------------------------ cactory methods
 
@@ -71,7 +70,8 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     // ------------------------------------------------------ instance
 
     private static final By SELECT_ITEM_SELECTOR = By.classname(component(card, head))
-            .desc(By.classname(component(card, actions))).desc(By.element("input").and(By.attribute("type", "checkbox")));
+            .desc(By.classname(component(card, actions)))
+            .desc(By.element("input").and(By.attribute("type", "checkbox")));
 
     private final DataProvider<T> dataProvider;
     private final Display<T> display;
@@ -83,7 +83,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         super(div().css(layout(gallery), modifier(gutter)).element(), "CardView");
         this.dataProvider = dataProvider;
         this.display = display;
-        this.itemSelect = new ItemSelect(element);
+        this.itemSelect = new ItemSelect(element());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
     @Override
     public void showItems(Iterable<T> items, PageInfo pageInfo) {
         itemSelect.removeSelectHandler();
-        removeChildrenFrom(element);
+        removeChildrenFrom(element());
 
         for (T item : items) {
             String id = dataProvider.getId(item);

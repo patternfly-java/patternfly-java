@@ -23,17 +23,16 @@ import java.util.function.Function;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.Icons;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -46,10 +45,19 @@ import elemental2.dom.KeyboardEvent;
 
 import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemove;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.form;
+import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.blur;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
@@ -57,10 +65,21 @@ import static org.jboss.elemento.EventType.submit;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.core.Dataset.singleSelectFilter;
 import static org.patternfly.core.Dataset.singleSelectItem;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.arrow;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.disabled;
+import static org.patternfly.layout.Classes.formControl;
+import static org.patternfly.layout.Classes.hasPopup;
+import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.listbox;
+import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.option;
+import static org.patternfly.layout.Classes.presentation;
 import static org.patternfly.layout.Classes.select;
+import static org.patternfly.layout.Classes.selected;
 import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Classes.wrapper;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.check;
 import static org.patternfly.layout.Icons.fas;
@@ -72,7 +91,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
-        implements HtmlContent<HTMLDivElement, SingleSelect<T>>, Disable<SingleSelect<T>>, HasValue<T> {
+        implements Disable<SingleSelect<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -131,35 +150,49 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                                                 onTypeahead(e, ((HTMLInputElement) e.currentTarget).value);
                                             }).on(EventType.focus, e -> {
                                                 console.log("input focus");
-                                                if (!ceh.expanded(element)) {
-                                                    ceh.expand(element, buttonElement(), menuElement());
+                                                if (!ceh.expanded(element())) {
+                                                    ceh.expand(element(), buttonElement(), menuElement());
                                                 }
                                             }).on(blur, e -> {
                                                 console.log("input blur");
-                                                setTimeout((o) -> ceh.collapse(element, buttonElement(), menuElement()), 222);
+                                                setTimeout(
+                                                        (o) -> ceh.collapse(element(), buttonElement(), menuElement()),
+                                                        222);
                                             }).element()))
                             .element())
                     .add(button = (HTMLButtonElement) Button.icon(icon(fas(caretDown)), "Options menu")
-                            .css(component(select, toggle, Classes.button)).id(buttonId).aria("expanded", false)
-                            .aria(hasPopup, listbox).on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
+                            .css(component(select, toggle, Classes.button))
+                            .id(buttonId)
+                            .aria("expanded", false)
+                            .aria(hasPopup, listbox)
+                            .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                             .element()));
             if (icon != null) {
                 insertFirst(wrapperElement, span().css(component(select, toggle, "icon")).add(icon).element());
             }
             this.text = null;
         } else {
-            add(button = button().css(component(select, toggle)).id(buttonId).aria("expanded", false).aria(hasPopup, listbox)
-                    .on(click, e -> ceh.expand(element, buttonElement(), menuElement()))
+            add(button = button().css(component(select, toggle))
+                    .id(buttonId)
+                    .aria("expanded", false)
+                    .aria(hasPopup, listbox)
+                    .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
                     .add(div().css(component(select, toggle, wrapper))
-                            .add(this.text = span().css(component(select, toggle, Classes.text)).textContent(text).element()))
-                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria("hidden", true)).element());
+                            .add(this.text = span().css(component(select, toggle, Classes.text))
+                                    .textContent(text)
+                                    .element()))
+                    .add(i().css(fas(caretDown), component(select, toggle, arrow)).aria("hidden", true))
+                    .element());
             if (icon != null) {
                 insertBefore(span().css(component(select, toggle, "icon")).add(icon.aria("hidden", true)).element(),
                         this.text);
             }
             this.input = null;
         }
-        add(menu = ul().css(component(select, Classes.menu)).hidden(true).aria(labelledBy, buttonId).attr("role", listbox)
+        add(menu = ul().css(component(select, Classes.menu))
+                .hidden(true)
+                .aria(labelledBy, buttonId)
+                .attr("role", listbox)
                 .element());
 
     }
@@ -195,9 +228,9 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     public SingleSelect<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(select, Classes.menu, Classes.item))
+        HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(select, Classes.menu, Classes.item))
                 .attr("role", option).data(singleSelectItem, itemId).on(click, e -> {
-                    ceh.collapse(element, buttonElement(), menuElement());
+                    ceh.collapse(element(), buttonElement(), menuElement());
                     select(item);
                 });
         itemDisplay.display.accept(button, item);
@@ -256,7 +289,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         return this;
     }
 
-    public SingleSelect<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+    public SingleSelect<T> display(BiConsumer<HTMLContainerBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }
@@ -269,7 +302,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     // ------------------------------------------------------ modifier
 
     public SingleSelect<T> up() {
-        element.classList.add(modifier(Classes.top));
+        element().classList.add(modifier(Classes.top));
         return this;
     }
 
@@ -321,23 +354,23 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     private void onTypeahead(KeyboardEvent e, String value) {
         if (Key.Escape.match(e)) {
             console.log("key matches escape");
-            ceh.collapse(element, buttonElement(), menuElement());
+            ceh.collapse(element(), buttonElement(), menuElement());
         } else if (Key.Enter.match(e)) {
             console.log("key matches enter");
-            if (ceh.expanded(element)) {
+            if (ceh.expanded(element())) {
                 // TODO select first item
-                ceh.collapse(element, buttonElement(), menuElement());
+                ceh.collapse(element(), buttonElement(), menuElement());
             } else {
-                ceh.expand(element, buttonElement(), menuElement());
+                ceh.expand(element(), buttonElement(), menuElement());
             }
         } else if (Key.ArrowUp.match(e)) {
             console.log("key matches arrow up");
-            if (ceh.expanded(element)) {
+            if (ceh.expanded(element())) {
                 // TODO select previous
             }
         } else if (Key.ArrowDown.match(e)) {
             console.log("key matches arrow down");
-            if (ceh.expanded(element)) {
+            if (ceh.expanded(element())) {
                 // TODO select next
             }
         } else {

@@ -22,33 +22,45 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.patternfly.layout.Icons;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Dataset.multiOptionsMenuCheck;
+import static org.patternfly.core.Dataset.multiOptionsMenuItem;
+import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.disabled;
+import static org.patternfly.layout.Classes.hasPopup;
+import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.listbox;
+import static org.patternfly.layout.Classes.menuitem;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.optionsMenu;
+import static org.patternfly.layout.Classes.separator;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Classes.top;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.check;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.multiOptionsMenuCheck;
-import static org.patternfly.core.Dataset.multiOptionsMenuItem;
 
 /**
  * PatternFly options menu (grouped, single selection).
@@ -57,7 +69,7 @@ import static org.patternfly.core.Dataset.multiOptionsMenuItem;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOptionsMenu>
-        implements HtmlContent<HTMLDivElement, GroupedOptionsMenu>, Disable<GroupedOptionsMenu> {
+        implements Disable<GroupedOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 
@@ -87,7 +99,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Classes.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
+        HTMLContainerBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
@@ -144,7 +156,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         menu.appendChild(li().aria("label", group.text).add(group).element());
 
         for (T item : group.items) {
-            HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
+            HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
                     .attr("tabindex", -1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
                         if (collapseOnSelect) {
                             ceh.collapse(element(), buttonElement(), menuElement());
@@ -165,7 +177,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
     // ------------------------------------------------------ modifiers
 
     public GroupedOptionsMenu up() {
-        element.classList.add(modifier(top));
+        element().classList.add(modifier(top));
         return this;
     }
 
@@ -200,7 +212,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
     // ------------------------------------------------------ inner classes
 
     public static class Group<T> extends BaseComponent<HTMLElement, Group<T>>
-            implements HtmlContent<HTMLElement, Group<T>>, HasValue<T> {
+            implements HasValue<T> {
 
         private final String text;
         private final List<T> items;
@@ -258,7 +270,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
             return this;
         }
 
-        public Group<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+        public Group<T> display(BiConsumer<HTMLContainerBuilder<HTMLButtonElement>, T> display) {
             this.itemDisplay.display = display;
             return this;
         }
@@ -275,7 +287,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         public Group<T> select(T item, boolean fireEvent) {
             value = item;
             String itemId = itemDisplay.itemId(item);
-            for (HTMLElement e : Elements.findAll(element,
+            for (HTMLElement e : Elements.findAll(element(),
                     By.classname(component(optionsMenu, Classes.menu, Classes.item, "icon")))) {
                 setVisible(e, itemId.equals(e.dataset.get(multiOptionsMenuCheck)));
             }
@@ -288,7 +300,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
 
         public Group<T> clearSelection() {
             value = null;
-            for (HTMLElement e : Elements.findAll(element, By.classname(component(optionsMenu, Classes.menu, item,
+            for (HTMLElement e : Elements.findAll(element(), By.classname(component(optionsMenu, Classes.menu, item,
                     "icon")))) {
                 setVisible(e, false);
             }

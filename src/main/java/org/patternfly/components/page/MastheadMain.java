@@ -15,8 +15,7 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -32,8 +31,7 @@ import static org.patternfly.layout.Classes.masthead;
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadMain extends ElementBuilder<HTMLDivElement, MastheadMain>
-        implements HtmlContent<HTMLDivElement, MastheadMain> {
+public class MastheadMain extends SubComponent<HTMLDivElement, MastheadMain> {
 
     // ------------------------------------------------------ factory methods
 

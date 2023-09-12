@@ -21,12 +21,12 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -34,19 +34,29 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.patternfly.layout.Icons;
 
-import static org.jboss.elemento.Elements.*;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemove;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Dataset.singleOptionsMenuItem;
+import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.hasPopup;
+import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.listbox;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.optionsMenu;
+import static org.patternfly.layout.Classes.presentation;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Classes.top;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.check;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.core.Dataset.singleOptionsMenuItem;
 
 /**
  * PatternFly options menu (not grouped, single selection).
@@ -55,7 +65,7 @@ import static org.patternfly.core.Dataset.singleOptionsMenuItem;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOptionsMenu<T>>
-        implements HtmlContent<HTMLDivElement, SingleOptionsMenu<T>>, HasValue<T>, Disable<SingleOptionsMenu<T>> {
+        implements HasValue<T>, Disable<SingleOptionsMenu<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -90,7 +100,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Classes.button);
-        HtmlContentBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
+        HTMLContainerBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
                 .aria(hasPopup, listbox).on(click, e -> ceh.expand(element(), buttonElement(), menuElement()));
 
         HTMLElement trigger;
@@ -104,16 +114,22 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         } else { // text != null
             if (plain) {
                 this.plain = div().css(component(optionsMenu, toggle), modifier(Classes.plain), modifier(Classes.text))
-                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text)).textContent(text).element())
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button)).aria("label", text)
-                                .add(i().css(fas(caretDown)).aria("hidden", true)).element())
+                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text))
+                                .textContent(text)
+                                .element())
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button))
+                                .aria("label", text)
+                                .add(i().css(fas(caretDown)).aria("hidden", true))
+                                .element())
                         .element();
                 trigger = this.plain;
 
             } else {
                 this.plain = null;
                 this.button = buttonBuilder.css(component(optionsMenu, toggle)).aria("label", text)
-                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text)).textContent(text).element())
+                        .add(this.text = span().css(component(optionsMenu, toggle, Classes.text))
+                                .textContent(text)
+                                .element())
                         .add(i().css(fas(caretDown), component(optionsMenu, toggle, "icon")).aria("hidden", true))
                         .element();
                 trigger = button;
@@ -160,7 +176,8 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
 
     public SingleOptionsMenu<T> add(T item) {
         String itemId = itemDisplay.itemId(item);
-        HtmlContentBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
+        HTMLContainerBuilder<HTMLButtonElement> button = button().css(
+                component(optionsMenu, Classes.menu, Classes.item))
                 .attr("tabindex", -1).data(singleOptionsMenuItem, itemId).on(click, e -> {
                     if (collapseOnSelect) {
                         ceh.collapse(element(), buttonElement(), menuElement());
@@ -182,7 +199,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         return this;
     }
 
-    public SingleOptionsMenu<T> display(BiConsumer<HtmlContentBuilder<HTMLButtonElement>, T> display) {
+    public SingleOptionsMenu<T> display(BiConsumer<HTMLContainerBuilder<HTMLButtonElement>, T> display) {
         itemDisplay.display = display;
         return this;
     }
@@ -221,7 +238,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     // ------------------------------------------------------ modifier
 
     public SingleOptionsMenu<T> up() {
-        element.classList.add(modifier(top));
+        element().classList.add(modifier(top));
         return this;
     }
 

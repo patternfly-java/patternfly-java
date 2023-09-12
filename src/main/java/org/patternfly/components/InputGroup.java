@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -29,7 +27,7 @@ import static org.patternfly.layout.Classes.inputGroup;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/inputgroup/">https://www.patternfly.org/v4/documentation/core/components/inputgroup</a>
  */
-public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup> implements HtmlContent<HTMLDivElement, InputGroup> {
+public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup> {
 
     // ------------------------------------------------------ factory methods
 

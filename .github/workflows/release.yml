@@ -20,7 +20,7 @@ jobs:
         id: setup-jdk
         uses: actions/setup-java@v3
         with:
-          java-version: 19
+          java-version: 11
           distribution: temurin
           cache: maven
       - name: Package
@@ -30,7 +30,7 @@ jobs:
         id: setup-maven-settings
         uses: actions/setup-java@v3
         with: # running setup-java again overwrites the settings.xml
-          java-version: 19
+          java-version: 11
           distribution: temurin
           server-id: ossrh
           server-username: OSSRH_USERNAME
@@ -64,7 +64,7 @@ jobs:
           cache: maven
       - name: JavaDoc
         id: javadoc
-        run: $MVN javadoc:javadoc
+        run: $MVN javadoc:javadoc -P snippets
       - name: Publish
         id: publish
         uses: JamesIves/github-pages-deploy-action@v4.4.3

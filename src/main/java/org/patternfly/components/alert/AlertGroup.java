@@ -19,13 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.Id;
-import org.jboss.elemento.IsElement;
 import org.patternfly.components.BaseComponent;
-import org.patternfly.layout.Classes;
 import org.patternfly.core.Dataset;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
@@ -39,10 +36,10 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
+import static org.patternfly.core.Dataset.alert;
+import static org.patternfly.layout.Classes.alertGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.alertGroup;
-import static org.patternfly.core.Dataset.alert;
 
 /**
  * PatternFly alert group component.
@@ -50,8 +47,7 @@ import static org.patternfly.core.Dataset.alert;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/alertgroup">https://www.patternfly.org/v4/documentation/core/components/alertgroup</a>
  */
-public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
-        implements HtmlContent<HTMLUListElement, AlertGroup>, IsElement<HTMLUListElement> {
+public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // ------------------------------------------------------ factory methods
 
@@ -61,7 +57,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     public static AlertGroup toast() {
         if (toast == null) {
             toast = new AlertGroup(DEFAULT_TIMEOUT);
-            toast.element.classList.add(modifier(Classes.toast));
+            toast.element().classList.add(modifier(Classes.toast));
         }
         return toast;
     }
@@ -102,7 +98,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
         HTMLLIElement item = li().css(component(alertGroup, Classes.item)).add(alert).element();
         if (this == toast && !alert.hasClose()) {
             alert.closable();
-            insertFirst(element, item);
+            insertFirst(element(), item);
         } else {
             add(item);
         }
@@ -124,7 +120,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup>
     }
 
     private void remove(String id) {
-        HTMLElement e = Elements.find(element, By.data(alert, id));
+        HTMLElement e = find(By.data(alert, id));
         failSafeRemoveFromParent(e);
         Double timeoutHandle = messageIds.remove(id);
         if (timeoutHandle != null) {

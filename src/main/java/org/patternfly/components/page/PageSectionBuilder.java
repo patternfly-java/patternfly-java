@@ -15,14 +15,14 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
+import org.patternfly.components.SubComponent;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Sticky;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.limitWidth;
+import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.overflowScroll;
 import static org.patternfly.layout.Classes.shadowBottom;
 import static org.patternfly.layout.Classes.shadowTop;
@@ -31,10 +31,7 @@ import static org.patternfly.layout.Classes.shadowTop;
  * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
  */
 public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSectionBuilder<E, P>>
-        extends ElementBuilder<E, P>
-        implements PageSection<E, P> {
-
-    // ------------------------------------------------------ instance
+        extends SubComponent<E, P> implements PageSection<E, P> {
 
     PageSectionBuilder(E element) {
         super(element);

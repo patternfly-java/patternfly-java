@@ -129,10 +129,12 @@ public interface Classes {
     String page = "page";
     String pageInsets = "page-insets";
     String pagination = "pagination";
+    String path = "path";
     String plain = "plain";
     String popover = "popover";
     String presentation = "presentation";
     String primary = "primary";
+    String progress = "progress";
     String progressbar = "progressbar";
     String read = "read";
     String readOnly = "read-only";

@@ -31,8 +31,7 @@ import static org.patternfly.layout.Classes.wizard;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWizard>
-        implements PageSection<HTMLElement, PageMainWizard> {
+public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWizard> {
 
     // ------------------------------------------------------ factory methods
 

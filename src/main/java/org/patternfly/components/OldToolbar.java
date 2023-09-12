@@ -31,10 +31,8 @@ import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementBuilder;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
 import org.patternfly.dataprovider.DataProvider;
@@ -48,7 +46,6 @@ import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
-import org.patternfly.layout.Icons;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
@@ -58,10 +55,22 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
+import static org.patternfly.layout.Classes.buttonGroup;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.content;
+import static org.patternfly.layout.Classes.controls;
+import static org.patternfly.layout.Classes.dataToolbar;
+import static org.patternfly.layout.Classes.expandableContent;
+import static org.patternfly.layout.Classes.filterGroup;
+import static org.patternfly.layout.Classes.hasPopup;
+import static org.patternfly.layout.Classes.iconButtonGroup;
+import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.separator;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Classes.toggleGroup;
+import static org.patternfly.layout.Classes.toggleGroupContainer;
+import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Icons.filter;
 import static org.patternfly.layout.Icons.sortAmountDown;
 
@@ -101,7 +110,7 @@ import static org.patternfly.layout.Icons.sortAmountDown;
  * @see <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus–Naur form</a>
  */
 public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
-        implements HtmlContent<HTMLDivElement, OldToolbar<T>>, Display<T>, Attachable {
+        implements Display<T>, Attachable {
 
     // ------------------------------------------------------ factory methods
 
@@ -147,7 +156,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
     protected OldToolbar(DataProvider<T> dataProvider) {
         super(div().css(component(dataToolbar)).element(), "Toolbar");
         this.dataProvider = dataProvider;
-        Attachable.register(element, this);
+        Attachable.register(element(), this);
     }
 
     @Override
@@ -207,14 +216,14 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
 
     private void bindToggleGroupHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();
-        for (HTMLElement htmlElement : Elements.findAll(element, TOGGLE_GROUP_SELECTOR)) {
+        for (HTMLElement htmlElement : Elements.findAll(element(), TOGGLE_GROUP_SELECTOR)) {
             HTMLElement toggleGroupParent = (HTMLElement) htmlElement.parentNode;
             toggleGroupParent.classList.add(toggleGroupContainer);
 
             // add expandable content
             String expandableContentId = Id.unique(dataToolbar, expandableContent);
             HTMLElement expandableContentGroup = group().element();
-            HtmlContentBuilder<HTMLDivElement> expandableContent = div()
+            HTMLContainerBuilder<HTMLDivElement> expandableContent = div()
                     .css(component(dataToolbar, Classes.expandableContent)).id(expandableContentId)
                     .add(expandableContentGroup);
             setVisible(expandableContent.element(), false);
@@ -223,7 +232,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
             // wire aria attributes and add expand / collapse handler
             HTMLButtonElement e = Elements.find(htmlElement, TOGGLE_SELECTOR);
             if (e != null) {
-                HtmlContentBuilder<HTMLButtonElement> button = button(e);
+                HTMLContainerBuilder<HTMLButtonElement> button = button(e);
                 button.aria(hasPopup, false).aria("expanded", false).aria(controls, expandableContentId);
                 handler.add(bind(button.element(), click, evt -> {
                     boolean expanded = parseBoolean(button.element().getAttribute("aria-expanded"));
@@ -268,8 +277,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
 
     // ------------------------------------------------------ inner classes (content)
 
-    public static class Content extends ElementBuilder<HTMLDivElement, Content>
-            implements HtmlContent<HTMLDivElement, Content> {
+    public static class Content extends SubComponent<HTMLDivElement, Content> {
 
         private final List<Group> groups;
         private final List<Item> items;
@@ -305,7 +313,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         }
     }
 
-    public static class Group extends ElementBuilder<HTMLDivElement, Group> implements HtmlContent<HTMLDivElement, Group> {
+    public static class Group extends SubComponent<HTMLDivElement, Group> {
 
         private final List<Group> groups;
         private final List<Item> items;
@@ -361,7 +369,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static class Item extends ElementBuilder<HTMLDivElement, Item> implements HtmlContent<HTMLDivElement, Item> {
+    public static class Item extends SubComponent<HTMLDivElement, Item> {
 
         private final Stack<Consumer<OldToolbar>> delayedInit;
 
@@ -411,8 +419,10 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
             delayedInit.push(toolbar -> {
                 toolbar.pagination = pagination;
                 pagination.onFirstPage(toolbar.dataProvider::gotoFirstPage)
-                        .onPreviousPage(toolbar.dataProvider::gotoPreviousPage).onNextPage(toolbar.dataProvider::gotoNextPage)
-                        .onLastPage(toolbar.dataProvider::gotoLastPage).onGotoPage(toolbar.dataProvider::gotoPage)
+                        .onPreviousPage(toolbar.dataProvider::gotoPreviousPage)
+                        .onNextPage(toolbar.dataProvider::gotoNextPage)
+                        .onLastPage(toolbar.dataProvider::gotoLastPage)
+                        .onGotoPage(toolbar.dataProvider::gotoPage)
                         .onPageSize(toolbar.dataProvider::setPageSize);
             });
             return css(modifier(Classes.pagination)).add(pagination.element());
@@ -437,15 +447,20 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
 
     private static class BulkSelect implements IsElement<HTMLDivElement> {
 
-        private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none", "Select none (0 items)");
+        private static final BulkSelectOption SELECT_NONE = new BulkSelectOption("select-none",
+                "Select none (0 items)");
         private static final BulkSelectOption SELECT_PAGE = new BulkSelectOption("select-page", "Select page");
         private static final BulkSelectOption SELECT_ALL = new BulkSelectOption("select-all", "Select all");
 
         private final Dropdown<BulkSelectOption> dropdown;
 
         protected BulkSelect() {
-            this.dropdown = Dropdown.<BulkSelectOption> splitCheckbox().identifier(bso -> bso.id)
-                    .display((html, bso) -> html.textContent(bso.text)).add(SELECT_NONE).add(SELECT_PAGE).add(SELECT_ALL);
+            this.dropdown = Dropdown.<BulkSelectOption> splitCheckbox()
+                    .identifier(bso -> bso.id)
+                    .display((html, bso) -> html.textContent(bso.text))
+                    .add(SELECT_NONE)
+                    .add(SELECT_PAGE)
+                    .add(SELECT_ALL);
         }
 
         @Override
@@ -578,7 +593,8 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
                 }
             }
             if (sortDirection != null) {
-                sortDirection.select(sortInfo.isAscending() ? SortDirection.ASCENDING : SortDirection.DESCENDING, false);
+                sortDirection.select(sortInfo.isAscending() ? SortDirection.ASCENDING : SortDirection.DESCENDING,
+                        false);
             }
         }
     }

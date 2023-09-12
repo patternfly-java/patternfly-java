@@ -16,7 +16,6 @@
 package org.patternfly.components;
 
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
 import org.jboss.elemento.IsElement;
 
 import elemental2.dom.Element;
@@ -26,8 +25,7 @@ import elemental2.dom.Node;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.layout.Classes.component;
 
-public class OldPageMain extends BaseComponent<HTMLElement, OldPageMain> implements
-        HtmlContent<HTMLElement, OldPageMain> {
+public class OldPageMain extends BaseComponent<HTMLElement, OldPageMain> {
 
     protected OldPageMain(String id) {
         super(Elements.main()

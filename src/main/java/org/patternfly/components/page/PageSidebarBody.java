@@ -15,15 +15,20 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
+import static org.patternfly.layout.Classes.body;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.fill;
+import static org.patternfly.layout.Classes.insetNone;
+import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.noFill;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Classes.pageInsets;
 
 /**
  * Container within the {@link PageSidebar} to hold content. Note: By default, the last/only body will grow to fill the
@@ -32,8 +37,7 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageSidebarBody extends ElementBuilder<HTMLElement, PageSidebarBody>
-        implements HtmlContent<HTMLElement, PageSidebarBody> {
+public class PageSidebarBody extends SubComponent<HTMLElement, PageSidebarBody> {
 
     // ------------------------------------------------------ factory methods
 

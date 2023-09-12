@@ -46,8 +46,8 @@ public class DataProvider<T> {
     private final Map<String, T> allItems;
     private final Map<String, Predicate<T>> filters;
     private final List<Display<T>> displays;
+    private final List<SelectHandler<T>> selectHandler;
     private SortInfo<T> sortInfo;
-    private List<SelectHandler<T>> selectHandler;
     private Map<String, T> filteredItems;
     private Map<String, T> visibleItems;
 

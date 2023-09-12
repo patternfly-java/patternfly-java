@@ -15,7 +15,6 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.Brand;
 import org.patternfly.components.ComponentType;
@@ -32,8 +31,12 @@ import static org.jboss.elemento.Elements.header;
 import static org.patternfly.components.page.MastheadContent.mastheadContent;
 import static org.patternfly.components.page.MastheadMain.mastheadMain;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.inline;
+import static org.patternfly.layout.Classes.inset;
+import static org.patternfly.layout.Classes.insetNone;
+import static org.patternfly.layout.Classes.masthead;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.stack;
 
 /**
  * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is accessible
@@ -41,12 +44,11 @@ import static org.patternfly.layout.Classes.*;
  * <p>
  * All pages should share a common masthead. Use {@link Page#masthead()} to get the masthead.
  * <p>
- * Usage:
  * {@snippet class = PageDemo region = masthead}
  *
  * @see <a href= "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
  */
-public class Masthead extends BaseComponent<HTMLElement, Masthead> implements HtmlContent<HTMLElement, Masthead> {
+public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     // ------------------------------------------------------ factory methods
 
@@ -94,7 +96,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements Ht
      * import org.patternfly.layout.Classes;add(mastheadMain()
      *         .add(a(homeLink).css(Classes.component(masthead, Classes.brand))
      *                 .add(brand)));
-     *}
+     * }
      */
     public Masthead addBrand(Brand brand, String homeLink) {
         add(mastheadMain()

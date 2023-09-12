@@ -16,19 +16,17 @@
 package org.patternfly.components.alert;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.Button;
 import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
+import org.patternfly.layout.Constants;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLParagraphElement;
-import org.patternfly.layout.Constants;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -38,11 +36,16 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.components.alert.AlertActionGroup.alertActionGroup;
 import static org.patternfly.components.alert.AlertDescription.alertDescription;
+import static org.patternfly.layout.Classes.action;
+import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Icons.fas;
+import static org.patternfly.layout.Classes.icon;
+import static org.patternfly.layout.Classes.inline;
+import static org.patternfly.layout.Classes.label;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.truncate;
+import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Icons.times;
 
 /**
@@ -51,29 +54,28 @@ import static org.patternfly.layout.Icons.times;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
-public class Alert extends BaseComponent<HTMLDivElement, Alert>
-        implements HtmlContent<HTMLDivElement, Alert>, Aria<Alert> {
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<Alert> {
 
     // ------------------------------------------------------ factory methods
 
     public static Alert custom(String title) {
-        return new Alert(AlertType.CUSTOM, title);
+        return new Alert(AlertType.custom, title);
     }
 
     public static Alert info(String title) {
-        return new Alert(AlertType.INFO, title);
+        return new Alert(AlertType.info, title);
     }
 
     public static Alert success(String title) {
-        return new Alert(AlertType.SUCCESS, title);
+        return new Alert(AlertType.success, title);
     }
 
     public static Alert warning(String title) {
-        return new Alert(AlertType.WARNING, title);
+        return new Alert(AlertType.warning, title);
     }
 
     public static Alert danger(String title) {
-        return new Alert(AlertType.DANGER, title);
+        return new Alert(AlertType.danger, title);
     }
 
     // ------------------------------------------------------ instance
@@ -82,21 +84,18 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     private final AlertType alertType;
     private final String title;
-    private final HtmlContentBuilder<HTMLParagraphElement> titleElement;
+    private final HTMLContainerBuilder<HTMLParagraphElement> titleElement;
     private Callback callback;
     private Button closeButton;
 
     Alert(AlertType alertType, String title) {
-        super(div().css(component(alert))
+        super(div().css(component(alert, alertType.status.modifier))
                 .aria(label, alertType.aria)
                 .element(),
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
 
-        if (alertType.modifier != null) {
-            element.classList.add(alertType.modifier);
-        }
         add(div().css(component(alert, icon))
                 .add(icon(alertType.icon)
                         .aria(Constants.hidden, true)));
@@ -114,7 +113,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     // ------------------------------------------------------ public API
 
     public void close() {
-        failSafeRemoveFromParent(element);
+        failSafeRemoveFromParent(element());
         if (callback != null) {
             callback.call();
         }
@@ -166,6 +165,9 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
     /**
      * Wraps the description inside a {@code
      *
+     *
+    <p>
+     *
     <p>
      *
     <p/>
@@ -206,6 +208,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert>
 
     boolean hasClose() {
         By selector = By.classname(component(alert, action)).desc(By.classname(fas(times)));
-        return Elements.find(element, selector) != null;
+        return find(selector) != null;
     }
 }

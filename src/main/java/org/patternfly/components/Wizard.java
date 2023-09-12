@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -29,8 +27,7 @@ import static org.patternfly.layout.Classes.component;
  *
  * @see <a href= "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
  */
-public class Wizard extends BaseComponent<HTMLDivElement, Wizard>
-        implements HtmlContent<HTMLDivElement, Wizard> {
+public class Wizard extends BaseComponent<HTMLDivElement, Wizard> {
 
     // ------------------------------------------------------ factory methods
 

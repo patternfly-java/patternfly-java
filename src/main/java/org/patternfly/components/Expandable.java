@@ -18,8 +18,7 @@ package org.patternfly.components;
 import java.util.function.Consumer;
 
 import org.gwtproject.safehtml.shared.SafeHtml;
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.CollapseExpandHandler;
 import org.patternfly.layout.Classes;
@@ -27,7 +26,6 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
-import org.patternfly.layout.Icons;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
@@ -35,9 +33,10 @@ import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.expandable;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Classes.*;
 
 /**
  * PatternFly expandable component.
@@ -45,7 +44,7 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/xpandable">https://www.patternfly.org/v4/documentation/core/components/expandable</a>
  */
-public class Expandable extends BaseComponent<HTMLDivElement, Expandable> implements HtmlContent<HTMLDivElement, Expandable> {
+public class Expandable extends BaseComponent<HTMLDivElement, Expandable> {
 
     // ------------------------------------------------------ factory methods
 
@@ -60,7 +59,7 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> implem
 
     private final HTMLElement button;
     private final HTMLElement text;
-    private final HtmlContentBuilder<HTMLDivElement> content;
+    private final HTMLContainerBuilder<HTMLDivElement> content;
 
     protected Expandable(String expandText, String collapseText) {
         super(div().css(component(expandable)).element(), "Expandable");
@@ -75,8 +74,8 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> implem
         content = div().css(component(expandable, Classes.content)).hidden(true);
 
         // Don't use add() it's overridden!
-        element.appendChild(button);
-        element.appendChild(content.element());
+        element().appendChild(button);
+        element().appendChild(content.element());
     }
 
     private HTMLElement textElement() {

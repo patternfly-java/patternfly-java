@@ -15,9 +15,9 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.Classes;
+import org.patternfly.layout.Position;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -27,9 +27,12 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.blur;
 import static org.jboss.elemento.EventType.mouseenter;
 import static org.jboss.elemento.EventType.mouseleave;
+import static org.patternfly.layout.Classes.arrow;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.focus;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.textLeftAligned;
+import static org.patternfly.layout.Classes.tooltip;
 
 /**
  * PatternFly tooltip component.
@@ -37,33 +40,33 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/tooltip">https://www.patternfly.org/v4/documentation/core/components/tooltip</a>
  */
-public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements HtmlContent<HTMLDivElement, Tooltip> {
+public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> {
 
     // ------------------------------------------------------ factory methods
 
     public static Tooltip top(String text, HTMLElement target) {
-        return new Tooltip(Position.TOP, target, text);
+        return new Tooltip(Position.top, target, text);
     }
 
     public static Tooltip right(String text, HTMLElement target) {
-        return new Tooltip(Position.RIGHT, target, text);
+        return new Tooltip(Position.right, target, text);
     }
 
     public static Tooltip bottom(String text, HTMLElement target) {
-        return new Tooltip(Position.BOTTOM, target, text);
+        return new Tooltip(Position.bottom, target, text);
     }
 
     public static Tooltip left(String text, HTMLElement target) {
-        return new Tooltip(Position.LEFT, target, text);
+        return new Tooltip(Position.left, target, text);
     }
 
     public static Tooltip auto(String text, HTMLElement target) {
-        return new Tooltip(Position.AUTO, target, text);
+        return new Tooltip(Position.auto, target, text);
     }
 
     // ------------------------------------------------------ instance
 
-    private final HtmlContentBuilder<HTMLDivElement> content;
+    private final HTMLContainerBuilder<HTMLDivElement> content;
 
     protected Tooltip(Position position, HTMLElement target, String text) {
         super(div().css(component(tooltip), position.modifier).attr("role", "tooltip").element(), "Tooltip");

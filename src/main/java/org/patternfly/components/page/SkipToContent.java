@@ -15,7 +15,6 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 
@@ -30,8 +29,7 @@ import static org.patternfly.components.Button.link;
  * @see <a href=
  *      "https://www.patternfly.org/components/skip-to-content/html">https://www.patternfly.org/components/skip-to-content/html</a>
  */
-public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent>
-        implements HtmlContent<HTMLDivElement, SkipToContent> {
+public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> {
 
     // ------------------------------------------------------ factory methods
 

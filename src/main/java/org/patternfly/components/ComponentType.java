@@ -59,7 +59,7 @@ public enum ComponentType {
 
     Form("frm", null),
 
-    Icon("icn", null),
+    Icon("icn", "PF5/Icon"),
 
     InputGroup("ig", null),
 
@@ -107,7 +107,7 @@ public enum ComponentType {
 
     ToggleGroup("tg", null),
 
-    Toolbar("tb", null),
+    Toolbar("tb", "PF5/Toolbar"),
 
     TreeView("tv", null),
 

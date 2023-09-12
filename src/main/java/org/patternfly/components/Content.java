@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -29,7 +27,7 @@ import static org.patternfly.layout.Classes.content;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/content/">https://www.patternfly.org/v4/documentation/core/components/content</a>
  */
-public class Content extends BaseComponent<HTMLDivElement, Content> implements HtmlContent<HTMLDivElement, Content> {
+public class Content extends BaseComponent<HTMLDivElement, Content> {
 
     // ------------------------------------------------------ factory methods
 

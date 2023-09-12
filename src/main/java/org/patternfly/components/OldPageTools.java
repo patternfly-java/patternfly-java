@@ -15,8 +15,6 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.tools;
 
 public class OldPageTools
-        extends ElementBuilder<HTMLDivElement, OldPageTools> implements HtmlContent<HTMLDivElement, OldPageTools> {
+        extends SubComponent<HTMLDivElement, OldPageTools> {
 
     protected OldPageTools() {
         super(div().css(component("page", Classes.header, tools)).element());

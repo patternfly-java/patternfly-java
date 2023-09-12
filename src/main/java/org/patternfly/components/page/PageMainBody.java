@@ -15,14 +15,13 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.body;
+import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;
 
@@ -30,14 +29,12 @@ import static org.patternfly.layout.Classes.page;
  * Container for the body of a {@link PageSection} container. Required if the {@link PageSection} has a
  * {@link PageSectionBuilder#limitWidth()} modifier.
  * <p>
- * Usage:
  * {@snippet class = PageDemo region = pageMainBody}
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainBody extends ElementBuilder<HTMLDivElement, PageMainBody>
-        implements HtmlContent<HTMLDivElement, PageMainBody> {
+public class PageMainBody extends SubComponent<HTMLDivElement, PageMainBody> {
 
     // ------------------------------------------------------ factory methods
 

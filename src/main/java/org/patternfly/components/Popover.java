@@ -15,7 +15,7 @@
  */
 package org.patternfly.components;
 
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.layout.Position;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -30,28 +30,28 @@ import static org.patternfly.layout.Classes.tooltip;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/popover">https://www.patternfly.org/v4/documentation/core/components/popover</a>
  */
-public class Popover extends BaseComponent<HTMLDivElement, Popover> implements HtmlContent<HTMLDivElement, Popover> {
+public class Popover extends BaseComponent<HTMLDivElement, Popover> {
 
     // ------------------------------------------------------ factory methods
 
     public static Popover top(HTMLElement target) {
-        return new Popover(Position.TOP, target);
+        return new Popover(Position.top, target);
     }
 
     public static Popover right(HTMLElement target) {
-        return new Popover(Position.RIGHT, target);
+        return new Popover(Position.right, target);
     }
 
     public static Popover bottom(HTMLElement target) {
-        return new Popover(Position.BOTTOM, target);
+        return new Popover(Position.bottom, target);
     }
 
     public static Popover left(HTMLElement target) {
-        return new Popover(Position.LEFT, target);
+        return new Popover(Position.left, target);
     }
 
     public static Popover auto(HTMLElement target) {
-        return new Popover(Position.AUTO, target);
+        return new Popover(Position.auto, target);
     }
 
     // ------------------------------------------------------ instance

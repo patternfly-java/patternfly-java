@@ -15,8 +15,7 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
@@ -31,14 +30,12 @@ import static org.patternfly.layout.Constants.tabindex;
  * Container for the main page area. The page main container typically contains multiple {@link PageMainGroup}s and/or
  * {@link PageMainSection}s.
  * <p>
- * Usage:
  * {@snippet class = PageDemo region = pageMain}
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMain extends ElementBuilder<HTMLElement, PageMain>
-        implements HtmlContent<HTMLElement, PageMain> {
+public class PageMain extends SubComponent<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ factory methods
 

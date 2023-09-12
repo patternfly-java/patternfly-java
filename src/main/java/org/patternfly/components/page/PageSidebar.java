@@ -15,17 +15,20 @@
  */
 package org.patternfly.components.page;
 
-import org.jboss.elemento.ElementBuilder;
-import org.jboss.elemento.HtmlContent;
+import org.patternfly.components.BaseComponent;
+import org.patternfly.components.ComponentType;
 import org.patternfly.layout.Brightness;
-
-import elemental2.dom.HTMLElement;
 import org.patternfly.layout.Constants;
 
+import elemental2.dom.HTMLElement;
+
 import static org.jboss.elemento.Elements.aside;
+import static org.patternfly.layout.Classes.collapsed;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.expanded;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.*;
+import static org.patternfly.layout.Classes.page;
+import static org.patternfly.layout.Classes.sidebar;
 
 /**
  * Container for the page sidebar.
@@ -33,8 +36,7 @@ import static org.patternfly.layout.Classes.*;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
-        implements HtmlContent<HTMLElement, PageSidebar> {
+public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
 
     // ------------------------------------------------------ factory methods
 
@@ -50,7 +52,8 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
     PageSidebar() {
         super(aside().css(component(page, sidebar))
                 .aria(Constants.hidden, false)
-                .element());
+                .element(),
+                ComponentType.Sidebar);
     }
 
     @Override
@@ -62,9 +65,9 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
      * Toggles the collapse/expanded state of the sidebar.
      */
     public void toggle() {
-        if (element.classList.contains(modifier(collapsed))) {
+        if (element().classList.contains(modifier(collapsed))) {
             expanded();
-        } else if (element.classList.contains(modifier(expanded))) {
+        } else if (element().classList.contains(modifier(expanded))) {
             collapsed();
         }
     }
@@ -84,8 +87,8 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
      * Modifies the sidebar for the expanded state.
      */
     public PageSidebar expanded() {
-        element.classList.remove(modifier(collapsed));
-        element.classList.add(modifier(expanded));
+        element().classList.remove(modifier(collapsed));
+        element().classList.add(modifier(expanded));
         aria(Constants.hidden, false);
         return this;
     }
@@ -94,8 +97,8 @@ public class PageSidebar extends ElementBuilder<HTMLElement, PageSidebar>
      * Modifies the sidebar for the collapsed state.
      */
     public PageSidebar collapsed() {
-        element.classList.remove(modifier(expanded));
-        element.classList.add(modifier(collapsed));
+        element().classList.remove(modifier(expanded));
+        element().classList.add(modifier(collapsed));
         aria(Constants.hidden, true);
         return this;
     }
