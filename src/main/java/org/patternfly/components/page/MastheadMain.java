@@ -16,6 +16,7 @@
 package org.patternfly.components.page;
 
 import org.patternfly.components.SubComponent;
+import org.patternfly.components.brand.Brand;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -26,7 +27,7 @@ import static org.patternfly.layout.Classes.masthead;
 
 /**
  * Container for the main area of a {@link Masthead} component. This container represents the smaller area taken up by a logo,
- * and will typically contain a {@link org.patternfly.components.Brand} inside an {@code <a/>} element.
+ * and will typically contain a {@link Brand} inside an {@code <a/>} element.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>

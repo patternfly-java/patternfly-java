@@ -16,8 +16,8 @@
 package org.patternfly.components.page;
 
 import org.patternfly.components.BaseComponent;
-import org.patternfly.components.Brand;
 import org.patternfly.components.ComponentType;
+import org.patternfly.components.brand.Brand;
 import org.patternfly.components.toolbar.Toolbar;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Brightness;

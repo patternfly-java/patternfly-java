@@ -51,7 +51,8 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
     // ------------------------------------------------------ factory methods
 
     /**
-     * Factory method to create a new instance of this component.
+     * Factory method to create a new instance of this component. Use the constants defined in
+     * {@link org.patternfly.layout.Icons} together with {@link org.patternfly.layout.Icons.fas()} to specify the icon class.
      */
     public static Icon icon(String iconClass) {
         return new Icon(iconClass);
@@ -109,10 +110,20 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
         return this;
     }
 
+    /**
+     * Swaps the icon to a progress icon.
+     * <p>
+     * {@snippet class = IconDemo region = progress}
+     */
     public Icon inProgress() {
         return inProgress(true);
     }
 
+    /**
+     * Turns the progress icon on/off.
+     * <p>
+     * {@snippet class = IconDemo region = progress}
+     */
     public Icon inProgress(boolean onOff) {
         HTMLElement element = find(By.classname(component(icon, progress)));
         if (onOff) {

@@ -23,9 +23,8 @@ import elemental2.dom.HTMLDivElement;
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.components.page.Page.page;
-import static org.patternfly.layout.Classes.ariaExpanded;
+import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.expanded;
 import static org.patternfly.layout.Classes.globalNavigation;
 import static org.patternfly.layout.Classes.masthead;
 import static org.patternfly.layout.Classes.toggle;
@@ -56,10 +55,9 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
 
     MastheadToggle() {
         super(div().css(component(masthead, toggle)).element());
-        add(div().css(component(masthead, toggle))
-                .add(toggleButton = Button.icon(fas(bars), globalNavigation)
-                        .aria(expanded, false)
-                        .onClick(this::toggle)));
+        add(toggleButton = Button.icon(fas(bars), globalNavigation)
+                .aria(expanded, true) // expanded by default
+                .onClick(this::toggle));
     }
 
     @Override
@@ -68,7 +66,7 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
     }
 
     private void toggle() {
-        boolean current = parseBoolean(toggleButton.element().getAttribute(ariaExpanded));
+        boolean current = parseBoolean(toggleButton.element().getAttribute(expanded));
         toggleButton.aria(expanded, !current);
         if (page().sidebar() != null) {
             page().sidebar().toggle();

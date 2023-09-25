@@ -13,21 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.components.divider;
 
-public interface Aria<T> {
+public enum DividerType {
 
-    String current = "aria-current";
-    String expanded = "aria-expanded";
-    String hidden = "aria-hidden";
-    String label = "aria-label";
-    String labelledBy = "aria-labelledby";
-
-    @Deprecated
-    T label(String label);
-
-    @Deprecated
-    default T label(String target, String label) {
-        return (T) this;
-    }
+    li
 }

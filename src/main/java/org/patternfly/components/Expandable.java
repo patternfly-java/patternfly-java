@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
-import org.patternfly.core.CollapseExpandHandler;
+import org.patternfly.core.CollapseExpand;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -54,7 +54,7 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> {
 
     // ------------------------------------------------------ instance
 
-    private final CollapseExpandHandler ceh;
+    private final CollapseExpand ceh;
     private final Consumer<Boolean> toggleText;
 
     private final HTMLElement button;
@@ -63,7 +63,7 @@ public class Expandable extends BaseComponent<HTMLDivElement, Expandable> {
 
     protected Expandable(String expandText, String collapseText) {
         super(div().css(component(expandable)).element(), "Expandable");
-        this.ceh = new CollapseExpandHandler();
+        this.ceh = new CollapseExpand();
         this.toggleText = expanded -> textElement().textContent = expanded ? collapseText : expandText;
         this.ceh.onToggle = this.toggleText;
 

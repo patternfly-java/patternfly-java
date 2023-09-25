@@ -26,7 +26,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpandHandler;
+import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.ItemDisplay;
 import org.patternfly.core.SelectHandler;
@@ -131,7 +131,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     private final boolean splitAction;
     private final String buttonId;
     private final List<T> backupItems;
-    private final CollapseExpandHandler ceh;
+    private final CollapseExpand ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLElement toggle;
     private final HTMLInputElement input;
@@ -148,7 +148,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         this.splitAction = splitAction;
         this.buttonId = Id.unique(dropdown, Classes.button);
         this.backupItems = new ArrayList<>();
-        this.ceh = new CollapseExpandHandler();
+        this.ceh = new CollapseExpand();
         this.itemDisplay = new ItemDisplay<>();
 
         HTMLContainerBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)

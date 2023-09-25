@@ -15,33 +15,30 @@
  */
 package org.patternfly.components;
 
-import elemental2.dom.HTMLImageElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.img;
-import static org.patternfly.layout.Classes.brand;
+import static org.jboss.elemento.Elements.div;
 
-/**
- * PatternFly brand component.
- *
- * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/brand">https://www.patternfly.org/v4/documentation/core/components/brand</a>
- */
-public class Brand extends BaseComponent<HTMLImageElement, Brand> {
+public class TemplateComponent extends BaseComponent<HTMLElement, TemplateComponent> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Brand brand(String src) {
-        return new Brand(src);
+    public static TemplateComponent template() {
+        return new TemplateComponent();
     }
 
     // ------------------------------------------------------ instance
 
-    Brand(String src) {
-        super(img(src).css(brand).element(), "Brand");
+    TemplateComponent() {
+        super(div().element(), (ComponentType) null);
     }
 
     @Override
-    public Brand that() {
+    public TemplateComponent that() {
         return this;
     }
+
+    // ------------------------------------------------------ add methods
+
+    // ------------------------------------------------------ modifiers
 }

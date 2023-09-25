@@ -15,6 +15,7 @@
  */
 package org.patternfly.components;
 
+import org.patternfly.components.title.Title;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
 

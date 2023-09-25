@@ -263,7 +263,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     @Override
     public Button label(String label) {
-        return aria("label", label);
+        return aria(Aria.label, label);
     }
 
     // ------------------------------------------------------ inner classes

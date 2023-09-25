@@ -24,7 +24,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpandHandler;
+import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.ItemDisplay;
@@ -88,7 +88,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     // ------------------------------------------------------ options menu instance
 
-    private final CollapseExpandHandler ceh;
+    private final CollapseExpand ceh;
     private final HTMLButtonElement button;
     private final HTMLElement plain;
     private final HTMLElement menu;
@@ -96,7 +96,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
 
     MultiOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");
-        this.ceh = new CollapseExpandHandler();
+        this.ceh = new CollapseExpand();
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Classes.button);

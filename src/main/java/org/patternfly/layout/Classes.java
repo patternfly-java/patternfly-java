@@ -26,7 +26,6 @@ public interface Classes {
     String alert = "alert";
     String alertGroup = "alert-group";
     String alignRight = "align-right";
-    String ariaExpanded = "aria-expanded";
     String arrow = "arrow";
     String avatar = "avatar";
     String badge = "badge";
@@ -86,6 +85,7 @@ public interface Classes {
     String head = "head";
     String header = "header";
     String horizontal = "horizontal";
+    String horizontalSubnav = "horizontal-subnav";
     String hoverable = "hoverable";
     String icon = "icon";
     String iconButtonGroup = "icon-button-group";
@@ -153,6 +153,7 @@ public interface Classes {
     String shadowTop = "shadow-top";
     String sidebar = "sidebar";
     String simple = "simple";
+    String skipToContent = "skip-to-content";
     String sort = "sort";
     String spinner = "spinner";
     String splitButton = "split-button";

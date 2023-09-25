@@ -15,19 +15,8 @@
  */
 package org.patternfly.core;
 
-public interface Aria<T> {
+@FunctionalInterface
+public interface ToggleHandler<T> {
 
-    String current = "aria-current";
-    String expanded = "aria-expanded";
-    String hidden = "aria-hidden";
-    String label = "aria-label";
-    String labelledBy = "aria-labelledby";
-
-    @Deprecated
-    T label(String label);
-
-    @Deprecated
-    default T label(String target, String label) {
-        return (T) this;
-    }
+    void onToggle(boolean expanded, T item);
 }

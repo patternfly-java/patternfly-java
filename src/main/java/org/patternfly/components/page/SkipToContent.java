@@ -17,11 +17,13 @@ package org.patternfly.components.page;
 
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.components.Button.link;
+import static org.patternfly.layout.Classes.component;
 
 /**
  * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.
@@ -50,7 +52,8 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
     // ------------------------------------------------------ instance
 
     SkipToContent(String mainId, String text) {
-        super(div().add(link(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
+        super(div().css(component(Classes.skipToContent))
+                .add(link(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
     }
 
     @Override

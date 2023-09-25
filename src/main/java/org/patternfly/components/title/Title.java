@@ -13,8 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components;
+package org.patternfly.components.title;
 
+import org.patternfly.components.BaseComponent;
+import org.patternfly.components.ComponentType;
 import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLHeadingElement;
@@ -26,7 +28,7 @@ import static org.patternfly.layout.Classes.component;
  * PatternFly title component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/title">https://www.patternfly.org/v4/documentation/core/components/title</a>
+ *      "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
  */
 public class Title extends BaseComponent<HTMLHeadingElement, Title> {
 
@@ -43,7 +45,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> {
     // ------------------------------------------------------ instance
 
     protected Title(int level, String text, Size size) {
-        super(h(level, text).css(component("title")).element(), "Title");
+        super(h(level, text).css(component("title")).element(), ComponentType.Title);
         if (size != null) {
             css(size.modifier);
         }

@@ -15,24 +15,74 @@
  */
 package org.patternfly.components.navigation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.patternfly.components.SubComponent;
+import org.patternfly.components.divider.Divider;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.section;
+import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.list;
+import static org.patternfly.layout.Classes.nav;
+import static org.patternfly.layout.Classes.title;
+import static org.patternfly.layout.Constants.role;
 
 public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> {
 
-    public static NavigationGroup group() {
-        return new NavigationGroup();
+    // ------------------------------------------------------ factory methods
+
+    public static NavigationGroup navigationGroup(String id, String text) {
+        return new NavigationGroup(id, text);
     }
 
-    NavigationGroup() {
-        super(section().element());
+    // ------------------------------------------------------ instance
+
+    public final String id;
+    private final Map<String, NavigationItem> items;
+    private final HTMLUListElement ul;
+
+    NavigationGroup(String id, String text) {
+        super(section().css(component(nav, Classes.section))
+                .data(navigationGroup, id)
+                .element());
+        this.id = id;
+        this.items = new HashMap<>();
+
+        add(h(2, text).css(component(nav, Classes.section, title)));
+        add(ul = ul().css(component(nav, list))
+                .attr(role, "list")
+                .element());
     }
 
     @Override
     public NavigationGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ add methods
+
+    public NavigationGroup addItem(NavigationItem item) {
+        items.put(item.id, item);
+        ul.appendChild(item.element());
+        return this;
+    }
+
+    public NavigationGroup addDivider(Divider divider) {
+        ul.appendChild(divider.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ internals
+
+    NavigationItem findItem(String id) {
+        return items.get(id);
     }
 }

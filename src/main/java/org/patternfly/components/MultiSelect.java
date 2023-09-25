@@ -22,7 +22,7 @@ import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpandHandler;
+import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
 import org.patternfly.core.ItemDisplay;
@@ -86,7 +86,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     // ------------------------------------------------------ select instance
 
     private final boolean typeahead;
-    private final CollapseExpandHandler ceh;
+    private final CollapseExpand ceh;
     private final ItemDisplay<HTMLElement, T> itemDisplay;
     private final HTMLButtonElement button;
     private final HTMLElement text;
@@ -96,7 +96,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     MultiSelect(Icon icon, String text, boolean typeahead) {
         super(div().css(component(select)).element(), "Select");
         this.typeahead = typeahead;
-        this.ceh = new CollapseExpandHandler();
+        this.ceh = new CollapseExpand();
         this.itemDisplay = new ItemDisplay<>();
 
         String buttonId = Id.unique(select, Classes.button);

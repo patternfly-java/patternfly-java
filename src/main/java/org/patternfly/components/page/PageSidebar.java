@@ -50,7 +50,7 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
     // ------------------------------------------------------ instance
 
     PageSidebar() {
-        super(aside().css(component(page, sidebar))
+        super(aside().css(component(page, sidebar), modifier(expanded))
                 .aria(Constants.hidden, false)
                 .element(),
                 ComponentType.Sidebar);

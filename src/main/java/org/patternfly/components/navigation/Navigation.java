@@ -17,50 +17,45 @@ package org.patternfly.components.navigation;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.HTMLContainerBuilder;
-import org.jboss.elemento.Id;
+import org.jboss.elemento.Elements;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.components.divider.Divider;
+import org.patternfly.components.navigation.NavigationType.Horizontal;
+import org.patternfly.core.Aria;
 import org.patternfly.core.SelectHandler;
+import org.patternfly.core.ToggleHandler;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.Orientation;
 
-import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
-import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.i;
-import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.nav;
-import static org.jboss.elemento.Elements.section;
-import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.core.Dataset.navGroup;
-import static org.patternfly.core.Dataset.navGroupExpandable;
-import static org.patternfly.core.Dataset.navGroupLink;
-import static org.patternfly.core.Dataset.navGroupSection;
-import static org.patternfly.core.Dataset.navItem;
+import static org.patternfly.components.navigation.NavigationType.Horizontal.primary;
+import static org.patternfly.components.navigation.NavigationType.Horizontal.secondary;
+import static org.patternfly.components.navigation.NavigationType.Vertical.expandable;
+import static org.patternfly.components.navigation.NavigationType.Vertical.flat;
+import static org.patternfly.components.navigation.NavigationType.Vertical.grouped;
+import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.current;
-import static org.patternfly.layout.Classes.divider;
-import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.horizontal;
+import static org.patternfly.layout.Classes.horizontalSubnav;
 import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.nav;
 import static org.patternfly.layout.Classes.scroll;
-import static org.patternfly.layout.Classes.separator;
-import static org.patternfly.layout.Classes.simple;
-import static org.patternfly.layout.Classes.subnav;
-import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.Constants.role;
 import static org.patternfly.layout.Icons.angleLeft;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
@@ -70,61 +65,89 @@ import static org.patternfly.layout.Icons.fas;
  * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
  * {@snippet class = NavigationDemo region = horizontal}
- * {@snippet class = NavigationDemo region = vertical}
+ * <p>
+ * {@snippet class = NavigationDemo region = grouped}
+ * <p>
+ * {@snippet class = NavigationDemo region = expandable}
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
  */
-// TODO Use static inner class Group instead of add(String group, NavigationItem item)
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Navigation horizontal() {
-        return new Navigation(Orientation.horizontal, false, true);
-    }
-
-    public static Navigation vertical(boolean expandable) {
-        return new Navigation(Orientation.vertical, expandable, true);
+    public static Navigation navigation(NavigationType type) {
+        return new Navigation(type);
     }
 
     // ------------------------------------------------------ instance
 
-    private static final String A_TAG = "a";
-    private final Orientation orientation;
-    private final boolean expandable;
+    private static final By A_NAV_LINK_CURRENT = By.element("a")
+            .and(By.classnames(component(nav, link), modifier(current)));
+    private static final By LI_NAV_ITEM_EXPANDABLE = By.element("li")
+            .and(By.classnames(component(nav, Classes.item), modifier(Classes.expandable)));
+
+    private final NavigationType type;
+    private final HTMLElement itemsContainer;
     private final Map<String, NavigationItem> items;
-    private final ItemDisplay<HTMLAnchorElement, NavigationItem> itemDisplay;
+    private final Map<String, NavigationGroup> groups;
+    private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private SelectHandler<NavigationItem> onSelect;
-    private HTMLElement ul;
-    private HTMLElement lastGroup;
+    private ToggleHandler<ExpandableNavigationGroup> onToggle;
 
-    Navigation(Orientation orientation, boolean expandable, boolean global) {
-        super(nav().css(component("nav"))
-                .aria("label", global ? "Global" : "Local")
-                .element(),
-                ComponentType.Navigation);
-
-        this.orientation = orientation;
-        this.expandable = expandable;
+    Navigation(NavigationType type) {
+        super(nav().css(component(nav)).element(), ComponentType.Navigation);
+        this.type = type;
         this.items = new HashMap<>();
-        this.itemDisplay = new ItemDisplay<>();
+        this.groups = new HashMap<>();
+        this.expandableGroups = new HashMap<>();
 
-        if (orientation == Orientation.horizontal) {
-            add(button().css(component("nav", scroll, button))
-                    .aria("label", "Scroll left")
+        if (type == secondary) {
+            aria(label, "Local");
+        } else {
+            aria(label, "Global");
+        }
+
+        if (type instanceof Horizontal) {
+            if (type == primary) {
+                css(modifier(horizontal));
+            } else if (type == secondary) {
+                css(modifier(horizontalSubnav));
+            }
+            add(button().css(component(nav, scroll, button))
+                    .aria(label, "Scroll left")
                     .on(click, e -> scrollLeft())
                     .add(i().css(fas(angleLeft))
-                            .aria("hidden", true)));
-            add(ul = ul().css(component("nav", Classes.horizontal, list))
+                            .aria(hidden, true)));
+            add(itemsContainer = ul().css(component(nav, horizontal, list))
                     .element());
-            add(button().css(component("nav", scroll, button))
-                    .aria("label", "Scroll right")
+            add(button().css(component(nav, scroll, button))
+                    .aria(label, "Scroll right")
                     .on(click, e -> scrollRight())
                     .add(i().css(fas(angleRight))
-                            .aria("hidden", true)));
+                            .aria(hidden, true)));
+
+        } else if (type instanceof NavigationType.Vertical) {
+            NavigationType.Vertical vt = (NavigationType.Vertical) type;
+            switch (vt) {
+                case flat:
+                case expandable:
+                    add(itemsContainer = ul().css(component(nav, list))
+                            .attr(role, "list")
+                            .element());
+                    break;
+                case grouped:
+                    itemsContainer = element();
+                    break;
+                case drillDown:
+                case flyout:
+                    throw new UnsupportedOperationException("Drill-down and fly-out not yet implemented");
+                default:
+                    throw new IllegalArgumentException("Unknown navigation type: " + type);
+            }
         } else {
-            add(ul = ul().css(component("nav", list)).element());
+            throw new IllegalArgumentException("Unknown navigation type: " + type);
         }
     }
 
@@ -135,100 +158,62 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ add methods
 
-    public Navigation addItems(Iterable<NavigationItem> items) {
-        for (NavigationItem item : items) {
-            addItem(item);
-        }
-        return this;
-    }
-
-    public Navigation addItems(NavigationItem[] items) {
-        for (NavigationItem item : items) {
-            addItem(item);
-        }
-        return this;
-    }
-
     public Navigation addItem(NavigationItem item) {
-        addInternal(ul, null, item);
-        return this;
-    }
-
-    public Navigation addGroup(String group, NavigationItem item) {
-        String groupId = groupId(group);
-        lastGroup = find(By.element("ul").and(By.data(navGroup, groupId)));
-        if (lastGroup == null) {
-            lastGroup = ul().css(component("nav", simple, list)).data(navGroup, groupId).element();
-            String labelId = Id.unique("nav", "group", "label");
-            if (expandable) {
-                ul.appendChild(li().css(component("nav", Classes.item), modifier(Classes.expandable))
-                        .data(navGroupExpandable, groupId)
-                        .add(a().css(component("nav", link)).id(labelId).data(navGroupLink, groupId).textContent(group)
-                                .on(click, e -> toggleGroup(groupId))
-                                .add(span().css(component("nav", toggle))
-                                        .add(i().css(fas(angleRight)).aria("hidden", true))))
-                        .add(section().css(component("nav", subnav)).hidden(true).aria(labelledBy, labelId)
-                                .data(navGroupSection, groupId).add(lastGroup))
-                        .element());
-
-            } else { // grouped
-                add(section().css(component("nav", "section"))
-                        .aria(labelledBy, labelId)
-                        .add(h(2, group).css(component("nav", "section", "title")).id(labelId).textContent(group))
-                        .add(lastGroup)
-                        .element());
-            }
+        if (type == grouped) {
+            throw new UnsupportedOperationException("addItem(NavigationItem) is not supported for type " + type);
         }
-        addInternal(lastGroup, group, item);
-        return this;
-    }
-
-    private void addInternal(HTMLElement ul, String group, NavigationItem item) {
         items.put(item.id, item);
-        if (NavigationItem.SEPARATOR.equals(item) && orientation == Orientation.vertical) {
-            HTMLElement element = (expandable) ? lastGroup : ul;
-            if (element != null) {
-                element.appendChild(li().css(divider).attr("role", separator).element());
-            }
-        } else {
-            HTMLContainerBuilder<HTMLAnchorElement> a = a().css(component("nav", link)).on(click, e -> {
-                ((HTMLElement) e.currentTarget).scrollIntoView(true);
-                if (onSelect != null) {
-                    onSelect.onSelect(item);
-                }
-            }).data(navItem, item.id);
-            if (item.href != null) {
-                a.attr("href", item.href);
-            }
-            itemDisplay.display.accept(a, item);
-            if (group != null) {
-                a.data(navGroup, groupId(group));
-            }
-            ul.appendChild(li().css(component("nav", Classes.item)).add(a).element());
-            if (orientation == Orientation.horizontal) {
-                // TODO add / remove "pf-m-start pf-m-end" to root element
-            }
-        }
+        itemsContainer.appendChild(item.element());
+        return this;
     }
 
-    // ------------------------------------------------------ modifiers
-
-    public Navigation simple() {
-        if (orientation == Orientation.vertical) {
-            ul.classList.remove(component("nav", list));
-            ul.classList.add(component("nav", simple, list));
+    public Navigation addGroup(NavigationGroup group) {
+        if (type == flat || type == expandable || type instanceof Horizontal) {
+            throw new UnsupportedOperationException("addGroup(NavigationGroup) is not supported for type " + type);
         }
+        itemsContainer.appendChild(group.element());
+        return this;
+    }
+
+    public Navigation addGroup(ExpandableNavigationGroup group) {
+        if (type == flat || type == grouped || type instanceof Horizontal) {
+            throw new UnsupportedOperationException(
+                    "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+        }
+        group.collapse(); // all groups are collapsed by default
+        expandableGroups.put(group.id, group);
+        itemsContainer.appendChild(group.element());
+        if (onToggle != null) {
+            group.onToggle = onToggle;
+        }
+        return this;
+    }
+
+    public Navigation addDivider(Divider divider) {
+        itemsContainer.appendChild(divider.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
+        this.onSelect = onSelect;
+        return this;
+    }
+
+    public Navigation onToggle(ToggleHandler<ExpandableNavigationGroup> onToggle) {
+        this.onToggle = onToggle;
         return this;
     }
 
     // ------------------------------------------------------ select
 
     public void select(String itemId) {
-        select(items.get(itemId), true);
+        select(findItem(itemId), true);
     }
 
     public void select(String itemId, boolean fireEvent) {
-        select(items.get(itemId), fireEvent);
+        select(findItem(itemId), fireEvent);
     }
 
     public void select(NavigationItem item) {
@@ -237,103 +222,92 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public void select(NavigationItem item, boolean fireEvent) {
         if (item != null) {
-            String itemId = item.id;
-            for (HTMLElement e : findAll(By.element(A_TAG).and(By.data(navItem)))) {
-                String value = e.dataset.get(navItem);
-                if (itemId.equals(value)) {
-                    e.classList.add(modifier(current));
-                    e.setAttribute("aria-current", "page");
-                    e.scrollIntoView(false);
-                    if (fireEvent && onSelect != null) {
-                        onSelect.onSelect(item);
-                    }
-                } else {
-                    e.classList.remove(modifier(current));
-                    e.removeAttribute("aria-current");
-                }
+            unselectAllItems();
+            item.select();
+            if (fireEvent && onSelect != null) {
+                onSelect.onSelect(item);
             }
-            if (expandable) {
-                HTMLElement a = find(By.element(A_TAG).and(By.data(navItem, itemId)));
-                if (a != null) {
-                    String groupId = a.dataset.get(navGroup);
-                    if (groupId != null) {
-                        for (HTMLElement e : findAll(By.element("li").and(By.data(navGroupExpandable)))) {
-                            if (groupId.equals(e.dataset.get(navGroupExpandable))) {
-                                e.classList.add(modifier(current));
-                                expand(groupId);
-                            } else {
-                                e.classList.remove(modifier(current));
-                            }
-                        }
-                    }
-                }
+
+            if (type == expandable) {
+                unselectAllExpandableGroups();
+                selectGroup(item.a, fireEvent);
             }
+        } else {
+            unselectAllItems();
+            unselectAllExpandableGroups();
         }
     }
 
-    public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
-        this.onSelect = onSelect;
-        return this;
+    private void unselectAllItems() {
+        // remove the current modifier from all navigation item <a/> elements
+        for (HTMLElement element : findAll(A_NAV_LINK_CURRENT)) {
+            element.classList.remove(modifier(current));
+            element.removeAttribute(Aria.current);
+        }
     }
 
-    // ------------------------------------------------------ display
-
-    public Navigation identifier(Function<NavigationItem, String> identifier) {
-        itemDisplay.identifier = identifier;
-        return this;
+    private void unselectAllExpandableGroups() {
+        // remove the current modifier from all expandable group <li/> elements
+        for (HTMLElement element : findAll(LI_NAV_ITEM_EXPANDABLE.and(By.classname(modifier(current))))) {
+            element.classList.remove(modifier(current));
+        }
     }
 
-    public Navigation asString(Function<NavigationItem, String> asString) {
-        itemDisplay.asString = asString;
-        return this;
-    }
-
-    public Navigation display(BiConsumer<HTMLContainerBuilder<HTMLAnchorElement>, NavigationItem> display) {
-        itemDisplay.display = display;
-        return this;
-    }
-
-    // ------------------------------------------------------ getters
-
-    public NavigationItem getItem(String id) {
-        return items.get(id);
+    private void selectGroup(HTMLElement element, boolean fireEvent) {
+        HTMLElement li = Elements.closest(element, LI_NAV_ITEM_EXPANDABLE);
+        if (li != null) {
+            li.classList.add(modifier(current));
+            String groupId = li.dataset.get(navigationGroup);
+            ExpandableNavigationGroup group = findGroup(groupId);
+            if (group != null) {
+                group.expand();
+                if (fireEvent && onToggle != null) {
+                    onToggle.onToggle(true, group);
+                }
+            }
+            // select parent group (if any)
+            Element parent = li.parentElement;
+            if (parent instanceof HTMLElement) {
+                selectGroup((HTMLElement) parent, fireEvent);
+            }
+        }
     }
 
     // ------------------------------------------------------ internals
 
-    private void toggleGroup(String groupId) {
-        HTMLElement li = find(By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = find(By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = find(By.element("section").and(By.data(navGroupSection, groupId)));
-        if (li != null && a != null && section != null) {
-            if (li.classList.contains(modifier("expanded"))) {
-                // collapse
-                li.classList.remove(modifier("expanded"));
-                a.setAttribute("aria-expanded", false);
-                section.hidden = true;
-
-            } else {
-                // expand
-                li.classList.add(modifier("expanded"));
-                a.setAttribute("aria-expanded", true);
-                section.removeAttribute("hidden");
+    private NavigationItem findItem(String id) {
+        NavigationItem item = items.get(id);
+        if (item == null) {
+            if (type == grouped) {
+                for (NavigationGroup group : groups.values()) {
+                    item = group.findItem(id);
+                    if (item != null) {
+                        break;
+                    }
+                }
+            } else if (type == expandable) {
+                for (ExpandableNavigationGroup group : expandableGroups.values()) {
+                    item = group.findItem(id);
+                    if (item != null) {
+                        break;
+                    }
+                }
             }
         }
+        return item;
     }
 
-    private void expand(String groupId) {
-        HTMLElement li = find(By.element("li").and(By.data(navGroupExpandable, groupId)));
-        HTMLElement a = find(By.element(A_TAG).and(By.data(navGroupLink)));
-        HTMLElement section = find(By.element("section").and(By.data(navGroupSection, groupId)));
-        if (li != null && a != null && section != null) {
-            li.classList.add(modifier("expanded"));
-            a.setAttribute("aria-expanded", true);
-            section.removeAttribute("hidden");
+    private ExpandableNavigationGroup findGroup(String id) {
+        ExpandableNavigationGroup group = expandableGroups.get(id);
+        if (group == null) {
+            for (ExpandableNavigationGroup nestedGroup : expandableGroups.values()) {
+                group = nestedGroup.findGroup(id);
+                if (group != null) {
+                    break;
+                }
+            }
         }
-    }
-
-    private String groupId(String group) {
-        return Id.build(group);
+        return group;
     }
 
     private void scrollLeft() {

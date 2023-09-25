@@ -22,5 +22,5 @@
     <source path="components"/>
     <source path="core"/>
     <source path="dataprovider"/>
-    <source path="resources"/>
+    <source path="layout"/>
 </module>

@@ -34,9 +34,15 @@ import static elemental2.dom.DomGlobal.window;
 public final class Ouia {
 
     public static void component(HTMLElement element, ComponentType componentType) {
-        if (element != null && isSupported()) {
-            element.dataset.set("ouiaComponentType", componentType.componentName);
-            element.dataset.set("ouiaComponentId", Id.unique("ouia", componentType.id));
+        if (element != null && componentType.componentName != null && isSupported()) {
+            component(element, componentType.componentName, Id.unique("ouia", componentType.id));
+        }
+    }
+
+    public static void component(HTMLElement element, String name, String id) {
+        if (element != null && name != null && isSupported()) {
+            element.dataset.set("ouiaComponentType", name);
+            element.dataset.set("ouiaComponentId", id);
             element.dataset.set("ouiaComponentSafe", "true");
         }
     }

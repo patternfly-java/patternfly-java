@@ -18,6 +18,7 @@ package org.patternfly.core;
 import java.util.function.Consumer;
 
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
@@ -26,11 +27,11 @@ import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.layout.Classes.ariaExpanded;
 import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Constants.hidden;
 
 /** Reusable class for components which have a collapsible / expandable UI element */
-public class CollapseExpandHandler {
+public class CollapseExpand {
 
     public Consumer<Boolean> onToggle;
     private HandlerRegistration closeHandler;
@@ -43,9 +44,9 @@ public class CollapseExpandHandler {
                     collapse(root, button, menu);
                 }
             });
-            root.classList.add(modifier("expanded"));
-            button.setAttribute(ariaExpanded, true);
-            menu.removeAttribute("hidden");
+            root.classList.add(modifier(Classes.expanded));
+            button.setAttribute(Aria.expanded, true);
+            menu.removeAttribute(hidden);
             setVisible(menu, true);
             if (onToggle != null) {
                 onToggle.accept(true);
@@ -57,8 +58,8 @@ public class CollapseExpandHandler {
 
     public void collapse(HTMLElement root, HTMLElement button, HTMLElement menu) {
         if (expanded(root)) {
-            root.classList.remove(modifier("expanded"));
-            button.setAttribute(ariaExpanded, false);
+            root.classList.remove(modifier(Classes.expanded));
+            button.setAttribute(Aria.expanded, false);
             menu.hidden = true;
             setVisible(menu, false);
             closeHandler.removeHandler();
@@ -69,6 +70,6 @@ public class CollapseExpandHandler {
     }
 
     public boolean expanded(HTMLElement root) {
-        return root.classList.contains(modifier("expanded"));
+        return root.classList.contains(modifier(Classes.expanded));
     }
 }

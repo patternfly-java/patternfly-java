@@ -16,19 +16,20 @@
 package org.patternfly.components.page;
 
 import org.patternfly.components.SubComponent;
+import org.patternfly.components.navigation.Navigation;
 
-import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLDivElement;
 
-import static org.jboss.elemento.Elements.aside;
+import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.body;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.fill;
 import static org.patternfly.layout.Classes.insetNone;
-import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.noFill;
 import static org.patternfly.layout.Classes.page;
 import static org.patternfly.layout.Classes.pageInsets;
+import static org.patternfly.layout.Classes.sidebar;
 
 /**
  * Container within the {@link PageSidebar} to hold content. Note: By default, the last/only body will grow to fill the
@@ -37,7 +38,7 @@ import static org.patternfly.layout.Classes.pageInsets;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageSidebarBody extends SubComponent<HTMLElement, PageSidebarBody> {
+public class PageSidebarBody extends SubComponent<HTMLDivElement, PageSidebarBody> {
 
     // ------------------------------------------------------ factory methods
 
@@ -51,13 +52,22 @@ public class PageSidebarBody extends SubComponent<HTMLElement, PageSidebarBody> 
     // ------------------------------------------------------ instance
 
     PageSidebarBody() {
-        super(aside().css(component(page, main, body))
+        super(div().css(component(page, sidebar, body))
                 .element());
     }
 
     @Override
     public PageSidebarBody that() {
         return this;
+    }
+
+    // ------------------------------------------------------ add methods
+
+    /**
+     * Adds a {@link Navigation} to this component.
+     */
+    public PageSidebarBody addNavigation(Navigation navigation) {
+        return add(navigation);
     }
 
     // ------------------------------------------------------ modifiers

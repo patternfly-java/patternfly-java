@@ -41,7 +41,6 @@ import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.inline;
-import static org.patternfly.layout.Classes.label;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.truncate;
@@ -89,7 +88,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
     private Button closeButton;
 
     Alert(AlertType alertType, String title) {
-        super(div().css(component(alert, alertType.status.modifier))
+        super(div().css(component(alert), alertType.status.modifier)
                 .aria(label, alertType.aria)
                 .element(),
                 ComponentType.Alert);
@@ -165,9 +164,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
     /**
      * Wraps the description inside a {@code
      *
-     *
-    <p>
-     *
     <p>
      *
     <p/>
@@ -186,7 +182,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
 
     @Override
     public Alert label(String label) {
-        return aria(Classes.label, label);
+        return aria(Aria.label, label);
     }
 
     @Override

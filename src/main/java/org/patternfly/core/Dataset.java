@@ -28,11 +28,8 @@ public interface Dataset {
     String multiOptionsMenuCheck = "multiOptionsMenuCheck";
     String multiOptionsMenuItem = "multiOptionsMenuItem";
     String multiSelectItem = "multiSelectItem";
-    String navGroup = "navGroup";
-    String navGroupExpandable = "navGroupExpandable";
-    String navGroupLink = "navGroupLink";
-    String navGroupSection = "navGroupSection";
-    String navItem = "navItem";
+    String navigationGroup = "navigationGroup";
+    String navigationItem = "navigationItem";
     String singleOptionsMenuItem = "singleOptionsMenuItem";
     String singleSelectItem = "singleSelectItem";
     String singleSelectFilter = "singleSelectFilter";

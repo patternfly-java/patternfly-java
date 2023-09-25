@@ -193,10 +193,10 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> implements Aria<Ta
     public Tabs label(String target, String label) {
         switch (target) {
             case ARIA_SCROLL_LEFT:
-                button(scrollLeft).aria("label", label);
+                button(scrollLeft).aria(Aria.label, label);
                 break;
             case ARIA_SCROLL_RIGHT:
-                button(scrollRight).aria("label", label);
+                button(scrollRight).aria(Aria.label, label);
                 break;
         }
         return this;

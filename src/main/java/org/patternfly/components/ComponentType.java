@@ -29,7 +29,7 @@ public enum ComponentType {
 
     Badge("bdg", null),
 
-    Brand("bnd", null),
+    Brand("bnd", "PF5/Brand"),
 
     Breadcrumb("bc", null),
 
@@ -50,6 +50,8 @@ public enum ComponentType {
     DataList("dl", null),
 
     DataTable("dt", null),
+
+    Divider("dvr", "PF5/Divider"),
 
     Drawer("dw", null),
 
@@ -73,7 +75,7 @@ public enum ComponentType {
 
     Menu("mu", null),
 
-    Navigation("nav", null),
+    Navigation("nav", "PF5/Nav"),
 
     NavigationItem("ni", null),
 
@@ -103,7 +105,7 @@ public enum ComponentType {
 
     TextContent("tc", null),
 
-    Title("tlt", null),
+    Title("tlt", "PF5/Title"),
 
     ToggleGroup("tg", null),
 

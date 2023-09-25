@@ -15,46 +15,72 @@
  */
 package org.patternfly.components.navigation;
 
-import java.util.Objects;
+import org.jboss.elemento.EventCallbackFn;
+import org.patternfly.components.SubComponent;
+import org.patternfly.core.Aria;
 
-public class NavigationItem {
+import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.HTMLLIElement;
+import elemental2.dom.MouseEvent;
 
-    public static final NavigationItem SEPARATOR = new NavigationItem("org.patternfly.navigationItem.separator",
-            "NavigationItem");
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Dataset.navigationItem;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.current;
+import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.Classes.link;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.nav;
+
+public class NavigationItem extends SubComponent<HTMLLIElement, NavigationItem> {
+
+    // ------------------------------------------------------ factory methods
+
+    public static NavigationItem navigationItem(String id, String title) {
+        return new NavigationItem(id, title, null);
+    }
+
+    public static NavigationItem navigationItem(String id, String title, String href) {
+        return new NavigationItem(id, title, href);
+    }
+
+    // ------------------------------------------------------ instance
 
     public final String id;
-    public String title;
-    public String href;
+    final HTMLAnchorElement a;
 
-    public NavigationItem(String id, String title) {
-        this(id, title, null);
-    }
-
-    public NavigationItem(String id, String title, String href) {
+    NavigationItem(String id, String text, String href) {
+        super(li().css(component(nav, item)).element());
         this.id = id;
-        this.title = title;
-        this.href = href;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        add(a = a().css(component(nav, link))
+                .data(navigationItem, id)
+                .textContent(text)
+                .element());
+        if (href != null) {
+            a.href = href;
         }
-        if (!(o instanceof NavigationItem)) {
-            return false;
-        }
-        NavigationItem that = (NavigationItem) o;
-        return id.equals(that.id);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public NavigationItem that() {
+        return this;
     }
 
-    @Override
-    public String toString() {
-        return title;
+    // ------------------------------------------------------ click handler
+
+    public NavigationItem onClick(EventCallbackFn<MouseEvent> callback) {
+        a(a).on(click, callback);
+        return this;
+    }
+
+    // ------------------------------------------------------ internals
+
+    void select() {
+        a.classList.add(modifier(current));
+        a.setAttribute(Aria.current, "page");
+        a.scrollIntoView(false);
     }
 }

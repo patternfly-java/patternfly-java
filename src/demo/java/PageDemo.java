@@ -1,4 +1,4 @@
-import static org.patternfly.components.Brand.brand;
+import static org.patternfly.components.brand.Brand.brand;
 import static org.patternfly.components.Content.content;
 import static org.patternfly.components.page.Masthead.pageMasthead;
 import static org.patternfly.components.page.MastheadToggle.mastheadToggle;

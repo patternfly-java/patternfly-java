@@ -23,7 +23,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpandHandler;
+import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.ItemDisplay;
@@ -73,7 +73,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     // ------------------------------------------------------ instance
 
-    private final CollapseExpandHandler ceh;
+    private final CollapseExpand ceh;
     private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLElement text;
     private final HTMLButtonElement button;
@@ -85,7 +85,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
 
     protected ContextSelector(String text) {
         super(div().css(component(contextSelector)).element(), "ContextSelector");
-        this.ceh = new CollapseExpandHandler();
+        this.ceh = new CollapseExpand();
         this.itemDisplay = new ItemDisplay<>();
 
         String labelId = Id.unique(contextSelector, "label");

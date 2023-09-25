@@ -15,11 +15,14 @@
  */
 package org.patternfly.components.page;
 
+import org.jboss.elemento.IsElement;
 import org.patternfly.components.SubComponent;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.main;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;
@@ -74,5 +77,50 @@ public class PageMain extends SubComponent<HTMLElement, PageMain> {
      */
     public <E extends HTMLElement, P extends PageSection<E, P>> PageMain addSection(PageSection<E, P> pageSection) {
         return add(pageSection);
+    }
+
+    // ------------------------------------------------------ replace
+
+    public void replace(IsElement<?> element) {
+        removeChildrenFrom(element());
+        add(element.element());
+    }
+
+    public void replace(Element element) {
+        removeChildrenFrom(element());
+        add(element);
+    }
+
+    public void replace(Element... elements) {
+        removeChildrenFrom(element());
+        for (Element element : elements) {
+            add(element);
+        }
+    }
+
+    public void replace(HTMLElement... elements) {
+        removeChildrenFrom(element());
+        for (HTMLElement element : elements) {
+            add(element);
+        }
+    }
+
+    public void replace(IsElement<?>... elements) {
+        removeChildrenFrom(element());
+        for (IsElement<?> element : elements) {
+            add(element.element());
+        }
+    }
+
+    public void replace(Iterable<?> elements) {
+        removeChildrenFrom(element());
+        for (Object element : elements) {
+            if (element instanceof HTMLElement) {
+                add(((HTMLElement) element));
+            } else if (element instanceof IsElement) {
+                // noinspection rawtypes
+                add(((IsElement) element).element());
+            }
+        }
     }
 }
