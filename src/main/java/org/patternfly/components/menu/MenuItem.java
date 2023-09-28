@@ -25,9 +25,7 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.components.divider.MenuItemType.button;
 import static org.patternfly.components.divider.MenuItemType.link;
-import static org.patternfly.components.menu.Menu.findMenu;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.SelectionMode.multi;
 import static org.patternfly.core.SelectionMode.none;
@@ -46,15 +44,15 @@ import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Constants.role;
 import static org.patternfly.layout.Constants.tabindex;
 
-public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Disable<MenuItem> {
+public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Disable<MenuItem>, MenuHolder {
 
     // ------------------------------------------------------ factory methods
 
     /**
-     * Create a new menu item with type {@link MenuItemType#button}.
+     * Create a new menu item with type {@link MenuItemType#action}.
      */
     public static MenuItem menuItem(String id) {
-        return new MenuItem(id, button);
+        return new MenuItem(id, MenuItemType.action);
     }
 
     /**
@@ -66,6 +64,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
 
     // ------------------------------------------------------ instance
 
+    public final String id;
     private final MenuItemType itemType;
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
@@ -78,41 +77,40 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
         super(li().css(component(menu, list, item))
                 .attr(role, "none")
                 .element());
+        this.id = id;
         this.itemType = itemType;
 
         // add required elements
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         switch (itemType) {
-            case button:
-                add(itemBuilder = button().css(component(menu, item)).attr(tabindex, 0));
+            case action:
+                add(itemElement = button().css(component(menu, item)).attr(tabindex, 0).element());
                 break;
             case link:
-                add(itemBuilder = a().css(component(menu, item)).attr(tabindex, -1));
+                add(itemElement = a().css(component(menu, item)).attr(tabindex, -1).element());
                 break;
             default:
-                itemBuilder = div(); // create a pseudo builder, but don't add it
+                itemElement = div().element(); // create a pseudo element, but don't add it
                 console.error("Unknown menu item type " + itemType);
         }
-        itemBuilder
-                .add(mainElement = span().css(component(menu, item, main))
+        itemElement
+                .appendChild(mainElement = span().css(component(menu, item, main))
                         .add(textElement = span().css(component(menu, item, text)).element())
                         .element());
+    }
 
-        Menu menu = findMenu(element());
-        if (menu != null) {
-            menu.items.put(id, this);
-            switch (menu.menuType) {
-                case standalone:
-                case dropdown:
-                    itemBuilder.attr(role, "menuitem");
-                    break;
-                case select:
-                    itemBuilder.attr(role, "option");
-                    break;
-            }
-            itemBuilder.on(click, e -> menu.select(this));
+    @Override
+    public void passMenu(Menu menu) {
+        switch (menu.menuType) {
+            case standalone:
+            case dropdown:
+                itemElement.setAttribute(role, "menuitem");
+                break;
+            case select:
+                itemElement.setAttribute(role, "option");
+                break;
         }
-        itemElement = itemBuilder.element();
+        itemElement.addEventListener(click.getName(), e -> menu.select(this));
     }
 
     @Override
@@ -215,7 +213,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
     public MenuItem enable() {
         element().classList.remove(modifier(disabled));
         switch (itemType) {
-            case button:
+            case action:
                 ((HTMLButtonElement) itemElement).disabled = false;
                 break;
             case link:
@@ -232,7 +230,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
     public MenuItem disable() {
         element().classList.add(modifier(disabled));
         switch (itemType) {
-            case button:
+            case action:
                 ((HTMLButtonElement) itemElement).disabled = true;
                 break;
             case link:

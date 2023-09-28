@@ -1,13 +1,10 @@
 package org.patternfly.components.menu;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
-import org.jboss.elemento.Id;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
@@ -20,14 +17,12 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
-import static elemental2.dom.DomGlobal.console;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.components.menu.MenuFooter.menuFooter;
 import static org.patternfly.components.menu.MenuHeader.menuHeader;
 import static org.patternfly.components.menu.MenuType.standalone;
-import static org.patternfly.core.Dataset.menuInstance;
 import static org.patternfly.core.SelectionMode.none;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
@@ -64,46 +59,19 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     // ------------------------------------------------------ instance
 
-    private static final Map<String, Menu> MENUS = new HashMap<>();
     private static final By MENU_ITEMS = By.classname(component(menu, item));
     private static final By SELECT_ICONS = By.classname(component(menu, item, select, icon));
 
-    static Menu findMenu(HTMLElement element) {
-        Menu menu = null;
-        HTMLElement menuElement = Elements.closest(element,
-                By.classname(component(Classes.menu)).and(By.data(menuInstance)));
-        if (menuElement != null) {
-            String id = menuElement.dataset.get(menuInstance);
-            if (id != null) {
-                menu = MENUS.get(id);
-                if (menu == null) {
-                    console.error("Unable to find menu instance for id '" + id + "'");
-                }
-            } else {
-                console.error("Unable to find menu instance: No instance id found on menu element");
-            }
-        } else {
-            console.error("Unable to find menu instance from nested element '" + element.tagName + "'");
-        }
-        return menu;
-    }
-
-    private final String id;
     final MenuType menuType;
     final SelectionMode selectionMode;
-    final Map<String, MenuItem> items;
     SelectHandler<MenuItem> selectHandler;
     MultiSelectHandler<MenuItem> multiSelectHandler;
+    private MenuContent content;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(div().css(component(menu)).element(), ComponentType.Menu);
         this.menuType = menuType;
         this.selectionMode = selectionMode;
-        this.items = new HashMap<>();
-
-        // Please keep this order!
-        id = Id.unique("menu");
-        data(menuInstance, id);
         Attachable.register(this, this);
     }
 
@@ -114,14 +82,9 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        MENUS.put(id, this);
-        console.debug("Attach menu '" + id + "'. Total number of menus: " + MENUS.size());
-    }
-
-    @Override
-    public void detach(MutationRecord mutationRecord) {
-        MENUS.remove(id);
-        console.debug("Detach menu '" + id + "'. Total number of menus: " + MENUS.size());
+        if (content != null) {
+            content.passMenu(this);
+        }
     }
 
     // ------------------------------------------------------ add methods
@@ -138,7 +101,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     public Menu addContent(MenuContent content) {
-        return add(content);
+        return add(this.content = content);
     }
 
     /**
@@ -154,12 +117,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     // ------------------------------------------------------ events
 
-    public Menu onSelect(SelectHandler<MenuItem> selectHandler) {
+    public Menu onSingleSelect(SelectHandler<MenuItem> selectHandler) {
         this.selectHandler = selectHandler;
         return this;
     }
 
-    public Menu onSelect(MultiSelectHandler<MenuItem> selectHandler) {
+    public Menu onMultiSelect(MultiSelectHandler<MenuItem> selectHandler) {
         this.multiSelectHandler = selectHandler;
         return this;
     }
@@ -167,11 +130,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     // ------------------------------------------------------ select
 
     public void select(String itemId) {
-        select(items.get(itemId), true);
+        select(findItem(itemId), true);
     }
 
     public void select(String itemId, boolean fireEvent) {
-        select(items.get(itemId), fireEvent);
+        select(findItem(itemId), fireEvent);
     }
 
     public void select(MenuItem item) {
@@ -189,7 +152,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
                     selectHandler.onSelect(item);
                 }
                 if (multiSelectHandler != null) {
-                    List<MenuItem> selection = items.values()
+                    List<MenuItem> selection = items()
                             .stream()
                             .filter(itm -> itm.isSelected(selectionMode))
                             .collect(toList());
@@ -232,5 +195,39 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
     public Menu height(String height) {
         return style("--pf-v5-c-menu__content--MaxHeight:" + height);
+    }
+
+    // ------------------------------------------------------ internals
+
+    MenuItem findItem(String id) {
+        MenuItem menuItem = null;
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    menuItem = group.list.items.get(id);
+                }
+            }
+            if (menuItem == null) {
+                if (content.list != null) {
+                    menuItem = content.list.items.get(id);
+                }
+            }
+        }
+        return menuItem;
+    }
+
+    List<MenuItem> items() {
+        List<MenuItem> items = new ArrayList<>();
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    items.addAll(group.list.items.values());
+                }
+            }
+            if (content.list != null) {
+                items.addAll(content.list.items.values());
+            }
+        }
+        return items;
     }
 }
