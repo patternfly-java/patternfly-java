@@ -26,7 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -74,7 +74,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     // ------------------------------------------------------ instance
 
     private final CollapseExpand ceh;
-    private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
+    private final OldItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLElement text;
     private final HTMLButtonElement button;
     private final Search search;
@@ -86,7 +86,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     protected ContextSelector(String text) {
         super(div().css(component(contextSelector)).element(), "ContextSelector");
         this.ceh = new CollapseExpand();
-        this.itemDisplay = new ItemDisplay<>();
+        this.itemDisplay = new OldItemDisplay<>();
 
         String labelId = Id.unique(contextSelector, "label");
         String buttonId = Id.unique(contextSelector, Classes.button);

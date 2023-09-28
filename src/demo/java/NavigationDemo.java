@@ -1,3 +1,8 @@
+import java.util.List;
+
+import org.jboss.elemento.Id;
+
+import static java.util.Arrays.asList;
 import static org.patternfly.components.divider.Divider.divider;
 import static org.patternfly.components.divider.DividerType.li;
 import static org.patternfly.components.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
@@ -16,7 +21,7 @@ public class NavigationDemo {
         navigation(flat)
                 .addItem(navigationItem("itm-1", "Item 1", "#itm-1"))
                 .addItem(navigationItem("itm-2", "Item 2", "#itm-2"))
-                .addDivider(divider(li))
+                .addDivider()
                 .addItem(navigationItem("itm-3", "Item 3", "#itm-3"));
         // @end region = flat
     }
@@ -49,11 +54,11 @@ public class NavigationDemo {
         // @start region = expandable
         navigation(expandable)
                 .addItem(navigationItem("itm-1", "Item 1", "#itm-1"))
-                .addDivider(divider(li))
+                .addDivider()
                 .addGroup(expandableNavigationGroup("grp-1", "Group 1")
                         .addItem(navigationItem("grp-1-itm-1", "Item 1", "#grp-1-itm-1"))
                         .addItem(navigationItem("grp-1-itm-2", "Item 2", "#grp-1-itm-2"))
-                        .addDivider(divider(li))
+                        .addDivider()
                         .addItem(navigationItem("grp-1-itm-3", "Item 3", "#grp-1-itm-3")))
                 .addItem(navigationItem("itm-2", "Item 2", "#itm-2"))
                 .addItem(navigationItem("itm-3", "Item 3", "#itm-3"))
@@ -62,8 +67,19 @@ public class NavigationDemo {
                         .addItem(navigationItem("grp-2-itm-2", "Item 2", "#grp-2-itm-2"))
                         .addGroup(expandableNavigationGroup("nested-grp-1", "Nested Group")
                                 .addItem(navigationItem("nested-grp-1-itm-1", "Item 1", "#nested-grp-1-itm-1"))
-                                .addDivider(divider(li))
+                                .addDivider()
                                 .addItem(navigationItem("nested-grp-1-itm-2", "Item 2", "#nested-grp-1-itm-2"))));
         // @end region = expandable
+    }
+
+    public void typedDemo() {
+        // @start region = typed
+        List<String> items = asList("Item 1", "Item 2", "Item 3");
+        navigation(flat)
+                .addItems(items, item -> {
+                    String id = Id.build(item);
+                    return navigationItem(id, item, "#" + id);
+                });
+        // @end region = typed
     }
 }

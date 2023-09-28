@@ -16,11 +16,12 @@
 package org.patternfly.components.navigation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.jboss.elemento.Id;
 import org.patternfly.components.SubComponent;
-import org.patternfly.components.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ToggleHandler;
 import org.patternfly.layout.Classes;
@@ -37,6 +38,8 @@ import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.components.divider.Divider.divider;
+import static org.patternfly.components.divider.DividerType.li;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.component;
@@ -106,6 +109,14 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
 
     // ------------------------------------------------------ add methods
 
+    public <T> ExpandableNavigationGroup addItems(Iterable<T> items, Function<T, NavigationItem> display) {
+        for (T item : items) {
+            NavigationItem navigationItem = display.apply(item);
+            addItem(navigationItem);
+        }
+        return this;
+    }
+
     public ExpandableNavigationGroup addItem(NavigationItem item) {
         items.put(item.id, item);
         ul.appendChild(item.element());
@@ -118,8 +129,8 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
         return this;
     }
 
-    public ExpandableNavigationGroup addDivider(Divider divider) {
-        ul.appendChild(divider.element());
+    public ExpandableNavigationGroup addDivider() {
+        ul.appendChild(divider(li).element());
         return this;
     }
 

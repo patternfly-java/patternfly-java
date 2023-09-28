@@ -17,12 +17,12 @@ package org.patternfly.components.navigation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
-import org.patternfly.components.divider.Divider;
 import org.patternfly.components.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
 import org.patternfly.core.SelectHandler;
@@ -32,11 +32,15 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
+import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.components.divider.Divider.divider;
+import static org.patternfly.components.divider.DividerType.li;
 import static org.patternfly.components.navigation.NavigationType.Horizontal.primary;
 import static org.patternfly.components.navigation.NavigationType.Horizontal.secondary;
 import static org.patternfly.components.navigation.NavigationType.Vertical.expandable;
@@ -61,8 +65,8 @@ import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
 
 /**
- * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
- * Navigation communicates relationships, context, and actions a user can take within an application.
+ * A navigation organizes an application's structure and content, making it easy to find information and accomplish
+ * tasks. Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
  * {@snippet class = NavigationDemo region = horizontal}
  * <p>
@@ -71,7 +75,7 @@ import static org.patternfly.layout.Icons.fas;
  * {@snippet class = NavigationDemo region = expandable}
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
+ * "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
  */
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
@@ -142,12 +146,16 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
                     break;
                 case drillDown:
                 case flyout:
-                    throw new UnsupportedOperationException("Drill-down and fly-out not yet implemented");
+                    console.error("Drill-down and fly-out not yet implemented");
+                    itemsContainer = div().element();
+                    break;
                 default:
-                    throw new IllegalArgumentException("Unknown navigation type: " + type);
+                    console.error("Unknown navigation type: " + type);
+                    itemsContainer = div().element();
             }
         } else {
-            throw new IllegalArgumentException("Unknown navigation type: " + type);
+            console.error("Unknown navigation type: " + type);
+            itemsContainer = div().element();
         }
     }
 
@@ -158,9 +166,22 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ add methods
 
+    public <T> Navigation addItems(Iterable<T> items, Function<T, NavigationItem> display) {
+        if (type == grouped) {
+            console.error("addItem(NavigationItem) is not supported for type " + type);
+            return this;
+        }
+        for (T item : items) {
+            NavigationItem navigationItem = display.apply(item);
+            addItem(navigationItem);
+        }
+        return this;
+    }
+
     public Navigation addItem(NavigationItem item) {
         if (type == grouped) {
-            throw new UnsupportedOperationException("addItem(NavigationItem) is not supported for type " + type);
+            console.error("addItem(NavigationItem) is not supported for type " + type);
+            return this;
         }
         items.put(item.id, item);
         itemsContainer.appendChild(item.element());
@@ -169,7 +190,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(NavigationGroup group) {
         if (type == flat || type == expandable || type instanceof Horizontal) {
-            throw new UnsupportedOperationException("addGroup(NavigationGroup) is not supported for type " + type);
+            console.error("addGroup(NavigationGroup) is not supported for type " + type);
+            return this;
         }
         itemsContainer.appendChild(group.element());
         return this;
@@ -177,8 +199,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(ExpandableNavigationGroup group) {
         if (type == flat || type == grouped || type instanceof Horizontal) {
-            throw new UnsupportedOperationException(
-                    "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+            console.error("addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+            return this;
         }
         group.collapse(); // all groups are collapsed by default
         expandableGroups.put(group.id, group);
@@ -189,8 +211,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         return this;
     }
 
-    public Navigation addDivider(Divider divider) {
-        itemsContainer.appendChild(divider.element());
+    public Navigation addDivider() {
+        itemsContainer.appendChild(divider(li).element());
         return this;
     }
 

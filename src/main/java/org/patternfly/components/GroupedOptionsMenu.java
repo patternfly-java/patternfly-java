@@ -27,7 +27,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -216,7 +216,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
 
         private final String text;
         private final List<T> items;
-        private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
+        private final OldItemDisplay<HTMLButtonElement, T> itemDisplay;
         private T value;
         private SelectHandler<T> onSelect;
 
@@ -228,7 +228,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
             super(section().element(), "GroupedOptionsMenuGroup");
             this.text = text;
             this.items = new ArrayList<>();
-            this.itemDisplay = new ItemDisplay<>();
+            this.itemDisplay = new OldItemDisplay<>();
         }
 
         @Override

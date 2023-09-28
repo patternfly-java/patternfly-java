@@ -26,7 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -84,7 +84,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     // ------------------------------------------------------ options menu instance
 
     private final CollapseExpand ceh;
-    private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
+    private final OldItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLButtonElement button;
     private final HTMLElement plain;
     private final HTMLElement text;
@@ -96,7 +96,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     protected SingleOptionsMenu(String text, Icon icon, boolean plain) {
         super(div().css(component(optionsMenu)).element(), "OptionsMenu");
         this.ceh = new CollapseExpand();
-        this.itemDisplay = new ItemDisplay<>();
+        this.itemDisplay = new OldItemDisplay<>();
         this.collapseOnSelect = false;
 
         String buttonId = Id.unique(optionsMenu, Classes.button);

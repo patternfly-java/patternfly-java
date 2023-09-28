@@ -30,7 +30,7 @@ import org.jboss.elemento.Key;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -120,7 +120,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
 
     private final boolean typeahead;
     private final CollapseExpand ceh;
-    private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
+    private final OldItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLButtonElement button;
     private final HTMLElement text;
     private final HTMLInputElement input;
@@ -133,7 +133,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         super(div().css(component(select)).element(), "Select");
         this.typeahead = typeahead;
         this.ceh = new CollapseExpand();
-        this.itemDisplay = new ItemDisplay<>();
+        this.itemDisplay = new OldItemDisplay<>();
 
         String buttonId = Id.unique(select, Classes.button);
         if (typeahead) {

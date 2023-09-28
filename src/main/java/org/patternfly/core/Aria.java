@@ -18,10 +18,13 @@ package org.patternfly.core;
 public interface Aria<T> {
 
     String current = "aria-current";
+    String disabled = "aria-disabled";
     String expanded = "aria-expanded";
     String hidden = "aria-hidden";
     String label = "aria-label";
     String labelledBy = "aria-labelledby";
+    String multiSelectable = "aria-multiselectable";
+    String selected = "aria-selected";
 
     @Deprecated
     T label(String label);

@@ -28,7 +28,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -132,7 +132,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     private final String buttonId;
     private final List<T> backupItems;
     private final CollapseExpand ceh;
-    private final ItemDisplay<HTMLButtonElement, T> itemDisplay;
+    private final OldItemDisplay<HTMLButtonElement, T> itemDisplay;
     private final HTMLElement toggle;
     private final HTMLInputElement input;
     private final HTMLButtonElement button;
@@ -149,7 +149,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         this.buttonId = Id.unique(dropdown, Classes.button);
         this.backupItems = new ArrayList<>();
         this.ceh = new CollapseExpand();
-        this.itemDisplay = new ItemDisplay<>();
+        this.itemDisplay = new OldItemDisplay<>();
 
         HTMLContainerBuilder<HTMLButtonElement> buttonBuilder = button().id(buttonId).aria("expanded", false)
                 .aria(hasPopup, true)

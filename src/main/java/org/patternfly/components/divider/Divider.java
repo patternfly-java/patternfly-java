@@ -19,6 +19,7 @@ import org.patternfly.components.BaseComponentFlat;
 import org.patternfly.components.ComponentType;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLHRElement;
 import elemental2.dom.HTMLLIElement;
 
 import static org.jboss.elemento.Elements.htmlElement;
@@ -32,6 +33,8 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
         switch (type) {
             case li:
                 return new Divider("li", HTMLLIElement.class);
+            case hr:
+                return new Divider("hr", HTMLHRElement.class);
         }
         throw new IllegalArgumentException("Unknown divider type " + type);
     }

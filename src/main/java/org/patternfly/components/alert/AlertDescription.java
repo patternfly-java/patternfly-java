@@ -26,9 +26,13 @@ import static org.patternfly.layout.Classes.description;
 
 public class AlertDescription extends SubComponent<HTMLDivElement, AlertDescription> {
 
+    // ------------------------------------------------------ factory methods
+
     public static AlertDescription alertDescription() {
         return new AlertDescription();
     }
+
+    // ------------------------------------------------------ instance
 
     AlertDescription() {
         super(div().css(component(alert, description)).element());

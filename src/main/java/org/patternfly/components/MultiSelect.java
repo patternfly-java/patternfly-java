@@ -25,7 +25,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
-import org.patternfly.core.ItemDisplay;
+import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.Icons;
@@ -87,7 +87,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
 
     private final boolean typeahead;
     private final CollapseExpand ceh;
-    private final ItemDisplay<HTMLElement, T> itemDisplay;
+    private final OldItemDisplay<HTMLElement, T> itemDisplay;
     private final HTMLButtonElement button;
     private final HTMLElement text;
     private final HTMLElement menu;
@@ -97,7 +97,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         super(div().css(component(select)).element(), "Select");
         this.typeahead = typeahead;
         this.ceh = new CollapseExpand();
-        this.itemDisplay = new ItemDisplay<>();
+        this.itemDisplay = new OldItemDisplay<>();
 
         String buttonId = Id.unique(select, Classes.button);
         add(button = button().css(component(select, toggle))

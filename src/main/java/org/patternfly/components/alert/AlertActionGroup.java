@@ -26,9 +26,13 @@ import static org.patternfly.layout.Classes.component;
 
 public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> {
 
+    // ------------------------------------------------------ factory methods
+
     public static AlertActionGroup alertActionGroup() {
         return new AlertActionGroup();
     }
+
+    // ------------------------------------------------------ instance
 
     AlertActionGroup() {
         super(div().css(component(alert, actionGroup)).element());

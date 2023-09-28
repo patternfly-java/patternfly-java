@@ -27,7 +27,7 @@ public enum ComponentType {
 
     Avatar("av", null),
 
-    Badge("bdg", null),
+    Badge("bdg", "PF5/Badge"),
 
     Brand("bnd", "PF5/Brand"),
 
@@ -73,7 +73,7 @@ public enum ComponentType {
 
     Masthead("mh", null),
 
-    Menu("mu", null),
+    Menu("mu", "PF5/Menu"),
 
     Navigation("nav", "PF5/Nav"),
 

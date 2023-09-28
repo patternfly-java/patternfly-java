@@ -15,9 +15,9 @@
  */
 package org.patternfly.components.divider;
 
-public enum DividerType {
+public enum MenuItemType {
 
-    li,
+    button,
 
-    hr
+    link
 }

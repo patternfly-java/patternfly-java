@@ -71,6 +71,7 @@ public interface Classes {
     String fill = "fill";
     String filterGroup = "filter-group";
     String flex = "flex";
+    String flyout = "flyout";
     String focus = "focus";
     String footer = "footer";
     String form = "form";
@@ -142,7 +143,9 @@ public interface Classes {
     String scope = "scope";
     String screenReader = "pf-" + PatternFly.VERSION + "-screen-reader";
     String scroll = "scroll";
+    String scrollable = "scrollable";
     String scrollButton = "scroll-button";
+    String search = "search";
     String secondary = "secondary";
     String section = "section";
     String select = "select";

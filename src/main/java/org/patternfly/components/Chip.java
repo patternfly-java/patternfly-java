@@ -17,6 +17,7 @@ package org.patternfly.components;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.components.badge.Badge;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
 
@@ -107,7 +108,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> {
                     .title(text);
             builder.add(text);
             if (count > 0) {
-                badge = Badge.read(count);
+                badge = Badge.badge(count).read();
                 builder.add(badge);
             }
             element.appendChild(this.text = builder.element());

@@ -25,6 +25,7 @@ public interface Dataset {
     String dataTableSort = "dataTableSort";
     String dropdownGroup = "dropdownGroup";
     String dropdownItem = "dropdownItem";
+    String menuInstance = "menuInstance";
     String multiOptionsMenuCheck = "multiOptionsMenuCheck";
     String multiOptionsMenuItem = "multiOptionsMenuItem";
     String multiSelectItem = "multiSelectItem";

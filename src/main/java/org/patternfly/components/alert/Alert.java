@@ -51,7 +51,7 @@ import static org.patternfly.layout.Icons.times;
  * PatternFly alert component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<Alert> {
 
@@ -89,8 +89,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
-                .aria(label, alertType.aria)
-                .element(),
+                        .aria(label, alertType.aria)
+                        .element(),
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
@@ -107,6 +107,32 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
     @Override
     public Alert that() {
         return this;
+    }
+
+    // ------------------------------------------------------ add methods
+
+    /**
+     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a
+     * single action.
+     */
+    public Alert addAction(Button action) {
+        return add(alertActionGroup().add(action));
+    }
+
+    public Alert addActionGroup(AlertActionGroup actionGroup) {
+        return add(actionGroup);
+    }
+
+    /**
+     * Wraps the description inside a {@code <p><p/>} element, adds it to a {@link AlertDescription} and finally adds it
+     * to this alert. Useful if your description is just a simple string.
+     */
+    public Alert addDescription(String description) {
+        return add(alertDescription().add(p().textContent(description)));
+    }
+
+    public Alert addDescription(AlertDescription description) {
+        return add(description);
     }
 
     // ------------------------------------------------------ public API
@@ -147,35 +173,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
             titleElement.style("--pf-v5-c-alert__title--max-lines: " + lines);
         }
         return this;
-    }
-
-    /**
-     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
-     * action.
-     */
-    public Alert addAction(Button action) {
-        return add(alertActionGroup().add(action));
-    }
-
-    public Alert addActionGroup(AlertActionGroup actionGroup) {
-        return add(actionGroup);
-    }
-
-    /**
-     * Wraps the description inside a {@code
-     *
-    <p>
-     *
-    <p/>
-     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
-     * simple string.
-     */
-    public Alert addDescription(String description) {
-        return add(alertDescription().add(p().textContent(description)));
-    }
-
-    public Alert addDescription(AlertDescription description) {
-        return add(description);
     }
 
     // ------------------------------------------------------ aria
