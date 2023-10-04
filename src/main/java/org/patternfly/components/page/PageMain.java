@@ -23,11 +23,11 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.main;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Constants.tabindex;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;
-import static org.patternfly.layout.Constants.role;
-import static org.patternfly.layout.Constants.tabindex;
 
 /**
  * Container for the main page area. The page main container typically contains multiple {@link PageMainGroup}s and/or

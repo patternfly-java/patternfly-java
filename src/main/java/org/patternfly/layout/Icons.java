@@ -31,6 +31,7 @@ public interface Icons {
     String ellipsisV = "ellipsis-v";
     String exclamationCircle = "exclamation-circle";
     String exclamationTriangle = "exclamation-triangle";
+    String externalLinkAlt = "external-link-alt";
     String filter = "filter";
     String infoCircle = "info-circle";
     String longArrowAltDown = "long-arrow-alt-down";

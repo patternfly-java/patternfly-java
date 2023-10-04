@@ -29,6 +29,7 @@ import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.svg.SVG.circle;
 import static org.jboss.elemento.svg.SVG.svg;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.inline;
@@ -36,7 +37,6 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.path;
 import static org.patternfly.layout.Classes.progress;
 import static org.patternfly.layout.Classes.spinner;
-import static org.patternfly.layout.Constants.hidden;
 
 /**
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each

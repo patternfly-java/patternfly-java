@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components.menu;
 
 import java.util.ArrayList;
@@ -22,10 +37,10 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.components.menu.MenuFooter.menuFooter;
 import static org.patternfly.components.menu.MenuHeader.menuHeader;
-import static org.patternfly.components.menu.MenuType.standalone;
 import static org.patternfly.core.SelectionMode.none;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.favorited;
 import static org.patternfly.layout.Classes.flyout;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
@@ -36,10 +51,9 @@ import static org.patternfly.layout.Classes.scrollable;
 import static org.patternfly.layout.Classes.select;
 
 /**
- * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever
- * the user needs to choose between multiple values, options, or actions. A menu is most often paired with a
- * {@link MenuToggle} as its trigger, but can also be used inline or can be attached to other interactable elements to
- * toggle it open and close.
+ * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user
+ * needs to choose between multiple values, options, or actions. A menu is most often paired with a {@link MenuToggle} as its
+ * trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close.
  * <p>
  * {@snippet class = MenuDemo region = menu}
  *
@@ -50,11 +64,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     // ------------------------------------------------------ factory methods
 
     public static Menu menu() {
-        return new Menu(standalone, none);
+        return new Menu(MenuType.menu, none);
     }
 
     public static Menu menu(SelectionMode selectionMode) {
-        return new Menu(standalone, selectionMode);
+        return new Menu(MenuType.menu, selectionMode);
     }
 
     // ------------------------------------------------------ instance
@@ -64,8 +78,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     final MenuType menuType;
     final SelectionMode selectionMode;
-    SelectHandler<MenuItem> selectHandler;
-    MultiSelectHandler<MenuItem> multiSelectHandler;
+    boolean favorites;
+    private SelectHandler<MenuItem> selectHandler;
+    private MultiSelectHandler<MenuItem> multiSelectHandler;
+    private MenuActionHandler actionHandler;
     private MenuContent content;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
@@ -101,7 +117,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     public Menu addContent(MenuContent content) {
-        return add(this.content = content);
+        return add(content);
     }
 
     /**
@@ -113,6 +129,13 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     public Menu addFooter(MenuFooter footer) {
         return add(footer);
+    }
+
+    // override to assure internal wiring
+    public Menu add(MenuContent content) {
+        this.content = content;
+        add(content.element());
+        return this;
     }
 
     // ------------------------------------------------------ events
@@ -127,6 +150,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return this;
     }
 
+    public Menu onAction(MenuActionHandler actionHandler) {
+        this.actionHandler = actionHandler;
+        return this;
+    }
+
     // ------------------------------------------------------ select
 
     public void select(String itemId) {
@@ -138,15 +166,27 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     public void select(MenuItem item) {
-        select(item, true);
+        select(item, true, true);
     }
 
     public void select(MenuItem item, boolean fireEvent) {
+        select(item, true, fireEvent);
+    }
+
+    public void select(MenuItem item, boolean selected, boolean fireEvent) {
         if (item != null) {
             if (selectionMode == none || selectionMode == single) {
                 unselectAllItems();
             }
-            item.select(selectionMode);
+            switch (selectionMode) {
+                case none:
+                    item.makeCurrent(selected);
+                    break;
+                case single:
+                case multi:
+                    item.markSelected(selected);
+                    break;
+            }
             if (fireEvent) {
                 if (selectHandler != null) {
                     selectHandler.onSelect(item);
@@ -154,7 +194,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
                 if (multiSelectHandler != null) {
                     List<MenuItem> selection = items()
                             .stream()
-                            .filter(itm -> itm.isSelected(selectionMode))
+                            .filter(MenuItem::isSelected)
                             .collect(toList());
                     multiSelectHandler.onSelect(selection);
                 }
@@ -190,6 +230,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     public Menu scrollable() {
         return css(modifier(scrollable));
+    }
+
+    public Menu favorites() {
+        favorites = true;
+        return this;
     }
 
     /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
@@ -229,5 +274,38 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
             }
         }
         return items;
+    }
+
+    void handleItemAction(MenuItemAction itemAction) {
+        if (actionHandler != null && itemAction.menuItem != null) {
+            actionHandler.onAction(itemAction.id, itemAction.menuItem);
+        }
+    }
+
+    // is called by regular menu items
+    void toggleFavorite(MenuItem item) {
+        if (content != null && item.favoriteItemAction != null) {
+            item.favoriteItemAction.element().classList.toggle(modifier(favorited));
+            boolean isFavorite = item.favoriteItemAction.element().classList.contains(modifier(favorited));
+            if (isFavorite) {
+                MenuItem favoriteItem = new MenuItem(this, item, item.itemType);
+                content.addToFavorites(favoriteItem);
+            } else {
+                if (item.favoriteItem != null) {
+                    content.removeFromFavorites(item.favoriteItem);
+                    item.favoriteItem = null;
+                }
+            }
+        }
+    }
+
+    // is called by cloned favorite items
+    void removeFavorite(MenuItem favoriteItem) {
+        if (content != null && favoriteItem.sourceItem != null && favoriteItem.sourceItem.favoriteItemAction != null) {
+            content.removeFromFavorites(favoriteItem);
+            MenuItem sourceItem = favoriteItem.sourceItem;
+            sourceItem.favoriteItemAction.element().classList.remove(modifier(favorited));
+            sourceItem.favoriteItem = null;
+        }
     }
 }

@@ -16,7 +16,6 @@
 package org.patternfly.components.navigation;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -41,6 +40,8 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.divider.Divider.divider;
 import static org.patternfly.components.divider.DividerType.li;
 import static org.patternfly.core.Aria.labelledBy;
+import static org.patternfly.core.Constants.hidden;
+import static org.patternfly.core.Constants.role;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandable;
@@ -53,8 +54,6 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.nav;
 import static org.patternfly.layout.Classes.subnav;
 import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.Constants.hidden;
-import static org.patternfly.layout.Constants.role;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
 
@@ -100,6 +99,7 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
                         .attr(role, "list")
                         .element())
                 .element());
+        collapse();
     }
 
     @Override

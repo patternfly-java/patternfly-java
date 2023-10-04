@@ -67,6 +67,9 @@ public interface Classes {
     String expandableContent = "expandable-content";
     String expandableRow = "expandable-row";
     String expanded = "expanded";
+    String externalIcon = "external-icon";
+    String favorite = "favorite";
+    String favorited = "favorited";
     String fieldset = "fieldset";
     String fill = "fill";
     String filterGroup = "filter-group";
@@ -139,6 +142,7 @@ public interface Classes {
     String progressbar = "progressbar";
     String read = "read";
     String readOnly = "read-only";
+    String required = "required";
     String right = "right";
     String scope = "scope";
     String screenReader = "pf-" + PatternFly.VERSION + "-screen-reader";
@@ -161,6 +165,7 @@ public interface Classes {
     String spinner = "spinner";
     String splitButton = "split-button";
     String stack = "stack";
+    String standalone = "standalone";
     String subnav = "subnav";
     String success = "success";
     String tab = "tab";

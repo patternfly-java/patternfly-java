@@ -13,38 +13,41 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components.brand;
+package org.patternfly.components.form;
 
-import org.patternfly.components.BaseComponent;
-import org.patternfly.components.ComponentType;
+import org.patternfly.components.SubComponent;
 
-import elemental2.dom.HTMLImageElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.img;
-import static org.patternfly.layout.Classes.brand;
+import static org.jboss.elemento.Elements.span;
+import static org.patternfly.layout.Classes.body;
+import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
 
-/**
- * A brand is used to place a product logotype on a screen.
- *
- * @see <a href= "https://www.patternfly.org/components/brand/html">https://www.patternfly.org/components/brand/html</a>
- */
-public class Brand extends BaseComponent<HTMLImageElement, Brand> {
+public class CheckboxBody extends SubComponent<HTMLElement, CheckboxBody> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Brand brand(String src) {
-        return new Brand(src);
+    public static CheckboxBody checkboxBody() {
+        return new CheckboxBody(null);
+    }
+
+    public static CheckboxBody checkboxBody(String text) {
+        return new CheckboxBody(text);
     }
 
     // ------------------------------------------------------ instance
 
-    Brand(String src) {
-        super(img(src).css(component(brand)).element(), ComponentType.Brand);
+    CheckboxBody(String text) {
+        super(span().css(component(check, body))
+                .element());
+        if (text != null) {
+            element().textContent = text;
+        }
     }
 
     @Override
-    public Brand that() {
+    public CheckboxBody that() {
         return this;
     }
 }

@@ -42,6 +42,7 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Dataset.contextSelectorItem;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.contextSelector;
@@ -52,7 +53,6 @@ import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.none;
 import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.Constants.hidden;
 import static org.patternfly.layout.Icons.caretDown;
 import static org.patternfly.layout.Icons.fas;
 
@@ -92,12 +92,16 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         String buttonId = Id.unique(contextSelector, Classes.button);
 
         add(span().id(labelId).hidden(true).textContent(text));
-        add(button = button().css(component(contextSelector, toggle)).id(buttonId).aria("expanded", false)
+        add(button = button().css(component(contextSelector, toggle))
+                .id(buttonId)
+                .aria("expanded", false)
                 .aria(labelledBy, labelId + " " + buttonId)
                 .on(click, e -> ceh.expand(element(), buttonElement(), menuElement()))
-                .add(this.text = span().css(component(contextSelector, toggle, Classes.text)).textContent("Please select")
+                .add(this.text = span().css(component(contextSelector, toggle, Classes.text))
+                        .textContent("Please select")
                         .element())
-                .add(i().css(fas(caretDown), component(contextSelector, toggle, icon)).aria(hidden, true)).element());
+                .add(i().css(fas(caretDown), component(contextSelector, toggle, icon)).aria(hidden, true))
+                .element());
         add(menu = div().css(component(contextSelector, Classes.menu)).attr(hidden, "")
                 .add(div().css(component(contextSelector, Classes.menu, input))
                         .add(search = new Search("Search").onFilter(this::filter)))

@@ -30,13 +30,13 @@ import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.chip;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.plain;
-import static org.patternfly.layout.Constants.hidden;
 import static org.patternfly.layout.Icons.fas;
 import static org.patternfly.layout.Icons.timesCircle;
 

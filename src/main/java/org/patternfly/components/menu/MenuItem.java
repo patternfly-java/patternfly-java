@@ -1,13 +1,31 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.components.menu;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.EventCallbackFn;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.components.SubComponent;
 import org.patternfly.components.divider.MenuItemType;
+import org.patternfly.components.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Disable;
-import org.patternfly.core.SelectionMode;
 import org.patternfly.layout.Classes;
+import org.patternfly.layout.Icons;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -19,30 +37,40 @@ import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.components.divider.MenuItemType.checkbox;
 import static org.patternfly.components.divider.MenuItemType.link;
+import static org.patternfly.components.form.Checkbox.checkbox;
+import static org.patternfly.components.menu.MenuItemAction.menuItemAction;
 import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Constants.tabindex;
 import static org.patternfly.core.SelectionMode.multi;
 import static org.patternfly.core.SelectionMode.none;
 import static org.patternfly.core.SelectionMode.single;
-import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.danger;
 import static org.patternfly.layout.Classes.description;
 import static org.patternfly.layout.Classes.disabled;
+import static org.patternfly.layout.Classes.externalIcon;
+import static org.patternfly.layout.Classes.favorite;
+import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.text;
-import static org.patternfly.layout.Constants.role;
-import static org.patternfly.layout.Constants.tabindex;
+import static org.patternfly.layout.Classes.screenReader;
+import static org.patternfly.layout.Classes.select;
+import static org.patternfly.layout.Icons.externalLinkAlt;
+import static org.patternfly.layout.Icons.fas;
 
 public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Disable<MenuItem>, MenuHolder {
 
@@ -51,58 +79,138 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
     /**
      * Create a new menu item with type {@link MenuItemType#action}.
      */
-    public static MenuItem menuItem(String id) {
-        return new MenuItem(id, MenuItemType.action);
+    public static MenuItem actionMenuItem(String id, String text) {
+        return new MenuItem(id, text, MenuItemType.action);
     }
 
     /**
-     * Create a new menu item with the given type.
+     * Create a new menu item with type {@link MenuItemType#link}.
      */
-    public static MenuItem menuItem(String id, MenuItemType itemType) {
-        return new MenuItem(id, itemType);
+    public static MenuItem linkMenuItem(String id, String text, String href) {
+        return new MenuItem(id, text, link);
+    }
+
+    /**
+     * Create a new menu item with type {@link MenuItemType#link}.
+     */
+    public static MenuItem checkboxMenuItem(String id, String text) {
+        return new MenuItem(id, text, checkbox);
+    }
+
+    /**
+     * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
+     */
+    public static MenuItem menuItem(String id, MenuItemType type) {
+        return new MenuItem(id, null, MenuItemType.action);
     }
 
     // ------------------------------------------------------ instance
 
     public final String id;
-    private final MenuItemType itemType;
+    final MenuItemType itemType;
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
     private final HTMLElement textElement;
+    MenuItem sourceItem;
+    MenuItem favoriteItem;
+    MenuItemAction favoriteItemAction;
+    private boolean initialSelection;
+    private Checkbox checkboxComponent;
+    private MenuItemAction itemAction;
     private HTMLElement iconElement;
     private HTMLElement descriptionElement;
-    private HTMLButtonElement actionElement;
+    private HTMLElement selectIcon;
+    private EventCallbackFn<MouseEvent> onClick;
 
-    MenuItem(String id, MenuItemType itemType) {
+    MenuItem(String id, String text, MenuItemType itemType) {
         super(li().css(component(menu, list, item))
                 .attr(role, "none")
                 .element());
         this.id = id;
         this.itemType = itemType;
 
-        // add required elements
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
-        switch (itemType) {
-            case action:
-                add(itemElement = button().css(component(menu, item)).attr(tabindex, 0).element());
-                break;
-            case link:
-                add(itemElement = a().css(component(menu, item)).attr(tabindex, -1).element());
-                break;
-            default:
-                itemElement = div().element(); // create a pseudo element, but don't add it
-                console.error("Unknown menu item type " + itemType);
+        if (itemType == MenuItemType.action || itemType == link) {
+            itemBuilder = itemType == MenuItemType.action ? button().attr(tabindex, 0) : a().attr(tabindex, -1);
+            itemBuilder.add(mainElement = span().css(component(menu, item, main))
+                    .add(textElement = span().css(component(menu, item, Classes.text))
+                            .element())
+                    .element());
+
+        } else if (itemType == checkbox) {
+            String checkboxId = Id.build(id, "check");
+            itemBuilder = label()
+                    .apply(l -> l.htmlFor = checkboxId);
+            itemBuilder.add(mainElement = span().css(component(menu, item, main))
+                    .add(span().css(component(menu, item, Classes.check))
+                            .add(checkboxComponent = checkbox(checkboxId)))
+                    .add(textElement = span().css(component(menu, item, Classes.text))
+                            .element())
+                    .element());
+
+        } else {
+            // create a pseudo element, but don't add it
+            itemBuilder = div()
+                    .add(mainElement = div()
+                            .add(textElement = div().element())
+                            .element());
+            console.error("Unknown menu item type " + itemType);
         }
-        itemElement
-                .appendChild(mainElement = span().css(component(menu, item, main))
-                        .add(textElement = span().css(component(menu, item, text)).element())
-                        .element());
+
+        add(itemElement = itemBuilder.css(component(menu, item)).element());
+        if (text != null) {
+            textElement.textContent = text;
+        }
+    }
+
+    // constructor must only be used to clone an item as favorite item!
+    MenuItem(Menu menu, MenuItem item, MenuItemType itemType) {
+        super(((HTMLElement) item.element().cloneNode(true)));
+
+        this.id = Id.build("fav", item.id);
+        this.itemType = itemType;
+        this.favoriteItem = null;
+        this.initialSelection = item.initialSelection;
+        this.itemElement = find(By.classname(component(Classes.menu, Classes.item)));
+        this.mainElement = find(By.classname(component(Classes.menu, Classes.item, main)));
+        this.textElement = find(By.classname(component(Classes.menu, Classes.item, Classes.text)));
+        this.iconElement = find(By.classname(component(Classes.menu, Classes.item, Classes.icon)));
+        this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
+        // checkbox must not be used for cloned favorite items!
+
+        if (item.onClick != null) {
+            onClick(item.onClick);
+        }
+        if (item.itemAction != null) {
+            HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
+            if (element instanceof HTMLButtonElement) {
+                this.itemAction = new MenuItemAction(menu, this, item.itemAction, ((HTMLButtonElement) element));
+            }
+        }
+
+        this.sourceItem = item;
+        item.favoriteItem = this;
+        HTMLElement favoriteItemActionElement = find(
+                By.classname(component(Classes.menu, Classes.item, Classes.action))
+                        .and(By.classname(modifier(favorite))));
+        if (favoriteItemActionElement != null) {
+            favoriteItemActionElement.addEventListener(click.getName(), e -> menu.removeFavorite(this));
+        }
+
+        passMenu(menu);
     }
 
     @Override
     public void passMenu(Menu menu) {
+        if (itemAction != null) {
+            itemAction.passMenu(menu);
+            // redo initial disabled call for item action
+            if (element().classList.contains(modifier(disabled))) {
+                itemAction.element().disabled = true;
+            }
+        }
         switch (menu.menuType) {
-            case standalone:
+            case menu:
             case dropdown:
                 itemElement.setAttribute(role, "menuitem");
                 break;
@@ -110,11 +218,32 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
                 itemElement.setAttribute(role, "option");
                 break;
         }
-        itemElement.addEventListener(click.getName(), e -> menu.select(this));
+        if (menu.selectionMode == single || menu.selectionMode == none) {
+            itemElement.addEventListener(click.getName(), e -> menu.select(this, true, true));
+        } else if (menu.selectionMode == multi) {
+            itemElement.addEventListener(click.getName(), e -> menu.select(this, !isSelected(), true));
+        }
+        if (initialSelection) {
+            menu.select(this, true, false);
+        }
     }
 
     @Override
     public MenuItem that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ add methods
+
+    public MenuItem addAction(MenuItemAction itemAction) {
+        return add(itemAction);
+    }
+
+    // override to assure internal wiring
+    public MenuItem add(MenuItemAction itemAction) {
+        this.itemAction = itemAction;
+        this.itemAction.menuItem = this;
+        add(itemAction.element());
         return this;
     }
 
@@ -134,6 +263,24 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
     public MenuItem href(String href) {
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).href = href;
+        } else {
+            console.warn("Ignore href on menu item '" + id + "' with type '" + itemType.name() + "'");
+        }
+        return this;
+    }
+
+    public MenuItem external() {
+        if (itemType == link) {
+            ((HTMLAnchorElement) itemElement).target = "_blank";
+            mainElement.appendChild(span().css(component(menu, item, externalIcon))
+                    .add(i().css(fas(externalLinkAlt))
+                            .aria(hidden, true))
+                    .element());
+            mainElement.appendChild(span().css(screenReader)
+                    .textContent("(opens a new window)")
+                    .element());
+        } else {
+            console.warn("Ignore external flag on menu item '" + id + "' with type '" + itemType.name() + "'");
         }
         return this;
     }
@@ -186,26 +333,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
     }
 
     public MenuItem onClick(EventCallbackFn<MouseEvent> onClick) {
+        this.onClick = onClick;
         itemElement.addEventListener(click.getName(), e -> onClick.onEvent(Js.cast(e)));
-        return this;
-    }
-
-    public MenuItem action(String icon, String ariaLabel, EventCallbackFn<MouseEvent> onClick) {
-        if (actionElement != null) {
-            removeChildrenFrom(actionElement);
-        }
-        HTMLContainerBuilder<HTMLButtonElement> actionBuilder = actionElement == null
-                ? button()
-                : button(actionElement);
-        actionBuilder
-                .aria(Aria.label, ariaLabel)
-                .on(click, onClick)
-                .attr(tabindex, -1)
-                .add(span().css(menu, item, action, Classes.icon)
-                        .add(i().css(icon)));
-        if (actionElement == null) {
-            itemElement.appendChild(actionElement = actionBuilder.element());
-        }
         return this;
     }
 
@@ -219,9 +348,12 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
             case link:
                 itemElement.removeAttribute(Aria.disabled);
                 break;
+            case checkbox:
+                checkboxComponent.enable();
+                break;
         }
-        if (actionElement != null) {
-            actionElement.disabled = false;
+        if (itemAction != null) {
+            itemAction.element().disabled = false;
         }
         return this;
     }
@@ -236,9 +368,12 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
             case link:
                 itemElement.setAttribute(Aria.disabled, true);
                 break;
+            case checkbox:
+                checkboxComponent.disable();
+                break;
         }
-        if (actionElement != null) {
-            actionElement.disabled = true;
+        if (itemAction != null) {
+            itemAction.element().disabled = true;
         }
         return this;
     }
@@ -249,24 +384,52 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
         return css(modifier(danger));
     }
 
+    public MenuItem selected() {
+        initialSelection = true;
+        return this;
+    }
+
     // ------------------------------------------------------ internals
 
-    void select(SelectionMode selectionMode) {
-        if (selectionMode == none) {
-            itemElement.setAttribute(Aria.current, true);
-        } else if (selectionMode == single || selectionMode == multi) {
-            itemElement.setAttribute(Aria.selected, true);
-            itemElement.classList.add(modifier(Classes.selected));
+    MenuItemAction addFavoriteItemAction() {
+        String actionId = Id.build(id, "mark-as-favorite");
+        favoriteItemAction = menuItemAction(actionId, fas("star"))
+                .css(modifier(favorite))
+                .aria(Aria.label, "not starred");
+        // Don't use add(markAsFavorite); !!
+        element().appendChild(favoriteItemAction.element());
+        return favoriteItemAction;
+    }
+
+    void makeCurrent(boolean current) {
+        itemElement.setAttribute(Aria.current, current);
+    }
+
+    void markSelected(boolean selected) {
+        if (itemType == checkbox) {
+            checkboxComponent.check(selected);
+        } else {
+            if (selectIcon == null) {
+                selectIcon = span().css(component(menu, item, select, icon))
+                        .add(i().css(fas(Icons.check)))
+                        .element();
+            }
+            itemElement.setAttribute(Aria.selected, selected);
+            if (selected) {
+                itemElement.classList.add(modifier(Classes.selected));
+                mainElement.appendChild(selectIcon);
+            } else {
+                itemElement.classList.remove(modifier(Classes.selected));
+                failSafeRemoveFromParent(selectIcon);
+            }
         }
     }
 
-    boolean isSelected(SelectionMode selectionMode) {
-        if (selectionMode == none) {
-            return Boolean.parseBoolean(itemElement.getAttribute(Aria.current));
-        } else if (selectionMode == single || selectionMode == multi) {
-            return Boolean.parseBoolean(itemElement.getAttribute(Aria.selected));
+    boolean isSelected() {
+        if (itemType == checkbox) {
+            return checkboxComponent.checked();
         } else {
-            return false;
+            return Boolean.parseBoolean(itemElement.getAttribute(Aria.selected));
         }
     }
 }

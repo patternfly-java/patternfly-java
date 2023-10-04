@@ -48,6 +48,7 @@ import static org.patternfly.components.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.components.navigation.NavigationType.Vertical.grouped;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Constants.role;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.component;
@@ -59,14 +60,13 @@ import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.nav;
 import static org.patternfly.layout.Classes.scroll;
-import static org.patternfly.layout.Constants.role;
 import static org.patternfly.layout.Icons.angleLeft;
 import static org.patternfly.layout.Icons.angleRight;
 import static org.patternfly.layout.Icons.fas;
 
 /**
- * A navigation organizes an application's structure and content, making it easy to find information and accomplish
- * tasks. Navigation communicates relationships, context, and actions a user can take within an application.
+ * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
+ * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
  * {@snippet class = NavigationDemo region = horizontal}
  * <p>
@@ -75,7 +75,7 @@ import static org.patternfly.layout.Icons.fas;
  * {@snippet class = NavigationDemo region = expandable}
  *
  * @see <a href=
- * "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
+ *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
  */
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 

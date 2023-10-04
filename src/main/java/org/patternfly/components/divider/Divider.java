@@ -23,8 +23,16 @@ import elemental2.dom.HTMLHRElement;
 import elemental2.dom.HTMLLIElement;
 
 import static org.jboss.elemento.Elements.htmlElement;
-import static org.patternfly.layout.Constants.role;
+import static org.patternfly.core.Constants.role;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.divider;
 
+/**
+ * A divider is a horizontal or vertical line that is placed between screen elements to create visual divisions and content
+ * groupings.
+ *
+ * @see <a href= "https://www.patternfly.org/components/divider/html">https://www.patternfly.org/components/divider/html</a>
+ */
 public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
 
     // ------------------------------------------------------ factory methods
@@ -42,7 +50,11 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Divider(String element, Class<E> type) {
-        super(htmlElement(element, type).attr(role, "separator").element(), ComponentType.Divider);
+        super(htmlElement(element, type)
+                .css(component(divider))
+                .attr(role, "separator")
+                .element(),
+                ComponentType.Divider);
     }
 
     @Override

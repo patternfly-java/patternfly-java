@@ -23,7 +23,6 @@ import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.Constants;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLParagraphElement;
@@ -36,6 +35,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.components.Icon.icon;
 import static org.patternfly.components.alert.AlertActionGroup.alertActionGroup;
 import static org.patternfly.components.alert.AlertDescription.alertDescription;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
@@ -51,7 +51,7 @@ import static org.patternfly.layout.Icons.times;
  * PatternFly alert component.
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/alert">https://www.patternfly.org/v4/documentation/core/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<Alert> {
 
@@ -89,15 +89,15 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
-                        .aria(label, alertType.aria)
-                        .element(),
+                .aria(label, alertType.aria)
+                .element(),
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
 
         add(div().css(component(alert, icon))
                 .add(icon(alertType.icon)
-                        .aria(Constants.hidden, true)));
+                        .aria(hidden, true)));
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
                         .textContent(alertType.aria + ":"))
@@ -112,8 +112,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
     // ------------------------------------------------------ add methods
 
     /**
-     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a
-     * single action.
+     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
+     * action.
      */
     public Alert addAction(Button action) {
         return add(alertActionGroup().add(action));
@@ -124,8 +124,13 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Aria<
     }
 
     /**
-     * Wraps the description inside a {@code <p><p/>} element, adds it to a {@link AlertDescription} and finally adds it
-     * to this alert. Useful if your description is just a simple string.
+     * Wraps the description inside a {@code
+     *
+    <p>
+     *
+    <p/>
+     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
+     * simple string.
      */
     public Alert addDescription(String description) {
         return add(alertDescription().add(p().textContent(description)));

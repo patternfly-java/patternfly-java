@@ -39,7 +39,7 @@ public enum ComponentType {
 
     CardView("cv", null),
 
-    Checkbox("chb", null),
+    Checkbox("chb", "PF5/Checkbox"),
 
     Chip("chp", null),
 

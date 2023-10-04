@@ -1,11 +1,11 @@
 import org.patternfly.components.menu.Menu;
+import org.patternfly.components.menu.MenuItem;
 
 import static org.patternfly.components.Button.button;
 import static org.patternfly.components.menu.Menu.menu;
 import static org.patternfly.components.menu.MenuContent.menuContent;
 import static org.patternfly.components.menu.MenuFooter.menuFooter;
 import static org.patternfly.components.menu.MenuGroup.menuGroup;
-import static org.patternfly.components.menu.MenuItem.menuItem;
 import static org.patternfly.components.menu.MenuList.menuList;
 
 public class MenuDemo {
@@ -18,10 +18,10 @@ public class MenuDemo {
                 .addHeader("Header")
                 .addContent(menuContent()
                         .addList(menuList()
-                                .addItem(menuItem("1"))
-                                .addItem(menuItem("2"))
+                                .addItem(MenuItem.actionMenuItem("1", "Item 1"))
+                                .addItem(MenuItem.actionMenuItem("2", "Item 2"))
                                 .addDivider()
-                                .addItem(menuItem("3"))))
+                                .addItem(MenuItem.linkMenuItem("3", "Item 3", "#third"))))
                 .addFooter(menuFooter()
                         .add(button("Footer")));
         // @end region = menu
@@ -33,17 +33,17 @@ public class MenuDemo {
                 .addContent(menuContent()
                         .addGroup(menuGroup()
                                 .addList(menuList()
-                                        .addItem(menuItem("1"))))
+                                        .addItem(MenuItem.actionMenuItem("1", "Item 1"))))
                         .addDivider()
                         .addGroup(menuGroup("Group 1")
                                 .addList(menuList()
-                                        .addItem(menuItem("11"))
-                                        .addItem(menuItem("12"))))
+                                        .addItem(MenuItem.actionMenuItem("11", "Group 1 - Item 1"))
+                                        .addItem(MenuItem.actionMenuItem("12", "Group 1 - Item 2"))))
                         .addDivider()
                         .addGroup(menuGroup("Group 2")
                                 .addList(menuList()
-                                        .addItem(menuItem("21"))
-                                        .addItem(menuItem("22")))));
+                                        .addItem(MenuItem.actionMenuItem("21", "Group 2 - Item 1"))
+                                        .addItem(MenuItem.actionMenuItem("22", "Group 2 - Item 2")))));
         // @end region = groups
     }
 }

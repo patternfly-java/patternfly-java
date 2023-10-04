@@ -27,8 +27,7 @@ import static org.patternfly.layout.Classes.component;
 /**
  * PatternFly title component.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
+ * @see <a href= "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
  */
 public class Title extends BaseComponent<HTMLHeadingElement, Title> {
 

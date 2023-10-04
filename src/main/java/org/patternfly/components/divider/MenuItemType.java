@@ -19,5 +19,7 @@ public enum MenuItemType {
 
     action,
 
-    link
+    link,
+
+    checkbox
 }

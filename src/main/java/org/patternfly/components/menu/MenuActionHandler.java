@@ -15,5 +15,7 @@
  */
 package org.patternfly.components.menu;
 
-public class MenuToggle {
+public interface MenuActionHandler {
+
+    void onAction(String actionId, MenuItem menuItem);
 }

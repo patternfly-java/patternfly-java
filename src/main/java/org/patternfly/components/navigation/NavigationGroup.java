@@ -16,7 +16,6 @@
 package org.patternfly.components.navigation;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -30,13 +29,12 @@ import elemental2.dom.HTMLUListElement;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.components.navigation.NavigationType.Vertical.grouped;
+import static org.patternfly.core.Constants.role;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.nav;
 import static org.patternfly.layout.Classes.title;
-import static org.patternfly.layout.Constants.role;
 
 public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> {
 

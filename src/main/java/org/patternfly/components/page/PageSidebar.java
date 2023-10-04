@@ -18,11 +18,11 @@ package org.patternfly.components.page;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 import org.patternfly.layout.Brightness;
-import org.patternfly.layout.Constants;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.collapsed;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expanded;
@@ -51,7 +51,7 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
 
     PageSidebar() {
         super(aside().css(component(page, sidebar), modifier(expanded))
-                .aria(Constants.hidden, false)
+                .aria(hidden, false)
                 .element(),
                 ComponentType.Sidebar);
     }
@@ -89,7 +89,7 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
     public PageSidebar expanded() {
         element().classList.remove(modifier(collapsed));
         element().classList.add(modifier(expanded));
-        aria(Constants.hidden, false);
+        aria(hidden, false);
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
     public PageSidebar collapsed() {
         element().classList.remove(modifier(expanded));
         element().classList.add(modifier(collapsed));
-        aria(Constants.hidden, true);
+        aria(hidden, true);
         return this;
     }
 

@@ -21,8 +21,8 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Constants.hidden;
 
 /**
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
