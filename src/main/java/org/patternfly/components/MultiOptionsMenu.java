@@ -25,8 +25,8 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -48,7 +48,6 @@ import static org.patternfly.core.Dataset.multiOptionsMenuCheck;
 import static org.patternfly.core.Dataset.multiOptionsMenuItem;
 import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.hasPopup;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.labelledBy;
@@ -70,7 +69,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptionsMenu>
-        implements Disable<MultiOptionsMenu> {
+        implements Modifiers.Disabled<MultiOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 
@@ -195,19 +194,14 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
     }
 
     @Override
-    public MultiOptionsMenu disable() {
-        button.disabled = true;
+    public MultiOptionsMenu disabled(boolean disabled) {
+        button.disabled = disabled;
         if (plain != null) {
-            plain.classList.add(modifier(disabled));
-        }
-        return this;
-    }
-
-    @Override
-    public MultiOptionsMenu enable() {
-        button.disabled = false;
-        if (plain != null) {
-            plain.classList.remove(modifier(disabled));
+            if (disabled) {
+                plain.classList.add(modifier(Classes.disabled));
+            } else {
+                plain.classList.remove(modifier(Classes.disabled));
+            }
         }
         return this;
     }

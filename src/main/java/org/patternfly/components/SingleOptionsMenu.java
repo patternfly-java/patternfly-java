@@ -24,8 +24,8 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -65,7 +65,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOptionsMenu<T>>
-        implements HasValue<T>, Disable<SingleOptionsMenu<T>> {
+        implements HasValue<T>, Modifiers.Disabled<SingleOptionsMenu<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -253,19 +253,14 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
     }
 
     @Override
-    public SingleOptionsMenu<T> disable() {
-        button.disabled = true;
+    public SingleOptionsMenu<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         if (plain != null) {
-            plain.classList.add(modifier(Classes.disabled));
-        }
-        return this;
-    }
-
-    @Override
-    public SingleOptionsMenu<T> enable() {
-        button.disabled = false;
-        if (plain != null) {
-            plain.classList.remove(modifier(Classes.disabled));
+            if (disabled) {
+                plain.classList.add(modifier(Classes.disabled));
+            } else {
+                plain.classList.remove(modifier(Classes.disabled));
+            }
         }
         return this;
     }

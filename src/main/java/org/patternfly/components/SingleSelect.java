@@ -28,8 +28,8 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -91,7 +91,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
-        implements Disable<SingleSelect<T>>, HasValue<T> {
+        implements Modifiers.Disabled<SingleSelect<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -307,14 +307,8 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
     }
 
     @Override
-    public SingleSelect<T> disable() {
-        button.disabled = true;
-        return this;
-    }
-
-    @Override
-    public SingleSelect<T> enable() {
-        button.disabled = false;
+    public SingleSelect<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         return this;
     }
 

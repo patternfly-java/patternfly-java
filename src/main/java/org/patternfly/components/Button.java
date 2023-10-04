@@ -19,7 +19,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Callback;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLAnchorElement;
@@ -34,7 +34,6 @@ import static org.patternfly.layout.Classes.block;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.control;
 import static org.patternfly.layout.Classes.danger;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.focus;
 import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.modifier;
@@ -50,7 +49,7 @@ import static org.patternfly.layout.Classes.tertiary;
  *      "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
-        implements Aria<Button>, Disable<Button> {
+        implements Aria<Button>, Modifiers.Disabled<Button> {
 
     // ------------------------------------------------------ factory methods
 
@@ -180,26 +179,19 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     @Override
-    public Button disable() {
+    public Button disabled(boolean disabled) {
         if (button != null) {
-            button.disabled = true;
+            button.disabled = disabled;
         } else if (a != null) {
-            a.classList.add(disabled);
-            a.setAttribute("tabindex", -1);
+            if (disabled) {
+                a.classList.add(modifier(Classes.disabled));
+                a.setAttribute("tabindex", -1);
+            } else {
+                a.classList.remove(modifier(Classes.disabled));
+                a.removeAttribute("tabindex");
+            }
         }
-        aria(disabled, true);
-        return this;
-    }
-
-    @Override
-    public Button enable() {
-        if (button != null) {
-            button.disabled = false;
-        } else if (a != null) {
-            a.classList.remove(disabled);
-            a.removeAttribute("tabindex");
-        }
-        aria(disabled, false);
+        aria(Aria.disabled, disabled);
         return this;
     }
 

@@ -63,6 +63,7 @@ public interface Classes {
     String dropdown = "dropdown";
     String emptyState = "empty-state";
     String end = "end";
+    String error = "error";
     String expandable = "expandable";
     String expandableContent = "expandable-content";
     String expandableRow = "expandable-row";
@@ -142,6 +143,7 @@ public interface Classes {
     String progressbar = "progressbar";
     String read = "read";
     String readOnly = "read-only";
+    String readonly = "readonly";
     String required = "required";
     String right = "right";
     String scope = "scope";
@@ -166,6 +168,7 @@ public interface Classes {
     String splitButton = "split-button";
     String stack = "stack";
     String standalone = "standalone";
+    String status = "status";
     String subnav = "subnav";
     String success = "success";
     String tab = "tab";
@@ -191,6 +194,7 @@ public interface Classes {
     String type = "type";
     String typeahead = "typeahead";
     String unread = "unread";
+    String utilities = "utilities";
     String valueText = "value-text";
     String warning = "warning";
     String wizard = "wizard";

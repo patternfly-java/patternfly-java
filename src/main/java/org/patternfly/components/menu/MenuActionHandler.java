@@ -17,5 +17,5 @@ package org.patternfly.components.menu;
 
 public interface MenuActionHandler {
 
-    void onAction(String actionId, MenuItem menuItem);
+    void onAction(MenuItem item, MenuItemAction itemAction);
 }

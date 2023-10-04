@@ -25,8 +25,8 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -47,7 +47,6 @@ import static org.patternfly.core.Dataset.multiOptionsMenuCheck;
 import static org.patternfly.core.Dataset.multiOptionsMenuItem;
 import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.hasPopup;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.labelledBy;
@@ -69,7 +68,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOptionsMenu>
-        implements Disable<GroupedOptionsMenu> {
+        implements Modifiers.Disabled<GroupedOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 
@@ -113,8 +112,10 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
             if (plain) {
                 this.plain = div().css(component(optionsMenu, toggle), modifier(Classes.plain), modifier(Classes.text))
                         .add(span().css(component(optionsMenu, toggle, Classes.text)).textContent(text))
-                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button)).aria("label", text)
-                                .add(i().css(fas(caretDown)).aria("hidden", true)).element())
+                        .add(button = buttonBuilder.css(component(optionsMenu, toggle, Classes.button))
+                                .aria("label", text)
+                                .add(i().css(fas(caretDown)).aria("hidden", true))
+                                .element())
                         .element();
                 trigger = this.plain;
 
@@ -156,7 +157,8 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         menu.appendChild(li().aria("label", group.text).add(group).element());
 
         for (T item : group.items) {
-            HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(optionsMenu, Classes.menu, Classes.item))
+            HTMLContainerBuilder<HTMLButtonElement> button = button().css(
+                    component(optionsMenu, Classes.menu, Classes.item))
                     .attr("tabindex", -1).data(multiOptionsMenuItem, group.itemDisplay.itemId(item)).on(click, e -> {
                         if (collapseOnSelect) {
                             ceh.collapse(element(), buttonElement(), menuElement());
@@ -192,19 +194,14 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
     }
 
     @Override
-    public GroupedOptionsMenu disable() {
-        button.disabled = true;
+    public GroupedOptionsMenu disabled(boolean disabled) {
+        button.disabled = disabled;
         if (plain != null) {
-            plain.classList.add(modifier(disabled));
-        }
-        return this;
-    }
-
-    @Override
-    public GroupedOptionsMenu enable() {
-        button.disabled = false;
-        if (plain != null) {
-            plain.classList.remove(modifier(disabled));
+            if (disabled) {
+                plain.classList.add(modifier(Classes.disabled));
+            } else {
+                plain.classList.remove(modifier(Classes.disabled));
+            }
         }
         return this;
     }

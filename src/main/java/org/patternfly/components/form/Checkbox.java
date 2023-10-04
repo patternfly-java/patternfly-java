@@ -15,11 +15,13 @@
  */
 package org.patternfly.components.form;
 
+import org.jboss.elemento.EventCallbackFn;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.layout.Classes;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -31,15 +33,14 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.input;
 import static org.patternfly.layout.Classes.label;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.required;
 import static org.patternfly.layout.Classes.standalone;
 
 /**
@@ -49,7 +50,8 @@ import static org.patternfly.layout.Classes.standalone;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
  */
-public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements Disable<Checkbox> {
+public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
+        implements Modifiers.Disabled<Checkbox>, Modifiers.Required<Checkbox> {
 
     // ------------------------------------------------------ factory methods
 
@@ -73,6 +75,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements Di
 
     private final HTMLInputElement inputElement;
     private final HTMLLabelElement labelElement;
+    private HTMLElement requiredMarker;
 
     Checkbox(String id, String label, boolean checked) {
         super(div().css(component(check))
@@ -112,42 +115,50 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements Di
 
     // ------------------------------------------------------ public API
 
-    public Checkbox check(boolean checked) {
-        inputElement.checked = checked;
-        return this;
-    }
-
     public boolean checked() {
         return inputElement.checked;
     }
 
-    @Override
-    public Checkbox disable() {
-        inputElement.disabled = true;
-        if (labelElement != null) {
-            labelElement.classList.add(modifier(disabled));
-        }
+    public Checkbox checked(boolean checked) {
+        inputElement.checked = checked;
         return this;
     }
 
-    @Override
-    public Checkbox enable() {
-        inputElement.disabled = false;
-        if (labelElement != null) {
-            labelElement.classList.remove(modifier(disabled));
-        }
+    public Checkbox onChange(EventCallbackFn<Event> callback) {
+        inputElement.addEventListener(change.getName(), callback::onEvent);
         return this;
     }
 
     // ------------------------------------------------------ modifiers
 
-    public Checkbox required() {
-        inputElement.required = true;
+    @Override
+    public Checkbox disabled(boolean disabled) {
+        inputElement.disabled = disabled;
         if (labelElement != null) {
-            labelElement.appendChild(span().css(component(check, label, required))
-                    .aria(hidden, true)
-                    .innerHtml(fromSafeConstant("&#42;"))
-                    .element());
+            if (disabled) {
+                labelElement.classList.add(modifier(Classes.disabled));
+            } else {
+                labelElement.classList.remove(modifier(Classes.disabled));
+            }
+        }
+        return this;
+    }
+
+    @Override
+    public Checkbox required(boolean required) {
+        inputElement.required = required;
+        if (labelElement != null) {
+            if (required) {
+                if (requiredMarker == null) {
+                    requiredMarker = span().css(component(check, label, Classes.required))
+                            .aria(hidden, true)
+                            .innerHtml(fromSafeConstant("&#42;"))
+                            .element();
+                }
+                labelElement.appendChild(requiredMarker);
+            } else {
+                failSafeRemoveFromParent(requiredMarker);
+            }
         }
         return this;
     }

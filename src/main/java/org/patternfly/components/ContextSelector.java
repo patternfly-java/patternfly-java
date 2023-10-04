@@ -24,8 +24,8 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -63,7 +63,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/contextselector">https://www.patternfly.org/v4/documentation/core/components/contextselector</a>
  */
 public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSelector<T>>
-        implements Disable<ContextSelector<T>>, HasValue<T> {
+        implements Modifiers.Disabled<ContextSelector<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -179,14 +179,8 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
     }
 
     @Override
-    public ContextSelector<T> disable() {
-        button.disabled = true;
-        return this;
-    }
-
-    @Override
-    public ContextSelector<T> enable() {
-        button.disabled = false;
+    public ContextSelector<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         return this;
     }
 

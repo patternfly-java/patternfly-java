@@ -27,7 +27,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -60,7 +60,6 @@ import static org.patternfly.core.Dataset.dropdownItem;
 import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.dropdown;
 import static org.patternfly.layout.Classes.hasPopup;
 import static org.patternfly.layout.Classes.invalid;
@@ -86,7 +85,7 @@ import static org.patternfly.layout.Icons.fas;
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDropdown<T>>
-        implements Disable<GroupedDropdown<T>> {
+        implements Modifiers.Disabled<GroupedDropdown<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -364,24 +363,16 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     }
 
     @Override
-    public GroupedDropdown<T> disable() {
-        button.disabled = true;
+    public GroupedDropdown<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         if (splitCheckbox || splitAction) {
-            toggle.classList.add(modifier(disabled));
-            if (input != null) {
-                input.disabled = true;
+            if (disabled) {
+                toggle.classList.add(modifier(Classes.disabled));
+            } else {
+                toggle.classList.remove(modifier(Classes.disabled));
             }
-        }
-        return this;
-    }
-
-    @Override
-    public GroupedDropdown<T> enable() {
-        button.disabled = false;
-        if (splitCheckbox || splitAction) {
-            toggle.classList.remove(modifier(disabled));
             if (input != null) {
-                input.disabled = false;
+                input.disabled = disabled;
             }
         }
         return this;
@@ -480,7 +471,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     // ------------------------------------------------------ inner classes
 
     public static class Group<T> extends BaseComponent<HTMLElement, Group<T>>
-            implements Disable<Group<T>> {
+            implements Modifiers.Disabled<Group<T>> {
 
         private final GroupedDropdown<T> dropdown;
         private final List<Consumer<GroupedDropdown<T>>> recorder;
@@ -589,19 +580,10 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         // ------------------------------------------------------ modifiers
 
         @Override
-        public Group<T> disable() {
+        public Group<T> disabled(boolean disabled) {
             for (HTMLElement element : Elements.findAll(menu, By.data(dropdownItem))) {
                 HTMLButtonElement button = (HTMLButtonElement) element;
-                button.disabled = true;
-            }
-            return this;
-        }
-
-        @Override
-        public Group<T> enable() {
-            for (HTMLElement element : Elements.findAll(menu, By.data(dropdownItem))) {
-                HTMLButtonElement button = (HTMLButtonElement) element;
-                button.disabled = false;
+                button.disabled = disabled;
             }
             return this;
         }

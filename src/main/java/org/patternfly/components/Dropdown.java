@@ -24,7 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -52,7 +52,6 @@ import static org.patternfly.core.Dataset.dropdownItem;
 import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
 import static org.patternfly.layout.Classes.dropdown;
 import static org.patternfly.layout.Classes.hasPopup;
 import static org.patternfly.layout.Classes.invalid;
@@ -77,7 +76,7 @@ import static org.patternfly.layout.Icons.fas;
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
-        implements Disable<Dropdown<T>> {
+        implements Modifiers.Disabled<Dropdown<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -291,24 +290,16 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
     }
 
     @Override
-    public Dropdown<T> disable() {
-        button.disabled = true;
+    public Dropdown<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         if (splitCheckbox || splitAction) {
-            toggle.classList.add(modifier(disabled));
-            if (input != null) {
-                input.disabled = true;
+            if (disabled) {
+                toggle.classList.add(modifier(Classes.disabled));
+            } else {
+                toggle.classList.remove(modifier(Classes.disabled));
             }
-        }
-        return this;
-    }
-
-    @Override
-    public Dropdown<T> enable() {
-        button.disabled = false;
-        if (splitCheckbox || splitAction) {
-            toggle.classList.remove(modifier(disabled));
             if (input != null) {
-                input.disabled = false;
+                input.disabled = disabled;
             }
         }
         return this;

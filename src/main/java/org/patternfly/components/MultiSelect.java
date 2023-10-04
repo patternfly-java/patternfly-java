@@ -23,8 +23,8 @@ import java.util.function.Function;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.core.CollapseExpand;
-import org.patternfly.core.Disable;
 import org.patternfly.core.HasValues;
+import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.layout.Classes;
@@ -64,7 +64,7 @@ import static org.patternfly.layout.Icons.caretDown;
  */
 // TODO Use static inner class Group instead of add(String group, T item)
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
-        implements Disable<MultiSelect<T>>, HasValues<T> {
+        implements Modifiers.Disabled<MultiSelect<T>>, HasValues<T> {
 
     // ------------------------------------------------------ factory methods
 
@@ -215,14 +215,8 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
     }
 
     @Override
-    public MultiSelect<T> disable() {
-        button.disabled = true;
-        return this;
-    }
-
-    @Override
-    public MultiSelect<T> enable() {
-        button.disabled = false;
+    public MultiSelect<T> disabled(boolean disabled) {
+        button.disabled = disabled;
         return this;
     }
 

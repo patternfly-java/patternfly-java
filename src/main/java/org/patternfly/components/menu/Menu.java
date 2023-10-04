@@ -35,6 +35,8 @@ import elemental2.dom.MutationRecord;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.patternfly.components.divider.Divider.divider;
+import static org.patternfly.components.divider.DividerType.hr;
 import static org.patternfly.components.menu.MenuFooter.menuFooter;
 import static org.patternfly.components.menu.MenuHeader.menuHeader;
 import static org.patternfly.core.SelectionMode.none;
@@ -83,6 +85,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     private MultiSelectHandler<MenuItem> multiSelectHandler;
     private MenuActionHandler actionHandler;
     private MenuContent content;
+    private MenuSearchInput searchInput;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(div().css(component(menu)).element(), ComponentType.Menu);
@@ -100,6 +103,9 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     public void attach(MutationRecord mutationRecord) {
         if (content != null) {
             content.passMenu(this);
+        }
+        if (searchInput != null) {
+            searchInput.passMenu(this);
         }
     }
 
@@ -120,6 +126,13 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return add(content);
     }
 
+    // override to assure internal wiring
+    public Menu add(MenuContent content) {
+        this.content = content;
+        add(content.element());
+        return this;
+    }
+
     /**
      * Shortcut for {@code addFooter(menuFooter(text))}
      */
@@ -131,11 +144,27 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return add(footer);
     }
 
-    // override to assure internal wiring
-    public Menu add(MenuContent content) {
-        this.content = content;
-        add(content.element());
+    public Menu addSearchInput(MenuSearchInput searchInput) {
+        return addSearchInput(searchInput, false);
+    }
+
+    public Menu addSearchInput(MenuSearchInput searchInput, boolean noSeparator) {
+        add(searchInput);
+        if (!noSeparator) {
+            addDivider();
+        }
         return this;
+    }
+
+    // override to assure internal wiring
+    public Menu add(MenuSearchInput searchInput) {
+        this.searchInput = searchInput;
+        add(searchInput.element());
+        return this;
+    }
+
+    public Menu addDivider() {
+        return add(divider(hr));
     }
 
     // ------------------------------------------------------ events
@@ -277,12 +306,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     void handleItemAction(MenuItemAction itemAction) {
-        if (actionHandler != null && itemAction.menuItem != null) {
-            actionHandler.onAction(itemAction.id, itemAction.menuItem);
+        if (actionHandler != null && itemAction != null && itemAction.menuItem != null) {
+            actionHandler.onAction(itemAction.menuItem, itemAction);
         }
     }
 
-    // is called by regular menu items
+    // called by regular menu items
     void toggleFavorite(MenuItem item) {
         if (content != null && item.favoriteItemAction != null) {
             item.favoriteItemAction.element().classList.toggle(modifier(favorited));
@@ -299,7 +328,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         }
     }
 
-    // is called by cloned favorite items
+    // called by cloned favorite items
     void removeFavorite(MenuItem favoriteItem) {
         if (content != null && favoriteItem.sourceItem != null && favoriteItem.sourceItem.favoriteItemAction != null) {
             content.removeFromFavorites(favoriteItem);

@@ -105,6 +105,8 @@ public enum ComponentType {
 
     TextContent("tc", null),
 
+    TextInput("ti", "PF5/TextInput"),
+
     Title("tlt", "PF5/Title"),
 
     ToggleGroup("tg", null),

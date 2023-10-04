@@ -21,6 +21,7 @@ public interface Aria<T> {
     String disabled = "aria-disabled";
     String expanded = "aria-expanded";
     String hidden = "aria-hidden";
+    String invalid = "aria-invalid";
     String label = "aria-label";
     String labelledBy = "aria-labelledby";
     String multiSelectable = "aria-multiselectable";

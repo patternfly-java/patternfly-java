@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.patternfly.components.SubComponent;
+import org.patternfly.components.divider.Divider;
 import org.patternfly.core.Aria;
 
 import elemental2.dom.HTMLDivElement;
@@ -49,6 +50,7 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
     final List<MenuGroup> groups;
     private MenuGroup favoritesGroup;
     private MenuList favoritesList;
+    private Divider favoritesDivider;
 
     MenuContent() {
         super(div().css(component(menu, content)).element());
@@ -60,6 +62,7 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
         if (menu.favorites) {
             favoritesGroup = menuGroup("Favorites")
                     .addList(favoritesList = menuList());
+            favoritesDivider = divider(hr);
             showFavorites(false);
 
             if (groups.isEmpty()) {
@@ -67,10 +70,12 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
                 failSafeRemoveFromParent(list);
                 MenuGroup listGroup = menuGroup().addList(list);
                 addGroup(favoritesGroup);
+                add(favoritesDivider);
                 addGroup(listGroup);
                 list = null;
             } else {
                 groups.add(0, favoritesGroup);
+                insertFirst(element(), favoritesDivider);
                 insertFirst(element(), favoritesGroup);
             }
 
@@ -136,6 +141,11 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
     }
 
     void showFavorites(boolean visible) {
+        if (favoritesDivider != null) {
+            setVisible(favoritesDivider, visible);
+            favoritesDivider.element().hidden = !visible;
+            favoritesDivider.element().setAttribute(Aria.hidden, !visible);
+        }
         if (favoritesGroup != null) {
             setVisible(favoritesGroup, visible);
             favoritesGroup.element().hidden = !visible;

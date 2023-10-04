@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Callback;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.dataprovider.PageInfo;
 import org.patternfly.layout.Icons;
 
@@ -58,7 +58,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
-        implements Disable<Pagination> {
+        implements Modifiers.Disabled<Pagination> {
 
     // ------------------------------------------------------ factory methods
 
@@ -149,24 +149,13 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
     // ------------------------------------------------------ public API
 
     @Override
-    public Pagination disable() {
-        pageSizeMenu.disable();
-        firstPageButton.disable();
-        previousPageButton.disable();
-        gotoPageInput.disabled = true;
-        nextPageButton.disable();
-        lastPageButton.disable();
-        return this;
-    }
-
-    @Override
-    public Pagination enable() {
-        pageSizeMenu.enable();
-        firstPageButton.enable();
-        previousPageButton.enable();
-        gotoPageInput.disabled = false;
-        nextPageButton.enable();
-        lastPageButton.enable();
+    public Pagination disabled(boolean disabled) {
+        pageSizeMenu.disabled(disabled);
+        firstPageButton.disabled(disabled);
+        previousPageButton.disabled(disabled);
+        gotoPageInput.disabled = disabled;
+        nextPageButton.disabled(disabled);
+        lastPageButton.disabled(disabled);
         return this;
     }
 
@@ -229,19 +218,9 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         gotoPageInput.disabled = pageInfo.getPages() < 2;
         pagesElement.textContent = "of " + pageInfo.getPages();
 
-        if (pageInfo.getPage() == 0) {
-            firstPageButton.disable();
-            previousPageButton.disable();
-        } else {
-            firstPageButton.enable();
-            previousPageButton.enable();
-        }
-        if (pageInfo.getPage() == pageInfo.getPages() - 1) {
-            nextPageButton.disable();
-            lastPageButton.disable();
-        } else {
-            nextPageButton.enable();
-            lastPageButton.enable();
-        }
+        firstPageButton.disabled(pageInfo.getPage() == 0);
+        previousPageButton.disabled(pageInfo.getPage() == 0);
+        nextPageButton.disabled(pageInfo.getPage() == pageInfo.getPages() - 1);
+        lastPageButton.disabled(pageInfo.getPage() == pageInfo.getPages() - 1);
     }
 }

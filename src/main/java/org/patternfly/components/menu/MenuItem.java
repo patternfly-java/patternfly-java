@@ -23,7 +23,7 @@ import org.patternfly.components.SubComponent;
 import org.patternfly.components.divider.MenuItemType;
 import org.patternfly.components.form.Checkbox;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Disable;
+import org.patternfly.core.Modifiers;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.Icons;
 
@@ -72,7 +72,7 @@ import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.Icons.externalLinkAlt;
 import static org.patternfly.layout.Icons.fas;
 
-public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Disable<MenuItem>, MenuHolder {
+public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Modifiers.Disabled<MenuItem>, MenuHolder {
 
     // ------------------------------------------------------ factory methods
 
@@ -338,46 +338,6 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
         return this;
     }
 
-    @Override
-    public MenuItem enable() {
-        element().classList.remove(modifier(disabled));
-        switch (itemType) {
-            case action:
-                ((HTMLButtonElement) itemElement).disabled = false;
-                break;
-            case link:
-                itemElement.removeAttribute(Aria.disabled);
-                break;
-            case checkbox:
-                checkboxComponent.enable();
-                break;
-        }
-        if (itemAction != null) {
-            itemAction.element().disabled = false;
-        }
-        return this;
-    }
-
-    @Override
-    public MenuItem disable() {
-        element().classList.add(modifier(disabled));
-        switch (itemType) {
-            case action:
-                ((HTMLButtonElement) itemElement).disabled = true;
-                break;
-            case link:
-                itemElement.setAttribute(Aria.disabled, true);
-                break;
-            case checkbox:
-                checkboxComponent.disable();
-                break;
-        }
-        if (itemAction != null) {
-            itemAction.element().disabled = true;
-        }
-        return this;
-    }
-
     // ------------------------------------------------------ modifiers
 
     public MenuItem danger() {
@@ -386,6 +346,30 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
 
     public MenuItem selected() {
         initialSelection = true;
+        return this;
+    }
+
+    @Override
+    public MenuItem disabled(boolean disabled) {
+        if (disabled) {
+            element().classList.add(modifier(Classes.disabled));
+        } else {
+            element().classList.remove(modifier(Classes.disabled));
+        }
+        switch (itemType) {
+            case action:
+                ((HTMLButtonElement) itemElement).disabled = disabled;
+                break;
+            case link:
+                itemElement.setAttribute(Aria.disabled, disabled);
+                break;
+            case checkbox:
+                checkboxComponent.disabled(disabled);
+                break;
+        }
+        if (itemAction != null) {
+            itemAction.element().disabled = disabled;
+        }
         return this;
     }
 
@@ -407,7 +391,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Dis
 
     void markSelected(boolean selected) {
         if (itemType == checkbox) {
-            checkboxComponent.check(selected);
+            checkboxComponent.checked(selected);
         } else {
             if (selectIcon == null) {
                 selectIcon = span().css(component(menu, item, select, icon))
