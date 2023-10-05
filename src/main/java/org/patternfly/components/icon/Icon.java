@@ -39,8 +39,8 @@ import static org.patternfly.layout.Classes.progress;
 import static org.patternfly.layout.Classes.spinner;
 
 /**
- * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly
- * replace each other without shifting surrounding content.
+ * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
+ * other without shifting surrounding content.
  * <p>
  * {@snippet class = IconDemo region = icon}
  *
@@ -52,8 +52,8 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     /**
      * Factory method to create a new instance of this component. Use the constants defined in
-     * {@link org.patternfly.layout.Icons} together with {@link org.patternfly.layout.Icons#fas(String)} to specify the
-     * icon class.
+     * {@link org.patternfly.layout.Icons} together with {@link org.patternfly.layout.Icons#fas(String)} to specify the icon
+     * class.
      */
     public static Icon icon(String iconClass) {
         return new Icon(iconClass);
@@ -66,10 +66,10 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     Icon(String iconClass) {
         super(span().css(component(icon))
-                        .add(span().css(component(icon, Classes.content))
-                                .add(i().css(iconClass)
-                                        .aria(hidden, true)))
-                        .element(),
+                .add(span().css(component(icon, Classes.content))
+                        .add(i().css(iconClass)
+                                .aria(hidden, true)))
+                .element(),
                 ComponentType.Icon);
         this.content = find(By.classname(component(icon, Classes.content)));
     }
@@ -97,7 +97,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
      * Modifies the size of the icon.
      *
      * @see <a href=
-     * "https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container">https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container</a>
+     *      "https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container">https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container</a>
      */
     public Icon iconSize(Size size) {
         return css(size.modifier);
