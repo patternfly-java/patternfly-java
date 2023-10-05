@@ -36,7 +36,7 @@ import static org.patternfly.layout.Classes.sidebar;
  * available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageSidebarBody extends SubComponent<HTMLDivElement, PageSidebarBody>
         implements Fill<HTMLDivElement, PageSidebarBody>, NoFill<HTMLDivElement, PageSidebarBody> {

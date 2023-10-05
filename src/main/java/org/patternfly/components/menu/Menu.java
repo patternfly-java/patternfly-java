@@ -53,10 +53,9 @@ import static org.patternfly.layout.Classes.scrollable;
 import static org.patternfly.layout.Classes.select;
 
 /**
- * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever
- * the user needs to choose between multiple values, options, or actions. A menu is most often paired with a
- * {@link MenuToggle} as its trigger, but can also be used inline or can be attached to other interactable elements to
- * toggle it open and close.
+ * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user
+ * needs to choose between multiple values, options, or actions. A menu is most often paired with a {@link MenuToggle} as its
+ * trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close.
  * <p>
  * {@snippet class = MenuDemo region = menu}
  *

@@ -26,7 +26,8 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.title;
 
 /**
- * A title component applies top and bottom margins, font-weight, font-size, and line-height to titles. The most common usage for a title is to define headings within a page.
+ * A title component applies top and bottom margins, font-weight, font-size, and line-height to titles. The most common usage
+ * for a title is to define headings within a page.
  *
  * @see <a href= "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
  */

@@ -72,7 +72,7 @@ import static org.patternfly.layout.Icons.fas;
  * PatternFly dropdown component.
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>

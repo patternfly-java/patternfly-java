@@ -97,8 +97,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     }
 
     /**
-     * Create a new menu item with the specified type. Use this method, if you want full control over the text and
-     * type.
+     * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
      */
     public static MenuItem menuItem(String id, MenuItemType type) {
         return new MenuItem(id, null, MenuItemType.action);

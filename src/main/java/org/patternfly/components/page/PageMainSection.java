@@ -33,12 +33,11 @@ import static org.patternfly.layout.Classes.page;
 import static org.patternfly.layout.Classes.section;
 
 /**
- * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only
- * section will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and
- * {@link #noFill()}.
+ * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
+ * will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> implements
         Fill<HTMLElement, PageMainSection>, NoFill<HTMLElement, PageMainSection> {
@@ -64,8 +63,8 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
     // ------------------------------------------------------ modifiers
 
     /**
-     * Modifies a page section body to align center. Please make sure to use this together with the
-     * {@link #limitWidth()} modifier.
+     * Modifies a page section body to align center. Please make sure to use this together with the {@link #limitWidth()}
+     * modifier.
      */
     public PageMainSection center() {
         return css(modifier(center));

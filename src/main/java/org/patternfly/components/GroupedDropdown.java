@@ -26,7 +26,6 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.Aria;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
@@ -82,7 +81,7 @@ import static org.patternfly.layout.Icons.fas;
  * PatternFly dropdown component.
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDropdown<T>>
@@ -511,7 +510,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
         private void playback(GroupedDropdown<T> dropdown) {
             if (recorder != null) {
-                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext(); ) {
+                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext();) {
                     Consumer<GroupedDropdown<T>> consumer = iterator.next();
                     consumer.accept(dropdown);
                     iterator.remove();

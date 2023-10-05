@@ -28,12 +28,11 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.textInputGroup;
 
 /**
- * A text input group is a more flexible composable version of a text input. It enables consumers of PatternFly to build
- * custom inputs for filtering and similar use cases by placing elements like icons, chips groups and buttons within a
- * text input.
+ * A text input group is a more flexible composable version of a text input. It enables consumers of PatternFly to build custom
+ * inputs for filtering and similar use cases by placing elements like icons, chips groups and buttons within a text input.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
+ *      "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
  */
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Attachable, Disabled<HTMLDivElement, TextInputGroup> {

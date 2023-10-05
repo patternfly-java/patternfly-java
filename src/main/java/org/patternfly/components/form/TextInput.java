@@ -54,7 +54,7 @@ import static org.patternfly.layout.Icons.fas;
  * A text input is used to gather free-form text from a user.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/forms/text-input">https://www.patternfly.org/components/forms/text-input</a>
+ *      "https://www.patternfly.org/components/forms/text-input">https://www.patternfly.org/components/forms/text-input</a>
  */
 public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         HasValue<String>,
@@ -79,11 +79,11 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
 
     TextInput(String id) {
         super(span().css(component(formControl))
-                        .add(input(text)
-                                .id(id)
-                                .name(id)
-                                .aria(invalid, false))
-                        .element(),
+                .add(input(text)
+                        .id(id)
+                        .name(id)
+                        .aria(invalid, false))
+                .element(),
                 ComponentType.TextInput);
         inputElement = (HTMLInputElement) element().firstElementChild;
     }

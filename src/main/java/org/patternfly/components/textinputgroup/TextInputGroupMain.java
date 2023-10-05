@@ -63,8 +63,7 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
                 .add(span().css(component(textInputGroup, Classes.text))
                         .add(input(InputType.text).css(component(textInputGroup, textInput))
                                 .id(id)
-                                .name(id)
-                        ))
+                                .name(id)))
                 .element());
         inputContainer = find(By.classname(component(textInputGroup, Classes.text)));
         inputElement = find(By.classname(component(textInputGroup, textInput)));
