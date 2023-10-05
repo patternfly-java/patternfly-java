@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.0.1] - 2023-10-05
+
 🍾🎉🎊🥳 This is the first public release of PatternFly Java. 
 
 Stay tuned for more to come...
@@ -41,3 +43,5 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/patternfly-java/patternfly-java/compare/vTemplate...v0.0.1
