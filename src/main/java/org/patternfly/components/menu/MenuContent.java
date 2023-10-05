@@ -80,7 +80,7 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
             }
 
             for (MenuItem item : menu.items()) {
-                item.addFavoriteItemAction().onClick(e -> menu.toggleFavorite(item));
+                item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item));
             }
         }
         for (MenuGroup group : groups) {

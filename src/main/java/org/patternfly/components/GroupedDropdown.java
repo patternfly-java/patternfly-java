@@ -26,6 +26,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.core.Aria;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Modifiers;
 import org.patternfly.core.OldItemDisplay;
@@ -55,6 +56,7 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.core.Dataset.dropdownGroup;
 import static org.patternfly.core.Dataset.dropdownItem;
 import static org.patternfly.layout.Classes.alignRight;
@@ -62,7 +64,6 @@ import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.dropdown;
 import static org.patternfly.layout.Classes.hasPopup;
-import static org.patternfly.layout.Classes.invalid;
 import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.menuitem;
 import static org.patternfly.layout.Classes.modifier;
@@ -81,11 +82,11 @@ import static org.patternfly.layout.Icons.fas;
  * PatternFly dropdown component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDropdown<T>>
-        implements Modifiers.Disabled<GroupedDropdown<T>> {
+        implements Modifiers.Disabled<HTMLDivElement, GroupedDropdown<T>> {
 
     // ------------------------------------------------------ factory methods
 
@@ -160,11 +161,15 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
                     .add(label().css(component(dropdown, Classes.toggle, check)).apply(l -> l.htmlFor = inputId)
                             .add(div().css(component(check))
                                     .add(input = input(checkbox).css(component(check, Classes.input))
-                                            .id(inputId).aria(invalid, false).aria("label", "Select").on(change, e -> {
+                                            .id(inputId)
+                                            .aria(invalid, false)
+                                            .aria("label", "Select")
+                                            .on(change, e -> {
                                                 if (onChange != null) {
                                                     onChange.accept(((HTMLInputElement) e.target).checked);
                                                 }
-                                            }).element())))
+                                            })
+                                            .element())))
                     .add(button = buttonBuilder.css(component(dropdown, Classes.toggle, Classes.button))
                             .aria("label", "Select").add(i().css(fas(caretDown)).aria("hidden", true)).element())
                     .element();
@@ -471,7 +476,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
     // ------------------------------------------------------ inner classes
 
     public static class Group<T> extends BaseComponent<HTMLElement, Group<T>>
-            implements Modifiers.Disabled<Group<T>> {
+            implements Modifiers.Disabled<HTMLElement, Group<T>> {
 
         private final GroupedDropdown<T> dropdown;
         private final List<Consumer<GroupedDropdown<T>>> recorder;
@@ -506,7 +511,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
 
         private void playback(GroupedDropdown<T> dropdown) {
             if (recorder != null) {
-                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext();) {
+                for (Iterator<Consumer<GroupedDropdown<T>>> iterator = recorder.iterator(); iterator.hasNext(); ) {
                     Consumer<GroupedDropdown<T>> consumer = iterator.next();
                     consumer.accept(dropdown);
                     iterator.remove();

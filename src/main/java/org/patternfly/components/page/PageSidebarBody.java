@@ -17,16 +17,16 @@ package org.patternfly.components.page;
 
 import org.patternfly.components.SubComponent;
 import org.patternfly.components.navigation.Navigation;
+import org.patternfly.core.Modifiers.Fill;
+import org.patternfly.core.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.body;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.fill;
 import static org.patternfly.layout.Classes.insetNone;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.noFill;
 import static org.patternfly.layout.Classes.page;
 import static org.patternfly.layout.Classes.pageInsets;
 import static org.patternfly.layout.Classes.sidebar;
@@ -36,9 +36,10 @@ import static org.patternfly.layout.Classes.sidebar;
  * available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageSidebarBody extends SubComponent<HTMLDivElement, PageSidebarBody> {
+public class PageSidebarBody extends SubComponent<HTMLDivElement, PageSidebarBody>
+        implements Fill<HTMLDivElement, PageSidebarBody>, NoFill<HTMLDivElement, PageSidebarBody> {
 
     // ------------------------------------------------------ factory methods
 
@@ -71,20 +72,6 @@ public class PageSidebarBody extends SubComponent<HTMLDivElement, PageSidebarBod
     }
 
     // ------------------------------------------------------ modifiers
-
-    /**
-     * Modifies the element to grow to fill the available space.
-     */
-    public PageSidebarBody fill() {
-        return css(modifier(fill));
-    }
-
-    /**
-     * Modifies the element to not grow to fill the available vertical space.
-     */
-    public PageSidebarBody noFill() {
-        return css(modifier(noFill));
-    }
 
     /**
      * Modifies the padding/inset to visually match padding of page elements.

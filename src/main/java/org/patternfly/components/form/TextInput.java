@@ -15,11 +15,19 @@
  */
 package org.patternfly.components.form;
 
+import java.util.function.Consumer;
+
+import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ChangeHandler;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers;
+import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.core.Modifiers.Invalid;
+import org.patternfly.core.Modifiers.Plain;
+import org.patternfly.core.Modifiers.Readonly;
+import org.patternfly.core.Modifiers.Required;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -29,11 +37,12 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.wrapInputElement;
+import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.InputType.text;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.error;
 import static org.patternfly.layout.Classes.formControl;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.status;
@@ -45,15 +54,15 @@ import static org.patternfly.layout.Icons.fas;
  * A text input is used to gather free-form text from a user.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/forms/text-input">https://www.patternfly.org/components/forms/text-input</a>
+ * "https://www.patternfly.org/components/forms/text-input">https://www.patternfly.org/components/forms/text-input</a>
  */
 public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         HasValue<String>,
-        Modifiers.Disabled<TextInput>,
-        Modifiers.Invalid<TextInput>,
-        Modifiers.Plain<TextInput>,
-        Modifiers.Readonly<TextInput>,
-        Modifiers.Required<TextInput> {
+        Disabled<HTMLElement, TextInput>,
+        Invalid<HTMLElement, TextInput>,
+        Plain<HTMLElement, TextInput>,
+        Readonly<HTMLElement, TextInput>,
+        Required<HTMLElement, TextInput> {
 
     // ------------------------------------------------------ factory methods
 
@@ -70,27 +79,17 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
 
     TextInput(String id) {
         super(span().css(component(formControl))
-                .add(input(text)
-                        .id(id)
-                        .name(id)
-                        .aria(invalid, false))
-                .element(),
+                        .add(input(text)
+                                .id(id)
+                                .name(id)
+                                .aria(invalid, false))
+                        .element(),
                 ComponentType.TextInput);
-
         inputElement = (HTMLInputElement) element().firstElementChild;
     }
 
     @Override
     public TextInput that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
-
-    public TextInput addIcon(String icon) {
-        failSafeIconContainer().appendChild(span().css(component(formControl, Classes.icon))
-                .add(i().css(icon).aria(hidden, true))
-                .element());
         return this;
     }
 
@@ -106,28 +105,48 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         return this;
     }
 
+    public TextInput placeholder(String placeholder) {
+        inputElement.placeholder = placeholder;
+        return this;
+    }
+
+    public TextInput onChange(ChangeHandler<String> handler) {
+        inputElement.addEventListener(change.getName(), e -> handler.onChange(inputElement.value));
+        return this;
+    }
+
+    /** Provides access to the underlying input element using a fluent API style */
+    public TextInput consumeInputElement(Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
+        inputElementConsumer.accept(inputElement());
+        return this;
+    }
+
+    /** Returns the underlying input element */
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        return wrapInputElement(inputElement);
+    }
+
+    // ------------------------------------------------------ add methods
+
+    public TextInput addIcon(String icon) {
+        failSafeIconContainer().appendChild(span().css(component(formControl, Classes.icon))
+                .add(i().css(icon).aria(hidden, true))
+                .element());
+        return this;
+    }
+
     // ------------------------------------------------------ modifiers
 
     @Override
     public TextInput disabled(boolean disabled) {
         inputElement.disabled = disabled;
-        if (disabled) {
-            element().classList.add(modifier(Classes.disabled));
-        } else {
-            element().classList.remove(modifier(Classes.disabled));
-        }
-        return this;
+        return Disabled.super.disabled(disabled);
     }
 
     @Override
     public TextInput readonly(boolean readonly) {
-        if (readonly) {
-            element().classList.add(modifier(Classes.readonly));
-        } else {
-            element().classList.remove(modifier(Classes.readonly));
-        }
         inputElement.readOnly = readonly;
-        return this;
+        return Readonly.super.readonly(readonly);
     }
 
     @Override
@@ -135,24 +154,19 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         if (plain) {
             // plain requires readonly
             readonly();
-            element().classList.add(modifier(Classes.plain));
-        } else {
-            element().classList.remove(modifier(Classes.plain));
         }
-        return this;
+        return Plain.super.plain(plain);
     }
 
     @Override
     public TextInput invalid(boolean invalid) {
         if (invalid) {
-            element().classList.add(modifier(error));
             failSafeIconContainer().appendChild(failSafeInvalidIcon());
         } else {
-            element().classList.remove(modifier(error));
             failSafeRemoveFromParent(failSafeInvalidIcon());
         }
         inputElement.setAttribute(Aria.invalid, !invalid);
-        return this;
+        return Invalid.super.invalid(invalid);
     }
 
     @Override

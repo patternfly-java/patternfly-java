@@ -49,7 +49,7 @@ import static org.patternfly.layout.Classes.tertiary;
  *      "https://www.patternfly.org/v4/documentation/core/components/button">https://www.patternfly.org/v4/documentation/core/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
-        implements Aria<Button>, Modifiers.Disabled<Button> {
+        implements Aria<Button>, Modifiers.Disabled<HTMLElement, Button> {
 
     // ------------------------------------------------------ factory methods
 
@@ -178,23 +178,6 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    @Override
-    public Button disabled(boolean disabled) {
-        if (button != null) {
-            button.disabled = disabled;
-        } else if (a != null) {
-            if (disabled) {
-                a.classList.add(modifier(Classes.disabled));
-                a.setAttribute("tabindex", -1);
-            } else {
-                a.classList.remove(modifier(Classes.disabled));
-                a.removeAttribute("tabindex");
-            }
-        }
-        aria(Aria.disabled, disabled);
-        return this;
-    }
-
     // ------------------------------------------------------ modifiers
 
     public Button active() {
@@ -241,6 +224,23 @@ public class Button extends BaseComponent<HTMLElement, Button>
         if (button != null) {
             button.type = type.attributeValue;
         }
+        return this;
+    }
+
+    @Override
+    public Button disabled(boolean disabled) {
+        if (button != null) {
+            button.disabled = disabled;
+        } else if (a != null) {
+            if (disabled) {
+                a.classList.add(modifier(Classes.disabled));
+                a.setAttribute("tabindex", -1);
+            } else {
+                a.classList.remove(modifier(Classes.disabled));
+                a.removeAttribute("tabindex");
+            }
+        }
+        aria(Aria.disabled, disabled);
         return this;
     }
 

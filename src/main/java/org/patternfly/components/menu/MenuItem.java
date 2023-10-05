@@ -16,21 +16,19 @@
 package org.patternfly.components.menu;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.EventCallbackFn;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.components.SubComponent;
 import org.patternfly.components.divider.MenuItemType;
 import org.patternfly.components.form.Checkbox;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Modifiers;
+import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.Icons;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MouseEvent;
 import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.console;
@@ -72,7 +70,8 @@ import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.Icons.externalLinkAlt;
 import static org.patternfly.layout.Icons.fas;
 
-public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Modifiers.Disabled<MenuItem>, MenuHolder {
+public class MenuItem extends SubComponent<HTMLElement, MenuItem>
+        implements Disabled<HTMLElement, MenuItem>, MenuHolder {
 
     // ------------------------------------------------------ factory methods
 
@@ -98,7 +97,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
     }
 
     /**
-     * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
+     * Create a new menu item with the specified type. Use this method, if you want full control over the text and
+     * type.
      */
     public static MenuItem menuItem(String id, MenuItemType type) {
         return new MenuItem(id, null, MenuItemType.action);
@@ -120,7 +120,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
     private HTMLElement iconElement;
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
-    private EventCallbackFn<MouseEvent> onClick;
+    private MenuItemClickHandler onClick;
 
     MenuItem(String id, String text, MenuItemType itemType) {
         super(li().css(component(menu, list, item))
@@ -332,9 +332,9 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
         return this;
     }
 
-    public MenuItem onClick(EventCallbackFn<MouseEvent> onClick) {
+    public MenuItem onClick(MenuItemClickHandler onClick) {
         this.onClick = onClick;
-        itemElement.addEventListener(click.getName(), e -> onClick.onEvent(Js.cast(e)));
+        itemElement.addEventListener(click.getName(), e -> onClick.onClick(Js.cast(e), this));
         return this;
     }
 
@@ -351,11 +351,6 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
 
     @Override
     public MenuItem disabled(boolean disabled) {
-        if (disabled) {
-            element().classList.add(modifier(Classes.disabled));
-        } else {
-            element().classList.remove(modifier(Classes.disabled));
-        }
         switch (itemType) {
             case action:
                 ((HTMLButtonElement) itemElement).disabled = disabled;
@@ -370,7 +365,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
         if (itemAction != null) {
             itemAction.element().disabled = disabled;
         }
-        return this;
+        return Disabled.super.disabled(disabled);
     }
 
     // ------------------------------------------------------ internals
@@ -391,7 +386,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
 
     void markSelected(boolean selected) {
         if (itemType == checkbox) {
-            checkboxComponent.checked(selected);
+            checkboxComponent.value(selected);
         } else {
             if (selectIcon == null) {
                 selectIcon = span().css(component(menu, item, select, icon))
@@ -411,7 +406,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements Mod
 
     boolean isSelected() {
         if (itemType == checkbox) {
-            return checkboxComponent.checked();
+            return checkboxComponent.value();
         } else {
             return Boolean.parseBoolean(itemElement.getAttribute(Aria.selected));
         }

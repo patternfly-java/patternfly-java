@@ -101,7 +101,6 @@ public interface Classes {
     String inputGroup = "input-group";
     String inset = "inset";
     String insetNone = "inset-none";
-    String invalid = "invalid";
     String item = "item";
     String itemAction = "item-action";
     String itemContent = "item-content";
@@ -179,6 +178,8 @@ public interface Classes {
     String tailBall = "tail-ball";
     String tertiary = "tertiary";
     String text = "text";
+    String textInput = "text-input";
+    String textInputGroup = "text-input-group";
     String textLeftAligned = "textLeftAligned";
     String title = "title";
     String toast = "toast";

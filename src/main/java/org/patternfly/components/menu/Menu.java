@@ -23,6 +23,7 @@ import org.jboss.elemento.By;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.MultiSelectHandler;
 import org.patternfly.core.SelectHandler;
 import org.patternfly.core.SelectionMode;
@@ -48,20 +49,21 @@ import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.plain;
 import static org.patternfly.layout.Classes.scrollable;
 import static org.patternfly.layout.Classes.select;
 
 /**
- * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user
- * needs to choose between multiple values, options, or actions. A menu is most often paired with a {@link MenuToggle} as its
- * trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close.
+ * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever
+ * the user needs to choose between multiple values, options, or actions. A menu is most often paired with a
+ * {@link MenuToggle} as its trigger, but can also be used inline or can be attached to other interactable elements to
+ * toggle it open and close.
  * <p>
  * {@snippet class = MenuDemo region = menu}
  *
  * @see <a href="https://www.patternfly.org/components/menu/html">https://www.patternfly.org/components/menu/html</a>
  */
-public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attachable {
+public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attachable,
+        Plain<HTMLDivElement, Menu> {
 
     // ------------------------------------------------------ factory methods
 
@@ -95,11 +97,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     @Override
-    public Menu that() {
-        return this;
-    }
-
-    @Override
     public void attach(MutationRecord mutationRecord) {
         if (content != null) {
             content.passMenu(this);
@@ -107,6 +104,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         if (searchInput != null) {
             searchInput.passMenu(this);
         }
+    }
+
+    @Override
+    public Menu that() {
+        return this;
     }
 
     // ------------------------------------------------------ add methods
@@ -253,10 +255,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return css(modifier(flyout));
     }
 
-    public Menu plain() {
-        return css(modifier(plain));
-    }
-
     public Menu scrollable() {
         return css(modifier(scrollable));
     }
@@ -306,8 +304,8 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     void handleItemAction(MenuItemAction itemAction) {
-        if (actionHandler != null && itemAction != null && itemAction.menuItem != null) {
-            actionHandler.onAction(itemAction.menuItem, itemAction);
+        if (actionHandler != null && itemAction != null) {
+            actionHandler.onAction(itemAction);
         }
     }
 

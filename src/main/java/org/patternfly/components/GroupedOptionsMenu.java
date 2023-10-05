@@ -68,7 +68,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOptionsMenu>
-        implements Modifiers.Disabled<GroupedOptionsMenu> {
+        implements Modifiers.Disabled<HTMLDivElement, GroupedOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 

@@ -63,7 +63,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/contextselector">https://www.patternfly.org/v4/documentation/core/components/contextselector</a>
  */
 public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSelector<T>>
-        implements Modifiers.Disabled<ContextSelector<T>>, HasValue<T> {
+        implements Modifiers.Disabled<HTMLDivElement, ContextSelector<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 

@@ -69,7 +69,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptionsMenu>
-        implements Modifiers.Disabled<MultiOptionsMenu> {
+        implements Modifiers.Disabled<HTMLDivElement, MultiOptionsMenu> {
 
     // ------------------------------------------------------ factory methods
 

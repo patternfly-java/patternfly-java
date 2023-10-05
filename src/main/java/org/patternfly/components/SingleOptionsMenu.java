@@ -65,7 +65,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/optionsmenu">https://www.patternfly.org/v4/documentation/core/components/optionsmenu</a>
  */
 public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOptionsMenu<T>>
-        implements HasValue<T>, Modifiers.Disabled<SingleOptionsMenu<T>> {
+        implements HasValue<T>, Modifiers.Disabled<HTMLDivElement, SingleOptionsMenu<T>> {
 
     // ------------------------------------------------------ factory methods
 

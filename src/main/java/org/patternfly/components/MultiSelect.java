@@ -64,7 +64,7 @@ import static org.patternfly.layout.Icons.caretDown;
  */
 // TODO Use static inner class Group instead of add(String group, T item)
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
-        implements Modifiers.Disabled<MultiSelect<T>>, HasValues<T> {
+        implements Modifiers.Disabled<HTMLDivElement, MultiSelect<T>>, HasValues<T> {
 
     // ------------------------------------------------------ factory methods
 

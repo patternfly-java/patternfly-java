@@ -15,55 +15,139 @@
  */
 package org.patternfly.core;
 
+import org.jboss.elemento.IsElement;
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.layout.Classes;
+
+import elemental2.dom.Element;
+
+import static org.patternfly.layout.Classes.modifier;
+
 public interface Modifiers {
 
-    interface Disabled<T> {
+    interface Disabled<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #disabled(boolean) disabled(true)} */
-        default T disabled() {
+        default B disabled() {
             return disabled(true);
         }
 
-        T disabled(boolean disabled);
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(disabled)} */
+        default B disabled(boolean disabled) {
+            if (disabled) {
+                element().classList.add(modifier(Classes.disabled));
+            } else {
+                element().classList.remove(modifier(Classes.disabled));
+            }
+            return that();
+        }
     }
 
-    interface Invalid<T> {
+    interface Fill<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #fill(boolean) fill(true)} */
+        default B fill() {
+            return fill(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(fill)} */
+        default B fill(boolean fill) {
+            if (fill) {
+                element().classList.add(modifier(Classes.fill));
+            } else {
+                element().classList.remove(modifier(Classes.fill));
+            }
+            return that();
+        }
+    }
+
+    interface Invalid<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #invalid(boolean) invalid(true)} */
-        default T invalid() {
+        default B invalid() {
             return invalid(true);
         }
 
-        T invalid(boolean disabled);
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(error)} */
+        default B invalid(boolean invalid) {
+            if (invalid) {
+                element().classList.add(modifier(Classes.error));
+            } else {
+                element().classList.remove(modifier(Classes.error));
+            }
+            return that();
+        }
     }
 
-    interface Plain<T> {
+    interface NoFill<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #noFill(boolean) noFill(true)} */
+        default B noFill() {
+            return noFill(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(noFill)} */
+        default B noFill(boolean noFill) {
+            if (noFill) {
+                element().classList.add(modifier(Classes.noFill));
+            } else {
+                element().classList.remove(modifier(Classes.noFill));
+            }
+            return that();
+        }
+    }
+
+    interface Plain<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #plain(boolean) plain(true)} */
-        default T plain() {
+        default B plain() {
             return plain(true);
         }
 
-        T plain(boolean disabled);
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(plain)} */
+        default B plain(boolean plain) {
+            if (plain) {
+                element().classList.add(modifier(Classes.plain));
+            } else {
+                element().classList.remove(modifier(Classes.plain));
+            }
+            return that();
+        }
     }
 
-    interface Readonly<T> {
+    interface Readonly<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #readonly(boolean) readonly(true)} */
-        default T readonly() {
+        default B readonly() {
             return readonly(true);
         }
 
-        T readonly(boolean disabled);
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(readonly)} */
+        default B readonly(boolean readonly) {
+            if (readonly) {
+                element().classList.add(modifier(Classes.readonly));
+            } else {
+                element().classList.remove(modifier(Classes.readonly));
+            }
+            return that();
+        }
     }
 
-    interface Required<T> {
+    interface Required<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #required(boolean) required(true)} */
-        default T required() {
+        default B required() {
             return required(true);
         }
 
-        T required(boolean disabled);
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(required)} */
+        default B required(boolean required) {
+            if (required) {
+                element().classList.add(modifier(Classes.required));
+            } else {
+                element().classList.remove(modifier(Classes.required));
+            }
+            return that();
+        }
     }
 }

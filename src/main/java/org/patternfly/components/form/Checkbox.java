@@ -15,13 +15,14 @@
  */
 package org.patternfly.components.form;
 
-import org.jboss.elemento.EventCallbackFn;
 import org.patternfly.components.BaseComponent;
 import org.patternfly.components.ComponentType;
-import org.patternfly.core.Modifiers;
+import org.patternfly.core.ChangeHandler;
+import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.core.Modifiers.Required;
 import org.patternfly.layout.Classes;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -44,14 +45,14 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.standalone;
 
 /**
- * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect
- * a binary setting.
+ * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to
+ * reflect a binary setting.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
+ * "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
  */
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
-        implements Modifiers.Disabled<Checkbox>, Modifiers.Required<Checkbox> {
+        implements HasValue<Boolean>, Disabled<HTMLElement, Checkbox>, Required<HTMLElement, Checkbox> {
 
     // ------------------------------------------------------ factory methods
 
@@ -79,11 +80,11 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
 
     Checkbox(String id, String label, boolean checked) {
         super(div().css(component(check))
-                .add(input(checkbox).css(component(check, input))
-                        .id(id)
-                        .name(id)
-                        .checked(checked))
-                .element(),
+                        .add(input(checkbox).css(component(check, input))
+                                .id(id)
+                                .name(id)
+                                .checked(checked))
+                        .element(),
                 ComponentType.Checkbox);
 
         inputElement = (HTMLInputElement) element().firstElementChild;
@@ -103,6 +104,23 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         return this;
     }
 
+    // ------------------------------------------------------ public API
+
+    @Override
+    public Boolean value() {
+        return inputElement.checked;
+    }
+
+    public Checkbox value(boolean checked) {
+        inputElement.checked = checked;
+        return this;
+    }
+
+    public Checkbox onChange(ChangeHandler<Boolean> handler) {
+        inputElement.addEventListener(change.getName(), e -> handler.onChange(inputElement.checked));
+        return this;
+    }
+
     // ------------------------------------------------------ add methods
 
     public Checkbox addBody(CheckboxBody body) {
@@ -111,22 +129,6 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
 
     public Checkbox addDescription(CheckboxDescription description) {
         return add(description);
-    }
-
-    // ------------------------------------------------------ public API
-
-    public boolean checked() {
-        return inputElement.checked;
-    }
-
-    public Checkbox checked(boolean checked) {
-        inputElement.checked = checked;
-        return this;
-    }
-
-    public Checkbox onChange(EventCallbackFn<Event> callback) {
-        inputElement.addEventListener(change.getName(), callback::onEvent);
-        return this;
     }
 
     // ------------------------------------------------------ modifiers

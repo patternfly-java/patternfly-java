@@ -48,13 +48,13 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.core.Dataset.dropdownItem;
 import static org.patternfly.layout.Classes.alignRight;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.dropdown;
 import static org.patternfly.layout.Classes.hasPopup;
-import static org.patternfly.layout.Classes.invalid;
 import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.menuitem;
 import static org.patternfly.layout.Classes.modifier;
@@ -72,11 +72,11 @@ import static org.patternfly.layout.Icons.fas;
  * PatternFly dropdown component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/dropdown">https://www.patternfly.org/v4/documentation/core/components/dropdown</a>
  */
 // TODO Open with enter, navigation with up/down, select with enter, close with esc
 public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
-        implements Modifiers.Disabled<Dropdown<T>> {
+        implements Modifiers.Disabled<HTMLDivElement, Dropdown<T>> {
 
     // ------------------------------------------------------ factory methods
 

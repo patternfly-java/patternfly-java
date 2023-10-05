@@ -13,9 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.components.menu;
+package org.patternfly.core;
 
-public interface MenuActionHandler {
+@FunctionalInterface
+public interface ChangeHandler<T> {
 
-    void onAction(MenuItemAction itemAction);
+    void onChange(T value);
 }

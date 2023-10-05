@@ -23,9 +23,10 @@ import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.title;
 
 /**
- * PatternFly title component.
+ * A title component applies top and bottom margins, font-weight, font-size, and line-height to titles. The most common usage for a title is to define headings within a page.
  *
  * @see <a href= "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
  */
@@ -44,7 +45,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> {
     // ------------------------------------------------------ instance
 
     protected Title(int level, String text, Size size) {
-        super(h(level, text).css(component("title")).element(), ComponentType.Title);
+        super(h(level, text).css(component(title)).element(), ComponentType.Title);
         if (size != null) {
             css(size.modifier);
         }

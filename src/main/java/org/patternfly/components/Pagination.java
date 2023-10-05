@@ -58,7 +58,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
-        implements Modifiers.Disabled<Pagination> {
+        implements Modifiers.Disabled<HTMLDivElement, Pagination> {
 
     // ------------------------------------------------------ factory methods
 

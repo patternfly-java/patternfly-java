@@ -15,6 +15,8 @@
  */
 package org.patternfly.components.page;
 
+import org.patternfly.core.Modifiers.Fill;
+import org.patternfly.core.Modifiers.NoFill;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Brightness;
 
@@ -23,23 +25,23 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.section;
 import static org.patternfly.layout.Classes.center;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.fill;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.noFill;
 import static org.patternfly.layout.Classes.noPadding;
 import static org.patternfly.layout.Classes.padding;
 import static org.patternfly.layout.Classes.page;
 import static org.patternfly.layout.Classes.section;
 
 /**
- * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
- * will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
+ * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only
+ * section will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and
+ * {@link #noFill()}.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
+ * "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> {
+public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> implements
+        Fill<HTMLElement, PageMainSection>, NoFill<HTMLElement, PageMainSection> {
 
     // ------------------------------------------------------ factory methods
 
@@ -62,25 +64,11 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
     // ------------------------------------------------------ modifiers
 
     /**
-     * Modifies a page section body to align center. Please make sure to use this together with the {@link #limitWidth()}
-     * modifier.
+     * Modifies a page section body to align center. Please make sure to use this together with the
+     * {@link #limitWidth()} modifier.
      */
     public PageMainSection center() {
         return css(modifier(center));
-    }
-
-    /**
-     * Modifies the element to grow to fill the available space.
-     */
-    public PageMainSection fill() {
-        return css(modifier(fill));
-    }
-
-    /**
-     * Modifies the element to not grow to fill the available vertical space.
-     */
-    public PageMainSection noFill() {
-        return css(modifier(noFill));
     }
 
     /**

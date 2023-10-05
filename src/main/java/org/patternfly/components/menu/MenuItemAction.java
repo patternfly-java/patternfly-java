@@ -16,14 +16,12 @@
 package org.patternfly.components.menu;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.EventCallbackFn;
 import org.jboss.elemento.Id;
 import org.patternfly.components.SubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MouseEvent;
 
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.i;
@@ -52,8 +50,8 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
 
     public final String id;
     private final HTMLElement iconContainer;
-    MenuItem menuItem;
-    EventCallbackFn<MouseEvent> onClick;
+    public MenuItem menuItem;
+    MenuItemActionClickHandler onClick;
 
     MenuItemAction(String id, String icon) {
         super(button()
@@ -101,9 +99,9 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
         return this;
     }
 
-    public MenuItemAction onClick(EventCallbackFn<MouseEvent> onClick) {
+    public MenuItemAction onClick(MenuItemActionClickHandler onClick) {
         this.onClick = onClick;
-        return on(click, onClick);
+        return on(click, e -> onClick.onClick(e, this));
     }
 
 }

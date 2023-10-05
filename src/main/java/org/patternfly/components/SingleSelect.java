@@ -91,7 +91,7 @@ import static org.patternfly.layout.Icons.fas;
  *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
-        implements Modifiers.Disabled<SingleSelect<T>>, HasValue<T> {
+        implements Modifiers.Disabled<HTMLDivElement, SingleSelect<T>>, HasValue<T> {
 
     // ------------------------------------------------------ factory methods
 
