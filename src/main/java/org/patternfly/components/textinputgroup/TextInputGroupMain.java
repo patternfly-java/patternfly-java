@@ -116,7 +116,7 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
     }
 
     public TextInputGroupMain onChange(ChangeHandler<String> handler) {
-        inputElement.addEventListener(change.getName(), e -> handler.onChange(inputElement.value));
+        inputElement.addEventListener(change.name, e -> handler.onChange(inputElement.value));
         return this;
     }
 

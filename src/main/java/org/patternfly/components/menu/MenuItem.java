@@ -193,7 +193,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                 By.classname(component(Classes.menu, Classes.item, Classes.action))
                         .and(By.classname(modifier(favorite))));
         if (favoriteItemActionElement != null) {
-            favoriteItemActionElement.addEventListener(click.getName(), e -> menu.removeFavorite(this));
+            favoriteItemActionElement.addEventListener(click.name, e -> menu.removeFavorite(this));
         }
 
         passMenu(menu);
@@ -218,9 +218,9 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                 break;
         }
         if (menu.selectionMode == single || menu.selectionMode == none) {
-            itemElement.addEventListener(click.getName(), e -> menu.select(this, true, true));
+            itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
         } else if (menu.selectionMode == multi) {
-            itemElement.addEventListener(click.getName(), e -> menu.select(this, !isSelected(), true));
+            itemElement.addEventListener(click.name, e -> menu.select(this, !isSelected(), true));
         }
         if (initialSelection) {
             menu.select(this, true, false);
@@ -333,7 +333,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
 
     public MenuItem onClick(MenuItemClickHandler onClick) {
         this.onClick = onClick;
-        itemElement.addEventListener(click.getName(), e -> onClick.onClick(Js.cast(e), this));
+        itemElement.addEventListener(click.name, e -> onClick.onClick(Js.cast(e), this));
         return this;
     }
 

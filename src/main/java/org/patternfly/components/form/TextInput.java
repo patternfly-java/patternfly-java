@@ -111,7 +111,7 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
     }
 
     public TextInput onChange(ChangeHandler<String> handler) {
-        inputElement.addEventListener(change.getName(), e -> handler.onChange(inputElement.value));
+        inputElement.addEventListener(change.name, e -> handler.onChange(inputElement.value));
         return this;
     }
 

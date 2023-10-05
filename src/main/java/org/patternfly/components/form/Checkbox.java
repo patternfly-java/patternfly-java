@@ -117,7 +117,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
     }
 
     public Checkbox onChange(ChangeHandler<Boolean> handler) {
-        inputElement.addEventListener(change.getName(), e -> handler.onChange(inputElement.checked));
+        inputElement.addEventListener(change.name, e -> handler.onChange(inputElement.checked));
         return this;
     }
 
