@@ -3,16 +3,16 @@ import java.util.List;
 import org.jboss.elemento.Id;
 
 import static java.util.Arrays.asList;
-import static org.patternfly.components.divider.Divider.divider;
-import static org.patternfly.components.divider.DividerType.li;
-import static org.patternfly.components.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
-import static org.patternfly.components.navigation.Navigation.navigation;
-import static org.patternfly.components.navigation.NavigationGroup.navigationGroup;
-import static org.patternfly.components.navigation.NavigationItem.navigationItem;
-import static org.patternfly.components.navigation.NavigationType.Horizontal.primary;
-import static org.patternfly.components.navigation.NavigationType.Vertical.expandable;
-import static org.patternfly.components.navigation.NavigationType.Vertical.flat;
-import static org.patternfly.components.navigation.NavigationType.Vertical.grouped;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.li;
+import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
+import static org.patternfly.component.navigation.Navigation.navigation;
+import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
+import static org.patternfly.component.navigation.NavigationItem.navigationItem;
+import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
+import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
+import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
+import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
 
 public class NavigationDemo {
 

@@ -15,8 +15,8 @@
  */
 package org.patternfly.layout;
 
-import org.patternfly.components.Popover;
-import org.patternfly.components.Tooltip;
+import org.patternfly.component.Popover;
+import org.patternfly.component.Tooltip;
 
 import static org.patternfly.layout.Classes.*;
 

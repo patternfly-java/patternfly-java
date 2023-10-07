@@ -19,8 +19,9 @@
 
 <module>
     <inherits name="org.jboss.elemento.Core"/>
-    <source path="components"/>
+    <source path="component"/>
     <source path="core"/>
     <source path="dataprovider"/>
+    <source path="handler"/>
     <source path="layout"/>
 </module>

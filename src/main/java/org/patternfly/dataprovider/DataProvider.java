@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
-import org.patternfly.core.SelectHandler;
+import org.patternfly.handler.SelectHandler;
 
 import static java.lang.Math.min;
 import static java.util.Collections.emptyList;

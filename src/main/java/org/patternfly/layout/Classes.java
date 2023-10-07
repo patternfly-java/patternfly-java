@@ -45,6 +45,8 @@ public interface Classes {
     String chip = "chip";
     String chipGroup = "chip-group";
     String clipper = "clipper";
+    String code = "code";
+    String codeBlock = "code-block";
     String col = "col";
     String collapsed = "collapsed";
     String compact = "compact";
@@ -58,7 +60,9 @@ public interface Classes {
     String dataList = "data-list";
     String dataToolbar = "data-toolbar";
     String description = "description";
+    String detached = "detached";
     String disabled = "disabled";
+    String display = "display";
     String divider = "divider";
     String dropdown = "dropdown";
     String emptyState = "empty-state";
@@ -68,6 +72,8 @@ public interface Classes {
     String expandableContent = "expandable-content";
     String expandableRow = "expandable-row";
     String expanded = "expanded";
+    String expandedUp = "expanded-up";
+    String expandableSection = "expandable-section";
     String externalIcon = "external-icon";
     String favorite = "favorite";
     String favorited = "favorited";
@@ -94,6 +100,7 @@ public interface Classes {
     String hoverable = "hoverable";
     String icon = "icon";
     String iconButtonGroup = "icon-button-group";
+    String indented = "indented";
     String indicator = "indicator";
     String info = "info";
     String inline = "inline";
@@ -136,6 +143,7 @@ public interface Classes {
     String path = "path";
     String plain = "plain";
     String popover = "popover";
+    String pre = "pre";
     String presentation = "presentation";
     String primary = "primary";
     String progress = "progress";
@@ -217,12 +225,27 @@ public interface Classes {
         return builder.toString();
     }
 
-    static String layout(String layout) {
-        return "pf-" + PatternFly.VERSION + "-l-" + layout;
+    static String layout(String layout, String... elements) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("pf-").append(PatternFly.VERSION).append("-l-").append(layout);
+        if (elements != null && elements.length != 0) {
+            builder.append("__");
+            for (int i = 0; i < elements.length; i++) {
+                builder.append(elements[i]);
+                if (i < elements.length - 1) {
+                    builder.append("-");
+                }
+            }
+        }
+        return builder.toString();
     }
 
     static String modifier(String modifier) {
         return "pf-m-" + modifier;
+    }
+
+    static String modifier(String modifier, Size size) {
+        return "pf-m-" + modifier + "-" + size.value;
     }
 
     static String modifier(String modifier, Breakpoint breakpoint) {

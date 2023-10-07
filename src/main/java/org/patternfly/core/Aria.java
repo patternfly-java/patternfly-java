@@ -15,8 +15,9 @@
  */
 package org.patternfly.core;
 
-public interface Aria<T> {
+public interface Aria {
 
+    String controls = "aria-controls";
     String current = "aria-current";
     String disabled = "aria-disabled";
     String expanded = "aria-expanded";
@@ -26,12 +27,4 @@ public interface Aria<T> {
     String labelledBy = "aria-labelledby";
     String multiSelectable = "aria-multiselectable";
     String selected = "aria-selected";
-
-    @Deprecated
-    T label(String label);
-
-    @Deprecated
-    default T label(String target, String label) {
-        return (T) this;
-    }
 }

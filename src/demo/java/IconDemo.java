@@ -1,12 +1,11 @@
 import java.util.Random;
 
-import org.patternfly.components.icon.Icon;
+import org.patternfly.component.icon.Icon;
 
-import static org.patternfly.components.icon.Icon.icon;
-import static org.patternfly.layout.Icons.check;
-import static org.patternfly.layout.Icons.exclamationTriangle;
-import static org.patternfly.layout.Icons.fas;
-import static org.patternfly.layout.Icons.filter;
+import static org.patternfly.component.icon.Icon.icon;
+import static org.patternfly.layout.PredefinedIcon.check;
+import static org.patternfly.layout.PredefinedIcon.exclamationTriangle;
+import static org.patternfly.layout.PredefinedIcon.filter;
 import static org.patternfly.layout.Size.lg;
 import static org.patternfly.layout.Status.warning;
 
@@ -14,10 +13,10 @@ public class IconDemo {
 
     public void iconDemo() {
         // @start region = icon
-        icon(fas(check));
-        icon(fas(filter))
+        icon(check);
+        icon(filter)
                 .size(lg);
-        icon(fas(exclamationTriangle))
+        icon(exclamationTriangle)
                 .inline()
                 .status(warning);
         // @end region = icon

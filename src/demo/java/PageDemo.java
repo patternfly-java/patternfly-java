@@ -1,16 +1,16 @@
-import static org.patternfly.components.brand.Brand.brand;
-import static org.patternfly.components.Content.content;
-import static org.patternfly.components.page.Masthead.pageMasthead;
-import static org.patternfly.components.page.MastheadToggle.mastheadToggle;
-import static org.patternfly.components.page.Page.page;
-import static org.patternfly.components.page.PageMain.pageMain;
-import static org.patternfly.components.page.PageMainBody.pageMainBody;
-import static org.patternfly.components.page.PageMainBreadcrumb.pageMainBreadcrumb;
-import static org.patternfly.components.page.PageMainGroup.pageMainGroup;
-import static org.patternfly.components.page.PageMainSection.pageMainSection;
-import static org.patternfly.components.page.PageSidebar.pageSidebar;
-import static org.patternfly.components.page.SkipToContent.skipToContent;
-import static org.patternfly.components.toolbar.Toolbar.toolbar;
+import static org.patternfly.component.brand.Brand.brand;
+import static org.patternfly.component.Content.content;
+import static org.patternfly.component.page.Masthead.pageMasthead;
+import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
+import static org.patternfly.component.page.Page.page;
+import static org.patternfly.component.page.PageMain.pageMain;
+import static org.patternfly.component.page.PageMainBody.pageMainBody;
+import static org.patternfly.component.page.PageMainBreadcrumb.pageMainBreadcrumb;
+import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
+import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.page.PageSidebar.pageSidebar;
+import static org.patternfly.component.page.SkipToContent.skipToContent;
+import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
 

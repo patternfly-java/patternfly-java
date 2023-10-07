@@ -1,12 +1,12 @@
-import org.patternfly.components.menu.Menu;
-import org.patternfly.components.menu.MenuItem;
+import org.patternfly.component.menu.Menu;
+import org.patternfly.component.menu.MenuItem;
 
-import static org.patternfly.components.Button.button;
-import static org.patternfly.components.menu.Menu.menu;
-import static org.patternfly.components.menu.MenuContent.menuContent;
-import static org.patternfly.components.menu.MenuFooter.menuFooter;
-import static org.patternfly.components.menu.MenuGroup.menuGroup;
-import static org.patternfly.components.menu.MenuList.menuList;
+import static org.patternfly.component.Button.button;
+import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.MenuContent.menuContent;
+import static org.patternfly.component.menu.MenuFooter.menuFooter;
+import static org.patternfly.component.menu.MenuGroup.menuGroup;
+import static org.patternfly.component.menu.MenuList.menuList;
 
 public class MenuDemo {
 

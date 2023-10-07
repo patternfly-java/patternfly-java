@@ -16,7 +16,7 @@
 package org.patternfly.core;
 
 import org.jboss.elemento.Id;
-import org.patternfly.components.ComponentType;
+import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLElement;
 import elemental2.webstorage.Storage;
