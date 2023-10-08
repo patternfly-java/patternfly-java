@@ -18,7 +18,7 @@ package org.patternfly.component;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Callback;
+import org.patternfly.handler.Callback;
 import org.patternfly.core.Modifiers;
 import org.patternfly.layout.Classes;
 
@@ -29,6 +29,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.layout.Classes.active;
 import static org.patternfly.layout.Classes.block;
 import static org.patternfly.layout.Classes.component;
@@ -105,11 +106,11 @@ public class Button extends BaseComponent<HTMLElement, Button>
     }
 
     public static Button icon(String iconClass) {
-        return new Button(Elements.button().css(modifier(plain)).add(i().css(iconClass)));
+        return new Button(Elements.button().css(modifier(plain)).add(inlineIcon(iconClass)));
     }
 
     public static Button icon(String iconClass, String label) {
-        return new Button(Elements.button().css(modifier(plain)).aria("label", label).add(i().css(iconClass)));
+        return new Button(Elements.button().css(modifier(plain)).aria("label", label).add(inlineIcon(iconClass)));
     }
 
     public static Button icon(Icon icon) {

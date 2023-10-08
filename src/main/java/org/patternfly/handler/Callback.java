@@ -13,11 +13,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.handler;
 
-public interface Constants {
+@FunctionalInterface
+public interface Callback {
 
-    String hidden = "hidden";
-    String tabindex = "tabindex";
-    String role = "role";
+    static Callback noop() {
+        return () -> {
+            // nop
+        };
+    }
+
+    void call();
 }

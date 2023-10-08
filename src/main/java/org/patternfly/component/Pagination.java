@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Callback;
+import org.patternfly.handler.Callback;
 import org.patternfly.core.Modifiers;
 import org.patternfly.dataprovider.PageInfo;
 

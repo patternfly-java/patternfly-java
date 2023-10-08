@@ -15,18 +15,18 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.Button;
+import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.code.CodeBlockActions.codeBlockActions;
 import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
-public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeader> {
+public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeader>
+        implements ComponentReference<CodeBlock> {
 
     // ------------------------------------------------------ factory methods
 
@@ -36,10 +36,17 @@ public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeade
 
     // ------------------------------------------------------ instance
 
-    private CodeBlockActions actions;
+    CodeBlockActions actions;
 
     CodeBlockHeader() {
         super(div().css(component(codeBlock, header)).element());
+    }
+
+    @Override
+    public void passComponent(CodeBlock codeBlock) {
+        if (actions != null) {
+            actions.passComponent(codeBlock);
+        }
     }
 
     @Override
@@ -57,14 +64,6 @@ public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeade
     public CodeBlockHeader add(CodeBlockActions actions) {
         this.actions = actions;
         add(actions.element());
-        return this;
-    }
-
-    public CodeBlockHeader addAction(Button action) {
-        if (actions == null) {
-            add(codeBlockActions());
-        }
-        actions.addAction(action);
         return this;
     }
 }

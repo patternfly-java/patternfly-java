@@ -21,7 +21,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Button;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Callback;
+import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;

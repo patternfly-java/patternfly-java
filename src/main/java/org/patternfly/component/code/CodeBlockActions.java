@@ -15,8 +15,16 @@
  */
 package org.patternfly.component.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.patternfly.component.Button;
+import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.textinputgroup.TextInputGroup;
+import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -26,7 +34,8 @@ import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 
-public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> {
+public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> implements
+        ComponentReference<CodeBlock> {
 
     // ------------------------------------------------------ factory methods
 
@@ -36,8 +45,18 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
 
     // ------------------------------------------------------ instance
 
+    private final List<CodeBlockAction> actions;
+
     CodeBlockActions() {
-        super(div().css(component(codeBlock, actions)).element());
+        super(div().css(component(codeBlock, Classes.actions)).element());
+        this.actions = new ArrayList<>();
+    }
+
+    @Override
+    public void passComponent(CodeBlock codeBlock) {
+        for (CodeBlockAction action : actions) {
+            action.passComponent(codeBlock);
+        }
     }
 
     @Override
@@ -51,7 +70,10 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
         return add(action);
     }
 
-    public CodeBlockActions addAction(Button action) {
-        return add(codeBlockAction().add(action));
+    // override to assure internal wiring
+    public CodeBlockActions add(CodeBlockAction action) {
+        actions.add(action);
+        add(action.element());
+        return this;
     }
 }

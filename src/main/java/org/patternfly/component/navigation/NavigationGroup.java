@@ -29,7 +29,7 @@ import elemental2.dom.HTMLUListElement;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.list;

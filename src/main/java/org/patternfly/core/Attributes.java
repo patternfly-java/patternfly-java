@@ -15,14 +15,9 @@
  */
 package org.patternfly.core;
 
-@FunctionalInterface
-public interface Callback {
+public interface Attributes {
 
-    static Callback noop() {
-        return () -> {
-            // nop
-        };
-    }
-
-    void call();
+    String hidden = "hidden";
+    String tabindex = "tabindex";
+    String role = "role";
 }

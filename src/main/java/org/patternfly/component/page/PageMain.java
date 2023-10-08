@@ -23,8 +23,8 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.main;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
-import static org.patternfly.core.Constants.role;
-import static org.patternfly.core.Constants.tabindex;
+import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;

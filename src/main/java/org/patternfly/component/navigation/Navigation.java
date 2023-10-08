@@ -47,7 +47,7 @@ import static org.patternfly.component.navigation.NavigationType.Vertical.expand
 import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
 import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.component;

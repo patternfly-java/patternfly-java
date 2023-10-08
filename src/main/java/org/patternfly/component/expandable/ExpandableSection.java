@@ -19,6 +19,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLElementBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ToggleHandler;
@@ -36,6 +37,7 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Dataset.expandableSectionId;
 import static org.patternfly.core.Dataset.expandableSectionTarget;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.detached;
 import static org.patternfly.layout.Classes.expandableSection;
 import static org.patternfly.layout.Classes.expanded;
 import static org.patternfly.layout.Classes.limitWidth;
@@ -64,7 +66,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     // ------------------------------------------------------ instance
 
-    public static final int DEFAULT_TRUNCATED = 3;
+    public static final int DEFAULT_TRUNCATE = 3;
 
     private final String id;
     private int truncate = 0;
@@ -76,7 +78,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     ExpandableSection(String id) {
         super(div().css(component(expandableSection)).element(), ComponentType.ExpandableSection);
-        this.id = id;
+        this.id = id == null ? Id.unique(componentType().id) : id;
         Attachable.register(this, this);
     }
 
@@ -93,7 +95,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             if (toggle != null) {
                 toggle.removeIcon();
             }
-            if (truncate != DEFAULT_TRUNCATED && content != null) {
+            if (truncate != DEFAULT_TRUNCATE && content != null) {
                 content.style("--pf-v5-c-expandable-section--m-truncate__content--LineClamp: " + truncate);
             }
         }
@@ -180,7 +182,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     /** Same as {@linkplain #truncate(int) truncate(3)} */
     public ExpandableSection truncate() {
-        return truncate(DEFAULT_TRUNCATED);
+        return truncate(DEFAULT_TRUNCATE);
     }
 
     /** Adds {@linkplain Classes#modifier(String) modifier(truncate)} */
@@ -203,6 +205,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     public ExpandableSection detachedFrom(String detachedFromId) {
         this.detachedFromId = detachedFromId;
+        css(modifier(detached));
         data(expandableSectionId, id);
         data(expandableSectionTarget, detachedFromId);
         return this;
@@ -234,7 +237,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = true;
         }
-        if (fireEvent) {
+        if (fireEvent && onToggle != null) {
             onToggle.onToggle(this, false);
         }
     }
@@ -253,12 +256,16 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = false;
         }
-        if (fireEvent) {
+        if (fireEvent && onToggle != null) {
             onToggle.onToggle(this, true);
         }
     }
 
     public boolean expanded() {
         return element().classList.contains(modifier(expanded));
+    }
+
+    public ExpandableSectionContent content() {
+        return content;
     }
 }

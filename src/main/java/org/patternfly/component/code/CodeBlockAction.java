@@ -15,32 +15,84 @@
  */
 package org.patternfly.component.code;
 
+import org.patternfly.component.Button;
+import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.core.Aria;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.EventType.click;
+import static org.patternfly.js.ExtendedDomGlobal.navigator;
 import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
+import static org.patternfly.layout.PredefinedIcon.copy;
 
-public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockAction> {
+public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockAction> implements
+        ComponentReference<CodeBlock> {
 
     // ------------------------------------------------------ factory methods
 
     public static CodeBlockAction codeBlockAction() {
-        return new CodeBlockAction();
+        return new CodeBlockAction(null);
+    }
+
+    public static CodeBlockAction codeBlockAction(PredefinedIcon icon) {
+        return new CodeBlockAction(icon.className);
+    }
+
+    public static CodeBlockAction codeBlockAction(String iconClass) {
+        return new CodeBlockAction(iconClass);
+    }
+
+    public static CodeBlockAction codeBlockCopyToClipboardAction() {
+        return new CodeBlockAction(copy.className)
+                .ariaLabel("Copy to clipboard")
+                .onAction((action, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
     }
 
     // ------------------------------------------------------ instance
 
-    CodeBlockAction() {
-        super(div().css(component(codeBlock, actions, item)).element());
+    private HTMLElement buttonElement;
+    private CodeBlockActionHandler handler;
+
+    CodeBlockAction(String iconClass) {
+        super(div().css(component(Classes.codeBlock, actions, item)).element());
+        if (iconClass != null) {
+            add(buttonElement = Button.icon(iconClass).element());
+        }
+    }
+
+    @Override
+    public void passComponent(CodeBlock codeBlock) {
+        if (handler != null && buttonElement != null) {
+            buttonElement.addEventListener(click.name, e -> handler.onAction(this, codeBlock));
+        }
     }
 
     @Override
     public CodeBlockAction that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ public API
+
+    public CodeBlockAction ariaLabel(String label) {
+        if (buttonElement != null) {
+            buttonElement.setAttribute(Aria.label, label);
+        }
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public CodeBlockAction onAction(CodeBlockActionHandler handler) {
+        this.handler = handler;
         return this;
     }
 }

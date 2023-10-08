@@ -16,7 +16,7 @@
 package org.patternfly.component;
 
 import org.patternfly.component.title.Title;
-import org.patternfly.core.Callback;
+import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;

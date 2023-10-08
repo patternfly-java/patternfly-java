@@ -37,6 +37,8 @@ public enum PredefinedIcon {
 
     check(fas("check")),
 
+    copy(fas("copy")),
+
     checkCircle(fas("check-circle")),
 
     ellipsisV(fas("ellipsis-v")),
@@ -54,6 +56,8 @@ public enum PredefinedIcon {
     longArrowAltDown(fas("long-arrow-alt-down")),
 
     longArrowAltUp(fas("long-arrow-alt-up")),
+
+    play(fas("play")),
 
     search(fas("search")),
 

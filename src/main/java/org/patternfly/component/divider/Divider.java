@@ -23,7 +23,7 @@ import elemental2.dom.HTMLHRElement;
 import elemental2.dom.HTMLLIElement;
 
 import static org.jboss.elemento.Elements.htmlElement;
-import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.divider;
 

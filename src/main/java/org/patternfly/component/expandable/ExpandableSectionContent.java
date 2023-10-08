@@ -22,7 +22,7 @@ import org.patternfly.component.SubComponent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.expandableSection;

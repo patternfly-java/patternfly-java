@@ -30,7 +30,7 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
-import static org.patternfly.core.Constants.tabindex;
+import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;

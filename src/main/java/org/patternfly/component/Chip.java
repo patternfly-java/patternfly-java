@@ -18,7 +18,7 @@ package org.patternfly.component;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.badge.Badge;
-import org.patternfly.core.Callback;
+import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;

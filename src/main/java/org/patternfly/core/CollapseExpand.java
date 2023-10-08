@@ -27,7 +27,7 @@ import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.core.Constants.hidden;
+import static org.patternfly.core.Attributes.hidden;
 import static org.patternfly.layout.Classes.modifier;
 
 /** Reusable class for components which have a collapsible / expandable UI element */

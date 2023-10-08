@@ -32,7 +32,7 @@ import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItemType.action;
 import static org.patternfly.component.menu.MenuItemType.link;
-import static org.patternfly.core.Constants.role;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.SelectionMode.multi;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
