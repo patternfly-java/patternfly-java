@@ -15,14 +15,18 @@
  */
 package org.patternfly.component.expandable;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.expandable.ExpandableSectionToggleText.expandableSectionToggleText;
@@ -123,5 +127,10 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
         if (text != null) {
             text.expand();
         }
+    }
+
+    void removeIcon() {
+        HTMLElement icon = find(By.classname(component(expandableSection, toggle, Classes.icon)));
+        failSafeRemoveFromParent(icon);
     }
 }

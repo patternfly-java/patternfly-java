@@ -64,7 +64,10 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     // ------------------------------------------------------ instance
 
+    public static final int DEFAULT_TRUNCATED = 3;
+
     private final String id;
+    private int truncate = 0;
     private String detachedFromId;
     private ExpandableSectionToggle toggle;
     private ExpandableSectionContent content;
@@ -85,6 +88,14 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         if (toggle != null && content != null) {
             toggle.aria(controls, content.id);
             content.aria(labelledBy, toggle.id);
+        }
+        if (truncate > 0) {
+            if (toggle != null) {
+                toggle.removeIcon();
+            }
+            if (truncate != DEFAULT_TRUNCATED && content != null) {
+                content.style("--pf-v5-c-expandable-section--m-truncate__content--LineClamp: " + truncate);
+            }
         }
         if (detachedFromId != null) {
             HTMLElement detachedElement = Elements.find(document.body, By.data(expandableSectionId, detachedFromId));
@@ -163,6 +174,20 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             element().classList.add(modifier(Classes.display, lg), modifier(limitWidth));
         } else {
             element().classList.remove(modifier(Classes.display, lg), modifier(limitWidth));
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #truncate(int) truncate(3)} */
+    public ExpandableSection truncate() {
+        return truncate(DEFAULT_TRUNCATED);
+    }
+
+    /** Adds {@linkplain Classes#modifier(String) modifier(truncate)} */
+    public ExpandableSection truncate(int truncate) {
+        if (truncate > 0) {
+            this.truncate = truncate;
+            element().classList.add(modifier(Classes.truncate));
         }
         return this;
     }
