@@ -70,8 +70,8 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * PatternFly data list.
  *
  * <p>
- * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the
- * data provider:
+ * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the data
+ * provider:
  * </p>
  *
  * <pre>
@@ -83,7 +83,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * </pre>
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
  */
 @Deprecated
 public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>

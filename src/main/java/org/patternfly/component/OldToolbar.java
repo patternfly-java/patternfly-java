@@ -76,9 +76,8 @@ import static org.patternfly.layout.PredefinedIcon.sortAmountDown;
 /**
  * PatternFly data toolbar component.
  * <p>
- * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a
- * toolbar should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML
- * nodes):
+ * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a toolbar
+ * should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML nodes):
  *
  * <pre>
  * toolbar           = content, { content } ;
@@ -106,7 +105,7 @@ import static org.patternfly.layout.PredefinedIcon.sortAmountDown;
  * </pre>
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
+ *      "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
  * @see <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus–Naur form</a>
  */
 @Deprecated
@@ -372,7 +371,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         }
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Deprecated
     public static class Item extends SubComponent<HTMLDivElement, Item> {
 
@@ -462,7 +461,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         private final Dropdown<BulkSelectOption> dropdown;
 
         protected BulkSelect() {
-            this.dropdown = Dropdown.<BulkSelectOption>splitCheckbox()
+            this.dropdown = Dropdown.<BulkSelectOption> splitCheckbox()
                     .identifier(bso -> bso.id)
                     .display((html, bso) -> html.textContent(bso.text))
                     .add(SELECT_NONE)

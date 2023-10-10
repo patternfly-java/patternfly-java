@@ -30,11 +30,10 @@ import static org.patternfly.layout.Classes.path;
 import static org.patternfly.layout.Classes.spinner;
 
 /**
- * A spinner is used to indicate to users that an action is in progress. For actions that may take a long time, use a
- * progress bar instead.
+ * A spinner is used to indicate to users that an action is in progress. For actions that may take a long time, use a progress
+ * bar instead.
  *
- * @see <a href=
- * "https://www.patternfly.org/components/spinner/html">https://www.patternfly.org/components/spinner/html</a>
+ * @see <a href= "https://www.patternfly.org/components/spinner/html">https://www.patternfly.org/components/spinner/html</a>
  */
 public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements Inline<SVGElement, Spinner> {
 
@@ -60,15 +59,15 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
 
     protected Spinner(Size size, String label) {
         super(svg().css(component(spinner))
-                        .attr(role, "progressbar")
-                        .attr("viewBox", "0 0 100 100")
-                        .aria(Aria.label, label)
-                        .add(circle().css(component(spinner, path))
-                                .attr("cx", 50)
-                                .attr("cy", 50)
-                                .attr("r", 45)
-                                .attr("fill", "none"))
-                        .element(),
+                .attr(role, "progressbar")
+                .attr("viewBox", "0 0 100 100")
+                .aria(Aria.label, label)
+                .add(circle().css(component(spinner, path))
+                        .attr("cx", 50)
+                        .attr("cy", 50)
+                        .attr("r", 45)
+                        .attr("fill", "none"))
+                .element(),
                 ComponentType.Spinner);
         if (size != null) {
             css(size.modifier);

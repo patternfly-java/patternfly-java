@@ -35,7 +35,7 @@ import static org.patternfly.layout.PredefinedIcon.bars;
  * {@link PageSidebar#toggle()}, when clicked.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
+ *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
 public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle> {
 

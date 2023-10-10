@@ -46,8 +46,8 @@ import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.pre;
 
 /**
- * A code block is a component that contains 2 or more lines of read-only code. The code in a code block can be copied
- * to the clipboard.
+ * A code block is a component that contains 2 or more lines of read-only code. The code in a code block can be copied to the
+ * clipboard.
  *
  * @see <a href= "https://www.patternfly.org/components/code-block">https://www.patternfly.org/components/code-block</a>
  */

@@ -25,7 +25,6 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.code.CodeBlockAction.codeBlockAction;
 import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 

@@ -45,11 +45,11 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.standalone;
 
 /**
- * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to
- * reflect a binary setting.
+ * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect
+ * a binary setting.
  *
  * @see <a href=
- * "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
+ *      "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
  */
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         implements HasValue<Boolean>, Disabled<HTMLElement, Checkbox>, Required<HTMLElement, Checkbox> {
@@ -80,11 +80,11 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
 
     Checkbox(String id, String label, boolean checked) {
         super(div().css(component(check))
-                        .add(input(checkbox).css(component(check, input))
-                                .id(id)
-                                .name(id)
-                                .checked(checked))
-                        .element(),
+                .add(input(checkbox).css(component(check, input))
+                        .id(id)
+                        .name(id)
+                        .checked(checked))
+                .element(),
                 ComponentType.Checkbox);
 
         inputElement = (HTMLInputElement) element().firstElementChild;

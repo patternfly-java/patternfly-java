@@ -89,8 +89,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
-                        .aria(label, alertType.aria)
-                        .element(),
+                .aria(label, alertType.aria)
+                .element(),
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
@@ -112,8 +112,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     // ------------------------------------------------------ add methods
 
     /**
-     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a
-     * single action.
+     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
+     * action.
      */
     public Alert addAction(Button action) {
         return add(alertActionGroup().add(action));
@@ -127,13 +127,17 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
      * Wraps the description inside a {@code
      *
      *
-     * <p>
      *
-     * <p>
-     * <p>
-     * <p/>
-     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is
-     * just a simple string.
+    <p>
+     *
+     *
+    <p>
+     *
+    <p>
+     *
+    <p/>
+     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
+     * simple string.
      */
     public Alert addDescription(String description) {
         return add(alertDescription().add(p().textContent(description)));

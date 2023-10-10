@@ -45,12 +45,12 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Size.lg;
 
 /**
- * An expandable section component is used to support progressive disclosure in a form or page by hiding additional
- * content when you don't want it to be shown by default. An expandable section can contain any type of content such as
- * plain text, form inputs, and charts.
+ * An expandable section component is used to support progressive disclosure in a form or page by hiding additional content when
+ * you don't want it to be shown by default. An expandable section can contain any type of content such as plain text, form
+ * inputs, and charts.
  *
- * @see <a
- * href="https://www.patternfly.org/components/expandable-section/html">https://www.patternfly.org/components/expandable-section/html</a>
+ * @see <a href=
+ *      "https://www.patternfly.org/components/expandable-section/html">https://www.patternfly.org/components/expandable-section/html</a>
  */
 public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable {
 

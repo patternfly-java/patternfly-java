@@ -94,8 +94,8 @@ import static org.patternfly.layout.PredefinedIcon.longArrowAltUp;
  * PatternFly data table.
  *
  * <p>
- * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the
- * data provider:
+ * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the data
+ * provider:
  * </p>
  *
  * <pre>
@@ -107,7 +107,7 @@ import static org.patternfly.layout.PredefinedIcon.longArrowAltUp;
  * </pre>
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
  */
 @Deprecated
 public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
@@ -135,7 +135,7 @@ public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
                 th -> th.css(component(table, check)).add(input(InputType.checkbox).aria("label", "Select all rows")),
                 (td, dataProvider,
                         item) -> td.css(component(table, check)).add(input(InputType.checkbox)
-                        .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
+                                .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
                 null);
     }
 

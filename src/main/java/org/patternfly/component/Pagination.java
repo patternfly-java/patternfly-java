@@ -55,7 +55,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * PatternFly pagination component.
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 @Deprecated
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
@@ -90,10 +90,10 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         super(div().css(component(pagination)).element(), "Pagination");
 
         infoElement = div().css(component(pagination, totalItems)).element();
-        pageSizeMenu = SingleOptionsMenu.<Integer>plain("").collapseOnSelect().display((html, pageSize) -> {
+        pageSizeMenu = SingleOptionsMenu.<Integer> plain("").collapseOnSelect().display((html, pageSize) -> {
             html.add(String.valueOf(pageSize));
             html.add(span().css(component(pagination, menu, text)).textContent("per page"));
-        }).add(new Integer[]{10, 20, 50, 100}).onSelect(pageSize -> {
+        }).add(new Integer[] { 10, 20, 50, 100 }).onSelect(pageSize -> {
             if (pageSizeHandler != null) {
                 pageSizeHandler.accept(pageSize);
             }
@@ -205,7 +205,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
     // ------------------------------------------------------ internals
 
     void update(PageInfo pageInfo) {
-        HTMLElement[] elements = new HTMLElement[]{infoElement, pageSizeMenu.textElement()};
+        HTMLElement[] elements = new HTMLElement[] { infoElement, pageSizeMenu.textElement() };
         for (HTMLElement element : elements) {
             removeChildrenFrom(element);
             HTMLContainerBuilder<HTMLElement> builder = new HTMLContainerBuilder<>(element);

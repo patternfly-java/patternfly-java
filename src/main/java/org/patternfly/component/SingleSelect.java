@@ -88,7 +88,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
  * PatternFly single select component.
  *
  * @see <a href=
- * "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
+ *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 @Deprecated
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>

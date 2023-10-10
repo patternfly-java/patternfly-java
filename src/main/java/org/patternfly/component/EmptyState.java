@@ -41,7 +41,7 @@ import static org.patternfly.layout.Size.sm;
  * PatternFly empty state component.
  *
  * @see <a
- * href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
+ *      href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
  */
 @Deprecated
 public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {

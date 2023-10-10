@@ -63,8 +63,8 @@ import static org.patternfly.layout.PredefinedIcon.angleLeft;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
 /**
- * A navigation organizes an application's structure and content, making it easy to find information and accomplish
- * tasks. Navigation communicates relationships, context, and actions a user can take within an application.
+ * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
+ * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
  * {@snippet class = NavigationDemo region = horizontal}
  * <p>
@@ -73,7 +73,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * {@snippet class = NavigationDemo region = expandable}
  *
  * @see <a href=
- * "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
+ *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
  */
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 

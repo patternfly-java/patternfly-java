@@ -25,8 +25,8 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 
 /**
- * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard
- * HTML tags.
+ * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard HTML
+ * tags.
  *
  * @see <a href= "https://www.patternfly.org/components/text/html">https://www.patternfly.org/components/text/html</a>
  */
