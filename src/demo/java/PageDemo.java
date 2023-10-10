@@ -1,5 +1,4 @@
 import static org.patternfly.component.brand.Brand.brand;
-import static org.patternfly.component.Content.content;
 import static org.patternfly.component.page.Masthead.pageMasthead;
 import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
@@ -10,6 +9,7 @@ import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.page.SkipToContent.skipToContent;
+import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
@@ -41,13 +41,13 @@ public class PageDemo {
                 .addSection(pageMainBreadcrumb()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(content())))
+                                .add(textContent())))
                 .addSection(pageMainSection()
-                        .add(content()))
+                        .add(textContent()))
                 .addSection(pageMainSection()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(content())));
+                                .add(textContent())));
         // @end region = pageMainBody
     }
 

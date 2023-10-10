@@ -13,7 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.component.text;
+
+import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -22,28 +25,27 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 
 /**
- * PatternFly content component.
+ * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard
+ * HTML tags.
  *
- * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/content/">https://www.patternfly.org/v4/documentation/core/components/content</a>
+ * @see <a href= "https://www.patternfly.org/components/text/html">https://www.patternfly.org/components/text/html</a>
  */
-@Deprecated
-public class Content extends BaseComponent<HTMLDivElement, Content> {
+public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Content content() {
-        return new Content();
+    public static TextContent textContent() {
+        return new TextContent();
     }
 
     // ------------------------------------------------------ instance
 
-    protected Content() {
-        super(div().css(component(content)).element(), "Content");
+    protected TextContent() {
+        super(div().css(component(content)).element(), ComponentType.TextContent);
     }
 
     @Override
-    public Content that() {
+    public TextContent that() {
         return this;
     }
 }

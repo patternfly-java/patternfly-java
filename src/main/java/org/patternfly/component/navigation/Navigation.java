@@ -189,6 +189,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             console.error("addGroup(NavigationGroup) is not supported for type " + type);
             return this;
         }
+        groups.put(group.id, group);
         itemsContainer.appendChild(group.element());
         return this;
     }

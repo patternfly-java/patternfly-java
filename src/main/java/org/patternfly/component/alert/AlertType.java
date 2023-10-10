@@ -26,6 +26,7 @@ import static org.patternfly.layout.PredefinedIcon.infoCircle;
 
 public enum AlertType {
 
+    @Deprecated
     custom(bell, Status.custom, "custom alert"),
 
     info(infoCircle, Status.info, "info alert"),

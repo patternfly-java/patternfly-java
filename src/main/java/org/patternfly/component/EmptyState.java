@@ -15,6 +15,8 @@
  */
 package org.patternfly.component;
 
+import org.patternfly.component.button.Button;
+import org.patternfly.component.spinner.Spinner;
 import org.patternfly.component.title.Title;
 import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
@@ -25,20 +27,21 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.patternfly.component.Button.button;
 import static org.patternfly.component.Icon.icon;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.emptyState;
 import static org.patternfly.layout.Classes.primary;
 import static org.patternfly.layout.PredefinedIcon.search;
 import static org.patternfly.layout.Size.lg;
+import static org.patternfly.layout.Size.md;
 import static org.patternfly.layout.Size.sm;
 
 /**
  * PatternFly empty state component.
  *
  * @see <a
- *      href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
+ * href=https://www.patternfly.org/v4/documentation/core/components/emptystate">https://www.patternfly.org/v4/documentation/core/components/emptystate</a>
  */
 @Deprecated
 public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
@@ -55,7 +58,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
 
     public static EmptyState spinner(String title) {
         EmptyState loading = new EmptyState(null, title).large();
-        insertFirst(loading.element(), div().css(component(emptyState, "icon")).add(Spinner.spinner()).element());
+        insertFirst(loading.element(), div().css(component(emptyState, "icon")).add(Spinner.spinner(md)).element());
         return loading;
     }
 
@@ -66,7 +69,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     public static EmptyState noResults(String title, Callback callback) {
         return new EmptyState(icon(search.className), title)
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
-                .primary(Button.link("Clear all filters").onClick(callback));
+                .primary(button("Clear all filters").link().onAction((e, b) -> callback.call()));
     }
 
     public static Body body() {
@@ -103,7 +106,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     }
 
     public EmptyState primary(String text, Callback callback) {
-        return primary(button(text).primary().onClick(callback).element());
+        return primary(button(text).primary().onAction((e, b) -> callback.call()).element());
     }
 
     public EmptyState primary(Button button) {
@@ -124,7 +127,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     }
 
     public EmptyState secondary(String text, Callback callback) {
-        return secondary(Button.link(text).onClick(callback).element());
+        return secondary(button(text).secondary().onAction((e, b) -> callback.call()).element());
     }
 
     public EmptyState secondary(Button button) {

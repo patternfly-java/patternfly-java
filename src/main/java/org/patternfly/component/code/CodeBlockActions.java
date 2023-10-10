@@ -18,19 +18,14 @@ package org.patternfly.component.code;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.patternfly.component.Button;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
-import org.patternfly.component.textinputgroup.TextInputGroup;
-import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.code.CodeBlockAction.codeBlockAction;
-import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 

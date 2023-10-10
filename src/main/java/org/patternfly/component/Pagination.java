@@ -19,9 +19,10 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.handler.Callback;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.Modifiers;
 import org.patternfly.dataprovider.PageInfo;
+import org.patternfly.handler.Callback;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -35,7 +36,7 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.InputType.number;
-import static org.patternfly.component.Icon.icon;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.compact;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.formControl;
@@ -54,7 +55,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * PatternFly pagination component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/pagination">https://www.patternfly.org/v4/documentation/core/components/pagination</a>
  */
 @Deprecated
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
@@ -89,10 +90,10 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         super(div().css(component(pagination)).element(), "Pagination");
 
         infoElement = div().css(component(pagination, totalItems)).element();
-        pageSizeMenu = SingleOptionsMenu.<Integer> plain("").collapseOnSelect().display((html, pageSize) -> {
+        pageSizeMenu = SingleOptionsMenu.<Integer>plain("").collapseOnSelect().display((html, pageSize) -> {
             html.add(String.valueOf(pageSize));
             html.add(span().css(component(pagination, menu, text)).textContent("per page"));
-        }).add(new Integer[] { 10, 20, 50, 100 }).onSelect(pageSize -> {
+        }).add(new Integer[]{10, 20, 50, 100}).onSelect(pageSize -> {
             if (pageSizeHandler != null) {
                 pageSizeHandler.accept(pageSize);
             }
@@ -101,12 +102,12 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         element().appendChild(infoElement);
         element().appendChild(pageSizeMenu.element());
         element().appendChild(nav().css(component(pagination, "nav"))
-                .add(firstPageButton = Button.icon(icon(angleDoubleLeft.className), "Go to first page").onClick(() -> {
+                .add(firstPageButton = button(angleDoubleLeft, "Go to first page").onAction((e, b) -> {
                     if (firstPageHandler != null) {
                         firstPageHandler.call();
                     }
                 }))
-                .add(previousPageButton = Button.icon(icon(angleLeft.className), "Go to previous page").onClick(() -> {
+                .add(previousPageButton = button(angleLeft, "Go to previous page").onAction((e, b) -> {
                     if (previousPageHandler != null) {
                         previousPageHandler.call();
                     }
@@ -128,12 +129,12 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
                                 .element())
                         .add(pagesElement = span().aria("hidden", true).element())
                         .element())
-                .add(nextPageButton = Button.icon(icon(angleRight.className), "Go to next page").onClick(() -> {
+                .add(nextPageButton = button(angleRight.className, "Go to next page").onAction((e, b) -> {
                     if (nextPageHandler != null) {
                         nextPageHandler.call();
                     }
                 }))
-                .add(lastPageButton = Button.icon(icon(angleDoubleRight.className), "Go to last page").onClick(() -> {
+                .add(lastPageButton = button(angleDoubleRight, "Go to last page").onAction((e, b) -> {
                     if (lastPageHandler != null) {
                         lastPageHandler.call();
                     }
@@ -204,7 +205,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
     // ------------------------------------------------------ internals
 
     void update(PageInfo pageInfo) {
-        HTMLElement[] elements = new HTMLElement[] { infoElement, pageSizeMenu.textElement() };
+        HTMLElement[] elements = new HTMLElement[]{infoElement, pageSizeMenu.textElement()};
         for (HTMLElement element : elements) {
             removeChildrenFrom(element);
             HTMLContainerBuilder<HTMLElement> builder = new HTMLContainerBuilder<>(element);

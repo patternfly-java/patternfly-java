@@ -61,6 +61,24 @@ public interface Modifiers {
         }
     }
 
+    interface Inline<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #inline(boolean) inline(true)} */
+        default B inline() {
+            return inline(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(inline)} */
+        default B inline(boolean inline) {
+            if (inline) {
+                element().classList.add(modifier(Classes.inline));
+            } else {
+                element().classList.remove(modifier(Classes.inline));
+            }
+            return that();
+        }
+    }
+
     interface Invalid<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #invalid(boolean) invalid(true)} */

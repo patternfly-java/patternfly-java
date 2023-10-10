@@ -15,10 +15,10 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.Button;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
+import org.patternfly.handler.ActionHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -27,6 +27,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.js.ExtendedDomGlobal.navigator;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
@@ -53,25 +54,25 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     public static CodeBlockAction codeBlockCopyToClipboardAction() {
         return new CodeBlockAction(copy.className)
                 .ariaLabel("Copy to clipboard")
-                .onAction((action, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
+                .onAction((event, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
     }
 
     // ------------------------------------------------------ instance
 
     private HTMLElement buttonElement;
-    private CodeBlockActionHandler handler;
+    private ActionHandler<CodeBlock> actionHandler;
 
     CodeBlockAction(String iconClass) {
         super(div().css(component(Classes.codeBlock, actions, item)).element());
         if (iconClass != null) {
-            add(buttonElement = Button.icon(iconClass).element());
+            add(buttonElement = button().plain().addIcon(iconClass).element());
         }
     }
 
     @Override
     public void passComponent(CodeBlock codeBlock) {
-        if (handler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> handler.onAction(this, codeBlock));
+        if (actionHandler != null && buttonElement != null) {
+            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, codeBlock));
         }
     }
 
@@ -91,8 +92,8 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
 
     // ------------------------------------------------------ events
 
-    public CodeBlockAction onAction(CodeBlockActionHandler handler) {
-        this.handler = handler;
+    public CodeBlockAction onAction(ActionHandler<CodeBlock> actionHandler) {
+        this.actionHandler = actionHandler;
         return this;
     }
 }

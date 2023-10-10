@@ -21,13 +21,13 @@ import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
+import org.patternfly.component.button.Button;
 
 import elemental2.dom.HTMLInputElement;
 
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Key.Enter;
-import static org.patternfly.component.Button.control;
-import static org.patternfly.component.Icon.icon;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.formControl;
 import static org.patternfly.layout.PredefinedIcon.search;
@@ -59,7 +59,7 @@ public class Search extends InputGroup {
     protected Search(String placeholder) {
         super();
         add(input = input(InputType.search).css(component(formControl)).placeholder(placeholder));
-        add(control = control(icon(search.className).aria("title", placeholder)));
+        add(control = button(search, placeholder).control());
     }
 
     // ------------------------------------------------------ public API
@@ -99,6 +99,6 @@ public class Search extends InputGroup {
                 consumer.accept(((HTMLInputElement) e.currentTarget).value);
             }
         });
-        control.onClick(() -> consumer.accept(input.element().value));
+        control.onAction((e, b) -> consumer.accept(input.element().value));
     }
 }

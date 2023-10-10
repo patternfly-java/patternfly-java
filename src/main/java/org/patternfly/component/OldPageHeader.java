@@ -17,6 +17,7 @@ package org.patternfly.component;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.button.Button;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.layout.Classes;
 
@@ -27,7 +28,7 @@ import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
-import static org.patternfly.component.Icon.icon;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.banner;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.controls;
@@ -49,9 +50,9 @@ public class OldPageHeader extends BaseComponent<HTMLElement, OldPageHeader> {
         super(Elements.header().css(component("page", header)).attr("role", banner).element(), "PageHeader");
         add(div().css(component("page", header, Classes.brand))
                 .add(toggleContainer = div().css(component("page", header, Classes.brand, toggle))
-                        .add(toggleButton = Button.icon(icon(bars.className), "Global Navigation")
+                        .add(toggleButton = button(bars, "Global Navigation")
                                 .aria("expanded", false)
-                                .onClick(() -> {
+                                .onAction((e, b) -> {
                                     if (sidebar != null) {
                                         sidebar.toggle();
                                     }

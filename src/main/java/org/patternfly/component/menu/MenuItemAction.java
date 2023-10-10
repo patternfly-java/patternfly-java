@@ -19,6 +19,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.handler.ActionHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -59,7 +60,7 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
     public final String id;
     private final HTMLElement iconContainer;
     public MenuItem menuItem;
-    MenuItemActionClickHandler onClick;
+    ActionHandler<MenuItemAction> actionHandler;
 
     MenuItemAction(String id, String iconClass) {
         super(button()
@@ -79,8 +80,8 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
         this.id = Id.build("fav", sourceItemAction.id);
         this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;
-        if (sourceItemAction.onClick != null) {
-            onClick(sourceItemAction.onClick);
+        if (sourceItemAction.actionHandler != null) {
+            onAction(sourceItemAction.actionHandler);
         }
         // Don't call passMenu(menu) here. It's called by MenuItem(Menu, MenuItem, MenuItemType) constructor!
     }
@@ -113,8 +114,10 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
         return this;
     }
 
-    public MenuItemAction onClick(MenuItemActionClickHandler onClick) {
-        this.onClick = onClick;
-        return on(click, e -> onClick.onClick(e, this));
+    // ------------------------------------------------------ events
+
+    public MenuItemAction onAction(ActionHandler<MenuItemAction> actionHandler) {
+        this.actionHandler = actionHandler;
+        return on(click, e -> actionHandler.onAction(e, this));
     }
 }

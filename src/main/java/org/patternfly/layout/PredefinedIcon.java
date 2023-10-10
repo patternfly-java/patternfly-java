@@ -27,6 +27,10 @@ public enum PredefinedIcon {
 
     angleRight(fas("angle-right")),
 
+    arrowLeft(fas("arrow-left")),
+
+    arrowRight(fas("arrow-right")),
+
     arrowsAltV(fas("arrows-alt-v")),
 
     bars(fas("bars")),
@@ -49,6 +53,8 @@ public enum PredefinedIcon {
 
     externalLinkAlt(fas("external-link-alt")),
 
+    externalLinkSquareAlt(fas("external-link-square-alt")),
+
     filter(fas("filter")),
 
     infoCircle(fas("info-circle")),
@@ -59,6 +65,8 @@ public enum PredefinedIcon {
 
     play(fas("play")),
 
+    plusCircle(fas("plus-circle")),
+
     search(fas("search")),
 
     sortAmountDown(fas("sort-amount-down")),
@@ -67,7 +75,9 @@ public enum PredefinedIcon {
 
     times(fas("times")),
 
-    timesCircle(fas("times-circle"));
+    timesCircle(fas("times-circle")),
+
+    upload(fas("upload"));
 
     /**
      * Builds a PatternFly icons class.

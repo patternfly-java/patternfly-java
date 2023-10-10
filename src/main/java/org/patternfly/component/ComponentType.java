@@ -33,7 +33,7 @@ public enum ComponentType {
 
     Breadcrumb("bc", null),
 
-    Button("btn", null),
+    Button("btn", "PF5/Button"),
 
     Card("crd", null),
 
@@ -101,13 +101,13 @@ public enum ComponentType {
 
     Slider("sld", null),
 
-    Spinner("sp", null),
+    Spinner("sp", "PF5/Spinner"),
 
     Switch("sw", null),
 
     Tabs("tbs", null),
 
-    TextContent("tc", null),
+    TextContent("tc", "PF5/TextContent"),
 
     TextInput("ti", "PF5/TextInput"),
 

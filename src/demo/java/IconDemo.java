@@ -24,8 +24,8 @@ public class IconDemo {
 
     public void progressDemo() {
         // @start region = progress
-        Icon icon = icon(check).inProgress();
-        boolean finished = new Random().nextBoolean(); // @replace substring='new Random().nextBoolean();' replacement="..."
+        Icon icon = icon(check).inProgress(true);
+        boolean finished = new Random().nextBoolean(); // @replace substring = 'new Random().nextBoolean();' replacement = "..."
         if (finished) {
             icon.inProgress(false);
         }

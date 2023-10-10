@@ -35,6 +35,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
+import org.patternfly.component.button.Button;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -54,7 +55,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.Icon.icon;
 import static org.patternfly.layout.Classes.buttonGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
@@ -76,8 +76,9 @@ import static org.patternfly.layout.PredefinedIcon.sortAmountDown;
 /**
  * PatternFly data toolbar component.
  * <p>
- * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a toolbar
- * should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML nodes):
+ * All elements of a toolbar have to be nested inside instances of type {@link Content}. In general the structure of a
+ * toolbar should apply to the following EBNF (the symbols enclosed in '?' represent PatternFly components / HTML
+ * nodes):
  *
  * <pre>
  * toolbar           = content, { content } ;
@@ -105,7 +106,7 @@ import static org.patternfly.layout.PredefinedIcon.sortAmountDown;
  * </pre>
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
+ * "https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar">https://www.patternfly.org/v4/documentation/core/experimental/datatoolbar</a>
  * @see <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus–Naur form</a>
  */
 @Deprecated
@@ -357,7 +358,8 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         public Group toggle(String breakpoint) {
             String bpModifier = breakpoint.startsWith("pf-m-") ? breakpoint : modifier(breakpoint);
             return css(modifier(toggleGroup), bpModifier)
-                    .add(div().css(component(dataToolbar, toggle)).add(Button.icon(icon(filter.className), "Show filters")));
+                    .add(div().css(component(dataToolbar, toggle)).add(
+                            Button.button(filter, "Show filters")));
         }
 
         private <T> void bindToolbar(OldToolbar<T> toolbar) {
@@ -370,7 +372,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Deprecated
     public static class Item extends SubComponent<HTMLDivElement, Item> {
 
@@ -460,7 +462,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         private final Dropdown<BulkSelectOption> dropdown;
 
         protected BulkSelect() {
-            this.dropdown = Dropdown.<BulkSelectOption> splitCheckbox()
+            this.dropdown = Dropdown.<BulkSelectOption>splitCheckbox()
                     .identifier(bso -> bso.id)
                     .display((html, bso) -> html.textContent(bso.text))
                     .add(SELECT_NONE)

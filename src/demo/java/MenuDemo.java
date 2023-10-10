@@ -1,7 +1,7 @@
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 
-import static org.patternfly.component.Button.button;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;

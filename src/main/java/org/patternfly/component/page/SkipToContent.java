@@ -22,14 +22,15 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.Button.link;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.component;
 
 /**
- * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.
+ * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through
+ * it.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/skip-to-content/html">https://www.patternfly.org/components/skip-to-content/html</a>
+ * "https://www.patternfly.org/components/skip-to-content/html">https://www.patternfly.org/components/skip-to-content/html</a>
  */
 public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> {
 
@@ -53,7 +54,7 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
 
     SkipToContent(String mainId, String text) {
         super(div().css(component(Classes.skipToContent))
-                .add(link(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
+                .add(button(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
     }
 
     @Override

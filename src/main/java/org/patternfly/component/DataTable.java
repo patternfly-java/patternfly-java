@@ -27,6 +27,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
+import org.patternfly.component.button.Button;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -60,7 +61,6 @@ import static org.jboss.elemento.Elements.thead;
 import static org.jboss.elemento.Elements.tr;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.Icon.icon;
 import static org.patternfly.core.Dataset.dataTableItem;
 import static org.patternfly.core.Dataset.dataTableSort;
 import static org.patternfly.layout.Classes.button;
@@ -94,8 +94,8 @@ import static org.patternfly.layout.PredefinedIcon.longArrowAltUp;
  * PatternFly data table.
  *
  * <p>
- * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the data
- * provider:
+ * The data table does not manage data by itself. Use a {@link DataProvider} and add the data table as a display to the
+ * data provider:
  * </p>
  *
  * <pre>
@@ -107,7 +107,7 @@ import static org.patternfly.layout.PredefinedIcon.longArrowAltUp;
  * </pre>
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/table">https://www.patternfly.org/v4/documentation/core/components/table</a>
  */
 @Deprecated
 public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
@@ -126,7 +126,7 @@ public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
     public static <T> Column<T> expandColumn() {
         return new Column<>(EXPAND_COLUMN, null, null, (td, dataProvider, item) -> {
             String iconClass = angleDown.className + " " + component(table, toggle, Classes.icon);
-            td.css(component(table, toggle)).add(Button.icon(icon(iconClass), "Toggle details"));
+            td.css(component(table, toggle)).add(Button.button(iconClass, "Toggle details"));
         }, null);
     }
 
@@ -135,7 +135,7 @@ public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
                 th -> th.css(component(table, check)).add(input(InputType.checkbox).aria("label", "Select all rows")),
                 (td, dataProvider,
                         item) -> td.css(component(table, check)).add(input(InputType.checkbox)
-                                .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
+                        .name(Id.build(dataProvider.getId(item), "select")).aria(labelledBy, dataProvider.getId(item))),
                 null);
     }
 

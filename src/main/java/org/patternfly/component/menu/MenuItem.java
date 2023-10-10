@@ -23,13 +23,13 @@ import org.patternfly.component.SubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.handler.ActionHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.a;
@@ -96,7 +96,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     }
 
     /**
-     * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
+     * Create a new menu item with the specified type. Use this method, if you want full control over the text and
+     * type.
      */
     public static MenuItem menuItem(String id, MenuItemType type) {
         return new MenuItem(id, null, MenuItemType.action);
@@ -118,7 +119,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     private HTMLElement iconElement;
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
-    private MenuItemClickHandler onClick;
+    private ActionHandler<MenuItem> actionHandler;
 
     MenuItem(String id, String text, MenuItemType itemType) {
         super(li().css(component(menu, list, item))
@@ -176,8 +177,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
         // checkbox must not be used for cloned favorite items!
 
-        if (item.onClick != null) {
-            onClick(item.onClick);
+        if (item.actionHandler != null) {
+            onClick(item.actionHandler);
         }
         if (item.itemAction != null) {
             HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
@@ -243,6 +244,36 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         this.itemAction.menuItem = this;
         add(itemAction.element());
         return this;
+    }
+
+    // ------------------------------------------------------ modifiers
+
+    public MenuItem danger() {
+        return css(modifier(danger));
+    }
+
+    public MenuItem selected() {
+        initialSelection = true;
+        return this;
+    }
+
+    @Override
+    public MenuItem disabled(boolean disabled) {
+        switch (itemType) {
+            case action:
+                ((HTMLButtonElement) itemElement).disabled = disabled;
+                break;
+            case link:
+                itemElement.setAttribute(Aria.disabled, disabled);
+                break;
+            case checkbox:
+                checkboxComponent.disabled(disabled);
+                break;
+        }
+        if (itemAction != null) {
+            itemAction.element().disabled = disabled;
+        }
+        return Disabled.super.disabled(disabled);
     }
 
     // ------------------------------------------------------ public API
@@ -333,40 +364,12 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return this;
     }
 
-    public MenuItem onClick(MenuItemClickHandler onClick) {
-        this.onClick = onClick;
-        itemElement.addEventListener(click.name, e -> onClick.onClick(Js.cast(e), this));
+    // ------------------------------------------------------ events
+
+    public MenuItem onClick(ActionHandler<MenuItem> actionHandler) {
+        this.actionHandler = actionHandler;
+        itemElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
         return this;
-    }
-
-    // ------------------------------------------------------ modifiers
-
-    public MenuItem danger() {
-        return css(modifier(danger));
-    }
-
-    public MenuItem selected() {
-        initialSelection = true;
-        return this;
-    }
-
-    @Override
-    public MenuItem disabled(boolean disabled) {
-        switch (itemType) {
-            case action:
-                ((HTMLButtonElement) itemElement).disabled = disabled;
-                break;
-            case link:
-                itemElement.setAttribute(Aria.disabled, disabled);
-                break;
-            case checkbox:
-                checkboxComponent.disabled(disabled);
-                break;
-        }
-        if (itemAction != null) {
-            itemAction.element().disabled = disabled;
-        }
-        return Disabled.super.disabled(disabled);
     }
 
     // ------------------------------------------------------ internals

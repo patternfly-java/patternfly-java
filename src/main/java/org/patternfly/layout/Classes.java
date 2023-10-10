@@ -54,6 +54,7 @@ public interface Classes {
     String contextSelector = "context-selector";
     String control = "control";
     String controls = "controls";
+    String count = "count";
     String current = "current";
     String custom = "custom";
     String danger = "danger";
@@ -81,6 +82,8 @@ public interface Classes {
     String fill = "fill";
     String filterGroup = "filter-group";
     String flex = "flex";
+    String floatLeft = "float-left";
+    String floatRight = "float-right";
     String flyout = "flyout";
     String focus = "focus";
     String footer = "footer";
@@ -88,7 +91,6 @@ public interface Classes {
     String formControl = "form-control";
     String gallery = "gallery";
     String global = "global";
-    String globalNavigation = "Global Navigation";
     String grid = "grid";
     String group = "group";
     String gutter = "gutter";
@@ -104,6 +106,7 @@ public interface Classes {
     String indicator = "indicator";
     String info = "info";
     String inline = "inline";
+    String inProgress = "in-progress";
     String input = "input";
     String inputGroup = "input-group";
     String inset = "inset";
@@ -170,10 +173,12 @@ public interface Classes {
     String sidebar = "sidebar";
     String simple = "simple";
     String skipToContent = "skip-to-content";
+    String small = "small";
     String sort = "sort";
     String spinner = "spinner";
     String splitButton = "split-button";
     String stack = "stack";
+    String start = "start";
     String standalone = "standalone";
     String status = "status";
     String subnav = "subnav";

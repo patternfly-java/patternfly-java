@@ -24,6 +24,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.dataprovider.DataProvider;
 import org.patternfly.dataprovider.Display;
 import org.patternfly.dataprovider.PageInfo;
@@ -45,7 +46,8 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
-import static org.patternfly.component.Icon.icon;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Dataset.dataListItem;
 import static org.patternfly.layout.Classes.cell;
 import static org.patternfly.layout.Classes.check;
@@ -68,8 +70,8 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * PatternFly data list.
  *
  * <p>
- * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the data
- * provider:
+ * The data list does not manage data by itself. Use a {@link DataProvider} and add the data list as a display to the
+ * data provider:
  * </p>
  *
  * <pre>
@@ -81,7 +83,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  * </pre>
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/datalist">https://www.patternfly.org/v4/documentation/core/components/datalist</a>
  */
 @Deprecated
 public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
@@ -293,8 +295,8 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
 
         /** Adds an expandable icon. */
         public ItemControl expandable() {
-            Icon icon = icon(angleRight.className + " " + component(dataList, toggle, "icon"));
-            return (add(div().css(component(dataList, toggle)).add(Button.icon(icon, "Toggle details"))));
+            InlineIcon icon = inlineIcon(angleRight).css(component(dataList, toggle, "icon"));
+            return (add(div().css(component(dataList, toggle)).add(button(icon, "Toggle details"))));
         }
 
         @Override

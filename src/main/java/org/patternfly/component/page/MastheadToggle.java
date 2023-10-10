@@ -15,17 +15,17 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.Button;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.button.Button;
 
 import elemental2.dom.HTMLDivElement;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.globalNavigation;
 import static org.patternfly.layout.Classes.masthead;
 import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.PredefinedIcon.bars;
@@ -35,7 +35,7 @@ import static org.patternfly.layout.PredefinedIcon.bars;
  * {@link PageSidebar#toggle()}, when clicked.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
+ * "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
 public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle> {
 
@@ -54,9 +54,9 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
 
     MastheadToggle() {
         super(div().css(component(masthead, toggle)).element());
-        add(toggleButton = Button.icon(bars.className, globalNavigation)
+        add(toggleButton = button(bars, "Global Navigation").plain()
                 .aria(expanded, true) // expanded by default
-                .onClick(this::toggle));
+                .onAction((e, b) -> toggle()));
     }
 
     @Override

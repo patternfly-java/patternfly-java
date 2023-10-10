@@ -27,6 +27,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
@@ -87,7 +88,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
  * PatternFly single select component.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
+ * "https://www.patternfly.org/v4/documentation/core/components/select">https://www.patternfly.org/v4/documentation/core/components/select</a>
  */
 @Deprecated
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
@@ -160,7 +161,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
                                                         222);
                                             }).element()))
                             .element())
-                    .add(button = (HTMLButtonElement) Button.icon(icon(caretDown.className), "Options menu")
+                    .add(button = (HTMLButtonElement) Button.button(caretDown, "Options menu")
                             .css(component(select, toggle, Classes.button))
                             .id(buttonId)
                             .aria("expanded", false)

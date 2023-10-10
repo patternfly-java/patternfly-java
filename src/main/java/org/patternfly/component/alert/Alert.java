@@ -18,9 +18,10 @@ package org.patternfly.component.alert;
 import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.Button;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
 
@@ -34,6 +35,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.alert.AlertActionGroup.alertActionGroup;
 import static org.patternfly.component.alert.AlertDescription.alertDescription;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
@@ -41,7 +43,6 @@ import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.inline;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.truncate;
@@ -52,7 +53,7 @@ import static org.patternfly.layout.PredefinedIcon.times;
  *
  * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
  */
-public class Alert extends BaseComponent<HTMLDivElement, Alert> {
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert> {
 
     // ------------------------------------------------------ factory methods
 
@@ -88,8 +89,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> {
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
-                .aria(label, alertType.aria)
-                .element(),
+                        .aria(label, alertType.aria)
+                        .element(),
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
@@ -111,8 +112,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> {
     // ------------------------------------------------------ add methods
 
     /**
-     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
-     * action.
+     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a
+     * single action.
      */
     public Alert addAction(Button action) {
         return add(alertActionGroup().add(action));
@@ -126,13 +127,13 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> {
      * Wraps the description inside a {@code
      *
      *
-    <p>
+     * <p>
      *
-    <p>
-     *
-    <p/>
-     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
-     * simple string.
+     * <p>
+     * <p>
+     * <p/>
+     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is
+     * just a simple string.
      */
     public Alert addDescription(String description) {
         return add(alertDescription().add(p().textContent(description)));
@@ -157,17 +158,13 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> {
 
     public Alert closable(Callback callback) {
         return add(div().css(component(alert, Classes.action))
-                .add(closeButton = Button.icon(times.className, "close " + alertType.aria + ": " + title)
+                .add(closeButton = button(times, "close " + alertType.aria + ": " + title)
                         .on(click, e -> {
                             if (callback != null) {
                                 callback.call();
                             }
                             close();
                         })));
-    }
-
-    public Alert inline() {
-        return css(modifier(inline));
     }
 
     public Alert truncate() {

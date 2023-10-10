@@ -19,6 +19,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.brand.Brand;
 import org.patternfly.component.toolbar.Toolbar;
+import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Brightness;
 import org.patternfly.layout.Classes;
@@ -39,16 +40,17 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.stack;
 
 /**
- * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is accessible
- * from all parts of the application.
+ * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is
+ * accessible from all parts of the application.
  * <p>
  * All pages should share a common masthead. Use {@link Page#masthead()} to get the masthead.
  * <p>
  * {@snippet class = PageDemo region = masthead}
  *
- * @see <a href= "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
+ * @see <a href=
+ * "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
  */
-public class Masthead extends BaseComponent<HTMLElement, Masthead> {
+public class Masthead extends BaseComponent<HTMLElement, Masthead> implements Inline<HTMLElement, Masthead> {
 
     // ------------------------------------------------------ factory methods
 
@@ -88,15 +90,15 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     }
 
     /**
-     * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component and
-     * finally adds the {@link MastheadMain} to this component.
+     * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component
+     * and finally adds the {@link MastheadMain} to this component.
      * <p>
      * Shortcut for
      * {@snippet :
      * import org.patternfly.layout.Classes;add(mastheadMain()
      *         .add(a(homeLink).css(Classes.component(masthead, Classes.brand))
      *                 .add(brand)));
-     * }
+     *}
      */
     public Masthead addBrand(Brand brand, String homeLink) {
         add(mastheadMain()
@@ -106,13 +108,14 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     }
 
     /**
-     * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this component.
+     * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this
+     * component.
      * <p>
      * Shortcut for
      * {@snippet :
      * add(mastheadContent())
      *         .add(toolbar);
-     * }
+     *}
      */
     public Masthead addToolbar(Toolbar toolbar) {
         add(mastheadContent())
@@ -158,24 +161,19 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     }
 
     /**
-     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--200}.
+     * Modifies this component to have a light theme with a background color of
+     * {@code --pf-v5-global--BackgroundColor--200}.
      */
     public Masthead light() {
         return css(Brightness.light.opacity(200));
     }
 
     /**
-     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--100}.
+     * Modifies this component to have a light theme with a background color of
+     * {@code --pf-v5-global--BackgroundColor--100}.
      */
     public Masthead lighter() {
         return css(Brightness.light.modifier);
-    }
-
-    /**
-     * Modifies this component to have an inline display.
-     */
-    public Masthead inline() {
-        return css(modifier(inline));
     }
 
     /**

@@ -15,9 +15,14 @@
  */
 package org.patternfly.component.icon;
 
+import java.util.function.Consumer;
+
 import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.spinner.Spinner;
+import org.patternfly.core.Modifiers.Inline;
+import org.patternfly.core.WithProgress;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 import org.patternfly.layout.Size;
@@ -27,16 +32,13 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.svg.SVG.circle;
-import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
+import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.inline;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.path;
 import static org.patternfly.layout.Classes.progress;
-import static org.patternfly.layout.Classes.spinner;
+import static org.patternfly.layout.Size.md;
 
 /**
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
@@ -46,7 +48,8 @@ import static org.patternfly.layout.Classes.spinner;
  *
  * @see <a href="https://www.patternfly.org/components/icon/html">https://www.patternfly.org/components/icon/html</a>
  */
-public class Icon extends BaseComponent<HTMLElement, Icon> {
+public class Icon extends BaseComponent<HTMLElement, Icon>
+        implements Inline<HTMLElement, Icon>, WithProgress<HTMLElement, Icon> {
 
     // ------------------------------------------------------ factory methods
 
@@ -68,6 +71,8 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     private final HTMLElement content;
     private Size size;
+    private Size iconSize;
+    private Spinner spinner;
 
     Icon(String iconClass) {
         super(span().css(component(icon))
@@ -85,10 +90,6 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
 
     // ------------------------------------------------------ modifiers
 
-    public Icon inline() {
-        return css(modifier(inline));
-    }
-
     /**
      * Modifies the size of this component.
      */
@@ -97,58 +98,39 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
         return css(size.modifier);
     }
 
-    /**
-     * Modifies the size of the icon.
-     *
-     * @see <a href=
-     *      "https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container">https://www.patternfly.org/components/icon/html#sizing-content-within-the-icon-container</a>
-     */
     public Icon iconSize(Size size) {
-        return css(size.modifier);
+        iconSize = size;
+        content.classList.add(iconSize.modifier);
+        return this;
     }
 
-    /**
-     * Modifies the status of this component.
-     */
     public Icon status(Status status) {
         content.classList.add(status.modifier);
         return this;
     }
 
-    /**
-     * Swaps the icon to a progress icon.
-     * <p>
-     * {@snippet class = IconDemo region = progress}
-     */
-    public Icon inProgress() {
-        return inProgress(true);
-    }
-
-    /**
-     * Turns the progress icon on/off.
-     * <p>
-     * {@snippet class = IconDemo region = progress}
-     */
-    public Icon inProgress(boolean onOff) {
+    public Icon inProgress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
         HTMLElement element = find(By.classname(component(icon, progress)));
-        if (onOff) {
-            if (element != null) {
-                failSafeRemoveFromParent(element);
+        failSafeRemoveFromParent(element);
+        if (inProgress) {
+            element().classList.add(modifier(Classes.inProgress));
+            if (spinner == null) {
+                spinner = spinner(label);
+                if (size != null) {
+                    spinner.size(size);
+                } else if (iconSize != null) {
+                    spinner.size(iconSize);
+                } else {
+                    spinner.size(md);
+                }
             }
-            String sizeModifier = size != null ? size.modifier : Size.md.modifier;
+            if (spinnerConsumer != null) {
+                spinnerConsumer.accept(spinner);
+            }
             add(span().css(component(icon, progress))
-                    .add(svg().css(component(spinner), sizeModifier)
-                            .aria("label", "Loading...")
-                            .attr("role", "progressbar")
-                            .attr("viewBox", "0 0 100 100")
-                            .add(circle().css(component(spinner, path))
-                                    .attr("cx", 50)
-                                    .attr("cy", 50)
-                                    .attr("r", 45)
-                                    .attr("fill", "none")))
-                    .element());
+                    .add(spinner));
         } else {
-            failSafeRemoveFromParent(element);
+            element().classList.remove(modifier(Classes.inProgress));
         }
         return this;
     }
