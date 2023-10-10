@@ -37,8 +37,6 @@ import org.patternfly.layout.PredefinedIcon;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.Node;
-import elemental2.dom.NodeList;
 
 import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -69,12 +67,13 @@ import static org.patternfly.layout.Size.lg;
 import static org.patternfly.layout.Size.md;
 
 /**
- * A button is a box area or text that communicates and triggers user actions when clicked or selected. Buttons can be used to
- * communicate and immediately trigger actions a user can take in an application, like submitting a form, canceling a process,
- * or creating a new object. Buttons can also be used to take a user to a new location, like another page inside a web
- * application, or an external site such as help or documentation.
+ * A button is a box area or text that communicates and triggers user actions when clicked or selected. Buttons can be
+ * used to communicate and immediately trigger actions a user can take in an application, like submitting a form,
+ * canceling a process, or creating a new object. Buttons can also be used to take a user to a new location, like
+ * another page inside a web application, or an external site such as help or documentation.
  *
- * @see <a href= "https://www.patternfly.org/components/button/html">https://www.patternfly.org/components/button/html</a>
+ * @see <a href=
+ * "https://www.patternfly.org/components/button/html">https://www.patternfly.org/components/button/html</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button>
         implements Disabled<HTMLElement, Button>, Inline<HTMLElement, Button>, Plain<HTMLElement, Button>,
@@ -278,24 +277,13 @@ public class Button extends BaseComponent<HTMLElement, Button>
     // ------------------------------------------------------ public API
 
     /**
-     * Changes the text of this button. Prefer this method over {@link #textContent(String)}, since this method doesn't remove a
-     * possible progress spinner.
+     * Changes the text of this button. Prefer this method over
+     * {@link org.jboss.elemento.HasElement#textContent(String)}, since this method doesn't remove a possible progress
+     * spinner.
      */
     public Button text(String text) {
         // just using textContent(text) would remove a possible progress spinner
-        boolean textNode = false;
-        NodeList<Node> nodes = element().childNodes;
-        for (int i = 0; i < nodes.length && !textNode; i++) {
-            Node node = nodes.getAt(i);
-            if (node.nodeType == Node.TEXT_NODE) {
-                node.nodeValue = text;
-                textNode = true;
-            }
-        }
-        if (!textNode) {
-            add(text);
-        }
-        return this;
+        return textNode(text);
     }
 
     public Button href(String href) {
