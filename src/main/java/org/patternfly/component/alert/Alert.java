@@ -22,6 +22,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Inline;
+import org.patternfly.core.UnderDevelopment;
 import org.patternfly.handler.Callback;
 import org.patternfly.layout.Classes;
 
@@ -48,33 +49,13 @@ import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.truncate;
 import static org.patternfly.layout.PredefinedIcon.times;
 
-/**
- * An alert is a notification that provides brief information to the user without blocking their workflow.
- *
- * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
- */
+@UnderDevelopment
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert> {
 
     // ------------------------------------------------------ factory methods
 
-    public static Alert custom(String title) {
-        return new Alert(AlertType.custom, title);
-    }
-
-    public static Alert info(String title) {
-        return new Alert(AlertType.info, title);
-    }
-
-    public static Alert success(String title) {
-        return new Alert(AlertType.success, title);
-    }
-
-    public static Alert warning(String title) {
-        return new Alert(AlertType.warning, title);
-    }
-
-    public static Alert danger(String title) {
-        return new Alert(AlertType.danger, title);
+    public static Alert alert(AlertType type, String title) {
+        return new Alert(type, title);
     }
 
     // ------------------------------------------------------ instance

@@ -1,7 +1,5 @@
 [![Verify Codebase](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml/badge.svg)](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml) [![Maven Central](https://img.shields.io/maven-central/v/org.patternfly/patternfly-java)](https://search.maven.org/search?q=g:org.patternfly%20AND%20a:patternfly-java) ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg) [![Chat on Gitter](https://badges.gitter.im/patternfly-java/patternfly-java.svg)](https://app.gitter.im/#/room/#pf4-java_core:gitter.im)
 
-# PatternFly Java
-
 PatternFly Java is a Java implementation of [PatternFly 5](https://www.patternfly.org) based on GWT/J2CL and [Elemento](https://github.com/hal/elemento). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. The following code snippet gives a taste of what PatternFly Java looks like: 
 
 ```java

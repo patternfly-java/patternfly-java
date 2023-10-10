@@ -15,5 +15,16 @@
  */
 package org.patternfly.core;
 
-public interface UnderDevelopment {
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+
+/**
+ * Internal annotation to track Patternfly Java development
+ */
+@Retention(RetentionPolicy.SOURCE)
+@Target(value = TYPE)
+public @interface UnderDevelopment {
 }
