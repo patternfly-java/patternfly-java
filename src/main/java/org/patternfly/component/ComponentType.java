@@ -47,6 +47,8 @@ public enum ComponentType {
 
     CodeBlock("cb", "PF5/CodeBlock"),
 
+    CodeEditor("ce", "PF5/CodeEditor"),
+
     ContextSelector("cs", null),
 
     DataList("dl", null),

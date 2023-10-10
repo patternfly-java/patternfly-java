@@ -163,6 +163,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     public Alert closable(Callback callback) {
         return add(div().css(component(alert, Classes.action))
                 .add(closeButton = button(times, "close " + alertType.aria + ": " + title)
+                        .plain()
                         .on(click, e -> {
                             if (callback != null) {
                                 callback.call();

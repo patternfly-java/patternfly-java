@@ -58,6 +58,6 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
 
     @Override
     public SkipToContent that() {
-        return null;
+        return this;
     }
 }

@@ -151,6 +151,24 @@ public interface Modifiers {
         }
     }
 
+    interface Readonly2<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #readonly(boolean) readonly(true)} */
+        default B readonly() {
+            return readonly(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(readOnly)} */
+        default B readonly(boolean readonly) {
+            if (readonly) {
+                element().classList.add(modifier(Classes.readOnly));
+            } else {
+                element().classList.remove(modifier(Classes.readOnly));
+            }
+            return that();
+        }
+    }
+
     interface Required<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #required(boolean) required(true)} */

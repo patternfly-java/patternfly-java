@@ -47,6 +47,7 @@ public interface Classes {
     String clipper = "clipper";
     String code = "code";
     String codeBlock = "code-block";
+    String codeEditor = "code-editor";
     String col = "col";
     String collapsed = "collapsed";
     String compact = "compact";
@@ -117,6 +118,7 @@ public interface Classes {
     String itemControl = "item-control";
     String itemRow = "item-row";
     String label = "label";
+    String keyboard = "keyboard";
     String labelledBy = "labelledby";
     String leadBall = "lead-ball";
     String left = "left";
@@ -170,6 +172,7 @@ public interface Classes {
     String separator = "separator";
     String shadowBottom = "shadow-bottom";
     String shadowTop = "shadow-top";
+    String shortcuts = "shortcuts";
     String sidebar = "sidebar";
     String simple = "simple";
     String skipToContent = "skip-to-content";

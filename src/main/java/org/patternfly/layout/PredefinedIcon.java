@@ -41,9 +41,13 @@ public enum PredefinedIcon {
 
     check(fas("check")),
 
+    code(fas("code")),
+
     copy(fas("copy")),
 
     checkCircle(fas("check-circle")),
+
+    download(fas("download")),
 
     ellipsisV(fas("ellipsis-v")),
 
@@ -56,6 +60,8 @@ public enum PredefinedIcon {
     externalLinkSquareAlt(fas("external-link-square-alt")),
 
     filter(fas("filter")),
+
+    help(pfIcon("help")),
 
     infoCircle(fas("info-circle")),
 
@@ -77,6 +83,8 @@ public enum PredefinedIcon {
 
     timesCircle(fas("times-circle")),
 
+    undo(fas("undo")),
+
     upload(fas("upload"));
 
     /**
@@ -85,7 +93,7 @@ public enum PredefinedIcon {
      * @param name the name of the PatternFly icon <strong>w/o</strong> any prefix.
      */
     public static String pfIcon(String name) {
-        return "pf-icon-" + name;
+        return "pf-v5-pficon pf-v5-pficon-" + name;
     }
 
     /**
