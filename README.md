@@ -62,7 +62,7 @@ expandableSection()
 
 # PatternFly Assets
 
-PatternFly Kotlin does *not* come with stylesheets, fonts, or other static PatternFly assets. We don't want to dictate how to embed these assets. One way is to download or get PatternFly using a CDN provider like [jsDelivr](https://www.jsdelivr.com/package/npm/@patternfly/patternfly) and include the stylesheets in your HTML page. See the [getting started](https://www.patternfly.org/get-started/develop#htmlcss) section on the PatternFly website for more details. 
+PatternFly Java does *not* come with stylesheets, fonts, or other static PatternFly assets. We don't want to dictate how to embed these assets. One way is to download or get PatternFly using a CDN provider like [jsDelivr](https://www.jsdelivr.com/package/npm/@patternfly/patternfly) and include the stylesheets in your HTML page. See the [getting started](https://www.patternfly.org/get-started/develop#htmlcss) section on the PatternFly website for more details. 
 
 # PatternFly Support
 
@@ -75,6 +75,6 @@ PatternFly Java aims to provide almost complete support for all components, char
 
 # Get Involved
 
-PatternFly Java is still under development. The API might change, and things might not work as expected. Please give it a try and share your feedback. Join the chat at [https://slack.patternfly.org/](https://app.gitter.im/#/room/#pf4-java_core:gitter.im) or use the GitHub [issues](https://github.com/patternfly-java/patternfly-java/issues) to report bugs or request new features. 
+PatternFly Java is still under development. The API might change, and things might not work as expected. Please give it a try and share your feedback. Join the chat at https://app.gitter.im/#/room/#pf4-java_core:gitter.im or use the GitHub [issues](https://github.com/patternfly-java/patternfly-java/issues) to report bugs or request new features. 
 
 Of course, you're welcome to [contribute](CONTRIBUTING.md) to PatternFly Java. If you like what you're seeing, leave us a star!
