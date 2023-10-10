@@ -8,8 +8,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Enhanced documentation
-- Expandable section component
+- Badge component (#24)
+- Button component (#28)
+- Checkbox component  (#48)
+- Code block component (#32)
+- Divider component (#40)
+- Expandable section component (#45)
+- Icon component (#57)
+- Masthead component (#64)
+- Menu component (#66)
+- Navigation component (#70)
+- Page component (#75)
+- Text input component (#54)
+- Skip to content component (#86)
+- Spinner component (#88)
+- Text content component (#92)
+- Title component (#96)
+- Stack layout (#124)
 
 ### Deprecated
 
