@@ -36,7 +36,7 @@ PatternFly Java is available in [Maven Central](https://search.maven.org/search?
 <dependency>
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
  
