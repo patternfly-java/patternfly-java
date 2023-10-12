@@ -19,8 +19,15 @@ body().add(page()
                         .light()
                         .add(textContent()
                                 .add(title(1, "PatternFly - Java"))
-                                .add(p().add("PatternFly Java is a Java implementation of PatternFly 5 based on GWT/J2CL and ")
-                                        .add(a("https://github.com/hal/elemento").textContent("Elemento"))
+                                .add(p()
+                                        .add(a("https://github.com/patternfly-java/patternfly-java", "_blank")
+                                                .textContent("PatternFly Java"))
+                                        .add(" is a Java implementation of ")
+                                        .add(a("https://www.patternfly.org/", "_blank")
+                                                .textContent("PatternFly"))
+                                        .add(" based on GWT and ")
+                                        .add(a("https://github.com/hal/elemento", "_blank")
+                                                .textContent("Elemento"))
                                         .add("."))))));
 ```
 
