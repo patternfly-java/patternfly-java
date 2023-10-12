@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.alert;
 
+import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
@@ -28,14 +29,18 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLParagraphElement;
 import elemental2.dom.MouseEvent;
+import elemental2.dom.MutationRecord;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.alert.AlertActionGroup.alertActionGroup;
+import static org.jboss.elemento.EventType.mouseout;
+import static org.jboss.elemento.EventType.mouseover;
 import static org.patternfly.component.alert.AlertDescription.alertDescription;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
@@ -55,7 +60,7 @@ import static org.patternfly.layout.PredefinedIcon.times;
  * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
  */
 @UnderDevelopment
-public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>, Attachable,
         ComponentReference<AlertGroup> {
 
     // ------------------------------------------------------ factory
@@ -66,13 +71,18 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     // ------------------------------------------------------ instance
 
-    public static final String ARIA_CLOSE_BUTTON = "ARIA_CLOSE_BUTTON";
+    public static final long MIN_TIMEOUT = 1_000; // ms
+    public static final long DEFAULT_TIMEOUT = 8_000; // ms
 
     private final AlertType alertType;
     private final String title;
     private final HTMLParagraphElement titleElement;
-    private ActionHandler<Alert> closeHandler;
+    private long timeout;
+    private double timeoutHandle;
     private Button closeButton;
+    private AlertGroup alertGroup;
+    private AlertActionGroup actionGroup;
+    private ActionHandler<Alert> closeHandler;
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
@@ -81,6 +91,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
+        this.timeout = 0;
+        this.timeoutHandle = 0;
 
         add(div().css(component(alert, icon))
                 .add(inlineIcon(alertType.iconClass)
@@ -90,25 +102,42 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
                         .textContent(alertType.aria + ":"))
                 .add(title)
                 .element());
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        if (timeout > MIN_TIMEOUT) {
+            startTimeout();
+            on(mouseover, e -> stopTimeout());
+            on(mouseout, e -> startTimeout());
+        }
+        if (actionGroup != null) {
+            actionGroup.passComponent(this);
+        }
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        clearTimeout(timeoutHandle);
     }
 
     @Override
     public void passComponent(AlertGroup alertGroup) {
-
+        this.alertGroup = alertGroup;
     }
 
     // ------------------------------------------------------ add
 
-    /**
-     * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
-     * action.
-     */
-    public Alert addAction(Button action) {
-        return add(alertActionGroup().add(action));
-    }
-
     public Alert addActionGroup(AlertActionGroup actionGroup) {
         return add(actionGroup);
+    }
+
+    // override to assure internal wiring
+    public Alert add(AlertActionGroup actionGroup) {
+        this.actionGroup = actionGroup;
+        add(actionGroup.element());
+        return this;
     }
 
     /**
@@ -138,6 +167,15 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         if (handler != null) {
             closeButton.on(click, e -> handler.onAction(e, this));
         }
+        return this;
+    }
+
+    public Alert timeout() {
+        return timeout(DEFAULT_TIMEOUT);
+    }
+
+    public Alert timeout(long timeout) {
+        this.timeout = timeout;
         return this;
     }
 
@@ -188,5 +226,22 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     boolean hasClose() {
         return closeButton != null;
+    }
+
+    private void startTimeout() {
+        timeoutHandle = setTimeout((o) -> remove(), timeout);
+    }
+
+    private void stopTimeout() {
+        clearTimeout(timeoutHandle);
+    }
+
+    private void remove() {
+        stopTimeout();
+        if (alertGroup != null) {
+            // TODO remove alert from alert group
+        } else {
+            failSafeRemoveFromParent(this);
+        }
     }
 }

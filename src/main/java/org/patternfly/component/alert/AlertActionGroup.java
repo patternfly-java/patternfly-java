@@ -58,16 +58,22 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
 
     // ------------------------------------------------------ add
 
+    public AlertActionGroup addAction(String action) {
+        return addAction(button(action).inline().link(), null);
+    }
+
     public AlertActionGroup addAction(String action, ActionHandler<Alert> handler) {
         return addAction(button(action).inline().link(), handler);
     }
 
-    public AlertActionGroup addAction(Button action, ActionHandler<Alert> handler) {
-        tuples.add(new ButtonActionHandlerTuple(action, handler));
-        return addAction(action);
+    public AlertActionGroup addAction(Button action) {
+        return addAction(action, null);
     }
 
-    public AlertActionGroup addAction(Button action) {
+    public AlertActionGroup addAction(Button action, ActionHandler<Alert> handler) {
+        if (handler != null) {
+            tuples.add(new ButtonActionHandlerTuple(action, handler));
+        }
         return add(action);
     }
 

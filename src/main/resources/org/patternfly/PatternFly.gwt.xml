@@ -22,7 +22,7 @@
     <source path="component"/>
     <source path="core"/>
     <source path="dataprovider"/>
+    <source path="dom"/>
     <source path="handler"/>
-    <source path="js"/>
     <source path="layout"/>
 </module>
