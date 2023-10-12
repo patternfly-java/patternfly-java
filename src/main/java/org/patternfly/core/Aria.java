@@ -17,6 +17,7 @@ package org.patternfly.core;
 
 public interface Aria {
 
+    String atomic = "aria-atomic";
     String controls = "aria-controls";
     String current = "aria-current";
     String disabled = "aria-disabled";
@@ -24,6 +25,7 @@ public interface Aria {
     String hidden = "aria-hidden";
     String invalid = "aria-invalid";
     String label = "aria-label";
+    String live = "aria-live";
     String labelledBy = "aria-labelledby";
     String multiSelectable = "aria-multiselectable";
     String selected = "aria-selected";
