@@ -62,7 +62,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 @Deprecated
 public class Tabs extends BaseComponent<HTMLDivElement, Tabs> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Tabs tabs() {
         return new Tabs();
@@ -92,7 +92,7 @@ public class Tabs extends BaseComponent<HTMLDivElement, Tabs> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public <E extends HTMLElement> Tabs add(String title, IsElement<E> panel) {
         return add(Id.build(title), title, panel.element());

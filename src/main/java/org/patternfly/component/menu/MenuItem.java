@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
@@ -23,6 +24,7 @@ import org.patternfly.component.SubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.core.SelectionMode;
 import org.patternfly.handler.ActionHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -50,7 +52,6 @@ import static org.patternfly.component.menu.MenuItemType.link;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.SelectionMode.multi;
-import static org.patternfly.core.SelectionMode.none;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.danger;
@@ -72,7 +73,7 @@ import static org.patternfly.layout.PredefinedIcon.star;
 public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         implements Disabled<HTMLElement, MenuItem>, ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Create a new menu item with type {@link MenuItemType#action}.
@@ -147,7 +148,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                     .element());
 
         } else {
-            // create a pseudo element, but don't add it
+            // create a pseudo-element, but don't add it
             itemBuilder = div()
                     .add(mainElement = div()
                             .add(textElement = div().element())
@@ -216,7 +217,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                 itemElement.setAttribute(role, "option");
                 break;
         }
-        if (menu.selectionMode == single || menu.selectionMode == none) {
+        if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
         } else if (menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> menu.select(this, !isSelected(), true));
@@ -226,12 +227,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         }
     }
 
-    @Override
-    public MenuItem that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public MenuItem addAction(MenuItemAction itemAction) {
         return add(itemAction);
@@ -245,7 +241,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public MenuItem danger() {
         return css(modifier(danger));
@@ -274,8 +270,6 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         }
         return Disabled.super.disabled(disabled);
     }
-
-    // ------------------------------------------------------ public API
 
     public MenuItem text(String text) {
         textElement.textContent = text;
@@ -363,6 +357,11 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return this;
     }
 
+    @Override
+    public MenuItem that() {
+        return this;
+    }
+
     // ------------------------------------------------------ events
 
     public MenuItem onClick(ActionHandler<MenuItem> actionHandler) {
@@ -371,7 +370,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     MenuItemAction addFavoriteItemAction() {
         String actionId = Id.build(id, "mark-as-favorite");

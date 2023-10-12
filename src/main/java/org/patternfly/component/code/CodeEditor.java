@@ -41,7 +41,7 @@ import static org.patternfly.layout.Classes.main;
 public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         implements Attachable, Readonly2<HTMLElement, CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditor codeEditor() {
         return new CodeEditor(null);
@@ -80,12 +80,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         }
     }
 
-    @Override
-    public CodeEditor that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeEditor addHeader(CodeEditorHeader header) {
         return add(header);
@@ -98,12 +93,19 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ builder
 
     public CodeEditor code(String code) {
         preElement.textContent = code;
         return this;
     }
+
+    @Override
+    public CodeEditor that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
 
     public String code() {
         return preElement.textContent;

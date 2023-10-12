@@ -39,7 +39,7 @@ import static org.patternfly.layout.Classes.menu;
 
 public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> implements ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuContent menuContent() {
         return new MenuContent();
@@ -92,12 +92,7 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
         }
     }
 
-    @Override
-    public MenuContent that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public MenuContent addGroup(MenuGroup group) {
         return add(group);
@@ -125,7 +120,14 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MenuContent that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
 
     void addToFavorites(MenuItem favoriteItem) {
         if (favoritesList != null) {

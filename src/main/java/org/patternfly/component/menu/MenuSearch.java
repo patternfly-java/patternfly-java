@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.search;
 
 public class MenuSearch extends SubComponent<HTMLDivElement, MenuSearch> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuSearch menuSearch() {
         return new MenuSearch();
@@ -37,6 +37,8 @@ public class MenuSearch extends SubComponent<HTMLDivElement, MenuSearch> {
     MenuSearch() {
         super(div().css(component(menu, search)).element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public MenuSearch that() {

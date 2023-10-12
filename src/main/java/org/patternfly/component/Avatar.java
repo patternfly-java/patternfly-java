@@ -30,7 +30,7 @@ import static org.patternfly.layout.Classes.component;
 @Deprecated
 public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Avatar avatar(String src, String alt) {
         return new Avatar(src, alt);

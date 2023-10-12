@@ -22,10 +22,8 @@ import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValues;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -66,7 +64,7 @@ import static org.patternfly.layout.PredefinedIcon.caretDown;
 public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>>
         implements Modifiers.Disabled<HTMLDivElement, MultiSelect<T>>, HasValues<T> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> MultiSelect<T> multi(String text) {
         return new MultiSelect<>(null, text, false);
@@ -132,7 +130,7 @@ public class MultiSelect<T> extends BaseComponent<HTMLDivElement, MultiSelect<T>
         return menu;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public MultiSelect<T> add(Iterable<T> items) {
         for (T item : items) {

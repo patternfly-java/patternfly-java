@@ -27,7 +27,7 @@ import static org.patternfly.layout.Classes.stack;
 
 public class StackItem extends BaseLayout<HTMLDivElement, StackItem> implements Fill<HTMLDivElement, StackItem> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static StackItem stackItem() {
         return new StackItem();

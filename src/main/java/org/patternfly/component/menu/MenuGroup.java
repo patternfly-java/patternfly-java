@@ -29,7 +29,7 @@ import static org.patternfly.layout.Classes.title;
 
 public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuGroup menuGroup() {
         return new MenuGroup(null);
@@ -57,12 +57,7 @@ public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements C
         }
     }
 
-    @Override
-    public MenuGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public MenuGroup addList(MenuList list) {
         return add(list);
@@ -72,6 +67,13 @@ public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements C
     public MenuGroup add(MenuList list) {
         this.list = list;
         add(list.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MenuGroup that() {
         return this;
     }
 }

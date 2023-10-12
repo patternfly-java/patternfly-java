@@ -23,10 +23,8 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -65,7 +63,7 @@ import static org.patternfly.layout.PredefinedIcon.caretDown;
 public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSelector<T>>
         implements Modifiers.Disabled<HTMLDivElement, ContextSelector<T>>, HasValue<T> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> ContextSelector<T> contextSelector(String text) {
         return new ContextSelector<>(text);
@@ -122,7 +120,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         return menu;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public ContextSelector<T> add(Iterable<T> items) {
         for (T item : items) {
@@ -201,7 +199,7 @@ public class ContextSelector<T> extends BaseComponent<HTMLDivElement, ContextSel
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private void filter(String value) {
         for (HTMLElement e : Elements.findAll(menu,

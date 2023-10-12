@@ -31,7 +31,7 @@ import static org.patternfly.layout.Classes.controls;
 public class CodeEditorActions extends SubComponent<HTMLDivElement, CodeEditorActions> implements
         ComponentReference<CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorActions codeEditorActions() {
         return new CodeEditorActions();
@@ -53,12 +53,7 @@ public class CodeEditorActions extends SubComponent<HTMLDivElement, CodeEditorAc
         }
     }
 
-    @Override
-    public CodeEditorActions that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeEditorActions addAction(CodeEditorAction action) {
         return add(action);
@@ -68,6 +63,13 @@ public class CodeEditorActions extends SubComponent<HTMLDivElement, CodeEditorAc
     public CodeEditorActions add(CodeEditorAction action) {
         actions.add(action);
         add(action.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public CodeEditorActions that() {
         return this;
     }
 }

@@ -23,9 +23,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -78,7 +76,7 @@ import static org.patternfly.layout.PredefinedIcon.ellipsisV;
 public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         implements Modifiers.Disabled<HTMLDivElement, Dropdown<T>> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> Dropdown<T> text(String text) {
         return new Dropdown<>(text, null, false, false);
@@ -270,7 +268,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public Dropdown<T> up() {
         element().classList.add(modifier(top));
@@ -376,7 +374,7 @@ public class Dropdown<T> extends BaseComponent<HTMLDivElement, Dropdown<T>>
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private HTMLLIElement newItem(T item) {
         HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(dropdown, Classes.menu, Classes.item))

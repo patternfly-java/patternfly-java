@@ -43,7 +43,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, ExpandableSectionToggle> implements
         ComponentReference<ExpandableSection> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ExpandableSectionToggle expandableSectionToggle() {
         return new ExpandableSectionToggle(null, null);
@@ -81,12 +81,7 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
         on(click, e -> expandableSection.toggle());
     }
 
-    @Override
-    public ExpandableSectionToggle that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public ExpandableSectionToggle addText(ExpandableSectionToggleText text) {
         return add(text);
@@ -99,7 +94,7 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /** Changes the toggle icon to point upwards. */
     public ExpandableSectionToggle up() {
@@ -107,7 +102,12 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    @Override
+    public ExpandableSectionToggle that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
 
     void collapse() {
         aria(expanded, false);

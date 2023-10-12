@@ -42,7 +42,7 @@ public class OldPageMain extends BaseComponent<HTMLElement, OldPageMain> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public OldPageMain replace(Node element) {
         removeChildrenFrom(element());

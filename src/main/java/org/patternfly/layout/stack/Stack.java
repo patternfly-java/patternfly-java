@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.stack;
 
 public class Stack extends BaseLayout<HTMLDivElement, Stack> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Stack stack() {
         return new Stack();
@@ -45,13 +45,13 @@ public class Stack extends BaseLayout<HTMLDivElement, Stack> {
         return this;
     }
 
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public Stack addItem(StackItem item) {
         return add(item);
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /** Adds {@linkplain Classes#modifier(String) modifier(gutter)} */
     public Stack gutter() {

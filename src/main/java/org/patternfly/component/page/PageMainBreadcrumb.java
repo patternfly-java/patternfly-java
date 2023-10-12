@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.page;
  */
 public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMainBreadcrumb> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -48,6 +48,8 @@ public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMain
         super(section().css(component(page, main, breadcrumb))
                 .element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public PageMainBreadcrumb that() {

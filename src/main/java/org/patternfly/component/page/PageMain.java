@@ -40,7 +40,7 @@ import static org.patternfly.layout.Classes.page;
  */
 public class PageMain extends SubComponent<HTMLElement, PageMain> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -58,12 +58,7 @@ public class PageMain extends SubComponent<HTMLElement, PageMain> {
                 .element());
     }
 
-    @Override
-    public PageMain that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Adds a {@link PageMainGroup} to this component.
@@ -79,7 +74,14 @@ public class PageMain extends SubComponent<HTMLElement, PageMain> {
         return add(pageSection);
     }
 
-    // ------------------------------------------------------ replace
+    // ------------------------------------------------------ builder
+
+    @Override
+    public PageMain that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
 
     public void replace(IsElement<?> element) {
         removeChildrenFrom(element());

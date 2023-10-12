@@ -13,18 +13,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.dom;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import elemental2.promise.Promise;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-import static java.lang.annotation.ElementType.TYPE;
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public class Clipboard {
 
-/**
- * Internal annotation to track Patternfly Java development
- */
-@Retention(RetentionPolicy.SOURCE)
-@Target(value = TYPE)
-public @interface UnderDevelopment {
+    public native Promise<String> readText();
+
+    public native Promise<Void> writeText(String text);
 }

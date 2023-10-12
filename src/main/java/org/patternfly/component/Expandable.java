@@ -20,7 +20,6 @@ import java.util.function.Consumer;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -46,7 +45,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 @Deprecated
 public class Expandable extends BaseComponent<HTMLDivElement, Expandable> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Expandable expandable() {
         return new Expandable("Show more", "Show less");

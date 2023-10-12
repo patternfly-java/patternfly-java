@@ -30,7 +30,7 @@ import static org.patternfly.layout.PredefinedIcon.help;
 public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> implements
         ComponentReference<CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Adds a link. The button should have the modifiers {@link Button#link()}.
@@ -61,17 +61,17 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
         }
     }
 
-    @Override
-    public CodeEditorLink that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ builder
 
     public CodeEditorLink ariaLabel(String label) {
         if (buttonElement != null) {
             buttonElement.setAttribute(Aria.label, label);
         }
+        return this;
+    }
+
+    @Override
+    public CodeEditorLink that() {
         return this;
     }
 

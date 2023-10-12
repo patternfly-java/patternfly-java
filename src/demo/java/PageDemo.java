@@ -1,14 +1,14 @@
 import static org.patternfly.component.brand.Brand.brand;
-import static org.patternfly.component.page.Masthead.pageMasthead;
-import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
+import static org.patternfly.component.masthead.Masthead.masthead;
+import static org.patternfly.component.masthead.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.component.page.PageMain.pageMain;
 import static org.patternfly.component.page.PageMainBody.pageMainBody;
 import static org.patternfly.component.page.PageMainBreadcrumb.pageMainBreadcrumb;
 import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.page.PageSidebar.pageSidebar;
-import static org.patternfly.component.page.SkipToContent.skipToContent;
+import static org.patternfly.component.sidebar.Sidebar.sidebar;
+import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
 import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
@@ -18,8 +18,8 @@ public class PageDemo {
         // @start region = page
         page()
                 .addSkipToContent(skipToContent("main-id"))
-                .addMasthead(pageMasthead())
-                .addSidebar(pageSidebar())
+                .addMasthead(masthead())
+                .addSidebar(sidebar())
                 .addMain(pageMain("main-id"));
         // @end region = page
     }
@@ -61,7 +61,7 @@ public class PageDemo {
 
     public void mastheadDemo() {
         // @start region = masthead
-        pageMasthead()
+        masthead()
                 .addToggle(mastheadToggle())
                 .addBrand(brand("/logo.svg"), "/index.html")
                 .addToolbar(toolbar());

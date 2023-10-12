@@ -78,7 +78,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
         implements Disabled<HTMLElement, Button>, Inline<HTMLElement, Button>, Plain<HTMLElement, Button>,
         WithProgress<HTMLElement, Button> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Button button() {
         return button(ButtonElement.button);
@@ -150,12 +150,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
         }
     }
 
-    @Override
-    public Button that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public Button addIcon(String iconClass) {
         return add(inlineIcon(iconClass));
@@ -210,7 +205,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
                 .add(badge));
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public Button primary() {
         return css(modifier(primary));
@@ -266,21 +261,12 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    // ------------------------------------------------------ events
-
-    public Button onAction(ActionHandler<Button> actionHandler) {
-        on(click, e -> actionHandler.onAction(e, this));
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
     /**
      * Changes the text of this button. Prefer this method over {@link org.jboss.elemento.HasElement#textContent(String)}, since
      * this method doesn't remove a possible progress spinner.
      */
     public Button text(String text) {
-        // just using textContent(text) would remove a possible progress spinner
+        // using textContent(text) would remove a possible progress spinner
         return textNode(text);
     }
 
@@ -298,7 +284,7 @@ public class Button extends BaseComponent<HTMLElement, Button>
         return this;
     }
 
-    public Button inProgress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
+    public Button progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
         if (!element().classList.contains(modifier(plain)) && !element().classList.contains(modifier(progress))) {
             // add this once and keep it!
             element().classList.add(modifier(progress));
@@ -320,6 +306,18 @@ public class Button extends BaseComponent<HTMLElement, Button>
         } else {
             element().classList.remove(modifier(Classes.inProgress));
         }
+        return this;
+    }
+
+    @Override
+    public Button that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public Button onAction(ActionHandler<Button> actionHandler) {
+        on(click, e -> actionHandler.onAction(e, this));
         return this;
     }
 }

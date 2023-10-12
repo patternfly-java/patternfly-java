@@ -20,7 +20,6 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
@@ -29,7 +28,7 @@ import static org.patternfly.layout.Classes.header;
 public class CodeEditorHeader extends SubComponent<HTMLDivElement, CodeEditorHeader>
         implements ComponentReference<CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorHeader codeEditorHeader() {
         return new CodeEditorHeader();
@@ -54,12 +53,7 @@ public class CodeEditorHeader extends SubComponent<HTMLDivElement, CodeEditorHea
         }
     }
 
-    @Override
-    public CodeEditorHeader that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeEditorHeader addActions(CodeEditorActions actions) {
         return add(actions);
@@ -89,5 +83,12 @@ public class CodeEditorHeader extends SubComponent<HTMLDivElement, CodeEditorHea
 
     public CodeEditorHeader addTab(CodeEditorTab tab) {
         return add(tab);
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public CodeEditorHeader that() {
+        return this;
     }
 }

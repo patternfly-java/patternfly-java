@@ -48,7 +48,7 @@ import static org.patternfly.layout.Classes.textInput;
 public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGroupMain>
         implements HasValue<String>, Disabled<HTMLDivElement, TextInputGroupMain>, ComponentReference<TextInputGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TextInputGroupMain textInputGroupMain(String id) {
         return new TextInputGroupMain(id);
@@ -79,12 +79,7 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
         }
     }
 
-    @Override
-    public TextInputGroupMain that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public TextInputGroupMain addIcon(PredefinedIcon predefinedIcon) {
         return addIcon(predefinedIcon.className);
@@ -97,19 +92,12 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     @Override
     public TextInputGroupMain disabled(boolean disabled) {
         inputElement.disabled = disabled;
         return this;
-    }
-
-    // ------------------------------------------------------ public API
-
-    @Override
-    public String value() {
-        return inputElement.value;
     }
 
     public TextInputGroupMain value(String value) {
@@ -122,16 +110,30 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
         return this;
     }
 
-    public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(textInputGroup, inputElement.value));
-        return this;
-    }
-
     /** Provides access to the underlying input element using a fluent API style */
     public TextInputGroupMain withInputElement(
             Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
         inputElementConsumer.accept(inputElement());
         return this;
+    }
+
+    @Override
+    public TextInputGroupMain that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> handler) {
+        inputElement.addEventListener(change.name, e -> handler.onChange(textInputGroup, inputElement.value));
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String value() {
+        return inputElement.value;
     }
 
     /** Returns the underlying input element */

@@ -112,7 +112,7 @@ import static org.patternfly.layout.PredefinedIcon.sortAmountDown;
 public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         implements Display<T>, Attachable {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> OldToolbar<T> toolbar() {
         return new OldToolbar<>(null);
@@ -174,7 +174,7 @@ public class OldToolbar<T> extends BaseComponent<HTMLDivElement, OldToolbar<T>>
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public OldToolbar<T> add(Content content) {
         add(content.element());

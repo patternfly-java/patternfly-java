@@ -37,7 +37,7 @@ import static org.patternfly.layout.Classes.spinner;
  */
 public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements Inline<SVGElement, Spinner> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Spinner spinner() {
         return new Spinner(null, "Loading..");
@@ -74,12 +74,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
         }
     }
 
-    @Override
-    public Spinner that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public Spinner size(Size size) {
         return css(size.modifier);
@@ -87,5 +82,10 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
 
     public Spinner diameter(String diameter) {
         return style("--pf-v5-c-spinner--diameter: " + diameter);
+    }
+
+    @Override
+    public Spinner that() {
+        return this;
     }
 }

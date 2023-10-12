@@ -15,13 +15,12 @@
  */
 package org.patternfly.component.navigation;
 
-import org.jboss.elemento.EventCallbackFn;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
+import org.patternfly.handler.ActionHandler;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLLIElement;
-import elemental2.dom.MouseEvent;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
@@ -36,7 +35,7 @@ import static org.patternfly.layout.Classes.nav;
 
 public class NavigationItem extends SubComponent<HTMLLIElement, NavigationItem> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static NavigationItem navigationItem(String id, String title) {
         return new NavigationItem(id, title, null);
@@ -64,19 +63,21 @@ public class NavigationItem extends SubComponent<HTMLLIElement, NavigationItem> 
         }
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public NavigationItem that() {
         return this;
     }
 
-    // ------------------------------------------------------ click handler
+    // ------------------------------------------------------ events
 
-    public NavigationItem onClick(EventCallbackFn<MouseEvent> callback) {
-        a(a).on(click, callback);
+    public NavigationItem onAction(ActionHandler<NavigationItem> handler) {
+        a(a).on(click, e -> handler.onAction(e, this));
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     void select() {
         a.classList.add(modifier(current));

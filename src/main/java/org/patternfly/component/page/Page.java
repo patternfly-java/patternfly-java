@@ -17,6 +17,9 @@ package org.patternfly.component.page;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.masthead.Masthead;
+import org.patternfly.component.sidebar.Sidebar;
+import org.patternfly.component.skiptocontent.SkipToContent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -37,7 +40,7 @@ import static org.patternfly.layout.Classes.page;
  */
 public class Page extends BaseComponent<HTMLDivElement, Page> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     private static Page instance;
 
@@ -53,19 +56,14 @@ public class Page extends BaseComponent<HTMLDivElement, Page> {
 
     private SkipToContent skipToContent;
     private Masthead masthead;
-    private PageSidebar sidebar;
+    private Sidebar sidebar;
     private PageMain main;
 
     protected Page() {
         super(div().css(component(page)).element(), ComponentType.Page);
     }
 
-    @Override
-    public Page that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /** Adds the {@link SkipToContent} component as first element and removes the previous one (if any). */
     public Page addSkipToContent(SkipToContent skipToContent) {
@@ -87,8 +85,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page> {
         return this;
     }
 
-    /** Adds the {@link PageSidebar} component and removes the previous one (if any). */
-    public Page addSidebar(PageSidebar sidebar) {
+    /** Adds the {@link Sidebar} component and removes the previous one (if any). */
+    public Page addSidebar(Sidebar sidebar) {
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
         if (main != null) {
@@ -106,7 +104,14 @@ public class Page extends BaseComponent<HTMLDivElement, Page> {
         return add(main.element());
     }
 
-    // ------------------------------------------------------ getters
+    // ------------------------------------------------------ builder
+
+    @Override
+    public Page that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
 
     /**
      * Returns the current {@link Masthead} or {@code null} if no masthead has been defined yet.
@@ -116,9 +121,9 @@ public class Page extends BaseComponent<HTMLDivElement, Page> {
     }
 
     /**
-     * Returns the current {@link PageSidebar} or {@code null} if no sidebar has been defined yet.
+     * Returns the current {@link Sidebar} or {@code null} if no sidebar has been defined yet.
      */
-    public PageSidebar sidebar() {
+    public Sidebar sidebar() {
         return sidebar;
     }
 

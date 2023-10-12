@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.title;
  */
 public class Title extends BaseComponent<HTMLHeadingElement, Title> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Title title(int level, String text) {
         return new Title(level, text, null);
@@ -45,12 +45,14 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> {
 
     // ------------------------------------------------------ instance
 
-    protected Title(int level, String text, Size size) {
+    Title(int level, String text, Size size) {
         super(h(level, text).css(component(title)).element(), ComponentType.Title);
         if (size != null) {
             css(size.modifier);
         }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public Title that() {

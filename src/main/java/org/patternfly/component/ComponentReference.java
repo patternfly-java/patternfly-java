@@ -15,6 +15,14 @@
  */
 package org.patternfly.component;
 
+import elemental2.dom.MutationRecord;
+
+/**
+ * Interface meant to be implemented by subcomponents who need a reference to the base component.
+ * <p>
+ * The first call to {@link #passComponent(BaseComponent)} is typically initiated by the base component in the
+ * {@link org.jboss.elemento.Attachable#attach(MutationRecord)} method (assuming that the base component implements {@link org.jboss.elemento.Attachable}).
+ */
 public interface ComponentReference<C extends BaseComponent<?, ?>> {
 
     void passComponent(C component);

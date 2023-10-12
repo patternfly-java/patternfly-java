@@ -31,7 +31,7 @@ import static org.patternfly.layout.Classes.component;
 public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> implements
         ComponentReference<CodeBlock> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeBlockActions codeBlockActions() {
         return new CodeBlockActions();
@@ -53,12 +53,7 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
         }
     }
 
-    @Override
-    public CodeBlockActions that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeBlockActions addAction(CodeBlockAction action) {
         return add(action);
@@ -68,6 +63,13 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
     public CodeBlockActions add(CodeBlockAction action) {
         actions.add(action);
         add(action.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public CodeBlockActions that() {
         return this;
     }
 }

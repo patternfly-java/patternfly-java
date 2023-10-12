@@ -29,7 +29,7 @@ import static org.patternfly.layout.Classes.tab;
 
 public class CodeEditorTab extends SubComponent<HTMLDivElement, CodeEditorTab> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorTab codeEditorTab() {
         return new CodeEditorTab();
@@ -53,12 +53,7 @@ public class CodeEditorTab extends SubComponent<HTMLDivElement, CodeEditorTab> {
         super(div().css(component(codeEditor, tab)).element());
     }
 
-    @Override
-    public CodeEditorTab that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeEditorTab addIcon(CodeEditorTabIcon icon) {
         return add(icon);
@@ -66,5 +61,12 @@ public class CodeEditorTab extends SubComponent<HTMLDivElement, CodeEditorTab> {
 
     public CodeEditorTab addText(CodeEditorTabText text) {
         return add(text);
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public CodeEditorTab that() {
+        return this;
     }
 }

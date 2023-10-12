@@ -29,7 +29,7 @@ import static org.patternfly.layout.Classes.expandableSection;
 
 public class ExpandableSectionContent extends SubComponent<HTMLDivElement, ExpandableSectionContent> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ExpandableSectionContent expandableSectionContent() {
         return new ExpandableSectionContent();
@@ -47,6 +47,8 @@ public class ExpandableSectionContent extends SubComponent<HTMLDivElement, Expan
 
         id(this.id = Id.unique(ComponentType.ExpandableSection.id, "cnt"));
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public ExpandableSectionContent that() {

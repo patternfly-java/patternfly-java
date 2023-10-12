@@ -43,7 +43,7 @@ import static org.patternfly.layout.Classes.shadowTop;
  */
 public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -59,12 +59,7 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
                 .element());
     }
 
-    @Override
-    public PageMainGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Adds a {@link PageSection} to this component.
@@ -74,7 +69,7 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
         return add(pageSection);
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies this component to be sticky to the top of its container.
@@ -109,5 +104,10 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
      */
     public PageMainGroup overflowScroll() {
         return css(modifier(overflowScroll));
+    }
+
+    @Override
+    public PageMainGroup that() {
+        return this;
     }
 }

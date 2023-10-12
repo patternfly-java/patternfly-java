@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.js;
+package org.patternfly.dom;
 
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;

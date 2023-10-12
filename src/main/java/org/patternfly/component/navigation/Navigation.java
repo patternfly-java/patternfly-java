@@ -77,7 +77,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
  */
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Navigation navigation(NavigationType type) {
         return new Navigation(type);
@@ -155,12 +155,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         }
     }
 
-    @Override
-    public Navigation that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public <T> Navigation addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         if (type == grouped) {
@@ -213,6 +208,13 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         return this;
     }
 
+    // ------------------------------------------------------ builder
+
+    @Override
+    public Navigation that() {
+        return this;
+    }
+
     // ------------------------------------------------------ events
 
     public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
@@ -225,7 +227,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         return this;
     }
 
-    // ------------------------------------------------------ select
+    // ------------------------------------------------------ api
 
     public void select(String itemId) {
         select(findItem(itemId), true);
@@ -256,6 +258,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             unselectAllExpandableGroups();
         }
     }
+
+    // ------------------------------------------------------ internal
 
     private void unselectAllItems() {
         // remove the current modifier from all navigation item <a/> elements
@@ -291,8 +295,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             }
         }
     }
-
-    // ------------------------------------------------------ internals
 
     private NavigationItem findItem(String id) {
         NavigationItem item = items.get(id);

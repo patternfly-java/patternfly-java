@@ -36,7 +36,7 @@ import static org.patternfly.layout.Classes.toolbar;
 @Deprecated
 public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolbar> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ChipGroupToolbar chipGroupToolbar() {
         return new ChipGroupToolbar();
@@ -53,7 +53,7 @@ public class ChipGroupToolbar extends BaseComponent<HTMLElement, ChipGroupToolba
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public ChipGroupToolbar add(String category, ChipGroup chipGroup) {
         add(li().add(h(4, category).css(component(Classes.chipGroup, "label"))).add(chipGroup).element());

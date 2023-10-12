@@ -32,7 +32,7 @@ import static org.patternfly.layout.Classes.shortcuts;
 public class CodeEditorLinks extends SubComponent<HTMLDivElement, CodeEditorLinks>
         implements ComponentReference<CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorLinks codeEditorLinks() {
         return new CodeEditorLinks();
@@ -54,12 +54,7 @@ public class CodeEditorLinks extends SubComponent<HTMLDivElement, CodeEditorLink
         }
     }
 
-    @Override
-    public CodeEditorLinks that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeEditorLinks addLink(CodeEditorLink link) {
         return add(link);
@@ -69,6 +64,13 @@ public class CodeEditorLinks extends SubComponent<HTMLDivElement, CodeEditorLink
     public CodeEditorLinks add(CodeEditorLink link) {
         links.add(link);
         add(link.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public CodeEditorLinks that() {
         return this;
     }
 }

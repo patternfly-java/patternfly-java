@@ -46,7 +46,7 @@ import static org.patternfly.layout.Size.sm;
 @Deprecated
 public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static EmptyState emptyState(Icon icon, String title) {
         return new EmptyState(icon, title);
@@ -95,7 +95,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public EmptyState body(String body) {
         return body(body().textContent(body));

@@ -19,6 +19,7 @@ import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.component.UnderDevelopment;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
@@ -34,10 +35,11 @@ import static org.patternfly.layout.Classes.textInputGroup;
  * @see <a href=
  *      "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
  */
+@UnderDevelopment
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Attachable, Disabled<HTMLDivElement, TextInputGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TextInputGroup textInputGroup() {
         return new TextInputGroup();
@@ -63,23 +65,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         }
     }
 
-    @Override
-    public TextInputGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
-    @SuppressWarnings("ConfusingMainMethod")
-    public TextInputGroupMain main() {
-        return main;
-    }
-
-    public TextInputGroupUtilities utilities() {
-        return utilities;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public TextInputGroup addMain(TextInputGroupMain main) {
         return add(main);
@@ -104,7 +90,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     @Override
     public TextInputGroup disabled(boolean disabled) {
@@ -114,5 +100,20 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
             main.disabled(disabled);
         }
         return Disabled.super.disabled(disabled);
+    }
+    @Override
+    public TextInputGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @SuppressWarnings("ConfusingMainMethod")
+    public TextInputGroupMain main() {
+        return main;
+    }
+
+    public TextInputGroupUtilities utilities() {
+        return utilities;
     }
 }

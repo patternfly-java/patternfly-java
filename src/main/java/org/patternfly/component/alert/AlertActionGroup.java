@@ -15,18 +15,26 @@
  */
 package org.patternfly.component.alert;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.button.Button;
+import org.patternfly.handler.ActionHandler;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.actionGroup;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 
-public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> {
+public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> implements ComponentReference<Alert> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static AlertActionGroup alertActionGroup() {
         return new AlertActionGroup();
@@ -34,12 +42,51 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
 
     // ------------------------------------------------------ instance
 
+    private final List<ButtonActionHandlerTuple> tuples;
+
     AlertActionGroup() {
         super(div().css(component(alert, actionGroup)).element());
+        this.tuples = new ArrayList<>();
     }
+
+    @Override
+    public void passComponent(Alert alert) {
+        for (ButtonActionHandlerTuple tuple : tuples) {
+            tuple.button.on(click, e -> tuple.handler.onAction(e, alert));
+        }
+    }
+
+    // ------------------------------------------------------ add
+
+    public AlertActionGroup addAction(String action, ActionHandler<Alert> handler) {
+        return addAction(button(action).inline().link(), handler);
+    }
+
+    public AlertActionGroup addAction(Button action, ActionHandler<Alert> handler) {
+        tuples.add(new ButtonActionHandlerTuple(action, handler));
+        return addAction(action);
+    }
+
+    public AlertActionGroup addAction(Button action) {
+        return add(action);
+    }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public AlertActionGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private static class ButtonActionHandlerTuple {
+        final Button button;
+        final ActionHandler<Alert> handler;
+
+        ButtonActionHandlerTuple(Button button, ActionHandler<Alert> handler) {
+            this.button = button;
+            this.handler = handler;
+        }
     }
 }

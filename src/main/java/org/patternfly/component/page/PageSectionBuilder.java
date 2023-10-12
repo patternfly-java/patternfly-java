@@ -37,7 +37,7 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
         super(element);
     }
 
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Adds a {@link PageMainBody} to this component. Use this method to wrap the content of this component inside a
@@ -47,7 +47,7 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
         return add(body);
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies this component to limit the max-width of the content inside. If used, please make sure to wrap the content of

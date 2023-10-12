@@ -67,7 +67,7 @@ public class OldPageHeader extends BaseComponent<HTMLElement, OldPageHeader> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     /** Adds the given navigation and removes the previous one (if any). */
     public OldPageHeader add(Navigation navigation) {
@@ -91,7 +91,7 @@ public class OldPageHeader extends BaseComponent<HTMLElement, OldPageHeader> {
         return tools;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     void registerSidebar(OldPageSidebar sidebar) {
         if (sidebar != null) {

@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.utilities;
 public class TextInputGroupUtilities extends SubComponent<HTMLElement, TextInputGroupUtilities>
         implements ComponentReference<TextInputGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TextInputGroupUtilities textInputGroupUtilities() {
         return new TextInputGroupUtilities();
@@ -43,6 +43,8 @@ public class TextInputGroupUtilities extends SubComponent<HTMLElement, TextInput
     @Override
     public void passComponent(TextInputGroup textInputGroup) {
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public TextInputGroupUtilities that() {

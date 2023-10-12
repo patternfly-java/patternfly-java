@@ -26,9 +26,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -87,7 +85,7 @@ import static org.patternfly.layout.PredefinedIcon.ellipsisV;
 public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDropdown<T>>
         implements Modifiers.Disabled<HTMLDivElement, GroupedDropdown<T>> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> GroupedDropdown<T> text(String text) {
         return new GroupedDropdown<>(text, null, false, false);
@@ -347,7 +345,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public GroupedDropdown<T> up() {
         element().classList.add(modifier(top));
@@ -453,7 +451,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private HTMLLIElement newItem(T item) {
         HTMLContainerBuilder<HTMLButtonElement> button = button().css(component(dropdown, Classes.menu, Classes.item))
@@ -582,7 +580,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             }
         }
 
-        // ------------------------------------------------------ modifiers
+        // ------------------------------------------------------ builder
 
         @Override
         public Group<T> disabled(boolean disabled) {
@@ -622,7 +620,7 @@ public class GroupedDropdown<T> extends BaseComponent<HTMLDivElement, GroupedDro
             }
         }
 
-        // ------------------------------------------------------ internals
+        // ------------------------------------------------------ internal
 
         private HTMLLIElement newItem(GroupedDropdown<T> dd, T item) {
             HTMLContainerBuilder<HTMLButtonElement> button = button()

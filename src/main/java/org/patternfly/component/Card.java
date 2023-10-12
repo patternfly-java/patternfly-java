@@ -38,7 +38,7 @@ import static org.patternfly.layout.Size.md;
 @Deprecated
 public class Card extends BaseComponent<HTMLDivElement, Card> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Card card() {
         return new Card();
@@ -71,7 +71,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> {
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public Card compact() {
         element().classList.add(modifier(compact));

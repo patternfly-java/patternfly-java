@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.component.skiptocontent;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.component;
  */
 public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Creates a new component with the given main ID and a default text.
@@ -55,6 +55,8 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
         super(div().css(component(Classes.skipToContent))
                 .add(button(text, "#" + mainId).primary()).element(), ComponentType.SkipToContent);
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public SkipToContent that() {

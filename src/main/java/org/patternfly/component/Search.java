@@ -35,7 +35,7 @@ import static org.patternfly.layout.PredefinedIcon.search;
 @Deprecated
 public class Search extends InputGroup {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Search search() {
         return new Search();
@@ -62,7 +62,7 @@ public class Search extends InputGroup {
         add(control = button(search, placeholder).control());
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public void clear() {
         input.element().value = "";
@@ -78,7 +78,7 @@ public class Search extends InputGroup {
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private void bind(Consumer<String> consumer, boolean onlyOnEnter) {
         if (searchHandler != null) {

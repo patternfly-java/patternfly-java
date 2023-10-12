@@ -54,7 +54,7 @@ import static org.patternfly.layout.Classes.standalone;
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         implements HasValue<Boolean>, Disabled<HTMLElement, Checkbox>, Required<HTMLElement, Checkbox> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Checkbox checkbox(String id) {
         return new Checkbox(id, null, false);
@@ -99,29 +99,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         }
     }
 
-    @Override
-    public Checkbox that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
-    @Override
-    public Boolean value() {
-        return inputElement.checked;
-    }
-
-    public Checkbox value(boolean checked) {
-        inputElement.checked = checked;
-        return this;
-    }
-
-    public Checkbox onChange(ChangeHandler<Checkbox, Boolean> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.checked));
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public Checkbox addBody(CheckboxBody body) {
         return add(body);
@@ -131,7 +109,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         return add(description);
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     @Override
     public Checkbox disabled(boolean disabled) {
@@ -173,5 +151,29 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
             insertFirst(element(), labelElement);
         }
         return this;
+    }
+
+    public Checkbox value(boolean checked) {
+        inputElement.checked = checked;
+        return this;
+    }
+
+    @Override
+    public Checkbox that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public Checkbox onChange(ChangeHandler<Checkbox, Boolean> handler) {
+        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.checked));
+        return this;
+    }
+    
+    // ------------------------------------------------------ api
+
+    @Override
+    public Boolean value() {
+        return inputElement.checked;
     }
 }

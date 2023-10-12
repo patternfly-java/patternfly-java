@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.text;
 
 public class CodeEditorTabText extends SubComponent<HTMLElement, CodeEditorTabText> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorTabText codeEditorTabText() {
         return new CodeEditorTabText(null);
@@ -46,6 +46,8 @@ public class CodeEditorTabText extends SubComponent<HTMLElement, CodeEditorTabTe
             textContent(text);
         }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public CodeEditorTabText that() {

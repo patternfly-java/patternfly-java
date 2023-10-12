@@ -18,15 +18,16 @@ package org.patternfly.component.alert;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.elemento.By;
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.UnderDevelopment;
 import org.patternfly.core.Dataset;
 import org.patternfly.layout.Classes;
 
-import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
+import elemental2.dom.MutationRecord;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -36,7 +37,6 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
-import static org.patternfly.core.Dataset.alert;
 import static org.patternfly.layout.Classes.alertGroup;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.modifier;
@@ -47,9 +47,10 @@ import static org.patternfly.layout.Classes.modifier;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/alertgroup">https://www.patternfly.org/v4/documentation/core/components/alertgroup</a>
  */
-public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
+@UnderDevelopment
+public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> implements Attachable {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     private static final double DEFAULT_TIMEOUT = 8000; // ms
     private static AlertGroup toast;
@@ -69,30 +70,36 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     // ------------------------------------------------------ instance
 
     private final double timeout;
+    private final Map<String, Alert> alerts;
     private final Map<String, Double> messageIds;
 
     AlertGroup(double timeout) {
         super(ul().css(component(alertGroup)).element(), "AlertGroup");
         this.timeout = timeout;
+        this.alerts = new HashMap<>();
         this.messageIds = new HashMap<>();
     }
 
     @Override
-    public AlertGroup that() {
-        return this;
+    public void attach(MutationRecord mutationRecord) {
+
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ add
+
+    public AlertGroup addAlert(Alert alert) {
+        return add(alert);
+    }
 
     public AlertGroup add(Alert alert) {
         if (timeout > 100) {
             String id = Id.unique();
-            alert.data(Dataset.alert, id);
-            alert.onClose(() -> stopMessageTimeout(id));
+            // TODO Find an alternative
+            // alert.onClose((e, a) -> stopMessageTimeout(id, alert));
 
-            startMessageTimeout(id);
-            alert.on(mouseover, e -> stopMessageTimeout(id));
-            alert.on(mouseout, e -> startMessageTimeout(id));
+            startMessageTimeout(id, alert);
+            alert.on(mouseover, e -> stopMessageTimeout(id, alert));
+            alert.on(mouseout, e -> startMessageTimeout(id, alert));
         }
 
         HTMLLIElement item = li().css(component(alertGroup, Classes.item)).add(alert).element();
@@ -105,23 +112,30 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    @Override
+    public AlertGroup that() {
+        return this;
+    }
 
-    private void startMessageTimeout(String id) {
+    // ------------------------------------------------------ internal
+
+    private void startMessageTimeout(String id, Alert alert) {
         double timeoutHandle = setTimeout((o) -> remove(id), timeout);
+        alerts.put(id, alert);
         messageIds.put(id, timeoutHandle);
     }
 
-    private void stopMessageTimeout(String id) {
+    private void stopMessageTimeout(String id, Alert alert) {
         if (messageIds.containsKey(id)) {
             clearTimeout(messageIds.get(id));
+            alerts.remove(id);
             messageIds.remove(id);
         }
     }
 
     private void remove(String id) {
-        HTMLElement e = find(By.data(alert, id));
-        failSafeRemoveFromParent(e);
+        Alert alert = alerts.get(id);
+        failSafeRemoveFromParent(alert); // TODO Remove alert group item, not alert!
         Double timeoutHandle = messageIds.remove(id);
         if (timeoutHandle != null) {
             clearTimeout(timeoutHandle);

@@ -17,7 +17,7 @@ package org.patternfly.core;
 
 public enum SelectionMode {
 
-    none,
+    click,
 
     single,
 

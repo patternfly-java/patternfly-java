@@ -35,7 +35,7 @@ import static org.patternfly.layout.Classes.divider;
  */
 public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Divider divider(DividerType type) {
         switch (type) {
@@ -56,6 +56,8 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
                 .element(),
                 ComponentType.Divider);
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public Divider that() {

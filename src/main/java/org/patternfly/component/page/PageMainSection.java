@@ -42,7 +42,7 @@ import static org.patternfly.layout.Classes.section;
 public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> implements
         Fill<HTMLElement, PageMainSection>, NoFill<HTMLElement, PageMainSection> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static PageMainSection pageMainSection() {
         return new PageMainSection();
@@ -55,12 +55,7 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
                 .element());
     }
 
-    @Override
-    public PageMainSection that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies a page section body to align center. Please make sure to use this together with the {@link #limitWidth()}
@@ -117,5 +112,10 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
      */
     public PageMainSection noPadding(Breakpoint breakpoint) {
         return css(modifier(noPadding, breakpoint));
+    }
+
+    @Override
+    public PageMainSection that() {
+        return this;
     }
 }

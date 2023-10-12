@@ -13,11 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.component.masthead;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.brand.Brand;
+import org.patternfly.component.page.Page;
 import org.patternfly.component.toolbar.Toolbar;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Breakpoint;
@@ -29,8 +30,8 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.header;
-import static org.patternfly.component.page.MastheadContent.mastheadContent;
-import static org.patternfly.component.page.MastheadMain.mastheadMain;
+import static org.patternfly.component.masthead.MastheadContent.mastheadContent;
+import static org.patternfly.component.masthead.MastheadMain.mastheadMain;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.inline;
 import static org.patternfly.layout.Classes.inset;
@@ -51,12 +52,12 @@ import static org.patternfly.layout.Classes.stack;
  */
 public class Masthead extends BaseComponent<HTMLElement, Masthead> implements Inline<HTMLElement, Masthead> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static Masthead pageMasthead() {
+    public static Masthead masthead() {
         return new Masthead();
     }
 
@@ -66,12 +67,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
         super(header().css(component(masthead)).element(), ComponentType.Masthead);
     }
 
-    @Override
-    public Masthead that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Adds a {@link MastheadToggle} to this component.
@@ -128,7 +124,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
         return add(mastheadContent());
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies this component to have no horizontal padding.
@@ -191,5 +187,10 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
      */
     public Masthead stack(Breakpoint breakpoint) {
         return css(modifier(stack, breakpoint));
+    }
+
+    @Override
+    public Masthead that() {
+        return this;
     }
 }

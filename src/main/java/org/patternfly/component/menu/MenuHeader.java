@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.menu;
 
 public class MenuHeader extends SubComponent<HTMLDivElement, MenuHeader> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuHeader menuHeader() {
         return new MenuHeader(null);
@@ -44,6 +44,8 @@ public class MenuHeader extends SubComponent<HTMLDivElement, MenuHeader> {
             textContent(text);
         }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public MenuHeader that() {

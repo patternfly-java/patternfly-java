@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.menu;
 
 public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuFooter menuFooter() {
         return new MenuFooter(null);
@@ -44,6 +44,8 @@ public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> {
             textContent(text);
         }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public MenuFooter that() {

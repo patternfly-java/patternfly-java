@@ -54,7 +54,7 @@ import static org.patternfly.layout.Size.lg;
  */
 public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ExpandableSection expandableSection() {
         return new ExpandableSection(null);
@@ -119,12 +119,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         }
     }
 
-    @Override
-    public ExpandableSection that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public ExpandableSection addToggle(ExpandableSectionToggle toggle) {
         return add(toggle);
@@ -148,7 +143,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /** Same as {@linkplain #indented(boolean) indented(true)} */
     public ExpandableSection indented() {
@@ -194,15 +189,6 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return this;
     }
 
-    // ------------------------------------------------------ events
-
-    public ExpandableSection onToggle(ToggleHandler<ExpandableSection> onToggle) {
-        this.onToggle = onToggle;
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
     public ExpandableSection detachedFrom(String detachedFromId) {
         this.detachedFromId = detachedFromId;
         css(modifier(detached));
@@ -210,6 +196,20 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         data(expandableSectionTarget, detachedFromId);
         return this;
     }
+
+    @Override
+    public ExpandableSection that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public ExpandableSection onToggle(ToggleHandler<ExpandableSection> onToggle) {
+        this.onToggle = onToggle;
+        return this;
+    }
+
+    // ------------------------------------------------------ api
 
     public void toggle() {
         toggle(true);

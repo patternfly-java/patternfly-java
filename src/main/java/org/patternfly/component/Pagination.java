@@ -61,7 +61,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         implements Modifiers.Disabled<HTMLDivElement, Pagination> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Pagination pagination() {
         return new Pagination();
@@ -147,7 +147,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     @Override
     public Pagination disabled(boolean disabled) {
@@ -202,7 +202,7 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     void update(PageInfo pageInfo) {
         HTMLElement[] elements = new HTMLElement[] { infoElement, pageSizeMenu.textElement() };

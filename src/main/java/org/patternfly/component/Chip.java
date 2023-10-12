@@ -48,7 +48,7 @@ import static org.patternfly.layout.PredefinedIcon.timesCircle;
 @Deprecated
 public class Chip extends BaseComponent<HTMLElement, Chip> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Chip chip(String text) {
         return new Chip(div().element(), text, -1, false, false);
@@ -133,7 +133,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> {
         return new Chip(li().element(), text.textContent, count, overflow, readOnly).onClose(callback);
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     /** Called after the chip has been removed. */
     public Chip onClose(Callback callback) {

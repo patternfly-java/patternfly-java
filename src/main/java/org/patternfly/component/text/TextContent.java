@@ -32,7 +32,7 @@ import static org.patternfly.layout.Classes.content;
  */
 public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TextContent textContent() {
         return new TextContent();
@@ -40,9 +40,11 @@ public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
 
     // ------------------------------------------------------ instance
 
-    protected TextContent() {
+    TextContent() {
         super(div().css(component(content)).element(), ComponentType.TextContent);
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public TextContent that() {

@@ -30,39 +30,39 @@ public interface WithProgress<E extends Element, B extends TypedBuilder<E, B>> e
         IsElement<E> {
 
     default B startProgress() {
-        if (!isInProgress()) {
-            inProgress(true);
+        if (!inProgress()) {
+            progress(true);
         }
         return that();
     }
 
     default B stopProgress() {
-        if (isInProgress()) {
-            inProgress(false);
+        if (inProgress()) {
+            progress(false);
         }
         return that();
     }
 
     default B toggleProgress() {
-        return inProgress(!isInProgress());
+        return progress(!inProgress());
 
     }
 
-    default boolean isInProgress() {
+    default B progress(boolean inProgress) {
+        return progress(inProgress, "Loading...", null);
+    }
+
+    default B progress(boolean inProgress, String label) {
+        return progress(inProgress, label, null);
+    }
+
+    default B progress(boolean inProgress, Consumer<Spinner> spinnerConsumer) {
+        return progress(inProgress, "Loading...", spinnerConsumer);
+    }
+
+    B progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer);
+
+    default boolean inProgress() {
         return element().classList.contains(modifier(inProgress));
     }
-
-    default B inProgress(boolean inProgress) {
-        return inProgress(inProgress, "Loading...", null);
-    }
-
-    default B inProgress(boolean inProgress, String label) {
-        return inProgress(inProgress, label, null);
-    }
-
-    default B inProgress(boolean inProgress, Consumer<Spinner> spinnerConsumer) {
-        return inProgress(inProgress, "Loading...", spinnerConsumer);
-    }
-
-    B inProgress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer);
 }

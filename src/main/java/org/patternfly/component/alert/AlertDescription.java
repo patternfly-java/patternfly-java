@@ -26,17 +26,26 @@ import static org.patternfly.layout.Classes.description;
 
 public class AlertDescription extends SubComponent<HTMLDivElement, AlertDescription> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static AlertDescription alertDescription() {
-        return new AlertDescription();
+        return new AlertDescription(null);
+    }
+
+    public static AlertDescription alertDescription(String text) {
+        return new AlertDescription(text);
     }
 
     // ------------------------------------------------------ instance
 
-    AlertDescription() {
+    AlertDescription(String text) {
         super(div().css(component(alert, description)).element());
+        if (text != null) {
+            textContent(text);
+        }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public AlertDescription that() {

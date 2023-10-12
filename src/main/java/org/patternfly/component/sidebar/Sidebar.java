@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.component.sidebar;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -36,57 +36,41 @@ import static org.patternfly.layout.Classes.sidebar;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
+public class Sidebar extends BaseComponent<HTMLElement, Sidebar> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageSidebar pageSidebar() {
-        return new PageSidebar();
+    public static Sidebar sidebar() {
+        return new Sidebar();
     }
 
     // ------------------------------------------------------ instance
 
-    PageSidebar() {
+    Sidebar() {
         super(aside().css(component(page, sidebar), modifier(expanded))
                 .aria(hidden, false)
                 .element(),
                 ComponentType.Sidebar);
     }
 
-    @Override
-    public PageSidebar that() {
-        return this;
-    }
+    // ------------------------------------------------------ add
 
     /**
-     * Toggles the collapse/expanded state of the sidebar.
+     * Adds a {@link SidebarBody} to this component.
      */
-    public void toggle() {
-        if (element().classList.contains(modifier(collapsed))) {
-            expanded();
-        } else if (element().classList.contains(modifier(expanded))) {
-            collapsed();
-        }
-    }
-
-    // ------------------------------------------------------ add methods
-
-    /**
-     * Adds a {@link PageSidebarBody} to this component.
-     */
-    public PageSidebar addBody(PageSidebarBody body) {
+    public Sidebar addBody(SidebarBody body) {
         return add(body);
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies the sidebar for the expanded state.
      */
-    public PageSidebar expanded() {
+    public Sidebar expanded() {
         element().classList.remove(modifier(collapsed));
         element().classList.add(modifier(expanded));
         aria(hidden, false);
@@ -96,7 +80,7 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
     /**
      * Modifies the sidebar for the collapsed state.
      */
-    public PageSidebar collapsed() {
+    public Sidebar collapsed() {
         element().classList.remove(modifier(expanded));
         element().classList.add(modifier(collapsed));
         aria(hidden, true);
@@ -107,7 +91,25 @@ public class PageSidebar extends BaseComponent<HTMLElement, PageSidebar> {
      * Modifies the sidebar to have a light theme. Note: for use with a light themed
      * {@link org.patternfly.component.navigation.Navigation} component.
      */
-    public PageSidebar light() {
+    public Sidebar light() {
         return css(Brightness.light.modifier);
+    }
+
+    @Override
+    public Sidebar that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    /**
+     * Toggles the collapse/expanded state of the sidebar.
+     */
+    public void toggle() {
+        if (element().classList.contains(modifier(collapsed))) {
+            expanded();
+        } else if (element().classList.contains(modifier(expanded))) {
+            collapsed();
+        }
     }
 }

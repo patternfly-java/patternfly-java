@@ -13,10 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.component.masthead;
 
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
+import org.patternfly.component.sidebar.Sidebar;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -32,14 +33,14 @@ import static org.patternfly.layout.PredefinedIcon.bars;
 
 /**
  * Container for the toggle of a {@link Masthead} component. The component contains a toggle button that calls
- * {@link PageSidebar#toggle()}, when clicked.
+ * {@link Sidebar#toggle()}, when clicked.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
 public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -59,10 +60,14 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
                 .onAction((e, b) -> toggle()));
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public MastheadToggle that() {
         return this;
     }
+
+    // ------------------------------------------------------ internal
 
     private void toggle() {
         boolean current = parseBoolean(toggleButton.element().getAttribute(expanded));

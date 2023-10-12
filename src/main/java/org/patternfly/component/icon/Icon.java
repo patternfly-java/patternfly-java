@@ -51,7 +51,7 @@ import static org.patternfly.layout.Size.md;
 public class Icon extends BaseComponent<HTMLElement, Icon>
         implements Inline<HTMLElement, Icon>, WithProgress<HTMLElement, Icon> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -83,12 +83,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon>
         this.content = find(By.classname(component(icon, Classes.content)));
     }
 
-    @Override
-    public Icon that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies the size of this component.
@@ -109,7 +104,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon>
         return this;
     }
 
-    public Icon inProgress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
+    public Icon progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
         HTMLElement element = find(By.classname(component(icon, progress)));
         failSafeRemoveFromParent(element);
         if (inProgress) {
@@ -132,6 +127,11 @@ public class Icon extends BaseComponent<HTMLElement, Icon>
         } else {
             element().classList.remove(modifier(Classes.inProgress));
         }
+        return this;
+    }
+
+    @Override
+    public Icon that() {
         return this;
     }
 }

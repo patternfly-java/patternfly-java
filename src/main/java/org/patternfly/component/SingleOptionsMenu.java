@@ -23,10 +23,8 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -67,7 +65,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
 public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOptionsMenu<T>>
         implements HasValue<T>, Modifiers.Disabled<HTMLDivElement, SingleOptionsMenu<T>> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> SingleOptionsMenu<T> text(String text) {
         return new SingleOptionsMenu<>(text, null, false);
@@ -158,7 +156,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         return text;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public SingleOptionsMenu<T> add(Iterable<T> items) {
         for (T item : items) {
@@ -291,7 +289,7 @@ public class SingleOptionsMenu<T> extends BaseComponent<HTMLDivElement, SingleOp
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private HTMLButtonElement itemElement(T item) {
         String itemId = itemDisplay.itemId(item);

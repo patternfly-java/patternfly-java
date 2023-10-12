@@ -28,10 +28,8 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.component.button.Button;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -94,7 +92,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
 public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<T>>
         implements Modifiers.Disabled<HTMLDivElement, SingleSelect<T>>, HasValue<T> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     private static final HTMLLIElement NO_RESULTS = li().attr("role", presentation)
             .add(button().css(component(select, Classes.menu, item), modifier(disabled)).attr("role", option)
@@ -211,7 +209,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         return menu;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public SingleSelect<T> add(Iterable<T> items) {
         for (T item : items) {
@@ -339,7 +337,7 @@ public class SingleSelect<T> extends BaseComponent<HTMLDivElement, SingleSelect<
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private HTMLButtonElement itemElement(T item) {
         String itemId = itemDisplay.itemId(item);

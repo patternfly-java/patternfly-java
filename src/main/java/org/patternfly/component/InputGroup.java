@@ -30,7 +30,7 @@ import static org.patternfly.layout.Classes.inputGroup;
 @Deprecated
 public class InputGroup extends BaseComponent<HTMLDivElement, InputGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static InputGroup inputGroup() {
         return new InputGroup();

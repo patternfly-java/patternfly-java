@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.page;
  */
 public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -48,6 +48,8 @@ public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav> {
         super(section().css(component(page, main, nav))
                 .element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public PageMainNav that() {

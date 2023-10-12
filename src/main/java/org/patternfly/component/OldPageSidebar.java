@@ -51,7 +51,7 @@ public class OldPageSidebar extends BaseComponent<HTMLElement, OldPageSidebar> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     /**
      * Adds the navigation to the sidebar's body and removes the previous one (if any). Shortcut for
@@ -75,7 +75,7 @@ public class OldPageSidebar extends BaseComponent<HTMLElement, OldPageSidebar> {
         return navigation;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     void toggle() {
         if (element().classList.contains(modifier("collapsed"))) {

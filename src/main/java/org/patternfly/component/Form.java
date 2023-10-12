@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.form;
 @Deprecated
 public class Form extends BaseComponent<HTMLFormElement, Form> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Form form() {
         return new Form();

@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Move masthead, sidebar and skip to content components to its own packages
+- Refactor `org.patternfly.core.WithProgress` interface
+- Simplify `org.patternfly.core.Modifiers.*` interfaces
+- Rename `org.patternfly.js` → `org.patternfly.dom`
+
 ## [0.0.4] - 2023-10-10
 
 ### Changed

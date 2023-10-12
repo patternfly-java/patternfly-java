@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.tooltip;
 @Deprecated
 public class Popover extends BaseComponent<HTMLDivElement, Popover> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Popover top(HTMLElement target) {
         return new Popover(Position.top, target);
@@ -66,7 +66,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public void show() {
 

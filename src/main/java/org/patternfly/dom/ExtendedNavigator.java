@@ -13,15 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.js;
+package org.patternfly.dom;
 
-import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-public class ExtendedDomGlobal {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public class ExtendedNavigator {
 
-    @JsOverlay
-    public static final ExtendedNavigator navigator = ExtendedDomGlobal__Constants.navigator;
+    public Clipboard clipboard;
 }

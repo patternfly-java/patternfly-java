@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 
 public class CheckboxDescription extends SubComponent<HTMLElement, CheckboxDescription> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CheckboxDescription checkboxDescription() {
         return new CheckboxDescription(null);
@@ -45,6 +45,8 @@ public class CheckboxDescription extends SubComponent<HTMLElement, CheckboxDescr
             element().textContent = description;
         }
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public CheckboxDescription that() {

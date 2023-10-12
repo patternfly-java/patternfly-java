@@ -40,7 +40,7 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
-import static org.patternfly.core.SelectionMode.none;
+import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.favorited;
@@ -64,10 +64,10 @@ import static org.patternfly.layout.Classes.select;
 public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attachable,
         Plain<HTMLDivElement, Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Menu menu() {
-        return new Menu(MenuType.menu, none);
+        return new Menu(MenuType.menu, click);
     }
 
     public static Menu menu(SelectionMode selectionMode) {
@@ -105,12 +105,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         }
     }
 
-    @Override
-    public Menu that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Shortcut for {@code addHeader(menuHeader(text))}
@@ -168,6 +163,31 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return add(divider(hr));
     }
 
+    // ------------------------------------------------------ builder
+
+    public Menu flyout() {
+        return css(modifier(flyout));
+    }
+
+    public Menu scrollable() {
+        return css(modifier(scrollable));
+    }
+
+    public Menu favorites() {
+        favorites = true;
+        return this;
+    }
+
+    /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
+    public Menu height(String height) {
+        return style("--pf-v5-c-menu__content--MaxHeight:" + height);
+    }
+
+    @Override
+    public Menu that() {
+        return this;
+    }
+
     // ------------------------------------------------------ events
 
     public Menu onSingleSelect(SelectHandler<MenuItem> selectHandler) {
@@ -185,7 +205,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         return this;
     }
 
-    // ------------------------------------------------------ select
+    // ------------------------------------------------------ api
 
     public void select(String itemId) {
         select(findItem(itemId), true);
@@ -205,11 +225,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     public void select(MenuItem item, boolean selected, boolean fireEvent) {
         if (item != null) {
-            if (selectionMode == none || selectionMode == single) {
+            if (selectionMode == click || selectionMode == single) {
                 unselectAllItems();
             }
             switch (selectionMode) {
-                case none:
+                case click:
                     item.makeCurrent(selected);
                     break;
                 case single:
@@ -233,7 +253,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     }
 
     private void unselectAllItems() {
-        if (selectionMode == none) {
+        if (selectionMode == click) {
             for (HTMLElement element : findAll(MENU_ITEMS)) {
                 element.setAttribute(Aria.current, false);
             }
@@ -248,27 +268,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         }
     }
 
-    // ------------------------------------------------------ modifiers
-
-    public Menu flyout() {
-        return css(modifier(flyout));
-    }
-
-    public Menu scrollable() {
-        return css(modifier(scrollable));
-    }
-
-    public Menu favorites() {
-        favorites = true;
-        return this;
-    }
-
-    /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
-    public Menu height(String height) {
-        return style("--pf-v5-c-menu__content--MaxHeight:" + height);
-    }
-
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     MenuItem findItem(String id) {
         MenuItem menuItem = null;

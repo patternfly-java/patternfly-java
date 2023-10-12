@@ -63,7 +63,7 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         Readonly<HTMLElement, TextInput>,
         Required<HTMLElement, TextInput> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TextInput textInput(String id) {
         return new TextInput(id);
@@ -87,45 +87,7 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         inputElement = (HTMLInputElement) element().firstElementChild;
     }
 
-    @Override
-    public TextInput that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
-
-    @Override
-    public String value() {
-        return inputElement.value;
-    }
-
-    public TextInput value(String value) {
-        inputElement.value = value;
-        return this;
-    }
-
-    public TextInput placeholder(String placeholder) {
-        inputElement.placeholder = placeholder;
-        return this;
-    }
-
-    public TextInput onChange(ChangeHandler<TextInput, String> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.value));
-        return this;
-    }
-
-    /** Returns the underlying input element */
-    public InputElementBuilder<HTMLInputElement> inputElement() {
-        return wrapInputElement(inputElement);
-    }
-
-    /** Provides access to the underlying input element using a fluent API style */
-    public TextInput applyTo(Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
-        inputElementConsumer.accept(inputElement());
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public TextInput addIcon(PredefinedIcon predefinedIcon) {
         return addIcon(predefinedIcon.className);
@@ -138,7 +100,7 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     @Override
     public TextInput disabled(boolean disabled) {
@@ -178,7 +140,47 @@ public class TextInput extends BaseComponent<HTMLElement, TextInput> implements
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    public TextInput value(String value) {
+        inputElement.value = value;
+        return this;
+    }
+
+    public TextInput placeholder(String placeholder) {
+        inputElement.placeholder = placeholder;
+        return this;
+    }
+
+    /** Provides access to the underlying input element using a fluent API style */
+    public TextInput applyTo(Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
+        inputElementConsumer.accept(inputElement());
+        return this;
+    }
+
+    @Override
+    public TextInput that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    public TextInput onChange(ChangeHandler<TextInput, String> handler) {
+        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.value));
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String value() {
+        return inputElement.value;
+    }
+
+    /** Returns the underlying input element */
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        return wrapInputElement(inputElement);
+    }
+
+    // ------------------------------------------------------ internal
 
     private HTMLElement failSafeIconContainer() {
         if (iconContainer == null) {

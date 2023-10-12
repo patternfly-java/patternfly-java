@@ -27,7 +27,7 @@ import static org.patternfly.layout.Classes.toggle;
 
 public class ExpandableSectionToggleText extends SubComponent<HTMLElement, ExpandableSectionToggleText> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ExpandableSectionToggleText expandableSectionToggleText() {
         return new ExpandableSectionToggleText(null, null);
@@ -57,12 +57,14 @@ public class ExpandableSectionToggleText extends SubComponent<HTMLElement, Expan
         }
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public ExpandableSectionToggleText that() {
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     void collapse() {
         if (lessText != null) {

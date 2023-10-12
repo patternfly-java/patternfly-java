@@ -34,12 +34,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(disabled)} */
         default B disabled(boolean disabled) {
-            if (disabled) {
-                element().classList.add(modifier(Classes.disabled));
-            } else {
-                element().classList.remove(modifier(Classes.disabled));
-            }
-            return that();
+            return changeModifier(that(), element(), disabled, Classes.disabled);
         }
     }
 
@@ -52,12 +47,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(fill)} */
         default B fill(boolean fill) {
-            if (fill) {
-                element().classList.add(modifier(Classes.fill));
-            } else {
-                element().classList.remove(modifier(Classes.fill));
-            }
-            return that();
+            return changeModifier(that(), element(), fill, Classes.fill);
         }
     }
 
@@ -70,12 +60,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(inline)} */
         default B inline(boolean inline) {
-            if (inline) {
-                element().classList.add(modifier(Classes.inline));
-            } else {
-                element().classList.remove(modifier(Classes.inline));
-            }
-            return that();
+            return changeModifier(that(), element(), inline, Classes.inline);
         }
     }
 
@@ -88,12 +73,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(error)} */
         default B invalid(boolean invalid) {
-            if (invalid) {
-                element().classList.add(modifier(Classes.error));
-            } else {
-                element().classList.remove(modifier(Classes.error));
-            }
-            return that();
+            return changeModifier(that(), element(), invalid, Classes.error);
         }
     }
 
@@ -106,12 +86,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noFill)} */
         default B noFill(boolean noFill) {
-            if (noFill) {
-                element().classList.add(modifier(Classes.noFill));
-            } else {
-                element().classList.remove(modifier(Classes.noFill));
-            }
-            return that();
+            return changeModifier(that(), element(), noFill, Classes.noFill);
         }
     }
 
@@ -124,12 +99,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(plain)} */
         default B plain(boolean plain) {
-            if (plain) {
-                element().classList.add(modifier(Classes.plain));
-            } else {
-                element().classList.remove(modifier(Classes.plain));
-            }
-            return that();
+            return changeModifier(that(), element(), plain, Classes.plain);
         }
     }
 
@@ -142,12 +112,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readonly)} */
         default B readonly(boolean readonly) {
-            if (readonly) {
-                element().classList.add(modifier(Classes.readonly));
-            } else {
-                element().classList.remove(modifier(Classes.readonly));
-            }
-            return that();
+            return changeModifier(that(), element(), readonly, Classes.readonly);
         }
     }
 
@@ -160,12 +125,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readOnly)} */
         default B readonly(boolean readonly) {
-            if (readonly) {
-                element().classList.add(modifier(Classes.readOnly));
-            } else {
-                element().classList.remove(modifier(Classes.readOnly));
-            }
-            return that();
+            return changeModifier(that(), element(), readonly, Classes.readOnly);
         }
     }
 
@@ -178,12 +138,17 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(required)} */
         default B required(boolean required) {
-            if (required) {
-                element().classList.add(modifier(Classes.required));
-            } else {
-                element().classList.remove(modifier(Classes.required));
-            }
-            return that();
+            return changeModifier(that(), element(), required, Classes.required);
         }
+    }
+
+    private static <E extends Element, B extends TypedBuilder<E, B>> B changeModifier(B builder, E element, boolean flag,
+            String modifier) {
+        if (flag) {
+            element.classList.add(modifier(modifier));
+        } else {
+            element.classList.remove(modifier(modifier));
+        }
+        return builder;
     }
 }

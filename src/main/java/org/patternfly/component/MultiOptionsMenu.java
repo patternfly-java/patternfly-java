@@ -24,10 +24,8 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -71,7 +69,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
 public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptionsMenu>
         implements Modifiers.Disabled<HTMLDivElement, MultiOptionsMenu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MultiOptionsMenu text(String text) {
         return new MultiOptionsMenu(text, null, false);
@@ -148,7 +146,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         return menu;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public <T> MultiOptionsMenu add(Group<T> group) {
         if (menu.childNodes.length != 0) {
@@ -176,7 +174,7 @@ public class MultiOptionsMenu extends BaseComponent<HTMLDivElement, MultiOptions
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public MultiOptionsMenu up() {
         element().classList.add(modifier(top));

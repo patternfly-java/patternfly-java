@@ -53,7 +53,7 @@ import static org.patternfly.layout.Classes.pre;
  */
 public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implements Attachable {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeBlock codeBlock() {
         return new CodeBlock(null);
@@ -101,12 +101,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         }
     }
 
-    @Override
-    public CodeBlock that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public CodeBlock addHeader(CodeBlockHeader header) {
         return add(header);
@@ -130,7 +125,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /** Same as {@linkplain #truncate(int) truncate(3)} */
     public CodeBlock truncate() {
@@ -141,8 +136,6 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         this.truncate = truncate;
         return this;
     }
-
-    // ------------------------------------------------------ public API
 
     public CodeBlock code(String code) {
         this.code = code;
@@ -159,11 +152,18 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         return this;
     }
 
+    @Override
+    public CodeBlock that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
     public String code() {
         return code;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private String[] lines() {
         return code != null && !code.trim().isEmpty() ? code.split("\n") : new String[0];

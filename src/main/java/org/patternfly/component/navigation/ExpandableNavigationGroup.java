@@ -58,7 +58,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 
 public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, ExpandableNavigationGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ExpandableNavigationGroup expandableNavigationGroup(String id, String text) {
         return new ExpandableNavigationGroup(id, text);
@@ -101,12 +101,7 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
         collapse();
     }
 
-    @Override
-    public ExpandableNavigationGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public <T> ExpandableNavigationGroup addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         for (T item : items) {
@@ -133,7 +128,14 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ builder
+
+    @Override
+    public ExpandableNavigationGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
 
     NavigationItem findItem(String id) {
         NavigationItem item = items.get(id);

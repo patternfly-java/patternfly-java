@@ -13,15 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.js;
+package org.patternfly.component;
 
-import org.patternfly.core.Clipboard;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import static java.lang.annotation.ElementType.TYPE;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class ExtendedNavigator {
-
-    public Clipboard clipboard;
+/**
+ * Internal annotation to track Patternfly Java development
+ */
+@Retention(RetentionPolicy.SOURCE)
+@Target(value = TYPE)
+public @interface UnderDevelopment {
 }

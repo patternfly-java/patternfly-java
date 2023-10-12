@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.search;
 
 public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> implements ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuSearchInput menuSearchInput() {
         return new MenuSearchInput();
@@ -42,11 +42,13 @@ public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> 
     }
 
     @Override
-    public MenuSearchInput that() {
-        return null;
+    public void passComponent(Menu menu) {
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
-    public void passComponent(Menu menu) {
+    public MenuSearchInput that() {
+        return null;
     }
 }

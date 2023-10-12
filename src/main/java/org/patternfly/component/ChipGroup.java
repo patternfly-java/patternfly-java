@@ -39,7 +39,7 @@ import static org.patternfly.layout.Classes.component;
 @Deprecated
 public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static ChipGroup chipGroup() {
         return new ChipGroup();
@@ -77,7 +77,7 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public ChipGroup add(Chip chip) {
         Chip liChip = chip.cloneAsLi();
@@ -93,7 +93,7 @@ public class ChipGroup extends BaseComponent<HTMLElement, ChipGroup> {
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private void redraw() {
         AtomicInteger index = new AtomicInteger(0);

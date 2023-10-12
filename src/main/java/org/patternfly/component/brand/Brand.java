@@ -17,7 +17,7 @@ package org.patternfly.component.brand;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.UnderDevelopment;
+import org.patternfly.component.UnderDevelopment;
 
 import elemental2.dom.HTMLImageElement;
 
@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.component;
 @UnderDevelopment
 public class Brand extends BaseComponent<HTMLImageElement, Brand> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Brand brand(String src) {
         return new Brand(src);
@@ -44,6 +44,8 @@ public class Brand extends BaseComponent<HTMLImageElement, Brand> {
     Brand(String src) {
         super(img(src).css(component(brand)).element(), ComponentType.Brand);
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public Brand that() {

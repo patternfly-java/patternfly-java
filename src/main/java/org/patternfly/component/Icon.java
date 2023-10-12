@@ -35,7 +35,7 @@ import static org.patternfly.layout.Classes.component;
 @Deprecated
 public class Icon extends BaseComponent<HTMLElement, Icon> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -60,7 +60,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> {
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies the size of this component.

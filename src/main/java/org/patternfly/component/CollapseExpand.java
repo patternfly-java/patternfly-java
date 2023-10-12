@@ -13,11 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.component;
 
 import java.util.function.Consumer;
 
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -31,6 +32,7 @@ import static org.patternfly.core.Attributes.hidden;
 import static org.patternfly.layout.Classes.modifier;
 
 /** Reusable class for components which have a collapsible / expandable UI element */
+@Deprecated
 public class CollapseExpand {
 
     public Consumer<Boolean> onToggle;

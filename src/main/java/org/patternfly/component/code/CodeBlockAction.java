@@ -28,7 +28,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.js.ExtendedDomGlobal.navigator;
+import static org.patternfly.dom.ExtendedDomGlobal.navigator;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
@@ -37,7 +37,7 @@ import static org.patternfly.layout.PredefinedIcon.copy;
 public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockAction> implements
         ComponentReference<CodeBlock> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeBlockAction codeBlockAction() {
         return new CodeBlockAction(null);
@@ -76,12 +76,14 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
         }
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public CodeBlockAction that() {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ aria
 
     public CodeBlockAction ariaLabel(String label) {
         if (buttonElement != null) {

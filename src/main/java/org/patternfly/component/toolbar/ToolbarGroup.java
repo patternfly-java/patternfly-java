@@ -32,7 +32,7 @@ import static org.patternfly.layout.Classes.description;
  */
 public class ToolbarGroup extends SubComponent<HTMLDivElement, ToolbarGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -46,6 +46,8 @@ public class ToolbarGroup extends SubComponent<HTMLDivElement, ToolbarGroup> {
     ToolbarGroup() {
         super(div().css(component(alert, description)).element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public ToolbarGroup that() {

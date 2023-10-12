@@ -13,16 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.dom;
 
-import elemental2.promise.Promise;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class Clipboard {
+@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
+public class ExtendedDomGlobal {
 
-    public native Promise<String> readText();
-
-    public native Promise<Void> writeText(String text);
+    @JsOverlay
+    public static final ExtendedNavigator navigator = ExtendedDomGlobal__Constants.navigator;
 }

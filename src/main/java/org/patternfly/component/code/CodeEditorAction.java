@@ -26,13 +26,13 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.js.ExtendedDomGlobal.navigator;
+import static org.patternfly.dom.ExtendedDomGlobal.navigator;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
 public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction> implements
         ComponentReference<CodeEditor> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorAction codeEditorAction(PredefinedIcon icon) {
         return new CodeEditorAction(button(icon).control());
@@ -72,12 +72,14 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
         }
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public CodeEditorAction that() {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ aria
 
     public CodeEditorAction ariaLabel(String label) {
         if (buttonElement != null) {

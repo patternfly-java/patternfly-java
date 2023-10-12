@@ -38,7 +38,7 @@ import static org.patternfly.layout.Classes.title;
 
 public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static NavigationGroup navigationGroup(String id, String text) {
         return new NavigationGroup(id, text);
@@ -63,12 +63,7 @@ public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> 
                 .element());
     }
 
-    @Override
-    public NavigationGroup that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public <T> NavigationGroup addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         for (T item : items) {
@@ -89,7 +84,14 @@ public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> 
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ builder
+
+    @Override
+    public NavigationGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
 
     NavigationItem findItem(String id) {
         return items.get(id);

@@ -89,7 +89,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         implements Display<T> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> DataList<T> dataList(DataProvider<T> dataProvider, Display<T> display) {
         return new DataList<>(dataProvider, display);
@@ -197,7 +197,7 @@ public class DataList<T> extends BaseComponent<HTMLUListElement, DataList<T>>
         // nothing to do
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private void bindExpandHandler() {
         List<HandlerRegistration> handler = new ArrayList<>();

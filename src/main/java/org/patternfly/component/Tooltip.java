@@ -43,7 +43,7 @@ import static org.patternfly.layout.Classes.tooltip;
 @Deprecated
 public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Tooltip top(String text, HTMLElement target) {
         return new Tooltip(Position.top, target, text);
@@ -88,7 +88,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> {
         return this;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public void show() {
 
@@ -98,7 +98,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> {
 
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public Tooltip leftAligned() {
         content.css(modifier(textLeftAligned));

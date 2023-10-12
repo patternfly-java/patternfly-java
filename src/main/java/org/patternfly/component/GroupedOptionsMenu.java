@@ -24,10 +24,8 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.core.CollapseExpand;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
-import org.patternfly.core.OldItemDisplay;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.layout.Classes;
 
@@ -70,7 +68,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
 public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOptionsMenu>
         implements Modifiers.Disabled<HTMLDivElement, GroupedOptionsMenu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static GroupedOptionsMenu text(String text) {
         return new GroupedOptionsMenu(text, null, false);
@@ -147,7 +145,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         return menu;
     }
 
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ api
 
     public <T> GroupedOptionsMenu add(Group<T> group) {
 
@@ -176,7 +174,7 @@ public class GroupedOptionsMenu extends BaseComponent<HTMLDivElement, GroupedOpt
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public GroupedOptionsMenu up() {
         element().classList.add(modifier(top));

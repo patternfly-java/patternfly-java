@@ -32,7 +32,7 @@ import static org.patternfly.layout.Classes.modifier;
 @Deprecated
 public class Label extends BaseComponent<HTMLElement, Label> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Label label(String text) {
         return new Label(text);

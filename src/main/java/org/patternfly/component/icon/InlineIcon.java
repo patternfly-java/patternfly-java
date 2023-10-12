@@ -25,7 +25,7 @@ import static org.patternfly.core.Aria.hidden;
 
 public class InlineIcon extends SubComponent<HTMLElement, InlineIcon> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static InlineIcon inlineIcon(PredefinedIcon predefinedIcon) {
         return new InlineIcon(predefinedIcon.className);
@@ -41,6 +41,7 @@ public class InlineIcon extends SubComponent<HTMLElement, InlineIcon> {
         super(i().css(iconClass).aria(hidden, true).element());
     }
 
+    // ------------------------------------------------------ builder
     @Override
     public InlineIcon that() {
         return this;

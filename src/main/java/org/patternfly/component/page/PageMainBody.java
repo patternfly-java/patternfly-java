@@ -36,7 +36,7 @@ import static org.patternfly.layout.Classes.page;
  */
 public class PageMainBody extends SubComponent<HTMLDivElement, PageMainBody> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -51,6 +51,8 @@ public class PageMainBody extends SubComponent<HTMLDivElement, PageMainBody> {
         super(div().css(component(page, main, body))
                 .element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public PageMainBody that() {

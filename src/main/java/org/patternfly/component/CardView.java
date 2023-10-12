@@ -140,7 +140,7 @@ public class CardView<T> extends BaseComponent<HTMLDivElement, CardView<T>>
         // nothing to do
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public CardView<T> compact() {
         this.compact = true;

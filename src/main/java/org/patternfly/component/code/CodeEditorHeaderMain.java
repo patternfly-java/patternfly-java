@@ -27,7 +27,7 @@ import static org.patternfly.layout.Classes.main;
 
 public class CodeEditorHeaderMain extends SubComponent<HTMLDivElement, CodeEditorHeaderMain> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static CodeEditorHeaderMain codeEditorHeaderMain() {
         return new CodeEditorHeaderMain();
@@ -38,6 +38,8 @@ public class CodeEditorHeaderMain extends SubComponent<HTMLDivElement, CodeEdito
     CodeEditorHeaderMain() {
         super(div().css(component(codeEditor, header, main)).element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public CodeEditorHeaderMain that() {

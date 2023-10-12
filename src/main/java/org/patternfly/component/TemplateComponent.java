@@ -15,13 +15,17 @@
  */
 package org.patternfly.component;
 
+import org.patternfly.core.Aria;
+import org.patternfly.handler.ActionHandler;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.EventType.click;
 
 public class TemplateComponent extends BaseComponent<HTMLElement, TemplateComponent> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static TemplateComponent template() {
         return new TemplateComponent();
@@ -33,12 +37,48 @@ public class TemplateComponent extends BaseComponent<HTMLElement, TemplateCompon
         super(div().element(), (ComponentType) null);
     }
 
+    // ------------------------------------------------------ add
+
+    public TemplateComponent addFoo(/* Foo foo */) {
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    public TemplateComponent methodsReturningAReferenceToItself() {
+        return this;
+    }
+
     @Override
     public TemplateComponent that() {
         return this;
     }
 
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ aria
 
-    // ------------------------------------------------------ modifiers
+    public TemplateComponent ariaLabel(String label) {
+        return aria(Aria.label, label);
+    }
+
+    // ------------------------------------------------------ events
+
+    public TemplateComponent onFoo(ActionHandler<TemplateComponent> handler) {
+        return on(click, e -> handler.onAction(e, this));
+    }
+
+    // ------------------------------------------------------ api
+
+    public void doSomething() {
+
+    }
+
+    public String getter() {
+        return "some piece of information";
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void foo() {
+        // internal stuff happens here
+    }
 }

@@ -30,7 +30,7 @@ import static org.patternfly.layout.Classes.component;
 @Deprecated
 public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.

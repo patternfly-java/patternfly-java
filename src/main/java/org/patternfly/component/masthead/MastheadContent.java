@@ -13,44 +13,46 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.component.masthead;
 
 import org.patternfly.component.SubComponent;
-import org.patternfly.component.brand.Brand;
+import org.patternfly.component.toolbar.Toolbar;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
+import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.masthead;
 
 /**
- * Container for the main area of a {@link Masthead} component. This container represents the smaller area taken up by a logo,
- * and will typically contain a {@link Brand} inside an {@code <a/>} element.
+ * Container for the content of a {@link Masthead} component. This container represents the main portion of the masthead area
+ * and will typically contain a {@link Toolbar} or other menu-like content such as a {@link org.patternfly.component.Dropdown}.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadMain extends SubComponent<HTMLDivElement, MastheadMain> {
+public class MastheadContent extends SubComponent<HTMLDivElement, MastheadContent> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static MastheadMain mastheadMain() {
-        return new MastheadMain();
+    public static MastheadContent mastheadContent() {
+        return new MastheadContent();
     }
 
     // ------------------------------------------------------ instance
 
-    MastheadMain() {
-        super(div().css(component(masthead, main)).element());
+    MastheadContent() {
+        super(div().css(component(masthead, content)).element());
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
-    public MastheadMain that() {
+    public MastheadContent that() {
         return this;
     }
 }

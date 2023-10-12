@@ -41,7 +41,7 @@ import static org.patternfly.layout.Classes.menu;
 public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemAction> implements
         ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static MenuItemAction menuItemAction(String id) {
         return new MenuItemAction(id, null);
@@ -91,12 +91,7 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
         on(click, e -> menu.handleItemAction(this));
     }
 
-    @Override
-    public MenuItemAction that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ public API
+    // ------------------------------------------------------ builder
 
     public MenuItemAction icon(PredefinedIcon predefinedIcon) {
         return icon(predefinedIcon.className);
@@ -111,6 +106,11 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
     public MenuItemAction icon(HTMLElement icon) {
         removeChildrenFrom(iconContainer);
         iconContainer.appendChild(icon);
+        return this;
+    }
+
+    @Override
+    public MenuItemAction that() {
         return this;
     }
 

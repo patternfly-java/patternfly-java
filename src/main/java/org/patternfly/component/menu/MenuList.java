@@ -41,7 +41,7 @@ import static org.patternfly.layout.Classes.menu;
 
 public class MenuList extends SubComponent<HTMLUListElement, MenuList> implements ComponentReference<Menu> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Creates a new menu list component .
@@ -80,12 +80,7 @@ public class MenuList extends SubComponent<HTMLUListElement, MenuList> implement
         }
     }
 
-    @Override
-    public MenuList that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     public <T> MenuList addItems(Iterable<T> items, Function<T, MenuItem> display) {
         for (T item : items) {
@@ -121,7 +116,14 @@ public class MenuList extends SubComponent<HTMLUListElement, MenuList> implement
         return add(divider(li));
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MenuList that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
 
     void removeItem(MenuItem favoriteItem) {
         items.remove(favoriteItem.id);

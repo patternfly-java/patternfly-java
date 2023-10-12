@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.description;
  */
 public class ToolbarContentSection extends SubComponent<HTMLDivElement, ToolbarContentSection> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -47,6 +47,8 @@ public class ToolbarContentSection extends SubComponent<HTMLDivElement, ToolbarC
     ToolbarContentSection() {
         super(div().css(component(alert, description)).element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public ToolbarContentSection that() {

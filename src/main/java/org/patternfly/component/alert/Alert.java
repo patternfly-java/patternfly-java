@@ -15,22 +15,23 @@
  */
 package org.patternfly.component.alert;
 
-import org.jboss.elemento.By;
-import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.UnderDevelopment;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Inline;
-import org.patternfly.core.UnderDevelopment;
-import org.patternfly.handler.Callback;
+import org.patternfly.handler.ActionHandler;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLParagraphElement;
+import elemental2.dom.MouseEvent;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
@@ -40,7 +41,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
@@ -49,10 +49,16 @@ import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.truncate;
 import static org.patternfly.layout.PredefinedIcon.times;
 
+/**
+ * An alert is a notification that provides brief information to the user without blocking their workflow.
+ *
+ * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
+ */
 @UnderDevelopment
-public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert> {
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
+        ComponentReference<AlertGroup> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Alert alert(AlertType type, String title) {
         return new Alert(type, title);
@@ -64,8 +70,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     private final AlertType alertType;
     private final String title;
-    private final HTMLContainerBuilder<HTMLParagraphElement> titleElement;
-    private Callback callback;
+    private final HTMLParagraphElement titleElement;
+    private ActionHandler<Alert> closeHandler;
     private Button closeButton;
 
     Alert(AlertType alertType, String title) {
@@ -82,15 +88,16 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
                         .textContent(alertType.aria + ":"))
-                .add(title));
+                .add(title)
+                .element());
     }
 
     @Override
-    public Alert that() {
-        return this;
+    public void passComponent(AlertGroup alertGroup) {
+
     }
 
-    // ------------------------------------------------------ add methods
+    // ------------------------------------------------------ add
 
     /**
      * Wraps the action inside a {@link AlertActionGroup} and adds it to this alert. Useful if you only want to add a single
@@ -105,20 +112,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     }
 
     /**
-     * Wraps the description inside a {@code
-     *
-     *
-     *
-    <p>
-     *
-     *
-    <p>
-     *
-    <p>
-     *
-    <p/>
-     * } element, adds it to a {@link AlertDescription} and finally adds it to this alert. Useful if your description is just a
-     * simple string.
+     * Wraps the description inside a <code>&lt;p/&gt;</code> element, adds it to a {@link AlertDescription} and finally adds it
+     * to this alert. Useful if your description is just a simple string.
      */
     public Alert addDescription(String description) {
         return add(alertDescription().add(p().textContent(description)));
@@ -128,29 +123,22 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         return add(description);
     }
 
-    // ------------------------------------------------------ public API
-
-    public void close() {
-        failSafeRemoveFromParent(element());
-        if (callback != null) {
-            callback.call();
-        }
-    }
+    // ------------------------------------------------------ builder
 
     public Alert closable() {
         return closable(null);
     }
 
-    public Alert closable(Callback callback) {
-        return add(div().css(component(alert, Classes.action))
+    public Alert closable(ActionHandler<Alert> handler) {
+        this.closeHandler = handler;
+        insertAfter(div().css(component(alert, Classes.action))
                 .add(closeButton = button(times, "close " + alertType.aria + ": " + title)
-                        .plain()
-                        .on(click, e -> {
-                            if (callback != null) {
-                                callback.call();
-                            }
-                            close();
-                        })));
+                        .plain())
+                .element(), titleElement);
+        if (handler != null) {
+            closeButton.on(click, e -> handler.onAction(e, this));
+        }
+        return this;
     }
 
     public Alert truncate() {
@@ -158,10 +146,15 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     }
 
     public Alert truncate(int lines) {
-        titleElement.css(modifier(truncate));
+        titleElement.classList.add(modifier(truncate));
         if (lines != 1) {
-            titleElement.style("--pf-v5-c-alert__title--max-lines: " + lines);
+            titleElement.style.cssText += "--pf-v5-c-alert__title--max-lines: " + lines;
         }
+        return this;
+    }
+
+    @Override
+    public Alert that() {
         return this;
     }
 
@@ -178,17 +171,22 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         return this;
     }
 
-    // ------------------------------------------------------ events
+    // ------------------------------------------------------ api
 
-    public Alert onClose(Callback callback) {
-        this.callback = callback;
-        return this;
+    public void close() {
+        close(true);
     }
 
-    // ------------------------------------------------------ internals
+    public void close(boolean fireEvent) {
+        failSafeRemoveFromParent(element());
+        if (fireEvent && closeHandler != null) {
+            closeHandler.onAction(new MouseEvent(click.name), this);
+        }
+    }
+
+    // ------------------------------------------------------ internal
 
     boolean hasClose() {
-        By selector = By.classname(component(alert, action)).desc(By.classname(times.className));
-        return find(selector) != null;
+        return closeButton != null;
     }
 }

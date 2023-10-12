@@ -113,7 +113,7 @@ import static org.patternfly.layout.PredefinedIcon.longArrowAltUp;
 public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
         implements Display<T> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static <T> DataTable<T> dataTable(DataProvider<T> dataProvider) {
         return new DataTable<>(dataProvider, null);
@@ -405,7 +405,7 @@ public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
         }
     }
 
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     public DataTable<T> compact() {
         return css(modifier(compact));
@@ -423,7 +423,7 @@ public class DataTable<T> extends BaseComponent<HTMLTableElement, DataTable<T>>
         return this;
     }
 
-    // ------------------------------------------------------ internals
+    // ------------------------------------------------------ internal
 
     private void bindSelectAllHandler() {
         HTMLInputElement checkbox = Elements.find(theadRow, SELECT_ALL_SELECTOR);

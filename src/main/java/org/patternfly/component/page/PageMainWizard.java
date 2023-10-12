@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.wizard;
  */
 public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWizard> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static PageMainWizard pageMainWizard() {
         return new PageMainWizard();
@@ -46,17 +46,17 @@ public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWiza
                 .element());
     }
 
-    @Override
-    public PageMainWizard that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ modifiers
+    // ------------------------------------------------------ builder
 
     /**
      * Modifies the wizard to have a light 200 theme.
      */
     public PageMainWizard light() {
         return css(Brightness.light.opacity(200));
+    }
+
+    @Override
+    public PageMainWizard that() {
+        return this;
     }
 }

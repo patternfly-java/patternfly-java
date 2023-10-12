@@ -27,5 +27,4 @@ import elemental2.dom.HTMLElement;
  */
 public interface PageSection<E extends HTMLElement, P extends PageSection<E, P>>
         extends HasElement<E, P>, HasHTMLElement<E, P>, Finder<E>, Container<E, P> {
-
 }

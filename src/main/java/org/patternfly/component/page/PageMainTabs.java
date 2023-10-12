@@ -31,7 +31,7 @@ import static org.patternfly.layout.Classes.tabs;
  */
 public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
@@ -46,6 +46,8 @@ public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs> 
         super(section().css(component(page, main, tabs))
                 .element());
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public PageMainTabs that() {

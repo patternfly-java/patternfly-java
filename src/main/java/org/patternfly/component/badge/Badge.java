@@ -36,7 +36,7 @@ import static org.patternfly.layout.Classes.unread;
  */
 public class Badge extends BaseComponent<HTMLElement, Badge> {
 
-    // ------------------------------------------------------ factory methods
+    // ------------------------------------------------------ factory
 
     public static Badge badge(int count) {
         return new Badge(count);
@@ -65,15 +65,20 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
         count(count);
     }
 
-    @Override
-    public Badge that() {
+    // ------------------------------------------------------ builder
+
+    /** Marks the badge as read. */
+    public Badge read() {
+        element().classList.remove(modifier(unread));
+        element().classList.add(modifier(read));
         return this;
     }
 
-    // ------------------------------------------------------ public API
-
-    public int count() {
-        return value;
+    /** Marks the badge as unread. */
+    public Badge unread() {
+        element().classList.remove(modifier(read));
+        element().classList.add(modifier(unread));
+        return this;
     }
 
     /** Sets the count of this badge. */
@@ -100,19 +105,8 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
         return this;
     }
 
-    // ------------------------------------------------------ modifiers
-
-    /** Marks the badge as read. */
-    public Badge read() {
-        element().classList.remove(modifier(unread));
-        element().classList.add(modifier(read));
-        return this;
-    }
-
-    /** Marks the badge as unread. */
-    public Badge unread() {
-        element().classList.remove(modifier(read));
-        element().classList.add(modifier(unread));
+    @Override
+    public Badge that() {
         return this;
     }
 
@@ -121,5 +115,11 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
     public Badge onChange(ChangeHandler<Badge, Integer> onChange) {
         this.onChange = onChange;
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public int count() {
+        return value;
     }
 }
