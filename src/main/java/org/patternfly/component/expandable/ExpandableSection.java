@@ -22,6 +22,7 @@ import org.jboss.elemento.HTMLElementBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
 
@@ -52,7 +53,8 @@ import static org.patternfly.layout.Size.lg;
  * @see <a href=
  *      "https://www.patternfly.org/components/expandable-section/html">https://www.patternfly.org/components/expandable-section/html</a>
  */
-public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable {
+public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable,
+        Expandable<HTMLDivElement, ExpandableSection> {
 
     // ------------------------------------------------------ factory
 
@@ -73,7 +75,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     private String detachedFromId;
     private ExpandableSectionToggle toggle;
     private ExpandableSectionContent content;
-    private ToggleHandler<ExpandableSection> onToggle;
+    private ToggleHandler<ExpandableSection> toggleHandler;
     private HTMLElement detachedContentElement;
 
     ExpandableSection(String id) {
@@ -204,29 +206,14 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     // ------------------------------------------------------ events
 
-    public ExpandableSection onToggle(ToggleHandler<ExpandableSection> onToggle) {
-        this.onToggle = onToggle;
+    public ExpandableSection onToggle(ToggleHandler<ExpandableSection> toggleHandler) {
+        this.toggleHandler = toggleHandler;
         return this;
     }
 
     // ------------------------------------------------------ api
 
-    public void toggle() {
-        toggle(true);
-    }
-
-    public void toggle(boolean fireEvent) {
-        if (expanded()) {
-            collapse(fireEvent);
-        } else {
-            expand(fireEvent);
-        }
-    }
-
-    public void collapse() {
-        collapse(true);
-    }
-
+    @Override
     public void collapse(boolean fireEvent) {
         element().classList.remove(modifier(expanded));
         if (toggle != null) {
@@ -237,15 +224,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = true;
         }
-        if (fireEvent && onToggle != null) {
-            onToggle.onToggle(this, false);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(this, false);
         }
     }
 
-    public void expand() {
-        expand(true);
-    }
-
+    @Override
     public void expand(boolean fireEvent) {
         element().classList.add(modifier(expanded));
         if (toggle != null) {
@@ -256,13 +240,9 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = false;
         }
-        if (fireEvent && onToggle != null) {
-            onToggle.onToggle(this, true);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(this, true);
         }
-    }
-
-    public boolean expanded() {
-        return element().classList.contains(modifier(expanded));
     }
 
     public ExpandableSectionContent content() {

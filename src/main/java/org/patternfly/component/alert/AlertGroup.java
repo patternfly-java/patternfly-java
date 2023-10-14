@@ -15,30 +15,23 @@
  */
 package org.patternfly.component.alert;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.jboss.elemento.Attachable;
-import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.UnderDevelopment;
-import org.patternfly.core.Dataset;
-import org.patternfly.layout.Classes;
+import org.patternfly.component.ComponentType;
 
-import elemental2.dom.HTMLLIElement;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLUListElement;
-import elemental2.dom.MutationRecord;
 
-import static elemental2.dom.DomGlobal.clearTimeout;
-import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
-import static org.jboss.elemento.EventType.mouseout;
-import static org.jboss.elemento.EventType.mouseover;
+import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
+import static org.patternfly.core.Aria.atomic;
+import static org.patternfly.core.Aria.live;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.layout.Classes.alertGroup;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.inline;
 import static org.patternfly.layout.Classes.modifier;
 
 /**
@@ -47,42 +40,43 @@ import static org.patternfly.layout.Classes.modifier;
  * @see <a href=
  *      "https://www.patternfly.org/v4/documentation/core/components/alertgroup">https://www.patternfly.org/v4/documentation/core/components/alertgroup</a>
  */
-@UnderDevelopment
-public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> implements Attachable {
+public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // ------------------------------------------------------ factory
 
-    private static final double DEFAULT_TIMEOUT = 8000; // ms
     private static AlertGroup toast;
 
-    public static AlertGroup toast() {
-        if (toast == null) {
-            toast = new AlertGroup(DEFAULT_TIMEOUT);
-            toast.element().classList.add(modifier(Classes.toast));
-        }
-        return toast;
+    public static AlertGroup alertGroup(AlertGroupType type) {
+        return new AlertGroup(type, NO_TIMEOUT);
     }
 
-    public static AlertGroup embedded() {
-        return new AlertGroup(0);
+    public static AlertGroup alertGroup(AlertGroupType type, int timeout) {
+        if (type == AlertGroupType.toast) {
+            if (toast == null) {
+                toast = new AlertGroup(type, timeout);
+            }
+            return toast;
+        } else {
+            return new AlertGroup(type, timeout);
+        }
     }
 
     // ------------------------------------------------------ instance
 
-    private final double timeout;
-    private final Map<String, Alert> alerts;
-    private final Map<String, Double> messageIds;
+    private final AlertGroupType type;
+    private final int timeout;
 
-    AlertGroup(double timeout) {
-        super(ul().css(component(alertGroup)).element(), "AlertGroup");
+    AlertGroup(AlertGroupType type, int timeout) {
+        super(ul().css(component(alertGroup))
+                .attr(role, "list")
+                .element(), ComponentType.AlertGroup);
+        this.type = type;
         this.timeout = timeout;
-        this.alerts = new HashMap<>();
-        this.messageIds = new HashMap<>();
-    }
 
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-
+        if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
+            aria(live, "polite");
+            aria(atomic, false);
+        }
     }
 
     // ------------------------------------------------------ add
@@ -91,23 +85,23 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         return add(alert);
     }
 
+    // override to assure internal wiring
     public AlertGroup add(Alert alert) {
-        if (timeout > 100) {
-            String id = Id.unique();
-            // TODO Find an alternative
-            // alert.onClose((e, a) -> stopMessageTimeout(id, alert));
-
-            startMessageTimeout(id, alert);
-            alert.on(mouseover, e -> stopMessageTimeout(id, alert));
-            alert.on(mouseout, e -> startMessageTimeout(id, alert));
-        }
-
-        HTMLLIElement item = li().css(component(alertGroup, Classes.item)).add(alert).element();
-        if (this == toast && !alert.hasClose()) {
-            alert.closable();
-            insertFirst(element(), item);
+        if (type == AlertGroupType.toast) {
+            if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {
+                alert.timeout(timeout);
+            }
+            if (alert.closeHandler == null) {
+                alert.closable();
+            }
+            insertFirst(element(), li().add(alert));
         } else {
-            add(item);
+            if (type == AlertGroupType.staticInline) {
+                if (!alert.element().classList.contains(modifier(inline))) {
+                    alert.inline();
+                }
+            }
+            add(li().add(alert));
         }
         return this;
     }
@@ -119,26 +113,14 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
 
     // ------------------------------------------------------ internal
 
-    private void startMessageTimeout(String id, Alert alert) {
-        double timeoutHandle = setTimeout((o) -> remove(id), timeout);
-        alerts.put(id, alert);
-        messageIds.put(id, timeoutHandle);
-    }
-
-    private void stopMessageTimeout(String id, Alert alert) {
-        if (messageIds.containsKey(id)) {
-            clearTimeout(messageIds.get(id));
-            alerts.remove(id);
-            messageIds.remove(id);
-        }
-    }
-
-    private void remove(String id) {
-        Alert alert = alerts.get(id);
-        failSafeRemoveFromParent(alert); // TODO Remove alert group item, not alert!
-        Double timeoutHandle = messageIds.remove(id);
-        if (timeoutHandle != null) {
-            clearTimeout(timeoutHandle);
+    void closeAlert(Alert alert) {
+        if (alert != null) {
+            Element element = alert.element().parentElement;
+            if (element != null) {
+                failSafeRemoveFromParent(element);
+            } else {
+                failSafeRemoveFromParent(alert);
+            }
         }
     }
 }

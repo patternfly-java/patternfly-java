@@ -21,12 +21,18 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.UnderDevelopment;
 import org.patternfly.component.button.Button;
+import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Expandable;
 import org.patternfly.core.Modifiers.Inline;
+import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
+import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.MutationRecord;
@@ -36,7 +42,9 @@ import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.p;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.mouseout;
@@ -44,14 +52,19 @@ import static org.jboss.elemento.EventType.mouseover;
 import static org.patternfly.component.alert.AlertDescription.alertDescription;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
-import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.core.Aria.atomic;
+import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Aria.live;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.expandable;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
+import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Classes.truncate;
+import static org.patternfly.layout.PredefinedIcon.angleRight;
 import static org.patternfly.layout.PredefinedIcon.times;
 
 /**
@@ -60,7 +73,8 @@ import static org.patternfly.layout.PredefinedIcon.times;
  * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
  */
 @UnderDevelopment
-public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>, Attachable,
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
+        Plain<HTMLDivElement, Alert>, Expandable<HTMLDivElement, Alert>, Attachable,
         ComponentReference<AlertGroup> {
 
     // ------------------------------------------------------ factory
@@ -71,18 +85,23 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     // ------------------------------------------------------ instance
 
-    public static final long MIN_TIMEOUT = 1_000; // ms
-    public static final long DEFAULT_TIMEOUT = 8_000; // ms
+    public static final int DEFAULT_TIMEOUT = 8_000; // ms
+    static final int NO_TIMEOUT = -1; // ms
+    static final int MIN_TIMEOUT = 1_000; // ms
 
     private final AlertType alertType;
     private final String title;
+    private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
-    private long timeout;
     private double timeoutHandle;
     private Button closeButton;
+    private Button toggleButton;
     private AlertGroup alertGroup;
+    private AlertDescription description;
     private AlertActionGroup actionGroup;
-    private ActionHandler<Alert> closeHandler;
+    private ToggleHandler<Alert> toggleHandler;
+    int timeout;
+    ActionHandler<Alert> closeHandler;
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
@@ -91,12 +110,12 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
                 ComponentType.Alert);
         this.alertType = alertType;
         this.title = title;
-        this.timeout = 0;
+        this.timeout = NO_TIMEOUT;
         this.timeoutHandle = 0;
 
-        add(div().css(component(alert, icon))
-                .add(inlineIcon(alertType.iconClass)
-                        .aria(hidden, true)));
+        add(iconContainer = div().css(component(alert, icon))
+                .add(inlineIcon(alertType.iconClass))
+                .element());
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
                         .textContent(alertType.aria + ":"))
@@ -152,21 +171,95 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         return add(description);
     }
 
+    // override to assure internal wiring
+    public Alert add(AlertDescription description) {
+        this.description = description;
+        this.description.element().hidden = element().classList.contains(modifier(expandable)) && !expanded();
+        add(description.element());
+        return this;
+    }
+
     // ------------------------------------------------------ builder
 
     public Alert closable() {
-        return closable(null);
+        return closable(null, false);
     }
 
     public Alert closable(ActionHandler<Alert> handler) {
+        return closable(handler, false);
+    }
+
+    public Alert closable(ActionHandler<Alert> handler, boolean stayOpen) {
         this.closeHandler = handler;
         insertAfter(div().css(component(alert, Classes.action))
                 .add(closeButton = button(times, "close " + alertType.aria + ": " + title)
                         .plain())
                 .element(), titleElement);
         if (handler != null) {
-            closeButton.on(click, e -> handler.onAction(e, this));
+            closeButton.on(click, e -> {
+                handler.onAction(e, this);
+                if (!stayOpen) {
+                    close(false);
+                }
+            });
+        } else {
+            if (!stayOpen) {
+                close(false);
+            }
         }
+        return this;
+    }
+
+    public Alert customIcon(String iconClass) {
+        return customIcon(inlineIcon(iconClass));
+    }
+
+    public Alert customIcon(PredefinedIcon icon) {
+        return customIcon(inlineIcon(icon));
+    }
+
+    public Alert customIcon(InlineIcon icon) {
+        removeChildrenFrom(iconContainer);
+        iconContainer.appendChild(icon.element());
+        return this;
+    }
+
+    public Alert expandable() {
+        return expandable(null);
+    }
+
+    public Alert expandable(ToggleHandler<Alert> toggleHandler) {
+        css(modifier(expandable));
+        insertFirst(element(), div().css(component(alert, toggle))
+                .add(toggleButton = button().plain()
+                        .on(click, e -> toggle())
+                        .aria(expanded, false)
+                        .aria(label, alertType.aria + ": " + title + " details")
+                        .add(span().css(component(alert, toggle, icon))
+                                .add(inlineIcon(angleRight))))
+                .element());
+        this.toggleHandler = toggleHandler;
+        return this;
+    }
+
+    /**
+     * Make this alert a live region alert. Live region alerts allow you to expose dynamic content changes in a way that can be
+     * announced by assistive technologies.
+     * <p>
+     * Set the following ARIA attributes:
+     * <ul>
+     * <li><code>aria-live: "polite"</code></li>
+     * <li><code>aria-atomic: false</code></li>
+     * </ul>
+     *
+     * @see <a href=
+     *      "https://www.patternfly.org/components/alert/accessibility#accessibility">https://www.patternfly.org/components/alert/accessibility#accessibility</a>
+     * @see <a href=
+     *      "https://www.patternfly.org/components/alert/accessibility#aria-live">https://www.patternfly.org/components/alert/accessibility#aria-live</a>
+     */
+    public Alert liveRegion() {
+        aria(live, "polite");
+        aria(atomic, false);
         return this;
     }
 
@@ -174,7 +267,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         return timeout(DEFAULT_TIMEOUT);
     }
 
-    public Alert timeout(long timeout) {
+    public Alert timeout(int timeout) {
         this.timeout = timeout;
         return this;
     }
@@ -216,9 +309,29 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     }
 
     public void close(boolean fireEvent) {
-        failSafeRemoveFromParent(element());
+        stopTimeout();
+        if (alertGroup != null) {
+            alertGroup.closeAlert(this);
+        } else {
+            failSafeRemoveFromParent(this);
+        }
         if (fireEvent && closeHandler != null) {
             closeHandler.onAction(new MouseEvent(click.name), this);
+        }
+    }
+
+    @Override
+    public void collapse(boolean fireEvent) {
+        Expandable.collapse(element(), toggleButton.element(), description.element());
+        if (toggleHandler != null) {
+            toggleHandler.onToggle(this, false);
+        }
+    }
+
+    public void expand(boolean fireEvent) {
+        Expandable.expand(element(), toggleButton.element(), description.element());
+        if (toggleHandler != null) {
+            toggleHandler.onToggle(this, true);
         }
     }
 
@@ -229,19 +342,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     }
 
     private void startTimeout() {
-        timeoutHandle = setTimeout((o) -> remove(), timeout);
+        timeoutHandle = setTimeout((o) -> close(false), timeout);
     }
 
     private void stopTimeout() {
         clearTimeout(timeoutHandle);
-    }
-
-    private void remove() {
-        stopTimeout();
-        if (alertGroup != null) {
-            // TODO remove alert from alert group
-        } else {
-            failSafeRemoveFromParent(this);
-        }
     }
 }

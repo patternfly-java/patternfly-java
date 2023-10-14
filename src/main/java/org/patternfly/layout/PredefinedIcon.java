@@ -37,6 +37,8 @@ public enum PredefinedIcon {
 
     bell(fas("bell")),
 
+    box(fas("box")),
+
     caretDown(fas("caret-down")),
 
     check(fas("check")),
@@ -46,6 +48,8 @@ public enum PredefinedIcon {
     copy(fas("copy")),
 
     checkCircle(fas("check-circle")),
+
+    database(fas("database")),
 
     download(fas("download")),
 
@@ -65,6 +69,8 @@ public enum PredefinedIcon {
 
     infoCircle(fas("info-circle")),
 
+    laptop(fas("laptop")),
+
     longArrowAltDown(fas("long-arrow-alt-down")),
 
     longArrowAltUp(fas("long-arrow-alt-up")),
@@ -75,9 +81,13 @@ public enum PredefinedIcon {
 
     search(fas("search")),
 
+    server(fas("server")),
+
     sortAmountDown(fas("sort-amount-down")),
 
     star(fas("star")),
+
+    users(fas("users")),
 
     times(fas("times")),
 

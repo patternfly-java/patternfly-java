@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Action list component (#18)
+
 ### Changed
 
 - Move masthead, sidebar and skip to content components to its own packages

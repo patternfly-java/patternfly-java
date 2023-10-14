@@ -21,6 +21,7 @@ public interface Classes {
 
     String action = "action";
     String actionGroup = "action-group";
+    String actionList = "action-list";
     String actions = "actions";
     String active = "active";
     String alert = "alert";
@@ -73,9 +74,9 @@ public interface Classes {
     String expandable = "expandable";
     String expandableContent = "expandable-content";
     String expandableRow = "expandable-row";
-    String expanded = "expanded";
-    String expandedUp = "expanded-up";
     String expandableSection = "expandable-section";
+    String expanded = "expanded";
+    String expandTop = "expand-top";
     String externalIcon = "external-icon";
     String favorite = "favorite";
     String favorited = "favorited";
@@ -102,6 +103,7 @@ public interface Classes {
     String horizontalSubnav = "horizontal-subnav";
     String hoverable = "hoverable";
     String icon = "icon";
+    String icons = "icons";
     String iconButtonGroup = "icon-button-group";
     String indented = "indented";
     String indicator = "indicator";
@@ -117,8 +119,8 @@ public interface Classes {
     String itemContent = "item-content";
     String itemControl = "item-control";
     String itemRow = "item-row";
-    String label = "label";
     String keyboard = "keyboard";
+    String label = "label";
     String labelledBy = "labelledby";
     String leadBall = "lead-ball";
     String left = "left";
@@ -181,8 +183,8 @@ public interface Classes {
     String spinner = "spinner";
     String splitButton = "split-button";
     String stack = "stack";
-    String start = "start";
     String standalone = "standalone";
+    String start = "start";
     String status = "status";
     String subnav = "subnav";
     String success = "success";

@@ -34,7 +34,7 @@ import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandableSection;
-import static org.patternfly.layout.Classes.expandedUp;
+import static org.patternfly.layout.Classes.expandTop;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.toggle;
@@ -60,17 +60,19 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
     // ------------------------------------------------------ instance
 
     final String id;
+    private final HTMLElement toggleIconElement;
     private boolean up;
     private ExpandableSectionToggleText text;
 
     ExpandableSectionToggle(String moreText, String lessText) {
         super(button().css(component(expandableSection, toggle))
                 .aria(expanded, false)
-                .add(span().css(component(expandableSection, toggle, icon))
-                        .add(inlineIcon(angleRight)))
                 .element());
 
-        id(this.id = Id.unique(ComponentType.ExpandableSection.id, "tgl"));
+        id(id = Id.unique(ComponentType.ExpandableSection.id, "tgl"));
+        add(toggleIconElement = span().css(component(expandableSection, toggle, icon))
+                .add(inlineIcon(angleRight))
+                .element());
         if (moreText != null || lessText != null) {
             add(expandableSectionToggleText(moreText, lessText));
         }
@@ -112,7 +114,7 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
     void collapse() {
         aria(expanded, false);
         if (up) {
-            element().classList.remove(modifier(expandedUp));
+            toggleIconElement.classList.remove(modifier(expandTop));
         }
         if (text != null) {
             text.collapse();
@@ -122,7 +124,7 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
     void expand() {
         aria(expanded, true);
         if (up) {
-            element().classList.add(modifier(expandedUp));
+            toggleIconElement.classList.add(modifier(expandTop));
         }
         if (text != null) {
             text.expand();

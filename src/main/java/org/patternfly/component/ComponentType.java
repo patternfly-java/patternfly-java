@@ -19,7 +19,7 @@ public enum ComponentType {
 
     Accordion("ac", null),
 
-    ActionList("al", null),
+    ActionList("al", "PF5/ActionList"),
 
     Alert("at", "PF5/Alert"),
 

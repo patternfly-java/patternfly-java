@@ -13,21 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.component.alert;
 
-public interface Aria {
+public enum AlertGroupType {
 
-    String atomic = "aria-atomic";
-    String controls = "aria-controls";
-    String current = "aria-current";
-    String disabled = "aria-disabled";
-    String expanded = "aria-expanded";
-    String hidden = "aria-hidden";
-    String invalid = "aria-invalid";
-    String label = "aria-label";
-    String live = "aria-live";
-    String labelledBy = "aria-labelledby";
-    String multiSelectable = "aria-multiselectable";
-    String relevant = "aria-relevant";
-    String selected = "aria-selected";
+    staticInline,
+
+    toast,
+
+    dynamic
 }
