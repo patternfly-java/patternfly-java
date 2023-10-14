@@ -202,10 +202,9 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
                     close(false);
                 }
             });
-        } else {
-            if (!stayOpen) {
-                close(false);
-            }
+        } else if (!stayOpen) {
+            closeButton.on(click, e -> close(false));
+            close(false);
         }
         return this;
     }

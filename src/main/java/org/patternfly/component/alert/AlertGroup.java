@@ -17,10 +17,13 @@ package org.patternfly.component.alert;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.body;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
@@ -47,13 +50,14 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     private static AlertGroup toast;
 
     public static AlertGroup alertGroup(AlertGroupType type) {
-        return new AlertGroup(type, NO_TIMEOUT);
+        return alertGroup(type, NO_TIMEOUT);
     }
 
     public static AlertGroup alertGroup(AlertGroupType type, int timeout) {
         if (type == AlertGroupType.toast) {
             if (toast == null) {
                 toast = new AlertGroup(type, timeout);
+                body().add(div().add(toast));
             }
             return toast;
         } else {
@@ -76,6 +80,9 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
         if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
             aria(live, "polite");
             aria(atomic, false);
+            if (type == AlertGroupType.toast) {
+                css(modifier(Classes.toast));
+            }
         }
     }
 
@@ -87,6 +94,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // override to assure internal wiring
     public AlertGroup add(Alert alert) {
+        alert.passComponent(this);
         if (type == AlertGroupType.toast) {
             if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {
                 alert.timeout(timeout);
