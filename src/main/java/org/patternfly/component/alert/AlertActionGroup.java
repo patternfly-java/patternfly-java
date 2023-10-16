@@ -22,6 +22,7 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.handler.ActionHandler;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -29,7 +30,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.actionGroup;
-import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 
 public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> implements ComponentReference<Alert> {
@@ -43,17 +43,24 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
     // ------------------------------------------------------ instance
 
     private final List<ButtonActionHandlerTuple> tuples;
+    private Alert alert;
 
     AlertActionGroup() {
-        super(div().css(component(alert, actionGroup)).element());
+        super(div().css(component(Classes.alert, actionGroup)).element());
         this.tuples = new ArrayList<>();
     }
 
     @Override
     public void passComponent(Alert alert) {
+        this.alert = alert;
         for (ButtonActionHandlerTuple tuple : tuples) {
             tuple.button.on(click, e -> tuple.handler.onAction(e, alert));
         }
+    }
+
+    @Override
+    public Alert mainComponent() {
+        return alert;
     }
 
     // ------------------------------------------------------ add

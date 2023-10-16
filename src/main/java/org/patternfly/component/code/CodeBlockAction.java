@@ -54,13 +54,14 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     public static CodeBlockAction codeBlockCopyToClipboardAction() {
         return new CodeBlockAction(copy.className)
                 .ariaLabel("Copy to clipboard")
-                .onAction((event, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
+                .onAction((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
     }
 
     // ------------------------------------------------------ instance
 
     private HTMLElement buttonElement;
-    private ActionHandler<CodeBlock> actionHandler;
+    private ActionHandler<CodeBlockAction> actionHandler;
+    private CodeBlock codeBlock;
 
     CodeBlockAction(String iconClass) {
         super(div().css(component(Classes.codeBlock, actions, item)).element());
@@ -71,9 +72,15 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
 
     @Override
     public void passComponent(CodeBlock codeBlock) {
+        this.codeBlock = codeBlock;
         if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, codeBlock));
+            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
         }
+    }
+
+    @Override
+    public CodeBlock mainComponent() {
+        return codeBlock;
     }
 
     // ------------------------------------------------------ builder
@@ -94,7 +101,7 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
 
     // ------------------------------------------------------ events
 
-    public CodeBlockAction onAction(ActionHandler<CodeBlock> actionHandler) {
+    public CodeBlockAction onAction(ActionHandler<CodeBlockAction> actionHandler) {
         this.actionHandler = actionHandler;
         return this;
     }

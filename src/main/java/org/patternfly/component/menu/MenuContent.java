@@ -22,6 +22,7 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -35,7 +36,6 @@ import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.menu;
 
 public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> implements ComponentReference<Menu> {
 
@@ -52,14 +52,16 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
     private MenuGroup favoritesGroup;
     private MenuList favoritesList;
     private Divider favoritesDivider;
+    private Menu menu;
 
     MenuContent() {
-        super(div().css(component(menu, content)).element());
+        super(div().css(component(Classes.menu, content)).element());
         this.groups = new ArrayList<>();
     }
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
         if (menu.favorites) {
             favoritesGroup = menuGroup("Favorites")
                     .addList(favoritesList = menuList());
@@ -90,6 +92,11 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
         if (list != null) {
             list.passComponent(menu);
         }
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ add

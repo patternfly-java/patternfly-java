@@ -36,7 +36,6 @@ import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.menu;
 
 public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemAction> implements
         ComponentReference<Menu> {
@@ -61,16 +60,17 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
     private final HTMLElement iconContainer;
     public MenuItem menuItem;
     ActionHandler<MenuItemAction> actionHandler;
+    private Menu menu;
 
     MenuItemAction(String id, String iconClass) {
         super(button()
-                .css(component(menu, item, action))
+                .css(component(Classes.menu, item, action))
                 .attr(tabindex, -1)
-                .add(span().css(component(menu, item, action, icon))
+                .add(span().css(component(Classes.menu, item, action, icon))
                         .add(inlineIcon(iconClass)))
                 .element());
         this.id = id;
-        this.iconContainer = find(By.classname(component(menu, item, action, icon)));
+        this.iconContainer = find(By.classname(component(Classes.menu, item, action, icon)));
     }
 
     // constructor must only be used to clone an item action of a favorite item!
@@ -88,7 +88,13 @@ public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemActi
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
         on(click, e -> menu.handleItemAction(this));
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ builder

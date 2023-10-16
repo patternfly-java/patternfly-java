@@ -25,7 +25,6 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 
 public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> implements
@@ -40,17 +39,24 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
     // ------------------------------------------------------ instance
 
     private final List<CodeBlockAction> actions;
+    private CodeBlock codeBlock;
 
     CodeBlockActions() {
-        super(div().css(component(codeBlock, Classes.actions)).element());
+        super(div().css(component(Classes.codeBlock, Classes.actions)).element());
         this.actions = new ArrayList<>();
     }
 
     @Override
     public void passComponent(CodeBlock codeBlock) {
+        this.codeBlock = codeBlock;
         for (CodeBlockAction action : actions) {
             action.passComponent(codeBlock);
         }
+    }
+
+    @Override
+    public CodeBlock mainComponent() {
+        return codeBlock;
     }
 
     // ------------------------------------------------------ add

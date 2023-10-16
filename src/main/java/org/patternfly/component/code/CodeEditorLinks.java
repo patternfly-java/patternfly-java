@@ -20,11 +20,11 @@ import java.util.List;
 
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.keyboard;
 import static org.patternfly.layout.Classes.shortcuts;
@@ -41,17 +41,24 @@ public class CodeEditorLinks extends SubComponent<HTMLDivElement, CodeEditorLink
     // ------------------------------------------------------ instance
 
     private final List<CodeEditorLink> links;
+    private CodeEditor codeEditor;
 
     CodeEditorLinks() {
-        super(div().css(component(codeEditor, keyboard, shortcuts)).element());
+        super(div().css(component(Classes.codeEditor, keyboard, shortcuts)).element());
         this.links = new ArrayList<>();
     }
 
     @Override
     public void passComponent(CodeEditor codeEditor) {
+        this.codeEditor = codeEditor;
         for (CodeEditorLink link : links) {
             link.passComponent(codeEditor);
         }
+    }
+
+    @Override
+    public CodeEditor mainComponent() {
+        return codeEditor;
     }
 
     // ------------------------------------------------------ add

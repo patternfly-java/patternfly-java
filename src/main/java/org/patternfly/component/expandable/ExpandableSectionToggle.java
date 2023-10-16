@@ -33,7 +33,6 @@ import static org.patternfly.component.expandable.ExpandableSectionToggleText.ex
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.expandableSection;
 import static org.patternfly.layout.Classes.expandTop;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.modifier;
@@ -63,14 +62,15 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
     private final HTMLElement toggleIconElement;
     private boolean up;
     private ExpandableSectionToggleText text;
+    private ExpandableSection expandableSection;
 
     ExpandableSectionToggle(String moreText, String lessText) {
-        super(button().css(component(expandableSection, toggle))
+        super(button().css(component(Classes.expandableSection, toggle))
                 .aria(expanded, false)
                 .element());
 
         id(id = Id.unique(ComponentType.ExpandableSection.id, "tgl"));
-        add(toggleIconElement = span().css(component(expandableSection, toggle, icon))
+        add(toggleIconElement = span().css(component(Classes.expandableSection, toggle, icon))
                 .add(inlineIcon(angleRight))
                 .element());
         if (moreText != null || lessText != null) {
@@ -80,7 +80,13 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
 
     @Override
     public void passComponent(ExpandableSection expandableSection) {
+        this.expandableSection = expandableSection;
         on(click, e -> expandableSection.toggle());
+    }
+
+    @Override
+    public ExpandableSection mainComponent() {
+        return expandableSection;
     }
 
     // ------------------------------------------------------ add
@@ -132,7 +138,7 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
     }
 
     void removeIcon() {
-        HTMLElement icon = find(By.classname(component(expandableSection, toggle, Classes.icon)));
+        HTMLElement icon = find(By.classname(component(Classes.expandableSection, toggle, Classes.icon)));
         failSafeRemoveFromParent(icon);
     }
 }

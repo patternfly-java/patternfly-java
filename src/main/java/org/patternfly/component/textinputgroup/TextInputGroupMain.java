@@ -17,15 +17,13 @@ package org.patternfly.component.textinputgroup;
 
 import java.util.function.Consumer;
 
-import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
-import org.patternfly.core.HasValue;
+import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.handler.ChangeHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -40,13 +38,12 @@ import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.textInput;
 
 public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGroupMain>
-        implements HasValue<String>, Disabled<HTMLDivElement, TextInputGroupMain>, ComponentReference<TextInputGroup> {
+        implements Disabled<HTMLDivElement, TextInputGroupMain>, ComponentReference<TextInputGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -61,14 +58,14 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
     private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
-        super(div().css(component(Classes.textInputGroup, main))
-                .add(span().css(component(Classes.textInputGroup, Classes.text))
-                        .add(input(InputType.text).css(component(Classes.textInputGroup, textInput))
-                                .id(id)
-                                .name(id)))
+        super(div().css(component(Classes.textInputGroup, main)).element());
+
+        add(inputContainer = span().css(component(Classes.textInputGroup, Classes.text))
+                .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
+                        .id(id)
+                        .name(id)
+                        .element())
                 .element());
-        inputContainer = find(By.classname(component(Classes.textInputGroup, Classes.text)));
-        inputElement = find(By.classname(component(Classes.textInputGroup, textInput)));
     }
 
     @Override
@@ -77,28 +74,35 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
         if (textInputGroup.initialDisabled) {
             disabled(true);
         }
+        if (textInputGroup.initialChangeHandler != null) {
+            inputElement.addEventListener(change.name,
+                    e -> textInputGroup.initialChangeHandler.onChange(textInputGroup, inputElement.value));
+        }
+    }
+
+    @Override
+    public TextInputGroup mainComponent() {
+        return textInputGroup;
     }
 
     // ------------------------------------------------------ add
 
-    public TextInputGroupMain addIcon(PredefinedIcon predefinedIcon) {
-        return addIcon(predefinedIcon.className);
+    public TextInputGroupMain addIcon(String iconClass) {
+        return addIcon(inlineIcon(iconClass));
     }
 
-    public TextInputGroupMain addIcon(String iconClass) {
-        css(modifier(icon));
-        Elements.insertFirst(inputContainer, span().css(component(Classes.textInputGroup, icon))
-                .add(inlineIcon(iconClass)));
+    public TextInputGroupMain addIcon(PredefinedIcon icon) {
+        return addIcon(inlineIcon(icon));
+    }
+
+    public TextInputGroupMain addIcon(InlineIcon icon) {
+        css(modifier(Classes.icon));
+        Elements.insertFirst(inputContainer, span().css(component(Classes.textInputGroup, Classes.icon))
+                .add(icon));
         return this;
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public TextInputGroupMain disabled(boolean disabled) {
-        inputElement.disabled = disabled;
-        return this;
-    }
 
     public TextInputGroupMain value(String value) {
         inputElement.value = value;
@@ -111,33 +115,13 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
     }
 
     /** Provides access to the underlying input element using a fluent API style */
-    public TextInputGroupMain withInputElement(
-            Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
-        inputElementConsumer.accept(inputElement());
+    public TextInputGroupMain withInputElement(Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
+        inputElementConsumer.accept(wrapInputElement(inputElement));
         return this;
     }
 
     @Override
     public TextInputGroupMain that() {
         return this;
-    }
-
-    // ------------------------------------------------------ events
-
-    public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(textInputGroup, inputElement.value));
-        return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    @Override
-    public String value() {
-        return inputElement.value;
-    }
-
-    /** Returns the underlying input element */
-    public InputElementBuilder<HTMLInputElement> inputElement() {
-        return wrapInputElement(inputElement);
     }
 }

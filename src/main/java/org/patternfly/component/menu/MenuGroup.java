@@ -42,6 +42,7 @@ public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements C
     // ------------------------------------------------------ instance
 
     MenuList list;
+    private Menu menu;
 
     MenuGroup(String text) {
         super(section().css(component(Classes.menu, group)).element());
@@ -52,9 +53,15 @@ public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements C
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
         if (list != null) {
             list.passComponent(menu);
         }
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ add

@@ -47,7 +47,8 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
     // ------------------------------------------------------ instance
 
     private final HTMLElement buttonElement;
-    private ActionHandler<CodeEditor> actionHandler;
+    private ActionHandler<CodeEditorLink> actionHandler;
+    private CodeEditor codeEditor;
 
     CodeEditorLink(Button button) {
         super(button.element());
@@ -56,9 +57,15 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
 
     @Override
     public void passComponent(CodeEditor codeEditor) {
+        this.codeEditor = codeEditor;
         if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, codeEditor));
+            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
         }
+    }
+
+    @Override
+    public CodeEditor mainComponent() {
+        return codeEditor;
     }
 
     // ------------------------------------------------------ builder
@@ -77,7 +84,7 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
 
     // ------------------------------------------------------ events
 
-    public CodeEditorLink onAction(ActionHandler<CodeEditor> actionHandler) {
+    public CodeEditorLink onAction(ActionHandler<CodeEditorLink> actionHandler) {
         this.actionHandler = actionHandler;
         return this;
     }

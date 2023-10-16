@@ -15,17 +15,22 @@
  */
 package org.patternfly.component.textinputgroup;
 
+import org.jboss.elemento.EventType;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.textInputGroup;
 import static org.patternfly.layout.Classes.utilities;
+import static org.patternfly.layout.PredefinedIcon.times;
 
-public class TextInputGroupUtilities extends SubComponent<HTMLElement, TextInputGroupUtilities>
+public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextInputGroupUtilities>
         implements ComponentReference<TextInputGroup> {
 
     // ------------------------------------------------------ factory
@@ -34,14 +39,22 @@ public class TextInputGroupUtilities extends SubComponent<HTMLElement, TextInput
         return new TextInputGroupUtilities();
     }
 
+    private TextInputGroup textInputGroup;
+
     // ------------------------------------------------------ instance
 
     TextInputGroupUtilities() {
-        super(div().css(component(textInputGroup, utilities)).element());
+        super(div().css(component(Classes.textInputGroup, utilities)).element());
     }
 
     @Override
     public void passComponent(TextInputGroup textInputGroup) {
+        this.textInputGroup = textInputGroup;
+    }
+
+    @Override
+    public TextInputGroup mainComponent() {
+        return textInputGroup;
     }
 
     // ------------------------------------------------------ builder

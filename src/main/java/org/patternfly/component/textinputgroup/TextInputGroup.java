@@ -16,15 +16,21 @@
 package org.patternfly.component.textinputgroup;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.component.UnderDevelopment;
+import org.patternfly.core.HasValue;
+import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.handler.ChangeHandler;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.wrapInputElement;
+import static org.jboss.elemento.EventType.change;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.textInputGroup;
 
@@ -37,7 +43,7 @@ import static org.patternfly.layout.Classes.textInputGroup;
  */
 @UnderDevelopment
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
-        Attachable, Disabled<HTMLDivElement, TextInputGroup> {
+        Attachable, HasValue<String>, Disabled<HTMLDivElement, TextInputGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -48,6 +54,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     // ------------------------------------------------------ instance
 
     boolean initialDisabled;
+    ChangeHandler<TextInputGroup, String> initialChangeHandler;
     private TextInputGroupMain main;
     private TextInputGroupUtilities utilities;
 
@@ -101,12 +108,43 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         }
         return Disabled.super.disabled(disabled);
     }
+
     @Override
     public TextInputGroup that() {
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    public TextInputGroup onChange(ChangeHandler<TextInputGroup, String> handler) {
+        if (main == null) {
+            initialChangeHandler = handler;
+        } else {
+            main.inputElement.addEventListener(change.name, e -> handler.onChange(this, main.inputElement.value));
+        }
+        return this;
+    }
+
     // ------------------------------------------------------ api
+
+    @Override
+    public String value() {
+        return main != null ? main.inputElement.value : null;
+    }
+
+    public void clear() {
+        if (main != null) {
+            main.inputElement.value = "";
+        }
+    }
+
+    /** Returns the underlying input element */
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        if (main != null) {
+            return wrapInputElement(main.inputElement);
+        }
+        return null;
+    }
 
     @SuppressWarnings("ConfusingMainMethod")
     public TextInputGroupMain main() {

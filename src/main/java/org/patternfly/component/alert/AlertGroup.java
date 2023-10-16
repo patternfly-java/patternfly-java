@@ -38,10 +38,12 @@ import static org.patternfly.layout.Classes.inline;
 import static org.patternfly.layout.Classes.modifier;
 
 /**
- * PatternFly alert group component.
+ * An alert group stacks and positions 2 or more alerts in a live region, either in a layer over the main content of a page or
+ * inline with the page content. Alert groups should always rank alerts by age, stacking new alerts on top of old ones as they
+ * surface.
  *
  * @see <a href=
- *      "https://www.patternfly.org/v4/documentation/core/components/alertgroup">https://www.patternfly.org/v4/documentation/core/components/alertgroup</a>
+ *      "https://www.patternfly.org/components/alert/html#alert-group-examples">https://www.patternfly.org/components/alert/html#alert-group-examples</a>
  */
 public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
@@ -49,10 +51,22 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     private static AlertGroup toast;
 
+    /**
+     * Creates a new alert group of the given type without timeout.
+     * <p>
+     * If the type is {@link AlertGroupType#toast} the alert group is added to the body or if it already has been added the
+     * existing alert group is returned (singleton pattern).
+     */
     public static AlertGroup alertGroup(AlertGroupType type) {
         return alertGroup(type, NO_TIMEOUT);
     }
 
+    /**
+     * Creates a new alert group of the given type and timeout.
+     * <p>
+     * If the type is {@link AlertGroupType#toast} the alert group is added to the body or if it already has been added the
+     * existing alert group is returned (singleton pattern).
+     */
     public static AlertGroup alertGroup(AlertGroupType type, int timeout) {
         if (type == AlertGroupType.toast) {
             if (toast == null) {

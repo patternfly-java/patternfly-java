@@ -52,13 +52,14 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
     public static CodeEditorAction codeEditorCopyToClipboardAction() {
         return new CodeEditorAction(button(copy).control())
                 .ariaLabel("Copy to clipboard")
-                .onAction((event, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
+                .onAction((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLElement buttonElement;
-    private ActionHandler<CodeEditor> actionHandler;
+    private ActionHandler<CodeEditorAction> actionHandler;
+    private CodeEditor codeEditor;
 
     CodeEditorAction(Button button) {
         super(button.element());
@@ -67,9 +68,15 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
 
     @Override
     public void passComponent(CodeEditor codeEditor) {
+        this.codeEditor = codeEditor;
         if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, codeEditor));
+            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
         }
+    }
+
+    @Override
+    public CodeEditor mainComponent() {
+        return codeEditor;
     }
 
     // ------------------------------------------------------ builder
@@ -90,7 +97,7 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
 
     // ------------------------------------------------------ events
 
-    public CodeEditorAction onAction(ActionHandler<CodeEditor> actionHandler) {
+    public CodeEditorAction onAction(ActionHandler<CodeEditorAction> actionHandler) {
         this.actionHandler = actionHandler;
         return this;
     }

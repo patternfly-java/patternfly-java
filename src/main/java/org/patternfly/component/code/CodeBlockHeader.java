@@ -17,11 +17,11 @@ package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.codeBlock;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
@@ -37,16 +37,23 @@ public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeade
     // ------------------------------------------------------ instance
 
     CodeBlockActions actions;
+    private CodeBlock codeBlock;
 
     CodeBlockHeader() {
-        super(div().css(component(codeBlock, header)).element());
+        super(div().css(component(Classes.codeBlock, header)).element());
     }
 
     @Override
     public void passComponent(CodeBlock codeBlock) {
+        this.codeBlock = codeBlock;
         if (actions != null) {
             actions.passComponent(codeBlock);
         }
+    }
+
+    @Override
+    public CodeBlock mainComponent() {
+        return codeBlock;
     }
 
     // ------------------------------------------------------ add

@@ -26,4 +26,6 @@ import elemental2.dom.MutationRecord;
 public interface ComponentReference<C extends BaseComponent<?, ?>> {
 
     void passComponent(C component);
+
+    C mainComponent();
 }

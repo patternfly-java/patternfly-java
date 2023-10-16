@@ -16,7 +16,6 @@
 package org.patternfly.component.menu;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
@@ -63,7 +62,6 @@ import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.select;
@@ -120,9 +118,10 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
     private ActionHandler<MenuItem> actionHandler;
+    private Menu menu;
 
     MenuItem(String id, String text, MenuItemType itemType) {
-        super(li().css(component(menu, list, item))
+        super(li().css(component(Classes.menu, list, item))
                 .attr(role, "none")
                 .element());
         this.id = id;
@@ -131,8 +130,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link) {
             itemBuilder = itemType == MenuItemType.action ? button().attr(tabindex, 0) : a().attr(tabindex, -1);
-            itemBuilder.add(mainElement = span().css(component(menu, item, main))
-                    .add(textElement = span().css(component(menu, item, Classes.text))
+            itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
+                    .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                             .element())
                     .element());
 
@@ -140,10 +139,10 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             String checkboxId = Id.build(id, "check");
             itemBuilder = label()
                     .apply(l -> l.htmlFor = checkboxId);
-            itemBuilder.add(mainElement = span().css(component(menu, item, main))
-                    .add(span().css(component(menu, item, Classes.check))
+            itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
+                    .add(span().css(component(Classes.menu, item, Classes.check))
                             .add(checkboxComponent = checkbox(checkboxId)))
-                    .add(textElement = span().css(component(menu, item, Classes.text))
+                    .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                             .element())
                     .element());
 
@@ -156,7 +155,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             console.error("Unknown menu item type " + itemType);
         }
 
-        add(itemElement = itemBuilder.css(component(menu, item)).element());
+        add(itemElement = itemBuilder.css(component(Classes.menu, item)).element());
         if (text != null) {
             textElement.textContent = text;
         }
@@ -201,6 +200,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
         if (itemAction != null) {
             itemAction.passComponent(menu);
             // redo initial disabled call for item action
@@ -225,6 +225,11 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         if (initialSelection) {
             menu.select(this, true, false);
         }
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ add
@@ -294,7 +299,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     public MenuItem external() {
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).target = "_blank";
-            mainElement.appendChild(span().css(component(menu, item, externalIcon))
+            mainElement.appendChild(span().css(component(Classes.menu, item, externalIcon))
                     .add(inlineIcon(externalLinkAlt))
                     .element());
             mainElement.appendChild(span().css(screenReader)
@@ -310,7 +315,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         if (descriptionElement != null) {
             descriptionElement.textContent = description;
         } else {
-            itemElement.appendChild(descriptionElement = span().css(component(menu, item, Classes.description))
+            itemElement.appendChild(descriptionElement = span().css(component(Classes.menu, item, Classes.description))
                     .textContent(description)
                     .element());
         }
@@ -322,7 +327,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             removeChildrenFrom(descriptionElement);
             descriptionElement.appendChild(element);
         } else {
-            itemElement.appendChild(descriptionElement = span().css(component(menu, item, description))
+            itemElement.appendChild(descriptionElement = span().css(component(Classes.menu, item, description))
                     .add(element)
                     .element());
         }
@@ -338,7 +343,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             removeChildrenFrom(iconElement);
             iconElement.appendChild(inlineIcon(iconClass).element());
         } else {
-            insertFirst(mainElement, iconElement = span().css(component(menu, item, icon))
+            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, icon))
                     .add(inlineIcon(iconClass))
                     .element());
         }
@@ -350,7 +355,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             removeChildrenFrom(iconElement);
             iconElement.appendChild(element);
         } else {
-            insertFirst(mainElement, iconElement = span().css(component(menu, item, icon))
+            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, icon))
                     .add(element)
                     .element());
         }
@@ -391,7 +396,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
             checkboxComponent.value(selected);
         } else {
             if (selectIcon == null) {
-                selectIcon = span().css(component(menu, item, select, icon))
+                selectIcon = span().css(component(Classes.menu, item, select, icon))
                         .add(inlineIcon(PredefinedIcon.check))
                         .element();
             }

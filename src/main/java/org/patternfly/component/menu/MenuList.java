@@ -22,6 +22,7 @@ import java.util.function.Function;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLUListElement;
 
@@ -37,7 +38,6 @@ import static org.patternfly.core.SelectionMode.multi;
 import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.list;
-import static org.patternfly.layout.Classes.menu;
 
 public class MenuList extends SubComponent<HTMLUListElement, MenuList> implements ComponentReference<Menu> {
 
@@ -53,14 +53,16 @@ public class MenuList extends SubComponent<HTMLUListElement, MenuList> implement
     // ------------------------------------------------------ instance
 
     final Map<String, MenuItem> items;
+    private Menu menu;
 
     MenuList() {
-        super(ul().css(component(menu, list)).attr(role, "menu").element());
+        super(ul().css(component(Classes.menu, list)).attr(role, "menu").element());
         this.items = new HashMap<>();
     }
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
         switch (menu.menuType) {
             case menu:
             case dropdown:
@@ -78,6 +80,11 @@ public class MenuList extends SubComponent<HTMLUListElement, MenuList> implement
         for (MenuItem menuItem : items.values()) {
             menuItem.passComponent(menu);
         }
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ add

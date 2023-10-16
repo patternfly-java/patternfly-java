@@ -146,6 +146,14 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         this.alertGroup = alertGroup;
     }
 
+    /**
+     * If this alert is <strong>not</strong> part of an {@link AlertGroup}, this method will return {@code null}!
+     */
+    @Override
+    public AlertGroup mainComponent() {
+        return alertGroup;
+    }
+
     // ------------------------------------------------------ add
 
     public Alert addActionGroup(AlertActionGroup actionGroup) {

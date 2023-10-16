@@ -17,13 +17,13 @@ package org.patternfly.component.menu;
 
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.input;
-import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.search;
 
 public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> implements ComponentReference<Menu> {
@@ -34,15 +34,23 @@ public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> 
         return new MenuSearchInput();
     }
 
+    private Menu menu;
+
     // ------------------------------------------------------ instance
 
     MenuSearchInput() {
-        super(div().css(component(menu, search, input))
+        super(div().css(component(Classes.menu, search, input))
                 .element());
     }
 
     @Override
     public void passComponent(Menu menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public Menu mainComponent() {
+        return menu;
     }
 
     // ------------------------------------------------------ builder

@@ -17,11 +17,11 @@ package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
@@ -38,19 +38,26 @@ public class CodeEditorHeader extends SubComponent<HTMLDivElement, CodeEditorHea
 
     CodeEditorActions actions;
     CodeEditorLinks links;
+    private CodeEditor codeEditor;
 
     CodeEditorHeader() {
-        super(div().css(component(codeEditor, header)).element());
+        super(div().css(component(Classes.codeEditor, header)).element());
     }
 
     @Override
     public void passComponent(CodeEditor codeEditor) {
+        this.codeEditor = codeEditor;
         if (actions != null) {
             actions.passComponent(codeEditor);
         }
         if (links != null) {
             links.passComponent(codeEditor);
         }
+    }
+
+    @Override
+    public CodeEditor mainComponent() {
+        return codeEditor;
     }
 
     // ------------------------------------------------------ add
