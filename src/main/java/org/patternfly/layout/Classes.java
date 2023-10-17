@@ -40,12 +40,14 @@ public interface Classes {
     String button = "button";
     String buttonGroup = "button-group";
     String card = "card";
+    String category = "category";
     String cell = "cell";
     String center = "center";
     String check = "check";
     String chip = "chip";
     String chipGroup = "chip-group";
     String clipper = "clipper";
+    String close = "close";
     String code = "code";
     String codeBlock = "code-block";
     String codeEditor = "code-editor";

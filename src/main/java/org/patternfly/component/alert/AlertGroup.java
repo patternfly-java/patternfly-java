@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.alert;
 
+import java.util.function.Function;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.layout.Classes;
@@ -102,6 +104,14 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // ------------------------------------------------------ add
 
+    public <T> AlertGroup addAlerts(Iterable<T> items, Function<T, Alert> display) {
+        for (T item : items) {
+            Alert alert = display.apply(item);
+            addAlert(alert);
+        }
+        return this;
+    }
+
     public AlertGroup addAlert(Alert alert) {
         return add(alert);
     }
@@ -113,7 +123,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
             if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {
                 alert.timeout(timeout);
             }
-            if (alert.closeHandler == null) {
+            if (alert.closeButton == null) {
                 alert.closable();
             }
             insertFirst(element(), li().add(alert));
@@ -136,13 +146,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     // ------------------------------------------------------ internal
 
     void closeAlert(Alert alert) {
-        if (alert != null) {
-            Element element = alert.element().parentElement;
-            if (element != null) {
-                failSafeRemoveFromParent(element);
-            } else {
-                failSafeRemoveFromParent(alert);
-            }
+        Element element = alert.element().parentElement;
+        if (element != null) {
+            failSafeRemoveFromParent(element);
+        } else {
+            failSafeRemoveFromParent(alert);
         }
     }
 }

@@ -23,18 +23,19 @@ import org.patternfly.component.UnderDevelopment;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Closeable;
 import org.patternfly.core.Expandable;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Modifiers.Plain;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
-import elemental2.dom.MouseEvent;
 import elemental2.dom.MutationRecord;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
@@ -56,6 +57,8 @@ import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.live;
+import static org.patternfly.handler.CloseHandler.fireEvent;
+import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandable;
@@ -74,7 +77,7 @@ import static org.patternfly.layout.PredefinedIcon.times;
  */
 @UnderDevelopment
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
-        Plain<HTMLDivElement, Alert>, Expandable<HTMLDivElement, Alert>, Attachable,
+        Plain<HTMLDivElement, Alert>, Closeable<HTMLDivElement, Alert>, Expandable<HTMLDivElement, Alert>, Attachable,
         ComponentReference<AlertGroup> {
 
     // ------------------------------------------------------ factory
@@ -89,19 +92,19 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     static final int NO_TIMEOUT = -1; // ms
     static final int MIN_TIMEOUT = 1_000; // ms
 
+    int timeout;
+    Button closeButton;
+    CloseHandler<Alert> closeHandler;
     private final AlertType alertType;
     private final String title;
     private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
     private double timeoutHandle;
-    private Button closeButton;
     private Button toggleButton;
     private AlertGroup alertGroup;
     private AlertDescription description;
     private AlertActionGroup actionGroup;
     private ToggleHandler<Alert> toggleHandler;
-    int timeout;
-    ActionHandler<Alert> closeHandler;
 
     Alert(AlertType alertType, String title) {
         super(div().css(component(alert), alertType.status.modifier)
@@ -190,31 +193,16 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     // ------------------------------------------------------ builder
 
     public Alert closable() {
-        return closable(null, false);
+        return closable(null);
     }
 
-    public Alert closable(ActionHandler<Alert> handler) {
-        return closable(handler, false);
-    }
-
-    public Alert closable(ActionHandler<Alert> handler, boolean stayOpen) {
-        this.closeHandler = handler;
+    public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button(times, "close " + alertType.aria + ": " + title)
-                        .plain())
+                .add(closeButton = button(times, "Close " + alertType.aria + ": " + title)
+                        .plain()
+                        .on(click, event -> close(event, true)))
                 .element(), titleElement);
-        if (handler != null) {
-            closeButton.on(click, e -> {
-                handler.onAction(e, this);
-                if (!stayOpen) {
-                    close(false);
-                }
-            });
-        } else if (!stayOpen) {
-            closeButton.on(click, e -> close(false));
-            close(false);
-        }
-        return this;
+        return onClose(closeHandler);
     }
 
     public Alert customIcon(String iconClass) {
@@ -309,21 +297,26 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         return this;
     }
 
-    // ------------------------------------------------------ api
+    // ------------------------------------------------------ events
 
-    public void close() {
-        close(true);
+    @Override
+    public Alert onClose(CloseHandler<Alert> closeHandler) {
+        this.closeHandler = closeHandler;
+        return this;
     }
 
-    public void close(boolean fireEvent) {
-        stopTimeout();
-        if (alertGroup != null) {
-            alertGroup.closeAlert(this);
-        } else {
-            failSafeRemoveFromParent(this);
-        }
-        if (fireEvent && closeHandler != null) {
-            closeHandler.onAction(new MouseEvent(click.name), this);
+    // ------------------------------------------------------ api
+
+    @Override
+    public void close(Event event, boolean fireEvent) {
+        if (shouldClose(this, closeHandler, event, fireEvent)) {
+            stopTimeout();
+            if (alertGroup != null) {
+                alertGroup.closeAlert(this);
+            } else {
+                failSafeRemoveFromParent(this);
+            }
+            fireEvent(this, closeHandler, event, fireEvent);
         }
     }
 
@@ -335,6 +328,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
         }
     }
 
+    @Override
     public void expand(boolean fireEvent) {
         Expandable.expand(element(), toggleButton.element(), description.element());
         if (toggleHandler != null) {
@@ -344,12 +338,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     // ------------------------------------------------------ internal
 
-    boolean hasClose() {
-        return closeButton != null;
-    }
-
     private void startTimeout() {
-        timeoutHandle = setTimeout((o) -> close(false), timeout);
+        timeoutHandle = setTimeout((o) -> close(), timeout);
     }
 
     private void stopTimeout() {

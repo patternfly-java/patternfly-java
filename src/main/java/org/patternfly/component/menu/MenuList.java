@@ -116,6 +116,11 @@ public class MenuList extends SubComponent<HTMLUListElement, MenuList> implement
     // override to assure internal wiring
     public MenuList add(MenuItem item) {
         items.put(item.id, item);
+        // If this component is already attached, call passComponent() manually (normally this takes place
+        // automatically initiated by the base component's attach handler).
+        if (element().isConnected) {
+            item.passComponent(menu);
+        }
         return add(item.element());
     }
 
