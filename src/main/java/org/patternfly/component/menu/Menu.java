@@ -51,6 +51,7 @@ import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.scrollable;
 import static org.patternfly.layout.Classes.select;
+import static org.patternfly.layout.Variable.componentVar;
 
 /**
  * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user
@@ -180,7 +181,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
 
     /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
     public Menu height(String height) {
-        return style("--pf-v5-c-menu__content--MaxHeight:" + height);
+        return componentVar(component(menu, Classes.content), "MaxHeight").style(this, height);
     }
 
     @Override

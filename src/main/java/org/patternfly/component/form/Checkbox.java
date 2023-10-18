@@ -169,7 +169,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
         inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.checked));
         return this;
     }
-    
+
     // ------------------------------------------------------ api
 
     @Override

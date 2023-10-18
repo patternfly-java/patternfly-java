@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.chip;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
@@ -27,6 +29,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
+import org.patternfly.core.HasValues;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.layout.Classes;
 
@@ -41,6 +44,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
@@ -61,7 +65,7 @@ import static org.patternfly.layout.Classes.overflow;
 import static org.patternfly.layout.PredefinedIcon.timesCircle;
 
 public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
-        implements Attachable, Closeable<HTMLDivElement, ChipGroup> {
+        implements HasValues<Chip>, Attachable, Closeable<HTMLDivElement, ChipGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -242,11 +246,23 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     // ------------------------------------------------------ api
 
     @Override
+    public Set<Chip> values() {
+        return new HashSet<>(chips.values());
+    }
+
+    @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             failSafeRemoveFromParent(this);
             fireEvent(this, closeHandler, event, fireEvent);
         }
+    }
+
+    public void clear() {
+        removeChildrenFrom(listElement);
+        chips.clear();
+        overflowItem = null;
+        overflowChip = null;
     }
 
     // ------------------------------------------------------ internal

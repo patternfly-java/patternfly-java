@@ -31,7 +31,6 @@ import org.patternfly.handler.CloseHandler;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.Event;
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -46,7 +45,9 @@ import static org.patternfly.layout.Classes.chip;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.labelledBy;
+import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.PredefinedIcon.times;
+import static org.patternfly.layout.Variable.componentVar;
 
 /**
  * A chip is used to communicate a value or a set of attribute-value pairs within workflows that involve filtering a set of
@@ -113,8 +114,12 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Chip chip = (Chip) o;
         return Objects.equals(id, chip.id);
     }
@@ -146,9 +151,8 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     }
 
     public Chip maxWidth(String maxWidth) {
-        element().style.cssText += "--pf-v5-c-chip__text--MaxWidth: " + maxWidth;
         element().tabIndex = 0;
-        return this;
+        return componentVar(component(chip, text), "MaxWidth").style(this, maxWidth);
     }
 
     @Override

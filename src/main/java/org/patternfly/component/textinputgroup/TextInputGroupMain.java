@@ -22,6 +22,7 @@ import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.layout.Classes;
@@ -33,6 +34,7 @@ import elemental2.dom.HTMLInputElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
@@ -54,13 +56,14 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
     // ------------------------------------------------------ instance
 
     final HTMLInputElement inputElement;
-    private final HTMLElement inputContainer;
+    ChipGroup chipGroup;
+    private final HTMLElement textContainer;
     private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
         super(div().css(component(Classes.textInputGroup, main)).element());
 
-        add(inputContainer = span().css(component(Classes.textInputGroup, Classes.text))
+        add(textContainer = span().css(component(Classes.textInputGroup, Classes.text))
                 .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
                         .id(id)
                         .name(id)
@@ -97,8 +100,14 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
 
     public TextInputGroupMain addIcon(InlineIcon icon) {
         css(modifier(Classes.icon));
-        Elements.insertFirst(inputContainer, span().css(component(Classes.textInputGroup, Classes.icon))
+        Elements.insertFirst(textContainer, span().css(component(Classes.textInputGroup, Classes.icon))
                 .add(icon));
+        return this;
+    }
+
+    public TextInputGroupMain addChipGroup(ChipGroup chipGroup) {
+        this.chipGroup = chipGroup;
+        insertFirst(element(), chipGroup);
         return this;
     }
 

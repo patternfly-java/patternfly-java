@@ -28,6 +28,7 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.path;
 import static org.patternfly.layout.Classes.spinner;
+import static org.patternfly.layout.Variable.componentVar;
 
 /**
  * A spinner is used to indicate to users that an action is in progress. For actions that may take a long time, use a progress
@@ -81,7 +82,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
     }
 
     public Spinner diameter(String diameter) {
-        return style("--pf-v5-c-spinner--diameter: " + diameter);
+        return componentVar(component(spinner), "diameter").style(this, diameter);
     }
 
     @Override

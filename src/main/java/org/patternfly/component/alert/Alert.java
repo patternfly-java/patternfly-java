@@ -69,6 +69,7 @@ import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Classes.truncate;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 import static org.patternfly.layout.PredefinedIcon.times;
+import static org.patternfly.layout.Variable.componentVar;
 
 /**
  * An alert is a notification that provides brief information to the user without blocking their workflow.
@@ -274,7 +275,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     public Alert truncate(int lines) {
         titleElement.classList.add(modifier(truncate));
         if (lines != 1) {
-            titleElement.style.cssText += "--pf-v5-c-alert__title--max-lines: " + lines;
+            componentVar(component(alert, Classes.title), "max-lines").style(titleElement, lines);
         }
         return this;
     }

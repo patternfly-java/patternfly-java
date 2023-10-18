@@ -9,7 +9,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Action list component (#18)
+- Alert component (#19)
+- Brand component (#26)
 - Chip component (#30)
+- Code editor (#33) (half done - w/o [Monaco editor](https://microsoft.github.io/monaco-editor/) integration)
+- Sidebar component (#83)
+- Text input group component (#93)
+- Add `Closeable` interface and `CloseHandler`
+- Add `Expandable` interface
+- Add `Variable` and `VariableScope`
 
 ### Changed
 

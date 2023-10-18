@@ -20,9 +20,7 @@ import org.patternfly.component.SubComponent;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.actionGroup;
 import static org.patternfly.layout.Classes.actionList;
-import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
 

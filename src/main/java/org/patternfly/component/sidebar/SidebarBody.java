@@ -32,8 +32,8 @@ import static org.patternfly.layout.Classes.pageInsets;
 import static org.patternfly.layout.Classes.sidebar;
 
 /**
- * Container within the {@link Sidebar} to hold content. Note: By default, the last/only body will grow to fill the
- * available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
+ * Container within the {@link Sidebar} to hold content. Note: By default, the last/only body will grow to fill the available
+ * vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>

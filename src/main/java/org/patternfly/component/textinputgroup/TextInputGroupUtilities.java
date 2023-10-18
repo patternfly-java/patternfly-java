@@ -15,20 +15,15 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import org.jboss.elemento.EventType;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.setVisible;
-import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.utilities;
-import static org.patternfly.layout.PredefinedIcon.times;
 
 public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextInputGroupUtilities>
         implements ComponentReference<TextInputGroup> {

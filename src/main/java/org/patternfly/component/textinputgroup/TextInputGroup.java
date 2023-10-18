@@ -20,6 +20,7 @@ import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.UnderDevelopment;
+import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.handler.ChangeHandler;
@@ -29,6 +30,7 @@ import elemental2.dom.HTMLInputElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.patternfly.layout.Classes.component;
@@ -138,10 +140,24 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         }
     }
 
+    public void showUtilities(boolean show) {
+        if (utilities != null) {
+            setVisible(utilities, show);
+        }
+    }
+
     /** Returns the underlying input element */
     public InputElementBuilder<HTMLInputElement> inputElement() {
         if (main != null) {
             return wrapInputElement(main.inputElement);
+        }
+        return null;
+    }
+
+    /** Returns the underlying chip group (if any) */
+    public ChipGroup chipGroup() {
+        if (main != null) {
+            return main.chipGroup;
         }
         return null;
     }
