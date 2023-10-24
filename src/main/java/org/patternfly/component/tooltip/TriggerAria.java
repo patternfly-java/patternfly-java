@@ -13,13 +13,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.component.tooltip;
 
-import jsinterop.annotations.JsFunction;
+import org.patternfly.core.Aria;
 
-@JsFunction
-@FunctionalInterface
-public interface ModifierFn {
+public enum TriggerAria {
 
-    void invoke(ModifierArguments arguments);
+    describedBy(Aria.describedBy),
+
+    labelledBy(Aria.labelledBy),
+
+    none("");
+
+    public final String attribute;
+
+    TriggerAria(String attribute) {
+        this.attribute = attribute;
+    }
 }

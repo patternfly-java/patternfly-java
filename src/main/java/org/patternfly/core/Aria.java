@@ -20,6 +20,7 @@ public interface Aria {
     String atomic = "aria-atomic";
     String controls = "aria-controls";
     String current = "aria-current";
+    String describedBy = "aria-describedby";
     String disabled = "aria-disabled";
     String expanded = "aria-expanded";
     String hidden = "aria-hidden";

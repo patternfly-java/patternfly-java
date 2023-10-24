@@ -28,6 +28,8 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
+import org.jboss.elemento.Id;
+import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ComponentHandler;
@@ -38,18 +40,28 @@ import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
 
 import elemental2.core.JsArray;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.isAttached;
+import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.patternfly.component.tooltip.Position.auto;
 import static org.patternfly.component.tooltip.Position.top;
+import static org.patternfly.component.tooltip.Trigger.click;
 import static org.patternfly.component.tooltip.Trigger.focus;
+import static org.patternfly.component.tooltip.Trigger.manual;
 import static org.patternfly.component.tooltip.Trigger.mouseenter;
+import static org.patternfly.component.tooltip.TriggerAria.describedBy;
+import static org.patternfly.component.tooltip.TriggerAria.none;
+import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.layout.Classes.arrow;
 import static org.patternfly.layout.Classes.component;
@@ -94,13 +106,14 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
 
     // ------------------------------------------------------ instance
 
+    public static final int ANIMATION_DURATION = 300;
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
     public static final int DISTANCE = 15;
     public static final int Z_INDEX = 9999;
+
     private static final Map<Position, Placement> positionToPlacement = new HashMap<>();
     private static final Map<String, Position> placementToPosition = new HashMap<>();
-
     static {
         positionToPlacement.put(Position.auto, Placement.auto);
         positionToPlacement.put(Position.top, Placement.top);
@@ -130,40 +143,49 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
         placementToPosition.put(Placement.rightEnd.value, Position.rightEnd);
     }
 
+    private final String id;
     private final Supplier<HTMLElement> trigger;
     private final HTMLElement contentElement;
     private final Set<Trigger> triggers;
     private final List<HandlerRegistration> handlerRegistrations;
     private boolean flip;
     private int distance;
+    private int animationDuration;
     private int entryDelay;
     private int exitDelay;
     private Popper popper;
+    private TriggerAria aria;
     private Position position;
-    private ComponentHandler<Tooltip> onHide;
+    private ComponentHandler<Tooltip> onHidden;
+    private double transitionTimer, hideTimer, showTimer;
 
     Tooltip(Supplier<HTMLElement> trigger, String text) {
         super(div().css(component(tooltip))
+                .style("display", "none")
                 .attr(role, "tooltip")
+                .aria(live, "polite")
                 .element(),
                 ComponentType.Tooltip);
+
+        this.id = Id.unique(componentType().id);
         this.flip = true;
         this.distance = DISTANCE;
+        this.animationDuration = ANIMATION_DURATION;
         this.entryDelay = ENTRY_DELAY;
         this.exitDelay = EXIT_DELAY;
+        this.aria = describedBy;
         this.position = top;
         this.trigger = trigger;
         this.triggers = EnumSet.of(mouseenter, focus);
         this.handlerRegistrations = new ArrayList<>();
 
-        style("z-index", Z_INDEX);
+        id(id);
         add(div().css(component(tooltip, arrow)));
         add(contentElement = div().css(component(tooltip, content)).element());
         if (text != null) {
             contentElement.textContent = text;
         }
 
-        hide();
         Attachable.register(this, this);
     }
 
@@ -171,60 +193,9 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
     public void attach(MutationRecord mutationRecord) {
         HTMLElement triggerElement = trigger.get();
         if (triggerElement != null) {
-
-            Modifier offset = new Modifier();
-            offset.name = "offset";
-            offset.options = new ModifierOptions();
-            offset.options.offset = new int[] { 0, distance };
-
-            Modifier preventOverflow = new Modifier();
-            preventOverflow.name = "preventOverflow";
-            preventOverflow.enabled = false;
-
-            Modifier hide = new Modifier();
-            hide.name = "hide";
-            hide.enabled = true;
-
-            Modifier flip = new Modifier();
-            flip.name = "flip";
-            flip.enabled = position == auto || this.flip;
-
-            // our very own modifier to adjust the position CSS modifier
-            Modifier positionModifier = new Modifier();
-            positionModifier.name = "positionModifier";
-            positionModifier.enabled = true;
-            positionModifier.phase = main.name();
-            positionModifier.fn = (args) -> {
-                if (args.state != null && args.state.elements != null) {
-                    String placement = args.state.placement;
-                    HTMLElement popperElement = args.state.elements.popper;
-                    if (placement != null && popperElement != null) {
-                        Position position = placementToPosition.get(placement);
-                        if (position != null) {
-                            for (Position p : Position.values()) {
-                                if (!p.modifier.isEmpty()) {
-                                    popperElement.classList.remove(p.modifier);
-                                }
-                            }
-                            popperElement.classList.add(position.modifier);
-                        }
-                    }
-                }
-            };
-
-            Options options = new Options();
-            options.placement = positionToPlacement.getOrDefault(position, Placement.auto).value;
-            options.modifiers = JsArray.of(offset, preventOverflow, hide, flip, positionModifier);
-            popper = Popper.createPopper(triggerElement, element(), options);
-
-            if (triggers.contains(mouseenter)) {
-                handlerRegistrations.add(bind(triggerElement, EventType.mouseenter, e -> show()));
-                handlerRegistrations.add(bind(triggerElement, EventType.mouseleave, e -> hide()));
-            }
-            if (triggers.contains(focus)) {
-                handlerRegistrations.add(bind(triggerElement, EventType.focus, e -> show()));
-                handlerRegistrations.add(bind(triggerElement, EventType.blur, e -> hide()));
-            }
+            setupStyles();
+            setupPopper(triggerElement);
+            setupHandlers(triggerElement);
         }
     }
 
@@ -233,9 +204,22 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
         for (HandlerRegistration handlerRegistration : handlerRegistrations) {
             handlerRegistration.removeHandler();
         }
+        if (popper != null) {
+            popper.destroy();
+        }
     }
 
     // ------------------------------------------------------ builder
+
+    public Tooltip animationDuration(int animationDuration) {
+        this.animationDuration = animationDuration;
+        return this;
+    }
+
+    public Tooltip aria(TriggerAria aria) {
+        this.aria = aria;
+        return this;
+    }
 
     public Tooltip distance(int distance) {
         this.distance = distance;
@@ -263,17 +247,24 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
     }
 
     public Tooltip position(Position position) {
+        if (position == auto) {
+            flip = true;
+        }
         this.position = position;
         return this;
     }
 
     public Tooltip text(String text) {
         contentElement.textContent = text;
+        if (isAttached(this) && isVisible(this) && popper != null) {
+            popper.update();
+        }
         return this;
     }
 
     public Tooltip trigger(Trigger... trigger) {
         if (trigger != null) {
+            triggers.clear();
             triggers.addAll(asList(trigger));
         }
         return this;
@@ -290,29 +281,141 @@ public class Tooltip extends BaseComponent<HTMLElement, Tooltip> implements Atta
 
     // ------------------------------------------------------ events
 
-    public Tooltip onHide(ComponentHandler<Tooltip> handler) {
-        this.onHide = handler;
+    public Tooltip onHidden(ComponentHandler<Tooltip> handler) {
+        this.onHidden = handler;
         return this;
     }
 
     // ------------------------------------------------------ api
 
     public void show() {
-        visible(true);
+        clearTimeout(transitionTimer);
+        clearTimeout(hideTimer);
+        if (aria != none && trigger.get() != null) {
+            trigger.get().setAttribute(aria.attribute, id);
+        }
+        showTimer = setTimeout(o1 -> {
+            setVisible(this, true);
+            popper.update().then(o2 -> {
+                style("opacity", 1);
+                return null;
+            });
+        }, entryDelay);
     }
 
     public void hide() {
-        visible(false);
+        hide(new Event(""));
     }
 
-    public void visible(boolean visible) {
-        setVisible(this, visible);
-        if (visible && popper != null) {
-            popper.update();
+    private void hide(Event event) {
+        clearTimeout(showTimer);
+        if (aria != none && trigger.get() != null) {
+            trigger.get().removeAttribute(aria.attribute);
         }
+        hideTimer = setTimeout(o1 -> {
+            style("opacity", 0);
+            transitionTimer = setTimeout(o2 -> {
+                setVisible(this, false);
+                if (onHidden != null) {
+                    onHidden.handle(event, this);
+                }
+            }, animationDuration);
+        }, exitDelay);
     }
 
     public String text() {
         return contentElement.textContent;
+    }
+
+    // ------------------------------------------------------ internals
+
+    private void setupStyles() {
+        style("z-index", Z_INDEX);
+        style("opacity", 0);
+        style("transition", "opacity " + animationDuration + "ms cubic-bezier(.54, 1.5, .38, 1.11)");
+    }
+
+    private void setupPopper(HTMLElement triggerElement) {
+        Modifier offset = new Modifier();
+        offset.name = "offset";
+        offset.options = new ModifierOptions();
+        offset.options.offset = new int[] { 0, distance };
+
+        Modifier preventOverflow = new Modifier();
+        preventOverflow.name = "preventOverflow";
+        preventOverflow.enabled = false;
+
+        Modifier hide = new Modifier();
+        hide.name = "hide";
+        hide.enabled = true;
+
+        Modifier flip = new Modifier();
+        flip.name = "flip";
+        flip.enabled = position == auto || this.flip;
+
+        // our very own modifier to adjust the position CSS modifier
+        Modifier positionModifier = new Modifier();
+        positionModifier.name = "positionModifier";
+        positionModifier.enabled = true;
+        positionModifier.phase = main.name();
+        positionModifier.fn = (args) -> {
+            if (args.state != null && args.state.elements != null) {
+                String placement = args.state.placement;
+                HTMLElement popperElement = args.state.elements.popper;
+                if (placement != null && popperElement != null) {
+                    Position position = placementToPosition.get(placement);
+                    if (position != null) {
+                        for (Position p : Position.values()) {
+                            if (!p.modifier.isEmpty()) {
+                                popperElement.classList.remove(p.modifier);
+                            }
+                        }
+                        popperElement.classList.add(position.modifier);
+                    }
+                }
+            }
+        };
+
+        Options options = new Options();
+        options.placement = positionToPlacement.getOrDefault(position, Placement.auto).value;
+        options.modifiers = JsArray.of(offset, preventOverflow, hide, flip, positionModifier);
+        this.popper = Popper.createPopper(triggerElement, element(), options);
+    }
+
+    @SuppressWarnings("Convert2MethodRef")
+    private void setupHandlers(HTMLElement triggerElement) {
+        if (triggers.contains(mouseenter)) {
+            handlerRegistrations.add(bind(triggerElement, EventType.mouseenter, e -> show()));
+            handlerRegistrations.add(bind(triggerElement, EventType.mouseleave, e -> hide(e)));
+        }
+        if (triggers.contains(focus)) {
+            handlerRegistrations.add(bind(triggerElement, EventType.focus, e -> show()));
+            handlerRegistrations.add(bind(triggerElement, EventType.blur, e -> hide(e)));
+        }
+        if (triggers.contains(click)) {
+            handlerRegistrations.add(bind(document, EventType.click, true, e -> {
+                if (isVisible(this)) {
+                    hide(e);
+                } else if (e.target == triggerElement) {
+                    show();
+                }
+            }));
+        }
+        if (!triggers.contains(manual)) {
+            handlerRegistrations.add(bind(document, EventType.keydown, true, e -> {
+                if (isVisible(this) && Key.Escape.match(e)) {
+                    hide();
+                }
+            }));
+            handlerRegistrations.add(bind(this, EventType.keydown, e -> {
+                if (Key.Enter.match(e)) {
+                    if (isVisible(this)) {
+                        hide(e);
+                    } else {
+                        show();
+                    }
+                }
+            }));
+        }
     }
 }
