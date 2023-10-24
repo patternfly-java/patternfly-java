@@ -30,7 +30,7 @@ import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.WithProgress;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -316,8 +316,8 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     // ------------------------------------------------------ events
 
-    public Button onAction(ActionHandler<Button> actionHandler) {
-        on(click, e -> actionHandler.onAction(e, this));
+    public Button onClick(ComponentHandler<Button> actionHandler) {
+        on(click, e -> actionHandler.handle(e, this));
         return this;
     }
 }

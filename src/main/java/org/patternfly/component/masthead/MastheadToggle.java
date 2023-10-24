@@ -57,7 +57,7 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
         super(div().css(component(masthead, toggle)).element());
         add(toggleButton = button(bars, "Global Navigation").plain()
                 .aria(expanded, true) // expanded by default
-                .onAction((e, b) -> toggle()));
+                .onClick((e, b) -> toggle()));
     }
 
     // ------------------------------------------------------ builder

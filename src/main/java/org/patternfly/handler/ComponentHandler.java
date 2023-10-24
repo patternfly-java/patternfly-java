@@ -18,7 +18,7 @@ package org.patternfly.handler;
 import elemental2.dom.Event;
 
 @FunctionalInterface
-public interface ActionHandler<C> {
+public interface ComponentHandler<C> {
 
-    void onAction(Event event, C component);
+    void handle(Event event, C component);
 }

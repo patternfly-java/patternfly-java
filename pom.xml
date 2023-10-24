@@ -84,7 +84,8 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.2.4</version.elemento>
+        <version.elemento>1.2.5</version.elemento>
+        <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.junit>5.10.0</version.junit>
@@ -113,6 +114,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.google.jsinterop</groupId>
+                <artifactId>jsinterop-annotations</artifactId>
+                <version>${version.jsinterop.annotations}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jboss.elemento</groupId>
                 <artifactId>elemento-bom</artifactId>
                 <version>${version.elemento}</version>
@@ -130,6 +136,10 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.jsinterop</groupId>
+            <artifactId>jsinterop-annotations</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-core</artifactId>

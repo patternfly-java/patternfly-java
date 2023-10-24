@@ -121,6 +121,8 @@ public enum ComponentType {
 
     Toolbar("tb", "PF5/Toolbar"),
 
+    Tooltip("tt", "PF5/Tooltip"),
+
     TreeView("tv", null),
 
     Wizard("wzd", "PF5/Wizard"),

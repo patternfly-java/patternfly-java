@@ -19,7 +19,7 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLElement;
 
@@ -47,7 +47,7 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
     // ------------------------------------------------------ instance
 
     private final HTMLElement buttonElement;
-    private ActionHandler<CodeEditorLink> actionHandler;
+    private ComponentHandler<CodeEditorLink> handler;
     private CodeEditor codeEditor;
 
     CodeEditorLink(Button button) {
@@ -58,8 +58,8 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
     @Override
     public void passComponent(CodeEditor codeEditor) {
         this.codeEditor = codeEditor;
-        if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
+        if (handler != null && buttonElement != null) {
+            buttonElement.addEventListener(click.name, e -> handler.handle(e, this));
         }
     }
 
@@ -84,8 +84,8 @@ public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> im
 
     // ------------------------------------------------------ events
 
-    public CodeEditorLink onAction(ActionHandler<CodeEditorLink> actionHandler) {
-        this.actionHandler = actionHandler;
+    public CodeEditorLink onClick(ComponentHandler<CodeEditorLink> handler) {
+        this.handler = handler;
         return this;
     }
 }

@@ -24,7 +24,7 @@ import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.SelectionMode;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -117,7 +117,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
     private HTMLElement iconElement;
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
-    private ActionHandler<MenuItem> actionHandler;
+    private ComponentHandler<MenuItem> handler;
     private Menu menu;
 
     MenuItem(String id, String text, MenuItemType itemType) {
@@ -176,8 +176,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
         // checkbox must not be used for cloned favorite items!
 
-        if (item.actionHandler != null) {
-            onClick(item.actionHandler);
+        if (item.handler != null) {
+            onClick(item.handler);
         }
         if (item.itemAction != null) {
             HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
@@ -369,9 +369,9 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
 
     // ------------------------------------------------------ events
 
-    public MenuItem onClick(ActionHandler<MenuItem> actionHandler) {
-        this.actionHandler = actionHandler;
-        itemElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
+    public MenuItem onClick(ComponentHandler<MenuItem> handler) {
+        this.handler = handler;
+        itemElement.addEventListener(click.name, e -> handler.handle(e, this));
         return this;
     }
 

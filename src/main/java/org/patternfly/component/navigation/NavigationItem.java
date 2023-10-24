@@ -17,7 +17,7 @@ package org.patternfly.component.navigation;
 
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLLIElement;
@@ -72,8 +72,8 @@ public class NavigationItem extends SubComponent<HTMLLIElement, NavigationItem> 
 
     // ------------------------------------------------------ events
 
-    public NavigationItem onAction(ActionHandler<NavigationItem> handler) {
-        a(a).on(click, e -> handler.onAction(e, this));
+    public NavigationItem onClick(ComponentHandler<NavigationItem> handler) {
+        a(a).on(click, e -> handler.handle(e, this));
         return this;
     }
 

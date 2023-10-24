@@ -52,7 +52,7 @@ public class OldPageHeader extends BaseComponent<HTMLElement, OldPageHeader> {
                 .add(toggleContainer = div().css(component("page", header, Classes.brand, toggle))
                         .add(toggleButton = button(bars, "Global Navigation")
                                 .aria("expanded", false)
-                                .onAction((e, b) -> {
+                                .onClick((e, b) -> {
                                     if (sidebar != null) {
                                         sidebar.toggle();
                                     }

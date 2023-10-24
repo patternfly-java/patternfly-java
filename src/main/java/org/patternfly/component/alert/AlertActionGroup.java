@@ -21,7 +21,7 @@ import java.util.List;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -54,7 +54,7 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
     public void passComponent(Alert alert) {
         this.alert = alert;
         for (ButtonActionHandlerTuple tuple : tuples) {
-            tuple.button.on(click, e -> tuple.handler.onAction(e, alert));
+            tuple.button.on(click, e -> tuple.handler.handle(e, alert));
         }
     }
 
@@ -69,7 +69,7 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
         return addAction(button(action).inline().link(), null);
     }
 
-    public AlertActionGroup addAction(String action, ActionHandler<Alert> handler) {
+    public AlertActionGroup addAction(String action, ComponentHandler<Alert> handler) {
         return addAction(button(action).inline().link(), handler);
     }
 
@@ -77,7 +77,7 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
         return addAction(action, null);
     }
 
-    public AlertActionGroup addAction(Button action, ActionHandler<Alert> handler) {
+    public AlertActionGroup addAction(Button action, ComponentHandler<Alert> handler) {
         if (handler != null) {
             tuples.add(new ButtonActionHandlerTuple(action, handler));
         }
@@ -95,9 +95,9 @@ public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGr
 
     private static class ButtonActionHandlerTuple {
         final Button button;
-        final ActionHandler<Alert> handler;
+        final ComponentHandler<Alert> handler;
 
-        ButtonActionHandlerTuple(Button button, ActionHandler<Alert> handler) {
+        ButtonActionHandlerTuple(Button button, ComponentHandler<Alert> handler) {
             this.button = button;
             this.handler = handler;
         }

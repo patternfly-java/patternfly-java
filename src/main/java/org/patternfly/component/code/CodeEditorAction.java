@@ -19,7 +19,7 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLElement;
@@ -52,13 +52,13 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
     public static CodeEditorAction codeEditorCopyToClipboardAction() {
         return new CodeEditorAction(button(copy).control())
                 .ariaLabel("Copy to clipboard")
-                .onAction((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
+                .onClick((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLElement buttonElement;
-    private ActionHandler<CodeEditorAction> actionHandler;
+    private ComponentHandler<CodeEditorAction> handler;
     private CodeEditor codeEditor;
 
     CodeEditorAction(Button button) {
@@ -69,8 +69,8 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
     @Override
     public void passComponent(CodeEditor codeEditor) {
         this.codeEditor = codeEditor;
-        if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
+        if (handler != null && buttonElement != null) {
+            buttonElement.addEventListener(click.name, e -> handler.handle(e, this));
         }
     }
 
@@ -97,8 +97,8 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
 
     // ------------------------------------------------------ events
 
-    public CodeEditorAction onAction(ActionHandler<CodeEditorAction> actionHandler) {
-        this.actionHandler = actionHandler;
+    public CodeEditorAction onClick(ComponentHandler<CodeEditorAction> handler) {
+        this.handler = handler;
         return this;
     }
 }

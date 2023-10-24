@@ -18,7 +18,7 @@ package org.patternfly.component.code;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -54,13 +54,13 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     public static CodeBlockAction codeBlockCopyToClipboardAction() {
         return new CodeBlockAction(copy.className)
                 .ariaLabel("Copy to clipboard")
-                .onAction((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
+                .onClick((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
     }
 
     // ------------------------------------------------------ instance
 
     private HTMLElement buttonElement;
-    private ActionHandler<CodeBlockAction> actionHandler;
+    private ComponentHandler<CodeBlockAction> handler;
     private CodeBlock codeBlock;
 
     CodeBlockAction(String iconClass) {
@@ -73,8 +73,8 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     @Override
     public void passComponent(CodeBlock codeBlock) {
         this.codeBlock = codeBlock;
-        if (actionHandler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> actionHandler.onAction(e, this));
+        if (handler != null && buttonElement != null) {
+            buttonElement.addEventListener(click.name, e -> handler.handle(e, this));
         }
     }
 
@@ -101,8 +101,8 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
 
     // ------------------------------------------------------ events
 
-    public CodeBlockAction onAction(ActionHandler<CodeBlockAction> actionHandler) {
-        this.actionHandler = actionHandler;
+    public CodeBlockAction onClick(ComponentHandler<CodeBlockAction> handler) {
+        this.handler = handler;
         return this;
     }
 }

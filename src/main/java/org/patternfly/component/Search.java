@@ -99,6 +99,6 @@ public class Search extends InputGroup {
                 consumer.accept(((HTMLInputElement) e.currentTarget).value);
             }
         });
-        control.onAction((e, b) -> consumer.accept(input.element().value));
+        control.onClick((e, b) -> consumer.accept(input.element().value));
     }
 }

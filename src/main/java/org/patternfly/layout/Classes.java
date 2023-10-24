@@ -200,6 +200,7 @@ public interface Classes {
     String text = "text";
     String textInput = "text-input";
     String textInputGroup = "text-input-group";
+    String textAlignLeft = "text-align-left";
     String textLeftAligned = "textLeftAligned";
     String title = "title";
     String toast = "toast";

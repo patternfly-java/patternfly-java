@@ -16,7 +16,7 @@
 package org.patternfly.component;
 
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ActionHandler;
+import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLElement;
 
@@ -62,8 +62,8 @@ public class TemplateComponent extends BaseComponent<HTMLElement, TemplateCompon
 
     // ------------------------------------------------------ events
 
-    public TemplateComponent onFoo(ActionHandler<TemplateComponent> handler) {
-        return on(click, e -> handler.onAction(e, this));
+    public TemplateComponent onFoo(ComponentHandler<TemplateComponent> handler) {
+        return on(click, e -> handler.handle(e, this));
     }
 
     // ------------------------------------------------------ api

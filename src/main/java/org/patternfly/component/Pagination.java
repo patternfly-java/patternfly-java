@@ -102,12 +102,12 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
         element().appendChild(infoElement);
         element().appendChild(pageSizeMenu.element());
         element().appendChild(nav().css(component(pagination, "nav"))
-                .add(firstPageButton = button(angleDoubleLeft, "Go to first page").onAction((e, b) -> {
+                .add(firstPageButton = button(angleDoubleLeft, "Go to first page").onClick((e, b) -> {
                     if (firstPageHandler != null) {
                         firstPageHandler.call();
                     }
                 }))
-                .add(previousPageButton = button(angleLeft, "Go to previous page").onAction((e, b) -> {
+                .add(previousPageButton = button(angleLeft, "Go to previous page").onClick((e, b) -> {
                     if (previousPageHandler != null) {
                         previousPageHandler.call();
                     }
@@ -129,12 +129,12 @@ public class Pagination extends BaseComponent<HTMLDivElement, Pagination>
                                 .element())
                         .add(pagesElement = span().aria("hidden", true).element())
                         .element())
-                .add(nextPageButton = button(angleRight.className, "Go to next page").onAction((e, b) -> {
+                .add(nextPageButton = button(angleRight.className, "Go to next page").onClick((e, b) -> {
                     if (nextPageHandler != null) {
                         nextPageHandler.call();
                     }
                 }))
-                .add(lastPageButton = button(angleDoubleRight, "Go to last page").onAction((e, b) -> {
+                .add(lastPageButton = button(angleDoubleRight, "Go to last page").onClick((e, b) -> {
                     if (lastPageHandler != null) {
                         lastPageHandler.call();
                     }

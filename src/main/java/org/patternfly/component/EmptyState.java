@@ -69,7 +69,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     public static EmptyState noResults(String title, Callback callback) {
         return new EmptyState(icon(search.className), title)
                 .body("No results match the filter criteria. Remove all filters or clear all filters to show results.")
-                .primary(button("Clear all filters").link().onAction((e, b) -> callback.call()));
+                .primary(button("Clear all filters").link().onClick((e, b) -> callback.call()));
     }
 
     public static Body body() {
@@ -106,7 +106,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     }
 
     public EmptyState primary(String text, Callback callback) {
-        return primary(button(text).primary().onAction((e, b) -> callback.call()).element());
+        return primary(button(text).primary().onClick((e, b) -> callback.call()).element());
     }
 
     public EmptyState primary(Button button) {
@@ -127,7 +127,7 @@ public class EmptyState extends BaseComponent<HTMLDivElement, EmptyState> {
     }
 
     public EmptyState secondary(String text, Callback callback) {
-        return secondary(button(text).secondary().onAction((e, b) -> callback.call()).element());
+        return secondary(button(text).secondary().onClick((e, b) -> callback.call()).element());
     }
 
     public EmptyState secondary(Button button) {
