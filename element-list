@@ -21,9 +21,11 @@ org.patternfly.component.text
 org.patternfly.component.textinputgroup
 org.patternfly.component.title
 org.patternfly.component.toolbar
+org.patternfly.component.tooltip
 org.patternfly.core
 org.patternfly.dataprovider
 org.patternfly.dom
 org.patternfly.handler
 org.patternfly.layout
 org.patternfly.layout.stack
+org.patternfly.popper
