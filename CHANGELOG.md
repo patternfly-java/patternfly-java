@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.0.6] - 2023-10-25
+
 ### Added
 
 - Tooltip component (#99)
@@ -111,7 +113,8 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.2...v0.0.3
