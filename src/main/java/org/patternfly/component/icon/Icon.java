@@ -26,7 +26,7 @@ import org.patternfly.core.WithProgress;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 import org.patternfly.layout.Size;
-import org.patternfly.layout.Status;
+import org.patternfly.core.Status;
 
 import elemental2.dom.HTMLElement;
 

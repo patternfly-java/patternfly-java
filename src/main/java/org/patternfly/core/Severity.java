@@ -13,10 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.alert;
+package org.patternfly.core;
 
 import org.patternfly.layout.PredefinedIcon;
-import org.patternfly.layout.Status;
 
 import static org.patternfly.layout.PredefinedIcon.bell;
 import static org.patternfly.layout.PredefinedIcon.checkCircle;
@@ -24,7 +23,7 @@ import static org.patternfly.layout.PredefinedIcon.exclamationCircle;
 import static org.patternfly.layout.PredefinedIcon.exclamationTriangle;
 import static org.patternfly.layout.PredefinedIcon.infoCircle;
 
-public enum AlertType {
+public enum Severity {
 
     custom(bell, Status.custom, "custom alert"),
 
@@ -36,12 +35,12 @@ public enum AlertType {
 
     danger(exclamationCircle, Status.danger, "danger alert");
 
-    final PredefinedIcon iconClass;
-    final Status status;
-    final String aria;
+    public final PredefinedIcon icon;
+    public final Status status;
+    public final String aria;
 
-    AlertType(PredefinedIcon iconClass, Status status, String aria) {
-        this.iconClass = iconClass;
+    Severity(PredefinedIcon icon, Status status, String aria) {
+        this.icon = icon;
         this.status = status;
         this.aria = aria;
     }

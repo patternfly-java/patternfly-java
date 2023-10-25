@@ -7,7 +7,7 @@ import static org.patternfly.layout.PredefinedIcon.check;
 import static org.patternfly.layout.PredefinedIcon.exclamationTriangle;
 import static org.patternfly.layout.PredefinedIcon.filter;
 import static org.patternfly.layout.Size.lg;
-import static org.patternfly.layout.Status.warning;
+import static org.patternfly.core.Status.warning;
 
 public class IconDemo {
 

@@ -13,15 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.tooltip;
+package org.patternfly.thirdparty.popper;
 
-public enum Trigger {
+public enum Strategy {
 
-    mouseenter,
+    absolute,
 
-    focus,
-
-    click,
-
-    manual
+    fixed
 }

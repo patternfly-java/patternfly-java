@@ -28,6 +28,7 @@ public interface Aria {
     String label = "aria-label";
     String live = "aria-live";
     String labelledBy = "aria-labelledby";
+    String modal = "aria-modal";
     String multiSelectable = "aria-multiselectable";
     String relevant = "aria-relevant";
     String selected = "aria-selected";

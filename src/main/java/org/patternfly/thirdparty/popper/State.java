@@ -13,11 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
-public enum Strategy {
+import jsinterop.annotations.JsType;
 
-    absolute,
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    fixed
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class State {
+
+    public StateElements elements;
+    public String placement;
 }

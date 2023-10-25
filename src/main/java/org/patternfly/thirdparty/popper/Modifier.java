@@ -13,13 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
-import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsType;
 
-@JsFunction
-@FunctionalInterface
-public interface ModifierFn {
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    void invoke(ModifierArguments arguments);
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class Modifier {
+
+    public String name;
+    public boolean enabled;
+    public String phase;
+    public String[] requires;
+    public ModifierFn fn;
+    public ModifierOptions options;
 }

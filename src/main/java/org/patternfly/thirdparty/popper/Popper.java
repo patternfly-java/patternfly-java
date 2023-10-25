@@ -13,14 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
+import elemental2.dom.CSSProperties.OpacityUnionType;
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
+import static org.jboss.elemento.Elements.setVisible;
 
 /**
  * Wrapper around the Popper JS library.
@@ -35,11 +38,21 @@ public class Popper {
 
     public State state;
 
+    @JsOverlay
+    public final void show() {
+        if (state.elements != null && state.elements.popper != null) {
+            setVisible(state.elements.popper, true);
+            update().then(__ -> {
+                state.elements.popper.style.opacity = OpacityUnionType.of(1);
+                return null;
+            });
+
+        }
+    }
+
+    // hide() is too specific to have a general purpose implementation here
+
     public native void destroy();
 
-    public native void forceUpdate();
-
     public native Promise<State> update();
-
-    public native Promise<State> setOptions(Options options);
 }

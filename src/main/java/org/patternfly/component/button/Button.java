@@ -28,6 +28,7 @@ import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.Modifiers.Inline;
+import org.patternfly.core.Modifiers.NoPadding;
 import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.WithProgress;
 import org.patternfly.handler.ComponentHandler;
@@ -55,7 +56,6 @@ import static org.patternfly.layout.Classes.danger;
 import static org.patternfly.layout.Classes.display;
 import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.noPadding;
 import static org.patternfly.layout.Classes.plain;
 import static org.patternfly.layout.Classes.primary;
 import static org.patternfly.layout.Classes.progress;
@@ -76,7 +76,7 @@ import static org.patternfly.layout.Size.md;
  */
 public class Button extends BaseComponent<HTMLElement, Button>
         implements Disabled<HTMLElement, Button>, Inline<HTMLElement, Button>, Plain<HTMLElement, Button>,
-        WithProgress<HTMLElement, Button> {
+        NoPadding<HTMLElement, Button>, WithProgress<HTMLElement, Button> {
 
     // ------------------------------------------------------ factory
 
@@ -233,10 +233,6 @@ public class Button extends BaseComponent<HTMLElement, Button>
 
     public Button link() {
         return css(modifier(link));
-    }
-
-    public Button noPadding() {
-        return css(modifier(noPadding));
     }
 
     public Button control() {

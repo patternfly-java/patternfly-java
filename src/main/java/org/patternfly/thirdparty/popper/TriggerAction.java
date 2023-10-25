@@ -13,25 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
-public enum ModifierPhase {
+public enum TriggerAction {
 
-    beforeRead,
+    mouseenter,
 
-    read,
+    focus,
 
-    afterRead,
+    click,
 
-    beforeMain,
-
-    main,
-
-    afterMain,
-
-    beforeWrite,
-
-    write,
-
-    afterWrite
+    manual
 }

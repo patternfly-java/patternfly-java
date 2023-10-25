@@ -93,6 +93,8 @@ public enum ComponentType {
 
     Pagination("pgn", null),
 
+    Popover("pvr", null),
+
     Select("sel", null),
 
     Sidebar("sb", null),

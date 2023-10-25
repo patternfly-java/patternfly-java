@@ -23,6 +23,12 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 
+/**
+ * The template component is a template for creating new components.
+ *
+ * @see <a href=
+ *      "https://www.patternfly.org/components/template/template/html">https://www.patternfly.org/components/template/template/html</a>
+ */
 public class TemplateComponent extends BaseComponent<HTMLElement, TemplateComponent> {
 
     // ------------------------------------------------------ factory

@@ -13,23 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.thirdparty.popper;
 
-public enum Status {
+import jsinterop.annotations.JsType;
 
-    danger("danger"),
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    warning("warning"),
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class ModifierArguments {
 
-    success("success"),
-
-    info("info"),
-
-    custom("custom");
-
-    public final String modifier;
-
-    Status(String value) {
-        this.modifier = Classes.modifier(value);
-    }
+    public State state;
+    public String name;
 }

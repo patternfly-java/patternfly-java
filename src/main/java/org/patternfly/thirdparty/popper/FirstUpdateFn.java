@@ -13,18 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
-import elemental2.core.JsArray;
-import jsinterop.annotations.JsType;
+import jsinterop.annotations.JsFunction;
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+@JsFunction
+@FunctionalInterface
+public interface FirstUpdateFn {
 
-@JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class Options {
-
-    public String placement;
-    public JsArray<Modifier> modifiers;
-    public Strategy strategy;
-    public FirstUpdateFn onFirstUpdate;
+    void invoke(State state);
 }

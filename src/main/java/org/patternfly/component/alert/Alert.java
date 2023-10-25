@@ -27,6 +27,7 @@ import org.patternfly.core.Closeable;
 import org.patternfly.core.Expandable;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Modifiers.Plain;
+import org.patternfly.core.Severity;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
@@ -83,7 +84,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     // ------------------------------------------------------ factory
 
-    public static Alert alert(AlertType type, String title) {
+    public static Alert alert(Severity type, String title) {
         return new Alert(type, title);
     }
 
@@ -96,7 +97,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     int timeout;
     Button closeButton;
     CloseHandler<Alert> closeHandler;
-    private final AlertType alertType;
+    private final Severity severity;
     private final String title;
     private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
@@ -107,22 +108,22 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     private AlertActionGroup actionGroup;
     private ToggleHandler<Alert> toggleHandler;
 
-    Alert(AlertType alertType, String title) {
-        super(div().css(component(alert), alertType.status.modifier)
-                .aria(label, alertType.aria)
+    Alert(Severity severity, String title) {
+        super(div().css(component(alert), severity.status.modifier)
+                .aria(label, severity.aria)
                 .element(),
                 ComponentType.Alert);
-        this.alertType = alertType;
+        this.severity = severity;
         this.title = title;
         this.timeout = NO_TIMEOUT;
         this.timeoutHandle = 0;
 
         add(iconContainer = div().css(component(alert, icon))
-                .add(inlineIcon(alertType.iconClass))
+                .add(inlineIcon(severity.icon))
                 .element());
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
-                        .textContent(alertType.aria + ":"))
+                        .textContent(severity.aria + ":"))
                 .add(title)
                 .element());
         Attachable.register(this, this);
@@ -199,7 +200,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button(times, "Close " + alertType.aria + ": " + title)
+                .add(closeButton = button(times, "Close " + severity.aria + ": " + title)
                         .plain()
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);
@@ -230,7 +231,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
                 .add(toggleButton = button().plain()
                         .on(click, e -> toggle())
                         .aria(expanded, false)
-                        .aria(label, alertType.aria + ": " + title + " details")
+                        .aria(label, severity.aria + ": " + title + " details")
                         .add(span().css(component(alert, toggle, icon))
                                 .add(inlineIcon(angleRight))))
                 .element());

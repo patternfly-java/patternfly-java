@@ -13,14 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
+import elemental2.dom.HTMLElement;
 import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class ModifierOptions {
+public class StateElements {
 
-    public int[] offset;
+    public HTMLElement reference;
+    public HTMLElement popper;
+    public HTMLElement arrow;
 }

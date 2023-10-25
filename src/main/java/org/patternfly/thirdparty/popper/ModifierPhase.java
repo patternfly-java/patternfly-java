@@ -13,39 +13,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.thirdparty.popper;
 
-public enum Placement {
+public enum ModifierPhase {
 
-    auto("auto"),
+    beforeRead,
 
-    top("top"),
+    read,
 
-    topStart("top-start"),
+    afterRead,
 
-    topEnd("top-end"),
+    beforeMain,
 
-    bottom("bottom"),
+    main,
 
-    bottomStart("bottom-start"),
+    afterMain,
 
-    bottomEnd("bottom-end"),
+    beforeWrite,
 
-    left("left"),
+    write,
 
-    leftStart("left-start"),
-
-    leftEnd("left-end"),
-
-    right("right"),
-
-    rightStart("right-start"),
-
-    rightEnd("right-end");
-
-    public final String value;
-
-    Placement(String value) {
-        this.value = value;
-    }
+    afterWrite
 }

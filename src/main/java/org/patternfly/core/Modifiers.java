@@ -90,6 +90,19 @@ public interface Modifiers {
         }
     }
 
+    interface NoPadding<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #noPadding(boolean) noPadding(true)} */
+        default B noPadding() {
+            return noPadding(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(noPadding)} */
+        default B noPadding(boolean noPadding) {
+            return changeModifier(that(), element(), noPadding, Classes.noPadding);
+        }
+    }
+
     interface Plain<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #plain(boolean) plain(true)} */

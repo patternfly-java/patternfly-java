@@ -25,5 +25,5 @@
     <source path="dom"/>
     <source path="handler"/>
     <source path="layout"/>
-    <source path="popper"/>
+    <source path="thirdparty"/>
 </module>

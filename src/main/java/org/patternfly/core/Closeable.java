@@ -20,17 +20,14 @@ import org.patternfly.handler.CloseHandler;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
-import elemental2.dom.MouseEvent;
-
-import static org.jboss.elemento.EventType.click;
 
 public interface Closeable<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B> {
 
     B onClose(CloseHandler<B> closeHandler);
 
-    /** Shortcut for {@code close(new MouseEvent("click"), true)} */
+    /** Shortcut for {@code close(new Event(""), true)} */
     default void close() {
-        close(new MouseEvent(click.name), true);
+        close(new Event(""), true);
     }
 
     /** Shortcut for {@code close(event, true)} */
