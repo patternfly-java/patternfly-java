@@ -15,13 +15,10 @@
  */
 package org.patternfly.component.tooltip;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
@@ -32,8 +29,8 @@ import org.patternfly.core.Closeable;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
-import org.patternfly.thirdparty.popper.Popper;
 import org.patternfly.thirdparty.popper.PopperBuilder;
+import org.patternfly.thirdparty.popper.PopperWrapper;
 import org.patternfly.thirdparty.popper.TriggerAction;
 
 import elemental2.dom.Event;
@@ -42,14 +39,11 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
-import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
-import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.isVisible;
-import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.component.tooltip.TriggerAria.describedBy;
 import static org.patternfly.component.tooltip.TriggerAria.none;
 import static org.patternfly.core.Aria.live;
@@ -112,18 +106,16 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
     private final HTMLElement contentElement;
     private final Supplier<HTMLElement> trigger;
     private final Set<TriggerAction> triggerActions;
-    private final List<HandlerRegistration> handlerRegistrations;
     private boolean flip;
     private int distance;
     private int animationDuration;
     private int entryDelay;
     private int exitDelay;
     private int zIndex;
-    private Popper popper;
+    private PopperWrapper popper;
     private TriggerAria aria;
     private Placement placement;
     private CloseHandler<Tooltip> closeHandler;
-    private double transitionTimer, hideTimer, showTimer;
 
     Tooltip(Supplier<HTMLElement> trigger, String text) {
         super(div().css(component(tooltip))
@@ -136,8 +128,6 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
         this.id = Id.unique(componentType().id);
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(mouseenter, focus);
-        this.handlerRegistrations = new ArrayList<>();
-
         this.flip = true;
         this.placement = top;
         this.aria = describedBy;
@@ -161,27 +151,27 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
     public void attach(MutationRecord mutationRecord) {
         HTMLElement triggerElement = trigger.get();
         if (triggerElement != null) {
-            this.popper = new PopperBuilder(triggerElement, element())
+            popper = new PopperBuilder(triggerElement, element())
+                    .animationDuration(animationDuration)
+                    .entryDelay(entryDelay)
+                    .exitDelay(exitDelay)
+                    .zIndex(zIndex)
                     .placement(placement)
                     .addModifier(Modifiers.offset(distance),
                             Modifiers.noOverflow(),
                             Modifiers.hide(),
                             Modifiers.flip(placement == auto || flip),
-                            Modifiers.placement())
-                    .applyStyles(zIndex, animationDuration)
-                    .registerHandler(triggerActions, handlerRegistrations, this::show, this::close)
+                            Modifiers.placement(),
+                            Modifiers.eventListeners(false))
+                    .registerHandler(triggerActions, this::show, this::close)
+                    .removePopperOnTriggerDetach()
                     .build();
         }
     }
 
     @Override
     public void detach(MutationRecord mutationRecord) {
-        for (HandlerRegistration handlerRegistration : handlerRegistrations) {
-            handlerRegistration.removeHandler();
-        }
-        if (popper != null) {
-            popper.destroy();
-        }
+        popper.cleanup();
     }
 
     // ------------------------------------------------------ builder
@@ -237,7 +227,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
 
     public Tooltip text(String text) {
         contentElement.textContent = text;
-        if (isAttached(this) && isVisible(this) && popper != null) {
+        if (isAttached(this) && isVisible(this)) {
             popper.update();
         }
         return this;
@@ -283,30 +273,22 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
     }
 
     public void show(Event event) {
-        if (popper != null) {
-            clearTimeout(transitionTimer);
-            clearTimeout(hideTimer);
+        popper.show(() -> {
             if (aria != none && trigger.get() != null) {
                 trigger.get().setAttribute(aria.attribute, id);
             }
-            showTimer = setTimeout(o1 -> popper.show(), entryDelay);
-        }
+        });
     }
 
     @Override
     public void close(Event event, boolean fireEvent) {
-        if (popper != null && shouldClose(this, closeHandler, event, fireEvent)) {
-            clearTimeout(showTimer);
-            if (aria != none && trigger.get() != null) {
-                trigger.get().removeAttribute(aria.attribute);
-            }
-            hideTimer = setTimeout(o1 -> {
-                style("opacity", 0);
-                transitionTimer = setTimeout(o2 -> {
-                    setVisible(this, false);
-                    fireEvent(this, closeHandler, event, fireEvent);
-                }, animationDuration);
-            }, exitDelay);
+        if (shouldClose(this, closeHandler, event, fireEvent)) {
+            popper.hide(() -> {
+                if (aria != none && trigger.get() != null) {
+                    trigger.get().removeAttribute(aria.attribute);
+                }
+                fireEvent(this, closeHandler, event, fireEvent);
+            });
         }
     }
 

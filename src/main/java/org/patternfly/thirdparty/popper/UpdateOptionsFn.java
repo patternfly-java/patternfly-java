@@ -15,29 +15,11 @@
  */
 package org.patternfly.thirdparty.popper;
 
-import elemental2.dom.HTMLElement;
-import elemental2.promise.Promise;
-import jsinterop.annotations.JsMethod;
-import jsinterop.annotations.JsType;
+import jsinterop.annotations.JsFunction;
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+@JsFunction
+@FunctionalInterface
+public interface UpdateOptionsFn {
 
-/**
- * Java API for Popper JS library.
- *
- * @see <a href="https://popper.js.org/">https://popper.js.org/</a>
- */
-@JsType(isNative = true)
-class Popper {
-
-    @JsMethod(namespace = GLOBAL)
-    static native Popper createPopper(HTMLElement trigger, HTMLElement popper, Options options);
-
-    State state;
-
-    native void destroy();
-
-    native void setOptions(UpdateOptionsFn updateOptions);
-
-    native Promise<State> update();
+    Options update(Options options);
 }

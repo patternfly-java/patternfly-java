@@ -65,4 +65,11 @@ public interface Modifiers {
         modifier.enabled = enabled;
         return modifier;
     }
+
+    static Modifier eventListeners(boolean enabled) {
+        Modifier modifier = new Modifier();
+        modifier.name = "eventListeners";
+        modifier.enabled = enabled;
+        return modifier;
+    }
 }
