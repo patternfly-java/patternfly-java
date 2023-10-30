@@ -220,7 +220,19 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
         } else if (menu.selectionMode == multi) {
-            itemElement.addEventListener(click.name, e -> menu.select(this, !isSelected(), true));
+            itemElement.addEventListener(click.name, e -> {
+                if (itemType == checkbox) {
+                    if (e.target == checkboxComponent.inputElement()) {
+                        menu.select(this, isSelected(), true);
+                    } else {
+                        e.preventDefault();
+                        menu.select(this, !isSelected(), true);
+                    }
+                } else {
+                    menu.select(this, !isSelected(), true);
+                }
+            }, itemType == checkbox); // useCapture is true for checkbox!
+            // see also : https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
         }
         if (initialSelection) {
             menu.select(this, true, false);

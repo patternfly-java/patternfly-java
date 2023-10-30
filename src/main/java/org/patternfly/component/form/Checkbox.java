@@ -176,4 +176,8 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
     public Boolean value() {
         return inputElement.checked;
     }
+
+    public HTMLInputElement inputElement() {
+        return inputElement;
+    }
 }

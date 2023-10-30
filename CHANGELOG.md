@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix selection handler for checkbox menu items
+
 ## [0.0.7] - 2023-10-30
 
 ### Added
