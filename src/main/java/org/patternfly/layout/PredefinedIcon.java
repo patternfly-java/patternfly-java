@@ -39,6 +39,8 @@ public enum PredefinedIcon {
 
     box(fas("box")),
 
+    bullhorn(fas("bullhorn")),
+
     caretDown(fas("caret-down")),
 
     check(fas("check")),

@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Popover component (#80)
+
+### Changed
+
+- Refactor [popper.js](https://popper.js.org/) integration
+
 ## [0.0.6] - 2023-10-25
 
 ### Added

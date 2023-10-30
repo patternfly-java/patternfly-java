@@ -49,6 +49,7 @@ import elemental2.dom.Node;
 import static elemental2.dom.DomGlobal.document;
 import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.header;
 import static org.jboss.elemento.Elements.insertBefore;
@@ -71,10 +72,12 @@ import static org.patternfly.layout.Classes.close;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.icon;
+import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.popover;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Classes.title;
+import static org.patternfly.layout.Classes.widthAuto;
 import static org.patternfly.layout.PredefinedIcon.times;
 import static org.patternfly.thirdparty.popper.Placement.auto;
 import static org.patternfly.thirdparty.popper.Placement.top;
@@ -155,7 +158,9 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements C
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (showClose) {
-            closable();
+            closable(closeHandler);
+        } else {
+            failSafeRemoveFromParent(closeButton);
         }
 
         HTMLElement triggerElement = trigger.get();
@@ -247,16 +252,22 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements C
         return this;
     }
 
+    public Popover autoWidth() {
+        return css(modifier(widthAuto));
+    }
+
     public Popover closable() {
         return closable(null);
     }
 
     public Popover closable(CloseHandler<Popover> closeHandler) {
-        insertFirst(contentElement, div().css(component(popover, close))
-                .add(closeButton = button(times, "Close")
-                        .plain()
-                        .on(click, event -> close(event, true)))
-                .element());
+        if (closeButton == null) {
+            insertFirst(contentElement, div().css(component(popover, close))
+                    .add(closeButton = button(times, "Close")
+                            .plain()
+                            .on(click, event -> close(event, true)))
+                    .element());
+        }
         return onClose(closeHandler);
     }
 
@@ -379,7 +390,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements C
 
     private HTMLElement failSafeIconContainer() {
         if (iconContainer == null) {
-            insertBefore(iconContainer = span().css(popover, title, icon).element(), failSafeHeaderElement());
+            insertBefore(iconContainer = span().css(component(popover, title, icon)).element(), failSafeHeaderElement());
         }
         return iconContainer;
     }

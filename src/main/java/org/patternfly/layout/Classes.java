@@ -219,6 +219,7 @@ public interface Classes {
     String utilities = "utilities";
     String valueText = "value-text";
     String warning = "warning";
+    String widthAuto = "width-auto";
     String wizard = "wizard";
     String wrap = "wrap";
     String wrapper = "wrapper";
