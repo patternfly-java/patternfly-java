@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.0.7] - 2023-10-30
+
 ### Added
 
 - Popover component (#80)
@@ -121,7 +123,8 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.6...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.7...HEAD
+[0.0.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.3...v0.0.4
