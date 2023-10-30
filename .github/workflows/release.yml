@@ -92,12 +92,13 @@ jobs:
           version: ${{ steps.get-version.outputs.version-without-v }}
       - name: Create GitHub Release
         id: create-gh-release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v0.1.15
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.get-version.outputs.version }}
-          release_name: PatternFly Java ${{ steps.get-version.outputs.version-without-v }}
+          name: PatternFly Java ${{ steps.get-version.outputs.version-without-v }}
           body: ${{ steps.read-changelog.outputs.changes }}
           draft: false
           prerelease: false
+          discussion_category_name: announcements
