@@ -88,7 +88,7 @@
         <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
-        <version.junit>5.10.0</version.junit>
+        <version.junit>5.10.1</version.junit>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
