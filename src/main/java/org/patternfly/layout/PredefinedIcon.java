@@ -47,6 +47,8 @@ public enum PredefinedIcon {
 
     code(fas("code")),
 
+    cog(fas("cog")),
+
     copy(fas("copy")),
 
     checkCircle(fas("check-circle")),

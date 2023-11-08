@@ -136,6 +136,7 @@ public interface Classes {
     String maxLines = "max-lines";
     String menu = "menu";
     String menuitem = "menuitem";
+    String menuToggle = "menu-toggle";
     String nav = "nav";
     String noBorderRows = "no-border-rows";
     String noFill = "no-fill";

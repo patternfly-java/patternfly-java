@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Avatar component (#20)
+- Menu toggle component (#67)
+- Dropdown component (#65)
+- Select component (#68)
+
 ### Fixed
 
 - Fix selection handler for checkbox menu items

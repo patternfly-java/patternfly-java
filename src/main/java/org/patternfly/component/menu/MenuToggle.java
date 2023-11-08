@@ -15,5 +15,253 @@
  */
 package org.patternfly.component.menu;
 
-public class MenuToggle {
+import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.avatar.Avatar;
+import org.patternfly.component.badge.Badge;
+import org.patternfly.component.icon.InlineIcon;
+import org.patternfly.core.Aria;
+import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.layout.Classes;
+import org.patternfly.layout.PredefinedIcon;
+
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLElement;
+
+import static elemental2.dom.DomGlobal.console;
+import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.span;
+import static org.patternfly.component.icon.InlineIcon.inlineIcon;
+import static org.patternfly.layout.Classes.button;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.controls;
+import static org.patternfly.layout.Classes.count;
+import static org.patternfly.layout.Classes.expanded;
+import static org.patternfly.layout.Classes.icon;
+import static org.patternfly.layout.Classes.menuToggle;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.primary;
+import static org.patternfly.layout.Classes.secondary;
+import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.layout.PredefinedIcon.caretDown;
+
+/**
+ * The menu toggle component pairs with the menu OR the panel component to create more customizable dropdown and select
+ * implementations. Using a menu toggle with a menu enables you to create custom component configurations not supported by the
+ * standard dropdown or select components.
+ *
+ * @see <a href= *
+ *      "https://www.patternfly.org/components/menus/menu-toggle/html">https://www.patternfly.org/components/menus/menu-toggle/html</a>
+ */
+public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements Disabled<HTMLElement, MenuToggle> {
+
+    // ------------------------------------------------------ factory
+
+    public static MenuToggle menuToggle() {
+        return menuToggle(MenuToggleType.default_);
+    }
+
+    public static MenuToggle menuToggle(String text) {
+        return menuToggle(MenuToggleType.default_).text(text);
+    }
+
+    public static MenuToggle menuToggle(PredefinedIcon icon) {
+        return menuToggle(MenuToggleType.plain).addIcon(icon);
+    }
+
+    public static MenuToggle menuToggle(PredefinedIcon icon, String label) {
+        return menuToggle(MenuToggleType.plain).addIcon(icon).ariaLabel(label);
+    }
+
+    public static MenuToggle menuToggle(InlineIcon icon) {
+        return menuToggle(MenuToggleType.plain).addIcon(icon);
+    }
+
+    public static MenuToggle menuToggle(InlineIcon icon, String label) {
+        return menuToggle(MenuToggleType.plain).addIcon(icon).ariaLabel(label);
+    }
+
+    public static MenuToggle menuToggle(MenuToggleType type) {
+        HTMLContainerBuilder<?> builder = type == MenuToggleType.default_ ? button() : div();
+        return new MenuToggle(builder, type);
+    }
+
+    // ------------------------------------------------------ instance
+
+    final HTMLElement toggleElement;
+    private final MenuToggleType type;
+    private final HTMLElement controlElement;
+    private HTMLElement labelElement;
+    private HTMLElement textElement;
+    private Badge badge;
+    private MenuToggleAction action;
+    private MenuToggleCheckbox checkbox;
+
+    <E extends HTMLElement> MenuToggle(HTMLContainerBuilder<E> builder, MenuToggleType type) {
+        super(builder.css(component(menuToggle)).element(), ComponentType.MenuToggle);
+        this.type = type;
+        if (!this.type.modifier.isEmpty()) {
+            css(type.modifier);
+        }
+
+        if (type == MenuToggleType.plain) {
+            aria(expanded, false);
+            toggleElement = element();
+            controlElement = null;
+        } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            aria(expanded, false);
+            add(controlElement = span().css(component(menuToggle, controls))
+                    .add(span().css(component(menuToggle, toggle, icon))
+                            .add(inlineIcon(caretDown)))
+                    .element());
+            toggleElement = element();
+        } else if (type == MenuToggleType.split || type == MenuToggleType.typeahead) {
+            add(toggleElement = button().css(component(menuToggle, button))
+                    .aria(expanded, false)
+                    .add(span().css(component(menuToggle, controls))
+                            .add(span().css(component(menuToggle, toggle, icon))
+                                    .add(inlineIcon(caretDown))))
+                    .element());
+            controlElement = toggleElement;
+        } else {
+            toggleElement = div().element();
+            controlElement = div().element();
+            console.error("Unknown menu toggle type '" + type.name() + "'");
+        }
+    }
+
+    // ------------------------------------------------------ add
+
+    public MenuToggle addIcon(String iconClass) {
+        return add(inlineIcon(iconClass));
+    }
+
+    public MenuToggle addIcon(PredefinedIcon icon) {
+        return add(inlineIcon(icon));
+    }
+
+    public MenuToggle addIcon(InlineIcon icon) {
+        return add(icon);
+    }
+
+    // override to append to the right container!
+    public MenuToggle add(InlineIcon icon) {
+        if (type == MenuToggleType.plain) {
+            add(icon.element());
+        } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(icon).element());
+        } else {
+            console.warn("Icon is not supported for menu toggles with type '" + type.name() + "'");
+        }
+        return this;
+    }
+
+    public MenuToggle addAvatar(Avatar avatar) {
+        return add(avatar);
+    }
+
+    // override to append to the right container!
+    public MenuToggle add(Avatar avatar) {
+        if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(avatar).element());
+        } else {
+            console.warn("Avatar is not supported for menu toggles with type '" + type.name() + "'");
+        }
+        return this;
+    }
+
+    public MenuToggle addBadge(Badge badge) {
+        return add(badge);
+    }
+
+    // override to append to the right container!
+    public MenuToggle add(Badge badge) {
+        if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            this.badge = badge;
+            insertBefore(span().css(component(menuToggle, count)).add(badge), controlElement);
+        } else {
+            console.warn("Badge is not supported for menu toggles with type '" + type.name() + "'");
+        }
+        return this;
+    }
+
+    public MenuToggle addAction(MenuToggleAction action) {
+        return add(action);
+    }
+
+    // override to assure internal wiring
+    public MenuToggle add(MenuToggleAction action) {
+        this.action = action;
+        css(modifier(Classes.action));
+        insertFirst(element(), action.element());
+        return this;
+    }
+
+    public MenuToggle addCheckbox(MenuToggleCheckbox checkbox) {
+        return add(checkbox);
+    }
+
+    // override to assure internal wiring
+    public MenuToggle add(MenuToggleCheckbox checkbox) {
+        this.checkbox = checkbox;
+        insertFirst(element(), checkbox.element());
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MenuToggle disabled(boolean disabled) {
+        Disabled.super.disabled(disabled);
+        if (type == MenuToggleType.split || type == MenuToggleType.typeahead) {
+            ((HTMLButtonElement) toggleElement).disabled = disabled;
+            if (action != null) {
+                action.disabled(disabled);
+            } else if (checkbox != null) {
+                checkbox.disabled(disabled);
+            }
+        }
+        return this;
+    }
+
+    public MenuToggle primary() {
+        return css(modifier(primary));
+    }
+
+    public MenuToggle secondary() {
+        return css(modifier(secondary));
+    }
+
+    public MenuToggle text(String text) {
+        if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            if (textElement == null) {
+                HTMLElement before = badge != null ? badge.element() : controlElement;
+                insertBefore(textElement = span().css(component(menuToggle, Classes.text)).element(), before);
+            }
+            textElement.textContent = text;
+        } else if (type == MenuToggleType.split) {
+            if (checkbox != null) {
+                checkbox.text(text);
+            } else if (action != null) {
+                action.text(text);
+            }
+        }
+        return this;
+    }
+
+    @Override
+    public MenuToggle that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ aria
+
+    public MenuToggle ariaLabel(String label) {
+        toggleElement.setAttribute(Aria.label, label);
+        return this;
+    }
 }

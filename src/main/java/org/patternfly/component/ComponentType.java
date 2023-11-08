@@ -25,7 +25,7 @@ public enum ComponentType {
 
     AlertGroup("ag", null),
 
-    Avatar("av", null),
+    Avatar("av", "PF5/Avatar"),
 
     Badge("bdg", "PF5/Badge"),
 
@@ -80,6 +80,8 @@ public enum ComponentType {
     Masthead("mh", null),
 
     Menu("mu", "PF5/Menu"),
+
+    MenuToggle("mt", "PF5/MenuToggle"),
 
     Navigation("nav", "PF5/Nav"),
 

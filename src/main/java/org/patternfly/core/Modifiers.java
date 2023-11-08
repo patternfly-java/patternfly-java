@@ -34,7 +34,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(disabled)} */
         default B disabled(boolean disabled) {
-            return changeModifier(that(), element(), disabled, Classes.disabled);
+            return changeModifier(that(), element(), Classes.disabled, disabled);
         }
     }
 
@@ -47,7 +47,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(fill)} */
         default B fill(boolean fill) {
-            return changeModifier(that(), element(), fill, Classes.fill);
+            return changeModifier(that(), element(), Classes.fill, fill);
         }
     }
 
@@ -60,7 +60,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(inline)} */
         default B inline(boolean inline) {
-            return changeModifier(that(), element(), inline, Classes.inline);
+            return changeModifier(that(), element(), Classes.inline, inline);
         }
     }
 
@@ -73,7 +73,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(error)} */
         default B invalid(boolean invalid) {
-            return changeModifier(that(), element(), invalid, Classes.error);
+            return changeModifier(that(), element(), Classes.error, invalid);
         }
     }
 
@@ -86,7 +86,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noFill)} */
         default B noFill(boolean noFill) {
-            return changeModifier(that(), element(), noFill, Classes.noFill);
+            return changeModifier(that(), element(), Classes.noFill, noFill);
         }
     }
 
@@ -99,7 +99,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noPadding)} */
         default B noPadding(boolean noPadding) {
-            return changeModifier(that(), element(), noPadding, Classes.noPadding);
+            return changeModifier(that(), element(), Classes.noPadding, noPadding);
         }
     }
 
@@ -112,7 +112,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(plain)} */
         default B plain(boolean plain) {
-            return changeModifier(that(), element(), plain, Classes.plain);
+            return changeModifier(that(), element(), Classes.plain, plain);
         }
     }
 
@@ -125,7 +125,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readonly)} */
         default B readonly(boolean readonly) {
-            return changeModifier(that(), element(), readonly, Classes.readonly);
+            return changeModifier(that(), element(), Classes.readonly, readonly);
         }
     }
 
@@ -138,7 +138,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readOnly)} */
         default B readonly(boolean readonly) {
-            return changeModifier(that(), element(), readonly, Classes.readOnly);
+            return changeModifier(that(), element(), Classes.readOnly, readonly);
         }
     }
 
@@ -151,12 +151,12 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(required)} */
         default B required(boolean required) {
-            return changeModifier(that(), element(), required, Classes.required);
+            return changeModifier(that(), element(), Classes.required, required);
         }
     }
 
-    private static <E extends Element, B extends TypedBuilder<E, B>> B changeModifier(B builder, E element, boolean flag,
-            String modifier) {
+    private static <E extends Element, B extends TypedBuilder<E, B>> B changeModifier(B builder, E element,
+            String modifier, boolean flag) {
         if (flag) {
             element.classList.add(modifier(modifier));
         } else {

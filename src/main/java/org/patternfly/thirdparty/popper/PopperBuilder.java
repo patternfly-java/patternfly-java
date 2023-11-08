@@ -28,6 +28,7 @@ import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.Node;
 import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.document;
@@ -104,8 +105,12 @@ public class PopperBuilder {
         return this;
     }
 
-    @SuppressWarnings("Convert2MethodRef")
     public PopperBuilder registerHandler(Set<TriggerAction> triggerActions, Consumer<Event> show, Consumer<Event> hide) {
+        return registerHandler(triggerElement, triggerActions, show, hide);
+    }
+
+    @SuppressWarnings("Convert2MethodRef")
+    public PopperBuilder registerHandler(HTMLElement triggerElement, Set<TriggerAction> triggerActions, Consumer<Event> show, Consumer<Event> hide) {
         if (triggerActions.contains(mouseenter)) {
             handlerRegistrations.add(bind(triggerElement, EventType.mouseenter, e -> show.accept(e)));
             handlerRegistrations.add(bind(triggerElement, EventType.mouseleave, e -> hide.accept(e)));
@@ -120,7 +125,7 @@ public class PopperBuilder {
             handlerRegistrations.add(bind(document, EventType.click, true, e -> {
                 if (isVisible(popperElement)) {
                     hide.accept(e);
-                } else if (e.target == triggerElement) {
+                } else if (e.target == triggerElement || triggerElement.contains(((Node) e.target))) {
                     show.accept(e);
                 }
             }));
