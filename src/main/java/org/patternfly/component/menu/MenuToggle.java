@@ -86,8 +86,19 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     }
 
     public static MenuToggle menuToggle(MenuToggleType type) {
-        HTMLContainerBuilder<?> builder = type == MenuToggleType.default_ ? button() : div();
-        return new MenuToggle(builder, type);
+        switch (type) {
+            case default_:
+            case plain:
+            case plainText:
+                return new MenuToggle(button(), type);
+            case split:
+            case typeahead:
+                return new MenuToggle(div(), type);
+            default:
+                console.error("Unknown menu toggle type '" + type.name() + "'. " +
+                        "Fallback to '" + MenuToggleType.default_.name() + "'.");
+                return new MenuToggle(button(), type);
+        }
     }
 
     // ------------------------------------------------------ instance

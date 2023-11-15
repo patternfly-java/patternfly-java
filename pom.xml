@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>40</version>
+        <version>41</version>
     </parent>
 
     <groupId>org.patternfly</groupId>
@@ -85,10 +85,11 @@
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
         <version.elemento>1.2.7</version.elemento>
-        <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
+        <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.junit>5.10.1</version.junit>
+        <version.treblereel.j2cl.processors>0.6.3</version.treblereel.j2cl.processors>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
@@ -114,11 +115,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.google.jsinterop</groupId>
-                <artifactId>jsinterop-annotations</artifactId>
-                <version>${version.jsinterop.annotations}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.elemento</groupId>
                 <artifactId>elemento-bom</artifactId>
                 <version>${version.elemento}</version>
@@ -131,6 +127,26 @@
                 <version>${version.junit}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.jsinterop</groupId>
+                <artifactId>jsinterop-annotations</artifactId>
+                <version>${version.jsinterop.annotations}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>common</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>processors</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -149,6 +165,19 @@
             <artifactId>elemento-svg</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.treblereel.j2cl.processors</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.j2cl.processors</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.j2cl.processors</groupId>
+            <artifactId>processors</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
         </dependency>
@@ -165,7 +194,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
+                    <include>META-INF/externs/**/*</include>
                     <include>org/patternfly/PatternFly.gwt.xml</include>
+                    <include>org/patternfly/thirdparty/**/*</include>
                 </includes>
             </resource>
         </resources>
@@ -209,9 +240,10 @@
                                 <header>etc/license.txt</header>
                                 <excludes>
                                     <exclude>LICENSE</exclude>
-                                    <exclude>sed/*.sed</exclude>
                                     <exclude>**/*license*.txt</exclude>
                                     <exclude>src/demo/java/**</exclude>
+                                    <exclude>src/main/resources/META-INF/externs/**</exclude>
+                                    <exclude>src/main/resources/org/patternfly/thirdparty/**</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
@@ -294,7 +326,20 @@
         </pluginManagement>
 
         <plugins>
-            <!-- Ordered by artifactID -->
+            <!-- Ordered semantically -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforcer-enforce</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -375,6 +420,24 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-generated-sources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy file="${project.build.directory}/generated-sources/annotations/org/patternfly/thirdparty/ThirdPartyBundleImpl.java" todir="${project.build.outputDirectory}/org/patternfly/thirdparty/"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <executions>
                     <execution>
@@ -382,19 +445,6 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforcer-enforce</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>enforce</goal>
                         </goals>
                     </execution>
                 </executions>

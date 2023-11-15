@@ -23,8 +23,9 @@ import static elemental2.dom.DomGlobal.console;
 
 public class PopperWrapperError implements PopperWrapper {
 
-    private static final String ERROR_MESSAGE = "Unable to create popper: 'createPopper' is undefined. " +
-            "Please see https://github.com/patternfly-java/patternfly-java#third-party for more details.";
+    private static final String ERROR_MESSAGE = "Unable to create popper: 'Popper' is undefined. " +
+            "Please add a call to 'ThirdParty.injectPopper()'. " +
+            "See also https://github.com/patternfly-java/patternfly-java#third-party";
 
     @Override
     public Promise<State> update() {

@@ -69,6 +69,17 @@ expandableSection()
 
 PatternFly Java does *not* come with stylesheets, fonts, or other static PatternFly assets. We don't want to dictate how to embed these assets. One way is to download or get PatternFly using a CDN provider like [jsDelivr](https://www.jsdelivr.com/package/npm/@patternfly/patternfly) and include the stylesheets in your HTML page. See the [getting started](https://www.patternfly.org/get-started/develop#htmlcss) section on the PatternFly website for more details. 
 
+# Third Party
+
+Some PatternFly components rely on 3rd party dependencies. If you want to use these components, you must add a call to `ThirdParty.injectXyz()` in your application.
+
+| Components                                                    | Dependency                                           | Version | Code                        |
+|---------------------------------------------------------------|------------------------------------------------------|---------|-----------------------------|
+| Dropdown<br>SingleSelect<br>MultiSelect<br>Popover<br>Tooltip | [Popper](https://popper.js.org/)                     | 2.11.8  | `ThirdParty.injectPopper()` |
+| CodeEditor                                                    | [Monaco](https://microsoft.github.io/monaco-editor/) | 0.44.0  | `ThirdParty.injectMonaco()` |
+
+If you want to inject all dependencies, please use `ThirdPrty.injectAll()`
+
 # PatternFly Support
 
 PatternFly Java aims to provide almost complete support for all components, charts, extensions, and layouts. The following issues show how many components, charts, extensions, and layouts have already been implemented.

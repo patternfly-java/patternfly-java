@@ -13,15 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.thirdparty;
 
-import jsinterop.annotations.JsOverlay;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import org.treblereel.j2cl.processors.common.injectors.ScriptInjector;
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-public class ExtendedDomGlobal {
+public final class ThirdParty {
 
-    @JsOverlay
-    public static final ExtendedNavigator navigator = ExtendedDomGlobal__Constants.navigator;
+    public static void injectAll() {
+        injectPopper();
+    }
+
+    public static void injectPopper() {
+        ScriptInjector.fromString(ThirdPartyBundle.INSTANCE.popper().getText()).inject();
+    }
+
+    private ThirdParty() {
+    }
 }

@@ -15,7 +15,7 @@
  */
 package org.patternfly.thirdparty.popper;
 
-import java.util.EnumSet;
+import java.util.Arrays;
 
 import org.patternfly.layout.Classes;
 
@@ -49,8 +49,8 @@ public enum Placement {
 
     rightEnd("right-end", modifier(Classes.right) + "-bottom");
 
-    public static final String[] modifiers = EnumSet.range(top, rightEnd)
-            .stream()
+    public static final String[] modifiers = Arrays.stream(values())
+            .filter(p -> p != auto)
             .map(p -> p.modifier)
             .toArray(String[]::new);
 

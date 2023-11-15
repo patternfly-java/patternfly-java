@@ -47,7 +47,6 @@ public class MenuToggleAction extends SubComponent<HTMLButtonElement, MenuToggle
 
     // ------------------------------------------------------ builder
 
-
     @Override
     public MenuToggleAction disabled(boolean disabled) {
         element().disabled = disabled;

@@ -126,8 +126,8 @@ public class Button extends BaseComponent<HTMLElement, Button>
                 return new Button(Elements.a());
             default:
                 console.error(
-                        "Unknown button element '" + element.name() + "'. Use '" + ButtonElement.button.name()
-                                + "' as fallback");
+                        "Unknown button element '" + element.name() + "'. Fallback to '" + ButtonElement.button.name()
+                                + "'.");
                 return new Button(Elements.button());
         }
     }

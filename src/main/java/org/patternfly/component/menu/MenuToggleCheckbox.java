@@ -70,7 +70,6 @@ public class MenuToggleCheckbox extends SubComponent<HTMLElement, MenuToggleChec
 
     // ------------------------------------------------------ builder
 
-
     @Override
     public MenuToggleCheckbox disabled(boolean disabled) {
         inputElement.disabled = disabled;

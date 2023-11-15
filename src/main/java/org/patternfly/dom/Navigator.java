@@ -13,31 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.thirdparty.popper;
+package org.patternfly.dom;
 
-import elemental2.dom.HTMLElement;
-import elemental2.promise.Promise;
-import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public class Navigator {
 
-/**
- * Java API for Popper JS library.
- *
- * @see <a href="https://popper.js.org/">https://popper.js.org/</a>
- */
-@JsType(isNative = true, namespace = GLOBAL)
-class Popper {
-
-    @JsMethod
-    static native Popper createPopper(HTMLElement trigger, HTMLElement popper, Options options);
-
-    State state;
-
-    native void destroy();
-
-    native void setOptions(UpdateOptionsFn updateOptions);
-
-    native Promise<State> update();
+    public Clipboard clipboard;
 }

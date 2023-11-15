@@ -15,11 +15,13 @@
  */
 package org.patternfly.dom;
 
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class ExtendedDomGlobal__Constants {
+public class DomGlobal {
 
-    static ExtendedNavigator navigator;
+    @JsOverlay
+    public static final Navigator navigator = DomGlobal__Constants.navigator;
 }

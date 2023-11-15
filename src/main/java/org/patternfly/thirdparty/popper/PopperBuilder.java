@@ -29,6 +29,7 @@ import elemental2.dom.CSSProperties;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
+import jsinterop.base.Any;
 import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.document;
@@ -110,7 +111,8 @@ public class PopperBuilder {
     }
 
     @SuppressWarnings("Convert2MethodRef")
-    public PopperBuilder registerHandler(HTMLElement triggerElement, Set<TriggerAction> triggerActions, Consumer<Event> show, Consumer<Event> hide) {
+    public PopperBuilder registerHandler(HTMLElement triggerElement, Set<TriggerAction> triggerActions, Consumer<Event> show,
+            Consumer<Event> hide) {
         if (triggerActions.contains(mouseenter)) {
             handlerRegistrations.add(bind(triggerElement, EventType.mouseenter, e -> show.accept(e)));
             handlerRegistrations.add(bind(triggerElement, EventType.mouseleave, e -> hide.accept(e)));
@@ -155,7 +157,7 @@ public class PopperBuilder {
     }
 
     public PopperWrapper build() {
-        Object createPopperFn = Js.global().get("createPopper");
+        Any createPopperFn = Js.global().nestedGetAsAny("Popper.createPopper");
         if (isTripleEqual(createPopperFn, undefined())) {
             return new PopperWrapperError();
         } else {

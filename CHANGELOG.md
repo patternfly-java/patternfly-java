@@ -8,10 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add J2CL support
 - Avatar component (#20)
 - Menu toggle component (#67)
 - Dropdown component (#65)
-- Select component (#68)
+- Add `ThirdParty.injectXXX()` methods to inject 3rd party dependencies
 
 ### Fixed
 
@@ -25,7 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Refactor [popper.js](https://popper.js.org/) integration
+- Refactor [popper.txt](https://popper.js.org/) integration
 
 ## [0.0.6] - 2023-10-25
 

@@ -13,13 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.thirdparty;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import org.treblereel.j2cl.processors.annotations.GWT3Resource;
+import org.treblereel.j2cl.processors.common.resources.ClientBundle;
+import org.treblereel.j2cl.processors.common.resources.TextResource;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class ExtendedNavigator {
+@GWT3Resource
+public interface ThirdPartyBundle extends ClientBundle {
 
-    public Clipboard clipboard;
+    ThirdPartyBundle INSTANCE = ThirdPartyBundleImpl.INSTANCE;
+
+    @Source("popper/popper.txt")
+    TextResource popper();
 }

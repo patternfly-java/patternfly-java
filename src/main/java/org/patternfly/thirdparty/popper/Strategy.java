@@ -15,6 +15,11 @@
  */
 package org.patternfly.thirdparty.popper;
 
+import jsinterop.annotations.JsEnum;
+
+import static jsinterop.annotations.JsPackage.GLOBAL;
+
+@JsEnum(isNative = true, namespace = GLOBAL)
 public enum Strategy {
 
     absolute,

@@ -13,17 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.dom;
 
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType(isNative = true)
-@Deprecated
-class Tippy {
+@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
+class DomGlobal__Constants {
 
-    public static native Tippy tippy(String selector);
-
-    public native void show();
-
-    public native void hide();
+    static Navigator navigator;
 }

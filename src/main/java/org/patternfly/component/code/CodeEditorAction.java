@@ -26,7 +26,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.dom.ExtendedDomGlobal.navigator;
+import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
 public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction> implements
