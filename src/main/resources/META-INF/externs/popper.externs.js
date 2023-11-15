@@ -1,4 +1,4 @@
-// noinspection BadExpressionStatementJS
+// noinspection BadExpressionStatementJS,JSUnusedGlobalSymbols,SpellCheckingInspection,ES6ConvertVarToLetConst
 
 /**
  * @fileoverview Declarations for @popperjs/core v2.11.8
