@@ -1,6 +1,7 @@
 org.patternfly.component
 org.patternfly.component.actionlist
 org.patternfly.component.alert
+org.patternfly.component.avatar
 org.patternfly.component.badge
 org.patternfly.component.brand
 org.patternfly.component.button
@@ -29,4 +30,5 @@ org.patternfly.dom
 org.patternfly.handler
 org.patternfly.layout
 org.patternfly.layout.stack
+org.patternfly.thirdparty
 org.patternfly.thirdparty.popper
