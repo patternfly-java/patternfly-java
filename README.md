@@ -45,7 +45,7 @@ PatternFly Java is available in [Maven Central](https://search.maven.org/search?
 </dependency>
 ```
  
-In your GWT module, inherit from `org.patternfly.PatternFly`:
+If you're using GWT, inherit from `org.patternfly.PatternFly`:
 
 ```xml
 <module>
@@ -59,10 +59,27 @@ PatternFly Java integrates with and builds upon Elemento's [builder API](https:/
 
 ```java
 expandableSection()
-      .indented()
-      .addToggle(expandableSectionToggle("Show more", "Show less"))
-      .addContent(expandableSectionContent()
-              .textContent("This content is visible only when the component is expanded."))
+        .indented()
+        .addToggle(expandableSectionToggle("Show more", "Show less"))
+        .addContent(expandableSectionContent()
+                .textContent("This content is visible only when the component is expanded."))
+```
+
+```java
+dropdown()
+        .addToggle(menuToggle("Dropdown"))
+        .addMenu(menu()
+                .addContent(menuContent()
+                        .addList(menuList()
+                                .addItem(actionMenuItem("item-0", "Action"))
+                                .addItem(linkMenuItem("item-1", "Link", "#home"))
+                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                        .disabled())
+                                .addItem(linkMenuItem("item-3", "Disabled link", "#")
+                                        .disabled())
+                                .addDivider()
+                                .addItem(actionMenuItem("item-4", "Separated action"))
+                                .addItem(linkMenuItem("item-5", "Separated link", "#home")))))
 ```
 
 # PatternFly Assets
