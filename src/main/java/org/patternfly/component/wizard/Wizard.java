@@ -26,10 +26,11 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 
 /**
- * A wizard provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming experience.
+ * A wizard provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of
+ * steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming
+ * experience.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
+ * @see <a href= "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
  */
 public class Wizard extends BaseComponent<HTMLElement, Wizard> {
 

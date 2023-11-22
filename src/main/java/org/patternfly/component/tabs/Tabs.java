@@ -28,8 +28,7 @@ import static org.jboss.elemento.EventType.click;
 /**
  * Tabs allow users to navigate between views within the same page or context.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/tabs/html">https://www.patternfly.org/components/tabs/html</a>
+ * @see <a href= "https://www.patternfly.org/components/tabs/html">https://www.patternfly.org/components/tabs/html</a>
  */
 public class Tabs extends BaseComponent<HTMLElement, Tabs> {
 
