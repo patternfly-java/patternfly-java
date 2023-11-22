@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+@FunctionalInterface
 public interface MenuActionHandler {
 
     void onAction(MenuItemAction itemAction);

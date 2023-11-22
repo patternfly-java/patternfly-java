@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.Key;
+import org.patternfly.component.ComponentType;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
@@ -47,6 +48,7 @@ import static org.patternfly.thirdparty.popper.TriggerAction.mouseenter;
 
 public class PopperBuilder {
 
+    private final ComponentType componentType;
     private final HTMLElement triggerElement;
     private final HTMLElement popperElement;
     private final JsArray<Modifier> modifiers;
@@ -57,21 +59,22 @@ public class PopperBuilder {
     private int zIndex;
     private Placement placement;
 
-    public PopperBuilder(HTMLElement triggerElement, HTMLElement popperElement) {
+    public PopperBuilder(ComponentType componentType, HTMLElement triggerElement, HTMLElement popperElement) {
+        this.componentType = componentType;
         this.triggerElement = triggerElement;
         this.popperElement = popperElement;
         this.modifiers = new JsArray<>();
         this.handlerRegistrations = new ArrayList<>();
-        this.animationDuration = PopperWrapper.UNDEFINED;
-        this.entryDelay = PopperWrapper.UNDEFINED;
-        this.exitDelay = PopperWrapper.UNDEFINED;
-        this.zIndex = PopperWrapper.UNDEFINED;
+        this.animationDuration = Popper.UNDEFINED;
+        this.entryDelay = Popper.UNDEFINED;
+        this.exitDelay = Popper.UNDEFINED;
+        this.zIndex = Popper.UNDEFINED;
         this.placement = auto;
     }
 
     public PopperBuilder animationDuration(int animationDuration) {
         this.animationDuration = animationDuration;
-        if (animationDuration != PopperWrapper.UNDEFINED) {
+        if (animationDuration != Popper.UNDEFINED) {
             popperElement.style.opacity = CSSProperties.OpacityUnionType.of(0);
             popperElement.style.transition = "opacity " + animationDuration + "ms cubic-bezier(.54, 1.5, .38, 1.11)";
         }
@@ -90,7 +93,7 @@ public class PopperBuilder {
 
     public PopperBuilder zIndex(int zIndex) {
         this.zIndex = zIndex;
-        if (zIndex != PopperWrapper.UNDEFINED) {
+        if (zIndex != Popper.UNDEFINED) {
             popperElement.style.zIndex = CSSProperties.ZIndexUnionType.of(zIndex);
         }
         return this;
@@ -156,16 +159,16 @@ public class PopperBuilder {
         return this;
     }
 
-    public PopperWrapper build() {
+    public Popper build() {
         Any createPopperFn = Js.global().nestedGetAsAny("Popper.createPopper");
         if (isTripleEqual(createPopperFn, undefined())) {
-            return new PopperWrapperError();
+            return new PopperError(componentType);
         } else {
             Options options = new Options();
             options.placement = placement.value;
             options.modifiers = modifiers;
-            Popper popper = Popper.createPopper(triggerElement, popperElement, options);
-            return new PopperWrapperImpl(popper, handlerRegistrations, animationDuration, entryDelay, exitDelay);
+            PopperJs popper = PopperJs.createPopper(triggerElement, popperElement, options);
+            return new PopperImpl(componentType, popper, handlerRegistrations, animationDuration, entryDelay, exitDelay);
         }
     }
 }

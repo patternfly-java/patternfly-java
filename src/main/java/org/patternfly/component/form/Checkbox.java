@@ -75,7 +75,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
-    private final HTMLLabelElement labelElement;
+    private HTMLLabelElement labelElement;
     private HTMLElement requiredMarker;
 
     Checkbox(String id, String label, boolean checked) {
@@ -88,14 +88,11 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
                 ComponentType.Checkbox);
 
         inputElement = (HTMLInputElement) element().firstElementChild;
+        add(labelElement = label().css(component(check, Classes.label))
+                .apply(l -> l.htmlFor = id)
+                .element());
         if (label != null) {
-            add(labelElement = label().css(component(check, Classes.label))
-                    .apply(l -> l.htmlFor = id)
-                    .textContent(label)
-                    .element());
-        } else {
-            labelElement = null;
-            css(modifier(standalone));
+            labelElement.textContent = label;
         }
     }
 
@@ -149,6 +146,20 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
             failSafeRemoveFromParent(labelElement);
             insertFirst(element(), inputElement);
             insertFirst(element(), labelElement);
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #standalone(boolean) standalone(true)} */
+    public Checkbox standalone() {
+        return standalone(true);
+    }
+
+    public Checkbox standalone(boolean removeLabel) {
+        css(modifier(standalone));
+        if (removeLabel) {
+            failSafeRemoveFromParent(labelElement);
+            labelElement = null;
         }
         return this;
     }

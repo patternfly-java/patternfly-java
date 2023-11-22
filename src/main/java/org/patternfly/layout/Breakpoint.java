@@ -17,6 +17,8 @@ package org.patternfly.layout;
 
 public enum Breakpoint {
 
+    default_("default"),
+
     sm("sm"),
 
     md("md"),

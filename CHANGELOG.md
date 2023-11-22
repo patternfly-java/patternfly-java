@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Card component (#29)
+- Label component (#61)
+- Radio component (#53)
+- Select component (#68)
+- Gallery layout (#120)
+- Classify and group log messages
+
+### Changed
+
+- Checkbox component: replace implicit standalone modifier with explicit method 
+- Move deprecated classes to its own package
+
+### Removed
+
+- Remove deprecated classes
+
 ## [0.1.0] - 2023-11-15
 
 ### Added

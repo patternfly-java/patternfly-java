@@ -26,6 +26,7 @@ import org.patternfly.component.badge.Badge;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Modifiers.NoPadding;
@@ -39,7 +40,6 @@ import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
@@ -125,9 +125,8 @@ public class Button extends BaseComponent<HTMLElement, Button>
             case link:
                 return new Button(Elements.a());
             default:
-                console.error(
-                        "Unknown button element '" + element.name() + "'. Fallback to '" + ButtonElement.button.name()
-                                + "'.");
+                Logger.unknown(ComponentType.Button, "Unknown button element '" + element.name() + "'. " +
+                        "Fallback to '" + ButtonElement.button.name() + "'.");
                 return new Button(Elements.button());
         }
     }

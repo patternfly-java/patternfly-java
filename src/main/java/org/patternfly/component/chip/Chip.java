@@ -17,6 +17,7 @@ package org.patternfly.component.chip;
 
 import java.util.Objects;
 
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -24,6 +25,7 @@ import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.button.Button;
+import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValue;
@@ -32,12 +34,14 @@ import org.patternfly.layout.Classes;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.layout.Classes.actions;
@@ -48,6 +52,7 @@ import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.PredefinedIcon.times;
 import static org.patternfly.layout.Variable.componentVar;
+import static org.patternfly.layout.Variables.MaxWidth;
 
 /**
  * A chip is used to communicate a value or a set of attribute-value pairs within workflows that involve filtering a set of
@@ -55,8 +60,11 @@ import static org.patternfly.layout.Variable.componentVar;
  *
  * @see <a href="https://www.patternfly.org/components/chip/html">https://www.patternfly.org/components/chip/html</a>
  */
-public class Chip extends BaseComponent<HTMLElement, Chip>
-        implements HasValue<String>, ComponentReference<ChipGroup>, Closeable<HTMLElement, Chip> {
+public class Chip extends BaseComponent<HTMLElement, Chip> implements
+        ComponentReference<ChipGroup>,
+        Closeable<HTMLElement, Chip>,
+        HasValue<String>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -72,6 +80,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
     final HTMLElement textElement;
     private final HTMLElement contentElement;
     private final HTMLElement actionsElement;
+    private final TooltipToggle tooltipToggle;
     private ChipGroup chipGroup;
     private Badge badge;
     private Button closeButton;
@@ -97,9 +106,13 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
                         .on(click, event -> close(event, true)))
                 .element());
 
-        if (text != null && text.length() > DEFAULT_MAX_WIDTH) {
-            element().tabIndex = 0;
-        }
+        tooltipToggle = new TooltipToggle(textElement);
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
     }
 
     @Override
@@ -150,9 +163,17 @@ public class Chip extends BaseComponent<HTMLElement, Chip>
         return onClose(null);
     }
 
-    public Chip maxWidth(String maxWidth) {
-        element().tabIndex = 0;
-        return componentVar(component(chip, text), "MaxWidth").style(this, maxWidth);
+    public Chip text(String text) {
+        textElement.textContent = text;
+        tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
+        return this;
+    }
+
+    public Chip textMaxWidth(String maxWidth) {
+        // --pf-v5-c-chip__text--MaxWidth: <maxWidth>
+        componentVar(component(chip, text), MaxWidth).applyTo(this, maxWidth);
+        tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
+        return this;
     }
 
     @Override

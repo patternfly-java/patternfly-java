@@ -36,8 +36,8 @@ import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
+import org.patternfly.thirdparty.popper.Popper;
 import org.patternfly.thirdparty.popper.PopperBuilder;
-import org.patternfly.thirdparty.popper.PopperWrapper;
 import org.patternfly.thirdparty.popper.TriggerAction;
 
 import elemental2.dom.Event;
@@ -121,7 +121,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements C
     private int distance;
     private int animationDuration;
     private int zIndex;
-    private PopperWrapper popper;
+    private Popper popper;
     private Placement placement;
     private Button closeButton;
     private Severity severity;
@@ -165,7 +165,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements C
 
         HTMLElement triggerElement = trigger.get();
         if (triggerElement != null) {
-            popper = new PopperBuilder(triggerElement, element())
+            popper = new PopperBuilder(componentType(), triggerElement, element())
                     .animationDuration(animationDuration)
                     .zIndex(zIndex)
                     .placement(placement)

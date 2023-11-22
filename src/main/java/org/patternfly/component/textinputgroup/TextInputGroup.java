@@ -19,7 +19,6 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.UnderDevelopment;
 import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers.Disabled;
@@ -43,7 +42,6 @@ import static org.patternfly.layout.Classes.textInputGroup;
  * @see <a href=
  *      "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
  */
-@UnderDevelopment
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Attachable, HasValue<String>, Disabled<HTMLDivElement, TextInputGroup> {
 

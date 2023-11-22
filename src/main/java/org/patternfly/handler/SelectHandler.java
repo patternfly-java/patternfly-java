@@ -18,5 +18,5 @@ package org.patternfly.handler;
 @FunctionalInterface
 public interface SelectHandler<C> {
 
-    void onSelect(C component);
+    void onSelect(C component, boolean selected);
 }

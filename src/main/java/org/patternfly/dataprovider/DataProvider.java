@@ -182,7 +182,7 @@ public class DataProvider<T> {
 
     private void fireSelection(T item) {
         for (SelectHandler<T> handler : selectHandler) {
-            handler.onSelect(item);
+            handler.onSelect(item, true);
         }
     }
 

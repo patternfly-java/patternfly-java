@@ -25,6 +25,19 @@ import static org.patternfly.layout.Classes.modifier;
 
 public interface Modifiers {
 
+    interface Compact<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #compact(boolean) compact(true)} */
+        default B compact() {
+            return compact(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(compact)} */
+        default B compact(boolean compact) {
+            return toggleModifier(that(), element(), Classes.compact, compact);
+        }
+    }
+
     interface Disabled<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #disabled(boolean) disabled(true)} */
@@ -34,7 +47,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(disabled)} */
         default B disabled(boolean disabled) {
-            return changeModifier(that(), element(), Classes.disabled, disabled);
+            return toggleModifier(that(), element(), Classes.disabled, disabled);
         }
     }
 
@@ -47,7 +60,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(fill)} */
         default B fill(boolean fill) {
-            return changeModifier(that(), element(), Classes.fill, fill);
+            return toggleModifier(that(), element(), Classes.fill, fill);
         }
     }
 
@@ -60,7 +73,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(inline)} */
         default B inline(boolean inline) {
-            return changeModifier(that(), element(), Classes.inline, inline);
+            return toggleModifier(that(), element(), Classes.inline, inline);
         }
     }
 
@@ -73,7 +86,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(error)} */
         default B invalid(boolean invalid) {
-            return changeModifier(that(), element(), Classes.error, invalid);
+            return toggleModifier(that(), element(), Classes.error, invalid);
         }
     }
 
@@ -86,7 +99,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noFill)} */
         default B noFill(boolean noFill) {
-            return changeModifier(that(), element(), Classes.noFill, noFill);
+            return toggleModifier(that(), element(), Classes.noFill, noFill);
         }
     }
 
@@ -99,7 +112,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noPadding)} */
         default B noPadding(boolean noPadding) {
-            return changeModifier(that(), element(), Classes.noPadding, noPadding);
+            return toggleModifier(that(), element(), Classes.noPadding, noPadding);
         }
     }
 
@@ -112,7 +125,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(plain)} */
         default B plain(boolean plain) {
-            return changeModifier(that(), element(), Classes.plain, plain);
+            return toggleModifier(that(), element(), Classes.plain, plain);
         }
     }
 
@@ -125,7 +138,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readonly)} */
         default B readonly(boolean readonly) {
-            return changeModifier(that(), element(), Classes.readonly, readonly);
+            return toggleModifier(that(), element(), Classes.readonly, readonly);
         }
     }
 
@@ -138,7 +151,7 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(readOnly)} */
         default B readonly(boolean readonly) {
-            return changeModifier(that(), element(), Classes.readOnly, readonly);
+            return toggleModifier(that(), element(), Classes.readOnly, readonly);
         }
     }
 
@@ -151,11 +164,11 @@ public interface Modifiers {
 
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(required)} */
         default B required(boolean required) {
-            return changeModifier(that(), element(), Classes.required, required);
+            return toggleModifier(that(), element(), Classes.required, required);
         }
     }
 
-    private static <E extends Element, B extends TypedBuilder<E, B>> B changeModifier(B builder, E element,
+    static <E extends Element, B extends TypedBuilder<E, B>> B toggleModifier(B builder, E element,
             String modifier, boolean flag) {
         if (flag) {
             element.classList.add(modifier(modifier));

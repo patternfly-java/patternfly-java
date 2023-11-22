@@ -24,18 +24,18 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.Expandable;
+import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
+import org.patternfly.thirdparty.popper.Popper;
 import org.patternfly.thirdparty.popper.PopperBuilder;
-import org.patternfly.thirdparty.popper.PopperWrapper;
 import org.patternfly.thirdparty.popper.TriggerAction;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.setVisible;
@@ -70,7 +70,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
     private int zIndex;
     private boolean flip;
     private Placement placement;
-    private PopperWrapper popper;
+    private Popper popper;
     private CloseHandler<Dropdown> closeHandler;
 
     Dropdown() {
@@ -86,7 +86,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
         if (toggle != null && menu != null) {
             setVisible(menu, false);
             insertAfter(menu.element(), toggle.element());
-            popper = new PopperBuilder(toggle.element(), menu.element())
+            popper = new PopperBuilder(componentType(), toggle.element(), menu.element())
                     .zIndex(zIndex)
                     .placement(placement)
                     .addModifier(Modifiers.noOverflow(),
@@ -97,7 +97,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
                     .registerHandler(toggle.toggleElement, triggerActions, this::show, this::close)
                     .build();
         } else {
-            console.error("No toggle and/or menu defined for dropdown!");
+            Logger.undefined(componentType(), "No toggle and/or menu defined for dropdown");
         }
     }
 

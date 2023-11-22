@@ -15,12 +15,9 @@
  */
 package org.patternfly.layout;
 
-import org.patternfly.component.Popover;
-import org.patternfly.component.Tooltip;
+import static org.patternfly.layout.Classes.modifier;
 
-import static org.patternfly.layout.Classes.*;
-
-/** Position used by {@link Popover} and {@link Tooltip}. */
+/** Position used by {@link org.patternfly.component.popover.Popover} and {@link org.patternfly.component.tooltip.Tooltip}. */
 public enum Position {
 
     auto(""),

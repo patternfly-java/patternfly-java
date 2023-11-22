@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.Breadcrumb;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.page;
 
 /**
- * Container to nest a {@link Breadcrumb} in a {@link PageMainGroup} or {@link PageMain} container.
+ * Container to nest a {@link org.patternfly.component.breadcrumb.Breadcrumb} in a {@link PageMainGroup} or {@link PageMain} container.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>

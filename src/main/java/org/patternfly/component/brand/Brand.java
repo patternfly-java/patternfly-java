@@ -17,7 +17,6 @@ package org.patternfly.component.brand;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.UnderDevelopment;
 
 import elemental2.dom.HTMLImageElement;
 
@@ -30,7 +29,6 @@ import static org.patternfly.layout.Classes.component;
  *
  * @see <a href= "https://www.patternfly.org/components/brand/html">https://www.patternfly.org/components/brand/html</a>
  */
-@UnderDevelopment
 public class Brand extends BaseComponent<HTMLImageElement, Brand> {
 
     // ------------------------------------------------------ factory

@@ -29,8 +29,8 @@ import org.patternfly.core.Closeable;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
+import org.patternfly.thirdparty.popper.Popper;
 import org.patternfly.thirdparty.popper.PopperBuilder;
-import org.patternfly.thirdparty.popper.PopperWrapper;
 import org.patternfly.thirdparty.popper.TriggerAction;
 
 import elemental2.dom.Event;
@@ -112,7 +112,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
     private int entryDelay;
     private int exitDelay;
     private int zIndex;
-    private PopperWrapper popper;
+    private Popper popper;
     private TriggerAria aria;
     private Placement placement;
     private CloseHandler<Tooltip> closeHandler;
@@ -151,7 +151,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
     public void attach(MutationRecord mutationRecord) {
         HTMLElement triggerElement = trigger.get();
         if (triggerElement != null) {
-            popper = new PopperBuilder(triggerElement, element())
+            popper = new PopperBuilder(componentType(), triggerElement, element())
                     .animationDuration(animationDuration)
                     .entryDelay(entryDelay)
                     .exitDelay(exitDelay)

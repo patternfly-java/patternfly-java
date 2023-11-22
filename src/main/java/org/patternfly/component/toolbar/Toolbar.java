@@ -17,7 +17,6 @@ package org.patternfly.component.toolbar;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.UnderDevelopment;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -34,7 +33,6 @@ import static org.patternfly.layout.Classes.toolbar;
  *
  * @see <a href="https://www.patternfly.org/components/toolbar/html">https://www.patternfly.org/components/toolbar/html</a>
  */
-@UnderDevelopment
 public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
 
     // ------------------------------------------------------ factory

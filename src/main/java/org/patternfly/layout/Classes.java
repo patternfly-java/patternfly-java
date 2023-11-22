@@ -46,6 +46,7 @@ public interface Classes {
     String check = "check";
     String chip = "chip";
     String chipGroup = "chip-group";
+    String clickable = "clickable";
     String clipper = "clipper";
     String close = "close";
     String code = "code";
@@ -70,6 +71,8 @@ public interface Classes {
     String display = "display";
     String divider = "divider";
     String dropdown = "dropdown";
+    String editable = "editable";
+    String editableActive = "editable-active";
     String emptyState = "empty-state";
     String end = "end";
     String error = "error";
@@ -85,6 +88,7 @@ public interface Classes {
     String fieldset = "fieldset";
     String fill = "fill";
     String filterGroup = "filter-group";
+    String flat = "flat";
     String flex = "flex";
     String floatLeft = "float-left";
     String floatRight = "float-right";
@@ -93,6 +97,7 @@ public interface Classes {
     String footer = "footer";
     String form = "form";
     String formControl = "form-control";
+    String fullHeight = "full-height";
     String gallery = "gallery";
     String global = "global";
     String grid = "grid";
@@ -123,6 +128,7 @@ public interface Classes {
     String itemRow = "item-row";
     String keyboard = "keyboard";
     String label = "label";
+    String labelGroup = "label-group";
     String labelledBy = "labelledby";
     String leadBall = "lead-ball";
     String left = "left";
@@ -140,10 +146,12 @@ public interface Classes {
     String nav = "nav";
     String noBorderRows = "no-border-rows";
     String noFill = "no-fill";
+    String noOffset = "no-offset";
     String none = "none";
     String noPadding = "no-padding";
     String option = "option";
     String optionsMenu = "options-menu";
+    String outline = "outline";
     String overflow = "overflow";
     String overflowScroll = "overflow-scroll";
     String padding = "padding";
@@ -158,11 +166,13 @@ public interface Classes {
     String primary = "primary";
     String progress = "progress";
     String progressbar = "progressbar";
+    String radio = "radio";
     String read = "read";
     String readOnly = "read-only";
     String readonly = "readonly";
     String required = "required";
     String right = "right";
+    String rounded = "rounded";
     String scope = "scope";
     String screenReader = "pf-" + PatternFly.VERSION + "-screen-reader";
     String scroll = "scroll";
@@ -172,6 +182,7 @@ public interface Classes {
     String secondary = "secondary";
     String section = "section";
     String select = "select";
+    String selectable = "selectable";
     String selected = "selected";
     String selector = "selector";
     String separator = "separator";
@@ -208,6 +219,7 @@ public interface Classes {
     String toggle = "toggle";
     String toggleGroup = "toggle-group";
     String toggleGroupContainer = "toggle-group-container";
+    String toggleRight = "toggle-right";
     String toolbar = "toolbar";
     String tools = "tools";
     String tooltip = "tooltip";
@@ -219,6 +231,7 @@ public interface Classes {
     String unread = "unread";
     String utilities = "utilities";
     String valueText = "value-text";
+    String vertical = "vertical";
     String warning = "warning";
     String widthAuto = "width-auto";
     String wizard = "wizard";

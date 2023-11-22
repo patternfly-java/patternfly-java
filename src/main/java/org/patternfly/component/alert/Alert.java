@@ -19,7 +19,6 @@ import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.UnderDevelopment;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -77,7 +76,6 @@ import static org.patternfly.layout.Variable.componentVar;
  *
  * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
  */
-@UnderDevelopment
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
         Plain<HTMLDivElement, Alert>, Closeable<HTMLDivElement, Alert>, Expandable<HTMLDivElement, Alert>, Attachable,
         ComponentReference<AlertGroup> {
@@ -276,7 +274,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
     public Alert truncate(int lines) {
         titleElement.classList.add(modifier(truncate));
         if (lines != 1) {
-            componentVar(component(alert, Classes.title), "max-lines").style(titleElement, lines);
+            componentVar(component(alert, Classes.title), "max-lines").applyTo(titleElement, lines);
         }
         return this;
     }

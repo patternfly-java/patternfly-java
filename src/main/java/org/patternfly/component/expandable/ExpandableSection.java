@@ -45,6 +45,7 @@ import static org.patternfly.layout.Classes.limitWidth;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Size.lg;
 import static org.patternfly.layout.Variable.componentVar;
+import static org.patternfly.layout.Variables.LineClamp;
 
 /**
  * An expandable section component is used to support progressive disclosure in a form or page by hiding additional content when
@@ -99,7 +100,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
                 toggle.removeIcon();
             }
             if (truncate != DEFAULT_TRUNCATE && content != null) {
-                componentVar(component(expandableSection), "m-truncate__content", "LineClamp").style(content, truncate);
+                componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content, truncate);
             }
         }
         if (detachedFromId != null) {

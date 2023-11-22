@@ -22,6 +22,7 @@ import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -29,7 +30,6 @@ import org.patternfly.layout.PredefinedIcon;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertBefore;
@@ -95,7 +95,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             case typeahead:
                 return new MenuToggle(div(), type);
             default:
-                console.error("Unknown menu toggle type '" + type.name() + "'. " +
+                Logger.unknown(ComponentType.MenuToggle, "Unknown menu toggle type '" + type.name() + "'. " +
                         "Fallback to '" + MenuToggleType.default_.name() + "'.");
                 return new MenuToggle(button(), type);
         }
@@ -141,7 +141,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else {
             toggleElement = div().element();
             controlElement = div().element();
-            console.error("Unknown menu toggle type '" + type.name() + "'");
+            Logger.unknown(componentType(), "Unknown menu toggle type '" + type.name() + "'");
         }
     }
 
@@ -166,7 +166,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(icon).element());
         } else {
-            console.warn("Icon is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), "Icon is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }
@@ -180,7 +180,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(avatar).element());
         } else {
-            console.warn("Avatar is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), "Avatar is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }
@@ -195,7 +195,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             this.badge = badge;
             insertBefore(span().css(component(menuToggle, count)).add(badge), controlElement);
         } else {
-            console.warn("Badge is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), "Badge is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }

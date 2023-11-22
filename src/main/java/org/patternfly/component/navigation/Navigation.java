@@ -25,6 +25,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Logger;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
@@ -32,7 +33,6 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.nav;
@@ -142,15 +142,15 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
                     break;
                 case drillDown:
                 case flyout:
-                    console.error("Drill-down and fly-out not yet implemented");
+                    Logger.nyi(componentType(), "Drill-down and fly-out not yet implemented");
                     itemsContainer = div().element();
                     break;
                 default:
-                    console.error("Unknown navigation type: " + type);
+                    Logger.unknown(componentType(), "Unknown navigation type: " + type);
                     itemsContainer = div().element();
             }
         } else {
-            console.error("Unknown navigation type: " + type);
+            Logger.unknown(componentType(), "Unknown navigation type: " + type);
             itemsContainer = div().element();
         }
     }
@@ -159,7 +159,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public <T> Navigation addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         if (type == grouped) {
-            console.error("addItem(NavigationItem) is not supported for type " + type);
+            Logger.unsupported(componentType(), "addItem(NavigationItem) is not supported for type " + type);
             return this;
         }
         for (T item : items) {
@@ -171,7 +171,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addItem(NavigationItem item) {
         if (type == grouped) {
-            console.error("addItem(NavigationItem) is not supported for type " + type);
+            Logger.unsupported(componentType(), "addItem(NavigationItem) is not supported for type " + type);
             return this;
         }
         items.put(item.id, item);
@@ -181,7 +181,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(NavigationGroup group) {
         if (type == flat || type == expandable || type instanceof Horizontal) {
-            console.error("addGroup(NavigationGroup) is not supported for type " + type);
+            Logger.unsupported(componentType(), "addGroup(NavigationGroup) is not supported for type " + type);
             return this;
         }
         groups.put(group.id, group);
@@ -191,7 +191,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(ExpandableNavigationGroup group) {
         if (type == flat || type == grouped || type instanceof Horizontal) {
-            console.error("addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+            Logger.unsupported(componentType(), "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
             return this;
         }
         group.collapse(); // all groups are collapsed by default
@@ -246,7 +246,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             unselectAllItems();
             item.select();
             if (fireEvent && onSelect != null) {
-                onSelect.onSelect(item);
+                onSelect.onSelect(item, true);
             }
 
             if (type == expandable) {

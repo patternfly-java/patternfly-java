@@ -27,6 +27,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
+import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValues;
@@ -86,13 +87,14 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     private final Map<String, Chip> chips;
     private boolean expanded;
     private int numChips;
-    private Chip overflowChip;
-    private HTMLElement categoryElement;
-    private HTMLElement overflowItem;
-    private Button closeButton;
-    private CloseHandler<ChipGroup> closeHandler;
     private String collapsedText;
     private String expandedText;
+    private Chip overflowChip;
+    private Button closeButton;
+    private HTMLElement categoryElement;
+    private HTMLElement overflowItem;
+    private TooltipToggle tooltipToggle;
+    private CloseHandler<ChipGroup> closeHandler;
 
     ChipGroup(String category) {
         super(div().css(component(chipGroup)).attr(role, "group").element(), ComponentType.ChipGroup);
@@ -116,6 +118,9 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
 
     @Override
     public void attach(MutationRecord mutationRecord) {
+        if (tooltipToggle != null) {
+            tooltipToggle.eval();
+        }
         for (Chip chip : chips.values()) {
             chip.passComponent(this);
         }
@@ -168,6 +173,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
                     .element();
             insertBefore(categoryElement, listElement);
             aria(labelledBy, categoryId);
+            tooltipToggle = new TooltipToggle(categoryElement);
         }
         categoryElement.textContent = category;
         return this;

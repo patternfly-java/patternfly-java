@@ -19,11 +19,11 @@ import org.jboss.elemento.Finder;
 import org.jboss.elemento.HasElement;
 import org.jboss.elemento.HasHTMLElement;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Ouia;
 
 import elemental2.dom.HTMLElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static java.util.Objects.requireNonNull;
 
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>>
@@ -44,7 +44,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
     @Override
     public E element() {
         if (delegate == null) {
-            console.error("No delegate defined for component " + componentType().componentName);
+            Logger.undefined(componentType(), "No delegate defined");
         }
         return delegate;
     }

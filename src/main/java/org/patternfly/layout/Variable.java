@@ -49,8 +49,7 @@ public class Variable {
     }
 
     public static Variable componentVar(String component, String... elements) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("--pf-").append(PatternFly.VERSION).append("-").append(component);
+        StringBuilder builder = new StringBuilder("--").append(component);
         if (elements != null && elements.length != 0) {
             builder.append("--");
             for (int i = 0; i < elements.length; i++) {
@@ -75,31 +74,29 @@ public class Variable {
 
     // ------------------------------------------------------ api
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B style(HasHTMLElement<E, B> element, int value) {
-        return style(element, String.valueOf(value));
+    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B applyTo(HasHTMLElement<E, B> element, int value) {
+        return element.style(name, value);
     }
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B style(HasHTMLElement<E, B> element, String value) {
-        return element.style(assign(value));
+    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B applyTo(HasHTMLElement<E, B> element, String value) {
+        return element.style(name, value);
     }
 
-    public <E extends SVGElement, B extends TypedBuilder<E, B>> B style(HasSVGElement<E, B> element, int value) {
-        return style(element, String.valueOf(value));
+    public <E extends SVGElement, B extends TypedBuilder<E, B>> B applyTo(HasSVGElement<E, B> element, int value) {
+        element.element().style.setProperty(name, String.valueOf(value));
+        return element.that();
     }
 
-    public <E extends SVGElement, B extends TypedBuilder<E, B>> B style(HasSVGElement<E, B> element, String value) {
-        return element.style(assign(value));
+    public <E extends SVGElement, B extends TypedBuilder<E, B>> B applyTo(HasSVGElement<E, B> element, String value) {
+        element.element().style.setProperty(name, value);
+        return element.that();
     }
 
-    public void style(HTMLElement element, int value) {
-        style(element, String.valueOf(value));
+    public void applyTo(HTMLElement element, int value) {
+        applyTo(element, String.valueOf(value));
     }
 
-    public void style(HTMLElement element, String value) {
-        element.style.cssText += assign(value);
-    }
-
-    private String assign(String value) {
-        return name + ":" + value;
+    public void applyTo(HTMLElement element, String value) {
+        element.style.setProperty(name, value);
     }
 }

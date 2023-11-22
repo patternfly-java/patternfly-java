@@ -35,7 +35,7 @@ public enum ComponentType {
 
     Button("btn", "PF5/Button"),
 
-    Card("crd", null),
+    Card("crd", "PF5/Card"),
 
     CardView("cv", null),
 
@@ -71,13 +71,13 @@ public enum ComponentType {
 
     InputGroup("ig", null),
 
-    Label("lbl", null),
+    Label("lbl", "PF5/Label"),
 
     LabelGroup("lbg", null),
 
     List("lst", null),
 
-    Masthead("mh", null),
+    Masthead("mh", "PF5/Masthead"),
 
     Menu("mu", "PF5/Menu"),
 
@@ -95,7 +95,9 @@ public enum ComponentType {
 
     Pagination("pgn", null),
 
-    Popover("pvr", null),
+    Popover("pvr", "PF5/Popover"),
+
+    Radio("rd", "PF5/Radio"),
 
     Select("sel", null),
 

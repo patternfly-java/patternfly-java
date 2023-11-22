@@ -27,7 +27,8 @@ import static org.patternfly.layout.Classes.masthead;
 
 /**
  * Container for the content of a {@link Masthead} component. This container represents the main portion of the masthead area
- * and will typically contain a {@link Toolbar} or other menu-like content such as a {@link org.patternfly.component.Dropdown}.
+ * and will typically contain a {@link Toolbar} or other menu-like content such as a
+ * {@link org.patternfly.component.menu.Dropdown}.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>

@@ -19,9 +19,11 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.SelectionMode;
 import org.patternfly.handler.ComponentHandler;
@@ -32,7 +34,6 @@ import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
@@ -152,7 +153,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                     .add(mainElement = div()
                             .add(textElement = div().element())
                             .element());
-            console.error("Unknown menu item type " + itemType);
+            Logger.unknown(ComponentType.Menu, "Unknown menu item type " + itemType);
         }
 
         add(itemElement = itemBuilder.css(component(Classes.menu, item)).element());
@@ -303,7 +304,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).href = href;
         } else {
-            console.warn("Ignore href on menu item '" + id + "' with type '" + itemType.name() + "'");
+            Logger.unsupported(ComponentType.Menu,
+                    "Ignore href on menu item '" + id + "' with type '" + itemType.name() + "'");
         }
         return this;
     }
@@ -318,7 +320,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
                     .textContent("(opens a new window)")
                     .element());
         } else {
-            console.warn("Ignore external flag on menu item '" + id + "' with type '" + itemType.name() + "'");
+            Logger.unsupported(ComponentType.Menu,
+                    "Ignore external flag on menu item '" + id + "' with type '" + itemType.name() + "'");
         }
         return this;
     }
