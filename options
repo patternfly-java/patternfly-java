@@ -19,7 +19,7 @@
 'UTF-8'
 -Xdoclint:none
 -doctitle
-'PatternFly Java 0.1.0 API'
+'PatternFly Java 0.1.1 API'
 -link
 'https://hal.github.io/elemento'
 -link
@@ -39,4 +39,4 @@
 -use
 -version
 -windowtitle
-'PatternFly Java 0.1.0 API'
+'PatternFly Java 0.1.1 API'
