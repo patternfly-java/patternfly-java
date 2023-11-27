@@ -65,7 +65,7 @@ public enum ComponentType {
 
     ExpandableSection("exs", "PF5/ExpandableSection"),
 
-    Form("frm", null),
+    Form("frm", "PF5/Form"),
 
     HelperText("ht", "PF5/HelperText"),
 

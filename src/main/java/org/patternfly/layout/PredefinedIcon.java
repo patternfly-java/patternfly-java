@@ -79,6 +79,8 @@ public enum PredefinedIcon {
 
     longArrowAltUp(fas("long-arrow-alt-up")),
 
+    minus(fas("minus")),
+
     play(fas("play")),
 
     plusCircle(fas("plus-circle")),

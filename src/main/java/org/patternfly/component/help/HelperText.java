@@ -15,23 +15,17 @@
  */
 package org.patternfly.component.help;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Aria;
-import org.patternfly.core.HasValue;
-import org.patternfly.core.WithText;
-import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
 
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.help.HelperTextItem.helperTextItem;
+import static org.patternfly.core.Aria.live;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.helperText;
-import static org.patternfly.layout.Classes.item;
 
 /**
  * Helper text is an on-screen field guideline that helps provide context regarding field inputs.
@@ -39,86 +33,63 @@ import static org.patternfly.layout.Classes.item;
  * @see <a href=
  *      "https://www.patternfly.org/components/helper-text/html">https://www.patternfly.org/components/helper-text/html</a>
  */
-public class HelperText extends BaseComponentFlat<HTMLDivElement, HelperText> implements
-        WithText<HTMLDivElement, HelperText>,
-        HasValue<String> {
+public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
 
     // ------------------------------------------------------ factory
 
+    public static HelperText helperText() {
+        return new HelperText(div());
+    }
+
+    public static <E extends HTMLElement> HelperText helperText(HTMLContainerBuilder<E> builder) {
+        return new HelperText(builder);
+    }
+
+    /**
+     * Shortcut for a helper text with one item {@code helperText().addItem(helperTextItem(text))}
+     */
     public static HelperText helperText(String text) {
-        return new HelperText(text);
+        return helperText().addItem(helperTextItem(text));
+    }
+
+    /**
+     * Shortcut for a helper text with one item {@code helperText().addItem(helperTextItem(text, status))}
+     */
+    public static HelperText helperText(String text, HelperTextStatus status) {
+        return helperText().addItem(helperTextItem(text, status));
     }
 
     // ------------------------------------------------------ instance
 
-    private final HTMLElement textElement;
-
-    HelperText(String text) {
-        super(div().css(component(helperText)).element(), ComponentType.HelperText);
-        element().appendChild(div().css(component(helperText, item))
-                .add(textElement = span().css(component(helperText, item, Classes.text))
-                        .textContent(text)
-                        .element())
-                .element());
+    <E extends HTMLElement> HelperText(HTMLContainerBuilder<E> builder) {
+        super(builder.css(component(helperText)).element(), ComponentType.HelperText);
     }
 
     // ------------------------------------------------------ add
 
-    public HelperText addFoo(/* Foo foo */) {
-        return this;
+    public HelperText addItem(HelperTextItem item) {
+        return add(item);
     }
 
     // override to assure internal wiring
-    public HelperText add(/* Foo foo */) {
-        return this;
-    }
-
-    // ------------------------------------------------------ builder
-
-    public HelperText methodsReturningAReferenceToItself() {
-        return this;
-    }
-
-    @Override
-    public HelperText text(String text) {
-        return this;
-    }
-
-    @Override
-    public HelperText that() {
+    public HelperText add(HelperTextItem item) {
+        element().appendChild(item.element());
         return this;
     }
 
     // ------------------------------------------------------ aria
 
-    public HelperText ariaLabel(String label) {
-        return aria(Aria.label, label);
+    /**
+     * Flag for indicating whether the helper text container is a live region. Use this prop when you expect or intend for any helper text items within the container to be {@linkplain HelperTextItem#dynamic() dynamically} updated.
+     */
+    public HelperText liveRegion() {
+        return aria(live, "polite");
     }
 
-    // ------------------------------------------------------ events
-
-    public HelperText onFoo(ComponentHandler<HelperText> handler) {
-        return on(click, e -> handler.handle(e, this));
-    }
-
-    // ------------------------------------------------------ api
+    // ------------------------------------------------------ builder
 
     @Override
-    public String value() {
-        return textElement.textContent;
-    }
-
-    public void doSomething() {
-
-    }
-
-    public String getter() {
-        return "some piece of information";
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
+    public HelperText that() {
+        return this;
     }
 }

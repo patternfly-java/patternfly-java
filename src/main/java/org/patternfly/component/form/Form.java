@@ -20,10 +20,11 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 
-import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLFormElement;
 
-import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.form;
 
 /**
  * A form is a group of elements used to collect information from a user in a variety of contexts including in a modal, in a
@@ -33,7 +34,7 @@ import static org.jboss.elemento.EventType.click;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/form/html">https://www.patternfly.org/components/forms/form/html</a>
  */
-public class Form extends BaseComponent<HTMLElement, Form> {
+public class Form extends BaseComponent<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ factory
 
@@ -44,18 +45,18 @@ public class Form extends BaseComponent<HTMLElement, Form> {
     // ------------------------------------------------------ instance
 
     Form() {
-        super(div().element(), (ComponentType) null);
+        super(form().css(component(form)).apply(f -> f.noValidate = true).element(), ComponentType.Form);
     }
 
     // ------------------------------------------------------ add
 
-    public Form addFoo(/* Foo foo */) {
-        return this;
+    public Form addGroup(FormGroup group) {
+        return add(group);
     }
 
     // override to assure internal wiring
-    public Form add(/* Foo foo */) {
-        return this;
+    public Form add(FormGroup group) {
+        return add(group.element());
     }
 
     // ------------------------------------------------------ builder

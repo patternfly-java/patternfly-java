@@ -71,6 +71,7 @@ public interface Classes {
     String display = "display";
     String divider = "divider";
     String dropdown = "dropdown";
+    String dynamic = "dynamic";
     String editable = "editable";
     String editableActive = "editable-active";
     String emptyState = "empty-state";
@@ -114,6 +115,7 @@ public interface Classes {
     String icons = "icons";
     String iconButtonGroup = "icon-button-group";
     String indented = "indented";
+    String indeterminate = "indeterminate";
     String indicator = "indicator";
     String info = "info";
     String inline = "inline";
