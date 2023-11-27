@@ -29,6 +29,7 @@ import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.WithText;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.layout.Classes;
 
@@ -41,6 +42,8 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -48,7 +51,6 @@ import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.chip;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.PredefinedIcon.times;
 import static org.patternfly.layout.Variable.componentVar;
@@ -64,6 +66,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
         ComponentReference<ChipGroup>,
         Closeable<HTMLElement, Chip>,
         HasValue<String>,
+        WithText<HTMLElement, Chip>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -99,9 +102,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
                         .element())
                 .element());
         add(actionsElement = span().css(component(chip, actions))
-                .add(closeButton = button(times, "Close")
-                        .plain()
+                .add(closeButton = button().icon(times).plain()
                         .id(buttonId)
+                        .aria(label, "Close")
                         .aria(labelledBy, buttonId + " " + textId)
                         .on(click, event -> close(event, true)))
                 .element());
@@ -163,6 +166,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
         return onClose(null);
     }
 
+    @Override
     public Chip text(String text) {
         textElement.textContent = text;
         tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
@@ -217,11 +221,5 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
 
     public Badge badge() {
         return badge;
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
     }
 }

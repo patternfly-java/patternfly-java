@@ -26,6 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Closeable;
+import org.patternfly.core.WithText;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
@@ -66,7 +67,10 @@ import static org.patternfly.thirdparty.popper.TriggerAction.mouseenter;
  *
  * @see <a href="https://www.patternfly.org/components/tooltip/html">https://www.patternfly.org/components/tooltip/html</a>
  */
-public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements Closeable<HTMLDivElement, Tooltip>, Attachable {
+public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
+        Closeable<HTMLDivElement, Tooltip>,
+        WithText<HTMLDivElement, Tooltip>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -225,6 +229,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements C
         return this;
     }
 
+    @Override
     public Tooltip text(String text) {
         contentElement.textContent = text;
         if (isAttached(this) && isVisible(this)) {

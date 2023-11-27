@@ -20,12 +20,17 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.IconPosition;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.form.Checkbox;
+import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.SelectionMode;
+import org.patternfly.core.WithIcon;
+import org.patternfly.core.WithIconAndText;
+import org.patternfly.core.WithText;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -69,8 +74,12 @@ import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.PredefinedIcon.externalLinkAlt;
 import static org.patternfly.layout.PredefinedIcon.star;
 
-public class MenuItem extends SubComponent<HTMLElement, MenuItem>
-        implements Disabled<HTMLElement, MenuItem>, ComponentReference<Menu> {
+public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
+        Disabled<HTMLElement, MenuItem>,
+        WithText<HTMLElement, MenuItem>,
+        WithIcon<HTMLElement, MenuItem>,
+        WithIconAndText<HTMLElement, MenuItem>,
+        ComponentReference<Menu> {
 
     // ------------------------------------------------------ factory
 
@@ -289,6 +298,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return Disabled.super.disabled(disabled);
     }
 
+    @Override
     public MenuItem text(String text) {
         textElement.textContent = text;
         return this;
@@ -349,32 +359,23 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem>
         return this;
     }
 
-    public MenuItem icon(PredefinedIcon predefinedIcon) {
-        return icon(predefinedIcon.className);
-    }
-
-    public MenuItem icon(String iconClass) {
+    @Override
+    public MenuItem icon(InlineIcon icon) {
         if (iconElement != null) {
             removeChildrenFrom(iconElement);
-            iconElement.appendChild(inlineIcon(iconClass).element());
+            iconElement.appendChild(icon.element());
         } else {
-            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, icon))
-                    .add(inlineIcon(iconClass))
+            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, Classes.icon))
+                    .add(icon)
                     .element());
         }
         return this;
     }
 
-    public MenuItem icon(HTMLElement element) {
-        if (iconElement != null) {
-            removeChildrenFrom(iconElement);
-            iconElement.appendChild(element);
-        } else {
-            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, icon))
-                    .add(element)
-                    .element());
-        }
-        return this;
+    @Override
+    public MenuItem iconAndText(InlineIcon icon, String text, IconPosition iconPosition) {
+        icon(icon);
+        return text(text);
     }
 
     @Override

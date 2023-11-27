@@ -46,8 +46,10 @@ import static org.patternfly.layout.Classes.standalone;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/radio/html">https://www.patternfly.org/components/forms/radio/html</a>
  */
-public class Radio extends BaseComponent<HTMLElement, Radio>
-        implements HasValue<Boolean>, Disabled<HTMLElement, Radio>, Required<HTMLElement, Radio> {
+public class Radio extends BaseComponent<HTMLElement, Radio> implements
+        HasValue<Boolean>,
+        Disabled<HTMLElement, Radio>,
+        Required<HTMLElement, Radio> {
 
     // ------------------------------------------------------ factory
 

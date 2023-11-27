@@ -50,6 +50,9 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -57,8 +60,6 @@ import static org.patternfly.layout.Classes.chipGroup;
 import static org.patternfly.layout.Classes.close;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.label;
-import static org.patternfly.layout.Classes.labelledBy;
 import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
@@ -111,7 +112,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         if (category != null) {
             category(category);
         } else {
-            aria(label, "Chip group category");
+            aria(Classes.label, "Chip group category");
         }
         Attachable.register(this, this);
     }
@@ -168,7 +169,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         if (categoryElement == null) {
             String categoryId = Id.unique(componentType().id, "category");
             css(modifier(Classes.category));
-            categoryElement = span().css(component(chipGroup, label))
+            categoryElement = span().css(component(chipGroup, Classes.label))
                     .id(categoryId)
                     .element();
             insertBefore(categoryElement, listElement);
@@ -200,10 +201,10 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         }
 
         add(div().css(component(chipGroup, close))
-                .add(closeButton = Button.button(timesCircle, "Close chip group")
-                        .plain()
+                .add(closeButton = button().icon(timesCircle).plain()
                         .id(closeId)
-                        .aria(Classes.labelledBy, labelledBy)
+                        .aria(label, "Close chip group")
+                        .aria(Aria.labelledBy, labelledBy)
                         .on(click, event -> close(event, true))));
         return this;
     }
@@ -227,9 +228,9 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
 
     @Override
     public ChipGroup aria(String name, String value) {
-        if (name.equals(Aria.label)) {
+        if (name.equals(label)) {
             // set label also on list element
-            listElement.setAttribute(Aria.label, value);
+            listElement.setAttribute(label, value);
         }
         return super.aria(name, value);
     }

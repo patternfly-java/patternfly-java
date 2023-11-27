@@ -27,10 +27,10 @@ import org.patternfly.core.Expandable;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.Severity;
+import org.patternfly.core.WithIcon;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -76,8 +76,12 @@ import static org.patternfly.layout.Variable.componentVar;
  *
  * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
  */
-public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inline<HTMLDivElement, Alert>,
-        Plain<HTMLDivElement, Alert>, Closeable<HTMLDivElement, Alert>, Expandable<HTMLDivElement, Alert>, Attachable,
+public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
+        Inline<HTMLDivElement, Alert>,
+        Plain<HTMLDivElement, Alert>,
+        Closeable<HTMLDivElement, Alert>,
+        Expandable<HTMLDivElement, Alert>, Attachable,
+        WithIcon<HTMLDivElement, Alert>,
         ComponentReference<AlertGroup> {
 
     // ------------------------------------------------------ factory
@@ -198,22 +202,15 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements Inlin
 
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button(times, "Close " + severity.aria + ": " + title)
-                        .plain()
+                .add(closeButton = button().icon(times).plain()
+                        .aria(label, "Close " + severity.aria + ": " + title)
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);
         return onClose(closeHandler);
     }
 
-    public Alert customIcon(String iconClass) {
-        return customIcon(inlineIcon(iconClass));
-    }
-
-    public Alert customIcon(PredefinedIcon icon) {
-        return customIcon(inlineIcon(icon));
-    }
-
-    public Alert customIcon(InlineIcon icon) {
+    @Override
+    public Alert icon(InlineIcon icon) {
         removeChildrenFrom(iconContainer);
         iconContainer.appendChild(icon.element());
         return this;

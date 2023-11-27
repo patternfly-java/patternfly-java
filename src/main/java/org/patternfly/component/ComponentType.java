@@ -67,6 +67,8 @@ public enum ComponentType {
 
     Form("frm", null),
 
+    HelperText("ht", "PF5/HelperText"),
+
     Icon("icn", "PF5/Icon"),
 
     InputGroup("ig", null),

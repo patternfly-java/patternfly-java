@@ -39,6 +39,8 @@ public class GalleryItem extends BaseLayout<HTMLDivElement, GalleryItem> impleme
         super(div().css(layout(gallery, item)).element());
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
     public GalleryItem that() {
         return this;

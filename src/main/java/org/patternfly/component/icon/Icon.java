@@ -48,23 +48,31 @@ import static org.patternfly.layout.Size.md;
  *
  * @see <a href="https://www.patternfly.org/components/icon/html">https://www.patternfly.org/components/icon/html</a>
  */
-public class Icon extends BaseComponent<HTMLElement, Icon>
-        implements Inline<HTMLElement, Icon>, WithProgress<HTMLElement, Icon> {
+public class Icon extends BaseComponent<HTMLElement, Icon> implements
+        Inline<HTMLElement, Icon>,
+        WithProgress<HTMLElement, Icon> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static Icon icon(PredefinedIcon predefinedIcon) {
-        return new Icon(predefinedIcon.className);
+    public static Icon icon(String iconClass) {
+        return new Icon(inlineIcon(iconClass));
     }
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static Icon icon(String iconClass) {
-        return new Icon(iconClass);
+    public static Icon icon(PredefinedIcon predefinedIcon) {
+        return new Icon(inlineIcon(predefinedIcon));
+    }
+
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static Icon icon(InlineIcon icon) {
+        return new Icon(icon);
     }
 
     // ------------------------------------------------------ instance
@@ -74,13 +82,13 @@ public class Icon extends BaseComponent<HTMLElement, Icon>
     private Size iconSize;
     private Spinner spinner;
 
-    Icon(String iconClass) {
-        super(span().css(component(icon))
-                .add(span().css(component(icon, Classes.content))
-                        .add(inlineIcon(iconClass)))
+    Icon(InlineIcon icon) {
+        super(span().css(component(Classes.icon))
+                .add(span().css(component(Classes.icon, Classes.content))
+                        .add(icon))
                 .element(),
                 ComponentType.Icon);
-        this.content = find(By.classname(component(icon, Classes.content)));
+        this.content = find(By.classname(component(Classes.icon, Classes.content)));
     }
 
     // ------------------------------------------------------ builder

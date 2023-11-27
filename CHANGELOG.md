@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added 
+
+- Add the following interfaces to unify icon and text handling across components:
+  - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>` 
+  - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 
+  - `WithIconAndText<E extends Element, B extends TypedBuilder<E, B>>`
+
 ## [0.1.1] - 2023-11-22
 
 ### Added

@@ -40,11 +40,6 @@ public class Stack extends BaseLayout<HTMLDivElement, Stack> {
         super(div().css(layout(stack)).element());
     }
 
-    @Override
-    public Stack that() {
-        return this;
-    }
-
     // ------------------------------------------------------ add
 
     public Stack addItem(StackItem item) {
@@ -56,5 +51,10 @@ public class Stack extends BaseLayout<HTMLDivElement, Stack> {
     /** Adds {@linkplain Classes#modifier(String) modifier(gutter)} */
     public Stack gutter() {
         return css(modifier(gutter));
+    }
+
+    @Override
+    public Stack that() {
+        return this;
     }
 }

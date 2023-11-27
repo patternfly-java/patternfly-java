@@ -106,6 +106,7 @@ public interface Classes {
     String hasPopup = "haspopup";
     String head = "head";
     String header = "header";
+    String helperText = "helper-text";
     String horizontal = "horizontal";
     String horizontalSubnav = "horizontal-subnav";
     String hoverable = "hoverable";
@@ -129,7 +130,6 @@ public interface Classes {
     String keyboard = "keyboard";
     String label = "label";
     String labelGroup = "label-group";
-    String labelledBy = "labelledby";
     String leadBall = "lead-ball";
     String left = "left";
     String limitWidth = "limit-width";

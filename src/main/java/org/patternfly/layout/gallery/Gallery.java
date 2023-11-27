@@ -15,8 +15,7 @@
  */
 package org.patternfly.layout.gallery;
 
-import java.util.Map;
-
+import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Classes;
@@ -46,11 +45,6 @@ public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
         super(div().css(layout(gallery)).element());
     }
 
-    @Override
-    public Gallery that() {
-        return this;
-    }
-
     // ------------------------------------------------------ add
 
     public Gallery addItem(GalleryItem item) {
@@ -64,33 +58,43 @@ public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
         return css(modifier(gutter));
     }
 
-    public Gallery minWidths(Map<Breakpoint, String> minWidths) {
-        if (minWidths != null) {
-            minMax("min", minWidths);
+    @SafeVarargs
+    public final Gallery minWidths(Tuple<Breakpoint, String> first, Tuple<Breakpoint, String>... rest) {
+        minMax("min", first);
+        if (rest != null) {
+            for (Tuple<Breakpoint, String> tuple : rest) {
+                minMax("min", tuple);
+            }
         }
         return this;
     }
 
-    public Gallery maxWidths(Map<Breakpoint, String> maxWidths) {
-        if (maxWidths != null) {
-            minMax("max", maxWidths);
+    @SafeVarargs
+    public final Gallery maxWidths(Tuple<Breakpoint, String> first, Tuple<Breakpoint, String>... rest) {
+        minMax("max", first);
+        if (rest != null) {
+            for (Tuple<Breakpoint, String> tuple : rest) {
+                minMax("max", tuple);
+            }
         }
+        return this;
+    }
+
+    @Override
+    public Gallery that() {
         return this;
     }
 
     // ------------------------------------------------------ internal
 
-    private void minMax(String minMax, Map<Breakpoint, String> minWidths) {
+    private void minMax(String minMax, Tuple<Breakpoint, String> tuple) {
         // Variable examples:
         // --pf-v5-l-gallery--GridTemplateColumns--min: 100%;
         // --pf-v5-l-gallery--GridTemplateColumns--min-on-md: 100px;
         // --pf-v5-l-gallery--GridTemplateColumns--min-on-xl: 300px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-md: 200px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-xl: 1fr;
-        for (Map.Entry<Breakpoint, String> entry : minWidths.entrySet()) {
-            Breakpoint breakpoint = entry.getKey();
-            String minMaxBreak = breakpoint == default_ ? minMax : minMax + "-on-" + breakpoint.value;
-            componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), entry.getValue());
-        }
+        String minMaxBreak = tuple.key == default_ ? minMax : minMax + "-on-" + tuple.key.value;
+        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple.value);
     }
 }

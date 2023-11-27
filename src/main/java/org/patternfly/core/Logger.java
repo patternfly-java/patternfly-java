@@ -25,23 +25,38 @@ import static elemental2.dom.DomGlobal.console;
 public final class Logger {
 
     public static void nyi(ComponentType componentType, String message) {
-        console.error(format(componentType, message));
+        console.error(format(componentType.componentName, message));
+    }
+
+    public static void nyi(String category, String message) {
+        console.error(format(category, message));
     }
 
     public static void undefined(ComponentType componentType, String message) {
-        console.error(format(componentType, message));
+        console.error(format(componentType.componentName, message));
+    }
+
+    public static void undefined(String category, String message) {
+        console.error(format(category, message));
     }
 
     public static void unknown(ComponentType componentType, String message) {
-        console.error(format(componentType, message));
+        console.error(format(componentType.componentName, message));
+    }
+
+    public static void unknown(String category, String message) {
+        console.error(format(category, message));
     }
 
     public static void unsupported(ComponentType componentType, String message) {
-        console.warn(format(componentType, message));
+        console.warn(format(componentType.componentName, message));
     }
 
-    private static String format(ComponentType componentType, String message) {
-        String prefix = componentType != null ? componentType.componentName + ": " : "";
+    public static void unsupported(String category, String message) {
+        console.warn(format(category, message));
+    }
+
+    private static String format(String prefix, String message) {
         return prefix + message;
     }
 }

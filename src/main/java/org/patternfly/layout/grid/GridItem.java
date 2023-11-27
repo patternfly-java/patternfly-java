@@ -13,36 +13,62 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.stack;
+package org.patternfly.layout.grid;
 
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.layout.BaseLayout;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.layout.Classes.grid;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.stack;
+import static org.patternfly.layout.Classes.modifier;
 
-public class StackItem extends BaseLayout<HTMLDivElement, StackItem> implements Fill<HTMLDivElement, StackItem> {
+public class GridItem extends BaseLayout<HTMLDivElement, GridItem> implements Fill<HTMLDivElement, GridItem> {
 
     // ------------------------------------------------------ factory
 
-    public static StackItem stackItem() {
-        return new StackItem();
+    public static GridItem gridItem() {
+        return new GridItem();
     }
 
     // ------------------------------------------------------ instance
 
-    StackItem() {
-        super(div().css(layout(stack, item)).element());
+    GridItem() {
+        super(div().css(layout(grid, item)).element());
     }
 
     // ------------------------------------------------------ builder
 
-    @Override
-    public StackItem that() {
+    public GridItem colSpan(int cols) {
+        if (verifyRange("colSpan", cols)) {
+            css(modifier(cols + "-col"));
+        }
         return this;
+    }
+
+    public GridItem rowSpan(int rows) {
+        if (verifyRange("rowSpan", rows)) {
+            css(modifier(rows + "-row"));
+        }
+        return this;
+    }
+
+    @Override
+    public GridItem that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private boolean verifyRange(String property, int value) {
+        if (value < 1 || value > 12) {
+            Logger.unsupported("PF5/GridItem", "'" + property + "' out of range. Given: " + value + ", allowed [1,12].");
+            return false;
+        }
+        return true;
     }
 }

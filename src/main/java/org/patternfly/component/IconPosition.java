@@ -13,12 +13,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.component;
 
-public interface Variables {
-    String GridTemplateColumns = "GridTemplateColumns";
-    String LineClamp = "LineClamp";
-    String MaxWidth = "MaxWidth";
-    String MaxHeight = "MaxHeight";
-    String Order = "Order";
+import org.patternfly.layout.Classes;
+
+import static org.patternfly.layout.Classes.modifier;
+
+public enum IconPosition {
+
+    start(modifier(Classes.start)),
+
+    end(modifier(Classes.end));
+
+    final String modifier;
+
+    IconPosition(String modifier) {
+        this.modifier = modifier;
+    }
 }

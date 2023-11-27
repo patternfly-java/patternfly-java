@@ -26,6 +26,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.expanded;
+import static org.patternfly.core.Aria.label;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.masthead;
 import static org.patternfly.layout.Classes.toggle;
@@ -55,7 +56,10 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
 
     MastheadToggle() {
         super(div().css(component(masthead, toggle)).element());
-        add(toggleButton = button(bars, "Global Navigation").plain()
+        add(toggleButton = button()
+                .plain()
+                .icon(bars)
+                .aria(label, "Global Navigation")
                 .aria(expanded, true) // expanded by default
                 .onClick((e, b) -> toggle()));
     }

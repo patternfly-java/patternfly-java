@@ -13,11 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.button;
+package org.patternfly.core;
 
-public enum ButtonElement {
+import org.jboss.elemento.IsElement;
+import org.jboss.elemento.TypedBuilder;
 
-    button,
+import elemental2.dom.Element;
 
-    link,
+public interface WithText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
+        IsElement<E> {
+
+    B text(String text);
 }

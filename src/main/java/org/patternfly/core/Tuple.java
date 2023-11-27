@@ -13,21 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.button;
+package org.patternfly.core;
 
-import org.patternfly.layout.Classes;
+public class Tuple<K, V> {
 
-import static org.patternfly.layout.Classes.modifier;
+    public static <K, V> Tuple<K, V> tuple(K key, V value) {
+        return new Tuple<>(key, value);
+    }
 
-public enum IconPosition {
+    public final K key;
+    public final V value;
 
-    start(modifier(Classes.start)),
-
-    end(modifier(Classes.end));
-
-    final String modifier;
-
-    IconPosition(String modifier) {
-        this.modifier = modifier;
+    Tuple(K key, V value) {
+        this.key = key;
+        this.value = value;
     }
 }

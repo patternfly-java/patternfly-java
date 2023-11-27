@@ -17,17 +17,20 @@ package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.button.Button;
+import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
+import org.patternfly.core.WithIcon;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
@@ -35,46 +38,44 @@ import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
 public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockAction> implements
-        ComponentReference<CodeBlock> {
+        WithIcon<HTMLDivElement, CodeBlockAction>, ComponentReference<CodeBlock> {
 
     // ------------------------------------------------------ factory
 
-    public static CodeBlockAction codeBlockAction() {
-        return new CodeBlockAction(null);
-    }
-
-    public static CodeBlockAction codeBlockAction(PredefinedIcon icon) {
-        return new CodeBlockAction(icon.className);
-    }
-
     public static CodeBlockAction codeBlockAction(String iconClass) {
-        return new CodeBlockAction(iconClass);
+        return new CodeBlockAction(inlineIcon(iconClass));
+    }
+
+    public static CodeBlockAction codeBlockAction(PredefinedIcon predefinedIcon) {
+        return new CodeBlockAction(inlineIcon(predefinedIcon));
+    }
+
+    public static CodeBlockAction codeBlockAction(InlineIcon icon) {
+        return new CodeBlockAction(icon);
     }
 
     public static CodeBlockAction codeBlockCopyToClipboardAction() {
-        return new CodeBlockAction(copy.className)
+        return new CodeBlockAction(inlineIcon(copy))
                 .ariaLabel("Copy to clipboard")
                 .onClick((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
     }
 
     // ------------------------------------------------------ instance
 
-    private HTMLElement buttonElement;
+    private final Button button;
     private ComponentHandler<CodeBlockAction> handler;
     private CodeBlock codeBlock;
 
-    CodeBlockAction(String iconClass) {
+    CodeBlockAction(InlineIcon icon) {
         super(div().css(component(Classes.codeBlock, actions, item)).element());
-        if (iconClass != null) {
-            add(buttonElement = button().plain().addIcon(iconClass).element());
-        }
+        add(button = button().plain().icon(icon));
     }
 
     @Override
     public void passComponent(CodeBlock codeBlock) {
         this.codeBlock = codeBlock;
-        if (handler != null && buttonElement != null) {
-            buttonElement.addEventListener(click.name, e -> handler.handle(e, this));
+        if (handler != null) {
+            button.on(click, e -> handler.handle(e, this));
         }
     }
 
@@ -86,6 +87,12 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     // ------------------------------------------------------ builder
 
     @Override
+    public CodeBlockAction icon(InlineIcon icon) {
+        button.icon(icon);
+        return this;
+    }
+
+    @Override
     public CodeBlockAction that() {
         return this;
     }
@@ -93,9 +100,7 @@ public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockActio
     // ------------------------------------------------------ aria
 
     public CodeBlockAction ariaLabel(String label) {
-        if (buttonElement != null) {
-            buttonElement.setAttribute(Aria.label, label);
-        }
+        button.aria(Aria.label, label);
         return this;
     }
 

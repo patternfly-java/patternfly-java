@@ -17,6 +17,7 @@ package org.patternfly.component.title;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.WithText;
 import org.patternfly.layout.Size;
 
 import elemental2.dom.HTMLHeadingElement;
@@ -31,7 +32,7 @@ import static org.patternfly.layout.Classes.title;
  *
  * @see <a href= "https://www.patternfly.org/components/title/html">https://www.patternfly.org/components/title/html</a>
  */
-public class Title extends BaseComponent<HTMLHeadingElement, Title> {
+public class Title extends BaseComponent<HTMLHeadingElement, Title> implements WithText<HTMLHeadingElement, Title> {
 
     // ------------------------------------------------------ factory
 
@@ -53,6 +54,12 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> {
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public Title text(String text) {
+        element().textContent = text;
+        return this;
+    }
 
     @Override
     public Title that() {

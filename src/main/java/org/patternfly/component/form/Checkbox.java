@@ -51,8 +51,10 @@ import static org.patternfly.layout.Classes.standalone;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
  */
-public class Checkbox extends BaseComponent<HTMLElement, Checkbox>
-        implements HasValue<Boolean>, Disabled<HTMLElement, Checkbox>, Required<HTMLElement, Checkbox> {
+public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
+        HasValue<Boolean>,
+        Disabled<HTMLElement, Checkbox>,
+        Required<HTMLElement, Checkbox> {
 
     // ------------------------------------------------------ factory
 

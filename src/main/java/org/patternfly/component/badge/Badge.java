@@ -15,8 +15,11 @@
  */
 package org.patternfly.component.badge;
 
+import java.util.function.Function;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.layout.Classes;
 
@@ -34,7 +37,7 @@ import static org.patternfly.layout.Classes.unread;
  *
  * @see <a href= "https://www.patternfly.org/components/badge/html">https://www.patternfly.org/components/badge/html</a>
  */
-public class Badge extends BaseComponent<HTMLElement, Badge> {
+public class Badge extends BaseComponent<HTMLElement, Badge> implements HasValue<Integer> {
 
     // ------------------------------------------------------ factory
 
@@ -53,6 +56,8 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
     private int limit;
     private HTMLElement screenReader;
     private ChangeHandler<Badge, Integer> onChange;
+    private Function<Integer, String> display;
+    private Function<Integer, String> maxDisplay;
 
     Badge(int count) {
         this(count, Integer.MAX_VALUE);
@@ -83,17 +88,39 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
 
     /** Sets the count of this badge. */
     public Badge count(int count) {
+        boolean changed = value != count;
         value = count;
-        valueElement.textContent = count > limit ? count + "+" : String.valueOf(count);
-        if (onChange != null) {
+        updateValue();
+        if (changed && onChange != null) {
             onChange.onChange(this, value);
         }
+        return this;
+    }
+
+    /**
+     * Use a function to render the text for the value of {@link #count()}. If not set {@code String.valueOf(count)} is used
+     * implicitly.
+     */
+    public Badge display(Function<Integer, String> display) {
+        this.display = display;
+        updateValue();
+        return this;
+    }
+
+    /**
+     * Use a function to render the text if {@link #count()} &gt; {@link #limit(int)}. If not set {@code count + "+"} is used
+     * implicitly.
+     */
+    public Badge maxDisplay(Function<Integer, String> maxDisplay) {
+        this.maxDisplay = maxDisplay;
+        updateValue();
         return this;
     }
 
     /** Sets the limit of this badge */
     public Badge limit(int limit) {
         this.limit = limit;
+        updateValue();
         return this;
     }
 
@@ -121,5 +148,28 @@ public class Badge extends BaseComponent<HTMLElement, Badge> {
 
     public int count() {
         return value;
+    }
+
+    @Override
+    public Integer value() {
+        return value;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void updateValue() {
+        if (value > limit) {
+            if (maxDisplay != null) {
+                valueElement.textContent = maxDisplay.apply(value);
+            } else {
+                valueElement.textContent = limit + "+";
+            }
+        } else {
+            if (display != null) {
+                valueElement.textContent = display.apply(value);
+            } else {
+                valueElement.textContent = String.valueOf(value);
+            }
+        }
     }
 }
