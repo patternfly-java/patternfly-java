@@ -15,13 +15,13 @@
  */
 package org.patternfly.dom;
 
+import elemental2.dom.CSSStyleDeclaration;
+import elemental2.dom.HTMLElement;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public class Window {
 
-    static Window window;
-
-    static Navigator navigator;
+    public native CSSStyleDeclaration getComputedStyle(HTMLElement element);
 }

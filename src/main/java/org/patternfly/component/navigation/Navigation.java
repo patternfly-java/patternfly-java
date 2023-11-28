@@ -142,15 +142,15 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
                     break;
                 case drillDown:
                 case flyout:
-                    Logger.nyi(componentType(), "Drill-down and fly-out not yet implemented");
+                    Logger.nyi(componentType(), element(), "Drill-down and fly-out not yet implemented");
                     itemsContainer = div().element();
                     break;
                 default:
-                    Logger.unknown(componentType(), "Unknown navigation type: " + type);
+                    Logger.unknown(componentType(), element(), "Unknown navigation type: " + type);
                     itemsContainer = div().element();
             }
         } else {
-            Logger.unknown(componentType(), "Unknown navigation type: " + type);
+            Logger.unknown(componentType(), element(), "Unknown navigation type: " + type);
             itemsContainer = div().element();
         }
     }
@@ -159,7 +159,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public <T> Navigation addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         if (type == grouped) {
-            Logger.unsupported(componentType(), "addItem(NavigationItem) is not supported for type " + type);
+            Logger.unsupported(componentType(), element(), "addItem(NavigationItem) is not supported for type " + type);
             return this;
         }
         for (T item : items) {
@@ -171,7 +171,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addItem(NavigationItem item) {
         if (type == grouped) {
-            Logger.unsupported(componentType(), "addItem(NavigationItem) is not supported for type " + type);
+            Logger.unsupported(componentType(), element(), "addItem(NavigationItem) is not supported for type " + type);
             return this;
         }
         items.put(item.id, item);
@@ -181,7 +181,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(NavigationGroup group) {
         if (type == flat || type == expandable || type instanceof Horizontal) {
-            Logger.unsupported(componentType(), "addGroup(NavigationGroup) is not supported for type " + type);
+            Logger.unsupported(componentType(), element(), "addGroup(NavigationGroup) is not supported for type " + type);
             return this;
         }
         groups.put(group.id, group);
@@ -191,7 +191,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     public Navigation addGroup(ExpandableNavigationGroup group) {
         if (type == flat || type == grouped || type instanceof Horizontal) {
-            Logger.unsupported(componentType(), "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+            Logger.unsupported(componentType(), element(),
+                    "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
             return this;
         }
         group.collapse(); // all groups are collapsed by default

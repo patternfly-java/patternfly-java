@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponentFlat;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.ValidationStatus;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithText;
@@ -34,8 +35,8 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
-import static org.patternfly.component.help.HelperTextStatus.default_;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
+import static org.patternfly.core.ValidationStatus.default_;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.dynamic;
 import static org.patternfly.layout.Classes.helperText;
@@ -60,7 +61,7 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
         return new HelperTextItem(div(), text, default_);
     }
 
-    public static HelperTextItem helperTextItem(String text, HelperTextStatus status) {
+    public static HelperTextItem helperTextItem(String text, ValidationStatus status) {
         return new HelperTextItem(div(), text, status);
     }
 
@@ -73,7 +74,7 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder, String text,
-            HelperTextStatus status) {
+            ValidationStatus status) {
         return new HelperTextItem(builder, text, status);
     }
 
@@ -82,11 +83,11 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
     private final HTMLElement textElement;
     private boolean defaultIcon;
     private boolean customScreenReaderText;
-    private HelperTextStatus status;
+    private ValidationStatus status;
     private HTMLElement screenReaderElement;
     private HTMLElement iconElement;
 
-    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, String text, HelperTextStatus status) {
+    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, String text, ValidationStatus status) {
         super(builder.css(component(helperText, item)).element());
         this.status = status;
         this.defaultIcon = false;
@@ -131,19 +132,19 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
         return text(text);
     }
 
-    public HelperTextItem status(HelperTextStatus status) {
+    public HelperTextItem status(ValidationStatus status) {
         return status(status, defaultIcon ? inlineIcon(status.icon) : null);
     }
 
-    public HelperTextItem status(HelperTextStatus status, String iconClass) {
+    public HelperTextItem status(ValidationStatus status, String iconClass) {
         return status(status, inlineIcon(iconClass));
     }
 
-    public HelperTextItem status(HelperTextStatus status, PredefinedIcon predefinedIcon) {
+    public HelperTextItem status(ValidationStatus status, PredefinedIcon predefinedIcon) {
         return status(status, inlineIcon(predefinedIcon));
     }
 
-    public HelperTextItem status(HelperTextStatus status, InlineIcon icon) {
+    public HelperTextItem status(ValidationStatus status, InlineIcon icon) {
         if (this.status != default_) {
             element().classList.remove(this.status.modifier);
         }

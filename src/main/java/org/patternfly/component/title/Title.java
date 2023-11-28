@@ -37,16 +37,16 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
     // ------------------------------------------------------ factory
 
     public static Title title(int level, String text) {
-        return new Title(level, text, null);
+        return new Title(level, null, text);
     }
 
-    public static Title title(int level, String text, Size size) {
-        return new Title(level, text, size);
+    public static Title title(int level, Size size, String text) {
+        return new Title(level, size, text);
     }
 
     // ------------------------------------------------------ instance
 
-    Title(int level, String text, Size size) {
+    Title(int level, Size size, String text) {
         super(h(level, text).css(component(title)).element(), ComponentType.Title);
         if (size != null) {
             css(size.modifier);

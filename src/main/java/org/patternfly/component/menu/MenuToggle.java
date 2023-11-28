@@ -103,7 +103,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             case typeahead:
                 return new MenuToggle(div(), type);
             default:
-                Logger.unknown(ComponentType.MenuToggle, "Unknown menu toggle type '" + type.name() + "'. " +
+                Logger.unknown(ComponentType.MenuToggle, null, "Unknown menu toggle type '" + type.name() + "'. " +
                         "Fallback to '" + MenuToggleType.default_.name() + "'.");
                 return new MenuToggle(button(), type);
         }
@@ -149,7 +149,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else {
             toggleElement = div().element();
             controlElement = div().element();
-            Logger.unknown(componentType(), "Unknown menu toggle type '" + type.name() + "'");
+            Logger.unknown(componentType(), element(), "Unknown menu toggle type '" + type.name() + "'");
         }
     }
 
@@ -164,7 +164,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(avatar).element());
         } else {
-            Logger.unsupported(componentType(), "Avatar is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), element(),
+                    "Avatar is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }
@@ -179,7 +180,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             this.badge = badge;
             insertBefore(span().css(component(menuToggle, count)).add(badge), controlElement);
         } else {
-            Logger.unsupported(componentType(), "Badge is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), element(),
+                    "Badge is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }
@@ -230,7 +232,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(icon).element());
         } else {
-            Logger.unsupported(componentType(), "Icon is not supported for menu toggles with type '" + type.name() + "'");
+            Logger.unsupported(componentType(), element(),
+                    "Icon is not supported for menu toggles with type '" + type.name() + "'");
         }
         return this;
     }

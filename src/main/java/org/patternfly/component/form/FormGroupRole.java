@@ -13,15 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.component.form;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+public enum FormGroupRole {
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+    @SuppressWarnings("SpellCheckingInspection")
+    radiogroup,
 
-    static Window window;
-
-    static Navigator navigator;
+    group
 }

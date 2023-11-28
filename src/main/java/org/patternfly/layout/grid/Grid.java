@@ -120,7 +120,7 @@ public class Grid extends BaseLayout<HTMLDivElement, Grid> {
 
     private boolean verifyRange(String property, int value) {
         if (value < 1 || value > 12) {
-            Logger.unsupported("PF5/Grid", "'" + property + "' out of range. Given: " + value + ", allowed [1,12].");
+            Logger.unsupported("PF5/Grid", element(), "'" + property + "' out of range. Given: " + value + ", allowed [1,12].");
             return false;
         }
         return true;

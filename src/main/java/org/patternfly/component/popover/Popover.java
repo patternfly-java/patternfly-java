@@ -29,6 +29,7 @@ import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.NoPadding;
 import org.patternfly.core.Severity;
 import org.patternfly.core.WithIcon;
@@ -96,6 +97,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     // ------------------------------------------------------ factory
 
+    public static Popover popover() {
+        return new Popover(null);
+    }
+
     public static Popover popover(By trigger) {
         return new Popover(() -> Elements.find(document.body, trigger));
     }
@@ -117,8 +122,8 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     public static final int Z_INDEX = 9999;
 
     private final HTMLElement contentElement;
-    private final Supplier<HTMLElement> trigger;
     private final Set<TriggerAction> triggerActions;
+    private Supplier<HTMLElement> trigger;
     private boolean flip;
     private boolean showClose;
     private int distance;
@@ -166,21 +171,27 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             failSafeRemoveFromParent(closeButton);
         }
 
-        HTMLElement triggerElement = trigger.get();
-        if (triggerElement != null) {
-            popper = new PopperBuilder(componentType(), triggerElement, element())
-                    .animationDuration(animationDuration)
-                    .zIndex(zIndex)
-                    .placement(placement)
-                    .addModifier(Modifiers.offset(distance),
-                            Modifiers.noOverflow(),
-                            Modifiers.hide(),
-                            Modifiers.flip(placement == auto || flip),
-                            Modifiers.placement(),
-                            Modifiers.eventListeners(false))
-                    .registerHandler(triggerActions, this::show, this::close)
-                    .removePopperOnTriggerDetach()
-                    .build();
+        if (trigger != null) {
+            HTMLElement triggerElement = trigger.get();
+            if (triggerElement != null) {
+                popper = new PopperBuilder(componentType(), triggerElement, element())
+                        .animationDuration(animationDuration)
+                        .zIndex(zIndex)
+                        .placement(placement)
+                        .addModifier(Modifiers.offset(distance),
+                                Modifiers.noOverflow(),
+                                Modifiers.hide(),
+                                Modifiers.flip(placement == auto || flip),
+                                Modifiers.placement(),
+                                Modifiers.eventListeners(false))
+                        .registerHandler(triggerActions, this::show, this::close)
+                        .removePopperOnTriggerDetach()
+                        .build();
+            } else {
+                Logger.undefined(componentType(), element(), "Unable to get trigger element");
+            }
+        } else {
+            Logger.undefined(componentType(), element(), "No trigger element defined");
         }
     }
 
@@ -308,10 +319,23 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         return this;
     }
 
-    public Popover trigger(TriggerAction... trigger) {
-        if (trigger != null) {
-            triggerActions.clear();
-            triggerActions.addAll(asList(trigger));
+    public Popover trigger(By trigger) {
+        return trigger(() -> Elements.find(document.body, trigger));
+    }
+
+    public Popover trigger(HTMLElement trigger) {
+        return trigger(() -> trigger);
+    }
+
+    public Popover trigger(Supplier<HTMLElement> trigger) {
+        this.trigger = trigger;
+        return this;
+    }
+
+    public Popover triggerActions(TriggerAction... triggerActions) {
+        if (triggerActions != null) {
+            this.triggerActions.clear();
+            this.triggerActions.addAll(asList(triggerActions));
         }
         return this;
     }

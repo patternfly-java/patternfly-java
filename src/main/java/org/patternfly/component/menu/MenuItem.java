@@ -162,7 +162,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
                     .add(mainElement = div()
                             .add(textElement = div().element())
                             .element());
-            Logger.unknown(ComponentType.Menu, "Unknown menu item type " + itemType);
+            Logger.unknown(ComponentType.Menu, element(), "Unknown menu item type " + itemType);
         }
 
         add(itemElement = itemBuilder.css(component(Classes.menu, item)).element());
@@ -314,7 +314,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).href = href;
         } else {
-            Logger.unsupported(ComponentType.Menu,
+            Logger.unsupported(ComponentType.Menu, element(),
                     "Ignore href on menu item '" + id + "' with type '" + itemType.name() + "'");
         }
         return this;
@@ -330,7 +330,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
                     .textContent("(opens a new window)")
                     .element());
         } else {
-            Logger.unsupported(ComponentType.Menu,
+            Logger.unsupported(ComponentType.Menu, element(),
                     "Ignore external flag on menu item '" + id + "' with type '" + itemType.name() + "'");
         }
         return this;

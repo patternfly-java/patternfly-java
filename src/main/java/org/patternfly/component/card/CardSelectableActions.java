@@ -74,7 +74,7 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
             String radioName = card.name;
             if (radioName == null) {
                 radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                Logger.undefined(ComponentType.Card,
+                Logger.undefined(ComponentType.Card, element(),
                         "Name is undefined for clickable card '" + cardId + "'.\n" +
                                 "You should provide a common name for all clickable cards using 'Card.name(String)'.\n" +
                                 "Fallback to generated name '" + radioName + "', which will cause selection issues!");
@@ -94,7 +94,7 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
                 String radioName = card.name;
                 if (radioName == null) {
                     radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    Logger.undefined(ComponentType.Card,
+                    Logger.undefined(ComponentType.Card, element(),
                             "Name is undefined for single selectable card '" + cardId + "'.\n" +
                                     "You must provide a common name for all single selectable cards using 'Card.name(String)'.\n"
                                     +

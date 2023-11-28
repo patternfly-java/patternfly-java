@@ -13,15 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.component;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import elemental2.dom.MutationRecord;
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+/**
+ * Interface meant to be implemented by subcomponents who need a reference to the base component.
+ * <p>
+ * The first call to {@link #passSubComponent(SubComponent)} is typically initiated by the base component in the
+ * {@link org.jboss.elemento.Attachable#attach(MutationRecord)} method (assuming that the base component implements
+ * {@link org.jboss.elemento.Attachable}).
+ */
+public interface SubComponentReference<S extends SubComponent<?, ?>> {
 
-    static Window window;
+    void passSubComponent(S subComponent);
 
-    static Navigator navigator;
+    S subComponent();
 }

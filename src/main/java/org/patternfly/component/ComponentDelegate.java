@@ -44,7 +44,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
     @Override
     public E element() {
         if (delegate == null) {
-            Logger.undefined(componentType(), "No delegate defined");
+            Logger.undefined(componentType(), null, "No delegate defined");
         }
         return delegate;
     }

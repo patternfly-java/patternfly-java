@@ -209,7 +209,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     public Card selectable(SelectionMode selectionMode, SelectHandler<Card> onSelect) {
         if (selectionMode == click) {
-            Logger.unsupported(componentType(), "Selection mode '" + click.name() + "' is not supported");
+            Logger.unsupported(componentType(), element(), "Selection mode '" + click.name() + "' is not supported");
             return this;
         }
         this.selectionMode = selectionMode;
@@ -298,7 +298,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     public void select(boolean selected, boolean fireEvent) {
         if (selectionMode == null) {
-            Logger.unsupported(componentType(),
+            Logger.unsupported(componentType(), element(),
                     "Card '" + element().id + "' is not selectable.\n" +
                             "Please add a call to 'Card.selectable(SelectionMode)', before calling 'Card.select()'.");
             return;
@@ -328,7 +328,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     @Override
     public void collapse(boolean fireEvent) {
         if (!expandable || expandableContent == null || header.toggleButton == null) {
-            Logger.unsupported(componentType(),
+            Logger.unsupported(componentType(), element(),
                     "Card '" + element().id + "' is not expandable.\n" +
                             "Please add a call to 'Card.expandable()', before calling 'Card.collapse()'.");
             return;
@@ -343,7 +343,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     @Override
     public void expand(boolean fireEvent) {
         if (!expandable || expandableContent == null || header.toggleButton == null) {
-            Logger.unsupported(componentType(),
+            Logger.unsupported(componentType(), element(),
                     "Card '" + element().id + "' is not expandable.\n" +
                             "Please add a call to 'Card.expandable()', before calling 'Card.expand()'.");
             return;

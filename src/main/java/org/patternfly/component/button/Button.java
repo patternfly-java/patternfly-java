@@ -176,7 +176,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         if (anchorElement != null) {
             anchorElement.href = href;
         } else {
-            Logger.undefined(componentType(), "Unable to set href: This button is no <a/> button. ");
+            Logger.undefined(componentType(), element(), "Unable to set href: This button is no <a/> button. ");
         }
         return this;
     }
@@ -185,7 +185,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         if (anchorElement != null) {
             anchorElement.target = target;
         } else {
-            Logger.undefined(componentType(), "Unable to set target: This button is no <a/> button. ");
+            Logger.undefined(componentType(), element(), "Unable to set target: This button is no <a/> button. ");
         }
         return this;
     }

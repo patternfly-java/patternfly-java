@@ -107,6 +107,7 @@ public interface Classes {
     String hasPopup = "haspopup";
     String head = "head";
     String header = "header";
+    String help = "help";
     String helperText = "helper-text";
     String horizontal = "horizontal";
     String horizontalSubnav = "horizontal-subnav";
@@ -151,6 +152,7 @@ public interface Classes {
     String noOffset = "no-offset";
     String none = "none";
     String noPadding = "no-padding";
+    String noPaddingTop = "no-padding-top";
     String option = "option";
     String optionsMenu = "options-menu";
     String outline = "outline";
@@ -173,6 +175,9 @@ public interface Classes {
     String readOnly = "read-only";
     String readonly = "readonly";
     String required = "required";
+    String resizeBoth = "resize-both";
+    String resizeHorizontal = "resize-horizontal";
+    String resizeVertical = "resize-vertical";
     String right = "right";
     String rounded = "rounded";
     String scope = "scope";

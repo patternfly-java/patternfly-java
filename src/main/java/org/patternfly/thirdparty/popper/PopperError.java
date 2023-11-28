@@ -35,22 +35,22 @@ public class PopperError implements Popper {
 
     @Override
     public Promise<State> update() {
-        Logger.undefined(componentType, ERROR_MESSAGE);
+        Logger.undefined(componentType, null, ERROR_MESSAGE);
         return null;
     }
 
     @Override
     public void show(Callback visible) {
-        Logger.undefined(componentType, ERROR_MESSAGE);
+        Logger.undefined(componentType, null, ERROR_MESSAGE);
     }
 
     @Override
     public void hide(Callback hidden) {
-        Logger.undefined(componentType, ERROR_MESSAGE);
+        Logger.undefined(componentType, null, ERROR_MESSAGE);
     }
 
     @Override
     public void cleanup() {
-        Logger.undefined(componentType, ERROR_MESSAGE);
+        Logger.undefined(componentType, null, ERROR_MESSAGE);
     }
 }

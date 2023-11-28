@@ -18,6 +18,8 @@ package org.patternfly.component.help;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Logger;
+import org.patternfly.core.ValidationStatus;
 
 import elemental2.dom.HTMLElement;
 
@@ -55,11 +57,13 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
     /**
      * Shortcut for a helper text with one item {@code helperText().addItem(helperTextItem(text, status))}
      */
-    public static HelperText helperText(String text, HelperTextStatus status) {
+    public static HelperText helperText(String text, ValidationStatus status) {
         return helperText().addItem(helperTextItem(text, status));
     }
 
     // ------------------------------------------------------ instance
+
+    private HelperTextItem firstItem;
 
     <E extends HTMLElement> HelperText(HTMLContainerBuilder<E> builder) {
         super(builder.css(component(helperText)).element(), ComponentType.HelperText);
@@ -73,6 +77,9 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
 
     // override to assure internal wiring
     public HelperText add(HelperTextItem item) {
+        if (firstItem == null) {
+            firstItem = item;
+        }
         element().appendChild(item.element());
         return this;
     }
@@ -80,7 +87,8 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
     // ------------------------------------------------------ aria
 
     /**
-     * Flag for indicating whether the helper text container is a live region. Use this prop when you expect or intend for any helper text items within the container to be {@linkplain HelperTextItem#dynamic() dynamically} updated.
+     * Flag for indicating whether the helper text container is a live region. Use this prop when you expect or intend for any
+     * helper text items within the container to be {@linkplain HelperTextItem#dynamic() dynamically} updated.
      */
     public HelperText liveRegion() {
         return aria(live, "polite");
@@ -91,5 +99,16 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
     @Override
     public HelperText that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public HelperTextItem firstItem() {
+        if (firstItem == null) {
+            Logger.undefined(componentType(), element(),
+                    "Helper text does not contain any items. Returning empty item instead");
+            return helperTextItem();
+        }
+        return firstItem;
     }
 }

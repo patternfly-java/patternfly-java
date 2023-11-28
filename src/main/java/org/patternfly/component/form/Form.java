@@ -15,16 +15,21 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLFormElement;
+import elemental2.dom.MutationRecord;
 
-import static org.jboss.elemento.EventType.click;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.form;
+import static org.patternfly.layout.Classes.horizontal;
+import static org.patternfly.layout.Classes.modifier;
 
 /**
  * A form is a group of elements used to collect information from a user in a variety of contexts including in a modal, in a
@@ -34,7 +39,7 @@ import static org.patternfly.layout.Classes.form;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/form/html">https://www.patternfly.org/components/forms/form/html</a>
  */
-public class Form extends BaseComponent<HTMLFormElement, Form> {
+public class Form extends BaseComponent<HTMLFormElement, Form> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -44,8 +49,23 @@ public class Form extends BaseComponent<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ instance
 
+    private final List<FormGroup> groups;
+    private FormActionGroup actionGroup;
+
     Form() {
-        super(form().css(component(form)).apply(f -> f.noValidate = true).element(), ComponentType.Form);
+        super(Elements.form().css(component(form)).apply(f -> f.noValidate = true).element(), ComponentType.Form);
+        this.groups = new ArrayList<>();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        for (FormGroup group : groups) {
+            group.passComponent(this);
+        }
+        if (actionGroup != null) {
+            actionGroup.passComponent(this);
+        }
     }
 
     // ------------------------------------------------------ add
@@ -56,45 +76,28 @@ public class Form extends BaseComponent<HTMLFormElement, Form> {
 
     // override to assure internal wiring
     public Form add(FormGroup group) {
+        groups.add(group);
         return add(group.element());
+    }
+
+    public Form addActionGroup(FormActionGroup actionGroup) {
+        return add(actionGroup);
+    }
+
+    // override to assure internal wiring
+    public Form add(FormActionGroup actionGroup) {
+        this.actionGroup = actionGroup;
+        return add(actionGroup.element());
     }
 
     // ------------------------------------------------------ builder
 
-    public Form methodsReturningAReferenceToItself() {
-        return this;
+    public Form horizontal() {
+        return css(modifier(horizontal));
     }
 
     @Override
     public Form that() {
         return this;
-    }
-
-    // ------------------------------------------------------ aria
-
-    public Form ariaLabel(String label) {
-        return aria(Aria.label, label);
-    }
-
-    // ------------------------------------------------------ events
-
-    public Form onFoo(ComponentHandler<Form> handler) {
-        return on(click, e -> handler.handle(e, this));
-    }
-
-    // ------------------------------------------------------ api
-
-    public void doSomething() {
-
-    }
-
-    public String getter() {
-        return "some piece of information";
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
     }
 }

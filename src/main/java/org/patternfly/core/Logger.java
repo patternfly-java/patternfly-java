@@ -15,7 +15,10 @@
  */
 package org.patternfly.core;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentType;
+
+import elemental2.dom.Element;
 
 import static elemental2.dom.DomGlobal.console;
 
@@ -24,39 +27,51 @@ import static elemental2.dom.DomGlobal.console;
  */
 public final class Logger {
 
-    public static void nyi(ComponentType componentType, String message) {
-        console.error(format(componentType.componentName, message));
+    public static void missing(ComponentType componentType, Element element, String message) {
+        console.warn(format(componentType.componentName, element, message));
     }
 
-    public static void nyi(String category, String message) {
-        console.error(format(category, message));
+    public static void missing(String category, Element element, String message) {
+        console.warn(format(category, element, message));
     }
 
-    public static void undefined(ComponentType componentType, String message) {
-        console.error(format(componentType.componentName, message));
+    public static void nyi(ComponentType componentType, Element element, String message) {
+        console.error(format(componentType.componentName, element, message));
     }
 
-    public static void undefined(String category, String message) {
-        console.error(format(category, message));
+    public static void nyi(String category, Element element, String message) {
+        console.error(format(category, element, message));
     }
 
-    public static void unknown(ComponentType componentType, String message) {
-        console.error(format(componentType.componentName, message));
+    public static void undefined(ComponentType componentType, Element element, String message) {
+        console.error(format(componentType.componentName, element, message));
     }
 
-    public static void unknown(String category, String message) {
-        console.error(format(category, message));
+    public static void undefined(String category, Element element, String message) {
+        console.error(format(category, element, message));
     }
 
-    public static void unsupported(ComponentType componentType, String message) {
-        console.warn(format(componentType.componentName, message));
+    public static void unknown(ComponentType componentType, Element element, String message) {
+        console.error(format(componentType.componentName, element, message));
     }
 
-    public static void unsupported(String category, String message) {
-        console.warn(format(category, message));
+    public static void unknown(String category, Element element, String message) {
+        console.error(format(category, element, message));
     }
 
-    private static String format(String prefix, String message) {
-        return prefix + message;
+    public static void unsupported(ComponentType componentType, Element element, String message) {
+        console.warn(format(componentType.componentName, element, message));
+    }
+
+    public static void unsupported(String category, Element element, String message) {
+        console.warn(format(category, element, message));
+    }
+
+    private static String format(String prefix, Element element, String message) {
+        String log = prefix + message;
+        if (element != null) {
+            log += "\nElement: " + Elements.toString(element);
+        }
+        return log;
     }
 }

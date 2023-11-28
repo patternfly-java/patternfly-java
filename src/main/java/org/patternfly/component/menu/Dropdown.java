@@ -97,7 +97,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
                     .registerHandler(toggle.toggleElement, triggerActions, this::show, this::close)
                     .build();
         } else {
-            Logger.undefined(componentType(), "No toggle and/or menu defined for dropdown");
+            Logger.undefined(componentType(), element(), "No toggle and/or menu defined for dropdown");
         }
     }
 

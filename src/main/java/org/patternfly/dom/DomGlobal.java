@@ -23,5 +23,8 @@ import jsinterop.annotations.JsType;
 public class DomGlobal {
 
     @JsOverlay
+    public static final Window window = DomGlobal__Constants.window;
+
+    @JsOverlay
     public static final Navigator navigator = DomGlobal__Constants.navigator;
 }

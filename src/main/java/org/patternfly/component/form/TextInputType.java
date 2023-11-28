@@ -13,15 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.component.form;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+public enum TextInputType {
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+    date,
 
-    static Window window;
+    datetime,
 
-    static Navigator navigator;
+    email,
+
+    month,
+
+    number,
+
+    password,
+
+    search,
+
+    tel,
+
+    text,
+
+    time,
+
+    url,
 }

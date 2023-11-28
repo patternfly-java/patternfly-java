@@ -20,4 +20,5 @@ public interface Attributes {
     String hidden = "hidden";
     String tabindex = "tabindex";
     String role = "role";
+    String required = "required";
 }

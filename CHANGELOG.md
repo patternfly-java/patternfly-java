@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Helper text component (#55)
 - Form component (#49)
+- Form select component (#51)
+- Text area component (#53)
 - Add the following interfaces to unify icon and text handling across components:
   - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>` 
   - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 

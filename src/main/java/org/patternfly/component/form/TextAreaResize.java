@@ -13,15 +13,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.component.form;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.layout.Classes.resizeBoth;
+import static org.patternfly.layout.Classes.resizeHorizontal;
+import static org.patternfly.layout.Classes.resizeVertical;
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+public enum TextAreaResize {
 
-    static Window window;
+    both(resizeBoth),
 
-    static Navigator navigator;
+    horizontal(resizeHorizontal),
+
+    vertical(resizeVertical),
+
+    ;
+
+    final String modifier;
+
+    TextAreaResize(String css) {
+        this.modifier = modifier(css);
+    }
 }
