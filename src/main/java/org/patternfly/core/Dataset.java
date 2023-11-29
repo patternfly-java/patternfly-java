@@ -19,22 +19,7 @@ public interface Dataset {
 
     String expandableSectionId = "expandableSectionId";
     String expandableSectionTarget = "expandableSectionTarget";
+    String placeholder = "placeholder";
     String navigationGroup = "navigationGroup";
     String navigationItem = "navigationItem";
-
-    // @formatter:off - Used in deprecated components
-    @Deprecated String cardViewItem = "cardViewItem";
-    @Deprecated String contextSelectorItem = "contextSelectorItem";
-    @Deprecated String dataListItem = "dataListItem";
-    @Deprecated String dataTableItem = "dataTableItem";
-    @Deprecated String dataTableSort = "dataTableSort";
-    @Deprecated String dropdownGroup = "dropdownGroup";
-    @Deprecated String dropdownItem = "dropdownItem";
-    @Deprecated String multiOptionsMenuCheck = "multiOptionsMenuCheck";
-    @Deprecated String multiOptionsMenuItem = "multiOptionsMenuItem";
-    @Deprecated String multiSelectItem = "multiSelectItem";
-    @Deprecated String singleOptionsMenuItem = "singleOptionsMenuItem";
-    @Deprecated String singleSelectItem = "singleSelectItem";
-    @Deprecated String singleSelectFilter = "singleSelectFilter";
-    // @formatter:on
 }

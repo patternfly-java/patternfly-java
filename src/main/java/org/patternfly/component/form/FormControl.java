@@ -56,6 +56,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
                 }
                 if (this.status.icon != null) {
                     failSafeRemoveFromParent(validationContainer);
+                    validationContainer = null;
                 }
             }
 

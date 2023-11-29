@@ -37,7 +37,6 @@ import static org.jboss.elemento.Elements.textarea;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
-import static org.patternfly.component.form.TextAreaResize.both;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.dom.DomGlobal.window;
 import static org.patternfly.layout.Classes.component;
@@ -47,7 +46,7 @@ import static org.patternfly.layout.Classes.formControl;
  * A text area component is used for entering a paragraph of text that is longer than one line.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/forms/text-area#textarea">https://www.patternfly.org/components/forms/text-area#textarea</a>
+ *      "https://www.patternfly.org/components/forms/text-area">https://www.patternfly.org/components/forms/text-area</a>
  */
 public class TextArea extends FormControl<HTMLElement, TextArea> implements
         HasValue<String>,
@@ -79,7 +78,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
                         .aria(invalid, false))
                 .element(),
                 ComponentType.TextInput);
-        resize(both);
         textAreaElement = (HTMLTextAreaElement) element().firstElementChild;
         Attachable.register(this, this);
     }
@@ -201,11 +199,16 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     private void autoHeight() {
         style("height", "inherit");
         CSSStyleDeclaration computed = window.getComputedStyle(textAreaElement);
-        int height = Integer.parseInt(computed.getPropertyValue("border-top-width")) +
-                Integer.parseInt(computed.getPropertyValue("padding-top")) +
+        int height = Integer.parseInt(stripUnit(computed.getPropertyValue("border-top-width"))) +
+                Integer.parseInt(stripUnit(computed.getPropertyValue("padding-top"))) +
                 textAreaElement.scrollHeight +
-                Integer.parseInt(computed.getPropertyValue("padding-bottom")) +
-                Integer.parseInt(computed.getPropertyValue("border-bottom-width"));
+                Integer.parseInt(stripUnit(computed.getPropertyValue("padding-bottom"))) +
+                Integer.parseInt(stripUnit(computed.getPropertyValue("border-bottom-width")));
         style("height", height + "px");
+    }
+
+    private String stripUnit(String value) {
+        int index = value.indexOf("px");
+        return index == -1 ? value : value.substring(0, index);
     }
 }

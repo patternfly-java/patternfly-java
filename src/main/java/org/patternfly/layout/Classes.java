@@ -164,6 +164,7 @@ public interface Classes {
     String pagination = "pagination";
     String path = "path";
     String plain = "plain";
+    String placeholder = "placeholder";
     String popover = "popover";
     String pre = "pre";
     String presentation = "presentation";
