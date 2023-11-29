@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.form;
 
+import java.util.Iterator;
+
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.SubComponentReference;
 import org.patternfly.component.popover.Popover;
@@ -30,6 +34,7 @@ import elemental2.dom.HTMLLabelElement;
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.hidden;
@@ -52,8 +57,8 @@ public class FormGroupLabel extends SubComponent<HTMLElement, FormGroupLabel> im
 
     // ------------------------------------------------------ instance
 
-    private final HTMLLabelElement labelElement;
     private final HTMLElement textElement;
+    private HTMLElement labelElement;
     private Form form;
     private FormGroup formGroup;
 
@@ -79,8 +84,24 @@ public class FormGroupLabel extends SubComponent<HTMLElement, FormGroupLabel> im
     @Override
     public void passSubComponent(FormGroup formGroup) {
         this.formGroup = formGroup;
-        if (formGroup.fieldId != null && labelElement.htmlFor != null) {
-            labelElement.htmlFor = formGroup.fieldId;
+        if (formGroup.role != null) {
+            HTMLElement pseudoLabelElement = span().css(component(Classes.form, Classes.label)).element();
+            for (Iterator<HTMLElement> iterator = iterator(labelElement); iterator.hasNext();) {
+                HTMLElement element = iterator.next();
+                pseudoLabelElement.appendChild(element);
+            }
+            labelElement.replaceWith(pseudoLabelElement);
+            labelElement = pseudoLabelElement;
+
+            if (element().id != null && !element().id.isEmpty()) {
+                formGroup.aria(Aria.labelledBy, element().id);
+            } else {
+                String labelId = Id.build(formGroup.fieldId != null ? formGroup.fieldId : ComponentType.Form.id, "label");
+                id(labelId);
+                formGroup.aria(Aria.labelledBy, labelId);
+            }
+        } else if (formGroup.fieldId != null) {
+            ((HTMLLabelElement) labelElement).htmlFor = formGroup.fieldId;
         }
         if (formGroup.required) {
             labelElement.appendChild(span().css(component(Classes.form, Classes.label, Classes.required))
@@ -97,7 +118,7 @@ public class FormGroupLabel extends SubComponent<HTMLElement, FormGroupLabel> im
 
     // ------------------------------------------------------ add
 
-    public FormGroupLabel addHelp(Popover popover, String ariaLabel) {
+    public FormGroupLabel addHelp(String ariaLabel, Popover popover) {
         HTMLButtonElement helpButton = button().css(component(Classes.form, group, Classes.label, Classes.help))
                 .aria(Aria.label, ariaLabel)
                 .add(inlineIcon(help))

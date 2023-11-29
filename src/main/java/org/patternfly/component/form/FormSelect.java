@@ -57,16 +57,20 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     // ------------------------------------------------------ factory
 
     public static FormSelect formSelect(String id) {
-        return new FormSelect(id);
+        return new FormSelect(id, null);
+    }
+
+    public static FormSelect formSelect(String id, String value) {
+        return new FormSelect(id, value);
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLSelectElement selectElement;
-    private boolean valueSelected;
+    private String initialValue;
 
-    FormSelect(String id) {
-        super(id, span().css(component(formControl))
+    FormSelect(String id, String value) {
+        super(id, formControlContainer()
                 .add(select()
                         .id(id)
                         .apply(s -> s.name = id)
@@ -77,13 +81,18 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
                 .add(inlineIcon(caretDown))
                 .element());
         selectElement = (HTMLSelectElement) element().firstElementChild;
+        if (value != null) {
+            initialValue = value;
+        }
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (!valueSelected) {
+        if (initialValue == null) {
             selectPlaceholder();
+        } else {
+            value(initialValue);
         }
         togglePlaceholder();
         selectElement.addEventListener(change.name, event -> togglePlaceholder());
@@ -130,12 +139,6 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     // ------------------------------------------------------ builder
 
     @Override
-    public FormSelect disabled(boolean disabled) {
-        selectElement.disabled = disabled;
-        return super.disabled(disabled);
-    }
-
-    @Override
     public FormSelect required(boolean required) {
         if (required) {
             selectElement.setAttribute(Attributes.required, true);
@@ -146,7 +149,6 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     public FormSelect value(String value) {
-        valueSelected = true;
         selectElement.value = value;
         return this;
     }
@@ -188,6 +190,11 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     // ------------------------------------------------------ internal
+
+    @Override
+    void disableInputElement(boolean disabled) {
+        selectElement.disabled = disabled;
+    }
 
     private void selectPlaceholder() {
         for (int i = 0; i < selectElement.options.length; i++) {

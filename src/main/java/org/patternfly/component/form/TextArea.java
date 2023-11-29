@@ -32,15 +32,12 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
 import elemental2.dom.MutationRecord;
 
-import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.textarea;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.dom.DomGlobal.window;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.formControl;
 
 /**
  * A text area component is used for entering a paragraph of text that is longer than one line.
@@ -58,7 +55,11 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ factory
 
     public static TextArea textArea(String id) {
-        return new TextArea(id);
+        return new TextArea(id, null);
+    }
+
+    public static TextArea textArea(String id, String value) {
+        return new TextArea(id, value);
     }
 
     // ------------------------------------------------------ instance
@@ -67,8 +68,8 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     private boolean autoResize;
     private TextAreaResize resize;
 
-    TextArea(String id) {
-        super(id, span().css(component(formControl))
+    TextArea(String id, String value) {
+        super(id, formControlContainer()
                 .add(textarea()
                         .id(id)
                         .apply(ta -> {
@@ -79,6 +80,9 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
                 .element(),
                 ComponentType.TextInput);
         textAreaElement = (HTMLTextAreaElement) element().firstElementChild;
+        if (value != null) {
+            value(value);
+        }
         Attachable.register(this, this);
     }
 
@@ -95,12 +99,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     public TextArea autoResize() {
         this.autoResize = true;
         return this;
-    }
-
-    @Override
-    public TextArea disabled(boolean disabled) {
-        textAreaElement.disabled = disabled;
-        return super.disabled(disabled);
     }
 
     @Override
@@ -195,6 +193,11 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     }
 
     // ------------------------------------------------------ internal
+
+    @Override
+    void disableInputElement(boolean disabled) {
+        textAreaElement.disabled = disabled;
+    }
 
     private void autoHeight() {
         style("height", "inherit");

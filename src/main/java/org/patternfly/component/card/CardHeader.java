@@ -16,18 +16,16 @@
 package org.patternfly.component.card;
 
 import org.jboss.elemento.Id;
-import org.jboss.elemento.IsElement;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
+import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
 
-import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.Node;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
@@ -45,7 +43,9 @@ import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Classes.toggleRight;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> implements ComponentReference<Card> {
+public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> implements
+        RedirectTo<HTMLDivElement, CardHeader>,
+        ComponentReference<Card> {
 
     // ------------------------------------------------------ factory
 
@@ -63,7 +63,7 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
 
     CardHeader() {
         super(div().css(component(Classes.card, header)).element());
-        super.add(mainElement = div().css(component(Classes.card, header, main)).element());
+        element().appendChild(mainElement = div().css(component(Classes.card, header, main)).element());
     }
 
     @Override
@@ -110,6 +110,11 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
         return card;
     }
 
+    @Override
+    public HTMLElement redirectTo() {
+        return mainElement;
+    }
+
     // ------------------------------------------------------ add
 
     public CardHeader addActions(CardActions actions) {
@@ -130,67 +135,7 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
     // override to assure internal wiring
     public CardHeader add(CardTitle title) {
         this.title = title;
-        addToMain(title.element());
-        return this;
-    }
-
-    @Override
-    public CardHeader add(Node node) {
-        addToMain(node);
-        return this;
-    }
-
-    @Override
-    public CardHeader add(IsElement<?> element) {
-        addToMain(element.element());
-        return this;
-    }
-
-    @Override
-    public CardHeader addAll(Node... nodes) {
-        for (Node node : nodes) {
-            addToMain(node);
-        }
-        return this;
-    }
-
-    @Override
-    public CardHeader addAll(Element... elements) {
-        for (Element element : elements) {
-            addToMain(element);
-        }
-        return this;
-    }
-
-    @Override
-    public CardHeader addAll(HTMLElement... elements) {
-        for (HTMLElement element : elements) {
-            addToMain(element);
-        }
-        return this;
-    }
-
-    @Override
-    public CardHeader addAll(IsElement<?>... elements) {
-        for (IsElement<?> element : elements) {
-            if (element != null) {
-                addToMain(element.element());
-            }
-        }
-        return this;
-    }
-
-    @Override
-    public CardHeader addAll(Iterable<?> elements) {
-        for (Object element : elements) {
-            if (element instanceof Node) {
-                addToMain(((Node) element));
-            } else if (element instanceof IsElement) {
-                // noinspection rawtypes
-                addToMain(((IsElement) element).element());
-            }
-        }
-        return this;
+        return add(title.element());
     }
 
     // ------------------------------------------------------ builder
@@ -206,9 +151,5 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
         if (actions != null) {
             actions.disabled(disabled);
         }
-    }
-
-    private void addToMain(Node node) {
-        mainElement.appendChild(node);
     }
 }

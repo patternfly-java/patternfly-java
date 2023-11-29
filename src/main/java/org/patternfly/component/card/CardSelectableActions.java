@@ -74,7 +74,7 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
             String radioName = card.name;
             if (radioName == null) {
                 radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                Logger.undefined(ComponentType.Card, element(),
+                Logger.undefined(ComponentType.Card, card.element(),
                         "Name is undefined for clickable card '" + cardId + "'.\n" +
                                 "You should provide a common name for all clickable cards using 'Card.name(String)'.\n" +
                                 "Fallback to generated name '" + radioName + "', which will cause selection issues!");
@@ -94,7 +94,7 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
                 String radioName = card.name;
                 if (radioName == null) {
                     radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    Logger.undefined(ComponentType.Card, element(),
+                    Logger.undefined(ComponentType.Card, card.element(),
                             "Name is undefined for single selectable card '" + cardId + "'.\n" +
                                     "You must provide a common name for all single selectable cards using 'Card.name(String)'.\n"
                                     +
@@ -108,7 +108,16 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
                     radio.disabled(true);
                 }
             } else { // multi
-                add(checkbox = checkbox(selectId)
+                String checkboxName = card.name;
+                if (checkboxName == null) {
+                    checkboxName = Id.unique(ComponentType.Card.id, "name", "fallback");
+                    Logger.undefined(ComponentType.Card, card.element(),
+                            "Name is undefined for multi-select card '" + cardId + "'.\n" +
+                                    "You must provide a common name for all selectable cards using 'Card.name(String)'.\n"
+                                    +
+                                    "Fallback to generated name '" + checkboxName + "', which will cause selection issues!");
+                }
+                add(checkbox = checkbox(selectId, checkboxName)
                         .standalone(false)
                         .onChange((c, selected) -> card.internalSelect(selected, true)));
                 checkbox.inputElement().setAttribute(labelledBy, cardId);

@@ -63,11 +63,19 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ factory
 
     public static TextInput textInput(String id) {
-        return new TextInput(TextInputType.text, id);
+        return new TextInput(TextInputType.text, id, null);
+    }
+
+    public static TextInput textInput(String id, String value) {
+        return new TextInput(TextInputType.text, id, value);
     }
 
     public static TextInput textInput(TextInputType type, String id) {
-        return new TextInput(type, id);
+        return new TextInput(type, id, null);
+    }
+
+    public static TextInput textInput(TextInputType type, String id, String value) {
+        return new TextInput(type, id, value);
     }
 
     // ------------------------------------------------------ instance
@@ -86,8 +94,8 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
 
     private final HTMLInputElement inputElement;
 
-    TextInput(TextInputType type, String id) {
-        super(id, span().css(component(formControl))
+    TextInput(TextInputType type, String id, String value) {
+        super(id, formControlContainer()
                 .add(input(typeMapping.getOrDefault(type, InputType.text))
                         .id(id)
                         .name(id)
@@ -95,15 +103,12 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
                 .element(),
                 ComponentType.TextInput);
         inputElement = (HTMLInputElement) element().firstElementChild;
+        if (value != null) {
+            value(value);
+        }
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public TextInput disabled(boolean disabled) {
-        inputElement.disabled = disabled;
-        return super.disabled(disabled);
-    }
 
     @Override
     public TextInput readonly(boolean readonly) {
@@ -207,5 +212,12 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     /** Returns the underlying input element */
     public InputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);
+    }
+
+    // ------------------------------------------------------ internal
+
+    @Override
+    void disableInputElement(boolean disabled) {
+        inputElement.disabled = disabled;
     }
 }

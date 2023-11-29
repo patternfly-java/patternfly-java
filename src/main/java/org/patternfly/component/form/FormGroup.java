@@ -15,13 +15,10 @@
  */
 package org.patternfly.component.form;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
+import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -31,7 +28,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
 public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
-        Inline<HTMLElement, FormGroup>, ComponentReference<Form> {
+        ComponentReference<Form> {
 
     // ------------------------------------------------------ factory
 
@@ -43,32 +40,32 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
 
     String fieldId;
     boolean required;
-    private final List<FormGroupLabel> labels;
-    private final List<FormGroupControl> controls;
+    FormGroupRole role;
     private Form form;
-    private FormGroupRole role;
+    private FormGroupLabel label;
+    private FormGroupControl control;
 
     FormGroup() {
         super(div().css(component(Classes.form, group)).element());
         this.fieldId = null;
         this.required = false;
-        this.labels = new ArrayList<>();
-        this.controls = new ArrayList<>();
+        this.label = null;
+        this.control = null;
     }
 
     @Override
     public void passComponent(Form form) {
+        if ((role == FormGroupRole.radiogroup || role == FormGroupRole.group) && fieldId == null) {
+            Logger.missing(form.componentType(), element(), "Missing field ID for form group with role '" + role.name() + "'.");
+        }
         this.form = form;
-        for (FormGroupLabel label : labels) {
+        if (label != null) {
             label.passComponent(form);
             label.passSubComponent(this);
         }
-        for (FormGroupControl control : controls) {
+        if (control != null) {
             control.passComponent(form);
             control.passSubComponent(this);
-        }
-        if ((role == FormGroupRole.radiogroup || role == FormGroupRole.group) && fieldId == null) {
-            Logger.missing(form.componentType(), element(), "Missing field ID for form group with role '" + role.name() + "'.");
         }
     }
 
@@ -85,7 +82,7 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
 
     // override to assure internal wiring
     public FormGroup add(FormGroupLabel label) {
-        labels.add(label);
+        this.label = label;
         return add(label.element());
     }
 
@@ -95,7 +92,7 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
 
     // override to assure internal wiring
     public FormGroup add(FormGroupControl control) {
-        controls.add(control);
+        this.control = control;
         return add(control.element());
     }
 
@@ -111,8 +108,18 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
         return this;
     }
 
+    /**
+     * Sets the role of the form group. Pass in {@link FormGroupRole#radiogroup} when the form group contains multiple radio
+     * inputs, or pass in {@link FormGroupRole#group} when the form group contains multiple of any other input type (e.g.
+     * checkboxes).
+     * <p>
+     * Please note that if you set a role, the internal structure of the {@link FormGroupLabel} changes. Without a role the
+     * label contains a {@code <label>} element. With a role the {@code <label>} element is replaced by a {@code <span>}
+     * element. In this case it is expected that the {@link FormGroupControl} contains label elements.
+     */
     public FormGroup role(FormGroupRole role) {
         this.role = role;
+        attr(Attributes.role, role.name());
         return this;
     }
 

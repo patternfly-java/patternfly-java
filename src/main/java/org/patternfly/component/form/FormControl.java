@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Modifiers.Disabled;
@@ -25,6 +26,7 @@ import org.patternfly.layout.Classes;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.ValidationStatus.default_;
@@ -37,6 +39,14 @@ import static org.patternfly.layout.Classes.utilities;
 public abstract class FormControl<E extends HTMLElement, B extends BaseComponent<E, B>>
         extends BaseComponent<E, B> implements Disabled<E, B>, Required<E, B> {
 
+    // ------------------------------------------------------ factory
+
+    static HTMLContainerBuilder<HTMLElement> formControlContainer() {
+        return span().css(component(formControl));
+    }
+
+    // ------------------------------------------------------ instance
+
     final String id;
     ValidationStatus status;
     private HTMLElement utilitiesContainer;
@@ -45,6 +55,14 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
     FormControl(String id, E element, ComponentType componentType) {
         super(element, componentType);
         this.id = id;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public B disabled(boolean disabled) {
+        disableInputElement(disabled);
+        return Disabled.super.disabled(disabled);
     }
 
     public B validated(ValidationStatus status) {
@@ -74,6 +92,10 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
         return that();
     }
 
+    // ------------------------------------------------------ internal
+
+    abstract void disableInputElement(boolean disabled);
+
     HTMLElement failSafeUtilitiesContainer() {
         if (utilitiesContainer == null) {
             add(utilitiesContainer = span().css(component(formControl, utilities)).element());
@@ -83,7 +105,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
 
     HTMLElement failSafeValidatedContainer() {
         if (validationContainer == null) {
-            failSafeUtilitiesContainer().appendChild(
+            insertFirst(failSafeUtilitiesContainer(),
                     validationContainer = span().css(component(formControl, icon), modifier(Classes.status)).element());
         }
         return validationContainer;

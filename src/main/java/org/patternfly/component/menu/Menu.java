@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
+import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
@@ -81,6 +82,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     private static final By MENU_ITEMS = By.classname(component(menu, item));
     private static final By SELECT_ICONS = By.classname(component(menu, item, select, icon));
 
+    final String menuName;
     final MenuType menuType;
     final SelectionMode selectionMode;
     boolean favorites;
@@ -94,6 +96,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         super(div().css(component(menu)).element(), ComponentType.Menu);
         this.menuType = menuType;
         this.selectionMode = selectionMode;
+        this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes
         Attachable.register(this, this);
     }
 

@@ -20,7 +20,6 @@ import java.util.Objects;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -60,6 +59,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.bind;
@@ -319,7 +319,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     // ------------------------------------------------------ internal
 
     private void replaceContent(HTMLElement newContent) {
-        for (Iterator<HTMLElement> iterator = Elements.iterator(contentElement); iterator.hasNext();) {
+        for (Iterator<HTMLElement> iterator = iterator(contentElement); iterator.hasNext();) {
             HTMLElement element = iterator.next();
             newContent.appendChild(element);
         }

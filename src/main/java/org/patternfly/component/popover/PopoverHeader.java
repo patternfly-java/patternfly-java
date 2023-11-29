@@ -13,66 +13,57 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.card;
+package org.patternfly.component.popover;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
 
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
-import static org.patternfly.layout.Classes.card;
+import static org.jboss.elemento.Elements.header;
 import static org.patternfly.layout.Classes.component;
+import static org.patternfly.layout.Classes.popover;
+import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Classes.title;
 
-public class CardTitle extends SubComponent<HTMLDivElement, CardTitle> implements RedirectTo<HTMLDivElement, CardTitle> {
+public class PopoverHeader extends SubComponent<HTMLElement, PopoverHeader> implements RedirectTo<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 
-    public static CardTitle cardTitle() {
-        return new CardTitle(null, -1);
-    }
-
-    public static CardTitle cardTitle(String text) {
-        return new CardTitle(text, -1);
-    }
-
-    public static CardTitle cardTitle(int level) {
-        return new CardTitle(null, level);
-    }
-
-    public static CardTitle cardTitle(String text, int level) {
-        return new CardTitle(text, level);
+    public static PopoverHeader popoverHeader() {
+        return new PopoverHeader();
     }
 
     // ------------------------------------------------------ instance
 
-    private final HTMLElement titleText;
+    final String headerId;
+    final HTMLHeadingElement headerElement;
 
-    CardTitle(String text, int level) {
-        super(div().css(component(card, title)).element());
-        if (level > 0) {
-            element().appendChild(titleText = h(level, text).css(component(card, title, Classes.text)).element());
-        } else {
-            element().appendChild(titleText = div().css(component(card, title, Classes.text)).element());
-        }
-        if (text != null) {
-            titleText.textContent = text;
-        }
+    PopoverHeader() {
+        super(header().css(component(popover, Classes.header)).element());
+        headerId = Id.unique(ComponentType.Popover.id, "header");
+        element().appendChild(div().css(component(popover, title))
+                .id(headerId)
+                .add(headerElement = h(6).css(component(popover, title, text))
+                        .element())
+                .element());
     }
 
     @Override
     public HTMLElement redirectTo() {
-        return titleText;
+        return headerElement;
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public CardTitle that() {
+    public PopoverHeader that() {
         return this;
     }
 }

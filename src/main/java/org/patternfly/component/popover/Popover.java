@@ -34,7 +34,6 @@ import org.patternfly.core.Modifiers.NoPadding;
 import org.patternfly.core.Severity;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.layout.Classes;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
 import org.patternfly.thirdparty.popper.Popper;
@@ -51,8 +50,6 @@ import static elemental2.dom.DomGlobal.document;
 import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.h;
-import static org.jboss.elemento.Elements.header;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
@@ -61,6 +58,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.popover.PopoverBody.popoverBody;
 import static org.patternfly.component.popover.PopoverFooter.popoverFooter;
+import static org.patternfly.component.popover.PopoverHeader.popoverHeader;
 import static org.patternfly.core.Aria.describedBy;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -76,7 +74,6 @@ import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.popover;
 import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Classes.title;
 import static org.patternfly.layout.Classes.widthAuto;
 import static org.patternfly.layout.PredefinedIcon.times;
@@ -133,7 +130,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     private Placement placement;
     private Button closeButton;
     private Severity severity;
-    private HTMLElement headerElement;
+    private PopoverHeader header;
     private HTMLElement screenReaderElement;
     private HTMLElement iconContainer;
     private CloseHandler<Popover> closeHandler;
@@ -203,7 +200,18 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ add
 
     public Popover addHeader(String header) {
-        failSafeHeaderElement().textContent = header;
+        return add(popoverHeader().textContent(header));
+    }
+
+    public Popover addHeader(PopoverHeader header) {
+        return add(header);
+    }
+
+    // override to append to the right container!
+    public Popover add(PopoverHeader header) {
+        this.header = header;
+        contentElement.appendChild(header.element());
+        aria(labelledBy, header.headerId);
         return this;
     }
 
@@ -397,17 +405,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeHeaderElement() {
-        if (headerElement == null) {
-            String headerId = Id.unique(componentType().id, "header");
-            contentElement.appendChild(header().css(component(popover, Classes.header))
-                    .add(div().css(component(popover, title))
-                            .id(headerId)
-                            .add(headerElement = h(6).css(component(popover, title, text))
-                                    .element()))
-                    .element());
-            aria(labelledBy, headerId);
+        if (header == null) {
+            add(popoverHeader());
         }
-        return headerElement;
+        return header.element();
     }
 
     private HTMLElement failSafeIconContainer() {

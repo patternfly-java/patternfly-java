@@ -29,6 +29,7 @@ import elemental2.dom.MutationRecord;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.form;
 import static org.patternfly.layout.Classes.horizontal;
+import static org.patternfly.layout.Classes.limitWidth;
 import static org.patternfly.layout.Classes.modifier;
 
 /**
@@ -94,6 +95,10 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements Attach
 
     public Form horizontal() {
         return css(modifier(horizontal));
+    }
+
+    public Form limitWidth() {
+        return css(modifier(limitWidth));
     }
 
     @Override

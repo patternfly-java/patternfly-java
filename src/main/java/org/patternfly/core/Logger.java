@@ -27,6 +27,14 @@ import static elemental2.dom.DomGlobal.console;
  */
 public final class Logger {
 
+    public static void wrong(ComponentType componentType, Element element, String message) {
+        console.warn(format(componentType.componentName, element, message));
+    }
+
+    public static void wrong(String category, Element element, String message) {
+        console.warn(format(category, element, message));
+    }
+
     public static void missing(ComponentType componentType, Element element, String message) {
         console.warn(format(componentType.componentName, element, message));
     }
@@ -68,7 +76,7 @@ public final class Logger {
     }
 
     private static String format(String prefix, Element element, String message) {
-        String log = prefix + message;
+        String log = prefix + ": " + message;
         if (element != null) {
             log += "\nElement: " + Elements.toString(element);
         }

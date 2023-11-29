@@ -15,11 +15,15 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentReference;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.SubComponentReference;
 import org.patternfly.component.help.HelperText;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Classes;
 
@@ -28,7 +32,6 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.control;
 import static org.patternfly.layout.Classes.group;
 
 public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
@@ -46,9 +49,14 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     private Form form;
     private FormGroup formGroup;
+    private FormControl<?, ?> control;
+    private final List<Checkbox> checkboxes;
+    private final List<Radio> radios;
 
     FormGroupControl() {
-        super(div().css(component(Classes.form, group, control)).element());
+        super(div().css(component(Classes.form, group, Classes.control)).element());
+        this.checkboxes = new ArrayList<>();
+        this.radios = new ArrayList<>();
     }
 
     @Override
@@ -63,7 +71,21 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     @Override
     public void passSubComponent(FormGroup formGroup) {
+        if (formGroup.fieldId != null && control != null && !formGroup.fieldId.equals(control.id)) {
+            Logger.wrong(form.componentType(), element(),
+                    "The field id of the form group is different from the id of its control: " +
+                            "'" + formGroup.fieldId + "' != '" + control.id + "'");
+        }
+
         this.formGroup = formGroup;
+        if (formGroup.fieldId != null) {
+            for (Checkbox checkbox : checkboxes) {
+                checkbox.inputElement().name = formGroup.fieldId;
+            }
+            for (Radio radio : radios) {
+                radio.inputElement().name = formGroup.fieldId;
+            }
+        }
     }
 
     @Override
@@ -79,7 +101,28 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     // override to assure internal wiring
     public <E extends HTMLElement, B extends BaseComponent<E, B>> FormGroupControl add(FormControl<E, B> control) {
+        this.control = control;
         return add(control.element());
+    }
+
+    public FormGroupControl addCheckbox(Checkbox checkbox) {
+        return add(checkbox);
+    }
+
+    // override to assure internal wiring
+    public FormGroupControl add(Checkbox checkbox) {
+        checkboxes.add(checkbox);
+        return add(checkbox.element());
+    }
+
+    public FormGroupControl addRadio(Radio radio) {
+        return add(radio);
+    }
+
+    // override to assure internal wiring
+    public FormGroupControl add(Radio radio) {
+        radios.add(radio);
+        return add(radio.element());
     }
 
     public FormGroupControl addHelperText(HelperText helperText) {

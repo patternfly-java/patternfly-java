@@ -151,7 +151,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
                     .apply(l -> l.htmlFor = checkboxId);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
                     .add(span().css(component(Classes.menu, item, Classes.check))
-                            .add(checkboxComponent = checkbox(checkboxId)))
+                            .add(checkboxComponent = checkbox(checkboxId, menu.menuName)))
                     .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                             .element())
                     .element());
@@ -226,6 +226,9 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
             case select:
                 itemElement.setAttribute(role, "option");
                 break;
+        }
+        if (checkboxComponent != null) {
+            checkboxComponent.inputElement().name = menu.menuName;
         }
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> menu.select(this, true, true));

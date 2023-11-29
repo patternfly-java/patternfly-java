@@ -58,20 +58,20 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     // ------------------------------------------------------ factory
 
-    public static Checkbox checkbox(String id) {
-        return new Checkbox(id, null, false);
+    public static Checkbox checkbox(String id, String name) {
+        return new Checkbox(id, name, null, false);
     }
 
-    public static Checkbox checkbox(String id, boolean checked) {
-        return new Checkbox(id, null, checked);
+    public static Checkbox checkbox(String id, String name, boolean checked) {
+        return new Checkbox(id, name, null, checked);
     }
 
-    public static Checkbox checkbox(String id, String label) {
-        return new Checkbox(id, label, false);
+    public static Checkbox checkbox(String id, String name, String label) {
+        return new Checkbox(id, name, label, false);
     }
 
-    public static Checkbox checkbox(String id, String label, boolean checked) {
-        return new Checkbox(id, label, checked);
+    public static Checkbox checkbox(String id, String name, String label, boolean checked) {
+        return new Checkbox(id, name, label, checked);
     }
 
     // ------------------------------------------------------ instance
@@ -80,7 +80,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
     private HTMLLabelElement labelElement;
     private HTMLElement requiredMarker;
 
-    Checkbox(String id, String label, boolean checked) {
+    Checkbox(String id, String name, String label, boolean checked) {
         super(div().css(component(check))
                 .add(input(checkbox).css(component(check, input))
                         .id(id)
