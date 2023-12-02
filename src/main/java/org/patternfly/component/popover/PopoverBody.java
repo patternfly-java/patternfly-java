@@ -17,7 +17,6 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -26,7 +25,7 @@ import static org.patternfly.layout.Classes.body;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.popover;
 
-public class PopoverBody extends BaseSubComponent<HTMLDivElement, PopoverBody> {
+public class PopoverBody extends PopoverSubComponent<HTMLDivElement, PopoverBody> {
 
     // ------------------------------------------------------ factory
 
@@ -41,7 +40,7 @@ public class PopoverBody extends BaseSubComponent<HTMLDivElement, PopoverBody> {
     final String id;
 
     PopoverBody() {
-        super(div().css(component(popover, body)).element(), ComponentType.Popover, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(popover, body)).element());
         id(id = Id.unique(ComponentType.Popover.id, "body"));
     }
 

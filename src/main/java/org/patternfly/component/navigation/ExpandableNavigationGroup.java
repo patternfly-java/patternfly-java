@@ -20,8 +20,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
@@ -57,7 +55,7 @@ import static org.patternfly.layout.Classes.subnav;
 import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class ExpandableNavigationGroup extends BaseSubComponent<HTMLLIElement, ExpandableNavigationGroup> {
+public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -78,9 +76,9 @@ public class ExpandableNavigationGroup extends BaseSubComponent<HTMLLIElement, E
     ToggleHandler<ExpandableNavigationGroup> onToggle;
 
     ExpandableNavigationGroup(String id, String text) {
-        super(li().css(component(nav, item), modifier(expandable))
+        super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
                 .data(navigationGroup, id)
-                .element(), ComponentType.Navigation, SUB_COMPONENT_NAME);
+                .element());
         this.id = id;
         this.items = new HashMap<>();
         this.expandableGroups = new HashMap<>();

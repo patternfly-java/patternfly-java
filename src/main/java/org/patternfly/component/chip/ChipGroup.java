@@ -50,7 +50,6 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -99,7 +98,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     private CloseHandler<ChipGroup> closeHandler;
 
     ChipGroup(String category) {
-        super(div().css(component(chipGroup)).attr(role, "group").element(), ComponentType.ChipGroup);
+        super(ComponentType.ChipGroup, div().css(component(chipGroup)).attr(role, "group").element());
         this.chips = new LinkedHashMap<>();
         this.expanded = false;
         this.numChips = DEFAULT_NUM_CHIPS;
@@ -115,7 +114,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         } else {
             aria(Classes.label, "Chip group category");
         }
-        storeComponent(this);
+        storeComponent();
         Attachable.register(this, this);
     }
 

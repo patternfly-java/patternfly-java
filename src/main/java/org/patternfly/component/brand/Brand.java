@@ -40,7 +40,7 @@ public class Brand extends BaseComponent<HTMLImageElement, Brand> {
     // ------------------------------------------------------ instance
 
     Brand(String src) {
-        super(img(src).css(component(brand)).element(), ComponentType.Brand);
+        super(ComponentType.Brand, img(src).css(component(brand)).element());
     }
 
     // ------------------------------------------------------ builder

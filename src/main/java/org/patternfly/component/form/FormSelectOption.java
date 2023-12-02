@@ -16,8 +16,6 @@
 package org.patternfly.component.form;
 
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers.Disabled;
@@ -26,7 +24,7 @@ import elemental2.dom.HTMLOptionElement;
 
 import static org.jboss.elemento.Elements.option;
 
-public class FormSelectOption extends BaseSubComponent<HTMLOptionElement, FormSelectOption>
+public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, FormSelectOption>
         implements Disabled<HTMLOptionElement, FormSelectOption>, HasValue<String> {
 
     // ------------------------------------------------------ factory
@@ -44,10 +42,10 @@ public class FormSelectOption extends BaseSubComponent<HTMLOptionElement, FormSe
     static final String SUB_COMPONENT_NAME = "fso";
 
     public FormSelectOption(String label, String value) {
-        super(option().apply(o -> {
+        super(SUB_COMPONENT_NAME, option().apply(o -> {
             o.label = label;
             o.value = value;
-        }).element(), ComponentType.FormSelect, SUB_COMPONENT_NAME);
+        }).element());
     }
 
     @Override

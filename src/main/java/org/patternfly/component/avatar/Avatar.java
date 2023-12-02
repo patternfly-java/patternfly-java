@@ -42,10 +42,10 @@ public class Avatar extends BaseComponentFlat<HTMLImageElement, Avatar> {
     // ------------------------------------------------------ instance
 
     Avatar(String src, String alt) {
-        super(img().css(component(avatar)).apply(i -> {
+        super(ComponentType.Avatar, img().css(component(avatar)).apply(i -> {
             i.src = src;
             i.alt = alt;
-        }).element(), ComponentType.Avatar);
+        }).element());
     }
 
     // ------------------------------------------------------ builder

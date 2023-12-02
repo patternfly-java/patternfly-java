@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.ComponentType;
 import org.patternfly.layout.Brightness;
 
 import elemental2.dom.HTMLElement;
@@ -45,7 +44,7 @@ public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWiza
     static final String SUB_COMPONENT_NAME = "pmw";
 
     PageMainWizard() {
-        super(section().css(component(page, main, wizard)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, section().css(component(page, main, wizard)).element());
     }
 
     // ------------------------------------------------------ builder

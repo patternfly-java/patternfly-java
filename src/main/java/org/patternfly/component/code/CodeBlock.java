@@ -35,7 +35,6 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.pre;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.wrapHtmlContainer;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.code.CodeBlockActions.codeBlockActions;
 import static org.patternfly.component.code.CodeBlockHeader.codeBlockHeader;
 import static org.patternfly.component.expandable.ExpandableSection.expandableSection;
@@ -77,7 +76,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
     private ExpandableSection esTrigger;
 
     CodeBlock(String code) {
-        super(div().css(component(codeBlock)).element(), ComponentType.CodeBlock);
+        super(ComponentType.CodeBlock, div().css(component(codeBlock)).element());
 
         add(div().css(component(codeBlock, content))
                 .add(preElement = pre().css(component(codeBlock, pre))
@@ -89,7 +88,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
             codeElement.textContent = code;
         }
 
-        storeComponent(this);
+        storeComponent();
         Attachable.register(this, this);
     }
 

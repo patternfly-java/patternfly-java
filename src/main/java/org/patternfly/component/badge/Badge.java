@@ -64,7 +64,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements HasValue
     }
 
     Badge(int count, int limit) {
-        super(span().css(component(badge)).element(), ComponentType.Badge);
+        super(ComponentType.Badge, span().css(component(badge)).element());
         this.valueElement = add(span()).element();
         this.limit = limit;
         count(count);

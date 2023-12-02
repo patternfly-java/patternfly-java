@@ -20,8 +20,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
 
@@ -30,7 +28,6 @@ import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
@@ -42,7 +39,7 @@ import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.list;
 
-public class MenuList extends BaseSubComponent<HTMLUListElement, MenuList> implements Attachable {
+public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -60,14 +57,14 @@ public class MenuList extends BaseSubComponent<HTMLUListElement, MenuList> imple
     final Map<String, MenuItem> items;
 
     MenuList() {
-        super(ul().css(component(Classes.menu, list)).attr(role, "menu").element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, ul().css(component(Classes.menu, list)).attr(role, "menu").element());
         this.items = new HashMap<>();
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        Menu menu = lookupComponent(ComponentType.Menu, element());
+        Menu menu = lookupComponent();
         switch (menu.menuType) {
             case menu:
             case dropdown:

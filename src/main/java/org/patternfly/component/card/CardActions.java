@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +24,7 @@ import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
 
-public class CardActions extends BaseSubComponent<HTMLDivElement, CardActions> {
+public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
 
     // ------------------------------------------------------ factory
 
@@ -42,7 +40,7 @@ public class CardActions extends BaseSubComponent<HTMLDivElement, CardActions> {
     private Card card;
 
     CardActions() {
-        super(div().css(component(Classes.card, actions)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, actions)).element());
     }
 
     // ------------------------------------------------------ add

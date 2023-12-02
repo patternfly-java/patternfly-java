@@ -31,7 +31,6 @@ import elemental2.dom.MutationRecord;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.textInputGroup;
 
@@ -59,8 +58,8 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     private TextInputGroupUtilities utilities;
 
     TextInputGroup() {
-        super(div().css(component(textInputGroup)).element(), ComponentType.TextInputGroup);
-        storeComponent(this);
+        super(ComponentType.TextInputGroup, div().css(component(textInputGroup)).element());
+        storeComponent();
         Attachable.register(this, this);
     }
 

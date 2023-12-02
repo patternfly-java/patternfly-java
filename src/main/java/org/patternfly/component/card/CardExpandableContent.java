@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.card;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandableContent;
 
-public class CardExpandableContent extends BaseSubComponent<HTMLDivElement, CardExpandableContent> implements
+public class CardExpandableContent extends CardSubComponent<HTMLDivElement, CardExpandableContent> implements
         NoFill<HTMLDivElement, CardExpandableContent> {
 
     // ------------------------------------------------------ factory
@@ -40,10 +38,9 @@ public class CardExpandableContent extends BaseSubComponent<HTMLDivElement, Card
     static final String SUB_COMPONENT_NAME = "cec";
 
     CardExpandableContent() {
-        super(div().css(component(card, expandableContent))
+        super(SUB_COMPONENT_NAME, div().css(component(card, expandableContent))
                 .apply(e -> e.hidden = true)
-                .element(),
-                ComponentType.Card, SUB_COMPONENT_NAME);
+                .element());
     }
 
     // ------------------------------------------------------ add

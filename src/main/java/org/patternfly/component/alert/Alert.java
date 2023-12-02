@@ -49,7 +49,6 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.alert.AlertDescription.alertDescription;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
@@ -108,10 +107,9 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private ToggleHandler<Alert> toggleHandler;
 
     Alert(Severity severity, String title) {
-        super(div().css(component(alert), severity.status.modifier)
+        super(ComponentType.Alert, div().css(component(alert), severity.status.modifier)
                 .aria(label, severity.aria)
-                .element(),
-                ComponentType.Alert);
+                .element());
         this.severity = severity;
         this.title = title;
         this.timeout = NO_TIMEOUT;
@@ -282,7 +280,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             stopTimeout();
-            AlertGroup alertGroup = lookupComponent(ComponentType.Alert, element(), true);
+            AlertGroup alertGroup = lookupComponent(ComponentType.Alert, true);
             if (alertGroup != null) {
                 alertGroup.closeAlert(this);
             } else {

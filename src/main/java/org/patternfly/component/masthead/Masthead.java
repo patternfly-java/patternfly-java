@@ -64,7 +64,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
     // ------------------------------------------------------ instance
 
     Masthead() {
-        super(header().css(component(masthead)).element(), ComponentType.Masthead);
+        super(ComponentType.Masthead, header().css(component(masthead)).element());
     }
 
     // ------------------------------------------------------ add

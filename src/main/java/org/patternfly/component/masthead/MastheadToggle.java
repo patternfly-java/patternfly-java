@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.masthead;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.sidebar.Sidebar;
 
@@ -40,7 +38,7 @@ import static org.patternfly.layout.PredefinedIcon.bars;
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadToggle extends BaseSubComponent<HTMLDivElement, MastheadToggle> {
+public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, MastheadToggle> {
 
     // ------------------------------------------------------ factory
 
@@ -58,7 +56,7 @@ public class MastheadToggle extends BaseSubComponent<HTMLDivElement, MastheadTog
     private final Button toggleButton;
 
     MastheadToggle() {
-        super(div().css(component(masthead, toggle)).element(), ComponentType.Masthead, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(masthead, toggle)).element());
         add(toggleButton = button()
                 .plain()
                 .icon(bars)

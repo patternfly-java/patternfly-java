@@ -51,7 +51,6 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
@@ -103,7 +102,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     private CloseHandler<LabelGroup> closeHandler;
 
     LabelGroup(String category) {
-        super(div().css(component(labelGroup)).element(), ComponentType.ChipGroup);
+        super(ComponentType.ChipGroup, div().css(component(labelGroup)).element());
         this.labels = new LinkedHashMap<>();
         this.expanded = false;
         this.numLabels = DEFAULT_NUM_CHIPS;
@@ -119,7 +118,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         } else {
             listElement.setAttribute(label, "Label group category");
         }
-        storeComponent(this);
+        storeComponent();
         Attachable.register(this, this);
     }
 

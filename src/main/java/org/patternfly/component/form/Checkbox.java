@@ -81,13 +81,12 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
     private HTMLElement requiredMarker;
 
     Checkbox(String id, String name, String label, boolean checked) {
-        super(div().css(component(check))
+        super(ComponentType.Checkbox, div().css(component(check))
                 .add(input(checkbox).css(component(check, input))
                         .id(id)
                         .name(name)
                         .checked(checked))
-                .element(),
-                ComponentType.Checkbox);
+                .element());
 
         inputElement = (HTMLInputElement) element().firstElementChild;
         add(labelElement = label().css(component(check, Classes.label))

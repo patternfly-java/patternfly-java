@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -24,7 +22,7 @@ import elemental2.dom.HTMLDivElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 
-public class CodeBlockActions extends BaseSubComponent<HTMLDivElement, CodeBlockActions> {
+public class CodeBlockActions extends CodeBlockSubComponent<HTMLDivElement, CodeBlockActions> {
 
     // ------------------------------------------------------ factory
 
@@ -37,7 +35,7 @@ public class CodeBlockActions extends BaseSubComponent<HTMLDivElement, CodeBlock
     static final String SUB_COMPONENT_NAME = "cbas";
 
     CodeBlockActions() {
-        super(div().css(component(Classes.codeBlock, Classes.actions)).element(), ComponentType.CodeBlock, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, Classes.actions)).element());
     }
 
     // ------------------------------------------------------ add

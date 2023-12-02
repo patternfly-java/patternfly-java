@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Inline;
@@ -35,7 +35,7 @@ import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class FormGroupControl extends BaseSubComponent<HTMLElement, FormGroupControl> implements
+public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
         Attachable {
 
@@ -54,7 +54,7 @@ public class FormGroupControl extends BaseSubComponent<HTMLElement, FormGroupCon
     private final List<Radio> radios;
 
     FormGroupControl() {
-        super(div().css(component(Classes.form, group, Classes.control)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        super(ComponentType.Form, SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.control)).element());
         this.checkboxes = new ArrayList<>();
         this.radios = new ArrayList<>();
         Attachable.register(this, this);

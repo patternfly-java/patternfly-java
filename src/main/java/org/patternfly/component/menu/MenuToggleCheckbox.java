@@ -17,7 +17,6 @@ package org.patternfly.component.menu;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers;
@@ -39,7 +38,7 @@ import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.modifier;
 
-public class MenuToggleCheckbox extends BaseSubComponent<HTMLElement, MenuToggleCheckbox> implements HasValue<Boolean>,
+public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, MenuToggleCheckbox> implements HasValue<Boolean>,
         Modifiers.Disabled<HTMLElement, MenuToggleCheckbox> {
 
     // ------------------------------------------------------ factory
@@ -60,7 +59,7 @@ public class MenuToggleCheckbox extends BaseSubComponent<HTMLElement, MenuToggle
     private HTMLElement textElement;
 
     MenuToggleCheckbox() {
-        super(label().css(component(check)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, label().css(component(check)).element());
         String id = Id.unique(ComponentType.MenuToggle.id, "check");
         ((HTMLLabelElement) element()).htmlFor = id;
         add(inputElement = input(checkbox).css(component(check, Classes.input))

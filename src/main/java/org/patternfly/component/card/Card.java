@@ -34,7 +34,6 @@ import elemental2.dom.HTMLDivElement;
 
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.multi;
@@ -83,8 +82,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     private ToggleHandler<Card> toggleHandler;
 
     Card() {
-        super(div().css(component(card)).element(), ComponentType.Card);
-        storeComponent(this);
+        super(ComponentType.Card, div().css(component(card)).element());
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

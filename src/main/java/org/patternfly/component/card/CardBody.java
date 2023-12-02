@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.body;
 import static org.patternfly.layout.Classes.card;
 import static org.patternfly.layout.Classes.component;
 
-public class CardBody extends BaseSubComponent<HTMLDivElement, CardBody> implements
+public class CardBody extends CardSubComponent<HTMLDivElement, CardBody> implements
         NoFill<HTMLDivElement, CardBody> {
 
     // ------------------------------------------------------ factory
@@ -40,7 +38,7 @@ public class CardBody extends BaseSubComponent<HTMLDivElement, CardBody> impleme
     static final String SUB_COMPONENT_NAME = "cb";
 
     CardBody() {
-        super(div().css(component(card, body)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(card, body)).element());
     }
 
     // ------------------------------------------------------ builder

@@ -57,7 +57,7 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
     private final Button button;
 
     SkipToContent(String mainId, String text) {
-        super(div().css(component(Classes.skipToContent)).element(), ComponentType.SkipToContent);
+        super(ComponentType.SkipToContent, div().css(component(Classes.skipToContent)).element());
         add(button = button(text, "#" + mainId).primary());
     }
 

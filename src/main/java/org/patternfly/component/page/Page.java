@@ -60,7 +60,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> {
     private PageMain main;
 
     protected Page() {
-        super(div().css(component(page)).element(), ComponentType.Page);
+        super(ComponentType.Page, div().css(component(page)).element());
     }
 
     // ------------------------------------------------------ add

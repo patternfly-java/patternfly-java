@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.alert;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
@@ -25,12 +23,11 @@ import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.actionGroup;
 import static org.patternfly.layout.Classes.component;
 
-public class AlertActionGroup extends BaseSubComponent<HTMLDivElement, AlertActionGroup> {
+public class AlertActionGroup extends AlertSubComponent<HTMLDivElement, AlertActionGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -45,7 +42,7 @@ public class AlertActionGroup extends BaseSubComponent<HTMLDivElement, AlertActi
     private Alert alert;
 
     AlertActionGroup() {
-        super(div().css(component(Classes.alert, actionGroup)).element(), ComponentType.Alert, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.alert, actionGroup)).element());
     }
 
     // ------------------------------------------------------ add
@@ -64,7 +61,7 @@ public class AlertActionGroup extends BaseSubComponent<HTMLDivElement, AlertActi
 
     public AlertActionGroup addAction(Button action, ComponentHandler<Alert> handler) {
         if (handler != null) {
-            action.on(click, e -> handler.handle(e, lookupComponent(ComponentType.Alert, element())));
+            action.on(click, e -> handler.handle(e, lookupComponent()));
         }
         return add(action);
     }

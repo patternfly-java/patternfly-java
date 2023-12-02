@@ -17,7 +17,6 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
 
@@ -32,7 +31,8 @@ import static org.patternfly.layout.Classes.popover;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Classes.title;
 
-public class PopoverHeader extends BaseSubComponent<HTMLElement, PopoverHeader> implements RedirectTo<HTMLElement, PopoverHeader> {
+public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeader>
+        implements RedirectTo<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -48,7 +48,7 @@ public class PopoverHeader extends BaseSubComponent<HTMLElement, PopoverHeader> 
     final HTMLHeadingElement headerElement;
 
     PopoverHeader() {
-        super(header().css(component(popover, Classes.header)).element(), ComponentType.Popover, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
         headerId = Id.unique(ComponentType.Popover.id, "header");
         element().appendChild(div().css(component(popover, title))
                 .id(headerId)

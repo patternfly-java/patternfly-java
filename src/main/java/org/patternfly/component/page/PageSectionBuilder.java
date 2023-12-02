@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Sticky;
 
@@ -32,10 +30,10 @@ import static org.patternfly.layout.Classes.shadowTop;
  * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
  */
 public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSectionBuilder<E, P>>
-        extends BaseSubComponent<E, P> implements PageSection<E, P> {
+        extends PageSubComponent<E, P> implements PageSection<E, P> {
 
-    PageSectionBuilder(E element, ComponentType mainComponent, String name) {
-        super(element, mainComponent, name);
+    PageSectionBuilder(String name, E element) {
+        super(name, element);
     }
 
     // ------------------------------------------------------ add

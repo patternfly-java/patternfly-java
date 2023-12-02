@@ -40,7 +40,7 @@ public class TemplateComponent extends BaseComponent<HTMLElement, TemplateCompon
     // ------------------------------------------------------ instance
 
     TemplateComponent() {
-        super(div().element(), (ComponentType) null);
+        super((ComponentType) null, div().element());
     }
 
     // ------------------------------------------------------ add

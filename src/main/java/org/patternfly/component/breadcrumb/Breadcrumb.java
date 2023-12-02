@@ -43,7 +43,7 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
     // ------------------------------------------------------ instance
 
     Breadcrumb() {
-        super(div().element(), (ComponentType) null);
+        super((ComponentType) null, div().element());
     }
 
     // ------------------------------------------------------ add

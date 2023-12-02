@@ -40,7 +40,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -88,7 +87,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     private CloseHandler<Chip> closeHandler;
 
     <E extends HTMLElement> Chip(HTMLContainerBuilder<E> builder, String text) {
-        super(builder.css(component(chip)).element(), ComponentType.Chip);
+        super(ComponentType.Chip, builder.css(component(chip)).element());
         this.id = Id.unique(componentType().id);
 
         String textId = Id.unique(id, "text");
@@ -198,7 +197,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
 
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
-            ChipGroup chipGroup = lookupComponent(ComponentType.ChipGroup, element(), true);
+            ChipGroup chipGroup = lookupComponent(ComponentType.ChipGroup, true);
             if (chipGroup != null) {
                 chipGroup.close(this);
             } else {

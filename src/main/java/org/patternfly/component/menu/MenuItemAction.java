@@ -17,8 +17,6 @@ package org.patternfly.component.menu;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -30,7 +28,6 @@ import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.layout.Classes.action;
@@ -38,7 +35,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
 
-public class MenuItemAction extends BaseSubComponent<HTMLButtonElement, MenuItemAction> {
+public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 
@@ -64,16 +61,16 @@ public class MenuItemAction extends BaseSubComponent<HTMLButtonElement, MenuItem
     ComponentHandler<MenuItemAction> handler;
 
     MenuItemAction(String id, String iconClass) {
-        super(button()
+        super(SUB_COMPONENT_NAME, button()
                 .css(component(Classes.menu, item, action))
                 .attr(tabindex, -1)
                 .add(span().css(component(Classes.menu, item, action, icon))
                         .add(inlineIcon(iconClass)))
-                .element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+                .element());
         this.id = id;
         this.iconContainer = find(By.classname(component(Classes.menu, item, action, icon)));
         on(click, e -> {
-            Menu menu = lookupComponent(ComponentType.Menu, element());
+            Menu menu = lookupComponent();
             menu.handleItemAction(this);
         });
     }
@@ -81,7 +78,7 @@ public class MenuItemAction extends BaseSubComponent<HTMLButtonElement, MenuItem
     // constructor must only be used to clone an item action of a favorite item!
     MenuItemAction(Menu menu, MenuItem favoriteItem, MenuItemAction sourceItemAction,
             HTMLButtonElement itemActionElement) {
-        super(itemActionElement, ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, itemActionElement);
         this.id = Id.build("fav", sourceItemAction.id);
         this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;

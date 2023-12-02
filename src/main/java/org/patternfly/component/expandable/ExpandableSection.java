@@ -33,7 +33,6 @@ import elemental2.dom.MutationRecord;
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.core.Aria.controls;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Dataset.expandableSectionId;
@@ -82,9 +81,9 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     private HTMLElement detachedContentElement;
 
     ExpandableSection(String id) {
-        super(div().css(component(expandableSection)).element(), ComponentType.ExpandableSection);
+        super(ComponentType.ExpandableSection, div().css(component(expandableSection)).element());
         this.id = id == null ? Id.unique(componentType().id) : id;
-        storeComponent(this);
+        storeComponent();
         Attachable.register(this, this);
     }
 

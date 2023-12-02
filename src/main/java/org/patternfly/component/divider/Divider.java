@@ -50,11 +50,10 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Divider(String element, Class<E> type) {
-        super(htmlElement(element, type)
+        super(ComponentType.Divider, htmlElement(element, type)
                 .css(component(divider))
                 .attr(role, "separator")
-                .element(),
-                ComponentType.Divider);
+                .element());
     }
 
     // ------------------------------------------------------ builder

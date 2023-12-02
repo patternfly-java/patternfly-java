@@ -20,7 +20,6 @@ import java.util.Iterator;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
@@ -45,8 +44,7 @@ import static org.patternfly.layout.Classes.noPaddingTop;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.PredefinedIcon.help;
 
-public class FormGroupLabel extends BaseSubComponent<HTMLElement, FormGroupLabel> implements
-        Attachable {
+public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -62,7 +60,7 @@ public class FormGroupLabel extends BaseSubComponent<HTMLElement, FormGroupLabel
     private HTMLElement labelElement;
 
     FormGroupLabel(String label) {
-        super(div().css(component(Classes.form, group, Classes.label)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.label)).element());
         add(labelElement = Elements.label().css(component(Classes.form, Classes.label))
                 .add(textElement = span().css(component(Classes.form, Classes.label, text))
                         .textContent(label)

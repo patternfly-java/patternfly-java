@@ -17,15 +17,13 @@ package org.patternfly.component.form;
 
 import java.util.function.Function;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Modifiers.Disabled;
 
 import elemental2.dom.HTMLOptGroupElement;
 
 import static org.jboss.elemento.Elements.optgroup;
 
-public class FormSelectOptionGroup extends BaseSubComponent<HTMLOptGroupElement, FormSelectOptionGroup> implements
+public class FormSelectOptionGroup extends FormSelectSubComponent<HTMLOptGroupElement, FormSelectOptionGroup> implements
         Disabled<HTMLOptGroupElement, FormSelectOptionGroup> {
 
     // ------------------------------------------------------ factory
@@ -39,9 +37,9 @@ public class FormSelectOptionGroup extends BaseSubComponent<HTMLOptGroupElement,
     static final String SUB_COMPONENT_NAME = "fsog";
 
     FormSelectOptionGroup(String label) {
-        super(optgroup()
+        super(SUB_COMPONENT_NAME, optgroup()
                 .apply(og -> og.label = label)
-                .element(), ComponentType.FormSelect, SUB_COMPONENT_NAME);
+                .element());
     }
 
     @Override

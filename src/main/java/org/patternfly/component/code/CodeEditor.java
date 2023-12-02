@@ -26,7 +26,6 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.pre;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
@@ -55,7 +54,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
     private final HTMLElement preElement;
 
     CodeEditor(String code) {
-        super(div().css(component(codeEditor)).element(), ComponentType.CodeEditor);
+        super(ComponentType.CodeEditor, div().css(component(codeEditor)).element());
 
         add(div().css(component(codeEditor, main))
                 .add(Elements.code().css(component(codeEditor, Classes.code))
@@ -67,7 +66,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         if (code != null) {
             preElement.textContent = code;
         }
-        storeComponent(this);
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.alert.Alert;
 import org.patternfly.layout.Classes;
 
@@ -26,7 +24,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 
-public class FormAlert extends BaseSubComponent<HTMLElement, FormAlert> {
+public class FormAlert extends FormSubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ factory
 
@@ -39,7 +37,7 @@ public class FormAlert extends BaseSubComponent<HTMLElement, FormAlert> {
     static final String SUB_COMPONENT_NAME = "fa";
 
     FormAlert() {
-        super(div().css(component(Classes.form, alert)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, alert)).element());
     }
 
     // ------------------------------------------------------ add

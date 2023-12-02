@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.keyboard;
 import static org.patternfly.layout.Classes.shortcuts;
 
-public class CodeEditorLinks extends BaseSubComponent<HTMLDivElement, CodeEditorLinks> {
+public class CodeEditorLinks extends CodeEditorSubComponent<HTMLDivElement, CodeEditorLinks> {
 
     // ------------------------------------------------------ factory
 
@@ -39,8 +37,7 @@ public class CodeEditorLinks extends BaseSubComponent<HTMLDivElement, CodeEditor
     static final String SUB_COMPONENT_NAME = "cels";
 
     CodeEditorLinks() {
-        super(div().css(component(Classes.codeEditor, keyboard, shortcuts)).element(), ComponentType.CodeEditor,
-                SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, keyboard, shortcuts)).element());
     }
 
     // ------------------------------------------------------ add

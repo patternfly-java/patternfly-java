@@ -47,7 +47,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
     // ------------------------------------------------------ instance
 
     Title(int level, Size size, String text) {
-        super(h(level, text).css(component(title)).element(), ComponentType.Title);
+        super(ComponentType.Title, h(level, text).css(component(title)).element());
         if (size != null) {
             css(size.modifier);
         }

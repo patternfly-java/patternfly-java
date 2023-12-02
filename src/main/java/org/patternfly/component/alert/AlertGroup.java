@@ -30,7 +30,6 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
 import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
@@ -88,12 +87,12 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     private final int timeout;
 
     AlertGroup(AlertGroupType type, int timeout) {
-        super(ul().css(component(alertGroup))
+        super(ComponentType.AlertGroup, ul().css(component(alertGroup))
                 .attr(role, "list")
-                .element(), ComponentType.AlertGroup);
+                .element());
         this.type = type;
         this.timeout = timeout;
-        storeComponent(this);
+        storeComponent();
 
         if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
             aria(live, "polite");

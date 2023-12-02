@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.expandable;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -26,7 +24,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandableSection;
 import static org.patternfly.layout.Classes.toggle;
 
-public class ExpandableSectionToggleText extends BaseSubComponent<HTMLElement, ExpandableSectionToggleText> {
+public class ExpandableSectionToggleText extends ExpandableSectionSubComponent<HTMLElement, ExpandableSectionToggleText> {
 
     // ------------------------------------------------------ factory
 
@@ -50,9 +48,7 @@ public class ExpandableSectionToggleText extends BaseSubComponent<HTMLElement, E
     private final String lessText;
 
     ExpandableSectionToggleText(String moreText, String lessText) {
-        super(span().css(component(expandableSection, toggle, Classes.text))
-                .element(),
-                ComponentType.ExpandableSection, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, span().css(component(expandableSection, toggle, Classes.text)).element());
         this.moreText = moreText;
         this.lessText = lessText;
 

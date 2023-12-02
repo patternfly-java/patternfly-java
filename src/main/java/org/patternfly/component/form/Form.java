@@ -21,7 +21,6 @@ import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLFormElement;
 
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.form;
 import static org.patternfly.layout.Classes.horizontal;
@@ -47,8 +46,8 @@ public class Form extends BaseComponent<HTMLFormElement, Form> {
     // ------------------------------------------------------ instance
 
     Form() {
-        super(Elements.form().css(component(form)).apply(f -> f.noValidate = true).element(), ComponentType.Form);
-        storeComponent(this);
+        super(ComponentType.Form, Elements.form().css(component(form)).apply(f -> f.noValidate = true).element());
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

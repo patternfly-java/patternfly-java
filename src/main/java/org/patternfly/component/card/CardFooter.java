@@ -15,9 +15,6 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +22,7 @@ import static org.patternfly.layout.Classes.card;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.footer;
 
-public class CardFooter extends BaseSubComponent<HTMLDivElement, CardFooter> {
+public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> {
 
     // ------------------------------------------------------ factory
 
@@ -38,7 +35,7 @@ public class CardFooter extends BaseSubComponent<HTMLDivElement, CardFooter> {
     static final String SUB_COMPONENT_NAME = "cf";
 
     CardFooter() {
-        super(div().css(component(card, footer)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(card, footer)).element());
     }
 
     // ------------------------------------------------------ builder

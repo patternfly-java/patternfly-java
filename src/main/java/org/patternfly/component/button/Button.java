@@ -120,7 +120,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     private Spinner spinner;
 
     <E extends HTMLElement> Button(HTMLContainerBuilder<E> builder) {
-        super(builder.css(component(button)).element(), ComponentType.Button);
+        super(ComponentType.Button, builder.css(component(button)).element());
 
         if (element().tagName.equalsIgnoreCase("button")) {
             anchorElement = null;

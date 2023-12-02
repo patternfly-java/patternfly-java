@@ -15,9 +15,6 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +22,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 import static org.patternfly.layout.Classes.menu;
 
-public class MenuHeader extends BaseSubComponent<HTMLDivElement, MenuHeader> {
+public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -42,7 +39,7 @@ public class MenuHeader extends BaseSubComponent<HTMLDivElement, MenuHeader> {
     static final String SUB_COMPONENT_NAME = "mh";
 
     MenuHeader(String text) {
-        super(div().css(component(menu, header)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(menu, header)).element());
         if (text != null) {
             textContent(text);
         }

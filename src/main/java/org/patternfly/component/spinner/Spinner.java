@@ -59,7 +59,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
     // ------------------------------------------------------ instance
 
     protected Spinner(Size size, String label) {
-        super(svg().css(component(spinner))
+        super(ComponentType.Spinner, svg().css(component(spinner))
                 .attr(role, "progressbar")
                 .attr("viewBox", "0 0 100 100")
                 .aria(Aria.label, label)
@@ -68,8 +68,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
                         .attr("cy", 50)
                         .attr("r", 45)
                         .attr("fill", "none"))
-                .element(),
-                ComponentType.Spinner);
+                .element());
         if (size != null) {
             css(size.modifier);
         }

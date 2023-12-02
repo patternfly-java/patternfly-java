@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -29,7 +27,6 @@ import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.dom.DomGlobal.navigator;
@@ -38,7 +35,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
-public class CodeBlockAction extends BaseSubComponent<HTMLDivElement, CodeBlockAction> implements
+public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeBlockAction> implements
         WithIcon<HTMLDivElement, CodeBlockAction> {
 
     // ------------------------------------------------------ factory
@@ -70,7 +67,7 @@ public class CodeBlockAction extends BaseSubComponent<HTMLDivElement, CodeBlockA
     private CodeBlock codeBlock;
 
     CodeBlockAction(InlineIcon icon) {
-        super(div().css(component(Classes.codeBlock, actions, item)).element(), ComponentType.CodeBlock, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, actions, item)).element());
         add(button = button().plain().icon(icon));
     }
 
@@ -97,7 +94,7 @@ public class CodeBlockAction extends BaseSubComponent<HTMLDivElement, CodeBlockA
     // ------------------------------------------------------ events
 
     public CodeBlockAction onClick(ComponentHandler<CodeBlock> handler) {
-        button.on(click, e -> handler.handle(e, lookupComponent(ComponentType.CodeBlock, element())));
+        button.on(click, e -> handler.handle(e, lookupComponent()));
         return this;
     }
 }

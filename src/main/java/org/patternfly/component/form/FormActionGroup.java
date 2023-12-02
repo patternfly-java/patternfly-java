@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.layout.Classes;
 
@@ -28,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 import static org.patternfly.layout.Classes.modifier;
 
-public class FormActionGroup extends BaseSubComponent<HTMLElement, FormActionGroup> {
+public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -43,7 +41,7 @@ public class FormActionGroup extends BaseSubComponent<HTMLElement, FormActionGro
     private final HTMLElement actionsContainer;
 
     FormActionGroup() {
-        super(div().css(component(Classes.form, group), modifier(action)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group), modifier(action)).element());
         add(div().css(component(Classes.form, group, Classes.control)) // no need for a real FormGroupControl subcomponent
                 .add(actionsContainer = div().css(component(Classes.form, Classes.actions)).element()));
     }

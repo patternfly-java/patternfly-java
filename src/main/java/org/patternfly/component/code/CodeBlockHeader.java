@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +23,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
-public class CodeBlockHeader extends BaseSubComponent<HTMLDivElement, CodeBlockHeader> {
+public class CodeBlockHeader extends CodeBlockSubComponent<HTMLDivElement, CodeBlockHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -40,7 +38,7 @@ public class CodeBlockHeader extends BaseSubComponent<HTMLDivElement, CodeBlockH
     CodeBlockActions actions;
 
     CodeBlockHeader() {
-        super(div().css(component(Classes.codeBlock, header)).element(), ComponentType.CodeBlock, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, header)).element());
     }
 
     // ------------------------------------------------------ add

@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -28,7 +26,7 @@ import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.tab;
 
-public class CodeEditorTabIcon extends BaseSubComponent<HTMLElement, CodeEditorTabIcon> {
+public class CodeEditorTabIcon extends CodeEditorSubComponent<HTMLElement, CodeEditorTabIcon> {
 
     // ------------------------------------------------------ factory
 
@@ -49,7 +47,7 @@ public class CodeEditorTabIcon extends BaseSubComponent<HTMLElement, CodeEditorT
     static final String SUB_COMPONENT_NAME = "ceti";
 
     CodeEditorTabIcon(HTMLElement icon) {
-        super(span().css(component(codeEditor, tab, Classes.icon)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.icon)).element());
         if (icon != null) {
             add(icon);
         }

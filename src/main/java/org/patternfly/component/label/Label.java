@@ -64,7 +64,6 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -120,7 +119,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     private HandlerRegistration cancelEditModeOnDocumentClick;
 
     <E extends HTMLElement> Label(HTMLContainerBuilder<E> builder, String text, Color color) {
-        super(builder.css(component(Classes.label), color.modifier).element(), ComponentType.Label);
+        super(ComponentType.Label, builder.css(component(Classes.label), color.modifier).element());
         this.id = Id.unique(componentType().id);
         element().appendChild(contentElement = span().css(component(Classes.label, content))
                 .add(textElement = span().css(component(Classes.label, Classes.text))
@@ -295,7 +294,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
-            LabelGroup labelGroup = lookupComponent(ComponentType.LabelGroup, element(), true);
+            LabelGroup labelGroup = lookupComponent(ComponentType.LabelGroup, true);
             if (labelGroup != null) {
                 labelGroup.close(this);
             } else {

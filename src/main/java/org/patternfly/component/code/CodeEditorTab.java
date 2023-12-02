@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
@@ -28,7 +26,7 @@ import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.tab;
 
-public class CodeEditorTab extends BaseSubComponent<HTMLDivElement, CodeEditorTab> {
+public class CodeEditorTab extends CodeEditorSubComponent<HTMLDivElement, CodeEditorTab> {
 
     // ------------------------------------------------------ factory
 
@@ -53,7 +51,7 @@ public class CodeEditorTab extends BaseSubComponent<HTMLDivElement, CodeEditorTa
     static final String SUB_COMPONENT_NAME = "cet";
 
     CodeEditorTab() {
-        super(div().css(component(codeEditor, tab)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(codeEditor, tab)).element());
     }
 
     // ------------------------------------------------------ add

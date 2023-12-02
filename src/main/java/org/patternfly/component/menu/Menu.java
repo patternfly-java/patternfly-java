@@ -35,7 +35,6 @@ import elemental2.dom.HTMLElement;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
@@ -90,11 +89,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     private MenuContent content;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
-        super(div().css(component(menu)).element(), ComponentType.Menu);
+        super(ComponentType.Menu, div().css(component(menu)).element());
         this.menuType = menuType;
         this.selectionMode = selectionMode;
         this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes
-        storeComponent(this);
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

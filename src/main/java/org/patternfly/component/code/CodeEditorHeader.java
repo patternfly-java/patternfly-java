@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +23,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
-public class CodeEditorHeader extends BaseSubComponent<HTMLDivElement, CodeEditorHeader> {
+public class CodeEditorHeader extends CodeEditorSubComponent<HTMLDivElement, CodeEditorHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -38,7 +36,7 @@ public class CodeEditorHeader extends BaseSubComponent<HTMLDivElement, CodeEdito
     static final String SUB_COMPONENT_NAME = "ceh";
 
     CodeEditorHeader() {
-        super(div().css(component(Classes.codeEditor, header)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, header)).element());
     }
 
     // ------------------------------------------------------ add

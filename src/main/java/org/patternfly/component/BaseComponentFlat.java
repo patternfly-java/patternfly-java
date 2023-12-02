@@ -28,13 +28,18 @@ import static java.util.Objects.requireNonNull;
 public abstract class BaseComponentFlat<E extends HTMLElement, B extends TypedBuilder<E, B>>
         implements Component, HasElement<E, B>, HasHTMLElement<E, B>, Finder<E> {
 
-    private final E element;
     private final ComponentType componentType;
+    private final E element;
 
-    protected BaseComponentFlat(E element, ComponentType componentType) {
-        this.element = requireNonNull(element, "element required");
+    protected BaseComponentFlat(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
+        this.element = requireNonNull(element, "element required");
         Ouia.component(element, componentType);
+    }
+
+    @Override
+    public ComponentType componentType() {
+        return componentType;
     }
 
     @Override
@@ -42,8 +47,15 @@ public abstract class BaseComponentFlat<E extends HTMLElement, B extends TypedBu
         return element;
     }
 
-    @Override
-    public ComponentType componentType() {
-        return componentType;
+    // ------------------------------------------------------ component store
+
+    protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
+            ComponentType componentType) {
+        return lookupComponent(componentType, false);
+    }
+
+    protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
+            ComponentType componentType, boolean lenient) {
+        return ComponentStore.lookup(componentType, element(), lenient);
     }
 }

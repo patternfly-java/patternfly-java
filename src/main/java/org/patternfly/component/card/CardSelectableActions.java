@@ -18,7 +18,6 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.form.Radio;
 import org.patternfly.core.Logger;
@@ -28,7 +27,6 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.form.Radio.radio;
 import static org.patternfly.core.Aria.labelledBy;
@@ -41,7 +39,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.selectable;
 
-public class CardSelectableActions extends BaseSubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
+public class CardSelectableActions extends CardSubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -57,13 +55,13 @@ public class CardSelectableActions extends BaseSubComponent<HTMLDivElement, Card
     Radio radio;
 
     CardSelectableActions() {
-        super(div().css(component(Classes.card, selectable, actions)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, selectable, actions)).element());
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        Card card = lookupComponent(ComponentType.Card, element());
+        Card card = lookupComponent();
         if (card.isSelectable() || card.isClickable()) {
             // we need a card id!
             if (card.element().id == null || card.element().id.isEmpty()) {

@@ -53,7 +53,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
     private HTMLElement validationContainer;
 
     FormControl(String id, E element, ComponentType componentType) {
-        super(element, componentType);
+        super(componentType, element);
         this.id = id;
     }
 

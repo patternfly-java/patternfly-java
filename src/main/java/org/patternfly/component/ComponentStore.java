@@ -31,40 +31,39 @@ import static org.patternfly.component.UUID.uuid;
 
 final class ComponentStore {
 
-    private static final String COMPONENT_KEY_PREFIX = "pfc"; // PatternFly component
-    private static final String SUB_COMPONENT_KEY_PREFIX = "pfs"; // PatternFly subcomponent
+    private static final String KEY_PREFIX = "pfcs"; // PatternFly component store
     private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
-    private static final Map<String, BaseSubComponent<?, ?>> subComponents = new HashMap<>();
+    private static final Map<String, SubComponent<?, ?>> subComponents = new HashMap<>();
 
     // ------------------------------------------------------ store
 
-    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeComponent(BaseComponent<E, B> component) {
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void store(BaseComponent<E, B> component) {
         String uuid = uuid();
         components.put(uuid, component);
-        component.element().dataset.set(componentKey(component.componentType()), uuid);
+        component.element().dataset.set(key(component.componentType()), uuid);
         onDetach(component.element(), __ -> remove(uuid));
         Logger.debug(CATEGORY, "Store component " + component.componentType().componentName + " as " + uuid +
                 " on " + Elements.toString(component.element()) + count());
     }
 
-    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(
-            BaseSubComponent<E, B> subComponent) {
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void store(
+            SubComponent<E, B> subComponent) {
         String uuid = uuid();
         subComponents.put(uuid, subComponent);
-        subComponent.element().dataset.set(subComponentKey(subComponent.componentType(), subComponent.name()), uuid);
+        subComponent.element().dataset.set(key(subComponent.componentType, subComponent.name), uuid);
         onDetach(subComponent.element(), mr -> remove(uuid));
-        Logger.debug(CATEGORY, "Store subcomponent " + subComponent.componentType().componentName + "/"
-                + subComponent.name() + " as " + uuid + " on " + Elements.toString(subComponent.element()) + count());
+        Logger.debug(CATEGORY, "Store subcomponent " + subComponent.componentType.componentName + "/"
+                + subComponent.name + " as " + uuid + " on " + Elements.toString(subComponent.element()) + count());
     }
 
     // ------------------------------------------------------ lookup
 
     @SuppressWarnings("unchecked")
-    static <C extends BaseComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupComponent(
+    static <C extends BaseComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookup(
             ComponentType componentType, HTMLElement element, boolean lenient) {
         C component = null;
-        String key = componentKey(componentType);
+        String key = key(componentType);
         By selector = By.data(key);
         HTMLElement closest = closest(element, selector);
         if (closest != null) {
@@ -91,10 +90,10 @@ final class ComponentStore {
     }
 
     @SuppressWarnings("unchecked")
-    static <S extends BaseSubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> S lookupSubComponent(
+    static <S extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> S lookup(
             ComponentType componentType, String name, HTMLElement element, boolean lenient) {
         S subComponent = null;
-        String key = subComponentKey(componentType, name);
+        String key = key(componentType, name);
         By selector = By.data(key);
         HTMLElement closest = closest(element, selector);
         if (closest != null) {
@@ -123,17 +122,17 @@ final class ComponentStore {
 
     // ------------------------------------------------------ internal
 
-    private static String componentKey(ComponentType componentType) {
-        return COMPONENT_KEY_PREFIX + componentType.id;
+    private static String key(ComponentType componentType) {
+        return KEY_PREFIX + componentType.id;
     }
 
-    private static String subComponentKey(ComponentType componentType, String name) {
-        return SUB_COMPONENT_KEY_PREFIX + componentType.id + name;
+    private static String key(ComponentType componentType, String name) {
+        return KEY_PREFIX + componentType.id + name;
     }
 
     private static void remove(String uuid) {
         BaseComponent<?, ?> c = components.remove(uuid);
-        BaseSubComponent<?, ?> s = subComponents.remove(uuid);
+        SubComponent<?, ?> s = subComponents.remove(uuid);
         if (c != null) {
             Logger.debug(CATEGORY, "Remove component for " + uuid + count());
         } else if (s != null) {

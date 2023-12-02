@@ -41,7 +41,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> {
     // ------------------------------------------------------ instance
 
     Tabs() {
-        super(div().element(), (ComponentType) null);
+        super((ComponentType) null, div().element());
     }
 
     // ------------------------------------------------------ add

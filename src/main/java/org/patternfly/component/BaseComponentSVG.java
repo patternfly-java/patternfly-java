@@ -27,21 +27,21 @@ import static java.util.Objects.requireNonNull;
 public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuilder<E, B>>
         implements Component, HasElement<E, B>, HasSVGElement<E, B>, Finder<E>, Container<E, B> {
 
-    private final E element;
     private final ComponentType componentType;
+    private final E element;
 
-    protected BaseComponentSVG(E element, ComponentType componentType) {
-        this.element = requireNonNull(element, "element required");
+    protected BaseComponentSVG(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
-    }
-
-    @Override
-    public E element() {
-        return element;
+        this.element = requireNonNull(element, "element required");
     }
 
     @Override
     public ComponentType componentType() {
         return componentType;
+    }
+
+    @Override
+    public E element() {
+        return element;
     }
 }

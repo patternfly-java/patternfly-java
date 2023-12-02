@@ -15,9 +15,6 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -35,7 +32,7 @@ import static org.patternfly.layout.Classes.page;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainBody extends BaseSubComponent<HTMLDivElement, PageMainBody> {
+public class PageMainBody extends PageSubComponent<HTMLDivElement, PageMainBody> {
 
     // ------------------------------------------------------ factory
 
@@ -51,7 +48,7 @@ public class PageMainBody extends BaseSubComponent<HTMLDivElement, PageMainBody>
     static final String SUB_COMPONENT_NAME = "pmb";
 
     PageMainBody() {
-        super(div().css(component(page, main, body)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(page, main, body)).element());
     }
 
     // ------------------------------------------------------ builder

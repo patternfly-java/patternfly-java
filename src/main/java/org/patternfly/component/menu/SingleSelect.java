@@ -41,7 +41,7 @@ public class SingleSelect extends BaseComponent<HTMLElement, SingleSelect> {
     // ------------------------------------------------------ instance
 
     SingleSelect() {
-        super(div().element(), (ComponentType) null);
+        super((ComponentType) null, div().element());
     }
 
     // ------------------------------------------------------ add

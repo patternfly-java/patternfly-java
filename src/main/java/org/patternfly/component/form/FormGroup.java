@@ -17,7 +17,7 @@ package org.patternfly.component.form;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
+import org.patternfly.component.SubComponent;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
 import org.patternfly.layout.Classes;
@@ -26,11 +26,10 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.ComponentStore.storeSubComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class FormGroup extends BaseSubComponent<HTMLElement, FormGroup> implements
+public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -48,10 +47,10 @@ public class FormGroup extends BaseSubComponent<HTMLElement, FormGroup> implemen
     FormGroupRole role;
 
     FormGroup() {
-        super(div().css(component(Classes.form, group)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        super(ComponentType.Form, SUB_COMPONENT_NAME, div().css(component(Classes.form, group)).element());
         this.fieldId = null;
         this.required = false;
-        storeSubComponent(this);
+        storeSubComponent();
         Attachable.register(this, this);
     }
 

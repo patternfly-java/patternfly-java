@@ -43,7 +43,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> {
     // ------------------------------------------------------ instance
 
     Wizard() {
-        super(div().element(), (ComponentType) null);
+        super((ComponentType) null, div().element());
     }
 
     // ------------------------------------------------------ add

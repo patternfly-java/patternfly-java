@@ -121,7 +121,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private MenuToggleCheckbox checkbox;
 
     <E extends HTMLElement> MenuToggle(HTMLContainerBuilder<E> builder, MenuToggleType type) {
-        super(builder.css(component(menuToggle)).element(), ComponentType.MenuToggle);
+        super(ComponentType.MenuToggle, builder.css(component(menuToggle)).element());
         this.type = type;
         if (!this.type.modifier.isEmpty()) {
             css(type.modifier);

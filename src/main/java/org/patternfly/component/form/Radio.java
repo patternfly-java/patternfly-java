@@ -75,13 +75,12 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     private HTMLLabelElement labelElement;
 
     Radio(String id, String name, String label, boolean checked) {
-        super(div().css(component(Classes.radio))
+        super(ComponentType.Radio, div().css(component(Classes.radio))
                 .add(input(InputType.radio).css(component(Classes.radio, input))
                         .id(id)
                         .name(name)
                         .checked(checked))
-                .element(),
-                ComponentType.Radio);
+                .element());
 
         inputElement = (HTMLInputElement) element().firstElementChild;
         add(labelElement = label().css(component(Classes.radio, Classes.label))

@@ -43,7 +43,7 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> {
     // ------------------------------------------------------ instance
 
     ActionList() {
-        super(div().css(component(actionList)).element(), ComponentType.ActionList);
+        super(ComponentType.ActionList, div().css(component(actionList)).element());
     }
 
     // ------------------------------------------------------ add

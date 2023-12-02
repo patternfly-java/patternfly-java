@@ -21,7 +21,6 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -50,7 +49,6 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
@@ -76,7 +74,7 @@ import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.PredefinedIcon.externalLinkAlt;
 import static org.patternfly.layout.PredefinedIcon.star;
 
-public class MenuItem extends BaseSubComponent<HTMLElement, MenuItem> implements
+public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Disabled<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,
@@ -134,9 +132,9 @@ public class MenuItem extends BaseSubComponent<HTMLElement, MenuItem> implements
     private ComponentHandler<MenuItem> handler;
 
     MenuItem(String id, String text, MenuItemType itemType) {
-        super(li().css(component(Classes.menu, list, item))
+        super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
                 .attr(role, "none")
-                .element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+                .element());
         this.id = id;
         this.itemType = itemType;
 
@@ -176,7 +174,7 @@ public class MenuItem extends BaseSubComponent<HTMLElement, MenuItem> implements
 
     // constructor must only be used to clone an item as favorite item!
     MenuItem(Menu menu, MenuItem item, MenuItemType itemType) {
-        super(((HTMLElement) item.element().cloneNode(true)), ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, ((HTMLElement) item.element().cloneNode(true)));
 
         this.id = Id.build("fav", item.id);
         this.itemType = itemType;
@@ -211,7 +209,7 @@ public class MenuItem extends BaseSubComponent<HTMLElement, MenuItem> implements
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        Menu menu = lookupComponent(ComponentType.Menu, element());
+        Menu menu = lookupComponent();
         if (itemAction != null) {
             // redo initial disabled call for item action
             if (element().classList.contains(modifier(disabled))) {

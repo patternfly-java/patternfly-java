@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -27,7 +25,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 import static org.patternfly.layout.Classes.title;
 
-public class MenuGroup extends BaseSubComponent<HTMLElement, MenuGroup> {
+public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -46,7 +44,7 @@ public class MenuGroup extends BaseSubComponent<HTMLElement, MenuGroup> {
     MenuList list;
 
     MenuGroup(String text) {
-        super(section().css(component(Classes.menu, group)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, section().css(component(Classes.menu, group)).element());
         if (text != null) {
             add(h(3, text).css(component(Classes.menu, group, title)));
         }

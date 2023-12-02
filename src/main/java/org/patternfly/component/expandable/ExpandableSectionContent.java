@@ -17,7 +17,6 @@ package org.patternfly.component.expandable;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -27,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.expandableSection;
 
-public class ExpandableSectionContent extends BaseSubComponent<HTMLDivElement, ExpandableSectionContent> {
+public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTMLDivElement, ExpandableSectionContent> {
 
     // ------------------------------------------------------ factory
 
@@ -42,11 +41,10 @@ public class ExpandableSectionContent extends BaseSubComponent<HTMLDivElement, E
     final String id;
 
     ExpandableSectionContent() {
-        super(div().css(component(expandableSection, content))
+        super(SUB_COMPONENT_NAME, div().css(component(expandableSection, content))
                 .apply(e -> e.hidden = true)
                 .attr(role, "region")
-                .element(),
-                ComponentType.ExpandableSection, SUB_COMPONENT_NAME);
+                .element());
 
         id(this.id = Id.unique(ComponentType.ExpandableSection.id, "cnt"));
     }

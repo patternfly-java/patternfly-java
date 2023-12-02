@@ -66,7 +66,7 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
     private HelperTextItem firstItem;
 
     <E extends HTMLElement> HelperText(HTMLContainerBuilder<E> builder) {
-        super(builder.css(component(helperText)).element(), ComponentType.HelperText);
+        super(ComponentType.HelperText, builder.css(component(helperText)).element());
     }
 
     // ------------------------------------------------------ add

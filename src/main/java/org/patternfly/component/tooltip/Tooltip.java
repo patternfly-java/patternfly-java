@@ -131,12 +131,11 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private CloseHandler<Tooltip> closeHandler;
 
     Tooltip(Supplier<HTMLElement> trigger, String text) {
-        super(div().css(component(tooltip))
+        super(ComponentType.Tooltip, div().css(component(tooltip))
                 .style("display", "none")
                 .attr(role, "tooltip")
                 .aria(live, "polite")
-                .element(),
-                ComponentType.Tooltip);
+                .element());
 
         this.id = Id.unique(componentType().id);
         this.trigger = trigger;

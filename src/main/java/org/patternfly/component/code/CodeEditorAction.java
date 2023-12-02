@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -27,12 +25,11 @@ import org.patternfly.layout.PredefinedIcon;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
-public class CodeEditorAction extends BaseSubComponent<HTMLElement, CodeEditorAction> implements
+public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction> implements
         WithIcon<HTMLElement, CodeEditorAction> {
 
     // ------------------------------------------------------ factory
@@ -70,7 +67,7 @@ public class CodeEditorAction extends BaseSubComponent<HTMLElement, CodeEditorAc
     private ComponentHandler<CodeEditorAction> handler;
 
     CodeEditorAction(Button button) {
-        super(button.element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, button.element());
         this.button = button;
     }
 
@@ -99,7 +96,7 @@ public class CodeEditorAction extends BaseSubComponent<HTMLElement, CodeEditorAc
     // ------------------------------------------------------ events
 
     public CodeEditorAction onClick(ComponentHandler<CodeEditor> handler) {
-        button.on(click, e -> handler.handle(e, lookupComponent(ComponentType.CodeEditor, element())));
+        button.on(click, e -> handler.handle(e, lookupComponent()));
         return this;
     }
 }

@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
@@ -24,11 +22,10 @@ import org.patternfly.handler.ComponentHandler;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.PredefinedIcon.help;
 
-public class CodeEditorLink extends BaseSubComponent<HTMLElement, CodeEditorLink> {
+public class CodeEditorLink extends CodeEditorSubComponent<HTMLElement, CodeEditorLink> {
 
     // ------------------------------------------------------ factory
 
@@ -51,7 +48,7 @@ public class CodeEditorLink extends BaseSubComponent<HTMLElement, CodeEditorLink
     private final HTMLElement buttonElement;
 
     CodeEditorLink(Button button) {
-        super(button.element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, button.element());
         buttonElement = element();
     }
 
@@ -72,8 +69,7 @@ public class CodeEditorLink extends BaseSubComponent<HTMLElement, CodeEditorLink
     // ------------------------------------------------------ events
 
     public CodeEditorLink onClick(ComponentHandler<CodeEditor> handler) {
-        buttonElement.addEventListener(click.name,
-                e -> handler.handle(e, lookupComponent(ComponentType.CodeEditor, element())));
+        buttonElement.addEventListener(click.name, e -> handler.handle(e, lookupComponent()));
         return this;
     }
 }

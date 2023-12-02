@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.navigation;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ComponentHandler;
@@ -35,7 +33,7 @@ import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.nav;
 
-public class NavigationItem extends BaseSubComponent<HTMLLIElement, NavigationItem> implements
+public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         WithText<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
@@ -56,7 +54,7 @@ public class NavigationItem extends BaseSubComponent<HTMLLIElement, NavigationIt
     final HTMLAnchorElement a;
 
     NavigationItem(String id, String text, String href) {
-        super(li().css(component(nav, item)).element(), ComponentType.Navigation, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, li().css(component(nav, item)).element());
         this.id = id;
 
         add(a = a().css(component(nav, link))

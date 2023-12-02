@@ -21,8 +21,6 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Modifiers.Disabled;
@@ -38,14 +36,13 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.textInput;
 
-public class TextInputGroupMain extends BaseSubComponent<HTMLDivElement, TextInputGroupMain>
+public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupMain>
         implements Disabled<HTMLDivElement, TextInputGroupMain> {
 
     // ------------------------------------------------------ factory
@@ -63,7 +60,7 @@ public class TextInputGroupMain extends BaseSubComponent<HTMLDivElement, TextInp
     private final HTMLElement textContainer;
 
     TextInputGroupMain(String id) {
-        super(div().css(component(Classes.textInputGroup, main)).element(), ComponentType.TextInputGroup, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, main)).element());
 
         add(textContainer = span().css(component(Classes.textInputGroup, Classes.text))
                 .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
@@ -72,7 +69,7 @@ public class TextInputGroupMain extends BaseSubComponent<HTMLDivElement, TextInp
                         .element())
                 .element());
         inputElement.addEventListener(EventType.input.name, e -> {
-            TextInputGroup tig = lookupComponent(ComponentType.TextInputGroup, element());
+            TextInputGroup tig = lookupComponent();
             if (tig.changeHandler != null) {
                 tig.changeHandler.onChange(tig, inputElement.value);
             }

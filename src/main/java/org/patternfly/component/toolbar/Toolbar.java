@@ -47,7 +47,7 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
     // ------------------------------------------------------ instance
 
     Toolbar() {
-        super(div().css(component(toolbar)).element(), ComponentType.Toolbar);
+        super(ComponentType.Toolbar, div().css(component(toolbar)).element());
     }
 
     // ------------------------------------------------------ builder

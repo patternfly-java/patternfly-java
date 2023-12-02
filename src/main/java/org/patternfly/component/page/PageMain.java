@@ -16,8 +16,6 @@
 package org.patternfly.component.page;
 
 import org.jboss.elemento.IsElement;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -39,7 +37,7 @@ import static org.patternfly.layout.Classes.page;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMain extends BaseSubComponent<HTMLElement, PageMain> {
+public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ factory
 
@@ -55,10 +53,10 @@ public class PageMain extends BaseSubComponent<HTMLElement, PageMain> {
     static final String SUB_COMPONENT_NAME = "pm";
 
     PageMain(String id) {
-        super(main().css(component(page, main))
+        super(SUB_COMPONENT_NAME, main().css(component(page, main))
                 .attr(role, main)
                 .attr(tabindex, -1)
-                .element(), ComponentType.Page, SUB_COMPONENT_NAME);
+                .element());
     }
 
     // ------------------------------------------------------ add

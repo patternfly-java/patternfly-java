@@ -99,7 +99,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
     private ToggleHandler<ExpandableNavigationGroup> onToggle;
 
     Navigation(NavigationType type) {
-        super(nav().css(component(nav)).element(), ComponentType.Navigation);
+        super(ComponentType.Navigation, nav().css(component(nav)).element());
         this.type = type;
         this.items = new HashMap<>();
         this.groups = new HashMap<>();

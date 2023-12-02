@@ -18,7 +18,6 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.RedirectTo;
@@ -32,7 +31,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
@@ -45,7 +43,7 @@ import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Classes.toggleRight;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class CardHeader extends BaseSubComponent<HTMLDivElement, CardHeader> implements
+public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> implements
         RedirectTo<HTMLDivElement, CardHeader>,
         Attachable {
 
@@ -66,14 +64,14 @@ public class CardHeader extends BaseSubComponent<HTMLDivElement, CardHeader> imp
     private CardTitle title;
 
     CardHeader() {
-        super(div().css(component(Classes.card, header)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, header)).element());
         element().appendChild(mainElement = div().css(component(Classes.card, header, main)).element());
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        Card card = lookupComponent(ComponentType.Card, element());
+        Card card = lookupComponent();
         if (card.expandable) {
             final String labelledBy;
             if (title != null) {

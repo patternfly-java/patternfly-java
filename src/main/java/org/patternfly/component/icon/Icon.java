@@ -83,11 +83,10 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
     private Spinner spinner;
 
     Icon(InlineIcon icon) {
-        super(span().css(component(Classes.icon))
+        super(ComponentType.Icon, span().css(component(Classes.icon))
                 .add(span().css(component(Classes.icon, Classes.content))
                         .add(icon))
-                .element(),
-                ComponentType.Icon);
+                .element());
         this.content = find(By.classname(component(Classes.icon, Classes.content)));
     }
 

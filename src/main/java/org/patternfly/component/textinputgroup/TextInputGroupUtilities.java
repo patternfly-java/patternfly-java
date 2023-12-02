@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +23,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.utilities;
 
-public class TextInputGroupUtilities extends BaseSubComponent<HTMLDivElement, TextInputGroupUtilities> {
+public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupUtilities> {
 
     // ------------------------------------------------------ factory
 
@@ -40,8 +38,7 @@ public class TextInputGroupUtilities extends BaseSubComponent<HTMLDivElement, Te
     static final String SUB_COMPONENT_NAME = "tigu";
 
     TextInputGroupUtilities() {
-        super(div().css(component(Classes.textInputGroup, utilities)).element(), ComponentType.TextInputGroup,
-                SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());
     }
 
     // ------------------------------------------------------ builder

@@ -41,7 +41,7 @@ public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
     // ------------------------------------------------------ instance
 
     TextContent() {
-        super(div().css(component(content)).element(), ComponentType.TextContent);
+        super(ComponentType.TextContent, div().css(component(content)).element());
     }
 
     // ------------------------------------------------------ builder

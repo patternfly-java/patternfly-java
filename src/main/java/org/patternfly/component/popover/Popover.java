@@ -136,11 +136,11 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     private CloseHandler<Popover> closeHandler;
 
     Popover(Supplier<HTMLElement> trigger) {
-        super(div().css(component(popover))
+        super(ComponentType.Popover, div().css(component(popover))
                 .style("display", "none")
                 .attr(role, "dialog")
                 .aria(modal, true)
-                .element(), ComponentType.Popover);
+                .element());
 
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(TriggerAction.click);

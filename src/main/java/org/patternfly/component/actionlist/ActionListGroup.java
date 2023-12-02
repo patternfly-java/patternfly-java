@@ -15,9 +15,6 @@
  */
 package org.patternfly.component.actionlist;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +22,7 @@ import static org.patternfly.layout.Classes.actionList;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class ActionListGroup extends BaseSubComponent<HTMLDivElement, ActionListGroup> {
+public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -38,7 +35,7 @@ public class ActionListGroup extends BaseSubComponent<HTMLDivElement, ActionList
     static final String SUB_COMPONENT_NAME = "alg";
 
     ActionListGroup() {
-        super(div().css(component(actionList, group)).element(), ComponentType.ActionList, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
     }
 
     // ------------------------------------------------------ builder

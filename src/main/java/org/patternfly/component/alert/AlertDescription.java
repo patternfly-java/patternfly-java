@@ -15,9 +15,6 @@
  */
 package org.patternfly.component.alert;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.BaseSubComponent;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +22,7 @@ import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.description;
 
-public class AlertDescription extends BaseSubComponent<HTMLDivElement, AlertDescription> {
+public class AlertDescription extends AlertSubComponent<HTMLDivElement, AlertDescription> {
 
     // ------------------------------------------------------ factory
 
@@ -42,7 +39,7 @@ public class AlertDescription extends BaseSubComponent<HTMLDivElement, AlertDesc
     static final String SUB_COMPONENT_NAME = "ad";
 
     AlertDescription(String text) {
-        super(div().css(component(alert, description)).element(), ComponentType.Alert, SUB_COMPONENT_NAME);
+        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
         if (text != null) {
             textContent(text);
         }
