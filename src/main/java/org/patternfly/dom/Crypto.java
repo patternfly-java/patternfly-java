@@ -13,20 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.dom;
 
-import elemental2.dom.MutationRecord;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-/**
- * Interface meant to be implemented by subcomponents who need a reference to the base component.
- * <p>
- * The first call to {@link #passSubComponent(SubComponent)} is typically initiated by the base component in the
- * {@link org.jboss.elemento.Attachable#attach(MutationRecord)} method (assuming that the base component implements
- * {@link org.jboss.elemento.Attachable}).
- */
-public interface SubComponentReference<S extends SubComponent<?, ?>> {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public interface Crypto {
 
-    void passSubComponent(S subComponent);
-
-    S subComponent();
+    String randomUUID();
 }

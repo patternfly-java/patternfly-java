@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.navigation.Navigation;
 
 import elemental2.dom.HTMLElement;
@@ -44,9 +45,10 @@ public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pmn";
+
     PageMainNav() {
-        super(section().css(component(page, main, nav))
-                .element());
+        super(section().css(component(page, main, nav)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

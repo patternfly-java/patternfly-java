@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.core.Modifiers.NoFill;
 import org.patternfly.layout.Breakpoint;
@@ -50,9 +51,10 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pms";
+
     PageMainSection() {
-        super(section().css(component(page, main, section))
-                .element());
+        super(section().css(component(page, main, section)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

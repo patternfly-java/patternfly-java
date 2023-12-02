@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.card;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Modifiers.NoFill;
 
@@ -36,10 +37,13 @@ public class CardExpandableContent extends SubComponent<HTMLDivElement, CardExpa
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cec";
+
     CardExpandableContent() {
         super(div().css(component(card, expandableContent))
                 .apply(e -> e.hidden = true)
-                .element());
+                .element(),
+                ComponentType.Card, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add
@@ -48,18 +52,8 @@ public class CardExpandableContent extends SubComponent<HTMLDivElement, CardExpa
         return add(body);
     }
 
-    // override to assure internal wiring
-    public CardExpandableContent add(CardBody body) {
-        return add(body.element());
-    }
-
     public CardExpandableContent addFooter(CardFooter footer) {
         return add(footer);
-    }
-
-    // override to assure internal wiring
-    public CardExpandableContent add(CardFooter footer) {
-        return add(footer.element());
     }
 
     // ------------------------------------------------------ builder

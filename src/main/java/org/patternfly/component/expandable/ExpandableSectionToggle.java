@@ -17,7 +17,6 @@ package org.patternfly.component.expandable;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
@@ -29,6 +28,7 @@ import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.expandable.ExpandableSectionToggleText.expandableSectionToggleText;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
@@ -39,8 +39,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, ExpandableSectionToggle> implements
-        ComponentReference<ExpandableSection> {
+public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, ExpandableSectionToggle> {
 
     // ------------------------------------------------------ factory
 
@@ -58,16 +57,22 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "est";
+
     final String id;
     private final HTMLElement toggleIconElement;
     private boolean up;
     private ExpandableSectionToggleText text;
-    private ExpandableSection expandableSection;
 
     ExpandableSectionToggle(String moreText, String lessText) {
         super(button().css(component(Classes.expandableSection, toggle))
                 .aria(expanded, false)
-                .element());
+                .element(),
+                ComponentType.ExpandableSection, SUB_COMPONENT_NAME);
+        on(click, e -> {
+            ExpandableSection expandableSection = lookupComponent(ComponentType.ExpandableSection, element());
+            expandableSection.toggle();
+        });
 
         id(id = Id.unique(ComponentType.ExpandableSection.id, "tgl"));
         add(toggleIconElement = span().css(component(Classes.expandableSection, toggle, icon))
@@ -76,17 +81,6 @@ public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, Exp
         if (moreText != null || lessText != null) {
             add(expandableSectionToggleText(moreText, lessText));
         }
-    }
-
-    @Override
-    public void passComponent(ExpandableSection expandableSection) {
-        this.expandableSection = expandableSection;
-        on(click, e -> expandableSection.toggle());
-    }
-
-    @Override
-    public ExpandableSection mainComponent() {
-        return expandableSection;
     }
 
     // ------------------------------------------------------ add

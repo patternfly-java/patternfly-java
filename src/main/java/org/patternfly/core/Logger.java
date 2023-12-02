@@ -27,6 +27,14 @@ import static elemental2.dom.DomGlobal.console;
  */
 public final class Logger {
 
+    public static void debug(ComponentType componentType, String message) {
+        console.debug(format(componentType.componentName, null, message));
+    }
+
+    public static void debug(String category, String message) {
+        console.debug(format(category, null, message));
+    }
+
     public static void wrong(ComponentType componentType, Element element, String message) {
         console.warn(format(componentType.componentName, element, message));
     }

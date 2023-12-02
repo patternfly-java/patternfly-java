@@ -30,6 +30,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
 import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
@@ -92,6 +93,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
                 .element(), ComponentType.AlertGroup);
         this.type = type;
         this.timeout = timeout;
+        storeComponent(this);
 
         if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
             aria(live, "polite");
@@ -118,7 +120,6 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // override to assure internal wiring
     public AlertGroup add(Alert alert) {
-        alert.passComponent(this);
         if (type == AlertGroupType.toast) {
             if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {
                 alert.timeout(timeout);

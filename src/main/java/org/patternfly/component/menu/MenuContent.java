@@ -18,18 +18,21 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.patternfly.component.ComponentReference;
+import org.jboss.elemento.Attachable;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.setVisible;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
@@ -37,7 +40,7 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 
-public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> implements ComponentReference<Menu> {
+public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -47,21 +50,23 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "mc";
+
     MenuList list;
     final List<MenuGroup> groups;
     private MenuGroup favoritesGroup;
     private MenuList favoritesList;
     private Divider favoritesDivider;
-    private Menu menu;
 
     MenuContent() {
-        super(div().css(component(Classes.menu, content)).element());
+        super(div().css(component(Classes.menu, content)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
         this.groups = new ArrayList<>();
+        Attachable.register(this, this);
     }
 
     @Override
-    public void passComponent(Menu menu) {
-        this.menu = menu;
+    public void attach(MutationRecord mutationRecord) {
+        Menu menu = lookupComponent(ComponentType.Menu, element());
         if (menu.favorites) {
             favoritesGroup = menuGroup("Favorites")
                     .addList(favoritesList = menuList());
@@ -86,17 +91,6 @@ public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> imple
                 item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item));
             }
         }
-        for (MenuGroup group : groups) {
-            group.passComponent(menu);
-        }
-        if (list != null) {
-            list.passComponent(menu);
-        }
-    }
-
-    @Override
-    public Menu mainComponent() {
-        return menu;
     }
 
     // ------------------------------------------------------ add

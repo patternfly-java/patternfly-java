@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Sticky;
@@ -54,9 +55,10 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pmg";
+
     PageMainGroup() {
-        super(div().css(component(page, main, group))
-                .element());
+        super(div().css(component(page, main, group)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add

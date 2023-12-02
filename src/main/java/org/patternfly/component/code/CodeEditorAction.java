@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
@@ -27,12 +27,13 @@ import org.patternfly.layout.PredefinedIcon;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
 public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction> implements
-        WithIcon<HTMLElement, CodeEditorAction>, ComponentReference<CodeEditor> {
+        WithIcon<HTMLElement, CodeEditorAction> {
 
     // ------------------------------------------------------ factory
 
@@ -58,31 +59,19 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
     public static CodeEditorAction codeEditorCopyToClipboardAction() {
         return new CodeEditorAction(button().icon(copy).control())
                 .ariaLabel("Copy to clipboard")
-                .onClick((event, action) -> navigator.clipboard.writeText(action.mainComponent().code()));
+                .onClick((event, codeEditor) -> navigator.clipboard.writeText(codeEditor.code()));
     }
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cea";
+
     private final Button button;
     private ComponentHandler<CodeEditorAction> handler;
-    private CodeEditor codeEditor;
 
     CodeEditorAction(Button button) {
-        super(button.element());
+        super(button.element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
         this.button = button;
-    }
-
-    @Override
-    public void passComponent(CodeEditor codeEditor) {
-        this.codeEditor = codeEditor;
-        if (handler != null && button != null) {
-            button.on(click, e -> handler.handle(e, this));
-        }
-    }
-
-    @Override
-    public CodeEditor mainComponent() {
-        return codeEditor;
     }
 
     // ------------------------------------------------------ builder
@@ -109,8 +98,8 @@ public class CodeEditorAction extends SubComponent<HTMLElement, CodeEditorAction
 
     // ------------------------------------------------------ events
 
-    public CodeEditorAction onClick(ComponentHandler<CodeEditorAction> handler) {
-        this.handler = handler;
+    public CodeEditorAction onClick(ComponentHandler<CodeEditor> handler) {
+        button.on(click, e -> handler.handle(e, lookupComponent(ComponentType.CodeEditor, element())));
         return this;
     }
 }

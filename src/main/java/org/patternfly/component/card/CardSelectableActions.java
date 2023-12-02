@@ -15,8 +15,8 @@
  */
 package org.patternfly.component.card;
 
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.form.Checkbox;
@@ -25,8 +25,10 @@ import org.patternfly.core.Logger;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.form.Radio.radio;
 import static org.patternfly.core.Aria.labelledBy;
@@ -39,8 +41,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.selectable;
 
-public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSelectableActions> implements
-        ComponentReference<Card> {
+public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -50,17 +51,19 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "csa";
+
     Checkbox checkbox;
     Radio radio;
-    private Card card;
 
     CardSelectableActions() {
-        super(div().css(component(Classes.card, selectable, actions)).element());
+        super(div().css(component(Classes.card, selectable, actions)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
+        Attachable.register(this, this);
     }
 
     @Override
-    public void passComponent(Card card) {
-        this.card = card;
+    public void attach(MutationRecord mutationRecord) {
+        Card card = lookupComponent(ComponentType.Card, element());
         if (card.isSelectable() || card.isClickable()) {
             // we need a card id!
             if (card.element().id == null || card.element().id.isEmpty()) {
@@ -126,11 +129,6 @@ public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSele
                 }
             }
         }
-    }
-
-    @Override
-    public Card mainComponent() {
-        return card;
     }
 
     // ------------------------------------------------------ builder

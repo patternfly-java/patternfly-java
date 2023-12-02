@@ -16,6 +16,7 @@
 package org.patternfly.component.help;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SubComponentFlat;
 import org.patternfly.component.icon.InlineIcon;
@@ -80,6 +81,8 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "hti";
+
     private final HTMLElement textElement;
     private boolean defaultIcon;
     private boolean customScreenReaderText;
@@ -88,7 +91,7 @@ public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem
     private HTMLElement iconElement;
 
     <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, String text, ValidationStatus status) {
-        super(builder.css(component(helperText, item)).element());
+        super(builder.css(component(helperText, item)).element(), ComponentType.HelperText, SUB_COMPONENT_NAME);
         this.status = status;
         this.defaultIcon = false;
         this.customScreenReaderText = false;

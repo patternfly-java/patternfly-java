@@ -94,7 +94,7 @@ public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
         // --pf-v5-l-gallery--GridTemplateColumns--min-on-xl: 300px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-md: 200px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-xl: 1fr;
-        String minMaxBreak = tuple.key == default_ ? minMax : minMax + "-on-" + tuple.key.value;
-        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple.value);
+        String minMaxBreak = tuple._1 == default_ ? minMax : minMax + "-on-" + tuple._1.value;
+        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple._2);
     }
 }

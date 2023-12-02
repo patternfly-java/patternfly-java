@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.alert;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -38,8 +39,10 @@ public class AlertDescription extends SubComponent<HTMLDivElement, AlertDescript
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ad";
+
     AlertDescription(String text) {
-        super(div().css(component(alert, description)).element());
+        super(div().css(component(alert, description)).element(), ComponentType.Alert, SUB_COMPONENT_NAME);
         if (text != null) {
             textContent(text);
         }

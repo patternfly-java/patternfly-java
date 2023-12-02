@@ -51,6 +51,7 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
@@ -118,6 +119,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         } else {
             listElement.setAttribute(label, "Label group category");
         }
+        storeComponent(this);
         Attachable.register(this, this);
     }
 
@@ -125,9 +127,6 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     public void attach(MutationRecord mutationRecord) {
         if (tooltipToggle != null) {
             tooltipToggle.eval();
-        }
-        for (Label label : labels.values()) {
-            label.passComponent(this);
         }
     }
 
@@ -148,11 +147,6 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     // override to assure internal wiring
     public LabelGroup add(Label label) {
         labels.put(label.id, label);
-        // If this component is already attached, call passComponent() manually (normally this takes place
-        // automatically initiated by the base component's attach handler).
-        if (element().isConnected) {
-            label.passComponent(this);
-        }
 
         HTMLLIElement itemElement = li().css(component(labelGroup, list, item))
                 .add(label)

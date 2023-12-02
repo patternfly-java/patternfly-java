@@ -16,6 +16,7 @@
 package org.patternfly.component.page;
 
 import org.jboss.elemento.IsElement;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.Element;
@@ -51,11 +52,13 @@ public class PageMain extends SubComponent<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pm";
+
     PageMain(String id) {
         super(main().css(component(page, main))
                 .attr(role, main)
                 .attr(tabindex, -1)
-                .element());
+                .element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add

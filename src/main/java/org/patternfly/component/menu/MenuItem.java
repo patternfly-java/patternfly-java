@@ -15,10 +15,10 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SubComponent;
@@ -38,6 +38,7 @@ import org.patternfly.layout.PredefinedIcon;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
@@ -49,6 +50,7 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
@@ -79,7 +81,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,
         WithIconAndText<HTMLElement, MenuItem>,
-        ComponentReference<Menu> {
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -113,6 +115,8 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "";
+
     public final String id;
     final MenuItemType itemType;
     private final HTMLElement itemElement;
@@ -128,12 +132,11 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
     private ComponentHandler<MenuItem> handler;
-    private Menu menu;
 
     MenuItem(String id, String text, MenuItemType itemType) {
         super(li().css(component(Classes.menu, list, item))
                 .attr(role, "none")
-                .element());
+                .element(), ComponentType.Menu, SUB_COMPONENT_NAME);
         this.id = id;
         this.itemType = itemType;
 
@@ -151,7 +154,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
                     .apply(l -> l.htmlFor = checkboxId);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
                     .add(span().css(component(Classes.menu, item, Classes.check))
-                            .add(checkboxComponent = checkbox(checkboxId, menu.menuName)))
+                            .add(checkboxComponent = checkbox(checkboxId, checkboxId)))
                     .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                             .element())
                     .element());
@@ -173,7 +176,7 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
 
     // constructor must only be used to clone an item as favorite item!
     MenuItem(Menu menu, MenuItem item, MenuItemType itemType) {
-        super(((HTMLElement) item.element().cloneNode(true)));
+        super(((HTMLElement) item.element().cloneNode(true)), ComponentType.Menu, SUB_COMPONENT_NAME);
 
         this.id = Id.build("fav", item.id);
         this.itemType = itemType;
@@ -204,15 +207,12 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
         if (favoriteItemActionElement != null) {
             favoriteItemActionElement.addEventListener(click.name, e -> menu.removeFavorite(this));
         }
-
-        passComponent(menu);
     }
 
     @Override
-    public void passComponent(Menu menu) {
-        this.menu = menu;
+    public void attach(MutationRecord mutationRecord) {
+        Menu menu = lookupComponent(ComponentType.Menu, element());
         if (itemAction != null) {
-            itemAction.passComponent(menu);
             // redo initial disabled call for item action
             if (element().classList.contains(modifier(disabled))) {
                 itemAction.element().disabled = true;
@@ -250,11 +250,6 @@ public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
         if (initialSelection) {
             menu.select(this, true, false);
         }
-    }
-
-    @Override
-    public Menu mainComponent() {
-        return menu;
     }
 
     // ------------------------------------------------------ add

@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.card;
 
-import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
@@ -32,10 +31,10 @@ import org.patternfly.layout.Classes;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.MutationRecord;
 
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.multi;
@@ -60,8 +59,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         Compact<HTMLDivElement, Card>,
         Disabled<HTMLDivElement, Card>,
         Plain<HTMLDivElement, Card>,
-        Expandable<HTMLDivElement, Card>,
-        Attachable {
+        Expandable<HTMLDivElement, Card> {
 
     // ------------------------------------------------------ factory
 
@@ -86,14 +84,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     Card() {
         super(div().css(component(card)).element(), ComponentType.Card);
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        if (header != null) {
-            header.passComponent(this);
-        }
+        storeComponent(this);
     }
 
     // ------------------------------------------------------ add
@@ -112,27 +103,12 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         return add(title);
     }
 
-    // override to assure internal wiring
-    public Card add(CardTitle title) {
-        return add(title.element());
-    }
-
     public Card addBody(CardBody body) {
         return add(body);
     }
 
-    // override to assure internal wiring
-    public Card add(CardBody body) {
-        return add(body.element());
-    }
-
     public Card addFooter(CardFooter footer) {
         return add(footer);
-    }
-
-    // override to assure internal wiring
-    public Card add(CardFooter footer) {
-        return add(footer.element());
     }
 
     public Card addExpandableContent(CardExpandableContent expandableContent) {

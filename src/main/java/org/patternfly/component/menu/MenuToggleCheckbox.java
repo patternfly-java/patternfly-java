@@ -54,11 +54,13 @@ public class MenuToggleCheckbox extends SubComponent<HTMLElement, MenuToggleChec
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "mtc";
+
     private final HTMLInputElement inputElement;
     private HTMLElement textElement;
 
     MenuToggleCheckbox() {
-        super(label().css(component(check)).element());
+        super(label().css(component(check)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
         String id = Id.unique(ComponentType.MenuToggle.id, "check");
         ((HTMLLabelElement) element()).htmlFor = id;
         add(inputElement = input(checkbox).css(component(check, Classes.input))

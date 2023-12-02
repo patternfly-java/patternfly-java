@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.card;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
@@ -50,10 +51,12 @@ public class CardTitle extends SubComponent<HTMLDivElement, CardTitle> implement
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ct";
+
     private final HTMLElement titleText;
 
     CardTitle(String text, int level) {
-        super(div().css(component(card, title)).element());
+        super(div().css(component(card, title)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
         if (level > 0) {
             element().appendChild(titleText = h(level, text).css(component(card, title, Classes.text)).element());
         } else {

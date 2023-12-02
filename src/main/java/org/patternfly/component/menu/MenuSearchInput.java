@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.input;
 import static org.patternfly.layout.Classes.search;
 
-public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> implements ComponentReference<Menu> {
+public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> {
 
     // ------------------------------------------------------ factory
 
@@ -34,23 +34,12 @@ public class MenuSearchInput extends SubComponent<HTMLElement, MenuSearchInput> 
         return new MenuSearchInput();
     }
 
-    private Menu menu;
-
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "msi";
+
     MenuSearchInput() {
-        super(div().css(component(Classes.menu, search, input))
-                .element());
-    }
-
-    @Override
-    public void passComponent(Menu menu) {
-        this.menu = menu;
-    }
-
-    @Override
-    public Menu mainComponent() {
-        return menu;
+        super(div().css(component(Classes.menu, search, input)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

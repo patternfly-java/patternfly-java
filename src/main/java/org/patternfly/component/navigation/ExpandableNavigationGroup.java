@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ToggleHandler;
@@ -66,6 +67,8 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "eng";
+
     public final String id;
     private final Map<String, NavigationItem> items;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
@@ -77,7 +80,7 @@ public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, Expan
     ExpandableNavigationGroup(String id, String text) {
         super(li().css(component(nav, item), modifier(expandable))
                 .data(navigationGroup, id)
-                .element());
+                .element(), ComponentType.Navigation, SUB_COMPONENT_NAME);
         this.id = id;
         this.items = new HashMap<>();
         this.expandableGroups = new HashMap<>();

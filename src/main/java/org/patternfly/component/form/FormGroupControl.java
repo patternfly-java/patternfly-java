@@ -18,26 +18,27 @@ package org.patternfly.component.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
-import org.patternfly.component.SubComponentReference;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.ComponentStore.lookupSubComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
 public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
-        ComponentReference<Form>,
-        SubComponentReference<FormGroup> {
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -47,37 +48,29 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     // ------------------------------------------------------ instance
 
-    private Form form;
-    private FormGroup formGroup;
+    static final String SUB_COMPONENT_NAME = "fgc";
+
     private FormControl<?, ?> control;
     private final List<Checkbox> checkboxes;
     private final List<Radio> radios;
 
     FormGroupControl() {
-        super(div().css(component(Classes.form, group, Classes.control)).element());
+        super(div().css(component(Classes.form, group, Classes.control)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
         this.checkboxes = new ArrayList<>();
         this.radios = new ArrayList<>();
+        Attachable.register(this, this);
     }
 
     @Override
-    public void passComponent(Form form) {
-        this.form = form;
-    }
+    public void attach(MutationRecord mutationRecord) {
+        FormGroup formGroup = lookupSubComponent(ComponentType.Form, FormGroup.SUB_COMPONENT_NAME, element());
 
-    @Override
-    public Form mainComponent() {
-        return form;
-    }
-
-    @Override
-    public void passSubComponent(FormGroup formGroup) {
         if (formGroup.fieldId != null && control != null && !formGroup.fieldId.equals(control.id)) {
-            Logger.wrong(form.componentType(), element(),
+            Logger.wrong(ComponentType.Form, element(),
                     "The field id of the form group is different from the id of its control: " +
                             "'" + formGroup.fieldId + "' != '" + control.id + "'");
         }
 
-        this.formGroup = formGroup;
         if (formGroup.fieldId != null) {
             for (Checkbox checkbox : checkboxes) {
                 checkbox.inputElement().name = formGroup.fieldId;
@@ -86,11 +79,6 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
                 radio.inputElement().name = formGroup.fieldId;
             }
         }
-    }
-
-    @Override
-    public FormGroup subComponent() {
-        return formGroup;
     }
 
     // ------------------------------------------------------ add

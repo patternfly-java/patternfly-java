@@ -37,13 +37,16 @@ public class ExpandableSectionContent extends SubComponent<HTMLDivElement, Expan
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "esc";
+
     final String id;
 
     ExpandableSectionContent() {
         super(div().css(component(expandableSection, content))
                 .apply(e -> e.hidden = true)
                 .attr(role, "region")
-                .element());
+                .element(),
+                ComponentType.ExpandableSection, SUB_COMPONENT_NAME);
 
         id(this.id = Id.unique(ComponentType.ExpandableSection.id, "cnt"));
     }

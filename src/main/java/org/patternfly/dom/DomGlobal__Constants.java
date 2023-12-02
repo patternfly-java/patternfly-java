@@ -21,7 +21,9 @@ import jsinterop.annotations.JsType;
 @JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
 class DomGlobal__Constants {
 
-    static Window window;
+    static Crypto crypto;
 
     static Navigator navigator;
+
+    static Window window;
 }

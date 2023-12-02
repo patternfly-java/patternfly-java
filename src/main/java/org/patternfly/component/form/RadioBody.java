@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
@@ -38,9 +39,10 @@ public class RadioBody extends SubComponent<HTMLElement, RadioBody> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "rb";
+
     RadioBody(String text) {
-        super(span().css(component(radio, body))
-                .element());
+        super(span().css(component(radio, body)).element(), ComponentType.Radio, SUB_COMPONENT_NAME);
         if (text != null) {
             element().textContent = text;
         }

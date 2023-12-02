@@ -106,16 +106,16 @@ public class Grid extends BaseLayout<HTMLDivElement, Grid> {
     // ------------------------------------------------------ internal
 
     private void internalCols(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != Breakpoint.default_) {
-            if (verifyRange("cols", tuple.value)) {
-                css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
+        if (tuple._1 != Breakpoint.default_) {
+            if (verifyRange("cols", tuple._2)) {
+                css(modifier("all-" + tuple._2 + "-col-on-" + tuple._1.value));
             }
         }
     }
 
     private void internalOrder(Tuple<Breakpoint, String> tuple) {
-        String orderPart = tuple.key == Breakpoint.default_ ? Order : Order + "-on-" + tuple.key.value;
-        componentVar(layout(grid), item, orderPart).applyTo(element(), tuple.value);
+        String orderPart = tuple._1 == Breakpoint.default_ ? Order : Order + "-on-" + tuple._1.value;
+        componentVar(layout(grid), item, orderPart).applyTo(element(), tuple._2);
     }
 
     private boolean verifyRange(String property, int value) {

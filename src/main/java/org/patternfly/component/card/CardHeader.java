@@ -15,8 +15,8 @@
  */
 package org.patternfly.component.card;
 
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
@@ -26,11 +26,13 @@ import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
@@ -45,7 +47,7 @@ import static org.patternfly.layout.PredefinedIcon.angleRight;
 
 public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> implements
         RedirectTo<HTMLDivElement, CardHeader>,
-        ComponentReference<Card> {
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -55,6 +57,8 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ch";
+
     Button toggleButton;
     CardActions actions;
     private final HTMLElement mainElement;
@@ -62,13 +66,14 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
     private CardTitle title;
 
     CardHeader() {
-        super(div().css(component(Classes.card, header)).element());
+        super(div().css(component(Classes.card, header)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
         element().appendChild(mainElement = div().css(component(Classes.card, header, main)).element());
+        Attachable.register(this, this);
     }
 
     @Override
-    public void passComponent(Card card) {
-        this.card = card;
+    public void attach(MutationRecord mutationRecord) {
+        Card card = lookupComponent(ComponentType.Card, element());
         if (card.expandable) {
             final String labelledBy;
             if (title != null) {
@@ -100,14 +105,6 @@ public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> impleme
                 insertFirst(element(), toggleElement);
             }
         }
-        if (actions != null) {
-            actions.passComponent(card);
-        }
-    }
-
-    @Override
-    public Card mainComponent() {
-        return card;
     }
 
     @Override

@@ -15,10 +15,7 @@
  */
 package org.patternfly.component.code;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -27,8 +24,7 @@ import elemental2.dom.HTMLDivElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 
-public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> implements
-        ComponentReference<CodeBlock> {
+public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActions> {
 
     // ------------------------------------------------------ factory
 
@@ -38,38 +34,16 @@ public class CodeBlockActions extends SubComponent<HTMLDivElement, CodeBlockActi
 
     // ------------------------------------------------------ instance
 
-    private final List<CodeBlockAction> actions;
-    private CodeBlock codeBlock;
+    static final String SUB_COMPONENT_NAME = "cbas";
 
     CodeBlockActions() {
-        super(div().css(component(Classes.codeBlock, Classes.actions)).element());
-        this.actions = new ArrayList<>();
-    }
-
-    @Override
-    public void passComponent(CodeBlock codeBlock) {
-        this.codeBlock = codeBlock;
-        for (CodeBlockAction action : actions) {
-            action.passComponent(codeBlock);
-        }
-    }
-
-    @Override
-    public CodeBlock mainComponent() {
-        return codeBlock;
+        super(div().css(component(Classes.codeBlock, Classes.actions)).element(), ComponentType.CodeBlock, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add
 
     public CodeBlockActions addAction(CodeBlockAction action) {
         return add(action);
-    }
-
-    // override to assure internal wiring
-    public CodeBlockActions add(CodeBlockAction action) {
-        actions.add(action);
-        add(action.element());
-        return this;
     }
 
     // ------------------------------------------------------ builder

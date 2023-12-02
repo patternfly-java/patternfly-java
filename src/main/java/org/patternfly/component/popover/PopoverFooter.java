@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.popover;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -34,8 +35,10 @@ public class PopoverFooter extends SubComponent<HTMLDivElement, PopoverFooter> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pf";
+
     PopoverFooter() {
-        super(div().css(component(popover, footer)).element());
+        super(div().css(component(popover, footer)).element(), ComponentType.Popover, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

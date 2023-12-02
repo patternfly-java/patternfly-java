@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -34,8 +35,10 @@ public class MenuSearch extends SubComponent<HTMLDivElement, MenuSearch> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ms";
+
     MenuSearch() {
-        super(div().css(component(menu, search)).element());
+        super(div().css(component(menu, search)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

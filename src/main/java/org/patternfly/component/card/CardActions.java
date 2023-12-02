@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -26,7 +26,7 @@ import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
 
-public class CardActions extends SubComponent<HTMLDivElement, CardActions> implements ComponentReference<Card> {
+public class CardActions extends SubComponent<HTMLDivElement, CardActions> {
 
     // ------------------------------------------------------ factory
 
@@ -36,24 +36,13 @@ public class CardActions extends SubComponent<HTMLDivElement, CardActions> imple
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ca";
+
     CardSelectableActions selectableActions;
     private Card card;
 
     CardActions() {
-        super(div().css(component(Classes.card, actions)).element());
-    }
-
-    @Override
-    public void passComponent(Card card) {
-        this.card = card;
-        if (selectableActions != null) {
-            selectableActions.passComponent(card);
-        }
-    }
-
-    @Override
-    public Card mainComponent() {
-        return card;
+        super(div().css(component(Classes.card, actions)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add

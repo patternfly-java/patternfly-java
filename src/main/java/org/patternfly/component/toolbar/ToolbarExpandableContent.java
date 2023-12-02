@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.toolbar;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -43,8 +44,10 @@ public class ToolbarExpandableContent extends SubComponent<HTMLDivElement, Toolb
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "tec";
+
     ToolbarExpandableContent() {
-        super(div().css(component(alert, description)).element());
+        super(div().css(component(alert, description)).element(), ComponentType.Toolbar, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

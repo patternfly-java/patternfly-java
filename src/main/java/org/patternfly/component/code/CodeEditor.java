@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.code;
 
-import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -23,11 +22,11 @@ import org.patternfly.core.Modifiers.Readonly2;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.pre;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
@@ -39,7 +38,7 @@ import static org.patternfly.layout.Classes.main;
  *      "https://www.patternfly.org/components/code-editor/html">https://www.patternfly.org/components/code-editor/html</a>
  */
 public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
-        implements Attachable, Readonly2<HTMLElement, CodeEditor> {
+        implements Readonly2<HTMLElement, CodeEditor> {
 
     // ------------------------------------------------------ factory
 
@@ -54,7 +53,6 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
     // ------------------------------------------------------ instance
 
     private final HTMLElement preElement;
-    private CodeEditorHeader header;
 
     CodeEditor(String code) {
         super(div().css(component(codeEditor)).element(), ComponentType.CodeEditor);
@@ -69,15 +67,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         if (code != null) {
             preElement.textContent = code;
         }
-
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        if (header != null) {
-            header.passComponent(this);
-        }
+        storeComponent(this);
     }
 
     // ------------------------------------------------------ add
@@ -88,7 +78,6 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
 
     // override to assure internal wiring
     public CodeEditor add(CodeEditorHeader header) {
-        this.header = header;
         insertFirst(element(), header.element());
         return this;
     }

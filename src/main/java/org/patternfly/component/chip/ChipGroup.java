@@ -50,6 +50,7 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -114,6 +115,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         } else {
             aria(Classes.label, "Chip group category");
         }
+        storeComponent(this);
         Attachable.register(this, this);
     }
 
@@ -121,9 +123,6 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     public void attach(MutationRecord mutationRecord) {
         if (tooltipToggle != null) {
             tooltipToggle.eval();
-        }
-        for (Chip chip : chips.values()) {
-            chip.passComponent(this);
         }
     }
 
@@ -144,12 +143,6 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     // override to assure internal wiring
     public ChipGroup add(Chip chip) {
         chips.put(chip.id, chip);
-        // If this component is already attached, call passComponent() manually (normally this takes place
-        // automatically initiated by the base component's attach handler).
-        if (element().isConnected) {
-            chip.passComponent(this);
-        }
-
         HTMLLIElement itemElement = li().css(component(chipGroup, list, item))
                 .add(chip)
                 .element();

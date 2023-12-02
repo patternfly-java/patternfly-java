@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.masthead;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.brand.Brand;
 
@@ -45,8 +46,10 @@ public class MastheadMain extends SubComponent<HTMLDivElement, MastheadMain> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "mm";
+
     MastheadMain() {
-        super(div().css(component(masthead, main)).element());
+        super(div().css(component(masthead, main)).element(), ComponentType.Masthead, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

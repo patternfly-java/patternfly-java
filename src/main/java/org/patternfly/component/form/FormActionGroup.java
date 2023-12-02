@@ -15,23 +15,20 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
-import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.form.FormGroupControl.formGroupControl;
 import static org.patternfly.layout.Classes.action;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 import static org.patternfly.layout.Classes.modifier;
 
-public class FormActionGroup extends SubComponent<HTMLElement, FormActionGroup> implements
-        Inline<HTMLElement, FormActionGroup>, ComponentReference<Form> {
+public class FormActionGroup extends SubComponent<HTMLElement, FormActionGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -41,25 +38,14 @@ public class FormActionGroup extends SubComponent<HTMLElement, FormActionGroup> 
 
     // ------------------------------------------------------ instance
 
-    private Form form;
-    private final FormGroupControl control;
+    static final String SUB_COMPONENT_NAME = "fag";
+
     private final HTMLElement actionsContainer;
 
     FormActionGroup() {
-        super(div().css(component(Classes.form, group), modifier(action)).element());
-        add(control = formGroupControl()
+        super(div().css(component(Classes.form, group), modifier(action)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+        add(div().css(component(Classes.form, group, Classes.control)) // no need for a real FormGroupControl subcomponent
                 .add(actionsContainer = div().css(component(Classes.form, Classes.actions)).element()));
-    }
-
-    @Override
-    public void passComponent(Form form) {
-        this.form = form;
-        control.passComponent(form);
-    }
-
-    @Override
-    public Form mainComponent() {
-        return form;
     }
 
     // ------------------------------------------------------ add

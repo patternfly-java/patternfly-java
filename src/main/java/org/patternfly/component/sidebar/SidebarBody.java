@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.sidebar;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.core.Modifiers.Fill;
@@ -52,9 +53,10 @@ public class SidebarBody extends SubComponent<HTMLDivElement, SidebarBody>
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "sb";
+
     SidebarBody() {
-        super(div().css(component(page, sidebar, body))
-                .element());
+        super(div().css(component(page, sidebar, body)).element(), ComponentType.Sidebar, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add

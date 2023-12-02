@@ -26,7 +26,6 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponentFlat;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.button.Button;
@@ -65,6 +64,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -85,7 +85,6 @@ import static org.patternfly.layout.Variables.MaxWidth;
  * @see <a href= "https://www.patternfly.org/components/label/html">https://www.patternfly.org/components/label/html</a>
  */
 public class Label extends BaseComponentFlat<HTMLElement, Label> implements
-        ComponentReference<LabelGroup>,
         Closeable<HTMLElement, Label>,
         Compact<HTMLElement, Label>,
         WithText<HTMLElement, Label>,
@@ -114,7 +113,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     private HTMLInputElement inputElement;
     private Tooltip tooltip;
     private Button closeButton;
-    private LabelGroup labelGroup;
     private CloseHandler<Label> closeHandler;
     private ComponentHandler<Label> clickHandler;
     private LabelEditCancelHandler editCancelHandler;
@@ -136,16 +134,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     @Override
     public void attach(MutationRecord mutationRecord) {
         tooltipToggle.eval();
-    }
-
-    @Override
-    public void passComponent(LabelGroup labelGroup) {
-        this.labelGroup = labelGroup;
-    }
-
-    @Override
-    public LabelGroup mainComponent() {
-        return labelGroup;
     }
 
     @Override
@@ -307,6 +295,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
+            LabelGroup labelGroup = lookupComponent(ComponentType.LabelGroup, element(), true);
             if (labelGroup != null) {
                 labelGroup.close(this);
             } else {

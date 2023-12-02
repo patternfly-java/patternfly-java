@@ -33,6 +33,7 @@ import elemental2.dom.MutationRecord;
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.core.Aria.controls;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Dataset.expandableSectionId;
@@ -83,14 +84,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     ExpandableSection(String id) {
         super(div().css(component(expandableSection)).element(), ComponentType.ExpandableSection);
         this.id = id == null ? Id.unique(componentType().id) : id;
+        storeComponent(this);
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (toggle != null) {
-            toggle.passComponent(this);
-        }
         if (toggle != null && content != null) {
             toggle.aria(controls, content.id);
             content.aria(labelledBy, toggle.id);

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.actionlist;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -34,8 +35,10 @@ public class ActionListGroup extends SubComponent<HTMLDivElement, ActionListGrou
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "alg";
+
     ActionListGroup() {
-        super(div().css(component(actionList, group)).element());
+        super(div().css(component(actionList, group)).element(), ComponentType.ActionList, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

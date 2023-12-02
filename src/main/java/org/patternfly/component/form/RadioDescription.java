@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -38,9 +39,10 @@ public class RadioDescription extends SubComponent<HTMLElement, RadioDescription
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "rd";
+
     RadioDescription(String description) {
-        super(span().css(component(radio, Classes.description))
-                .element());
+        super(span().css(component(radio, Classes.description)).element(), ComponentType.Radio, SUB_COMPONENT_NAME);
         if (description != null) {
             element().textContent = description;
         }

@@ -28,13 +28,25 @@ public abstract class SubComponentFlat<E extends HTMLElement, B extends TypedBui
         implements HasElement<E, B>, HasHTMLElement<E, B>, Finder<E> {
 
     private final E element;
+    private final ComponentType mainComponent;
+    private final String name;
 
-    protected SubComponentFlat(E element) {
+    protected SubComponentFlat(E element, ComponentType mainComponent, String name) {
         this.element = requireNonNull(element, "element required");
+        this.mainComponent = mainComponent;
+        this.name = name;
     }
 
     @Override
     public E element() {
         return element;
+    }
+
+    public ComponentType mainComponent() {
+        return mainComponent;
+    }
+
+    public String name() {
+        return name;
     }
 }

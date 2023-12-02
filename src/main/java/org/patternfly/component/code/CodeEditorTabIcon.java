@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.code;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -45,8 +46,10 @@ public class CodeEditorTabIcon extends SubComponent<HTMLElement, CodeEditorTabIc
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ceti";
+
     CodeEditorTabIcon(HTMLElement icon) {
-        super(span().css(component(codeEditor, tab, Classes.icon)).element());
+        super(span().css(component(codeEditor, tab, Classes.icon)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
         if (icon != null) {
             add(icon);
         }

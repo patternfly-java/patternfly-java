@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Breakpoint;
 import org.patternfly.layout.Sticky;
@@ -33,8 +34,8 @@ import static org.patternfly.layout.Classes.shadowTop;
 public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSectionBuilder<E, P>>
         extends SubComponent<E, P> implements PageSection<E, P> {
 
-    PageSectionBuilder(E element) {
-        super(element);
+    PageSectionBuilder(E element, ComponentType mainComponent, String name) {
+        super(element, mainComponent, name);
     }
 
     // ------------------------------------------------------ add

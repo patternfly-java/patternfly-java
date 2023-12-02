@@ -31,12 +31,6 @@ public abstract class BaseComponentFlat<E extends HTMLElement, B extends TypedBu
     private final E element;
     private final ComponentType componentType;
 
-    // TODO Remove, once all components have been migrated to PF 5
-    protected BaseComponentFlat(E element, String component) {
-        this.element = requireNonNull(element, "element required");
-        this.componentType = ComponentType.Unknown;
-    }
-
     protected BaseComponentFlat(E element, ComponentType componentType) {
         this.element = requireNonNull(element, "element required");
         this.componentType = requireNonNull(componentType, "component type required");

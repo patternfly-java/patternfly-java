@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.layout.Classes;
@@ -46,6 +47,8 @@ public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> 
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ng";
+
     public final String id;
     private final Map<String, NavigationItem> items;
     private final HTMLUListElement ul;
@@ -53,7 +56,7 @@ public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> 
     NavigationGroup(String id, String text) {
         super(section().css(component(nav, Classes.section))
                 .data(navigationGroup, id)
-                .element());
+                .element(), ComponentType.Navigation, SUB_COMPONENT_NAME);
         this.id = id;
         this.items = new HashMap<>();
 

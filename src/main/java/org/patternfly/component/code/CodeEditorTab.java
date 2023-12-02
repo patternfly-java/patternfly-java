@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.code;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -49,8 +50,10 @@ public class CodeEditorTab extends SubComponent<HTMLDivElement, CodeEditorTab> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cet";
+
     CodeEditorTab() {
-        super(div().css(component(codeEditor, tab)).element());
+        super(div().css(component(codeEditor, tab)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ add

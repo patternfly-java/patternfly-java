@@ -84,7 +84,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         super(div().css(component(check))
                 .add(input(checkbox).css(component(check, input))
                         .id(id)
-                        .name(id)
+                        .name(name)
                         .checked(checked))
                 .element(),
                 ComponentType.Checkbox);

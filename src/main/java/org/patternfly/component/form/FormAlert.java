@@ -13,47 +13,45 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.toolbar;
+package org.patternfly.component.form;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.alert.Alert;
+import org.patternfly.layout.Classes;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.description;
 
-/**
- * Container for a toolbar content.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/toolbar/html#usage-0">https://www.patternfly.org/components/toolbar/html#usage-0</a>
- */
-public class ToolbarContent extends SubComponent<HTMLDivElement, ToolbarContent> {
+public class FormAlert extends SubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ factory
 
-    /**
-     * Factory method to create a new instance of this component.
-     */
-    public static ToolbarContent toolbarContent() {
-        return new ToolbarContent();
+    public static FormAlert formAlert() {
+        return new FormAlert();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    static final String SUB_COMPONENT_NAME = "fa";
 
-    ToolbarContent() {
-        super(div().css(component(alert, description)).element(), ComponentType.Toolbar, SUB_COMPONENT_NAME);
+    FormAlert() {
+        super(div().css(component(Classes.form, alert)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
+    }
+
+    // ------------------------------------------------------ add
+
+    public FormAlert addAlert(Alert alert) {
+        return add(alert);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public ToolbarContent that() {
+    public FormAlert that() {
         return this;
     }
 }

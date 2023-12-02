@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -25,8 +25,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.utilities;
 
-public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextInputGroupUtilities>
-        implements ComponentReference<TextInputGroup> {
+public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextInputGroupUtilities> {
 
     // ------------------------------------------------------ factory
 
@@ -38,18 +37,11 @@ public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextIn
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "tigu";
+
     TextInputGroupUtilities() {
-        super(div().css(component(Classes.textInputGroup, utilities)).element());
-    }
-
-    @Override
-    public void passComponent(TextInputGroup textInputGroup) {
-        this.textInputGroup = textInputGroup;
-    }
-
-    @Override
-    public TextInputGroup mainComponent() {
-        return textInputGroup;
+        super(div().css(component(Classes.textInputGroup, utilities)).element(), ComponentType.TextInputGroup,
+                SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

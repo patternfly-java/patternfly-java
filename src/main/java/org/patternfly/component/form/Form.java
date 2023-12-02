@@ -15,17 +15,13 @@
  */
 package org.patternfly.component.form;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLFormElement;
-import elemental2.dom.MutationRecord;
 
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.form;
 import static org.patternfly.layout.Classes.horizontal;
@@ -40,7 +36,7 @@ import static org.patternfly.layout.Classes.modifier;
  * @see <a href=
  *      "https://www.patternfly.org/components/forms/form/html">https://www.patternfly.org/components/forms/form/html</a>
  */
-public class Form extends BaseComponent<HTMLFormElement, Form> implements Attachable {
+public class Form extends BaseComponent<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ factory
 
@@ -50,45 +46,23 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements Attach
 
     // ------------------------------------------------------ instance
 
-    private final List<FormGroup> groups;
-    private FormActionGroup actionGroup;
-
     Form() {
         super(Elements.form().css(component(form)).apply(f -> f.noValidate = true).element(), ComponentType.Form);
-        this.groups = new ArrayList<>();
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        for (FormGroup group : groups) {
-            group.passComponent(this);
-        }
-        if (actionGroup != null) {
-            actionGroup.passComponent(this);
-        }
+        storeComponent(this);
     }
 
     // ------------------------------------------------------ add
+
+    public Form addAlert(FormAlert alert) {
+        return add(alert);
+    }
 
     public Form addGroup(FormGroup group) {
         return add(group);
     }
 
-    // override to assure internal wiring
-    public Form add(FormGroup group) {
-        groups.add(group);
-        return add(group.element());
-    }
-
     public Form addActionGroup(FormActionGroup actionGroup) {
         return add(actionGroup);
-    }
-
-    // override to assure internal wiring
-    public Form add(FormActionGroup actionGroup) {
-        this.actionGroup = actionGroup;
-        return add(actionGroup.element());
     }
 
     // ------------------------------------------------------ builder

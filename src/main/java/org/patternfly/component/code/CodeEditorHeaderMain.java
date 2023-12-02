@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.code;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -35,8 +36,10 @@ public class CodeEditorHeaderMain extends SubComponent<HTMLDivElement, CodeEdito
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cehm";
+
     CodeEditorHeaderMain() {
-        super(div().css(component(codeEditor, header, main)).element());
+        super(div().css(component(codeEditor, header, main)).element(), ComponentType.CodeEditor, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

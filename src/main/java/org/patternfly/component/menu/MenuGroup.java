@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -27,7 +27,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 import static org.patternfly.layout.Classes.title;
 
-public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements ComponentReference<Menu> {
+public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -41,27 +41,15 @@ public class MenuGroup extends SubComponent<HTMLElement, MenuGroup> implements C
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "mg";
+
     MenuList list;
-    private Menu menu;
 
     MenuGroup(String text) {
-        super(section().css(component(Classes.menu, group)).element());
+        super(section().css(component(Classes.menu, group)).element(), ComponentType.Menu, SUB_COMPONENT_NAME);
         if (text != null) {
             add(h(3, text).css(component(Classes.menu, group, title)));
         }
-    }
-
-    @Override
-    public void passComponent(Menu menu) {
-        this.menu = menu;
-        if (list != null) {
-            list.passComponent(menu);
-        }
-    }
-
-    @Override
-    public Menu mainComponent() {
-        return menu;
     }
 
     // ------------------------------------------------------ add

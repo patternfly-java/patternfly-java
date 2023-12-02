@@ -18,7 +18,6 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -32,11 +31,11 @@ import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MutationRecord;
 
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
@@ -64,8 +63,7 @@ import static org.patternfly.layout.Variables.MaxHeight;
  *
  * @see <a href="https://www.patternfly.org/components/menu/html">https://www.patternfly.org/components/menu/html</a>
  */
-public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attachable,
-        Plain<HTMLDivElement, Menu> {
+public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<HTMLDivElement, Menu> {
 
     // ------------------------------------------------------ factory
 
@@ -90,24 +88,13 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
     private MultiSelectHandler<MenuItem> multiSelectHandler;
     private MenuActionHandler actionHandler;
     private MenuContent content;
-    private MenuSearchInput searchInput;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(div().css(component(menu)).element(), ComponentType.Menu);
         this.menuType = menuType;
         this.selectionMode = selectionMode;
         this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        if (content != null) {
-            content.passComponent(this);
-        }
-        if (searchInput != null) {
-            searchInput.passComponent(this);
-        }
+        storeComponent(this);
     }
 
     // ------------------------------------------------------ add
@@ -154,13 +141,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Attacha
         if (!noSeparator) {
             addDivider();
         }
-        return this;
-    }
-
-    // override to assure internal wiring
-    public Menu add(MenuSearchInput searchInput) {
-        this.searchInput = searchInput;
-        add(searchInput.element());
         return this;
     }
 

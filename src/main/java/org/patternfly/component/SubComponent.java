@@ -29,13 +29,25 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         implements HasElement<E, B>, HasHTMLElement<E, B>, Finder<E>, Container<E, B> {
 
     private final E element;
+    private final ComponentType componentType;
+    private final String name;
 
-    protected SubComponent(E element) {
+    protected SubComponent(E element, ComponentType componentType, String name) {
         this.element = requireNonNull(element, "element required");
+        this.componentType = componentType;
+        this.name = name;
     }
 
     @Override
     public E element() {
         return element;
+    }
+
+    public ComponentType componentType() {
+        return componentType;
+    }
+
+    public String name() {
+        return name;
     }
 }

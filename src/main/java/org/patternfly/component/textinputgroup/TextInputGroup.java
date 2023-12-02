@@ -31,7 +31,7 @@ import elemental2.dom.MutationRecord;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.jboss.elemento.EventType.change;
+import static org.patternfly.component.ComponentStore.storeComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.textInputGroup;
 
@@ -43,7 +43,7 @@ import static org.patternfly.layout.Classes.textInputGroup;
  *      "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
  */
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
-        Attachable, HasValue<String>, Disabled<HTMLDivElement, TextInputGroup> {
+        HasValue<String>, Disabled<HTMLDivElement, TextInputGroup>, Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -54,21 +54,20 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     // ------------------------------------------------------ instance
 
     boolean initialDisabled;
-    ChangeHandler<TextInputGroup, String> initialChangeHandler;
+    ChangeHandler<TextInputGroup, String> changeHandler;
     private TextInputGroupMain main;
     private TextInputGroupUtilities utilities;
 
     TextInputGroup() {
         super(div().css(component(textInputGroup)).element(), ComponentType.TextInputGroup);
+        storeComponent(this);
+        Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (main != null) {
-            main.passComponent(this);
-        }
-        if (utilities != null) {
-            utilities.passComponent(this);
+        if (initialDisabled && main != null) {
+            main.disabled(true);
         }
     }
 
@@ -117,11 +116,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     // ------------------------------------------------------ events
 
     public TextInputGroup onChange(ChangeHandler<TextInputGroup, String> handler) {
-        if (main == null) {
-            initialChangeHandler = handler;
-        } else {
-            main.inputElement.addEventListener(change.name, e -> handler.onChange(this, main.inputElement.value));
-        }
+        changeHandler = handler;
         return this;
     }
 

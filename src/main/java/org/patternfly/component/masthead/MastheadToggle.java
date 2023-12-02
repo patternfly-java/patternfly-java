@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.masthead;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.sidebar.Sidebar;
@@ -52,10 +53,12 @@ public class MastheadToggle extends SubComponent<HTMLDivElement, MastheadToggle>
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "mt";
+
     private final Button toggleButton;
 
     MastheadToggle() {
-        super(div().css(component(masthead, toggle)).element());
+        super(div().css(component(masthead, toggle)).element(), ComponentType.Masthead, SUB_COMPONENT_NAME);
         add(toggleButton = button()
                 .plain()
                 .icon(bars)

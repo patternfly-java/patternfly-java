@@ -17,7 +17,6 @@ package org.patternfly.component.alert;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
@@ -50,6 +49,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.mouseout;
 import static org.jboss.elemento.EventType.mouseover;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.alert.AlertDescription.alertDescription;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
@@ -81,8 +81,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         Plain<HTMLDivElement, Alert>,
         Closeable<HTMLDivElement, Alert>,
         Expandable<HTMLDivElement, Alert>, Attachable,
-        WithIcon<HTMLDivElement, Alert>,
-        ComponentReference<AlertGroup> {
+        WithIcon<HTMLDivElement, Alert> {
 
     // ------------------------------------------------------ factory
 
@@ -105,9 +104,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private final HTMLParagraphElement titleElement;
     private double timeoutHandle;
     private Button toggleButton;
-    private AlertGroup alertGroup;
     private AlertDescription description;
-    private AlertActionGroup actionGroup;
     private ToggleHandler<Alert> toggleHandler;
 
     Alert(Severity severity, String title) {
@@ -138,9 +135,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
             on(mouseover, e -> stopTimeout());
             on(mouseout, e -> startTimeout());
         }
-        if (actionGroup != null) {
-            actionGroup.passComponent(this);
-        }
     }
 
     @Override
@@ -148,30 +142,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         clearTimeout(timeoutHandle);
     }
 
-    @Override
-    public void passComponent(AlertGroup alertGroup) {
-        this.alertGroup = alertGroup;
-    }
-
-    /**
-     * If this alert is <strong>not</strong> part of an {@link AlertGroup}, this method will return {@code null}!
-     */
-    @Override
-    public AlertGroup mainComponent() {
-        return alertGroup;
-    }
-
     // ------------------------------------------------------ add
 
     public Alert addActionGroup(AlertActionGroup actionGroup) {
         return add(actionGroup);
-    }
-
-    // override to assure internal wiring
-    public Alert add(AlertActionGroup actionGroup) {
-        this.actionGroup = actionGroup;
-        add(actionGroup.element());
-        return this;
     }
 
     /**
@@ -308,6 +282,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             stopTimeout();
+            AlertGroup alertGroup = lookupComponent(ComponentType.Alert, element(), true);
             if (alertGroup != null) {
                 alertGroup.closeAlert(this);
             } else {

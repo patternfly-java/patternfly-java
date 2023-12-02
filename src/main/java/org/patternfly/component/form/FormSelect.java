@@ -76,7 +76,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
                         .apply(s -> s.name = id)
                         .aria(invalid, false))
                 .element(),
-                ComponentType.TextInput);
+                ComponentType.FormSelect);
         failSafeUtilitiesContainer().appendChild(span().css(component(formControl, toggle, icon))
                 .add(inlineIcon(caretDown))
                 .element());

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.card;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Modifiers.NoFill;
 
@@ -36,8 +37,10 @@ public class CardBody extends SubComponent<HTMLDivElement, CardBody> implements
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cb";
+
     CardBody() {
-        super(div().css(component(card, body)).element());
+        super(div().css(component(card, body)).element(), ComponentType.Card, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

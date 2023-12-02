@@ -18,9 +18,10 @@ package org.patternfly.component.textinputgroup;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
-import org.patternfly.component.ComponentReference;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.component.icon.InlineIcon;
@@ -37,7 +38,7 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.jboss.elemento.EventType.change;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.main;
@@ -45,7 +46,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.textInput;
 
 public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGroupMain>
-        implements Disabled<HTMLDivElement, TextInputGroupMain>, ComponentReference<TextInputGroup> {
+        implements Disabled<HTMLDivElement, TextInputGroupMain> {
 
     // ------------------------------------------------------ factory
 
@@ -55,13 +56,14 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "tigm";
+
     final HTMLInputElement inputElement;
     ChipGroup chipGroup;
     private final HTMLElement textContainer;
-    private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
-        super(div().css(component(Classes.textInputGroup, main)).element());
+        super(div().css(component(Classes.textInputGroup, main)).element(), ComponentType.TextInputGroup, SUB_COMPONENT_NAME);
 
         add(textContainer = span().css(component(Classes.textInputGroup, Classes.text))
                 .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
@@ -69,23 +71,12 @@ public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGr
                         .name(id)
                         .element())
                 .element());
-    }
-
-    @Override
-    public void passComponent(TextInputGroup textInputGroup) {
-        this.textInputGroup = textInputGroup;
-        if (textInputGroup.initialDisabled) {
-            disabled(true);
-        }
-        if (textInputGroup.initialChangeHandler != null) {
-            inputElement.addEventListener(change.name,
-                    e -> textInputGroup.initialChangeHandler.onChange(textInputGroup, inputElement.value));
-        }
-    }
-
-    @Override
-    public TextInputGroup mainComponent() {
-        return textInputGroup;
+        inputElement.addEventListener(EventType.input.name, e -> {
+            TextInputGroup tig = lookupComponent(ComponentType.TextInputGroup, element());
+            if (tig.changeHandler != null) {
+                tig.changeHandler.onChange(tig, inputElement.value);
+            }
+        });
     }
 
     // ------------------------------------------------------ add

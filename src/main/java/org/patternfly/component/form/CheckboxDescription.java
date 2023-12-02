@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.Classes;
 
@@ -38,9 +39,10 @@ public class CheckboxDescription extends SubComponent<HTMLElement, CheckboxDescr
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cbd";
+
     CheckboxDescription(String description) {
-        super(span().css(component(check, Classes.description))
-                .element());
+        super(span().css(component(check, Classes.description)).element(), ComponentType.Checkbox, SUB_COMPONENT_NAME);
         if (description != null) {
             element().textContent = description;
         }

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
@@ -43,9 +45,10 @@ public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs> 
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pmt";
+
     PageMainTabs() {
-        super(section().css(component(page, main, tabs))
-                .element());
+        super(section().css(component(page, main, tabs)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

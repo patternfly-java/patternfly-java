@@ -21,7 +21,6 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentReference;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.button.Button;
@@ -41,6 +40,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -63,7 +63,6 @@ import static org.patternfly.layout.Variables.MaxWidth;
  * @see <a href="https://www.patternfly.org/components/chip/html">https://www.patternfly.org/components/chip/html</a>
  */
 public class Chip extends BaseComponent<HTMLElement, Chip> implements
-        ComponentReference<ChipGroup>,
         Closeable<HTMLElement, Chip>,
         HasValue<String>,
         WithText<HTMLElement, Chip>,
@@ -84,7 +83,6 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     private final HTMLElement contentElement;
     private final HTMLElement actionsElement;
     private final TooltipToggle tooltipToggle;
-    private ChipGroup chipGroup;
     private Badge badge;
     private Button closeButton;
     private CloseHandler<Chip> closeHandler;
@@ -116,16 +114,6 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     @Override
     public void attach(MutationRecord mutationRecord) {
         tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
-    }
-
-    @Override
-    public void passComponent(ChipGroup chipGroup) {
-        this.chipGroup = chipGroup;
-    }
-
-    @Override
-    public ChipGroup mainComponent() {
-        return chipGroup;
     }
 
     @Override
@@ -210,6 +198,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
 
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
+            ChipGroup chipGroup = lookupComponent(ComponentType.ChipGroup, element(), true);
             if (chipGroup != null) {
                 chipGroup.close(this);
             } else {

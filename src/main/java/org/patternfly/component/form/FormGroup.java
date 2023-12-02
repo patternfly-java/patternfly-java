@@ -15,20 +15,23 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.component.ComponentReference;
+import org.jboss.elemento.Attachable;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.ComponentStore.storeSubComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
 public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
-        ComponentReference<Form> {
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -38,40 +41,25 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "fg";
+
     String fieldId;
     boolean required;
     FormGroupRole role;
-    private Form form;
-    private FormGroupLabel label;
-    private FormGroupControl control;
 
     FormGroup() {
-        super(div().css(component(Classes.form, group)).element());
+        super(div().css(component(Classes.form, group)).element(), ComponentType.Form, SUB_COMPONENT_NAME);
         this.fieldId = null;
         this.required = false;
-        this.label = null;
-        this.control = null;
+        storeSubComponent(this);
+        Attachable.register(this, this);
     }
 
     @Override
-    public void passComponent(Form form) {
+    public void attach(MutationRecord mutationRecord) {
         if ((role == FormGroupRole.radiogroup || role == FormGroupRole.group) && fieldId == null) {
-            Logger.missing(form.componentType(), element(), "Missing field ID for form group with role '" + role.name() + "'.");
+            Logger.missing(ComponentType.Form, element(), "Missing field ID for form group with role '" + role.name() + "'.");
         }
-        this.form = form;
-        if (label != null) {
-            label.passComponent(form);
-            label.passSubComponent(this);
-        }
-        if (control != null) {
-            control.passComponent(form);
-            control.passSubComponent(this);
-        }
-    }
-
-    @Override
-    public Form mainComponent() {
-        return form;
     }
 
     // ------------------------------------------------------ add
@@ -80,20 +68,8 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
         return add(label);
     }
 
-    // override to assure internal wiring
-    public FormGroup add(FormGroupLabel label) {
-        this.label = label;
-        return add(label.element());
-    }
-
     public FormGroup addControl(FormGroupControl control) {
         return add(control);
-    }
-
-    // override to assure internal wiring
-    public FormGroup add(FormGroupControl control) {
-        this.control = control;
-        return add(control.element());
     }
 
     // ------------------------------------------------------ builder

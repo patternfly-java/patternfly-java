@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
@@ -38,9 +39,10 @@ public class CheckboxBody extends SubComponent<HTMLElement, CheckboxBody> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "cbb";
+
     CheckboxBody(String text) {
-        super(span().css(component(check, body))
-                .element());
+        super(span().css(component(check, body)).element(), ComponentType.Checkbox, SUB_COMPONENT_NAME);
         if (text != null) {
             element().textContent = text;
         }

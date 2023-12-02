@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLDivElement;
@@ -47,9 +48,10 @@ public class PageMainBody extends SubComponent<HTMLDivElement, PageMainBody> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "pmb";
+
     PageMainBody() {
-        super(div().css(component(page, main, body))
-                .element());
+        super(div().css(component(page, main, body)).element(), ComponentType.Page, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder

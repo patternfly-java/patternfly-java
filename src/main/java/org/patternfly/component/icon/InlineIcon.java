@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.icon;
 
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.layout.PredefinedIcon;
 
@@ -37,8 +38,10 @@ public class InlineIcon extends SubComponent<HTMLElement, InlineIcon> {
 
     // ------------------------------------------------------ instance
 
+    static final String SUB_COMPONENT_NAME = "ii";
+
     InlineIcon(String iconClass) {
-        super(i().css(iconClass).aria(hidden, true).element());
+        super(i().css(iconClass).aria(hidden, true).element(), ComponentType.Icon, SUB_COMPONENT_NAME);
     }
 
     // ------------------------------------------------------ builder
