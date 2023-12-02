@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 import static org.patternfly.layout.Classes.main;
 
-public class CodeEditorHeaderMain extends SubComponent<HTMLDivElement, CodeEditorHeaderMain> {
+public class CodeEditorHeaderMain extends BaseSubComponent<HTMLDivElement, CodeEditorHeaderMain> {
 
     // ------------------------------------------------------ factory
 

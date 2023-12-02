@@ -17,7 +17,7 @@ package org.patternfly.component.form;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.Modifiers.Disabled;
@@ -26,7 +26,7 @@ import elemental2.dom.HTMLOptionElement;
 
 import static org.jboss.elemento.Elements.option;
 
-public class FormSelectOption extends SubComponent<HTMLOptionElement, FormSelectOption>
+public class FormSelectOption extends BaseSubComponent<HTMLOptionElement, FormSelectOption>
         implements Disabled<HTMLOptionElement, FormSelectOption>, HasValue<String> {
 
     // ------------------------------------------------------ factory

@@ -18,7 +18,7 @@ package org.patternfly.component.expandable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLButtonElement;
@@ -39,7 +39,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class ExpandableSectionToggle extends SubComponent<HTMLButtonElement, ExpandableSectionToggle> {
+public class ExpandableSectionToggle extends BaseSubComponent<HTMLButtonElement, ExpandableSectionToggle> {
 
     // ------------------------------------------------------ factory
 

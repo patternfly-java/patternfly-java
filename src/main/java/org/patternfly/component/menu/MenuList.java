@@ -21,7 +21,7 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
 
@@ -42,7 +42,7 @@ import static org.patternfly.core.SelectionMode.single;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.list;
 
-public class MenuList extends SubComponent<HTMLUListElement, MenuList> implements Attachable {
+public class MenuList extends BaseSubComponent<HTMLUListElement, MenuList> implements Attachable {
 
     // ------------------------------------------------------ factory
 

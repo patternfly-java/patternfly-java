@@ -16,7 +16,7 @@
 package org.patternfly.component.menu;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,7 +25,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.menu;
 import static org.patternfly.layout.Classes.search;
 
-public class MenuSearch extends SubComponent<HTMLDivElement, MenuSearch> {
+public class MenuSearch extends BaseSubComponent<HTMLDivElement, MenuSearch> {
 
     // ------------------------------------------------------ factory
 

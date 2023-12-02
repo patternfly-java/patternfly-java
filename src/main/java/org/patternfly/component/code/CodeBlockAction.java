@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -38,7 +38,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
-public class CodeBlockAction extends SubComponent<HTMLDivElement, CodeBlockAction> implements
+public class CodeBlockAction extends BaseSubComponent<HTMLDivElement, CodeBlockAction> implements
         WithIcon<HTMLDivElement, CodeBlockAction> {
 
     // ------------------------------------------------------ factory

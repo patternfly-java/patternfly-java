@@ -18,7 +18,7 @@ package org.patternfly.component.menu;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
 import org.patternfly.layout.PredefinedIcon;
@@ -38,7 +38,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.icon;
 import static org.patternfly.layout.Classes.item;
 
-public class MenuItemAction extends SubComponent<HTMLButtonElement, MenuItemAction> {
+public class MenuItemAction extends BaseSubComponent<HTMLButtonElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.layout.Classes;
 
@@ -37,7 +37,7 @@ import static org.patternfly.layout.Classes.list;
 import static org.patternfly.layout.Classes.nav;
 import static org.patternfly.layout.Classes.title;
 
-public class NavigationGroup extends SubComponent<HTMLElement, NavigationGroup> {
+public class NavigationGroup extends BaseSubComponent<HTMLElement, NavigationGroup> {
 
     // ------------------------------------------------------ factory
 

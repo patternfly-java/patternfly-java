@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.tab;
 
-public class CodeEditorTab extends SubComponent<HTMLDivElement, CodeEditorTab> {
+public class CodeEditorTab extends BaseSubComponent<HTMLDivElement, CodeEditorTab> {
 
     // ------------------------------------------------------ factory
 

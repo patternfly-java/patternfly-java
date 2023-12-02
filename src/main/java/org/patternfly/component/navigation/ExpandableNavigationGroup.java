@@ -21,7 +21,7 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.layout.Classes;
@@ -57,7 +57,7 @@ import static org.patternfly.layout.Classes.subnav;
 import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class ExpandableNavigationGroup extends SubComponent<HTMLLIElement, ExpandableNavigationGroup> {
+public class ExpandableNavigationGroup extends BaseSubComponent<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 

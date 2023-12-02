@@ -16,7 +16,7 @@
 package org.patternfly.component.textinputgroup;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +25,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.utilities;
 
-public class TextInputGroupUtilities extends SubComponent<HTMLDivElement, TextInputGroupUtilities> {
+public class TextInputGroupUtilities extends BaseSubComponent<HTMLDivElement, TextInputGroupUtilities> {
 
     // ------------------------------------------------------ factory
 

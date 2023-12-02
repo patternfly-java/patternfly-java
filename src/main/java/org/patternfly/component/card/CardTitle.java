@@ -16,7 +16,7 @@
 package org.patternfly.component.card;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
 
@@ -29,7 +29,7 @@ import static org.patternfly.layout.Classes.card;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.title;
 
-public class CardTitle extends SubComponent<HTMLDivElement, CardTitle> implements RedirectTo<HTMLDivElement, CardTitle> {
+public class CardTitle extends BaseSubComponent<HTMLDivElement, CardTitle> implements RedirectTo<HTMLDivElement, CardTitle> {
 
     // ------------------------------------------------------ factory
 

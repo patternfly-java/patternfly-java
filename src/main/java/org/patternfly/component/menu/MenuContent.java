@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
@@ -40,7 +40,7 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 
-public class MenuContent extends SubComponent<HTMLDivElement, MenuContent> implements Attachable {
+public class MenuContent extends BaseSubComponent<HTMLDivElement, MenuContent> implements Attachable {
 
     // ------------------------------------------------------ factory
 

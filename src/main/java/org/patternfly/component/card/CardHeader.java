@@ -18,7 +18,7 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.RedirectTo;
@@ -45,7 +45,7 @@ import static org.patternfly.layout.Classes.toggle;
 import static org.patternfly.layout.Classes.toggleRight;
 import static org.patternfly.layout.PredefinedIcon.angleRight;
 
-public class CardHeader extends SubComponent<HTMLDivElement, CardHeader> implements
+public class CardHeader extends BaseSubComponent<HTMLDivElement, CardHeader> implements
         RedirectTo<HTMLDivElement, CardHeader>,
         Attachable {
 

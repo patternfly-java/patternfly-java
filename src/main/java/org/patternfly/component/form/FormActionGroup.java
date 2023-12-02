@@ -16,7 +16,7 @@
 package org.patternfly.component.form;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.layout.Classes;
 
@@ -28,7 +28,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 import static org.patternfly.layout.Classes.modifier;
 
-public class FormActionGroup extends SubComponent<HTMLElement, FormActionGroup> {
+public class FormActionGroup extends BaseSubComponent<HTMLElement, FormActionGroup> {
 
     // ------------------------------------------------------ factory
 

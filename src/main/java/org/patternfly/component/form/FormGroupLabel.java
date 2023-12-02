@@ -20,8 +20,8 @@ import java.util.Iterator;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
 import org.patternfly.layout.Classes;
@@ -36,7 +36,6 @@ import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.component.ComponentStore.lookupSubComponent;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.layout.Classes.component;
@@ -46,7 +45,7 @@ import static org.patternfly.layout.Classes.noPaddingTop;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.PredefinedIcon.help;
 
-public class FormGroupLabel extends SubComponent<HTMLElement, FormGroupLabel> implements
+public class FormGroupLabel extends BaseSubComponent<HTMLElement, FormGroupLabel> implements
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -74,7 +73,7 @@ public class FormGroupLabel extends SubComponent<HTMLElement, FormGroupLabel> im
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        FormGroup formGroup = lookupSubComponent(ComponentType.Form, FormGroup.SUB_COMPONENT_NAME, element());
+        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
         if (formGroup.role != null) {
             HTMLElement pseudoLabelElement = span().css(component(Classes.form, Classes.label)).element();

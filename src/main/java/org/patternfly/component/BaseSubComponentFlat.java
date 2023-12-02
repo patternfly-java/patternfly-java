@@ -24,14 +24,14 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 
-public abstract class SubComponentFlat<E extends HTMLElement, B extends TypedBuilder<E, B>>
+public abstract class BaseSubComponentFlat<E extends HTMLElement, B extends TypedBuilder<E, B>>
         implements HasElement<E, B>, HasHTMLElement<E, B>, Finder<E> {
 
     private final E element;
     private final ComponentType mainComponent;
     private final String name;
 
-    protected SubComponentFlat(E element, ComponentType mainComponent, String name) {
+    protected BaseSubComponentFlat(E element, ComponentType mainComponent, String name) {
         this.element = requireNonNull(element, "element required");
         this.mainComponent = mainComponent;
         this.name = name;

@@ -22,7 +22,7 @@ import org.jboss.elemento.EventType;
 import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Modifiers.Disabled;
@@ -45,7 +45,7 @@ import static org.patternfly.layout.Classes.main;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.textInput;
 
-public class TextInputGroupMain extends SubComponent<HTMLDivElement, TextInputGroupMain>
+public class TextInputGroupMain extends BaseSubComponent<HTMLDivElement, TextInputGroupMain>
         implements Disabled<HTMLDivElement, TextInputGroupMain> {
 
     // ------------------------------------------------------ factory

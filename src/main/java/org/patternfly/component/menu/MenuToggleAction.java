@@ -16,7 +16,7 @@
 package org.patternfly.component.menu;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.handler.ComponentHandler;
@@ -29,7 +29,7 @@ import static org.patternfly.layout.Classes.button;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.menuToggle;
 
-public class MenuToggleAction extends SubComponent<HTMLButtonElement, MenuToggleAction>
+public class MenuToggleAction extends BaseSubComponent<HTMLButtonElement, MenuToggleAction>
         implements Disabled<HTMLButtonElement, MenuToggleAction> {
 
     // ------------------------------------------------------ factory

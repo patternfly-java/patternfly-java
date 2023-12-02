@@ -16,7 +16,7 @@
 package org.patternfly.component.sidebar;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.core.Modifiers.NoFill;
@@ -39,7 +39,7 @@ import static org.patternfly.layout.Classes.sidebar;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class SidebarBody extends SubComponent<HTMLDivElement, SidebarBody>
+public class SidebarBody extends BaseSubComponent<HTMLDivElement, SidebarBody>
         implements Fill<HTMLDivElement, SidebarBody>, NoFill<HTMLDivElement, SidebarBody> {
 
     // ------------------------------------------------------ factory

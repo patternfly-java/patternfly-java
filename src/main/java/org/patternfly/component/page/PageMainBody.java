@@ -16,7 +16,7 @@
 package org.patternfly.component.page;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -35,7 +35,7 @@ import static org.patternfly.layout.Classes.page;
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class PageMainBody extends SubComponent<HTMLDivElement, PageMainBody> {
+public class PageMainBody extends BaseSubComponent<HTMLDivElement, PageMainBody> {
 
     // ------------------------------------------------------ factory
 

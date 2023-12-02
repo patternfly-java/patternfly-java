@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.codeEditor;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.tab;
 
-public class CodeEditorTabText extends SubComponent<HTMLElement, CodeEditorTabText> {
+public class CodeEditorTabText extends BaseSubComponent<HTMLElement, CodeEditorTabText> {
 
     // ------------------------------------------------------ factory
 

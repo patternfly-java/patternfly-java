@@ -16,7 +16,7 @@
 package org.patternfly.component.card;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,7 +25,7 @@ import static org.patternfly.layout.Classes.card;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.footer;
 
-public class CardFooter extends SubComponent<HTMLDivElement, CardFooter> {
+public class CardFooter extends BaseSubComponent<HTMLDivElement, CardFooter> {
 
     // ------------------------------------------------------ factory
 

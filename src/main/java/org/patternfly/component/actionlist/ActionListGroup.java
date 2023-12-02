@@ -16,7 +16,7 @@
 package org.patternfly.component.actionlist;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,7 +25,7 @@ import static org.patternfly.layout.Classes.actionList;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class ActionListGroup extends SubComponent<HTMLDivElement, ActionListGroup> {
+public class ActionListGroup extends BaseSubComponent<HTMLDivElement, ActionListGroup> {
 
     // ------------------------------------------------------ factory
 

@@ -38,6 +38,10 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
         Ouia.component(element, componentType);
     }
 
+    protected void storeComponent() {
+        ComponentStore.storeComponent(this);
+    }
+
     @Override
     public E element() {
         return element;

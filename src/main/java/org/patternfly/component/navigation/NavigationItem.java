@@ -16,7 +16,7 @@
 package org.patternfly.component.navigation;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ComponentHandler;
@@ -35,7 +35,7 @@ import static org.patternfly.layout.Classes.link;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.nav;
 
-public class NavigationItem extends SubComponent<HTMLLIElement, NavigationItem> implements
+public class NavigationItem extends BaseSubComponent<HTMLLIElement, NavigationItem> implements
         WithText<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory

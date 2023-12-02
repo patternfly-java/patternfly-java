@@ -16,7 +16,7 @@
 package org.patternfly.component.form;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -25,7 +25,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.patternfly.layout.Classes.check;
 import static org.patternfly.layout.Classes.component;
 
-public class CheckboxDescription extends SubComponent<HTMLElement, CheckboxDescription> {
+public class CheckboxDescription extends BaseSubComponent<HTMLElement, CheckboxDescription> {
 
     // ------------------------------------------------------ factory
 

@@ -16,7 +16,7 @@
 package org.patternfly.component.masthead;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.brand.Brand;
 
 import elemental2.dom.HTMLDivElement;
@@ -33,7 +33,7 @@ import static org.patternfly.layout.Classes.masthead;
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadMain extends SubComponent<HTMLDivElement, MastheadMain> {
+public class MastheadMain extends BaseSubComponent<HTMLDivElement, MastheadMain> {
 
     // ------------------------------------------------------ factory
 

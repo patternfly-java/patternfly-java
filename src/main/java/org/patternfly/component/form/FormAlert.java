@@ -16,7 +16,7 @@
 package org.patternfly.component.form;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.alert.Alert;
 import org.patternfly.layout.Classes;
 
@@ -26,7 +26,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 
-public class FormAlert extends SubComponent<HTMLElement, FormAlert> {
+public class FormAlert extends BaseSubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ factory
 

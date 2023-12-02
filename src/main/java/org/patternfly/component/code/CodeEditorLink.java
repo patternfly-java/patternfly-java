@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
@@ -28,7 +28,7 @@ import static org.patternfly.component.ComponentStore.lookupComponent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.PredefinedIcon.help;
 
-public class CodeEditorLink extends SubComponent<HTMLElement, CodeEditorLink> {
+public class CodeEditorLink extends BaseSubComponent<HTMLElement, CodeEditorLink> {
 
     // ------------------------------------------------------ factory
 

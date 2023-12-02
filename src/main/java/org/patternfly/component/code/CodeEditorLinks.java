@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.keyboard;
 import static org.patternfly.layout.Classes.shortcuts;
 
-public class CodeEditorLinks extends SubComponent<HTMLDivElement, CodeEditorLinks> {
+public class CodeEditorLinks extends BaseSubComponent<HTMLDivElement, CodeEditorLinks> {
 
     // ------------------------------------------------------ factory
 

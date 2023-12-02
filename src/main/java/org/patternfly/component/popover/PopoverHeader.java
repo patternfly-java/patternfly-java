@@ -17,7 +17,7 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.RedirectTo;
 import org.patternfly.layout.Classes;
 
@@ -32,7 +32,7 @@ import static org.patternfly.layout.Classes.popover;
 import static org.patternfly.layout.Classes.text;
 import static org.patternfly.layout.Classes.title;
 
-public class PopoverHeader extends SubComponent<HTMLElement, PopoverHeader> implements RedirectTo<HTMLElement, PopoverHeader> {
+public class PopoverHeader extends BaseSubComponent<HTMLElement, PopoverHeader> implements RedirectTo<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 

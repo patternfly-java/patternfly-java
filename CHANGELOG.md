@@ -17,6 +17,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 
   - `WithIconAndText<E extends Element, B extends TypedBuilder<E, B>>`
 
+### Changed
+
+- Replace `ComponentReference<C>` with `ComponentStore`
+
 ## [0.1.1] - 2023-11-22
 
 ### Added

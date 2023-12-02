@@ -16,7 +16,7 @@
 package org.patternfly.component.code;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +25,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.header;
 
-public class CodeBlockHeader extends SubComponent<HTMLDivElement, CodeBlockHeader> {
+public class CodeBlockHeader extends BaseSubComponent<HTMLDivElement, CodeBlockHeader> {
 
     // ------------------------------------------------------ factory
 

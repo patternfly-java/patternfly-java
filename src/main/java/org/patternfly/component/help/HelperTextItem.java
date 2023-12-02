@@ -18,7 +18,7 @@ package org.patternfly.component.help;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.SubComponentFlat;
+import org.patternfly.component.BaseSubComponentFlat;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
@@ -46,7 +46,7 @@ import static org.patternfly.layout.Classes.item;
 import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 
-public class HelperTextItem extends SubComponentFlat<HTMLElement, HelperTextItem> implements
+public class HelperTextItem extends BaseSubComponentFlat<HTMLElement, HelperTextItem> implements
         WithIcon<HTMLElement, HelperTextItem>,
         WithText<HTMLElement, HelperTextItem>,
         WithIconAndText<HTMLElement, HelperTextItem>,

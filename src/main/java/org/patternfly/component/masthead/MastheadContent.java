@@ -16,7 +16,7 @@
 package org.patternfly.component.masthead;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.toolbar.Toolbar;
 
 import elemental2.dom.HTMLDivElement;
@@ -34,7 +34,7 @@ import static org.patternfly.layout.Classes.masthead;
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
-public class MastheadContent extends SubComponent<HTMLDivElement, MastheadContent> {
+public class MastheadContent extends BaseSubComponent<HTMLDivElement, MastheadContent> {
 
     // ------------------------------------------------------ factory
 

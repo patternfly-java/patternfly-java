@@ -16,7 +16,7 @@
 package org.patternfly.component.expandable;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.layout.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -26,7 +26,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.expandableSection;
 import static org.patternfly.layout.Classes.toggle;
 
-public class ExpandableSectionToggleText extends SubComponent<HTMLElement, ExpandableSectionToggleText> {
+public class ExpandableSectionToggleText extends BaseSubComponent<HTMLElement, ExpandableSectionToggleText> {
 
     // ------------------------------------------------------ factory
 

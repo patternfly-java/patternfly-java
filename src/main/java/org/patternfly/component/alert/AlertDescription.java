@@ -16,7 +16,7 @@
 package org.patternfly.component.alert;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,7 +25,7 @@ import static org.patternfly.layout.Classes.alert;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.description;
 
-public class AlertDescription extends SubComponent<HTMLDivElement, AlertDescription> {
+public class AlertDescription extends BaseSubComponent<HTMLDivElement, AlertDescription> {
 
     // ------------------------------------------------------ factory
 

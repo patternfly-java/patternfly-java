@@ -21,7 +21,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
@@ -76,7 +76,7 @@ import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.PredefinedIcon.externalLinkAlt;
 import static org.patternfly.layout.PredefinedIcon.star;
 
-public class MenuItem extends SubComponent<HTMLElement, MenuItem> implements
+public class MenuItem extends BaseSubComponent<HTMLElement, MenuItem> implements
         Disabled<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,

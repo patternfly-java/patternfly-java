@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Modifiers.Inline;
@@ -31,12 +31,11 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.ComponentStore.lookupSubComponent;
 import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
+public class FormGroupControl extends BaseSubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
         Attachable {
 
@@ -63,7 +62,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        FormGroup formGroup = lookupSubComponent(ComponentType.Form, FormGroup.SUB_COMPONENT_NAME, element());
+        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
         if (formGroup.fieldId != null && control != null && !formGroup.fieldId.equals(control.id)) {
             Logger.wrong(ComponentType.Form, element(),

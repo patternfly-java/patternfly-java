@@ -18,7 +18,7 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.form.Radio;
 import org.patternfly.core.Logger;
@@ -41,7 +41,7 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.selectable;
 
-public class CardSelectableActions extends SubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
+public class CardSelectableActions extends BaseSubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
 
     // ------------------------------------------------------ factory
 

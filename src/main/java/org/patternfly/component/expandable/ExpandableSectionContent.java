@@ -17,7 +17,7 @@ package org.patternfly.component.expandable;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -27,7 +27,7 @@ import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.content;
 import static org.patternfly.layout.Classes.expandableSection;
 
-public class ExpandableSectionContent extends SubComponent<HTMLDivElement, ExpandableSectionContent> {
+public class ExpandableSectionContent extends BaseSubComponent<HTMLDivElement, ExpandableSectionContent> {
 
     // ------------------------------------------------------ factory
 

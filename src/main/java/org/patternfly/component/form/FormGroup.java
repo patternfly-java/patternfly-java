@@ -17,7 +17,7 @@ package org.patternfly.component.form;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
 import org.patternfly.layout.Classes;
@@ -30,7 +30,7 @@ import static org.patternfly.component.ComponentStore.storeSubComponent;
 import static org.patternfly.layout.Classes.component;
 import static org.patternfly.layout.Classes.group;
 
-public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
+public class FormGroup extends BaseSubComponent<HTMLElement, FormGroup> implements
         Attachable {
 
     // ------------------------------------------------------ factory

@@ -16,7 +16,7 @@
 package org.patternfly.component.alert;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.component.BaseSubComponent;
 import org.patternfly.component.button.Button;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.layout.Classes;
@@ -30,7 +30,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.layout.Classes.actionGroup;
 import static org.patternfly.layout.Classes.component;
 
-public class AlertActionGroup extends SubComponent<HTMLDivElement, AlertActionGroup> {
+public class AlertActionGroup extends BaseSubComponent<HTMLDivElement, AlertActionGroup> {
 
     // ------------------------------------------------------ factory
 
