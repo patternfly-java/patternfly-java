@@ -243,7 +243,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     menu.select(this, !isSelected(), true);
                 }
             }, itemType == checkbox); // useCapture is true for checkbox!
-            // see also : https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
+            // see also: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
         }
         if (initialSelection) {
             menu.select(this, true, false);
