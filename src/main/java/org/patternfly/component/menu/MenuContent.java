@@ -30,6 +30,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
@@ -85,7 +86,8 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
             }
 
             for (MenuItem item : menu.items()) {
-                item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item));
+                // Don't use item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item)) here !!
+                item.addFavoriteItemAction().on(click, e -> menu.toggleFavorite(item));
             }
         }
     }

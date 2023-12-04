@@ -76,35 +76,35 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     // ------------------------------------------------------ factory
 
     public static Tooltip tooltip() {
-        return new Tooltip(null, null);
+        return new Tooltip(null, null, null);
     }
 
     public static Tooltip tooltip(String text) {
-        return new Tooltip(null, text);
+        return new Tooltip(null, text, null);
     }
 
     public static Tooltip tooltip(By trigger) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), null);
+        return new Tooltip(() -> Elements.find(document.body, trigger), null, trigger);
     }
 
     public static Tooltip tooltip(By trigger, String text) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), text);
+        return new Tooltip(() -> Elements.find(document.body, trigger), text, trigger);
     }
 
     public static Tooltip tooltip(HTMLElement trigger) {
-        return new Tooltip(() -> trigger, null);
+        return new Tooltip(() -> trigger, null, null);
     }
 
     public static Tooltip tooltip(HTMLElement trigger, String text) {
-        return new Tooltip(() -> trigger, text);
+        return new Tooltip(() -> trigger, text, null);
     }
 
     public static Tooltip tooltip(Supplier<HTMLElement> trigger) {
-        return new Tooltip(trigger, null);
+        return new Tooltip(trigger, null, null);
     }
 
     public static Tooltip tooltip(Supplier<HTMLElement> trigger, String text) {
-        return new Tooltip(trigger, text);
+        return new Tooltip(trigger, text, null);
     }
 
     // ------------------------------------------------------ instance
@@ -118,6 +118,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private final String id;
     private final HTMLElement contentElement;
     private final Set<TriggerAction> triggerActions;
+    private final By selector;
     private Supplier<HTMLElement> trigger;
     private boolean flip;
     private int distance;
@@ -130,7 +131,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private Placement placement;
     private CloseHandler<Tooltip> closeHandler;
 
-    Tooltip(Supplier<HTMLElement> trigger, String text) {
+    Tooltip(Supplier<HTMLElement> trigger, String text, By selector) {
         super(ComponentType.Tooltip, div().css(component(tooltip))
                 .style("display", "none")
                 .attr(role, "tooltip")
@@ -140,6 +141,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         this.id = Id.unique(componentType().id);
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(mouseenter, focus);
+        this.selector = selector;
         this.flip = true;
         this.placement = top;
         this.aria = describedBy;
@@ -180,7 +182,12 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
                         .removePopperOnTriggerDetach()
                         .build();
             } else {
-                Logger.undefined(componentType(), element(), "Unable to get trigger element");
+                if (selector != null) {
+                    Logger.undefined(componentType(), element(),
+                            "Unable to get trigger element using selector '" + selector + "'");
+                } else {
+                    Logger.undefined(componentType(), element(), "Unable to get trigger element");
+                }
             }
         } else {
             Logger.undefined(componentType(), element(), "No trigger element defined");

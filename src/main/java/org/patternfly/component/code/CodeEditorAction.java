@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.code;
 
+import org.jboss.elemento.By;
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
+import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.ComponentHandler;
@@ -26,6 +30,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.PredefinedIcon.copy;
 
@@ -54,9 +59,21 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
     }
 
     public static CodeEditorAction codeEditorCopyToClipboardAction() {
+        return codeEditorCopyToClipboardAction("Copy to clipboard", "Successfully copied to clipboard!");
+    }
+
+    public static CodeEditorAction codeEditorCopyToClipboardAction(String copyText, String copiedText) {
+        String copyId = Id.unique(ComponentType.CodeEditor.id, "copy");
+        Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
+                .onClose((e, t) -> t.text(copyText)) // restore text
+                .appendToBody();
         return new CodeEditorAction(button().icon(copy).control())
-                .ariaLabel("Copy to clipboard")
-                .onClick((event, codeEditor) -> navigator.clipboard.writeText(codeEditor.code()));
+                .id(copyId)
+                .ariaLabel(copyText)
+                .onClick((event, codeBlock) -> {
+                    copyTooltip.text(copiedText);
+                    navigator.clipboard.writeText(codeBlock.code());
+                });
     }
 
     // ------------------------------------------------------ instance

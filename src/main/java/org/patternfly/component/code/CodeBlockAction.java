@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.code;
 
+import org.jboss.elemento.By;
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
+import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.ComponentHandler;
@@ -29,6 +33,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
+import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.dom.DomGlobal.navigator;
 import static org.patternfly.layout.Classes.actions;
 import static org.patternfly.layout.Classes.component;
@@ -53,9 +58,21 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
     }
 
     public static CodeBlockAction codeBlockCopyToClipboardAction() {
+        return codeBlockCopyToClipboardAction("Copy to clipboard", "Successfully copied to clipboard!");
+    }
+
+    public static CodeBlockAction codeBlockCopyToClipboardAction(String copyText, String copiedText) {
+        String copyId = Id.unique(ComponentType.CodeBlock.id, "copy");
+        Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
+                .onClose((e, t) -> t.text(copyText)) // restore text
+                .appendToBody();
         return new CodeBlockAction(inlineIcon(copy))
-                .ariaLabel("Copy to clipboard")
-                .onClick((event, codeBlock) -> navigator.clipboard.writeText(codeBlock.code()));
+                .id(copyId)
+                .ariaLabel(copyText)
+                .onClick((event, codeBlock) -> {
+                    copyTooltip.text(copiedText);
+                    navigator.clipboard.writeText(codeBlock.code());
+                });
     }
 
     // ------------------------------------------------------ instance

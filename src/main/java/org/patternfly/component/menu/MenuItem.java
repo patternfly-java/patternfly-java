@@ -51,7 +51,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
-import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
+import static org.patternfly.component.menu.MenuItemAction.favoriteMenuItemAction;
 import static org.patternfly.component.menu.MenuItemType.checkbox;
 import static org.patternfly.component.menu.MenuItemType.link;
 import static org.patternfly.core.Attributes.role;
@@ -72,7 +72,6 @@ import static org.patternfly.layout.Classes.modifier;
 import static org.patternfly.layout.Classes.screenReader;
 import static org.patternfly.layout.Classes.select;
 import static org.patternfly.layout.PredefinedIcon.externalLinkAlt;
-import static org.patternfly.layout.PredefinedIcon.star;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Disabled<HTMLElement, MenuItem>,
@@ -170,6 +169,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (text != null) {
             textElement.textContent = text;
         }
+        Attachable.register(this, this);
     }
 
     // constructor must only be used to clone an item as favorite item!
@@ -391,10 +391,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     MenuItemAction addFavoriteItemAction() {
         String actionId = Id.build(id, "mark-as-favorite");
-        favoriteItemAction = menuItemAction(actionId, star.className)
-                .css(modifier(favorite))
-                .aria(Aria.label, "not starred");
-        // Don't use add(markAsFavorite); !!
+        favoriteItemAction = favoriteMenuItemAction(actionId);
         element().appendChild(favoriteItemAction.element());
         return favoriteItemAction;
     }

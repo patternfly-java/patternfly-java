@@ -280,7 +280,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             stopTimeout();
-            AlertGroup alertGroup = lookupComponent(ComponentType.Alert, true);
+            AlertGroup alertGroup = lookupComponent(ComponentType.AlertGroup, true);
             if (alertGroup != null) {
                 alertGroup.closeAlert(this);
             } else {
