@@ -7,7 +7,7 @@ import static org.patternfly.component.page.PageMainBody.pageMainBody;
 import static org.patternfly.component.page.PageMainBreadcrumb.pageMainBreadcrumb;
 import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.sidebar.Sidebar.sidebar;
+import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
 import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
@@ -19,7 +19,7 @@ public class PageDemo {
         page()
                 .addSkipToContent(skipToContent("main-id"))
                 .addMasthead(masthead())
-                .addSidebar(sidebar())
+                .addSidebar(pageSidebar())
                 .addMain(pageMain("main-id"));
         // @end region = page
     }
@@ -63,7 +63,7 @@ public class PageDemo {
         // @start region = masthead
         masthead()
                 .addToggle(mastheadToggle())
-                .addBrand(brand("/logo.svg"), "/index.html")
+                .addBrand(brand("/logo.svg", "Logo"), "/index.html")
                 .addToolbar(toolbar());
         // @end region = masthead
     }

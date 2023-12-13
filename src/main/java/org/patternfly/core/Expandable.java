@@ -17,12 +17,12 @@ package org.patternfly.core;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.modifier;
 
 /**
  * Contains methods and default implementations for components that are expandable.
@@ -99,8 +99,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
     void expand(boolean fireEvent);
 
     /**
-     * @return {@code true} if the elements class list has the modifier {@link org.patternfly.layout.Classes#expanded},
-     *         {@code false} otherwise.
+     * @return {@code true} if the elements class list has the modifier {@link Classes#expanded}, {@code false} otherwise.
      */
     default boolean expanded() {
         return expanded(element());

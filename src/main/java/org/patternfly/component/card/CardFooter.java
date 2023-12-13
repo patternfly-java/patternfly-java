@@ -18,9 +18,9 @@ package org.patternfly.component.card;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.card;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.footer;
+import static org.patternfly.style.Classes.card;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.footer;
 
 public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> {
 

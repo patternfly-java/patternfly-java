@@ -17,14 +17,13 @@ package org.patternfly.core;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.IconPosition;
 import org.patternfly.component.icon.InlineIcon;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.Element;
 
-import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
+import static org.patternfly.core.IconPosition.start;
 
 public interface WithIconAndText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {

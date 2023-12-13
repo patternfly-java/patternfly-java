@@ -15,14 +15,14 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Modifiers.toggleModifier;
-import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
 

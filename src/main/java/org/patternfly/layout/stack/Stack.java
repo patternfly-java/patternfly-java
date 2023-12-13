@@ -16,15 +16,15 @@
 package org.patternfly.layout.stack;
 
 import org.patternfly.layout.BaseLayout;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.gutter;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.stack;
+import static org.patternfly.style.Classes.gutter;
+import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.stack;
 
 public class Stack extends BaseLayout<HTMLDivElement, Stack> {
 

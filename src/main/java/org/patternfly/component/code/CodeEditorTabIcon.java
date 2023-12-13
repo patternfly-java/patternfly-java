@@ -15,16 +15,16 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.i;
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.layout.Classes.codeEditor;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.tab;
+import static org.patternfly.style.Classes.codeEditor;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.tab;
 
 public class CodeEditorTabIcon extends CodeEditorSubComponent<HTMLElement, CodeEditorTabIcon> {
 

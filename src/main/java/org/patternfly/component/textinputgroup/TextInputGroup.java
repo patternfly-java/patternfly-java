@@ -16,23 +16,16 @@
 package org.patternfly.component.textinputgroup;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.chip.ChipGroup;
-import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.handler.ChangeHandler;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLInputElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.setVisible;
-import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.textInputGroup;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.textInputGroup;
 
 /**
  * A text input group is a more flexible composable version of a text input. It enables consumers of PatternFly to build custom
@@ -42,7 +35,7 @@ import static org.patternfly.layout.Classes.textInputGroup;
  *      "https://www.patternfly.org/components/text-input-group/html">https://www.patternfly.org/components/text-input-group/html</a>
  */
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
-        HasValue<String>, Disabled<HTMLDivElement, TextInputGroup>, Attachable {
+        Disabled<HTMLDivElement, TextInputGroup>, Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -53,7 +46,6 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     // ------------------------------------------------------ instance
 
     boolean initialDisabled;
-    ChangeHandler<TextInputGroup, String> changeHandler;
     private TextInputGroupMain main;
     private TextInputGroupUtilities utilities;
 
@@ -112,47 +104,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return this;
     }
 
-    // ------------------------------------------------------ events
-
-    public TextInputGroup onChange(ChangeHandler<TextInputGroup, String> handler) {
-        changeHandler = handler;
-        return this;
-    }
-
     // ------------------------------------------------------ api
-
-    @Override
-    public String value() {
-        return main != null ? main.inputElement.value : null;
-    }
-
-    public void clear() {
-        if (main != null) {
-            main.inputElement.value = "";
-        }
-    }
-
-    public void showUtilities(boolean show) {
-        if (utilities != null) {
-            setVisible(utilities, show);
-        }
-    }
-
-    /** Returns the underlying input element */
-    public InputElementBuilder<HTMLInputElement> inputElement() {
-        if (main != null) {
-            return wrapInputElement(main.inputElement);
-        }
-        return null;
-    }
-
-    /** Returns the underlying chip group (if any) */
-    public ChipGroup chipGroup() {
-        if (main != null) {
-            return main.chipGroup;
-        }
-        return null;
-    }
 
     @SuppressWarnings("ConfusingMainMethod")
     public TextInputGroupMain main() {

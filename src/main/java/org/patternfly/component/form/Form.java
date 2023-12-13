@@ -21,11 +21,11 @@ import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLFormElement;
 
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.form;
-import static org.patternfly.layout.Classes.horizontal;
-import static org.patternfly.layout.Classes.limitWidth;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.form;
+import static org.patternfly.style.Classes.horizontal;
+import static org.patternfly.style.Classes.limitWidth;
+import static org.patternfly.style.Classes.modifier;
 
 /**
  * A form is a group of elements used to collect information from a user in a variety of contexts including in a modal, in a

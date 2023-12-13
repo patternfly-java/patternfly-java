@@ -18,9 +18,9 @@ package org.patternfly.component.menu;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.menu;
-import static org.patternfly.layout.Classes.search;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.menu;
+import static org.patternfly.style.Classes.search;
 
 public class MenuSearch extends MenuSubComponent<HTMLDivElement, MenuSearch> {
 

@@ -13,15 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.style;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.layout.Classes;
 
 import elemental2.dom.Element;
 
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.modifier;
 
 public interface Modifiers {
 

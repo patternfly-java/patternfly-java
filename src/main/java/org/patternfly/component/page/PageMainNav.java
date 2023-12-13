@@ -20,10 +20,10 @@ import org.patternfly.component.navigation.Navigation;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.nav;
-import static org.patternfly.layout.Classes.page;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.nav;
+import static org.patternfly.style.Classes.page;
 
 /**
  * Container to nest a {@link Navigation} in a {@link PageMainGroup} or {@link PageMain} container.

@@ -15,30 +15,38 @@
  */
 package org.patternfly.component.masthead;
 
+import java.util.EnumSet;
+import java.util.stream.Stream;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.brand.Brand;
 import org.patternfly.component.page.Page;
 import org.patternfly.component.toolbar.Toolbar;
-import org.patternfly.core.Modifiers.Inline;
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Brightness;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.Size;
+import org.patternfly.core.Logger;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Brightness;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Display;
+import org.patternfly.style.Inset;
+import org.patternfly.style.Modifiers.Inline;
 
 import elemental2.dom.HTMLElement;
 
+import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.header;
 import static org.patternfly.component.masthead.MastheadContent.mastheadContent;
 import static org.patternfly.component.masthead.MastheadMain.mastheadMain;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.inline;
-import static org.patternfly.layout.Classes.inset;
-import static org.patternfly.layout.Classes.insetNone;
-import static org.patternfly.layout.Classes.masthead;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.stack;
+import static org.patternfly.core.Tuples.tuples;
+import static org.patternfly.style.Breakpoint.md;
+import static org.patternfly.style.Brightness.dark;
+import static org.patternfly.style.Brightness.light;
+import static org.patternfly.style.Brightness.light200;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.masthead;
+import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is accessible
@@ -63,8 +71,12 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
 
     // ------------------------------------------------------ instance
 
+    private Tuples<Breakpoint, Display> displayModifiers;
+    private Tuples<Breakpoint, Inset> insetModifiers;
+
     Masthead() {
         super(ComponentType.Masthead, header().css(component(masthead)).element());
+        display(tuples(md, Display.inline));
     }
 
     // ------------------------------------------------------ add
@@ -89,10 +101,8 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
      * finally adds the {@link MastheadMain} to this component.
      * <p>
      * Shortcut for
-     * {@snippet :
-     * import org.patternfly.layout.Classes;add(mastheadMain()
-     *         .add(a(homeLink).css(Classes.component(masthead, Classes.brand))
-     *                 .add(brand)));
+     * {@snippet : import org.patternfly.style.Classes;add(mastheadMain()
+     * .add(a(homeLink).css(Classes.component(masthead, Classes.brand)) .add(brand)));
      * }
      */
     public Masthead addBrand(Brand brand, String homeLink) {
@@ -107,8 +117,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
      * <p>
      * Shortcut for
      * {@snippet :
-     * add(mastheadContent())
-     *         .add(toolbar);
+     * add(mastheadContent()).add(toolbar);
      * }
      */
     public Masthead addToolbar(Toolbar toolbar) {
@@ -127,66 +136,36 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> implements In
     // ------------------------------------------------------ builder
 
     /**
-     * Modifies this component to have no horizontal padding.
+     * Display type at various breakpoints. Defaults to {@code tuples(md, inline)}.
      */
-    public Masthead noInset() {
-        return css(modifier(insetNone));
+    public Masthead display(Tuples<Breakpoint, Display> displayModifiers) {
+        classList().remove(typedModifier(this.displayModifiers));
+        this.displayModifiers = displayModifiers;
+        classList().add(typedModifier(displayModifiers));
+        return this;
     }
 
     /**
-     * Modifies this component to have no horizontal padding at the given breakpoint.
+     * Insets at various breakpoints
      */
-    public Masthead noInset(Breakpoint breakpoint) {
-        return css(modifier(insetNone, breakpoint));
+    public Masthead inset(Tuples<Breakpoint, Inset> insetModifiers) {
+        classList().remove(typedModifier(this.insetModifiers));
+        this.insetModifiers = insetModifiers;
+        classList().add(typedModifier(insetModifiers));
+        return this;
     }
 
     /**
-     * Modifies this component to have a horizontal padding.
+     * Background theme color of the masthead
      */
-    public Masthead inset(Size size) {
-        return css(modifier(inset) + "-" + size.value);
-    }
-
-    /**
-     * Modifies this component to have a horizontal padding at the given breakpoint.
-     */
-    public Masthead inset(Size size, Breakpoint breakpoint) {
-        return css(modifier(inset) + "-" + size.value + "-on-" + breakpoint.value);
-    }
-
-    /**
-     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--200}.
-     */
-    public Masthead light() {
-        return css(Brightness.light.opacity(200));
-    }
-
-    /**
-     * Modifies this component to have a light theme with a background color of {@code --pf-v5-global--BackgroundColor--100}.
-     */
-    public Masthead lighter() {
-        return css(Brightness.light.modifier);
-    }
-
-    /**
-     * Modifies this component to have an inline display at the given breakpoint.
-     */
-    public Masthead inline(Breakpoint breakpoint) {
-        return css(modifier(inline, breakpoint));
-    }
-
-    /**
-     * Modifies this component to have a stacked display.
-     */
-    public Masthead stack() {
-        return css(modifier(stack));
-    }
-
-    /**
-     * Modifies this component to have a stacked display at the given breakpoint.
-     */
-    public Masthead stack(Breakpoint breakpoint) {
-        return css(modifier(stack, breakpoint));
+    public Masthead background(Brightness brightness) {
+        if (!EnumSet.of(dark, light, light200).contains(brightness)) {
+            Logger.unsupported(componentType(), element(),
+                    "Background " + brightness + " not supported. Valid values: " +
+                            Stream.of(dark, light, light200).map(Brightness::name).collect(joining(" ")));
+            return this;
+        }
+        return css(brightness.modifier());
     }
 
     @Override

@@ -15,20 +15,25 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.utilities;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.utilities;
 
 public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupUtilities> {
 
     // ------------------------------------------------------ factory
 
+    /** Same as {@linkplain #textInputGroupUtilities(boolean) textInputGroupUtilities(true)} */
     public static TextInputGroupUtilities textInputGroupUtilities() {
-        return new TextInputGroupUtilities();
+        return new TextInputGroupUtilities(true);
+    }
+
+    public static TextInputGroupUtilities textInputGroupUtilities(boolean hidden) {
+        return new TextInputGroupUtilities(hidden);
     }
 
     private TextInputGroup textInputGroup;
@@ -37,8 +42,11 @@ public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivE
 
     static final String SUB_COMPONENT_NAME = "tigu";
 
-    TextInputGroupUtilities() {
+    TextInputGroupUtilities(boolean hidden) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());
+        if (hidden) {
+            style("display", "none");
+        }
     }
 
     // ------------------------------------------------------ builder

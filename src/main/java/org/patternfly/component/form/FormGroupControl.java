@@ -24,16 +24,16 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Inline;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Inline;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Modifiers.toggleModifier;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
@@ -72,10 +72,10 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
         if (formGroup.fieldId != null) {
             for (Checkbox checkbox : checkboxes) {
-                checkbox.inputElement().name = formGroup.fieldId;
+                checkbox.inputElement().name(formGroup.fieldId);
             }
             for (Radio radio : radios) {
-                radio.inputElement().name = formGroup.fieldId;
+                radio.inputElement().name(formGroup.fieldId);
             }
         }
     }

@@ -84,11 +84,12 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.2.9</version.elemento>
+        <version.elemento>1.2.11-SNAPSHOT</version.elemento>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.junit>5.10.1</version.junit>
+        <version.mockito>5.8.0</version.mockito>
         <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
 
         <!-- Plugin versions -->
@@ -148,6 +149,11 @@
                 <artifactId>processors</artifactId>
                 <version>${version.treblereel.j2cl.processors}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${version.mockito}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -178,8 +184,14 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

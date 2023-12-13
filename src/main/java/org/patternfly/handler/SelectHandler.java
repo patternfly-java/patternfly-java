@@ -15,8 +15,10 @@
  */
 package org.patternfly.handler;
 
+import elemental2.dom.Event;
+
 @FunctionalInterface
 public interface SelectHandler<C> {
 
-    void onSelect(C component, boolean selected);
+    void onSelect(Event event, C component, boolean selected);
 }

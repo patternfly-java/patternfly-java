@@ -18,9 +18,9 @@ package org.patternfly.component.toolbar;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.alert;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.description;
+import static org.patternfly.style.Classes.alert;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.description;
 
 /**
  * Container for a toolbar content.

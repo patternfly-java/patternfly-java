@@ -15,14 +15,14 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.layout.Classes.codeEditor;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.tab;
+import static org.patternfly.style.Classes.codeEditor;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.tab;
 
 public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeEditorTabText> {
 

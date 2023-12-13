@@ -13,15 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.style;
 
-import elemental2.dom.CSSStyleDeclaration;
-import elemental2.dom.HTMLElement;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
-
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class Window {
-
-    public native CSSStyleDeclaration getComputedStyle(HTMLElement element);
+public interface Variables {
+    String GridTemplateColumns = "GridTemplateColumns";
+    String Height = "Height";
+    String LineClamp = "LineClamp";
+    String MaxWidth = "MaxWidth";
+    String MaxHeight = "MaxHeight";
+    String Order = "Order";
+    String Width = "Width";
 }

@@ -21,10 +21,10 @@ import org.patternfly.component.ComponentType;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.actionList;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.icons;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.actionList;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.icons;
+import static org.patternfly.style.Classes.modifier;
 
 /**
  * An action list is a group of actions, controls, or buttons with set spacing.

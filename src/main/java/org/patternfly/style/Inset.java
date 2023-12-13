@@ -13,17 +13,41 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.style;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+public enum Inset implements TypedModifier {
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-class DomGlobal__Constants {
+    none("inset-none"),
 
-    static Crypto crypto;
+    xs("inset-xs"),
 
-    static Navigator navigator;
+    sm("inset-sm"),
 
-    static Window window;
+    md("inset-md"),
+
+    lg("inset-lg"),
+
+    xl("inset-xl"),
+
+    _2xl("inset-2xl"),
+
+    _3xl("inset-3xl");
+
+    private final String value;
+    private final String modifier;
+
+    Inset(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
+    }
 }

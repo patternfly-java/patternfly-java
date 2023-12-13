@@ -17,15 +17,23 @@ package org.patternfly.component.divider;
 
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Logger;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Inset;
+import org.patternfly.style.Orientation;
 
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHRElement;
 import elemental2.dom.HTMLLIElement;
 
 import static org.jboss.elemento.Elements.htmlElement;
+import static org.patternfly.component.divider.DividerType.div;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.divider;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.divider;
+import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * A divider is a horizontal or vertical line that is placed between screen elements to create visual divisions and content
@@ -43,8 +51,13 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
                 return new Divider("li", HTMLLIElement.class);
             case hr:
                 return new Divider("hr", HTMLHRElement.class);
+            case div:
+                return new Divider("div", HTMLDivElement.class);
+            default:
+                Logger.undefined(ComponentType.Divider, null,
+                        "Unknown divider type " + type + ". Fallback to " + div.name());
+                return new Divider("div", HTMLDivElement.class);
         }
-        throw new IllegalArgumentException("Unknown divider type " + type);
     }
 
     // ------------------------------------------------------ instance
@@ -57,6 +70,16 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
     }
 
     // ------------------------------------------------------ builder
+
+    public Divider inset(Tuples<Breakpoint, Inset> inset) {
+        classList().add(typedModifier(inset));
+        return this;
+    }
+
+    public Divider orientation(Tuples<Breakpoint, Orientation> orientation) {
+        classList().add(typedModifier(orientation));
+        return this;
+    }
 
     @Override
     public Divider that() {

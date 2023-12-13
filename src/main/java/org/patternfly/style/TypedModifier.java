@@ -13,25 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public enum Breakpoint {
+public interface TypedModifier {
 
-    default_("default"),
+    String value();
 
-    sm("sm"),
-
-    md("md"),
-
-    lg("lg"),
-
-    xl("xl"),
-
-    _2xl("2xl");
-
-    public final String value;
-
-    Breakpoint(String value) {
-        this.value = value;
-    }
+    String modifier();
 }

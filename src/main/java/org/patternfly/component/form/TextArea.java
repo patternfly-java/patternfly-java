@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
@@ -22,22 +23,23 @@ import org.jboss.elemento.HTMLElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Plain;
-import org.patternfly.core.Modifiers.Readonly;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ChangeHandler;
+import org.patternfly.style.Modifiers.Plain;
+import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.CSSStyleDeclaration;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
 import elemental2.dom.MutationRecord;
 
+import static org.jboss.elemento.DomGlobal.window;
 import static org.jboss.elemento.Elements.textarea;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
-import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
+import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
-import static org.patternfly.dom.DomGlobal.window;
 
 /**
  * A text area component is used for entering a paragraph of text that is longer than one line.
@@ -67,6 +69,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     private final HTMLTextAreaElement textAreaElement;
     private boolean autoResize;
     private TextAreaResize resize;
+    private ChangeHandler<TextArea, String> changeHandler;
 
     TextArea(String id, String value) {
         super(id, formControlContainer()
@@ -134,20 +137,29 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return this;
     }
 
-    public TextArea value(String value) {
-        textAreaElement.value = value;
-        return this;
-    }
-
     /** Same as {@link #value(String)} */
     @Override
     public TextArea text(String text) {
         return value(text);
     }
 
-    /** Provides access to the underlying input element using a fluent API style */
-    public TextArea applyTo(Consumer<HTMLElementBuilder<HTMLTextAreaElement>> textAreaConsumer) {
-        textAreaConsumer.accept(textAreaElement());
+    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
+    public TextArea value(String value) {
+        return value(value, false);
+    }
+
+    public TextArea value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(textAreaElement.value, value);
+        textAreaElement.value = value;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, value);
+        }
+        return this;
+    }
+
+    /** Provides access to the underlying text area element using a fluent API style */
+    public TextArea applyTo(Consumer<HTMLElementBuilder<HTMLTextAreaElement>> consumer) {
+        consumer.accept(textAreaElement());
         return this;
     }
 
@@ -159,24 +171,12 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ events
 
     /**
-     * Handles {@link org.jboss.elemento.EventType#change} events for this component.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event</a>
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the keyup event to the text area element.
      */
-    public TextArea onChange(ChangeHandler<TextArea, String> handler) {
-        textAreaElement.addEventListener(change.name, e -> handler.onChange(this, textAreaElement.value));
-        return this;
-    }
-
-    /**
-     * Handles {@link org.jboss.elemento.EventType#input} events for this component.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event</a>
-     */
-    public TextArea onInput(ChangeHandler<TextArea, String> handler) {
-        textAreaElement.addEventListener(input.name, e -> handler.onChange(this, textAreaElement.value));
+    public TextArea onChange(ChangeHandler<TextArea, String> changeHandler) {
+        this.changeHandler = changeHandler;
+        textAreaElement.addEventListener(keyup.name, e -> changeHandler.onChange(e, this, textAreaElement.value));
         return this;
     }
 

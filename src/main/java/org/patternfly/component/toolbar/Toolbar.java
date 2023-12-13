@@ -21,8 +21,8 @@ import org.patternfly.component.ComponentType;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.toolbar;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.toolbar;
 
 /**
  * A toolbar allows a user to manage and manipulate a data set. Data can be presented in any valid presentation, a table, a

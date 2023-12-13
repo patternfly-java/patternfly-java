@@ -15,14 +15,14 @@
  */
 package org.patternfly.core;
 
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.PredefinedIcon;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.PredefinedIcon.checkCircle;
-import static org.patternfly.layout.PredefinedIcon.exclamationCircle;
-import static org.patternfly.layout.PredefinedIcon.exclamationTriangle;
-import static org.patternfly.layout.PredefinedIcon.minus;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.PredefinedIcon.checkCircle;
+import static org.patternfly.style.PredefinedIcon.exclamationCircle;
+import static org.patternfly.style.PredefinedIcon.exclamationTriangle;
+import static org.patternfly.style.PredefinedIcon.minus;
 
 public enum ValidationStatus {
 

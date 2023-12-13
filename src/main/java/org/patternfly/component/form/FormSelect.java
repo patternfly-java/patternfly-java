@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -25,8 +26,9 @@ import org.patternfly.core.Attributes;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.HasValue;
 import org.patternfly.handler.ChangeHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOptionElement;
@@ -37,14 +39,15 @@ import static org.jboss.elemento.Elements.select;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.jboss.elemento.EventType.change;
+import static org.jboss.elemento.EventType.input;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.invalid;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.formControl;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.PredefinedIcon.caretDown;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.formControl;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.PredefinedIcon.caretDown;
 
 /**
  * A form select embeds browser native select lists into a form.
@@ -68,6 +71,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
 
     private final HTMLSelectElement selectElement;
     private String initialValue;
+    private ChangeHandler<FormSelect, String> changeHandler;
 
     FormSelect(String id, String value) {
         super(id, formControlContainer()
@@ -148,14 +152,25 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         return this;
     }
 
+    /**
+     * Same as {@linkplain #value(String, boolean) value(String, false)}
+     */
     public FormSelect value(String value) {
+        return value(value, false);
+    }
+
+    public FormSelect value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(selectElement.value, value);
         selectElement.value = value;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, value);
+        }
         return this;
     }
 
-    /** Provides access to the underlying input element using a fluent API style */
-    public FormSelect applyTo(Consumer<HTMLElementBuilder<HTMLSelectElement>> selectConsumer) {
-        selectConsumer.accept(selectElement());
+    /** Provides access to the underlying select element using a fluent API style */
+    public FormSelect applyTo(Consumer<HTMLElementBuilder<HTMLSelectElement>> consumer) {
+        consumer.accept(selectElement());
         return this;
     }
 
@@ -167,13 +182,12 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     // ------------------------------------------------------ events
 
     /**
-     * Handles {@link org.jboss.elemento.EventType#change} events for this component.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event</a>
+     * Defines a change handler that is called when the {@link #value()} of this select changes. Changes are detected by adding
+     * an event listener for input event to the select element.
      */
-    public FormSelect onChange(ChangeHandler<FormSelect, String> handler) {
-        selectElement.addEventListener(change.name, e -> handler.onChange(this, selectElement.value));
+    public FormSelect onChange(ChangeHandler<FormSelect, String> changeHandler) {
+        this.changeHandler = changeHandler;
+        selectElement.addEventListener(input.name, e -> changeHandler.onChange(e, this, selectElement.value));
         return this;
     }
 

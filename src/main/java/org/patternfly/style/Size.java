@@ -13,21 +13,39 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.style;
 
-import jsinterop.annotations.JsOverlay;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+public enum Size implements TypedModifier {
 
-@JsType(isNative = true, name = "goog.global", namespace = JsPackage.GLOBAL)
-public class DomGlobal {
+    sm("sm"),
 
-    @JsOverlay
-    public static final Crypto crypto = DomGlobal__Constants.crypto;
+    md("md"),
 
-    @JsOverlay
-    public static final Navigator navigator = DomGlobal__Constants.navigator;
+    lg("lg"),
 
-    @JsOverlay
-    public static final Window window = DomGlobal__Constants.window;
+    xl("xl"),
+
+    _2xl("2xl"),
+
+    _3xl("3xl"),
+
+    _4xl("4xl");
+
+    private final String value;
+    private final String modifier;
+
+    Size(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
+    }
 }

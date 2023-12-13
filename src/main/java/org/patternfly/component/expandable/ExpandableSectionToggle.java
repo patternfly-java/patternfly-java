@@ -18,7 +18,7 @@ package org.patternfly.component.expandable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -30,12 +30,12 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.expandable.ExpandableSectionToggleText.expandableSectionToggleText;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.expandTop;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.PredefinedIcon.angleRight;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.expandTop;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.PredefinedIcon.angleRight;
 
 public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLButtonElement, ExpandableSectionToggle> {
 

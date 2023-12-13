@@ -17,8 +17,10 @@ package org.patternfly.handler;
 
 import java.util.List;
 
-@FunctionalInterface
-public interface MultiSelectHandler<C> {
+import elemental2.dom.Event;
 
-    void onSelect(List<C> components);
+@FunctionalInterface
+public interface MultiSelectHandler<C, T> {
+
+    void onSelect(Event event, C component, List<T> values);
 }

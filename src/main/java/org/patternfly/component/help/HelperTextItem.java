@@ -16,33 +16,34 @@
 package org.patternfly.component.help;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.IconPosition;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
+import org.patternfly.core.IconPosition;
 import org.patternfly.core.ValidationStatus;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithText;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.ValidationStatus.default_;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.dynamic;
-import static org.patternfly.layout.Classes.helperText;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.screenReader;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.dynamic;
+import static org.patternfly.style.Classes.helperText;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.screenReader;
 
 public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTextItem> implements
         WithIcon<HTMLElement, HelperTextItem>,
@@ -86,7 +87,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     private boolean customScreenReaderText;
     private ValidationStatus status;
     private HTMLElement screenReaderElement;
-    private HTMLElement iconElement;
+    private HTMLElement iconContainer;
 
     <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, String text, ValidationStatus status) {
         super(SUB_COMPONENT_NAME, builder.css(component(helperText, item)).element());
@@ -113,7 +114,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     public HelperTextItem defaultIcon() {
         defaultIcon = true;
-        failSafeIconElement().appendChild(inlineIcon(status.icon).css("fa-fw").element());
+        failSafeIconContainer().appendChild(inlineIcon(status.icon).css("fa-fw").element());
         return this;
     }
 
@@ -122,8 +123,14 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
         if (!icon.element().classList.contains("fa-fw")) {
             icon.element().classList.add("fa-fw");
         }
-        removeChildrenFrom(iconElement);
-        failSafeIconElement().append(icon.element());
+        removeChildrenFrom(iconContainer);
+        failSafeIconContainer().append(icon.element());
+        return this;
+    }
+
+    @Override
+    public HelperTextItem removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
         return this;
     }
 
@@ -189,14 +196,14 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     // ------------------------------------------------------ internal
 
-    private HTMLElement failSafeIconElement() {
-        if (iconElement == null) {
+    private HTMLElement failSafeIconContainer() {
+        if (iconContainer == null) {
             insertFirst(element(),
-                    iconElement = div().css(component(helperText, item, icon))
+                    iconContainer = div().css(component(helperText, item, icon))
                             .aria(Aria.hidden, true)
                             .element());
         }
-        return iconElement;
+        return iconContainer;
     }
 
     private HTMLElement failSafeScreenReaderElement() {

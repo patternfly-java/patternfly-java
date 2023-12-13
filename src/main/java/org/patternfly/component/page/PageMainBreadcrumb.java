@@ -18,10 +18,10 @@ package org.patternfly.component.page;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.layout.Classes.breadcrumb;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.page;
+import static org.patternfly.style.Classes.breadcrumb;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.page;
 
 /**
  * Container to nest a {@link org.patternfly.component.breadcrumb.Breadcrumb} in a {@link PageMainGroup} or {@link PageMain}

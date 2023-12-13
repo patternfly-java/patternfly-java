@@ -15,14 +15,14 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.input;
-import static org.patternfly.layout.Classes.search;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.input;
+import static org.patternfly.style.Classes.search;
 
 public class MenuSearchInput extends MenuSubComponent<HTMLElement, MenuSearchInput> {
 

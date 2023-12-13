@@ -28,6 +28,8 @@ import java.util.stream.Stream;
 
 import org.patternfly.handler.SelectHandler;
 
+import elemental2.dom.Event;
+
 import static java.lang.Math.min;
 import static java.util.Collections.emptyList;
 import static java.util.function.Function.identity;
@@ -182,7 +184,7 @@ public class DataProvider<T> {
 
     private void fireSelection(T item) {
         for (SelectHandler<T> handler : selectHandler) {
-            handler.onSelect(item, true);
+            handler.onSelect(new Event(""), item, true);
         }
     }
 

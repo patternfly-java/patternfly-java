@@ -13,29 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public enum Size {
+public enum Padding implements TypedModifier {
 
-    sm("sm"),
+    padding("padding"),
 
-    md("md"),
+    noPadding("no-padding");
 
-    lg("lg"),
+    private final String value;
+    private final String modifier;
 
-    xl("xl"),
-
-    _2xl("2xl"),
-
-    _3xl("3xl"),
-
-    _4xl("4xl");
-
-    public final String value;
-    public final String modifier;
-
-    Size(String value) {
+    Padding(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
     }
 }

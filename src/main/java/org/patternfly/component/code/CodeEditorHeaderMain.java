@@ -18,10 +18,10 @@ package org.patternfly.component.code;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.codeEditor;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.header;
-import static org.patternfly.layout.Classes.main;
+import static org.patternfly.style.Classes.codeEditor;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.header;
+import static org.patternfly.style.Classes.main;
 
 public class CodeEditorHeaderMain extends CodeEditorSubComponent<HTMLDivElement, CodeEditorHeaderMain> {
 

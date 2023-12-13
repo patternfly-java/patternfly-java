@@ -15,14 +15,18 @@
  */
 package org.patternfly.component.form;
 
+import java.util.function.Consumer;
+
+import org.jboss.elemento.InputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.core.Modifiers.Required;
 import org.patternfly.handler.ChangeHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -34,15 +38,16 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.layout.Classes.check;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.input;
-import static org.patternfly.layout.Classes.label;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.standalone;
+import static org.patternfly.style.Classes.check;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.input;
+import static org.patternfly.style.Classes.label;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.standalone;
 
 /**
  * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect
@@ -79,6 +84,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
     private final HTMLInputElement inputElement;
     private HTMLLabelElement labelElement;
     private HTMLElement requiredMarker;
+    private ChangeHandler<Checkbox, Boolean> changeHandler;
 
     Checkbox(String id, String name, String label, boolean checked) {
         super(ComponentType.Checkbox, div().css(component(check))
@@ -165,8 +171,24 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         return this;
     }
 
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Checkbox value(boolean checked) {
+        return value(checked, false);
+    }
+
+    /** Sets the {@code checked} attribute of the input element. */
+    public Checkbox value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, inputElement.checked);
+        }
+        return this;
+    }
+
+    /** Provides access to the underlying checkbox element using a fluent API style */
+    public Checkbox applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
         return this;
     }
 
@@ -177,8 +199,12 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     // ------------------------------------------------------ events
 
-    public Checkbox onChange(ChangeHandler<Checkbox, Boolean> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.checked));
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this checkbox changes.
+     */
+    public Checkbox onChange(ChangeHandler<Checkbox, Boolean> changeHandler) {
+        this.changeHandler = changeHandler;
+        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
         return this;
     }
 
@@ -189,7 +215,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         return inputElement.checked;
     }
 
-    public HTMLInputElement inputElement() {
-        return inputElement;
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        return wrapInputElement(inputElement);
     }
 }

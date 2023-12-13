@@ -22,22 +22,22 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.IconPosition;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
+import org.patternfly.core.IconPosition;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.core.Modifiers.Inline;
-import org.patternfly.core.Modifiers.NoPadding;
-import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithProgress;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Inline;
+import org.patternfly.style.Modifiers.NoPadding;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -48,24 +48,24 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
-import static org.patternfly.layout.Classes.block;
-import static org.patternfly.layout.Classes.button;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.control;
-import static org.patternfly.layout.Classes.count;
-import static org.patternfly.layout.Classes.danger;
-import static org.patternfly.layout.Classes.display;
-import static org.patternfly.layout.Classes.link;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.plain;
-import static org.patternfly.layout.Classes.primary;
-import static org.patternfly.layout.Classes.progress;
-import static org.patternfly.layout.Classes.secondary;
-import static org.patternfly.layout.Classes.small;
-import static org.patternfly.layout.Classes.tertiary;
-import static org.patternfly.layout.Classes.warning;
-import static org.patternfly.layout.Size.lg;
-import static org.patternfly.layout.Size.md;
+import static org.patternfly.style.Classes.block;
+import static org.patternfly.style.Classes.button;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.control;
+import static org.patternfly.style.Classes.count;
+import static org.patternfly.style.Classes.danger;
+import static org.patternfly.style.Classes.display;
+import static org.patternfly.style.Classes.link;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.plain;
+import static org.patternfly.style.Classes.primary;
+import static org.patternfly.style.Classes.progress;
+import static org.patternfly.style.Classes.secondary;
+import static org.patternfly.style.Classes.small;
+import static org.patternfly.style.Classes.tertiary;
+import static org.patternfly.style.Classes.warning;
+import static org.patternfly.style.Size.lg;
+import static org.patternfly.style.Size.md;
 
 /**
  * A button is a box area or text that communicates and triggers user actions when clicked or selected. Buttons can be used to
@@ -117,6 +117,8 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
+    private InlineIcon icon;
+    private HTMLElement iconContainer;
     private Spinner spinner;
 
     <E extends HTMLElement> Button(HTMLContainerBuilder<E> builder) {
@@ -134,6 +136,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     // ------------------------------------------------------ add
 
     public Button addBadge(Badge badge) {
+        return add(badge);
+    }
+
+    public Button add(Badge badge) {
         return add(span().css(component(button, count))
                 .add(badge));
     }
@@ -142,21 +148,36 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     @Override
     public Button icon(InlineIcon icon) {
+        removeIcon();
+        this.icon = icon;
         return add(icon);
     }
 
     @Override
+    public Button removeIcon() {
+        failSafeRemoveFromParent(icon);
+        failSafeRemoveFromParent(iconContainer);
+        this.icon = null;
+        this.iconContainer = null;
+        return this;
+    }
+
+    @Override
     public Button iconAndText(InlineIcon icon, String text, IconPosition position) {
+        removeIcon();
+        this.icon = icon;
         switch (position) {
             case start:
-                add(span().css(component(button, Classes.icon), modifier(Classes.start))
-                        .add(icon));
-                add(text);
+                insertFirst(element(), iconContainer = span().css(component(button, Classes.icon), modifier(Classes.start))
+                        .add(icon)
+                        .element());
+                text(text);
                 break;
             case end:
-                add(text);
-                add(span().css(component(button, Classes.icon), modifier(Classes.end))
-                        .add(icon));
+                text(text);
+                add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.end))
+                        .add(icon)
+                        .element());
                 break;
         }
         return this;

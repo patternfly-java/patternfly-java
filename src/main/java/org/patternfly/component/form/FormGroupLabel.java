@@ -23,7 +23,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -37,12 +37,12 @@ import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.noPaddingTop;
-import static org.patternfly.layout.Classes.text;
-import static org.patternfly.layout.PredefinedIcon.help;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.noPaddingTop;
+import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.PredefinedIcon.help;
 
 public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable {
 

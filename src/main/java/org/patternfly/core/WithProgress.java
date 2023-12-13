@@ -23,8 +23,8 @@ import org.patternfly.component.spinner.Spinner;
 
 import elemental2.dom.Element;
 
-import static org.patternfly.layout.Classes.inProgress;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.inProgress;
+import static org.patternfly.style.Classes.modifier;
 
 public interface WithProgress<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {

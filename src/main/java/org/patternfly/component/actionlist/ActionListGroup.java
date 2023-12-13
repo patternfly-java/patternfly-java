@@ -18,9 +18,9 @@ package org.patternfly.component.actionlist;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.actionList;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
+import static org.patternfly.style.Classes.actionList;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
 
 public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> {
 

@@ -17,7 +17,7 @@ package org.patternfly.component.form;
 
 import java.util.function.Function;
 
-import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLOptGroupElement;
 

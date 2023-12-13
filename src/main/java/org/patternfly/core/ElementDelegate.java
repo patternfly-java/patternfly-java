@@ -26,31 +26,31 @@ import elemental2.dom.Node;
 import elemental2.dom.NodeList;
 
 /**
- * Redirects all methods related to text and inner HTML from {@link HasElement} and all {@code add()} methods from
- * {@link Container} to the element returned by {@link #redirectTo()}.
+ * Delegates all methods related to text and inner HTML from {@link HasElement} and all {@code add()} methods from
+ * {@link Container} to the element returned by {@link #delegate()}.
  * <p>
  * Please note that if you implement this interface in your (sub)component, you must use {@code element().appendChild()} to add
  * something to the (sub)component itself!
  */
-public interface RedirectTo<E extends Element, B extends TypedBuilder<E, B>> extends
+public interface ElementDelegate<E extends Element, B extends TypedBuilder<E, B>> extends
         TypedBuilder<E, B>,
         HasElement<E, B>,
         Container<E, B> {
 
-    HTMLElement redirectTo();
+    HTMLElement delegate();
 
     // ------------------------------------------------------ has element
 
     @Override
     default B textContent(String text) {
-        redirectTo().textContent = text;
+        delegate().textContent = text;
         return that();
     }
 
     @Override
     default B textNode(String text) {
         boolean textNode = false;
-        NodeList<Node> nodes = redirectTo().childNodes;
+        NodeList<Node> nodes = delegate().childNodes;
         for (int i = 0; i < nodes.length && !textNode; i++) {
             Node node = nodes.getAt(i);
             if (node.nodeType == Node.TEXT_NODE) {
@@ -66,13 +66,13 @@ public interface RedirectTo<E extends Element, B extends TypedBuilder<E, B>> ext
 
     @Override
     default B add(String text) {
-        redirectTo().appendChild(redirectTo().ownerDocument.createTextNode(text));
+        delegate().appendChild(delegate().ownerDocument.createTextNode(text));
         return that();
     }
 
     @Override
     default B innerHtml(SafeHtml html) {
-        redirectTo().innerHTML = html.asString();
+        delegate().innerHTML = html.asString();
         return that();
     }
 
@@ -80,7 +80,7 @@ public interface RedirectTo<E extends Element, B extends TypedBuilder<E, B>> ext
 
     @Override
     default B add(Node node) {
-        redirectTo().appendChild(node);
+        delegate().appendChild(node);
         return that();
     }
 }

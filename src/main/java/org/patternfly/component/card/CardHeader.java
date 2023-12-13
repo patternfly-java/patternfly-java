@@ -20,8 +20,8 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.RedirectTo;
-import org.patternfly.layout.Classes;
+import org.patternfly.core.ElementDelegate;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -34,17 +34,17 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Aria.expanded;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.header;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.Classes.toggleRight;
-import static org.patternfly.layout.PredefinedIcon.angleRight;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.header;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.Classes.toggleRight;
+import static org.patternfly.style.PredefinedIcon.angleRight;
 
 public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> implements
-        RedirectTo<HTMLDivElement, CardHeader>,
+        ElementDelegate<HTMLDivElement, CardHeader>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -106,7 +106,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
     }
 
     @Override
-    public HTMLElement redirectTo() {
+    public HTMLElement delegate() {
         return mainElement;
     }
 

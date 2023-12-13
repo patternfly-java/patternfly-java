@@ -30,7 +30,7 @@ import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -46,14 +46,14 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.chip;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.text;
-import static org.patternfly.layout.PredefinedIcon.times;
-import static org.patternfly.layout.Variable.componentVar;
-import static org.patternfly.layout.Variables.MaxWidth;
+import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.chip;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.PredefinedIcon.times;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.MaxWidth;
 
 /**
  * A chip is used to communicate a value or a set of attribute-value pairs within workflows that involve filtering a set of

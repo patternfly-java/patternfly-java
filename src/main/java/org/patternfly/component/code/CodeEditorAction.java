@@ -24,15 +24,15 @@ import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.DomGlobal.navigator;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
-import static org.patternfly.dom.DomGlobal.navigator;
-import static org.patternfly.layout.PredefinedIcon.copy;
+import static org.patternfly.style.PredefinedIcon.copy;
 
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction> implements
         WithIcon<HTMLElement, CodeEditorAction> {
@@ -93,6 +93,12 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
     @Override
     public CodeEditorAction icon(InlineIcon icon) {
         button.icon(icon);
+        return this;
+    }
+
+    @Override
+    public CodeEditorAction removeIcon() {
+        button.removeIcon();
         return this;
     }
 

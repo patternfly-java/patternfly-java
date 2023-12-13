@@ -13,23 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.handler;
 
-public enum Sticky {
+/**
+ * Functional interface for handling resize.
+ *
+ * @param <C> The type of the component.
+ */
+@FunctionalInterface
+public interface ResizeHandler<C> {
 
-    top("sticky-top"),
-
-    bottom("sticky-bottom");
-
-    public final String value;
-    public final String modifier;
-
-    Sticky(String value) {
-        this.value = value;
-        this.modifier = Classes.modifier(value);
-    }
-
-    public String onHeight(Breakpoint breakpoint) {
-        return Classes.modifier(value, breakpoint) + "-height";
-    }
+    void onResize(C component);
 }

@@ -15,8 +15,16 @@
  */
 package org.patternfly.handler;
 
+import elemental2.dom.Event;
+
+/**
+ * Functional interface for handling change events.
+ *
+ * @param <C> The type of the component.
+ * @param <T> The type of the value.
+ */
 @FunctionalInterface
 public interface ChangeHandler<C, T> {
 
-    void onChange(C component, T value);
+    void onChange(Event event, C component, T value);
 }

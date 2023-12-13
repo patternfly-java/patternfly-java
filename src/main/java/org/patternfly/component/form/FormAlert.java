@@ -16,13 +16,13 @@
 package org.patternfly.component.form;
 
 import org.patternfly.component.alert.Alert;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.alert;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.alert;
+import static org.patternfly.style.Classes.component;
 
 public class FormAlert extends FormSubComponent<HTMLElement, FormAlert> {
 

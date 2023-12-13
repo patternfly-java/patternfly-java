@@ -13,17 +13,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.sidebar;
+package org.patternfly.core;
 
-import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLElement;
+import static org.patternfly.style.Classes.modifier;
 
-abstract class SidebarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+public enum IconPosition {
 
-    SidebarSubComponent(String name, E element) {
-        super(ComponentType.Sidebar, name, element);
+    start(modifier(Classes.start)),
+
+    end(modifier(Classes.end));
+
+    final String modifier;
+
+    IconPosition(String modifier) {
+        this.modifier = modifier;
     }
 }

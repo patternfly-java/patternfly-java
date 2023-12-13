@@ -15,15 +15,15 @@
  */
 package org.patternfly.layout.stack;
 
-import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.stack;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.stack;
 
 public class StackItem extends BaseLayout<HTMLDivElement, StackItem> implements Fill<HTMLDivElement, StackItem> {
 

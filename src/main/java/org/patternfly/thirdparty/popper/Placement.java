@@ -17,9 +17,9 @@ package org.patternfly.thirdparty.popper;
 
 import java.util.Arrays;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.modifier;
 
 public enum Placement {
 

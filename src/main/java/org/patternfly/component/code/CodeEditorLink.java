@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.layout.PredefinedIcon.help;
+import static org.patternfly.style.PredefinedIcon.help;
 
 public class CodeEditorLink extends CodeEditorSubComponent<HTMLElement, CodeEditorLink> {
 

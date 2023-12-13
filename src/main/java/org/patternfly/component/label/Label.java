@@ -27,7 +27,6 @@ import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.IconPosition;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.component.tooltip.Tooltip;
@@ -35,14 +34,15 @@ import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Compact;
+import org.patternfly.core.IconPosition;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.Color;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Color;
+import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -59,24 +59,25 @@ import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.iterator;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
-import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.editable;
-import static org.patternfly.layout.Classes.editableActive;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Color.grey;
-import static org.patternfly.layout.PredefinedIcon.times;
-import static org.patternfly.layout.Variable.componentVar;
-import static org.patternfly.layout.Variables.MaxWidth;
+import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.editable;
+import static org.patternfly.style.Classes.editableActive;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Color.grey;
+import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.PredefinedIcon.times;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.MaxWidth;
 
 /**
  * The label component allows users to add specific element captions for user clarity and convenience.
@@ -109,6 +110,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     private final TooltipToggle tooltipToggle;
     private HTMLElement contentElement;
     private HTMLElement actionsElement;
+    private HTMLElement iconContainer;
     private HTMLInputElement inputElement;
     private Tooltip tooltip;
     private Button closeButton;
@@ -218,7 +220,17 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
 
     @Override
     public Label icon(InlineIcon icon) {
-        insertBefore(span().css(component(Classes.label, Classes.icon)).add(icon).element(), textElement);
+        if (iconContainer == null) {
+            insertBefore(iconContainer = span().css(component(Classes.label, Classes.icon)).element(), textElement);
+        }
+        removeChildrenFrom(iconContainer);
+        iconContainer.appendChild(icon.element());
+        return this;
+    }
+
+    @Override
+    public Label removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
         return this;
     }
 

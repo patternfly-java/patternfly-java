@@ -13,13 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.component.page;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class Navigator {
+import elemental2.dom.HTMLElement;
 
-    public Clipboard clipboard;
+abstract class SidebarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+
+    SidebarSubComponent(String name, E element) {
+        super(ComponentType.Sidebar, name, element);
+    }
 }

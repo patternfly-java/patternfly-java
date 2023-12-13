@@ -17,6 +17,7 @@ package org.patternfly.component.form;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.InputElementBuilder;
@@ -25,27 +26,30 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Plain;
-import org.patternfly.core.Modifiers.Readonly;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ChangeHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Plain;
+import org.patternfly.style.Modifiers.Readonly;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.jboss.elemento.EventType.change;
-import static org.jboss.elemento.EventType.input;
+import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
-import static org.patternfly.core.Modifiers.toggleModifier;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.formControl;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.formControl;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * A text input is used to gather free-form text from a user.
@@ -81,6 +85,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ instance
 
     private static final Map<TextInputType, InputType> typeMapping = new HashMap<>();
+
     static {
         typeMapping.put(TextInputType.date, InputType.date);
         typeMapping.put(TextInputType.email, InputType.email);
@@ -93,6 +98,8 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     private final HTMLInputElement inputElement;
+    private HTMLElement iconContainer;
+    private ChangeHandler<TextInput, String> changeHandler;
 
     TextInput(TextInputType type, String id, String value) {
         super(id, formControlContainer()
@@ -142,15 +149,24 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return this;
     }
 
-    public TextInput value(String value) {
-        inputElement.value = value;
-        return this;
-    }
-
     /** Same as {@link #value(String)} */
     @Override
     public TextInput text(String text) {
         return value(text);
+    }
+
+    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
+    public TextInput value(String value) {
+        return value(value, false);
+    }
+
+    public TextInput value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(inputElement.value, value);
+        inputElement.value = value;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, value);
+        }
+        return this;
     }
 
     public TextInput placeholder(String placeholder) {
@@ -159,17 +175,30 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     /** Provides access to the underlying input element using a fluent API style */
-    public TextInput applyTo(Consumer<InputElementBuilder<HTMLInputElement>> inputElementConsumer) {
-        inputElementConsumer.accept(inputElement());
+    public TextInput applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
         return this;
     }
 
     @Override
     public TextInput icon(InlineIcon icon) {
         css(modifier(Classes.icon));
-        insertFirst(failSafeUtilitiesContainer(), span().css(component(formControl, Classes.icon))
-                .add(icon)
-                .element());
+        if (iconContainer == null) {
+            insertFirst(failSafeUtilitiesContainer(), iconContainer = span().css(component(formControl, Classes.icon))
+                    .element());
+        }
+        removeChildrenFrom(iconContainer);
+        iconContainer.appendChild(icon.element());
+        return this;
+    }
+
+    @Override
+    public TextInput removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
+        if (utilitiesContainer != null && utilitiesContainer.childElementCount == 0) {
+            failSafeRemoveFromParent(utilitiesContainer);
+        }
+        element().classList.remove(modifier(icon));
         return this;
     }
 
@@ -181,24 +210,12 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ events
 
     /**
-     * Handles {@link org.jboss.elemento.EventType#change} events for this component.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event</a>
+     * Defines a change handler that is called when the {@link #value()} of this text input changes. Changes are detected by
+     * adding an event listener for the keyup event to the text input element.
      */
-    public TextInput onChange(ChangeHandler<TextInput, String> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.value));
-        return this;
-    }
-
-    /**
-     * Handles {@link org.jboss.elemento.EventType#input} events for this component.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event</a>
-     */
-    public TextInput onInput(ChangeHandler<TextInput, String> handler) {
-        inputElement.addEventListener(input.name, e -> handler.onChange(this, inputElement.value));
+    public TextInput onChange(ChangeHandler<TextInput, String> changeHandler) {
+        this.changeHandler = changeHandler;
+        inputElement.addEventListener(keyup.name, e -> changeHandler.onChange(e, this, inputElement.value));
         return this;
     }
 

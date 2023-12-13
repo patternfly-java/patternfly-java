@@ -17,33 +17,79 @@ package org.patternfly.component.brand;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
 
-import elemental2.dom.HTMLImageElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.img;
-import static org.patternfly.layout.Classes.brand;
-import static org.patternfly.layout.Classes.component;
+import static org.jboss.elemento.Elements.picture;
+import static org.jboss.elemento.Elements.source;
+import static org.patternfly.style.Classes.brand;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Height;
+import static org.patternfly.style.Variables.Width;
 
 /**
  * A brand is used to place a product logotype on a screen.
  *
  * @see <a href= "https://www.patternfly.org/components/brand/html">https://www.patternfly.org/components/brand/html</a>
  */
-public class Brand extends BaseComponent<HTMLImageElement, Brand> {
+public class Brand extends BaseComponent<HTMLElement, Brand> {
 
     // ------------------------------------------------------ factory
 
-    public static Brand brand(String src) {
-        return new Brand(src);
+    public static Brand brand(String src, String alt) {
+        return brand(src, alt, false);
+    }
+
+    public static Brand brand(String src, String alt, boolean usePicture) {
+        return usePicture ? new Brand(picture().element(), src, alt) : new Brand(img().element(), src, alt);
     }
 
     // ------------------------------------------------------ instance
 
-    Brand(String src) {
-        super(ComponentType.Brand, img(src).css(component(brand)).element());
+    private final boolean picture;
+
+    <E extends HTMLElement> Brand(E element, String src, String alt) {
+        super(ComponentType.Brand, element);
+        picture = element.tagName.equalsIgnoreCase("picture");
+        css(component(brand));
+        if (picture) {
+            add(img(src).apply(i -> i.alt = alt));
+        } else {
+            img(element).apply(i -> i.alt = alt);
+        }
+    }
+
+    // ------------------------------------------------------ add
+
+    public Brand addSource(String src) {
+        return addSource(src, null);
+    }
+
+    public Brand addSource(String src, String media) {
+        if (picture) {
+            add(source().apply(s -> {
+                s.srcset = src;
+                if (media != null) {
+                    s.media = media;
+                }
+            }));
+        }
+        return that();
     }
 
     // ------------------------------------------------------ builder
+
+    public Brand widths(Tuples<Breakpoint, String> widths) {
+        return componentVar(component(brand), Width).applyTo(this, widths);
+    }
+
+    public Brand heights(Tuples<Breakpoint, String> heights) {
+        return componentVar(component(brand), Height).applyTo(this, heights);
+    }
 
     @Override
     public Brand that() {

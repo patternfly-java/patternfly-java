@@ -15,13 +15,13 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.radio;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.radio;
 
 public class RadioDescription extends RadioSubComponent<HTMLElement, RadioDescription> {
 

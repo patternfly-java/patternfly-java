@@ -24,9 +24,9 @@ import static org.jboss.elemento.Elements.main;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.page;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.page;
 
 /**
  * Container for the main page area. The page main container typically contains multiple {@link PageMainGroup}s and/or

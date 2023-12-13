@@ -23,13 +23,14 @@ import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.Expandable;
-import org.patternfly.core.Modifiers.Inline;
-import org.patternfly.core.Modifiers.Plain;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Severity;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Inline;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -58,17 +59,17 @@ import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.layout.Classes.alert;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.expandable;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.Classes.truncate;
-import static org.patternfly.layout.PredefinedIcon.angleRight;
-import static org.patternfly.layout.PredefinedIcon.times;
-import static org.patternfly.layout.Variable.componentVar;
+import static org.patternfly.style.Classes.alert;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.expandable;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.screenReader;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.Classes.truncate;
+import static org.patternfly.style.PredefinedIcon.angleRight;
+import static org.patternfly.style.PredefinedIcon.times;
+import static org.patternfly.style.Variable.componentVar;
 
 /**
  * An alert is a notification that provides brief information to the user without blocking their workflow.
@@ -188,6 +189,12 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         return this;
     }
 
+    @Override
+    public Alert removeIcon() {
+        Logger.unsupported(componentType(), element(), "Removing the icon is not supported for this component.");
+        return this;
+    }
+
     public Alert expandable() {
         return expandable(null);
     }
@@ -293,16 +300,16 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     @Override
     public void collapse(boolean fireEvent) {
         Expandable.collapse(element(), toggleButton.element(), description.element());
-        if (toggleHandler != null) {
-            toggleHandler.onToggle(this, false);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, false);
         }
     }
 
     @Override
     public void expand(boolean fireEvent) {
         Expandable.expand(element(), toggleButton.element(), description.element());
-        if (toggleHandler != null) {
-            toggleHandler.onToggle(this, true);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, true);
         }
     }
 

@@ -21,7 +21,7 @@ import java.util.List;
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
@@ -35,8 +35,8 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
 
 public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> implements Attachable {
 

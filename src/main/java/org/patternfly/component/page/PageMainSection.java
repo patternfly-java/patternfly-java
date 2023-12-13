@@ -15,22 +15,25 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.core.Modifiers.Fill;
-import org.patternfly.core.Modifiers.NoFill;
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Brightness;
+import java.util.EnumSet;
+import java.util.stream.Stream;
+
+import org.patternfly.core.Logger;
+import org.patternfly.style.Brightness;
+import org.patternfly.style.Modifiers.Fill;
+import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLElement;
 
+import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.layout.Classes.center;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.noPadding;
-import static org.patternfly.layout.Classes.padding;
-import static org.patternfly.layout.Classes.page;
-import static org.patternfly.layout.Classes.section;
+import static org.patternfly.style.Brightness.dark100;
+import static org.patternfly.style.Brightness.dark200;
+import static org.patternfly.style.Brightness.light;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.page;
+import static org.patternfly.style.Classes.section;
 
 /**
  * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
@@ -58,61 +61,14 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
 
     // ------------------------------------------------------ builder
 
-    /**
-     * Modifies a page section body to align center. Please make sure to use this together with the {@link #limitWidth()}
-     * modifier.
-     */
-    public PageMainSection center() {
-        return css(modifier(center));
-    }
-
-    /**
-     * Modifies the section to have a light theme.
-     */
-    public PageMainSection light() {
-        return css(Brightness.light.modifier);
-    }
-
-    /**
-     * Modifies the section to have a dark theme and a dark transparent background.
-     */
-    public PageMainSection dark() {
-        return css(Brightness.dark.opacity(200));
-    }
-
-    /**
-     * Modifies the section to have a dark theme and a darker transparent background.
-     */
-    public PageMainSection darker() {
-        return css(Brightness.dark.opacity(100));
-    }
-
-    /**
-     * Modifies the section to add padding.
-     */
-    public PageMainSection padding() {
-        return css(modifier(padding));
-    }
-
-    /**
-     * Modifies the section to add padding at the given breakpoint.
-     */
-    public PageMainSection padding(Breakpoint breakpoint) {
-        return css(modifier(padding, breakpoint));
-    }
-
-    /**
-     * Modifies the section to remove padding.
-     */
-    public PageMainSection noPadding() {
-        return css(modifier(noPadding));
-    }
-
-    /**
-     * Modifies the section to remove padding at the given breakpoint.
-     */
-    public PageMainSection noPadding(Breakpoint breakpoint) {
-        return css(modifier(noPadding, breakpoint));
+    public PageMainSection background(Brightness brightness) {
+        if (!EnumSet.of(light, dark100, dark200).contains(brightness)) {
+            Logger.unsupported("PF5/PageMainSection", element(),
+                    "Background " + brightness + " not supported. Valid values: " +
+                            Stream.of(light, dark100, dark200).map(Brightness::name).collect(joining(" ")));
+            return this;
+        }
+        return css(brightness.modifier());
     }
 
     @Override

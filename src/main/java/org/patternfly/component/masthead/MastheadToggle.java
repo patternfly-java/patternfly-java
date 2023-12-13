@@ -16,7 +16,8 @@
 package org.patternfly.component.masthead;
 
 import org.patternfly.component.button.Button;
-import org.patternfly.component.sidebar.Sidebar;
+import org.patternfly.component.page.PageSidebar;
+import org.patternfly.core.Aria;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -26,14 +27,14 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.masthead;
-import static org.patternfly.layout.Classes.toggle;
-import static org.patternfly.layout.PredefinedIcon.bars;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.masthead;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.PredefinedIcon.bars;
 
 /**
  * Container for the toggle of a {@link Masthead} component. The component contains a toggle button that calls
- * {@link Sidebar#toggle()}, when clicked.
+ * {@link PageSidebar#toggle()}, when clicked.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
@@ -75,8 +76,8 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
     // ------------------------------------------------------ internal
 
     private void toggle() {
-        boolean current = parseBoolean(toggleButton.element().getAttribute(expanded));
-        toggleButton.aria(expanded, !current);
+        boolean expanded = parseBoolean(toggleButton.element().getAttribute(Aria.expanded));
+        toggleButton.aria(Aria.expanded, !expanded);
         if (page().sidebar() != null) {
             page().sidebar().toggle();
         }

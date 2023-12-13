@@ -15,12 +15,12 @@
  */
 package org.patternfly.component.code;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.component;
 
 public class CodeBlockActions extends CodeBlockSubComponent<HTMLDivElement, CodeBlockActions> {
 

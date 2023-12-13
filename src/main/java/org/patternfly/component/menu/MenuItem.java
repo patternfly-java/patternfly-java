@@ -20,19 +20,19 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.IconPosition;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
+import org.patternfly.core.IconPosition;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Disabled;
 import org.patternfly.core.SelectionMode;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithText;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -58,20 +58,20 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.SelectionMode.multi;
 import static org.patternfly.core.SelectionMode.single;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.danger;
-import static org.patternfly.layout.Classes.description;
-import static org.patternfly.layout.Classes.disabled;
-import static org.patternfly.layout.Classes.externalIcon;
-import static org.patternfly.layout.Classes.favorite;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.list;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.select;
-import static org.patternfly.layout.PredefinedIcon.externalLinkAlt;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.danger;
+import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.disabled;
+import static org.patternfly.style.Classes.externalIcon;
+import static org.patternfly.style.Classes.favorite;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.screenReader;
+import static org.patternfly.style.Classes.select;
+import static org.patternfly.style.PredefinedIcon.externalLinkAlt;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Disabled<HTMLElement, MenuItem>,
@@ -125,7 +125,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private boolean initialSelection;
     private Checkbox checkboxComponent;
     private MenuItemAction itemAction;
-    private HTMLElement iconElement;
+    private HTMLElement iconContainer;
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
     private ComponentHandler<MenuItem> handler;
@@ -183,7 +183,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.itemElement = find(By.classname(component(Classes.menu, Classes.item)));
         this.mainElement = find(By.classname(component(Classes.menu, Classes.item, main)));
         this.textElement = find(By.classname(component(Classes.menu, Classes.item, Classes.text)));
-        this.iconElement = find(By.classname(component(Classes.menu, Classes.item, icon)));
+        this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, icon)));
         this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
         // checkbox must not be used for cloned favorite items!
 
@@ -226,7 +226,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                 break;
         }
         if (checkboxComponent != null) {
-            checkboxComponent.inputElement().name = menu.menuName;
+            checkboxComponent.inputElement().name(menu.menuName);
         }
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
@@ -357,14 +357,20 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     @Override
     public MenuItem icon(InlineIcon icon) {
-        if (iconElement != null) {
-            removeChildrenFrom(iconElement);
-            iconElement.appendChild(icon.element());
+        if (iconContainer != null) {
+            removeChildrenFrom(iconContainer);
+            iconContainer.appendChild(icon.element());
         } else {
-            insertFirst(mainElement, iconElement = span().css(component(Classes.menu, item, Classes.icon))
+            insertFirst(mainElement, iconContainer = span().css(component(Classes.menu, item, Classes.icon))
                     .add(icon)
                     .element());
         }
+        return this;
+    }
+
+    @Override
+    public MenuItem removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
         return this;
     }
 

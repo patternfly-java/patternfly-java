@@ -15,6 +15,9 @@
  */
 package org.patternfly.handler;
 
+/**
+ * General purpose functional interface representing a callback function.
+ */
 @FunctionalInterface
 public interface Callback {
 

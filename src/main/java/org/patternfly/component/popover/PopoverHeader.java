@@ -17,8 +17,8 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.RedirectTo;
-import org.patternfly.layout.Classes;
+import org.patternfly.core.ElementDelegate;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
@@ -26,13 +26,13 @@ import elemental2.dom.HTMLHeadingElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.header;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.popover;
-import static org.patternfly.layout.Classes.text;
-import static org.patternfly.layout.Classes.title;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.popover;
+import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.Classes.title;
 
 public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeader>
-        implements RedirectTo<HTMLElement, PopoverHeader> {
+        implements ElementDelegate<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -58,7 +58,7 @@ public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeade
     }
 
     @Override
-    public HTMLElement redirectTo() {
+    public HTMLElement delegate() {
         return headerElement;
     }
 

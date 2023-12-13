@@ -19,5 +19,7 @@ public enum DividerType {
 
     li,
 
-    hr
+    hr,
+
+    div
 }

@@ -32,7 +32,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.HasValues;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -56,15 +56,15 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.layout.Classes.chipGroup;
-import static org.patternfly.layout.Classes.close;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.list;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.overflow;
-import static org.patternfly.layout.PredefinedIcon.timesCircle;
+import static org.patternfly.style.Classes.chipGroup;
+import static org.patternfly.style.Classes.close;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.overflow;
+import static org.patternfly.style.PredefinedIcon.timesCircle;
 
 public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         implements HasValues<Chip>, Attachable, Closeable<HTMLDivElement, ChipGroup> {

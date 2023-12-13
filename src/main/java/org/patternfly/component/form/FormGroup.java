@@ -20,14 +20,14 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
 
 public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
         Attachable {

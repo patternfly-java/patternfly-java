@@ -17,15 +17,15 @@ package org.patternfly.component.alert;
 
 import org.patternfly.component.button.Button;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.layout.Classes.actionGroup;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.actionGroup;
+import static org.patternfly.style.Classes.component;
 
 public class AlertActionGroup extends AlertSubComponent<HTMLDivElement, AlertActionGroup> {
 

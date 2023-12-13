@@ -18,10 +18,10 @@ package org.patternfly.component.page;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.body;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.page;
+import static org.patternfly.style.Classes.body;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.page;
 
 /**
  * Container for the body of a {@link PageSection} container. Required if the {@link PageSection} has a

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.patternfly.component.divider.Divider;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
@@ -30,10 +30,10 @@ import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.list;
-import static org.patternfly.layout.Classes.nav;
-import static org.patternfly.layout.Classes.title;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.nav;
+import static org.patternfly.style.Classes.title;
 
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> {
 

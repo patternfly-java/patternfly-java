@@ -18,10 +18,10 @@ package org.patternfly.component.form;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.core.Modifiers.Required;
 import org.patternfly.core.ValidationStatus;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Required;
 
 import elemental2.dom.HTMLElement;
 
@@ -30,11 +30,11 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.ValidationStatus.default_;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.formControl;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.utilities;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.formControl;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.utilities;
 
 public abstract class FormControl<E extends HTMLElement, B extends BaseComponent<E, B>>
         extends BaseComponent<E, B> implements Disabled<E, B>, Required<E, B> {
@@ -49,7 +49,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
 
     final String id;
     ValidationStatus status;
-    private HTMLElement utilitiesContainer;
+    HTMLElement utilitiesContainer;
     private HTMLElement validationContainer;
 
     FormControl(String id, E element, ComponentType componentType) {

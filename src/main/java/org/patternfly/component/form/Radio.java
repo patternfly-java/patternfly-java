@@ -15,15 +15,19 @@
  */
 package org.patternfly.component.form;
 
+import java.util.function.Consumer;
+
+import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.core.Modifiers.Required;
 import org.patternfly.handler.ChangeHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -33,11 +37,12 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.input;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.standalone;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.input;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.standalone;
 
 /**
  * A radio button is used to present the user with mutually exclusive choices. Always present radio buttons in groups of 2 or
@@ -73,6 +78,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
 
     private final HTMLInputElement inputElement;
     private HTMLLabelElement labelElement;
+    private ChangeHandler<Radio, Boolean> changeHandler;
 
     Radio(String id, String name, String label, boolean checked) {
         super(ComponentType.Radio, div().css(component(Classes.radio))
@@ -140,8 +146,23 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         return this;
     }
 
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Radio value(boolean checked) {
+        return value(checked, false);
+    }
+
+    public Radio value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, inputElement.checked);
+        }
+        return this;
+    }
+
+    /** Provides access to the underlying radio element using a fluent API style */
+    public Radio applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
         return this;
     }
 
@@ -152,8 +173,12 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
 
     // ------------------------------------------------------ events
 
-    public Radio onChange(ChangeHandler<Radio, Boolean> handler) {
-        inputElement.addEventListener(change.name, e -> handler.onChange(this, inputElement.checked));
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this radio changes.
+     */
+    public Radio onChange(ChangeHandler<Radio, Boolean> changeHandler) {
+        this.changeHandler = changeHandler;
+        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
         return this;
     }
 
@@ -164,7 +189,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         return inputElement.checked;
     }
 
-    public HTMLInputElement inputElement() {
-        return inputElement;
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        return wrapInputElement(inputElement);
     }
 }

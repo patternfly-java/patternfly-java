@@ -15,7 +15,7 @@
  */
 package org.patternfly.core;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 public enum Status {
 

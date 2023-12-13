@@ -15,15 +15,15 @@
  */
 package org.patternfly.layout.gallery;
 
-import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.gallery;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.layout;
+import static org.patternfly.style.Classes.gallery;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.layout;
 
 public class GalleryItem extends BaseLayout<HTMLDivElement, GalleryItem> implements Fill<HTMLDivElement, GalleryItem> {
 

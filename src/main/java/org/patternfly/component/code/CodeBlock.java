@@ -21,7 +21,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.expandable.ExpandableSection;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -40,10 +40,10 @@ import static org.patternfly.component.code.CodeBlockHeader.codeBlockHeader;
 import static org.patternfly.component.expandable.ExpandableSection.expandableSection;
 import static org.patternfly.component.expandable.ExpandableSectionContent.expandableSectionContent;
 import static org.patternfly.component.expandable.ExpandableSectionToggle.expandableSectionToggle;
-import static org.patternfly.layout.Classes.codeBlock;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.pre;
+import static org.patternfly.style.Classes.codeBlock;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.pre;
 
 /**
  * A code block is a component that contains 2 or more lines of read-only code. The code in a code block can be copied to the

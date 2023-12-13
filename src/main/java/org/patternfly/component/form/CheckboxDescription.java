@@ -15,13 +15,13 @@
  */
 package org.patternfly.component.form;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.layout.Classes.check;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.check;
+import static org.patternfly.style.Classes.component;
 
 public class CheckboxDescription extends CheckboxSubComponent<HTMLElement, CheckboxDescription> {
 

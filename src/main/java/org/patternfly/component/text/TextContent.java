@@ -21,8 +21,8 @@ import org.patternfly.component.ComponentType;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
 
 /**
  * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard HTML

@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.icon;
 
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLElement;
 

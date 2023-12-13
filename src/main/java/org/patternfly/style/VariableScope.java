@@ -13,12 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public interface Variables {
-    String GridTemplateColumns = "GridTemplateColumns";
-    String LineClamp = "LineClamp";
-    String MaxWidth = "MaxWidth";
-    String MaxHeight = "MaxHeight";
-    String Order = "Order";
+public enum VariableScope {
+
+    global,
+
+    component
 }

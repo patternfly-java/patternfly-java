@@ -17,21 +17,23 @@ package org.patternfly.component.page;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Sticky;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Sticky;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
-import static org.patternfly.layout.Classes.main;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.overflowScroll;
-import static org.patternfly.layout.Classes.page;
-import static org.patternfly.layout.Classes.shadowBottom;
-import static org.patternfly.layout.Classes.shadowTop;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.overflowScroll;
+import static org.patternfly.style.Classes.page;
+import static org.patternfly.style.Classes.shadowBottom;
+import static org.patternfly.style.Classes.shadowTop;
+import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Sticky)}
@@ -74,17 +76,10 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
     // ------------------------------------------------------ builder
 
     /**
-     * Modifies this component to be sticky to the top of its container.
+     * Modifies this component to be sticky at the given breakpoints.
      */
-    public PageMainGroup sticky(Sticky sticky) {
-        return css(sticky.modifier);
-    }
-
-    /**
-     * Modifies this component to be sticky to the top of its container at the given breakpoint.
-     */
-    public PageMainGroup sticky(Sticky sticky, Breakpoint breakpoint) {
-        return css(sticky.onHeight(breakpoint));
+    public PageMainGroup sticky(Tuples<Breakpoint, Sticky> sticky) {
+        return css(typedModifier(sticky));
     }
 
     /**

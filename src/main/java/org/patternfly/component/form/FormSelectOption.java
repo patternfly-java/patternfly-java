@@ -18,7 +18,7 @@ package org.patternfly.component.form;
 import org.jboss.elemento.Id;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.HasValue;
-import org.patternfly.core.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLOptionElement;
 

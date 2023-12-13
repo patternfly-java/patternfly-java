@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLUListElement;
@@ -34,10 +34,10 @@ import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
 import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.layout.Classes.alertGroup;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.inline;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.alertGroup;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.inline;
+import static org.patternfly.style.Classes.modifier;
 
 /**
  * An alert group stacks and positions 2 or more alerts in a live region, either in a layer over the main content of a page or

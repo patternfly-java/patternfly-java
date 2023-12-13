@@ -16,12 +16,13 @@
 package org.patternfly.component.card;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.form.Radio;
 import org.patternfly.core.Logger;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
@@ -30,14 +31,13 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.form.Radio.radio;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.single;
-import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.disabled;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.selectable;
+import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.disabled;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.screenReader;
+import static org.patternfly.style.Classes.selectable;
 
 public class CardSelectableActions extends CardSubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
 
@@ -81,9 +81,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                                 "Fallback to generated name '" + radioName + "', which will cause selection issues!");
             }
             add(radio = radio(selectId, radioName).standalone(false));
-            radio.inputElement().classList.add(screenReader);
-            radio.inputElement().setAttribute(labelledBy, cardId);
-            radio.inputElement().addEventListener(click.name(), card::click);
+            radio.inputElement().css(screenReader);
+            radio.inputElement().aria(labelledBy, cardId);
+            radio.inputElement().on(EventType.click, card::click);
             if (card.element().classList.contains(modifier(disabled))) {
                 radio.disabled(true);
             }
@@ -103,8 +103,8 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 }
                 add(radio = radio(selectId, radioName)
                         .standalone(false)
-                        .onChange((r, selected) -> card.internalSelect(selected, true)));
-                radio.inputElement().setAttribute(labelledBy, cardId);
+                        .onChange((e, r, selected) -> card.internalSelect(selected, true)));
+                radio.inputElement().aria(labelledBy, cardId);
                 if (card.element().classList.contains(modifier(disabled))) {
                     radio.disabled(true);
                 }
@@ -120,8 +120,8 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 }
                 add(checkbox = checkbox(selectId, checkboxName)
                         .standalone(false)
-                        .onChange((c, selected) -> card.internalSelect(selected, true)));
-                checkbox.inputElement().setAttribute(labelledBy, cardId);
+                        .onChange((e, c, selected) -> card.internalSelect(selected, true)));
+                checkbox.inputElement().aria(labelledBy, cardId);
                 if (card.element().classList.contains(modifier(disabled))) {
                     checkbox.disabled(true);
                 }
@@ -149,10 +149,10 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
 
     void markSelected(boolean selected) {
         if (checkbox != null) {
-            checkbox.inputElement().checked = selected;
+            checkbox.inputElement().element().checked = selected;
         }
         if (radio != null) {
-            radio.inputElement().checked = selected;
+            radio.inputElement().element().checked = selected;
         }
     }
 }

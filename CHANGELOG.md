@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Form component (#49)
 - Form select component (#51)
 - Text area component (#53)
+- Add support for responsive layout in various components
+- Add properties to page (sub)component to align with https://www.patternfly.org/components/page#props
 - Add the following interfaces to unify icon and text handling across components:
   - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>` 
   - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 
@@ -20,6 +22,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Replace `ComponentReference<C>` with `ComponentStore`
+- Move style related classes to its own package `org.patternfly.style`
+
+### Upgrades
+
+- Bump Elemento to 1.2.10
 
 ## [0.1.1] - 2023-11-22
 
@@ -88,7 +95,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Move masthead, sidebar and skip to content components to its own packages
 - Refactor `org.patternfly.core.WithProgress` interface
-- Simplify `org.patternfly.core.Modifiers.*` interfaces
+- Simplify `org.patternfly.style.Modifiers.*` interfaces
 - Rename `org.patternfly.js` → `org.patternfly.dom`
 
 ## [0.0.4] - 2023-10-10

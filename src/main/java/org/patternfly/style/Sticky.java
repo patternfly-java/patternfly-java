@@ -13,16 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.style;
 
-import elemental2.promise.Promise;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+public enum Sticky implements TypedModifier {
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class Clipboard {
+    top("sticky-top"),
 
-    public native Promise<String> readText();
+    bottom("sticky-bottom");
 
-    public native Promise<Void> writeText(String text);
+    private final String value;
+    private final String modifier;
+
+    Sticky(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
+    }
 }

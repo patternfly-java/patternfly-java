@@ -13,13 +13,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dom;
+package org.patternfly.style;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import static org.patternfly.style.Classes.modifier;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public interface Crypto {
+/** Position used by {@link org.patternfly.component.popover.Popover} and {@link org.patternfly.component.tooltip.Tooltip}. */
+public enum Position {
 
-    String randomUUID();
+    auto(""),
+
+    top(modifier(Classes.top)),
+
+    right(modifier(Classes.right)),
+
+    bottom(modifier(Classes.bottom)),
+
+    left(modifier(Classes.left));
+
+    public final String modifier;
+
+    Position(String modifier) {
+        this.modifier = modifier;
+    }
 }

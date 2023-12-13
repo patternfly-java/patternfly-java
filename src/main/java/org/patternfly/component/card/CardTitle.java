@@ -15,19 +15,20 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.core.RedirectTo;
-import org.patternfly.layout.Classes;
+import org.patternfly.core.ElementDelegate;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
-import static org.patternfly.layout.Classes.card;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.title;
+import static org.patternfly.style.Classes.card;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.title;
 
-public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> implements RedirectTo<HTMLDivElement, CardTitle> {
+public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> implements
+        ElementDelegate<HTMLDivElement, CardTitle> {
 
     // ------------------------------------------------------ factory
 
@@ -66,7 +67,7 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
     }
 
     @Override
-    public HTMLElement redirectTo() {
+    public HTMLElement delegate() {
         return titleText;
     }
 

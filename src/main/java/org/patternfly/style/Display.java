@@ -13,29 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public enum Color {
+public enum Display implements TypedModifier {
 
-    grey(null),
+    inline("display-inline"),
 
-    blue("blue"),
+    stack("display-stack");
 
-    green("green"),
+    private final String value;
+    private final String modifier;
 
-    orange("orange"),
+    Display(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
 
-    red("red"),
+    @Override
+    public String value() {
+        return value;
+    }
 
-    purple("purple"),
-
-    cyan("cyan"),
-
-    gold("gold");
-
-    public final String modifier;
-
-    Color(String color) {
-        this.modifier = color == null ? null : Classes.modifier(color);
+    @Override
+    public String modifier() {
+        return modifier;
     }
 }

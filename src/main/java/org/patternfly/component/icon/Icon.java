@@ -21,12 +21,12 @@ import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.spinner.Spinner;
-import org.patternfly.core.Modifiers.Inline;
 import org.patternfly.core.Status;
 import org.patternfly.core.WithProgress;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
-import org.patternfly.layout.Size;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Inline;
+import org.patternfly.style.PredefinedIcon;
+import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLElement;
 
@@ -34,11 +34,11 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.spinner.Spinner.spinner;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.progress;
-import static org.patternfly.layout.Size.md;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.progress;
+import static org.patternfly.style.Size.md;
 
 /**
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
@@ -97,12 +97,12 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
      */
     public Icon size(Size size) {
         this.size = size;
-        return css(size.modifier);
+        return css(size.modifier());
     }
 
     public Icon iconSize(Size size) {
         iconSize = size;
-        content.classList.add(iconSize.modifier);
+        content.classList.add(iconSize.modifier());
         return this;
     }
 

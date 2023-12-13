@@ -13,11 +13,37 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public enum Orientation {
+public enum Brightness implements TypedModifier {
 
-    horizontal,
+    light("light"),
 
-    vertical
+    light100("light-100"),
+
+    light200("light-200"),
+
+    dark("dark"),
+
+    dark100("dark-100"),
+
+    dark200("dark-200");
+
+    private final String value;
+    private final String modifier;
+
+    Brightness(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
+    }
 }

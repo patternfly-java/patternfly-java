@@ -15,8 +15,10 @@
  */
 package org.patternfly.handler;
 
+import elemental2.dom.Event;
+
 @FunctionalInterface
 public interface ToggleHandler<C> {
 
-    void onToggle(C component, boolean expanded);
+    void onToggle(Event event, C component, boolean expanded);
 }

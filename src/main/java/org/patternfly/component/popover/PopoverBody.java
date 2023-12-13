@@ -21,9 +21,9 @@ import org.patternfly.component.ComponentType;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.body;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.popover;
+import static org.patternfly.style.Classes.body;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.popover;
 
 public class PopoverBody extends PopoverSubComponent<HTMLDivElement, PopoverBody> {
 

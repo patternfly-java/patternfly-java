@@ -20,31 +20,31 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Expandable;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Compact;
-import org.patternfly.core.Modifiers.Disabled;
-import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.SelectionMode;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Modifiers.toggleModifier;
 import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.multi;
-import static org.patternfly.layout.Classes.card;
-import static org.patternfly.layout.Classes.clickable;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.current;
-import static org.patternfly.layout.Classes.display;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.selectable;
-import static org.patternfly.layout.Size.lg;
+import static org.patternfly.style.Classes.card;
+import static org.patternfly.style.Classes.clickable;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.current;
+import static org.patternfly.style.Classes.display;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.selectable;
+import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.Size.lg;
 
 /**
  * A card is a square or rectangular container that can contain any kind of content. Cards symbolize units of information, and
@@ -289,9 +289,9 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
             return element().classList.contains(modifier(current));
         } else if (header != null && header.actions != null && header.actions.selectableActions != null) {
             if (header.actions.selectableActions.checkbox != null) {
-                return header.actions.selectableActions.checkbox.inputElement().checked;
+                return header.actions.selectableActions.checkbox.inputElement().element().checked;
             } else if (header.actions.selectableActions.radio != null) {
-                return header.actions.selectableActions.radio.inputElement().checked;
+                return header.actions.selectableActions.radio.inputElement().element().checked;
             } else {
                 return false;
             }
@@ -309,8 +309,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
             return;
         }
         Expandable.collapse(element(), header.toggleButton.element(), expandableContent.element());
-        if (toggleHandler != null) {
-            toggleHandler.onToggle(this, false);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, false);
         }
 
     }
@@ -324,8 +324,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
             return;
         }
         Expandable.expand(element(), header.toggleButton.element(), expandableContent.element());
-        if (toggleHandler != null) {
-            toggleHandler.onToggle(this, true);
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, true);
         }
     }
 
@@ -356,7 +356,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
             }
         }
         if (fireEvent && selectHandler != null) {
-            selectHandler.onSelect(this, selected);
+            selectHandler.onSelect(new Event(""), this, selected);
         }
     }
 }

@@ -17,15 +17,19 @@ package org.patternfly.core;
 
 public class Tuple<K, V> {
 
+    // ------------------------------------------------------ factory
+
     public static <K, V> Tuple<K, V> tuple(K key, V value) {
         return new Tuple<>(key, value);
     }
 
-    public final K _1;
-    public final V _2;
+    // ------------------------------------------------------ instance
 
-    Tuple(K _1, V _2) {
-        this._1 = _1;
-        this._2 = _2;
+    public final K key;
+    public final V value;
+
+    Tuple(K key, V value) {
+        this.key = key;
+        this.value = value;
     }
 }

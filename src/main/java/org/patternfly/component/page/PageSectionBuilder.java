@@ -15,16 +15,20 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Sticky;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Padding;
+import org.patternfly.style.Sticky;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.layout.Classes.limitWidth;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.overflowScroll;
-import static org.patternfly.layout.Classes.shadowBottom;
-import static org.patternfly.layout.Classes.shadowTop;
+import static org.patternfly.style.Classes.alignCenter;
+import static org.patternfly.style.Classes.limitWidth;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.overflowScroll;
+import static org.patternfly.style.Classes.shadowBottom;
+import static org.patternfly.style.Classes.shadowTop;
+import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
@@ -46,6 +50,15 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
         return add(body);
     }
 
+    /**
+     * Adds a {@link PageMainBody} to this component. Use this method to wrap the content of this component inside a
+     * {@link PageMainBody} if you've applied the {@link #limitWidth()} modifier.
+     */
+    public P add(PageMainBody body) {
+        element().appendChild(body.element());
+        return that();
+    }
+
     // ------------------------------------------------------ builder
 
     /**
@@ -57,17 +70,21 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
     }
 
     /**
-     * Modifies this component to be sticky to the top of its container.
+     * Modifies this component to be sticky at the given breakpoints.
      */
-    public P sticky(Sticky sticky) {
-        return css(sticky.modifier);
+    public P sticky(Tuples<Breakpoint, Sticky> sticky) {
+        return css(typedModifier(sticky));
+    }
+
+    public P padding(Tuples<Breakpoint, Padding> padding) {
+        return css(typedModifier(padding));
     }
 
     /**
-     * Modifies this component to be sticky to the top of its container at the given breakpoint.
+     * Flag indicating if the section content is center aligned. {@link #limitWidth()} must be set for this to work.
      */
-    public P sticky(Sticky sticky, Breakpoint breakpoint) {
-        return css(sticky.onHeight(breakpoint));
+    public P centerAligned() {
+        return css(modifier(alignCenter));
     }
 
     /**

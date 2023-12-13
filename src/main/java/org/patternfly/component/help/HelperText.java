@@ -26,8 +26,8 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.help.HelperTextItem.helperTextItem;
 import static org.patternfly.core.Aria.live;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.helperText;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.helperText;
 
 /**
  * Helper text is an on-screen field guideline that helps provide context regarding field inputs.

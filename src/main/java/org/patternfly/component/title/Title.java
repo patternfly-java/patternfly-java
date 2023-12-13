@@ -18,13 +18,13 @@ package org.patternfly.component.title;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.WithText;
-import org.patternfly.layout.Size;
+import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.title;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.title;
 
 /**
  * A title component applies top and bottom margins, font-weight, font-size, and line-height to titles. The most common usage
@@ -49,7 +49,7 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
     Title(int level, Size size, String text) {
         super(ComponentType.Title, h(level, text).css(component(title)).element());
         if (size != null) {
-            css(size.modifier);
+            css(size.modifier());
         }
     }
 

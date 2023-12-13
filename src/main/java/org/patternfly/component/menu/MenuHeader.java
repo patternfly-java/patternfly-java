@@ -18,9 +18,9 @@ package org.patternfly.component.menu;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.header;
-import static org.patternfly.layout.Classes.menu;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.header;
+import static org.patternfly.style.Classes.menu;
 
 public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> {
 

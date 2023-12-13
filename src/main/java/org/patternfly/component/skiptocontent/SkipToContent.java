@@ -19,13 +19,13 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.WithText;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.component;
 
 /**
  * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.

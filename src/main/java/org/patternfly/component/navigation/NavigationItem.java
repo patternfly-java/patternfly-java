@@ -26,12 +26,12 @@ import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.core.Dataset.navigationItem;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.current;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.link;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.nav;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.current;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.link;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.nav;
 
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         WithText<HTMLLIElement, NavigationItem> {

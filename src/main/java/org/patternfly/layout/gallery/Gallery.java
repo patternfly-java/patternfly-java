@@ -17,19 +17,19 @@ package org.patternfly.layout.gallery;
 
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Breakpoint.default_;
-import static org.patternfly.layout.Classes.gallery;
-import static org.patternfly.layout.Classes.gutter;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Variable.componentVar;
-import static org.patternfly.layout.Variables.GridTemplateColumns;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Classes.gallery;
+import static org.patternfly.style.Classes.gutter;
+import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.GridTemplateColumns;
 
 public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
 
@@ -94,7 +94,7 @@ public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
         // --pf-v5-l-gallery--GridTemplateColumns--min-on-xl: 300px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-md: 200px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-xl: 1fr;
-        String minMaxBreak = tuple._1 == default_ ? minMax : minMax + "-on-" + tuple._1.value;
-        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple._2);
+        String minMaxBreak = tuple.key == default_ ? minMax : minMax + "-on-" + tuple.key.value;
+        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple.value);
     }
 }

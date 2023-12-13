@@ -23,12 +23,13 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Modifiers.Plain;
 import org.patternfly.core.SelectionMode;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Plain;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -41,17 +42,17 @@ import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
 import static org.patternfly.core.SelectionMode.click;
 import static org.patternfly.core.SelectionMode.single;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.favorited;
-import static org.patternfly.layout.Classes.flyout;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.menu;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.scrollable;
-import static org.patternfly.layout.Classes.select;
-import static org.patternfly.layout.Variable.componentVar;
-import static org.patternfly.layout.Variables.MaxHeight;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.favorited;
+import static org.patternfly.style.Classes.flyout;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.menu;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.scrollable;
+import static org.patternfly.style.Classes.select;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.MaxHeight;
 
 /**
  * A menu is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user
@@ -83,10 +84,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     final MenuType menuType;
     final SelectionMode selectionMode;
     boolean favorites;
-    private SelectHandler<MenuItem> selectHandler;
-    private MultiSelectHandler<MenuItem> multiSelectHandler;
-    private MenuActionHandler actionHandler;
+    MenuActionHandler actionHandler;
     private MenuContent content;
+    private SelectHandler<MenuItem> selectHandler;
+    private MultiSelectHandler<Menu, MenuItem> multiSelectHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(ComponentType.Menu, div().css(component(menu)).element());
@@ -179,7 +180,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
         return this;
     }
 
-    public Menu onMultiSelect(MultiSelectHandler<MenuItem> selectHandler) {
+    public Menu onMultiSelect(MultiSelectHandler<Menu, MenuItem> selectHandler) {
         this.multiSelectHandler = selectHandler;
         return this;
     }
@@ -223,14 +224,14 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             }
             if (fireEvent) {
                 if (selectHandler != null) {
-                    selectHandler.onSelect(item, selected);
+                    selectHandler.onSelect(new Event(""), item, selected);
                 }
                 if (multiSelectHandler != null) {
                     List<MenuItem> selection = items()
                             .stream()
                             .filter(MenuItem::isSelected)
                             .collect(toList());
-                    multiSelectHandler.onSelect(selection);
+                    multiSelectHandler.onSelect(new Event(""), this, selection);
                 }
             }
         }
@@ -284,12 +285,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             }
         }
         return items;
-    }
-
-    void handleItemAction(MenuItemAction itemAction) {
-        if (actionHandler != null && itemAction != null) {
-            actionHandler.onAction(itemAction);
-        }
     }
 
     // called by regular menu items

@@ -15,10 +15,10 @@
  */
 package org.patternfly.component.form;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.resizeBoth;
-import static org.patternfly.layout.Classes.resizeHorizontal;
-import static org.patternfly.layout.Classes.resizeVertical;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.resizeBoth;
+import static org.patternfly.style.Classes.resizeHorizontal;
+import static org.patternfly.style.Classes.resizeVertical;
 
 public enum TextAreaResize {
 

@@ -24,21 +24,21 @@ import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLDivElement;
 
+import static org.jboss.elemento.DomGlobal.navigator;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
-import static org.patternfly.dom.DomGlobal.navigator;
-import static org.patternfly.layout.Classes.actions;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.PredefinedIcon.copy;
+import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.PredefinedIcon.copy;
 
 public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeBlockAction> implements
         WithIcon<HTMLDivElement, CodeBlockAction> {
@@ -93,6 +93,12 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
     @Override
     public CodeBlockAction icon(InlineIcon icon) {
         button.icon(icon);
+        return this;
+    }
+
+    @Override
+    public CodeBlockAction removeIcon() {
+        button.removeIcon();
         return this;
     }
 

@@ -13,11 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout;
+package org.patternfly.style;
 
-public enum VariableScope {
+public enum Color {
 
-    global,
+    grey(null),
 
-    component
+    blue("blue"),
+
+    green("green"),
+
+    orange("orange"),
+
+    red("red"),
+
+    purple("purple"),
+
+    cyan("cyan"),
+
+    gold("gold");
+
+    public final String modifier;
+
+    Color(String color) {
+        this.modifier = color == null ? null : Classes.modifier(color);
+    }
 }

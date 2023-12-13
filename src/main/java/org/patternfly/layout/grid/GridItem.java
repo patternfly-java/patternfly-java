@@ -16,16 +16,16 @@
 package org.patternfly.layout.grid;
 
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.Fill;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.grid;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.grid;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.modifier;
 
 public class GridItem extends BaseLayout<HTMLDivElement, GridItem> implements Fill<HTMLDivElement, GridItem> {
 

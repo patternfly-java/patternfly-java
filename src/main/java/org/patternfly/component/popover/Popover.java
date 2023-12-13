@@ -30,10 +30,10 @@ import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Closeable;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Modifiers.NoPadding;
 import org.patternfly.core.Severity;
 import org.patternfly.core.WithIcon;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
 import org.patternfly.thirdparty.popper.Popper;
@@ -66,17 +66,17 @@ import static org.patternfly.core.Aria.modal;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.layout.Classes.arrow;
-import static org.patternfly.layout.Classes.close;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.content;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.popover;
-import static org.patternfly.layout.Classes.screenReader;
-import static org.patternfly.layout.Classes.title;
-import static org.patternfly.layout.Classes.widthAuto;
-import static org.patternfly.layout.PredefinedIcon.times;
+import static org.patternfly.style.Classes.arrow;
+import static org.patternfly.style.Classes.close;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.popover;
+import static org.patternfly.style.Classes.screenReader;
+import static org.patternfly.style.Classes.title;
+import static org.patternfly.style.Classes.widthAuto;
+import static org.patternfly.style.PredefinedIcon.times;
 import static org.patternfly.thirdparty.popper.Placement.auto;
 import static org.patternfly.thirdparty.popper.Placement.top;
 
@@ -294,7 +294,14 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     @Override
     public Popover icon(InlineIcon icon) {
+        removeIcon();
         failSafeIconContainer().appendChild(icon.element());
+        return this;
+    }
+
+    @Override
+    public Popover removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
         return this;
     }
 

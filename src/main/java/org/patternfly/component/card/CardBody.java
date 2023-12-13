@@ -15,14 +15,14 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.core.Modifiers.NoFill;
+import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.body;
-import static org.patternfly.layout.Classes.card;
-import static org.patternfly.layout.Classes.component;
+import static org.patternfly.style.Classes.body;
+import static org.patternfly.style.Classes.card;
+import static org.patternfly.style.Classes.component;
 
 public class CardBody extends CardSubComponent<HTMLDivElement, CardBody> implements
         NoFill<HTMLDivElement, CardBody> {

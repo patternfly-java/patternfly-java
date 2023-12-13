@@ -15,14 +15,14 @@
  */
 package org.patternfly.component.expandable;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.expandableSection;
-import static org.patternfly.layout.Classes.toggle;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.expandableSection;
+import static org.patternfly.style.Classes.toggle;
 
 public class ExpandableSectionToggleText extends ExpandableSectionSubComponent<HTMLElement, ExpandableSectionToggleText> {
 

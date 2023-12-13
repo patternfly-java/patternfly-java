@@ -13,21 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.core;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.handler.Callback;
 
-import static org.patternfly.layout.Classes.modifier;
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 
-public enum IconPosition {
+public final class Scheduler {
 
-    start(modifier(Classes.start)),
-
-    end(modifier(Classes.end));
-
-    final String modifier;
-
-    IconPosition(String modifier) {
-        this.modifier = modifier;
+    public static Callback debounce(int timeout, Callback callback) {
+        double[] handle = new double[1];
+        return () -> {
+            clearTimeout(handle[0]);
+            handle[0] = setTimeout((__) -> callback.call(), timeout);
+        };
     }
 }

@@ -13,47 +13,47 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.sidebar;
+package org.patternfly.component.page;
 
 import org.patternfly.component.navigation.Navigation;
-import org.patternfly.core.Modifiers.Fill;
-import org.patternfly.core.Modifiers.NoFill;
+import org.patternfly.style.Modifiers.Fill;
+import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.body;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.insetNone;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.page;
-import static org.patternfly.layout.Classes.pageInsets;
-import static org.patternfly.layout.Classes.sidebar;
+import static org.patternfly.style.Classes.body;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.insetNone;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.page;
+import static org.patternfly.style.Classes.pageInsets;
+import static org.patternfly.style.Classes.sidebar;
 
 /**
- * Container within the {@link Sidebar} to hold content. Note: By default, the last/only body will grow to fill the available
- * vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
+ * Container within the {@link PageSidebar} to hold content. Note: By default, the last/only body will grow to fill the
+ * available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
  *
  * @see <a href=
  *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
-public class SidebarBody extends SidebarSubComponent<HTMLDivElement, SidebarBody>
-        implements Fill<HTMLDivElement, SidebarBody>, NoFill<HTMLDivElement, SidebarBody> {
+public class PageSidebarBody extends PageSubComponent<HTMLDivElement, PageSidebarBody>
+        implements Fill<HTMLDivElement, PageSidebarBody>, NoFill<HTMLDivElement, PageSidebarBody> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static SidebarBody sidebarBody() {
-        return new SidebarBody();
+    public static PageSidebarBody sidebarBody() {
+        return new PageSidebarBody();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "sb";
+    static final String SUB_COMPONENT_NAME = "psbb";
 
-    SidebarBody() {
+    PageSidebarBody() {
         super(SUB_COMPONENT_NAME, div().css(component(page, sidebar, body)).element());
     }
 
@@ -62,7 +62,7 @@ public class SidebarBody extends SidebarSubComponent<HTMLDivElement, SidebarBody
     /**
      * Adds a {@link Navigation} to this component.
      */
-    public SidebarBody addNavigation(Navigation navigation) {
+    public PageSidebarBody addNavigation(Navigation navigation) {
         return add(navigation);
     }
 
@@ -71,19 +71,19 @@ public class SidebarBody extends SidebarSubComponent<HTMLDivElement, SidebarBody
     /**
      * Modifies the padding/inset to visually match padding of page elements.
      */
-    public SidebarBody inset() {
+    public PageSidebarBody inset() {
         return css(modifier(pageInsets));
     }
 
     /**
      * Removes a sidebar body left/right inset.
      */
-    public SidebarBody noInset() {
+    public PageSidebarBody noInset() {
         return css(modifier(insetNone));
     }
 
     @Override
-    public SidebarBody that() {
+    public PageSidebarBody that() {
         return this;
     }
 }

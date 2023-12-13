@@ -27,7 +27,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.closest;
 import static org.jboss.elemento.Elements.onDetach;
-import static org.patternfly.component.UUID.uuid;
+import static org.jboss.elemento.Id.uuid;
 
 final class ComponentStore {
 

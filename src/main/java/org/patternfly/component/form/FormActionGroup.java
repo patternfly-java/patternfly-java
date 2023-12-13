@@ -16,15 +16,15 @@
 package org.patternfly.component.form;
 
 import org.patternfly.component.button.Button;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.action;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
-import static org.patternfly.layout.Classes.modifier;
+import static org.patternfly.style.Classes.action;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.modifier;
 
 public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGroup> {
 

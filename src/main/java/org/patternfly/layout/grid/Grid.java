@@ -18,19 +18,19 @@ package org.patternfly.layout.grid;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
-import org.patternfly.layout.Breakpoint;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.grid;
-import static org.patternfly.layout.Classes.gutter;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.layout;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Variable.componentVar;
-import static org.patternfly.layout.Variables.Order;
+import static org.patternfly.style.Classes.grid;
+import static org.patternfly.style.Classes.gutter;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Order;
 
 public class Grid extends BaseLayout<HTMLDivElement, Grid> {
 
@@ -106,16 +106,16 @@ public class Grid extends BaseLayout<HTMLDivElement, Grid> {
     // ------------------------------------------------------ internal
 
     private void internalCols(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple._1 != Breakpoint.default_) {
-            if (verifyRange("cols", tuple._2)) {
-                css(modifier("all-" + tuple._2 + "-col-on-" + tuple._1.value));
+        if (tuple.key != Breakpoint.default_) {
+            if (verifyRange("cols", tuple.value)) {
+                css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
             }
         }
     }
 
     private void internalOrder(Tuple<Breakpoint, String> tuple) {
-        String orderPart = tuple._1 == Breakpoint.default_ ? Order : Order + "-on-" + tuple._1.value;
-        componentVar(layout(grid), item, orderPart).applyTo(element(), tuple._2);
+        String orderPart = tuple.key == Breakpoint.default_ ? Order : Order + "-on-" + tuple.key.value;
+        componentVar(layout(grid), item, orderPart).applyTo(element(), tuple.value);
     }
 
     private boolean verifyRange(String property, int value) {

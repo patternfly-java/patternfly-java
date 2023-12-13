@@ -15,11 +15,11 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.splitButton;
-import static org.patternfly.layout.Classes.text;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.splitButton;
+import static org.patternfly.style.Classes.text;
 
 public enum MenuToggleType {
 

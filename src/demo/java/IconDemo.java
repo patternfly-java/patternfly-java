@@ -3,10 +3,10 @@ import java.util.Random;
 import org.patternfly.component.icon.Icon;
 
 import static org.patternfly.component.icon.Icon.icon;
-import static org.patternfly.layout.PredefinedIcon.check;
-import static org.patternfly.layout.PredefinedIcon.exclamationTriangle;
-import static org.patternfly.layout.PredefinedIcon.filter;
-import static org.patternfly.layout.Size.lg;
+import static org.patternfly.style.PredefinedIcon.check;
+import static org.patternfly.style.PredefinedIcon.exclamationTriangle;
+import static org.patternfly.style.PredefinedIcon.filter;
+import static org.patternfly.style.Size.lg;
 import static org.patternfly.core.Status.warning;
 
 public class IconDemo {

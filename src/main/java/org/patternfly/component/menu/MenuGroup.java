@@ -15,15 +15,15 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.group;
-import static org.patternfly.layout.Classes.title;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.title;
 
 public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
 

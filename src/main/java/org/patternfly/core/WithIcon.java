@@ -18,7 +18,7 @@ package org.patternfly.core;
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.component.icon.InlineIcon;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.Element;
 
@@ -36,4 +36,6 @@ public interface WithIcon<E extends Element, B extends TypedBuilder<E, B>> exten
     }
 
     B icon(InlineIcon icon);
+
+    B removeIcon();
 }

@@ -20,8 +20,8 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.icon.InlineIcon;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
-import org.patternfly.layout.Classes;
-import org.patternfly.layout.PredefinedIcon;
+import org.patternfly.style.Classes;
+import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -32,13 +32,13 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.core.Attributes.tabindex;
-import static org.patternfly.layout.Classes.action;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.favorite;
-import static org.patternfly.layout.Classes.icon;
-import static org.patternfly.layout.Classes.item;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.PredefinedIcon.star;
+import static org.patternfly.style.Classes.action;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.favorite;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.PredefinedIcon.star;
 
 public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> {
 
@@ -68,8 +68,8 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
 
     public final String id;
     private final HTMLElement iconContainer;
-    public MenuItem menuItem;
     ComponentHandler<MenuItemAction> handler;
+    public MenuItem menuItem;
 
     MenuItemAction(String id, InlineIcon icon, boolean favorite) {
         super(SUB_COMPONENT_NAME, button()
@@ -83,7 +83,9 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
         if (!favorite) {
             on(click, e -> {
                 Menu menu = lookupComponent();
-                menu.handleItemAction(this);
+                if (menu.actionHandler != null) {
+                    menu.actionHandler.onAction(menu, menuItem, this);
+                }
             });
         }
     }

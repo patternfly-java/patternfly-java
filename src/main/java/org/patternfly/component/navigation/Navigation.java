@@ -15,9 +15,11 @@
  */
 package org.patternfly.component.navigation;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
@@ -28,11 +30,14 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.layout.Classes;
+import org.patternfly.style.Brightness;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
+import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.nav;
@@ -49,18 +54,20 @@ import static org.patternfly.component.navigation.NavigationType.Vertical.groupe
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
-import static org.patternfly.layout.Classes.button;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.current;
-import static org.patternfly.layout.Classes.horizontal;
-import static org.patternfly.layout.Classes.horizontalSubnav;
-import static org.patternfly.layout.Classes.link;
-import static org.patternfly.layout.Classes.list;
-import static org.patternfly.layout.Classes.modifier;
-import static org.patternfly.layout.Classes.nav;
-import static org.patternfly.layout.Classes.scroll;
-import static org.patternfly.layout.PredefinedIcon.angleLeft;
-import static org.patternfly.layout.PredefinedIcon.angleRight;
+import static org.patternfly.style.Brightness.dark;
+import static org.patternfly.style.Brightness.light;
+import static org.patternfly.style.Classes.button;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.current;
+import static org.patternfly.style.Classes.horizontal;
+import static org.patternfly.style.Classes.horizontalSubnav;
+import static org.patternfly.style.Classes.link;
+import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.nav;
+import static org.patternfly.style.Classes.scroll;
+import static org.patternfly.style.PredefinedIcon.angleLeft;
+import static org.patternfly.style.PredefinedIcon.angleRight;
 
 /**
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
@@ -211,6 +218,16 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ builder
 
+    public Navigation theme(Brightness theme) {
+        if (!EnumSet.of(dark, light).contains(theme)) {
+            Logger.unsupported(componentType(), element(),
+                    "Theme " + theme + " not supported. Valid values: " +
+                            Stream.of(dark, light).map(Brightness::name).collect(joining(" ")));
+            return this;
+        }
+        return css(theme.modifier());
+    }
+
     @Override
     public Navigation that() {
         return this;
@@ -247,7 +264,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             unselectAllItems();
             item.select();
             if (fireEvent && onSelect != null) {
-                onSelect.onSelect(item, true);
+                onSelect.onSelect(new Event(""), item, true);
             }
 
             if (type == expandable) {
@@ -286,7 +303,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             if (group != null) {
                 group.expand();
                 if (fireEvent && onToggle != null) {
-                    onToggle.onToggle(group, true);
+                    onToggle.onToggle(new Event(""), group, true);
                 }
             }
             // select parent group (if any)

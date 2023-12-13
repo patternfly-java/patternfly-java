@@ -18,9 +18,9 @@ package org.patternfly.component.popover;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.Classes.component;
-import static org.patternfly.layout.Classes.footer;
-import static org.patternfly.layout.Classes.popover;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.footer;
+import static org.patternfly.style.Classes.popover;
 
 public class PopoverFooter extends PopoverSubComponent<HTMLDivElement, PopoverFooter> {
 
