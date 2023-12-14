@@ -15,7 +15,7 @@
  */
 package org.patternfly.thirdparty.popper;
 
-import org.patternfly.handler.Callback;
+import org.jboss.elemento.Callback;
 
 import elemental2.promise.Promise;
 

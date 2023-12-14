@@ -22,15 +22,18 @@ import org.patternfly.core.Expandable;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Brightness;
+import org.patternfly.style.Rect;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.aside;
+import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.style.Brightness.dark;
 import static org.patternfly.style.Brightness.light;
+import static org.patternfly.style.Classes.collapsed;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.modifier;
@@ -103,7 +106,8 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     @Override
     public void collapse(boolean fireEvent) {
-        Expandable.collapse(element(), null, element());
+        element().classList.remove(modifier(expanded));
+        element().classList.add(modifier(collapsed));
         aria(hidden, true);
         if (fireEvent && toggleHandler != null) {
             toggleHandler.onToggle(new Event(""), this, false);
@@ -112,7 +116,8 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     @Override
     public void expand(boolean fireEvent) {
-        Expandable.expand(element(), null, element());
+        element().classList.remove(modifier(collapsed));
+        element().classList.add(modifier(expanded));
         aria(hidden, false);
         if (fireEvent && toggleHandler != null) {
             toggleHandler.onToggle(new Event(""), this, true);
@@ -121,7 +126,11 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     // ------------------------------------------------------ internal
 
-    void resize(int pageWidth, int pageHeight) {
-
+    void onPageResize(Rect currentPageRect, Rect previousPageRect) {
+        if (page().underXl()) {
+            collapse();
+        } else {
+            expand();
+        }
     }
 }

@@ -18,8 +18,8 @@ package org.patternfly.thirdparty.popper;
 import java.util.List;
 
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.Callback;
 import org.patternfly.component.ComponentType;
-import org.patternfly.handler.Callback;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties.OpacityUnionType;

@@ -13,10 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.masthead;
+package org.patternfly.component.page;
 
 import org.patternfly.component.button.Button;
-import org.patternfly.component.page.PageSidebar;
 import org.patternfly.core.Aria;
 
 import elemental2.dom.HTMLDivElement;

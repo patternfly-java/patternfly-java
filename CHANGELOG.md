@@ -13,7 +13,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Form select component (#51)
 - Text area component (#53)
 - Add support for responsive layout in various components
-- Add properties to page (sub)component to align with https://www.patternfly.org/components/page#props
 - Add the following interfaces to unify icon and text handling across components:
   - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>` 
   - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 

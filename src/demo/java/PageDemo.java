@@ -1,6 +1,6 @@
 import static org.patternfly.component.brand.Brand.brand;
-import static org.patternfly.component.masthead.Masthead.masthead;
-import static org.patternfly.component.masthead.MastheadToggle.mastheadToggle;
+import static org.patternfly.component.page.Masthead.masthead;
+import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.component.page.PageMain.pageMain;
 import static org.patternfly.component.page.PageMainBody.pageMainBody;

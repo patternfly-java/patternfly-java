@@ -51,7 +51,8 @@ class BreakpointModifierTest {
 
     @Test
     void breakpoint() {
-        assertEquals("pf-m-foo", modifier(tuples(md, "foo"), _2xl));
+        assertEquals("pf-m-foo", modifier(tuples(md, "foo"), _2xl)); // md < _2xl
+        assertEquals("", modifier(tuples(md, "foo"), sm)); // md > sm
     }
 
     @Test

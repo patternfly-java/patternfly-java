@@ -22,6 +22,9 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.main;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.EventType.mousedown;
+import static org.jboss.elemento.EventType.touchstart;
+import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.style.Classes.component;
@@ -57,6 +60,8 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
                 .attr(role, main)
                 .attr(tabindex, -1)
                 .element());
+        on(mousedown, e -> onMainClick());
+        on(touchstart, e -> onMainClick());
     }
 
     // ------------------------------------------------------ add
@@ -124,6 +129,14 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
                 // noinspection rawtypes
                 add(((IsElement) element).element());
             }
+        }
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void onMainClick() {
+        if (page().underXl() && page().sidebar().expanded()) {
+            page().sidebar().collapse();
         }
     }
 }

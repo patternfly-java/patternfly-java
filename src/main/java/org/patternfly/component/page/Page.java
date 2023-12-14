@@ -17,16 +17,21 @@ package org.patternfly.component.page;
 
 import java.util.function.Function;
 
+import org.gwtproject.event.shared.HandlerRegistration;
+import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Callback;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.ResizeObserverCleanup;
+import org.jboss.elemento.Scheduler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.masthead.Masthead;
 import org.patternfly.component.skiptocontent.SkipToContent;
-import org.patternfly.handler.Callback;
+import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ResizeHandler;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Rect;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
@@ -37,7 +42,8 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.resizeObserver;
-import static org.patternfly.core.Scheduler.debounce;
+import static org.jboss.elemento.EventType.bind;
+import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.page;
@@ -65,6 +71,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ instance
 
+    private final ObservableValue<Rect> rect;
     private SkipToContent skipToContent;
     private Masthead masthead;
     private PageSidebar sidebar;
@@ -73,28 +80,41 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private Function<Integer, Breakpoint> breakpointFn;
     private Function<Integer, Breakpoint> verticalBreakpointFn;
     private ResizeHandler<Page> resizeHandler;
+    private HandlerRegistration handlerRegistrations;
 
     protected Page() {
         super(ComponentType.Page, div().css(component(page)).element());
+        this.rect = ov(new Rect()).subscribe(this::onChangedRect);
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        Callback resizeCallback = debounce(250, this::resize);
+        HandlerRegistration md = bind(element(), EventType.mousedown, e -> {
+
+        });
+        HandlerRegistration ts = bind(element(), EventType.touchstart, e -> {
+
+        });
+        handlerRegistrations = HandlerRegistrations.compose(md, ts);
+
+        Callback resizeCallback = Scheduler.debounce(250, this::onResize);
         cleanup = resizeObserver(element(), () -> {
             if (resizeHandler != null) {
                 resizeHandler.onResize(this);
             }
             resizeCallback.call();
         });
-        resize();
+        onResize();
     }
 
     @Override
     public void detach(MutationRecord mutationRecord) {
         if (cleanup != null) {
             cleanup.cleanup();
+        }
+        if (handlerRegistrations != null) {
+            handlerRegistrations.removeHandler();
         }
     }
 
@@ -219,25 +239,44 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ internal
 
-    private void resize() {
+    boolean underXl() {
+        return element().clientWidth < Breakpoint.xl.widthValue;
+    }
+
+    private void onResize() {
         int width = element().clientWidth;
         int height = element().clientHeight;
-        if (width != 0 && height != 0) {
-            css(modifier(Classes.resizeObserver));
-        }
-        if (width != 0) {
-            Breakpoint breakpoint = breakpointFn != null ? breakpointFn.apply(width) : Breakpoint.breakpoint(width);
-            css(modifier("breakpoint-" + breakpoint.value));
-        }
-        if (height != 0) {
-            Breakpoint breakpoint = verticalBreakpointFn != null ? verticalBreakpointFn.apply(height)
-                    : Breakpoint.verticalBreakpoint(height);
-            css(modifier("height-breakpoint-" + breakpoint.value));
+        rect.set(new Rect(width, height));
+    }
+
+    private void onChangedRect(Rect current, Rect previous) {
+        // if it's already present, it won't be added again
+        css(modifier(Classes.resizeObserver));
+
+        Breakpoint previousBreakpoint = breakpointFn != null ? breakpointFn.apply(previous.width)
+                : Breakpoint.breakpoint(previous.width);
+        Breakpoint currentBreakpoint = breakpointFn != null ? breakpointFn.apply(current.width)
+                : Breakpoint.breakpoint(current.width);
+        if (previousBreakpoint != currentBreakpoint) {
+            classList().remove(modifier("breakpoint-" + previousBreakpoint.value));
+            classList().add(modifier("breakpoint-" + currentBreakpoint.value));
         }
 
-        // resize sub components
-        if (sidebar != null && width != 0 && height != 0) {
-            sidebar.resize(width, height);
+        Breakpoint previousVerticalBreakpoint = breakpointFn != null ? verticalBreakpointFn.apply(previous.height)
+                : Breakpoint.verticalBreakpoint(previous.height);
+        Breakpoint currentVerticalBreakpoint = breakpointFn != null ? verticalBreakpointFn.apply(current.height)
+                : Breakpoint.verticalBreakpoint(current.height);
+        if (previousVerticalBreakpoint != currentVerticalBreakpoint) {
+            classList().remove(modifier("height-breakpoint-" + previousVerticalBreakpoint.value));
+            classList().add(modifier("height-breakpoint-" + currentVerticalBreakpoint.value));
+        }
+
+        // resize (sub) components
+        if (masthead != null) {
+            masthead.onPageResize(current, previous);
+        }
+        if (sidebar != null) {
+            sidebar.onPageResize(current, previous);
         }
     }
 }

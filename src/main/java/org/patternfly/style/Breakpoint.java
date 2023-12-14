@@ -41,16 +41,16 @@ public enum Breakpoint {
             return _2xl;
         }
         if (width >= xl.widthValue) {
-            return _2xl;
+            return xl;
         }
         if (width >= lg.widthValue) {
-            return _2xl;
+            return lg;
         }
         if (width >= md.widthValue) {
-            return _2xl;
+            return md;
         }
         if (width >= sm.widthValue) {
-            return _2xl;
+            return sm;
         }
         return default_;
     }
@@ -60,16 +60,16 @@ public enum Breakpoint {
             return _2xl;
         }
         if (height >= xl.heightValue) {
-            return _2xl;
+            return xl;
         }
         if (height >= lg.heightValue) {
-            return _2xl;
+            return lg;
         }
         if (height >= md.heightValue) {
-            return _2xl;
+            return md;
         }
         if (height >= sm.heightValue) {
-            return _2xl;
+            return sm;
         }
         return default_;
     }

@@ -45,7 +45,7 @@ public class PageSidebarBody extends PageSubComponent<HTMLDivElement, PageSideba
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageSidebarBody sidebarBody() {
+    public static PageSidebarBody pageSidebarBody() {
         return new PageSidebarBody();
     }
 

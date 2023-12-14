@@ -59,7 +59,10 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
         if (picture) {
             add(img(src).apply(i -> i.alt = alt));
         } else {
-            img(element).apply(i -> i.alt = alt);
+            img(element).apply(i -> {
+                i.src = src;
+                i.alt = alt;
+            });
         }
     }
 
