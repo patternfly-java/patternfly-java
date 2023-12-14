@@ -17,11 +17,8 @@ package org.patternfly.component.page;
 
 import java.util.function.Function;
 
-import org.gwtproject.event.shared.HandlerRegistration;
-import org.gwtproject.event.shared.HandlerRegistrations;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Callback;
-import org.jboss.elemento.EventType;
 import org.jboss.elemento.ResizeObserverCleanup;
 import org.jboss.elemento.Scheduler;
 import org.patternfly.component.BaseComponent;
@@ -42,7 +39,6 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.resizeObserver;
-import static org.jboss.elemento.EventType.bind;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
@@ -80,7 +76,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private Function<Integer, Breakpoint> breakpointFn;
     private Function<Integer, Breakpoint> verticalBreakpointFn;
     private ResizeHandler<Page> resizeHandler;
-    private HandlerRegistration handlerRegistrations;
 
     protected Page() {
         super(ComponentType.Page, div().css(component(page)).element());
@@ -90,14 +85,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        HandlerRegistration md = bind(element(), EventType.mousedown, e -> {
-
-        });
-        HandlerRegistration ts = bind(element(), EventType.touchstart, e -> {
-
-        });
-        handlerRegistrations = HandlerRegistrations.compose(md, ts);
-
         Callback resizeCallback = Scheduler.debounce(250, this::onResize);
         cleanup = resizeObserver(element(), () -> {
             if (resizeHandler != null) {
@@ -112,9 +99,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public void detach(MutationRecord mutationRecord) {
         if (cleanup != null) {
             cleanup.cleanup();
-        }
-        if (handlerRegistrations != null) {
-            handlerRegistrations.removeHandler();
         }
     }
 

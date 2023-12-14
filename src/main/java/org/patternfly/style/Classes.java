@@ -175,6 +175,7 @@ public interface Classes {
     String pageInsets = "page-insets";
     String pagination = "pagination";
     String path = "path";
+    String picture = "picture";
     String plain = "plain";
     String placeholder = "placeholder";
     String popover = "popover";

@@ -15,18 +15,23 @@
  */
 package org.patternfly.component.brand;
 
+import org.jboss.elemento.HTMLElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Logger;
 import org.patternfly.core.Tuples;
 import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;
 import static org.jboss.elemento.Elements.picture;
 import static org.jboss.elemento.Elements.source;
 import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 import static org.patternfly.style.Variables.Width;
@@ -41,11 +46,11 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
     // ------------------------------------------------------ factory
 
     public static Brand brand(String src, String alt) {
-        return brand(src, alt, false);
+        return new Brand(img().element(), src, alt);
     }
 
-    public static Brand brand(String src, String alt, boolean usePicture) {
-        return usePicture ? new Brand(picture().element(), src, alt) : new Brand(img().element(), src, alt);
+    public static Brand brand() {
+        return new Brand(picture().element(), null, null);
     }
 
     // ------------------------------------------------------ instance
@@ -54,15 +59,15 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
 
     <E extends HTMLElement> Brand(E element, String src, String alt) {
         super(ComponentType.Brand, element);
-        picture = element.tagName.equalsIgnoreCase("picture");
         css(component(brand));
+        picture = src == null;
         if (picture) {
-            add(img(src).apply(i -> i.alt = alt));
+            css(modifier(Classes.picture));
         } else {
             img(element).apply(i -> {
                 i.src = src;
                 i.alt = alt;
-            });
+            }).element();
         }
     }
 
@@ -80,8 +85,26 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
                     s.media = media;
                 }
             }));
+        } else {
+            Logger.unsupported(componentType(), element(), "Adding sources is not supported for image based brands.\n" +
+                    "Please create the brand w/o src and alt to add sources.");
         }
-        return that();
+        return this;
+    }
+
+    public Brand addImg(HTMLElementBuilder<HTMLImageElement> img) {
+        return add(img);
+    }
+
+    public Brand add(HTMLElementBuilder<HTMLImageElement> img) {
+        if (picture) {
+            add(img.element());
+        } else {
+            Logger.unsupported(componentType(), element(),
+                    "Adding a fallback image is not supported for image based brands.\n" +
+                            "Please create the brand w/o src and alt to add a fallback image.");
+        }
+        return this;
     }
 
     // ------------------------------------------------------ builder
