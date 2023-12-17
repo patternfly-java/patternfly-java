@@ -30,6 +30,7 @@ public interface Classes {
 
     // ------------------------------------------------------ constants (a-z)
 
+    // TODO Cleanup and remove unused classes
     String action = "action";
     String actionGroup = "action-group";
     String actionList = "action-list";
@@ -98,6 +99,7 @@ public interface Classes {
     String externalIcon = "external-icon";
     String favorite = "favorite";
     String favorited = "favorited";
+    String fieldGroup = "field-group";
     String fieldset = "fieldset";
     String fill = "fill";
     String filterGroup = "filter-group";

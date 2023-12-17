@@ -20,12 +20,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Update `Grid` and `GridItem` to support responsive layout
 - Replace `ComponentReference<C>` with `ComponentStore`
+- Rename `Sidebar` to `PageSidebar` and turn it into a subcomponent of `Page`
+- Move `Masthead` component to package `org.patternfly.component.page`
 - Move style related classes to its own package `org.patternfly.style`
 
 ### Upgrades
 
-- Bump Elemento to 1.2.10
+- Bump Elemento to 1.2.11
 
 ## [0.1.1] - 2023-11-22
 

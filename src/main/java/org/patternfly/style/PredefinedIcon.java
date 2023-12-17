@@ -99,6 +99,8 @@ public enum PredefinedIcon {
 
     timesCircle(fas("times-circle")),
 
+    trash(fas("trash")),
+
     undo(fas("undo")),
 
     upload(fas("upload"));

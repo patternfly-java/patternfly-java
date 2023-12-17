@@ -305,7 +305,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         if (!expandable || expandableContent == null || header.toggleButton == null) {
             Logger.unsupported(componentType(), element(),
                     "Card '" + element().id + "' is not expandable.\n" +
-                            "Please add a call to 'Card.expandable()', before calling 'Card.collapse()'.");
+                            "Please use Card.expandable() to make this an expandable card.");
             return;
         }
         Expandable.collapse(element(), header.toggleButton.element(), expandableContent.element());
@@ -320,7 +320,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         if (!expandable || expandableContent == null || header.toggleButton == null) {
             Logger.unsupported(componentType(), element(),
                     "Card '" + element().id + "' is not expandable.\n" +
-                            "Please add a call to 'Card.expandable()', before calling 'Card.expand()'.");
+                            "Please use Card.expandable() to make this an expandable card.");
             return;
         }
         Expandable.expand(element(), header.toggleButton.element(), expandableContent.element());

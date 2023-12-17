@@ -17,11 +17,13 @@ package org.patternfly.layout.grid;
 
 import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
+import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.grid;
@@ -57,27 +59,20 @@ public class Grid extends BaseLayout<HTMLDivElement, Grid> {
     /**
      * The number of columns all grid items should span on a specific breakpoint.
      */
-    @SafeVarargs
-    public final Grid cols(Tuple<Breakpoint, Integer> first, Tuple<Breakpoint, Integer>... rest) {
-        internalCols(first);
-        if (rest != null) {
-            for (Tuple<Breakpoint, Integer> tuple : rest) {
-                internalCols(tuple);
+    public Grid cols(Tuples<Breakpoint, Integer> columns) {
+        if (columns != null) {
+            for (Tuple<Breakpoint, Integer> col : columns) {
+                internalCols(col);
             }
         }
         return this;
     }
 
     /** Modifies the flex layout element order property. */
-    @SafeVarargs
-    public final Grid order(Tuple<Breakpoint, String> first, Tuple<Breakpoint, String>... rest) {
-        // Variable examples:
-        // --pf-v5-l-grid--item--Order: -1;
-        // --pf-v5-l-grid--item--Order-on-md: 1;
-        internalOrder(first);
-        if (rest != null) {
-            for (Tuple<Breakpoint, String> tuple : rest) {
-                internalOrder(tuple);
+    public Grid order(Tuples<Breakpoint, String> order) {
+        if (order != null) {
+            for (Tuple<Breakpoint, String> o : order) {
+                internalOrder(element(), o);
             }
         }
         return this;
@@ -105,17 +100,20 @@ public class Grid extends BaseLayout<HTMLDivElement, Grid> {
 
     // ------------------------------------------------------ internal
 
+    static void internalOrder(HTMLElement element, Tuple<Breakpoint, String> tuple) {
+        // Variable examples:
+        // --pf-v5-l-grid--item--Order: -1;
+        // --pf-v5-l-grid--item--Order-on-md: 1;
+        String orderPart = tuple.key == Breakpoint.default_ ? Order : Order + "-on-" + tuple.key.value;
+        componentVar(layout(grid), item, orderPart).applyTo(element, tuple.value);
+    }
+
     private void internalCols(Tuple<Breakpoint, Integer> tuple) {
         if (tuple.key != Breakpoint.default_) {
             if (verifyRange("cols", tuple.value)) {
                 css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
             }
         }
-    }
-
-    private void internalOrder(Tuple<Breakpoint, String> tuple) {
-        String orderPart = tuple.key == Breakpoint.default_ ? Order : Order + "-on-" + tuple.key.value;
-        componentVar(layout(grid), item, orderPart).applyTo(element(), tuple.value);
     }
 
     private boolean verifyRange(String property, int value) {

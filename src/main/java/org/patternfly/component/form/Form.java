@@ -56,6 +56,14 @@ public class Form extends BaseComponent<HTMLFormElement, Form> {
         return add(alert);
     }
 
+    public Form addSection(FormSection section) {
+        return add(section);
+    }
+
+    public Form addFieldGroup(FormFieldGroup fieldGroup) {
+        return add(fieldGroup);
+    }
+
     public Form addGroup(FormGroup group) {
         return add(group);
     }

@@ -17,7 +17,6 @@ package org.patternfly.component.form;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Logger;
 import org.patternfly.style.Classes;
@@ -29,7 +28,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 
-public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
+public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implements
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -47,7 +46,7 @@ public class FormGroup extends SubComponent<HTMLElement, FormGroup> implements
     FormGroupRole role;
 
     FormGroup() {
-        super(ComponentType.Form, SUB_COMPONENT_NAME, div().css(component(Classes.form, group)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group)).element());
         this.fieldId = null;
         this.required = false;
         storeSubComponent();

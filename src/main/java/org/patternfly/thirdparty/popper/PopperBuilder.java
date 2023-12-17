@@ -161,7 +161,7 @@ public class PopperBuilder {
 
     public Popper build() {
         Any createPopperFn = Js.global().nestedGetAsAny("Popper.createPopper");
-        if (isTripleEqual(createPopperFn, undefined())) {
+        if (createPopperFn == null || isTripleEqual(createPopperFn, undefined())) {
             return new PopperError(componentType);
         } else {
             Options options = new Options();
