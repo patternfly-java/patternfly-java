@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Helper text component (#55)
 - Form component (#49)
+- Form control component (#50)
 - Form select component (#51)
 - Text area component (#53)
 - Add support for responsive layout in various components
