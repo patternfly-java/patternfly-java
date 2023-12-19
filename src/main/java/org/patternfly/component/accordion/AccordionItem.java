@@ -46,8 +46,8 @@ import static org.patternfly.style.PredefinedIcon.angleRight;
 
 /**
  * Represents an item within an accordion component. All content added to this item is delegated to a default
- * {@link AccordionItemBody}. If you want to have multiple bodies, please use {@link #addBody(AccordionItemBody)}
- * and add the content to the specific {@link AccordionItemBody} instead of this item.
+ * {@link AccordionItemBody}. If you want to have multiple bodies, please use {@link #addBody(AccordionItemBody)} and add the
+ * content to the specific {@link AccordionItemBody} instead of this item.
  */
 public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
         ElementDelegate<HTMLDivElement, AccordionItem>,

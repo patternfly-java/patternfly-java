@@ -51,7 +51,10 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements 
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new Accordion instance backed by a {@code <dl/>}.
+     * Creates a new Accordion instance backed by a {@code
+     *
+    <dl/>
+     * }.
      */
     public static Accordion accordion() {
         return accordion(true);
