@@ -27,6 +27,8 @@ public enum PredefinedIcon {
 
     angleRight(fas("angle-right")),
 
+    angleUp(fas("angle-up")),
+
     arrowLeft(fas("arrow-left")),
 
     arrowRight(fas("arrow-right")),

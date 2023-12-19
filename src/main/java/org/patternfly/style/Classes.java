@@ -43,6 +43,7 @@ public interface Classes {
     String alignRight = "align-right";
     String arrow = "arrow";
     String avatar = "avatar";
+    String backToTop = "back-to-top";
     String badge = "badge";
     String banner = "banner";
     String block = "block";
@@ -126,6 +127,7 @@ public interface Classes {
     String header = "header";
     String help = "help";
     String helperText = "helper-text";
+    String hidden = "hidden";
     String horizontal = "horizontal";
     String horizontalSubnav = "horizontal-subnav";
     String hoverable = "hoverable";

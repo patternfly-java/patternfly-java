@@ -27,6 +27,8 @@ public enum ComponentType {
 
     Avatar("av", "PF5/Avatar"),
 
+    BackToTop("btt", "PF5/BackToTop"),
+
     Badge("bdg", "PF5/Badge"),
 
     Brand("bnd", "PF5/Brand"),
