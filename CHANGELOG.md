@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Accordion component (#17)
+- Back to top component (#21)
+- Banner component (#25)
+- Breadcrumb component (#27)
+- Description list component (#39)
+- Drawer component (#42)
+- Empty state component (#44)
+- Hint component (#56)
+- Jump links component (#60) 
+- List component (#62) 
+- Notification badge component (#71)
+- Notification drawer component (#72)
+- Panel component (#77)
+- Progress component (#81)
+- Simple list component (#84)
+- Skeleton component (#85)
+- Slider component (#87)
+- Switch component (#89)
+- Tabs components (#91)
+- Tile component (#94)
+- Toggle group component (#97)
+- Toolbar component (#98)
+- Truncate component (#101)
+
 ## [0.1.2] - 2023-12-17
 
 ### Added 

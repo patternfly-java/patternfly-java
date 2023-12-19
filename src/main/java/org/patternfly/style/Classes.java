@@ -31,6 +31,7 @@ public interface Classes {
     // ------------------------------------------------------ constants (a-z)
 
     // TODO Cleanup and remove unused classes
+    String accordion = "accordion";
     String action = "action";
     String actionGroup = "action-group";
     String actionList = "action-list";
@@ -46,6 +47,7 @@ public interface Classes {
     String banner = "banner";
     String block = "block";
     String body = "body";
+    String bordered = "bordered";
     String bottom = "bottom";
     String brand = "brand";
     String breadcrumb = "breadcrumb";
@@ -103,6 +105,7 @@ public interface Classes {
     String fieldset = "fieldset";
     String fill = "fill";
     String filterGroup = "filter-group";
+    String fixed = "fixed";
     String flat = "flat";
     String flex = "flex";
     String floatLeft = "float-left";

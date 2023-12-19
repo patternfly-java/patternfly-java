@@ -22,8 +22,8 @@
     <source path="component"/>
     <source path="core"/>
     <source path="dataprovider"/>
-    <source path="dom"/>
     <source path="handler"/>
     <source path="layout"/>
+    <source path="style"/>
     <source path="thirdparty"/>
 </module>

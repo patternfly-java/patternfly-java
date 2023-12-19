@@ -33,7 +33,11 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
     // ------------------------------------------------------ static helper methods
 
     static void collapse(HTMLElement root, HTMLElement toggle, HTMLElement menu) {
-        if (expanded(root)) {
+        collapse(root, toggle, menu, false);
+    }
+
+    static void collapse(HTMLElement root, HTMLElement toggle, HTMLElement menu, boolean force) {
+        if (force || expanded(root)) {
             root.classList.remove(modifier(Classes.expanded));
             if (toggle != null) {
                 toggle.setAttribute(Aria.expanded, false);
@@ -45,6 +49,10 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
     }
 
     static void expand(HTMLElement root, HTMLElement toggle, HTMLElement menu) {
+        expand(root, toggle, menu, false);
+    }
+
+    static void expand(HTMLElement root, HTMLElement toggle, HTMLElement menu, boolean force) {
         if (!expanded(root)) {
             root.classList.add(modifier(Classes.expanded));
             if (toggle != null) {

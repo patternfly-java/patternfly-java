@@ -17,7 +17,7 @@ package org.patternfly.component;
 
 public enum ComponentType {
 
-    Accordion("ac", null),
+    Accordion("ac", "PF5/Accordion"),
 
     ActionList("al", "PF5/ActionList"),
 

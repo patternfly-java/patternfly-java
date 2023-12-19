@@ -74,7 +74,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final HTMLButtonElement button;
     private final HTMLElement section;
     private final HTMLUListElement ul;
-    ToggleHandler<ExpandableNavigationGroup> onToggle;
+    ToggleHandler<ExpandableNavigationGroup> toggleHandler;
 
     ExpandableNavigationGroup(String id, String text) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
@@ -173,9 +173,9 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         } else {
             expand();
         }
-        if (onToggle != null) {
+        if (toggleHandler != null) {
             // !expanded -> state has been toggled!
-            onToggle.onToggle(new Event(""), this, !expanded);
+            toggleHandler.onToggle(new Event(""), this, !expanded);
         }
     }
 

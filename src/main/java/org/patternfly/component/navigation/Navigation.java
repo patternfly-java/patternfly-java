@@ -103,7 +103,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
     private final Map<String, NavigationGroup> groups;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private SelectHandler<NavigationItem> onSelect;
-    private ToggleHandler<ExpandableNavigationGroup> onToggle;
+    private ToggleHandler<ExpandableNavigationGroup> toggleHandler;
 
     Navigation(NavigationType type) {
         super(ComponentType.Navigation, nav().css(component(nav)).element());
@@ -205,8 +205,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         group.collapse(); // all groups are collapsed by default
         expandableGroups.put(group.id, group);
         itemsContainer.appendChild(group.element());
-        if (onToggle != null) {
-            group.onToggle = onToggle;
+        if (toggleHandler != null) {
+            group.toggleHandler = toggleHandler;
         }
         return this;
     }
@@ -235,13 +235,13 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     // ------------------------------------------------------ events
 
-    public Navigation onSelect(SelectHandler<NavigationItem> onSelect) {
-        this.onSelect = onSelect;
+    public Navigation onSelect(SelectHandler<NavigationItem> selectHandler) {
+        this.onSelect = selectHandler;
         return this;
     }
 
-    public Navigation onToggle(ToggleHandler<ExpandableNavigationGroup> onToggle) {
-        this.onToggle = onToggle;
+    public Navigation onToggle(ToggleHandler<ExpandableNavigationGroup> toggleHandler) {
+        this.toggleHandler = toggleHandler;
         return this;
     }
 
@@ -302,8 +302,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             ExpandableNavigationGroup group = findGroup(groupId);
             if (group != null) {
                 group.expand();
-                if (fireEvent && onToggle != null) {
-                    onToggle.onToggle(new Event(""), group, true);
+                if (fireEvent && toggleHandler != null) {
+                    toggleHandler.onToggle(new Event(""), group, true);
                 }
             }
             // select parent group (if any)
