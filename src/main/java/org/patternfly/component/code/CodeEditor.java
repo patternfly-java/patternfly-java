@@ -33,8 +33,7 @@ import static org.patternfly.style.Classes.main;
 /**
  * A code editor is a versatile text editor that allows for editing various languages.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/code-editor/html">https://www.patternfly.org/components/code-editor/html</a>
+ * @see <a href= "https://www.patternfly.org/components/code-editor">https://www.patternfly.org/components/code-editor</a>
  */
 public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         implements Readonly2<HTMLElement, CodeEditor> {

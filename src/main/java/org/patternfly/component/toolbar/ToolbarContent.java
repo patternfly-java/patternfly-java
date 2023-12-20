@@ -24,9 +24,6 @@ import static org.patternfly.style.Classes.description;
 
 /**
  * Container for a toolbar content.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/toolbar/html#usage-0">https://www.patternfly.org/components/toolbar/html#usage-0</a>
  */
 public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent> {
 

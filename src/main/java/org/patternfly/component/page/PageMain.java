@@ -36,9 +36,6 @@ import static org.patternfly.style.Classes.page;
  * {@link PageMainSection}s.
  * <p>
  * {@snippet class = PageDemo region = pageMain}
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
 

@@ -54,7 +54,7 @@ import static org.patternfly.style.Variables.LineClamp;
  * inputs, and charts.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/expandable-section/html">https://www.patternfly.org/components/expandable-section/html</a>
+ *      "https://www.patternfly.org/components/expandable-section">https://www.patternfly.org/components/expandable-section</a>
  */
 public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable,
         Expandable<HTMLDivElement, ExpandableSection> {

@@ -39,7 +39,7 @@ import static org.patternfly.style.Classes.typedModifier;
  * A divider is a horizontal or vertical line that is placed between screen elements to create visual divisions and content
  * groupings.
  *
- * @see <a href= "https://www.patternfly.org/components/divider/html">https://www.patternfly.org/components/divider/html</a>
+ * @see <a href= "https://www.patternfly.org/components/divider">https://www.patternfly.org/components/divider</a>
  */
 public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
 
@@ -72,13 +72,11 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
     // ------------------------------------------------------ builder
 
     public Divider inset(Tuples<Breakpoint, Inset> inset) {
-        classList().add(typedModifier(inset));
-        return this;
+        return css(typedModifier(inset));
     }
 
     public Divider orientation(Tuples<Breakpoint, Orientation> orientation) {
-        classList().add(typedModifier(orientation));
-        return this;
+        return css(typedModifier(orientation));
     }
 
     @Override

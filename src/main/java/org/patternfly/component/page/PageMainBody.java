@@ -28,9 +28,6 @@ import static org.patternfly.style.Classes.page;
  * {@link PageSectionBuilder#limitWidth()} modifier.
  * <p>
  * {@snippet class = PageDemo region = pageMainBody}
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainBody extends PageSubComponent<HTMLDivElement, PageMainBody> {
 

@@ -38,9 +38,6 @@ import static org.patternfly.style.Classes.section;
 /**
  * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
  * will grow to fill the available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSection> implements
         Fill<HTMLElement, PageMainSection>, NoFill<HTMLElement, PageMainSection> {

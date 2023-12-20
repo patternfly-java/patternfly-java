@@ -27,9 +27,6 @@ import static org.patternfly.style.Classes.page;
 
 /**
  * Container to nest a {@link Navigation} in a {@link PageMainGroup} or {@link PageMain} container.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainNav extends PageSectionBuilder<HTMLElement, PageMainNav> {
 

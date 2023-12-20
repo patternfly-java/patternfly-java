@@ -33,9 +33,6 @@ import static org.patternfly.style.Classes.sidebar;
 /**
  * Container within the {@link PageSidebar} to hold content. Note: By default, the last/only body will grow to fill the
  * available vertical space. You can change this behavior using {@link #fill()} and {@link #noFill()}.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageSidebarBody extends PageSubComponent<HTMLDivElement, PageSidebarBody>
         implements Fill<HTMLDivElement, PageSidebarBody>, NoFill<HTMLDivElement, PageSidebarBody> {

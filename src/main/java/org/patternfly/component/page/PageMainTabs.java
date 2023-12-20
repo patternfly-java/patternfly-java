@@ -26,9 +26,6 @@ import static org.patternfly.style.Classes.tabs;
 /**
  * Container to nest a {@link org.patternfly.component.tabs.Tabs} component in a {@link PageMainGroup} or {@link PageMain}
  * container.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs> {
 

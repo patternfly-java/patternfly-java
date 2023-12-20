@@ -84,7 +84,7 @@ import static org.patternfly.thirdparty.popper.Placement.top;
  * A popover is in-app messaging that provides more information on specific product areas. Popovers display content in a new
  * window that overlays the current page. Unlike modals, popovers don't block the current page.
  *
- * @see <a href= "https://www.patternfly.org/components/popover/html">https://www.patternfly.org/components/popover/html</a>
+ * @see <a href= "https://www.patternfly.org/components/popover">https://www.patternfly.org/components/popover</a>
  */
 public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         Closeable<HTMLDivElement, Popover>,

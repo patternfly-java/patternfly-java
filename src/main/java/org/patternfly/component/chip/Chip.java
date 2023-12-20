@@ -59,7 +59,7 @@ import static org.patternfly.style.Variables.MaxWidth;
  * A chip is used to communicate a value or a set of attribute-value pairs within workflows that involve filtering a set of
  * objects.
  *
- * @see <a href="https://www.patternfly.org/components/chip/html">https://www.patternfly.org/components/chip/html</a>
+ * @see <a href="https://www.patternfly.org/components/chip">https://www.patternfly.org/components/chip</a>
  */
 public class Chip extends BaseComponent<HTMLElement, Chip> implements
         Closeable<HTMLElement, Chip>,

@@ -46,7 +46,7 @@ import static org.patternfly.style.Size.md;
  * <p>
  * {@snippet class = IconDemo region = icon}
  *
- * @see <a href="https://www.patternfly.org/components/icon/html">https://www.patternfly.org/components/icon/html</a>
+ * @see <a href="https://www.patternfly.org/components/icon">https://www.patternfly.org/components/icon</a>
  */
 public class Icon extends BaseComponent<HTMLElement, Icon> implements
         Inline<HTMLElement, Icon>,

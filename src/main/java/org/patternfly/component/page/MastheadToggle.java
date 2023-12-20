@@ -34,9 +34,6 @@ import static org.patternfly.style.PredefinedIcon.bars;
 /**
  * Container for the toggle of a {@link Masthead} component. The component contains a toggle button that calls
  * {@link PageSidebar#toggle()}, when clicked.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
 public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, MastheadToggle> {
 

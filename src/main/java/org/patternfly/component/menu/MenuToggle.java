@@ -59,7 +59,7 @@ import static org.patternfly.style.PredefinedIcon.caretDown;
  * standard dropdown or select components.
  *
  * @see <a href= *
- *      "https://www.patternfly.org/components/menus/menu-toggle/html">https://www.patternfly.org/components/menus/menu-toggle/html</a>
+ *      "https://www.patternfly.org/components/menus/menu-toggle">https://www.patternfly.org/components/menus/menu-toggle</a>
  */
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
         WithIcon<HTMLElement, MenuToggle>,

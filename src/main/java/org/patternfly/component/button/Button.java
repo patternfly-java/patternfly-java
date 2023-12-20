@@ -73,7 +73,7 @@ import static org.patternfly.style.Size.md;
  * or creating a new object. Buttons can also be used to take a user to a new location, like another page inside a web
  * application, or an external site such as help or documentation.
  *
- * @see <a href= "https://www.patternfly.org/components/button/html">https://www.patternfly.org/components/button/html</a>
+ * @see <a href= "https://www.patternfly.org/components/button">https://www.patternfly.org/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button> implements
         Disabled<HTMLElement, Button>,

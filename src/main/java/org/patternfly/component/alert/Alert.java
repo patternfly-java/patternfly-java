@@ -73,7 +73,7 @@ import static org.patternfly.style.Variable.componentVar;
 /**
  * An alert is a notification that provides brief information to the user without blocking their workflow.
  *
- * @see <a href= "https://www.patternfly.org/components/alert/html">https://www.patternfly.org/components/alert/html</a>
+ * @see <a href= "https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         Inline<HTMLDivElement, Alert>,

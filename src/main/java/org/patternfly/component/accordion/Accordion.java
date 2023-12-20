@@ -44,7 +44,7 @@ import static org.patternfly.style.Size.lg;
  * progressive disclosure to help reduce page scrolling, by allowing users to choose whether they want to show or hide more
  * detailed information as needed.
  *
- * @see <a href= "https://www.patternfly.org/components/accordion/html">https://www.patternfly.org/components/accordion/html</a>
+ * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
  */
 public class Accordion extends BaseComponent<HTMLElement, Accordion> implements Attachable {
 

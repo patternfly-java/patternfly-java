@@ -79,8 +79,7 @@ import static org.patternfly.style.PredefinedIcon.angleRight;
  * <p>
  * {@snippet class = NavigationDemo region = expandable}
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/navigation/html">https://www.patternfly.org/components/navigation/html</a>
+ * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
 public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 

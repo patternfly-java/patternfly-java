@@ -48,8 +48,7 @@ import static org.patternfly.style.PredefinedIcon.angleUp;
 /**
  * The back to top component is a shortcut that allows users to quickly navigate to the top of a lengthy content page.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/back-to-top/html">https://www.patternfly.org/components/back-to-top/html</a>
+ * @see <a href= "https://www.patternfly.org/components/back-to-top">https://www.patternfly.org/components/back-to-top</a>
  */
 public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
         implements WithText<HTMLElement, BackToTop>, Attachable {

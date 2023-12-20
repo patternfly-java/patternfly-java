@@ -28,7 +28,7 @@ import static org.patternfly.style.Classes.content;
  * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard HTML
  * tags.
  *
- * @see <a href= "https://www.patternfly.org/components/text/html">https://www.patternfly.org/components/text/html</a>
+ * @see <a href= "https://www.patternfly.org/components/text">https://www.patternfly.org/components/text</a>
  */
 public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
 

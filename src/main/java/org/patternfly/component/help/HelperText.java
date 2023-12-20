@@ -32,8 +32,7 @@ import static org.patternfly.style.Classes.helperText;
 /**
  * Helper text is an on-screen field guideline that helps provide context regarding field inputs.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/helper-text/html">https://www.patternfly.org/components/helper-text/html</a>
+ * @see <a href= "https://www.patternfly.org/components/helper-text">https://www.patternfly.org/components/helper-text</a>
  */
 public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
 

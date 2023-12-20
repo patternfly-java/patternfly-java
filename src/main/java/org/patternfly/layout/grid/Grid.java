@@ -15,6 +15,7 @@
  */
 package org.patternfly.layout.grid;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
@@ -22,7 +23,6 @@ import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -34,18 +34,27 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Order;
 
-public class Grid extends BaseLayout<HTMLDivElement, Grid> {
+/**
+ * The grid layout places content on a fixed 12 column grid.
+ *
+ * @see <a href="https://www.patternfly.org/layouts/grid">https://www.patternfly.org/layouts/grid</a>
+ */
+public class Grid extends BaseLayout<HTMLElement, Grid> {
 
     // ------------------------------------------------------ factory
 
     public static Grid grid() {
-        return new Grid();
+        return new Grid(div());
+    }
+
+    public static <E extends HTMLElement> Grid grid(HTMLContainerBuilder<E> builder) {
+        return new Grid(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    Grid() {
-        super(div().css(layout(grid)).element());
+    <E extends HTMLElement> Grid(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(grid)).element());
     }
 
     // ------------------------------------------------------ add

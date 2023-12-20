@@ -32,8 +32,7 @@ import static org.patternfly.style.Classes.modifier;
  * wizard, or on a page. Use cases for forms include tasks reliant on user-inputted information for completion like logging in,
  * registering, configuring settings, or completing surveys.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/forms/form/html">https://www.patternfly.org/components/forms/form/html</a>
+ * @see <a href= "https://www.patternfly.org/components/forms/form">https://www.patternfly.org/components/forms/form</a>
  */
 public class Form extends BaseComponent<HTMLFormElement, Form> {
 

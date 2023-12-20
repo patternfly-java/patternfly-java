@@ -34,7 +34,7 @@ import static org.patternfly.style.Variable.componentVar;
  * A spinner is used to indicate to users that an action is in progress. For actions that may take a long time, use a progress
  * bar instead.
  *
- * @see <a href= "https://www.patternfly.org/components/spinner/html">https://www.patternfly.org/components/spinner/html</a>
+ * @see <a href= "https://www.patternfly.org/components/spinner">https://www.patternfly.org/components/spinner</a>
  */
 public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements Inline<SVGElement, Spinner> {
 

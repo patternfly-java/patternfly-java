@@ -82,7 +82,7 @@ import static org.patternfly.style.Variables.MaxWidth;
 /**
  * The label component allows users to add specific element captions for user clarity and convenience.
  *
- * @see <a href= "https://www.patternfly.org/components/label/html">https://www.patternfly.org/components/label/html</a>
+ * @see <a href= "https://www.patternfly.org/components/label">https://www.patternfly.org/components/label</a>
  */
 public class Label extends BaseComponentFlat<HTMLElement, Label> implements
         Closeable<HTMLElement, Label>,

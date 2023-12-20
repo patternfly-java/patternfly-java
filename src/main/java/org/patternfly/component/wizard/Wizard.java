@@ -30,7 +30,7 @@ import static org.jboss.elemento.EventType.click;
  * steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming
  * experience.
  *
- * @see <a href= "https://www.patternfly.org/components/wizard/html">https://www.patternfly.org/components/wizard/html</a>
+ * @see <a href= "https://www.patternfly.org/components/wizard">https://www.patternfly.org/components/wizard</a>
  */
 public class Wizard extends BaseComponent<HTMLElement, Wizard> {
 

@@ -312,12 +312,24 @@ public interface Classes {
         return modifier(tuples, null, TypedModifier::value);
     }
 
+    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, String prefix) {
+        return modifier(tuples, null, t -> prefix + t.value());
+    }
+
     static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, Breakpoint breakpoint) {
         return modifier(tuples, breakpoint, TypedModifier::value);
     }
 
+    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, String prefix, Breakpoint breakpoint) {
+        return modifier(tuples, breakpoint, t -> prefix + t.value());
+    }
+
     static <T extends TypedModifier> String verticalTypedModifier(Tuples<Breakpoint, T> tuples) {
         return verticalModifier(tuples, TypedModifier::value);
+    }
+
+    static <T extends TypedModifier> String verticalTypedModifier(Tuples<Breakpoint, T> tuples, String prefix) {
+        return verticalModifier(tuples, t -> prefix + t.value());
     }
 
     static String util(String utility) {

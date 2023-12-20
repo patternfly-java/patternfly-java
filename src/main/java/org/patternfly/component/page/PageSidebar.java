@@ -42,9 +42,6 @@ import static org.patternfly.style.Classes.sidebar;
 
 /**
  * Container for the page sidebar.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> implements Expandable<HTMLElement, PageSidebar> {
 

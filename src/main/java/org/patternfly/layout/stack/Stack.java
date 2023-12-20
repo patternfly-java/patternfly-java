@@ -26,6 +26,11 @@ import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.stack;
 
+/**
+ * The stack layout positions items vertically, with one or more items filling the available vertical space.
+ *
+ * @see <a href="https://www.patternfly.org/layouts/stack">https://www.patternfly.org/layouts/stack</a>
+ */
 public class Stack extends BaseLayout<HTMLDivElement, Stack> {
 
     // ------------------------------------------------------ factory

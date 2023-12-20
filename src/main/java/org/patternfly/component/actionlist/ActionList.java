@@ -29,8 +29,7 @@ import static org.patternfly.style.Classes.modifier;
 /**
  * An action list is a group of actions, controls, or buttons with set spacing.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/action-list/html">https://www.patternfly.org/components/action-list/html</a>
+ * @see <a href= "https://www.patternfly.org/components/action-list">https://www.patternfly.org/components/action-list</a>
  */
 public class ActionList extends BaseComponent<HTMLElement, ActionList> {
 

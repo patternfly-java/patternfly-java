@@ -13,26 +13,32 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.style;
+package org.patternfly.layout.flex;
 
-import static org.patternfly.style.Classes.modifier;
+import org.patternfly.style.Classes;
+import org.patternfly.style.TypedModifier;
 
-/** Position used by {@link org.patternfly.component.popover.Popover} and {@link org.patternfly.component.tooltip.Tooltip}. */
-public enum Position {
+public enum Align implements TypedModifier {
 
-    auto(""),
+    left("align-left"),
 
-    top(modifier(Classes.top)),
+    right("align-right");
 
-    right(modifier(Classes.right)),
+    private final String value;
+    private final String modifier;
 
-    bottom(modifier(Classes.bottom)),
+    Align(String value) {
+        this.value = value;
+        this.modifier = Classes.modifier(value);
+    }
 
-    left(modifier(Classes.left));
+    @Override
+    public String value() {
+        return value;
+    }
 
-    public final String modifier;
-
-    Position(String modifier) {
-        this.modifier = modifier;
+    @Override
+    public String modifier() {
+        return modifier;
     }
 }

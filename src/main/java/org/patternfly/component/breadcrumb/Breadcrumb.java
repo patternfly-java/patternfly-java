@@ -29,8 +29,7 @@ import static org.jboss.elemento.EventType.click;
  * A breadcrumb provides page context to help users navigate more efficiently and understand where they are in the application
  * hierarchy.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/breadcrumb/html">https://www.patternfly.org/components/breadcrumb/html</a>
+ * @see <a href= "https://www.patternfly.org/components/breadcrumb">https://www.patternfly.org/components/breadcrumb</a>
  */
 public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
 

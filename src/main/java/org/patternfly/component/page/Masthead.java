@@ -57,7 +57,7 @@ import static org.patternfly.style.Display.inline;
  * <p>
  * {@snippet class = PageDemo region = masthead}
  *
- * @see <a href= "https://www.patternfly.org/components/masthead/html">https://www.patternfly.org/components/masthead/html</a>
+ * @see <a href= "https://www.patternfly.org/components/masthead">https://www.patternfly.org/components/masthead</a>
  */
 public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 

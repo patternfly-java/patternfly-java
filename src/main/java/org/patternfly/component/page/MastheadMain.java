@@ -27,9 +27,6 @@ import static org.patternfly.style.Classes.masthead;
 /**
  * Container for the main area of a {@link Masthead} component. This container represents the smaller area taken up by a logo,
  * and will typically contain a {@link Brand} inside an {@code <a/>} element.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/masthead/html#usage">https://www.patternfly.org/components/masthead/html#usage</a>
  */
 public class MastheadMain extends MastheadSubComponent<HTMLDivElement, MastheadMain> {
 

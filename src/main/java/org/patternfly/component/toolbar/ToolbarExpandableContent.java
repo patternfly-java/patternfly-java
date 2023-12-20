@@ -24,9 +24,6 @@ import static org.patternfly.style.Classes.description;
 
 /**
  * Container for a expandable content section in a toolbar.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/toolbar/html#usage-0">https://www.patternfly.org/components/toolbar/html#usage-0</a>
  */
 public class ToolbarExpandableContent extends ToolbarSubComponent<HTMLDivElement, ToolbarExpandableContent> {
 

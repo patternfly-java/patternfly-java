@@ -36,7 +36,7 @@ import static org.patternfly.style.Classes.component;
 /**
  * An avatar is a visual used to represent a user. It may contain an image or a placeholder graphic.
  *
- * @see <a href= "https://www.patternfly.org/components/avatar/html">https://www.patternfly.org/components/avatar/html</a>
+ * @see <a href= "https://www.patternfly.org/components/avatar">https://www.patternfly.org/components/avatar</a>
  */
 public class Avatar extends BaseComponentFlat<HTMLImageElement, Avatar> {
 

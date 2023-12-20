@@ -45,7 +45,7 @@ import static org.patternfly.style.Classes.modifier;
  * surface.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/alert/html#alert-group-examples">https://www.patternfly.org/components/alert/html#alert-group-examples</a>
+ *      "https://www.patternfly.org/components/alert#alert-group-examples">https://www.patternfly.org/components/alert#alert-group-examples</a>
  */
 public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 

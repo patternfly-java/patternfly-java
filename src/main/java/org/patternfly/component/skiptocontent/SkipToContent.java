@@ -31,7 +31,7 @@ import static org.patternfly.style.Classes.component;
  * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/skip-to-content/html">https://www.patternfly.org/components/skip-to-content/html</a>
+ *      "https://www.patternfly.org/components/skip-to-content">https://www.patternfly.org/components/skip-to-content</a>
  */
 public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> implements
         WithText<HTMLDivElement, SkipToContent> {

@@ -31,6 +31,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Toggle group component (#97)
 - Toolbar component (#98)
 - Truncate component (#101)
+- Flex layout (#119)
 
 ## [0.1.2] - 2023-12-17
 
@@ -67,6 +68,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Label component (#61)
 - Radio component (#53)
 - Gallery layout (#120)
+- Grid layout (#121)
 - Classify and group log messages
 
 ### Changed

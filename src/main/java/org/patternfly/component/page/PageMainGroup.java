@@ -40,9 +40,6 @@ import static org.patternfly.style.Classes.typedModifier;
  * modifier to make multiple sections sticky.
  * <p>
  * {@snippet class = PageDemo region = pageMainGroup}
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/page/html#usage">https://www.patternfly.org/components/page/html#usage</a>
  */
 public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
 

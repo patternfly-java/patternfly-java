@@ -25,9 +25,6 @@ import static org.patternfly.style.Classes.description;
 /**
  * Container for a content section in a toolbar. This is used to separate static elements from dynamic elements within a
  * {@link ToolbarContent}. There should be no more than one {@link ToolbarContentSection} per {@link ToolbarContent}.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/toolbar/html#usage-0">https://www.patternfly.org/components/toolbar/html#usage-0</a>
  */
 public class ToolbarContentSection extends ToolbarSubComponent<HTMLDivElement, ToolbarContentSection> {
 

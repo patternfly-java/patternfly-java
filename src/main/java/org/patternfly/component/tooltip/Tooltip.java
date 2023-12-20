@@ -65,8 +65,6 @@ import static org.patternfly.thirdparty.popper.TriggerAction.mouseenter;
 
 /**
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.
- *
- * @see <a href="https://www.patternfly.org/components/tooltip/html">https://www.patternfly.org/components/tooltip/html</a>
  */
 public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         Closeable<HTMLDivElement, Tooltip>,

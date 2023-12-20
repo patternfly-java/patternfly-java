@@ -15,6 +15,7 @@
  */
 package org.patternfly.layout.grid;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
@@ -22,7 +23,7 @@ import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Modifiers.Fill;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.layout.grid.Grid.internalOrder;
@@ -31,18 +32,22 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.modifier;
 
-public class GridItem extends BaseLayout<HTMLDivElement, GridItem> implements Fill<HTMLDivElement, GridItem> {
+public class GridItem extends BaseLayout<HTMLElement, GridItem> implements Fill<HTMLElement, GridItem> {
 
     // ------------------------------------------------------ factory
 
     public static GridItem gridItem() {
-        return new GridItem();
+        return new GridItem(div());
+    }
+
+    public static <E extends HTMLElement> GridItem gridItem(HTMLContainerBuilder<E> builder) {
+        return new GridItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    GridItem() {
-        super(div().css(layout(grid, item)).element());
+    <E extends HTMLElement> GridItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(grid, item)).element());
     }
 
     // ------------------------------------------------------ builder

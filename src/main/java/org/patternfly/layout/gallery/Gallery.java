@@ -15,12 +15,13 @@
  */
 package org.patternfly.layout.gallery;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Breakpoint.default_;
@@ -31,18 +32,28 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.GridTemplateColumns;
 
-public class Gallery extends BaseLayout<HTMLDivElement, Gallery> {
+/**
+ * The gallery layout is used to arrange content in a responsive grid. Content will wrap responsively to create uniform rows and
+ * columns.
+ *
+ * @see <a href="https://www.patternfly.org/layouts/gallery">https://www.patternfly.org/layouts/gallery</a>
+ */
+public class Gallery extends BaseLayout<HTMLElement, Gallery> {
 
     // ------------------------------------------------------ factory
 
     public static Gallery gallery() {
-        return new Gallery();
+        return new Gallery(div());
+    }
+
+    public static <E extends HTMLElement> Gallery gallery(HTMLContainerBuilder<E> builder) {
+        return new Gallery(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    Gallery() {
-        super(div().css(layout(gallery)).element());
+    <E extends HTMLElement> Gallery(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(gallery)).element());
     }
 
     // ------------------------------------------------------ add

@@ -31,7 +31,7 @@ import static org.patternfly.style.Classes.toolbar;
  * <p>
  * {@snippet class = ToolbarDemo region = toolbar}
  *
- * @see <a href="https://www.patternfly.org/components/toolbar/html">https://www.patternfly.org/components/toolbar/html</a>
+ * @see <a href="https://www.patternfly.org/components/toolbar">https://www.patternfly.org/components/toolbar</a>
  */
 public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
 

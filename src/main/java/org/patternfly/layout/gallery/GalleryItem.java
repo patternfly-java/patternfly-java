@@ -15,28 +15,33 @@
  */
 package org.patternfly.layout.gallery;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Modifiers.Fill;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.gallery;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
-public class GalleryItem extends BaseLayout<HTMLDivElement, GalleryItem> implements Fill<HTMLDivElement, GalleryItem> {
+public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> implements Fill<HTMLElement, GalleryItem> {
 
     // ------------------------------------------------------ factory
 
     public static GalleryItem galleryItem() {
-        return new GalleryItem();
+        return new GalleryItem(div());
+    }
+
+    public static <E extends HTMLElement> GalleryItem galleryItem(HTMLContainerBuilder<E> builder) {
+        return new GalleryItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    GalleryItem() {
-        super(div().css(layout(gallery, item)).element());
+    <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(gallery, item)).element());
     }
 
     // ------------------------------------------------------ builder

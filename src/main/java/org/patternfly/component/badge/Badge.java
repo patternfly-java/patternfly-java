@@ -39,7 +39,7 @@ import static org.patternfly.style.Classes.unread;
 /**
  * A badge is used to annotate other information like a label or an object name.
  *
- * @see <a href= "https://www.patternfly.org/components/badge/html">https://www.patternfly.org/components/badge/html</a>
+ * @see <a href= "https://www.patternfly.org/components/badge">https://www.patternfly.org/components/badge</a>
  */
 public class Badge extends BaseComponent<HTMLElement, Badge>
         implements HasValue<Integer>, WithObservableValue<HTMLElement, Badge, Integer> {

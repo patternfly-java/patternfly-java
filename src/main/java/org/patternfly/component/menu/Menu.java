@@ -61,7 +61,7 @@ import static org.patternfly.style.Variables.MaxHeight;
  * <p>
  * {@snippet class = MenuDemo region = menu}
  *
- * @see <a href="https://www.patternfly.org/components/menu/html">https://www.patternfly.org/components/menu/html</a>
+ * @see <a href="https://www.patternfly.org/components/menu">https://www.patternfly.org/components/menu</a>
  */
 public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<HTMLDivElement, Menu> {
 

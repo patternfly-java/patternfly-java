@@ -52,7 +52,7 @@ import static org.patternfly.style.Size.lg;
  * function as a preview of a detailed page. Cards may also be used in data displays like card views, or for positioning content
  * on a page.
  *
- * @see <a href= "https://www.patternfly.org/components/card/html">https://www.patternfly.org/components/card/html</a>
+ * @see <a href= "https://www.patternfly.org/components/card">https://www.patternfly.org/components/card</a>
  */
 public class Card extends BaseComponent<HTMLDivElement, Card> implements
         Compact<HTMLDivElement, Card>,

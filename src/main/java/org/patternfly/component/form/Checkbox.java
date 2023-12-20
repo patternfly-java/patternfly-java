@@ -53,8 +53,7 @@ import static org.patternfly.style.Classes.standalone;
  * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect
  * a binary setting.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/forms/checkbox/html">https://www.patternfly.org/components/forms/checkbox/html</a>
+ * @see <a href= "https://www.patternfly.org/components/forms/checkbox">https://www.patternfly.org/components/forms/checkbox</a>
  */
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         HasValue<Boolean>,

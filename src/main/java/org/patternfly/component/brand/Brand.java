@@ -39,7 +39,7 @@ import static org.patternfly.style.Variables.Width;
 /**
  * A brand is used to place a product logotype on a screen.
  *
- * @see <a href= "https://www.patternfly.org/components/brand/html">https://www.patternfly.org/components/brand/html</a>
+ * @see <a href= "https://www.patternfly.org/components/brand">https://www.patternfly.org/components/brand</a>
  */
 public class Brand extends BaseComponent<HTMLElement, Brand> {
 

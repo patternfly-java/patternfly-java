@@ -48,8 +48,7 @@ import static org.patternfly.style.Classes.standalone;
  * A radio button is used to present the user with mutually exclusive choices. Always present radio buttons in groups of 2 or
  * more.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/forms/radio/html">https://www.patternfly.org/components/forms/radio/html</a>
+ * @see <a href= "https://www.patternfly.org/components/forms/radio">https://www.patternfly.org/components/forms/radio</a>
  */
 public class Radio extends BaseComponent<HTMLElement, Radio> implements
         HasValue<Boolean>,
