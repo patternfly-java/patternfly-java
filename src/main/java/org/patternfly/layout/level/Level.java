@@ -13,40 +13,51 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.gallery;
+package org.patternfly.layout.level;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.gallery;
-import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.level;
 
-public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
+/**
+ * The bullseye layout centers content, both vertically and horizontally within a container.
+ *
+ * @see <a href="https://www.patternfly.org/layouts/bullseye">https://www.patternfly.org/layouts/bullseye</a>
+ */
+public class Level extends BaseLayout<HTMLElement, Level> implements Gutter<HTMLElement, Level> {
 
     // ------------------------------------------------------ factory
 
-    public static GalleryItem galleryItem() {
-        return new GalleryItem(div());
+    public static Level level() {
+        return new Level(div());
     }
 
-    public static <E extends HTMLElement> GalleryItem galleryItem(HTMLContainerBuilder<E> builder) {
-        return new GalleryItem(builder);
+    public static <E extends HTMLElement> Level level(HTMLContainerBuilder<E> builder) {
+        return new Level(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery, item)).element());
+    <E extends HTMLElement> Level(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(level)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public Level addItem(LevelItem item) {
+        return add(item);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public GalleryItem that() {
+    public Level that() {
         return this;
     }
 }

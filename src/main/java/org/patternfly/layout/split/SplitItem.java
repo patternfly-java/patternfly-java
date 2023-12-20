@@ -13,40 +13,41 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.gallery;
+package org.patternfly.layout.split;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.gallery;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.split;
 
-public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
+public class SplitItem extends BaseLayout<HTMLElement, SplitItem> implements Fill<HTMLElement, SplitItem> {
 
     // ------------------------------------------------------ factory
 
-    public static GalleryItem galleryItem() {
-        return new GalleryItem(div());
+    public static SplitItem splitItem() {
+        return new SplitItem(div());
     }
 
-    public static <E extends HTMLElement> GalleryItem galleryItem(HTMLContainerBuilder<E> builder) {
-        return new GalleryItem(builder);
+    public static <E extends HTMLElement> SplitItem splitItem(HTMLContainerBuilder<E> builder) {
+        return new SplitItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery, item)).element());
+    <E extends HTMLElement> SplitItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(split, item)).element());
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public GalleryItem that() {
+    public SplitItem that() {
         return this;
     }
 }

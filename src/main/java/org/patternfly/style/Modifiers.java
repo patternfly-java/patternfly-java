@@ -63,6 +63,19 @@ public interface Modifiers {
         }
     }
 
+    interface Gutter<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #gutter(boolean) gutter(true)} */
+        default B gutter() {
+            return gutter(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(gutter)} */
+        default B gutter(boolean gutter) {
+            return toggleModifier(that(), element(), Classes.gutter, gutter);
+        }
+    }
+
     interface Inline<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #inline(boolean) inline(true)} */

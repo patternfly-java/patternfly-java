@@ -19,16 +19,14 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Classes.gallery;
-import static org.patternfly.style.Classes.gutter;
 import static org.patternfly.style.Classes.layout;
-import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.GridTemplateColumns;
 
@@ -38,7 +36,7 @@ import static org.patternfly.style.Variables.GridTemplateColumns;
  *
  * @see <a href="https://www.patternfly.org/layouts/gallery">https://www.patternfly.org/layouts/gallery</a>
  */
-public class Gallery extends BaseLayout<HTMLElement, Gallery> {
+public class Gallery extends BaseLayout<HTMLElement, Gallery> implements Gutter<HTMLElement, Gallery> {
 
     // ------------------------------------------------------ factory
 
@@ -63,11 +61,6 @@ public class Gallery extends BaseLayout<HTMLElement, Gallery> {
     }
 
     // ------------------------------------------------------ builder
-
-    /** Adds {@linkplain Classes#modifier(String) modifier(gutter)} */
-    public Gallery gutter() {
-        return css(modifier(gutter));
-    }
 
     @SafeVarargs
     public final Gallery minWidths(Tuple<Breakpoint, String> first, Tuple<Breakpoint, String>... rest) {

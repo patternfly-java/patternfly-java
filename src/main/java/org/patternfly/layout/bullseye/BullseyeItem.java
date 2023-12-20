@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.gallery;
+package org.patternfly.layout.bullseye;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
@@ -21,32 +21,32 @@ import org.patternfly.layout.BaseLayout;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.gallery;
+import static org.patternfly.style.Classes.bullseye;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
-public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
+public class BullseyeItem extends BaseLayout<HTMLElement, BullseyeItem> {
 
     // ------------------------------------------------------ factory
 
-    public static GalleryItem galleryItem() {
-        return new GalleryItem(div());
+    public static BullseyeItem bullseyeItem() {
+        return new BullseyeItem(div());
     }
 
-    public static <E extends HTMLElement> GalleryItem galleryItem(HTMLContainerBuilder<E> builder) {
-        return new GalleryItem(builder);
+    public static <E extends HTMLElement> BullseyeItem bullseyeItem(HTMLContainerBuilder<E> builder) {
+        return new BullseyeItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery, item)).element());
+    <E extends HTMLElement> BullseyeItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(bullseye, item)).element());
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public GalleryItem that() {
+    public BullseyeItem that() {
         return this;
     }
 }

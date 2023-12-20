@@ -53,6 +53,7 @@ public interface Classes {
     String brand = "brand";
     String breadcrumb = "breadcrumb";
     String bulkSelect = "bulk-select";
+    String bullseye = "bullseye";
     String button = "button";
     String buttonGroup = "button-group";
     String card = "card";
@@ -154,6 +155,7 @@ public interface Classes {
     String labelGroup = "label-group";
     String leadBall = "lead-ball";
     String left = "left";
+    String level = "level";
     String limitWidth = "limit-width";
     String link = "link";
     String list = "list";
@@ -224,6 +226,7 @@ public interface Classes {
     String small = "small";
     String sort = "sort";
     String spinner = "spinner";
+    String split = "split";
     String splitButton = "split-button";
     String stack = "stack";
     String standalone = "standalone";

@@ -13,51 +13,59 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.stack;
+package org.patternfly.layout.split;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.layout;
-import static org.patternfly.style.Classes.stack;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.split;
+import static org.patternfly.style.Classes.wrap;
 
 /**
- * The stack layout positions items vertically, with one or more items filling the available vertical space.
+ * The bullseye layout centers content, both vertically and horizontally within a container.
  *
- * @see <a href="https://www.patternfly.org/layouts/stack">https://www.patternfly.org/layouts/stack</a>
+ * @see <a href="https://www.patternfly.org/layouts/bullseye">https://www.patternfly.org/layouts/bullseye</a>
  */
-public class Stack extends BaseLayout<HTMLElement, Stack> implements Gutter<HTMLElement, Stack> {
+public class Split extends BaseLayout<HTMLElement, Split> implements Gutter<HTMLElement, Split> {
 
     // ------------------------------------------------------ factory
 
-    public static Stack stack() {
-        return new Stack(div());
+    public static Split split() {
+        return new Split(div());
     }
 
-    public static <E extends HTMLElement> Stack stack(HTMLContainerBuilder<E> builder) {
-        return new Stack(builder);
+    public static <E extends HTMLElement> Split split(HTMLContainerBuilder<E> builder) {
+        return new Split(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    <E extends HTMLElement> Stack(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(stack)).element());
+    <E extends HTMLElement> Split(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(split)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public Stack addItem(StackItem item) {
+    public Split addItem(SplitItem item) {
         return add(item);
     }
 
     // ------------------------------------------------------ builder
 
+    /** Adds {@linkplain Classes#modifier(String) modifier(wrap)} */
+    public Split wrap() {
+        return css(modifier(wrap));
+    }
+
     @Override
-    public Stack that() {
+    public Split that() {
         return this;
     }
 }

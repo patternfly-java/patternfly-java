@@ -31,7 +31,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Toggle group component (#97)
 - Toolbar component (#98)
 - Truncate component (#101)
+- Bullseye layout (#118)
 - Flex layout (#119)
+- Flex layout (#122)
+- Split layout (#123)
 
 ## [0.1.2] - 2023-12-17
 

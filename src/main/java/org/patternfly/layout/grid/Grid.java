@@ -21,13 +21,12 @@ import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.grid;
-import static org.patternfly.style.Classes.gutter;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.modifier;
@@ -39,7 +38,7 @@ import static org.patternfly.style.Variables.Order;
  *
  * @see <a href="https://www.patternfly.org/layouts/grid">https://www.patternfly.org/layouts/grid</a>
  */
-public class Grid extends BaseLayout<HTMLElement, Grid> {
+public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLElement, Grid> {
 
     // ------------------------------------------------------ factory
 
@@ -95,11 +94,6 @@ public class Grid extends BaseLayout<HTMLElement, Grid> {
             css(modifier("all-" + rows + "-col"));
         }
         return this;
-    }
-
-    /** Adds {@linkplain Classes#modifier(String) modifier(gutter)} */
-    public Grid gutter() {
-        return css(modifier(gutter));
     }
 
     @Override

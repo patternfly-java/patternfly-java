@@ -13,40 +13,41 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.gallery;
+package org.patternfly.layout.level;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.gallery;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
+import static org.patternfly.style.Classes.level;
 
-public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
+public class LevelItem extends BaseLayout<HTMLElement, LevelItem> implements Fill<HTMLElement, LevelItem> {
 
     // ------------------------------------------------------ factory
 
-    public static GalleryItem galleryItem() {
-        return new GalleryItem(div());
+    public static LevelItem levelItem() {
+        return new LevelItem(div());
     }
 
-    public static <E extends HTMLElement> GalleryItem galleryItem(HTMLContainerBuilder<E> builder) {
-        return new GalleryItem(builder);
+    public static <E extends HTMLElement> LevelItem levelItem(HTMLContainerBuilder<E> builder) {
+        return new LevelItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery, item)).element());
+    <E extends HTMLElement> LevelItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(level, item)).element());
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public GalleryItem that() {
+    public LevelItem that() {
         return this;
     }
 }

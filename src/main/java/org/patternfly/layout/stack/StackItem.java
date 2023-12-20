@@ -15,28 +15,33 @@
  */
 package org.patternfly.layout.stack;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Modifiers.Fill;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.stack;
 
-public class StackItem extends BaseLayout<HTMLDivElement, StackItem> implements Fill<HTMLDivElement, StackItem> {
+public class StackItem extends BaseLayout<HTMLElement, StackItem> implements Fill<HTMLElement, StackItem> {
 
     // ------------------------------------------------------ factory
 
     public static StackItem stackItem() {
-        return new StackItem();
+        return new StackItem(div());
+    }
+
+    public static <E extends HTMLElement> StackItem stackItem(HTMLContainerBuilder<E> builder) {
+        return new StackItem(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    StackItem() {
-        super(div().css(layout(stack, item)).element());
+    <E extends HTMLElement> StackItem(HTMLContainerBuilder<E> builder) {
+        super(builder.css(layout(stack, item)).element());
     }
 
     // ------------------------------------------------------ builder

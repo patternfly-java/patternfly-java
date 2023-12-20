@@ -32,7 +32,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.modifier;
 
-public class GridItem extends BaseLayout<HTMLElement, GridItem> implements Fill<HTMLElement, GridItem> {
+public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
     // ------------------------------------------------------ factory
 

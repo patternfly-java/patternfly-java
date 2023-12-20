@@ -20,7 +20,6 @@ import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLElement;
 
@@ -32,7 +31,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.typedModifier;
 
-public class FlexItem extends BaseLayout<HTMLElement, FlexItem> implements Fill<HTMLElement, FlexItem> {
+public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
 
     // ------------------------------------------------------ factory
 
