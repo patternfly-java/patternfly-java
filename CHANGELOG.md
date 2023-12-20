@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+Components
+
 - Accordion component (#17)
 - Back to top component (#21)
 - Banner component (#25)
@@ -31,6 +33,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Toggle group component (#97)
 - Toolbar component (#98)
 - Truncate component (#101)
+
+Layouts
+
 - Bullseye layout (#118)
 - Flex layout (#119)
 - Flex layout (#122)

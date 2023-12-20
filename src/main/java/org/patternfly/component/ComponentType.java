@@ -31,6 +31,8 @@ public enum ComponentType {
 
     Badge("bdg", "PF5/Badge"),
 
+    Banner("bnr", "PF5/Banner"),
+
     Brand("bnd", "PF5/Brand"),
 
     Breadcrumb("bc", null),

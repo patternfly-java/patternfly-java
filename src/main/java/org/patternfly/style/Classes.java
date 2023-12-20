@@ -232,6 +232,7 @@ public interface Classes {
     String standalone = "standalone";
     String start = "start";
     String status = "status";
+    String sticky = "sticky";
     String subnav = "subnav";
     String success = "success";
     String tab = "tab";
