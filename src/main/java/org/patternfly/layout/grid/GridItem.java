@@ -16,16 +16,15 @@
 package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.layout.grid.Grid.internalOrder;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
@@ -56,7 +55,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of columns the grid item spans. Value should be a number 1-12.
      */
     public GridItem span(int columns) {
-        if (verifyRange("span", columns)) {
+        if (verifyRange(element(), "PF5/GridItem", "span", columns, 1, 12)) {
             css(modifier(columns + "-col"));
         }
         return this;
@@ -78,7 +77,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of rows the grid item spans. Value should be a number 1-12.
      */
     public GridItem rowSpan(int rows) {
-        if (verifyRange("rowSpan", rows)) {
+        if (verifyRange(element(), "PF5/GridItem", "rowSpan", rows, 1, 12)) {
             css(modifier(rows + "-row"));
         }
         return this;
@@ -100,7 +99,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of columns a grid item is offset.
      */
     public GridItem offset(int columns) {
-        if (verifyRange("offset", columns)) {
+        if (verifyRange(element(), "PF5/GridItem", "offset", columns, 1, 12)) {
             css(modifier("offset-" + columns + "-col"));
         }
         return this;
@@ -139,7 +138,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
     private void internalSpan(Tuple<Breakpoint, Integer> tuple) {
         if (tuple.key != Breakpoint.default_) {
-            if (verifyRange("span", tuple.value)) {
+            if (verifyRange(element(), "PF5/GridItem", "span", tuple.value, 1, 12)) {
                 css(modifier(tuple.value + "-col-on-" + tuple.key.value));
             }
         }
@@ -147,7 +146,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
     private void internalRowSpan(Tuple<Breakpoint, Integer> tuple) {
         if (tuple.key != Breakpoint.default_) {
-            if (verifyRange("rowSpan", tuple.value)) {
+            if (verifyRange(element(), "PF5/GridItem", "rowSpan", tuple.value, 1, 12)) {
                 css(modifier(tuple.value + "-row-on-" + tuple.key.value));
             }
         }
@@ -155,18 +154,9 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
     private void internalOffset(Tuple<Breakpoint, Integer> tuple) {
         if (tuple.key != Breakpoint.default_) {
-            if (verifyRange("offset", tuple.value)) {
+            if (verifyRange(element(), "PF5/GridItem", "offset", tuple.value, 1, 12)) {
                 css(modifier("offset-" + tuple.value + "-col-on-" + tuple.key.value));
             }
         }
-    }
-
-    private boolean verifyRange(String property, int value) {
-        if (value < 1 || value > 12) {
-            Logger.unsupported("PF5/GridItem", element(),
-                    "'" + property + "' out of range. Given: " + value + ", allowed [1,12].");
-            return false;
-        }
-        return true;
     }
 }

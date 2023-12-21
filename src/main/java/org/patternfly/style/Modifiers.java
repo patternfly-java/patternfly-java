@@ -76,6 +76,19 @@ public interface Modifiers {
         }
     }
 
+    interface Horizontal<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #horizontal(boolean) horizontal(true)} */
+        default B horizontal() {
+            return horizontal(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(horizontal)} */
+        default B horizontal(boolean horizontal) {
+            return toggleModifier(that(), element(), Classes.horizontal, horizontal);
+        }
+    }
+
     interface Inline<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #inline(boolean) inline(true)} */

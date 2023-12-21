@@ -18,6 +18,10 @@ package org.patternfly.core;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.joining;
 
 public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
 
@@ -143,7 +147,12 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
     private final List<Tuple<K, V>> tuples;
 
     Tuples(List<Tuple<K, V>> tuples) {
-        this.tuples = tuples;
+        this.tuples = tuples == null ? new ArrayList<>() : tuples;
+    }
+
+    @Override
+    public String toString() {
+        return tuples.stream().map(Tuple::toString).collect(joining(", ", "[", "]"));
     }
 
     // ------------------------------------------------------ api
@@ -173,6 +182,10 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
     @Override
     public Iterator<Tuple<K, V>> iterator() {
         return tuples.iterator();
+    }
+
+    public Stream<Tuple<K, V>> stream() {
+        return StreamSupport.stream(spliterator(), false);
     }
 
     // ------------------------------------------------------ internal

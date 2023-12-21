@@ -59,6 +59,8 @@ public enum ComponentType {
 
     DataTable("dt", null),
 
+    DescriptionList("dsl", "PF5/DescriptionList"),
+
     Divider("dvr", "PF5/Divider"),
 
     Drawer("dw", null),

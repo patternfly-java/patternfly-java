@@ -100,18 +100,6 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
         }
     }
 
-    // ------------------------------------------------------ add
-
-    public FormGroupLabel addHelp(String ariaLabel, Popover popover) {
-        HTMLButtonElement helpButton = button().css(component(Classes.form, group, Classes.label, Classes.help))
-                .aria(Aria.label, ariaLabel)
-                .add(inlineIcon(help))
-                .element();
-        add(helpButton);
-        popover.trigger(helpButton).appendToBody();
-        return this;
-    }
-
     // ------------------------------------------------------ builder
 
     public FormGroupLabel label(String label) {
@@ -121,6 +109,16 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
 
     public FormGroupLabel noPaddingTop() {
         return css(modifier(noPaddingTop));
+    }
+
+    public FormGroupLabel help(String ariaLabel, Popover popover) {
+        HTMLButtonElement helpButton = button().css(component(Classes.form, group, Classes.label, Classes.help))
+                .aria(Aria.label, ariaLabel)
+                .add(inlineIcon(help))
+                .element();
+        add(helpButton);
+        popover.trigger(helpButton).appendToBody();
+        return this;
     }
 
     @Override

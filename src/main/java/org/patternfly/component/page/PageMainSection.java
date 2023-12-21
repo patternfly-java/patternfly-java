@@ -15,18 +15,14 @@
  */
 package org.patternfly.component.page;
 
-import java.util.EnumSet;
-import java.util.stream.Stream;
-
-import org.patternfly.core.Logger;
 import org.patternfly.style.Brightness;
 import org.patternfly.style.Modifiers.Fill;
 import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLElement;
 
-import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.section;
+import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Brightness.dark100;
 import static org.patternfly.style.Brightness.dark200;
 import static org.patternfly.style.Brightness.light;
@@ -59,13 +55,10 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
     // ------------------------------------------------------ builder
 
     public PageMainSection background(Brightness brightness) {
-        if (!EnumSet.of(light, dark100, dark200).contains(brightness)) {
-            Logger.unsupported("PF5/PageMainSection", element(),
-                    "Background " + brightness + " not supported. Valid values: " +
-                            Stream.of(light, dark100, dark200).map(Brightness::name).collect(joining(" ")));
-            return this;
+        if (verifyEnum(element(), "PF5/PageMainSection", "background", brightness, light, dark100, dark200)) {
+            css(brightness.modifier());
         }
-        return css(brightness.modifier());
+        return this;
     }
 
     @Override

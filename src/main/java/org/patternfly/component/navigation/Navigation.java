@@ -15,11 +15,9 @@
  */
 package org.patternfly.component.navigation;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
@@ -37,7 +35,6 @@ import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
-import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.nav;
@@ -54,6 +51,7 @@ import static org.patternfly.component.navigation.NavigationType.Vertical.groupe
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Brightness.dark;
 import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.button;
@@ -218,13 +216,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
     // ------------------------------------------------------ builder
 
     public Navigation theme(Brightness theme) {
-        if (!EnumSet.of(dark, light).contains(theme)) {
-            Logger.unsupported(componentType(), element(),
-                    "Theme " + theme + " not supported. Valid values: " +
-                            Stream.of(dark, light).map(Brightness::name).collect(joining(" ")));
-            return this;
+        if (verifyEnum(element(), componentType(), "theme", theme, dark, light)) {
+            css(theme.modifier());
         }
-        return css(theme.modifier());
+        return this;
     }
 
     @Override

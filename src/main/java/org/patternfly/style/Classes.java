@@ -21,7 +21,6 @@ import org.patternfly.core.PatternFly;
 import org.patternfly.core.Tuples;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.StreamSupport.stream;
 import static org.patternfly.style.Breakpoint.LARGE_TO_SMALL;
 import static org.patternfly.style.Breakpoint.default_;
 
@@ -42,6 +41,8 @@ public interface Classes {
     String alignCenter = "align-center";
     String alignRight = "align-right";
     String arrow = "arrow";
+    String autoColumnWidths = "auto-column-widths";
+    String autoFit = "auto-fit";
     String avatar = "avatar";
     String backToTop = "back-to-top";
     String badge = "badge";
@@ -83,6 +84,7 @@ public interface Classes {
     String dataList = "data-list";
     String dataToolbar = "data-toolbar";
     String description = "description";
+    String descriptionList = "description-list";
     String detached = "detached";
     String disabled = "disabled";
     String display = "display";
@@ -106,12 +108,14 @@ public interface Classes {
     String fieldGroup = "field-group";
     String fieldset = "fieldset";
     String fill = "fill";
+    String fillColumns = "fill-columns";
     String filterGroup = "filter-group";
     String fixed = "fixed";
     String flat = "flat";
     String flex = "flex";
     String floatLeft = "float-left";
     String floatRight = "float-right";
+    String fluid = "fluid";
     String flyout = "flyout";
     String focus = "focus";
     String footer = "footer";
@@ -127,6 +131,7 @@ public interface Classes {
     String head = "head";
     String header = "header";
     String help = "help";
+    String helpText = "help-text";
     String helperText = "helper-text";
     String hidden = "hidden";
     String horizontal = "horizontal";
@@ -140,6 +145,7 @@ public interface Classes {
     String indicator = "indicator";
     String info = "info";
     String inline = "inline";
+    String inlineGrid = "inline-grid";
     String inProgress = "in-progress";
     String input = "input";
     String inputGroup = "input-group";
@@ -242,6 +248,7 @@ public interface Classes {
     String tabs = "tabs";
     String tailBall = "tail-ball";
     String tertiary = "tertiary";
+    String term = "term";
     String text = "text";
     String textInput = "text-input";
     String textInputGroup = "text-input-group";
@@ -281,6 +288,12 @@ public interface Classes {
         return compose('l', layout, elements);
     }
 
+    static String util(String utility) {
+        return "pf-" + PatternFly.VERSION + "-u-" + utility;
+    }
+
+    // ------------------------------------------------------ modifiers
+
     static String modifier(String modifier) {
         return modifier != null && !modifier.isEmpty() ? "pf-m-" + modifier : "";
     }
@@ -300,6 +313,8 @@ public interface Classes {
 
     }
 
+    // ------------------------------------------------------ breakpoint modifiers
+
     static String modifier(Tuples<Breakpoint, String> tuples) {
         return modifier(tuples, null, Function.identity());
     }
@@ -311,6 +326,8 @@ public interface Classes {
     static String verticalModifier(Tuples<Breakpoint, String> tuples) {
         return verticalModifier(tuples, Function.identity());
     }
+
+    // ------------------------------------------------------ typed breakpoint modifiers
 
     static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples) {
         return modifier(tuples, null, TypedModifier::value);
@@ -334,10 +351,6 @@ public interface Classes {
 
     static <T extends TypedModifier> String verticalTypedModifier(Tuples<Breakpoint, T> tuples, String prefix) {
         return verticalModifier(tuples, t -> prefix + t.value());
-    }
-
-    static String util(String utility) {
-        return "pf-" + PatternFly.VERSION + "-u-" + utility;
     }
 
     // ------------------------------------------------------ internal
@@ -376,7 +389,7 @@ public interface Classes {
                     }
                 }
             } else {
-                modifier = stream(tuples.spliterator(), false)
+                modifier = tuples.stream()
                         .map(tuple -> {
                             StringBuilder builder = new StringBuilder(stringValue.apply(tuple.value));
                             if (tuple.key != default_) {
@@ -394,7 +407,7 @@ public interface Classes {
 
     private static <V> String verticalModifier(Tuples<Breakpoint, V> tuples, Function<V, String> stringValue) {
         if (tuples != null && !tuples.isEmpty()) {
-            return stream(tuples.spliterator(), false)
+            return tuples.stream()
                     .map(tuple -> {
                         StringBuilder builder = new StringBuilder(stringValue.apply(tuple.value));
                         if (tuple.key != default_) {

@@ -15,14 +15,10 @@
  */
 package org.patternfly.component.page;
 
-import java.util.EnumSet;
-import java.util.stream.Stream;
-
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.brand.Brand;
 import org.patternfly.component.toolbar.Toolbar;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Tuples;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Brightness;
@@ -33,12 +29,12 @@ import org.patternfly.style.Rect;
 
 import elemental2.dom.HTMLElement;
 
-import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.header;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
 import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.core.Tuples.tuples;
+import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Breakpoint.breakpoint;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Brightness.dark;
@@ -150,13 +146,10 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Background theme color of the masthead
      */
     public Masthead background(Brightness brightness) {
-        if (!EnumSet.of(dark, light, light200).contains(brightness)) {
-            Logger.unsupported(componentType(), element(),
-                    "Background " + brightness + " not supported. Valid values: " +
-                            Stream.of(dark, light, light200).map(Brightness::name).collect(joining(" ")));
-            return this;
+        if (verifyEnum(element(), componentType(), "background", brightness, dark, light, light200)) {
+            css(brightness.modifier());
         }
-        return css(brightness.modifier());
+        return this;
     }
 
     @Override

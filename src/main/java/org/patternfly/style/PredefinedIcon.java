@@ -39,6 +39,8 @@ public enum PredefinedIcon {
 
     bell(fas("bell")),
 
+    book(fas("book")),
+
     box(fas("box")),
 
     bullhorn(fas("bullhorn")),
@@ -47,13 +49,15 @@ public enum PredefinedIcon {
 
     check(fas("check")),
 
+    checkCircle(fas("check-circle")),
+
     code(fas("code")),
 
     cog(fas("cog")),
 
     copy(fas("copy")),
 
-    checkCircle(fas("check-circle")),
+    cube(fas("cube")),
 
     database(fas("database")),
 
@@ -71,9 +75,15 @@ public enum PredefinedIcon {
 
     filter(fas("filter")),
 
+    flag(fas("flag")),
+
+    globe(fas("globe")),
+
     help(pfIcon("help")),
 
     infoCircle(fas("info-circle")),
+
+    key(fas("key")),
 
     laptop(fas("laptop")),
 

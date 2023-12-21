@@ -18,12 +18,12 @@ package org.patternfly.component.form;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.style.Modifiers;
 
 import elemental2.dom.HTMLFormElement;
 
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
-import static org.patternfly.style.Classes.horizontal;
 import static org.patternfly.style.Classes.limitWidth;
 import static org.patternfly.style.Classes.modifier;
 
@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.modifier;
  *
  * @see <a href= "https://www.patternfly.org/components/forms/form">https://www.patternfly.org/components/forms/form</a>
  */
-public class Form extends BaseComponent<HTMLFormElement, Form> {
+public class Form extends BaseComponent<HTMLFormElement, Form> implements Modifiers.Horizontal<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ factory
 
@@ -72,10 +72,6 @@ public class Form extends BaseComponent<HTMLFormElement, Form> {
     }
 
     // ------------------------------------------------------ builder
-
-    public Form horizontal() {
-        return css(modifier(horizontal));
-    }
 
     public Form limitWidth() {
         return css(modifier(limitWidth));

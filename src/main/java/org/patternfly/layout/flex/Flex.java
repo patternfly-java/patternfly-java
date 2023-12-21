@@ -25,7 +25,6 @@ import org.patternfly.style.Classes;
 import elemental2.dom.HTMLElement;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.StreamSupport.stream;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Classes.flex;
@@ -178,7 +177,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     }
 
     static String booleanTuples(Tuples<Breakpoint, Boolean> tuples, String className) {
-        return stream(tuples.spliterator(), false)
+        return tuples.stream()
                 .filter(tuple -> tuple.value != null && tuple.value)
                 .map(tuple -> {
                     StringBuilder builder = new StringBuilder(className);

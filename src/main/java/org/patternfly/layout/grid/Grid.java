@@ -16,7 +16,6 @@
 package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
@@ -26,6 +25,7 @@ import org.patternfly.style.Modifiers.Gutter;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -67,10 +67,10 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     /**
      * The number of columns all grid items should span on a specific breakpoint.
      */
-    public Grid cols(Tuples<Breakpoint, Integer> columns) {
+    public Grid columns(Tuples<Breakpoint, Integer> columns) {
         if (columns != null) {
             for (Tuple<Breakpoint, Integer> col : columns) {
-                internalCols(col);
+                internalColumns(col);
             }
         }
         return this;
@@ -90,7 +90,7 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
      * The number of rows a column in the grid should span. Value should be a number 1-12.
      */
     public Grid span(int rows) {
-        if (verifyRange("span", rows)) {
+        if (verifyRange(element(), "PF5/Grid", "span", rows, 1, 12)) {
             css(modifier("all-" + rows + "-col"));
         }
         return this;
@@ -111,19 +111,11 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
         componentVar(layout(grid), item, orderPart).applyTo(element, tuple.value);
     }
 
-    private void internalCols(Tuple<Breakpoint, Integer> tuple) {
+    private void internalColumns(Tuple<Breakpoint, Integer> tuple) {
         if (tuple.key != Breakpoint.default_) {
-            if (verifyRange("cols", tuple.value)) {
+            if (verifyRange(element(), "PF5/Grid", "columns", tuple.value, 1, 12)) {
                 css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
             }
         }
-    }
-
-    private boolean verifyRange(String property, int value) {
-        if (value < 1 || value > 12) {
-            Logger.unsupported("PF5/Grid", element(), "'" + property + "' out of range. Given: " + value + ", allowed [1,12].");
-            return false;
-        }
-        return true;
     }
 }

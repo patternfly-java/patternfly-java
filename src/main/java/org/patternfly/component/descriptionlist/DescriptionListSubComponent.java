@@ -13,28 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.component.descriptionlist;
 
-public class Tuple<K, V> {
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-    // ------------------------------------------------------ factory
+import elemental2.dom.HTMLElement;
 
-    public static <K, V> Tuple<K, V> tuple(K key, V value) {
-        return new Tuple<>(key, value);
-    }
+abstract class DescriptionListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    // ------------------------------------------------------ instance
-
-    public final K key;
-    public final V value;
-
-    Tuple(K key, V value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return key + ": " + value;
+    DescriptionListSubComponent(String name, E element) {
+        super(ComponentType.DescriptionList, name, element);
     }
 }

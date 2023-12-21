@@ -17,81 +17,186 @@ package org.patternfly.component.descriptionlist;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
+import org.patternfly.core.Tuple;
+import org.patternfly.core.Tuples;
+import org.patternfly.style.Breakpoint;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.Horizontal;
+import org.patternfly.style.Orientation;
+import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.Elements.dl;
+import static org.patternfly.core.Tuple.tuple;
+import static org.patternfly.core.TuplesCollector.toTuples;
+import static org.patternfly.core.Validation.verifyEnum;
+import static org.patternfly.core.Validation.verifyRange;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.descriptionList;
+import static org.patternfly.style.Classes.display;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.typedModifier;
+import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.Size._2xl;
+import static org.patternfly.style.Size.lg;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.GridTemplateColumns;
 
 /**
- * The template component is a template for creating new components.
+ * A description list contains terms and their corresponding descriptions.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/template/template">https://www.patternfly.org/components/template/template</a>
+ *      "https://www.patternfly.org/components/description-list">https://www.patternfly.org/components/description-list</a>
  */
-public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList> {
+public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList> implements
+        Compact<HTMLElement, DescriptionList>,
+        Horizontal<HTMLElement, DescriptionList> {
 
     // ------------------------------------------------------ factory
 
-    public static DescriptionList template() {
+    public static DescriptionList descriptionList() {
         return new DescriptionList();
     }
 
     // ------------------------------------------------------ instance
 
     DescriptionList() {
-        super((ComponentType) null, div().element());
+        super(ComponentType.DescriptionList, dl().css(component(descriptionList)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public DescriptionList addFoo(/* Foo foo */) {
-        return this;
-    }
-
-    // override to assure internal wiring
-    public DescriptionList add(/* Foo foo */) {
-        return this;
+    public DescriptionList addGroup(DescriptionListGroup group) {
+        return add(group);
     }
 
     // ------------------------------------------------------ builder
 
-    public DescriptionList methodsReturningAReferenceToItself() {
+    /** Same as {@linkplain #autoColumnWidths(boolean) autoColumnWidths(true)} */
+    public DescriptionList autoColumnWidths() {
+        return autoColumnWidths(true);
+    }
+
+    /** Sets the description list to format automatically. */
+    public DescriptionList autoColumnWidths(boolean autoColumnWidths) {
+        return toggleModifier(that(), element(), Classes.autoColumnWidths, autoColumnWidths);
+    }
+
+    /** Same as {@linkplain #autoFit(boolean) autoFit(true)} */
+    public DescriptionList autoFit() {
+        return autoFit(true);
+    }
+
+    /** Sets the description list to auto fit. */
+    public DescriptionList autoFit(boolean autoFit) {
+        return toggleModifier(that(), element(), Classes.autoFit, autoFit);
+    }
+
+    /**
+     * Sets the minimum column size for the auto-fit (isAutoFit) layout at various breakpoints.
+     */
+    public DescriptionList autoFitMin(Tuples<Breakpoint, String> autoFitMin) {
+        // Variable examples:
+        // --pf-v5-c-description-list--GridTemplateColumns--min: 500px;
+        // --pf-v5-c-description-list--GridTemplateColumns--min-on-md: 100px;
+        // --pf-v5-c-description-list--GridTemplateColumns--min-on-lg: 150px;
+        // --pf-v5-c-description-list--GridTemplateColumns--min-on-xl: 200px;
+        if (autoFitMin != null) {
+            for (Tuple<Breakpoint, String> tuple : autoFitMin) {
+                String minPart = tuple.key == default_ ? "min" : "min-on-" + tuple.key.value;
+                componentVar(component(descriptionList), GridTemplateColumns, minPart).applyTo(this, tuple.value);
+            }
+        }
         return this;
+    }
+
+    /**
+     * Sets the number of columns on the description list at various breakpoints.
+     */
+    public DescriptionList columns(Tuples<Breakpoint, Integer> columns) {
+        if (columns != null) {
+            Tuples<Breakpoint, String> stringColumns = columns.stream()
+                    .filter(t -> verifyRange(element(), componentType(), "columns", t.value, 1, 3))
+                    .map(t -> tuple(t.key, t.value + "-col"))
+                    .collect(toTuples());
+            css(modifier(stringColumns));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the display size of the descriptions in the description list.
+     */
+    public DescriptionList displaySize(Size size) {
+        if (verifyEnum(element(), componentType(), "displaySize", size, lg, _2xl)) {
+            css(modifier(display, size));
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #fillColumns(boolean) fillColumns(true)} */
+    public DescriptionList fillColumns() {
+        return fillColumns(true);
+    }
+
+    /** Sets the default placement of description list groups to fill from top to bottom. */
+    public DescriptionList fillColumns(boolean fillColumns) {
+        return toggleModifier(that(), element(), Classes.fillColumns, fillColumns);
+    }
+
+    /** Same as {@linkplain #fluid(boolean) fluid(true)} */
+    public DescriptionList fluid() {
+        return fluid(true);
+    }
+
+    /** Sets a horizontal description list to have fluid styling. */
+    public DescriptionList fluid(boolean fluid) {
+        return toggleModifier(that(), element(), Classes.fluid, fluid);
+    }
+
+    /**
+     * Sets the horizontal description list's term column width at various breakpoints.
+     */
+    public DescriptionList horizontalTermWidth(Tuples<Breakpoint, String> horizontalTermWidth) {
+        if (horizontalTermWidth != null) {
+            // Variable examples:
+            // --pf-v5-c-description-list--m-horizontal__term--width: 12ch;
+            // --pf-v5-c-description-list--m-horizontal__term--width-on-sm: 15ch;
+            // --pf-v5-c-description-list--m-horizontal__term--width-on-md: 20ch;
+            // --pf-v5-c-description-list--m-horizontal__term--width-on-lg: 28ch;
+            for (Tuple<Breakpoint, String> tuple : horizontalTermWidth) {
+                String widthPart = tuple.key == default_ ? "width" : "width-on-" + tuple.key.value;
+                componentVar(component(descriptionList), "m-horizontal__term", widthPart).applyTo(this, tuple.value);
+            }
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #inlineGrid(boolean) inlineGrid(true)} */
+    public DescriptionList inlineGrid() {
+        return inlineGrid(true);
+    }
+
+    /** Modifies the description list display to inline-grid. */
+    public DescriptionList inlineGrid(boolean inlineGrid) {
+        return toggleModifier(that(), element(), Classes.inlineGrid, inlineGrid);
+    }
+
+    /** Indicates how the menu will align at various breakpoints. */
+    public DescriptionList orientation(Tuples<Breakpoint, Orientation> orientation) {
+        return css(typedModifier(orientation));
+    }
+
+    public DescriptionList termWidth(String width) {
+        // --pf-v5-c-description-list__term--width: 10ch;
+        return componentVar(component(descriptionList), "term", "width").applyTo(this, width);
     }
 
     @Override
     public DescriptionList that() {
         return this;
-    }
-
-    // ------------------------------------------------------ aria
-
-    public DescriptionList ariaLabel(String label) {
-        return aria(Aria.label, label);
-    }
-
-    // ------------------------------------------------------ events
-
-    public DescriptionList onFoo(ComponentHandler<DescriptionList> handler) {
-        return on(click, e -> handler.handle(e, this));
-    }
-
-    // ------------------------------------------------------ api
-
-    public void doSomething() {
-
-    }
-
-    public String getter() {
-        return "some piece of information";
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
     }
 }
