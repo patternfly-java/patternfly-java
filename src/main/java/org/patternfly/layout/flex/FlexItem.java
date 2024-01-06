@@ -15,21 +15,24 @@
  */
 package org.patternfly.layout.flex;
 
+import java.util.EnumSet;
+
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Tuple;
-import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointModifiers;
+import org.patternfly.style.BreakpointTypedModifiers;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.layout.flex.Flex.booleanTuples;
-import static org.patternfly.layout.flex.Flex.internalOrder;
+import static org.patternfly.core.Tuple.tuple;
+import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
 import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
-import static org.patternfly.style.Classes.typedModifier;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Order;
 
 public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
 
@@ -52,47 +55,51 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
     // ------------------------------------------------------ builder
 
     /** Value to use for margin: auto at various breakpoints */
-    public FlexItem align(Tuples<Breakpoint, Align> align) {
-        return css(typedModifier(align));
+    public FlexItem align(BreakpointTypedModifiers<Align> align) {
+        return align.modifiers().addTo(this);
     }
 
     /** Value to add for align-self property at various breakpoints */
-    public FlexItem alignSelf(Tuples<Breakpoint, AlignSelf> alignSelf) {
-        return css(typedModifier(alignSelf));
+    public FlexItem alignSelf(BreakpointTypedModifiers<AlignSelf> alignSelf) {
+        return alignSelf.modifiers().addTo(this);
     }
 
     /** Value to add for flex property at various breakpoints */
-    public FlexItem flex(Tuples<Breakpoint, FlexShorthand> flexShorthand) {
-        return css(typedModifier(flexShorthand));
+    public FlexItem flex(BreakpointTypedModifiers<FlexShorthand> flexShorthand) {
+        return flexShorthand.modifiers().addTo(this);
     }
 
     /** Whether to set width: 100% at various breakpoints */
-    public FlexItem fullWidth(Tuples<Breakpoint, Boolean> fullWidth) {
-        return css(booleanTuples(fullWidth, "full-width"));
+    public FlexItem fullWidth(Breakpoint breakpoint, Breakpoint... more) {
+        BreakpointModifiers<String> fullWidth = EnumSet.of(breakpoint, more).stream()
+                .map(bp -> tuple(bp, "full-width"))
+                .collect(toBreakpointModifiers());
+        return fullWidth.modifiers().addTo(this);
     }
 
     /** Whether to add flex: grow at various breakpoints */
-    public FlexItem grow(Tuples<Breakpoint, Boolean> grow) {
-        return css(booleanTuples(grow, "grow"));
+    public FlexItem grow(Breakpoint breakpoint, Breakpoint... more) {
+        BreakpointModifiers<String> grow = EnumSet.of(breakpoint, more).stream()
+                .map(bp -> tuple(bp, "grow"))
+                .collect(toBreakpointModifiers());
+        return grow.modifiers().addTo(this);
     }
 
-    public FlexItem order(Tuples<Breakpoint, String> order) {
-        if (order != null) {
-            for (Tuple<Breakpoint, String> o : order) {
-                internalOrder(element(), o);
-            }
-        }
-        return this;
+    public FlexItem order(BreakpointModifiers<String> order) {
+        return order.variables(componentVar(layout(flex), item, Order)).applyTo(this);
     }
 
     /** Whether to add flex: shrink at various breakpoints */
-    public FlexItem shrink(Tuples<Breakpoint, Boolean> shrink) {
-        return css(booleanTuples(shrink, "shrink"));
+    public FlexItem shrink(Breakpoint breakpoint, Breakpoint... more) {
+        BreakpointModifiers<String> shrink = EnumSet.of(breakpoint, more).stream()
+                .map(bp -> tuple(bp, "shrink"))
+                .collect(toBreakpointModifiers());
+        return shrink.modifiers().addTo(this);
     }
 
     /** Spacers at various breakpoints */
-    public FlexItem spacer(Tuples<Breakpoint, Spacer> spacer) {
-        return css(typedModifier(spacer));
+    public FlexItem spacer(BreakpointTypedModifiers<Spacer> spacer) {
+        return spacer.modifiers().addTo(this);
     }
 
     @Override

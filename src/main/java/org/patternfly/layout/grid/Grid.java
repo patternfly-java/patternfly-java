@@ -17,15 +17,17 @@ package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
-import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointModifiers;
 import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -67,23 +69,17 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     /**
      * The number of columns all grid items should span on a specific breakpoint.
      */
-    public Grid columns(Tuples<Breakpoint, Integer> columns) {
-        if (columns != null) {
-            for (Tuple<Breakpoint, Integer> col : columns) {
-                internalColumns(col);
-            }
-        }
-        return this;
+    public Grid columns(BreakpointModifiers<Integer> columns) {
+        BreakpointModifiers<Integer> safeColumns = columns.stream()
+                .filter(tuple -> verifyRange(element(), "PF5/Grid", "columns", tuple.value, 1, 12))
+                .filter(tuple -> tuple.key != default_)
+                .collect(toBreakpointModifiers());
+        return safeColumns.modifiers(col -> "all-" + col + "-col").addTo(this);
     }
 
     /** Modifies the flex layout element order property. */
-    public Grid order(Tuples<Breakpoint, String> order) {
-        if (order != null) {
-            for (Tuple<Breakpoint, String> o : order) {
-                internalOrder(element(), o);
-            }
-        }
-        return this;
+    public Grid order(BreakpointModifiers<String> order) {
+        return order.variables(componentVar(layout(grid), item, Order)).applyTo(this);
     }
 
     /**
@@ -107,12 +103,12 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
         // Variable examples:
         // --pf-v5-l-grid--item--Order: -1;
         // --pf-v5-l-grid--item--Order-on-md: 1;
-        String orderPart = tuple.key == Breakpoint.default_ ? Order : Order + "-on-" + tuple.key.value;
+        String orderPart = tuple.key == default_ ? Order : Order + "-on-" + tuple.key.value;
         componentVar(layout(grid), item, orderPart).applyTo(element, tuple.value);
     }
 
     private void internalColumns(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != Breakpoint.default_) {
+        if (tuple.key != default_) {
             if (verifyRange(element(), "PF5/Grid", "columns", tuple.value, 1, 12)) {
                 css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
             }

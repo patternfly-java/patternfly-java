@@ -17,9 +17,8 @@ package org.patternfly.component.descriptionlist;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Tuple;
-import org.patternfly.core.Tuples;
-import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointModifiers;
+import org.patternfly.style.BreakpointTypedModifiers;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Horizontal;
@@ -30,10 +29,9 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.dl;
 import static org.patternfly.core.Tuple.tuple;
-import static org.patternfly.core.TuplesCollector.toTuples;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.core.Validation.verifyRange;
-import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.display;
@@ -98,17 +96,15 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     /**
      * Sets the minimum column size for the auto-fit (isAutoFit) layout at various breakpoints.
      */
-    public DescriptionList autoFitMin(Tuples<Breakpoint, String> autoFitMin) {
+    public DescriptionList autoFitMin(BreakpointModifiers<String> autoFitMin) {
         // Variable examples:
         // --pf-v5-c-description-list--GridTemplateColumns--min: 500px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-md: 100px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-lg: 150px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-xl: 200px;
         if (autoFitMin != null) {
-            for (Tuple<Breakpoint, String> tuple : autoFitMin) {
-                String minPart = tuple.key == default_ ? "min" : "min-on-" + tuple.key.value;
-                componentVar(component(descriptionList), GridTemplateColumns, minPart).applyTo(this, tuple.value);
-            }
+            autoFitMin.variables(componentVar(component(descriptionList), GridTemplateColumns, "min"))
+                    .applyTo(this);
         }
         return this;
     }
@@ -116,13 +112,14 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     /**
      * Sets the number of columns on the description list at various breakpoints.
      */
-    public DescriptionList columns(Tuples<Breakpoint, Integer> columns) {
+    public DescriptionList columns(BreakpointModifiers<Integer> columns) {
         if (columns != null) {
-            Tuples<Breakpoint, String> stringColumns = columns.stream()
+            BreakpointModifiers<String> stringColumns = columns.stream()
                     .filter(t -> verifyRange(element(), componentType(), "columns", t.value, 1, 3))
                     .map(t -> tuple(t.key, t.value + "-col"))
-                    .collect(toTuples());
+                    .collect(toBreakpointModifiers());
             css(modifier(stringColumns));
+            stringColumns.modifiers().addTo(this);
         }
         return this;
     }
@@ -160,17 +157,20 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     /**
      * Sets the horizontal description list's term column width at various breakpoints.
      */
-    public DescriptionList horizontalTermWidth(Tuples<Breakpoint, String> horizontalTermWidth) {
+    public DescriptionList horizontalTermWidth(BreakpointModifiers<String> horizontalTermWidth) {
         if (horizontalTermWidth != null) {
             // Variable examples:
             // --pf-v5-c-description-list--m-horizontal__term--width: 12ch;
             // --pf-v5-c-description-list--m-horizontal__term--width-on-sm: 15ch;
             // --pf-v5-c-description-list--m-horizontal__term--width-on-md: 20ch;
             // --pf-v5-c-description-list--m-horizontal__term--width-on-lg: 28ch;
-            for (Tuple<Breakpoint, String> tuple : horizontalTermWidth) {
-                String widthPart = tuple.key == default_ ? "width" : "width-on-" + tuple.key.value;
-                componentVar(component(descriptionList), "m-horizontal__term", widthPart).applyTo(this, tuple.value);
-            }
+            horizontalTermWidth
+                    .variables(componentVar(component(descriptionList), "m-horizontal__term", "width"))
+                    .applyTo(this);
+            // for (Tuple<Breakpoint, String> tuple : horizontalTermWidth) {
+            // String widthPart = tuple.key == default_ ? "width" : "width-on-" + tuple.key.value;
+            // componentVar(component(descriptionList), "m-horizontal__term", widthPart).applyTo(this, tuple.value);
+            // }
         }
         return this;
     }
@@ -186,7 +186,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     /** Indicates how the menu will align at various breakpoints. */
-    public DescriptionList orientation(Tuples<Breakpoint, Orientation> orientation) {
+    public DescriptionList orientation(BreakpointTypedModifiers<Orientation> orientation) {
         return css(typedModifier(orientation));
     }
 

@@ -19,8 +19,7 @@ import org.jboss.elemento.HTMLElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Tuples;
-import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointModifiers;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -109,12 +108,14 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
 
     // ------------------------------------------------------ builder
 
-    public Brand widths(Tuples<Breakpoint, String> widths) {
-        return componentVar(component(brand), Width).applyTo(this, widths);
+    public Brand widths(BreakpointModifiers<String> widths) {
+        return widths.variables(componentVar(component(brand), Width)).applyTo(this);
+        // return componentVar(component(brand), Width).applyTo(this, widths);
     }
 
-    public Brand heights(Tuples<Breakpoint, String> heights) {
-        return componentVar(component(brand), Height).applyTo(this, heights);
+    public Brand heights(BreakpointModifiers<String> heights) {
+        return heights.variables(componentVar(component(brand), Height)).applyTo(this);
+        // return componentVar(component(brand), Height).applyTo(this, heights);
     }
 
     @Override

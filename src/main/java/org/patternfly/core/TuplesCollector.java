@@ -29,7 +29,7 @@ public class TuplesCollector<K, V> implements Collector<Tuple<K, V>, List<Tuple<
 
     // ------------------------------------------------------ factory
 
-    public static <K, V> TuplesCollector<K, V> toTuples() {
+    public static <K, V> Collector<Tuple<K, V>, List<Tuple<K, V>>, Tuples<K, V>> toTuples() {
         return new TuplesCollector<>();
     }
 

@@ -21,8 +21,8 @@ import org.patternfly.core.PatternFly;
 import org.patternfly.core.Tuples;
 
 import static java.util.stream.Collectors.joining;
-import static org.patternfly.style.Breakpoint.LARGE_TO_SMALL;
 import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.BreakpointModifiers.LARGE_TO_SMALL;
 
 @SuppressWarnings("SpellCheckingInspection")
 public interface Classes {
@@ -315,6 +315,10 @@ public interface Classes {
 
     // ------------------------------------------------------ breakpoint modifiers
 
+    static String modifier(BreakpointModifiers<String> breakpointModifiers) {
+        return breakpointModifiers.modifierValues();
+    }
+
     static String modifier(Tuples<Breakpoint, String> tuples) {
         return modifier(tuples, null, Function.identity());
     }
@@ -329,7 +333,7 @@ public interface Classes {
 
     // ------------------------------------------------------ typed breakpoint modifiers
 
-    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples) {
+    static <T extends TypedModifier> String typedModifier(BreakpointTypedModifiers<T> tuples) {
         return modifier(tuples, null, TypedModifier::value);
     }
 

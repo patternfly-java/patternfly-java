@@ -18,8 +18,7 @@ package org.patternfly.component.divider;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Logger;
-import org.patternfly.core.Tuples;
-import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointTypedModifiers;
 import org.patternfly.style.Inset;
 import org.patternfly.style.Orientation;
 
@@ -71,11 +70,11 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
 
     // ------------------------------------------------------ builder
 
-    public Divider inset(Tuples<Breakpoint, Inset> inset) {
+    public Divider inset(BreakpointTypedModifiers<Inset> inset) {
         return css(typedModifier(inset));
     }
 
-    public Divider orientation(Tuples<Breakpoint, Orientation> orientation) {
+    public Divider orientation(BreakpointTypedModifiers<Orientation> orientation) {
         return css(typedModifier(orientation));
     }
 

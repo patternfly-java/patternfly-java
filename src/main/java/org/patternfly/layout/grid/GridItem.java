@@ -20,12 +20,16 @@ import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointModifiers;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.core.Tuple.tuple;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.layout.grid.Grid.internalOrder;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.BreakpointCollectors.modifiers;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -64,13 +68,13 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     /**
      * The number of columns the grid item spans on a specific breakpoint. Value should be a number 1-12.
      */
-    public GridItem span(Tuples<Breakpoint, Integer> columns) {
-        if (columns != null) {
-            for (Tuple<Breakpoint, Integer> column : columns) {
-                internalSpan(column);
-            }
-        }
-        return this;
+    public GridItem span(BreakpointModifiers<Integer> columns) {
+        String modifiers = columns.stream()
+                .filter(t -> verifyRange(element(), "PF5/GridItem", "span", t.value, 1, 12))
+                .filter(t -> t.key != default_)
+                .map(t -> tuple(t.key, t.value + "-col"))
+                .collect(modifiers());
+        return css(modifiers);
     }
 
     /**

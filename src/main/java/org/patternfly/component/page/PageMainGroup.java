@@ -17,8 +17,7 @@ package org.patternfly.component.page;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
-import org.patternfly.core.Tuples;
-import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointTypedModifiers;
 import org.patternfly.style.Sticky;
 
 import elemental2.dom.HTMLDivElement;
@@ -75,7 +74,7 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
     /**
      * Modifies this component to be sticky at the given breakpoints.
      */
-    public PageMainGroup sticky(Tuples<Breakpoint, Sticky> sticky) {
+    public PageMainGroup sticky(BreakpointTypedModifiers<Sticky> sticky) {
         return css(typedModifier(sticky));
     }
 

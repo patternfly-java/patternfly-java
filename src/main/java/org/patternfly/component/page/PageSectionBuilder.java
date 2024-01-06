@@ -15,8 +15,7 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.core.Tuples;
-import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointTypedModifiers;
 import org.patternfly.style.Padding;
 import org.patternfly.style.Sticky;
 
@@ -72,11 +71,11 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
     /**
      * Modifies this component to be sticky at the given breakpoints.
      */
-    public P sticky(Tuples<Breakpoint, Sticky> sticky) {
+    public P sticky(BreakpointTypedModifiers<Sticky> sticky) {
         return css(typedModifier(sticky));
     }
 
-    public P padding(Tuples<Breakpoint, Padding> padding) {
+    public P padding(BreakpointTypedModifiers<Padding> padding) {
         return css(typedModifier(padding));
     }
 

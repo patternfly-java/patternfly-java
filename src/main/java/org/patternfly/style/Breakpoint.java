@@ -15,9 +15,6 @@
  */
 package org.patternfly.style;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum Breakpoint {
 
     // ------------------------------------------------------ enum
@@ -73,10 +70,6 @@ public enum Breakpoint {
         }
         return default_;
     }
-
-    // ------------------------------------------------------ internal
-
-    static final List<Breakpoint> LARGE_TO_SMALL = Arrays.asList(_2xl, xl, lg, md, sm, default_);
 
     // ------------------------------------------------------ instance
 

@@ -1,0 +1,43 @@
+name: Snapshot Release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  snapshot:
+    name: Deploy Snapshot
+    runs-on: ubuntu-latest
+    env:
+      MVN: ./mvnw --show-version --batch-mode
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        id: setup-jdk
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: maven
+      - name: Package
+        id: package
+        run: $MVN package
+      - name: Set up Maven Settings
+        id: setup-maven-settings
+        uses: actions/setup-java@v4
+        with: # running setup-java again overwrites the settings.xml
+          java-version: 11
+          distribution: temurin
+          server-id: ossrh
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+      - name: Deploy
+        id: deploy
+        run: $MVN deploy
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
