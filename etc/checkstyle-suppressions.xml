@@ -22,6 +22,6 @@
 
 <suppressions>
     <!-- Ignore generated sources -->
-    <suppress files=".*/generated-sources/.*" checks=".*"/>
-    <suppress files=".*/generated-test-sources/.*" checks=".*"/>
+    <suppress files=".*[/\\]generated-sources[/\\].*" checks=".*"/>
+    <suppress files=".*[/\\]generated-test-sources[/\\].*" checks=".*"/>
 </suppressions>
