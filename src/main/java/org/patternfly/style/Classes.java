@@ -189,6 +189,7 @@ public interface Classes {
     String page = "page";
     String pageInsets = "page-insets";
     String pagination = "pagination";
+    String panel = "panel";
     String path = "path";
     String picture = "picture";
     String plain = "plain";
@@ -200,6 +201,7 @@ public interface Classes {
     String progress = "progress";
     String progressbar = "progressbar";
     String radio = "radio";
+    String raised = "raised";
     String read = "read";
     String readOnly = "read-only";
     String readonly = "readonly";
