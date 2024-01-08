@@ -24,13 +24,13 @@ import static org.jboss.elemento.Elements.*;
 import static org.patternfly.style.Classes.*;
 import static org.patternfly.style.Classes.main;
 
-public class PanelBody extends PanelSubComponent<HTMLElement, PanelBody>
-        implements ElementDelegate<HTMLElement, PanelBody> {
+public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
+        implements ElementDelegate<HTMLElement, PanelMain> {
 
     // ------------------------------------------------------ factory
 
-    public static PanelBody panelBody() {
-        return new PanelBody();
+    public static PanelMain panelMain() {
+        return new PanelMain();
     }
 
     // ------------------------------------------------------ instance
@@ -38,7 +38,7 @@ public class PanelBody extends PanelSubComponent<HTMLElement, PanelBody>
     static final String SUB_COMPONENT_NAME = "pm";
     final HTMLDivElement bodyElement;
 
-    PanelBody() {
+    PanelMain() {
         super(SUB_COMPONENT_NAME, div().css(component(panel, main)).element());
         element().appendChild(bodyElement = div().css(component(panel, main, body))
                 .element());
@@ -52,7 +52,7 @@ public class PanelBody extends PanelSubComponent<HTMLElement, PanelBody>
     // ------------------------------------------------------ builder
 
     @Override
-    public PanelBody that() {
+    public PanelMain that() {
         return this;
     }
 }

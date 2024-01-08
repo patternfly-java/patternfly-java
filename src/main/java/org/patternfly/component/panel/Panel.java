@@ -15,29 +15,30 @@
  */
 package org.patternfly.component.panel;
 
-import org.jboss.elemento.Attachable;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.MutationRecord;
+import org.patternfly.core.Logger;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.hr;
-import static org.patternfly.component.panel.PanelBody.panelBody;
+import static org.patternfly.component.panel.PanelMain.panelMain;
 import static org.patternfly.component.panel.PanelFooter.panelFooter;
 import static org.patternfly.component.panel.PanelHeader.panelHeader;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.style.Classes.*;
 
-public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements Attachable {
-    private PanelHeader header;
-    private PanelBody body;
-    private PanelFooter footer;
+/**
+ * The panel component is a container that supports flexible content layouts. It can be used to house other components
+ * such as fields, forms, videos, buttons, and more. The panel should not be confused with the drawer component,
+ * which allows you to surface information via a collapsable container.
+ *
+ * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
+ */
+public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
 
-    protected Panel() {
-        super(ComponentType.Panel, div().css(component(panel)).element());
-    }
+    // ------------------------------------------------------ factory
 
     public static Panel panel() {
         return new Panel();
@@ -55,6 +56,15 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements A
         return css(modifier(scrollable));
     }
 
+    // ------------------------------------------------------ instance
+    private PanelHeader header;
+    private PanelMain main;
+    private PanelFooter footer;
+
+    protected Panel() {
+        super(ComponentType.Panel, div().css(component(panel)).element());
+    }
+
     // ------------------------------------------------------ add
 
     public Panel addHeader(String header) {
@@ -67,29 +77,32 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements A
 
     public Panel add(PanelHeader header) {
         if (this.header != null) {
-            throw new IllegalStateException("header already added");
+            Logger.unsupported(ComponentType.Panel, this.header.element(), "header already added");
         }
         this.header = header;
-        element().appendChild(header.element());
-        element().appendChild(hr().css(divider).element());
         aria(labelledBy, header.headerId);
         return this;
     }
 
-    public Panel addBody(String body) {
-        return add(panelBody().textContent(body));
+    public Panel addDivider() {
+        element().appendChild(hr().css(divider).element());
+        return this;
     }
 
-    public Panel addBody(PanelBody body) {
-        return add(body);
+    public Panel addMain(String main) {
+        return add(panelMain().textContent(main));
     }
 
-    public Panel add(PanelBody body) {
-        if (this.body != null) {
-            throw new IllegalStateException("body already added");
+    public Panel addMain(PanelMain main) {
+        return add(main);
+    }
+
+    public Panel add(PanelMain main) {
+        if (this.main != null) {
+            Logger.unsupported(ComponentType.Panel, this.main.element(), "main already added");
         }
-        this.body = body;
-        element().appendChild(body.element());
+        this.main = main;
+        element().appendChild(main.element());
         return this;
     }
 
@@ -103,17 +116,14 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements A
 
     public Panel add(PanelFooter footer) {
         if (this.footer != null) {
-            throw new IllegalStateException("footer already added");
+            Logger.unsupported(ComponentType.Panel, this.footer.element(), "footer already added");
         }
         this.footer = footer;
         element().appendChild(footer.element());
         return this;
     }
 
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-
-    }
+    // ------------------------------------------------------ builder
 
     @Override
     public Panel that() {
