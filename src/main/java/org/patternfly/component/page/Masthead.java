@@ -19,7 +19,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.brand.Brand;
 import org.patternfly.component.toolbar.Toolbar;
-import org.patternfly.style.BreakpointTypedModifiers;
+import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Brightness;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Display;
@@ -35,7 +35,7 @@ import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Breakpoint.breakpoint;
 import static org.patternfly.style.Breakpoint.md;
-import static org.patternfly.style.BreakpointTypedModifiers.breakpointTypedModifiers;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Brightness.dark;
 import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Brightness.light200;
@@ -66,12 +66,12 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     // ------------------------------------------------------ instance
 
-    private BreakpointTypedModifiers<Display> displayModifiers;
-    private BreakpointTypedModifiers<Inset> insetModifiers;
+    private Breakpoints<Display> displayModifiers;
+    private Breakpoints<Inset> insetModifiers;
 
     Masthead() {
         super(ComponentType.Masthead, header().css(component(masthead)).element());
-        this.displayModifiers = breakpointTypedModifiers(md, inline);
+        this.displayModifiers = breakpoints(md, inline);
     }
 
     // ------------------------------------------------------ add
@@ -127,7 +127,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     /**
      * Display type at various breakpoints. Defaults to {@code tuples(md, inline)}.
      */
-    public Masthead display(BreakpointTypedModifiers<Display> displayModifiers) {
+    public Masthead display(Breakpoints<Display> displayModifiers) {
         this.displayModifiers = displayModifiers;
         return this;
     }
@@ -135,7 +135,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     /**
      * Insets at various breakpoints
      */
-    public Masthead inset(BreakpointTypedModifiers<Inset> insetModifiers) {
+    public Masthead inset(Breakpoints<Inset> insetModifiers) {
         this.insetModifiers = insetModifiers;
         return this;
     }
@@ -158,9 +158,9 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     // ------------------------------------------------------ internal
 
     void onPageResize(Rect currentPageRect, Rect previousPageRect) {
-        classList().remove(displayModifiers.modifierValues(breakpoint(previousPageRect.width)));
-        classList().remove(insetModifiers.modifierValues(breakpoint(previousPageRect.width)));
-        classList().add(displayModifiers.modifierValues(breakpoint(currentPageRect.width)));
-        classList().add(insetModifiers.modifierValues(breakpoint(currentPageRect.width)));
+        classList().remove(displayModifiers.modifiers(breakpoint(previousPageRect.width)));
+        classList().remove(insetModifiers.modifiers(breakpoint(previousPageRect.width)));
+        classList().add(displayModifiers.modifiers(breakpoint(currentPageRect.width)));
+        classList().add(insetModifiers.modifiers(breakpoint(currentPageRect.width)));
     }
 }

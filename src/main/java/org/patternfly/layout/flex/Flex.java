@@ -20,15 +20,13 @@ import java.util.EnumSet;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.BreakpointModifiers;
-import org.patternfly.style.BreakpointTypedModifiers;
-import org.patternfly.style.Display;
+import org.patternfly.style.Breakpoints;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Tuple.tuple;
-import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
+import static org.patternfly.style.BreakpointCollector.joining;
 import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -69,101 +67,101 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     // ------------------------------------------------------ builder
 
     /** Value to use for margin: auto at various breakpoints */
-    public Flex align(BreakpointTypedModifiers<Align> align) {
-        return align.modifiers().addTo(this);
+    public Flex align(Breakpoints<Align> align) {
+        return css(align.modifiers());
     }
 
     /** Value to add for align-content property at various breakpoints */
-    public Flex alignContent(BreakpointTypedModifiers<AlignContent> alignContent) {
-        return alignContent.modifiers().addTo(this);
+    public Flex alignContent(Breakpoints<AlignContent> alignContent) {
+        return css(alignContent.modifiers());
     }
 
     /** Value to add for align-items property at various breakpoints */
-    public Flex alignItems(BreakpointTypedModifiers<AlignItems> alignItems) {
-        return alignItems.modifiers().addTo(this);
+    public Flex alignItems(Breakpoints<AlignItems> alignItems) {
+        return css(alignItems.modifiers());
     }
 
     /** Value to add for align-self property at various breakpoints */
-    public Flex alignSelf(BreakpointTypedModifiers<AlignSelf> alignSelf) {
-        return alignSelf.modifiers().addTo(this);
+    public Flex alignSelf(Breakpoints<AlignSelf> alignSelf) {
+        return css(alignSelf.modifiers());
     }
 
     /** Gap between columns at various breakpoints. This will override spacers for the main axis. */
-    public Flex columnGap(BreakpointTypedModifiers<Gap> columnGap) {
-        return columnGap.modifiers(m -> "column-" + m.value()).addTo(this);
+    public Flex columnGap(Breakpoints<Gap> columnGap) {
+        return css(columnGap.modifiers(gap -> "column-" + gap.value()));
     }
 
     /** Value to add for flex-direction property at various breakpoints */
-    public Flex direction(BreakpointTypedModifiers<Direction> direction) {
-        return direction.modifiers().addTo(this);
+    public Flex direction(Breakpoints<Direction> direction) {
+        return css(direction.modifiers());
     }
 
     /** Value to set to display property at various breakpoints */
-    public Flex display(BreakpointTypedModifiers<Display> display) {
-        return display.modifiers().addTo(this);
+    public Flex display(Breakpoints<Display> display) {
+        return css(display.modifiers());
     }
 
     /** Value to add for flex property at various breakpoints */
-    public Flex flex(BreakpointTypedModifiers<FlexShorthand> flexShorthand) {
-        return flexShorthand.modifiers().addTo(this);
+    public Flex flex(Breakpoints<FlexShorthand> flexShorthand) {
+        return css(flexShorthand.modifiers());
     }
 
     /** Value to set for flex-wrap property at various breakpoints */
-    public Flex flexWrap(BreakpointTypedModifiers<FlexWrap> flexWrap) {
-        return flexWrap.modifiers().addTo(this);
+    public Flex flexWrap(Breakpoints<FlexWrap> flexWrap) {
+        return css(flexWrap.modifiers());
     }
 
     /** Whether to set width: 100% at various breakpoints */
     public Flex fullWidth(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> fullWidth = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "full-width"))
-                .collect(toBreakpointModifiers());
-        return fullWidth.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
     /** Gap between items at various breakpoints. This will override spacers for the main axis. */
-    public Flex gap(BreakpointTypedModifiers<Gap> gap) {
-        return gap.modifiers().addTo(this);
+    public Flex gap(Breakpoints<Gap> gap) {
+        return css(gap.modifiers());
     }
 
     /** Whether to add flex: grow at various breakpoints */
     public Flex grow(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> grow = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "grow"))
-                .collect(toBreakpointModifiers());
-        return grow.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
     /** Value to add for justify-content property at various breakpoints */
-    public Flex justifyContent(BreakpointTypedModifiers<JustifyContent> justifyContent) {
-        return justifyContent.modifiers().addTo(this);
+    public Flex justifyContent(Breakpoints<JustifyContent> justifyContent) {
+        return css(justifyContent.modifiers());
     }
 
-    public Flex order(BreakpointModifiers<String> order) {
-        return order.variables(componentVar(layout(flex), item, Order)).applyTo(this);
+    public Flex order(Breakpoints<String> order) {
+        return componentVar(layout(flex), item, Order).applyTo(this, order);
     }
 
     /** Gap between rows at various breakpoints. This will override spacers for the main axis. */
-    public Flex rowGap(BreakpointTypedModifiers<Gap> rowGap) {
-        return rowGap.modifiers(m -> "row-" + m.value()).addTo(this);
+    public Flex rowGap(Breakpoints<Gap> rowGap) {
+        return css(rowGap.modifiers(m -> "row-" + m.value()));
     }
 
     /** Whether to add flex: shrink at various breakpoints */
     public Flex shrink(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> shrink = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "shrink"))
-                .collect(toBreakpointModifiers());
-        return shrink.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
     /** Space items at various breakpoints */
-    public Flex spaceItems(BreakpointTypedModifiers<SpaceItems> spaceItems) {
-        return spaceItems.modifiers().addTo(this);
+    public Flex spaceItems(Breakpoints<SpaceItems> spaceItems) {
+        return css(spaceItems.modifiers());
     }
 
     /** Spacers at various breakpoints */
-    public Flex spacer(BreakpointTypedModifiers<Spacer> spacer) {
-        return spacer.modifiers().addTo(this);
+    public Flex spacer(Breakpoints<Spacer> spacer) {
+        return css(spacer.modifiers());
     }
 
     @Override

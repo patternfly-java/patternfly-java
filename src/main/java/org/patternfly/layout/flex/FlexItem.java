@@ -20,14 +20,13 @@ import java.util.EnumSet;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.BreakpointModifiers;
-import org.patternfly.style.BreakpointTypedModifiers;
+import org.patternfly.style.Breakpoints;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Tuple.tuple;
-import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
+import static org.patternfly.style.BreakpointCollector.joining;
 import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -55,51 +54,51 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
     // ------------------------------------------------------ builder
 
     /** Value to use for margin: auto at various breakpoints */
-    public FlexItem align(BreakpointTypedModifiers<Align> align) {
-        return align.modifiers().addTo(this);
+    public FlexItem align(Breakpoints<Align> align) {
+        return css(align.modifiers());
     }
 
     /** Value to add for align-self property at various breakpoints */
-    public FlexItem alignSelf(BreakpointTypedModifiers<AlignSelf> alignSelf) {
-        return alignSelf.modifiers().addTo(this);
+    public FlexItem alignSelf(Breakpoints<AlignSelf> alignSelf) {
+        return css(alignSelf.modifiers());
     }
 
     /** Value to add for flex property at various breakpoints */
-    public FlexItem flex(BreakpointTypedModifiers<FlexShorthand> flexShorthand) {
-        return flexShorthand.modifiers().addTo(this);
+    public FlexItem flex(Breakpoints<FlexShorthand> flexShorthand) {
+        return css(flexShorthand.modifiers());
     }
 
     /** Whether to set width: 100% at various breakpoints */
     public FlexItem fullWidth(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> fullWidth = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "full-width"))
-                .collect(toBreakpointModifiers());
-        return fullWidth.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
     /** Whether to add flex: grow at various breakpoints */
     public FlexItem grow(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> grow = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "grow"))
-                .collect(toBreakpointModifiers());
-        return grow.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
-    public FlexItem order(BreakpointModifiers<String> order) {
-        return order.variables(componentVar(layout(flex), item, Order)).applyTo(this);
+    public FlexItem order(Breakpoints<String> order) {
+        return componentVar(layout(flex), item, Order).applyTo(this, order);
     }
 
     /** Whether to add flex: shrink at various breakpoints */
     public FlexItem shrink(Breakpoint breakpoint, Breakpoint... more) {
-        BreakpointModifiers<String> shrink = EnumSet.of(breakpoint, more).stream()
+        String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "shrink"))
-                .collect(toBreakpointModifiers());
-        return shrink.modifiers().addTo(this);
+                .collect(joining());
+        return css(modifiers);
     }
 
     /** Spacers at various breakpoints */
-    public FlexItem spacer(BreakpointTypedModifiers<Spacer> spacer) {
-        return spacer.modifiers().addTo(this);
+    public FlexItem spacer(Breakpoints<Spacer> spacer) {
+        return css(spacer.modifiers());
     }
 
     @Override

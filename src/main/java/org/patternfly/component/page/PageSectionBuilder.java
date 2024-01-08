@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.style.BreakpointTypedModifiers;
+import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Padding;
 import org.patternfly.style.Sticky;
 
@@ -27,7 +27,6 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflowScroll;
 import static org.patternfly.style.Classes.shadowBottom;
 import static org.patternfly.style.Classes.shadowTop;
-import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
@@ -71,12 +70,12 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
     /**
      * Modifies this component to be sticky at the given breakpoints.
      */
-    public P sticky(BreakpointTypedModifiers<Sticky> sticky) {
-        return css(typedModifier(sticky));
+    public P sticky(Breakpoints<Sticky> sticky) {
+        return css(sticky.modifiers());
     }
 
-    public P padding(BreakpointTypedModifiers<Padding> padding) {
-        return css(typedModifier(padding));
+    public P padding(Breakpoints<Padding> padding) {
+        return css(padding.modifiers());
     }
 
     /**

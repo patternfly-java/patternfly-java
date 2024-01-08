@@ -15,6 +15,8 @@
  */
 package org.patternfly.style;
 
+import java.util.function.Function;
+
 import org.jboss.elemento.HasHTMLElement;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.svg.HasSVGElement;
@@ -22,7 +24,6 @@ import org.jboss.elemento.svg.SVGElement;
 import org.patternfly.core.Logger;
 import org.patternfly.core.PatternFly;
 import org.patternfly.core.Tuple;
-import org.patternfly.core.Tuples;
 
 import elemental2.dom.HTMLElement;
 
@@ -119,11 +120,22 @@ public class Variable {
         return element.that();
     }
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B applyTo(HasHTMLElement<E, B> element,
-            Tuples<Breakpoint, String> tuples) {
-        if (valid && tuples != null && !tuples.isEmpty()) {
-            for (Tuple<Breakpoint, String> tuple : tuples) {
-                element.style(nameOnBreakpoint(tuple), tuple.value);
+    public <E extends HTMLElement, B extends TypedBuilder<E, B>, V> B applyTo(HasHTMLElement<E, B> element,
+            Breakpoints<V> breakpoints) {
+        if (breakpoints.typedModifier()) {
+            return applyTo(element, breakpoints, String::valueOf);
+        } else {
+            return applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
+        }
+    }
+
+    public <E extends HTMLElement, B extends TypedBuilder<E, B>, V> B applyTo(HasHTMLElement<E, B> element,
+            Breakpoints<V> breakpoints, Function<V, String> stringValue) {
+        if (valid && breakpoints != null && !breakpoints.isEmpty()) {
+            for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
+                String property = breakpoint.key == default_ ? name : name + "-on-" + breakpoint.key.value;
+                String value = stringValue.apply(breakpoint.value);
+                element.style(property, value);
             }
         }
         return element.that();
@@ -155,17 +167,21 @@ public class Variable {
         }
     }
 
-    public void applyTo(HTMLElement element, Tuples<Breakpoint, String> tuples) {
-        if (valid && tuples != null && !tuples.isEmpty()) {
-            for (Tuple<Breakpoint, String> tuple : tuples) {
-                element.style.setProperty(nameOnBreakpoint(tuple), tuple.value);
-            }
+    public <V> void applyTo(HTMLElement element, Breakpoints<V> breakpoints) {
+        if (breakpoints.typedModifier()) {
+            applyTo(element, breakpoints, String::valueOf);
+        } else {
+            applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
         }
     }
 
-    // ------------------------------------------------------ internal
-
-    private String nameOnBreakpoint(Tuple<Breakpoint, String> tuple) {
-        return tuple.key == default_ ? name : name + "-on-" + tuple.key.value;
+    public <V> void applyTo(HTMLElement element, Breakpoints<V> breakpoints, Function<V, String> stringValue) {
+        if (valid && breakpoints != null && !breakpoints.isEmpty()) {
+            for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
+                String property = breakpoint.key == default_ ? name : name + "-on-" + breakpoint.key.value;
+                String value = stringValue.apply(breakpoint.value);
+                element.style.setProperty(property, value);
+            }
+        }
     }
 }
