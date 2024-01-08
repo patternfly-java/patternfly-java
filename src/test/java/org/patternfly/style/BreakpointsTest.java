@@ -27,58 +27,58 @@ import static org.patternfly.style.Breakpoint.lg;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Breakpoint.sm;
 import static org.patternfly.style.Breakpoint.xl;
-import static org.patternfly.style.BreakpointModifiers.breakpointModifiers;
+import static org.patternfly.style.Breakpoints.breakpoints;
 
-class BreakpointModifiersTest {
+class BreakpointsTest {
 
     @Test
     void nil() {
-        assertEquals("", breakpointModifiers(null).modifierValues());
-        assertEquals("", breakpointModifiers(null).modifierValues(default_));
-        assertEquals("", breakpointModifiers(null).modifierValues(sm));
-        assertEquals("", breakpointModifiers(null).verticalModifierValues());
+        assertEquals("", breakpoints(null).modifiers());
+        assertEquals("", breakpoints(null).modifiers(default_));
+        assertEquals("", breakpoints(null).modifiers(sm));
+        assertEquals("", breakpoints(null).verticalModifiers());
     }
 
     @Test
     void empty() {
-        assertEquals("", breakpointModifiers(emptyList()).modifierValues());
-        assertEquals("", breakpointModifiers(emptyList()).modifierValues(default_));
-        assertEquals("", breakpointModifiers(emptyList()).modifierValues(sm));
-        assertEquals("", breakpointModifiers(emptyList()).verticalModifierValues());
+        assertEquals("", breakpoints(emptyList()).modifiers());
+        assertEquals("", breakpoints(emptyList()).modifiers(default_));
+        assertEquals("", breakpoints(emptyList()).modifiers(sm));
+        assertEquals("", breakpoints(emptyList()).verticalModifiers());
     }
 
     @Test
     void modifiers() {
-        assertEquals("pf-m-foo", breakpointModifiers(default_, "foo").modifierValues());
-        assertEquals("pf-m-foo-on-md", breakpointModifiers(md, "foo").modifierValues());
-        assertEquals("pf-m-foo pf-m-bar-on-lg", breakpointModifiers(default_, "foo", lg, "bar").modifierValues());
+        assertEquals("pf-m-foo", breakpoints(default_, "foo").modifiers());
+        assertEquals("pf-m-foo-on-md", breakpoints(md, "foo").modifiers());
+        assertEquals("pf-m-foo pf-m-bar-on-lg", breakpoints(default_, "foo", lg, "bar").modifiers());
     }
 
     @Test
     void prefix() {
         Function<String, String> prefix = string -> "prefix-" + string;
-        assertEquals("pf-m-prefix-foo", breakpointModifiers(default_, "foo").modifierValues(prefix));
-        assertEquals("pf-m-prefix-foo-on-md", breakpointModifiers(md, "foo").modifierValues(prefix));
+        assertEquals("pf-m-prefix-foo", breakpoints(default_, "foo").modifiers(prefix));
+        assertEquals("pf-m-prefix-foo-on-md", breakpoints(md, "foo").modifiers(prefix));
         assertEquals("pf-m-prefix-foo pf-m-prefix-bar-on-lg",
-                breakpointModifiers(default_, "foo", lg, "bar").modifierValues(prefix));
+                breakpoints(default_, "foo", lg, "bar").modifiers(prefix));
     }
 
     @Test
     void breakpoint() {
-        assertEquals("pf-m-foo", breakpointModifiers(md, "foo").modifierValues(_2xl)); // md < _2xl
-        assertEquals("", breakpointModifiers(md, "foo").modifierValues(sm)); // md > sm
+        assertEquals("pf-m-foo", breakpoints(md, "foo").modifiers(_2xl)); // md < _2xl
+        assertEquals("", breakpoints(md, "foo").modifiers(sm)); // md > sm
     }
 
     @Test
     void breakpointPrefix() {
         Function<String, String> prefix = string -> "prefix-" + string;
-        assertEquals("pf-m-prefix-foo", breakpointModifiers(md, "foo").modifierValues(_2xl, prefix)); // md < _2xl
-        assertEquals("", breakpointModifiers(md, "foo").modifierValues(sm, prefix)); // md > sm
+        assertEquals("pf-m-prefix-foo", breakpoints(md, "foo").modifiers(_2xl, prefix)); // md < _2xl
+        assertEquals("", breakpoints(md, "foo").modifiers(sm, prefix)); // md > sm
     }
 
     @Test
     void vertical() {
-        BreakpointModifiers<String> breakpointModifiers = breakpointModifiers(
+        Breakpoints<String> breakpoints = breakpoints(
                 default_, "a",
                 sm, "b",
                 md, "c",
@@ -86,19 +86,19 @@ class BreakpointModifiersTest {
                 xl, "e",
                 _2xl, "f");
         assertEquals(
-                "pf-m-a " +
+                "pf-m-a-height " +
                         "pf-m-b-on-sm-height " +
                         "pf-m-c-on-md-height " +
                         "pf-m-d-on-lg-height " +
                         "pf-m-e-on-xl-height " +
                         "pf-m-f-on-2xl-height",
-                breakpointModifiers.verticalModifierValues());
+                breakpoints.verticalModifiers());
     }
 
     @Test
     void verticalPrefix() {
         Function<String, String> prefix = string -> "prefix-" + string;
-        BreakpointModifiers<String> breakpointModifiers = breakpointModifiers(
+        Breakpoints<String> breakpoints = breakpoints(
                 default_, "a",
                 sm, "b",
                 md, "c",
@@ -106,12 +106,12 @@ class BreakpointModifiersTest {
                 xl, "e",
                 _2xl, "f");
         assertEquals(
-                "pf-m-prefix-a " +
+                "pf-m-prefix-a-height " +
                         "pf-m-prefix-b-on-sm-height " +
                         "pf-m-prefix-c-on-md-height " +
                         "pf-m-prefix-d-on-lg-height " +
                         "pf-m-prefix-e-on-xl-height " +
                         "pf-m-prefix-f-on-2xl-height",
-                breakpointModifiers.verticalModifierValues(prefix));
+                breakpoints.verticalModifiers(prefix));
     }
 }

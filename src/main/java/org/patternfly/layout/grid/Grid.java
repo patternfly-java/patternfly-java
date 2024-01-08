@@ -19,7 +19,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
-import org.patternfly.style.BreakpointModifiers;
+import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
@@ -27,7 +27,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.BreakpointCollectors.toBreakpointModifiers;
+import static org.patternfly.style.BreakpointCollector.joining;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -69,17 +69,17 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     /**
      * The number of columns all grid items should span on a specific breakpoint.
      */
-    public Grid columns(BreakpointModifiers<Integer> columns) {
-        BreakpointModifiers<Integer> safeColumns = columns.stream()
-                .filter(tuple -> verifyRange(element(), "PF5/Grid", "columns", tuple.value, 1, 12))
-                .filter(tuple -> tuple.key != default_)
-                .collect(toBreakpointModifiers());
-        return safeColumns.modifiers(col -> "all-" + col + "-col").addTo(this);
+    public Grid columns(Breakpoints<Integer> columns) {
+        String modifiers = columns.stream()
+                .filter(bp -> verifyRange(element(), "PF5/Grid", "columns", bp.value, 1, 12))
+                .filter(bp -> bp.key != default_)
+                .collect(joining(col -> "all-" + col + "-col"));
+        return css(modifiers);
     }
 
     /** Modifies the flex layout element order property. */
-    public Grid order(BreakpointModifiers<String> order) {
-        return order.variables(componentVar(layout(grid), item, Order)).applyTo(this);
+    public Grid order(Breakpoints<String> order) {
+        return componentVar(layout(grid), item, Order).applyTo(this, order);
     }
 
     /**

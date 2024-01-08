@@ -17,7 +17,7 @@ package org.patternfly.component.page;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
-import org.patternfly.style.BreakpointTypedModifiers;
+import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Sticky;
 
 import elemental2.dom.HTMLDivElement;
@@ -32,7 +32,6 @@ import static org.patternfly.style.Classes.overflowScroll;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.shadowBottom;
 import static org.patternfly.style.Classes.shadowTop;
-import static org.patternfly.style.Classes.typedModifier;
 
 /**
  * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Sticky)}
@@ -74,8 +73,8 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
     /**
      * Modifies this component to be sticky at the given breakpoints.
      */
-    public PageMainGroup sticky(BreakpointTypedModifiers<Sticky> sticky) {
-        return css(typedModifier(sticky));
+    public PageMainGroup sticky(Breakpoints<Sticky> sticky) {
+        return css(sticky.modifiers());
     }
 
     /**

@@ -15,14 +15,9 @@
  */
 package org.patternfly.style;
 
-import java.util.function.Function;
-
 import org.patternfly.core.PatternFly;
-import org.patternfly.core.Tuples;
 
-import static java.util.stream.Collectors.joining;
 import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.BreakpointModifiers.LARGE_TO_SMALL;
 
 @SuppressWarnings("SpellCheckingInspection")
 public interface Classes {
@@ -315,50 +310,6 @@ public interface Classes {
 
     }
 
-    // ------------------------------------------------------ breakpoint modifiers
-
-    static String modifier(BreakpointModifiers<String> breakpointModifiers) {
-        return breakpointModifiers.modifierValues();
-    }
-
-    static String modifier(Tuples<Breakpoint, String> tuples) {
-        return modifier(tuples, null, Function.identity());
-    }
-
-    static String modifier(Tuples<Breakpoint, String> tuples, Breakpoint breakpoint) {
-        return modifier(tuples, breakpoint, Function.identity());
-    }
-
-    static String verticalModifier(Tuples<Breakpoint, String> tuples) {
-        return verticalModifier(tuples, Function.identity());
-    }
-
-    // ------------------------------------------------------ typed breakpoint modifiers
-
-    static <T extends TypedModifier> String typedModifier(BreakpointTypedModifiers<T> tuples) {
-        return modifier(tuples, null, TypedModifier::value);
-    }
-
-    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, String prefix) {
-        return modifier(tuples, null, t -> prefix + t.value());
-    }
-
-    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, Breakpoint breakpoint) {
-        return modifier(tuples, breakpoint, TypedModifier::value);
-    }
-
-    static <T extends TypedModifier> String typedModifier(Tuples<Breakpoint, T> tuples, String prefix, Breakpoint breakpoint) {
-        return modifier(tuples, breakpoint, t -> prefix + t.value());
-    }
-
-    static <T extends TypedModifier> String verticalTypedModifier(Tuples<Breakpoint, T> tuples) {
-        return verticalModifier(tuples, TypedModifier::value);
-    }
-
-    static <T extends TypedModifier> String verticalTypedModifier(Tuples<Breakpoint, T> tuples, String prefix) {
-        return verticalModifier(tuples, t -> prefix + t.value());
-    }
-
     // ------------------------------------------------------ internal
 
     private static String compose(char abbreviation, String type, String... elements) {
@@ -376,54 +327,5 @@ public interface Classes {
             }
         }
         return builder.toString();
-    }
-
-    private static <V> String modifier(Tuples<Breakpoint, V> tuples, Breakpoint breakpoint,
-            Function<V, String> stringValue) {
-        String modifier = "";
-        if (tuples != null && !tuples.isEmpty()) {
-            if (breakpoint != null) {
-                if (tuples.hasKey(breakpoint)) {
-                    modifier = modifier(stringValue.apply(tuples.value(breakpoint)));
-                } else {
-                    int index = LARGE_TO_SMALL.indexOf(breakpoint);
-                    for (int i = index; i < LARGE_TO_SMALL.size(); i++) {
-                        Breakpoint bp = LARGE_TO_SMALL.get(i);
-                        if (tuples.hasKey(bp)) {
-                            modifier = modifier(stringValue.apply(tuples.value(bp)));
-                        }
-                    }
-                }
-            } else {
-                modifier = tuples.stream()
-                        .map(tuple -> {
-                            StringBuilder builder = new StringBuilder(stringValue.apply(tuple.value));
-                            if (tuple.key != default_) {
-                                builder.append("-on-").append(tuple.key.value);
-                            }
-                            return builder.toString();
-                        })
-                        .map(Classes::modifier)
-                        .collect(joining(" "));
-            }
-
-        }
-        return modifier;
-    }
-
-    private static <V> String verticalModifier(Tuples<Breakpoint, V> tuples, Function<V, String> stringValue) {
-        if (tuples != null && !tuples.isEmpty()) {
-            return tuples.stream()
-                    .map(tuple -> {
-                        StringBuilder builder = new StringBuilder(stringValue.apply(tuple.value));
-                        if (tuple.key != default_) {
-                            builder.append("-on-").append(tuple.key.value).append("-height");
-                        }
-                        return builder.toString();
-                    })
-                    .map(Classes::modifier)
-                    .collect(joining(" "));
-        }
-        return "";
     }
 }
