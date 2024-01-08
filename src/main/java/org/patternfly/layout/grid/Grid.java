@@ -16,9 +16,7 @@
 package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
-import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Modifiers.Gutter;
 
@@ -95,23 +93,5 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     @Override
     public Grid that() {
         return this;
-    }
-
-    // ------------------------------------------------------ internal
-
-    static void internalOrder(HTMLElement element, Tuple<Breakpoint, String> tuple) {
-        // Variable examples:
-        // --pf-v5-l-grid--item--Order: -1;
-        // --pf-v5-l-grid--item--Order-on-md: 1;
-        String orderPart = tuple.key == default_ ? Order : Order + "-on-" + tuple.key.value;
-        componentVar(layout(grid), item, orderPart).applyTo(element, tuple.value);
-    }
-
-    private void internalColumns(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != default_) {
-            if (verifyRange(element(), "PF5/Grid", "columns", tuple.value, 1, 12)) {
-                css(modifier("all-" + tuple.value + "-col-on-" + tuple.key.value));
-            }
-        }
     }
 }

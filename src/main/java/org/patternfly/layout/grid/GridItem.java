@@ -16,23 +16,21 @@
 package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.core.Tuple;
-import org.patternfly.core.Tuples;
 import org.patternfly.layout.BaseLayout;
-import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Breakpoints;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
-import static org.patternfly.layout.grid.Grid.internalOrder;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.BreakpointCollector.joining;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Order;
 
 public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
@@ -88,13 +86,12 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     /**
      * The number of rows the grid item spans on a specific breakpoint. Value should be a number 1-12
      */
-    public GridItem rowSpan(Tuples<Breakpoint, Integer> rows) {
-        if (rows != null) {
-            for (Tuple<Breakpoint, Integer> row : rows) {
-                internalRowSpan(row);
-            }
-        }
-        return this;
+    public GridItem rowSpan(Breakpoints<Integer> rows) {
+        String modifiers = rows.stream()
+                .filter(bp -> verifyRange(element(), "PF5/GridItem", "rowSpan", bp.value, 1, 12))
+                .filter(bp -> bp.key != default_)
+                .collect(joining(row -> row + "-row"));
+        return css(modifiers);
     }
 
     /**
@@ -110,55 +107,23 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     /**
      * The number of columns the grid item is offset on a specific breakpoint. Value should be a number 1-12
      */
-    public GridItem offset(Tuples<Breakpoint, Integer> columns) {
-        if (columns != null) {
-            for (Tuple<Breakpoint, Integer> column : columns) {
-                internalOffset(column);
-            }
-        }
-        return this;
+    public GridItem offset(Breakpoints<Integer> columns) {
+        String modifiers = columns.stream()
+                .filter(bp -> verifyRange(element(), "PF5/GridItem", "offset", bp.value, 1, 12))
+                .filter(bp -> bp.key != default_)
+                .collect(joining(col -> "offset-" + col + "-col"));
+        return css(modifiers);
     }
 
     /**
      * Modifies the flex layout element order property.
      */
-    public GridItem order(Tuples<Breakpoint, String> order) {
-        if (order != null) {
-            for (Tuple<Breakpoint, String> o : order) {
-                internalOrder(element(), o);
-            }
-        }
-        return this;
+    public GridItem order(Breakpoints<String> order) {
+        return componentVar(layout(grid), item, Order).applyTo(this, order);
     }
 
     @Override
     public GridItem that() {
         return this;
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void internalSpan(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != Breakpoint.default_) {
-            if (verifyRange(element(), "PF5/GridItem", "span", tuple.value, 1, 12)) {
-                css(modifier(tuple.value + "-col-on-" + tuple.key.value));
-            }
-        }
-    }
-
-    private void internalRowSpan(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != Breakpoint.default_) {
-            if (verifyRange(element(), "PF5/GridItem", "rowSpan", tuple.value, 1, 12)) {
-                css(modifier(tuple.value + "-row-on-" + tuple.key.value));
-            }
-        }
-    }
-
-    private void internalOffset(Tuple<Breakpoint, Integer> tuple) {
-        if (tuple.key != Breakpoint.default_) {
-            if (verifyRange(element(), "PF5/GridItem", "offset", tuple.value, 1, 12)) {
-                css(modifier("offset-" + tuple.value + "-col-on-" + tuple.key.value));
-            }
-        }
     }
 }
