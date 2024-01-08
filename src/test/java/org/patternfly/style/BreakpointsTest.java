@@ -15,9 +15,11 @@
  */
 package org.patternfly.style;
 
+import java.util.Iterator;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
+import org.patternfly.core.Tuple;
 
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,8 +30,37 @@ import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Breakpoint.sm;
 import static org.patternfly.style.Breakpoint.xl;
 import static org.patternfly.style.Breakpoints.breakpoints;
+import static org.patternfly.style.BreakpointsTest.Number.one;
+import static org.patternfly.style.BreakpointsTest.Number.three;
+import static org.patternfly.style.BreakpointsTest.Number.two;
 
 class BreakpointsTest {
+
+    enum Number implements TypedModifier {
+        one("eins"),
+
+        two("zwei"),
+
+        three("drei");
+
+        private final String value;
+        private final String modifier;
+
+        Number(String value) {
+            this.value = value;
+            this.modifier = Classes.modifier(value);
+        }
+
+        @Override
+        public String value() {
+            return value;
+        }
+
+        @Override
+        public String modifier() {
+            return modifier;
+        }
+    }
 
     @Test
     void nil() {
@@ -51,7 +82,16 @@ class BreakpointsTest {
     void modifiers() {
         assertEquals("pf-m-foo", breakpoints(default_, "foo").modifiers());
         assertEquals("pf-m-foo-on-md", breakpoints(md, "foo").modifiers());
-        assertEquals("pf-m-foo pf-m-bar-on-lg", breakpoints(default_, "foo", lg, "bar").modifiers());
+        assertEquals("pf-m-foo pf-m-bar-on-lg",
+                breakpoints(default_, "foo", lg, "bar").modifiers());
+    }
+
+    @Test
+    void typedModifiers() {
+        assertEquals("pf-m-eins", breakpoints(default_, one).modifiers());
+        assertEquals("pf-m-zwei-on-md", breakpoints(md, two).modifiers());
+        assertEquals("pf-m-eins pf-m-zwei-on-lg pf-m-drei-on-2xl",
+                breakpoints(default_, one, lg, two, _2xl, three).modifiers());
     }
 
     @Test
@@ -113,5 +153,21 @@ class BreakpointsTest {
                         "pf-m-prefix-e-on-xl-height " +
                         "pf-m-prefix-f-on-2xl-height",
                 breakpoints.verticalModifiers(prefix));
+    }
+
+    @Test
+    void builderAndFactory() {
+        Breakpoints<Object> builder = breakpoints().sm(1).md(2).lg(3);
+        Breakpoints<Integer> factory = breakpoints(sm, 1, md, 2, lg, 3);
+
+        Iterator<Tuple<Breakpoint, Object>> bi = builder.iterator();
+        Iterator<Tuple<Breakpoint, Integer>> fi = factory.iterator();
+        while (bi.hasNext() && fi.hasNext()) {
+            Tuple<Breakpoint, ?> bt = bi.next();
+            Tuple<Breakpoint, Integer> ft = fi.next();
+            assertEquals(bt.key, ft.key);
+            assertEquals(bt.value, ft.value);
+        }
+        assertEquals(builder.modifiers(), factory.modifiers());
     }
 }

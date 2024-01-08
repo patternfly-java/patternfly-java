@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+import org.jboss.elemento.HasHTMLElement;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.patternfly.core.Logger;
@@ -22,7 +23,14 @@ import org.patternfly.core.Logger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoint.lg;
+import static org.patternfly.style.Breakpoint.md;
+import static org.patternfly.style.Breakpoint.xl;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variable.globalVar;
@@ -63,6 +71,22 @@ class VariableTest {
                     componentVar(component("foo", "bar"), "1").name);
             assertEquals("--pf-v5-c-foo__bar--1--2--3",
                     componentVar(component("foo", "bar"), "1", "2", "3").name);
+        });
+    }
+
+    @Test
+    void withBreakpoints() {
+        mockLogger(() -> {
+            HasHTMLElement<?, ?> element = mock(HasHTMLElement.class);
+            componentVar(component("foo"), "MyVar", "max").applyTo(element, breakpoints(
+                    default_, "10px",
+                    md, "2px",
+                    lg, "4px",
+                    xl, "6px"));
+            verify(element).style("--pf-v5-c-foo--MyVar--max", "10px");
+            verify(element).style("--pf-v5-c-foo--MyVar--max-on-md", "2px");
+            verify(element).style("--pf-v5-c-foo--MyVar--max-on-lg", "4px");
+            verify(element).style("--pf-v5-c-foo--MyVar--max-on-xl", "6px");
         });
     }
 

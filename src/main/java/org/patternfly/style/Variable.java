@@ -123,9 +123,9 @@ public class Variable {
     public <E extends HTMLElement, B extends TypedBuilder<E, B>, V> B applyTo(HasHTMLElement<E, B> element,
             Breakpoints<V> breakpoints) {
         if (breakpoints.typedModifier()) {
-            return applyTo(element, breakpoints, String::valueOf);
-        } else {
             return applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
+        } else {
+            return applyTo(element, breakpoints, String::valueOf);
         }
     }
 
@@ -169,9 +169,9 @@ public class Variable {
 
     public <V> void applyTo(HTMLElement element, Breakpoints<V> breakpoints) {
         if (breakpoints.typedModifier()) {
-            applyTo(element, breakpoints, String::valueOf);
-        } else {
             applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
+        } else {
+            applyTo(element, breakpoints, String::valueOf);
         }
     }
 

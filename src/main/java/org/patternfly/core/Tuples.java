@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.joining;
+import static org.patternfly.core.Tuple.tuple;
 
 public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
 
@@ -242,6 +243,10 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
     }
 
     // ------------------------------------------------------ internal
+
+    protected void add(K key, V value) {
+        tuples.add(tuple(key, value));
+    }
 
     private Tuple<K, V> findTuple(K key, V value) {
         if (key != null) {

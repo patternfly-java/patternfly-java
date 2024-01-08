@@ -84,7 +84,10 @@ public class BreakpointCollector<V> implements Collector<Tuple<Breakpoint, V>, S
     @Override
     public BinaryOperator<StringBuilder> combiner() {
         return (r1, r2) -> {
-            r1.append(" ").append(r2);
+            if (r1.length() > 0) {
+                r1.append(" ");
+            }
+            r1.append(r2);
             return r1;
         };
     }
