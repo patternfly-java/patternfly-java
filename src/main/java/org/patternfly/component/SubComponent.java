@@ -55,7 +55,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
 
     protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
             boolean lenient) {
-        return ComponentStore.lookup(componentType, element, false);
+        return ComponentStore.lookup(componentType, element, lenient);
     }
 
     protected <S extends SubComponent<E2, B2>, E2 extends HTMLElement, B2 extends TypedBuilder<E2, B2>> S lookupSubComponent(
