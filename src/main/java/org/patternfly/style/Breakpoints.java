@@ -23,6 +23,7 @@ import org.patternfly.core.Tuple;
 import org.patternfly.core.Tuples;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static org.patternfly.core.Tuple.tuple;
 import static org.patternfly.style.Breakpoint._2xl;
 import static org.patternfly.style.Breakpoint.default_;
@@ -36,6 +37,10 @@ import static org.patternfly.style.BreakpointCollector.joiningVertical;
 public class Breakpoints<V> extends Tuples<Breakpoint, V> {
 
     // ------------------------------------------------------ factory
+
+    public static <V> Breakpoints<V> breakpoints() {
+        return new Breakpoints<>(emptyList());
+    }
 
     public static <V> Breakpoints<V> breakpoints(
             Breakpoint breakpoint, V value) {
@@ -119,6 +124,38 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
 
     private Breakpoints(Iterable<Tuple<Breakpoint, V>> breakpoints) {
         super(breakpoints);
+    }
+
+    // ------------------------------------------------------ builder
+
+    public Breakpoints<V> default_(V value) {
+        add(default_, value);
+        return this;
+    }
+
+    public Breakpoints<V> sm(V value) {
+        add(sm, value);
+        return this;
+    }
+
+    public Breakpoints<V> md(V value) {
+        add(md, value);
+        return this;
+    }
+
+    public Breakpoints<V> lg(V value) {
+        add(lg, value);
+        return this;
+    }
+
+    public Breakpoints<V> xl(V value) {
+        add(xl, value);
+        return this;
+    }
+
+    public Breakpoints<V> _2xl(V value) {
+        add(_2xl, value);
+        return this;
     }
 
     // ------------------------------------------------------ api
