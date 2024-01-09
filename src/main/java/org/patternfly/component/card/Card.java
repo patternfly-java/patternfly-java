@@ -27,6 +27,7 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
@@ -57,6 +58,7 @@ import static org.patternfly.style.Size.lg;
 public class Card extends BaseComponent<HTMLDivElement, Card> implements
         Compact<HTMLDivElement, Card>,
         Disabled<HTMLDivElement, Card>,
+        FullHeight<HTMLDivElement, Card>,
         Plain<HTMLDivElement, Card>,
         Expandable<HTMLDivElement, Card> {
 
@@ -155,16 +157,6 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
             element().classList.remove(modifier(display, lg));
         }
         return this;
-    }
-
-    /** Same as {@linkplain #fullHeight(boolean) fullHeight(true)} */
-    public Card fullHeight() {
-        return fullHeight(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(fullHeight)} */
-    public Card fullHeight(boolean fullHeight) {
-        return toggleModifier(this, element(), Classes.fullHeight, fullHeight);
     }
 
     /** Same as {@linkplain #selectable(SelectionMode, SelectHandler) selectable(multi, null)} */

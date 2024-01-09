@@ -216,7 +216,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
     // ------------------------------------------------------ builder
 
     public Navigation theme(Brightness theme) {
-        if (verifyEnum(element(), componentType(), "theme", theme, dark, light)) {
+        if (verifyEnum(componentType(), element(), "theme", theme, dark, light)) {
             css(theme.modifier());
         }
         return this;

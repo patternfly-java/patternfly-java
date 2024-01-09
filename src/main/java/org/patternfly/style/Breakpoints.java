@@ -71,6 +71,9 @@ import static org.patternfly.style.Breakpoint.xl;
  * To get the CSS modifiers classes, use the {@code modifiers()} and {@code verticalModifiers()} methods. Depending on the
  * signature they return a list of CSS modifier classes, a single CSS modifier class or an empty string.
  * </p>
+ * <p>
+ * {@snippet class = BreakpointsDemo region = modifiers}
+ * </p>
  *
  * @param <V> the type of values associated with each breakpoint
  */
@@ -272,6 +275,9 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
      * single CSS modifier class for the given breakpoint, if this class contains a breakpoint smaller than the given one.
      * Otherwise, this method returns an empty string.
      * <p>
+     * This method does not add the {@code -on-<breakpoint>} suffix!
+     * </p>
+     * <p>
      * When generating the CSS modifier classes, {@link String#valueOf(Object)} is used by default to build the {@code <value>}
      * part. If the value type implements {@link TypedModifier}, {@link TypedModifier#value()} is used instead.
      * </p>
@@ -288,6 +294,9 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
      * Returns a single CSS modifier class for the given breakpoint, if this class contains the breakpoint. Otherwise, returns a
      * single CSS modifier class for the given breakpoint, if this class contains a breakpoint smaller than the given one.
      * Otherwise, this method returns an empty string.
+     * <p>
+     * This method does not add the {@code -on-<breakpoint>} suffix!
+     * </p>
      * <p>
      * When generating the CSS modifier classes, the specified function is used to build the {@code <value>} part.
      * </p>

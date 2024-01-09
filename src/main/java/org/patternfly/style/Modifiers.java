@@ -63,6 +63,19 @@ public interface Modifiers {
         }
     }
 
+    interface FullHeight<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #fullHeight(boolean) fullHeight(true)} */
+        default B fullHeight() {
+            return fullHeight(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(fullHeight)} */
+        default B fullHeight(boolean fullHeight) {
+            return toggleModifier(that(), element(), Classes.fullHeight, fullHeight);
+        }
+    }
+
     interface Gutter<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #gutter(boolean) gutter(true)} */

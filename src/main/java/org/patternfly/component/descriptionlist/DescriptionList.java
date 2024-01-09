@@ -108,7 +108,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     public DescriptionList columns(Breakpoints<Integer> columns) {
         if (columns != null) {
             String modifiers = columns.stream()
-                    .filter(bp -> verifyRange(element(), componentType(), "columns", bp.value, 1, 3))
+                    .filter(bp -> verifyRange(componentType(), element(), "columns", bp.value, 1, 3))
                     .collect(modifiers(col -> col + "-col"));
             css(modifiers);
         }
@@ -119,7 +119,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
      * Sets the display size of the descriptions in the description list.
      */
     public DescriptionList displaySize(Size size) {
-        if (verifyEnum(element(), componentType(), "displaySize", size, lg, _2xl)) {
+        if (verifyEnum(componentType(), element(), "displaySize", size, lg, _2xl)) {
             css(modifier(display, size));
         }
         return this;

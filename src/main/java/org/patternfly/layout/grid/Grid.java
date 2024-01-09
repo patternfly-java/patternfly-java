@@ -69,7 +69,7 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
      */
     public Grid columns(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
-                .filter(bp -> verifyRange(element(), "PF5/Grid", "columns", bp.value, 1, 12))
+                .filter(bp -> verifyRange("PF5/Grid", element(), "columns", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "all-" + col + "-col"));
         return css(modifiers);
@@ -84,7 +84,7 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
      * The number of rows a column in the grid should span. Value should be a number 1-12.
      */
     public Grid span(int rows) {
-        if (verifyRange(element(), "PF5/Grid", "span", rows, 1, 12)) {
+        if (verifyRange("PF5/Grid", element(), "span", rows, 1, 12)) {
             css(modifier("all-" + rows + "-col"));
         }
         return this;

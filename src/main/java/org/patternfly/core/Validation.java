@@ -23,12 +23,12 @@ import elemental2.dom.HTMLElement;
 
 public final class Validation {
 
-    public static boolean verifyRange(HTMLElement element, ComponentType componentType, String property, int value, int min,
+    public static boolean verifyRange(ComponentType componentType, HTMLElement element, String property, int value, int min,
             int max) {
-        return verifyRange(element, componentType.componentName, property, value, min, max);
+        return verifyRange(componentType.componentName, element, property, value, min, max);
     }
 
-    public static boolean verifyRange(HTMLElement element, String category, String property, int value, int min, int max) {
+    public static boolean verifyRange(String category, HTMLElement element, String property, int value, int min, int max) {
         if (value < 1 || value > 12) {
             Logger.unsupported(category, element, "'" + property + "' out of range. " +
                     "Given: " + value + ", allowed [" + min + "," + max + "].");
@@ -38,13 +38,13 @@ public final class Validation {
     }
 
     @SafeVarargs
-    public static <E extends Enum<E>> boolean verifyEnum(HTMLElement element, ComponentType componentType, String property,
+    public static <E extends Enum<E>> boolean verifyEnum(ComponentType componentType, HTMLElement element, String property,
             E value, E firstAllowedValue, E... otherAllowedValues) {
-        return verifyEnum(element, componentType.componentName, property, value, firstAllowedValue, otherAllowedValues);
+        return verifyEnum(componentType.componentName, element, property, value, firstAllowedValue, otherAllowedValues);
     }
 
     @SafeVarargs
-    public static <E extends Enum<E>> boolean verifyEnum(HTMLElement element, String category, String property, E value,
+    public static <E extends Enum<E>> boolean verifyEnum(String category, HTMLElement element, String property, E value,
             E firstAllowedValue, E... otherAllowedValues) {
         EnumSet<E> allowed = EnumSet.of(firstAllowedValue, otherAllowedValues);
         if (!allowed.contains(value)) {

@@ -56,7 +56,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of columns the grid item spans. Value should be a number 1-12.
      */
     public GridItem span(int columns) {
-        if (verifyRange(element(), "PF5/GridItem", "span", columns, 1, 12)) {
+        if (verifyRange("PF5/GridItem", element(), "span", columns, 1, 12)) {
             css(modifier(columns + "-col"));
         }
         return this;
@@ -67,7 +67,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      */
     public GridItem span(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
-                .filter(bp -> verifyRange(element(), "PF5/GridItem", "span", bp.value, 1, 12))
+                .filter(bp -> verifyRange("PF5/GridItem", element(), "span", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> col + "-col"));
         return css(modifiers);
@@ -77,7 +77,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of rows the grid item spans. Value should be a number 1-12.
      */
     public GridItem rowSpan(int rows) {
-        if (verifyRange(element(), "PF5/GridItem", "rowSpan", rows, 1, 12)) {
+        if (verifyRange("PF5/GridItem", element(), "rowSpan", rows, 1, 12)) {
             css(modifier(rows + "-row"));
         }
         return this;
@@ -88,7 +88,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      */
     public GridItem rowSpan(Breakpoints<Integer> rows) {
         String modifiers = rows.stream()
-                .filter(bp -> verifyRange(element(), "PF5/GridItem", "rowSpan", bp.value, 1, 12))
+                .filter(bp -> verifyRange("PF5/GridItem", element(), "rowSpan", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(row -> row + "-row"));
         return css(modifiers);
@@ -98,7 +98,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      * The number of columns a grid item is offset.
      */
     public GridItem offset(int columns) {
-        if (verifyRange(element(), "PF5/GridItem", "offset", columns, 1, 12)) {
+        if (verifyRange("PF5/GridItem", element(), "offset", columns, 1, 12)) {
             css(modifier("offset-" + columns + "-col"));
         }
         return this;
@@ -109,7 +109,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
      */
     public GridItem offset(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
-                .filter(bp -> verifyRange(element(), "PF5/GridItem", "offset", bp.value, 1, 12))
+                .filter(bp -> verifyRange("PF5/GridItem", element(), "offset", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "offset-" + col + "-col"));
         return css(modifiers);

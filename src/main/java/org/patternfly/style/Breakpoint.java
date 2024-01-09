@@ -19,16 +19,14 @@ package org.patternfly.style;
  * The {@code Breakpoint} class represents different breakpoints for responsive design.
  *
  * <p>
- * Breakpoints are used to define the varying screen widths and heights at which a website or
- * application layout should change.
+ * Breakpoints are used to define the varying screen widths and heights at which a website or application layout should change.
  * </p>
  *
  * <p>
  * The class is implemented as an {@code enum} with a fixed set of predefined breakpoints:
  * </p>
  * <ul>
- * <li>{@code default_} - The default breakpoint, used when no other breakpoint matches the given
- * width or height.</li>
+ * <li>{@code default_} - The default breakpoint, used when no other breakpoint matches the given width or height.</li>
  * <li>{@code sm} - The small breakpoint.</li>
  * <li>{@code md} - The medium breakpoint.</li>
  * <li>{@code lg} - The large breakpoint.</li>
@@ -37,8 +35,8 @@ package org.patternfly.style;
  * </ul>
  *
  * <p>
- * The class provides utility methods to retrieve the appropriate breakpoint based on a given width
- * or height, using the methods {@code breakpoint(int width)} and {@code verticalBreakpoint(int height)}.
+ * The class provides utility methods to retrieve the appropriate breakpoint based on a given width or height, using the methods
+ * {@code breakpoint(int width)} and {@code verticalBreakpoint(int height)}.
  * </p>
  *
  * <p>

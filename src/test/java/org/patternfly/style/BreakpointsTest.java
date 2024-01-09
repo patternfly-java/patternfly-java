@@ -87,6 +87,15 @@ class BreakpointsTest {
     }
 
     @Test
+    void modifiersFn() {
+        Function<String, String> fn = v -> "start-" + v + "__end";
+        assertEquals("pf-m-start-foo__end", breakpoints(default_, "foo").modifiers(fn));
+        assertEquals("pf-m-start-foo__end-on-md", breakpoints(md, "foo").modifiers(fn));
+        assertEquals("pf-m-start-foo__end pf-m-start-bar__end-on-lg",
+                breakpoints(default_, "foo", lg, "bar").modifiers(fn));
+    }
+
+    @Test
     void typedModifiers() {
         assertEquals("pf-m-eins", breakpoints(default_, one).modifiers());
         assertEquals("pf-m-zwei-on-md", breakpoints(md, two).modifiers());
@@ -95,25 +104,17 @@ class BreakpointsTest {
     }
 
     @Test
-    void prefix() {
-        Function<String, String> prefix = string -> "prefix-" + string;
-        assertEquals("pf-m-prefix-foo", breakpoints(default_, "foo").modifiers(prefix));
-        assertEquals("pf-m-prefix-foo-on-md", breakpoints(md, "foo").modifiers(prefix));
-        assertEquals("pf-m-prefix-foo pf-m-prefix-bar-on-lg",
-                breakpoints(default_, "foo", lg, "bar").modifiers(prefix));
-    }
-
-    @Test
     void breakpoint() {
-        assertEquals("pf-m-foo", breakpoints(md, "foo").modifiers(_2xl)); // md < _2xl
-        assertEquals("", breakpoints(md, "foo").modifiers(sm)); // md > sm
+        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifiers(md)); // md in [md, lg]
+        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifiers(_2xl)); // [md, lg] < _2xl
+        assertEquals("", breakpoints(md, "foo", lg, "bar").modifiers(sm)); // [md, lg] > sm
     }
 
     @Test
-    void breakpointPrefix() {
-        Function<String, String> prefix = string -> "prefix-" + string;
-        assertEquals("pf-m-prefix-foo", breakpoints(md, "foo").modifiers(_2xl, prefix)); // md < _2xl
-        assertEquals("", breakpoints(md, "foo").modifiers(sm, prefix)); // md > sm
+    void breakpointFn() {
+        Function<String, String> fn = v -> "a-" + v;
+        assertEquals("pf-m-a-foo", breakpoints(md, "foo").modifiers(_2xl, fn)); // md < _2xl
+        assertEquals("", breakpoints(md, "foo").modifiers(sm, fn)); // md > sm
     }
 
     @Test
@@ -136,8 +137,8 @@ class BreakpointsTest {
     }
 
     @Test
-    void verticalPrefix() {
-        Function<String, String> prefix = string -> "prefix-" + string;
+    void verticalFn() {
+        Function<String, String> fn = string -> "[" + string + "]";
         Breakpoints<String> breakpoints = breakpoints(
                 default_, "a",
                 sm, "b",
@@ -146,21 +147,23 @@ class BreakpointsTest {
                 xl, "e",
                 _2xl, "f");
         assertEquals(
-                "pf-m-prefix-a " +
-                        "pf-m-prefix-b-on-sm-height " +
-                        "pf-m-prefix-c-on-md-height " +
-                        "pf-m-prefix-d-on-lg-height " +
-                        "pf-m-prefix-e-on-xl-height " +
-                        "pf-m-prefix-f-on-2xl-height",
-                breakpoints.verticalModifiers(prefix));
+                "pf-m-[a] " +
+                        "pf-m-[b]-on-sm-height " +
+                        "pf-m-[c]-on-md-height " +
+                        "pf-m-[d]-on-lg-height " +
+                        "pf-m-[e]-on-xl-height " +
+                        "pf-m-[f]-on-2xl-height",
+                breakpoints.verticalModifiers(fn));
     }
 
     @Test
     void builderAndFactory() {
-        Breakpoints<Object> builder = breakpoints().sm(1).md(2).lg(3);
+        Breakpoints<?> builder = breakpoints().sm(1).md(2).lg(3);
         Breakpoints<Integer> factory = breakpoints(sm, 1, md, 2, lg, 3);
+        assertEquals(builder.size(), factory.size());
+        assertEquals(builder.modifiers(), factory.modifiers());
 
-        Iterator<Tuple<Breakpoint, Object>> bi = builder.iterator();
+        Iterator<? extends Tuple<Breakpoint, ?>> bi = builder.iterator();
         Iterator<Tuple<Breakpoint, Integer>> fi = factory.iterator();
         while (bi.hasNext() && fi.hasNext()) {
             Tuple<Breakpoint, ?> bt = bi.next();
@@ -168,6 +171,5 @@ class BreakpointsTest {
             assertEquals(bt.key, ft.key);
             assertEquals(bt.value, ft.value);
         }
-        assertEquals(builder.modifiers(), factory.modifiers());
     }
 }

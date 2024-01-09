@@ -233,6 +233,10 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
         return tuples.isEmpty();
     }
 
+    public int size() {
+        return tuples.size();
+    }
+
     @Override
     public Iterator<Tuple<K, V>> iterator() {
         return tuples.iterator();

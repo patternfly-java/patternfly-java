@@ -17,6 +17,8 @@ package org.patternfly.style;
 
 public enum Size implements TypedModifier {
 
+    xs("xs"),
+
     sm("sm"),
 
     md("md"),

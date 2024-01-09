@@ -59,6 +59,8 @@ public enum PredefinedIcon {
 
     cube(fas("cube")),
 
+    cubes(fas("cubes")),
+
     database(fas("database")),
 
     download(fas("download")),

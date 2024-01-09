@@ -89,10 +89,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component and
      * finally adds the {@link MastheadMain} to this component.
      * <p>
-     * Shortcut for
-     * {@snippet :
-     * add(mastheadMain().add(a(homeLink).css(component(masthead, Classes.brand)).add(brand)));
-     * }
+     * Shortcut for {@snippet : add(mastheadMain().add(a(homeLink).css(component(masthead, Classes.brand)).add(brand))); }
      */
     public Masthead addBrand(Brand brand, String homeLink) {
         addMain(mastheadMain()
@@ -104,10 +101,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     /**
      * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this component.
      * <p>
-     * Shortcut for
-     * {@snippet :
-     * add(mastheadContent().add(toolbar));
-     * }
+     * Shortcut for {@snippet : add(mastheadContent().add(toolbar)); }
      */
     public Masthead addToolbar(Toolbar toolbar) {
         addContent(mastheadContent()
@@ -144,7 +138,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Background theme color of the masthead
      */
     public Masthead background(Brightness brightness) {
-        if (verifyEnum(element(), componentType(), "background", brightness, dark, light, light200)) {
+        if (verifyEnum(componentType(), element(), "background", brightness, dark, light, light200)) {
             css(brightness.modifier());
         }
         return this;
@@ -158,9 +152,13 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     // ------------------------------------------------------ internal
 
     void onPageResize(Rect currentPageRect, Rect previousPageRect) {
-        classList().remove(displayModifiers.modifiers(breakpoint(previousPageRect.width)));
-        classList().remove(insetModifiers.modifiers(breakpoint(previousPageRect.width)));
-        classList().add(displayModifiers.modifiers(breakpoint(currentPageRect.width)));
-        classList().add(insetModifiers.modifiers(breakpoint(currentPageRect.width)));
+        if (displayModifiers != null) {
+            classList().remove(displayModifiers.modifiers(breakpoint(previousPageRect.width)));
+            classList().add(displayModifiers.modifiers(breakpoint(currentPageRect.width)));
+        }
+        if (insetModifiers != null) {
+            classList().remove(insetModifiers.modifiers(breakpoint(previousPageRect.width)));
+            classList().add(insetModifiers.modifiers(breakpoint(currentPageRect.width)));
+        }
     }
 }

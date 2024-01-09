@@ -67,7 +67,7 @@ public enum ComponentType {
 
     Dropdown("dd", "PF5/Dropdown"),
 
-    EmptyState("es", null),
+    EmptyState("es", "PF5/EmptyState"),
 
     ExpandableSection("exs", "PF5/ExpandableSection"),
 

@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-Components
+#### Components
 
 - Accordion component (#17)
 - Back to top component (#21)
@@ -34,7 +34,7 @@ Components
 - Toolbar component (#98)
 - Truncate component (#101)
 
-Layouts
+#### Layouts
 
 - Bullseye layout (#118)
 - Flex layout (#119)

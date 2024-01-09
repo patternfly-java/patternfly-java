@@ -74,7 +74,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
     // ------------------------------------------------------ builder
 
     public PageSidebar theme(Brightness theme) {
-        if (verifyEnum(element(), "PF5/PageSidebar", "theme", theme, dark, light)) {
+        if (verifyEnum("PF5/PageSidebar", element(), "theme", theme, dark, light)) {
             css(theme.modifier());
         }
         return this;

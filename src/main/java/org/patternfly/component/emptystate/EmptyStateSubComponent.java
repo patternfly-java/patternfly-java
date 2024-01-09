@@ -13,15 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.style;
+package org.patternfly.component.emptystate;
 
-public interface Variables {
-    String Color = "Color";
-    String GridTemplateColumns = "GridTemplateColumns";
-    String Height = "Height";
-    String LineClamp = "LineClamp";
-    String MaxWidth = "MaxWidth";
-    String MaxHeight = "MaxHeight";
-    String Order = "Order";
-    String Width = "Width";
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
+
+import elemental2.dom.HTMLElement;
+
+abstract class EmptyStateSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+
+    EmptyStateSubComponent(String name, E element) {
+        super(ComponentType.EmptyState, name, element);
+    }
 }
