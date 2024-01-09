@@ -18,8 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Drawer component (#42)
 - Empty state component (#44)
 - Hint component (#56)
-- Jump links component (#60) 
-- List component (#62) 
+- Jump links component (#60)
+- List component (#62)
 - Notification badge component (#71)
 - Notification drawer component (#72)
 - Panel component (#77) - thanks @halkosajtarevic
@@ -43,7 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.1.2] - 2023-12-17
 
-### Added 
+### Added
 
 - Helper text component (#55)
 - Form component (#49)
@@ -52,8 +52,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Text area component (#53)
 - Add support for responsive layout in various components
 - Add the following interfaces to unify icon and text handling across components:
-  - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>` 
-  - `WithText<E extends Element, B extends TypedBuilder<E, B>>` 
+  - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>`
+  - `WithText<E extends Element, B extends TypedBuilder<E, B>>`
   - `WithIconAndText<E extends Element, B extends TypedBuilder<E, B>>`
 
 ### Changed
@@ -81,7 +81,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Checkbox component: replace implicit standalone modifier with explicit method 
+- Checkbox component: replace implicit standalone modifier with explicit method
 
 ### Removed
 
@@ -147,7 +147,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.0.3] - 2023-10-10
 
-### Added 
+### Added
 
 - Code editor component (#33)
 

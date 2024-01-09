@@ -101,5 +101,5 @@ mvn \
   org.apache.maven.plugins:maven-enforcer-plugin:enforce \
   org.apache.maven.plugins:maven-checkstyle-plugin:check \
   com.mycila:license-maven-plugin:check \
-  net.revelc.code.formatter:formatter-maven-plugin:validate \
+  org.ec4j.maven:editorconfig-maven-plugin:check \
   net.revelc.code:impsort-maven-plugin:check
