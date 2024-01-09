@@ -22,7 +22,7 @@ Components
 - List component (#62) 
 - Notification badge component (#71)
 - Notification drawer component (#72)
-- Panel component (#77)
+- Panel component (#77) - thanks @halkosajtarevic
 - Progress component (#81)
 - Simple list component (#84)
 - Skeleton component (#85)

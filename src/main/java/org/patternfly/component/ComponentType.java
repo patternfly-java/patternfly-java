@@ -103,6 +103,8 @@ public enum ComponentType {
 
     Pagination("pgn", null),
 
+    Panel("pnl", "PF5/Panel"),
+
     Popover("pvr", "PF5/Popover"),
 
     Radio("rd", "PF5/Radio"),
