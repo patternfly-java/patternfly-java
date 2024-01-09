@@ -17,17 +17,23 @@ package org.patternfly.component.panel;
 
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
-
-import elemental2.dom.HTMLDivElement;
 import org.patternfly.core.Logger;
 
+import elemental2.dom.HTMLDivElement;
+
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.hr;
-import static org.patternfly.component.panel.PanelMain.panelMain;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.panel.PanelFooter.panelFooter;
 import static org.patternfly.component.panel.PanelHeader.panelHeader;
+import static org.patternfly.component.panel.PanelMain.panelMain;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.style.Classes.*;
+import static org.patternfly.style.Classes.bordered;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.panel;
+import static org.patternfly.style.Classes.raised;
+import static org.patternfly.style.Classes.scrollable;
 
 /**
  * The panel component is a container that supports flexible content layouts. It can be used to house other components
@@ -57,6 +63,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
     }
 
     // ------------------------------------------------------ instance
+
     private PanelHeader header;
     private PanelMain main;
     private PanelFooter footer;
@@ -77,7 +84,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
 
     public Panel add(PanelHeader header) {
         if (this.header != null) {
-            Logger.unsupported(ComponentType.Panel, this.header.element(), "header already added");
+            Logger.unsupported(componentType(), this.header.element(), "Header already added");
         }
         this.header = header;
         aria(labelledBy, header.headerId);
@@ -85,7 +92,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
     }
 
     public Panel addDivider() {
-        element().appendChild(hr().css(divider).element());
+        element().appendChild(divider(hr).element());
         return this;
     }
 
@@ -99,7 +106,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
 
     public Panel add(PanelMain main) {
         if (this.main != null) {
-            Logger.unsupported(ComponentType.Panel, this.main.element(), "main already added");
+            Logger.unsupported(componentType(), this.main.element(), "Main already added");
         }
         this.main = main;
         element().appendChild(main.element());
@@ -116,7 +123,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
 
     public Panel add(PanelFooter footer) {
         if (this.footer != null) {
-            Logger.unsupported(ComponentType.Panel, this.footer.element(), "footer already added");
+            Logger.unsupported(componentType(), this.footer.element(), "Footer already added");
         }
         this.footer = footer;
         element().appendChild(footer.element());

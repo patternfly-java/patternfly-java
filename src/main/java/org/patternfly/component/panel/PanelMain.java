@@ -36,7 +36,7 @@ public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "pm";
-    final HTMLDivElement bodyElement;
+    private final HTMLDivElement bodyElement;
 
     PanelMain() {
         super(SUB_COMPONENT_NAME, div().css(component(panel, main)).element());

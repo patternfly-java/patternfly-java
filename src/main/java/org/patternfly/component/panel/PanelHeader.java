@@ -39,7 +39,7 @@ public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> 
 
     PanelHeader() {
         super(SUB_COMPONENT_NAME, div().css(component(panel, header)).element());
-        headerId = Id.unique(ComponentType.Panel.id, header);
+        headerId = Id.unique(ComponentType.Panel.id, "header");
         element().id = headerId;
     }
 
