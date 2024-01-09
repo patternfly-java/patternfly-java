@@ -230,7 +230,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private void onResize() {
         int width = element().clientWidth;
         int height = element().clientHeight;
-        rect.set(new Rect(width, height));
+        rect.set(new Rect(width, height)); // triggers onChangedRect()
     }
 
     private void onChangedRect(Rect current, Rect previous) {

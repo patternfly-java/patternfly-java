@@ -36,9 +36,9 @@ import static org.patternfly.style.Classes.raised;
 import static org.patternfly.style.Classes.scrollable;
 
 /**
- * The panel component is a container that supports flexible content layouts. It can be used to house other components
- * such as fields, forms, videos, buttons, and more. The panel should not be confused with the drawer component,
- * which allows you to surface information via a collapsable container.
+ * The panel component is a container that supports flexible content layouts. It can be used to house other components such as
+ * fields, forms, videos, buttons, and more. The panel should not be confused with the drawer component, which allows you to
+ * surface information via a collapsable container.
  *
  * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */

@@ -24,7 +24,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.BreakpointCollector.joining;
+import static org.patternfly.style.BreakpointCollector.modifiers;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -69,7 +69,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "PF5/GridItem", "span", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
-                .collect(joining(col -> col + "-col"));
+                .collect(modifiers(col -> col + "-col"));
         return css(modifiers);
     }
 
@@ -90,7 +90,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
         String modifiers = rows.stream()
                 .filter(bp -> verifyRange(element(), "PF5/GridItem", "rowSpan", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
-                .collect(joining(row -> row + "-row"));
+                .collect(modifiers(row -> row + "-row"));
         return css(modifiers);
     }
 
@@ -111,7 +111,7 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "PF5/GridItem", "offset", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
-                .collect(joining(col -> "offset-" + col + "-col"));
+                .collect(modifiers(col -> "offset-" + col + "-col"));
         return css(modifiers);
     }
 

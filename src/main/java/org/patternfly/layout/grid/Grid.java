@@ -25,7 +25,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.BreakpointCollector.joining;
+import static org.patternfly.style.BreakpointCollector.modifiers;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -71,7 +71,7 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "PF5/Grid", "columns", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
-                .collect(joining(col -> "all-" + col + "-col"));
+                .collect(modifiers(col -> "all-" + col + "-col"));
         return css(modifiers);
     }
 

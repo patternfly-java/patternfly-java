@@ -20,13 +20,14 @@ import java.util.EnumSet;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoint;
+import org.patternfly.style.BreakpointCollector;
 import org.patternfly.style.Breakpoints;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Tuple.tuple;
-import static org.patternfly.style.BreakpointCollector.joining;
+import static org.patternfly.style.BreakpointCollector.modifiers;
 import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -115,7 +116,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     public Flex fullWidth(Breakpoint breakpoint, Breakpoint... more) {
         String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "full-width"))
-                .collect(joining());
+                .collect(BreakpointCollector.modifiers());
         return css(modifiers);
     }
 
@@ -128,7 +129,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     public Flex grow(Breakpoint breakpoint, Breakpoint... more) {
         String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "grow"))
-                .collect(joining());
+                .collect(BreakpointCollector.modifiers());
         return css(modifiers);
     }
 
@@ -150,7 +151,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     public Flex shrink(Breakpoint breakpoint, Breakpoint... more) {
         String modifiers = EnumSet.of(breakpoint, more).stream()
                 .map(bp -> tuple(bp, "shrink"))
-                .collect(joining());
+                .collect(BreakpointCollector.modifiers());
         return css(modifiers);
     }
 

@@ -29,7 +29,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.dl;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.core.Validation.verifyRange;
-import static org.patternfly.style.BreakpointCollector.joining;
+import static org.patternfly.style.BreakpointCollector.modifiers;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.display;
@@ -109,7 +109,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         if (columns != null) {
             String modifiers = columns.stream()
                     .filter(bp -> verifyRange(element(), componentType(), "columns", bp.value, 1, 3))
-                    .collect(joining(col -> col + "-col"));
+                    .collect(modifiers(col -> col + "-col"));
             css(modifiers);
         }
         return this;

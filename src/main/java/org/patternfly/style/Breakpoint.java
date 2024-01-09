@@ -15,6 +15,43 @@
  */
 package org.patternfly.style;
 
+/**
+ * The {@code Breakpoint} class represents different breakpoints for responsive design.
+ *
+ * <p>
+ * Breakpoints are used to define the varying screen widths and heights at which a website or
+ * application layout should change.
+ * </p>
+ *
+ * <p>
+ * The class is implemented as an {@code enum} with a fixed set of predefined breakpoints:
+ * </p>
+ * <ul>
+ * <li>{@code default_} - The default breakpoint, used when no other breakpoint matches the given
+ * width or height.</li>
+ * <li>{@code sm} - The small breakpoint.</li>
+ * <li>{@code md} - The medium breakpoint.</li>
+ * <li>{@code lg} - The large breakpoint.</li>
+ * <li>{@code xl} - The extra large breakpoint.</li>
+ * <li>{@code _2xl} - The 2x extra large breakpoint.</li>
+ * </ul>
+ *
+ * <p>
+ * The class provides utility methods to retrieve the appropriate breakpoint based on a given width
+ * or height, using the methods {@code breakpoint(int width)} and {@code verticalBreakpoint(int height)}.
+ * </p>
+ *
+ * <p>
+ * Each instance of the {@code Breakpoint} class has the following information:
+ * </p>
+ * <ul>
+ * <li>{@code value} - The name or identifier of the breakpoint.</li>
+ * <li>{@code widthValue} - The width value of the breakpoint in pixels.</li>
+ * <li>{@code widthCss} - The width value of the breakpoint in CSS units.</li>
+ * <li>{@code heightValue} - The height value of the breakpoint in pixels.</li>
+ * <li>{@code heightCss} - The height value of the breakpoint in CSS units.</li>
+ * </ul>
+ */
 public enum Breakpoint {
 
     // ------------------------------------------------------ enum
@@ -33,6 +70,12 @@ public enum Breakpoint {
 
     // ------------------------------------------------------ static api
 
+    /**
+     * Determines the breakpoint for a given width value.
+     *
+     * @param width the width value
+     * @return the breakpoint corresponding to the given width value or {@link #default_} if no width matches.
+     */
     public static Breakpoint breakpoint(int width) {
         if (width >= _2xl.widthValue) {
             return _2xl;
@@ -52,6 +95,12 @@ public enum Breakpoint {
         return default_;
     }
 
+    /**
+     * Determines the breakpoint based on the given height value.
+     *
+     * @param height the height value to determine the breakpoint for
+     * @return the Breakpoint corresponding to the given height value or {@link #default_} if no height matches.
+     */
     public static Breakpoint verticalBreakpoint(int height) {
         if (height >= _2xl.heightValue) {
             return _2xl;

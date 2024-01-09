@@ -126,7 +126,7 @@ class BreakpointsTest {
                 xl, "e",
                 _2xl, "f");
         assertEquals(
-                "pf-m-a-height " +
+                "pf-m-a " +
                         "pf-m-b-on-sm-height " +
                         "pf-m-c-on-md-height " +
                         "pf-m-d-on-lg-height " +
@@ -146,7 +146,7 @@ class BreakpointsTest {
                 xl, "e",
                 _2xl, "f");
         assertEquals(
-                "pf-m-prefix-a-height " +
+                "pf-m-prefix-a " +
                         "pf-m-prefix-b-on-sm-height " +
                         "pf-m-prefix-c-on-md-height " +
                         "pf-m-prefix-d-on-lg-height " +
