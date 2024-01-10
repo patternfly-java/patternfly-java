@@ -46,7 +46,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
     // ------------------------------------------------------ component store
 
     protected void storeSubComponent() {
-        ComponentStore.store(this);
+        ComponentStore.storeSubComponent(this);
     }
 
     protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent() {
@@ -55,7 +55,16 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
 
     protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
             boolean lenient) {
-        return ComponentStore.lookup(componentType, element, lenient);
+        return ComponentStore.lookupComponent(componentType, element, lenient);
+    }
+
+    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupFlatComponent() {
+        return lookupFlatComponent(false);
+    }
+
+    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupFlatComponent(
+            boolean lenient) {
+        return ComponentStore.lookupFlatComponent(componentType, element, lenient);
     }
 
     protected <S extends SubComponent<E2, B2>, E2 extends HTMLElement, B2 extends TypedBuilder<E2, B2>> S lookupSubComponent(
@@ -65,6 +74,6 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
 
     protected <S extends SubComponent<E2, B2>, E2 extends HTMLElement, B2 extends TypedBuilder<E2, B2>> S lookupSubComponent(
             String name, boolean lenient) {
-        return ComponentStore.lookup(componentType, name, element, lenient);
+        return ComponentStore.lookupSubComponent(componentType, name, element, lenient);
     }
 }

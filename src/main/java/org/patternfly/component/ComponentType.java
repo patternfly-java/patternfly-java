@@ -63,7 +63,7 @@ public enum ComponentType {
 
     Divider("dvr", "PF5/Divider"),
 
-    Drawer("dw", null),
+    Drawer("dw", "PF5/Drawer"),
 
     Dropdown("dd", "PF5/Dropdown"),
 

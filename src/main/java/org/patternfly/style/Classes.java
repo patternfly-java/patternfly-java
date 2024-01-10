@@ -84,6 +84,7 @@ public interface Classes {
     String disabled = "disabled";
     String display = "display";
     String divider = "divider";
+    String drawer = "drawer";
     String dropdown = "dropdown";
     String dynamic = "dynamic";
     String editable = "editable";
@@ -169,6 +170,7 @@ public interface Classes {
     String menuitem = "menuitem";
     String menuToggle = "menu-toggle";
     String nav = "nav";
+    String noBorder = "no-border";
     String noBorderRows = "no-border-rows";
     String noFill = "no-fill";
     String noOffset = "no-offset";
@@ -201,6 +203,7 @@ public interface Classes {
     String readOnly = "read-only";
     String readonly = "readonly";
     String required = "required";
+    String resizable = "resizable";
     String resizeBoth = "resize-both";
     String resizeObserver = "resize-observer";
     String resizeHorizontal = "resize-horizontal";
@@ -234,6 +237,7 @@ public interface Classes {
     String stack = "stack";
     String standalone = "standalone";
     String start = "start";
+    String static_ = "static";
     String status = "status";
     String sticky = "sticky";
     String subnav = "subnav";

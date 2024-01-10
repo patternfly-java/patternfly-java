@@ -34,11 +34,12 @@ final class ComponentStore {
     private static final String KEY_PREFIX = "pfcs"; // PatternFly component store
     private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
+    private static final Map<String, BaseComponentFlat<?, ?>> flatComponents = new HashMap<>();
     private static final Map<String, SubComponent<?, ?>> subComponents = new HashMap<>();
 
     // ------------------------------------------------------ store
 
-    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void store(BaseComponent<E, B> component) {
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeComponent(BaseComponent<E, B> component) {
         String uuid = uuid();
         components.put(uuid, component);
         component.element().dataset.set(key(component.componentType()), uuid);
@@ -47,8 +48,16 @@ final class ComponentStore {
                 " on " + Elements.toString(component.element()) + count());
     }
 
-    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void store(
-            SubComponent<E, B> subComponent) {
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeFlatComponent(BaseComponentFlat<E, B> component) {
+        String uuid = uuid();
+        flatComponents.put(uuid, component);
+        component.element().dataset.set(key(component.componentType()), uuid);
+        onDetach(component.element(), __ -> remove(uuid));
+        Logger.debug(CATEGORY, "Store flat component " + component.componentType().componentName + " as " + uuid +
+                " on " + Elements.toString(component.element()) + count());
+    }
+
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(SubComponent<E, B> subComponent) {
         String uuid = uuid();
         subComponents.put(uuid, subComponent);
         subComponent.element().dataset.set(key(subComponent.componentType, subComponent.name), uuid);
@@ -60,7 +69,7 @@ final class ComponentStore {
     // ------------------------------------------------------ lookup
 
     @SuppressWarnings("unchecked")
-    static <C extends BaseComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookup(
+    static <C extends BaseComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupComponent(
             ComponentType componentType, HTMLElement element, boolean lenient) {
         C component = null;
         String key = key(componentType);
@@ -90,7 +99,37 @@ final class ComponentStore {
     }
 
     @SuppressWarnings("unchecked")
-    static <S extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> S lookup(
+    static <C extends BaseComponentFlat<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupFlatComponent(
+            ComponentType componentType, HTMLElement element, boolean lenient) {
+        C component = null;
+        String key = key(componentType);
+        By selector = By.data(key);
+        HTMLElement closest = closest(element, selector);
+        if (closest != null) {
+            String uuid = closest.dataset.get(key);
+            if (uuid != null) {
+                try {
+                    component = (C) flatComponents.get(uuid);
+                } catch (ClassCastException e) {
+                    if (!lenient) {
+                        Logger.undefined(CATEGORY, closest, "Cannot cast component to " + componentType.componentName);
+                    }
+                }
+            } else {
+                if (!lenient) {
+                    Logger.undefined(CATEGORY, closest, "No UUID found on component element");
+                }
+            }
+        } else {
+            if (!lenient) {
+                Logger.undefined(CATEGORY, element, "Unable to find element of component using " + selector);
+            }
+        }
+        return component;
+    }
+
+    @SuppressWarnings("unchecked")
+    static <S extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> S lookupSubComponent(
             ComponentType componentType, String name, HTMLElement element, boolean lenient) {
         S subComponent = null;
         String key = key(componentType, name);

@@ -319,7 +319,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     // ------------------------------------------------------ internal
 
     private void replaceContent(HTMLElement newContent) {
-        for (Iterator<HTMLElement> iterator = iterator(contentElement); iterator.hasNext();) {
+        for (Iterator<HTMLElement> iterator = iterator(contentElement); iterator.hasNext(); ) {
             HTMLElement element = iterator.next();
             newContent.appendChild(element);
         }

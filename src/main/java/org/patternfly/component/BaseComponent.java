@@ -51,7 +51,7 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
     // ------------------------------------------------------ component store
 
     protected void storeComponent() {
-        ComponentStore.store(this);
+        ComponentStore.storeComponent(this);
     }
 
     protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
@@ -61,6 +61,16 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
 
     protected <C extends BaseComponent<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponent(
             ComponentType componentType, boolean lenient) {
-        return ComponentStore.lookup(componentType, element(), lenient);
+        return ComponentStore.lookupComponent(componentType, element(), lenient);
+    }
+
+    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponentFlat(
+            ComponentType componentType) {
+        return lookupComponentFlat(componentType, false);
+    }
+
+    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponentFlat(
+            ComponentType componentType, boolean lenient) {
+        return ComponentStore.lookupFlatComponent(componentType, element(), lenient);
     }
 }

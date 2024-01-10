@@ -154,6 +154,19 @@ public interface Modifiers {
         }
     }
 
+    interface Padding<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #padding(boolean) padding(true)} */
+        default B padding() {
+            return padding(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(padding)} */
+        default B padding(boolean padding) {
+            return toggleModifier(that(), element(), Classes.padding, padding);
+        }
+    }
+
     interface Plain<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #plain(boolean) plain(true)} */
