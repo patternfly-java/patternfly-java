@@ -87,6 +87,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
             Logger.unsupported(componentType(), this.header.element(), "Header already added");
         }
         this.header = header;
+        element().appendChild(header.element());
         aria(labelledBy, header.headerId);
         return this;
     }
