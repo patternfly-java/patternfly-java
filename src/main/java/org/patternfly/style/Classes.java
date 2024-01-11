@@ -124,6 +124,7 @@ public interface Classes {
     String group = "group";
     String gutter = "gutter";
     String hasPopup = "haspopup";
+    String handle = "handle";
     String head = "head";
     String header = "header";
     String help = "help";
@@ -208,6 +209,7 @@ public interface Classes {
     String resizeObserver = "resize-observer";
     String resizeHorizontal = "resize-horizontal";
     String resizeVertical = "resize-vertical";
+    String resizing = "resizing";
     String right = "right";
     String rounded = "rounded";
     String scope = "scope";
@@ -233,6 +235,7 @@ public interface Classes {
     String sort = "sort";
     String spinner = "spinner";
     String split = "split";
+    String splitter = "splitter";
     String splitButton = "split-button";
     String stack = "stack";
     String standalone = "standalone";

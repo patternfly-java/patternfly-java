@@ -30,6 +30,10 @@ public interface Aria {
     String labelledBy = "aria-labelledby";
     String modal = "aria-modal";
     String multiSelectable = "aria-multiselectable";
+    String orientation = "aria-orientation";
     String relevant = "aria-relevant";
     String selected = "aria-selected";
+    String valueMin = "aria-valuemin";
+    String valueMax = "aria-valuemax";
+    String valueNow = "aria-valuenow";
 }

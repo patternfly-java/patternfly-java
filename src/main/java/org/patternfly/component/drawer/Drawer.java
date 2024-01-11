@@ -54,9 +54,13 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
     private HTMLElement mainContainer;
     private DrawerPanel panel;
     private ToggleHandler<Drawer> toggleHandler;
+    boolean inline;
+    Position position;
+    DrawerContent content;
 
     Drawer() {
         super(ComponentType.Drawer, div().css(component(drawer)).element());
+        this.position = Position.end;
         storeFlatComponent();
     }
 
@@ -78,6 +82,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
 
     // override to assure internal wiring
     public Drawer add(DrawerContent content) {
+        this.content = content;
         failSafeMainContainer().appendChild(content.element());
         return this;
     }
@@ -106,7 +111,14 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
     }
 
     public Drawer position(Position position) {
+        this.position = position;
         return css(position.modifier());
+    }
+
+    @Override
+    public Drawer inline(boolean inline) {
+        this.inline = inline;
+        return Inline.super.inline(inline);
     }
 
     @Override
