@@ -35,6 +35,7 @@ public interface Classes {
     String alertGroup = "alert-group";
     String alignCenter = "align-center";
     String alignRight = "align-right";
+    String ariaDisabled = "aria-disabled";
     String arrow = "arrow";
     String autoColumnWidths = "auto-column-widths";
     String autoFit = "auto-fit";
@@ -44,6 +45,7 @@ public interface Classes {
     String banner = "banner";
     String block = "block";
     String body = "body";
+    String box = "box";
     String bordered = "bordered";
     String bottom = "bottom";
     String brand = "brand";

@@ -219,6 +219,19 @@ public interface Modifiers {
         }
     }
 
+    interface Vertical<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #vertical(boolean) vertical(true)} */
+        default B vertical() {
+            return vertical(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(vertical)} */
+        default B vertical(boolean vertical) {
+            return toggleModifier(that(), element(), Classes.vertical, vertical);
+        }
+    }
+
     static <E extends Element, B extends TypedBuilder<E, B>> B toggleModifier(B builder, E element,
             String modifier, boolean flag) {
         if (flag) {

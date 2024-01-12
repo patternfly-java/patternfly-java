@@ -15,22 +15,44 @@
  */
 package org.patternfly.component.tabs;
 
-import org.patternfly.component.BaseComponent;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Logger;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Fill;
+import org.patternfly.style.Modifiers.Vertical;
 
+import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLUListElement;
+import elemental2.dom.MutationRecord;
 
+import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Attributes.role;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.scrollButton;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * Tabs allow users to navigate between views within the same page or context.
  *
  * @see <a href= "https://www.patternfly.org/components/tabs">https://www.patternfly.org/components/tabs</a>
  */
-public class Tabs extends BaseComponent<HTMLElement, Tabs> {
+public class Tabs extends BaseComponentFlat<HTMLElement, Tabs>
+        implements Attachable, Fill<HTMLElement, Tabs>, Vertical<HTMLElement, Tabs> {
 
     // ------------------------------------------------------ factory
 
@@ -40,25 +62,85 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> {
 
     // ------------------------------------------------------ instance
 
+    private final HTMLElement tabsElement;
+    private final HTMLContainerBuilder<HTMLButtonElement> scrollLeft;
+    private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private final HTMLContainerBuilder<HTMLButtonElement> scrollRight;
+    private final Map<String, Tab> tabs;
+    private Tab currentTab;
+    private ComponentHandler<Tabs> selectHandler;
+
     Tabs() {
-        super((ComponentType) null, div().element());
+        super(ComponentType.Tabs, div().element());
+        this.tabs = new LinkedHashMap<>();
+        storeFlatComponent();
+
+        element().appendChild(tabsElement = div().css(component(Classes.tabs))
+                .attr(role, "region")
+                .add(scrollLeft = button().css(component(Classes.tabs, scrollButton))
+                        .apply(b -> b.disabled = true)
+                        .aria(hidden, true)
+                        .aria(label, "Scroll left"))
+                .add(ul = ul().css(component(Classes.tabs, list))
+                        .attr(role, "tablist"))
+                .add(scrollRight = button().css(component(Classes.tabs, scrollButton))
+                        .apply(b -> b.disabled = true)
+                        .aria(hidden, true)
+                        .aria(label, "Scroll left"))
+                .element());
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        for (Tab tab : tabs.values()) {
+            if (tab.tooltip != null) {
+                tab.tooltip.trigger(tab.button.element());
+                element().appendChild(tab.tooltip.element());
+            }
+            if (tab.content != null) {
+                tab.content.element().hidden = true;
+                addContent(tab);
+            }
+        }
+        if (!tabs.isEmpty()) {
+            tabs.values().iterator().next().select(true);
+        }
     }
 
     // ------------------------------------------------------ add
 
-    public Tabs addFoo(/* Foo foo */) {
-        return this;
+    public Tabs addTab(Tab tab) {
+        return add(tab);
     }
 
     // override to assure internal wiring
-    public Tabs add(/* Foo foo */) {
+    public Tabs add(Tab tab) {
+        tabs.put(tab.id, tab);
+        ul.add(tab);
         return this;
     }
 
     // ------------------------------------------------------ builder
 
-    public Tabs methodsReturningAReferenceToItself() {
-        return this;
+    /** Same as {@linkplain #box(boolean) box(true)} */
+    public Tabs box() {
+        return box(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(box)} */
+    public Tabs box(boolean box) {
+        return toggleModifier(this, tabsElement, Classes.box, box);
+    }
+
+    @Override
+    public Tabs fill(boolean fill) {
+        return toggleModifier(this, tabsElement, Classes.fill, fill);
+    }
+
+    @Override
+    public Tabs vertical(boolean vertical) {
+        return toggleModifier(this, tabsElement, Classes.vertical, vertical);
     }
 
     @Override
@@ -68,29 +150,60 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> {
 
     // ------------------------------------------------------ aria
 
-    public Tabs ariaLabel(String label) {
-        return aria(Aria.label, label);
+    public Tabs ariaScrollLeftLabel(String label) {
+        scrollLeft.aria(Aria.label, label);
+        return this;
+    }
+
+    public Tabs ariaScrollRightLabel(String label) {
+        scrollRight.aria(Aria.label, label);
+        return this;
     }
 
     // ------------------------------------------------------ events
 
-    public Tabs onFoo(ComponentHandler<Tabs> handler) {
-        return on(click, e -> handler.handle(e, this));
+    public Tabs onSelect(ComponentHandler<Tabs> selectHandler) {
+        this.selectHandler = selectHandler;
+        return this;
     }
 
     // ------------------------------------------------------ api
 
-    public void doSomething() {
-
+    public void select(String id) {
+        if (id != null) {
+            select(tabs.get(id));
+        } else {
+            Logger.undefined(componentType(), element(), "Cannot select tab: No tab id given.");
+        }
     }
 
-    public String getter() {
-        return "some piece of information";
+    public void select(Tab tab) {
+        if (tab != null) {
+            for (Tab t : tabs.values()) {
+                if (tab.id.equals(t.id)) {
+                    t.select(true);
+                    currentTab = t;
+                } else {
+                    t.select(false);
+                }
+            }
+            if (selectHandler != null) {
+                selectHandler.handle(new Event(""), this);
+            }
+        } else {
+            Logger.undefined(componentType(), element(), "Cannot select tab: No tab given.");
+        }
+    }
+
+    public Tab currentTab() {
+        return currentTab;
     }
 
     // ------------------------------------------------------ internal
 
-    private void foo() {
-        // internal stuff happens here
+    void addContent(Tab tab) {
+        tab.button.aria(Aria.controls, tab.contentId);
+        tab.content.aria(Aria.labelledBy, tab.buttonId);
+        element().appendChild(tab.content.element());
     }
 }

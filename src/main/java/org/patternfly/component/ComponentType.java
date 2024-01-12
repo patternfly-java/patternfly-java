@@ -123,7 +123,7 @@ public enum ComponentType {
 
     Switch("sw", null),
 
-    Tabs("tbs", null),
+    Tabs("tbs", "PF5/Tabs"),
 
     TextContent("tc", "PF5/TextContent"),
 

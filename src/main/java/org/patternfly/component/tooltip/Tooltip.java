@@ -164,21 +164,26 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         if (trigger != null) {
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
-                popper = new PopperBuilder(componentType(), triggerElement, element())
-                        .animationDuration(animationDuration)
-                        .entryDelay(entryDelay)
-                        .exitDelay(exitDelay)
-                        .zIndex(zIndex)
-                        .placement(placement)
-                        .addModifier(Modifiers.offset(distance),
-                                Modifiers.noOverflow(),
-                                Modifiers.hide(),
-                                Modifiers.flip(placement == auto || flip),
-                                Modifiers.placement(),
-                                Modifiers.eventListeners(false))
-                        .registerHandler(triggerActions, this::show, this::close)
-                        .removePopperOnTriggerDetach()
-                        .build();
+                if (isAttached(triggerElement)) {
+                    popper = new PopperBuilder(componentType(), triggerElement, element())
+                            .animationDuration(animationDuration)
+                            .entryDelay(entryDelay)
+                            .exitDelay(exitDelay)
+                            .zIndex(zIndex)
+                            .placement(placement)
+                            .addModifier(Modifiers.offset(distance),
+                                    Modifiers.noOverflow(),
+                                    Modifiers.hide(),
+                                    Modifiers.flip(placement == auto || flip),
+                                    Modifiers.placement(),
+                                    Modifiers.eventListeners(false))
+                            .registerHandler(triggerActions, this::show, this::close)
+                            .removePopperOnTriggerDetach()
+                            .build();
+                } else {
+                    Logger.undefined(componentType(), element(),
+                            "Trigger element " + Elements.toString(triggerElement) + " is not attached");
+                }
             } else {
                 if (selector != null) {
                     Logger.undefined(componentType(), element(),

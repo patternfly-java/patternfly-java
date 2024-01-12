@@ -34,6 +34,7 @@ import org.patternfly.core.HasValues;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
+import org.patternfly.style.Modifiers.Vertical;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -67,11 +68,11 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
-import static org.patternfly.style.Classes.vertical;
 import static org.patternfly.style.PredefinedIcon.timesCircle;
 
 public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
-        implements HasValues<Label>, Attachable, Closeable<HTMLDivElement, LabelGroup> {
+        implements HasValues<Label>, Attachable, Closeable<HTMLDivElement, LabelGroup>,
+        Vertical<HTMLDivElement, LabelGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -217,10 +218,6 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     public LabelGroup expandedText(String expandedText) {
         this.expandedText = expandedText;
         return this;
-    }
-
-    public LabelGroup vertical() {
-        return css(modifier(vertical));
     }
 
     @Override
