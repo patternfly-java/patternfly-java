@@ -38,6 +38,7 @@ import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Modifiers.Plain;
+import org.patternfly.style.Modifiers.Secondary;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -60,7 +61,6 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.plain;
 import static org.patternfly.style.Classes.primary;
 import static org.patternfly.style.Classes.progress;
-import static org.patternfly.style.Classes.secondary;
 import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.tertiary;
 import static org.patternfly.style.Classes.warning;
@@ -80,6 +80,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         Inline<HTMLElement, Button>,
         Plain<HTMLElement, Button>,
         NoPadding<HTMLElement, Button>,
+        Secondary<HTMLElement, Button>,
         WithIcon<HTMLElement, Button>,
         WithText<HTMLElement, Button>,
         WithIconAndText<HTMLElement, Button>,
@@ -213,10 +214,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     public Button primary() {
         return css(modifier(primary));
-    }
-
-    public Button secondary() {
-        return css(modifier(secondary));
     }
 
     public Button danger() {

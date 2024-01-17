@@ -167,6 +167,19 @@ public interface Modifiers {
         }
     }
 
+    interface PageInsets<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #pageInsets(boolean) pageInsets(true)} */
+        default B pageInsets() {
+            return pageInsets(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(pageInsets)} */
+        default B pageInsets(boolean pageInsets) {
+            return toggleModifier(that(), element(), Classes.pageInsets, pageInsets);
+        }
+    }
+
     interface Plain<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #plain(boolean) plain(true)} */
@@ -232,13 +245,22 @@ public interface Modifiers {
         }
     }
 
+    interface Secondary<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #secondary(boolean) secondary(true)} */
+        default B secondary() {
+            return secondary(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(secondary)} */
+        default B secondary(boolean secondary) {
+            return toggleModifier(that(), element(), Classes.secondary, secondary);
+        }
+    }
+
     static <E extends Element, B extends TypedBuilder<E, B>> B toggleModifier(B builder, E element,
             String modifier, boolean flag) {
-        if (flag) {
-            element.classList.add(modifier(modifier));
-        } else {
-            element.classList.remove(modifier(modifier));
-        }
+        element.classList.toggle(modifier(modifier), flag);
         return builder;
     }
 }

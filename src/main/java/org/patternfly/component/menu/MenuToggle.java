@@ -29,6 +29,7 @@ import org.patternfly.core.WithIconAndText;
 import org.patternfly.core.WithText;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Secondary;
 import org.patternfly.style.PredefinedIcon;
 
 import elemental2.dom.HTMLButtonElement;
@@ -49,7 +50,6 @@ import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.menuToggle;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.primary;
-import static org.patternfly.style.Classes.secondary;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.PredefinedIcon.caretDown;
 
@@ -62,6 +62,7 @@ import static org.patternfly.style.PredefinedIcon.caretDown;
  *      "https://www.patternfly.org/components/menus/menu-toggle">https://www.patternfly.org/components/menus/menu-toggle</a>
  */
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
+        Secondary<HTMLElement, MenuToggle>,
         WithIcon<HTMLElement, MenuToggle>,
         WithText<HTMLElement, MenuToggle>,
         WithIconAndText<HTMLElement, MenuToggle>,
@@ -251,10 +252,6 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
 
     public MenuToggle primary() {
         return css(modifier(primary));
-    }
-
-    public MenuToggle secondary() {
-        return css(modifier(secondary));
     }
 
     @Override

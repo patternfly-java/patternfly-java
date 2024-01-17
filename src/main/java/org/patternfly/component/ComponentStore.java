@@ -171,8 +171,9 @@ final class ComponentStore {
 
     private static void remove(String uuid) {
         BaseComponent<?, ?> c = components.remove(uuid);
+        BaseComponentFlat<?, ?> cf = flatComponents.remove(uuid);
         SubComponent<?, ?> s = subComponents.remove(uuid);
-        if (c != null) {
+        if (c != null || cf != null) {
             Logger.debug(CATEGORY, "Remove component for " + uuid + count());
         } else if (s != null) {
             Logger.debug(CATEGORY, "Remove subcomponent for " + uuid + count());
@@ -182,6 +183,6 @@ final class ComponentStore {
     }
 
     private static String count() {
-        return " (" + components.size() + "/" + subComponents.size() + ")";
+        return " (" + components.size() + "/" + flatComponents.size() + "/" + subComponents.size() + ")";
     }
 }

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.tabs;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -48,10 +49,11 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.tabs;
-import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
-public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<HTMLElement, Tab>, WithText<HTMLElement, Tab>,
+public class Tab extends TabSubComponent<HTMLElement, Tab> implements
+        Disabled<HTMLElement, Tab>,
+        WithText<HTMLElement, Tab>,
         WithIcon<HTMLElement, Tab> {
 
     // ------------------------------------------------------ factory
@@ -60,8 +62,8 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
         return new Tab(id, null);
     }
 
-    public static Tab tab(String id, String title) {
-        return new Tab(id, title);
+    public static Tab tab(String id, String text) {
+        return new Tab(id, text);
     }
 
     // ------------------------------------------------------ instance
@@ -71,13 +73,13 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
     final String buttonId;
     final String contentId;
     final HTMLContainerBuilder<HTMLButtonElement> button;
-    private final HTMLElement textElement;
+    final HTMLElement textElement;
     private HTMLElement iconContainer;
     TabContent content;
     Promise<TabContent> dynamicContent;
     Tooltip tooltip;
 
-    Tab(String id, String title) {
+    Tab(String id, String text) {
         super(SUB_COMPONENT_NAME, li().css(component(tabs, item))
                 .attr(role, "presentation")
                 .element());
@@ -98,9 +100,9 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
                         tabs.select(this);
                     }
                 })
-                .add(textElement = span().css(component(tabs, item, text)).element()));
-        if (title != null) {
-            textElement.textContent = title;
+                .add(textElement = span().css(component(tabs, item, Classes.text)).element()));
+        if (text != null) {
+            textElement.textContent = text;
         }
     }
 
@@ -172,6 +174,16 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
         return this;
     }
 
+    public Tab hidden() {
+        return hidden(true);
+    }
+
+    @Override
+    public Tab hidden(boolean hidden) {
+        Elements.setVisible(this, !hidden);
+        return this;
+    }
+
     @Override
     public Tab that() {
         return this;
@@ -184,6 +196,15 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    /**
+     * Returns the enclosing {@link Tabs} component. Only valid <strong>after</strong> the tabs component has been attached!
+     */
+    public Tabs tabs() {
+        return lookupFlatComponent();
+    }
+
     // ------------------------------------------------------ internal
 
     void select(boolean selected) {
@@ -194,10 +215,10 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
                 if (dynamicContent != null) {
                     dynamicContent.then(c -> {
                         content = c;
-                        content.element().hidden = false;
                         dynamicContent = null;
                         Tabs tabs = lookupFlatComponent();
-                        tabs.addContent(this);
+                        tabs.addTabContent(this);
+                        content.element().hidden = false;
                         return null;
                     }).catch_(error -> {
                         Logger.undefined(ComponentType.Tabs, element(), "Unable to load content for tab " + id + ": " + error);
@@ -215,6 +236,10 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements Disabled<H
                 content.element().hidden = true;
             }
         }
+    }
+
+    String text() {
+        return textElement.textContent;
     }
 
     private HTMLElement failSafeIconContainer() {

@@ -174,6 +174,7 @@ public interface Classes {
     String menuToggle = "menu-toggle";
     String nav = "nav";
     String noBorder = "no-border";
+    String noBorderBottom = "no-border-bottom";
     String noBorderRows = "no-border-rows";
     String noFill = "no-fill";
     String noOffset = "no-offset";
