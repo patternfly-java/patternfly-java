@@ -89,7 +89,7 @@
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.junit>5.10.1</version.junit>
-        <version.mockito>5.8.0</version.mockito>
+        <version.mockito>5.9.0</version.mockito>
         <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
 
         <!-- Plugin versions -->
