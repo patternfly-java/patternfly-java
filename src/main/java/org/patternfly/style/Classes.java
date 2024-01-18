@@ -31,6 +31,7 @@ public interface Classes {
     String actionList = "action-list";
     String actions = "actions";
     String active = "active";
+    String add = "add";
     String alert = "alert";
     String alertGroup = "alert-group";
     String alignCenter = "align-center";

@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.tabs;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.Function;
@@ -26,13 +28,13 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Expandable;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Breakpoints;
@@ -54,17 +56,17 @@ import elemental2.dom.NodeList;
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
 import static elemental2.dom.DomGlobal.window;
-import static org.jboss.elemento.Elements.asHtmlElement;
+import static java.util.Collections.reverse;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.htmlElements;
+import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.isElementInView;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.setVisible;
-import static org.jboss.elemento.Elements.stream;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
@@ -87,6 +89,7 @@ import static org.patternfly.style.Classes.scrollable;
 import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.PredefinedIcon.angleLeft;
 import static org.patternfly.style.PredefinedIcon.angleRight;
+import static org.patternfly.style.PredefinedIcon.plus;
 
 /**
  * Tabs allow users to navigate between views within the same page or context.
@@ -124,19 +127,21 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     private final ObservableValue<Boolean> renderScrollButtons;
     private final ObservableValue<Boolean> disableBackScrollButton;
     private final ObservableValue<Boolean> disableForwardScrollButton;
-    private final ObservableValue<Integer> overflowingTabCount;
 
     private double scrollTimeout;
+    private boolean closeable;
     private boolean expandable;
     private boolean lightTabs;
+    private boolean noInitialSelection;
     private boolean overflowHorizontal;
     private boolean vertical;
 
     private Tab currentTab;
     private OverflowTab overflowTab;
     private TabsToggle tabsToggle;
+    private Button addButton;
 
-    private ComponentHandler<Tabs> addHandler;
+    private Function<Tabs, Tab> addHandler;
     private ToggleHandler<Tabs> toggleHandler;
     private CloseHandler<Tab> closeHandler;
     private SelectHandler<Tab> selectHandler;
@@ -151,7 +156,6 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         this.renderScrollButtons = ov(false);
         this.disableBackScrollButton = ov(false);
         this.disableForwardScrollButton = ov(false);
-        this.overflowingTabCount = ov(0);
 
         this.mainContainer = builder.css(component(Classes.tabs))
                 .attr(role, "region")
@@ -163,7 +167,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         .add(inlineIcon(angleLeft)))
                 .add(tabsContainer = ul().css(component(Classes.tabs, list))
                         .attr(role, "tablist")
-                        .on(scroll, e -> updateScrollAndOverflowState()))
+                        .on(scroll, e -> updateState()))
                 .add(scrollForward = button().css(component(Classes.tabs, scrollButton))
                         .apply(b -> b.disabled = true)
                         .aria(hidden, true)
@@ -190,17 +194,21 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         "Expandable is not supported for horizontal tabs!");
             }
             if (overflowHorizontal) {
+                if (addHandler != null) {
+                    Logger.wrong(componentType(), element(), "Overflow tabs should not have an onAdd() handler.");
+                }
                 attachOverflow();
             } else {
                 attachHorizontal();
             }
+            resizeHandler = bind(window, resize.name, e -> updateState());
         }
 
         if (tabs.isEmpty()) {
             Logger.missing(componentType(), mainContainer.element(), "No tabs given!");
         } else {
             attachTabs();
-            updateScrollAndOverflowState();
+            updateState();
         }
     }
 
@@ -213,7 +221,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                 if (!tabs.isEmpty()) {
                     tt.text(tabs.values().iterator().next().text());
                 }
-                onSelect((e, tab, selected) -> tt.text(tab.textElement.textContent));
+                onSelect((e, tab, selected) -> tt.text(tab.text()));
             }
             insertBefore(tt.element(), tabsContainer.element());
         }
@@ -244,40 +252,23 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             scrollForward.element().disabled = current;
             scrollForward.aria(Aria.disabled, current);
         });
-        resizeHandler = bind(window, resize.name, e -> updateScrollAndOverflowState());
     }
 
     private void attachOverflow() {
         failSafeRemoveFromParent(scrollBack);
         failSafeRemoveFromParent(scrollForward);
-        if (overflowTab.showCount()) {
-            overflowingTabCount.subscribe((current, previous) -> {
-                overflowTab.count(current);
-            });
-        }
-        resizeHandler = bind(window, resize.name, e -> updateScrollAndOverflowState());
     }
 
     private void attachTabs() {
         for (Tab tab : tabs.values()) {
-            if (tab.tooltip != null) {
-                tab.tooltip.trigger(tab.button.element());
-                element().appendChild(tab.tooltip.element());
-            }
             addTabToDOM(tab);
         }
         if (overflowHorizontal) {
             tabsContainer.add(overflowTab);
-            LinkedList<Tab> ll = new LinkedList<>(tabs.values());
-            for (ListIterator<Tab> iterator = ll.listIterator(ll.size());
-                    iterator.hasPrevious() && !isElementInView(tabsContainer, overflowTab, false); ) {
-                Tab tab = iterator.previous();
-                setVisible(tab, false);
-                overflowTab.push(tab);
-            }
-            overflowTab.buildMenu();
         }
-        tabs.values().iterator().next().select(true);
+        if (!noInitialSelection) {
+            tabs.values().iterator().next().select(true);
+        }
     }
 
     @Override
@@ -291,6 +282,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         }
         if (overflowTab != null) {
             overflowTab.detach();
+        }
+        for (Tab tab : tabs.values()) {
+            // help and tooltip are appended to the body!
+            failSafeRemoveFromParent(tab.help);
+            failSafeRemoveFromParent(tab.tooltip);
         }
     }
 
@@ -306,7 +302,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             }
         }
         if (attached) {
-            updateScrollAndOverflowState();
+            updateState();
         }
         return this;
     }
@@ -320,7 +316,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         tabs.put(tab.id, tab);
         if (isAttached(element())) {
             addTabToDOM(tab);
-            updateScrollAndOverflowState();
+            updateState();
         }
         return this;
     }
@@ -335,6 +331,17 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     /** Enables box styling to the tab component */
     public Tabs box(boolean box) {
         return toggleModifier(this, mainContainer.element(), Classes.box, box);
+    }
+
+    public Tabs closeable() {
+        this.closeable = true;
+        return closeable(null);
+    }
+
+    public Tabs closeable(CloseHandler<Tab> closeHandler) {
+        this.closeable = true;
+        this.closeHandler = closeHandler;
+        return this;
     }
 
     /**
@@ -416,6 +423,12 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         return this;
     }
 
+    /** By default, the first tab is selected initially. Call this method to disable thi default behaviour. */
+    public Tabs noInitialSelection() {
+        this.noInitialSelection = true;
+        return this;
+    }
+
     /** Enables secondary styling to the tab component */
     @Override
     public Tabs secondary(boolean secondary) {
@@ -467,7 +480,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
      * Aria-label for the add button.
      */
     public Tabs ariaAddLabel(String label) {
-        // TODO
+        if (addButton != null) {
+            addButton.aria(Aria.label, label);
+        } else {
+            Logger.undefined(componentType(), element(), "Unable to set aria add label. Please make call onAdd() first.");
+        }
         return this;
     }
 
@@ -508,7 +525,14 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     /**
      * Callback for the add button. Passing this property inserts the add button.
      */
-    public Tabs onAdd(ComponentHandler<Tabs> addHandler) {
+    public Tabs onAdd(Function<Tabs, Tab> addHandler) {
+        if (addButton == null) {
+            insertAfter(span().css(component(Classes.tabs, Classes.add))
+                    .add(addButton = Button.button().plain().icon(plus)
+                            .aria(label, "Add new tab")
+                            .on(click, e -> addTab(addHandler.apply(this))))
+                    .element(), tabsContainer.element());
+        }
         this.addHandler = addHandler;
         return this;
     }
@@ -552,6 +576,27 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             if (fireEvent && toggleHandler != null) {
                 toggleHandler.onToggle(new Event(""), this, true);
             }
+        }
+    }
+
+    public void close(String id) {
+        if (id != null) {
+            close(tabs.get(id));
+        } else {
+            Logger.undefined(componentType(), mainContainer.element(), "Cannot close tab: No tab id given.");
+        }
+    }
+
+    public void close(Tab tab) {
+        if (tab != null) {
+            tabs.remove(tab.id);
+            failSafeRemoveFromParent(tab.help);
+            failSafeRemoveFromParent(tab.tooltip);
+            failSafeRemoveFromParent(tab.content);
+            failSafeRemoveFromParent(tab);
+            updateState();
+        } else {
+            Logger.undefined(componentType(), mainContainer.element(), "Cannot close tab: No tab given.");
         }
     }
 
@@ -602,7 +647,22 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     private void addTabHandle(Tab tab) {
-        tabsContainer.add(tab);
+        if (tab.tooltip != null) {
+            tab.tooltip.trigger(tab.button.element());
+            tab.tooltip.appendToBody();
+        }
+        if (tab.help != null) {
+            tab.help.trigger(tab.helpButton.element());
+            tab.help.appendToBody();
+        }
+        if (this.closeable && tab.closeHandler == null) {
+            tab.closeable(this.closeHandler);
+        }
+        if (isAttached(overflowTab)) {
+            insertBefore(tab.element(), overflowTab.element());
+        } else {
+            tabsContainer.add(tab);
+        }
     }
 
     void addTabContent(Tab tab) {
@@ -615,7 +675,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         tab.content.element().hidden = true;
     }
 
-    private void updateScrollAndOverflowState() {
+    private void updateState() {
         // debounce scroll event!
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout((__) -> {
@@ -629,7 +689,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                 disableForwardScrollButton.change(!overflowOnRight);
             }
             if (overflowHorizontal) {
-                overflowingTabCount.change(countOverflowingTabs());
+                updateOverflow();
+            }
+            int size = tabs.size();
+            for (Tab tab : tabs.values()) {
+                tab.disableCloseButton(size == 1);
             }
         }, 100);
     }
@@ -680,12 +744,29 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         }
     }
 
-    private int countOverflowingTabs() {
-        return (int) stream(tabsContainer)
-                .filter(htmlElements())
-                .map(asHtmlElement())
-                .filter(e -> !isElementInView(tabsContainer, e, false))
-                .count();
+    private void updateOverflow() {
+        int count = 0;
+        List<Tab> overflowingTabs = new ArrayList<>();
+        for (Tab tab : tabs.values()) {
+            // to calculate the visibility, temporarily make all, but the overflow tab visible
+            setVisible(tab, true);
+            if (!isElementInView(tabsContainer, tab, false)) {
+                count++;
+            }
+        }
+        if (count > 0) {
+            setVisible(overflowTab, true);
+            LinkedList<Tab> tabValues = new LinkedList<>(tabs.values());
+            // iterate from last tab, until overflow tab becomes fully visible
+            for (ListIterator<Tab> iterator = tabValues.listIterator(tabValues.size());
+                    iterator.hasPrevious() && !isElementInView(tabsContainer, overflowTab, false); ) {
+                Tab tab = iterator.previous();
+                setVisible(tab, false);
+                overflowingTabs.add(tab);
+            }
+            reverse(overflowingTabs);
+        }
+        overflowTab.update(overflowingTabs);
     }
 
     private OverflowTab failSafeOverflowTab() {

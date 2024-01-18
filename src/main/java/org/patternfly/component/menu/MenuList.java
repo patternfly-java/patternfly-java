@@ -103,7 +103,6 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     public MenuList addItem(MenuItem item) {
-        items.put(item.id, item);
         return add(item);
     }
 
@@ -122,6 +121,15 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     @Override
     public MenuList that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void clear() {
+        for (MenuItem item : items.values()) {
+            failSafeRemoveFromParent(item);
+        }
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

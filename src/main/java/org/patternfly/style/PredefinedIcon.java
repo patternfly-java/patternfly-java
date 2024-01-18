@@ -97,6 +97,8 @@ public enum PredefinedIcon {
 
     play(fas("play")),
 
+    plus(fas("plus")),
+
     plusCircle(fas("plus-circle")),
 
     search(fas("search")),

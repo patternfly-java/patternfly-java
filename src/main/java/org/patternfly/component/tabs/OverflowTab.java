@@ -17,12 +17,15 @@ package org.patternfly.component.tabs;
 
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
+import org.patternfly.component.menu.MenuList;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Expandable;
 import org.patternfly.style.Classes;
@@ -76,18 +79,21 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     private final Map<String, Tab> tabs;
     private final HTMLContainerBuilder<HTMLButtonElement> button;
     private final HTMLElement textElement;
+    private final Menu menu;
+    private final MenuList menuList;
     private int count;
     private String text;
     private boolean showCount;
-    private Menu menu;
     private Popper popper;
     private MenuItem selectedMenuItem;
 
     OverflowTab() {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.tabs, item), modifier(overflow))
+                .id(Id.unique(ComponentType.Tabs.id, "overflow"))
                 .attr(role, "presentation")
                 .element());
         this.tabs = new LinkedHashMap<>();
+
         add(button = button().css(component(Classes.tabs, link))
                 .attr(role, "tab")
                 .aria(expanded, false)
@@ -95,7 +101,23 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
                         .add(inlineIcon(angleRight))));
-        updateText();
+        add(menu = menu(single)
+                .onSingleSelect((event, menuItem, selected) -> select(menuItem))
+                .addContent(menuContent()
+                        .addList(menuList = menuList()
+                                .addItems(tabs.values(), tab -> menuItem(tab.id, action).text(tab.text())))));
+        setVisible(menu, false);
+
+        popper = new PopperBuilder(ComponentType.Tabs, button.element(), menu.element())
+                .zIndex(9999)
+                .placement(bottomStart)
+                .addModifier(org.patternfly.thirdparty.popper.Modifiers.noOverflow(),
+                        org.patternfly.thirdparty.popper.Modifiers.hide(),
+                        org.patternfly.thirdparty.popper.Modifiers.flip(true),
+                        org.patternfly.thirdparty.popper.Modifiers.placement(),
+                        org.patternfly.thirdparty.popper.Modifiers.eventListeners(false))
+                .registerHandler(button.element(), EnumSet.of(TriggerAction.click), this::show, this::close)
+                .build();
     }
 
     // not a real detach, but called from tabs component
@@ -128,37 +150,18 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
         updateText();
     }
 
-    boolean showCount() {
-        return showCount;
-    }
-
-    void count(int count) {
-        this.count = count;
-        updateText();
-    }
-
-    void push(Tab tab) {
-        tabs.put(tab.id, tab);
-    }
-
-    void buildMenu() {
-        menu = menu(single)
-                .onSingleSelect((event, menuItem, selected) -> select(menuItem))
-                .addContent(menuContent()
-                        .addList(menuList()
-                                .addItems(tabs.values(), tab -> menuItem(tab.id, action).text(tab.text()))));
-        add(menu);
-        setVisible(menu, false);
-        popper = new PopperBuilder(ComponentType.Tabs, button.element(), menu.element())
-                .zIndex(9999)
-                .placement(bottomStart)
-                .addModifier(org.patternfly.thirdparty.popper.Modifiers.noOverflow(),
-                        org.patternfly.thirdparty.popper.Modifiers.hide(),
-                        org.patternfly.thirdparty.popper.Modifiers.flip(true),
-                        org.patternfly.thirdparty.popper.Modifiers.placement(),
-                        org.patternfly.thirdparty.popper.Modifiers.eventListeners(false))
-                .registerHandler(button.element(), EnumSet.of(TriggerAction.click), this::show, this::close)
-                .build();
+    void update(List<Tab> overflowTabs) {
+        tabs.clear();
+        menuList.clear();
+        setVisible(this, !overflowTabs.isEmpty());
+        if (!overflowTabs.isEmpty()) {
+            count = overflowTabs.size();
+            updateText();
+            for (Tab tab : overflowTabs) {
+                tabs.put(tab.id, tab);
+            }
+            menuList.addItems(overflowTabs, tab -> menuItem(tab.id, action).text(tab.text()));
+        }
     }
 
     void unselect() {

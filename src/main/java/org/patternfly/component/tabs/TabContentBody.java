@@ -15,44 +15,37 @@
  */
 package org.patternfly.component.tabs;
 
-import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Padding;
 
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.section;
-import static org.patternfly.core.Attributes.role;
+import static org.jboss.elemento.Elements.div;
+import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements Disabled<HTMLElement, TabContent> {
+public class TabContentBody extends TabSubComponent<HTMLElement, TabContentBody>
+        implements Padding<HTMLElement, TabContentBody> {
 
     // ------------------------------------------------------ factory
 
-    public static TabContent tabContent() {
-        return new TabContent();
+    public static TabContentBody tabContentBody() {
+        return new TabContentBody();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    static final String SUB_COMPONENT_NAME = "tcb";
 
-    TabContent() {
-        super(SUB_COMPONENT_NAME, section().css(component(tabContent))
-                .apply(s -> s.tabIndex = 0)
-                .attr(role, "tabpanel")
+    TabContentBody() {
+        super(SUB_COMPONENT_NAME, div().css(component(tabContent, body))
                 .element());
-    }
-
-    // ------------------------------------------------------ add
-
-    public TabContent addBody(TabContentBody body) {
-        return add(body);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public TabContent that() {
+    public TabContentBody that() {
         return this;
     }
 }
