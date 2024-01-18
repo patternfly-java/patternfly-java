@@ -26,6 +26,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Flex layout (#122)
 - Split layout (#123)
 
+#### API
+
+- [`Breakpoint`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoint.html) and [`Breakpoints`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoints.html) classes to easily manage responsive CSS modifiers.
+
 ## [0.1.2] - 2023-12-17
 
 ### Added

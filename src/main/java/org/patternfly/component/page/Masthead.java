@@ -88,8 +88,6 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     /**
      * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component and
      * finally adds the {@link MastheadMain} to this component.
-     * <p>
-     * Shortcut for {@snippet : add(mastheadMain().add(a(homeLink).css(component(masthead, Classes.brand)).add(brand))); }
      */
     public Masthead addBrand(Brand brand, String homeLink) {
         addMain(mastheadMain()
@@ -100,8 +98,6 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     /**
      * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this component.
-     * <p>
-     * Shortcut for {@snippet : add(mastheadContent().add(toolbar)); }
      */
     public Masthead addToolbar(Toolbar toolbar) {
         addContent(mastheadContent()

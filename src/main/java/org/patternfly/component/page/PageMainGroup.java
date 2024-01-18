@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.shadowBottom;
 import static org.patternfly.style.Classes.shadowTop;
 
 /**
- * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Sticky)}
+ * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Breakpoints)}
  * modifier to make multiple sections sticky.
  * <p>
  * {@snippet class = PageDemo region = pageMainGroup}

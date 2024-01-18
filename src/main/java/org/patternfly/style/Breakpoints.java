@@ -33,12 +33,12 @@ import static org.patternfly.style.Breakpoint.sm;
 import static org.patternfly.style.Breakpoint.xl;
 
 /**
- * This class represents a collection of breakpoints and associated values. It extends the {@link Tuples} class and adds methods
- * to get CSS modifier classes. The class is used as parameter in various components and layouts to apply CSS modifiers for
- * responsive layout.
+ * This class represents a collection of {@linkplain Breakpoint breakpoints} and associated values. It extends the
+ * {@link Tuples} class and adds methods to generate CSS modifier classes. The class is used as parameter in various components and
+ * layouts to apply CSS modifiers for responsive layout.
  *
  * <p>
- * The CSS modifier class for a single breakpoint is created using the following rules:
+ * The CSS modifier class for a single breakpoint is generated using the following rules:
  * </p>
  * <ul>
  * <li>For normal breakpoints ({@code modifiers()} methods)

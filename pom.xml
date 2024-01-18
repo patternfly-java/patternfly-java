@@ -318,6 +318,9 @@
                         <additionalOptions>${javadoc.options}</additionalOptions>
                         <detectLinks>true</detectLinks>
                         <doclint>none</doclint>
+                        <sourceFileExcludes>
+                            <sourceFileExclude>**/ThirdPartyBundle*.java</sourceFileExclude>
+                        </sourceFileExcludes>
                         <failOnError>false</failOnError>
                         <links>
                             <link>https://hal.github.io/elemento/</link>
