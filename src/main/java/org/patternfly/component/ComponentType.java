@@ -77,6 +77,8 @@ public enum ComponentType {
 
     HelperText("ht", "PF5/HelperText"),
 
+    Hint("hnt", "PF5/Hint"),
+
     Icon("icn", "PF5/Icon"),
 
     InputGroup("ig", null),

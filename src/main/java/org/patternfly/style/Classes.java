@@ -134,6 +134,7 @@ public interface Classes {
     String helpText = "help-text";
     String helperText = "helper-text";
     String hidden = "hidden";
+    String hint = "hint";
     String horizontal = "horizontal";
     String horizontalSubnav = "horizontal-subnav";
     String hoverable = "hoverable";
