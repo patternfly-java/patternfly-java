@@ -87,7 +87,7 @@ public enum ComponentType {
 
     LabelGroup("lbg", null),
 
-    List("lst", null),
+    List("lst", "PF5/List"),
 
     Masthead("mh", "PF5/Masthead"),
 
@@ -114,6 +114,8 @@ public enum ComponentType {
     Select("sel", null),
 
     Sidebar("sb", "PF5/Sidebar"),
+
+    SimpleList("sl", "PF5/SimpleList"),
 
     Skeleton("sk", null),
 

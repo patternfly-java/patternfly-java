@@ -41,6 +41,8 @@ public enum PredefinedIcon {
 
     book(fas("book")),
 
+    bookOpen(fas("book-open")),
+
     box(fas("box")),
 
     bullhorn(fas("bullhorn")),
@@ -62,6 +64,8 @@ public enum PredefinedIcon {
     cubes(fas("cubes")),
 
     database(fas("database")),
+
+    desktop(fas("desktop")),
 
     download(fas("download")),
 

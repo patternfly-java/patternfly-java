@@ -18,6 +18,7 @@ package org.patternfly.component.panel;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Logger;
+import org.patternfly.style.Modifiers;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -28,7 +29,6 @@ import static org.patternfly.component.panel.PanelFooter.panelFooter;
 import static org.patternfly.component.panel.PanelHeader.panelHeader;
 import static org.patternfly.component.panel.PanelMain.panelMain;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.style.Classes.bordered;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.panel;
@@ -42,24 +42,12 @@ import static org.patternfly.style.Classes.scrollable;
  *
  * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */
-public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
+public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
 
     // ------------------------------------------------------ factory
 
     public static Panel panel() {
         return new Panel();
-    }
-
-    public Panel raised() {
-        return css(modifier(raised));
-    }
-
-    public Panel bordered() {
-        return css(modifier(bordered));
-    }
-
-    public Panel scrollable() {
-        return css(modifier(scrollable));
     }
 
     // ------------------------------------------------------ instance
@@ -132,6 +120,14 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> {
     }
 
     // ------------------------------------------------------ builder
+
+    public Panel raised() {
+        return css(modifier(raised));
+    }
+
+    public Panel scrollable() {
+        return css(modifier(scrollable));
+    }
 
     @Override
     public Panel that() {

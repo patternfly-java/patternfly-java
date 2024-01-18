@@ -24,6 +24,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers;
 import org.patternfly.style.Size;
 
 import elemental2.dom.Event;
@@ -36,7 +37,6 @@ import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.display;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.Size.lg;
 
 /**
@@ -46,15 +46,15 @@ import static org.patternfly.style.Size.lg;
  *
  * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
  */
-public class Accordion extends BaseComponent<HTMLElement, Accordion> implements Attachable {
+public class Accordion extends BaseComponent<HTMLElement, Accordion>
+        implements Modifiers.Bordered<HTMLElement, Accordion>, Attachable {
 
     // ------------------------------------------------------ factory
 
     /**
      * Creates a new Accordion instance backed by a {@code
-     *
-    <dl/>
-     * }.
+     * <p>
+     * <dl/> }.
      */
     public static Accordion accordion() {
         return accordion(true);
@@ -101,16 +101,6 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements 
     }
 
     // ------------------------------------------------------ builder
-
-    /** Same as {@linkplain #bordered(boolean) bordered(true)} */
-    public Accordion bordered() {
-        return bordered(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(bordered)} */
-    public Accordion bordered(boolean bordered) {
-        return toggleModifier(that(), element(), Classes.bordered, bordered);
-    }
 
     /** Same as {@linkplain #fixed(boolean) fixed(true)} */
     public Accordion fixed() {

@@ -24,6 +24,19 @@ import static org.patternfly.style.Classes.modifier;
 
 public interface Modifiers {
 
+    interface Bordered<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #bordered(boolean) bordered(true)} */
+        default B bordered() {
+            return bordered(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(bordered)} */
+        default B bordered(boolean bordered) {
+            return toggleModifier(that(), element(), Classes.bordered, bordered);
+        }
+    }
+
     interface Compact<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #compact(boolean) compact(true)} */

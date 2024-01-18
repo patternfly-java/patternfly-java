@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Drawer component (#42)
 - Empty state component (#44)
 - Hint component (#56)
+- List component (#62)
 - Panel component (#77) - thanks @halkosajtarevic
 - Tabs components (#91)
 
