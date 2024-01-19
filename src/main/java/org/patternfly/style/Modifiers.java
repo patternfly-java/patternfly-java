@@ -272,8 +272,8 @@ public interface Modifiers {
     }
 
     static <E extends Element, B extends TypedBuilder<E, B>> B toggleModifier(B builder, E element,
-            String modifier, boolean flag) {
-        element.classList.toggle(modifier(modifier), flag);
+            String pureModifier, boolean flag) {
+        element.classList.toggle(modifier(pureModifier), flag);
         return builder;
     }
 }

@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Hint component (#56)
 - List component (#62)
 - Panel component (#77) - thanks @halkosajtarevic
+- Switch component (#89)
 - Tabs components (#91)
 
 #### Layouts

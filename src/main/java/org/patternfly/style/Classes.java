@@ -183,6 +183,8 @@ public interface Classes {
     String none = "none";
     String noPadding = "no-padding";
     String noPaddingTop = "no-padding-top";
+    String off = "off";
+    String on = "on";
     String option = "option";
     String optionsMenu = "options-menu";
     String outline = "outline";
@@ -215,6 +217,7 @@ public interface Classes {
     String resizeHorizontal = "resize-horizontal";
     String resizeVertical = "resize-vertical";
     String resizing = "resizing";
+    String reverse = "reverse";
     String right = "right";
     String rounded = "rounded";
     String scope = "scope";
@@ -248,6 +251,7 @@ public interface Classes {
     String static_ = "static";
     String status = "status";
     String sticky = "sticky";
+    String switch_ = "switch";
     String subnav = "subnav";
     String success = "success";
     String tab = "tab";

@@ -125,7 +125,7 @@ public enum ComponentType {
 
     Spinner("sp", "PF5/Spinner"),
 
-    Switch("sw", null),
+    Switch("sw", "PF5/Switch"),
 
     Tabs("tbs", "PF5/Tabs"),
 
