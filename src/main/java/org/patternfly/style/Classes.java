@@ -206,6 +206,7 @@ public interface Classes {
     String progress = "progress";
     String progressbar = "progressbar";
     String radio = "radio";
+    String rail = "rail";
     String raised = "raised";
     String read = "read";
     String readOnly = "read-only";
@@ -239,6 +240,7 @@ public interface Classes {
     String sidebar = "sidebar";
     String simple = "simple";
     String skipToContent = "skip-to-content";
+    String slider = "slider";
     String small = "small";
     String sort = "sort";
     String spinner = "spinner";
@@ -250,6 +252,8 @@ public interface Classes {
     String start = "start";
     String static_ = "static";
     String status = "status";
+    String step = "step";
+    String steps = "steps";
     String sticky = "sticky";
     String switch_ = "switch";
     String subnav = "subnav";
@@ -267,6 +271,8 @@ public interface Classes {
     String textInputGroup = "text-input-group";
     String textAlignLeft = "text-align-left";
     String textLeftAligned = "textLeftAligned";
+    String thumb = "thumb";
+    String tick = "tick";
     String title = "title";
     String toast = "toast";
     String toggle = "toggle";
@@ -278,6 +284,7 @@ public interface Classes {
     String tooltip = "tooltip";
     String top = "top";
     String totalItems = "total-items";
+    String track = "track";
     String truncate = "truncate";
     String type = "type";
     String typeahead = "typeahead";

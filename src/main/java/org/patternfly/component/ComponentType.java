@@ -121,7 +121,7 @@ public enum ComponentType {
 
     SkipToContent("stc", "PF5/SkipToContent"),
 
-    Slider("sld", null),
+    Slider("sld", "PF5/Slider"),
 
     Spinner("sp", "PF5/Spinner"),
 
