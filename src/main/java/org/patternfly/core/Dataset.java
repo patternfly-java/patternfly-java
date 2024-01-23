@@ -22,4 +22,5 @@ public interface Dataset {
     String placeholder = "placeholder";
     String navigationGroup = "navigationGroup";
     String navigationItem = "navigationItem";
+    String sliderStepValue = "sliderStepValue";
 }

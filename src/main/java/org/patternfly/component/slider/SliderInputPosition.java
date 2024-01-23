@@ -17,6 +17,8 @@ package org.patternfly.component.slider;
 
 public enum SliderInputPosition {
 
+    none,
+
     top,
 
     end;

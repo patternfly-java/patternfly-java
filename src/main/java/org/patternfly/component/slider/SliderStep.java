@@ -21,26 +21,26 @@ public class SliderStep {
 
     // ------------------------------------------------------ factory
 
-    public static SliderStep sliderStep(int value) {
+    public static SliderStep sliderStep(double value) {
         return new SliderStep(value, String.valueOf(value), false);
     }
 
-    public static SliderStep sliderStep(int value, String label) {
+    public static SliderStep sliderStep(double value, String label) {
         return new SliderStep(value, label, false);
     }
 
-    public static SliderStep sliderStep(int value, String label, boolean labelHidden) {
+    public static SliderStep sliderStep(double value, String label, boolean labelHidden) {
         return new SliderStep(value, label, labelHidden);
     }
 
     // ------------------------------------------------------ instance
 
-    public final int value;
+    public final double value;
     public final String label;
     public final boolean labelHidden;
     private SliderSteps steps;
 
-    private SliderStep(int value, String label, boolean labelHidden) {
+    private SliderStep(double value, String label, boolean labelHidden) {
         this.value = value;
         this.label = label;
         this.labelHidden = labelHidden;
@@ -51,7 +51,7 @@ public class SliderStep {
         if (this == o) {return true;}
         if (o == null || getClass() != o.getClass()) {return false;}
         SliderStep step = (SliderStep) o;
-        return value == step.value;
+        return Objects.equals(value, step.value);
     }
 
     @Override
@@ -62,9 +62,9 @@ public class SliderStep {
     // ------------------------------------------------------ api
 
     double percentage() {
-        int firstValue = steps == null ? 0 : steps.firstValue();
-        int lastValue = steps == null ? 100 : steps.lastValue();
-        return Percentage.percentage(value, firstValue, lastValue);
+        double firstValue = steps == null ? 0 : steps.firstValue();
+        double lastValue = steps == null ? 100 : steps.lastValue();
+        return Numbers.percentage(value, firstValue, lastValue);
     }
 
     // ------------------------------------------------------ internal

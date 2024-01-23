@@ -48,11 +48,12 @@ public class SliderSteps implements Iterable<SliderStep> {
     // ------------------------------------------------------ api
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public Iterator<SliderStep> iterator() {
         return steps.iterator();
     }
 
-    int previous(int value) {
+    double previous(double value) {
         if (value < firstValue()) {
             return firstValue();
         } else if (value > lastValue()) {
@@ -71,7 +72,7 @@ public class SliderSteps implements Iterable<SliderStep> {
         }
     }
 
-    int next(int value) {
+    double next(double value) {
         if (value < firstValue()) {
             return firstValue();
         } else if (value > lastValue()) {
@@ -94,7 +95,7 @@ public class SliderSteps implements Iterable<SliderStep> {
         }
     }
 
-    int closest(int value) {
+    double closest(double value) {
         if (value <= firstValue()) {
             return firstValue();
         } else if (value >= lastValue()) {
@@ -108,7 +109,7 @@ public class SliderSteps implements Iterable<SliderStep> {
                 }
                 index++;
             }
-            int midPoint = (steps.get(index).value + steps.get(index - 1).value) / 2;
+            double midPoint = (steps.get(index).value + steps.get(index - 1).value) / 2;
             if (midPoint >= value) {
                 return steps.get(index - 1).value;
             } else {
@@ -117,11 +118,11 @@ public class SliderSteps implements Iterable<SliderStep> {
         }
     }
 
-    int firstValue() {
+    double firstValue() {
         return steps.get(0).value;
     }
 
-    int lastValue() {
+    double lastValue() {
         return steps.get(steps.size() - 1).value;
     }
 }

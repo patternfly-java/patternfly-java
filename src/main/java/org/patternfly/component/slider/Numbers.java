@@ -18,10 +18,14 @@ package org.patternfly.component.slider;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-class Percentage {
+class Numbers {
 
-    static double percentage(int value, int min, int max) {
-        return round(((value - min) * 100.0) / (max - min));
+    static double percentage(double value, double max) {
+        return round((value * 100.0) / max);
+    }
+
+    static double percentage(double value, double min, double max) {
+        return round(((value - min) * 100) / (max - min));
     }
 
     private static double round(double value) {
@@ -29,5 +33,4 @@ class Percentage {
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-
 }

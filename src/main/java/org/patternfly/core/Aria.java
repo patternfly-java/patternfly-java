@@ -36,4 +36,5 @@ public interface Aria {
     String valueMin = "aria-valuemin";
     String valueMax = "aria-valuemax";
     String valueNow = "aria-valuenow";
+    String valueText = "aria-valuetext";
 }
