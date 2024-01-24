@@ -40,6 +40,7 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Inset;
+import org.patternfly.style.Modifiers.Box;
 import org.patternfly.style.Modifiers.Fill;
 import org.patternfly.style.Modifiers.PageInsets;
 import org.patternfly.style.Modifiers.Secondary;
@@ -98,6 +99,7 @@ import static org.patternfly.style.PredefinedIcon.plus;
  */
 public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         Attachable,
+        Box<HTMLElement, Tabs>,
         Expandable<HTMLElement, Tabs>,
         Fill<HTMLElement, Tabs>,
         PageInsets<HTMLElement, Tabs>,
@@ -322,16 +324,6 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     // ------------------------------------------------------ builder
-
-    /** Same as {@linkplain #box(boolean) box(true)} */
-    public Tabs box() {
-        return box(true);
-    }
-
-    /** Enables box styling to the tab component */
-    public Tabs box(boolean box) {
-        return toggleModifier(this, mainContainer.element(), Classes.box, box);
-    }
 
     public Tabs closeable() {
         this.closeable = true;

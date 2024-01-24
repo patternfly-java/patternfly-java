@@ -15,9 +15,15 @@
  */
 package org.patternfly.component.slider;
 
-public enum SliderInputPosition {
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-    aboveThumb,
+import elemental2.dom.HTMLElement;
 
-    end;
+abstract class SliderSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+
+    SliderSubComponent(String name, E element) {
+        super(ComponentType.Slider, name, element);
+    }
 }

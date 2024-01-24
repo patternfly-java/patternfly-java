@@ -26,6 +26,7 @@ import org.patternfly.core.Closeable;
 import org.patternfly.core.Expandable;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.thirdparty.popper.Modifiers;
 import org.patternfly.thirdparty.popper.Placement;
 import org.patternfly.thirdparty.popper.Popper;
@@ -50,9 +51,10 @@ import static org.patternfly.thirdparty.popper.Placement.bottomStart;
  * value list.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/menus/dropdown/">https://www.patternfly.org/components/menus/dropdown/</a>
+ * "https://www.patternfly.org/components/menus/dropdown/">https://www.patternfly.org/components/menus/dropdown/</a>
  */
-public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implements Closeable<HTMLElement, Dropdown>, Attachable {
+public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implements Closeable<HTMLElement, Dropdown>,
+        Disabled<HTMLElement, Dropdown>, Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -69,6 +71,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
     private Menu menu;
     private int zIndex;
     private boolean flip;
+    private boolean disabled;
     private Placement placement;
     private Popper popper;
     private CloseHandler<Dropdown> closeHandler;
@@ -84,6 +87,9 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (toggle != null && menu != null) {
+            if (disabled) {
+                toggle.disabled(true);
+            }
             setVisible(menu, false);
             insertAfter(menu.element(), toggle.element());
             popper = new PopperBuilder(componentType(), toggle.element(), menu.element())
@@ -134,6 +140,22 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public Dropdown disabled(boolean disabled) {
+        if (toggle != null) {
+            toggle.disabled(disabled);
+        } else {
+            // defer to attach()
+            this.disabled = disabled;
+        }
+        return this;
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return toggle == null ? disabled : toggle.isDisabled();
+    }
 
     public Dropdown flip(boolean flip) {
         this.flip = flip;

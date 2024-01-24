@@ -112,6 +112,7 @@ public interface Classes {
     String fixed = "fixed";
     String flat = "flat";
     String flex = "flex";
+    String floating = "floating";
     String floatLeft = "float-left";
     String floatRight = "float-right";
     String fluid = "fluid";
@@ -290,6 +291,7 @@ public interface Classes {
     String typeahead = "typeahead";
     String unread = "unread";
     String utilities = "utilities";
+    String value = "value";
     String valueText = "value-text";
     String vertical = "vertical";
     String warning = "warning";

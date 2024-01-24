@@ -81,7 +81,7 @@ public enum ComponentType {
 
     Icon("icn", "PF5/Icon"),
 
-    InputGroup("ig", null),
+    InputGroup("ig", "PF5/InputGroup"),
 
     Label("lbl", "PF5/Label"),
 

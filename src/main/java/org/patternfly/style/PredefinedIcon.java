@@ -93,6 +93,10 @@ public enum PredefinedIcon {
 
     laptop(fas("laptop")),
 
+    lock(fas("lock")),
+
+    lockOpen(fas("lock-open")),
+
     longArrowAltDown(fas("long-arrow-alt-down")),
 
     longArrowAltUp(fas("long-arrow-alt-up")),

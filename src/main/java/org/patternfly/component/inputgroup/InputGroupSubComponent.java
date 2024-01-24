@@ -13,11 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.slider;
+package org.patternfly.component.inputgroup;
 
-public enum SliderInputPosition {
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-    aboveThumb,
+import elemental2.dom.HTMLElement;
 
-    end;
+abstract class InputGroupSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+
+    InputGroupSubComponent(String name, E element) {
+        super(ComponentType.InputGroup, name, element);
+    }
 }

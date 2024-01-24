@@ -15,14 +15,22 @@
  */
 package org.patternfly.component.slider;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.BaseComponent;
+import org.jboss.elemento.Key;
+import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.form.TextInput;
+import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.LanguageDirection;
+import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
@@ -31,6 +39,7 @@ import org.patternfly.style.Variable;
 
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.Event;
+import elemental2.dom.FocusEvent;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.KeyboardEvent;
@@ -42,11 +51,17 @@ import static elemental2.dom.DomGlobal.document;
 import static java.lang.Double.parseDouble;
 import static org.jboss.elemento.Elements.children;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.blur;
 import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.EventType.focus;
 import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.EventType.keyup;
 import static org.jboss.elemento.EventType.mousedown;
 import static org.jboss.elemento.EventType.mousemove;
 import static org.jboss.elemento.EventType.mouseup;
@@ -57,7 +72,9 @@ import static org.jboss.elemento.EventType.touchstart;
 import static org.jboss.elemento.Key.ArrowLeft;
 import static org.jboss.elemento.Key.ArrowRight;
 import static org.patternfly.component.slider.Numbers.percentage;
-import static org.patternfly.component.slider.SliderInputPosition.none;
+import static org.patternfly.component.slider.SliderInputPosition.aboveThumb;
+import static org.patternfly.component.slider.SliderInputPosition.end;
+import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.valueMax;
 import static org.patternfly.core.Aria.valueMin;
@@ -68,8 +85,8 @@ import static org.patternfly.core.Dataset.sliderStepValue;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.style.Classes.active;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.floating;
 import static org.patternfly.style.Classes.label;
-import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.rail;
 import static org.patternfly.style.Classes.slider;
@@ -84,7 +101,7 @@ import static org.patternfly.style.Variables.Left;
  * @see <a href=
  * "https://www.patternfly.org/components/slider#sliderstepobject">https://www.patternfly.org/components/slider#sliderstepobject</a>
  */
-public class Slider extends BaseComponent<HTMLElement, Slider> implements
+public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         Disabled<HTMLElement, Slider>,
         HasValue<Double>,
         Attachable {
@@ -98,13 +115,17 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     // ------------------------------------------------------ instance
 
     private static final Variable sliderValue = componentVar(component(slider), "value");
+    private static final Variable sliderValueInputWidth = componentVar(component(slider, Classes.value),
+            "c-form-control", "width-chars");
     private static final Variable sliderStepLeft = componentVar(component(slider, Classes.step), Left);
 
+    private final ObservableValue<Double> value;
+    private final HTMLContainerBuilder<HTMLDivElement> main;
     private final HTMLContainerBuilder<HTMLDivElement> thumb;
     private final HTMLContainerBuilder<HTMLDivElement> sliderRail;
     private final HTMLContainerBuilder<HTMLDivElement> stepsContainer;
+    private final List<SliderActions> actions;
 
-    private final ObservableValue<Double> value;
     private double min;
     private double max;
     private double step;
@@ -116,8 +137,9 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     private boolean showBoundaries;
     private boolean continuousCustomSteps;
 
+    private Tooltip tooltip;
+    private TextInput textInput;
     private SliderSteps customSteps;
-    private SliderInputPosition inputPosition;
     private ChangeHandler<Slider, Double> changeHandler;
     private HandlerRegistration mouseMoveHandler;
     private HandlerRegistration mouseUpHandler;
@@ -132,11 +154,11 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         this.max = 100;
         this.step = 1;
         this.showBoundaries = true;
-        this.inputPosition = none;
+        this.actions = new ArrayList<>();
 
-        add(div().css(component(slider, main))
+        main = div().css(component(slider, Classes.main))
                 .add(sliderRail = div().css(component(slider, rail))
-                        .on(click, this::handleRailClick)
+                        .on(EventType.click, this::handleRailClick)
                         .add(div().css(component(slider, rail, track))))
                 .add(stepsContainer = div().css(component(slider, Classes.steps))
                         .aria(hidden, true))
@@ -147,9 +169,11 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
                         .aria(Aria.disabled, false)
                         .on(mousedown, this::handleThumbMouseDown)
                         .on(touchstart, this::handleThumbTouchStart)
-                        .on(click, this::handleThumbClick)
-                        .on(keydown, this::handleThumbKeys)));
+                        .on(EventType.click, this::handleThumbClick)
+                        .on(keydown, this::handleThumbKeys));
+        element().appendChild(main.element());
 
+        storeFlatComponent();
         Attachable.register(this, this);
     }
 
@@ -157,6 +181,7 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     public void attach(MutationRecord mutationRecord) {
         rtl = LanguageDirection.languageDirection(element()) == LanguageDirection.rtl;
         setVisible(stepsContainer, customSteps != null || showBoundaries || showTicks);
+
         if (customSteps != null) {
             thumb.aria(valueMin, String.valueOf(customSteps.firstValue()));
             thumb.aria(valueMax, String.valueOf(customSteps.lastValue()));
@@ -192,9 +217,85 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
             }
         }
 
+        if (tooltipOnThumb) {
+            tooltip = tooltip(thumb.element())
+                    .entryDelay(0)
+                    .appendToBody();
+        }
+
+        if (disabled) {
+            disabledInternal(true);
+        }
+
         // call subscribers
         value.subscribe(this::onValueChanged);
         value.publish();
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        failSafeRemoveFromParent(tooltip);
+        if (mouseMoveHandler != null) {
+            mouseMoveHandler.removeHandler();
+        }
+        if (mouseUpHandler != null) {
+            mouseUpHandler.removeHandler();
+        }
+        if (touchMoveHandler != null) {
+            touchMoveHandler.removeHandler();
+        }
+        if (touchEndHandler != null) {
+            touchEndHandler.removeHandler();
+        }
+        if (touchCancelHandler != null) {
+            touchCancelHandler.removeHandler();
+        }
+    }
+
+    // ------------------------------------------------------ add
+
+    public Slider addStartActions(SliderActions actions) {
+        insertFirst(element(), actions.element());
+        this.actions.add(actions);
+        return this;
+    }
+
+    public Slider addEndActions(SliderActions actions) {
+        element().appendChild(actions.element());
+        this.actions.add(actions);
+        return this;
+    }
+
+    public Slider addValueInput(TextInput valueInput) {
+        return addValueInput(valueInput, end);
+    }
+
+    public Slider addValueInput(TextInput textInput, SliderInputPosition inputPosition) {
+        if (this.textInput == null) {
+            this.textInput = textInput;
+            this.textInput.inputElement().on(keyup, this::handleInputKeyUp)
+                    .on(click, Event::stopPropagation)
+                    .on(focus, Event::stopPropagation)
+                    .on(blur, this::handleInputBlur);
+
+            if (inputPosition == aboveThumb) {
+                main.add(div().css(component(slider, Classes.value), modifier(floating))
+                        .add(textInput));
+            } else if (inputPosition == end) {
+                insertAfter(div().css(component(slider, Classes.value))
+                        .add(textInput)
+                        .element(), main.element());
+            } else {
+                if (inputPosition != null) {
+                    Logger.unsupported(componentType(), element(), "Unsupported input position: " + inputPosition.name());
+                } else {
+                    Logger.unsupported(componentType(), element(), "No input position!");
+                }
+            }
+        } else {
+            Logger.unsupported(componentType(), element(), "Value input already added.");
+        }
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -209,9 +310,13 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         return this;
     }
 
-    public Slider inputPosition(SliderInputPosition inputPosition) {
-        this.inputPosition = inputPosition;
-        return this;
+    @Override
+    public Slider disabled(boolean disabled) {
+        this.disabled = disabled;
+        if (isAttached(element())) {
+            disabledInternal(disabled);
+        } // else defer to attach()
+        return Disabled.super.disabled(disabled);
     }
 
     public Slider min(double min) {
@@ -287,6 +392,23 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         return aria(Aria.label, label);
     }
 
+    /** Sets the aria attribute on the slider and the thumb element. */
+    public Slider ariaDescribedBy(String describedBy) {
+        thumb.aria(Aria.describedBy, describedBy);
+        return aria(Aria.describedBy, describedBy);
+    }
+
+    /** Sets the aria attribute on the slider and the thumb element. */
+    public Slider ariaLabelledBy(String labelledBy) {
+        thumb.aria(Aria.labelledBy, labelledBy);
+        return aria(Aria.labelledBy, labelledBy);
+    }
+
+    public Slider ariaThumbLabel(String label) {
+        thumb.aria(Aria.label, label);
+        return this;
+    }
+
     // ------------------------------------------------------ events
 
     public Slider onChange(ChangeHandler<Slider, Double> changeHandler) {
@@ -295,6 +417,30 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     }
 
     // ------------------------------------------------------ api
+
+    public void decrease() {
+        double newValue;
+        double localValue = value.get();
+        if (customSteps != null && !continuousCustomSteps) {
+            newValue = customSteps.previousValue(localValue);
+        } else {
+            double localMin = customSteps == null ? min : customSteps.firstValue();
+            newValue = Math.max(localValue - step, localMin);
+        }
+        this.value.set(newValue);
+    }
+
+    public void increase() {
+        double newValue;
+        double localValue = value.get();
+        if (customSteps != null && !continuousCustomSteps) {
+            newValue = customSteps.nextValue(localValue);
+        } else {
+            double localMax = customSteps == null ? max : customSteps.lastValue();
+            newValue = Math.min(localValue + step, localMax);
+        }
+        this.value.set(newValue);
+    }
 
     @Override
     public Double value() {
@@ -308,6 +454,7 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     // ------------------------------------------------------ internal
 
     private void onValueChanged(double current, double previous) {
+        String stringValue = String.valueOf(current);
         double percentage = customSteps != null
                 ? percentage(current, customSteps.firstValue(), customSteps.lastValue())
                 : percentage(current, min, max);
@@ -318,13 +465,39 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
             stepElement.classList.toggle(modifier(active), stepValue < current);
         }
 
-        thumb.aria(valueNow, String.valueOf(current));
-        thumb.aria(valueText, "???");
+        String labelOrValue = labelOrValue(current);
+        thumb.aria(valueNow, stringValue);
+        thumb.aria(valueText, labelOrValue);
+        if (textInput != null) {
+            textInput.value(stringValue);
+            sliderValueInputWidth.applyTo(element(), textInput.value().length());
+        }
+        if (tooltip != null) {
+            tooltip.text(labelOrValue);
+        }
 
         if (changeHandler != null) {
             changeHandler.onChange(new Event(""), this, current);
         }
     }
+
+    private String labelOrValue(double value) {
+        if (customSteps != null && !continuousCustomSteps) {
+            return customSteps.closestStep(value).label;
+        }
+        return String.valueOf(value);
+    }
+
+    private void disabledInternal(boolean disabled) {
+        thumb.element().tabIndex = disabled ? -1 : 0;
+        thumb.aria(Aria.disabled, disabled);
+        for (SliderActions a : actions) {
+            a.disabled(disabled);
+        }
+        textInput.disabled(disabled);
+    }
+
+    // ------------------------------------------------------ event handler
 
     private void handleRailClick(Event event) {
         if (disabled) {
@@ -424,11 +597,11 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         double localMax = customSteps == null ? max : customSteps.lastValue();
         double percentage = percentage(newPos, end);
         double percentageMinMax = (percentage * (localMax - localMin)) / 100 + localMin;
-        double newValue = (double) Math.round(percentageMinMax * 100) / 100;
+        double newValue = Math.round(percentageMinMax * 100) / 100.0;
         if (customSteps == null) {
-            newValue = (double) Math.round((Math.round((newValue - localMin) / step) * step + localMin) * 100) / 100;
+            newValue = Math.round((Math.round((newValue - localMin) / step) * step + localMin) * 100) / 100.0;
         } else if (!continuousCustomSteps) {
-            newValue = customSteps.closest(localMax != 100 ? percentageMinMax : percentage);
+            newValue = customSteps.closestValue(localMax != 100 ? percentageMinMax : percentage);
 
         }
         this.value.set(newValue);
@@ -445,15 +618,15 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         if (customSteps != null && !continuousCustomSteps) {
             if (ArrowLeft.match(event)) {
                 if (rtl) {
-                    newValue = customSteps.next(localValue);
+                    newValue = customSteps.nextValue(localValue);
                 } else {
-                    newValue = customSteps.previous(localValue);
+                    newValue = customSteps.previousValue(localValue);
                 }
             } else if (ArrowRight.match(event)) {
                 if (rtl) {
-                    newValue = customSteps.previous(localValue);
+                    newValue = customSteps.previousValue(localValue);
                 } else {
-                    newValue = customSteps.next(localValue);
+                    newValue = customSteps.nextValue(localValue);
                 }
             }
         } else {
@@ -474,5 +647,36 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
             }
         }
         this.value.set(newValue);
+    }
+
+    private void handleInputKeyUp(KeyboardEvent event) {
+        if (disabled) {
+            return;
+        }
+        sliderValueInputWidth.applyTo(element(), textInput.value().length());
+        if (Key.Enter.match(event)) {
+            event.preventDefault();
+            handleInputChanged();
+        }
+    }
+
+    private void handleInputBlur(FocusEvent e) {
+        if (disabled) {
+            return;
+        }
+        handleInputChanged();
+    }
+
+    private void handleInputChanged() {
+        double inputValue = Double.parseDouble(textInput.value());
+        double localMin = customSteps == null ? min : customSteps.firstValue();
+        double localMax = customSteps == null ? max : customSteps.lastValue();
+        if (customSteps == null) {
+            inputValue = Math.max(inputValue, localMin);
+            inputValue = Math.min(inputValue, localMax);
+        } else {
+            inputValue = customSteps.closestValue(inputValue);
+        }
+        this.value.set(inputValue);
     }
 }

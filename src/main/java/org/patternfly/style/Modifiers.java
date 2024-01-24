@@ -37,6 +37,19 @@ public interface Modifiers {
         }
     }
 
+    interface Box<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #box(boolean) box(true)} */
+        default B box() {
+            return box(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(box)} */
+        default B box(boolean box) {
+            return toggleModifier(that(), element(), Classes.box, box);
+        }
+    }
+
     interface Compact<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #compact(boolean) compact(true)} */
@@ -60,6 +73,10 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(disabled)} */
         default B disabled(boolean disabled) {
             return toggleModifier(that(), element(), Classes.disabled, disabled);
+        }
+
+        default boolean isDisabled() {
+            return element().classList.contains(modifier(Classes.disabled));
         }
     }
 

@@ -24,69 +24,69 @@ import static org.patternfly.component.slider.SliderSteps.sliderSteps;
 class SliderStepsTest {
 
     @Test
-    void previous() {
+    void previousValue() {
         SliderSteps steps = sliderSteps(
                 sliderStep(2),
                 sliderStep(23),
                 sliderStep(42));
 
-        assertEquals(2, steps.previous(1));
-        assertEquals(2, steps.previous(2));
-        assertEquals(2, steps.previous(3));
+        assertEquals(2, steps.previousValue(1));
+        assertEquals(2, steps.previousValue(2));
+        assertEquals(2, steps.previousValue(3));
 
-        assertEquals(2, steps.previous(22));
-        assertEquals(2, steps.previous(23));
-        assertEquals(23, steps.previous(24));
+        assertEquals(2, steps.previousValue(22));
+        assertEquals(2, steps.previousValue(23));
+        assertEquals(23, steps.previousValue(24));
 
-        assertEquals(23, steps.previous(41));
-        assertEquals(23, steps.previous(42));
-        assertEquals(42, steps.previous(43));
+        assertEquals(23, steps.previousValue(41));
+        assertEquals(23, steps.previousValue(42));
+        assertEquals(42, steps.previousValue(43));
     }
 
     @Test
-    void next() {
+    void nextValue() {
         SliderSteps steps = sliderSteps(
                 sliderStep(2),
                 sliderStep(23),
                 sliderStep(42));
 
-        assertEquals(2, steps.next(1));
-        assertEquals(23, steps.next(2));
-        assertEquals(23, steps.next(3));
+        assertEquals(2, steps.nextValue(1));
+        assertEquals(23, steps.nextValue(2));
+        assertEquals(23, steps.nextValue(3));
 
-        assertEquals(23, steps.next(22));
-        assertEquals(42, steps.next(23));
-        assertEquals(42, steps.next(24));
+        assertEquals(23, steps.nextValue(22));
+        assertEquals(42, steps.nextValue(23));
+        assertEquals(42, steps.nextValue(24));
 
-        assertEquals(42, steps.next(41));
-        assertEquals(42, steps.next(42));
-        assertEquals(42, steps.next(43));
+        assertEquals(42, steps.nextValue(41));
+        assertEquals(42, steps.nextValue(42));
+        assertEquals(42, steps.nextValue(43));
     }
 
     @Test
-    void closest() {
+    void closestValue() {
         SliderSteps steps = sliderSteps(
                 sliderStep(2),
                 sliderStep(23),
                 sliderStep(42));
 
-        assertEquals(2, steps.closest(-100));
-        assertEquals(2, steps.closest(1));
-        assertEquals(2, steps.closest(2));
-        assertEquals(2, steps.closest(3));
-        assertEquals(2, steps.closest(12));
+        assertEquals(2, steps.closestValue(-100));
+        assertEquals(2, steps.closestValue(1));
+        assertEquals(2, steps.closestValue(2));
+        assertEquals(2, steps.closestValue(3));
+        assertEquals(2, steps.closestValue(12));
 
-        assertEquals(23, steps.closest(13));
-        assertEquals(23, steps.closest(22));
-        assertEquals(23, steps.closest(23));
-        assertEquals(23, steps.closest(24));
-        assertEquals(23, steps.closest(32));
+        assertEquals(23, steps.closestValue(13));
+        assertEquals(23, steps.closestValue(22));
+        assertEquals(23, steps.closestValue(23));
+        assertEquals(23, steps.closestValue(24));
+        assertEquals(23, steps.closestValue(32));
 
-        assertEquals(42, steps.closest(33));
-        assertEquals(42, steps.closest(41));
-        assertEquals(42, steps.closest(42));
-        assertEquals(42, steps.closest(43));
-        assertEquals(42, steps.closest(100));
+        assertEquals(42, steps.closestValue(33));
+        assertEquals(42, steps.closestValue(41));
+        assertEquals(42, steps.closestValue(42));
+        assertEquals(42, steps.closestValue(43));
+        assertEquals(42, steps.closestValue(100));
     }
 
     @Test
