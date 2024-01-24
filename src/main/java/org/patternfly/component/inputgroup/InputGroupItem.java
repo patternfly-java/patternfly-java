@@ -46,6 +46,9 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
 
     static final String SUB_COMPONENT_NAME = "igi";
     private Disabled<?, ?> componentImplementingDisabled;
+    private FormControl<?, ?> formControl;
+    private Dropdown dropdown;
+    private Button button;
 
     InputGroupItem() {
         super(SUB_COMPONENT_NAME, div().css(component(inputGroup, item)).element());
@@ -57,12 +60,30 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
         return add(button);
     }
 
+    public InputGroupItem add(Button button) {
+        this.button = button;
+        this.componentImplementingDisabled = button;
+        return add(button.element());
+    }
+
     public InputGroupItem addDropdown(Dropdown dropdown) {
         return add(dropdown);
     }
 
+    public InputGroupItem add(Dropdown dropdown) {
+        this.dropdown = dropdown;
+        this.componentImplementingDisabled = dropdown;
+        return add(dropdown.element());
+    }
+
     public InputGroupItem addFormControl(FormControl<?, ?> formControl) {
         return add(formControl);
+    }
+
+    public InputGroupItem add(FormControl<?, ?> formControl) {
+        this.formControl = formControl;
+        this.componentImplementingDisabled = formControl;
+        return add(formControl.element());
     }
 
     public InputGroupItem add(Disabled<?, ?> component) {
@@ -87,5 +108,19 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
     @Override
     public InputGroupItem that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public Button button() {
+        return button;
+    }
+
+    public Dropdown dropdown() {
+        return dropdown;
+    }
+
+    public FormControl<?, ?> formControl() {
+        return formControl;
     }
 }

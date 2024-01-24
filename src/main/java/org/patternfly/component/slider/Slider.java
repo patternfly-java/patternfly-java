@@ -26,6 +26,8 @@ import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.form.TextInput;
+import org.patternfly.component.inputgroup.InputGroup;
+import org.patternfly.component.inputgroup.InputGroupItem;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
@@ -74,6 +76,7 @@ import static org.jboss.elemento.Key.ArrowRight;
 import static org.patternfly.component.slider.Numbers.percentage;
 import static org.patternfly.component.slider.SliderInputPosition.aboveThumb;
 import static org.patternfly.component.slider.SliderInputPosition.end;
+import static org.patternfly.component.slider.SliderStep.sliderStep;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.valueMax;
@@ -139,6 +142,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
 
     private Tooltip tooltip;
     private TextInput textInput;
+    private InputGroup inputGroup;
     private SliderSteps customSteps;
     private ChangeHandler<Slider, Double> changeHandler;
     private HandlerRegistration mouseMoveHandler;
@@ -272,25 +276,31 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
 
     public Slider addValueInput(TextInput textInput, SliderInputPosition inputPosition) {
         if (this.textInput == null) {
-            this.textInput = textInput;
-            this.textInput.inputElement().on(keyup, this::handleInputKeyUp)
-                    .on(click, Event::stopPropagation)
-                    .on(focus, Event::stopPropagation)
-                    .on(blur, this::handleInputBlur);
+            bindValueInput(textInput);
+            addValueInputInternal(textInput.element(), inputPosition);
+        } else {
+            Logger.unsupported(componentType(), element(), "Value input already added.");
+        }
+        return this;
+    }
 
-            if (inputPosition == aboveThumb) {
-                main.add(div().css(component(slider, Classes.value), modifier(floating))
-                        .add(textInput));
-            } else if (inputPosition == end) {
-                insertAfter(div().css(component(slider, Classes.value))
-                        .add(textInput)
-                        .element(), main.element());
-            } else {
-                if (inputPosition != null) {
-                    Logger.unsupported(componentType(), element(), "Unsupported input position: " + inputPosition.name());
+    public Slider addValueInput(InputGroup valueInput) {
+        return addValueInput(valueInput, end);
+    }
+
+    public Slider addValueInput(InputGroup valueInput, SliderInputPosition inputPosition) {
+        if (this.inputGroup == null) {
+            InputGroupItem inputGroupItem = valueInput.itemWithFormControl();
+            if (inputGroupItem != null) {
+                if (inputGroupItem.formControl() instanceof TextInput) {
+                    this.inputGroup = valueInput;
+                    bindValueInput((TextInput) inputGroupItem.formControl());
+                    addValueInputInternal(valueInput.element(), inputPosition);
                 } else {
-                    Logger.unsupported(componentType(), element(), "No input position!");
+                    Logger.undefined(componentType(), element(), "Value input does not contain a text input!");
                 }
+            } else {
+                Logger.undefined(componentType(), element(), "Value input does not contain a form control!");
             }
         } else {
             Logger.unsupported(componentType(), element(), "Value input already added.");
@@ -451,6 +461,17 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         return (int) value().doubleValue();
     }
 
+    /**
+     * Returns the current step of the slider.
+     */
+    public SliderStep currentStep() {
+        if (customSteps == null) {
+            return sliderStep(value.get());
+        } else {
+            return customSteps.closestStep(value.get());
+        }
+    }
+
     // ------------------------------------------------------ internal
 
     private void onValueChanged(double current, double previous) {
@@ -494,7 +515,36 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         for (SliderActions a : actions) {
             a.disabled(disabled);
         }
-        textInput.disabled(disabled);
+        if (inputGroup != null) {
+            inputGroup.disabled(disabled);
+        } else if (textInput != null) {
+            textInput.disabled(disabled);
+        }
+    }
+
+    private void addValueInputInternal(HTMLElement element, SliderInputPosition inputPosition) {
+        if (inputPosition == aboveThumb) {
+            main.add(div().css(component(slider, Classes.value), modifier(floating))
+                    .add(element));
+        } else if (inputPosition == end) {
+            insertAfter(div().css(component(slider, Classes.value))
+                    .add(element)
+                    .element(), main.element());
+        } else {
+            if (inputPosition != null) {
+                Logger.unsupported(componentType(), element(), "Unsupported input position: " + inputPosition.name());
+            } else {
+                Logger.unsupported(componentType(), element(), "No input position!");
+            }
+        }
+    }
+
+    private void bindValueInput(TextInput textInput) {
+        this.textInput = textInput;
+        this.textInput.inputElement().on(keyup, this::handleInputKeyUp)
+                .on(click, Event::stopPropagation)
+                .on(focus, Event::stopPropagation)
+                .on(blur, this::handleInputBlur);
     }
 
     // ------------------------------------------------------ event handler

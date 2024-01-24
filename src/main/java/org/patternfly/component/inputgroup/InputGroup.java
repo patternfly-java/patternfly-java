@@ -64,7 +64,6 @@ public class InputGroup extends BaseComponent<HTMLElement, InputGroup> implement
 
     // ------------------------------------------------------ builder
 
-
     @Override
     public InputGroup disabled(boolean disabled) {
         this.disabled = disabled;
@@ -82,5 +81,38 @@ public class InputGroup extends BaseComponent<HTMLElement, InputGroup> implement
     @Override
     public InputGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public List<InputGroupItem> items() {
+        return items;
+    }
+
+    public InputGroupItem itemWithButton() {
+        for (InputGroupItem item : items) {
+            if (item.button() != null) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public InputGroupItem itemWithDropdown() {
+        for (InputGroupItem item : items) {
+            if (item.dropdown() != null) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public InputGroupItem itemWithFormControl() {
+        for (InputGroupItem item : items) {
+            if (item.formControl() != null) {
+                return item;
+            }
+        }
+        return null;
     }
 }
