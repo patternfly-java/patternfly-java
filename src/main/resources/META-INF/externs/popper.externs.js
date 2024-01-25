@@ -88,6 +88,47 @@ State.prototype.elements
 /** @type {string} */
 State.prototype.placement
 
+/** @type {StateRects} */
+State.prototype.rects
+
+/** @type {StyleDefinitions} */
+State.prototype.styles
+
+// ------------------------------------------------------ rect
+
+/** @type number */
+Rect.prototype.x;
+
+/** @type number */
+Rect.prototype.y;
+
+/** @type number */
+Rect.prototype.width;
+
+/** @type number */
+Rect.prototype.height;
+
+// ------------------------------------------------------ state rects
+
+/** @constructor */
+function StateRects() {
+}
+
+/** @type {Rect} */
+StateRects.prototype.reference;
+
+/** @type {Rect} */
+StateRects.prototype.popper;
+
+// ------------------------------------------------------ style definitions
+
+/** @constructor */
+function StyleDefinitions() {
+}
+
+/** @type {CSSStyleDeclaration} */
+StyleDefinitions.prototype.popper;
+
 // ------------------------------------------------------ state elements
 
 /** @constructor */
