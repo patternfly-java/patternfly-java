@@ -18,10 +18,8 @@ package org.patternfly.component.inputgroup;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.form.FormControl;
 import org.patternfly.component.menu.Dropdown;
-import org.patternfly.style.Modifiers.Box;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Fill;
-import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -31,10 +29,8 @@ import static org.patternfly.style.Classes.inputGroup;
 import static org.patternfly.style.Classes.item;
 
 public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, InputGroupItem> implements
-        Box<HTMLDivElement, InputGroupItem>,
         Disabled<HTMLDivElement, InputGroupItem>,
-        Fill<HTMLDivElement, InputGroupItem>,
-        Plain<HTMLDivElement, InputGroupItem> {
+        Fill<HTMLDivElement, InputGroupItem> {
 
     // ------------------------------------------------------ factory
 
@@ -89,10 +85,6 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
     public InputGroupItem add(Disabled<?, ?> component) {
         this.componentImplementingDisabled = component;
         return add(component.element());
-    }
-
-    public InputGroupItem addText(InputGroupText text) {
-        return add(text);
     }
 
     // ------------------------------------------------------ builder

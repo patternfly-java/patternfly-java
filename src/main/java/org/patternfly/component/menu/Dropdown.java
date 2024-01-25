@@ -98,6 +98,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
                     .addModifier(Modifiers.noOverflow(),
                             Modifiers.hide(),
                             Modifiers.flip(placement == auto || flip),
+                            Modifiers.widths(),
                             Modifiers.placement(),
                             Modifiers.eventListeners(false))
                     .registerHandler(toggle.toggleElement, triggerActions, this::show, this::close)

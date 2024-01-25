@@ -62,6 +62,10 @@ public class InputGroup extends BaseComponent<HTMLElement, InputGroup> implement
         return add(item.element());
     }
 
+    public InputGroup addText(InputGroupText text) {
+        return add(text);
+    }
+
     // ------------------------------------------------------ builder
 
     @Override

@@ -15,15 +15,13 @@
  */
 package org.patternfly.thirdparty.popper;
 
+import elemental2.dom.CSSStyleDeclaration;
 import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class State {
+public class StyleDefinitions {
 
-    public StateElements elements;
-    public String placement;
-    public StateRects rects;
-    public StyleDefinitions styles;
+    public CSSStyleDeclaration popper;
 }

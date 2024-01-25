@@ -16,18 +16,26 @@
 package org.patternfly.component.inputgroup;
 
 import org.patternfly.component.icon.InlineIcon;
+import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.WithIcon;
 import org.patternfly.core.WithText;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.style.Classes.box;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.inputGroup;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.modifier;
 
 public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGroupText> implements
+        ElementDelegate<HTMLElement, InputGroupText>,
+        Plain<HTMLElement, InputGroupText>,
         WithText<HTMLElement, InputGroupText>,
         WithIcon<HTMLElement, InputGroupText> {
 
@@ -44,12 +52,19 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "igt";
+    private final HTMLElement textElement;
 
     InputGroupText(String text) {
-        super(SUB_COMPONENT_NAME, span().css(component(inputGroup, Classes.text)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(inputGroup, item), modifier(box)).element());
+        element().appendChild(this.textElement = span().css(component(inputGroup, Classes.text)).element());
         if (text != null) {
             text(text);
         }
+    }
+
+    @Override
+    public HTMLElement delegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ builder
@@ -63,13 +78,13 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
 
     @Override
     public InputGroupText removeIcon() {
-        removeChildrenFrom(this);
+        removeChildrenFrom(textElement);
         return this;
     }
 
     @Override
     public InputGroupText text(String text) {
-        element().textContent = text;
+        textElement.textContent = text;
         return this;
     }
 

@@ -15,9 +15,23 @@
  */
 package org.patternfly.thirdparty.popper;
 
+import elemental2.dom.CSSProperties.MinWidthUnionType;
 import elemental2.dom.HTMLElement;
 
 public interface Modifiers {
+
+    static Modifier widths() {
+        Modifier modifier = new Modifier();
+        modifier.name = "widths";
+        modifier.enabled = true;
+        modifier.phase = ModifierPhase.beforeWrite.name();
+        modifier.requires = new String[]{"computeStyles"};
+        modifier.fn = (args) -> {
+            double triggerWidth = args.state.rects.reference.width;
+            args.state.styles.popper.minWidth = MinWidthUnionType.of(triggerWidth + "px");
+        };
+        return modifier;
+    }
 
     static Modifier placement() {
         Modifier modifier = new Modifier();
@@ -41,7 +55,7 @@ public interface Modifiers {
         Modifier modifier = new Modifier();
         modifier.name = "offset";
         modifier.options = new ModifierOptions();
-        modifier.options.offset = new int[] { 0, offset };
+        modifier.options.offset = new int[]{0, offset};
         return modifier;
     }
 

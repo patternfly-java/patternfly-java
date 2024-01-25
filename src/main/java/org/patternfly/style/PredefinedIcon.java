@@ -109,6 +109,8 @@ public enum PredefinedIcon {
 
     plusCircle(fas("plus-circle")),
 
+    questionCircle(fas("question-circle")),
+
     search(fas("search")),
 
     server(fas("server")),
