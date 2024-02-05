@@ -13,24 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.slider;
+package org.patternfly.component.progress;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+@FunctionalInterface
+public interface ProgressLabel {
 
-class Numbers {
-
-    static double percentage(double value, double max) {
-        return round((value * 100.0) / max);
-    }
-
-    static double percentage(double value, double min, double max) {
-        return round(((value - min) * 100) / (max - min));
-    }
-
-    private static double round(double value) {
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(2, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
+    String label(int min, int max, int step, int value);
 }

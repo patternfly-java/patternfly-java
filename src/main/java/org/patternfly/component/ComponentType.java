@@ -109,6 +109,8 @@ public enum ComponentType {
 
     Popover("pvr", "PF5/Popover"),
 
+    Progress("prg", "PF5/Progress"),
+
     Radio("rd", "PF5/Radio"),
 
     Select("sel", null),

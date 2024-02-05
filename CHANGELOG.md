@@ -28,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Input group component (#59)
 - List component (#62)
 - Panel component (#77) - thanks @halkosajtarevic
+- Slider component (#87)
 - Switch component (#89)
 - Tabs components (#91)
 

@@ -21,12 +21,12 @@ import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.spinner.Spinner;
-import org.patternfly.core.Status;
 import org.patternfly.core.WithProgress;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.PredefinedIcon;
 import org.patternfly.style.Size;
+import org.patternfly.style.Status;
 
 import elemental2.dom.HTMLElement;
 

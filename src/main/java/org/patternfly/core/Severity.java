@@ -16,6 +16,7 @@
 package org.patternfly.core;
 
 import org.patternfly.style.PredefinedIcon;
+import org.patternfly.style.Status;
 
 import static org.patternfly.style.PredefinedIcon.bell;
 import static org.patternfly.style.PredefinedIcon.checkCircle;

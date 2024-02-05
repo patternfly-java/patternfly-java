@@ -17,6 +17,8 @@ package org.patternfly.component.slider;
 
 import java.util.Objects;
 
+import org.patternfly.core.Numbers;
+
 public class SliderStep {
 
     // ------------------------------------------------------ factory

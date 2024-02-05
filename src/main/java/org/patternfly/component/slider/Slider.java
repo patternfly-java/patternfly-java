@@ -73,7 +73,7 @@ import static org.jboss.elemento.EventType.touchmove;
 import static org.jboss.elemento.EventType.touchstart;
 import static org.jboss.elemento.Key.ArrowLeft;
 import static org.jboss.elemento.Key.ArrowRight;
-import static org.patternfly.component.slider.Numbers.percentage;
+import static org.patternfly.core.Numbers.percentage;
 import static org.patternfly.component.slider.SliderInputPosition.aboveThumb;
 import static org.patternfly.component.slider.SliderInputPosition.end;
 import static org.patternfly.component.slider.SliderStep.sliderStep;
