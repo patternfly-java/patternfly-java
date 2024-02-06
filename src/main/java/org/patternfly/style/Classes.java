@@ -207,6 +207,7 @@ public interface Classes {
     String shadowTop = "shadow-top";
     String shortcuts = "shortcuts";
     String sidebar = "sidebar";
+    String simpleList = "simple-list";
     String singleline = "singleline";
     String skipToContent = "skip-to-content";
     String slider = "slider";

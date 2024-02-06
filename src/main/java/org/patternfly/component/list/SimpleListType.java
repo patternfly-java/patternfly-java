@@ -15,15 +15,11 @@
  */
 package org.patternfly.component.list;
 
-import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+enum SimpleListType {
 
-import elemental2.dom.HTMLElement;
+    undefined,
 
-abstract class ListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+    items,
 
-    ListSubComponent(String name, E element) {
-        super(ComponentType.List, name, element);
-    }
+    groups
 }

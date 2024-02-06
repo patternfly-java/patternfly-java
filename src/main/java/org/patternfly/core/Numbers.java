@@ -21,11 +21,11 @@ import java.math.RoundingMode;
 public class Numbers {
 
     public static double percentage(double value, double max) {
-        return round((value * 100.0) / max);
+        return max != 0 ? round((value * 100.0) / max) : 0;
     }
 
     public static double percentage(double value, double min, double max) {
-        return round(((value - min) * 100) / (max - min));
+        return max - min != 0 ? round(((value - min) * 100) / (max - min)) : 0;
     }
 
     private static double round(double value) {
