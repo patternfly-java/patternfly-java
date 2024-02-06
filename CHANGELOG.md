@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Progress component (#81)
+
 ## [0.1.4] - 2024-01-25
 
 ### Fixed

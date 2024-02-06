@@ -23,6 +23,7 @@ import org.patternfly.component.help.HelperText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.HasValue;
 import org.patternfly.core.ObservableValue;
+import org.patternfly.core.ValidationStatus;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
@@ -41,6 +42,7 @@ import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.progress.MeasureLocation.inside;
 import static org.patternfly.component.progress.MeasureLocation.outside;
 import static org.patternfly.component.progress.MeasureLocation.top;
+import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Aria.valueMax;
@@ -59,6 +61,7 @@ import static org.patternfly.style.Classes.measure;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.progress;
 import static org.patternfly.style.Classes.singleline;
+import static org.patternfly.style.Classes.truncate;
 import static org.patternfly.style.PredefinedIcon.checkCircle;
 import static org.patternfly.style.PredefinedIcon.exclamationTriangle;
 import static org.patternfly.style.PredefinedIcon.timesCircle;
@@ -66,6 +69,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.md;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Status.danger;
+import static org.patternfly.style.Status.info;
 import static org.patternfly.style.Status.success;
 import static org.patternfly.style.Status.warning;
 
@@ -93,7 +97,9 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     private int min;
     private int max;
     private int step;
+    private Status status;
     private ProgressLabel label;
+    private HelperText helperText;
     private HTMLElement titleElement;
     private HTMLElement iconContainer;
     private MeasureLocation measureLocation;
@@ -129,6 +135,14 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
 
     // override to assure internal wiring
     public Progress add(HelperText helperText) {
+        if (this.helperText != null) {
+            this.helperText.element().replaceWith(helperText.element());
+        } else {
+            element().appendChild(div().css(component(progress, Classes.helperText))
+                    .add(helperText)
+                    .element());
+        }
+        this.helperText = helperText;
         return this;
     }
 
@@ -174,6 +188,9 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
 
         if (location == inside || location == outside) {
             classList().add(location.modifier);
+            if (location == inside) {
+                css(lg.modifier());
+            }
         }
         if (location == top || location == outside) {
             statusElement.add(measureElement);
@@ -191,29 +208,52 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     }
 
     public Progress status(Status status) {
-        if (verifyEnum(componentType(), element(), "status", status, danger, success, warning)) {
-            css(status.modifier);
+        if (verifyEnum(componentType(), element(), "status", status, info, danger, success, warning)) {
+            if (this.status != null) {
+                classList().remove(this.status.modifier);
+            }
+            if (status != info) {
+                css(status.modifier);
+            }
             removeChildrenFrom(iconContainer);
             switch (status) {
                 case danger:
                     failSafeIconContainer().appendChild(inlineIcon(timesCircle).element());
+                    if (helperText != null) {
+                        helperText.firstItem().status(ValidationStatus.error);
+                    }
                     break;
                 case warning:
                     failSafeIconContainer().appendChild(inlineIcon(exclamationTriangle).element());
+                    if (helperText != null) {
+                        helperText.firstItem().status(ValidationStatus.warning);
+                    }
                     break;
                 case success:
                     failSafeIconContainer().appendChild(inlineIcon(checkCircle).element());
+                    if (helperText != null) {
+                        helperText.firstItem().status(ValidationStatus.success);
+                    }
                     break;
                 case info:
                 case custom:
                     break;
             }
+            this.status = status;
         }
         return this;
     }
 
     public Progress title(String title) {
         failSafeTitleElement().textContent = title;
+        return this;
+    }
+
+    public Progress truncate() {
+        if (titleElement != null && !titleElement.classList.contains(modifier(truncate))) {
+            titleElement.classList.add(modifier(truncate));
+            element().appendChild(tooltip(titleElement, titleElement.textContent).element());
+        }
         return this;
     }
 
@@ -230,7 +270,13 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     // ------------------------------------------------------ aria
 
     public Progress ariaLabel(String label) {
-        return aria(Aria.label, label);
+        progressbarElement.aria(Aria.label, label);
+        return this;
+    }
+
+    public Progress ariaLabeledBy(String labeledBy) {
+        progressbarElement.aria(labelledBy, labeledBy);
+        return this;
     }
 
     // ------------------------------------------------------ events
