@@ -31,6 +31,7 @@ public interface Aria {
     String modal = "aria-modal";
     String multiSelectable = "aria-multiselectable";
     String orientation = "aria-orientation";
+    String pressed = "aria-pressed";
     String relevant = "aria-relevant";
     String selected = "aria-selected";
     String valueMin = "aria-valuemin";

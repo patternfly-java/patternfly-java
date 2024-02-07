@@ -237,22 +237,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
         }
     }
 
-    private void unselectAllItems() {
-        if (selectionMode == click) {
-            for (HTMLElement element : findAll(MENU_ITEMS)) {
-                element.setAttribute(Aria.current, false);
-            }
-        } else if (selectionMode == single) {
-            for (HTMLElement element : findAll(MENU_ITEMS)) {
-                element.setAttribute(Aria.selected, false);
-                element.classList.remove(modifier(Classes.selected));
-            }
-            for (HTMLElement element : findAll(SELECT_ICONS)) {
-                failSafeRemoveFromParent(element);
-            }
-        }
-    }
-
     // ------------------------------------------------------ internal
 
     MenuItem findItem(String id) {
@@ -311,6 +295,22 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             MenuItem sourceItem = favoriteItem.sourceItem;
             sourceItem.favoriteItemAction.element().classList.remove(modifier(favorited));
             sourceItem.favoriteItem = null;
+        }
+    }
+
+    private void unselectAllItems() {
+        if (selectionMode == click) {
+            for (HTMLElement element : findAll(MENU_ITEMS)) {
+                element.setAttribute(Aria.current, false);
+            }
+        } else if (selectionMode == single) {
+            for (HTMLElement element : findAll(MENU_ITEMS)) {
+                element.setAttribute(Aria.selected, false);
+                element.classList.remove(modifier(Classes.selected));
+            }
+            for (HTMLElement element : findAll(SELECT_ICONS)) {
+                failSafeRemoveFromParent(element);
+            }
         }
     }
 }

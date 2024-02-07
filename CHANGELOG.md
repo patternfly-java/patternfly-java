@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Progress component (#81)
 - Simple list component (#84)
+- Toggle group component (#97)
 
 ## [0.1.4] - 2024-01-25
 

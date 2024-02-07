@@ -115,6 +115,8 @@ public enum PredefinedIcon {
 
     server(fas("server")),
 
+    shareSquare(fas("share-square")),
+
     sortAmountDown(fas("sort-amount-down")),
 
     star(fas("star")),

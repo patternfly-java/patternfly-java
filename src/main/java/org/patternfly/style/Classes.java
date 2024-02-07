@@ -244,6 +244,7 @@ public interface Classes {
     String title = "title";
     String toast = "toast";
     String toggle = "toggle";
+    String toggleGroup = "toggle-group";
     String toggleRight = "toggle-right";
     String toolbar = "toolbar";
     String tooltip = "tooltip";
