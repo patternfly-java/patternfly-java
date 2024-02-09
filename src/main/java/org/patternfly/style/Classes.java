@@ -209,6 +209,7 @@ public interface Classes {
     String sidebar = "sidebar";
     String simpleList = "simple-list";
     String singleline = "singleline";
+    String skeleton = "skeleton";
     String skipToContent = "skip-to-content";
     String slider = "slider";
     String small = "small";
