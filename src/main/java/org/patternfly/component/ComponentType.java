@@ -147,6 +147,8 @@ public enum ComponentType {
 
     TreeView("tv", null),
 
+    Truncate("tr", "PF5/Truncate"),
+
     Wizard("wzd", "PF5/Wizard");
 
     public final String id;
