@@ -13,21 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.truncate;
+package org.patternfly.component.breadcrumb;
 
-import org.patternfly.style.Classes;
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-public enum TruncatePosition {
+import elemental2.dom.HTMLElement;
 
-    start(Classes.end),
+abstract class BreadcrumbSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    middle(""),
-
-    end(Classes.start);
-
-    final String suffix;
-
-    TruncatePosition(String suffix) {
-        this.suffix = suffix;
+    BreadcrumbSubComponent(String name, E element) {
+        super(ComponentType.Breadcrumb, name, element);
     }
 }

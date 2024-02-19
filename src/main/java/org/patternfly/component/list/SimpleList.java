@@ -122,10 +122,6 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
 
     // ------------------------------------------------------ builder
 
-    public SimpleList methodsReturningAReferenceToItself() {
-        return this;
-    }
-
     @Override
     public SimpleList that() {
         return this;

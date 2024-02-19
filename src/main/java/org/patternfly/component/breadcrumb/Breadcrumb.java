@@ -15,15 +15,25 @@
  */
 package org.patternfly.component.breadcrumb;
 
-import org.patternfly.component.BaseComponent;
+import java.util.function.Function;
+
+import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
+import org.patternfly.handler.SelectHandler;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLOListElement;
 
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.Elements.nav;
+import static org.jboss.elemento.Elements.ol;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.core.Attributes.role;
+import static org.patternfly.style.Classes.breadcrumb;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.list;
 
 /**
  * A breadcrumb provides page context to help users navigate more efficiently and understand where they are in the application
@@ -31,7 +41,7 @@ import static org.jboss.elemento.EventType.click;
  *
  * @see <a href= "https://www.patternfly.org/components/breadcrumb">https://www.patternfly.org/components/breadcrumb</a>
  */
-public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
+public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
 
     // ------------------------------------------------------ factory
 
@@ -41,26 +51,37 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
 
     // ------------------------------------------------------ instance
 
+    private final HTMLContainerBuilder<HTMLOListElement> ol;
+    private SelectHandler<BreadcrumbItem> selectHandler;
+
     Breadcrumb() {
-        super((ComponentType) null, div().element());
+        super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
+        this.ol = ol().css(component(breadcrumb, list)).attr(role, "list");
+        storeFlatComponent();
+        element().appendChild(ol.element());
     }
 
     // ------------------------------------------------------ add
 
-    public Breadcrumb addFoo(/* Foo foo */) {
+    public <T> Breadcrumb addItems(Iterable<T> items, Function<T, BreadcrumbItem> display) {
+        for (T item : items) {
+            BreadcrumbItem bi = display.apply(item);
+            addItem(bi);
+        }
         return this;
     }
 
+    public Breadcrumb addItem(BreadcrumbItem item) {
+        return add(item);
+    }
+
     // override to assure internal wiring
-    public Breadcrumb add(/* Foo foo */) {
+    public Breadcrumb add(BreadcrumbItem item) {
+        ol.add(item);
         return this;
     }
 
     // ------------------------------------------------------ builder
-
-    public Breadcrumb methodsReturningAReferenceToItself() {
-        return this;
-    }
 
     @Override
     public Breadcrumb that() {
@@ -75,23 +96,23 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> {
 
     // ------------------------------------------------------ events
 
-    public Breadcrumb onFoo(ComponentHandler<Breadcrumb> handler) {
-        return on(click, e -> handler.handle(e, this));
+    public Breadcrumb onSelect(SelectHandler<BreadcrumbItem> selectHandler) {
+        this.selectHandler = selectHandler;
+        return this;
     }
 
     // ------------------------------------------------------ api
 
-    public void doSomething() {
-
-    }
-
-    public String getter() {
-        return "some piece of information";
+    public <T> void updateItems(Iterable<T> items, Function<T, BreadcrumbItem> display) {
+        removeChildrenFrom(ol);
+        addItems(items, display);
     }
 
     // ------------------------------------------------------ internal
 
-    private void foo() {
-        // internal stuff happens here
+    void select(Event event, BreadcrumbItem item) {
+        if (selectHandler != null) {
+            selectHandler.onSelect(event, item, true);
+        }
     }
 }

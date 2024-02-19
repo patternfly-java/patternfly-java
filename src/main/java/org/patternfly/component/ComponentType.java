@@ -35,7 +35,7 @@ public enum ComponentType {
 
     Brand("bnd", "PF5/Brand"),
 
-    Breadcrumb("bc", null),
+    Breadcrumb("bc", "PF5/Breadcrumb"),
 
     Button("btn", "PF5/Button"),
 

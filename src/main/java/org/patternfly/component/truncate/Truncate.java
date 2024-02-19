@@ -30,6 +30,7 @@ import org.patternfly.style.Classes;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
@@ -187,7 +188,7 @@ public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implement
     private HTMLContainerBuilder<HTMLElement> failSafeSecondaryTextElement() {
         if (secondaryTextElement == null) {
             secondaryTextElement = span();
-            element().appendChild(secondaryTextElement.element());
+            insertAfter(secondaryTextElement.element(), primaryTextElement.element());
         }
         return secondaryTextElement;
     }
