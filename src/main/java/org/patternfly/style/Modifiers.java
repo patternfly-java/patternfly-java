@@ -262,19 +262,6 @@ public interface Modifiers {
         }
     }
 
-    interface Vertical<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
-
-        /** Same as {@linkplain #vertical(boolean) vertical(true)} */
-        default B vertical() {
-            return vertical(true);
-        }
-
-        /** Adds/removes {@linkplain Classes#modifier(String) modifier(vertical)} */
-        default B vertical(boolean vertical) {
-            return toggleModifier(that(), element(), Classes.vertical, vertical);
-        }
-    }
-
     interface Secondary<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #secondary(boolean) secondary(true)} */
@@ -285,6 +272,19 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(secondary)} */
         default B secondary(boolean secondary) {
             return toggleModifier(that(), element(), Classes.secondary, secondary);
+        }
+    }
+
+    interface Vertical<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #vertical(boolean) vertical(true)} */
+        default B vertical() {
+            return vertical(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(vertical)} */
+        default B vertical(boolean vertical) {
+            return toggleModifier(that(), element(), Classes.vertical, vertical);
         }
     }
 

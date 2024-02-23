@@ -36,18 +36,26 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
 
     // ------------------------------------------------------ factory
 
+    public static Title title(int level) {
+        return new Title(level, null);
+    }
+
+    public static Title title(int level, Size size) {
+        return new Title(level, size);
+    }
+
     public static Title title(int level, String text) {
-        return new Title(level, null, text);
+        return new Title(level, null).text(text);
     }
 
     public static Title title(int level, Size size, String text) {
-        return new Title(level, size, text);
+        return new Title(level, size).text(text);
     }
 
     // ------------------------------------------------------ instance
 
-    Title(int level, Size size, String text) {
-        super(ComponentType.Title, h(level, text).css(component(title)).element());
+    Title(int level, Size size) {
+        super(ComponentType.Title, h(level).css(component(title)).element());
         if (size != null) {
             css(size.modifier());
         }
@@ -57,7 +65,9 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
 
     @Override
     public Title text(String text) {
-        element().textContent = text;
+        if (text != null) {
+            textNode(text);
+        }
         return this;
     }
 

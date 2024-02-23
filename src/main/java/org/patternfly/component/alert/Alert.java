@@ -250,6 +250,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     }
 
     public Alert truncate(int lines) {
+        // TODO Add tooltip
         titleElement.classList.add(modifier(truncate));
         if (lines != 1) {
             componentVar(component(alert, Classes.title), "max-lines").applyTo(titleElement, lines);

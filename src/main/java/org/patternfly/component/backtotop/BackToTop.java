@@ -131,6 +131,10 @@ public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
         return this;
     }
 
+    public BackToTop scrollableSelector(String selector) {
+        return scrollableSelector(() -> Elements.find(document, By.selector(selector)));
+    }
+
     public BackToTop scrollableSelector(By selector) {
         return scrollableSelector(() -> Elements.find(document, selector));
     }

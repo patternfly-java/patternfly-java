@@ -334,6 +334,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         return this;
     }
 
+    public Popover trigger(String trigger) {
+        return trigger(() -> Elements.find(document.body, By.selector(trigger)));
+    }
+
     public Popover trigger(By trigger) {
         return trigger(() -> Elements.find(document.body, trigger));
     }

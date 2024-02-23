@@ -39,6 +39,7 @@ import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
+import org.patternfly.style.ExpandableModifier;
 import org.patternfly.style.Inset;
 import org.patternfly.style.Modifiers.Box;
 import org.patternfly.style.Modifiers.Fill;

@@ -262,6 +262,10 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         return this;
     }
 
+    public Tooltip trigger(String trigger) {
+        return trigger(() -> Elements.find(document.body, By.selector(trigger)));
+    }
+
     public Tooltip trigger(By trigger) {
         return trigger(() -> Elements.find(document.body, trigger));
     }

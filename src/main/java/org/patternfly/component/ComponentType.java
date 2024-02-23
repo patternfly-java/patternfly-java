@@ -83,6 +83,8 @@ public enum ComponentType {
 
     InputGroup("ig", "PF5/InputGroup"),
 
+    JumpLinks("jl", "PF5/JumpLinks"),
+
     Label("lbl", "PF5/Label"),
 
     LabelGroup("lbg", null),

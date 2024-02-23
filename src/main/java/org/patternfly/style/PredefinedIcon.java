@@ -93,6 +93,8 @@ public enum PredefinedIcon {
 
     laptop(fas("laptop")),
 
+    link(fas("link")),
+
     lock(fas("lock")),
 
     lockOpen(fas("lock-open")),
