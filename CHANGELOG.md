@@ -15,11 +15,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Toggle group component (#97)
 - Truncate component (#101)
 
+### Fixed
+
+- Fix selection in navigation component
+
 ## [0.1.4] - 2024-01-25
 
 ### Fixed
 
-- Added missing externs for the Popper component
+- Add missing externs for the Popper component
 
 ## [0.1.3] - 2024-01-25
 

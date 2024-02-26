@@ -21,6 +21,7 @@ import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLLIElement;
+import elemental2.dom.ScrollIntoViewOptions;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
@@ -91,6 +92,9 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     void select() {
         a.classList.add(modifier(current));
         a.setAttribute(Aria.current, "page");
-        a.scrollIntoView(false);
+        ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
+        options.setBlock("nearest");
+        options.setInline("nearest");
+        a.scrollIntoView(options);
     }
 }
