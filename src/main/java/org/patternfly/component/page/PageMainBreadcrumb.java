@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.breadcrumb.Breadcrumb;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
@@ -44,6 +46,12 @@ public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMain
 
     PageMainBreadcrumb() {
         super(SUB_COMPONENT_NAME, section().css(component(page, main, breadcrumb)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public PageMainBreadcrumb addBreadcrumb(Breadcrumb breadcrumb) {
+        return add(breadcrumb);
     }
 
     // ------------------------------------------------------ builder

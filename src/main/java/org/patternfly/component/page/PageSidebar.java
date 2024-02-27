@@ -18,13 +18,11 @@ package org.patternfly.component.page;
 import org.patternfly.core.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Brightness;
-import org.patternfly.style.Rect;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
-import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Brightness.dark;
@@ -54,12 +52,14 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     static final String SUB_COMPONENT_NAME = "psb";
 
+    private boolean keepExpanded;
     private ToggleHandler<PageSidebar> toggleHandler;
 
     PageSidebar() {
         super(SUB_COMPONENT_NAME, aside().css(component(page, sidebar), modifier(expanded))
                 .aria(hidden, false)
                 .element());
+        this.keepExpanded = false;
     }
 
     // ------------------------------------------------------ add
@@ -72,6 +72,11 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
     }
 
     // ------------------------------------------------------ builder
+
+    public PageSidebar keepExpanded() {
+        this.keepExpanded = true;
+        return this;
+    }
 
     public PageSidebar theme(Brightness theme) {
         if (verifyEnum("PF5/PageSidebar", element(), "theme", theme, dark, light)) {
@@ -96,11 +101,13 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     @Override
     public void collapse(boolean fireEvent) {
-        element().classList.remove(modifier(expanded));
-        element().classList.add(modifier(collapsed));
-        aria(hidden, true);
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, false);
+        if (!keepExpanded) {
+            element().classList.remove(modifier(expanded));
+            element().classList.add(modifier(collapsed));
+            aria(hidden, true);
+            if (fireEvent && toggleHandler != null) {
+                toggleHandler.onToggle(new Event(""), this, false);
+            }
         }
     }
 
@@ -111,16 +118,6 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
         aria(hidden, false);
         if (fireEvent && toggleHandler != null) {
             toggleHandler.onToggle(new Event(""), this, true);
-        }
-    }
-
-    // ------------------------------------------------------ internal
-
-    void onPageResize(Rect currentPageRect, Rect previousPageRect) {
-        if (page().underXl()) {
-            collapse();
-        } else {
-            expand();
         }
     }
 }

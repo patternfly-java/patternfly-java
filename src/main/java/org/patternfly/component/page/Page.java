@@ -59,10 +59,18 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     /** Create or returns the page singleton. */
     public static Page page() {
-        if (instance == null) {
-            instance = new Page();
+        return page(false);
+    }
+
+    public static Page page(boolean newInstance) {
+        if (newInstance) {
+            return new Page();
+        } else {
+            if (instance == null) {
+                instance = new Page();
+            }
+            return instance;
         }
-        return instance;
     }
 
     // ------------------------------------------------------ instance
@@ -260,7 +268,11 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
             masthead.onPageResize(current, previous);
         }
         if (sidebar != null) {
-            sidebar.onPageResize(current, previous);
+            if (underXl()) {
+                sidebar.collapse();
+            } else {
+                sidebar.expand();
+            }
         }
     }
 }

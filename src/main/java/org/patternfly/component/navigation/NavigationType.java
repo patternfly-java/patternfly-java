@@ -58,6 +58,8 @@ public interface NavigationType {
     enum Horizontal implements NavigationType {
         primary,
 
-        secondary
+        secondary,
+
+        tertiary
     }
 }

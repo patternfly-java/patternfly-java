@@ -13,41 +13,50 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.toolbar;
+package org.patternfly.component.page;
 
-import elemental2.dom.HTMLDivElement;
+import org.patternfly.component.navigation.Navigation;
 
-import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.alert;
+import elemental2.dom.HTMLElement;
+
+import static org.jboss.elemento.Elements.section;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.nav;
+import static org.patternfly.style.Classes.page;
 
 /**
- * Container for a expandable content section in a toolbar.
+ * Container to nest a {@link Navigation} in a {@link PageMainGroup} or {@link PageMain} container.
  */
-public class ToolbarExpandableContent extends ToolbarSubComponent<HTMLDivElement, ToolbarExpandableContent> {
+public class PageMainNavigation extends PageSectionBuilder<HTMLElement, PageMainNavigation> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static ToolbarExpandableContent toolbarExpandableContent() {
-        return new ToolbarExpandableContent();
+    public static PageMainNavigation pageMainNavigation() {
+        return new PageMainNavigation();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tec";
+    static final String SUB_COMPONENT_NAME = "pmn";
 
-    ToolbarExpandableContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
+    PageMainNavigation() {
+        super(SUB_COMPONENT_NAME, section().css(component(page, main, nav)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public PageMainNavigation addNavigation(Navigation navigation) {
+        return add(navigation);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public ToolbarExpandableContent that() {
+    public PageMainNavigation that() {
         return this;
     }
 }

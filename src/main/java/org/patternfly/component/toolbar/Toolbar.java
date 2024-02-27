@@ -50,6 +50,12 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
         super(ComponentType.Toolbar, div().css(component(toolbar)).element());
     }
 
+    // ------------------------------------------------------ add
+
+    public Toolbar addContent(ToolbarContent content) {
+        return add(content);
+    }
+
     // ------------------------------------------------------ builder
 
     @Override

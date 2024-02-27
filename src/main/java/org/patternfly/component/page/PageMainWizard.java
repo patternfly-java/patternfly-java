@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.page;
 
+import org.patternfly.component.wizard.Wizard;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
@@ -40,6 +42,12 @@ public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWiza
 
     PageMainWizard() {
         super(SUB_COMPONENT_NAME, section().css(component(page, main, wizard)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public PageMainWizard addWizard(Wizard wizard) {
+        return add(wizard);
     }
 
     // ------------------------------------------------------ builder

@@ -18,9 +18,9 @@ package org.patternfly.component.toolbar;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.toolbar;
 
 /**
  * Container for a toolbar item.
@@ -41,7 +41,7 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
     static final String SUB_COMPONENT_NAME = "ti";
 
     ToolbarItem() {
-        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(toolbar, item)).element());
     }
 
     // ------------------------------------------------------ builder

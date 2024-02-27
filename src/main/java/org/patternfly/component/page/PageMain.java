@@ -133,7 +133,7 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
     // ------------------------------------------------------ internal
 
     private void onMainClick() {
-        if (page().underXl() && page().sidebar().expanded()) {
+        if (page().underXl() && page().sidebar() != null && page().sidebar().expanded()) {
             page().sidebar().collapse();
         }
     }

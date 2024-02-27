@@ -18,9 +18,9 @@ package org.patternfly.component.toolbar;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.toolbar;
 
 /**
  * Container for a toolbar group.
@@ -41,7 +41,13 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     static final String SUB_COMPONENT_NAME = "tg";
 
     ToolbarGroup() {
-        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(toolbar, group)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public ToolbarGroup addItem(ToolbarItem item) {
+        return add(item);
     }
 
     // ------------------------------------------------------ builder

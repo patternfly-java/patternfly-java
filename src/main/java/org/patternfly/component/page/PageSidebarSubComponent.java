@@ -21,9 +21,9 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
-abstract class SidebarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+abstract class PageSidebarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    SidebarSubComponent(String name, E element) {
+    PageSidebarSubComponent(String name, E element) {
         super(ComponentType.Sidebar, name, element);
     }
 }

@@ -63,6 +63,7 @@ import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.secondary;
+import static org.patternfly.component.navigation.NavigationType.Horizontal.tertiary;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
@@ -147,7 +148,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         this.disableBackScrollButton = ov(false);
         this.disableForwardScrollButton = ov(false);
 
-        if (type == secondary) {
+        if (type == secondary || type == tertiary) {
             aria(label, "Local");
         } else {
             aria(label, "Global");
@@ -158,7 +159,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                 css(modifier(horizontal));
             } else if (type == secondary) {
                 css(modifier(horizontalSubnav));
+            } else if (type == tertiary) {
+                css(modifier(Classes.tertiary));
             }
+
             add(scrollBack = button().css(component(nav, scroll, button))
                     .apply(b -> b.disabled = true)
                     .aria(hidden, true)

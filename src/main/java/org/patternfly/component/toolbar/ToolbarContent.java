@@ -15,17 +15,22 @@
  */
 package org.patternfly.component.toolbar;
 
+import org.patternfly.core.ElementDelegate;
+
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.section;
+import static org.patternfly.style.Classes.toolbar;
 
 /**
  * Container for a toolbar content.
  */
-public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent> {
+public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent>
+        implements ElementDelegate<HTMLDivElement, ToolbarContent> {
 
     // ------------------------------------------------------ factory
 
@@ -39,9 +44,36 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tc";
+    private final HTMLElement contentSection;
 
     ToolbarContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
+        element().appendChild(contentSection = div().css(component(toolbar, content, section)).element());
+    }
+
+    @Override
+    public HTMLElement delegate() {
+        return contentSection;
+    }
+
+    // ------------------------------------------------------ add
+
+    public ToolbarContent addItem(ToolbarItem item) {
+        return add(item);
+    }
+
+    public ToolbarContent add(ToolbarItem item) {
+        contentSection.appendChild(item.element());
+        return this;
+    }
+
+    public ToolbarContent addGroup(ToolbarGroup group) {
+        return add(group);
+    }
+
+    public ToolbarContent add(ToolbarGroup group) {
+        contentSection.appendChild(group.element());
+        return this;
     }
 
     // ------------------------------------------------------ builder
