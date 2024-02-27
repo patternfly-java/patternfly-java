@@ -123,6 +123,8 @@ public enum PredefinedIcon {
 
     star(fas("star")),
 
+    user(fas("user")),
+
     users(fas("users")),
 
     times(fas("times")),

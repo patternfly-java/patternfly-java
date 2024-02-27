@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.jboss.elemento.EventType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 
@@ -48,7 +49,7 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mt";
+    static final String SUB_COMPONENT_NAME = "mht";
 
     private final Button toggleButton;
 
@@ -58,11 +59,15 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
                 .plain()
                 .icon(bars)
                 .aria(label, "Global Navigation")
-                .aria(expanded, true) // expanded by default
-                .onClick((e, b) -> toggle()));
+                .aria(expanded, true)); // expanded by default
     }
 
     // ------------------------------------------------------ builder
+
+    public MastheadToggle toggleSidebar() {
+        toggleButton.on(EventType.click, e -> toggle());
+        return this;
+    }
 
     @Override
     public MastheadToggle that() {

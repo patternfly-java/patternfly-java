@@ -21,6 +21,8 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Id;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ElementDelegate;
+import org.patternfly.core.WithText;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -31,6 +33,7 @@ import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.span;
@@ -56,12 +59,17 @@ import static org.patternfly.style.Classes.subnav;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.PredefinedIcon.angleRight;
 
-public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> {
+public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
+        WithText<HTMLLIElement, ExpandableNavigationGroup>, ElementDelegate<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 
+    public static ExpandableNavigationGroup expandableNavigationGroup(String id) {
+        return new ExpandableNavigationGroup(id);
+    }
+
     public static ExpandableNavigationGroup expandableNavigationGroup(String id, String text) {
-        return new ExpandableNavigationGroup(id, text);
+        return new ExpandableNavigationGroup(id).text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -74,9 +82,10 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final HTMLButtonElement button;
     private final HTMLElement section;
     private final HTMLUListElement ul;
+    private NavigationLinkText text;
     ToggleHandler<ExpandableNavigationGroup> toggleHandler;
 
-    ExpandableNavigationGroup(String id, String text) {
+    ExpandableNavigationGroup(String id) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
                 .data(navigationGroup, id)
                 .element());
@@ -85,22 +94,27 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         this.expandableGroups = new HashMap<>();
 
         String titleId = Id.unique(id, "title");
-        add(button = button().css(component(nav, link))
+        element().appendChild(button = button().css(component(nav, link))
                 .id(titleId)
                 .aria(Aria.expanded, false)
                 .on(click, e -> toggle())
-                .add(text)
+                .add("")
                 .add(span().css(component(nav, toggle))
                         .add(span().css(component(nav, toggle, icon))
                                 .add(inlineIcon(angleRight))))
                 .element());
-        add(section = section().css(component(nav, subnav))
+        element().appendChild(section = section().css(component(nav, subnav))
                 .aria(labelledBy, titleId)
                 .add(ul = ul().css(component(nav, list))
                         .attr(role, "list")
                         .element())
                 .element());
         collapse();
+    }
+
+    @Override
+    public HTMLElement delegate() {
+        return button;
     }
 
     // ------------------------------------------------------ add
@@ -130,7 +144,30 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         return this;
     }
 
+    public ExpandableNavigationGroup addLinkText(NavigationLinkText text) {
+        return add(text);
+    }
+
+    public ExpandableNavigationGroup add(NavigationLinkText text) {
+        this.text = text;
+        insertFirst(button, text);
+        return this;
+    }
+
     // ------------------------------------------------------ builder
+
+
+    @Override
+    public ExpandableNavigationGroup text(String text) {
+        if (text != null) {
+            if (this.text != null) {
+                this.text.textNode(text);
+            } else {
+                button(button).textNode(text);
+            }
+        }
+        return this;
+    }
 
     @Override
     public ExpandableNavigationGroup that() {

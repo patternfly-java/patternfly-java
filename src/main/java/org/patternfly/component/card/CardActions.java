@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.card;
 
+import org.patternfly.component.form.Checkbox;
+import org.patternfly.component.menu.Dropdown;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -44,6 +46,18 @@ public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
     }
 
     // ------------------------------------------------------ add
+
+    public CardActions addDropdown(Dropdown dropdown) {
+        return add(dropdown);
+    }
+
+    public CardActions addCheckbox(Checkbox checkbox) {
+        return add(checkbox);
+    }
+
+    public CardActions add(Checkbox checkbox) {
+        return add(checkbox.standalone().element());
+    }
 
     public CardActions addSelectableActions(CardSelectableActions selectableActions) {
         return add(selectableActions);

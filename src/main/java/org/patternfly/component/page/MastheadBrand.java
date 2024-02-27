@@ -15,49 +15,49 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.toolbar.Toolbar;
+import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.brand.Brand;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.span;
+import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.masthead;
 
-/**
- * Container for the content of a {@link Masthead} component. This container represents the main portion of the masthead area
- * and will typically contain a {@link Toolbar} or other menu-like content such as a
- * {@link org.patternfly.component.menu.Dropdown}.
- */
-public class MastheadContent extends MastheadSubComponent<HTMLDivElement, MastheadContent> {
+public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBrand> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static MastheadContent mastheadContent() {
-        return new MastheadContent();
+    public static MastheadBrand mastheadBrand() {
+        return new MastheadBrand(span());
+    }
+
+    public static <E extends HTMLElement> MastheadBrand mastheadBrand(HTMLContainerBuilder<E> builder) {
+        return new MastheadBrand(builder);
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mhc";
+    static final String SUB_COMPONENT_NAME = "mb";
 
-    MastheadContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(masthead, content)).element());
+    <E extends HTMLElement> MastheadBrand(HTMLContainerBuilder<E> builder) {
+        super(SUB_COMPONENT_NAME, builder.css(component(masthead, brand)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public MastheadContent addToolbar(Toolbar toolbar) {
-        return add(toolbar);
+    public MastheadBrand addBrand(Brand brand) {
+        return add(brand);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public MastheadContent that() {
+    public MastheadBrand that() {
         return this;
     }
 }

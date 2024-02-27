@@ -17,21 +17,15 @@ package org.patternfly.component.page;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.brand.Brand;
-import org.patternfly.component.toolbar.Toolbar;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Brightness;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Display;
 import org.patternfly.style.Inset;
 import org.patternfly.style.Rect;
 
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.header;
-import static org.patternfly.component.page.MastheadContent.mastheadContent;
-import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Breakpoint.breakpoint;
 import static org.patternfly.style.Breakpoint.md;
@@ -71,7 +65,8 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     Masthead() {
         super(ComponentType.Masthead, header().css(component(masthead)).element());
-        this.displayModifiers = breakpoints(md, inline);
+        displayModifiers = breakpoints(md, inline);
+        classList().add(displayModifiers.modifiers());
     }
 
     // ------------------------------------------------------ add
@@ -83,26 +78,6 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     public Masthead addMain(MastheadMain main) {
         return add(main);
-    }
-
-    /**
-     * Wraps the brand inside an {@code <a/>} element, adds the {@code <a/>} element to a {@link MastheadMain} component and
-     * finally adds the {@link MastheadMain} to this component.
-     */
-    public Masthead addBrand(Brand brand, String homeLink) {
-        addMain(mastheadMain()
-                .add(a(homeLink).css(component(masthead, Classes.brand))
-                        .add(brand)));
-        return this;
-    }
-
-    /**
-     * Wraps the toolbar inside a {@link MastheadContent} component and adds the {@link MastheadContent} to this component.
-     */
-    public Masthead addToolbar(Toolbar toolbar) {
-        addContent(mastheadContent()
-                .add(toolbar));
-        return this;
     }
 
     /**
@@ -118,7 +93,11 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Display type at various breakpoints. Defaults to {@code tuples(md, inline)}.
      */
     public Masthead display(Breakpoints<Display> displayModifiers) {
+        if (this.displayModifiers != null) {
+            classList().remove(this.displayModifiers.modifiers());
+        }
         this.displayModifiers = displayModifiers;
+        classList().add(this.displayModifiers.modifiers());
         return this;
     }
 
@@ -126,6 +105,11 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Insets at various breakpoints
      */
     public Masthead inset(Breakpoints<Inset> insetModifiers) {
+        if (this.insetModifiers != null) {
+            classList().remove(this.insetModifiers.modifiers());
+        }
+        this.insetModifiers = insetModifiers;
+        classList().add(this.insetModifiers.modifiers());
         this.insetModifiers = insetModifiers;
         return this;
     }

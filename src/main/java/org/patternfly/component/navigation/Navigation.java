@@ -19,13 +19,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.EventType;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
+import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.Logger;
+import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Brightness;
@@ -33,13 +39,25 @@ import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
+import elemental2.dom.NodeList;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.isAttached;
+import static org.jboss.elemento.Elements.isElementInView;
 import static org.jboss.elemento.Elements.nav;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.ul;
+import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.EventType.resize;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.icon.InlineIcon.inlineIcon;
@@ -48,9 +66,12 @@ import static org.patternfly.component.navigation.NavigationType.Horizontal.seco
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.core.LanguageDirection.languageDirection;
+import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Brightness.dark;
 import static org.patternfly.style.Brightness.light;
@@ -64,6 +85,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.scroll;
+import static org.patternfly.style.Classes.scrollable;
 import static org.patternfly.style.PredefinedIcon.angleLeft;
 import static org.patternfly.style.PredefinedIcon.angleRight;
 
@@ -79,7 +101,7 @@ import static org.patternfly.style.PredefinedIcon.angleRight;
  *
  * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
-public class Navigation extends BaseComponent<HTMLElement, Navigation> {
+public class Navigation extends BaseComponent<HTMLElement, Navigation> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -99,8 +121,19 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
     private final Map<String, NavigationItem> items;
     private final Map<String, NavigationGroup> groups;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
+    private final ObservableValue<Boolean> enableScrollButtons;
+    private final ObservableValue<Boolean> showScrollButtons;
+    private final ObservableValue<Boolean> renderScrollButtons;
+    private final ObservableValue<Boolean> disableBackScrollButton;
+    private final ObservableValue<Boolean> disableForwardScrollButton;
+
+    private double scrollTimeout;
+    private HandlerRegistration resizeHandler;
+    private HandlerRegistration transitionEndHandler;
     private SelectHandler<NavigationItem> onSelect;
     private ToggleHandler<ExpandableNavigationGroup> toggleHandler;
+    private HTMLContainerBuilder<HTMLButtonElement> scrollBack;
+    private HTMLContainerBuilder<HTMLButtonElement> scrollForward;
 
     Navigation(NavigationType type) {
         super(ComponentType.Navigation, nav().css(component(nav)).element());
@@ -108,6 +141,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         this.items = new HashMap<>();
         this.groups = new HashMap<>();
         this.expandableGroups = new HashMap<>();
+        this.enableScrollButtons = ov(false);
+        this.showScrollButtons = ov(false);
+        this.renderScrollButtons = ov(false);
+        this.disableBackScrollButton = ov(false);
+        this.disableForwardScrollButton = ov(false);
 
         if (type == secondary) {
             aria(label, "Local");
@@ -121,15 +159,21 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             } else if (type == secondary) {
                 css(modifier(horizontalSubnav));
             }
-            add(button().css(component(nav, scroll, button))
-                    .aria(label, "Scroll left")
-                    .on(click, e -> scrollLeft())
+            add(scrollBack = button().css(component(nav, scroll, button))
+                    .apply(b -> b.disabled = true)
+                    .aria(hidden, true)
+                    .aria(label, "Scroll back")
+                    .on(click, e -> scrollBack())
                     .add(inlineIcon(angleLeft)));
-            add(itemsContainer = ul().css(component(nav, horizontal, list))
+            add(itemsContainer = ul().css(component(nav, list))
+                    .attr(role, "list")
+                    .on(EventType.scroll, e -> updateScrollState())
                     .element());
-            add(button().css(component(nav, scroll, button))
-                    .aria(label, "Scroll right")
-                    .on(click, e -> scrollRight())
+            add(scrollForward = button().css(component(nav, scroll, button))
+                    .apply(b -> b.disabled = true)
+                    .aria(hidden, true)
+                    .aria(label, "Scroll forward")
+                    .on(click, e -> scrollForward())
                     .add(inlineIcon(angleRight)));
 
         } else if (type instanceof NavigationType.Vertical) {
@@ -157,6 +201,52 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
             Logger.unknown(componentType(), element(), "Unknown navigation type: " + type);
             itemsContainer = div().element();
         }
+
+        storeComponent();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        if (type instanceof Horizontal && scrollBack != null && scrollForward != null) {
+            enableScrollButtons.subscribe((current, previous) -> {
+                if (!previous && current) {
+                    renderScrollButtons.change(true);
+                    setTimeout(__ -> {
+                        transitionEndHandler = bind(scrollBack, "transitionend", e -> hideScrollButtons());
+                        showScrollButtons.set(true);
+                    }, 100);
+                } else if (previous && !current) {
+                    showScrollButtons.change(false);
+                }
+            });
+            showScrollButtons.subscribe((current, __) -> classList().toggle(modifier(scrollable), current));
+            renderScrollButtons.subscribe((current, __) -> {
+                setVisible(scrollBack, current);
+                setVisible(scrollForward, current);
+            });
+            disableBackScrollButton.subscribe((current, __) -> {
+                scrollBack.element().disabled = current;
+                scrollBack.aria(Aria.disabled, current);
+            });
+            disableForwardScrollButton.subscribe((current, __) -> {
+                scrollForward.element().disabled = current;
+                scrollForward.aria(Aria.disabled, current);
+            });
+            resizeHandler = bind(window, resize.name, e -> updateScrollState());
+            updateScrollState();
+        }
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        clearTimeout(scrollTimeout);
+        if (resizeHandler != null) {
+            resizeHandler.removeHandler();
+        }
+        if (transitionEndHandler != null) {
+            transitionEndHandler.removeHandler();
+        }
     }
 
     // ------------------------------------------------------ add
@@ -180,6 +270,9 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         }
         items.put(item.id, item);
         itemsContainer.appendChild(item.element());
+        if (isAttached(element())) {
+            updateScrollState();
+        }
         return this;
     }
 
@@ -224,6 +317,28 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
 
     @Override
     public Navigation that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ aria
+
+    /**
+     * Aria-label for the back scroll button
+     */
+    public Navigation ariaScrollBackLabel(String label) {
+        if (scrollBack != null) {
+            scrollBack.aria(Aria.label, label);
+        }
+        return this;
+    }
+
+    /**
+     * Aria-label for the forward scroll button
+     */
+    public Navigation ariaScrollForwardLabel(String label) {
+        if (scrollForward != null) {
+            scrollForward.aria(Aria.label, label);
+        }
         return this;
     }
 
@@ -343,11 +458,63 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> {
         return group;
     }
 
-    private void scrollLeft() {
-        // TODO add / remove "pf-m-start pf-m-end" to root element
+    private void updateScrollState() {
+        // debounce scroll event!
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout((__) -> {
+            boolean overflowOnLeft = !isElementInView(itemsContainer,
+                    ((HTMLElement) itemsContainer.firstElementChild), false);
+            boolean overflowOnRight = !isElementInView(itemsContainer,
+                    ((HTMLElement) itemsContainer.lastElementChild), false);
+            enableScrollButtons.change(overflowOnLeft || overflowOnRight);
+            disableBackScrollButton.change(!overflowOnLeft);
+            disableForwardScrollButton.change(!overflowOnRight);
+        }, 100);
     }
 
-    private void scrollRight() {
-        // TODO add / remove "pf-m-start pf-m-end" to root element
+    private void hideScrollButtons() {
+        if (!enableScrollButtons.get() && !showScrollButtons.get() && renderScrollButtons.get()) {
+            renderScrollButtons.change(false);
+        }
+    }
+
+    private void scrollBack() {
+        HTMLElement firstElementInView = null;
+        HTMLElement lastElementOutOfView = null;
+        NodeList<Node> children = itemsContainer.childNodes;
+        for (int i = 0; i < children.length && firstElementInView == null; i++) {
+            HTMLElement child = (HTMLElement) children.item(i);
+            if (isElementInView(itemsContainer, child, false)) {
+                firstElementInView = child;
+                lastElementOutOfView = (HTMLElement) children.item(i - 1);
+            }
+        }
+        if (lastElementOutOfView != null) {
+            if (languageDirection(element()) == LanguageDirection.ltr) {
+                itemsContainer.scrollLeft -= lastElementOutOfView.scrollWidth;
+            } else {
+                itemsContainer.scrollLeft += lastElementOutOfView.scrollWidth;
+            }
+        }
+    }
+
+    private void scrollForward() {
+        HTMLElement lastElementInView = null;
+        HTMLElement firstElementOutOfView = null;
+        NodeList<Node> children = itemsContainer.childNodes;
+        for (int i = children.length - 1; i >= 0 && lastElementInView == null; i--) {
+            HTMLElement child = (HTMLElement) children.item(i);
+            if (isElementInView(itemsContainer, child, false)) {
+                lastElementInView = child;
+                firstElementOutOfView = (HTMLElement) children.item(i + 1);
+            }
+        }
+        if (firstElementOutOfView != null) {
+            if (languageDirection(element()) == LanguageDirection.ltr) {
+                itemsContainer.scrollLeft += firstElementOutOfView.scrollWidth;
+            } else {
+                itemsContainer.scrollLeft -= firstElementOutOfView.scrollWidth;
+            }
+        }
     }
 }
