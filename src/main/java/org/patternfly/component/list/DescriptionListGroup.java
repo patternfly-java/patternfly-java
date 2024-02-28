@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.descriptionlist;
+package org.patternfly.component.list;
 
 import elemental2.dom.HTMLDivElement;
 
