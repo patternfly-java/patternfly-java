@@ -17,9 +17,13 @@ package org.patternfly.component.navigation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.WithText;
@@ -33,6 +37,8 @@ import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.section;
@@ -46,6 +52,7 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.core.Dataset.navigationItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Classes.expanded;
@@ -128,19 +135,29 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup addItem(NavigationItem item) {
-        items.put(item.id, item);
-        ul.appendChild(item.element());
+        return add(item);
+    }
+
+    public ExpandableNavigationGroup add(NavigationItem item) {
+        internalAddItem(item, itm -> ul.appendChild(itm.element()));
         return this;
     }
 
     public ExpandableNavigationGroup addGroup(ExpandableNavigationGroup group) {
-        expandableGroups.put(group.id, group);
-        ul.appendChild(group.element());
+        return add(group);
+    }
+
+    public ExpandableNavigationGroup add(ExpandableNavigationGroup group) {
+        internalAddGroup(group, grp -> ul.appendChild(group.element()));
         return this;
     }
 
     public ExpandableNavigationGroup addDivider() {
-        ul.appendChild(divider(li).element());
+        return add(divider(li));
+    }
+
+    public ExpandableNavigationGroup add(Divider divider) {
+        ul.appendChild(divider.element());
         return this;
     }
 
@@ -154,8 +171,39 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         return this;
     }
 
-    // ------------------------------------------------------ builder
+    public ExpandableNavigationGroup insertItemBefore(NavigationItem item, String beforeItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertBefore(itm.element(), element));
+        }
+        return this;
+    }
 
+    public ExpandableNavigationGroup insertItemAfter(NavigationItem item, String afterItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertAfter(itm.element(), element));
+        }
+        return this;
+    }
+
+    public ExpandableNavigationGroup insertGroupBefore(ExpandableNavigationGroup group, String beforeItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertBefore(grp.element(), element));
+        }
+        return this;
+    }
+
+    public ExpandableNavigationGroup insertGroupAfter(ExpandableNavigationGroup group, String afterItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertAfter(grp.element(), element));
+        }
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public ExpandableNavigationGroup text(String text) {
@@ -175,6 +223,21 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     // ------------------------------------------------------ internal
+
+    private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
+        items.put(item.id, item);
+        dom.accept(item);
+    }
+
+    private void internalAddGroup(ExpandableNavigationGroup group, Consumer<ExpandableNavigationGroup> dom) {
+        group.collapse(); // all groups are collapsed by default
+        expandableGroups.put(group.id, group);
+        expandableGroups.put(group.id, group);
+        if (toggleHandler != null) {
+            group.toggleHandler = toggleHandler;
+        }
+        dom.accept(group);
+    }
 
     NavigationItem findItem(String id) {
         NavigationItem item = items.get(id);

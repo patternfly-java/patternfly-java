@@ -17,8 +17,11 @@ package org.patternfly.component.navigation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.WithText;
@@ -28,10 +31,15 @@ import elemental2.dom.HTMLHeadingElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.core.Dataset.navigationItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.nav;
@@ -90,12 +98,19 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     public NavigationGroup addItem(NavigationItem item) {
-        items.put(item.id, item);
-        ul.appendChild(item.element());
+        return add(item);
+    }
+
+    public NavigationGroup add(NavigationItem item) {
+        internalAddItem(item, itm -> ul.appendChild(itm.element()));
         return this;
     }
 
-    public NavigationGroup addDivider(Divider divider) {
+    public NavigationGroup addDivider() {
+        return add(divider(li));
+    }
+
+    public NavigationGroup add(Divider divider) {
         ul.appendChild(divider.element());
         return this;
     }
@@ -107,6 +122,22 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     public NavigationGroup add(NavigationLinkText text) {
         this.text = text;
         heading.appendChild(text.element());
+        return this;
+    }
+
+    public NavigationGroup insertItemBefore(NavigationItem item, String beforeItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertBefore(itm.element(), element));
+        }
+        return this;
+    }
+
+    public NavigationGroup insertItemAfter(NavigationItem item, String afterItemId) {
+        HTMLElement element = Elements.find(ul, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertAfter(itm.element(), element));
+        }
         return this;
     }
 
@@ -130,6 +161,11 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     // ------------------------------------------------------ internal
+
+    private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
+        items.put(item.id, item);
+        dom.accept(item);
+    }
 
     NavigationItem findItem(String id) {
         return items.get(id);

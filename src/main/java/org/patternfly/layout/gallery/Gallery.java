@@ -15,6 +15,8 @@
  */
 package org.patternfly.layout.gallery;
 
+import java.util.function.Function;
+
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
@@ -55,6 +57,14 @@ public class Gallery extends BaseLayout<HTMLElement, Gallery> implements Gutter<
     }
 
     // ------------------------------------------------------ add
+
+    public <T> Gallery addItems(Iterable<T> items, Function<T, GalleryItem> display) {
+        for (T item : items) {
+            GalleryItem galleryItem = display.apply(item);
+            addItem(galleryItem);
+        }
+        return this;
+    }
 
     public Gallery addItem(GalleryItem item) {
         return add(item);

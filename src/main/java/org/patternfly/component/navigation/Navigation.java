@@ -17,6 +17,7 @@ package org.patternfly.component.navigation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -27,6 +28,7 @@ import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.divider.Divider;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
@@ -50,6 +52,8 @@ import static elemental2.dom.DomGlobal.setTimeout;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.isElementInView;
 import static org.jboss.elemento.Elements.nav;
@@ -71,6 +75,7 @@ import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Dataset.navigationGroup;
+import static org.patternfly.core.Dataset.navigationItem;
 import static org.patternfly.core.LanguageDirection.languageDirection;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.core.Validation.verifyEnum;
@@ -268,45 +273,99 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation addItem(NavigationItem item) {
+        return add(item);
+    }
+
+    public Navigation add(NavigationItem item) {
         if (type == grouped) {
             Logger.unsupported(componentType(), element(), "addItem(NavigationItem) is not supported for type " + type);
             return this;
         }
-        items.put(item.id, item);
-        itemsContainer.appendChild(item.element());
-        if (isAttached(element())) {
-            updateScrollState();
-        }
+        internalAddItem(item, itm -> itemsContainer.appendChild(itm.element()));
         return this;
     }
 
     public Navigation addGroup(NavigationGroup group) {
+        return add(group);
+    }
+
+    public Navigation add(NavigationGroup group) {
         if (type == flat || type == expandable || type instanceof Horizontal) {
             Logger.unsupported(componentType(), element(), "addGroup(NavigationGroup) is not supported for type " + type);
             return this;
         }
-        groups.put(group.id, group);
-        itemsContainer.appendChild(group.element());
+        internalAddGroup(group, grp -> itemsContainer.appendChild(grp.element()));
         return this;
     }
 
     public Navigation addGroup(ExpandableNavigationGroup group) {
+        return add(group);
+    }
+
+    public Navigation add(ExpandableNavigationGroup group) {
         if (type == flat || type == grouped || type instanceof Horizontal) {
             Logger.unsupported(componentType(), element(),
                     "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
             return this;
         }
-        group.collapse(); // all groups are collapsed by default
-        expandableGroups.put(group.id, group);
-        itemsContainer.appendChild(group.element());
-        if (toggleHandler != null) {
-            group.toggleHandler = toggleHandler;
-        }
+        internalAddGroup(group, grp -> itemsContainer.appendChild(group.element()));
         return this;
     }
 
     public Navigation addDivider() {
-        itemsContainer.appendChild(divider(li).element());
+        return add(divider(li));
+    }
+
+    public Navigation add(Divider divider) {
+        itemsContainer.appendChild(divider.element());
+        return this;
+    }
+
+    public Navigation insertItemBefore(NavigationItem item, String beforeItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertBefore(itm.element(), element));
+        }
+        return this;
+    }
+
+    public Navigation insertItemAfter(NavigationItem item, String afterItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddItem(item, itm -> insertAfter(itm.element(), element));
+        }
+        return this;
+    }
+
+    public Navigation insertGroupBefore(NavigationGroup group, String beforeItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertBefore(grp.element(), element));
+        }
+        return this;
+    }
+
+    public Navigation insertGroupAfter(NavigationGroup group, String afterItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertAfter(grp.element(), element));
+        }
+        return this;
+    }
+
+    public Navigation insertGroupBefore(ExpandableNavigationGroup group, String beforeItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, beforeItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertBefore(grp.element(), element));
+        }
+        return this;
+    }
+
+    public Navigation insertGroupAfter(ExpandableNavigationGroup group, String afterItemId) {
+        HTMLElement element = Elements.find(itemsContainer, By.data(navigationItem, afterItemId));
+        if (element != null) {
+            internalAddGroup(group, grp -> insertAfter(grp.element(), element));
+        }
         return this;
     }
 
@@ -391,6 +450,28 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     // ------------------------------------------------------ internal
+
+    private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
+        items.put(item.id, item);
+        dom.accept(item);
+        if (isAttached(element())) {
+            updateScrollState();
+        }
+    }
+
+    private void internalAddGroup(NavigationGroup group, Consumer<NavigationGroup> dom) {
+        groups.put(group.id, group);
+        dom.accept(group);
+    }
+
+    private void internalAddGroup(ExpandableNavigationGroup group, Consumer<ExpandableNavigationGroup> dom) {
+        group.collapse(); // all groups are collapsed by default
+        expandableGroups.put(group.id, group);
+        if (toggleHandler != null) {
+            group.toggleHandler = toggleHandler;
+        }
+        dom.accept(group);
+    }
 
     private void unselectAllItems() {
         // remove the current modifier from all navigation item <a/> elements

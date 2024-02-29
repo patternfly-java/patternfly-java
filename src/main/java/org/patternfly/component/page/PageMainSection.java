@@ -26,6 +26,7 @@ import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Brightness.dark100;
 import static org.patternfly.style.Brightness.dark200;
 import static org.patternfly.style.Brightness.light;
+import static org.patternfly.style.Brightness.light100;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
@@ -55,7 +56,7 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
     // ------------------------------------------------------ builder
 
     public PageMainSection background(Brightness brightness) {
-        if (verifyEnum("PF5/PageMainSection", element(), "background", brightness, light, dark100, dark200)) {
+        if (verifyEnum("PF5/PageMainSection", element(), "background", brightness, light, light100, dark100, dark200)) {
             css(brightness.modifier());
         }
         return this;

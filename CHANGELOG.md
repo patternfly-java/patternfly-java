@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Skeleton component (#85)
 - Toggle group component (#97)
 - Truncate component (#101)
+- Add insert after/before methods for navigation (groups)
 
 ### Fixed
 

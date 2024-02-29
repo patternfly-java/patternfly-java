@@ -15,6 +15,8 @@
  */
 package org.patternfly.layout.grid;
 
+import java.util.function.Function;
+
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
 import org.patternfly.style.Breakpoints;
@@ -57,6 +59,14 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     }
 
     // ------------------------------------------------------ add
+
+    public <T> Grid addItems(Iterable<T> items, Function<T, GridItem> display) {
+        for (T item : items) {
+            GridItem gridItem = display.apply(item);
+            addItem(gridItem);
+        }
+        return this;
+    }
 
     public Grid addItem(GridItem item) {
         return add(item);

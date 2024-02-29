@@ -3,8 +3,6 @@ import java.util.List;
 import org.jboss.elemento.Id;
 
 import static java.util.Arrays.asList;
-import static org.patternfly.component.divider.Divider.divider;
-import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
@@ -45,7 +43,7 @@ public class NavigationDemo {
                 .addGroup(navigationGroup("grp-2", "Group 2")
                         .addItem(navigationItem("grp-2-itm-1", "Item 1", "#grp-2-itm-1"))
                         .addItem(navigationItem("grp-2-itm-2", "Item 2", "#grp-2-itm-2"))
-                        .addDivider(divider(li))
+                        .addDivider()
                         .addItem(navigationItem("grp-2-itm-3", "Item 3", "#grp-2-itm-3")));
         // @end region = grouped
     }
