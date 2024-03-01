@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Breadcrumb component (#27)
+- Jump links component (#60)
 - Progress component (#81)
 - Simple list component (#84)
 - Skeleton component (#85)
