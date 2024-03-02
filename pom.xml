@@ -29,7 +29,7 @@
 
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java</artifactId>
-    <version>0.1.5-SNAPSHOT</version>
+    <version>0.1.5</version>
     <name>PatternFly Java</name>
     <description>Java implementation of PatternFly</description>
     <packaging>jar</packaging>
