@@ -281,18 +281,70 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
 
     // ------------------------------------------------------ events
 
+    /**
+     * Sets the change handler for the progress component.
+     *
+     * @param changeHandler The change handler to be set.
+     * @return The progress component.
+     */
     public Progress onChange(ChangeHandler<Progress, Integer> changeHandler) {
         this.changeHandler = changeHandler;
         return this;
     }
     // ------------------------------------------------------ api
 
+    /**
+     * Decreases the value of the progress component by the step value. If the new value is less than the minimum value,
+     * the minimum value is used instead.
+     */
     public void decrease() {
-
+        int newValue = Math.max(min, value.get() - step);
+        value(newValue);
     }
 
+    /**
+     * Increases the value of the progress component by the step value. If the new value is greater
+     * than the maximum value, the maximum value is used instead.
+     */
     public void increase() {
+        int newValue = Math.min(max, value.get() + step);
+        value(newValue);
+    }
 
+    /**
+     * Retrieves the minimum value of the progress component.
+     *
+     * @return The minimum value of the progress component.
+     */
+    public int min() {
+        return min;
+    }
+
+    /**
+     * Retrieves the maximum value of the progress component.
+     *
+     * @return The maximum value of the progress component.
+     */
+    public int max() {
+        return max;
+    }
+
+    /**
+     * Retrieves the current step value of the progress component.
+     *
+     * @return The current step value of the progress component.
+     */
+    public int step() {
+        return step;
+    }
+
+    /**
+     * Retrieves the range of values for the progress component.
+     *
+     * @return An array containing the minimum, maximum, and step values of the Progress component.
+     */
+    public int[] range() {
+        return new int[]{min, max, step};
     }
 
     @Override
