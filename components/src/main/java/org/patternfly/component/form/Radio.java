@@ -1,0 +1,194 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package org.patternfly.component.form;
+
+import java.util.function.Consumer;
+
+import org.jboss.elemento.InputElementBuilder;
+import org.jboss.elemento.InputType;
+import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasValue;
+import org.patternfly.handler.ChangeHandler;
+import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Required;
+
+import elemental2.dom.Event;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
+import elemental2.dom.HTMLLabelElement;
+
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.label;
+import static org.jboss.elemento.Elements.wrapInputElement;
+import static org.jboss.elemento.EventType.change;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.input;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.standalone;
+
+/**
+ * A radio button is used to present the user with mutually exclusive choices. Always present radio buttons in groups of 2 or
+ * more.
+ *
+ * @see <a href= "https://www.patternfly.org/components/forms/radio">https://www.patternfly.org/components/forms/radio</a>
+ */
+public class Radio extends BaseComponent<HTMLElement, Radio> implements
+        HasValue<Boolean>,
+        Disabled<HTMLElement, Radio>,
+        Required<HTMLElement, Radio> {
+
+    // ------------------------------------------------------ factory
+
+    public static Radio radio(String id, String name) {
+        return new Radio(id, name, null, false);
+    }
+
+    public static Radio radio(String id, String name, boolean checked) {
+        return new Radio(id, name, null, checked);
+    }
+
+    public static Radio radio(String id, String name, String label) {
+        return new Radio(id, name, label, false);
+    }
+
+    public static Radio radio(String id, String name, String label, boolean checked) {
+        return new Radio(id, name, label, checked);
+    }
+
+    // ------------------------------------------------------ instance
+
+    private final HTMLInputElement inputElement;
+    private HTMLLabelElement labelElement;
+    private ChangeHandler<Radio, Boolean> changeHandler;
+
+    Radio(String id, String name, String label, boolean checked) {
+        super(ComponentType.Radio, div().css(component(Classes.radio))
+                .add(input(InputType.radio).css(component(Classes.radio, input))
+                        .id(id)
+                        .name(name)
+                        .checked(checked))
+                .element());
+
+        inputElement = (HTMLInputElement) element().firstElementChild;
+        add(labelElement = label().css(component(Classes.radio, Classes.label))
+                .apply(l -> l.htmlFor = id)
+                .element());
+        if (label != null) {
+            labelElement.textContent = label;
+        }
+    }
+
+    // ------------------------------------------------------ add
+
+    public Radio addBody(RadioBody body) {
+        return add(body);
+    }
+
+    public Radio addDescription(RadioDescription description) {
+        return add(description);
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public Radio disabled(boolean disabled) {
+        inputElement.disabled = disabled;
+        if (labelElement != null) {
+            if (disabled) {
+                labelElement.classList.add(modifier(Classes.disabled));
+            } else {
+                labelElement.classList.remove(modifier(Classes.disabled));
+            }
+        }
+        return this;
+    }
+
+    public Radio reversed() {
+        if (inputElement != null && labelElement != null) {
+            failSafeRemoveFromParent(inputElement);
+            failSafeRemoveFromParent(labelElement);
+            insertFirst(element(), inputElement);
+            insertFirst(element(), labelElement);
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #standalone(boolean) standalone(true)} */
+    public Radio standalone() {
+        return standalone(true);
+    }
+
+    public Radio standalone(boolean removeLabel) {
+        css(modifier(standalone));
+        if (removeLabel) {
+            failSafeRemoveFromParent(labelElement);
+            labelElement = null;
+        }
+        return this;
+    }
+
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
+    public Radio value(boolean checked) {
+        return value(checked, false);
+    }
+
+    public Radio value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
+        inputElement.checked = checked;
+        if (fireEvent && changed && changeHandler != null) {
+            changeHandler.onChange(new Event(""), this, inputElement.checked);
+        }
+        return this;
+    }
+
+    /** Provides access to the underlying radio element using a fluent API style */
+    public Radio applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
+        return this;
+    }
+
+    @Override
+    public Radio that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this radio changes.
+     */
+    public Radio onChange(ChangeHandler<Radio, Boolean> changeHandler) {
+        this.changeHandler = changeHandler;
+        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Boolean value() {
+        return inputElement.checked;
+    }
+
+    public InputElementBuilder<HTMLInputElement> inputElement() {
+        return wrapInputElement(inputElement);
+    }
+}

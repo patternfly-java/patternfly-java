@@ -159,7 +159,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Move masthead, sidebar and skip to content components to its own packages
-- Refactor `org.patternfly.core.WithProgress` interface
+- Refactor `org.patternfly.component.WithProgress` interface
 - Simplify `org.patternfly.style.Modifiers.*` interfaces
 - Rename `org.patternfly.js` → `org.patternfly.dom`
 
