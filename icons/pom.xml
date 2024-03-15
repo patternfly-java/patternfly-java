@@ -69,7 +69,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/generated-sources/js</source>
+                                <source>${project.build.directory}/generated-sources/icons</source>
                             </sources>
                         </configuration>
                     </execution>

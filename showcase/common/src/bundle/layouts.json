@@ -1,0 +1,51 @@
+{
+  "bullseye": {
+    "name": "bullseye",
+    "title": "Bullseye",
+    "route": "/layouts/bullseye",
+    "clazz": "org.patternfly.layout.bullseye.Bullseye",
+    "summary": "Centers content vertically and horizontally."
+  },
+  "flex": {
+    "name": "flex",
+    "title": "Flex",
+    "route": "/layouts/flex",
+    "clazz": "org.patternfly.layout.flex.Flex",
+    "summary": "Creates consistently spaced custom layouts that are responsive to other layouts and PatternFly components."
+  },
+  "gallery": {
+    "name": "gallery",
+    "title": "Gallery",
+    "route": "/layouts/gallery",
+    "clazz": "org.patternfly.layout.gallery.Gallery",
+    "summary": "Arranges content in a responsive grid of uniform rows and columns."
+  },
+  "grid": {
+    "name": "grid",
+    "title": "Grid",
+    "route": "/layouts/grid",
+    "clazz": "org.patternfly.layout.grid.Grid",
+    "summary": "Arranges content on a fixed-size 12 column grid."
+  },
+  "level": {
+    "name": "level",
+    "title": "Level",
+    "route": "/layouts/level",
+    "clazz": "org.patternfly.layout.level.Level",
+    "summary": "Evenly distributes content horizontally."
+  },
+  "split": {
+    "name": "split",
+    "title": "Split",
+    "route": "/layouts/split",
+    "clazz": "org.patternfly.layout.split.Split",
+    "summary": "Distributes multiple items horizontally, which adapt to viewport resizing."
+  },
+  "stack": {
+    "name": "stack",
+    "title": "Stack",
+    "route": "/layouts/stack",
+    "clazz": "org.patternfly.layout.stack.Stack",
+    "summary": "Distributes multiple items vertically, which adapt to the available space of a container."
+  }
+}

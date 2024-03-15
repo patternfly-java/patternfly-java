@@ -17,11 +17,11 @@ package org.patternfly.core;
 
 import java.util.EnumSet;
 
-import elemental2.dom.HTMLElement;
+import elemental2.dom.Element;
 
 public final class Validation {
 
-    public static boolean verifyRange(String category, HTMLElement element, String property, int value, int min, int max) {
+    public static boolean verifyRange(String category, Element element, String property, int value, int min, int max) {
         if (value < 1 || value > 12) {
             Logger.unsupported(category, element, "'" + property + "' out of range. " +
                     "Given: " + value + ", allowed [" + min + "," + max + "].");
@@ -31,7 +31,7 @@ public final class Validation {
     }
 
     @SafeVarargs
-    public static <E extends Enum<E>> boolean verifyEnum(String category, HTMLElement element, String property, E value,
+    public static <E extends Enum<E>> boolean verifyEnum(String category, Element element, String property, E value,
             E firstAllowedValue, E... otherAllowedValues) {
         EnumSet<E> allowed = EnumSet.of(firstAllowedValue, otherAllowedValues);
         if (!allowed.contains(value)) {

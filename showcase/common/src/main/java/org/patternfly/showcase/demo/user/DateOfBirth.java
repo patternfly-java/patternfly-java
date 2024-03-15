@@ -13,7 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly;
+package org.patternfly.showcase.demo.user;
 
-public class PatternFly {
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class DateOfBirth {
+
+    public String date;
+    public int age;
 }

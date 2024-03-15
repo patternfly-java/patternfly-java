@@ -31,4 +31,43 @@
     <artifactId>patternfly-java-showcase-j2cl</artifactId>
     <packaging>jar</packaging>
     <name>PatternFly Java Showcase J2CL</name>
+
+    <properties>
+        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>processors</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.patternfly</groupId>
+            <artifactId>patternfly-java-j2cl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-showcase-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.j2cl.processors</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.j2cl.processors</groupId>
+            <artifactId>processors</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

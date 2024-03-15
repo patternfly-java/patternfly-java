@@ -15,12 +15,13 @@
 ///
 
 import camelCase from 'camelcase';
+// @ts-ignore
 import {mkdir, writeFile} from 'node:fs/promises';
 import type {IconSpec} from './icons.js';
 import * as SETS from './icons.js';
 
 const keywords = ["import", "package", "private"];
-const root = "../../target/generated-sources/js";
+const root = "../../target/generated-sources/icons";
 const package_ = "org/patternfly/icon";
 
 const iconSpec = (set: string, id: string, name: string, {
@@ -82,17 +83,22 @@ const iconSet = (set: string, icons: Record<string, IconSpec>) =>
 
 const failSafeName = (value: string) => keywords.includes(value) ? value + "_" : value
 
-const entries: [string, Record<string, IconSpec>][] = Object.entries(SETS);
-for (const [set, icons] of entries) {
+let iconsCount = 0;
+const setEntries: [string, Record<string, IconSpec>][] = Object.entries(SETS);
+for (const [set, icons] of setEntries) {
     const setDir = new URL(`${root}/${package_}/${set}/`, import.meta.url);
     await mkdir(setDir, {recursive: true});
-    for (const [id, icon] of Object.entries(icons)) {
+    const iconEntries = Object.entries(icons);
+    for (const [id, icon] of iconEntries) {
         const name = camelCase(id, {pascalCase: true});
         const iconSpecCode = iconSpec(set, id, name, icon);
         await writeFile(new URL(`./${name}.java`, setDir), iconSpecCode, 'utf8');
     }
+    iconsCount += iconEntries.length;
+    console.info(`Generated ${iconEntries.length} icons for set '${set}'`);
 }
 
 const dir = new URL(`${root}/${package_}/`, import.meta.url);
-const predefinedIconCode = iconSets(entries);
+const predefinedIconCode = iconSets(setEntries);
 await writeFile(new URL(`./IconSets.java`, dir), predefinedIconCode, 'utf8');
+console.info(`Generated 'IconSets.java' with ${iconsCount} icons`);

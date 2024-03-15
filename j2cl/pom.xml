@@ -33,31 +33,6 @@
     <name>PatternFly Java J2CL</name>
     <description>PatternFly Java GWT dependency for J2CL applications</description>
 
-    <properties>
-        <j2cl.compilationLevel>BUNDLE</j2cl.compilationLevel>
-        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>common</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>processors</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.patternfly</groupId>
@@ -67,43 +42,5 @@
             <groupId>org.patternfly</groupId>
             <artifactId>patternfly-java-layouts</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>processors</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
-
-<!--
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-generated-sources</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.build.directory}/generated-sources/annotations/org/patternfly/thirdparty/ThirdPartyBundleImpl.java" todir="${project.build.outputDirectory}/org/patternfly/thirdparty/"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
--->
 </project>

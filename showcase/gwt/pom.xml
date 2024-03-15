@@ -37,6 +37,10 @@
             <groupId>org.patternfly</groupId>
             <artifactId>patternfly-java-gwt</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-showcase-common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

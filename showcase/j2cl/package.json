@@ -1,0 +1,25 @@
+{
+  "name": "patternfly-showcase",
+  "description": "Showcase for PatternFly Java",
+  "private": true,
+  "parcelIgnore": [
+    "showcase.j2cl.js"
+  ],
+  "source": "src/web/index.html",
+  "scripts": {
+    "watch": "parcel serve --https --dist-dir target/showcase --open",
+    "build": "parcel build --dist-dir target/showcase --public-url \"./\""
+  },
+  "devDependencies": {
+    "@parcel/core": "^2.12.0",
+    "@parcel/reporter-cli": "^2.12.0",
+    "@parcel/resolver-glob": "^2.12.0",
+    "@parcel/transformer-inline-string": "^2.12.0",
+    "parcel": "^2.12.0",
+    "parcel-resolver-ignore": "^2.2.0"
+  },
+  "dependencies": {
+    "@github/relative-time-element": "^4.3.1",
+    "@patternfly/patternfly": "^5.2.1"
+  }
+}

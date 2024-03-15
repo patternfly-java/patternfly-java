@@ -184,6 +184,9 @@
                         <aggregate>true</aggregate>
                         <strictCheck>true</strictCheck>
                         <useDefaultExcludes>true</useDefaultExcludes>
+                        <mapping>
+                            <parcelrc>DOUBLESLASH_STYLE</parcelrc>
+                        </mapping>
                         <licenseSets>
                             <licenseSet>
                                 <header>build-config/src/main/resources/etc/license.txt</header>
