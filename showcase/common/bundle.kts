@@ -29,7 +29,7 @@ require(args.isNotEmpty()) {
 
 val packageName = "org.patternfly.showcase"
 val className = "ResourceBundle"
-val target = "target/generated-sources/bundle"
+val target = "src/main/java"
 val resources = listOf(
         Resource("avatarDark", File(args[0], "src/bundle/avatar-dark.svg"), true),
         Resource("avatarLight", File(args[0], "src/bundle/avatar-light.svg"), true),
@@ -62,6 +62,12 @@ fun startClass() {
     javaSource.appendText("""
     |package $packageName;
     |
+    |import javax.annotation.processing.Generated;
+    |
+    |/*
+    | * WARNING! This class is generated. Do not modify.
+    | */
+    |@Generated("bundle.kts")
     |public final class $className {
     |
 """.trimMargin())

@@ -42,24 +42,4 @@
             <artifactId>patternfly-java-showcase-common</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>net.ltgt.gwt.maven</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <configuration>
-                    <devmodeArgs>
-                        <devmodeArg>-startupUrl</devmodeArg>
-                        <devmodeArg>flow/index.html</devmodeArg>
-                    </devmodeArgs>
-                    <draftCompile>${gwt.draftCompile}</draftCompile>
-                    <moduleName>org.jboss.elemento.sample.Flow</moduleName>
-                    <moduleShortName>flow</moduleShortName>
-                    <sourceLevel>${java.version}</sourceLevel>
-                    <style>${gwt.style}</style>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

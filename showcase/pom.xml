@@ -35,7 +35,10 @@
     <properties>
         <!-- Dependency versions -->
         <version.gwt>2.11.0</version.gwt>
+        <version.kotlin>1.9.23</version.kotlin>
         <version.node>v20.8.1</version.node>
+        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
+        <version.yarn>v1.22.21</version.yarn>
 
         <!-- Plugin versions -->
         <version.frontend.plugin>1.15.0</version.frontend.plugin>
@@ -47,6 +50,7 @@
         <gwt.style>DETAILED</gwt.style>
         <j2cl.compilationLevel>BUNDLE</j2cl.compilationLevel>
         <npm.script>dev</npm.script>
+        <settings.base>/</settings.base>
     </properties>
 
     <modules>
@@ -64,13 +68,13 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase--gwt</artifactId>
+                <artifactId>patternfly-java-showcase-gwt</artifactId>
                 <version>${project.version}</version>
                 <classifier>resources</classifier>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase--j2cl</artifactId>
+                <artifactId>patternfly-java-showcase-j2cl</artifactId>
                 <version>${project.version}</version>
                 <classifier>resources</classifier>
             </dependency>
@@ -80,6 +84,23 @@
                 <version>${version.gwt}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${version.kotlin}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.treblereel.j2cl.processors</groupId>
+                <artifactId>processors</artifactId>
+                <version>${version.treblereel.j2cl.processors}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -104,6 +125,11 @@
                     <artifactId>j2cl-maven-plugin</artifactId>
                     <version>${version.j2cl.plugin}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-maven-plugin</artifactId>
+                    <version>${version.kotlin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -116,6 +142,12 @@
                 <gwt.style>OBFUSCATED</gwt.style>
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
                 <npm.script>prod</npm.script>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <settings.base>/showcase</settings.base>
             </properties>
         </profile>
     </profiles>

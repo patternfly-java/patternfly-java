@@ -21,7 +21,8 @@ import org.jboss.elemento.router.PlaceManager;
 import org.jboss.elemento.router.RoutesImpl;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
-import org.treblereel.j2cl.processors.annotations.GWT3EntryPoint;
+import org.patternfly.component.page.Page;
+import org.patternfly.style.Classes;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.body;
@@ -44,24 +45,25 @@ import static org.patternfly.showcase.Assets.pfLogo;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
-import static org.patternfly.showcase.Environment.env;
-import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 
-public class Main {
+public final class Showcase {
 
     static final String MAIN_ID = "pfj-main-id";
 
-    @GWT3EntryPoint
-    public void onModuleLoad() {
+    private static Navigation navigation;
+    private static PlaceManager placeManager;
+    private static Page page;
+
+    public static void init(String base) {
         // navigation #1
-        Navigation navigation = navigation(expandable);
+        navigation = navigation(expandable);
 
         // place manager
-        PlaceManager placeManager = new PlaceManager()
-                .base(env().base())
+        placeManager = new PlaceManager()
+                .base(base)
                 .root(By.id(MAIN_ID))
                 .linkSelector(By.attribute("target", ApiDoc.API_DOC_TARGET), true)
                 .title(title -> "PatternFly Java • " + title)
@@ -100,22 +102,24 @@ public class Main {
                         .addMain(mastheadMain()
                                 .addBrand(mastheadBrand(a("/"))
                                         .addBrand(brand(pfLogo, "PatternFly")
-                                                .style(componentVar(component(brand), Height).name, "36px")))))
+                                                .style(componentVar(component(Classes.brand), Height).name, "36px")))))
                 .addSidebar(pageSidebar()
                         .addBody(pageSidebarBody()
                                 .addNavigation(navigation)))
                 .addMain(pageMain(MAIN_ID))
                 .add(backToTop().css("ws-back-to-top")
                         .scrollableSelector(By.id(MAIN_ID))));
-
-        placeManager.start();
     }
 
-    private  NavigationItem ni(Place place) {
+    private static NavigationItem ni(Place place) {
         return ni(place, place.title);
     }
 
-    private  NavigationItem ni(Place place, String text) {
+    private static NavigationItem ni(Place place, String text) {
         return navigationItem(place.route, text, place.route);
+    }
+
+    public static void start() {
+        placeManager.start();
     }
 }

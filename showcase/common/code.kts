@@ -27,7 +27,7 @@ require(args.isNotEmpty()) {
 
 val packageName = "org.patternfly.showcase"
 val className = "Code"
-val target = "target/generated-sources/code"
+val target = "src/main/java"
 val startComment = "// @code-start:"
 val endComment = "// @code-end:"
 val sourcePaths = mapOf(
@@ -65,6 +65,12 @@ fun startClass() {
         |import java.util.Map;
         |import java.util.HashMap;
         |
+        |import javax.annotation.processing.Generated;
+        |
+        |/*
+        | * WARNING! This class is generated. Do not modify.
+        | */
+        |@Generated("code.kts")
         |public final class $className {
         |
         |   private static final Map<String, String> snippets = new HashMap<>();

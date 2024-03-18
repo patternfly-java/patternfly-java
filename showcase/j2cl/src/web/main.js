@@ -28,8 +28,3 @@ import "./pforg/sideNav.css";
 import './pforg/sideNavLayout.css';
 import './pforg/truncate.css';
 import "./styles.css";
-
-import "@popperjs/core";
-import "@github/relative-time-element";
-import "./assets/assets";
-import "./code";

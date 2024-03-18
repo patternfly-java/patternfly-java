@@ -32,25 +32,6 @@
     <packaging>jar</packaging>
     <name>PatternFly Java Showcase J2CL</name>
 
-    <properties>
-        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>processors</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.patternfly</groupId>
@@ -70,4 +51,78 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>showcase</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>.parcel-cache</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-node-and-yarn</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${version.node}</nodeVersion>
+                            <yarnVersion>${version.yarn}</yarnVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn-install</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn-parcel</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.vertispan.j2cl</groupId>
+                <artifactId>j2cl-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <enableSourcemaps>true</enableSourcemaps>
+                            <compilationLevel>${j2cl.compilationLevel}</compilationLevel>
+                            <initialScriptFilename>showcase.j2cl.js</initialScriptFilename>
+                            <webappDirectory>${project.build.directory}/showcase</webappDirectory>
+                            <defines>
+                                <settings.base>${settings.base}</settings.base>
+                            </defines>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

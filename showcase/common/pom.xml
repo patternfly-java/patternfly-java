@@ -32,10 +32,6 @@
     <packaging>jar</packaging>
     <name>PatternFly Java Showcase Common</name>
 
-    <properties>
-        <version.kotlin>1.9.23</version.kotlin>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -57,7 +53,6 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
-            <version>${version.kotlin}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -65,28 +60,23 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-snippets</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/bundle</source>
-                                <source>${project.build.directory}/generated-sources/code</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/java</directory>
+                            <includes>
+                                <include>org/patternfly/showcase/Code.java</include>
+                                <include>org/patternfly/showcase/ResourceBundle.java</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${version.kotlin}</version>
                 <executions>
                     <execution>
                         <id>bundle</id>

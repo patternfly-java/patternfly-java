@@ -60,23 +60,23 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:patternfly-java/patternfly-java.git</connection>
-        <developerConnection>scm:git:git@github.com:patternfly-java/patternfly-java.git</developerConnection>
-        <url>https://github.com/patternfly-java/patternfly-java</url>
+        <connection>scm:git:git@github.com:${github.org}/${github.name}.git</connection>
+        <developerConnection>scm:git:git@github.com:${github.org}/${github.name}.git</developerConnection>
+        <url>https://github.com/${github.org}/${github.name}</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/patternfly-java/patternfly-java/issues</url>
+        <url>https://github.com/${github.org}/${github.name}/issues</url>
     </issueManagement>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <url>${sonatype.url}/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>${sonatype.url}/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.4.0</version.elemento>
+        <version.elemento>1.4.1-SNAPSHOT</version.elemento>
         <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
@@ -107,6 +107,8 @@
 
         <!-- Build related -->
         <encoding>UTF-8</encoding>
+        <github.org>patternfly-java</github.org>
+        <github.name>patternfly-java</github.name>
         <java.version>11</java.version>
         <javadoc.options/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -114,14 +116,15 @@
         <maven.min.version>3.2.5</maven.min.version>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <sonatype.url>https://s01.oss.sonatype.org</sonatype.url>
     </properties>
 
     <modules>
         <module>bom</module>
         <module>build-config</module>
         <module>code-parent</module>
-        <module>core</module>
         <module>components</module>
+        <module>core</module>
         <module>extensions/codeeditor</module>
         <module>extensions/finder</module>
         <module>gwt</module>
@@ -129,7 +132,6 @@
         <module>j2cl</module>
         <module>layouts</module>
     </modules>
-
 
     <!-- No dependencies! Dependencies are managed in core-parent -->
     <dependencies/>
@@ -202,6 +204,11 @@
                                     <exclude>README.md</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
                                     <exclude>**/src/main/resources/org/patternfly/thirdparty/**</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/fa?/*.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/patternfly/*.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
@@ -498,7 +505,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <nexusUrl>${sonatype.url}</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>

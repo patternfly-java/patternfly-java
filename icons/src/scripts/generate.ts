@@ -21,7 +21,7 @@ import type {IconSpec} from './icons.js';
 import * as SETS from './icons.js';
 
 const keywords = ["import", "package", "private"];
-const root = "../../target/generated-sources/icons";
+const root = "../main/java";
 const package_ = "org/patternfly/icon";
 
 const iconSpec = (set: string, id: string, name: string, {
@@ -33,8 +33,14 @@ const iconSpec = (set: string, id: string, name: string, {
     yOffset = 0
 }: IconSpec) => `package org.patternfly.icon.${set};
 
+import javax.annotation.processing.Generated;
+
 import org.patternfly.icon.IconSpec;
 
+/*
+* WARNING! This class is generated. Do not modify.
+*/
+@Generated("generate.ts")
 public class ${name} extends IconSpec {
 
     public ${name}() {
@@ -45,6 +51,12 @@ public class ${name} extends IconSpec {
 
 const iconSets = (entries: [string, Record<string, IconSpec>][]) => `package org.patternfly.icon;
 
+import javax.annotation.processing.Generated;
+
+/*
+* WARNING! This class is generated. Do not modify.
+*/
+@Generated("generate.ts")
 @SuppressWarnings("SpellCheckingInspection")
 public final class IconSets {
 
