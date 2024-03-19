@@ -337,7 +337,7 @@ public interface Classes {
 
     // ------------------------------------------------------ internal
 
-    private static String compose(char abbreviation, String type, String... elements) {
+    static String compose(char abbreviation, String type, String... elements) {
         StringBuilder builder = new StringBuilder();
         if (type != null && !type.isEmpty()) {
             builder.append("pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-").append(abbreviation).append("-").append(type);

@@ -325,6 +325,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     // ------------------------------------------------------ builder
 
+    @Override
+    public Tabs box(boolean box) {
+        return toggleModifier(this, mainContainer.element(), Classes.box, box);
+    }
+
     public Tabs closeable() {
         this.closeable = true;
         return closeable(null);
