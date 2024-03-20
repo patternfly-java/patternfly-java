@@ -13,17 +13,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import jsinterop.annotations.JsType;
+public enum ModifierPhase {
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+    beforeRead,
 
-@JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class Rect {
+    read,
 
-    public double x;
-    public double y;
-    public double width;
-    public double height;
+    afterRead,
+
+    beforeMain,
+
+    main,
+
+    afterMain,
+
+    beforeWrite,
+
+    write,
+
+    afterWrite
 }

@@ -29,14 +29,14 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Severity;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.popper.Modifiers;
-import org.patternfly.component.popper.Placement;
-import org.patternfly.component.popper.Popper;
-import org.patternfly.component.popper.PopperBuilder;
-import org.patternfly.component.popper.TriggerAction;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popper.Modifiers;
+import org.patternfly.popper.Placement;
+import org.patternfly.popper.Popper;
+import org.patternfly.popper.PopperBuilder;
+import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Modifiers.NoPadding;
 
 import elemental2.dom.Element;
@@ -59,8 +59,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.popover.PopoverBody.popoverBody;
 import static org.patternfly.component.popover.PopoverFooter.popoverFooter;
 import static org.patternfly.component.popover.PopoverHeader.popoverHeader;
-import static org.patternfly.component.popper.Placement.auto;
-import static org.patternfly.component.popper.Placement.top;
 import static org.patternfly.core.Aria.describedBy;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -69,6 +67,8 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.popper.Placement.auto;
+import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
@@ -171,7 +171,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         if (trigger != null) {
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
-                popper = new PopperBuilder(componentType(), triggerElement, element())
+                popper = new PopperBuilder(componentType().componentName, triggerElement, element())
                         .animationDuration(animationDuration)
                         .zIndex(zIndex)
                         .placement(placement)

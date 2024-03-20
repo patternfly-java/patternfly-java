@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ import java.util.function.Consumer;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.Key;
-import org.patternfly.component.ComponentType;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
@@ -40,11 +39,11 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.EventType.bind;
-import static org.patternfly.component.popper.Placement.auto;
+import static org.patternfly.popper.Placement.auto;
 
 public class PopperBuilder {
 
-    private final ComponentType componentType;
+    private final String componentName;
     private final HTMLElement triggerElement;
     private final HTMLElement popperElement;
     private final JsArray<Modifier> modifiers;
@@ -55,8 +54,8 @@ public class PopperBuilder {
     private int zIndex;
     private Placement placement;
 
-    public PopperBuilder(ComponentType componentType, HTMLElement triggerElement, HTMLElement popperElement) {
-        this.componentType = componentType;
+    public PopperBuilder(String componentName, HTMLElement triggerElement, HTMLElement popperElement) {
+        this.componentName = componentName;
         this.triggerElement = triggerElement;
         this.popperElement = popperElement;
         this.modifiers = new JsArray<>();
@@ -158,7 +157,7 @@ public class PopperBuilder {
     public Popper build() {
         Any createPopperFn = Js.global().nestedGetAsAny(Popper.POPPER_CREATE);
         if (createPopperFn == null || isTripleEqual(createPopperFn, undefined())) {
-            return new PopperError(componentType.componentName);
+            return new PopperError(componentName);
         } else {
             Options options = new Options();
             options.placement = placement.value;

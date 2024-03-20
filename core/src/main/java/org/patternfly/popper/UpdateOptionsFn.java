@@ -13,25 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-public enum ModifierPhase {
+import jsinterop.annotations.JsFunction;
 
-    beforeRead,
+@JsFunction
+@FunctionalInterface
+public interface UpdateOptionsFn {
 
-    read,
-
-    afterRead,
-
-    beforeMain,
-
-    main,
-
-    afterMain,
-
-    beforeWrite,
-
-    write,
-
-    afterWrite
+    Options update(Options options);
 }

@@ -13,15 +13,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-public enum TriggerAction {
+import jsinterop.annotations.JsEnum;
 
-    mouseenter,
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    focus,
+@JsEnum(isNative = true, namespace = GLOBAL)
+public enum Strategy {
 
-    click,
+    absolute,
 
-    manual
+    fixed
 }

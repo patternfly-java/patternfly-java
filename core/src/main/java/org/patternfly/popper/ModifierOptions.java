@@ -13,17 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
 import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class State {
+public class ModifierOptions {
 
-    public StateElements elements;
-    public String placement;
-    public StateRects rects;
-    public StyleDefinitions styles;
+    public int[] offset;
 }

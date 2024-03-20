@@ -13,15 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import jsinterop.annotations.JsType;
+import org.jboss.elemento.Callback;
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+import elemental2.promise.Promise;
 
-@JsType(isNative = true, namespace = GLOBAL, name = "Object")
-public class StateRects {
+public interface Popper {
 
-    public Rect reference;
-    public Rect popper;
+    int UNDEFINED = -1;
+    String POPPER_CREATE = "Popper.createPopper";
+
+    Promise<State> update();
+
+    void show(Callback visible);
+
+    void hide(Callback hidden);
+
+    void cleanup();
 }

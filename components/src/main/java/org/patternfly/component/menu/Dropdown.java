@@ -23,14 +23,14 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentDelegate;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.popper.Modifiers;
-import org.patternfly.component.popper.Placement;
-import org.patternfly.component.popper.Popper;
-import org.patternfly.component.popper.PopperBuilder;
-import org.patternfly.component.popper.TriggerAction;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popper.Modifiers;
+import org.patternfly.popper.Placement;
+import org.patternfly.popper.Popper;
+import org.patternfly.popper.PopperBuilder;
+import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Event;
@@ -40,10 +40,10 @@ import elemental2.dom.MutationRecord;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.setVisible;
-import static org.patternfly.component.popper.Placement.auto;
-import static org.patternfly.component.popper.Placement.bottomStart;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.popper.Placement.auto;
+import static org.patternfly.popper.Placement.bottomStart;
 
 /**
  * A dropdown presents a menu of actions or links in a constrained space that will trigger a process or navigate to a new
@@ -92,7 +92,7 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
             }
             setVisible(menu, false);
             insertAfter(menu.element(), toggle.element());
-            popper = new PopperBuilder(componentType(), toggle.element(), menu.element())
+            popper = new PopperBuilder(componentType().componentName, toggle.element(), menu.element())
                     .zIndex(zIndex)
                     .placement(placement)
                     .addModifier(Modifiers.noOverflow(),

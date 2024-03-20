@@ -33,7 +33,7 @@
     <packaging>pom</packaging>
     <name>PatternFly Java Parent</name>
     <description>Java implementation of PatternFly</description>
-    <url>https://github.com/patternfly-java</url>
+    <url>https://patternfly-java.github.io</url>
     <inceptionYear>2023</inceptionYear>
 
     <licenses>
@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.4.1-SNAPSHOT</version.elemento>
+        <version.elemento>1.4.2</version.elemento>
         <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
@@ -99,6 +99,7 @@
         <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
         <version.frontend.plugin>1.15.0</version.frontend.plugin>
         <version.gwt.plugin>1.1.0</version.gwt.plugin>
+        <version.j2cl.plugin>0.22.0</version.j2cl.plugin>
         <version.impsort.plugin>1.9.0</version.impsort.plugin>
         <version.javadoc.plugin>3.6.3</version.javadoc.plugin>
         <version.keepachangelog>2.1.1</version.keepachangelog>
@@ -171,6 +172,15 @@
                         <groups>java.,javax.,jakarta.,org.,io.,com.</groups>
                         <removeUnused>true</removeUnused>
                         <staticAfter>true</staticAfter>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.vertispan.j2cl</groupId>
+                    <artifactId>j2cl-maven-plugin</artifactId>
+                    <version>${version.j2cl.plugin}</version>
+                    <configuration>
+                        <initialScriptFilename>showcase.j2cl.js</initialScriptFilename>
+                        <webappDirectory>${project.build.directory}/showcase</webappDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -273,18 +283,18 @@
                         <additionalOptions>${javadoc.options}</additionalOptions>
                         <detectLinks>true</detectLinks>
                         <doclint>none</doclint>
-                        <sourceFileExcludes>
-                            <sourceFileExclude>**/ThirdPartyBundle*.java</sourceFileExclude>
-                        </sourceFileExcludes>
                         <failOnError>false</failOnError>
+                        <excludePackageNames>org.patternfly.showcase</excludePackageNames>
                         <links>
-                            <link>https://hal.github.io/elemento/apidoc</link>
+                            <link>https://patternfly-java.github.io/apidocs/</link>
+                            <link>https://hal.github.io/elemento/apidocs/</link>
                             <link>https://www.gwtproject.org/javadoc/latest/</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}/</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}/</link>
                             <link>https://javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
                             <link>https://javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/</link>
+                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/
+                            </link>
                         </links>
                         <show>public</show>
                     </configuration>

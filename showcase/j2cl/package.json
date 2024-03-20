@@ -8,7 +8,11 @@
   "source": "src/web/index.html",
   "scripts": {
     "watch": "parcel serve --https --dist-dir target/showcase --open",
-    "build": "parcel build --dist-dir target/showcase --public-url \"./\""
+    "prod": "parcel build --dist-dir target/showcase --public-url \"./\"",
+
+    "watch": "parcel serve --dist-dir target/todo --open",
+    "dev": "parcel build --dist-dir target/todo --no-optimize",
+    "prod": "parcel build --dist-dir target/todo --public-url /elemento/samples/todo/j2cl/"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",

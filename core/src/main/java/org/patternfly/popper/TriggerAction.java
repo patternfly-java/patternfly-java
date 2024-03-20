@@ -13,13 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import jsinterop.annotations.JsFunction;
+public enum TriggerAction {
 
-@JsFunction
-@FunctionalInterface
-public interface UpdateOptionsFn {
+    mouseenter,
 
-    Options update(Options options);
+    focus,
+
+    click,
+
+    manual
 }

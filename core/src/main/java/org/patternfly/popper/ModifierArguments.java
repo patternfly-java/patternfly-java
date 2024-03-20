@@ -13,16 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import jsinterop.annotations.JsEnum;
+import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
-@JsEnum(isNative = true, namespace = GLOBAL)
-public enum Strategy {
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class ModifierArguments {
 
-    absolute,
-
-    fixed
+    public State state;
+    public String name;
 }

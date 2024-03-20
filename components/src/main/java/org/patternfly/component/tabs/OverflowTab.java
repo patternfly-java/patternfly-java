@@ -27,10 +27,10 @@ import org.patternfly.component.Expandable;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
-import org.patternfly.component.popper.Popper;
-import org.patternfly.component.popper.PopperBuilder;
-import org.patternfly.component.popper.TriggerAction;
 import org.patternfly.core.Aria;
+import org.patternfly.popper.Popper;
+import org.patternfly.popper.PopperBuilder;
+import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
 
@@ -48,10 +48,15 @@ import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItemType.action;
 import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.component.popper.Placement.bottomStart;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.popper.Modifiers.eventListeners;
+import static org.patternfly.popper.Modifiers.flip;
+import static org.patternfly.popper.Modifiers.hide;
+import static org.patternfly.popper.Modifiers.noOverflow;
+import static org.patternfly.popper.Modifiers.placement;
+import static org.patternfly.popper.Placement.bottomStart;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.hasPopup;
@@ -107,14 +112,14 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                                 .addItems(tabs.values(), tab -> menuItem(tab.id, action).text(tab.text())))));
         setVisible(menu, false);
 
-        popper = new PopperBuilder(ComponentType.Tabs, button.element(), menu.element())
+        popper = new PopperBuilder(ComponentType.Tabs.componentName, button.element(), menu.element())
                 .zIndex(9999)
                 .placement(bottomStart)
-                .addModifier(org.patternfly.component.popper.Modifiers.noOverflow(),
-                        org.patternfly.component.popper.Modifiers.hide(),
-                        org.patternfly.component.popper.Modifiers.flip(true),
-                        org.patternfly.component.popper.Modifiers.placement(),
-                        org.patternfly.component.popper.Modifiers.eventListeners(false))
+                .addModifier(noOverflow(),
+                        hide(),
+                        flip(true),
+                        placement(),
+                        eventListeners(false))
                 .registerHandler(button.element(), EnumSet.of(TriggerAction.click), this::show, this::close)
                 .build();
     }

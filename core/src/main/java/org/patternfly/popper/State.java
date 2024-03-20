@@ -13,13 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsType;
 
-@JsFunction
-@FunctionalInterface
-public interface FirstUpdateFn {
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    void invoke(State state);
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class State {
+
+    public StateElements elements;
+    public String placement;
+    public StateRects rects;
+    public StyleDefinitions styles;
 }

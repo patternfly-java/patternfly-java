@@ -27,13 +27,13 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
-import org.patternfly.component.popper.Modifiers;
-import org.patternfly.component.popper.Placement;
-import org.patternfly.component.popper.Popper;
-import org.patternfly.component.popper.PopperBuilder;
-import org.patternfly.component.popper.TriggerAction;
 import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popper.Modifiers;
+import org.patternfly.popper.Placement;
+import org.patternfly.popper.Popper;
+import org.patternfly.popper.PopperBuilder;
+import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -46,16 +46,16 @@ import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.isVisible;
-import static org.patternfly.component.popper.Placement.auto;
-import static org.patternfly.component.popper.Placement.top;
-import static org.patternfly.component.popper.TriggerAction.focus;
-import static org.patternfly.component.popper.TriggerAction.mouseenter;
 import static org.patternfly.component.tooltip.TriggerAria.describedBy;
 import static org.patternfly.component.tooltip.TriggerAria.none;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.popper.Placement.auto;
+import static org.patternfly.popper.Placement.top;
+import static org.patternfly.popper.TriggerAction.focus;
+import static org.patternfly.popper.TriggerAction.mouseenter;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
@@ -165,7 +165,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
                 if (isAttached(triggerElement)) {
-                    popper = new PopperBuilder(componentType(), triggerElement, element())
+                    popper = new PopperBuilder(componentType().componentName, triggerElement, element())
                             .animationDuration(animationDuration)
                             .entryDelay(entryDelay)
                             .exitDelay(exitDelay)

@@ -40,15 +40,10 @@
         <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
         <version.yarn>v1.22.21</version.yarn>
 
-        <!-- Plugin versions -->
-        <version.frontend.plugin>1.15.0</version.frontend.plugin>
-        <version.gwt.plugin>1.1.0</version.gwt.plugin>
-        <version.j2cl.plugin>0.22.0</version.j2cl.plugin>
-
         <!-- Build related -->
         <gwt.draftCompile>true</gwt.draftCompile>
         <gwt.style>DETAILED</gwt.style>
-        <j2cl.compilationLevel>BUNDLE</j2cl.compilationLevel>
+        <j2cl.compilationLevel>BUNDLE_JAR</j2cl.compilationLevel>
         <npm.script>dev</npm.script>
         <settings.base>/</settings.base>
     </properties>
@@ -110,22 +105,6 @@
             <plugins>
                 <!-- Ordered by artifactID -->
                 <plugin>
-                    <groupId>com.github.eirslett</groupId>
-                    <artifactId>frontend-maven-plugin</artifactId>
-                    <version>${version.frontend.plugin}</version>
-                </plugin>
-                <plugin>
-                    <groupId>net.ltgt.gwt.maven</groupId>
-                    <artifactId>gwt-maven-plugin</artifactId>
-                    <version>${version.gwt.plugin}</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>com.vertispan.j2cl</groupId>
-                    <artifactId>j2cl-maven-plugin</artifactId>
-                    <version>${version.j2cl.plugin}</version>
-                </plugin>
-                <plugin>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-maven-plugin</artifactId>
                     <version>${version.kotlin}</version>
@@ -151,17 +130,4 @@
             </properties>
         </profile>
     </profiles>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>j2cl-staging</id>
-            <url>https://oss.sonatype.org/content/repositories/comvertispan-1082</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

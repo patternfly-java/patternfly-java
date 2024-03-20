@@ -13,22 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.popper;
+package org.patternfly.popper;
 
-import org.jboss.elemento.Callback;
+import elemental2.core.JsArray;
+import jsinterop.annotations.JsType;
 
-import elemental2.promise.Promise;
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-public interface Popper {
+@JsType(isNative = true, namespace = GLOBAL, name = "Object")
+public class Options {
 
-    int UNDEFINED = -1;
-    String POPPER_CREATE = "Popper.createPopper";
-
-    Promise<State> update();
-
-    void show(Callback visible);
-
-    void hide(Callback hidden);
-
-    void cleanup();
+    public String placement;
+    public JsArray<Modifier> modifiers;
+    public Strategy strategy;
+    public FirstUpdateFn onFirstUpdate;
 }
