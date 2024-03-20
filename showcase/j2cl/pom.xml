@@ -98,7 +98,7 @@
                             <goal>yarn</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run ${npm.script}</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -112,8 +112,8 @@
                             <goal>build</goal>
                         </goals>
                         <configuration>
-                            <enableSourcemaps>true</enableSourcemaps>
                             <compilationLevel>${j2cl.compilationLevel}</compilationLevel>
+                            <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>
                             <defines>
                                 <settings.base>${settings.base}</settings.base>
                             </defines>

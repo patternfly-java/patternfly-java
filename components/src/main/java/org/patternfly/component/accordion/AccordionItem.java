@@ -149,6 +149,8 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
 
         if (expanded) {
             Expandable.expand(contentElement, toggleElement, contentElement, true);
+            contentElement.classList.add(modifier(Classes.expanded));
+            toggleElement.classList.add(modifier(Classes.expanded));
         } else {
             Expandable.collapse(contentElement, toggleElement, contentElement, true);
         }
@@ -166,12 +168,16 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     void collapse() {
         if (contentElement != null && toggleElement != null) {
             Expandable.collapse(contentElement, toggleElement, contentElement);
+            contentElement.classList.remove(modifier(Classes.expanded));
+            toggleElement.classList.remove(modifier(Classes.expanded));
         }
     }
 
     void expand() {
         if (contentElement != null && toggleElement != null) {
             Expandable.expand(contentElement, toggleElement, contentElement);
+            contentElement.classList.add(modifier(Classes.expanded));
+            toggleElement.classList.add(modifier(Classes.expanded));
         }
     }
 }

@@ -217,6 +217,7 @@
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/fa?/*.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/patternfly/*.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                 </excludes>

@@ -24,7 +24,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Bordered;
 import org.patternfly.style.Size;
 
 import elemental2.dom.Event;
@@ -47,7 +47,7 @@ import static org.patternfly.style.Size.lg;
  * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
  */
 public class Accordion extends BaseComponent<HTMLElement, Accordion>
-        implements Modifiers.Bordered<HTMLElement, Accordion>, Attachable {
+        implements Bordered<HTMLElement, Accordion>, Attachable {
 
     // ------------------------------------------------------ factory
 

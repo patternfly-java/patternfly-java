@@ -26,7 +26,7 @@ import static org.patternfly.style.Color.red;
 
 public interface ApiDoc {
 
-    String API_DOC_BASE = "https://patternfly-java.github.io/patternfly-java/";
+    String API_DOC_BASE = "https://patternfly-java.github.io/apidocs/";
     String API_DOC_TARGET = "api-doc";
 
     enum Type {

@@ -54,7 +54,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
     }
 
     static void expand(HTMLElement root, HTMLElement toggle, HTMLElement menu, boolean force) {
-        if (!expanded(root)) {
+        if (force || !expanded(root)) {
             root.classList.add(modifier(Classes.expanded));
             if (toggle != null) {
                 toggle.setAttribute(Aria.expanded, true);

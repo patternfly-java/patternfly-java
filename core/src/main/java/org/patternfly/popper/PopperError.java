@@ -22,9 +22,7 @@ import elemental2.promise.Promise;
 
 public class PopperError implements Popper {
 
-    private static final String ERROR_MESSAGE = "Unable to create popper: 'Popper' is undefined. " +
-            "Please add a call to 'ThirdParty.injectPopper()'. " +
-            "See also https://github.com/patternfly-java/patternfly-java#third-party";
+    private static final String ERROR_MESSAGE = "Unable to create popper: '" + Popper.POPPER_CREATE + "' is undefined.";
 
     private final String category;
 

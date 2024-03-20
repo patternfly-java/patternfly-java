@@ -5,14 +5,11 @@
   "parcelIgnore": [
     "showcase.j2cl.js"
   ],
-  "source": "src/web/index.html",
+  "source": ["src/web/dev.html", "src/web/index.html"],
   "scripts": {
-    "watch": "parcel serve --https --dist-dir target/showcase --open",
-    "prod": "parcel build --dist-dir target/showcase --public-url \"./\"",
-
-    "watch": "parcel serve --dist-dir target/todo --open",
-    "dev": "parcel build --dist-dir target/todo --no-optimize",
-    "prod": "parcel build --dist-dir target/todo --public-url /elemento/samples/todo/j2cl/"
+    "watch": "parcel serve src/web/dev.html --https --dist-dir target/showcase --open",
+    "dev": "parcel build src/web/dev.html --https --dist-dir target/showcase --no-optimize",
+    "prod": "parcel build src/web/index.html --dist-dir target/showcase --public-url /showcase"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",
