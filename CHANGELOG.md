@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-03-27
+
 ## [0.1.5] - 2024-03-02
 
 ### Added
@@ -242,7 +244,8 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
 [0.1.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.2...v0.1.3
