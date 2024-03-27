@@ -112,8 +112,7 @@
                         </goals>
                         <configuration>
                             <compilationLevel>${j2cl.compilationLevel}</compilationLevel>
-<!--                            <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>-->
-                            <enableSourcemaps>true</enableSourcemaps>
+                            <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>
                             <initialScriptFilename>showcase.j2cl.js</initialScriptFilename>
                             <defines>
                                 <settings.base>${settings.base}</settings.base>
@@ -148,7 +147,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <settings.base>/showcase/j2cl</settings.base>
+                <settings.base>/patternfly-java/showcase/j2cl</settings.base>
             </properties>
         </profile>
     </profiles>

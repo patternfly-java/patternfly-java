@@ -1,0 +1,40 @@
+digraph "patternfly-java-parent" {
+  graph [rankdir="TB"]
+  node [shape="box",style="rounded",fontname="Helvetica",fontsize="14"]
+  edge [fontsize="10",fontname="Helvetica"]
+
+  // Node Definitions:
+  "com.google.elemental2:elemental2-core:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-core>]
+  "com.google.elemental2:elemental2-promise:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-promise>]
+  "org.jboss.elemento:elemento-core:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">org.jboss.elemento</font><br/>elemento-core>]
+  "com.google.elemental2:elemental2-dom:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-dom>]
+  "com.google.elemental2:elemental2-webstorage:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-webstorage>]
+  "org.patternfly:patternfly-java-core:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-core>]
+  "org.jboss.elemento:elemento-svg:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">org.jboss.elemento</font><br/>elemento-svg>]
+  "org.patternfly:patternfly-java-icons:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-icons>]
+  "org.patternfly:patternfly-java-components:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-components>]
+  "org.patternfly:patternfly-java-codeeditor:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-codeeditor>]
+  "org.patternfly:patternfly-java-finder:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-finder>]
+  "org.patternfly:patternfly-java-layouts:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-layouts>]
+  "org.patternfly:patternfly-java-gwt:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-gwt>]
+  "org.gwtproject:gwt-user:compile"[shape="box",style="rounded",color="grey50",fontname="Helvetica",fontsize="14",fontcolor="grey50",label=<<font point-size="10">org.gwtproject</font><br/>gwt-user>]
+  "org.patternfly:patternfly-java-j2cl:compile"[label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-j2cl>]
+
+  // Edge Definitions:
+  "com.google.elemental2:elemental2-core:compile" -> "com.google.elemental2:elemental2-promise:compile"
+  "org.jboss.elemento:elemento-core:compile" -> "com.google.elemental2:elemental2-core:compile"
+  "org.jboss.elemento:elemento-core:compile" -> "com.google.elemental2:elemental2-dom:compile"
+  "org.jboss.elemento:elemento-core:compile" -> "com.google.elemental2:elemental2-webstorage:compile"
+  "org.patternfly:patternfly-java-core:compile" -> "org.jboss.elemento:elemento-core:compile"
+  "org.patternfly:patternfly-java-core:compile" -> "org.jboss.elemento:elemento-svg:compile"
+  "org.patternfly:patternfly-java-icons:compile" -> "org.patternfly:patternfly-java-core:compile"
+  "org.patternfly:patternfly-java-components:compile" -> "org.patternfly:patternfly-java-icons:compile"
+  "org.patternfly:patternfly-java-codeeditor:compile" -> "org.patternfly:patternfly-java-components:compile"
+  "org.patternfly:patternfly-java-finder:compile" -> "org.patternfly:patternfly-java-components:compile"
+  "org.patternfly:patternfly-java-layouts:compile" -> "org.patternfly:patternfly-java-core:compile"
+  "org.patternfly:patternfly-java-gwt:compile" -> "org.patternfly:patternfly-java-components:compile"
+  "org.patternfly:patternfly-java-gwt:compile" -> "org.patternfly:patternfly-java-layouts:compile"
+  "org.patternfly:patternfly-java-gwt:compile" -> "org.gwtproject:gwt-user:compile"
+  "org.patternfly:patternfly-java-j2cl:compile" -> "org.patternfly:patternfly-java-components:compile"
+  "org.patternfly:patternfly-java-j2cl:compile" -> "org.patternfly:patternfly-java-layouts:compile"
+}

@@ -77,8 +77,8 @@ jobs:
       - name: Build Showcase
         id: build-showcase
         run: $MVN --projects org.patternfly:patternfly-java-showcase-dist --also-make -P showcase,prod package
-      - name: Publish Samples
-        id: publish-samples
+      - name: Publish Showcase
+        id: publish-showcase
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages

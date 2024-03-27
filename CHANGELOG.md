@@ -8,6 +8,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.2.0] - 2024-03-27
 
+### Added
+
+Split PatternFly Java into multiple modules:
+
+- core
+- icons
+- components
+- layouts
+- extensions
+  - codeeditor
+  - finder
+- gwt
+- j2cl
+
+### Changed
+
+- Add showcase to the PatternFly Java codebase. The extra [showcase repository](https://github.com/patternfly-java/showcase) has been archived.
+
+### Upgrades
+
+- Bump Elemento to 1.3.3
+
 ## [0.1.5] - 2024-03-02
 
 ### Added

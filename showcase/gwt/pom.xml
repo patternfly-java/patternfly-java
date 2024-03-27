@@ -70,7 +70,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <settings.base>/showcase/gwt</settings.base>
+                <settings.base>/patternfly-java/showcase/gwt</settings.base>
             </properties>
         </profile>
     </profiles>

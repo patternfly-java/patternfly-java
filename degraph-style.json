@@ -1,0 +1,46 @@
+{
+  "graph": {
+    "rankdir": "TB"
+  },
+  "node-styles": {
+    "com.google.elemental2": {
+      "type": "box",
+      "style": "rounded",
+      "color": "grey50",
+      "default-font": {
+        "size": 14,
+        "name": "Helvetica",
+        "color": "grey50"
+      },
+      "group-id-font": {
+        "size": 10
+      }
+    },
+    "org.gwtproject": {
+      "type": "box",
+      "style": "rounded",
+      "color": "grey50",
+      "default-font": {
+        "size": 14,
+        "name": "Helvetica",
+        "color": "grey50"
+      },
+      "group-id-font": {
+        "size": 10
+      }
+    },
+    "org.jboss.elemento": {
+      "type": "box",
+      "style": "rounded",
+      "color": "grey50",
+      "default-font": {
+        "size": 14,
+        "name": "Helvetica",
+        "color": "grey50"
+      },
+      "group-id-font": {
+        "size": 10
+      }
+    }
+  }
+}

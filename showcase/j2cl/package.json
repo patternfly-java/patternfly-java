@@ -8,7 +8,7 @@
   "scripts": {
     "watch": "parcel serve src/web/dev.html --https --dist-dir target/showcase/j2cl --open",
     "dev": "parcel build src/web/dev.html --dist-dir target/showcase/j2cl --no-optimize",
-    "prod": "parcel build src/web/index.html --dist-dir target/showcase/j2cl --public-url /showcase/j2cl"
+    "prod": "parcel build src/web/index.html --dist-dir target/showcase/j2cl --public-url /patternfly-java/showcase/j2cl"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",
