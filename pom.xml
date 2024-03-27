@@ -28,12 +28,12 @@
     </parent>
 
     <groupId>org.patternfly</groupId>
-    <artifactId>patternfly-java</artifactId>
+    <artifactId>patternfly-java-parent</artifactId>
     <version>0.1.6-SNAPSHOT</version>
-    <name>PatternFly Java</name>
+    <packaging>pom</packaging>
+    <name>PatternFly Java Parent</name>
     <description>Java implementation of PatternFly</description>
-    <packaging>jar</packaging>
-    <url>https://patternfly-java.github.io/showcase/</url>
+    <url>https://patternfly-java.github.io</url>
     <inceptionYear>2023</inceptionYear>
 
     <licenses>
@@ -60,23 +60,23 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:patternfly-java/patternfly-java.git</connection>
-        <developerConnection>scm:git:git@github.com:patternfly-java/patternfly-java.git</developerConnection>
-        <url>https://github.com/patternfly-java/patternfly-java</url>
+        <connection>scm:git:git@github.com:${github.org}/${github.name}.git</connection>
+        <developerConnection>scm:git:git@github.com:${github.org}/${github.name}.git</developerConnection>
+        <url>https://github.com/${github.org}/${github.name}</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/patternfly-java/patternfly-java/issues</url>
+        <url>https://github.com/${github.org}/${github.name}/issues</url>
     </issueManagement>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <url>${sonatype.url}/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>${sonatype.url}/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
@@ -84,18 +84,22 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.3.3</version.elemento>
+        <version.elemento>1.4.2</version.elemento>
+        <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
-        <version.jsinterop.annotations>2.1.0</version.jsinterop.annotations>
         <version.junit>5.10.2</version.junit>
         <version.mockito>5.11.0</version.mockito>
-        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
+        <version.node>v21.7.1</version.node>
+        <version.patternfly>5.2.1</version.patternfly>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
         <version.editorconfig.plugin>0.1.3</version.editorconfig.plugin>
         <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
+        <version.frontend.plugin>1.15.0</version.frontend.plugin>
+        <version.gwt.plugin>1.1.0</version.gwt.plugin>
+        <version.j2cl.plugin>0.22.0</version.j2cl.plugin>
         <version.impsort.plugin>1.9.0</version.impsort.plugin>
         <version.javadoc.plugin>3.6.3</version.javadoc.plugin>
         <version.keepachangelog>2.1.1</version.keepachangelog>
@@ -104,6 +108,8 @@
 
         <!-- Build related -->
         <encoding>UTF-8</encoding>
+        <github.org>patternfly-java</github.org>
+        <github.name>patternfly-java</github.name>
         <java.version>11</java.version>
         <javadoc.options/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -111,108 +117,27 @@
         <maven.min.version>3.2.5</maven.min.version>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <sonatype.url>https://s01.oss.sonatype.org</sonatype.url>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.elemento</groupId>
-                <artifactId>elemento-bom</artifactId>
-                <version>${version.elemento}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${version.junit}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.google.jsinterop</groupId>
-                <artifactId>jsinterop-annotations</artifactId>
-                <version>${version.jsinterop.annotations}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>common</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>processors</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${version.mockito}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <modules>
+        <module>bom</module>
+        <module>build-config</module>
+        <module>code-parent</module>
+        <module>components</module>
+        <module>core</module>
+        <module>extensions/codeeditor</module>
+        <module>extensions/finder</module>
+        <module>gwt</module>
+        <module>icons</module>
+        <module>j2cl</module>
+        <module>layouts</module>
+    </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.google.jsinterop</groupId>
-            <artifactId>jsinterop-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.elemento</groupId>
-            <artifactId>elemento-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.elemento</groupId>
-            <artifactId>elemento-svg</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
-            <artifactId>processors</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <!-- No dependencies! Dependencies are managed in core-parent -->
+    <dependencies/>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>org/patternfly/**/*.java</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>META-INF/externs/**/*</include>
-                    <include>org/patternfly/PatternFly.gwt.xml</include>
-                    <include>org/patternfly/thirdparty/**/*</include>
-                </includes>
-            </resource>
-        </resources>
-
         <pluginManagement>
             <plugins>
                 <!-- Ordered by artifactID -->
@@ -220,6 +145,24 @@
                     <groupId>org.ec4j.maven</groupId>
                     <artifactId>editorconfig-maven-plugin</artifactId>
                     <version>${version.editorconfig.plugin}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/.parcel-cache/**</exclude>
+                            <exclude>**/node/**</exclude>
+                            <exclude>**/node_modules/**</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${version.frontend.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>net.ltgt.gwt.maven</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>${version.gwt.plugin}</version>
+                    <extensions>true</extensions>
                 </plugin>
                 <plugin>
                     <groupId>net.revelc.code</groupId>
@@ -229,6 +172,14 @@
                         <groups>java.,javax.,jakarta.,org.,io.,com.</groups>
                         <removeUnused>true</removeUnused>
                         <staticAfter>true</staticAfter>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.vertispan.j2cl</groupId>
+                    <artifactId>j2cl-maven-plugin</artifactId>
+                    <version>${version.j2cl.plugin}</version>
+                    <configuration>
+                        <webappDirectory>${project.build.directory}/showcase/j2cl</webappDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -244,15 +195,30 @@
                         <aggregate>true</aggregate>
                         <strictCheck>true</strictCheck>
                         <useDefaultExcludes>true</useDefaultExcludes>
+                        <mapping>
+                            <parcelrc>DOUBLESLASH_STYLE</parcelrc>
+                        </mapping>
                         <licenseSets>
                             <licenseSet>
-                                <header>etc/license.txt</header>
+                                <header>build-config/src/main/resources/etc/license.txt</header>
                                 <excludes>
-                                    <exclude>LICENSE</exclude>
+                                    <exclude>**/*.ftl</exclude>
+                                    <exclude>**/yarn.lock</exclude>
                                     <exclude>**/*license*.txt</exclude>
-                                    <exclude>src/demo/java/**</exclude>
-                                    <exclude>src/main/resources/META-INF/externs/**</exclude>
-                                    <exclude>src/main/resources/org/patternfly/thirdparty/**</exclude>
+                                    <exclude>**/.parcel-cache/**</exclude>
+                                    <exclude>**/node/**</exclude>
+                                    <exclude>**/node_modules/**</exclude>
+                                    <exclude>**/src/demo/java/**</exclude>
+                                    <exclude>LICENSE</exclude>
+                                    <exclude>README.md</exclude>
+                                    <exclude>**/src/main/resources/META-INF/externs/**</exclude>
+                                    <exclude>**/src/main/resources/org/patternfly/thirdparty/**</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/fa?/*.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/patternfly/*.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
@@ -266,8 +232,7 @@
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        <excludes>**/*$logger.java,**/*$bundle.java</excludes>
-                        <suppressionsLocation>etc/checkstyle-suppressions.xml</suppressionsLocation>
+                        <excludes>**/*$logger.java,**/*$bundle.java,**/IconSets.java,**/IconSpecs.java</excludes>
                         <useFile/>
                     </configuration>
                     <dependencies>
@@ -318,18 +283,17 @@
                         <additionalOptions>${javadoc.options}</additionalOptions>
                         <detectLinks>true</detectLinks>
                         <doclint>none</doclint>
-                        <sourceFileExcludes>
-                            <sourceFileExclude>**/ThirdPartyBundle*.java</sourceFileExclude>
-                        </sourceFileExcludes>
                         <failOnError>false</failOnError>
                         <links>
-                            <link>https://hal.github.io/elemento/</link>
+                            <link>https://patternfly-java.github.io/apidocs/</link>
+                            <link>https://hal.github.io/elemento/apidocs/</link>
                             <link>https://www.gwtproject.org/javadoc/latest/</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}/</link>
+                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}/</link>
                             <link>https://javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
                             <link>https://javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/</link>
+                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/
+                            </link>
                         </links>
                         <show>public</show>
                     </configuration>
@@ -364,7 +328,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src/demo/java</source>
+                                <source>${project.basedir}/src/demo/java</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -432,24 +396,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-generated-sources</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.build.directory}/generated-sources/annotations/org/patternfly/thirdparty/ThirdPartyBundleImpl.java" todir="${project.build.outputDirectory}/org/patternfly/thirdparty/"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <executions>
                     <execution>
@@ -465,15 +411,90 @@
     </build>
 
     <profiles>
-        <!--
-            Profile to be used to generate Javadoc with code snippets. Requires Java 18!
-            Used for building the online documentation published to GitHub pages
-        -->
+        <profile>
+            <id>quick-build</id>
+            <activation>
+                <property>
+                    <name>quickly</name>
+                </property>
+            </activation>
+            <properties>
+                <checkstyle.skip>true</checkstyle.skip>
+                <editorconfig.skip>true</editorconfig.skip>
+                <enforcer.skip>true</enforcer.skip>
+                <impsort.skip>true</impsort.skip>
+                <license.skip>true</license.skip>
+                <maven.javadoc.skip>true</maven.javadoc.skip>
+                <skip.gwt>true</skip.gwt>
+                <skipITs>true</skipITs>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
         <profile>
             <id>snippets</id>
             <properties>
+                <java.version>19</java.version>
                 <javadoc.options>--snippet-path ${project.basedir}/src/demo/java</javadoc.options>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>copy-apidocs</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <copy todir="target/site/apidocs/org/patternfly"
+                                              overwrite="true"
+                                              failonerror="false">
+                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="components/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="core/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="gwt/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="icons/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="layouts/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>showcase</id>
+            <modules>
+                <module>showcase</module>
+            </modules>
         </profile>
         <profile>
             <id>release</id>
@@ -542,7 +563,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <nexusUrl>${sonatype.url}</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>

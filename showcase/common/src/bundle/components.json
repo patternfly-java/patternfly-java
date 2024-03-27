@@ -1,0 +1,682 @@
+{
+  "about-modal": {
+    "name": "about-modal",
+    "title": "About modal",
+    "route": "/components/about-modal",
+    "illustration": "about-modal.png",
+    "summary": "An <b>about modal</b> displays information about an application like product version number(s), as well as any appropriate legal text."
+  },
+  "accordion": {
+    "name": "accordion",
+    "title": "Accordion",
+    "route": "/components/accordion",
+    "clazz": "org.patternfly.component.accordion.Accordion",
+    "illustration": "accordion.png",
+    "summary": "An <b>accordion</b> is an interactive container that expands and collapses to hide or reveal nested content. It takes advantage of progressive disclosure to help reduce page scrolling, by allowing users to choose whether they want to show or hide more detailed information as needed."
+  },
+  "action-list": {
+    "name": "action-list",
+    "title": "Action list",
+    "route": "/components/action-list",
+    "clazz": "org.patternfly.component.list.ActionList",
+    "illustration": "action-list.png",
+    "summary": "An <b>action list</b> is a group of actions, controls, or buttons with set spacing."
+  },
+  "alert": {
+    "name": "alert",
+    "title": "Alert",
+    "route": "/components/alert",
+    "clazz": "org.patternfly.component.alert.Alert",
+    "illustration": "alert.png",
+    "summary": "An <b>alert</b> is a notification that provides brief information to the user without blocking their workflow."
+  },
+  "application-launcher": {
+    "name": "application-launcher",
+    "title": "Application launcher",
+    "route": "/components/application-launcher",
+    "illustration": "application-launcher.png",
+    "summary": "An <b>application launcher</b> is an option menu that allows a user to launch a separate web application in a new browser window."
+  },
+  "avatar": {
+    "name": "avatar",
+    "title": "Avatar",
+    "route": "/components/avatar",
+    "clazz": "org.patternfly.component.avatar.Avatar",
+    "illustration": "avatar.png",
+    "summary": "An <b>avatar</b> is a visual used to represent a user. It may contain an image or a placeholder graphic."
+  },
+  "back-to-top": {
+    "name": "back-to-top",
+    "title": "Back to top",
+    "route": "/components/back-to-top",
+    "clazz": "org.patternfly.component.backtotop.BackToTop",
+    "illustration": "back-to-top.png",
+    "summary": "The <b>back to top</b> component is a shortcut that allows users to quickly navigate to the top of a lengthy content page. "
+  },
+  "backdrop": {
+    "name": "backdrop",
+    "title": "Backdrop",
+    "route": "/components/backdrop",
+    "illustration": "backdrop.png",
+    "summary": "A <b>backdrop</b> is used to screen the main content of a page when a modal overlay is opened. It prevents the user from doing other work on the page until the modal is dismissed."
+  },
+  "background-image": {
+    "name": "background-image",
+    "title": "Background image",
+    "route": "/components/background-image",
+    "illustration": "background-image.png",
+    "summary": "A <b>background image</b> allows you to place an image in the background of your page or area of a page."
+  },
+  "badge": {
+    "name": "badge",
+    "title": "Badge",
+    "route": "/components/badge",
+    "clazz": "org.patternfly.component.badge.Badge",
+    "illustration": "badge.png",
+    "summary": "A <b>badge</b> is used to annotate other information like a label or an object name."
+  },
+  "banner": {
+    "name": "banner",
+    "title": "Banner",
+    "route": "/components/banner",
+    "clazz": "org.patternfly.component.banner.Banner",
+    "illustration": "banner.png",
+    "summary": "A <b>banner</b> is a 1-line, full color, full width container that can be used to communicate short snippets of information to users. Banners are un-intrusive and non-dismissible."
+  },
+  "brand": {
+    "name": "brand",
+    "title": "Brand",
+    "route": "/components/brand",
+    "clazz": "org.patternfly.component.brand.Brand",
+    "illustration": "brand.png",
+    "summary": "A <b>brand</b> is used to place a product logotype on a screen."
+  },
+  "breadcrumb": {
+    "name": "breadcrumb",
+    "title": "Breadcrumb",
+    "route": "/components/breadcrumb",
+    "clazz": "org.patternfly.component.breadcrumb.Breadcrumb",
+    "illustration": "breadcrumb.png",
+    "summary": "A <b>breadcrumb</b> provides page context to help users navigate more efficiently and understand where they are in the application hierarchy."
+  },
+  "button": {
+    "name": "button",
+    "title": "Button",
+    "route": "/components/button",
+    "clazz": "org.patternfly.component.button.Button",
+    "illustration": "button.png",
+    "summary": "A <b>button</b> is a box area or text that communicates and triggers user actions when clicked or selected. Buttons can be used to communicate and immediately trigger actions a user can take in an application, like submitting a form, canceling a process, or creating a new object. Buttons can also be used to take a user to a new location, like another page inside of a web application, or an external site such as help or documentation."
+  },
+  "calendar-month": {
+    "name": "calendar-month",
+    "title": "Calendar month",
+    "route": "/components/date-and-time/calendar-month",
+    "illustration": "calendar-month.png",
+    "summary": "A <b>calendar month</b> component allows users to select and navigate between days, months and/or years. This component is usually used with the date picker component, to display date options and selections. For more information about usage, view <a href='https://www.patternfly.org/components/date-and-time/date-picker/design-guidelines' target='patternfly'>date picker guidelines</a>."
+  },
+  "card": {
+    "name": "card",
+    "title": "Card",
+    "route": "/components/card",
+    "clazz": "org.patternfly.component.card.Card",
+    "illustration": "card.png",
+    "summary": "A <b>card</b> is a square or rectangular container that can contain any kind of content. Cards symbolize units of information, and each one acts as an entry point for users to access more details. For example, in dashboards and catalog views, cards function as a preview of a detailed page. Cards may also be used in data displays like card views, or for positioning content on a page. "
+  },
+  "checkbox": {
+    "name": "checkbox",
+    "title": "Checkbox",
+    "route": "/components/forms/checkbox",
+    "clazz": "org.patternfly.component.form.Checkbox",
+    "illustration": "checkbox.png",
+    "summary": "A <b>checkbox</b> is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect a binary setting."
+  },
+  "chip": {
+    "name": "chip",
+    "title": "Chip",
+    "route": "/components/chip",
+    "clazz": "org.patternfly.component.chip.Chip",
+    "illustration": "chip.png",
+    "summary": "A <b>chip</b> is used to communicate a value or a set of attribute-value pairs within workflows that involve filtering a set of objects."
+  },
+  "clipboard-copy": {
+    "name": "clipboard-copy",
+    "title": "Clipboard copy",
+    "route": "/components/clipboard-copy",
+    "illustration": "clipboard-copy.png",
+    "summary": "The <b>clipboard copy</b> component allows users to quickly and easily copy content to their clipboard."
+  },
+  "code-block": {
+    "name": "code-block",
+    "title": "Code block",
+    "route": "/components/code-block",
+    "clazz": "org.patternfly.component.code.CodeBlock",
+    "illustration": "code-block.png",
+    "summary": "A <b>code block</b> is a component that contains 2 or more lines of read-only code. The code in a code block can be copied to the clipboard."
+  },
+  "code-editor": {
+    "name": "code-editor",
+    "title": "Code editor",
+    "route": "/components/code-editor",
+    "clazz": "org.patternfly.component.code.CodeEditor",
+    "illustration": "code-editor.png",
+    "summary": "A <b>code editor</b> is a versatile text editor that allows for editing various languages. The code editor is built on top of the <a href='https://microsoft.github.io/monaco-editor/' target='_blank'>Monaco Editor</a>."
+  },
+  "data-list": {
+    "name": "data-list",
+    "title": "Data list",
+    "route": "/components/data-list",
+    "illustration": "data-list.png",
+    "summary": "A <b>data list</b> is used to display large data sets when you need a flexible layout or need to include interactive content like charts."
+  },
+  "date-picker": {
+    "name": "date-picker",
+    "title": "Date picker",
+    "route": "/components/date-and-time/date-picker",
+    "illustration": "date-picker.png",
+    "summary": "A <b>date picker</b> helps users enter or select a specific date from a calendar."
+  },
+  "date-and-time-picker": {
+    "name": "date-and-time-picker",
+    "title": "Date and time picker",
+    "route": "/components/date-and-time/date-and-time-picker",
+    "illustration": "date-and-time-picker.png",
+    "summary": "A <b>date and time picker</b> helps users select both a specific date and a time by combining <a href='/components/date-and-time/date-picker'>date picker</a> and <a href='/components/date-and-time/time-picker'>time picker</a> components."
+  },
+  "description-list": {
+    "name": "description-list",
+    "title": "Description list",
+    "route": "/components/description-list",
+    "clazz": "org.patternfly.component.list.DescriptionList",
+    "illustration": "description-list.png",
+    "summary": "A <b>description list</b> contains terms and their corresponding descriptions."
+  },
+  "divider": {
+    "name": "divider",
+    "title": "Divider",
+    "route": "/components/divider",
+    "clazz": "org.patternfly.component.divider.Divider",
+    "illustration": "divider.png",
+    "summary": "A <b>divider</b> is a horizontal or vertical line that is placed between screen elements to create visual divisions and content groupings."
+  },
+  "drag-and-drop": {
+    "name": "drag-and-drop",
+    "title": "Drag and drop",
+    "route": "/components/drag-and-drop",
+    "illustration": "drag-and-drop.png",
+    "summary": "The <b>drag and drop</b> interaction can be used to reposition elements on screen into a layout that benefits the user. This gives the user more flexibility to arrange and/or group items without having to make code changes."
+  },
+  "drawer": {
+    "name": "drawer",
+    "title": "Drawer",
+    "route": "/components/drawer",
+    "clazz": "org.patternfly.component.drawer.Drawer",
+    "illustration": "drawer.png",
+    "summary": "A <b>drawer</b> is a sliding panel that enters from the right edge of the viewport. It can be configured to either overlay content on a page or create a sidebar by pushing that content to the left."
+  },
+  "dropdown": {
+    "name": "dropdown",
+    "title": "Dropdown",
+    "route": "/components/menus/dropdown",
+    "clazz": "org.patternfly.component.menu.Dropdown",
+    "illustration": "dropdown.png",
+    "summary": "A <b>dropdown</b> presents a menu of actions or links in a constrained space that will trigger a process or navigate to a new location. See <a href='https://www.patternfly.org/components/menus/select/design-guidelines' target='patternfly'>select component guidelines</a> for more information about making one or more selections from a list of items in a value list."
+  },
+  "dual-list-selector": {
+    "name": "dual-list-selector",
+    "title": "Dual list selector",
+    "route": "/components/dual-list-selector",
+    "illustration": "dual-list-selector.png",
+    "summary": "A <b>dual list selector</b> allows users to select and move items from one list of available items to another list of selected items. Unlike a select list, a dual list selector separates the available options and the selected options into two separate lists, which allows users to easily scan the items they selected."
+  },
+  "empty-state": {
+    "name": "empty-state",
+    "title": "Empty state",
+    "route": "/components/empty-state",
+    "clazz": "org.patternfly.component.emptystate.EmptyState",
+    "illustration": "empty-state.png",
+    "summary": "An <b>empty state</b> is a screen that is not yet populated with data or information. Empty states typically contain a short message and next steps for the user."
+  },
+  "expandable-section": {
+    "name": "expandable-section",
+    "title": "Expandable section",
+    "route": "/components/expandable-section",
+    "clazz": "org.patternfly.component.expandable.ExpandableSection",
+    "illustration": "expandable-section.png",
+    "summary": "An <b>expandable section</b> component is used to support progressive disclosure in a form or page by hiding additional content when you don't want it to be shown by default. An expandable section can contain any type of content such as plain text, form inputs, and charts."
+  },
+  "multiple-file-upload": {
+    "name": "multiple-file-upload",
+    "title": "Multiple file upload",
+    "route": "/components/file-upload/multiple-file-upload",
+    "illustration": "file-upload-multiple.png",
+    "summary": "A <b>multiple file upload</b> component allows users to select 1 or more files to upload to a specific location. The component can be configured to support any file type as well as restrict the user's ability to upload 1 or more files. Users have the ability to select files from their system either natively using a file input or via drag and drop. Once uploaded, the user can edit any files."
+  },
+  "simple-file-upload": {
+    "name": "simple-file-upload",
+    "title": "Simple file upload",
+    "route": "/components/file-upload/simple-file-upload",
+    "illustration": "file-upload.png",
+    "summary": "A <b>simple file upload</b> component allows the users to upload a single file into the browser. This is primarily used for uploading and previewing text files, but other file types will also be accepted."
+  },
+  "form-control": {
+    "name": "form-control",
+    "title": "Form control",
+    "route": "/components/forms/form-control",
+    "clazz": "org.patternfly.component.form.FormControl",
+    "illustration": "form-control.png",
+    "summary": "<b>Form controls</b> refer to the different visual states that data input components can take to help guide users in completing forms."
+  },
+  "form": {
+    "name": "form",
+    "title": "Form",
+    "route": "/components/forms/form",
+    "clazz": "org.patternfly.component.form.Form",
+    "illustration": "form.png",
+    "summary": "A <b>form</b> is a group of elements used to collect information from a user in a variety of contexts including in a modal, in a wizard, or on a page. Use cases for forms include tasks reliant on user-inputted information for completion like logging in, registering, configuring settings, or completing surveys."
+  },
+  "form-select": {
+    "name": "form-select",
+    "title": "Form select",
+    "route": "/components/forms/form-select",
+    "clazz": "org.patternfly.component.form.FormSelect",
+    "illustration": "form-select.png",
+    "summary": "A <b>form select</b> embeds browser native select lists into a form."
+  },
+  "helper-text": {
+    "name": "helper-text",
+    "title": "Helper text",
+    "route": "/components/helper-text",
+    "clazz": "org.patternfly.component.help.HelperText",
+    "illustration": "helper-text.png",
+    "summary": "<b>Helper text</b> is an on-screen field guideline that helps provide context regarding field inputs."
+  },
+  "hint": {
+    "name": "hint",
+    "title": "Hint",
+    "route": "/components/hint",
+    "clazz": "org.patternfly.component.hint.Hint",
+    "illustration": "hint.png",
+    "summary": "A <b>hint</b> is in-app messaging that provides a one-step reminder, explanation, or call to action for a page or modal."
+  },
+  "icon": {
+    "name": "icon",
+    "title": "Icon",
+    "route": "/components/icon",
+    "clazz": "org.patternfly.component.icon.Icon",
+    "illustration": "icon.png",
+    "summary": "An <b>icon</b> component is a container that allows for <a href='https://www.patternfly.org/design-foundations/icons#all-icons' target='patternfly'>icons</a> of varying dimensions, as well as <a href='/components/spinner'>spinners</a>, to seamlessly replace each other without shifting surrounding content.<br/><br/>PatternFly's <a href='https://www.patternfly.org/design-foundations/icons#all-icons' target='patternfly'>icons guidelines</a> contain PatternFly's icon set, as well as more information about icon usage."
+  },
+  "inline-edit": {
+    "name": "inline-edit",
+    "title": "Inline edit",
+    "route": "/components/inline-edit",
+    "illustration": "inline-edit.png",
+    "summary": "An <b>inline edit</b> component allows users to switch between a read-only view and an edit view of <a href='/components/description-list'>description lists</a>, page text elements, or <a href='/components/table'>tables</a> as needed. Inline editing saves the user from opening a modal window or redirecting to a separate edit page so that they can edit in context of their current view."
+  },
+  "input-group": {
+    "name": "input-group",
+    "title": "Input group",
+    "route": "/components/input-group",
+    "clazz": "org.patternfly.component.inputgroup.InputGroup",
+    "illustration": "input-group.png",
+    "summary": "An <b>input group</b> groups multiple related controls or inputs together so they appear as one control."
+  },
+  "jump-links": {
+    "name": "jump-links",
+    "title": "Jump links",
+    "route": "/components/jump-links",
+    "clazz": "org.patternfly.component.jumplinks.JumpLinks",
+    "illustration": "jump-links.png",
+    "summary": "<b>Jump links</b> allow users to navigate to sections within a page."
+  },
+  "label": {
+    "name": "label",
+    "title": "Label",
+    "route": "/components/label",
+    "clazz": "org.patternfly.component.label.Label",
+    "illustration": "label.png",
+    "summary": "The <b>label</b> component allows users to add specific element captions for user clarity and convenience."
+  },
+  "list": {
+    "name": "list",
+    "title": "List",
+    "route": "/components/list",
+    "clazz": "org.patternfly.component.list.List",
+    "illustration": "list.png",
+    "summary": "A <b>list</b> component embeds a formatted list (bulleted or numbered list) into page content."
+  },
+  "login-page": {
+    "name": "login-page",
+    "title": "Login page",
+    "route": "/components/login-page",
+    "illustration": "login-page.png",
+    "summary": "A <b>login page</b> allows a user to gain access to an application by entering their username and password or by authenticating using a social media login."
+  },
+  "masthead": {
+    "name": "masthead",
+    "title": "Masthead",
+    "route": "/components/masthead",
+    "clazz": "org.patternfly.component.page.Masthead",
+    "illustration": "masthead.png",
+    "summary": "A <b>masthead</b> contains global properties such as logotype, navigation and settings in an organized fashion and it is accessible from all parts of the application. All pages should share a common masthead."
+  },
+  "menu-toggle": {
+    "name": "menu-toggle",
+    "title": "Menu toggle",
+    "route": "/components/menus/menu-toggle",
+    "clazz": "org.patternfly.component.menu.MenuToggle",
+    "illustration": "menu-toggle.png",
+    "summary": "The <b>menu toggle</b> component pairs with the <a href='/components/menus/menu'>menu</a> OR the <a href='https://www.patternfly.org/components/panel/design-guidelines'>panel</a> component to create more customizable dropdown and select implementations. Using a menu toggle with a menu enables you to create custom component configurations not supported by the standard dropdown or select components."
+  },
+  "menu": {
+    "name": "menu",
+    "title": "Menu",
+    "route": "/components/menus/menu",
+    "clazz": "org.patternfly.component.menu.Menu",
+    "illustration": "menu.png",
+    "summary": "A <b>menu</b> is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user needs to choose between multiple values, options, or actions. A menu is most often paired with a <a href='/components/menu-toggle'>menu toggle</a> as its trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close."
+  },
+  "modal": {
+    "name": "modal",
+    "title": "Modal",
+    "route": "/components/modal",
+    "illustration": "modal.png",
+    "summary": "A <b>modal</b> displays important information to a user without requiring them to navigate to a new page."
+  },
+  "navigation": {
+    "name": "navigation",
+    "title": "Navigation",
+    "route": "/components/navigation",
+    "clazz": "org.patternfly.component.navigation.Navigation",
+    "illustration": "navigation.png",
+    "summary": "A <b>navigation</b> organizes an application's structure and content, making it easy to find information and accomplish tasks. Navigation communicates relationships, context, and actions a user can take within an application."
+  },
+  "notification-badge": {
+    "name": "notification-badge",
+    "title": "Notification badge",
+    "route": "/components/notification-badge",
+    "illustration": "notification-badge.png",
+    "summary": "A <b>notification badge</b> is intended to be used with a <a href='/components/notification-drawer'>notification drawer</a> as a visible indicator to alert the user about incoming notifications."
+  },
+  "notification-drawer": {
+    "name": "notification-drawer",
+    "title": "Notification drawer",
+    "route": "/components/notification-drawer",
+    "illustration": "notification-drawer.png",
+    "summary": "A <b>notification drawer</b> is a place where users can view and manage notifications that are generated by the system. It allows them to see a list of notifications without the need to navigate away from the current screen."
+  },
+  "number-input": {
+    "name": "number-input",
+    "title": "Number input",
+    "route": "/components/number-input",
+    "illustration": "number-input.png",
+    "summary": "A <b>number input</b> provides a quick and effective way for users to enter and modify a numeric value. Similar to <a href='/components/input-group/'>input groups</a>, number inputs combine 2 input types into 1 control: A text input field with buttons on either side. When combined, these elements allow users to input numeric values in a responsive and scalable way."
+  },
+  "overflow-menu": {
+    "name": "overflow-menu",
+    "title": "Overflow menu",
+    "route": "/components/overflow-menu",
+    "illustration": "overflow-menu.png",
+    "summary": "An <b>overflow menu</b> groups a set of actions in a responsive horizontal list to help declutter an interface. Actions can be set to persist or collapse into a kebab as the viewpoint shrinks. Overflow menus are useful in toolbars or other places where a group of actions is required."
+  },
+  "page": {
+    "name": "page",
+    "title": "Page",
+    "route": "/components/page",
+    "clazz": "org.patternfly.component.page.Page",
+    "illustration": "page.png",
+    "summary": "The <b>page</b> component is used to define the basic layout of a page with either vertical or horizontal navigation."
+  },
+  "pagination": {
+    "name": "pagination",
+    "title": "Pagination",
+    "route": "/components/pagination",
+    "illustration": "pagination.png",
+    "summary": "A <b>pagination</b> component gives users more navigational capability on pages with content views."
+  },
+  "panel": {
+    "name": "panel",
+    "title": "Panel",
+    "route": "/components/panel",
+    "clazz": "org.patternfly.component.panel.Panel",
+    "illustration": "panel.png",
+    "summary": "The <b>panel</b> component is a container that supports flexible content layouts. It can be used to house other components such as fields, forms, videos, buttons, and more. The panel should not be confused with the <a href='https://www.patternfly.org/components/drawer/design-guidelines/' target='patternfly'>drawer</a> component, which allows you to surface information via a collapsable container."
+  },
+  "password-generator": {
+    "name": "password-generator",
+    "title": "Password generator",
+    "route": "/components/password-generator",
+    "illustration": "password-generator.png",
+    "summary": "This demo shows you how to create an input field that can be used to generate unique passwords."
+  },
+  "password-strength": {
+    "name": "password-strength",
+    "title": "Password strength",
+    "route": "/components/password-strength",
+    "illustration": "password-strength.png",
+    "summary": "This demo shows how to use PatternFly component to validate and return feedback about password strength according to consumer-defined rules."
+  },
+  "popover": {
+    "name": "popover",
+    "title": "Popover",
+    "route": "/components/popover",
+    "clazz": "org.patternfly.component.popover.Popover",
+    "illustration": "popover.png",
+    "summary": "A <b>popover</b> is in-app messaging that provides more information on specific product areas. Popovers display content in a new window that overlays the current page. Unlike modals, popovers don't block the current page."
+  },
+  "progress-stepper": {
+    "name": "progress-stepper",
+    "title": "Progress stepper",
+    "route": "/components/progress-stepper",
+    "illustration": "progress-stepper.png",
+    "summary": "A <b>progress stepper</b> displays a timeline of tasks in a workflow and tracks the user's current progress through this workflow."
+  },
+  "progress": {
+    "name": "progress",
+    "title": "Progress",
+    "route": "/components/progress",
+    "clazz": "org.patternfly.component.progress.Progress",
+    "illustration": "progress.png",
+    "summary": "A <b>progress</b> bar informs users about the completion status of an ongoing process or task."
+  },
+  "radio": {
+    "name": "radio",
+    "title": "Radio",
+    "route": "/components/forms/radio",
+    "clazz": "org.patternfly.component.menu.Radio",
+    "illustration": "radio.png",
+    "summary": "A <b>radio</b> button is used to present the user with mutually exclusive choices. Always present radio buttons in groups of 2 or more."
+  },
+  "search-input": {
+    "name": "search-input",
+    "title": "Search input",
+    "route": "/components/search-input",
+    "illustration": "search-input.png",
+    "summary": "A <b>search input</b> is a type of input field that can be user to search, find, or filter. See <a href='https://www.patternfly.org/patterns/filters/design-guidelines' target='patternfly'>filter guidelines</a> for more information on using search input as a filter."
+  },
+  "select": {
+    "name": "select",
+    "title": "Select",
+    "route": "/components/menus/select",
+    "illustration": "select.png",
+    "summary": "A <b>select</b> list enables users to select one or more items from a list. Use a select list when options are dynamic or variable."
+  },
+  "sidebar": {
+    "name": "sidebar",
+    "title": "Sidebar",
+    "route": "/components/sidebar",
+    "clazz": "org.patternfly.component.page.Sidebar",
+    "illustration": "sidebar.png",
+    "summary": "A <b>sidebar</b> splits content into a secondary area that can be placed relative to the main content on a page."
+  },
+  "simple-list": {
+    "name": "simple-list",
+    "title": "Simple list",
+    "route": "/components/simple-list",
+    "clazz": "org.patternfly.component.list.SimpleList",
+    "illustration": "simple-list.png",
+    "summary": "A <b>simple list</b> provides a list of selectable items that can be shown within a page. Each item is described by a text label. The list may be divided into logical sections by introducing group headers."
+  },
+  "skeleton": {
+    "name": "skeleton",
+    "title": "Skeleton",
+    "route": "/components/skeleton",
+    "clazz": "org.patternfly.component.skeleton.Skeleton",
+    "illustration": "skeleton.png",
+    "summary": "A <b>skeleton</b> is a type of loading state that allows you to expose content incrementally. For content that may take a long time to load, use a <a href='/components/progress'>progress bar</a> in place of a skeleton."
+  },
+  "skip-to-content": {
+    "name": "skip-to-content",
+    "title": "Skip to content",
+    "route": "/components/skip-to-content",
+    "clazz": "org.patternfly.component.skiptocontent.SkipToContent",
+    "illustration": "skip-to-content.png",
+    "summary": "A <b>skip to content</b> component allows screen reader and keyboard users to bypass navigation rather than tabbing through it."
+  },
+  "slider": {
+    "name": "slider",
+    "title": "Slider",
+    "route": "/components/slider",
+    "clazz": "org.patternfly.component.slider.Slider",
+    "illustration": "slider.png",
+    "summary": "A <b>slider</b> provides a quick and effective way for users to set and adjust a numeric value from a defined range of values."
+  },
+  "spinner": {
+    "name": "spinner",
+    "title": "Spinner",
+    "route": "/components/spinner",
+    "clazz": "org.patternfly.component.spinner.Spinner",
+    "illustration": "spinner.png",
+    "summary": "A <b>spinner</b> is used to indicate to users that an action is in progress. For actions that may take a long time, use a <a href='/components/progress'>progress bar</a> instead."
+  },
+  "switch": {
+    "name": "switch",
+    "title": "Switch",
+    "route": "/components/switch",
+    "clazz": "org.patternfly.component.switch.Switch",
+    "illustration": "switch.png",
+    "summary": "A <b>switch</b> toggles the state of a setting (between on and off). Switches and <a href='/components/forms/checkbox'>checkboxes</a> can often be used interchangeably, but the switch provides a more explicit, visible representation on a setting."
+  },
+  "table": {
+    "name": "table",
+    "title": "Table",
+    "route": "/components/table",
+    "illustration": "table.png",
+    "summary": "A <b>table</b> is used to display large data sets that can be easily laid out in a simple grid with column headers."
+  },
+  "tabs": {
+    "name": "tabs",
+    "title": "Tabs",
+    "route": "/components/tabs",
+    "clazz": "org.patternfly.component.tabs.Tabs",
+    "illustration": "tabs.png",
+    "summary": "<b>Tabs</b> allow users to navigate between views within the same page or context."
+  },
+  "text-area": {
+    "name": "text-area",
+    "title": "Text area",
+    "route": "/components/forms/text-area",
+    "clazz": "org.patternfly.component.form.TextArea",
+    "illustration": "text-area.png",
+    "summary": "A <b>text area</b> component is used for entering a paragraph of text that is longer than one line."
+  },
+  "text-input-group": {
+    "name": "text-input-group",
+    "title": "Text input group",
+    "route": "/components/text-input-group",
+    "clazz": "org.patternfly.component.textinputgroup.TextInputGroup",
+    "illustration": "text-input-group.png",
+    "summary": "A <b>text input group</b> is a more flexible composable version of a <a href='/components/forms/text-input'>text input</a>. It enables consumers of PatternFly to build custom inputs for filtering and similar use cases by placing elements like icons, <a href='/components/chip#chip-groups'>chips groups</a> and <a href='/components/button'>buttons</a> within a text input."
+  },
+  "text-input": {
+    "name": "text-input",
+    "title": "Text input",
+    "route": "/components/forms/text-input",
+    "clazz": "org.patternfly.component.form.TextInput",
+    "illustration": "text-input.png",
+    "summary": "A <b>text input</b> is used to gather free-form text from a user."
+  },
+  "text": {
+    "name": "text",
+    "title": "Text",
+    "route": "/components/text",
+    "clazz": "org.patternfly.component.text.TextContent",
+    "illustration": "text.png",
+    "summary": "<b>Text</b> and <b>TextList</b> components are always wrapped in <b>TextContent</b> and provide correct formatting to a number of standard HTML tags."
+  },
+  "tile": {
+    "name": "tile",
+    "title": "Tile",
+    "route": "/components/tile",
+    "illustration": "tile.png",
+    "summary": "A <b>tile</b> component is a form of selection that can be used in place of a <a href='/components/radio'>radio button</a> and is commonly used in <a href='/components/form'>forms</a>. A tile appears visually similar to a <a href='/components/card/'>selectable card</a>. However, tiles are used specifically when the user is selecting a static option, whereas a selectable card triggers an action or opens a quickstart or sidebar to provide additional information."
+  },
+  "time-picker": {
+    "name": "time-picker",
+    "title": "Time picker",
+    "route": "/components/date-and-time/time-picker",
+    "illustration": "time-picker.png",
+    "summary": "A <b>time picker</b> allows users to select a time from a list of options. Time can be displayed in hours and minutes, but not in seconds."
+  },
+  "timestamp": {
+    "name": "timestamp",
+    "title": "Timestamp",
+    "route": "/components/date-and-time/timestamp",
+    "illustration": "timestamp.png",
+    "summary": "A <b>timestamp</b> provides consistent formats for displaying date and time values."
+  },
+  "title": {
+    "name": "title",
+    "title": "Title",
+    "route": "/components/title",
+    "clazz": "org.patternfly.component.title.Title",
+    "illustration": "title.png",
+    "summary": "A <b>title</b> component applies top and bottom margins, font-weight, font-size, and line-height to titles. The most common usage for a title is to define headings within a page. For more information about the relationship between title component sizes and HTML heading levels, see the <a href='https://www.patternfly.org/design-foundations/typography#customizing-heading-levels' target='patternfly'>Typography guidelines</a>."
+  },
+  "toggle-group": {
+    "name": "toggle-group",
+    "title": "Toggle group",
+    "route": "/components/toggle-group",
+    "clazz": "org.patternfly.component.togglegroup.ToggleGroup",
+    "illustration": "toggle-group.png",
+    "summary": "A <b>toggle group</b> is a group of controls that can be used to quickly switch between actions or states."
+  },
+  "toolbar": {
+    "name": "toolbar",
+    "title": "Toolbar",
+    "route": "/components/toolbar",
+    "clazz": "org.patternfly.component.toolbar.Toolbar",
+    "illustration": "toolbar.png",
+    "summary": "A <b>toolbar</b> allows a user to manage and manipulate a data set. Data can be presented in any valid presentation, a table, a list, or a data visualization (chart), for example. The toolbar responsively accommodates controls and displays applied filters in chip groups."
+  },
+  "tooltip": {
+    "name": "tooltip",
+    "title": "Tooltip",
+    "route": "/components/tooltip",
+    "clazz": "org.patternfly.component.tooltip.Tooltip",
+    "illustration": "tooltip.png",
+    "summary": "A <b>tooltip</b> is in-app messaging used to identify elements on a page with short, clarifying text."
+  },
+  "tree-view": {
+    "name": "tree-view",
+    "title": "Tree view",
+    "route": "/components/tree-view",
+    "illustration": "tree-view.png",
+    "summary": "A <b>tree view</b> is a structure that displays data in a hierarchical view. It can be used in a <a href='/components/menus/dropdown'>dropdown</a>, <a href='/components/drawer'>drawer</a>, <a href='https://www.patternfly.org/patterns/primary-detail' target='patternfly'>primary-detail</a>, <a href='/components/modal'>modal</a>, or <a href='/components/wizard'>wizard</a>."
+  },
+  "truncate": {
+    "name": "truncate",
+    "title": "Truncate",
+    "route": "/components/truncate",
+    "clazz": "org.patternfly.component.truncate.Truncate",
+    "illustration": "truncate.png",
+    "summary": "A <b>truncate</b> is a tool used to shorten numeric and non-numeric character strings, typically when the string overflows its container."
+  },
+  "wizard": {
+    "name": "wizard",
+    "title": "Wizard",
+    "route": "/components/wizard",
+    "illustration": "wizard.png",
+    "summary": "A <b>wizard</b> provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of steps for some other outcome. Wizards should incite trust in the user and guide them through an otherwise overwhelming experience."
+  }
+}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+     Copyright 2023 Red Hat
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.patternfly</groupId>
+        <artifactId>patternfly-java-showcase</artifactId>
+        <version>0.1.6-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>patternfly-java-showcase-common</artifactId>
+    <packaging>jar</packaging>
+    <name>PatternFly Java Showcase Common</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-components</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-layouts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-router</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-router-processor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/java</directory>
+                            <includes>
+                                <include>org/patternfly/showcase/Code.java</include>
+                                <include>org/patternfly/showcase/ResourceBundle.java</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bundle</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>script</goal>
+                        </goals>
+                        <configuration>
+                            <scriptFile>bundle.kts</scriptFile>
+                            <scriptArguments>${project.basedir}</scriptArguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>script</goal>
+                        </goals>
+                        <configuration>
+                            <scriptFile>code.kts</scriptFile>
+                            <scriptArguments>${project.basedir}</scriptArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

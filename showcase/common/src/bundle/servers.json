@@ -1,0 +1,82 @@
+[
+  {
+    "name": "US-Node-1",
+    "threads": 5,
+    "applications": 25,
+    "workspaces": 5,
+    "status": "STOPPED",
+    "location": "Raleigh"
+  },
+  {
+    "name": "US-Node 2",
+    "threads": 5,
+    "applications": 30,
+    "workspaces": 2,
+    "status": "DOWN",
+    "location": "Westford"
+  },
+  {
+    "name": "US-Node 3",
+    "threads": 13,
+    "applications": 35,
+    "workspaces": 12,
+    "status": "DEGRADED",
+    "location": "Boston"
+  },
+  {
+    "name": "US-Node 4",
+    "threads": 2,
+    "applications": 5,
+    "workspaces": 18,
+    "status": "NEEDS_MAINTENANCE",
+    "location": "Raleigh"
+  },
+  {
+    "name": "US-Node 5",
+    "threads": 7,
+    "applications": 30,
+    "workspaces": 5,
+    "status": "RUNNING",
+    "location": "Boston"
+  },
+  {
+    "name": "US-Node 6",
+    "threads": 5,
+    "applications": 20,
+    "workspaces": 15,
+    "status": "STOPPED",
+    "location": "Raleigh"
+  },
+  {
+    "name": "CZ-Node 1",
+    "threads": 12,
+    "applications": 48,
+    "workspaces": 13,
+    "status": "DOWN",
+    "location": "Brno"
+  },
+  {
+    "name": "CZ-Node 2",
+    "threads": 3,
+    "applications": 8,
+    "workspaces": 20,
+    "status": "RUNNING",
+    "location": "Brno"
+  },
+  {
+    "name": "CZ-Remote-Node 1",
+    "threads": 15,
+    "applications": 20,
+    "workspaces": 10,
+    "status": "DOWN",
+    "location": "Brno"
+  },
+  {
+    "name": "Bangalore-Node 1",
+    "threads": 20,
+    "applications": 30,
+    "workspaces": 30,
+    "status": "RUNNING",
+    "location": "Bangalore"
+  }
+]

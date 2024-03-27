@@ -1,0 +1,17 @@
+{
+  "name": "icons",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx src/scripts/generate.ts"
+  },
+  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5",
+    "@fortawesome/free-regular-svg-icons": "^5",
+    "@fortawesome/free-solid-svg-icons": "^5",
+    "@patternfly/patternfly": "^4.224.2",
+    "@types/node": "^20.11.25",
+    "camelcase": "^8.0.0",
+    "tsx": "^4.7.1"
+  }
+}
