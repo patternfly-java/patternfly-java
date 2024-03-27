@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleBinaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;oE;EAAAA,kI;;;CAAA,wH;EAAAC,qC;EAAAA,uE;;;CAAA,uC;EAAAC,sD;EAAAA,8G;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["DoubleBinaryOperator.java"],
+"names":["java.util.function.DoubleBinaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoubleBinaryOperator$$LambdaAdaptor.<init>","java.util.function.DoubleBinaryOperator$$LambdaAdaptor.applyAsDouble","java.util.function.DoubleBinaryOperator$$LambdaAdaptor.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BeforePlaceHandler.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;MAkBiB,kB;;CAGG,8F,qBAAwBA,Y,eAAoBC,K;;CAKvD,4F,qBAAyBD,Y,eAAoBC,K;;QARrC,M;EAAAC,6B;EAAAA,8B;;;QAGG,sJ,0DAAwBF,Y,eAAoBC,K;EAA5CE,6B;EACZA,Y;;;QAJS,O;EAAAC,qC;EAAAA;",
+"sources":["BeforePlaceHandler.java"],
+"names":["placeManager","place","org.jboss.elemento.router.BeforePlaceHandler.<synthetic: adapt_lambda>","org.jboss.elemento.router.BeforePlaceHandler.shouldGoTo__$default","org.jboss.elemento.router.BeforePlaceHandler.<clinit>"]
+}

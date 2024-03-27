@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ClientBundle$Source.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAuCa,M;;CACT,iC;;QADS,O;EAAAA,yB;EAAAA;",
+"sources":["ClientBundle.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ClientBundle$Source.<clinit>"]
+}

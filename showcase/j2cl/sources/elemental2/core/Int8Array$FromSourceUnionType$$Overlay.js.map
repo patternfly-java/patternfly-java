@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Int8Array$FromSourceUnionType$$Overlay.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;MA0FmB,Q;;QAEsB,qE,UAAUA,C;EAAGC,mB;EAChDA,yE;;;QAI0B,mG;EAAAC,mB;EAC1BA,kG;;;QAIyB,kG;EAAAC,mB;EACzBA,gG;;;QAIa,oF;EAAAC,mB;EACbA,mE;;;QAIc,2E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["Int8Array.java"],
+"names":["o","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.of","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.asJsArrayLike__$devirt","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.asJsIterable__$devirt","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.asString__$devirt","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.isString__$devirt","elemental2.core.Int8Array$FromSourceUnionType$$Overlay.<clinit>"]
+}

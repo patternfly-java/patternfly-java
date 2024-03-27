@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ObjIntConsumer$$LambdaAdaptor.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8D;EAAAA,sH;;;CAAA,4G;EAAAC,qC;EAAAA,iE;;;CAAA,qC;;GAAAC,4E;GAAAA,sB;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ObjIntConsumer.java"],
+"names":["java.util.function.ObjIntConsumer$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.ObjIntConsumer$$LambdaAdaptor.<init>","java.util.function.ObjIntConsumer$$LambdaAdaptor.accept","java.util.function.ObjIntConsumer$$LambdaAdaptor.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ServiceWorkerClients$$Overlay.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;MAyBiB,Q;;QA4CsB,wG,uDAAkBA,G;EAAlBC,mB;EACnCA,yG;;;QAImC,0G,mDAAeD,G;EAAfC,mB;EACnCA,yG;;;QAlDa,O;EAAAC,2B;EAAAA;",
+"sources":["ServiceWorkerClients.java"],
+"names":["url","elemental2.dom.ServiceWorkerClients$$Overlay.openWindow__$devirt","elemental2.dom.ServiceWorkerClients$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InternalHashCodeMap$1.impl.java.js",
+"lineCount":93,
+"mappings":"A;;;;;;;;;;;;;;;;MAuG2C,E;;CAAA,W;EAAAA,Q;EAAAA;oD;EAAAA;OACL,yCADKA,C;EAAAA;OAEjC,4CAFiCA,K;EAAAA;OAGvB,wCAHuBA,C;EAAAA;OAIzB,4CAJyBA,C;;;QAAA,sC;EAAAC,a;EAAAA,yB;EAAAA,mG;EAAAA,iB;;;CAAA,2E;EAAAC,gE;EAAAA,qC;EAAAA,sD;;;CAOtB,kB;EACbC;GACEA,YADFA;G;EAGAA,IAA+BC,OAA/BD,yD;EACAA;GAEEA,sNAFFA;GAGEA,sDAHFA;GAIEA,YAJFA;G;EAMAA,a;;;CAIiB,2B;EAAOE,yB;EACxBA,uR;EACAA,yD;;;CAIU,c;EACVC,+K;EAEAA;GACEA,8GADFA;G;;;;CA/BmC,qD;EAAAC,yG;;;;CAAA,wB;EAAAF,0C;;;CAAA,8C;EACrCH,0J;EACAA,sD;EACAA,kL;EACAA,yD;;;QAJqC,O;EAAAM,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["InternalHashCodeMap.java"],
+"names":["java.util.InternalHashCodeMap$1.<synthetic: ctor_js>","java.util.InternalHashCodeMap$1.<synthetic: ctor_create>","java.util.InternalHashCodeMap$1.<init>","java.util.InternalHashCodeMap$1.hasNext","current","java.util.InternalHashCodeMap$1.next","java.util.InternalHashCodeMap$1.remove","java.util.InternalHashCodeMap$1.forEachRemaining","java.util.InternalHashCodeMap$1.<clinit>"]
+}

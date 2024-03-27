@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HandlerRegistrations$HandlerRegistrationCollection.impl.java.js",
+"lineCount":48,
+"mappings":"A;;;;;;;;;;;MAkBuB,6B;;CAAA,W;EAAAA,Q;EAAAA;OAEW,2FAFXA,C;;;QAIZ,gE,mCAAqDC,Q;EAArDC,wC;EAAAA,oD;EAAAA,yK;EAAAA,iB;;;CAAA,oJ,mCAAqDD,Q;EAAUE,qC;EACpEA,4G;;;CAIU,qB;EACVC;GACEA,OADFA;G;EAGAA;GAAAA,IAAyBC,EAAzBD,kBAAAA;;IACEA,2BADFA;;G;EAKAA,wG;;;QAlBiB,O;EAAAE,gD;EAAAA,6C;EAAAA;",
+"sources":["HandlerRegistrations.java"],
+"names":["org.gwtproject.event.shared.HandlerRegistrations$HandlerRegistrationCollection.<synthetic: ctor_js>","handlers","org.gwtproject.event.shared.HandlerRegistrations$HandlerRegistrationCollection.<synthetic: ctor_create>","org.gwtproject.event.shared.HandlerRegistrations$HandlerRegistrationCollection.<init>","org.gwtproject.event.shared.HandlerRegistrations$HandlerRegistrationCollection.removeHandler","hr","org.gwtproject.event.shared.HandlerRegistrations$HandlerRegistrationCollection.<clinit>"]
+}

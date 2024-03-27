@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Location$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MAuBa,Q;;QAuEO,kE,2CAAcA,G;EAAdC,mB;EAChBA,8F;;;QAIgB,oE,uCAAWD,G;EAAXC,mB;EAChBA,8F;;;QAUgB,mE,2CAAeD,G;EAAfE,mB;EAChBA,+F;;;QAIgB,qE,uCAAYF,G;EAAZE,mB;EAChBA,+F;;;QA7FS,O;EAAAC,2B;EAAAA;",
+"sources":["Location.java"],
+"names":["url","elemental2.dom.Location$$Overlay.assign__$devirt","elemental2.dom.Location$$Overlay.replace__$devirt","elemental2.dom.Location$$Overlay.<clinit>"]
+}

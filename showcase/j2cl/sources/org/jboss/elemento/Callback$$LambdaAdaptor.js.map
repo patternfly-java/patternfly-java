@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Callback$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MAqBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;wD;EAAAA,0G;;;CAAA,gG;EAAAC,qC;EAAAA,2D;;;CAAA,Y;;GAAAC,sE;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Callback.java"],
+"names":["org.jboss.elemento.Callback$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.jboss.elemento.Callback$$LambdaAdaptor.<init>","org.jboss.elemento.Callback$$LambdaAdaptor.call","org.jboss.elemento.Callback$$LambdaAdaptor.<clinit>"]
+}

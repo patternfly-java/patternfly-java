@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CharSequence.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAgCiB,Y;;CACV,mB,eAAWA,K;;CAEZ,a;;CAES,+C,eAAgBC,K,gBAAWC,G;;CAGjC,Q;;CAEW,mC;;QAsBH,W,UAAsCC,Q;EAAUC,uB;EAC7DA;GACEA,YADFA;G;EAIAA,gG;;;QA3BgB,qE;EAAAC,uB;EAChBA;GACEC,IAAwBC,EAAxBD,gDADFD;GAeEC,2PAfFD;wJ;;;QAXa,O;EAAAG,+B;EAAAA;",
+"sources":["CharSequence.java"],
+"names":["index","start","end","instance","java.lang.CharSequence.$isInstance","java.lang.CharSequence.chars__$default","java.lang.CharSequence.<lambda in chars__$default>","it","java.lang.CharSequence.<clinit>"]
+}

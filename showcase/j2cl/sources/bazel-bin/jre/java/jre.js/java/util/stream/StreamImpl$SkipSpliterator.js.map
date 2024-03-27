@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$SkipSpliterator.impl.java.js",
+"lineCount":59,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAyb6B,e;;CAAA,W;EAAAA,Q;EAAAA;OACZ,oDADYA,oB;EAAAA;OAEI,wDAFJA,C;;;QAIlB,oC,eAAqBC,I,wBAAqBC,Q;EAA1CC,0B;EAAAA,sC;EAAAA,gH;EAAAA,iB;;;CAAA,qF,eAAqBF,I,wBAAqBC,Q;EAC/CE,iV;EAKAA,iE;EACAA,yE;;;CAI2B,qC;EAC3BC,6G;;;CAIa,kD,oBAA+BC,M;EAC5CC;GACEA,gJAAyBC,MAAzBD;IACEA,aADFA;IADFA;GAIEA,0JAJFA;G;EAMAA,gI;;;QA3BuB,O;EAAAE,kC;EAAAA,+B;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$SkipSpliterator.<synthetic: ctor_js>","skip","original","java.util.stream.StreamImpl$SkipSpliterator.<synthetic: ctor_create>","java.util.stream.StreamImpl$SkipSpliterator.<init>","java.util.stream.StreamImpl$SkipSpliterator.getComparator","action","java.util.stream.StreamImpl$SkipSpliterator.tryAdvance","ignore","java.util.stream.StreamImpl$SkipSpliterator.<clinit>"]
+}

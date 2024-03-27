@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$EmptySpliterator$OfDouble.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;;;;;;MAqQ+B,Q;;CAAA,W;EAAAA,Q;;;QAIzB,S;EAAAC,mB;EAAAA,+B;EAAAA,0E;EAAAA,iB;;;CAAA,6D;EAAWC,4D;;;;CAJc,qD;EAAAC,iI;;;;CAAA,kD;EAAAC,qI;;;;CAAA,6C;EAAAC,sH;;;QAAA,O;EAAAC,2B;EAAAA,wB;EAAAA,2B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$EmptySpliterator$OfDouble.<synthetic: ctor_js>","java.util.Spliterators$EmptySpliterator$OfDouble.<synthetic: ctor_create>","java.util.Spliterators$EmptySpliterator$OfDouble.<init>","java.util.Spliterators$EmptySpliterator$OfDouble.forEachRemaining","java.util.Spliterators$EmptySpliterator$OfDouble.tryAdvance","java.util.Spliterators$EmptySpliterator$OfDouble.trySplit","java.util.Spliterators$EmptySpliterator$OfDouble.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HasSVGElement.impl.java.js",
+"lineCount":82,
+"mappings":"A;;;;;;;;;;;;;;;;;MAuBiB,a;;CAIH,0D,gBAAaA,K;;CAKb,mE,gBAAaA,K,iBAAeC,M;;CAU5B,+D,gBAAaC,Q,gBAAcC,K;;CAK3B,4E,gBAAaD,Q,iBAAiBC,K;;CAK9B,wE,gBAAaD,Q,gBAAcC,K,iBAAeC,S;;CAK1C,qF,gBAAaF,Q,iBAAiBC,K,iBAAeC,S;;CAY7C,2E,gBAAYC,I,iBAAaF,K;;QA1CzB,0G,sDAAaH,K;EAAbM,wB;EACNA,iG;;;QAIM,mH,sDAAaN,K,iBAAeC,M;EAA5BK,wB;EACNA;;IACIA,qHADJA;IACIA,oKADJA;;;GAGIA,oHAHJA;G;EAKAA,0D;;;QAIM,+G,sDAAaJ,Q,gBAAcC,K;EAA3BG,wB;EACNA,2K;;;QAIM,4H,sDAAaJ,Q,iBAAiBC,K;EAA9BG,wB;EACNA,8H;;;QAIM,wH,sDAAaJ,Q,gBAAcC,K,iBAAeC,S;EAA1CE,wB;EACNA,+K;;;QAIM,qI,sDAAaJ,Q,iBAAiBC,K,iBAAeC,S;EAA7CE,wB;EACNA,IAAOC,QAAPD,gC;EACAA,2I;EACAA,0D;;;QASM,2H,sDAAYD,I,iBAAaF,K;EAAzBK,wB;EACNA,mV;EACAA,0D;;;QAhDS,O;EAAAC,gC;EAAAA;",
+"sources":["HasSVGElement.java"],
+"names":["style","append","property","value","important","name","org.jboss.elemento.svg.HasSVGElement.style__$default","priority","org.jboss.elemento.svg.HasSVGElement.data__$default","org.jboss.elemento.svg.HasSVGElement.<clinit>"]
+}

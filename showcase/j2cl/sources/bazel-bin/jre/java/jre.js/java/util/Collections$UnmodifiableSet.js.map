@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableSet.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;;;;;;MA+tBe,e;;CAAA,W;EAAAA,Q;;;QAEJ,sB,eAAiCC,G;EAAjCC,0B;EAAAA,sC;EAAAA,iF;EAAAA,iB;;;CAAA,iE,eAAiCD,G;EACtCE,0F;;;CAIa,M,UAAcC,C;EAC3BC,oI;;;CAIS,Q;EACTC,6G;;;;CAbS,oC;EAAAC,6G;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,iC;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableSet.<synthetic: ctor_js>","set","java.util.Collections$UnmodifiableSet.<synthetic: ctor_create>","java.util.Collections$UnmodifiableSet.<init>","o","java.util.Collections$UnmodifiableSet.equals","java.util.Collections$UnmodifiableSet.hashCode","java.util.Collections$UnmodifiableSet.spliterator","java.util.Collections$UnmodifiableSet.<clinit>"]
+}

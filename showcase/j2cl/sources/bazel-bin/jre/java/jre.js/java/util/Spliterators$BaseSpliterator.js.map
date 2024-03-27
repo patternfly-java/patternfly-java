@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$BaseSpliterator.impl.java.js",
+"lineCount":68,
+"mappings":"A;;;;;;;;;;;;;;;MAmCgC,e;;CAAA,W;EAAAA,Q;EAAAA;OAEV,0DAFUA,K;EAAAA;OAGf,uDAHeA,oB;;;CAK5B,8D,eAAqBC,I,gBAAUC,e;EAAiBC,qC;EAC9CA,oE;EACAA,0N;;;CAIS,sB;EACTC,uE;;;CAGU,oB;EACVC,oE;;;CAGO,iC;EAEPC,Y;;;;CArB0B,qD;EAAAC,+G;;;;CAAA,qC;EAAAC,gG;;;;CAAA,2B;EAAAC,sF;;;;CAAA,kC;EAAAC,mG;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,qB;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$BaseSpliterator.<synthetic: ctor_js>","size","characteristics","java.util.Spliterators$BaseSpliterator.<init>","java.util.Spliterators$BaseSpliterator.characteristics","java.util.Spliterators$BaseSpliterator.estimateSize","java.util.Spliterators$BaseSpliterator.trySplit","java.util.Spliterators$BaseSpliterator.forEachRemaining","java.util.Spliterators$BaseSpliterator.getComparator","java.util.Spliterators$BaseSpliterator.getExactSizeIfKnown","java.util.Spliterators$BaseSpliterator.hasCharacteristics","java.util.Spliterators$BaseSpliterator.<clinit>"]
+}

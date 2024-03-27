@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ChipComponent.impl.java.js",
+"lineCount":58,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;MAiCa,a;;CAAA,W;EAAAA,Q;;;QAEF,S;EAAAC,wB;EAAAA,oC;EAAAA,yE;EAAAA,iB;;;CAAA,4D;EACHC,6S;EAEAA,6B;EACAA;GAIQC,olFAJRD;O;EAmBAA;GAGQC,uuCAHRD;O;EAcAA;GAGQC,uwCAHRD;O;EAcAA;GAGQC,41EAHRD;O;EAqBAA,6D;EACAA,sJ;EACAA,2J;;;QA5EK,O;EAAAE,gC;EAAAA,6B;EAAAA;",
+"sources":["ChipComponent.java"],
+"names":["org.patternfly.showcase.component.ChipComponent.<synthetic: ctor_js>","org.patternfly.showcase.component.ChipComponent.<synthetic: ctor_create>","org.patternfly.showcase.component.ChipComponent.<init>","org.patternfly.showcase.component.ChipComponent.<lambda in <init>>","org.patternfly.showcase.component.ChipComponent.<clinit>"]
+}

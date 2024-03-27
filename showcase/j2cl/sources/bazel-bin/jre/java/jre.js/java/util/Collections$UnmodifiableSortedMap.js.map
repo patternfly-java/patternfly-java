@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableSortedMap.impl.java.js",
+"lineCount":72,
+"mappings":"A;;;;;;;;;;;;;;;MAgvBe,qB;;CAAA,W;EAAAA,Q;EAAAA;OAGuB,yDAHvBA,C;;;QAKJ,4B,wBAAgDC,S;EAAhDC,gC;EAAAA,4C;EAAAA,mG;EAAAA,iB;;;CAAA,6E,wBAAgDD,S;EACrDE,kF;EACAA,2E;;;CAI2B,kC;EAC3BC,2G;;;CAIa,M,UAAcC,C;EAC3BC,gF;;;CAIO,4B;EACPC,qG;;;CAIS,Q;EACTC,kH;;;CAIqB,gD,UAAUC,K;EAC/BC,8N;;;CAIO,2B;EACPC,oG;;;CAIqB,iE,UAASC,O,WAAWH,K;EACzCI,wP;;;CAIqB,gD,UAAUD,O;EAC/BE,gO;;;QA/CS,O;EAAAC,wC;EAAAA,qC;EAAAA,0B;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableSortedMap.<synthetic: ctor_js>","sortedMap","java.util.Collections$UnmodifiableSortedMap.<synthetic: ctor_create>","java.util.Collections$UnmodifiableSortedMap.<init>","java.util.Collections$UnmodifiableSortedMap.comparator","o","java.util.Collections$UnmodifiableSortedMap.equals","java.util.Collections$UnmodifiableSortedMap.firstKey","java.util.Collections$UnmodifiableSortedMap.hashCode","toKey","java.util.Collections$UnmodifiableSortedMap.headMap","java.util.Collections$UnmodifiableSortedMap.lastKey","fromKey","java.util.Collections$UnmodifiableSortedMap.subMap","java.util.Collections$UnmodifiableSortedMap.tailMap","java.util.Collections$UnmodifiableSortedMap.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ArrayStamper.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;MAoBa,Y;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,uB;EAAAA,mC;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAAC,qC;;;QAEW,yF,UAAyBC,K,kBAAWC,a;EAAeC,uB;EACvEA,IAAIC,OAAJD,wD;EACAA,0C;EACAA,e;;;QAGW,yE,UAAoBF,K,WAASC,a;EAAeC,uB;EACvDA,sI;EACAA,a;;;QAVS,O;EAAAE,+B;EAAAA,4B;EAAAA;",
+"sources":["ArrayStamper.java"],
+"names":["javaemul.internal.ArrayStamper.<synthetic: ctor_js>","javaemul.internal.ArrayStamper.<synthetic: ctor_create>","javaemul.internal.ArrayStamper.<init>","array","referenceType","javaemul.internal.ArrayStamper.stampJavaTypeInfo","asArray","javaemul.internal.ArrayStamper.<clinit>"]
+}

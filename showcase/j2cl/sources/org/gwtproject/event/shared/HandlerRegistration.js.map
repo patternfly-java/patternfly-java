@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HandlerRegistration.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsCiB,mB;;CAOV,qB;;QAPU,M;EAAAA,8B;EAAAA,8B;;;QAAA,O;EAAAC,sC;EAAAA;",
+"sources":["HandlerRegistration.java"],
+"names":["org.gwtproject.event.shared.HandlerRegistration.<synthetic: adapt_lambda>","org.gwtproject.event.shared.HandlerRegistration.<clinit>"]
+}

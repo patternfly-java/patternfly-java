@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Storage$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAsBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["Storage.java"],
+"names":["elemental2.webstorage.Storage$$Overlay.<clinit>"]
+}

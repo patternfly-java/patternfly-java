@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$AbstractDoubleSpliterator.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;;;;;;;;;;;;;MA4E+B,yB;;CAAA,W;EAAAA,Q;;;CAGjB,wE,eAA+BC,I,gBAAUC,e;EACjDC,2F;;;;CAJyB,qD;EAAAC,qH;;;;CAAA,kD;EAAAC,yH;;;;CAAA,0C;EAAAD,0K;;;;CAAA,6C;EAAAE,8F;;;;CAAA,2D;EAAAF,gH;;;QAAA,O;EAAAG,4C;EAAAA,yC;EAAAA,0B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$AbstractDoubleSpliterator.<synthetic: ctor_js>","size","characteristics","java.util.Spliterators$AbstractDoubleSpliterator.<init>","java.util.Spliterators$AbstractDoubleSpliterator.forEachRemaining","java.util.Spliterators$AbstractDoubleSpliterator.tryAdvance","java.util.Spliterators$AbstractDoubleSpliterator.trySplit","java.util.Spliterators$AbstractDoubleSpliterator.<clinit>"]
+}

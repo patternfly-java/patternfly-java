@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractList$IteratorImpl.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;MAoCgB,Y;;CAAA,W;EAAAA,Q;EAAAA;wD;EAAAA;OAOR,wCAPQA,K;EAAAA;OAOD,2CAPCA,K;;;QAAA,+B;EAAAC,uB;EAAAA,mC;EAAAA,gG;EAAAA,iB;;;CAAA,wE;EAAAC,oE;EAAAA,qC;EAAAA,0D;;;CAUG,kB;EACbC,oH;;;CAIO,wB;EAAOC,yB;EACdA,+E;EAEAA,oS;;;CAIU,c;EACVC,iH;EAEAA,sH;EACAA,iG;EACAA,2D;;;;CA3BU,qD;EAAAC,yG;;;CAAA,kD;EAOZJ,kD;EAAAA,2D;;;QAPY,O;EAAAK,+B;EAAAA,4B;EAAAA,qB;EAAAA;",
+"sources":["AbstractList.java"],
+"names":["java.util.AbstractList$IteratorImpl.<synthetic: ctor_js>","java.util.AbstractList$IteratorImpl.<synthetic: ctor_create>","java.util.AbstractList$IteratorImpl.<init>","java.util.AbstractList$IteratorImpl.hasNext","java.util.AbstractList$IteratorImpl.next","java.util.AbstractList$IteratorImpl.remove","java.util.AbstractList$IteratorImpl.forEachRemaining","java.util.AbstractList$IteratorImpl.<clinit>"]
+}

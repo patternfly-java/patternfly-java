@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Deque.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;MAuBiB,K;;CAEV,kC,UAAWA,C;;CAEX,iC,UAAUA,C;;CAEH,wC;;CAEV,4B;;CAEA,2B;;CAEM,uC,UAAaA,C;;CAEb,sC,UAAYA,C;;CAElB,6B;;CAEA,4B;;CAEA,6B;;CAEA,4B;;CAEA,uB;;CAEG,8B,UAAOA,C;;CAEV,+B;;CAEM,kD,UAA6BC,C;;CAEnC,8B;;CAEM,iD,UAA4BA,C;;QAlCrB,O;EAAAC,wB;EAAAA,qB;EAAAA;",
+"sources":["Deque.java"],
+"names":["e","o","java.util.Deque.<clinit>"]
+}

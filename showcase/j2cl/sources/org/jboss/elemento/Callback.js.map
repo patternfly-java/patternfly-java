@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Callback.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;;;;;MAqBiB,Q;;QAEG,mC;EAAOA,mB;EACnBA,gC;;;CAKC,Y;;QARQ,M;EAAAC,mB;EAAAA,8B;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["Callback.java"],
+"names":["org.jboss.elemento.Callback.noop","org.jboss.elemento.Callback.<synthetic: adapt_lambda>","org.jboss.elemento.Callback.<clinit>"]
+}

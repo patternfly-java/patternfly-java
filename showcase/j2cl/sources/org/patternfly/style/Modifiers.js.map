@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;;MAwBiB,S;;QA0Q8C,qI,UAAiBA,O,WAAWC,O,iBACxEC,Y,iBAAsBC,I;EAAMC,oB;EACvCA,6H;EACAA,e;;;QA7QS,O;EAAAC,4B;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["builder","element","pureModifier","flag","org.patternfly.style.Modifiers.toggleModifier","org.patternfly.style.Modifiers.<clinit>"]
+}

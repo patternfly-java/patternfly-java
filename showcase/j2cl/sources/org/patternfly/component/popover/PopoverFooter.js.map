@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PopoverFooter.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;MAwBa,a;;CAAA,W;EAAAA,Q;;;QAImB,+D;EAAgBC,wB;EACxCA,iC;;;QAOJ,S;EAAAC,wB;EAAAA,oC;EAAAA,wE;EAAAA,iB;;;CAAA,2D;EACIC,myB;;;CAMiB,sD;EACjBC,Y;;;;CApBK,uC;EAAAA,qE;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,8B;;;;;;;;;;;;;;;;;;AAUT;cAAoB,oEAApB;",
+"sources":["PopoverFooter.java"],
+"names":["org.patternfly.component.popover.PopoverFooter.<synthetic: ctor_js>","org.patternfly.component.popover.PopoverFooter.popoverFooter","org.patternfly.component.popover.PopoverFooter.<synthetic: ctor_create>","org.patternfly.component.popover.PopoverFooter.<init>","org.patternfly.component.popover.PopoverFooter.that","org.patternfly.component.popover.PopoverFooter.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NodeIterator$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAqBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["NodeIterator.java"],
+"names":["elemental2.dom.NodeIterator$$Overlay.<clinit>"]
+}

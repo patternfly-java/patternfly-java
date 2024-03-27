@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Runnable.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MA4BiB,Q;;CACV,W;;QADU,M;EAAAA,mB;EAAAA,8B;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["Runnable.java"],
+"names":["java.lang.Runnable.<synthetic: adapt_lambda>","java.lang.Runnable.<clinit>"]
+}

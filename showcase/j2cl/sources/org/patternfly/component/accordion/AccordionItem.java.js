@@ -1,0 +1,35 @@
+goog.module('org.patternfly.component.accordion.AccordionItem');
+
+goog.require('elemental2.dom.Element.$Overlay');
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.HTMLButtonElement.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('elemental2.dom.MouseEvent.$Overlay');
+goog.require('elemental2.dom.Node.$Overlay');
+goog.require('java.lang.String');
+goog.require('java.util.ArrayList');
+goog.require('java.util.List');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.gwtproject.safehtml.shared.SafeHtml');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.EventType');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.Id');
+goog.require('org.jboss.elemento.IsElement');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.Expandable');
+goog.require('org.patternfly.component.WithText');
+goog.require('org.patternfly.component.accordion.Accordion');
+goog.require('org.patternfly.component.accordion.AccordionItemBody');
+goog.require('org.patternfly.component.accordion.AccordionSubComponent');
+goog.require('org.patternfly.core.Aria');
+goog.require('org.patternfly.core.ElementDelegate');
+goog.require('org.patternfly.icon.IconSets.fas');
+goog.require('org.patternfly.style.Classes');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const AccordionItem = goog.require('org.patternfly.component.accordion.AccordionItem$impl');
+exports = AccordionItem;

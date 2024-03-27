@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CountingEventBus$KeyedCounter.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;;;;;MAmIuB,Y;;CAAA,W;EAAAA,Q;EAAAA;OACK,4EADLA,C;;;QAAA,S;EAAAC,uB;EAAAA,mC;EAAAA,2F;EAAAA,iB;;;CAAA,8E;EAAAC,qC;EAAAA,wF;;;CAGf,yE,UAAWC,G;EACbC,IAAQC,KAARD,0I;EACAA,kE;;;CAGG,2E,UAAYD,G;EACfG,mO;;;CAGG,2E,UAAYH,G;EACfI,mO;;;CAbiB,gF;EACnBL,4I;;;QADmB,O;EAAAM,+B;EAAAA,4B;EAAAA;",
+"sources":["CountingEventBus.java"],
+"names":["org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.<synthetic: ctor_js>","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.<synthetic: ctor_create>","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.<init>","key","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.getCount","count","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.decrement","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.increment","org.gwtproject.event.shared.testing.CountingEventBus$KeyedCounter.<clinit>"]
+}

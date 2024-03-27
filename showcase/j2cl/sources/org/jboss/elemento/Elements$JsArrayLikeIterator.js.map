@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Elements$JsArrayLikeIterator.impl.java.js",
+"lineCount":69,
+"mappings":"A;;;;;;;;;;;;;;;MAuuDyB,mB;;CAAA,W;EAAAA,Q;EAAAA;OAEsB,wDAFtBA,C;EAAAA;OAGL,uDAHKA,K;;;QAKjB,mC,sBAA6CC,K;EAA7CC,8B;EAAAA,0C;EAAAA,0G;EAAAA,iB;;;CAAA,wF,sBAA6CD,K;EAAOE,qC;EAAAA,sE;EAChDA,sE;;;CAIW,kB;EACXC,oM;;;CAIK,wB;EAAOC,yB;EACZA;GACIA,2DADJA;G;EAGAA,yW;;;;CAnBa,qD;EAAAC,yG;;;;CAAA,c;EAAAC,4D;;;CAAA,8D;EAGjBJ,iE;;;QAHiB,O;EAAAK,sC;EAAAA,mC;EAAAA,qB;EAAAA;",
+"sources":["Elements.java"],
+"names":["org.jboss.elemento.Elements$JsArrayLikeIterator.<synthetic: ctor_js>","nodes","org.jboss.elemento.Elements$JsArrayLikeIterator.<synthetic: ctor_create>","org.jboss.elemento.Elements$JsArrayLikeIterator.<init>","org.jboss.elemento.Elements$JsArrayLikeIterator.hasNext","org.jboss.elemento.Elements$JsArrayLikeIterator.next","org.jboss.elemento.Elements$JsArrayLikeIterator.forEachRemaining","org.jboss.elemento.Elements$JsArrayLikeIterator.remove","org.jboss.elemento.Elements$JsArrayLikeIterator.<clinit>"]
+}

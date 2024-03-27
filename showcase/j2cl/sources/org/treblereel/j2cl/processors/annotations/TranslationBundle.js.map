@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TranslationBundle.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAyBkB,iB;;CAEhB,gC;;QAFgB,O;EAAAA,oC;EAAAA;",
+"sources":["TranslationBundle.java"],
+"names":["org.treblereel.j2cl.processors.annotations.TranslationBundle.<clinit>"]
+}

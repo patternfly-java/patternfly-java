@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Int16Array$ConstructorLengthUnionType$$Overlay.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;MA2BmB,Q;;QAE8B,6E,UAAUA,C;EAAGC,mB;EACxDA,yE;;;QAIkB,4G;EAAAC,mB;EAClBA,4H;;;QAIsB,oH;EAAAC,mB;EACtBA,oI;;;QAIU,4E;EAAAC,mB;EACVA,mD;;;QAIsB,oG;EAAAC,mB;EACtBA,2H;;;QAIwB,wH;EAAAC,mB;EACxBA,wI;;;QAIc,wF;EAAAC,mB;EACdA,kD;;;QAIc,4F;EAAAC,mB;EACdA,sD;;;QAIc,gF;EAAAC,mB;EACdA,oC;;;QAIc,oF;EAAAC,mB;EACdA,8C;;;QAIc,8F;EAAAC,mB;EACdA,wD;;;QArDa,O;EAAAC,2B;EAAAA;",
+"sources":["Int16Array.java"],
+"names":["o","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.of","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.asArrayBufferView__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.asInt__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.asJsArray__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.asSharedArrayBuffer__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.isArrayBufferView__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.isInt__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.isJsArray__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.isSharedArrayBuffer__$devirt","elemental2.core.Int16Array$ConstructorLengthUnionType$$Overlay.<clinit>"]
+}

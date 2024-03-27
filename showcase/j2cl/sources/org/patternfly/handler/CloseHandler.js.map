@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CloseHandler.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;;;MAoBiB,Y;;QAMM,4G,YAAcA,S,2BAA2BC,Y,eAAoBC,K,iBAAeC,S;EAAWC,uB;EACtGA;GACIA,qGADJA;G;EAGAA,Y;;;QAOY,uG,YAAYJ,S,2BAA2BC,Y,eAAoBC,K,iBAAeC,S;EAAWE,uB;EACjGA;GACIA,uFADJA;G;;;CAMY,8D,cAAkBH,K,WAASF,S;;CAKtC,uD,cAAcE,K,WAASF,S;;QA7Bf,M;EAAAM,uB;EAAAA,gE;;;QAwBG,6G,gDAAkBJ,K,WAASF,S;EAA3BO,uB;EACZA,Y;;;QAzBS,O;EAAAC,+B;EAAAA;",
+"sources":["CloseHandler.java"],
+"names":["component","closeHandler","event","fireEvent","org.patternfly.handler.CloseHandler.shouldClose","org.patternfly.handler.CloseHandler.fireEvent","org.patternfly.handler.CloseHandler.<synthetic: adapt_lambda>","org.patternfly.handler.CloseHandler.shouldClose__$default","org.patternfly.handler.CloseHandler.<clinit>"]
+}

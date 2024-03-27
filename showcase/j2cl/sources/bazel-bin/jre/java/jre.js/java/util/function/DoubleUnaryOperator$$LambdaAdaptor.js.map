@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleUnaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;mE;EAAAA,gI;;;CAAA,sH;EAAAC,qC;EAAAA,sE;;;CAAA,+B;EAAAC,8C;EAAAA,uG;;;;CAAA,yF;EAAAC,mL;;;;CAAA,yF;EAAAC,mL;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["DoubleUnaryOperator.java"],
+"names":["java.util.function.DoubleUnaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoubleUnaryOperator$$LambdaAdaptor.<init>","java.util.function.DoubleUnaryOperator$$LambdaAdaptor.applyAsDouble","java.util.function.DoubleUnaryOperator$$LambdaAdaptor.andThen","java.util.function.DoubleUnaryOperator$$LambdaAdaptor.compose","java.util.function.DoubleUnaryOperator$$LambdaAdaptor.<clinit>"]
+}

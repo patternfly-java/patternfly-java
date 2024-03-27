@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TypedModifier.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;MAiBiB,a;;CAEN,yB;;CAEA,4B;;QAJM,O;EAAAA,gC;EAAAA;",
+"sources":["TypedModifier.java"],
+"names":["org.patternfly.style.TypedModifier.<clinit>"]
+}

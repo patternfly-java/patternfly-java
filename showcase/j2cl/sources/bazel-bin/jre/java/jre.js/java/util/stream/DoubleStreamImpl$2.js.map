@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$2.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAutB4F,E;;CAAA,W;EAAAA,Q;EAAAA;wD;EAAAA;OAC7D,8CAD6DA,C;;;QAAA,qD;EAAAC,a;EAAAA,yB;EAAAA,gI;EAAAA,iB;;;CAAA,8F;EAAAC,oE;EAAAA,wF;EAAAA,0D;;;CAIhD,qC;EAChCC,Y;;;CAIa,wD,uBAA0BC,M;EACvCC;GACEA,IAASC,IAATD,gEADFA;GAEEA,wLAAqCE,KAArCF;IAA+CG,0EAA/CH;OAFFA;GAGEA,0CAHFA;GAIEA,2KAJFA;G;EAMAA,2G;;;;CAhBgF,uC;EAAAA,qI;;;CAAA,kD;EAClFH,2D;;;QADkF,O;EAAAO,qB;EAAAA,kB;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$2.<synthetic: ctor_js>","java.util.stream.DoubleStreamImpl$2.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$2.<init>","java.util.stream.DoubleStreamImpl$2.getComparator","action","java.util.stream.DoubleStreamImpl$2.tryAdvance","list","value","java.util.stream.DoubleStreamImpl$2.<lambda in tryAdvance>","java.util.stream.DoubleStreamImpl$2.<clinit>"]
+}

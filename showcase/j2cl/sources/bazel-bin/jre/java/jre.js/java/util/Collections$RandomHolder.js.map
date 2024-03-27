@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$RandomHolder.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;MAs5BuB,Y;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mC;EAAAA,4D;EAAAA,iB;;;CAAA,+C;EAAAC,qC;;;QACnB,8C;EAAAC,+F;;;QADmB,O;EAAAC,+B;EAAAA,4B;EAAAA,qB;EACnBA,mF;;;;;;;;;;;;AADmB;;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$RandomHolder.<synthetic: ctor_js>","java.util.Collections$RandomHolder.<synthetic: ctor_create>","java.util.Collections$RandomHolder.<init>","java.util.Collections$RandomHolder.<synthetic: getter>","java.util.Collections$RandomHolder.<clinit>"]
+}

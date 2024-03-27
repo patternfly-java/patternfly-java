@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GWT3EntryPoint.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA0BkB,c;;QAAA,O;EAAAA,iC;EAAAA;",
+"sources":["GWT3EntryPoint.java"],
+"names":["org.treblereel.j2cl.processors.annotations.GWT3EntryPoint.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ByteLengthQueuingStrategy$SizeChunkType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyCmB,Q;;QAEgC,gE;EAASA,mB;EACtDA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["ByteLengthQueuingStrategy.java"],
+"names":["elemental2.dom.ByteLengthQueuingStrategy$SizeChunkType$$Overlay.create","elemental2.dom.ByteLengthQueuingStrategy$SizeChunkType$$Overlay.<clinit>"]
+}

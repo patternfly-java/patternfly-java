@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IsElement.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,S;;CAGX,iC;;QAHW,M;EAAAA,oB;EAAAA,gE;;;QAAA,O;EAAAC,4B;EAAAA;",
+"sources":["IsElement.java"],
+"names":["org.jboss.elemento.IsElement.<synthetic: adapt_lambda>","org.jboss.elemento.IsElement.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Character$CharSequenceAdapter.impl.java.js",
+"lineCount":74,
+"mappings":"A;;;;;;;;;;;MAqEe,mB;;CAAA,W;EAAAA,Q;EAAAA;OACI,qDADJA,C;EAAAA;OAEC,iDAFDA,K;EAAAA;OAGC,+CAHDA,K;;;;QAKJ,qB,sBAA2BC,S;EAA3BC,8B;EAAAA,0C;EAAAA,wF;EAAAA,iB;;;;CAAA,kE,sBAA2BD,S;EAChCE,kH;;;;QAGK,+B,sBAA2BF,S,gBAAeG,K,gBAAWC,G;EAArDH,8B;EAAAA,0C;EAAAA,8G;EAAAA,iB;;;;CAAA,4E,sBAA2BD,S,gBAAeG,K,gBAAWC,G;EAAKF,qC;EAC/DA,uE;EACAA,+D;EACAA,2D;;;CAIU,mB,eAAWG,K;EACrBC,sI;;;CAIS,a;EACTC,yH;;;CAI4B,+C,eAAgBJ,K,gBAAWC,G;EACvDI,6P;;;;CA3BS,mC;EAAAC,gG;;;QAAA,O;EAAAC,sC;EAAAA,mC;EAAAA,qB;EAAAA;",
+"sources":["Character.java"],
+"names":["java.lang.Character$CharSequenceAdapter.<synthetic: ctor_js>","charArray","java.lang.Character$CharSequenceAdapter.<synthetic: ctor_create>","java.lang.Character$CharSequenceAdapter.<init>","start","end","index","java.lang.Character$CharSequenceAdapter.charAt","java.lang.Character$CharSequenceAdapter.length","java.lang.Character$CharSequenceAdapter.subSequence","java.lang.Character$CharSequenceAdapter.chars","java.lang.Character$CharSequenceAdapter.<clinit>"]
+}

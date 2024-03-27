@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PerformanceMeasureOptions$GetEndUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MA4BmB,Q;;QAEkC,gF,UAAUA,C;EAAGC,mB;EAC5DA,yE;;;QAIa,qF;EAAAC,mB;EACbA,yD;;;QAIa,+F;EAAAC,mB;EACbA,mE;;;QAIc,sF;EAAAC,mB;EACdA,oC;;;QAIc,sF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["PerformanceMeasureOptions.java"],
+"names":["o","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.of","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.asDouble__$devirt","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.asString__$devirt","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.isDouble__$devirt","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.isString__$devirt","elemental2.dom.PerformanceMeasureOptions$GetEndUnionType$$Overlay.<clinit>"]
+}

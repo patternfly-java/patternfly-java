@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HasHandlers$$LambdaAdaptor.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;;;;;MAoBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;oE;EAAAA,kI;;;CAAA,wH;EAAAC,qC;EAAAA,uE;;;CAAA,oD;;GAAAC,kF;GAAAA,gB;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["HasHandlers.java"],
+"names":["org.gwtproject.event.shared.HasHandlers$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.gwtproject.event.shared.HasHandlers$$LambdaAdaptor.<init>","org.gwtproject.event.shared.HasHandlers$$LambdaAdaptor.fireEvent","org.gwtproject.event.shared.HasHandlers$$LambdaAdaptor.<clinit>"]
+}

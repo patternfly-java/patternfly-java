@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageTransitionEvent$PageTransitionEventEventInitDictType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA2BmB,Q;;QAEiD,iF;EAASA,mB;EACvEA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["PageTransitionEvent.java"],
+"names":["elemental2.dom.PageTransitionEvent$PageTransitionEventEventInitDictType$$Overlay.create","elemental2.dom.PageTransitionEvent$PageTransitionEventEventInitDictType$$Overlay.<clinit>"]
+}

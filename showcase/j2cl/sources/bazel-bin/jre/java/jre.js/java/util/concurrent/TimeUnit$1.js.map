@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TimeUnit$1.impl.java.js",
+"lineCount":61,
+"mappings":"A;;;;;;;;MAmBc,E;;CAAA,W;EAAAA,Q;;;QAAA,8B;EAAAC,a;EAAAA,yB;EAAAA,+F;EAAAA,iB;;;CAAA,mE;EAAAC,wF;;;CACE,qB,eAAaC,C;EAAOC,S;;;CACpB,sB,eAAcD,C;EAAME,8E;;;CACpB,sB,eAAcF,C;EAAMG,8E;;;CACpB,uB,eAAeH,C;EAAKI,8E;;;CACpB,uB,eAAeJ,C;EAAKK,8E;;;CACpB,qB,eAAaL,C;EAAOM,8E;;;CACpB,oB,eAAYN,C;EAAQO,8E;;;CACpB,oD,eAAaP,C,kBAAYQ,C;EAAKC,kC;;;QARhC,O;EAAAC,qB;EAAAA,kB;EAAAA;",
+"sources":["TimeUnit.java"],
+"names":["java.util.concurrent.TimeUnit$1.<synthetic: ctor_js>","java.util.concurrent.TimeUnit$1.<synthetic: ctor_create>","java.util.concurrent.TimeUnit$1.<init>","d","java.util.concurrent.TimeUnit$1.toNanos","java.util.concurrent.TimeUnit$1.toMicros","java.util.concurrent.TimeUnit$1.toMillis","java.util.concurrent.TimeUnit$1.toSeconds","java.util.concurrent.TimeUnit$1.toMinutes","java.util.concurrent.TimeUnit$1.toHours","java.util.concurrent.TimeUnit$1.toDays","u","java.util.concurrent.TimeUnit$1.convert","java.util.concurrent.TimeUnit$1.<clinit>"]
+}

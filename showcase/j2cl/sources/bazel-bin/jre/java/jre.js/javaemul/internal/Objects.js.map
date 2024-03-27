@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Objects.impl.java.js",
+"lineCount":140,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAyBM,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAAC,qC;;;QAEW,qD,UAAcC,G,WAAYC,K;EAAOC,mB;EAE9CA;GACEA,yBADFA;G;EAGAA,uD;EASAA,6B;;;QAMS,iC,UAAgBF,G;EAAKG,mB;EAE9BA;GACEA,sBADFA;G;EAGAA,uD;EAQAA,0C;;;QAGY,8C,UAAgBH,G;EAAKI,mB;EACjCA,sB;;;QAGc,6C,UAAgBJ,G;EAAKK,mB;EAGnCA;;IAEIA,0BAFJA;;IAIIA,2BAJJA;;IAMIA,8BANJA;;IAQIA,uCARJA;G;EAWAA;GACEA,IAAeC,QAAfD,qCADFA;GAEEA,8CAFFA;SAGOA;GAGLA,IAAmBE,KAAnBF,oCAHKA;GAILA,gCAJKA;SAKAA;GAGLA,qCAHKA;G;EASPA,iC;;;kBAI6B,c;;kBAGJ,wC,UAAgDG,K;;QAhFvE,O;EAAAC,2B;EAAAA,wB;EAAAA,qB;;;;;;;;;;;;;;;;;;;;;;;;;;;;ACzBNC,uB;AACAA,sC;EACEA,uC;AACFA,E;;AAEAA,G;CACCA,4E;CACAA,yC;CACAA,qB;CACAA,E;AACDA,wE;EACEA,gE;IACEA,6C;IACAA,0E;IACAA,oE;IACAA,sE;IACAA,6D;IACAA,E;IACAA,0E;IACAA,qB;IACAA,iE;EACFA,C;AACFA;",
+"sources":["Objects.java","Objects.native_js"],
+"names":["javaemul.internal.Objects.<synthetic: ctor_js>","javaemul.internal.Objects.<synthetic: ctor_create>","javaemul.internal.Objects.<init>","obj","other","javaemul.internal.Objects.equals","javaemul.internal.Objects.hashCode","javaemul.internal.Objects.toString","javaemul.internal.Objects.getClass","jlObject","array","value","javaemul.internal.Objects.<clinit>","javaemul.internal.Objects.<native>"]
+}

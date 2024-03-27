@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collector.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;;;;;;;;;;MAiCiB,S;;QASqB,gN,sBACpBA,Q,8BACKC,W,6BACCC,Q,yCACHC,Q,gCACIC,e;EAAiBC,oB;EACtCA,mF;EACAA,sF;EACAA,mF;EACAA,mF;EACAA,0F;EACAA,sT;;;QAG+B,mL,sBACjBL,Q,8BACKC,W,6BACCC,Q,gCACCE,e;EAAiBC,oB;EACtCA,mF;EACAA,sF;EACAA,mF;EACAA,0F;EACAA,4Z;;;CAIU,uC;;CAEI,4C;;CAEK,gC;;CAEH,6C;;CAEJ,uC;;QA5CC,O;EAAAC,4B;EAAAA;",
+"sources":["Collector.java"],
+"names":["supplier","accumulator","combiner","finisher","characteristics","java.util.stream.Collector.of","java.util.stream.Collector.<clinit>"]
+}

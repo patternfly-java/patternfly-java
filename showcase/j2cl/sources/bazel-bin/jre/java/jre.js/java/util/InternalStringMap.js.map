@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InternalStringMap.impl.java.js",
+"lineCount":113,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MAuBM,iB;;CAAA,W;EAAAA,Q;EAAAA;OAE2B,0CAF3BA,C;EAAAA;OAG0B,oCAH1BA,C;EAAAA;OAIQ,oCAJRA,K;EAAAA;OAYQ,wCAZRA,K;;;QAcG,kC,8BAAwCC,I;EAAxCC,4B;EAAAA,wC;EAAAA,oF;EAAAA,iB;;;CAAA,mE,8BAAwCD,I;EAAME,qC;EAAAA,kD;EACnDA,iD;;;CAGa,qC,gBAAgBC,G;EAC7BC,gE;;;CAGO,yC,gBAAWD,G;EAClBE,gE;;;CAGO,2D,gBAAWF,G,WAAOG,K;EACzBC,IAAEC,QAAFD,4D;EACAA,2I;EAEAA;GACEA,8FADFA;GAEEA,mFAFFA;;GAIEA,sGAJFA;G;EAMAA,gB;;;CAGO,4C,gBAAcJ,G;EACrBM,IAAEH,KAAFG,4D;EACAA;GACEA,4DADFA;GAEEA,8FAFFA;GAGEA,mFAHFA;;GAKEA,sGALFA;G;EAQAA,a;;;CAGS,W;EACTC,iD;;;CAI2B,8B;EAC3BC,8E;;;CAwBkB,6G,2BACqBC,K,gBAAiBC,Y;EACxDC,+I;;;QAuBmB,uD,UAAoBR,K;EACvCS,iD;;;;CA5GE,4C;EAAAC,gG;;;;CAAA,oC;EAAAC,iI;;;CAAA,0C;EAEJf,mF;;;QAFI,O;EAAAgB,oC;EAAAA,iC;EAAAA,qB;EAAAA;",
+"sources":["InternalStringMap.java"],
+"names":["java.util.InternalStringMap.<synthetic: ctor_js>","host","java.util.InternalStringMap.<synthetic: ctor_create>","java.util.InternalStringMap.<init>","key","java.util.InternalStringMap.contains","java.util.InternalStringMap.get","value","java.util.InternalStringMap.put","oldValue","java.util.InternalStringMap.remove","java.util.InternalStringMap.size","java.util.InternalStringMap.iterator","entry","lastValueMod","java.util.InternalStringMap.newMapEntry","java.util.InternalStringMap.toNullIfUndefined","java.util.InternalStringMap.forEach","java.util.InternalStringMap.spliterator","java.util.InternalStringMap.<clinit>"]
+}

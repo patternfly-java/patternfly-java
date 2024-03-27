@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelFinest.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;MA0DuB,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,6D;EAAAA,iB;;;CAAA,gD;EAAAC,4C;;;CACK,2B;EAAYC,gB;;;CACf,e;EAAaC,W;;;QAFf,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelFinest.<synthetic: ctor_js>","java.util.logging.Level$LevelFinest.<synthetic: ctor_create>","java.util.logging.Level$LevelFinest.<init>","java.util.logging.Level$LevelFinest.getName","java.util.logging.Level$LevelFinest.intValue","java.util.logging.Level$LevelFinest.<clinit>"]
+}

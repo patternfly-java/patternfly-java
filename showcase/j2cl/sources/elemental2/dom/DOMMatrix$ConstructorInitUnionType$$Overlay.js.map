@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DOMMatrix$ConstructorInitUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA4BmB,Q;;QAE2B,yE,UAAUA,C;EAAGC,mB;EACrDA,yE;;;QAIsB,gG;EAAAC,mB;EACtBA,2H;;;QAIa,wF;EAAAC,mB;EACbA,mE;;;QAIc,gF;EAAAC,mB;EACdA,8C;;;QAIc,+E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["DOMMatrix.java"],
+"names":["o","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.of","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.asJsArray__$devirt","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.asString__$devirt","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.isJsArray__$devirt","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.isString__$devirt","elemental2.dom.DOMMatrix$ConstructorInitUnionType$$Overlay.<clinit>"]
+}

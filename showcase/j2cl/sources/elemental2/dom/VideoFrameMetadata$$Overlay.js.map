@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"VideoFrameMetadata$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEW,2C;EAASA,mB;EACjCA,8L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["VideoFrameMetadata.java"],
+"names":["elemental2.dom.VideoFrameMetadata$$Overlay.create","elemental2.dom.VideoFrameMetadata$$Overlay.<clinit>"]
+}

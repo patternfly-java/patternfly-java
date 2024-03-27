@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntPredicate$$LambdaAdaptor.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;4D;EAAAA,kH;;;CAAA,wG;EAAAC,qC;EAAAA,+D;;;CAAA,oB;EAAAC,+C;EAAAA,gG;;;;CAAA,uE;EAAAC,mJ;;;;CAAA,yC;EAAAC,+G;;;;CAAA,sE;EAAAC,kJ;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["IntPredicate.java"],
+"names":["java.util.function.IntPredicate$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.IntPredicate$$LambdaAdaptor.<init>","java.util.function.IntPredicate$$LambdaAdaptor.test","java.util.function.IntPredicate$$LambdaAdaptor.and","java.util.function.IntPredicate$$LambdaAdaptor.negate","java.util.function.IntPredicate$$LambdaAdaptor.or","java.util.function.IntPredicate$$LambdaAdaptor.<clinit>"]
+}

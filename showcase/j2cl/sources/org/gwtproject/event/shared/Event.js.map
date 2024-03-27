@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Event.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;;;MAsBsB,K;;CAAA,W;EAAAA,Q;EAAAA;OA0BL,4CA1BKA,C;;;CA6BV,8C;EAAQC,qC;;;CAQM,2D;;CAaV,6B;EACZC,yD;;;CAUY,iC;EACZC,IAAOC,IAAPD,oE;EACAA,mK;EACAA,wF;;;CAQY,Q;EACZE,uB;;;CAWsB,kC,UAAWC,O;;CAUpB,mC,UAAiBC,M;EAC9BC,2D;;;QA/FkB,O;EAAAC,wB;EAAAA,qB;EAAAA;",
+"sources":["Event.java"],
+"names":["org.gwtproject.event.shared.Event.<synthetic: ctor_js>","org.gwtproject.event.shared.Event.<init>","org.gwtproject.event.shared.Event.getSource","org.gwtproject.event.shared.Event.toDebugString","name","org.gwtproject.event.shared.Event.toString","handler","source","org.gwtproject.event.shared.Event.setSource","org.gwtproject.event.shared.Event.<clinit>"]
+}

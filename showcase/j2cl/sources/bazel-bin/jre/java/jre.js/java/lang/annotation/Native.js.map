@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Native.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MAyBkB,M;;QAAA,O;EAAAA,yB;EAAAA;",
+"sources":["Native.java"],
+"names":["java.lang.annotation.Native.<clinit>"]
+}

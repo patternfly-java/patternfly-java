@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SingleSelect.impl.java.js",
+"lineCount":83,
+"mappings":"A;;;;;;;;;;;;;;;;;MAgCa,Y;;CAAA,W;EAAAA,Q;;;QAIkB,0D;EAAeC,uB;EACtCA,gC;;;QAKJ,S;EAAAC,uB;EAAAA,mC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,uT;;;CAKgB,oD;EAChBC,Y;;;CAIgB,iD;EAChBC,Y;;;CAKgB,gF;EAChBC,Y;;;CAIgB,kD;EAChBC,Y;;;CAKgB,yE,gBAAiBC,K;EACjCC,6L;;;CAKgB,4F,uCAAqCC,O;EACrDC,4MAAiBC,CAAjBD;GAAiBE,IAAAD,GAAAC,gEAAjBF;GAAsBE,0EAAtBF;qB;;;CAKQ,mB;;CAIE,0B;EACVG,mC;;;CAKS,yD;;;CA5DJ,uC;EAAAP,iE;;;QAAA,O;EAAAQ,+B;EAAAA,4B;EAAAA;",
+"sources":["SingleSelect.java"],
+"names":["org.patternfly.component.menu.SingleSelect.<synthetic: ctor_js>","org.patternfly.component.menu.SingleSelect.singleSelect","org.patternfly.component.menu.SingleSelect.<synthetic: ctor_create>","org.patternfly.component.menu.SingleSelect.<init>","org.patternfly.component.menu.SingleSelect.addFoo","org.patternfly.component.menu.SingleSelect.add","org.patternfly.component.menu.SingleSelect.methodsReturningAReferenceToItself","org.patternfly.component.menu.SingleSelect.that","label","org.patternfly.component.menu.SingleSelect.ariaLabel","handler","org.patternfly.component.menu.SingleSelect.onFoo","e","org.patternfly.component.menu.SingleSelect.<lambda in onFoo>","org.patternfly.component.menu.SingleSelect.getter","org.patternfly.component.menu.SingleSelect.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DocumentRange$$Overlay.impl.java.js",
+"lineCount":15,
+"mappings":"A;;;;;MAsBiB,Q;;QAAA,8E;EAAAA,mB;EAAAA,8B;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["DocumentRange.java"],
+"names":["elemental2.dom.DocumentRange$$Overlay.<synthetic: adapt_lambda>","elemental2.dom.DocumentRange$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ImageResourcePrototype.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;MAyBa,sB;;CAAA,W;EAAAA,Q;EAAAA;OAEU,oFAFVA,C;EAAAA;OAGU,mFAHVA,C;EAAAA;OAIO,qFAJPA,K;EAAAA;OAKO,sFALPA,K;;;QAQJ,qD,gBAA8BC,I,iBAAaC,G,gBAASC,K,gBAAWC,M;EAA/DC,iC;EAAAA,6C;EAAAA,2K;EAAAA,iB;;;CAAA,sI,gBAA8BJ,I,iBAAaC,G,gBAASC,K,gBAAWC,M;EAAQE,qC;EAC5EA,iG;EACAA,qG;EACAA,mG;EACAA,+F;;;CAKS,e;EACTC,kG;;;CAKS,gB;EACTC,mG;;;CAKW,gC;EACXC,IAAMC,KAAND,gI;EACAA,qG;EACAA,uG;EACAA,yG;EACAA,2G;EACAA,a;;;CAIY,2B;EACZE,iG;;;CAIY,0B;EACZC,gG;;;QA7CS,O;EAAAC,yC;EAAAA,sC;EAAAA;",
+"sources":["ImageResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.<synthetic: ctor_js>","name","src","width","height","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.<synthetic: ctor_create>","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.<init>","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.getWidth","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.getHeight","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.getImage","image","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.getName","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.getSrc","org.treblereel.j2cl.processors.common.resources.impl.ImageResourcePrototype.<clinit>"]
+}

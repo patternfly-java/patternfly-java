@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WithText.impl.java.js",
+"lineCount":19,
+"mappings":"A;;;;;;;;;;;;MAsBiB,Q;;CAGX,yD,gBAAYA,I;;QAHD,O;EAAAC,2B;EAAAA;",
+"sources":["WithText.java"],
+"names":["text","org.patternfly.component.WithText.<clinit>"]
+}

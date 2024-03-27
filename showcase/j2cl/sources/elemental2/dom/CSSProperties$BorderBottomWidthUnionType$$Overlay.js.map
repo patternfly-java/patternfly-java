@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$BorderBottomWidthUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyImB,Q;;QAEiC,+E,UAAUA,C;EAAGC,mB;EAC3DA,yE;;;QAIa,oF;EAAAC,mB;EACbA,yD;;;QAIa,8F;EAAAC,mB;EACbA,mE;;;QAIc,qF;EAAAC,mB;EACdA,oC;;;QAIc,qF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.of","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$BorderBottomWidthUnionType$$Overlay.<clinit>"]
+}

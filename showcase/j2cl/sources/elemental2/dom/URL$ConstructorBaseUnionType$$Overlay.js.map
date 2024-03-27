@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"URL$ConstructorBaseUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAyBmB,Q;;QAEqB,mE,UAAUA,C;EAAGC,mB;EAC/CA,yE;;;QAIa,kF;EAAAC,mB;EACbA,mE;;;QAIU,iF;EAAAC,mB;EACVA,4G;;;QAIc,yE;EAAAC,mB;EACdA,wC;;;QAIc,sE;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["URL.java"],
+"names":["o","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.of","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.asString__$devirt","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.asURL__$devirt","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.isString__$devirt","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.isURL__$devirt","elemental2.dom.URL$ConstructorBaseUnionType$$Overlay.<clinit>"]
+}

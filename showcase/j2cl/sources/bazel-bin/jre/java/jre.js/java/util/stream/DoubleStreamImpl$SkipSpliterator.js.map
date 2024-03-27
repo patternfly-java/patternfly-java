@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$SkipSpliterator.impl.java.js",
+"lineCount":64,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAoZ6B,e;;CAAA,W;EAAAA,Q;EAAAA;OACZ,0DADYA,oB;EAAAA;OAEU,8DAFVA,C;;;QAIlB,6C,eAAqBC,I,kBAA2BC,Q;EAAhDC,0B;EAAAA,sC;EAAAA,+H;EAAAA,iB;;;CAAA,oG,eAAqBF,I,kBAA2BC,Q;EACrDE,uV;EAKAA,uE;EACAA,+E;;;CAIgC,qC;EAChCC,mH;;;CAIa,wD,uBAA0BC,M;EACvCC;GACEA,sJAAiCC,MAAjCD;IACEA,aADFA;IADFA;GAIEA,sKAJFA;G;EAMAA,2H;;;;CA3BuB,uC;EAAAA,qI;;;QAAA,O;EAAAE,kC;EAAAA,+B;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$SkipSpliterator.<synthetic: ctor_js>","skip","original","java.util.stream.DoubleStreamImpl$SkipSpliterator.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$SkipSpliterator.<init>","java.util.stream.DoubleStreamImpl$SkipSpliterator.getComparator","action","java.util.stream.DoubleStreamImpl$SkipSpliterator.tryAdvance","ignore","java.util.stream.DoubleStreamImpl$SkipSpliterator.<clinit>"]
+}

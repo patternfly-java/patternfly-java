@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MenuSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,gB;;CAAA,W;EAAAA,Q;;;CAEX,yG,gBAAwBC,I,WAAQC,O;EAC5BC,2N;;;QAHO,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["MenuSubComponent.java"],
+"names":["org.patternfly.component.menu.MenuSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.menu.MenuSubComponent.<init>","org.patternfly.component.menu.MenuSubComponent.<clinit>"]
+}

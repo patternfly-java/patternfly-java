@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TraversalDocument$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA0BiB,Q;;QAYU,0C;EAASA,mB;EAChCA,6L;;;QAba,O;EAAAC,2B;EAAAA;",
+"sources":["TraversalDocument.java"],
+"names":["elemental2.dom.TraversalDocument$$Overlay.create","elemental2.dom.TraversalDocument$$Overlay.<clinit>"]
+}

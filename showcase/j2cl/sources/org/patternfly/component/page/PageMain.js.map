@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageMain.impl.java.js",
+"lineCount":163,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;MAuCa,Q;;CAAA,W;EAAAA,Q;;;QAOc,oE,gBAAgBC,E;EAAIC,mB;EACvCA,8C;;;QAOJ,yB,gBAAgBD,E;EAAhBE,mB;EAAAA,+B;EAAAA,oF;EAAAA,iB;;;CAAA,qE,gBAAgBF,E;EACZG,szC;EAKAA,mKAAcC,CAAdD;GAAcE,IAAAD,GAAAC,gEAAdF;GAAmBE,qEAAnBF;K;EACAA,oKAAeC,GAAfD;GAAeE,IAAAD,GAAAC,kEAAfF;GAAoBE,qEAApBF;K;;;CAQY,+F,sBAAuBG,K;EACnCC,sI;;;CAMiE,+F,0BAA6BC,W;EAC9FC,4I;;;CAMY,8C;EACZC,Y;;;CAKQ,6C,qBAAqBC,O;EAC7BC,0G;EACAA,kI;;;CAGQ,uC,gBAAgBD,O;EACxBC,0G;EACAA,0E;;;CAGQ,+C,uBAAmBC,Q;EAC3BD,0G;EACAA;GAAAA,IAAaD,OAAbC,kBAAAA;;IACIA,0EADJA;;G;;;CAKQ,mD,2BAAuBC,Q;EAC/BD,0G;EACAA;GAAAA,IAAiBD,OAAjBC,kBAAAA;;IACIA,0EADJA;;G;;;CAKQ,qD,4BAAwBC,Q;EAChCD,0G;EACAA;GAAAA,IAAkBD,OAAlBC,kBAAAA;;IACIA,kIADJA;;G;;;CAKQ,mC,oBAAoBC,Q;EAC5BD,0G;EACAA;GAAAA,IAAYD,OAAZC,wCAAAA;;IACIA;KACIA,2HADJA;WAEOA;KAEHA,8JAFGA;KAHXA;;G;;;CAYS,6D;EACTE;GACIA,4HADJA;G;;;;CAhGK,uC;EAAAJ,6D;;;QAAA,O;EAAAK,2B;EAAAA,wB;EAAAA,2B;;;;;;;;;;;;;;;;;;;;;;;;;AAaT;SAAoB,4DAApB;",
+"sources":["PageMain.java"],
+"names":["org.patternfly.component.page.PageMain.<synthetic: ctor_js>","id","org.patternfly.component.page.PageMain.pageMain","org.patternfly.component.page.PageMain.<synthetic: ctor_create>","org.patternfly.component.page.PageMain.<init>","e","org.patternfly.component.page.PageMain.<lambda in <init>>","group","org.patternfly.component.page.PageMain.addGroup","pageSection","org.patternfly.component.page.PageMain.addSection","org.patternfly.component.page.PageMain.that","element","org.patternfly.component.page.PageMain.replace","elements","org.patternfly.component.page.PageMain.onMainClick","org.patternfly.component.page.PageMain.<clinit>"]
+}

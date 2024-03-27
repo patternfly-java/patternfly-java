@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleRange$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEI,oC;EAASA,mB;EAC1BA,uL;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["DoubleRange.java"],
+"names":["elemental2.dom.DoubleRange$$Overlay.create","elemental2.dom.DoubleRange$$Overlay.<clinit>"]
+}

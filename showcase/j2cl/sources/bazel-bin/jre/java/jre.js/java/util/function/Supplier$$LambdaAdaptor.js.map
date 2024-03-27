@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Supplier$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;wD;EAAAA,0G;;;CAAA,gG;EAAAC,qC;EAAAA,2D;;;CAAA,uB;EAAAC,mC;EAAAA,wF;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Supplier.java"],
+"names":["java.util.function.Supplier$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.Supplier$$LambdaAdaptor.<init>","java.util.function.Supplier$$LambdaAdaptor.get","java.util.function.Supplier$$LambdaAdaptor.<clinit>"]
+}

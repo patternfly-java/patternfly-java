@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MediaStream$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA0Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["MediaStream.java"],
+"names":["elemental2.dom.MediaStream$$Overlay.<clinit>"]
+}

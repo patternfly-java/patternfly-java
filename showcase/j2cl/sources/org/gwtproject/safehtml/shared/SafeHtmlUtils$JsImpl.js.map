@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlUtils$JsImpl.impl.java.js",
+"lineCount":83,
+"mappings":"A;;;;;;;;;MAqMe,M;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iB;EAAAA,6B;EAAAA,6E;EAAAA,iB;;;CAAA,gE;EAAAC,qC;;;CASJ,mF,gBAAkBC,C;EACvBC;GACEA,SADFA;G;EAGAA;GACEA,uNADFA;G;EAGAA;GACEA,qNADFA;G;EAGAA;GACEA,qNADFA;G;EAGAA;GACEA,yNADFA;G;EAGAA;GACEA,yNADFA;G;EAGAA,S;;;QA5BS,O;EAAAC,yB;EAAAA,sB;EAAAA,qB;EAEXA,oK;EACAA,6F;EACAA,4F;EACAA,4F;EACAA,gG;EACAA,+F;;;;;;;;;;;;;;AAPW;OAEmB,qEAFnB,C;AAAA;OAGmB,8DAHnB,C;AAAA;OAImB,6DAJnB,C;AAAA;OAKmB,6DALnB,C;AAAA;OAMmB,gEANnB,C;AAAA;OAOmB,+DAPnB;",
+"sources":["SafeHtmlUtils.java"],
+"names":["org.gwtproject.safehtml.shared.SafeHtmlUtils$JsImpl.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.SafeHtmlUtils$JsImpl.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeHtmlUtils$JsImpl.<init>","s","org.gwtproject.safehtml.shared.SafeHtmlUtils$JsImpl.htmlEscape","org.gwtproject.safehtml.shared.SafeHtmlUtils$JsImpl.<clinit>"]
+}

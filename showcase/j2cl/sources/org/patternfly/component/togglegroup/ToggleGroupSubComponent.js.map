@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToggleGroupSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,uB;;CAAA,W;EAAAA,Q;;;CAEX,uH,gBAA+BC,I,WAAQC,O;EACnCC,kO;;;QAHO,O;EAAAC,0C;EAAAA,uC;EAAAA;",
+"sources":["ToggleGroupSubComponent.java"],
+"names":["org.patternfly.component.togglegroup.ToggleGroupSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.togglegroup.ToggleGroupSubComponent.<init>","org.patternfly.component.togglegroup.ToggleGroupSubComponent.<clinit>"]
+}

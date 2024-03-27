@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAuDmB,Q;;QAEyD,uG,UAAUA,C;EAAGC,mB;EACnFA,yE;;;QAIa,4G;EAAAC,mB;EACbA,yD;;;QAIa,4H;EAAAC,mB;EACbA,gH;;;QAIc,6G;EAAAC,mB;EACdA,oC;;;QAIc,6G;EAAAC,mB;EACdA,6C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCInboundRtpStreamStats.java"],
+"names":["o","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.of","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.asDouble__$devirt","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.asJsDate__$devirt","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.isDouble__$devirt","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.isJsDate__$devirt","elemental2.dom.RTCInboundRtpStreamStats$GetLastPacketReceivedTimestampUnionType$$Overlay.<clinit>"]
+}

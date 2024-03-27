@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IncompleteAnnotationException.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;MAuBa,6B;;CAAA,W;EAAAA,Q;EAAAA;OAE8B,oEAF9BA,C;EAAAA;OAGS,iEAHTA,C;;;QAKJ,0C,iBACyBC,c,iBAAuBC,W;EADhDC,wC;EAAAA,oD;EAAAA,0I;EAAAA,yF;EAAAA,iB;;;CAAA,kG,iBACyBF,c,iBAAuBC,W;EACrDE,uQ;EAEAA,2F;EACAA,qF;;;CAGiC,iC;EACjCC,iF;;;CAGY,+B;EACZC,8E;;;QAlBS,O;EAAAC,gD;EAAAA,6C;EAAAA;",
+"sources":["IncompleteAnnotationException.java"],
+"names":["java.lang.annotation.IncompleteAnnotationException.<synthetic: ctor_js>","annotationType","elementName","java.lang.annotation.IncompleteAnnotationException.<synthetic: ctor_create>","java.lang.annotation.IncompleteAnnotationException.<init>","java.lang.annotation.IncompleteAnnotationException.annotationType","java.lang.annotation.IncompleteAnnotationException.elementName","java.lang.annotation.IncompleteAnnotationException.<clinit>"]
+}

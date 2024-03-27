@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCOfferOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEQ,wC;EAASA,mB;EAC9BA,2L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCOfferOptions.java"],
+"names":["elemental2.dom.RTCOfferOptions$$Overlay.create","elemental2.dom.RTCOfferOptions$$Overlay.<clinit>"]
+}

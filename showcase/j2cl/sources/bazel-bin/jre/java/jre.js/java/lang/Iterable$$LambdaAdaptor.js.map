@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Iterable$$LambdaAdaptor.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;;;;;;MAgCiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;+C;EAAAA,wF;;;CAAA,8E;EAAAC,qC;EAAAA,kD;;;CAAA,8B;EAAAC,6C;EAAAA,+E;;;;CAAA,4C;EAAAC,gG;;;;CAAA,oC;EAAAC,yF;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Iterable.java"],
+"names":["java.lang.Iterable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.lang.Iterable$$LambdaAdaptor.<init>","java.lang.Iterable$$LambdaAdaptor.iterator","java.lang.Iterable$$LambdaAdaptor.forEach","java.lang.Iterable$$LambdaAdaptor.spliterator","java.lang.Iterable$$LambdaAdaptor.<clinit>"]
+}

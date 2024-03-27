@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$1.impl.java.js",
+"lineCount":79,
+"mappings":"A;;;;;;;;;;;;;;;MAkqBsE,E;;CAAA,W;EAAAA,Q;EAAAA;wD;EAAAA;OAC/C,iDAD+CA,C;EAAAA;OAEvC,2CAFuCA,C;EAAAA;2E;;;QAAA,4E;EAAAC,a;EAAAA,yB;EAAAA,uL;EAAAA,iB;;;CAAA,qH;EAAAC,oE;EAJxBC,0G;EAIwBD,wF;;;CAK7C,wD,uBAA0BE,M;EAEvCC;GAEEA;IACEA,YADFA;;IAGEA,uEAHFA;IAIEA,8DAJFA;IAMEA,wDANFA;IAFFA;G;EAWAA,a;;;CAGc,0E;EACdC;GACEA,kJACIC,CADJD;IACIE,IAAAD,GAAAC,2DADJF;IAEME;KACEA,yFADFA;KAEEA,oIAFFA;KAFNF;;IAOEA,aAPFA;IADFA;G;EAWAA,Y;;;;CAjC0D,uC;EAAAD,qI;;;QAAA,O;EAAAI,qB;EAAAA,kB;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$1.<synthetic: ctor_js>","java.util.stream.DoubleStreamImpl$1.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$1.<init>","spliteratorOfStreams","action","java.util.stream.DoubleStreamImpl$1.tryAdvance","java.util.stream.DoubleStreamImpl$1.advanceToNextSpliterator","n","java.util.stream.DoubleStreamImpl$1.<lambda in advanceToNextSpliterator>","java.util.stream.DoubleStreamImpl$1.<clinit>"]
+}

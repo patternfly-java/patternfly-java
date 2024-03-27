@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$LimitSpliterator.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MAsb6B,gB;;CAAA,W;EAAAA,Q;EAAAA;OACN,4DADMA,oB;EAAAA;OAEU,+DAFVA,C;EAAAA;OAGb,+DAHaA,K;;;QAKlB,6C,eAAsBC,K,kBAA4BC,Q;EAAlDC,2B;EAAAA,uC;EAAAA,iI;EAAAA,iB;;;CAAA,qG,eAAsBF,K,kBAA4BC,Q;EACvDE,oT;EADiEA,yE;EAMjEA,0E;EACAA,gF;;;CAIgC,qC;EAChCC,oH;;;CAIa,wD,uBAA0BC,M;EACvCC;GACEA,aADFA;G;EAIAA,IAAQC,MAARD,wH;EACAA,oJ;EACAA,c;;;;CA5BuB,uC;EAAAA,qI;;;CAAA,iE;EAGzBH,yE;;;QAHyB,O;EAAAK,mC;EAAAA,gC;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$LimitSpliterator.<synthetic: ctor_js>","limit","original","java.util.stream.DoubleStreamImpl$LimitSpliterator.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$LimitSpliterator.<init>","java.util.stream.DoubleStreamImpl$LimitSpliterator.getComparator","action","java.util.stream.DoubleStreamImpl$LimitSpliterator.tryAdvance","result","java.util.stream.DoubleStreamImpl$LimitSpliterator.<clinit>"]
+}

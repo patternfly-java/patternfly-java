@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Routes$$LambdaAdaptor.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;;;;;;;MAuBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;6D;EAAAA,oH;;;CAAA,0G;EAAAC,qC;EAAAA,gE;;;CAAA,uB;EAAAC,4D;EAAAA,6F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Routes.java"],
+"names":["org.jboss.elemento.router.Routes$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.jboss.elemento.router.Routes$$LambdaAdaptor.<init>","org.jboss.elemento.router.Routes$$LambdaAdaptor.places","org.jboss.elemento.router.Routes$$LambdaAdaptor.<clinit>"]
+}

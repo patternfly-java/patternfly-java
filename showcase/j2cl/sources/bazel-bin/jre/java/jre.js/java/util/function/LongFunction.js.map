@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongFunction.impl.java.js",
+"lineCount":23,
+"mappings":"A;;;;;;;;;;;MAwBiB,Y;;CAEb,+B,eAAWA,K;;QAFE,M;EAAAC,uB;EAAAA,gE;;;QAAA,O;EAAAC,+B;EAAAA;",
+"sources":["LongFunction.java"],
+"names":["value","java.util.function.LongFunction.<synthetic: adapt_lambda>","java.util.function.LongFunction.<clinit>"]
+}

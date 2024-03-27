@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Panel.impl.java.js",
+"lineCount":154,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;MA4Ca,K;;CAAA,W;EAAAA,Q;EAAAA;OAUW,+CAVXA,C;EAAAA;OAWS,6CAXTA,C;EAAAA;OAYW,+CAZXA,C;;;QAIW,6C;EAAQC,gB;EACxBA,yB;;;QASM,S;EAAAC,gB;EAAAA,4B;EAAAA,8D;EAAAA,iB;;;CAAA,iD;EACNC,0uB;;;CAKS,mE,gBAAiBC,M;EAC1BC,0S;;;CAGS,6F,oBAAsBD,M;EAC/BC,4G;;;CAGS,uF,oBAAgBD,M;EACzBE;GACIA,yXADJA;G;EAGAA,8D;EACAA,iN;EACAA,6L;EACAA,Y;;;CAGS,kD;EACTC,gU;EACAA,Y;;;CAGS,iE,gBAAeC,I;EACxBC,4R;;;CAGS,yF,kBAAkBD,I;EAC3BC,wG;;;CAGS,qF,kBAAcD,I;EACvBF;GACIA,iUADJA;G;EAGAA,0D;EACAA,2J;EACAA,Y;;;CAGS,mE,gBAAiBI,M;EAC1BC,0S;;;CAGS,6F,oBAAsBD,M;EAC/BC,4G;;;CAGS,uF,oBAAgBD,M;EACzBJ;GACIA,yXADJA;G;EAGAA,8D;EACAA,iN;EACAA,Y;;;CAKS,8C;EACTM,yR;;;CAGS,kD;EACTC,6R;;;CAIS,4C;EACTC,Y;;;;CAzFK,uC;EAAAA,2D;;;;CAAA,2C;EAAAC,6J;;;;CAAA,oD;EAAAA,4K;;;;CAAA,gD;EAAAA,6J;;;;CAAA,yD;EAAAA,4K;;;QAAA,O;EAAAC,wB;EAAAA,qB;EAAAA,4B;EAAAA;",
+"sources":["Panel.java"],
+"names":["org.patternfly.component.panel.Panel.<synthetic: ctor_js>","org.patternfly.component.panel.Panel.panel","org.patternfly.component.panel.Panel.<synthetic: ctor_create>","org.patternfly.component.panel.Panel.<init>","header","org.patternfly.component.panel.Panel.addHeader","org.patternfly.component.panel.Panel.add","org.patternfly.component.panel.Panel.addDivider","main","org.patternfly.component.panel.Panel.addMain","footer","org.patternfly.component.panel.Panel.addFooter","org.patternfly.component.panel.Panel.raised","org.patternfly.component.panel.Panel.scrollable","org.patternfly.component.panel.Panel.that","org.patternfly.component.panel.Panel.bordered","org.patternfly.component.panel.Panel.<clinit>"]
+}

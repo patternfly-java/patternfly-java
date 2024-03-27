@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$IntArraySpliterator.impl.java.js",
+"lineCount":80,
+"mappings":"A;;;;;;;;;;;;;;;;MAuqB6B,mB;;CAAA,W;EAAAA,Q;EAAAA;OAIL,oDAJKA,C;;;;QAMzB,yB,sBAA0BC,K,gBAAWC,e;EAArCC,8B;EAAAA,0C;EAAAA,4G;EAAAA,iB;;;;CAAA,yE,sBAA0BF,K,gBAAWC,e;EACnCE,kI;;;;QAGF,mC,sBAA0BH,K,gBAAWI,I,gBAAUC,K,gBAAWJ,e;EAA1DC,8B;EAAAA,0C;EAAAA,mI;EAAAA,iB;;;;CAAA,mF,sBAA0BF,K,gBAAWI,I,gBAAUC,K,gBAAWJ,e;EACxDE,2G;EACAA,kE;;;CAIa,oD,oBAAoBG,Q,gBAAcC,K;EAC/CC,+F;;;;CAjBuB,qD;EAAAC,+G;;;;CAAA,kD;EAAAC,mH;;;;CAAA,6C;EAAAC,wF;;;;CAAA,sC;EAAAH,0H;;;QAAA,O;EAAAI,sC;EAAAA,mC;EAAAA,+B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$IntArraySpliterator.<synthetic: ctor_js>","array","characteristics","java.util.Spliterators$IntArraySpliterator.<synthetic: ctor_create>","java.util.Spliterators$IntArraySpliterator.<init>","from","limit","consumer","index","java.util.Spliterators$IntArraySpliterator.consume","java.util.Spliterators$IntArraySpliterator.forEachRemaining","java.util.Spliterators$IntArraySpliterator.tryAdvance","java.util.Spliterators$IntArraySpliterator.trySplit","java.util.Spliterators$IntArraySpliterator.<clinit>"]
+}

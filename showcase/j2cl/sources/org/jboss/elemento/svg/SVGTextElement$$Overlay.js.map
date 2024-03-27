@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SVGTextElement$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA2Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["SVGTextElement.java"],
+"names":["org.jboss.elemento.svg.SVGTextElement$$Overlay.<clinit>"]
+}

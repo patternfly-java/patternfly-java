@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SyncManager$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAuBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["SyncManager.java"],
+"names":["elemental2.dom.SyncManager$$Overlay.<clinit>"]
+}

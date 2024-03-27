@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PlaceManager$DefaultNotFound.impl.java.js",
+"lineCount":61,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MAwTyB,e;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,0B;EAAAA,sC;EAAAA,gF;EAAAA,iB;;;CAAA,mE;EAAAC,qC;;;CAGY,8B;EACzBC,83E;;;;CAJa,4C;EAAAC,gG;;;;CAAA,8B;EAAAC,2F;;;;CAAA,oC;EAAAC,iI;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,qB;EAAAA;",
+"sources":["PlaceManager.java"],
+"names":["org.jboss.elemento.router.PlaceManager$DefaultNotFound.<synthetic: ctor_js>","org.jboss.elemento.router.PlaceManager$DefaultNotFound.<synthetic: ctor_create>","org.jboss.elemento.router.PlaceManager$DefaultNotFound.<init>","org.jboss.elemento.router.PlaceManager$DefaultNotFound.elements","org.jboss.elemento.router.PlaceManager$DefaultNotFound.forEach","org.jboss.elemento.router.PlaceManager$DefaultNotFound.iterator","org.jboss.elemento.router.PlaceManager$DefaultNotFound.spliterator","org.jboss.elemento.router.PlaceManager$DefaultNotFound.<clinit>"]
+}

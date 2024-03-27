@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Appendable.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;;;;;MAwBiB,U;;CAEJ,oC,eAAYA,C;;CAEZ,sD,8BAAoBC,W;;CAEpB,gE,8BAAoBA,W,gBAAiBC,K,gBAAWC,G;;QAN5C,O;EAAAC,6B;EAAAA;",
+"sources":["Appendable.java"],
+"names":["c","charSquence","start","end","java.lang.Appendable.<clinit>"]
+}

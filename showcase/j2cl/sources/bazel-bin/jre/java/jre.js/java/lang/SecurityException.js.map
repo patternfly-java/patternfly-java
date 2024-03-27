@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SecurityException.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAwBa,iB;;CAAA,W;EAAAA,Q;;;QACH,S;EAAAC,wC;EAAAA,qD;EAAAA,yF;EAAAA,iB;;;CAAA,wC;EAAoBC,+C;;;QADjB,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["SecurityException.java"],
+"names":["java.lang.SecurityException.<synthetic: ctor_js>","java.lang.SecurityException.<synthetic: ctor_create>","java.lang.SecurityException.<init>","java.lang.SecurityException.<clinit>"]
+}

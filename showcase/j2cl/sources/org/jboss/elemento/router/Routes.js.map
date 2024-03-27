@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Routes.impl.java.js",
+"lineCount":25,
+"mappings":"A;;;;;;;;;;;;;MAuBiB,M;;CAEc,uB;;QAFd,M;EAAAA,iB;EAAAA,8B;;;QAAA,O;EAAAC,yB;EAAAA;",
+"sources":["Routes.java"],
+"names":["org.jboss.elemento.router.Routes.<synthetic: adapt_lambda>","org.jboss.elemento.router.Routes.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Charset.impl.java.js",
+"lineCount":93,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MA4BsB,O;;CAAA,W;EAAAA,Q;EAAAA;OAoCC,iCApCDA,C;;;QAaqB,wC;EAAoBC,kB;EAC3DA,iF;;;QAGoB,0C;EAAiBC,kB;EACrCA,kE;;;QAGoB,qD,gBAAeC,W;EAAaC,kB;EAChDA,iI;EAEAA,wF;EACAA;GACEA,uEADFA;SAEOA;GACLA,wEADKA;SAEAA;GACLA,kEADKA;G;EAIPA,2F;;;CAKQ,iF,gBAAeC,I,wBAAeC,c;EAAgBC,qC;EACtDA,8C;;;CAGkB,wB;EAClBC,8C;;;CAIe,0C,gBAAkBC,I;EACjCC,iK;;;CAIe,Q;EACfC,4F;;;CAImB,M,UAAcC,C;EACjCC;GACEA,YADFA;G;EAGAA;GACEA,aADFA;G;EAGAA,IAAQJ,IAARI,iD;EACAA,wJ;;;CAIkB,Q;EAClBC,8C;;;;CAtEkB,kC;EAAAJ,yG;;;QAAA,O;EAAAK,0B;EAAAA,uB;EAAAA;",
+"sources":["Charset.java"],
+"names":["java.nio.charset.Charset.<synthetic: ctor_js>","java.nio.charset.Charset.availableCharsets","java.nio.charset.Charset.defaultCharset","charsetName","java.nio.charset.Charset.forName","name","aliasesIgnored","java.nio.charset.Charset.<init>","java.nio.charset.Charset.name","that","java.nio.charset.Charset.compareTo","java.nio.charset.Charset.hashCode","o","java.nio.charset.Charset.equals","java.nio.charset.Charset.toString","java.nio.charset.Charset.<clinit>"]
+}

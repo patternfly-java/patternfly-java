@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongConsumer$$LambdaAdaptor.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;4D;EAAAA,kH;;;CAAA,wG;EAAAC,qC;EAAAA,+D;;;CAAA,oB;;GAAAC,0E;GAAAA,gB;;;;;CAAA,2E;EAAAC,uJ;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["LongConsumer.java"],
+"names":["java.util.function.LongConsumer$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongConsumer$$LambdaAdaptor.<init>","java.util.function.LongConsumer$$LambdaAdaptor.accept","java.util.function.LongConsumer$$LambdaAdaptor.andThen","java.util.function.LongConsumer$$LambdaAdaptor.<clinit>"]
+}

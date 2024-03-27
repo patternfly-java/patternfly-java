@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CountQueuingStrategy$CountQueuingStrategyConfigType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA2BmB,Q;;QAE4C,4E;EAASA,mB;EAClEA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["CountQueuingStrategy.java"],
+"names":["elemental2.dom.CountQueuingStrategy$CountQueuingStrategyConfigType$$Overlay.create","elemental2.dom.CountQueuingStrategy$CountQueuingStrategyConfigType$$Overlay.<clinit>"]
+}

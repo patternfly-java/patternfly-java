@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlString.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;;;MA6BM,c;;CAAA,W;EAAAA,Q;EAAAA;OAEW,sDAFXA,C;;;;QAWJ,yB,gBAAsBC,I;EAAtBC,yB;EAAAA,qC;EAAAA,6F;EAAAA,iB;;;;CAAA,4E,gBAAsBD,I;EAAME,qC;EAC1BA;GACEA,uFADFA;G;EAGAA,mE;;;;QAKM,S;EAAAD,qC;EAAAA,uE;EAAAA,iB;;;;CAAA,0D;EAAiBC,qC;;;CAId,Q;EACTC,iH;;;CAKa,M,UAAcC,G;EAC3BC;GACEA,aADFA;G;EAGAA,uN;;;CAIY,Q;EACZC,yH;;;CAMY,4B;EACZC,mE;;;QA9CE,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["SafeHtmlString.java"],
+"names":["org.gwtproject.safehtml.shared.SafeHtmlString.<synthetic: ctor_js>","html","org.gwtproject.safehtml.shared.SafeHtmlString.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeHtmlString.<init>","org.gwtproject.safehtml.shared.SafeHtmlString.hashCode","obj","org.gwtproject.safehtml.shared.SafeHtmlString.equals","org.gwtproject.safehtml.shared.SafeHtmlString.toString","org.gwtproject.safehtml.shared.SafeHtmlString.asString","org.gwtproject.safehtml.shared.SafeHtmlString.<clinit>"]
+}

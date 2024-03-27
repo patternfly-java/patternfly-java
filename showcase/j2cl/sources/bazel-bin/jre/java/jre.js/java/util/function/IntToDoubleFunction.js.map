@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntToDoubleFunction.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,mB;;CAER,4B,eAAkBA,K;;QAFV,M;EAAAC,8B;EAAAA,8B;;;QAAA,O;EAAAC,sC;EAAAA;",
+"sources":["IntToDoubleFunction.java"],
+"names":["value","java.util.function.IntToDoubleFunction.<synthetic: adapt_lambda>","java.util.function.IntToDoubleFunction.<clinit>"]
+}

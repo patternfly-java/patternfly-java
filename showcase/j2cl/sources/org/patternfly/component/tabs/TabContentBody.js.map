@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TabContentBody.impl.java.js",
+"lineCount":93,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA0Ba,c;;CAAA,W;EAAAA,Q;;;QAKoB,8D;EAAiBC,yB;EAC1CA,kC;;;QAOJ,S;EAAAC,yB;EAAAA,qC;EAAAA,sE;EAAAA,iB;;;CAAA,yD;EACIC,4xB;;;CAOkB,oD;EAClBC,Y;;;;CAtBK,uC;EAAAA,mE;;;;CAAA,0C;EAAAC,4K;;;;CAAA,mD;EAAAA,2L;;;;CAAA,uD;EAAAA,4K;;;;CAAA,gE;EAAAA,2L;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,0B;EAAAA,kB;;;;;;;;;;;;;;;;;;AAWT;eAAoB,kEAApB;",
+"sources":["TabContentBody.java"],
+"names":["org.patternfly.component.tabs.TabContentBody.<synthetic: ctor_js>","org.patternfly.component.tabs.TabContentBody.tabContentBody","org.patternfly.component.tabs.TabContentBody.<synthetic: ctor_create>","org.patternfly.component.tabs.TabContentBody.<init>","org.patternfly.component.tabs.TabContentBody.that","org.patternfly.component.tabs.TabContentBody.padding","org.patternfly.component.tabs.TabContentBody.<clinit>"]
+}

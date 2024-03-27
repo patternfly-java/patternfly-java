@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelFiner.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;MAqDuB,U;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,qB;EAAAA,iC;EAAAA,4D;EAAAA,iB;;;CAAA,+C;EAAAC,4C;;;CACK,2B;EAAYC,e;;;CACf,e;EAAaC,W;;;QAFf,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelFiner.<synthetic: ctor_js>","java.util.logging.Level$LevelFiner.<synthetic: ctor_create>","java.util.logging.Level$LevelFiner.<init>","java.util.logging.Level$LevelFiner.getName","java.util.logging.Level$LevelFiner.intValue","java.util.logging.Level$LevelFiner.<clinit>"]
+}

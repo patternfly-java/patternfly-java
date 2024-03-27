@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ProgressLabel.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAkBiB,a;;CAEN,6C,eAAUA,G,gBAASC,G,gBAASC,I,gBAAUC,K;;QAFhC,M;EAAAC,wB;EAAAA,8B;;;QAAA,O;EAAAC,gC;EAAAA;",
+"sources":["ProgressLabel.java"],
+"names":["min","max","step","value","org.patternfly.component.progress.ProgressLabel.<synthetic: adapt_lambda>","org.patternfly.component.progress.ProgressLabel.<clinit>"]
+}

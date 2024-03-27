@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InternalJsMap$IteratorEntry$$Overlay.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;MAsCY,Q;;QAMO,0E;EAAAA,mB;EAAWA,uE;;;QAEhB,4E;EAAAC,mB;EAAaA,gD;;;QARf,O;EAAAC,2B;EAAAA;",
+"sources":["InternalJsMap.java"],
+"names":["java.util.InternalJsMap$IteratorEntry$$Overlay.getKey__$devirt","java.util.InternalJsMap$IteratorEntry$$Overlay.getValue__$devirt","java.util.InternalJsMap$IteratorEntry$$Overlay.<clinit>"]
+}

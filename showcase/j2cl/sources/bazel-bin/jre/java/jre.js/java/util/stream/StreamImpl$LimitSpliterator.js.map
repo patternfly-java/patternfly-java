@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$LimitSpliterator.impl.java.js",
+"lineCount":66,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA6d6B,gB;;CAAA,W;EAAAA,Q;EAAAA;OACN,sDADMA,oB;EAAAA;OAEI,yDAFJA,C;EAAAA;OAGb,yDAHaA,K;;;QAKlB,oC,eAAsBC,K,wBAAsBC,Q;EAA5CC,2B;EAAAA,uC;EAAAA,kH;EAAAA,iB;;;CAAA,sF,eAAsBF,K,wBAAsBC,Q;EACjDE,8S;EAD2DA,mE;EAM3DA,oE;EACAA,0E;;;CAI2B,qC;EAC3BC,8G;;;CAIa,kD,oBAA+BC,M;EAC5CC;GACEA,aADFA;G;EAGAA,IAAQC,MAARD,6H;EACAA,wI;EACAA,c;;;CA3BuB,2D;EAGzBH,mE;;;QAHyB,O;EAAAK,mC;EAAAA,gC;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$LimitSpliterator.<synthetic: ctor_js>","limit","original","java.util.stream.StreamImpl$LimitSpliterator.<synthetic: ctor_create>","java.util.stream.StreamImpl$LimitSpliterator.<init>","java.util.stream.StreamImpl$LimitSpliterator.getComparator","action","java.util.stream.StreamImpl$LimitSpliterator.tryAdvance","result","java.util.stream.StreamImpl$LimitSpliterator.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataTransferItemList$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MAwBa,Q;;QAoCmB,2H,oDAASA,I,iBAAaC,I;EAAtBC,mB;EAC5BA,yG;;;QAI4B,yG,oDAASF,I;EAATE,mB;EAC5BA,mG;;;QAI4B,wH,uDAAWF,I,iBAAaC,I;EAAxBC,mB;EAC5BA,yG;;;QAI4B,sG,uDAAWF,I;EAAXE,mB;EAC5BA,mG;;;QApDS,O;EAAAC,2B;EAAAA;",
+"sources":["DataTransferItemList.java"],
+"names":["data","type","elemental2.dom.DataTransferItemList$$Overlay.add__$devirt","elemental2.dom.DataTransferItemList$$Overlay.<clinit>"]
+}

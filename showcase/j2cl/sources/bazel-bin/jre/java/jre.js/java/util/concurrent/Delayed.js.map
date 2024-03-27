@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Delayed.impl.java.js",
+"lineCount":19,
+"mappings":"A;;;;;;;;;;;;MAiBiB,O;;CACX,+C,iBAAkBA,I;;QADP,O;EAAAC,0B;EAAAA;",
+"sources":["Delayed.java"],
+"names":["unit","java.util.concurrent.Delayed.<clinit>"]
+}

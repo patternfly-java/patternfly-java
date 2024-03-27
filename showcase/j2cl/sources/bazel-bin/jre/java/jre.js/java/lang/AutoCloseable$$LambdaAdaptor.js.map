@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AutoCloseable$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;oD;EAAAA,kG;;;CAAA,wF;EAAAC,qC;EAAAA,uD;;;CAAA,a;;GAAAC,kE;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["AutoCloseable.java"],
+"names":["java.lang.AutoCloseable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.lang.AutoCloseable$$LambdaAdaptor.<init>","java.lang.AutoCloseable$$LambdaAdaptor.close","java.lang.AutoCloseable$$LambdaAdaptor.<clinit>"]
+}

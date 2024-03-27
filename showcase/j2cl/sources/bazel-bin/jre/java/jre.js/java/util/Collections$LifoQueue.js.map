@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$LifoQueue.impl.java.js",
+"lineCount":59,
+"mappings":"A;;;;;;;;;;;;;;;MAiC6B,S;;CAAA,W;EAAAA,Q;EAAAA;OAGF,yCAHEA,C;;;QAKzB,wB,iBAAmBC,K;EAAnBC,oB;EAAAA,gC;EAAAA,+E;EAAAA,iB;;;CAAA,6D,iBAAmBD,K;EAAOE,4C;EACxBA,uD;;;CAIiB,8B;EACjBC,uF;;;CAIa,kC,UAAQC,C;EACrBC,iG;;;CAIO,wB;EACPC,sF;;;CAIO,wB;EACPC,sF;;;CAIS,I;EACTC,6D;;;QA/BuB,O;EAAAC,4B;EAAAA,yB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$LifoQueue.<synthetic: ctor_js>","deque","java.util.Collections$LifoQueue.<synthetic: ctor_create>","java.util.Collections$LifoQueue.<init>","java.util.Collections$LifoQueue.iterator","e","java.util.Collections$LifoQueue.offer","java.util.Collections$LifoQueue.peek","java.util.Collections$LifoQueue.poll","java.util.Collections$LifoQueue.size","java.util.Collections$LifoQueue.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$EmptyListIterator.impl.java.js",
+"lineCount":101,
+"mappings":"A;;;;;;;;;;;;;;;;;MAiG6B,iB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wC;EAAAA,iE;EAAAA,iB;;;CAAA,oD;EAAAC,qC;;;CAKb,6B,UAAWC,C;EACrBC,kE;;;CAIa,kB;EACbC,a;;;CAIa,sB;EACbC,a;;;CAIY,wB;EACZC,2D;;;CAIS,gB;EACTC,S;;;CAIY,4B;EACZC,2D;;;CAIS,oB;EACTC,e;;;CAIU,c;EACVC,0D;;;CAIU,6B,UAAWR,C;EACrBS,0D;;;;CA9CuB,qD;EAAAC,yG;;;QAEzB,uD;EAAAC,kH;;;QAFyB,O;EAAAC,oC;EAAAA,iC;EAAAA,qB;EAAAA,mB;EAEzBA,4G;;;;;;;;;;;;;;;;AAFyB;;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$EmptyListIterator.<synthetic: ctor_js>","java.util.Collections$EmptyListIterator.<synthetic: ctor_create>","java.util.Collections$EmptyListIterator.<init>","o","java.util.Collections$EmptyListIterator.add","java.util.Collections$EmptyListIterator.hasNext","java.util.Collections$EmptyListIterator.hasPrevious","java.util.Collections$EmptyListIterator.next","java.util.Collections$EmptyListIterator.nextIndex","java.util.Collections$EmptyListIterator.previous","java.util.Collections$EmptyListIterator.previousIndex","java.util.Collections$EmptyListIterator.remove","java.util.Collections$EmptyListIterator.set","java.util.Collections$EmptyListIterator.forEachRemaining","java.util.Collections$EmptyListIterator.<synthetic: getter>","java.util.Collections$EmptyListIterator.<clinit>"]
+}

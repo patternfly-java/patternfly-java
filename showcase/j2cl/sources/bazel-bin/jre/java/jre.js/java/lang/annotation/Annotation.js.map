@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Annotation.impl.java.js",
+"lineCount":28,
+"mappings":"A;;;;;;;;;;MAsBiB,U;;CAEa,iC;;CAGpB,M,UAAcA,G;;CAGlB,Q;;CAGG,Q;;QAXQ,M;EAAAC,qB;EAAAA,8B;;;QAAA,O;EAAAC,6B;EAAAA;",
+"sources":["Annotation.java"],
+"names":["obj","java.lang.annotation.Annotation.<synthetic: adapt_lambda>","java.lang.annotation.Annotation.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Closeable.impl.java.js",
+"lineCount":23,
+"mappings":"A;;;;;;;;;;;MAwBiB,S;;CAWR,a;;QAXQ,M;EAAAA,oB;EAAAA,8B;;;QAAA,O;EAAAC,4B;EAAAA;",
+"sources":["Closeable.java"],
+"names":["java.io.Closeable.<synthetic: adapt_lambda>","java.io.Closeable.<clinit>"]
+}

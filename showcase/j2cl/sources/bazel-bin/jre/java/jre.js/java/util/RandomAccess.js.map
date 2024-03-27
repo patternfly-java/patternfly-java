@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RandomAccess.impl.java.js",
+"lineCount":12,
+"mappings":"A;;;;;;;MAqBiB,Y;;QAAA,O;EAAAA,+B;EAAAA;",
+"sources":["RandomAccess.java"],
+"names":["java.util.RandomAccess.<clinit>"]
+}

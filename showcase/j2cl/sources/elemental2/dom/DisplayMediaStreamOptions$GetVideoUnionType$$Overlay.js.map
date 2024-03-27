@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MAkDmB,Q;;QAEoC,kF,UAAUA,C;EAAGC,mB;EAC9DA,yE;;;QAIc,yF;EAAAC,mB;EACdA,2D;;;QAI4B,oI;EAAAC,mB;EAC5BA,oG;;;QAIc,yF;EAAAC,mB;EACdA,qC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["DisplayMediaStreamOptions.java"],
+"names":["o","elemental2.dom.DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.of","elemental2.dom.DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.asMediaTrackConstraints__$devirt","elemental2.dom.DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.DisplayMediaStreamOptions$GetVideoUnionType$$Overlay.<clinit>"]
+}

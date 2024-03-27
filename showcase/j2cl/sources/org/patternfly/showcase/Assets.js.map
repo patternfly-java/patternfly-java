@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Assets.impl.java.js",
+"lineCount":77,
+"mappings":"A;;;;;;;;;;;MAiBmB,M;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iB;EAAAA,6B;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAAC,qC;;;QAEf,gD;EAAAC,qF;;;QAAA,gD;EAAAC,sF;;;QAEA,iD;EAAAD,sF;;;QAAA,iD;EAAAC,uF;;;QAEA,4C;EAAAD,iF;;;QAAA,4C;EAAAC,kF;;;QANe,O;EAAAC,yB;EAAAA,sB;EAAAA,qB;EAEfA,yN;EAEAA,2N;EAEAA,iN;;;;;;;;;;;;;AANe;0D;AAAA;2D;AAAA;;",
+"sources":["Assets.java"],
+"names":["org.patternfly.showcase.Assets.<synthetic: ctor_js>","org.patternfly.showcase.Assets.<synthetic: ctor_create>","org.patternfly.showcase.Assets.<init>","org.patternfly.showcase.Assets.<synthetic: getter>","org.patternfly.showcase.Assets.<synthetic: setter>","org.patternfly.showcase.Assets.<clinit>"]
+}

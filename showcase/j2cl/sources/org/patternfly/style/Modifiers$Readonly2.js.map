@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers$Readonly2.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;;;MA8Oc,S;;CAGI,2C;;CAKA,oD,gBAAiBA,Q;;QALjB,+F;EAAAC,oB;EACNA,2E;;;QAIM,wG,kDAAiBD,Q;EAAjBC,oB;EACNA,qT;;;QATE,O;EAAAC,4B;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["readonly","org.patternfly.style.Modifiers$Readonly2.readonly__$default","org.patternfly.style.Modifiers$Readonly2.<clinit>"]
+}

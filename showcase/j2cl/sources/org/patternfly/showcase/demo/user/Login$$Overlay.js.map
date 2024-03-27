@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Login$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAqBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["Login.java"],
+"names":["org.patternfly.showcase.demo.user.Login$$Overlay.<clinit>"]
+}

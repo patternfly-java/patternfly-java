@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSStyleDeclaration$GetExpressionUnionType$$Overlay.impl.java.js",
+"lineCount":48,
+"mappings":"A;;;;;;;;MAmEmB,Q;;QAEmC,iF,UAAUA,C;EAAGC,mB;EAC7DA,yE;;;QAIc,wF;EAAAC,mB;EACdA,2D;;;QAIa,sF;EAAAC,mB;EACbA,yD;;;QAIa,gG;EAAAC,mB;EACbA,mE;;;QAIc,wF;EAAAC,mB;EACdA,qC;;;QAIc,uF;EAAAC,mB;EACdA,oC;;;QAIc,uF;EAAAC,mB;EACdA,wC;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSStyleDeclaration.java"],
+"names":["o","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.of","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSStyleDeclaration$GetExpressionUnionType$$Overlay.<clinit>"]
+}

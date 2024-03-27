@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractQueue.impl.java.js",
+"lineCount":59,
+"mappings":"A;;;;;;;;;;;;;;;;;MA6BsB,a;;CAAA,W;EAAAA,Q;;;CAGV,oC;EAAgBC,iD;;;CAIX,G,UAAMC,C;EACnBC,kJ;EACAA,Y;;;CAIa,M,sBAA+BC,C;EAC5CC,4E;EACAA,kI;EAEAA,uB;;;CAIU,K;EACVC,kE;;;CAMO,2B;EACPC,IAAEC,CAAFD,mC;EACAA,mH;EACAA,S;;;CAIO,0B;EACPE,IAAED,CAAFC,mC;EACAA,mH;EACAA,S;;;QAtCkB,O;EAAAC,gC;EAAAA,6B;EAAAA,6B;EAAAA;",
+"sources":["AbstractQueue.java"],
+"names":["java.util.AbstractQueue.<synthetic: ctor_js>","java.util.AbstractQueue.<init>","o","java.util.AbstractQueue.add","c","java.util.AbstractQueue.addAll","java.util.AbstractQueue.clear","java.util.AbstractQueue.element","e","java.util.AbstractQueue.remove","java.util.AbstractQueue.<clinit>"]
+}

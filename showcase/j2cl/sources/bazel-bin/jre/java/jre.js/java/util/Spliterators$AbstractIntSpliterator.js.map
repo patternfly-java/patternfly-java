@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$AbstractIntSpliterator.impl.java.js",
+"lineCount":58,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAwF+B,sB;;CAAA,W;EAAAA,Q;;;CAGjB,qE,eAA4BC,I,gBAAUC,e;EAC9CC,2F;;;;CAJyB,qD;EAAAC,+G;;;;CAAA,kD;EAAAC,mH;;;;CAAA,0C;EAAAD,oK;;;;CAAA,6C;EAAAE,wF;;;;CAAA,wD;EAAAF,gH;;;QAAA,O;EAAAG,yC;EAAAA,sC;EAAAA,0B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$AbstractIntSpliterator.<synthetic: ctor_js>","size","characteristics","java.util.Spliterators$AbstractIntSpliterator.<init>","java.util.Spliterators$AbstractIntSpliterator.forEachRemaining","java.util.Spliterators$AbstractIntSpliterator.tryAdvance","java.util.Spliterators$AbstractIntSpliterator.trySplit","java.util.Spliterators$AbstractIntSpliterator.<clinit>"]
+}

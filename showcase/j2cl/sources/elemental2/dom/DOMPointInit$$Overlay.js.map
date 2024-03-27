@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DOMPointInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEK,qC;EAASA,mB;EAC3BA,wL;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["DOMPointInit.java"],
+"names":["elemental2.dom.DOMPointInit$$Overlay.create","elemental2.dom.DOMPointInit$$Overlay.<clinit>"]
+}

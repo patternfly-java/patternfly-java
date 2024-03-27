@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractMap$AbstractEntry.impl.java.js",
+"lineCount":65,
+"mappings":"A;;;;;;;;;;;;;;;MAkEgC,a;;CAAA,W;EAAAA,Q;EAAAA;OACZ,2CADYA,C;EAAAA;OAElB,6CAFkBA,C;;;CAIlB,oF,UAAgBC,G,WAAOC,K;EAAOC,qC;EACtCA,uD;EACAA,2D;;;CAIO,0B;EACPC,wD;;;CAIO,4B;EACPC,0D;;;CAIO,8C,UAAWH,K;EAClBI,IAAEC,QAAFD,sD;EACAA,2D;EACAA,gB;;;CAIa,M,UAAcE,K;EAC3BC;GACEA,aADFA;G;EAGAA,IAAYC,KAAZD,uD;EACAA,sT;;;CAQS,Q;EACTE,mM;;;CAIY,Q;EAEZC,uO;;;QA/C0B,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["AbstractMap.java"],
+"names":["java.util.AbstractMap$AbstractEntry.<synthetic: ctor_js>","key","value","java.util.AbstractMap$AbstractEntry.<init>","java.util.AbstractMap$AbstractEntry.getKey","java.util.AbstractMap$AbstractEntry.getValue","java.util.AbstractMap$AbstractEntry.setValue","oldValue","other","java.util.AbstractMap$AbstractEntry.equals","entry","java.util.AbstractMap$AbstractEntry.hashCode","java.util.AbstractMap$AbstractEntry.toString","java.util.AbstractMap$AbstractEntry.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToDoubleFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,gB;;CAER,yC,UAAgBA,K;;QAFR,M;EAAAC,2B;EAAAA,gE;;;QAAA,O;EAAAC,mC;EAAAA;",
+"sources":["ToDoubleFunction.java"],
+"names":["value","java.util.function.ToDoubleFunction.<synthetic: adapt_lambda>","java.util.function.ToDoubleFunction.<clinit>"]
+}

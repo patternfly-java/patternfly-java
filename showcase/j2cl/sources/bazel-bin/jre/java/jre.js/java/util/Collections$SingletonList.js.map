@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$SingletonList.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;;;;;;MA8Q6B,a;;CAAA,W;EAAAA,Q;EAAAA;OACf,+CADeA,C;;;QAGlB,yB,UAAgBC,O;EAAhBC,wB;EAAAA,oC;EAAAA,sF;EAAAA,iB;;;CAAA,kE,UAAgBD,O;EAASE,2C;EAC9BA,+D;;;CAIa,Q,UAAgBC,I;EAC7BC,iI;;;CAIO,U,eAAQC,K;EACfC,oE;EACAA,4D;;;CAIS,I;EACTC,S;;;QApBuB,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$SingletonList.<synthetic: ctor_js>","element","java.util.Collections$SingletonList.<synthetic: ctor_create>","java.util.Collections$SingletonList.<init>","item","java.util.Collections$SingletonList.contains","index","java.util.Collections$SingletonList.get","java.util.Collections$SingletonList.size","java.util.Collections$SingletonList.<clinit>"]
+}

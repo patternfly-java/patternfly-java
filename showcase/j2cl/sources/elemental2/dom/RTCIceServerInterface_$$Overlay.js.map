@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCIceServerInterface_$$Overlay.impl.java.js",
+"lineCount":25,
+"mappings":"A;;;;;MAyBiB,Q;;QA6CF,wF,gEAAwBA,I;EAAxBC,mB;EACXA,8F;;;QAIW,iF,yDAAeD,I;EAAfC,mB;EACXA,8F;;;QAIW,yF,gEAAiBD,I;EAAjBC,mB;EACXA,wM;;;QAxDa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCIceServerInterface_.java"],
+"names":["urls","elemental2.dom.RTCIceServerInterface_$$Overlay.setUrls__$devirt","elemental2.dom.RTCIceServerInterface_$$Overlay.<clinit>"]
+}

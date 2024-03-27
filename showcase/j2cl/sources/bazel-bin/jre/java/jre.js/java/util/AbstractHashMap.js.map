@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractHashMap.impl.java.js",
+"lineCount":126,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;MAiCe,e;;CAAA,W;EAAAA,Q;EAAAA;OA0FqB,yCA1FrBA,C;EAAAA;OA6FmB,uCA7FnBA,C;EAAAA;OA+FT,qCA/FSA,K;;;;CAiGN,sC;EAAkBC,0C;EACvBA,kD;;;;CAGK,2C,eAAoBC,O;EAEzBD,oE;;;;CAGK,kD,eAAoBC,O,gBAAeC,W;EAAaF,0C;EAErDA,kH;EACAA,qH;EAEAA,kD;;;;CAGK,qD,kBAA8CG,U;EAAYH,0C;EAC/DA,kD;EACAA,wB;;;CAIU,K;EACVI,kD;;;CAGW,0C;EACXC,wJ;EACAA,kJ;EACAA,8C;;;CAGG,sC;EACHC;GAGEA,OAHFA;G;EAKAA,gG;;;CAIa,W,UAAmBC,G;EAChCC,2S;;;CAMa,a,UAAqBC,K;EAClCC,wT;;;CAGc,2F,UAAqBD,K,+BAA6BE,O;EAChED;GAAAA,IAAiBE,KAAjBF,sFAAAA;;IACEA;KACEA,YADFA;KADFA;;G;EAKAA,a;;;CAI0B,yB;EAC1BG,wF;;;CAIO,G,UAAWN,G;EAClBO,iW;;;CAMO,G,UAAMP,G,WAAOE,K;EACpBM,iU;;;CAMO,M,UAAcR,G;EACrBS,qR;;;CAMS,I;EACTC,qI;;;CAOe,mE,UAAcC,M,WAAeC,M;;CAMjC,kD,UAAmBZ,G;;QAzMnB,O;EAAAa,kC;EAAAA,+B;EAAAA;",
+"sources":["AbstractHashMap.java"],
+"names":["java.util.AbstractHashMap.<synthetic: ctor_js>","java.util.AbstractHashMap.<init>","ignored","alsoIgnored","toBeCopied","java.util.AbstractHashMap.clear","java.util.AbstractHashMap.reset","java.util.AbstractHashMap.structureChanged","key","java.util.AbstractHashMap.containsKey","value","java.util.AbstractHashMap.containsValue","entries","entry","java.util.AbstractHashMap.entrySet","java.util.AbstractHashMap.get","java.util.AbstractHashMap.put","java.util.AbstractHashMap.remove","java.util.AbstractHashMap.size","value1","value2","java.util.AbstractHashMap.<clinit>"]
+}

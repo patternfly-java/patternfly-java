@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableRandomAccessList.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;MAwtBe,4B;;CAAA,W;EAAAA,Q;;;QAEJ,uB,gBAA+CC,I;EAA/CC,uC;EAAAA,mD;EAAAA,gG;EAAAA,iB;;;CAAA,+E,gBAA+CD,I;EACpDE,+E;;;QAHS,O;EAAAC,+C;EAAAA,4C;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableRandomAccessList.<synthetic: ctor_js>","list","java.util.Collections$UnmodifiableRandomAccessList.<synthetic: ctor_create>","java.util.Collections$UnmodifiableRandomAccessList.<init>","java.util.Collections$UnmodifiableRandomAccessList.<clinit>"]
+}

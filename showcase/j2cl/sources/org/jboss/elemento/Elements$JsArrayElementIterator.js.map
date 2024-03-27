@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Elements$JsArrayElementIterator.impl.java.js",
+"lineCount":78,
+"mappings":"A;;;;;;;;;;;;;;;;;MAoyDyB,sB;;CAAA,W;EAAAA,Q;EAAAA;OAES,6DAFTA,C;EAAAA;OAGG,2DAHHA,C;EAAAA;OAIG,2DAJHA,C;;;QAMV,mC,oBAAmCC,M;EAAnCC,iC;EAAAA,6C;EAAAA,8G;EAAAA,iB;;;CAAA,2F,oBAAmCD,M;EAAQE,qC;EAC9CA,4E;EACAA,6I;;;CAIW,kB;EACXC,gG;;;CAIe,kC;EACfC;GACIA,2DADJA;G;EAGAA,oI;EACAA,wM;EACAA,wE;;;CAIQ,c;EACRC;GACIA,0DADJA;G;EAGAA,iJ;EACAA,wE;;;;CAhCa,qD;EAAAC,yG;;;;CAAA,wB;EAAAF,iD;;;QAAA,O;EAAAG,yC;EAAAA,sC;EAAAA,qB;EAAAA;",
+"sources":["Elements.java"],
+"names":["org.jboss.elemento.Elements$JsArrayElementIterator.<synthetic: ctor_js>","parent","org.jboss.elemento.Elements$JsArrayElementIterator.<synthetic: ctor_create>","org.jboss.elemento.Elements$JsArrayElementIterator.<init>","org.jboss.elemento.Elements$JsArrayElementIterator.hasNext","org.jboss.elemento.Elements$JsArrayElementIterator.next","org.jboss.elemento.Elements$JsArrayElementIterator.remove","org.jboss.elemento.Elements$JsArrayElementIterator.forEachRemaining","org.jboss.elemento.Elements$JsArrayElementIterator.<clinit>"]
+}

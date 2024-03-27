@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PanelFooter.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;MAwBa,W;;CAAA,W;EAAAA,Q;;;QAIiB,yD;EAAcC,sB;EACpCA,+B;;;QAOJ,S;EAAAC,sB;EAAAA,kC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,uxB;;;CAMe,kD;EACfC,Y;;;;CApBK,uC;EAAAA,iE;;;QAAA,O;EAAAC,8B;EAAAA,2B;EAAAA,4B;;;;;;;;;;;;;;;;;;AAUT;YAAoB,gEAApB;",
+"sources":["PanelFooter.java"],
+"names":["org.patternfly.component.panel.PanelFooter.<synthetic: ctor_js>","org.patternfly.component.panel.PanelFooter.panelFooter","org.patternfly.component.panel.PanelFooter.<synthetic: ctor_create>","org.patternfly.component.panel.PanelFooter.<init>","org.patternfly.component.panel.PanelFooter.that","org.patternfly.component.panel.PanelFooter.<clinit>"]
+}

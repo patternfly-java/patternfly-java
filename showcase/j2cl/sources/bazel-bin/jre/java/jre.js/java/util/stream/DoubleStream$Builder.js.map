@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStream$Builder.impl.java.js",
+"lineCount":29,
+"mappings":"A;;;;;;;;;;;MAiDY,O;;CAEH,sB,eAAcA,C;;CAEU,oD,eAAWA,C;;CAK3B,sC;;QALgB,qG,yCAAWA,C;EAAXC,kB;EAC3BA,mC;EACAA,gB;;;QANM,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["DoubleStream.java"],
+"names":["t","java.util.stream.DoubleStream$Builder.add__$default","java.util.stream.DoubleStream$Builder.<clinit>"]
+}

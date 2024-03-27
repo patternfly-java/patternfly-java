@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCIceCandidateInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEY,4C;EAASA,mB;EAClCA,+L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCIceCandidateInit.java"],
+"names":["elemental2.dom.RTCIceCandidateInit$$Overlay.create","elemental2.dom.RTCIceCandidateInit$$Overlay.<clinit>"]
+}

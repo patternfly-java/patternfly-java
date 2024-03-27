@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ExtendableMessageEventInit$$Overlay.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;MA0BiB,Q;;QAwCmB,mD;EAASA,mB;EACzCA,sM;;;QA+BW,wG,2EAAuBC,K;EAAvBC,mB;EACXA,iH;;;QAOW,iG,oEAAsBC,M;EAAtBC,mB;EACXA,kG;;;QAIW,mG,sEAAwBD,M;EAAxBC,mB;EACXA,kG;;;QAIW,yG,4EAA8BD,M;EAA9BC,mB;EACXA,kG;;;QA3Fa,O;EAAAC,2B;EAAAA;",
+"sources":["ExtendableMessageEventInit.java"],
+"names":["elemental2.dom.ExtendableMessageEventInit$$Overlay.create","ports","elemental2.dom.ExtendableMessageEventInit$$Overlay.setPorts__$devirt","source","elemental2.dom.ExtendableMessageEventInit$$Overlay.setSource__$devirt","elemental2.dom.ExtendableMessageEventInit$$Overlay.<clinit>"]
+}

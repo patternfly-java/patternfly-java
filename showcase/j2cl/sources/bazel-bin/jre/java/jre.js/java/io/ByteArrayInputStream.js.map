@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ByteArrayInputStream.impl.java.js",
+"lineCount":108,
+"mappings":"A;;;;;;;;;;;MA0Ba,oB;;CAAA,W;EAAAA,Q;EAAAA;OAIQ,mCAJRA,C;EAAAA;OASK,mCATLA,K;EAAAA;OAeK,oCAfLA,K;EAAAA;OAqBK,qCArBLA,K;;;;QA8BF,qB,sBAA4BC,G;EAA5BC,+B;EAAAA,2C;EAAAA,uE;EAAAA,iB;;;;CAAA,uD,sBAA4BD,G;EAAKE,wC;EACpCA,8C;EACAA,+C;EACAA,wD;;;;QAeG,+B,sBAA4BF,G,gBAASG,M,gBAAYC,M;EAAjDH,+B;EAAAA,2C;EAAAA,iG;EAAAA,iB;;;;CAAA,iE,sBAA4BD,G,gBAASG,M,gBAAYC,M;EAAQF,wC;EAC5DA,+C;EACAA,kD;EACAA,mD;EACAA,mH;;;CASO,gB;EACPG,iG;;;CAUQ,a;;CAeA,iB,eAASC,S;EACjBC,qF;;;CAaW,wB;EACXC,Y;;;CAWO,W;EAAOC,yB;EACdA,kT;;;CAGiB,mC,sBAAYC,M,gBAAYC,U,gBAAgBC,S;EACzDH,2F;EAGAA;GACIA,eADJA;G;EAGAA;GACIA,SADJA;G;EAIAA,IAAII,OAAJJ,mN;EACAA,6L;EACAA,kG;EACAA,e;;;CAWQ,a;EACRK,qF;;;CAYQ,kB,eAAUF,S;EAClBG;GACIA,wBADJA;G;EAGAA,IAAIC,IAAJD,4C;EACAA,0W;EACAA,uF;;;QAjKK,O;EAAAE,uC;EAAAA,oC;EAAAA;",
+"sources":["ByteArrayInputStream.java"],
+"names":["java.io.ByteArrayInputStream.<synthetic: ctor_js>","buf","java.io.ByteArrayInputStream.<synthetic: ctor_create>","java.io.ByteArrayInputStream.<init>","offset","length","java.io.ByteArrayInputStream.available","readlimit","java.io.ByteArrayInputStream.mark","java.io.ByteArrayInputStream.markSupported","java.io.ByteArrayInputStream.read","buffer","byteOffset","byteCount","copylen","java.io.ByteArrayInputStream.reset","java.io.ByteArrayInputStream.skip","temp","java.io.ByteArrayInputStream.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TerminatableStream.impl.java.js",
+"lineCount":129,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;MAsBM,kB;;CAAA,W;EAAAA,Q;EAAAA;OAEY,kDAFZA,S;EAAAA;OAGyB,+CAHzBA,C;EAAAA;OAKgC,4CALhCA,C;;;QAOG,4C,8BAAyCC,Q;EAAzCC,6B;EAAAA,yC;EAAAA,0G;EAAAA,iB;;;CAAA,qF,8BAAyCD,Q;EAAUE,qC;EAAAA,0D;EACxDA;GACEA,yDADFA;GAEEA,iHAFFA;;GAIEA,6DAJFA;GAKEA,4DALFA;G;;;CASG,8C;EACHC;GACEA,mGADFA;SAEOA;GACLA,iIADKA;G;;;CAMJ,sC;EACHC;GACEA,sDADFA;GAEEA,+DAFFA;;GAIEA,2FAJFA;G;;;CAQO,kE,iBAAiBC,Y;EACxBC;GACEA,uEADFA;;GAGEA,mIAHFA;G;EAMAA,6B;;;CAGU,a;EACVC;GACEA,+DADFA;GAEEA,iEAFFA;;GAIEA,kEAJFA;G;;;CAQW,yD;EACXC,IAAqBC,UAArBD,8D;EACAA,mHACIE,QADJF;GACIG,IAAAD,UAAAC,0DADJH;GAEMG;IACEA,yBADFA;;IAEsBA,oCAFtBA;;KAEsBA,IAAHC,CAAGD,mCAFtBA;KAGEA,kBAHFA;;IAFNH;M;EAQAA,6D;EAEAA;GACEA,IAAUI,GAAVJ,4EADFA;GAEEA,SAASK,CAATL,MAAgBM,IAAhBN;IACEA,IAAUO,UAAVP,4EADFA;IAEEA;KACEA,2DADFA;KAFFA;IAFFA;GASEA;IACEA,0FADFA;IATFA;GAYEA;IACEA,oEADFA;IAZFA;GAeEA,6JAfFA;G;;;CAlEE,kD;EAEJN,gE;;;QAFI,O;EAAAc,qC;EAAAA,kC;EAAAA;",
+"sources":["TerminatableStream.java"],
+"names":["java.util.stream.TerminatableStream.<synthetic: ctor_js>","previous","java.util.stream.TerminatableStream.<synthetic: ctor_create>","java.util.stream.TerminatableStream.<init>","java.util.stream.TerminatableStream.throwIfTerminated","java.util.stream.TerminatableStream.terminate","closeHandler","java.util.stream.TerminatableStream.onClose","java.util.stream.TerminatableStream.close","java.util.stream.TerminatableStream.runClosers","throwables","runnable","java.util.stream.TerminatableStream.<lambda in runClosers>","e","i","size","suppressed","java.util.stream.TerminatableStream.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlUtils$JvmImpl.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAqOe,O;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,kB;EAAAA,8B;EAAAA,8E;EAAAA,iB;;;CAAA,iE;EAAAC,wE;;;QAAA,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["SafeHtmlUtils.java"],
+"names":["org.gwtproject.safehtml.shared.SafeHtmlUtils$JvmImpl.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.SafeHtmlUtils$JvmImpl.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeHtmlUtils$JvmImpl.<init>","org.gwtproject.safehtml.shared.SafeHtmlUtils$JvmImpl.<clinit>"]
+}

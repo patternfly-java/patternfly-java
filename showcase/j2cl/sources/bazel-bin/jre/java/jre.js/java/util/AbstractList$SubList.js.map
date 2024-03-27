@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractList$SubList.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;MA6HuB,O;;CAAA,W;EAAAA,Q;EAAAA;OACG,0CADHA,C;EAAAA;OAED,4CAFCA,K;EAAAA;OAGP,uCAHOA,K;;;QAKZ,iC,gBAAgBC,O,gBAAaC,S,gBAAeC,O;EAA5CC,kB;EAAAA,8B;EAAAA,6G;EAAAA,iB;;;CAAA,qE,gBAAgBH,O,gBAAaC,S,gBAAeC,O;EAASE,2C;EAC1DA,8G;EAEAA,0D;EACAA,8D;EACAA,uE;;;CAIU,U,eAAQC,K,WAASC,O;EAC3BC,gH;EAEAA,mI;EACAA,oG;;;CAIO,U,eAAQF,K;EACfG,+G;EAEAA,iI;;;CAIO,a,eAAWH,K;EAClBI,+G;EAEAA,IAAEC,MAAFD,gI;EACAA,oG;EACAA,c;;;CAIO,U,eAAQJ,K,WAASC,O;EACxBK,+G;EAEAA,0I;;;CAIS,I;EACTC,oD;;;QA9CiB,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["AbstractList.java"],
+"names":["java.util.AbstractList$SubList.<synthetic: ctor_js>","wrapped","fromIndex","toIndex","java.util.AbstractList$SubList.<synthetic: ctor_create>","java.util.AbstractList$SubList.<init>","index","element","java.util.AbstractList$SubList.add","java.util.AbstractList$SubList.get","java.util.AbstractList$SubList.remove","result","java.util.AbstractList$SubList.set","java.util.AbstractList$SubList.size","java.util.AbstractList$SubList.<clinit>"]
+}

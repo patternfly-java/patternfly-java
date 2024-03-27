@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LoremIpsum.impl.java.js",
+"lineCount":94,
+"mappings":"A;;;;;;;;;;;;;MAoBmB,U;;CAAA,W;EAAAA,Q;;;QAiBP,S;EAAAC,iC;EAAAA,4D;EAAAA,iB;;;CAAA,+C;EAAaC,qC;;;QAGA,wB;EAAOC,qB;EACxBA,uI;;;QAGiB,yB;EAAQC,qB;EACzBA,wI;;;QAGiB,8B,eAAUC,M;EAAQD,qB;EACnCA,4I;;;QAGiB,6B;EAAYE,qB;EAC7BA,iL;;;QAGiB,mC,eAAeD,M;EAAQE,qB;EACxCA,iJ;;;QAGkB,wD,eAAUF,M,wBAAiBG,M;EAC7CC,IAAcC,OAAdD,6B;EACAA,IAAIE,KAAJF,yD;EACAA,SAASG,CAATH;GACIA;IACIA,UADJA;IADJA;GAIIA,2EAJJA;GAKIA;IACIA,8DADJA;IALJA;GAQIA,sBARJA;G;EAUAA,0B;;;QArDW,O;EAAAI,6B;EAAAA,0B;EAAAA,qB;EAEfA,27B;EAYAA,utB;;;;;;;;;;;;;;;AAde;WAEe,iDAFf,C;AAAA;WAce,4CAdf;",
+"sources":["LoremIpsum.java"],
+"names":["org.patternfly.showcase.LoremIpsum.<synthetic: ctor_js>","org.patternfly.showcase.LoremIpsum.<synthetic: ctor_create>","org.patternfly.showcase.LoremIpsum.<init>","org.patternfly.showcase.LoremIpsum.word","org.patternfly.showcase.LoremIpsum.words","amount","org.patternfly.showcase.LoremIpsum.paragraph","org.patternfly.showcase.LoremIpsum.paragraphs","source","org.patternfly.showcase.LoremIpsum.cycle","builder","index","i","org.patternfly.showcase.LoremIpsum.<clinit>"]
+}

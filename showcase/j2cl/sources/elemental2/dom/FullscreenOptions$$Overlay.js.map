@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FullscreenOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEU,0C;EAASA,mB;EAChCA,6L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["FullscreenOptions.java"],
+"names":["elemental2.dom.FullscreenOptions$$Overlay.create","elemental2.dom.FullscreenOptions$$Overlay.<clinit>"]
+}

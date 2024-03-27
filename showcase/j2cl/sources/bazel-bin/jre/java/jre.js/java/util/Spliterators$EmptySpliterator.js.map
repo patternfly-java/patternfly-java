@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$EmptySpliterator.impl.java.js",
+"lineCount":125,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;MAiOgC,gB;;CAAA,W;EAAAA,Q;;;CAAA,oD;EAAAC,qC;;;CAQjB,sB;EACTC,kG;;;CAGU,oB;EACVC,wB;;;CAGU,0C,UAAmBC,Q;EAC7BC,mF;;;CAGa,uC,UAAaD,Q;EAC1BE,mF;EACAA,a;;;CAGO,iC;EACPC,Y;;;;CA1B0B,qD;EAAAF,+G;;;;CAAA,qC;EAAAG,gG;;;;CAAA,2B;EAAAC,sF;;;;CAAA,kC;EAAAC,mG;;;QAG5B,qD;EAAAC,8G;;;QACA,wD;EAAAA,iH;;;QACA,qD;EAAAA,8G;;;QACA,sD;EAAAA,+G;;;QAN4B,O;EAAAC,mC;EAAAA,gC;EAAAA,qB;EAAAA,sB;EAG5BA,sH;EACAA,oH;EACAA,8G;EACAA,gH;;;;;;;;;;;;;;;;;;;AAN4B;yE;AAAA;4E;AAAA;yE;AAAA;;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$EmptySpliterator.<synthetic: ctor_js>","java.util.Spliterators$EmptySpliterator.<init>","java.util.Spliterators$EmptySpliterator.characteristics","java.util.Spliterators$EmptySpliterator.estimateSize","consumer","java.util.Spliterators$EmptySpliterator.forEachRemaining","java.util.Spliterators$EmptySpliterator.tryAdvance","java.util.Spliterators$EmptySpliterator.trySplit","java.util.Spliterators$EmptySpliterator.getComparator","java.util.Spliterators$EmptySpliterator.getExactSizeIfKnown","java.util.Spliterators$EmptySpliterator.hasCharacteristics","java.util.Spliterators$EmptySpliterator.<synthetic: getter>","java.util.Spliterators$EmptySpliterator.<clinit>"]
+}

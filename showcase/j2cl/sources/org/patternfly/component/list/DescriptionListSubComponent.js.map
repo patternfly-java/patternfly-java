@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DescriptionListSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,2B;;CAAA,W;EAAAA,Q;;;CAEX,oH,gBAAmCC,I,WAAQC,O;EACvCC,sO;;;QAHO,O;EAAAC,8C;EAAAA,2C;EAAAA;",
+"sources":["DescriptionListSubComponent.java"],
+"names":["org.patternfly.component.list.DescriptionListSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.list.DescriptionListSubComponent.<init>","org.patternfly.component.list.DescriptionListSubComponent.<clinit>"]
+}

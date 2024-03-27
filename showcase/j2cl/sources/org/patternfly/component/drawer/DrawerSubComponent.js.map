@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DrawerSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,kB;;CAAA,W;EAAAA,Q;;;CAEX,6G,gBAA0BC,I,WAAQC,O;EAC9BC,6N;;;QAHO,O;EAAAC,qC;EAAAA,kC;EAAAA;",
+"sources":["DrawerSubComponent.java"],
+"names":["org.patternfly.component.drawer.DrawerSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.drawer.DrawerSubComponent.<init>","org.patternfly.component.drawer.DrawerSubComponent.<clinit>"]
+}

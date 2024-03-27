@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BarProp$$Overlay.impl.java.js",
+"lineCount":15,
+"mappings":"A;;;;;MAuBiB,Q;;QAAA,kE;EAAAA,mB;EAAAA,8B;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["BarProp.java"],
+"names":["elemental2.dom.BarProp$$Overlay.<synthetic: adapt_lambda>","elemental2.dom.BarProp$$Overlay.<clinit>"]
+}

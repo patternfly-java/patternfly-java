@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToDoubleFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;gE;EAAAA,0H;;;CAAA,gH;EAAAC,qC;EAAAA,mE;;;CAAA,yC;EAAAC,yC;EAAAA,oG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ToDoubleFunction.java"],
+"names":["java.util.function.ToDoubleFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.ToDoubleFunction$$LambdaAdaptor.<init>","java.util.function.ToDoubleFunction$$LambdaAdaptor.applyAsDouble","java.util.function.ToDoubleFunction$$LambdaAdaptor.<clinit>"]
+}

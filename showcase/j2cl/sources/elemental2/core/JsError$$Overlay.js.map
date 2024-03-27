@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsError$$Overlay.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;MAuBa,Q;;QAQc,qE,UAAyBA,K,kBAAgBC,W;EAAaC,mB;EAC7EA,0H;;;QAIuB,2C,UAAyBF,K;EAAOE,mB;EACvDA,6G;;;QAdS,O;EAAAC,2B;EAAAA;",
+"sources":["JsError.java"],
+"names":["error","constructor","elemental2.core.JsError$$Overlay.captureStackTrace","elemental2.core.JsError$$Overlay.<clinit>"]
+}

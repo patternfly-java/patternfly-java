@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ConsoleLogger.impl.java.js",
+"lineCount":126,
+"mappings":"A;;;;;;;;;;MA0Ba,a;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,yD;EAAAA,iB;;;CAAA,4C;EAAAC,qC;;;QACiB,oD;EAAoBC,wB;EAC9CA,yI;;;CAGU,+C,gBAAWC,K,iBAAcC,O;EACnCC,IAAMC,KAAND,+D;EAEAA,6B;;;CAGU,kD,gBAAWF,K,mBAAiBI,C;EACtCF,qJ;;;CAGW,gH,gBAAWF,K,mBAAiBI,C,iBAAUC,K,iBAAeC,Q;EAChEJ,0O;EACAA,mG;EACAA,IAAUK,KAAVL,gB;EACAA;GACEA,0JADFA;G;EAGAA;GAAAA,IAAeM,UAAfN,kBAAAA;;IACEA,gKADFA;;G;EAGAA,2D;;;CAGW,gF,gBAAkBO,G,iBAAaH,Q;EAE1CI,uI;;;CAGY,oG,gBAAwBJ,Q;EAEpCK;GACEA,8BADFA;SAEOA;GACLA,qBADKA;;GAGLA,mBAHKA;G;;;CAOI,mD;EACXC;GAEEA,+BAFFA;G;;;kBAQ2B,oB,kBAA+BR,C;;QArDjD,O;EAAAS,gC;EAAAA,6B;EAAAA,qB;;;;;;;;;;;;;;;;;;;;AC1BbC,E;CACCA,4B;CACAA,C;CACAA,6E;CACAA,+E;CACAA,gB;CACAA,C;CACAA,4C;CACAA,C;CACAA,qE;CACAA,2E;CACAA,0E;CACAA,+E;CACAA,c;CACAA,E;;AAEDA,G;CACCA,sB;CACAA,kB;CACAA,E;AACDA,kD;EACEA,4D;EACAA,kD;AACFA;",
+"sources":["ConsoleLogger.java","ConsoleLogger.native_js"],
+"names":["javaemul.internal.ConsoleLogger.<synthetic: ctor_js>","javaemul.internal.ConsoleLogger.<synthetic: ctor_create>","javaemul.internal.ConsoleLogger.<init>","javaemul.internal.ConsoleLogger.createIfSupported","level","message","javaemul.internal.ConsoleLogger.log","logFn","t","label","expanded","cause","suppressed","msg","javaemul.internal.ConsoleLogger.groupStart","javaemul.internal.ConsoleLogger.getGroupStartFn","javaemul.internal.ConsoleLogger.groupEnd","javaemul.internal.ConsoleLogger.<clinit>","javaemul.internal.ConsoleLogger.<native>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NavigationLinkText.impl.java.js",
+"lineCount":68,
+"mappings":"A;;;;;;;;;;;;;;;MAyBa,kB;;CAAA,W;EAAAA,Q;;;QAIwB,4E;EAAqBC,6B;EAClDA,sC;;;QAOJ,S;EAAAC,6B;EAAAA,yC;EAAAA,gF;EAAAA,iB;;;CAAA,mE;EACIC,wyB;;;CAMsB,8D;EACtBC,Y;;;;CApBK,uC;EAAAA,6E;;;QAAA,O;EAAAC,qC;EAAAA,kC;EAAAA,iC;;;;;;;;;;;;;;;;;AAUT;mBAAoB,4EAApB;",
+"sources":["NavigationLinkText.java"],
+"names":["org.patternfly.component.navigation.NavigationLinkText.<synthetic: ctor_js>","org.patternfly.component.navigation.NavigationLinkText.navigationLinkText","org.patternfly.component.navigation.NavigationLinkText.<synthetic: ctor_create>","org.patternfly.component.navigation.NavigationLinkText.<init>","org.patternfly.component.navigation.NavigationLinkText.that","org.patternfly.component.navigation.NavigationLinkText.<clinit>"]
+}

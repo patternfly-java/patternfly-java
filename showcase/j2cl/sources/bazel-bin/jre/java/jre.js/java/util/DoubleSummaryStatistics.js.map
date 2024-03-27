@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleSummaryStatistics.impl.java.js",
+"lineCount":111,
+"mappings":"A;;;;;;;;;;;;;;MAwBa,uB;;CAAA,W;EAAAA,Q;EAAAA;OAEE,2CAFFA,oB;EAAAA;OAGI,yCAHJA,K;EAAAA;OAII,yCAJJA,K;EAAAA;OAKI,yCALJA,K;EAAAA;OAMI,8CANJA,K;EAAAA;OASI,8CATJA,K;;;QAAA,S;EAAAC,kC;EAAAA,8C;EAAAA,2D;EAAAA,iB;;;CAAA,8C;EAAAC,qC;EAAAA,wD;;;CAYC,sB,eAAcC,K;EACxBC,uI;EACAA,iH;EACAA,iH;EACAA,6D;EACAA,qE;;;CAGU,kD,gCAAgCC,K;EAC1CC,wK;EACAA,2J;EACAA,2J;EACAA,4G;EACAA,+G;EACAA,oH;;;CAGY,oB;EACZC,8M;;;CAGU,gB;EACVC,wD;;;CAGY,gB;EACZC,sD;;;CAGY,gB;EACZC,sD;;;CAGY,gB;EAIZC,IAAOC,cAAPD,wG;EAEAA;GACEA,2DADFA;G;EAGAA,sB;;;CAIY,Q;EACZE,sT;;;CAiBW,wD,eAAWV,K;EACtBW,IAAOC,gBAAPD,+D;EACAA,IAAOE,MAAPF,qE;EASAA,iI;EACAA,wD;;;;CAxFS,+E;EAAAG,+J;;;CAAA,gD;EAGXf,8F;EACAA,8F;;;QAJW,O;EAAAgB,0C;EAAAA,uC;EAAAA,qB;EAAAA;",
+"sources":["DoubleSummaryStatistics.java"],
+"names":["java.util.DoubleSummaryStatistics.<synthetic: ctor_js>","java.util.DoubleSummaryStatistics.<synthetic: ctor_create>","java.util.DoubleSummaryStatistics.<init>","value","java.util.DoubleSummaryStatistics.accept","other","java.util.DoubleSummaryStatistics.combine","java.util.DoubleSummaryStatistics.getAverage","java.util.DoubleSummaryStatistics.getCount","java.util.DoubleSummaryStatistics.getMin","java.util.DoubleSummaryStatistics.getMax","java.util.DoubleSummaryStatistics.getSum","compensatedSum","java.util.DoubleSummaryStatistics.toString","java.util.DoubleSummaryStatistics.sum","compensatedValue","newSum","java.util.DoubleSummaryStatistics.andThen","java.util.DoubleSummaryStatistics.<clinit>"]
+}

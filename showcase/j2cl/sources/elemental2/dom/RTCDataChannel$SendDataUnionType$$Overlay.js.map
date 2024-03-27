@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCDataChannel$SendDataUnionType$$Overlay.impl.java.js",
+"lineCount":60,
+"mappings":"A;;;;;;;;;;MA2DmB,Q;;QAEyB,uE,UAAUA,C;EAAGC,mB;EACnDA,yE;;;QAIkB,sG;EAAAC,mB;EAClBA,4H;;;QAIsB,8G;EAAAC,mB;EACtBA,oI;;;QAIW,uF;EAAAC,mB;EACXA,8G;;;QAIa,sF;EAAAC,mB;EACbA,mE;;;QAIc,kF;EAAAC,mB;EACdA,kD;;;QAIc,sF;EAAAC,mB;EACdA,sD;;;QAIc,2E;EAAAC,mB;EACdA,2C;;;QAIc,6E;EAAAC,mB;EACdA,wC;;;QA3Ca,O;EAAAC,2B;EAAAA;",
+"sources":["RTCDataChannel.java"],
+"names":["o","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.of","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.asArrayBufferView__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.asBlob__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.asString__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.isArrayBufferView__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.isBlob__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.isString__$devirt","elemental2.dom.RTCDataChannel$SendDataUnionType$$Overlay.<clinit>"]
+}

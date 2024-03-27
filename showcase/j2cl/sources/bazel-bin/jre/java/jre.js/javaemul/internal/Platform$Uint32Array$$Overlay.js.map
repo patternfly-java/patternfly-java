@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Platform$Uint32Array$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAmDuB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["Platform.java"],
+"names":["javaemul.internal.Platform$Uint32Array$$Overlay.<clinit>"]
+}

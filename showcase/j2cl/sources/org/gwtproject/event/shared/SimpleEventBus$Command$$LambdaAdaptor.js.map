@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SimpleEventBus$Command$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MA4BoB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;+E;EAAAA,wJ;;;CAAA,8I;EAAAC,qC;EAAAA,kF;;;CAAA,e;;GAAAC,6F;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["SimpleEventBus.java"],
+"names":["org.gwtproject.event.shared.SimpleEventBus$Command$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.gwtproject.event.shared.SimpleEventBus$Command$$LambdaAdaptor.<init>","org.gwtproject.event.shared.SimpleEventBus$Command$$LambdaAdaptor.execute","org.gwtproject.event.shared.SimpleEventBus$Command$$LambdaAdaptor.<clinit>"]
+}

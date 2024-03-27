@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InlineIcon.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;;;;;;MAwBa,U;;CAAA,W;EAAAA,Q;;;QAIgB,8D,gBAAkBC,S;EAAWC,qB;EAClDA,uD;;;QAKJ,yB,gBAAkBD,S;EAAlBE,qB;EAAAA,iC;EAAAA,mF;EAAAA,iB;;;CAAA,6D,gBAAkBF,S;EACdG,ulB;;;CAIc,sC;EACdC,Y;;;;CAhBK,+C;EAAAA,qD;;;QAAA,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["InlineIcon.java"],
+"names":["org.patternfly.icon.InlineIcon.<synthetic: ctor_js>","iconClass","org.patternfly.icon.InlineIcon.inlineIcon","org.patternfly.icon.InlineIcon.<synthetic: ctor_create>","org.patternfly.icon.InlineIcon.<init>","org.patternfly.icon.InlineIcon.that","org.patternfly.icon.InlineIcon.<clinit>"]
+}

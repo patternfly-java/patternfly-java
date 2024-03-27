@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$BaseArraySpliterator.impl.java.js",
+"lineCount":94,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA2kBgC,oB;;CAAA,W;EAAAA,Q;EAAAA;OAEhB,qDAFgBA,K;EAAAA;OAGV,qDAHUA,K;EAAAA;OAIV,+DAJUA,K;;;CAM5B,uE,eAAyBC,I,gBAAUC,K,gBAAWC,e;EAAiBC,qC;EAC7DA,kE;EACAA,mE;EACAA,qJ;;;CAGS,sB;EACTC,4E;;;CAGU,oB;EACVC,+J;;;CAGU,0C,UAAmBC,Q;EAC7BC,mF;EACAA;GAAsBA,yBAAtBA;GACEA,sQADFA;G;;;CAK2B,qC;EAC3BC,4G;EACAA,Y;;;CAGa,uC,UAAaF,Q;EAC1BG,mF;EACAA;GAAmBA,yBAAnBA;GACEA,sQADFA;GAEEA,YAFFA;G;EAIAA,a;;;CAGO,iC;EAEPC,Y;;;CAGsB,sC,UAAUJ,Q,gBAAcK,K;;;CA9CpB,qD;EAAAJ,+G;;;;CAAA,2B;EAAAK,sF;;;;CAAA,kC;EAAAC,mG;;;QAAA,O;EAAAC,uC;EAAAA,oC;EAAAA,qB;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$BaseArraySpliterator.<synthetic: ctor_js>","from","limit","characteristics","java.util.Spliterators$BaseArraySpliterator.<init>","java.util.Spliterators$BaseArraySpliterator.characteristics","java.util.Spliterators$BaseArraySpliterator.estimateSize","consumer","java.util.Spliterators$BaseArraySpliterator.forEachRemaining","java.util.Spliterators$BaseArraySpliterator.getComparator","java.util.Spliterators$BaseArraySpliterator.tryAdvance","java.util.Spliterators$BaseArraySpliterator.trySplit","index","java.util.Spliterators$BaseArraySpliterator.getExactSizeIfKnown","java.util.Spliterators$BaseArraySpliterator.hasCharacteristics","java.util.Spliterators$BaseArraySpliterator.<clinit>"]
+}

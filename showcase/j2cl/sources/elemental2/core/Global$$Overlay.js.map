@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Global$$Overlay.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;MAwBa,Q;;QAiDgB,0C,gBAAYA,I;EAAMC,mB;EAC3CA,uG;;;QAIyB,uD,sBAAmBD,I;EAAMC,mB;EAClDA,uG;;;QAzBF,+C;EAAAC,wF;;;QAEA,0C;EAAAA,mF;;;QAEA,gD;EAAAA,yF;;;QAlCW,O;EAAAC,2B;EAAAA,wB;EA8BXA,kF;EAEAA,wE;EAEAA,oF;;;;;;;;;;;;AAlCW;+D;AAAA;0D;AAAA;;",
+"sources":["Global.java"],
+"names":["code","elemental2.core.Global$$Overlay.eval","elemental2.core.Global$$Overlay.<synthetic: getter>","elemental2.core.Global$$Overlay.<clinit>"]
+}

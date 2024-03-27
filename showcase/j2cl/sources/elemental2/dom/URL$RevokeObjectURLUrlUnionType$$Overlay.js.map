@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"URL$RevokeObjectURLUrlUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAuHmB,Q;;QAEwB,sE,UAAUA,C;EAAGC,mB;EAClDA,yE;;;QAIa,qF;EAAAC,mB;EACbA,mE;;;QAIU,oF;EAAAC,mB;EACVA,4G;;;QAIc,4E;EAAAC,mB;EACdA,wC;;;QAIc,yE;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["URL.java"],
+"names":["o","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.of","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.asString__$devirt","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.asURL__$devirt","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.isString__$devirt","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.isURL__$devirt","elemental2.dom.URL$RevokeObjectURLUrlUnionType$$Overlay.<clinit>"]
+}

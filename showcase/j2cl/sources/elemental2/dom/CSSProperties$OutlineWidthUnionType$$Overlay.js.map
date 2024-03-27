@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$OutlineWidthUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyyBmB,Q;;QAE4B,0E,UAAUA,C;EAAGC,mB;EACtDA,yE;;;QAIa,+E;EAAAC,mB;EACbA,yD;;;QAIa,yF;EAAAC,mB;EACbA,mE;;;QAIc,gF;EAAAC,mB;EACdA,oC;;;QAIc,gF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.of","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$OutlineWidthUnionType$$Overlay.<clinit>"]
+}

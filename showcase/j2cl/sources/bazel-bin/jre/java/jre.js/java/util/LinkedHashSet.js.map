@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LinkedHashSet.impl.java.js",
+"lineCount":84,
+"mappings":"A;;;;;;;;;;;;;;;;MAyBa,a;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,wB;EAAAA,oC;EAAAA,iD;EAAAA,iB;;;;CAAA,oC;EACLC,sH;;;;QAGK,6B,sBAAsCC,C;EAAtCF,wB;EAAAA,oC;EAAAA,wE;EAAAA,iB;;;;CAAA,0D,sBAAsCE,C;EAC3CD,sH;EACAA,e;;;;QAGK,Y,eAAkBE,O;EAAlBH,wB;EAAAA,oC;EAAAA,6D;EAAAA,iB;;;;CAAA,yC,eAAkBG,O;EACvBF,gI;;;;QAGK,mB,eAAkBE,O,gBAAeC,W;EAAjCJ,wB;EAAAA,oC;EAAAA,iF;EAAAA,iB;;;;CAAA,gD,eAAkBG,O,gBAAeC,W;EACtCH,oJ;;;CAIY,yB;EACZI,0F;;;QArBS,O;EAAAC,gC;EAAAA,6B;EAAAA,kB;EAAAA;",
+"sources":["LinkedHashSet.java"],
+"names":["java.util.LinkedHashSet.<synthetic: ctor_js>","java.util.LinkedHashSet.<synthetic: ctor_create>","java.util.LinkedHashSet.<init>","c","ignored","alsoIgnored","java.util.LinkedHashSet.clone","java.util.LinkedHashSet.<clinit>"]
+}

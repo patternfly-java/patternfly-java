@@ -1,0 +1,37 @@
+goog.module('org.patternfly.showcase.component.ToggleGroupComponent');
+
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('java.lang.Class');
+goog.require('java.lang.Integer');
+goog.require('java.lang.String');
+goog.require('java.util.List');
+goog.require('java.util.function.Function');
+goog.require('java.util.function.Supplier');
+goog.require('java.util.stream.Collector');
+goog.require('java.util.stream.Collectors');
+goog.require('java.util.stream.IntStream');
+goog.require('jsinterop.base.JsPropertyMap.$Overlay');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.Id');
+goog.require('org.patternfly.component.SelectionMode');
+goog.require('org.patternfly.component.button.Button');
+goog.require('org.patternfly.component.togglegroup.ToggleGroup');
+goog.require('org.patternfly.component.togglegroup.ToggleGroupItem');
+goog.require('org.patternfly.handler.ComponentHandler');
+goog.require('org.patternfly.icon.IconSets.fas');
+goog.require('org.patternfly.layout.stack.Stack');
+goog.require('org.patternfly.layout.stack.StackItem');
+goog.require('org.patternfly.showcase.ApiDoc.Type');
+goog.require('org.patternfly.showcase.Code');
+goog.require('org.patternfly.showcase.Data');
+goog.require('org.patternfly.showcase.Snippet');
+goog.require('org.patternfly.showcase.SnippetPage');
+goog.require('org.patternfly.showcase.component.Component.$Overlay');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const ToggleGroupComponent = goog.require('org.patternfly.showcase.component.ToggleGroupComponent$impl');
+exports = ToggleGroupComponent;

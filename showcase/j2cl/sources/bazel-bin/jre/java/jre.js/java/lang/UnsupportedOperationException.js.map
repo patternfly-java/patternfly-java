@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UnsupportedOperationException.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;MAsBa,6B;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,wC;EAAAA,oD;EAAAA,iE;EAAAA,yF;EAAAA,iB;;;;CAAA,oD;EAAgCC,+C;;;;QAGhC,yB,gBAAqCC,O;EAArCF,wC;EAAAA,oD;EAAAA,0F;EAAAA,yF;EAAAA,iB;;;;CAAA,sE,gBAAqCE,O;EAC1CD,wE;;;;QAGK,8C,gBAAqCC,O,mBAAmBC,K;EAAxDH,wC;EAAAA,oD;EAAAA,sH;EAAAA,yF;EAAAA,iB;;;;CAAA,2F,gBAAqCE,O,mBAAmBC,K;EAC7DF,oG;;;;QAGK,4B,kBAAwCE,K;EAAxCH,wC;EAAAA,oD;EAAAA,2F;EAAAA,yF;EAAAA,iB;;;;CAAA,yE,kBAAwCG,K;EAC7CF,yE;;;QAdS,O;EAAAG,gD;EAAAA,6C;EAAAA;",
+"sources":["UnsupportedOperationException.java"],
+"names":["java.lang.UnsupportedOperationException.<synthetic: ctor_js>","java.lang.UnsupportedOperationException.<synthetic: ctor_create>","java.lang.UnsupportedOperationException.<init>","message","cause","java.lang.UnsupportedOperationException.<clinit>"]
+}

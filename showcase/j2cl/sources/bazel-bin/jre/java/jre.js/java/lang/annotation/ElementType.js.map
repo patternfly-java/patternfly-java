@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ElementType.impl.java.js",
+"lineCount":103,
+"mappings":"A;;;;;;;;;;;;;MAsBY,W;;CAAA,W;EAAAA,Q;;;QAAA,8B;EAAAC,kC;EAAAA,gG;EAAAA,iB;;;CAAA,oE;EAAAC,qC;EAAAA,2C;EAAAA,yE;;;QAAA,6D;EAAAC,sB;EAAAA;GAAAA,2MAAAA;G;EAAAA,yI;;;QAAA,kD;EAAAC,sB;EAAAA,wpB;;;QAAA,O;EAAAC,8B;EAAAA,2B;EAAAA,e;;;;;;;;;;;;;;AACV;2E;AAAiB;uE;AAAa;iE;AAAO;0E;AAAgB;kE;AAAQ;mE;AAC7D;qE;AAAW;gE;AAAM;0E;AAAgB;oE;AADjC;YAAA,mDAAA,sL;AAAiB;YAAA,+CAAA,8K;AAAa;YAAA,yCAAA,kK;AAAO;YAAA,kDAAA,oL;AAAgB;YAAA,0CAAA,oK;AAAQ;YAAA,2CAAA,sK;AAC7D;YAAA,6CAAA,0K;AAAW;YAAA,wCAAA,gK;AAAM;YAAA,kDAAA,oL;AAAgB;YAAA,4CAAA,wK;AAFvB;;",
+"sources":["ElementType.java"],
+"names":["java.lang.annotation.ElementType.<synthetic: ctor_js>","java.lang.annotation.ElementType.<synthetic: ctor_create>","java.lang.annotation.ElementType.<init>","java.lang.annotation.ElementType.valueOf","java.lang.annotation.ElementType.values","java.lang.annotation.ElementType.<clinit>"]
+}

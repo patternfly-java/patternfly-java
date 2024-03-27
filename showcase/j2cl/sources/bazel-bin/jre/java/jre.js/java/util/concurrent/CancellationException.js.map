@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CancellationException.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;MAuBa,qB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,gC;EAAAA,4C;EAAAA,oE;EAAAA,yF;EAAAA,iB;;;;CAAA,uD;EAAwBC,oD;;;;QAExB,yB,gBAA6BC,O;EAA7BF,gC;EAAAA,4C;EAAAA,6F;EAAAA,yF;EAAAA,iB;;;;CAAA,yE,gBAA6BE,O;EAClCD,6E;;;QALS,O;EAAAE,wC;EAAAA,qC;EAAAA;",
+"sources":["CancellationException.java"],
+"names":["java.util.concurrent.CancellationException.<synthetic: ctor_js>","java.util.concurrent.CancellationException.<synthetic: ctor_create>","java.util.concurrent.CancellationException.<init>","message","java.util.concurrent.CancellationException.<clinit>"]
+}

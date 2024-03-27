@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataResource$MimeType.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAuCa,Q;;CACT,yB;;QADS,O;EAAAA,2B;EAAAA;",
+"sources":["DataResource.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.DataResource$MimeType.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SerializedLambda.impl.java.js",
+"lineCount":63,
+"mappings":"A;;;;;;;;;;MAkBmB,gB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,2B;EAAAA,uC;EAAAA,2D;EAAAA,iB;;;CAAA,8C;EAAAC,qC;;;CAEH,uC,eAAmBC,C;EAC/BC,Y;;;CAGY,+C;EACZC,Y;;;CAGY,oD;EACZC,Y;;;CAGY,yD;EACZC,Y;;;CAGY,gC;EACZC,Y;;;CAGS,wB;EACTC,S;;;CAGY,qC;EACZC,Y;;;CAGY,0C;EACZC,Y;;;QA/Be,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["SerializedLambda.java"],
+"names":["java.lang.invoke.SerializedLambda.<synthetic: ctor_js>","java.lang.invoke.SerializedLambda.<synthetic: ctor_create>","java.lang.invoke.SerializedLambda.<init>","i","java.lang.invoke.SerializedLambda.getCapturedArg","java.lang.invoke.SerializedLambda.getFunctionalInterfaceClass","java.lang.invoke.SerializedLambda.getFunctionalInterfaceMethodName","java.lang.invoke.SerializedLambda.getFunctionalInterfaceMethodSignature","java.lang.invoke.SerializedLambda.getImplClass","java.lang.invoke.SerializedLambda.getImplMethodKind","java.lang.invoke.SerializedLambda.getImplMethodName","java.lang.invoke.SerializedLambda.getImplMethodSignature","java.lang.invoke.SerializedLambda.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PriorityQueue$1.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;MA8H6B,E;;CAAA,W;EAAAA,Q;EAAAA;8C;EAAAA;OACnB,8BADmBA,K;EAAAA;OACZ,iCADYA,K;;;QAAA,gC;EAAAC,a;EAAAA,yB;EAAAA,uF;EAAAA,iB;;;CAAA,+D;EAAAC,0D;EAAAA,qC;EAAAA,gD;;;CAIR,kB;EACbC,iI;;;CAIO,wB;EAAOC,yB;EACdA,+E;EAEAA,mL;EACAA,uI;;;CAIU,c;EACVC,uG;EAEAA,gL;EACAA,iD;;;;CArBqB,qD;EAAAC,yG;;;CAAA,wC;EACvBJ,wC;EAAAA,iD;;;QADuB,O;EAAAK,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["PriorityQueue.java"],
+"names":["java.util.PriorityQueue$1.<synthetic: ctor_js>","java.util.PriorityQueue$1.<synthetic: ctor_create>","java.util.PriorityQueue$1.<init>","java.util.PriorityQueue$1.hasNext","java.util.PriorityQueue$1.next","java.util.PriorityQueue$1.remove","java.util.PriorityQueue$1.forEachRemaining","java.util.PriorityQueue$1.<clinit>"]
+}

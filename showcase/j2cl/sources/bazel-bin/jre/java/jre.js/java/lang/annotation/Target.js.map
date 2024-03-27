@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Target.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;;;MA0BkB,M;;CAChB,iD;;QADgB,O;EAAAA,yB;EAAAA;",
+"sources":["Target.java"],
+"names":["java.lang.annotation.Target.<clinit>"]
+}

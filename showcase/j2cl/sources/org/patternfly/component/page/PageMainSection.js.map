@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageMainSection.impl.java.js",
+"lineCount":125,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;MAsCa,e;;CAAA,W;EAAAA,Q;;;QAKqB,gE;EAAkBC,0B;EAC5CA,mC;;;QAOJ,S;EAAAC,0B;EAAAA,sC;EAAAA,uE;EAAAA,iB;;;CAAA,0D;EACIC,yxB;;;CAKmB,4F,mBAAsBC,U;EACzCC;GACIA,6KADJA;G;EAGAA,Y;;;CAImB,qD;EACnBC,Y;;;;CA5BK,uC;EAAAA,oE;;;;CAAA,uC;EAAAC,qK;;;;CAAA,gD;EAAAA,oL;;;;CAAA,yC;EAAAC,2K;;;;CAAA,kD;EAAAA,0L;;;;CAAA,qD;EAAAD,qK;;;;CAAA,8D;EAAAA,oL;;;;CAAA,uD;EAAAC,2K;;;;CAAA,gE;EAAAA,0L;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,6B;EAAAA,e;EAAAA,iB;;;;;;;;;;;;;;;;;;;AAWT;gBAAoB,mEAApB;",
+"sources":["PageMainSection.java"],
+"names":["org.patternfly.component.page.PageMainSection.<synthetic: ctor_js>","org.patternfly.component.page.PageMainSection.pageMainSection","org.patternfly.component.page.PageMainSection.<synthetic: ctor_create>","org.patternfly.component.page.PageMainSection.<init>","brightness","org.patternfly.component.page.PageMainSection.background","org.patternfly.component.page.PageMainSection.that","org.patternfly.component.page.PageMainSection.fill","org.patternfly.component.page.PageMainSection.noFill","org.patternfly.component.page.PageMainSection.<clinit>"]
+}

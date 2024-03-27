@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Arrays$ArrayList.impl.java.js",
+"lineCount":105,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;MAkD6B,S;;CAAA,W;EAAAA,Q;EAAAA;OAMb,oCANaA,C;;;QAQzB,iC,iBAAcC,K;EAAdC,oB;EAAAA,gC;EAAAA,mF;EAAAA,iB;;;CAAA,iE,iBAAcD,K;EAAOE,2C;EACnBA,gF;EACAA,kD;;;CAIa,Q,UAAgBC,C;EAC7BC,oC;;;CAIU,4C,oBAA4BC,Q;EACtCC,mF;EACAA;GAAAA,IAAOC,CAAPD,kBAAAA;;IACEA,6CADFA;;G;;;CAMO,U,eAAQE,K;EACfC,8E;EACAA,wD;;;CAIU,oD,yBAA4BC,Q;EACtCC,mF;EACAA,SAASC,CAATD;GACEA,+JADFA;G;;;CAMO,U,eAAQH,K,WAASK,K;EACxBC,IAAEC,GAAFD,0B;EACAA,sE;EACAA,W;;;CAIS,I;EACTE,wD;;;CAIU,kC,sBAA2BC,C;EACrCC,iL;;;CAIc,O;EACdC,uI;;;CAQa,6D,iBAAYC,G;EACzBD,IAAIE,IAAJF,oD;EACAA;GACEA,mGADFA;G;EAGAA,SAASP,CAATO;GACEA,oFADFA;G;EAGAA;GACEA,8BADFA;G;EAGAA,W;;;QA9EuB,O;EAAAG,4B;EAAAA,yB;EAAAA;",
+"sources":["Arrays.java"],
+"names":["java.util.Arrays$ArrayList.<synthetic: ctor_js>","array","java.util.Arrays$ArrayList.<synthetic: ctor_create>","java.util.Arrays$ArrayList.<init>","o","java.util.Arrays$ArrayList.contains","consumer","java.util.Arrays$ArrayList.forEach","e","index","java.util.Arrays$ArrayList.get","operator","java.util.Arrays$ArrayList.replaceAll","i","value","java.util.Arrays$ArrayList.set","was","java.util.Arrays$ArrayList.size","c","java.util.Arrays$ArrayList.sort","java.util.Arrays$ArrayList.toArray","out","size","java.util.Arrays$ArrayList.<clinit>"]
+}

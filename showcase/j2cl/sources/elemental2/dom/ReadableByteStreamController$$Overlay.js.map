@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ReadableByteStreamController$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAuBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ReadableByteStreamController.java"],
+"names":["elemental2.dom.ReadableByteStreamController$$Overlay.<clinit>"]
+}

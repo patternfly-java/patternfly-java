@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LinkedList$ListIteratorImpl.impl.java.js",
+"lineCount":115,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA4DsB,gB;;CAAA,W;EAAAA,Q;EAAAA;0D;EAAAA;OAKJ,qDALIA,K;EAAAA;OAUA,oDAVAA,C;EAAAA;OAgBA,iDAhBAA,C;;;QAsBX,6D,iDAAqBC,K,iBAAeC,S;EAApCC,2B;EAAAA,uC;EAAAA,kJ;EAAAA,iB;;;CAAA,wG,iDAAqBF,K,iBAAeC,S;EAtBzBE,sE;EAsBoCA,qC;EAAAA,4D;EACpDA,sE;EACAA,mE;;;CAIU,6B,UAAMC,C;EAChBC,mU;EACAA,gI;EACAA,8D;;;CAIa,kB;EACbC,0K;;;CAIa,sB;EACbC,8M;;;CAIO,wB;EACPC,+E;EAEAA,mH;EACAA,wJ;EACAA,gI;EACAA,iG;;;CAIS,gB;EACTC,kE;;;CAIO,4B;EACPC,mF;EAEAA,iN;EACAA,gI;EACAA,iG;;;CAIS,oB;EACTC,0E;;;CAIU,c;EACVC,kI;EAEAA,IAAQC,QAARD,4F;EACAA,kM;EACAA;GAEEA,qEAFFA;;GAKEA,gIALFA;G;EAOAA,8D;;;CAIU,6B,UAAMR,C;EAChBU,kI;EAEAA,8F;;;;CA7FgB,qD;EAAAC,yG;;;CAAA,oD;EAYlBZ,8D;;;QAZkB,O;EAAAa,mC;EAAAA,gC;EAAAA,qB;EAAAA;",
+"sources":["LinkedList.java"],
+"names":["java.util.LinkedList$ListIteratorImpl.<synthetic: ctor_js>","index","startNode","java.util.LinkedList$ListIteratorImpl.<synthetic: ctor_create>","java.util.LinkedList$ListIteratorImpl.<init>","o","java.util.LinkedList$ListIteratorImpl.add","java.util.LinkedList$ListIteratorImpl.hasNext","java.util.LinkedList$ListIteratorImpl.hasPrevious","java.util.LinkedList$ListIteratorImpl.next","java.util.LinkedList$ListIteratorImpl.nextIndex","java.util.LinkedList$ListIteratorImpl.previous","java.util.LinkedList$ListIteratorImpl.previousIndex","java.util.LinkedList$ListIteratorImpl.remove","nextNode","java.util.LinkedList$ListIteratorImpl.set","java.util.LinkedList$ListIteratorImpl.forEachRemaining","java.util.LinkedList$ListIteratorImpl.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Exceptions.impl.java.js",
+"lineCount":60,
+"mappings":"A;;;;;;;;;MAoBM,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,sD;EAAAA,iB;;;CAAA,yC;EAAAC,qC;;;QAOoB,S,sBAC8BC,Q,mBAAoBC,gB;EAAkBC,sB;EAC1FA;GACEA,wBADFA;G;EAGAA;GACEA,yBADFA;;GAEsBA,oCAFtBA;;IAEsBA,IAAHC,CAAGD,mCAFtBA;IAGEA;KACEA,SADFA;KAHFA;IAMEA,+DANFA;;G;EAQAA,wB;;;QAGsB,M,UAAcE,C;EAAGC,sB;EACvCA,uB;;;QAGmB,I,kBAAeF,C;EAAGG,sB;EACrCA,kD;;;QA5BE,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["Exceptions.java"],
+"names":["javaemul.internal.Exceptions.<synthetic: ctor_js>","javaemul.internal.Exceptions.<synthetic: ctor_create>","javaemul.internal.Exceptions.<init>","resource","currentException","javaemul.internal.Exceptions.safeClose","t","e","javaemul.internal.Exceptions.toJava","javaemul.internal.Exceptions.toJs","javaemul.internal.Exceptions.<clinit>"]
+}

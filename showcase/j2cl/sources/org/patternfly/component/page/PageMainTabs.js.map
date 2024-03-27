@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageMainTabs.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;;;;;;;;;;MA+Ba,Y;;CAAA,W;EAAAA,Q;;;QAOkB,0D;EAAeC,uB;EACtCA,gC;;;QAOJ,S;EAAAC,uB;EAAAA,mC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,gxB;;;CAKgB,yF,aAAaC,I;EAC7BC,6I;;;CAMgB,kD;EAChBC,Y;;;;CA7BK,uC;EAAAA,iE;;;QAAA,O;EAAAC,+B;EAAAA,4B;EAAAA,6B;;;;;;;;;;;;;;;;;AAaT;aAAoB,gEAApB;",
+"sources":["PageMainTabs.java"],
+"names":["org.patternfly.component.page.PageMainTabs.<synthetic: ctor_js>","org.patternfly.component.page.PageMainTabs.pageMainTabs","org.patternfly.component.page.PageMainTabs.<synthetic: ctor_create>","org.patternfly.component.page.PageMainTabs.<init>","tabs","org.patternfly.component.page.PageMainTabs.addTabs","org.patternfly.component.page.PageMainTabs.that","org.patternfly.component.page.PageMainTabs.<clinit>"]
+}

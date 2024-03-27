@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsMath$$Overlay.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;MAsBa,Q;;QACX,wC;EAAAA,iF;;;QACA,2C;EAAAA,oF;;;QACA,0C;EAAAA,mF;;;QACA,6C;EAAAA,sF;;;QACA,4C;EAAAA,qF;;;QACA,yC;EAAAA,kF;;;QACA,8C;EAAAA,uF;;;QACA,4C;EAAAA,qF;;;QARW,O;EAAAC,2B;EAAAA,wB;EACXA,6D;EACAA,mE;EACAA,iE;EACAA,uE;EACAA,qE;EACAA,+D;EACAA,yE;EACAA,qE;;;;;;;;;;AARW;wD;AAAA;2D;AAAA;0D;AAAA;6D;AAAA;4D;AAAA;yD;AAAA;8D;AAAA;;",
+"sources":["JsMath.java"],
+"names":["elemental2.core.JsMath$$Overlay.<synthetic: getter>","elemental2.core.JsMath$$Overlay.<clinit>"]
+}

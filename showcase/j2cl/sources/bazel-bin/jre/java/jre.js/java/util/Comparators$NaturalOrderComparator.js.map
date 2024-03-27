@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Comparators$NaturalOrderComparator.impl.java.js",
+"lineCount":87,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;MAuC6B,sB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iC;EAAAA,6C;EAAAA,sE;EAAAA,iB;;;CAAA,yD;EAAAC,qC;;;CAId,0D,8CAA2BC,C,+CAAsBC,C;EAC1DC,iY;;;CAIoC,gC;EACpCC,mE;;;;CAVuB,kD;EAAAD,6O;;;;CAAA,2D;EAAAE,2L;;;;CAAA,wF;EAAAA,8N;;;;CAAA,kE;EAAAA,kM;;;;CAAA,gF;EAAAC,gN;;;;CAAA,0E;EAAAC,0M;;;;CAAA,4E;EAAAC,4M;;;QAAA,O;EAAAC,yC;EAAAA,sC;EAAAA,qB;EAAAA;",
+"sources":["Comparators.java"],
+"names":["java.util.Comparators$NaturalOrderComparator.<synthetic: ctor_js>","java.util.Comparators$NaturalOrderComparator.<synthetic: ctor_create>","java.util.Comparators$NaturalOrderComparator.<init>","a","b","java.util.Comparators$NaturalOrderComparator.compare","java.util.Comparators$NaturalOrderComparator.reversed","java.util.Comparators$NaturalOrderComparator.thenComparing","java.util.Comparators$NaturalOrderComparator.thenComparingDouble","java.util.Comparators$NaturalOrderComparator.thenComparingInt","java.util.Comparators$NaturalOrderComparator.thenComparingLong","java.util.Comparators$NaturalOrderComparator.<clinit>"]
+}

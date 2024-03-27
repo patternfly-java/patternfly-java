@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResizeObserver$$Overlay.impl.java.js",
+"lineCount":24,
+"mappings":"A;;;;;;;MAgCa,Q;;QAQS,mF,iDAAgBA,O;EAAhBC,mB;EACdA,iM;;;QAIc,gH,iDAAgBD,O,kBAAkBE,Q;EAAlCD,mB;EACdA,IAAsBE,OAAtBF,gB;EACAA,4D;EACAA,mC;;;QAhBK,O;EAAAG,2B;EAAAA;",
+"sources":["ResizeObserver.java"],
+"names":["element","org.jboss.elemento.ResizeObserver$$Overlay.observe__$devirt","boxModel","options","org.jboss.elemento.ResizeObserver$$Overlay.<clinit>"]
+}

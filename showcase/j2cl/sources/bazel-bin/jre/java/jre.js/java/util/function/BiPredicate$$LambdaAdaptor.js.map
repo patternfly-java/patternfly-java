@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiPredicate$$LambdaAdaptor.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;MA2BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;2D;EAAAA,gH;;;CAAA,sG;EAAAC,qC;EAAAA,8D;;;CAAA,mD;EAAAC,6C;EAAAA,qG;;;;CAAA,qE;EAAAC,+I;;;;CAAA,wC;EAAAC,4G;;;;CAAA,oE;EAAAC,8I;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["BiPredicate.java"],
+"names":["java.util.function.BiPredicate$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.BiPredicate$$LambdaAdaptor.<init>","java.util.function.BiPredicate$$LambdaAdaptor.test","java.util.function.BiPredicate$$LambdaAdaptor.and","java.util.function.BiPredicate$$LambdaAdaptor.negate","java.util.function.BiPredicate$$LambdaAdaptor.or","java.util.function.BiPredicate$$LambdaAdaptor.<clinit>"]
+}

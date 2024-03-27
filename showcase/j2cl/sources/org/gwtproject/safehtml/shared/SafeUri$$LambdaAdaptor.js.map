@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeUri$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAgDiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;mE;EAAAA,gI;;;CAAA,sH;EAAAC,qC;EAAAA,sE;;;CAAA,4B;EAAAC,yC;EAAAA,mG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["SafeUri.java"],
+"names":["org.gwtproject.safehtml.shared.SafeUri$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.gwtproject.safehtml.shared.SafeUri$$LambdaAdaptor.<init>","org.gwtproject.safehtml.shared.SafeUri$$LambdaAdaptor.asString","org.gwtproject.safehtml.shared.SafeUri$$LambdaAdaptor.<clinit>"]
+}

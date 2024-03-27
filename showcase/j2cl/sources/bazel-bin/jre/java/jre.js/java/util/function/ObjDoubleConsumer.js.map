@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ObjDoubleConsumer.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,iB;;CAEV,wC,UAASA,C,gBAAUC,K;;QAFT,M;EAAAC,4B;EAAAA,gE;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["ObjDoubleConsumer.java"],
+"names":["t","value","java.util.function.ObjDoubleConsumer.<synthetic: adapt_lambda>","java.util.function.ObjDoubleConsumer.<clinit>"]
+}

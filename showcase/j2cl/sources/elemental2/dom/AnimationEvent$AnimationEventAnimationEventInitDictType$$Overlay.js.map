@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AnimationEvent$AnimationEventAnimationEventInitDictType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA2BmB,Q;;QAEgD,gF;EAASA,mB;EACtEA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["AnimationEvent.java"],
+"names":["elemental2.dom.AnimationEvent$AnimationEventAnimationEventInitDictType$$Overlay.create","elemental2.dom.AnimationEvent$AnimationEventAnimationEventInitDictType$$Overlay.<clinit>"]
+}

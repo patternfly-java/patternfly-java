@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntStreamImpl$ValueConsumer.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;;;;;;MAqe6B,a;;CAAA,W;EAAAA,Q;EAAAA;OACrB,qDADqBA,K;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,sE;EAAAA,iB;;;CAAA,yD;EAAAC,qC;;;CAIb,mB,eAAWC,K;EACrBC,mE;;;;CALuB,yE;EAAAC,mJ;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAAAA;",
+"sources":["IntStreamImpl.java"],
+"names":["java.util.stream.IntStreamImpl$ValueConsumer.<synthetic: ctor_js>","java.util.stream.IntStreamImpl$ValueConsumer.<synthetic: ctor_create>","java.util.stream.IntStreamImpl$ValueConsumer.<init>","value","java.util.stream.IntStreamImpl$ValueConsumer.accept","java.util.stream.IntStreamImpl$ValueConsumer.andThen","java.util.stream.IntStreamImpl$ValueConsumer.<clinit>"]
+}

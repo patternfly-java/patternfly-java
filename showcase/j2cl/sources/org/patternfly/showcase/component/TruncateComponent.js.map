@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TruncateComponent.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;MAkCa,iB;;CAAA,W;EAAAA,Q;;;QAEF,S;EAAAC,4B;EAAAA,wC;EAAAA,6E;EAAAA,iB;;;CAAA,gE;EACHC,iT;EAEAA,6B;EACAA;GAGQC,grBAHRD;O;EASAA;GAGQC,o1BAHRD;O;EASAA;GAGQC,kzBAHRD;O;EASAA,iE;EACAA,0J;EACAA,iK;;;QAnCK,O;EAAAE,oC;EAAAA,iC;EAAAA;",
+"sources":["TruncateComponent.java"],
+"names":["org.patternfly.showcase.component.TruncateComponent.<synthetic: ctor_js>","org.patternfly.showcase.component.TruncateComponent.<synthetic: ctor_create>","org.patternfly.showcase.component.TruncateComponent.<init>","org.patternfly.showcase.component.TruncateComponent.<lambda in <init>>","org.patternfly.showcase.component.TruncateComponent.<clinit>"]
+}

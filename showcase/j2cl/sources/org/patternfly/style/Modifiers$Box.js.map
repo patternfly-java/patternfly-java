@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers$Box.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;;;MAuCc,G;;CAGI,sC;;CAKA,+C,gBAAYA,G;;QALZ,oF;EAAAC,c;EACNA,sE;;;QAIM,6F,4CAAYD,G;EAAZC,c;EACNA,2S;;;QATE,O;EAAAC,sB;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["box","org.patternfly.style.Modifiers$Box.box__$default","org.patternfly.style.Modifiers$Box.<clinit>"]
+}

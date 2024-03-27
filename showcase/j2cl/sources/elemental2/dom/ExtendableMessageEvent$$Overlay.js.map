@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ExtendableMessageEvent$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAwBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ExtendableMessageEvent.java"],
+"names":["elemental2.dom.ExtendableMessageEvent$$Overlay.<clinit>"]
+}

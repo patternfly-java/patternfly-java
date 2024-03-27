@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TextResourcePrototype.impl.java.js",
+"lineCount":48,
+"mappings":"A;;;;;;;;;;;;;MAoBsB,qB;;CAAA,W;EAAAA,Q;EAAAA;OAEL,wFAFKA,S;;;CAAA,uF;EAAAC,qC;EAAAA,iG;;;CAIR,8B;EACVC;GACEA,qGADFA;GAEEA,mKAFFA;G;;;CAMU,6B;EACVC;GACEA,qGADFA;GAEEA,iKAFFA;G;;;CAZkB,yF;EAEpBF,sG;;;QAFoB,O;EAAAG,wC;EAAAA,qC;EAAAA;",
+"sources":["TextResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.impl.TextResourcePrototype.<synthetic: ctor_js>","org.treblereel.j2cl.processors.common.resources.impl.TextResourcePrototype.<init>","org.treblereel.j2cl.processors.common.resources.impl.TextResourcePrototype.insureInjectedAsScript","org.treblereel.j2cl.processors.common.resources.impl.TextResourcePrototype.insureInjectedAsStyle","org.treblereel.j2cl.processors.common.resources.impl.TextResourcePrototype.<clinit>"]
+}

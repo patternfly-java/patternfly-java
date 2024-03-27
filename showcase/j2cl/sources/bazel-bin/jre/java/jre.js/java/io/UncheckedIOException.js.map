@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UncheckedIOException.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;;MAwBa,oB;;CAAA,W;EAAAA,Q;;;;QACJ,8C,gBAA4BC,O,qBAAqBC,K;EAAjDC,+B;EAAAA,2C;EAAAA,2G;EAAAA,yF;EAAAA,iB;;;;CAAA,gF,gBAA4BF,O,qBAAqBC,K;EACtDE,kO;;;;QAGK,4B,oBAAiCF,K;EAAjCC,+B;EAAAA,2C;EAAAA,gF;EAAAA,yF;EAAAA,iB;;;;CAAA,8D,oBAAiCD,K;EACtCE,uM;;;CAKiB,Q;EACjBC,4E;;;QAZS,O;EAAAC,uC;EAAAA,oC;EAAAA;",
+"sources":["UncheckedIOException.java"],
+"names":["java.io.UncheckedIOException.<synthetic: ctor_js>","message","cause","java.io.UncheckedIOException.<synthetic: ctor_create>","java.io.UncheckedIOException.<init>","java.io.UncheckedIOException.getCause","java.io.UncheckedIOException.<clinit>"]
+}

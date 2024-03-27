@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TabSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,e;;CAAA,W;EAAAA,Q;;;CAEX,wG,gBAAuBC,I,WAAQC,O;EAC3BC,2N;;;QAHO,O;EAAAC,kC;EAAAA,+B;EAAAA;",
+"sources":["TabSubComponent.java"],
+"names":["org.patternfly.component.tabs.TabSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.tabs.TabSubComponent.<init>","org.patternfly.component.tabs.TabSubComponent.<clinit>"]
+}

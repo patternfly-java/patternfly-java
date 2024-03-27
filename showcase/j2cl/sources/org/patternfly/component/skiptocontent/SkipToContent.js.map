@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SkipToContent.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MAmCa,a;;CAAA,W;EAAAA,Q;EAAAA;OAqBY,+DArBZA,C;;;QAQmB,uF,gBAAqBC,M;EAAQC,wB;EACrDA,4F;;;QAMwB,yG,gBAAqBD,M,iBAAeE,I;EAAMD,wB;EAClEA,+E;;;QAOJ,2C,gBAAqBD,M,iBAAeE,I;EAApCC,wB;EAAAA,oC;EAAAA,8H;EAAAA,iB;;;CAAA,qG,gBAAqBH,M,iBAAeE,I;EAChCE,svB;EACAA,gX;;;CAMiB,8E,gBAAYF,I;EAC7BG,4I;EACAA,Y;;;CAIiB,4D;EACjBC,Y;;;;CAtCK,uC;EAAAA,2E;;;;CAAA,yD;EAAAD,iG;;;QAAA,O;EAAAE,gC;EAAAA,6B;EAAAA;",
+"sources":["SkipToContent.java"],
+"names":["org.patternfly.component.skiptocontent.SkipToContent.<synthetic: ctor_js>","mainId","org.patternfly.component.skiptocontent.SkipToContent.skipToContent","text","org.patternfly.component.skiptocontent.SkipToContent.<synthetic: ctor_create>","org.patternfly.component.skiptocontent.SkipToContent.<init>","org.patternfly.component.skiptocontent.SkipToContent.text","org.patternfly.component.skiptocontent.SkipToContent.that","org.patternfly.component.skiptocontent.SkipToContent.<clinit>"]
+}

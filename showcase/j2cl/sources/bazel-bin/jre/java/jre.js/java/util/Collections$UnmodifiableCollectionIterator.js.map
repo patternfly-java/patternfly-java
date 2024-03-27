@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableCollectionIterator.impl.java.js",
+"lineCount":56,
+"mappings":"A;;;;;;;;;;;;;;MAu1BuB,8B;;CAAA,W;EAAAA,Q;EAAAA;OACiB,2DADjBA,C;;;QAGX,2B,oBAAqDC,E;EAArDC,yC;EAAAA,qD;EAAAA,oG;EAAAA,iB;;;CAAA,qF,oBAAqDD,E;EAAIE,qC;EAC/DA,sE;;;CAIa,kB;EACbC,6F;;;CAIO,wB;EACPC,mG;;;CAIU,c;EACVC,kE;;;;CAnBiB,qD;EAAAC,yG;;;QAAA,O;EAAAC,iD;EAAAA,8C;EAAAA,qB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableCollectionIterator.<synthetic: ctor_js>","it","java.util.Collections$UnmodifiableCollectionIterator.<synthetic: ctor_create>","java.util.Collections$UnmodifiableCollectionIterator.<init>","java.util.Collections$UnmodifiableCollectionIterator.hasNext","java.util.Collections$UnmodifiableCollectionIterator.next","java.util.Collections$UnmodifiableCollectionIterator.remove","java.util.Collections$UnmodifiableCollectionIterator.forEachRemaining","java.util.Collections$UnmodifiableCollectionIterator.<clinit>"]
+}

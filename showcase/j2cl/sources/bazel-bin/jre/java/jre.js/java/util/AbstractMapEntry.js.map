@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractMapEntry.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;;;;;;;MAqBe,gB;;CAAA,W;EAAAA,Q;;;CAAA,uC;EAAAC,qC;;;CAGQ,M,UAAcC,K;EACjCC;GACEA,aADFA;G;EAGAA,IAAgBC,KAAhBD,uD;EACAA,wR;;;CAQe,Q;EACfE,qK;;;CAIkB,Q;EAElBC,yM;;;QAvBW,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["AbstractMapEntry.java"],
+"names":["java.util.AbstractMapEntry.<synthetic: ctor_js>","java.util.AbstractMapEntry.<init>","other","java.util.AbstractMapEntry.equals","entry","java.util.AbstractMapEntry.hashCode","java.util.AbstractMapEntry.toString","java.util.AbstractMapEntry.<clinit>"]
+}

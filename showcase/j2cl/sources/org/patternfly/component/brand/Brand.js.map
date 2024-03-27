@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Brand.impl.java.js",
+"lineCount":118,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;MA0Ca,K;;CAAA,W;EAAAA,Q;EAAAA;OAca,gDAdbA,S;;;QAIW,iF,gBAAaC,G,iBAAYC,G;EAAKC,gB;EAC9CA,sP;;;QAGgB,6C;EAAQA,gB;EACxBA,mR;;;QAOoB,uE,UAAQC,O,iBAAgBH,G,iBAAYC,G;EAApCG,gB;EAAAA,4B;EAAAA,+I;EAAAA,iB;;;CAAA,iH,UAAQD,O,iBAAgBH,G,iBAAYC,G;EACxDI,gO;EACAA,kU;EACAA,mF;EACAA;GACIA,2OADJA;;GAGIA,mQAAmBC,CAAnBD;IAAmBE,IAAAD,GAAAC,2DAAnBF;IACIE,cADJF;IAEIE,cAFJF;qEAHJA;G;;;CAYS,mE,gBAAiBL,G;EAC1BQ,6G;;;CAGS,qF,gBAAiBR,G,iBAAYS,K;EACtCD;GACIA,2RAAmBE,CAAnBF;IAAmBG,IAAAD,GAAAC,8EAAnBH;IACIG,iBADJH;IAEIG;KACIA,kBADJA;KAFJH;8BADJA;;GAQIA,sXARJA;G;EAWAA,Y;;;CAGS,qF,6CAA4CI,G;EACrDC,oG;;;CAGS,kF,6CAAyCD,G;EAClDE;GACIA,oKADJA;;GAGIA,wYAHJA;G;EAOAA,Y;;;CAKS,gF,6BAA2BC,M;EACpCC,+jB;;;CAGS,iF,6BAA4BC,O;EACrCC,ikB;;;CAIS,4C;EACTC,Y;;;;CA9EK,uC;EAAAA,2D;;;QAAA,O;EAAAC,wB;EAAAA,qB;EAAAA;",
+"sources":["Brand.java"],
+"names":["org.patternfly.component.brand.Brand.<synthetic: ctor_js>","src","alt","org.patternfly.component.brand.Brand.brand","element","org.patternfly.component.brand.Brand.<synthetic: ctor_create>","org.patternfly.component.brand.Brand.<init>","i","org.patternfly.component.brand.Brand.<lambda in <init>>","org.patternfly.component.brand.Brand.addSource","media","s","org.patternfly.component.brand.Brand.<lambda in addSource>","img","org.patternfly.component.brand.Brand.addImg","org.patternfly.component.brand.Brand.add","widths","org.patternfly.component.brand.Brand.widths","heights","org.patternfly.component.brand.Brand.heights","org.patternfly.component.brand.Brand.that","org.patternfly.component.brand.Brand.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToDoubleBiFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAyBiB,kB;;CAER,2D,UAAgBA,C,WAAKC,C;;QAFb,M;EAAAC,6B;EAAAA,mE;;;QAAA,O;EAAAC,qC;EAAAA;",
+"sources":["ToDoubleBiFunction.java"],
+"names":["t","u","java.util.function.ToDoubleBiFunction.<synthetic: adapt_lambda>","java.util.function.ToDoubleBiFunction.<clinit>"]
+}

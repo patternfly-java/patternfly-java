@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCSctpTransport$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAuBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["RTCSctpTransport.java"],
+"names":["elemental2.dom.RTCSctpTransport$$Overlay.<clinit>"]
+}

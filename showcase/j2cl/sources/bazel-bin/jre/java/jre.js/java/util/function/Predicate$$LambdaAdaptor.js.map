@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Predicate$$LambdaAdaptor.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;MA4BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;yD;EAAAA,4G;;;CAAA,kG;EAAAC,qC;EAAAA,4D;;;CAAA,iC;EAAAC,0C;EAAAA,6F;;;;CAAA,iE;EAAAC,uI;;;;CAAA,sC;EAAAC,sG;;;;CAAA,gE;EAAAC,sI;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Predicate.java"],
+"names":["java.util.function.Predicate$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.Predicate$$LambdaAdaptor.<init>","java.util.function.Predicate$$LambdaAdaptor.test","java.util.function.Predicate$$LambdaAdaptor.and","java.util.function.Predicate$$LambdaAdaptor.negate","java.util.function.Predicate$$LambdaAdaptor.or","java.util.function.Predicate$$LambdaAdaptor.<clinit>"]
+}

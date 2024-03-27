@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResizeHandler.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAuBiB,a;;CAER,kC,UAAWA,S;;QAFH,M;EAAAC,wB;EAAAA,gE;;;QAAA,O;EAAAC,gC;EAAAA;",
+"sources":["ResizeHandler.java"],
+"names":["component","org.patternfly.handler.ResizeHandler.<synthetic: adapt_lambda>","org.patternfly.handler.ResizeHandler.<clinit>"]
+}

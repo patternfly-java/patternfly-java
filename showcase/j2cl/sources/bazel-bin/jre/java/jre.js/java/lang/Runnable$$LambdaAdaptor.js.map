@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Runnable$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MA4BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;+C;EAAAA,wF;;;CAAA,8E;EAAAC,qC;EAAAA,kD;;;CAAA,W;;GAAAC,6D;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Runnable.java"],
+"names":["java.lang.Runnable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.lang.Runnable$$LambdaAdaptor.<init>","java.lang.Runnable$$LambdaAdaptor.run","java.lang.Runnable$$LambdaAdaptor.<clinit>"]
+}

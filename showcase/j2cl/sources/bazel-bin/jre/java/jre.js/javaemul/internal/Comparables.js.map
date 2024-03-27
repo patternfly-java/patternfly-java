@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Comparables.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;;;MAmBM,Y;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,uB;EAAAA,mC;EAAAA,uD;EAAAA,iB;;;CAAA,0C;EAAAC,qC;;;QACO,wD,2CAAqBC,C,WAAUC,C;EAAGC,uB;EAG3CA;;IAEIA,kKAFJA;;IAIIA,wKAJJA;;IAMIA,0KANJA;G;EAQAA,+C;;;QAZE,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["Comparables.java"],
+"names":["javaemul.internal.Comparables.<synthetic: ctor_js>","javaemul.internal.Comparables.<synthetic: ctor_create>","javaemul.internal.Comparables.<init>","a","b","javaemul.internal.Comparables.compareTo","javaemul.internal.Comparables.<clinit>"]
+}

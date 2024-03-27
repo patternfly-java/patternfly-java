@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Executor$$LambdaAdaptor.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;;;;;MAuBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;0D;EAAAA,8G;;;CAAA,oG;EAAAC,qC;EAAAA,6D;;;CAAA,mC;;GAAAC,wE;GAAAA,gB;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Executor.java"],
+"names":["java.util.concurrent.Executor$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.concurrent.Executor$$LambdaAdaptor.<init>","java.util.concurrent.Executor$$LambdaAdaptor.execute","java.util.concurrent.Executor$$LambdaAdaptor.<clinit>"]
+}

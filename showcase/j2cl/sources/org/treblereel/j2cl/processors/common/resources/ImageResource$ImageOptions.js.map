@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ImageResource$ImageOptions.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;MA6Ca,Y;;CAET,a;;CAOA,Y;;QATS,O;EAAAA,+B;EAAAA;",
+"sources":["ImageResource.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ImageResource$ImageOptions.<clinit>"]
+}

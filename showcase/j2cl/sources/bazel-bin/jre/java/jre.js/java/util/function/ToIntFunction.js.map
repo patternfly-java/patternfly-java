@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToIntFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,a;;CAEX,mC,UAAaA,K;;QAFF,M;EAAAC,wB;EAAAA,gE;;;QAAA,O;EAAAC,gC;EAAAA;",
+"sources":["ToIntFunction.java"],
+"names":["value","java.util.function.ToIntFunction.<synthetic: adapt_lambda>","java.util.function.ToIntFunction.<clinit>"]
+}

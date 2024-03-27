@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ObjIntConsumer.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAEV,qC,UAASA,C,gBAAOC,K;;QAFN,M;EAAAC,yB;EAAAA,gE;;;QAAA,O;EAAAC,iC;EAAAA;",
+"sources":["ObjIntConsumer.java"],
+"names":["t","value","java.util.function.ObjIntConsumer.<synthetic: adapt_lambda>","java.util.function.ObjIntConsumer.<clinit>"]
+}

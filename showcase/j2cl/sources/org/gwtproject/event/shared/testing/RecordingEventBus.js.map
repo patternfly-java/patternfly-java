@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RecordingEventBus.impl.java.js",
+"lineCount":84,
+"mappings":"A;;;;;;;;;;;;MA0Ba,iB;;CAAA,W;EAAAA,Q;EAAAA;OACiB,qEADjBA,C;EAAAA;OAEY,iEAFZA,C;;;;QAIJ,S;EAAAC,4B;EAAAA,wC;EAAAA,+E;EAAAA,iB;;;;CAAA,kE;EACLC,0I;;;;QAGK,6C,iBAA2BC,O;EAA3BF,4B;EAAAA,wC;EAAAA,4H;EAAAA,iB;;;;CAAA,wG,iBAA2BE,O;EAASD,yD;EAAAA,4E;EACzCA,iF;;;CAI6B,uH,gBAAmBE,I,WAAQC,O;EACxDC,qN;;;CAI6B,iJ,gBAA2BF,I,WAAaG,M,WAAUF,O;EAC/EG,uP;;;CAIU,wB;EACVC,mF;;;CAIU,oD,iBAAmBC,K;EAC7BC,mI;EACAA,sF;;;CAIU,gF,iBAA6BD,K,WAAcH,M;EACrDK,sF;EACAA,uK;;;CAIa,2D,iBAAuBF,K;EACpCG,kG;;;CAzCS,oE;EACXX,mI;;;QADW,O;EAAAY,oC;EAAAA,iC;EAAAA;",
+"sources":["RecordingEventBus.java"],
+"names":["org.gwtproject.event.shared.testing.RecordingEventBus.<synthetic: ctor_js>","org.gwtproject.event.shared.testing.RecordingEventBus.<synthetic: ctor_create>","org.gwtproject.event.shared.testing.RecordingEventBus.<init>","wrapped","type","handler","org.gwtproject.event.shared.testing.RecordingEventBus.addHandler","source","org.gwtproject.event.shared.testing.RecordingEventBus.addHandlerToSource","org.gwtproject.event.shared.testing.RecordingEventBus.clearFiredEvents","event","org.gwtproject.event.shared.testing.RecordingEventBus.fireEvent","org.gwtproject.event.shared.testing.RecordingEventBus.fireEventFromSource","org.gwtproject.event.shared.testing.RecordingEventBus.wasEventFired","org.gwtproject.event.shared.testing.RecordingEventBus.<clinit>"]
+}

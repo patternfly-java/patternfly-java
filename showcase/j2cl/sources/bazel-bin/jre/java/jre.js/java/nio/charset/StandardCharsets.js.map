@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StandardCharsets.impl.java.js",
+"lineCount":56,
+"mappings":"A;;;;;;;;;;;MAuBmB,gB;;CAAA,W;EAAAA,Q;;;QAIT,S;EAAAC,uC;EAAAA,2D;EAAAA,iB;;;CAAA,8C;EAAmBC,qC;;;QAH3B,mD;EAAAC,4G;;;QACA,8C;EAAAA,uG;;;QAFiB,O;EAAAC,mC;EAAAA,gC;EAAAA,qB;EACjBA,yI;EACAA,+H;;;;;;;;;;;;AAFiB;uE;AAAA;;",
+"sources":["StandardCharsets.java"],
+"names":["java.nio.charset.StandardCharsets.<synthetic: ctor_js>","java.nio.charset.StandardCharsets.<synthetic: ctor_create>","java.nio.charset.StandardCharsets.<init>","java.nio.charset.StandardCharsets.<synthetic: getter>","java.nio.charset.StandardCharsets.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsWeakMap$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAuBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["JsWeakMap.java"],
+"names":["elemental2.core.JsWeakMap$$Overlay.<clinit>"]
+}

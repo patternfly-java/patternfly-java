@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCCodecStats$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAsBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["RTCCodecStats.java"],
+"names":["elemental2.dom.RTCCodecStats$$Overlay.<clinit>"]
+}

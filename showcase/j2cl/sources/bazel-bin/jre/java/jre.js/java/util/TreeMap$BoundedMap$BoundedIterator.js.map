@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TreeMap$BoundedMap$BoundedIterator.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;;;;;;;;;;MAgyC2B,e;;CAAA,W;EAAAA,Q;EAAAA;iE;;;CACX,+G,wDAA2BC,I;EADhBC,6E;EAEnBA,2M;;;CAImB,qC;EACnBC,IAAWC,MAAXD,iD;EACAA,2Z;EACAA,c;;;CAImB,sC;EACnBE,IAAWD,MAAXC,kD;EACAA,6Z;EACAA,c;;;QAhBmB,O;EAAAC,kC;EAAAA,+B;EAAAA;",
+"sources":["TreeMap.java"],
+"names":["java.util.TreeMap$BoundedMap$BoundedIterator.<synthetic: ctor_js>","next","java.util.TreeMap$BoundedMap$BoundedIterator.<init>","java.util.TreeMap$BoundedMap$BoundedIterator.stepForward","result","java.util.TreeMap$BoundedMap$BoundedIterator.stepBackward","java.util.TreeMap$BoundedMap$BoundedIterator.<clinit>"]
+}

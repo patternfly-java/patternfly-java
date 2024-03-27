@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$EmptyList.impl.java.js",
+"lineCount":66,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MAoE6B,S;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,oB;EAAAA,gC;EAAAA,yD;EAAAA,iB;;;CAAA,4C;EAAAC,2C;;;CAGV,Q,UAAgBC,M;EAC7BC,a;;;CAIY,U,eAAQC,Q;EACpBC,uE;EACAA,Y;;;CAIc,8B;EACdC,oF;;;CAIkB,sC;EAClBC,gG;;;CAIS,I;EACTC,S;;;;CAzBuB,4C;EAAAC,gG;;;QAAA,O;EAAAC,4B;EAAAA,yB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$EmptyList.<synthetic: ctor_js>","java.util.Collections$EmptyList.<synthetic: ctor_create>","java.util.Collections$EmptyList.<init>","object","java.util.Collections$EmptyList.contains","location","java.util.Collections$EmptyList.get","java.util.Collections$EmptyList.iterator","java.util.Collections$EmptyList.listIterator","java.util.Collections$EmptyList.size","java.util.Collections$EmptyList.forEach","java.util.Collections$EmptyList.<clinit>"]
+}

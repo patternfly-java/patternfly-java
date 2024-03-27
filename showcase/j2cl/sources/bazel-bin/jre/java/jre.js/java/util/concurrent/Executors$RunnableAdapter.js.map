@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Executors$RunnableAdapter.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;;;;;MAiC6B,e;;CAAA,W;EAAAA,Q;EAAAA;OAEV,sDAFUA,C;EAAAA;OAGjB,wDAHiBA,C;;;QAKzB,6C,iBAAyBC,I,WAAQC,M;EAAjCC,0B;EAAAA,sC;EAAAA,0H;EAAAA,iB;;;CAAA,iG,iBAAyBF,I,WAAQC,M;EAAQE,qC;EACvCA,mE;EACAA,uE;;;CAGO,wB;EACPC,0E;EACAA,qE;;;QAZuB,O;EAAAC,kC;EAAAA,+B;EAAAA;",
+"sources":["Executors.java"],
+"names":["java.util.concurrent.Executors$RunnableAdapter.<synthetic: ctor_js>","task","result","java.util.concurrent.Executors$RunnableAdapter.<synthetic: ctor_create>","java.util.concurrent.Executors$RunnableAdapter.<init>","java.util.concurrent.Executors$RunnableAdapter.call","java.util.concurrent.Executors$RunnableAdapter.<clinit>"]
+}

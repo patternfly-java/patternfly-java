@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ReadonlyArray$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MA0BiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ReadonlyArray.java"],
+"names":["elemental2.core.ReadonlyArray$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TemplateComponent.impl.java.js",
+"lineCount":83,
+"mappings":"A;;;;;;;;;;;;;;;;;MA+Ba,iB;;CAAA,W;EAAAA,Q;;;QAIuB,sD;EAAWC,4B;EACvCA,qC;;;QAKJ,S;EAAAC,4B;EAAAA,wC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,uT;;;CAKqB,oD;EACrBC,Y;;;CAIqB,iD;EACrBC,Y;;;CAKqB,gF;EACrBC,Y;;;CAIqB,kD;EACrBC,Y;;;CAKqB,yE,gBAAiBC,K;EACtCC,uM;;;CAKqB,4F,4CAA0CC,O;EAC/DC,iNAAiBC,CAAjBD;GAAiBE,IAAAD,GAAAC,gEAAjBF;GAAsBE,0EAAtBF;0B;;;CAKQ,mB;;CAIE,0B;EACVG,mC;;;CAKS,yD;;;CA5DJ,uC;EAAAP,iE;;;QAAA,O;EAAAQ,oC;EAAAA,iC;EAAAA;",
+"sources":["TemplateComponent.java"],
+"names":["org.patternfly.component.TemplateComponent.<synthetic: ctor_js>","org.patternfly.component.TemplateComponent.template","org.patternfly.component.TemplateComponent.<synthetic: ctor_create>","org.patternfly.component.TemplateComponent.<init>","org.patternfly.component.TemplateComponent.addFoo","org.patternfly.component.TemplateComponent.add","org.patternfly.component.TemplateComponent.methodsReturningAReferenceToItself","org.patternfly.component.TemplateComponent.that","label","org.patternfly.component.TemplateComponent.ariaLabel","handler","org.patternfly.component.TemplateComponent.onFoo","e","org.patternfly.component.TemplateComponent.<lambda in onFoo>","org.patternfly.component.TemplateComponent.getter","org.patternfly.component.TemplateComponent.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Comparators$ReverseNaturalOrderComparator.impl.java.js",
+"lineCount":87,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;MAqD6B,6B;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wC;EAAAA,oD;EAAAA,6E;EAAAA,iB;;;CAAA,gE;EAAAC,qC;;;CAId,0D,8CAA2BC,C,+CAAsBC,C;EAC1DC,iY;;;CAIoC,gC;EACpCC,2D;;;;CAVuB,kD;EAAAD,6O;;;;CAAA,2D;EAAAE,2L;;;;CAAA,wF;EAAAA,8N;;;;CAAA,kE;EAAAA,kM;;;;CAAA,gF;EAAAC,gN;;;;CAAA,0E;EAAAC,0M;;;;CAAA,4E;EAAAC,4M;;;QAAA,O;EAAAC,gD;EAAAA,6C;EAAAA,qB;EAAAA;",
+"sources":["Comparators.java"],
+"names":["java.util.Comparators$ReverseNaturalOrderComparator.<synthetic: ctor_js>","java.util.Comparators$ReverseNaturalOrderComparator.<synthetic: ctor_create>","java.util.Comparators$ReverseNaturalOrderComparator.<init>","a","b","java.util.Comparators$ReverseNaturalOrderComparator.compare","java.util.Comparators$ReverseNaturalOrderComparator.reversed","java.util.Comparators$ReverseNaturalOrderComparator.thenComparing","java.util.Comparators$ReverseNaturalOrderComparator.thenComparingDouble","java.util.Comparators$ReverseNaturalOrderComparator.thenComparingInt","java.util.Comparators$ReverseNaturalOrderComparator.thenComparingLong","java.util.Comparators$ReverseNaturalOrderComparator.<clinit>"]
+}

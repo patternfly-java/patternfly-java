@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Cloneable.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;MAuBiB,S;;QAIA,W,UAAmCA,Q;EAAUC,oB;EAC1DA;GACEA,aADFA;G;EAIAA,4E;;;QATa,O;EAAAC,4B;EAAAA;",
+"sources":["Cloneable.java"],
+"names":["instance","java.lang.Cloneable.$isInstance","java.lang.Cloneable.<clinit>"]
+}

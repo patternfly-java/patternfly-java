@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelOff.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;;MAoEuB,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,0D;EAAAA,iB;;;CAAA,6C;EAAAC,4C;;;CACK,2B;EAAYC,a;;;CACf,e;EAAaC,8C;;;QAFf,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelOff.<synthetic: ctor_js>","java.util.logging.Level$LevelOff.<synthetic: ctor_create>","java.util.logging.Level$LevelOff.<init>","java.util.logging.Level$LevelOff.getName","java.util.logging.Level$LevelOff.intValue","java.util.logging.Level$LevelOff.<clinit>"]
+}

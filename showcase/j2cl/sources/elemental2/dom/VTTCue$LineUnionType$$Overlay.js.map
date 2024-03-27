@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"VTTCue$LineUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyBmB,Q;;QAEa,2D,UAAUA,C;EAAGC,mB;EACvCA,yE;;;QAIa,gE;EAAAC,mB;EACbA,yD;;;QAIa,0E;EAAAC,mB;EACbA,mE;;;QAIc,iE;EAAAC,mB;EACdA,oC;;;QAIc,iE;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["VTTCue.java"],
+"names":["o","elemental2.dom.VTTCue$LineUnionType$$Overlay.of","elemental2.dom.VTTCue$LineUnionType$$Overlay.asDouble__$devirt","elemental2.dom.VTTCue$LineUnionType$$Overlay.asString__$devirt","elemental2.dom.VTTCue$LineUnionType$$Overlay.isDouble__$devirt","elemental2.dom.VTTCue$LineUnionType$$Overlay.isString__$devirt","elemental2.dom.VTTCue$LineUnionType$$Overlay.<clinit>"]
+}

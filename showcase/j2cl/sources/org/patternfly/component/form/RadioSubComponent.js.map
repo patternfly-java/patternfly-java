@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RadioSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,iB;;CAAA,W;EAAAA,Q;;;CAEX,0G,gBAAyBC,I,WAAQC,O;EAC7BC,4N;;;QAHO,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["RadioSubComponent.java"],
+"names":["org.patternfly.component.form.RadioSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.form.RadioSubComponent.<init>","org.patternfly.component.form.RadioSubComponent.<clinit>"]
+}

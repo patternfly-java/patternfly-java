@@ -1,0 +1,47 @@
+goog.module('elemental2.dom.Window.$Overlay');
+
+goog.require('elemental2.core.JsArray.$Overlay');
+goog.require('elemental2.core.JsError.$Overlay');
+goog.require('elemental2.core.Transferable.$Overlay');
+goog.require('elemental2.dom.ApplicationCache.$Overlay');
+goog.require('elemental2.dom.AttributionSourceParams.$Overlay');
+goog.require('elemental2.dom.BarProp.$Overlay');
+goog.require('elemental2.dom.CSSInterface.$Overlay');
+goog.require('elemental2.dom.CacheStorage.$Overlay');
+goog.require('elemental2.dom.Console.$Overlay');
+goog.require('elemental2.dom.Database.$Overlay');
+goog.require('elemental2.dom.DatabaseCallback.$Overlay');
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.History.$Overlay');
+goog.require('elemental2.dom.Location.$Overlay');
+goog.require('elemental2.dom.MediaQueryList.$Overlay');
+goog.require('elemental2.dom.Navigator.$Overlay');
+goog.require('elemental2.dom.NotificationCenter.$Overlay');
+goog.require('elemental2.dom.Performance.$Overlay');
+goog.require('elemental2.dom.Request.$Overlay');
+goog.require('elemental2.dom.RequestInit.$Overlay');
+goog.require('elemental2.dom.Response.$Overlay');
+goog.require('elemental2.dom.ScrollToOptions.$Overlay');
+goog.require('elemental2.dom.Selection.$Overlay');
+goog.require('elemental2.dom.TrustedScriptURL.$Overlay');
+goog.require('elemental2.dom.URL.$Overlay');
+goog.require('elemental2.dom.Window.FetchInputUnionType.$Overlay');
+goog.require('elemental2.dom.Window.FrameElementUnionType.$Overlay');
+goog.require('elemental2.dom.Window.ImportScriptsUrlsUnionType.$Overlay');
+goog.require('elemental2.dom.Window.OpenDatabaseCallbackUnionType.$Overlay');
+goog.require('elemental2.dom.Window.OpenReplaceOrAttributionParamsUnionType.$Overlay');
+goog.require('elemental2.dom.Window.OpenUrlUnionType.$Overlay');
+goog.require('elemental2.dom.Window.PostMessageTargetOriginOrOptionsUnionType.$Overlay');
+goog.require('elemental2.dom.Window.ScrollByScrollToOptionsOrXUnionType.$Overlay');
+goog.require('elemental2.dom.Window.ScrollScrollToOptionsOrXUnionType.$Overlay');
+goog.require('elemental2.dom.Window.ScrollToScrollToOptionsOrXUnionType.$Overlay');
+goog.require('elemental2.dom.WindowPostMessageOptions.$Overlay');
+goog.require('elemental2.promise.Promise.$Overlay');
+goog.require('javaemul.internal.InternalPreconditions');
+goog.require('jsinterop.base.Js');
+goog.require('jsinterop.base.JsConstructorFn.$Overlay');
+goog.require('nativebootstrap.Util');
+
+const $Overlay = goog.require('elemental2.dom.Window.$Overlay$impl');
+/** @nodts */
+exports = $Overlay;

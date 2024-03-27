@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableListIterator.impl.java.js",
+"lineCount":64,
+"mappings":"A;;;;;;;;;;;;;;;MA82BuB,wB;;CAAA,W;EAAAA,Q;EAAAA;OAEqB,sDAFrBA,C;;;QAIX,+B,wBAAmDC,G;EAAnDC,mC;EAAAA,+C;EAAAA,mG;EAAAA,iB;;;CAAA,mF,wBAAmDD,G;EACzDE,gG;EACAA,kE;;;CAIU,6B,UAAMC,C;EAChBC,kE;;;CAIa,sB;EACbC,4F;;;CAIS,gB;EACTC,sF;;;CAIO,4B;EACPC,kG;;;CAIS,oB;EACTC,0F;;;CAIU,6B,UAAML,C;EAChBM,kE;;;QApCiB,O;EAAAC,2C;EAAAA,wC;EAAAA,yC;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableListIterator.<synthetic: ctor_js>","lit","java.util.Collections$UnmodifiableListIterator.<synthetic: ctor_create>","java.util.Collections$UnmodifiableListIterator.<init>","o","java.util.Collections$UnmodifiableListIterator.add","java.util.Collections$UnmodifiableListIterator.hasPrevious","java.util.Collections$UnmodifiableListIterator.nextIndex","java.util.Collections$UnmodifiableListIterator.previous","java.util.Collections$UnmodifiableListIterator.previousIndex","java.util.Collections$UnmodifiableListIterator.set","java.util.Collections$UnmodifiableListIterator.<clinit>"]
+}

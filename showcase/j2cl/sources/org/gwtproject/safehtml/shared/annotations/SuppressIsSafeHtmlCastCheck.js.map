@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SuppressIsSafeHtmlCastCheck.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA2BkB,2B;;QAAA,O;EAAAA,8C;EAAAA;",
+"sources":["SuppressIsSafeHtmlCastCheck.java"],
+"names":["org.gwtproject.safehtml.shared.annotations.SuppressIsSafeHtmlCastCheck.<clinit>"]
+}

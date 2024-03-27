@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToLongFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8D;EAAAA,sH;;;CAAA,4G;EAAAC,qC;EAAAA,iE;;;CAAA,qC;EAAAC,yC;EAAAA,kG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ToLongFunction.java"],
+"names":["java.util.function.ToLongFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.ToLongFunction$$LambdaAdaptor.<init>","java.util.function.ToLongFunction$$LambdaAdaptor.applyAsLong","java.util.function.ToLongFunction$$LambdaAdaptor.<clinit>"]
+}

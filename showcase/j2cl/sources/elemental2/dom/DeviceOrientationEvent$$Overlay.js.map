@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DeviceOrientationEvent$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAqBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["DeviceOrientationEvent.java"],
+"names":["elemental2.dom.DeviceOrientationEvent$$Overlay.<clinit>"]
+}

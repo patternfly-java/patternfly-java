@@ -1,0 +1,31 @@
+goog.module('org.patternfly.component.page.Page');
+
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.MutationRecord.$Overlay');
+goog.require('java.lang.Integer');
+goog.require('java.lang.String');
+goog.require('java.util.function.Function');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Attachable');
+goog.require('org.jboss.elemento.Callback');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.Scheduler');
+goog.require('org.patternfly.component.BaseComponent');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.page.Masthead');
+goog.require('org.patternfly.component.page.PageMain');
+goog.require('org.patternfly.component.page.PageSidebar');
+goog.require('org.patternfly.component.skiptocontent.SkipToContent');
+goog.require('org.patternfly.core.ObservableValue');
+goog.require('org.patternfly.core.ObservableValue.Subscriber');
+goog.require('org.patternfly.handler.ResizeHandler');
+goog.require('org.patternfly.style.Breakpoint');
+goog.require('org.patternfly.style.Classes');
+goog.require('org.patternfly.style.Rect');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const Page = goog.require('org.patternfly.component.page.Page$impl');
+exports = Page;

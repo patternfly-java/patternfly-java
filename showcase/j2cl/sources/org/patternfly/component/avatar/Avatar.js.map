@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Avatar.impl.java.js",
+"lineCount":81,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;MAoCa,M;;CAAA,W;EAAAA,Q;;;QAIY,oF,gBAAcC,G,iBAAYC,G;EAAKC,iB;EAChDA,oE;;;QAKJ,2C,gBAAcF,G,iBAAYC,G;EAA1BE,iB;EAAAA,6B;EAAAA,4G;EAAAA,iB;;;CAAA,uF,gBAAcH,G,iBAAYC,G;EACtBG,00BAA+DC,CAA/DD;GAA+DE,IAAAD,GAAAC,2DAA/DF;GACIE,cADJF;GAEIE,cAFJF;iF;;;CAQU,+D,gBAAWJ,G;EACrBO,6G;EACAA,Y;;;CAGU,+D,gBAAWN,G;EACrBO,6G;EACAA,Y;;;CAGU,yE,aAAUC,I;EACpBC,wN;;;CAGU,iF,mBAAkBC,M;EAC5BC;GACIA,yKADJA;G;EAGAA,Y;;;CAIU,8C;EACVC,Y;;;;CA1CK,uC;EAAAA,6D;;;QAAA,O;EAAAC,yB;EAAAA,sB;EAAAA;",
+"sources":["Avatar.java"],
+"names":["org.patternfly.component.avatar.Avatar.<synthetic: ctor_js>","src","alt","org.patternfly.component.avatar.Avatar.avatar","org.patternfly.component.avatar.Avatar.<synthetic: ctor_create>","org.patternfly.component.avatar.Avatar.<init>","i","org.patternfly.component.avatar.Avatar.<lambda in <init>>","org.patternfly.component.avatar.Avatar.src","org.patternfly.component.avatar.Avatar.alt","size","org.patternfly.component.avatar.Avatar.size","border","org.patternfly.component.avatar.Avatar.border","org.patternfly.component.avatar.Avatar.that","org.patternfly.component.avatar.Avatar.<clinit>"]
+}

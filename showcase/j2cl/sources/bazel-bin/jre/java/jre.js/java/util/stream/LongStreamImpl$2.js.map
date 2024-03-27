@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$2.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAytB4F,E;;CAAA,W;EAAAA,Q;EAAAA;sD;EAAAA;OAC/D,4CAD+DA,C;;;QAAA,mD;EAAAC,a;EAAAA,yB;EAAAA,4H;EAAAA,iB;;;CAAA,0F;EAAAC,kE;EAAAA,sF;EAAAA,wD;;;CAIlD,qC;EAC9BC,Y;;;CAIa,sD,qBAAwBC,M;EACrCC;GACEA,IAAOC,IAAPD,8DADFA;GAEEA,kLAAmCE,KAAnCF;IAA6CG,0EAA7CH;OAFFA;GAGEA,wCAHFA;GAIEA,qKAJFA;G;EAMAA,yG;;;;CAhBgF,uC;EAAAA,+H;;;CAAA,gD;EAClFH,yD;;;QADkF,O;EAAAO,qB;EAAAA,kB;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$2.<synthetic: ctor_js>","java.util.stream.LongStreamImpl$2.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$2.<init>","java.util.stream.LongStreamImpl$2.getComparator","action","java.util.stream.LongStreamImpl$2.tryAdvance","list","value","java.util.stream.LongStreamImpl$2.<lambda in tryAdvance>","java.util.stream.LongStreamImpl$2.<clinit>"]
+}

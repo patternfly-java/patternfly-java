@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MethodType.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAgBM,U;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,qB;EAAAA,iC;EAAAA,qD;EAAAA,iB;;;CAAA,wC;EAAAC,qC;;;QAAA,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["MethodType.java"],
+"names":["java.lang.invoke.MethodType.<synthetic: ctor_js>","java.lang.invoke.MethodType.<synthetic: ctor_create>","java.lang.invoke.MethodType.<init>","java.lang.invoke.MethodType.<clinit>"]
+}

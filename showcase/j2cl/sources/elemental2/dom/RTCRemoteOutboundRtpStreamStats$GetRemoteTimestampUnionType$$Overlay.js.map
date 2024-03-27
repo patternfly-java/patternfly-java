@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA2BmB,Q;;QAEoD,kG,UAAUA,C;EAAGC,mB;EAC9EA,yE;;;QAIa,uG;EAAAC,mB;EACbA,yD;;;QAIa,uH;EAAAC,mB;EACbA,gH;;;QAIc,wG;EAAAC,mB;EACdA,oC;;;QAIc,wG;EAAAC,mB;EACdA,6C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCRemoteOutboundRtpStreamStats.java"],
+"names":["o","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.of","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.asDouble__$devirt","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.asJsDate__$devirt","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.isDouble__$devirt","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.isJsDate__$devirt","elemental2.dom.RTCRemoteOutboundRtpStreamStats$GetRemoteTimestampUnionType$$Overlay.<clinit>"]
+}

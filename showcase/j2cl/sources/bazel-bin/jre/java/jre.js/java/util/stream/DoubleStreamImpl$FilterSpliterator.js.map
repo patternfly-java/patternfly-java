@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$FilterSpliterator.impl.java.js",
+"lineCount":66,
+"mappings":"A;;;;;;;;;;;;;;;;MA2W6B,iB;;CAAA,W;EAAAA,Q;EAAAA;OACK,8DADLA,C;EAAAA;OAEU,gEAFVA,C;EAAAA;OAIT,6DAJSA,S;;;QAMlB,2E,wBAAkCC,M,kBAA6BC,Q;EAA/DC,4B;EAAAA,wC;EAAAA,iK;EAAAA,iB;;;CAAA,oI,wBAAkCF,M,kBAA6BC,Q;EACpEE,kP;EAGAA,iF;EACAA,6E;EACAA,iF;;;CAIgC,qC;EAChCC,qH;;;CAIa,wD,uBAAgCC,M;EAC7CC,2E;EACAA,iOAEgBC,IAFhBD;GAGUE;IACEA,0EADFA;IAEEA,oCAFFA;IAHVF;S;EAWAA,0E;;;;CAlCuB,uC;EAAAA,qI;;;QAAA,O;EAAAG,oC;EAAAA,iC;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$FilterSpliterator.<synthetic: ctor_js>","filter","original","java.util.stream.DoubleStreamImpl$FilterSpliterator.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$FilterSpliterator.<init>","java.util.stream.DoubleStreamImpl$FilterSpliterator.getComparator","action","java.util.stream.DoubleStreamImpl$FilterSpliterator.tryAdvance","item","java.util.stream.DoubleStreamImpl$FilterSpliterator.<lambda in tryAdvance>","java.util.stream.DoubleStreamImpl$FilterSpliterator.<clinit>"]
+}

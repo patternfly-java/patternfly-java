@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AccordionSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,qB;;CAAA,W;EAAAA,Q;;;CAEX,mH,gBAA6BC,I,WAAQC,O;EACjCC,gO;;;QAHO,O;EAAAC,wC;EAAAA,qC;EAAAA;",
+"sources":["AccordionSubComponent.java"],
+"names":["org.patternfly.component.accordion.AccordionSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.accordion.AccordionSubComponent.<init>","org.patternfly.component.accordion.AccordionSubComponent.<clinit>"]
+}

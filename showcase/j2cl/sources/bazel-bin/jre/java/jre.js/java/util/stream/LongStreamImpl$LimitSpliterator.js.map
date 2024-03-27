@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$LimitSpliterator.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA2b6B,gB;;CAAA,W;EAAAA,Q;EAAAA;OACN,0DADMA,oB;EAAAA;OAEQ,6DAFRA,C;EAAAA;OAGb,6DAHaA,K;;;QAKlB,2C,eAAsBC,K,gBAA0BC,Q;EAAhDC,2B;EAAAA,uC;EAAAA,6H;EAAAA,iB;;;CAAA,iG,eAAsBF,K,gBAA0BC,Q;EACrDE,kT;EAD+DA,uE;EAM/DA,wE;EACAA,8E;;;CAI8B,qC;EAC9BC,kH;;;CAIa,sD,qBAAwBC,M;EACrCC;GACEA,aADFA;G;EAGAA,IAAQC,MAARD,sH;EACAA,gJ;EACAA,c;;;;CA3BuB,uC;EAAAA,+H;;;CAAA,+D;EAGzBH,uE;;;QAHyB,O;EAAAK,mC;EAAAA,gC;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$LimitSpliterator.<synthetic: ctor_js>","limit","original","java.util.stream.LongStreamImpl$LimitSpliterator.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$LimitSpliterator.<init>","java.util.stream.LongStreamImpl$LimitSpliterator.getComparator","action","java.util.stream.LongStreamImpl$LimitSpliterator.tryAdvance","result","java.util.stream.LongStreamImpl$LimitSpliterator.<clinit>"]
+}

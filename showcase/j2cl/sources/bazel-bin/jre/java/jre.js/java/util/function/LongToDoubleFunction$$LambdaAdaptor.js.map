@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongToDoubleFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;oE;EAAAA,kI;;;CAAA,wH;EAAAC,qC;EAAAA,uE;;;CAAA,6B;EAAAC,8C;EAAAA,wG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["LongToDoubleFunction.java"],
+"names":["java.util.function.LongToDoubleFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongToDoubleFunction$$LambdaAdaptor.<init>","java.util.function.LongToDoubleFunction$$LambdaAdaptor.applyAsDouble","java.util.function.LongToDoubleFunction$$LambdaAdaptor.<clinit>"]
+}

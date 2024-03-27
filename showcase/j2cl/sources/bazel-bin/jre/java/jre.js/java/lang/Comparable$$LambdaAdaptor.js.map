@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Comparable$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;MA4BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;iD;EAAAA,4F;;;CAAA,kF;EAAAC,qC;EAAAA,oD;;;CAAA,kC;EAAAC,yC;EAAAA,qF;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Comparable.java"],
+"names":["java.lang.Comparable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.lang.Comparable$$LambdaAdaptor.<init>","java.lang.Comparable$$LambdaAdaptor.compareTo","java.lang.Comparable$$LambdaAdaptor.<clinit>"]
+}

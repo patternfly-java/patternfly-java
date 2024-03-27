@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SharedWorker$ConstructorOptionsUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA0BmB,Q;;QAEiC,+E,UAAUA,C;EAAGC,mB;EAC3DA,yE;;;QAIa,8F;EAAAC,mB;EACbA,mE;;;QAIoB,iH;EAAAC,mB;EACpBA,4F;;;QAIc,qF;EAAAC,mB;EACdA,wC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["SharedWorker.java"],
+"names":["o","elemental2.dom.SharedWorker$ConstructorOptionsUnionType$$Overlay.of","elemental2.dom.SharedWorker$ConstructorOptionsUnionType$$Overlay.asString__$devirt","elemental2.dom.SharedWorker$ConstructorOptionsUnionType$$Overlay.asWorkerOptions__$devirt","elemental2.dom.SharedWorker$ConstructorOptionsUnionType$$Overlay.isString__$devirt","elemental2.dom.SharedWorker$ConstructorOptionsUnionType$$Overlay.<clinit>"]
+}

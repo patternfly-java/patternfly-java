@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LinkSelector.impl.java.js",
+"lineCount":100,
+"mappings":"A;;;;;;;;MAqBM,Y;;CAAA,W;EAAAA,Q;EAAAA;OAEe,mDAFfA,C;EAAAA;OAGoB,8CAHpBA,S;;;;QAKF,S;EAAAC,uB;EAAAA,mC;EAAAA,gE;EAAAA,iB;;;;CAAA,mD;EACIC,wH;;;;QAGJ,yB,gBAAoBC,Q;EAApBF,uB;EAAAA,mC;EAAAA,0F;EAAAA,iB;;;;CAAA,qE,gBAAoBE,Q;EAChBD,kK;;;;QAGJ,kC,gBAAoBC,Q,iBAAkBC,G;EAAtCH,uB;EAAAA,mC;EAAAA,wG;EAAAA,iB;;;;CAAA,8E,gBAAoBE,Q,iBAAkBC,G;EAClCF,gK;;;;QAGJ,8B,WAAgBC,Q;EAAhBF,uB;EAAAA,mC;EAAAA,+F;EAAAA,iB;;;;CAAA,0E,WAAgBE,Q;EACZD,0G;;;;QAGJ,uC,WAAgBC,Q,iBAAkBC,G;EAAlCH,uB;EAAAA,mC;EAAAA,6G;EAAAA,iB;;;;CAAA,mF,WAAgBE,Q,iBAAkBC,G;EAAKF,qC;EACnCA,oE;EACAA,0D;;;CAGI,kF,0BAA0BG,C;EAC9BC;GACIA,YADJA;G;EAGAA;GACIA,uFADJA;;GAGIA,sFAHJA;G;;;QA9BF,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["LinkSelector.java"],
+"names":["org.jboss.elemento.router.LinkSelector.<synthetic: ctor_js>","org.jboss.elemento.router.LinkSelector.<synthetic: ctor_create>","org.jboss.elemento.router.LinkSelector.<init>","selector","not","a","org.jboss.elemento.router.LinkSelector.matches","org.jboss.elemento.router.LinkSelector.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoublePredicate.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;;;MAwBiB,e;;CAEP,uB,eAAYA,K;;CAEI,4C;;CAIA,6E,wBAAoBC,K;;CAKpB,4E,wBAAmBA,K;;QAb5B,M;EAAAC,0B;EAAAA,8B;;;QAIS,0F;EAAAC,0B;EACtBA,6CAAOH,KAAPG;GAAgBC,gDAAhBD;K;;;QAGsB,2H,0DAAoBF,K;EAApBI,0B;EACtBA,wF;EACAA,6CAAOL,KAAPK;GAAgBC,uFAAhBD;K;;;QAGsB,0H,0DAAmBJ,K;EAAnBM,0B;EACtBA,wF;EACAA,6CAAOP,KAAPO;GAAgBC,uFAAhBD;K;;;QAfa,O;EAAAE,kC;EAAAA;",
+"sources":["DoublePredicate.java"],
+"names":["value","other","java.util.function.DoublePredicate.<synthetic: adapt_lambda>","java.util.function.DoublePredicate.negate__$default","java.util.function.DoublePredicate.<lambda in negate__$default>","java.util.function.DoublePredicate.and__$default","java.util.function.DoublePredicate.<lambda in and__$default>","java.util.function.DoublePredicate.or__$default","java.util.function.DoublePredicate.<lambda in or__$default>","java.util.function.DoublePredicate.<clinit>"]
+}

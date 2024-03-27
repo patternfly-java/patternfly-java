@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Executor.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAuBiB,Q;;CACV,mC,iBAAiBA,O;;QADP,M;EAAAC,mB;EAAAA,8B;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["Executor.java"],
+"names":["command","java.util.concurrent.Executor.<synthetic: adapt_lambda>","java.util.concurrent.Executor.<clinit>"]
+}

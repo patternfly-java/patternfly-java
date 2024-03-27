@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GetInTouchPage.impl.java.js",
+"lineCount":64,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;MA+Ba,c;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,yB;EAAAA,qC;EAAAA,gE;EAAAA,iB;;;CAAA,mD;EAAAC,qC;;;CAGoB,8B;EACzBC,6xD;;;;CAJK,4C;EAAAC,gG;;;;CAAA,8B;EAAAC,2F;;;;CAAA,oC;EAAAC,iI;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["GetInTouchPage.java"],
+"names":["org.patternfly.showcase.GetInTouchPage.<synthetic: ctor_js>","org.patternfly.showcase.GetInTouchPage.<synthetic: ctor_create>","org.patternfly.showcase.GetInTouchPage.<init>","org.patternfly.showcase.GetInTouchPage.elements","org.patternfly.showcase.GetInTouchPage.forEach","org.patternfly.showcase.GetInTouchPage.iterator","org.patternfly.showcase.GetInTouchPage.spliterator","org.patternfly.showcase.GetInTouchPage.<clinit>"]
+}

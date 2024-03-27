@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NegativeArraySizeException.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;MAsBa,0B;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,qC;EAAAA,iD;EAAAA,8D;EAAAA,yF;EAAAA,iB;;;;CAAA,iD;EAA6BC,+C;;;;QAG7B,yB,gBAAkCC,O;EAAlCF,qC;EAAAA,iD;EAAAA,uF;EAAAA,yF;EAAAA,iB;;;;CAAA,mE,gBAAkCE,O;EACvCD,wE;;;QANS,O;EAAAE,6C;EAAAA,0C;EAAAA;",
+"sources":["NegativeArraySizeException.java"],
+"names":["java.lang.NegativeArraySizeException.<synthetic: ctor_js>","java.lang.NegativeArraySizeException.<synthetic: ctor_create>","java.lang.NegativeArraySizeException.<init>","message","java.lang.NegativeArraySizeException.<clinit>"]
+}

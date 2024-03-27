@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BooleanSupplier.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,e;;CAEP,uB;;QAFO,M;EAAAA,0B;EAAAA,8B;;;QAAA,O;EAAAC,kC;EAAAA;",
+"sources":["BooleanSupplier.java"],
+"names":["java.util.function.BooleanSupplier.<synthetic: adapt_lambda>","java.util.function.BooleanSupplier.<clinit>"]
+}

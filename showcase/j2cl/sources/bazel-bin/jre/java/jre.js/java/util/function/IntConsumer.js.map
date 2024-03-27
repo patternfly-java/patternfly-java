@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntConsumer.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;;MAwBiB,W;;CAEV,mB,eAAWA,K;;CAEI,yE,oBAAoBC,K;;QAJzB,M;EAAAC,sB;EAAAA,8B;;;QAIK,mH,kDAAoBD,K;EAApBE,sB;EAClBA,wF;EACAA,yCAAOH,KAAPG;GACEC,oCADFD;GAEEC,iCAFFD;K;;;QANa,O;EAAAE,8B;EAAAA;",
+"sources":["IntConsumer.java"],
+"names":["value","after","java.util.function.IntConsumer.<synthetic: adapt_lambda>","java.util.function.IntConsumer.andThen__$default","java.util.function.IntConsumer.<lambda in andThen__$default>","java.util.function.IntConsumer.<clinit>"]
+}

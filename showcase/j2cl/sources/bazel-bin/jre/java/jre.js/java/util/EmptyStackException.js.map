@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EmptyStackException.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;MAsBa,mB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,8B;EAAAA,0C;EAAAA,uD;EAAAA,yF;EAAAA,iB;;;CAAA,0C;EAAAC,+C;;;QAAA,O;EAAAC,sC;EAAAA,mC;EAAAA;",
+"sources":["EmptyStackException.java"],
+"names":["java.util.EmptyStackException.<synthetic: ctor_js>","java.util.EmptyStackException.<synthetic: ctor_create>","java.util.EmptyStackException.<init>","java.util.EmptyStackException.<clinit>"]
+}

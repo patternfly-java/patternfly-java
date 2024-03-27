@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Enum.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MAwBsB,I;;CAAA,W;EAAAA,Q;EAAAA;OAGL,uBAHKA,C;EAAAA;OAIR,0BAJQA,K;;;CAMV,kD,gBAAYC,I,gBAAUC,O;EAASC,qC;;;CAOzB,oC;EAAoBC,e;EAClCA,IAASC,KAATD,sC;EACAA,IAASE,UAATF,4C;EACAA,kG;;;CAGkB,I;EAAOG,e;EACzBA,kI;;;CAGe,O;EAAUC,e;EACzBA,uC;;;CAIS,S,UAAYC,K;EAAOC,e;EAC5BA,mG;;;QAIkC,4D,iBAAiBC,Q,iBAAiBV,I;EAAMW,e;EAC1EA,kE;;;CAIY,Q;EAAWC,e;EACvBA,mB;;;;CAvCkB,kC;EAAAH,e;EAAAA,+D;;;QAAA,O;EAAAI,uB;EAAAA,oB;EAAAA;",
+"sources":["Enum.java"],
+"names":["java.lang.Enum.<synthetic: ctor_js>","name","ordinal","java.lang.Enum.<init>","java.lang.Enum.getDeclaringClass","clazz","superClass","java.lang.Enum.name","java.lang.Enum.ordinal","other","java.lang.Enum.compareTo","enumType","java.lang.Enum.valueOf","java.lang.Enum.toString","java.lang.Enum.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Page.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;;;;;;MA6BiB,I;;CAEiB,8B;;CAIR,8B;;QANT,M;EAAAA,e;EAAAA,8B;;;QAEiB,wE;EAAAC,e;EAC1BA,kF;;;QAHS,O;EAAAC,uB;EAAAA,oB;EAAAA;",
+"sources":["Page.java"],
+"names":["org.jboss.elemento.router.Page.<synthetic: adapt_lambda>","org.jboss.elemento.router.Page.iterator__$default","org.jboss.elemento.router.Page.<clinit>"]
+}

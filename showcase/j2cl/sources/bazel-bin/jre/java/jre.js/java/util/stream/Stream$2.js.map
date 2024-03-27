@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Stream$2.impl.java.js",
+"lineCount":68,
+"mappings":"A;;;;;;;;;;;;;;;;;MAiGmE,E;;CAAA,W;EAAAA,Q;EAAAA;OAChC,iCADgCA,C;EAAAA;iE;;;QAAA,yC;EAAAC,a;EAAAA,yB;EAAAA,6H;EAAAA,iB;;;CAAA,wE;EAJpBC,gG;EAIoBC,kF;;;CAI1C,kD,oBAA+BC,M;EAE5CC;GAEEA;IACEA,YADFA;;IAIEA,8CAJFA;IAFFA;G;EASAA,a;;;CAGc,gE;EACdC;GACEA,wIACIC,CADJD;IACIE,IAAAD,GAAAC,+CADJF;IAEME;KACEA,6HADFA;KAFNF;;IAMEA,aANFA;IADFA;G;EAUAA,Y;;;QA7BuD,O;EAAAG,qB;EAAAA,kB;EAAAA;",
+"sources":["Stream.java"],
+"names":["java.util.stream.Stream$2.<synthetic: ctor_js>","java.util.stream.Stream$2.<synthetic: ctor_create>","spliteratorOfStreams","java.util.stream.Stream$2.<init>","action","java.util.stream.Stream$2.tryAdvance","java.util.stream.Stream$2.advanceToNextSpliterator","n","java.util.stream.Stream$2.<lambda in advanceToNextSpliterator>","java.util.stream.Stream$2.<clinit>"]
+}

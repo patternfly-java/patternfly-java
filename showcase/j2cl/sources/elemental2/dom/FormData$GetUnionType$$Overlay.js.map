@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FormData$GetUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAoFmB,Q;;QAEc,4D,UAAUA,C;EAAGC,mB;EACxCA,yE;;;QAIW,4E;EAAAC,mB;EACXA,8G;;;QAIa,2E;EAAAC,mB;EACbA,mE;;;QAIc,gE;EAAAC,mB;EACdA,2C;;;QAIc,kE;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["FormData.java"],
+"names":["o","elemental2.dom.FormData$GetUnionType$$Overlay.of","elemental2.dom.FormData$GetUnionType$$Overlay.asFile__$devirt","elemental2.dom.FormData$GetUnionType$$Overlay.asString__$devirt","elemental2.dom.FormData$GetUnionType$$Overlay.isFile__$devirt","elemental2.dom.FormData$GetUnionType$$Overlay.isString__$devirt","elemental2.dom.FormData$GetUnionType$$Overlay.<clinit>"]
+}

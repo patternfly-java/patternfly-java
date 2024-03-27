@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongBinaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;kE;EAAAA,8H;;;CAAA,oH;EAAAC,qC;EAAAA,qE;;;CAAA,+B;EAAAC,sD;EAAAA,4G;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["LongBinaryOperator.java"],
+"names":["java.util.function.LongBinaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongBinaryOperator$$LambdaAdaptor.<init>","java.util.function.LongBinaryOperator$$LambdaAdaptor.applyAsLong","java.util.function.LongBinaryOperator$$LambdaAdaptor.<clinit>"]
+}

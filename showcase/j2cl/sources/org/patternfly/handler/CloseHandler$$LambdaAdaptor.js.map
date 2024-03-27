@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CloseHandler$$LambdaAdaptor.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;;;MAoBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;gE;EAAAA,0H;;;CAAA,gH;EAAAC,qC;EAAAA,mE;;;CAAA,uD;;GAAAC,8E;GAAAA,sB;;;;;CAAA,8D;EAAAC,oJ;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["CloseHandler.java"],
+"names":["org.patternfly.handler.CloseHandler$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.patternfly.handler.CloseHandler$$LambdaAdaptor.<init>","org.patternfly.handler.CloseHandler$$LambdaAdaptor.onClose","org.patternfly.handler.CloseHandler$$LambdaAdaptor.shouldClose","org.patternfly.handler.CloseHandler$$LambdaAdaptor.<clinit>"]
+}

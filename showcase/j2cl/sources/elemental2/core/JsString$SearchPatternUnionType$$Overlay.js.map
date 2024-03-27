@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsString$SearchPatternUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA6MmB,Q;;QAEwB,uE,UAAUA,C;EAAGC,mB;EAClDA,yE;;;QAIe,gG;EAAAC,mB;EACfA,oH;;;QAIa,sF;EAAAC,mB;EACbA,mE;;;QAIc,+E;EAAAC,mB;EACdA,+C;;;QAIc,6E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["JsString.java"],
+"names":["o","elemental2.core.JsString$SearchPatternUnionType$$Overlay.of","elemental2.core.JsString$SearchPatternUnionType$$Overlay.asJsRegExp__$devirt","elemental2.core.JsString$SearchPatternUnionType$$Overlay.asString__$devirt","elemental2.core.JsString$SearchPatternUnionType$$Overlay.isJsRegExp__$devirt","elemental2.core.JsString$SearchPatternUnionType$$Overlay.isString__$devirt","elemental2.core.JsString$SearchPatternUnionType$$Overlay.<clinit>"]
+}

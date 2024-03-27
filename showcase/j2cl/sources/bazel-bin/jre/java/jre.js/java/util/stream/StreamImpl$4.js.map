@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$4.impl.java.js",
+"lineCount":82,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAi1BsE,E;;CAAA,W;EAAAA,Q;EAAAA;kD;EAAAA;OAC/C,2CAD+CA,C;EAAAA;OAEvC,qCAFuCA,C;EAAAA;qE;;;QAAA,sE;EAAAC,a;EAAAA,yB;EAAAA,2K;EAAAA,iB;;;CAAA,yG;EAAAC,8D;EAJxBC,oG;EAIwBD,wF;;;CAK7C,wD,uBAA0BE,M;EAEvCC;GAEEA;IACEA,YADFA;;IAGEA,iEAHFA;IAIEA,wDAJFA;IAMEA,kDANFA;IAFFA;G;EAWAA,a;;;CAGc,oE;EACdC;GACEA,4IACIC,CADJD;IACIE,IAAAD,GAAAC,2DADJF;IAEME;KACEA,mFADFA;KAEEA,8HAFFA;KAFNF;;IAOEA,aAPFA;IADFA;G;EAWAA,Y;;;;CAjC0D,uC;EAAAD,qI;;;QAAA,O;EAAAI,qB;EAAAA,kB;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$4.<synthetic: ctor_js>","java.util.stream.StreamImpl$4.<synthetic: ctor_create>","java.util.stream.StreamImpl$4.<init>","spliteratorOfStreams","action","java.util.stream.StreamImpl$4.tryAdvance","java.util.stream.StreamImpl$4.advanceToNextSpliterator","n","java.util.stream.StreamImpl$4.<lambda in advanceToNextSpliterator>","java.util.stream.StreamImpl$4.<clinit>"]
+}

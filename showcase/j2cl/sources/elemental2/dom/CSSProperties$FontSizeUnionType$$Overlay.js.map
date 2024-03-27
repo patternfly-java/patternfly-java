@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$FontSizeUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MA6bmB,Q;;QAEwB,sE,UAAUA,C;EAAGC,mB;EAClDA,yE;;;QAIa,2E;EAAAC,mB;EACbA,yD;;;QAIa,qF;EAAAC,mB;EACbA,mE;;;QAIc,4E;EAAAC,mB;EACdA,oC;;;QAIc,4E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.of","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$FontSizeUnionType$$Overlay.<clinit>"]
+}

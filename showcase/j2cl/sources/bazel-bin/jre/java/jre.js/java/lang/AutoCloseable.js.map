@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AutoCloseable.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,a;;CAKV,a;;QALU,M;EAAAA,wB;EAAAA,8B;;;QAAA,O;EAAAC,gC;EAAAA;",
+"sources":["AutoCloseable.java"],
+"names":["java.lang.AutoCloseable.<synthetic: adapt_lambda>","java.lang.AutoCloseable.<clinit>"]
+}

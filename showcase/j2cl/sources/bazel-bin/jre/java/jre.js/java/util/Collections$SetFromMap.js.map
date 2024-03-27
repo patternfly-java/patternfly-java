@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$SetFromMap.impl.java.js",
+"lineCount":88,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA4M6B,U;;CAAA,W;EAAAA,Q;EAAAA;OAGK,+CAHLA,C;EAAAA;OAIV,2CAJUA,C;;;QAMzB,sB,yBAA2BC,G;EAA3BC,qB;EAAAA,iC;EAAAA,4E;EAAAA,iB;;;CAAA,4D,yBAA2BD,G;EAAKE,0C;EAC9BA,2D;;;CAIa,G,UAAMC,C;EACnBC,6H;;;CAIU,K;EACVC,6D;;;CAIa,Q,UAAgBC,C;EAC7BC,2E;;;CAIa,M,UAAcD,C;EAC3BE,yK;;;CAIS,Q;EACTC,sH;;;CAIiB,8B;EACjBC,2G;;;CAIa,M,UAAcJ,C;EAC3BK,8F;;;CAIS,I;EACTC,iF;;;CAIY,Q;EACZC,mI;;;CAMa,2D;EACbC;GACEA,iHADFA;G;EAGAA,wD;;;QA9DuB,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$SetFromMap.<synthetic: ctor_js>","map","java.util.Collections$SetFromMap.<synthetic: ctor_create>","java.util.Collections$SetFromMap.<init>","e","java.util.Collections$SetFromMap.add","java.util.Collections$SetFromMap.clear","o","java.util.Collections$SetFromMap.contains","java.util.Collections$SetFromMap.equals","java.util.Collections$SetFromMap.hashCode","java.util.Collections$SetFromMap.iterator","java.util.Collections$SetFromMap.remove","java.util.Collections$SetFromMap.size","java.util.Collections$SetFromMap.toString","java.util.Collections$SetFromMap.keySet","java.util.Collections$SetFromMap.<clinit>"]
+}

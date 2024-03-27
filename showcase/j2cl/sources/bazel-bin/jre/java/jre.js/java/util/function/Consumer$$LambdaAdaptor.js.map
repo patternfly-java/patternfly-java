@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Consumer$$LambdaAdaptor.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;;;MA0BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;wD;EAAAA,0G;;;CAAA,gG;EAAAC,qC;EAAAA,2D;;;CAAA,gC;;GAAAC,sE;GAAAA,gB;;;;;CAAA,mE;EAAAC,uI;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Consumer.java"],
+"names":["java.util.function.Consumer$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.Consumer$$LambdaAdaptor.<init>","java.util.function.Consumer$$LambdaAdaptor.accept","java.util.function.Consumer$$LambdaAdaptor.andThen","java.util.function.Consumer$$LambdaAdaptor.<clinit>"]
+}

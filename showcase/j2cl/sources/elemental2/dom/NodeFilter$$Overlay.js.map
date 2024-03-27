@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NodeFilter$$Overlay.impl.java.js",
+"lineCount":125,
+"mappings":"A;;;MAsBiB,Q;;QACf,uD;EAAAA,gG;;;QACA,uD;EAAAA,gG;;;QACA,qD;EAAAA,8F;;;QACA,kD;EAAAA,2F;;;QACA,wD;EAAAA,iG;;;QACA,4D;EAAAA,qG;;;QACA,sD;EAAAA,+F;;;QACA,uD;EAAAA,gG;;;QACA,gE;EAAAA,yG;;;QACA,4D;EAAAA,qG;;;QACA,sD;EAAAA,+F;;;QACA,qD;EAAAA,8F;;;QACA,+D;EAAAA,wG;;;QACA,uD;EAAAA,gG;;;QACA,qE;EAAAA,8G;;;QACA,mD;EAAAA,4F;;;QAhBe,O;EAAAC,2B;EAAAA,wB;EACfA,8F;EACAA,8F;EACAA,0F;EACAA,oF;EACAA,gG;EACAA,wG;EACAA,4F;EACAA,8F;EACAA,gH;EACAA,wG;EACAA,4F;EACAA,0F;EACAA,8G;EACAA,8F;EACAA,0H;EACAA,sF;;;;;;AAhBe;uE;AAAA;uE;AAAA;qE;AAAA;kE;AAAA;wE;AAAA;4E;AAAA;sE;AAAA;uE;AAAA;gF;AAAA;4E;AAAA;sE;AAAA;qE;AAAA;+E;AAAA;uE;AAAA;qF;AAAA;;",
+"sources":["NodeFilter.java"],
+"names":["elemental2.dom.NodeFilter$$Overlay.<synthetic: getter>","elemental2.dom.NodeFilter$$Overlay.<clinit>"]
+}

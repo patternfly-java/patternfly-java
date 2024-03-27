@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ObjLongConsumer.impl.java.js",
+"lineCount":23,
+"mappings":"A;;;;;;;;;;;MAwBiB,e;;CAEV,sC,UAASA,C,gBAAQC,K;;QAFP,M;EAAAC,0B;EAAAA,gE;;;QAAA,O;EAAAC,kC;EAAAA;",
+"sources":["ObjLongConsumer.java"],
+"names":["t","value","java.util.function.ObjLongConsumer.<synthetic: adapt_lambda>","java.util.function.ObjLongConsumer.<clinit>"]
+}

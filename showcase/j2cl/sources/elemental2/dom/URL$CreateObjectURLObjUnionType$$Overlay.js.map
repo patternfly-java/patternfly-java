@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"URL$CreateObjectURLObjUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAiFmB,Q;;QAEwB,sE,UAAUA,C;EAAGC,mB;EAClDA,yE;;;QAIW,sF;EAAAC,mB;EACXA,8G;;;QAIkB,oG;EAAAC,mB;EAClBA,4H;;;QAIkB,oG;EAAAC,mB;EAClBA,4H;;;QAIc,0E;EAAAC,mB;EACdA,2C;;;QAIc,iF;EAAAC,mB;EACdA,kD;;;QAIc,iF;EAAAC,mB;EACdA,kD;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["URL.java"],
+"names":["o","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.of","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.asBlob__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.asMediaSource__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.asMediaStream__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.isBlob__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.isMediaSource__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.isMediaStream__$devirt","elemental2.dom.URL$CreateObjectURLObjUnionType$$Overlay.<clinit>"]
+}

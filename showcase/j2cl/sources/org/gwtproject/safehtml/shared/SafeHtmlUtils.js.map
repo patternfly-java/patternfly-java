@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlUtils.impl.java.js",
+"lineCount":127,
+"mappings":"A;;;;;;;;;;;;;;;MAwBmB,a;;CAAA,W;EAAAA,Q;;;QAUT,S;EAAAC,oC;EAAAA,sE;EAAAA,iB;;;CAAA,yD;EAAgBC,qC;;;QAiCD,6E,gBAAwBC,C;EAAGC,wB;EAChDA,4E;EACAA,mD;;;QASqB,uE,gBAAkBD,C;EAAGE,wB;EAC1CA,mH;;;QA2BmB,gD,gBAAkBF,C;EAAGG,wB;EACxCA,kK;;;QAWqB,8E,gBAAyBH,C;EAAGI,wB;EACjDA,mD;;;QAiBmB,oC,eAAgBC,C;EAAGF,wB;EACtCA;;IAEIA,eAFJA;;IAIIA,cAJJA;;IAMIA,cANJA;;IAQIA,gBARJA;;IAUIA,eAVJA;;IAYIA,4DAZJA;G;;;QA0BmB,6D,gBAA+BG,I;EAAMC,wB;EACxDA,IAAcC,OAAdD,6B;EAEAA,IAAQE,YAARF,Q;EACAA;GAAAA,IAAYG,OAAZH,kBAAAA;;IACEA;KAOEA,qBAPFA;KAQEA,qIARFA;KASEA,SATFA;KADFA;IAaEA,IAAII,SAAJJ,2EAbFA;IAcEA;KAEEA,0NAFFA;KAKEA,yNALFA;;KASEA,kMATFA;KAdFA;;G;EA2BAA,0B;;;QAxKF,mE;EAAAK,sH;;;QAFiB,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAEjBA,mI;EAKAA,0F;;;;;;;;;;;;;;;;AAPiB;oF;AAKjB;cAA2B,0DAA3B,e;AACA;cAA4B,kEAA5B,mC;AANiB;cAOY,qDAPZ;",
+"sources":["SafeHtmlUtils.java"],
+"names":["org.gwtproject.safehtml.shared.SafeHtmlUtils.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.SafeHtmlUtils.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeHtmlUtils.<init>","s","org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant","org.gwtproject.safehtml.shared.SafeHtmlUtils.fromString","org.gwtproject.safehtml.shared.SafeHtmlUtils.htmlEscape","org.gwtproject.safehtml.shared.SafeHtmlUtils.fromTrustedString","c","text","org.gwtproject.safehtml.shared.SafeHtmlUtils.htmlEscapeAllowEntities","escaped","firstSegment","segment","entityEnd","org.gwtproject.safehtml.shared.SafeHtmlUtils.<synthetic: getter>","org.gwtproject.safehtml.shared.SafeHtmlUtils.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"History$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MAuBa,Q;;QAsEO,wG,oCAAiBA,I,iBAAaC,K,iBAAcC,G;EAA5CC,mB;EAChBA,8G;;;QAIgB,0G,oCAAiBH,I,iBAAaC,K,aAAWC,G;EAAzCC,mB;EAChBA,8G;;;QAQgB,2G,oCAAoBH,I,iBAAaC,K,iBAAcC,G;EAA/CE,mB;EAChBA,iH;;;QAIgB,6G,oCAAoBJ,I,iBAAaC,K,aAAWC,G;EAA5CE,mB;EAChBA,iH;;;QA1FS,O;EAAAC,2B;EAAAA;",
+"sources":["History.java"],
+"names":["data","title","url","elemental2.dom.History$$Overlay.pushState__$devirt","elemental2.dom.History$$Overlay.replaceState__$devirt","elemental2.dom.History$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MA+MmB,Q;;QAEgC,8E,UAAUA,C;EAAGC,mB;EAC1DA,yE;;;QAIuB,sH;EAAAC,mB;EACvBA,+F;;;QAIuC,4I;EAAAC,mB;EACvCA,qI;;;QAIc,oG;EAAAC,mB;EACdA,iD;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["DomGlobal.java"],
+"names":["o","elemental2.dom.DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.of","elemental2.dom.DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.asDatabaseCallback__$devirt","elemental2.dom.DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.asOpenDatabaseCallbackFn__$devirt","elemental2.dom.DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.isOpenDatabaseCallbackFn__$devirt","elemental2.dom.DomGlobal$OpenDatabaseCallbackUnionType$$Overlay.<clinit>"]
+}

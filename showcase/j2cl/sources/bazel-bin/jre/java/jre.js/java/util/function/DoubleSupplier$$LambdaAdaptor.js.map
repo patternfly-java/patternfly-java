@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleSupplier$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8D;EAAAA,sH;;;CAAA,4G;EAAAC,qC;EAAAA,iE;;;CAAA,qB;EAAAC,wC;EAAAA,8F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["DoubleSupplier.java"],
+"names":["java.util.function.DoubleSupplier$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoubleSupplier$$LambdaAdaptor.<init>","java.util.function.DoubleSupplier$$LambdaAdaptor.getAsDouble","java.util.function.DoubleSupplier$$LambdaAdaptor.<clinit>"]
+}

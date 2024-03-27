@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$MarginLeftUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MA6iBmB,Q;;QAE0B,wE,UAAUA,C;EAAGC,mB;EACpDA,yE;;;QAIa,6E;EAAAC,mB;EACbA,yD;;;QAIa,uF;EAAAC,mB;EACbA,mE;;;QAIc,8E;EAAAC,mB;EACdA,oC;;;QAIc,8E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.of","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$MarginLeftUnionType$$Overlay.<clinit>"]
+}

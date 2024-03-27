@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStream$5.impl.java.js",
+"lineCount":63,
+"mappings":"A;;;;;;;;;;;MAqMwC,E;;CAAA,W;EAAAA,Q;EAAAA;OACjB,sCADiBA,oB;EAAAA;kF;EAAAA;gF;;;QAAA,8B;EAAAC,a;EAAAA,yB;EAAAA,wI;EAAAA,iB;;;CAAA,iE;EAdHC,wF;EAAqBC,oF;EAclBC,sF;EAAAA,oD;;;CAIE,qC;EAC9BC,Y;;;CAIa,sD,qBAAwBC,M;EACrCC;GAA0BA,yBAA1BA;GACEA,0NADFA;GAEEA,YAFFA;G;EAIAA,a;;;;CAd4B,uC;EAAAA,+H;;;CAAA,4C;EAC9BH,2G;;;QAD8B,O;EAAAI,qB;EAAAA,kB;EAAAA;",
+"sources":["LongStream.java"],
+"names":["java.util.stream.LongStream$5.<synthetic: ctor_js>","java.util.stream.LongStream$5.<synthetic: ctor_create>","startInclusive","endInclusive","java.util.stream.LongStream$5.<init>","java.util.stream.LongStream$5.getComparator","action","java.util.stream.LongStream$5.tryAdvance","java.util.stream.LongStream$5.<clinit>"]
+}

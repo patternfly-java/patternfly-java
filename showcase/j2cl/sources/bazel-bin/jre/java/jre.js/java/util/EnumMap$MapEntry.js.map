@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EnumMap$MapEntry.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;;;;;;;;;MA0FgB,Q;;CAAA,W;EAAAA,Q;EAAAA;+C;EAAAA;OAEI,kCAFJA,C;;;QAIL,0C,4CAAWC,G;EAAXC,mB;EAAAA,+B;EAAAA,uG;EAAAA,iB;;;CAAA,0E,4CAAWD,G;EAJNE,2D;EAIWA,+C;EACrBA,8C;;;CAIO,wB;EACPC,+C;;;CAIO,4B;EACPC,4J;;;CAIO,8C,UAAWC,K;EAClBC,2P;;;;CApBU,0B;EAAAH,uC;;;QAAA,O;EAAAI,2B;EAAAA,wB;EAAAA;",
+"sources":["EnumMap.java"],
+"names":["java.util.EnumMap$MapEntry.<synthetic: ctor_js>","key","java.util.EnumMap$MapEntry.<synthetic: ctor_create>","java.util.EnumMap$MapEntry.<init>","java.util.EnumMap$MapEntry.getKey","java.util.EnumMap$MapEntry.getValue","value","java.util.EnumMap$MapEntry.setValue","java.util.EnumMap$MapEntry.<clinit>"]
+}

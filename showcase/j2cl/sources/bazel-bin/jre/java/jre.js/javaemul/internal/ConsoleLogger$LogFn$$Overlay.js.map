@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ConsoleLogger$LogFn$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAkFoB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ConsoleLogger.java"],
+"names":["javaemul.internal.ConsoleLogger$LogFn$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ElementsBag$IterableImpl.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;;MAuGyB,Y;;CAAA,W;EAAAA,Q;EAAAA;OAEM,uDAFNA,C;;;QAIT,S;EAAAC,uB;EAAAA,mC;EAAAA,qE;EAAAA,iB;;;CAAA,wD;EAAeC,qC;EACnBA,0G;;;CAIqB,8B;EACrBC,0K;;;;CAVa,4C;EAAAC,gG;;;;CAAA,oC;EAAAC,6H;;;QAAA,O;EAAAC,+B;EAAAA,4B;EAAAA,qB;EAAAA;",
+"sources":["ElementsBag.java"],
+"names":["org.jboss.elemento.ElementsBag$IterableImpl.<synthetic: ctor_js>","org.jboss.elemento.ElementsBag$IterableImpl.<synthetic: ctor_create>","org.jboss.elemento.ElementsBag$IterableImpl.<init>","org.jboss.elemento.ElementsBag$IterableImpl.iterator","org.jboss.elemento.ElementsBag$IterableImpl.forEach","org.jboss.elemento.ElementsBag$IterableImpl.spliterator","org.jboss.elemento.ElementsBag$IterableImpl.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCDtlsTransport$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAyBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["RTCDtlsTransport.java"],
+"names":["elemental2.dom.RTCDtlsTransport$$Overlay.<clinit>"]
+}

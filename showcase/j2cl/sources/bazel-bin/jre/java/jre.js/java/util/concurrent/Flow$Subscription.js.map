@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Flow$Subscription.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;MAoDmB,Y;;CACV,qB,eAAaA,C;;CAEb,c;;QAHU,O;EAAAC,+B;EAAAA;",
+"sources":["Flow.java"],
+"names":["n","java.util.concurrent.Flow$Subscription.<clinit>"]
+}

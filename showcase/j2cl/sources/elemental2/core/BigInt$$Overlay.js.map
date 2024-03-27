@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BigInt$$Overlay.impl.java.js",
+"lineCount":62,
+"mappings":"A;;;;;;;MAyBa,Q;;QA6ES,sH,gDAA+BA,O,gBAAkBC,O;EAAjDC,mB;EAClBA,0H;;;QAKkB,8G,gDAA+BF,O,WAAgBC,O;EAA/CC,mB;EAClBA,iP;;;QAIkB,4F,gDAA+BF,O;EAA/BE,mB;EAClBA,iH;;;QAIkB,+G,yCAAsBF,O,gBAAkBC,O;EAAxCC,mB;EAClBA,0H;;;QAKkB,uH,gDAAwBF,O,gBAAkBC,O;EAA1CC,mB;EAClBA,yP;;;QAIkB,uG,yCAAsBF,O,WAAgBC,O;EAAtCC,mB;EAClBA,0O;;;QAIkB,+G,gDAAwBF,O,WAAgBC,O;EAAxCC,mB;EAClBA,kP;;;QAIkB,qF,yCAAsBF,O;EAAtBE,mB;EAClBA,iH;;;QAIkB,6F,gDAAwBF,O;EAAxBE,mB;EAClBA,sN;;;QAOkB,4I,mCACsBF,O,WAAgBC,O;EADtCC,mB;EAElBA,+H;;;QAjIS,O;EAAAC,2B;EAAAA;",
+"sources":["BigInt.java"],
+"names":["locales","options","elemental2.core.BigInt$$Overlay.toLocaleString__$devirt","elemental2.core.BigInt$$Overlay.<clinit>"]
+}

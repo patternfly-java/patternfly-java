@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Asserts.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAqBa,Q;;CAAA,W;EAAAA,mB;EAAAA,Q;EAAAA,8C;;;CAAA,sC;EAAAA,qC;;;QACQ,O,gBAAgBC,S;EAAWC,mB;EAC5CA;GACEA,mDADFA;G;;;QAKiB,kB,gBAA2BD,S,WAAkBE,O;EAASC,mB;EACvEA;GACEA,0EADFA;G;;;QARS,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Asserts.java"],
+"names":["javaemul.internal.Asserts.<init>","condition","javaemul.internal.Asserts.$assert","message","javaemul.internal.Asserts.$assertWithMessage","javaemul.internal.Asserts.<clinit>"]
+}

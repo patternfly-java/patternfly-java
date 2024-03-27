@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlTemplates$Template.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAmFa,Q;;CAET,yB;;QAFS,O;EAAAA,2B;EAAAA;",
+"sources":["SafeHtmlTemplates.java"],
+"names":["org.gwtproject.safehtml.client.SafeHtmlTemplates$Template.<clinit>"]
+}

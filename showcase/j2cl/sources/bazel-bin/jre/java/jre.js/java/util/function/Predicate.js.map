@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Predicate.impl.java.js",
+"lineCount":64,
+"mappings":"A;;;;;;;;;;;;;;MA4BiB,S;;QAES,yD,UAAeA,S;EAAWC,oB;EAChDA;GAA2BC,yDAA3BD;;GAA6CC,yFAA7CD;K;;;CAGM,iC,UAAOE,C;;CAEM,sC;;CAIA,iE,qBAAyBC,K;;CAKzB,gE,qBAAwBA,K;;QAjB9B,M;EAAAC,oB;EAAAA,gE;;;QAQM,8E;EAAAC,oB;EACnBA,kCAAOH,CAAPG;GAAYC,sDAAZD;K;;;QAGmB,yG,oDAAyBF,K;EAAzBI,oB;EACnBA,wF;EACAA,kCAAOL,CAAPK;GAAYC,mGAAZD;K;;;QAGmB,wG,oDAAwBJ,K;EAAxBM,oB;EACnBA,wF;EACAA,kCAAOP,CAAPO;GAAYC,mGAAZD;K;;;QAnBa,O;EAAAE,4B;EAAAA;",
+"sources":["Predicate.java"],
+"names":["targetRef","java.util.function.Predicate.isEqual","java.util.function.Predicate.<lambda in isEqual>","t","other","java.util.function.Predicate.<synthetic: adapt_lambda>","java.util.function.Predicate.negate__$default","java.util.function.Predicate.<lambda in negate__$default>","java.util.function.Predicate.and__$default","java.util.function.Predicate.<lambda in and__$default>","java.util.function.Predicate.or__$default","java.util.function.Predicate.<lambda in or__$default>","java.util.function.Predicate.<clinit>"]
+}

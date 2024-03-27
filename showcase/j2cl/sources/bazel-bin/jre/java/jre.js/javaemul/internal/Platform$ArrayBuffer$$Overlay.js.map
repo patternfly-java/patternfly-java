@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Platform$ArrayBuffer$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAoCuB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["Platform.java"],
+"names":["javaemul.internal.Platform$ArrayBuffer$$Overlay.<clinit>"]
+}

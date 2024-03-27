@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$1.impl.java.js",
+"lineCount":79,
+"mappings":"A;;;;;;;;;;;;;;;MAoqBoE,E;;CAAA,W;EAAAA,Q;EAAAA;sD;EAAAA;OAC/C,+CAD+CA,C;EAAAA;OAEvC,yCAFuCA,C;EAAAA;yE;;;QAAA,0E;EAAAC,a;EAAAA,yB;EAAAA,mL;EAAAA,iB;;;CAAA,iH;EAAAC,kE;EAJxBC,wG;EAIwBD,sF;;;CAK3C,sD,qBAAwBE,M;EAErCC;GAEEA;IACEA,YADFA;;IAGEA,qEAHFA;IAIEA,4DAJFA;IAMEA,sDANFA;IAFFA;G;EAWAA,a;;;CAGc,wE;EACdC;GACEA,gJACIC,CADJD;IACIE,IAAAD,GAAAC,uDADJF;IAEME;KACEA,qFADFA;KAEEA,8HAFFA;KAFNF;;IAOEA,aAPFA;IADFA;G;EAWAA,Y;;;;CAjCwD,uC;EAAAD,+H;;;QAAA,O;EAAAI,qB;EAAAA,kB;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$1.<synthetic: ctor_js>","java.util.stream.LongStreamImpl$1.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$1.<init>","spliteratorOfStreams","action","java.util.stream.LongStreamImpl$1.tryAdvance","java.util.stream.LongStreamImpl$1.advanceToNextSpliterator","n","java.util.stream.LongStreamImpl$1.<lambda in advanceToNextSpliterator>","java.util.stream.LongStreamImpl$1.<clinit>"]
+}

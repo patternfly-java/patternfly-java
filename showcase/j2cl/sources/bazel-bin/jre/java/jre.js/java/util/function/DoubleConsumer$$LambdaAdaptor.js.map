@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleConsumer$$LambdaAdaptor.impl.java.js",
+"lineCount":41,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8D;EAAAA,sH;;;CAAA,4G;EAAAC,qC;EAAAA,iE;;;CAAA,sB;;GAAAC,4E;GAAAA,gB;;;;;CAAA,+E;EAAAC,+J;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["DoubleConsumer.java"],
+"names":["java.util.function.DoubleConsumer$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoubleConsumer$$LambdaAdaptor.<init>","java.util.function.DoubleConsumer$$LambdaAdaptor.accept","java.util.function.DoubleConsumer$$LambdaAdaptor.andThen","java.util.function.DoubleConsumer$$LambdaAdaptor.<clinit>"]
+}

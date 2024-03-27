@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Container.impl.java.js",
+"lineCount":128,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA4BiB,S;;CAGH,2D,aAASA,I;;CAMT,oE,qBAAiBC,O;;CAQjB,mE,uBAAmBC,Q;;CAMnB,sE,oBAAeC,K;;CAQf,yE,uBAAkBC,Q;;CAQlB,6E,2BAAsBA,Q;;CAQtB,+E,4BAAuBA,Q;;CAUvB,6D,oBAAmBA,Q;;CAanB,sE,8BAA6BF,Q;;QAnE7B,mG,+CAASF,I;EAATK,oB;EACNA,oF;EACAA,0D;;;QAIM,4G,uDAAiBJ,O;EAAjBI,oB;EACNA;GACIA,6IADJA;G;EAGAA,0D;;;QAIM,2G,yDAAmBH,Q;EAAnBG,oB;EACNA,iK;EACAA,0D;;;QAIM,8G,sDAAeF,K;EAAfG,oB;EACNA;GAAAA,IAAUN,IAAVM,kBAAAA;;IACIA,2EADJA;;G;EAGAA,0D;;;QAIM,iH,yDAAkBF,Q;EAAlBE,oB;EACNA;GAAAA,IAAaL,OAAbK,kBAAAA;;IACIA,8EADJA;;G;EAGAA,0D;;;QAIM,qH,6DAAsBF,Q;EAAtBE,oB;EACNA;GAAAA,IAAiBL,OAAjBK,kBAAAA;;IACIA,8EADJA;;G;EAGAA,0D;;;QAIM,uH,8DAAuBF,Q;EAAvBE,oB;EACNA;GAAAA,IAAkBL,OAAlBK,kBAAAA;;IACIA;KACIA,sIADJA;KADJA;;G;EAKAA,0D;;;QAIM,qG,sDAAmBF,Q;EAAnBE,oB;EACNA;GAAAA,IAAYL,OAAZK,wCAAAA;;IACIA;KACIA,6HADJA;WAEOA;KAEHA,kKAFGA;KAHXA;;G;EAQAA,0D;;;QAIM,8G,gEAA6BJ,Q;EAA7BI,oB;EACNA,4J;EACAA,0D;;;QAxES,O;EAAAC,4B;EAAAA;",
+"sources":["Container.java"],
+"names":["node","element","supplier","nodes","elements","org.jboss.elemento.Container.add__$default","org.jboss.elemento.Container.addAll__$default","org.jboss.elemento.Container.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$BorderTopRightRadiusUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyWmB,Q;;QAEoC,kF,UAAUA,C;EAAGC,mB;EAC9DA,yE;;;QAIa,uF;EAAAC,mB;EACbA,yD;;;QAIa,iG;EAAAC,mB;EACbA,mE;;;QAIc,wF;EAAAC,mB;EACdA,oC;;;QAIc,wF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.of","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$BorderTopRightRadiusUnionType$$Overlay.<clinit>"]
+}

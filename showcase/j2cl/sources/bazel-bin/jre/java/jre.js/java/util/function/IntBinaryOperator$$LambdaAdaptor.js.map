@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntBinaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;iE;EAAAA,4H;;;CAAA,kH;EAAAC,qC;EAAAA,oE;;;CAAA,2B;EAAAC,sD;EAAAA,2G;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["IntBinaryOperator.java"],
+"names":["java.util.function.IntBinaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.IntBinaryOperator$$LambdaAdaptor.<init>","java.util.function.IntBinaryOperator$$LambdaAdaptor.applyAsInt","java.util.function.IntBinaryOperator$$LambdaAdaptor.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"List.impl.java.js",
+"lineCount":72,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAkCiB,I;;CAGV,U,eAAQA,K,WAASC,O;;CAGd,a,eAAWD,K,uBAA+BE,C;;CAGhD,U,eAAQF,K;;CAEN,O,UAAeG,C;;CAEf,W,UAAmBA,C;;CAGP,sC;;CAGA,2C,eAAiBC,I;;CAG/B,a,eAAWJ,K;;CAGA,oD,yBAA4BK,Q;;CAQvC,U,eAAQL,K,WAASC,O;;CAIN,kC,sBAA2BC,C;;CAUjB,oC;;CAIJ,O,eAAYI,S,gBAAeC,O;;QA1BjC,8E,mDAA4BF,Q;EAA5BG,e;EACXA,mF;EACAA,SAASC,CAATD,MAAgBE,IAAhBF;GACEA,qGADFA;G;;;QAUW,4D,gDAA2BN,C;EAA3BS,e;EACXA,IAASC,CAATD,sB;EACAA,uG;EACAA,SAASF,CAATE;GACEA,8CADFA;G;;;QAOqB,8D;EAAAE,e;EACrBA,0K;;;QAhDa,O;EAAAC,uB;EAAAA,oB;EAAAA;",
+"sources":["List.java"],
+"names":["index","element","c","o","from","operator","fromIndex","toIndex","java.util.List.replaceAll__$default","i","size","java.util.List.sort__$default","a","java.util.List.spliterator__$default","java.util.List.<clinit>"]
+}

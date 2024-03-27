@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$ValueConsumer.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;;MAyduB,a;;CAAA,W;EAAAA,Q;EAAAA;OACZ,wDADYA,K;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,yE;EAAAA,iB;;;CAAA,4D;EAAAC,qC;;;CAIP,sB,eAAcC,K;EACxBC,sE;;;;CALiB,+E;EAAAC,+J;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$ValueConsumer.<synthetic: ctor_js>","java.util.stream.DoubleStreamImpl$ValueConsumer.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$ValueConsumer.<init>","value","java.util.stream.DoubleStreamImpl$ValueConsumer.accept","java.util.stream.DoubleStreamImpl$ValueConsumer.andThen","java.util.stream.DoubleStreamImpl$ValueConsumer.<clinit>"]
+}

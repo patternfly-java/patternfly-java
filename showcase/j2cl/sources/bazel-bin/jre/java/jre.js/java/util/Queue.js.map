@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Queue.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;;;;;;MAwBiB,K;;CAEb,2B;;CAEM,kC,UAAQA,C;;CAEd,wB;;CAEA,wB;;CAEA,0B;;QAVa,O;EAAAC,wB;EAAAA,qB;EAAAA;",
+"sources":["Queue.java"],
+"names":["o","java.util.Queue.<clinit>"]
+}

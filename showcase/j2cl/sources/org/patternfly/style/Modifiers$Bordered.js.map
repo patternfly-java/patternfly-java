@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers$Bordered.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;;;MA0Bc,Q;;CAGI,2C;;CAKA,oD,gBAAiBA,Q;;QALjB,8F;EAAAC,mB;EACNA,2E;;;QAIM,uG,iDAAiBD,Q;EAAjBC,mB;EACNA,qT;;;QATE,O;EAAAC,2B;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["bordered","org.patternfly.style.Modifiers$Bordered.bordered__$default","org.patternfly.style.Modifiers$Bordered.<clinit>"]
+}

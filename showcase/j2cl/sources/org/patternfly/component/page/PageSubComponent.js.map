@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,gB;;CAAA,W;EAAAA,Q;;;CAEX,yG,gBAAwBC,I,WAAQC,O;EAC5BC,2N;;;QAHO,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["PageSubComponent.java"],
+"names":["org.patternfly.component.page.PageSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.page.PageSubComponent.<init>","org.patternfly.component.page.PageSubComponent.<clinit>"]
+}

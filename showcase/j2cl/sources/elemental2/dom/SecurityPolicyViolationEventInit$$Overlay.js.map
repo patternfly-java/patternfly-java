@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SecurityPolicyViolationEventInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEyB,yD;EAASA,mB;EAC/CA,4M;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["SecurityPolicyViolationEventInit.java"],
+"names":["elemental2.dom.SecurityPolicyViolationEventInit$$Overlay.create","elemental2.dom.SecurityPolicyViolationEventInit$$Overlay.<clinit>"]
+}

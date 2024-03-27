@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleBinaryOperator.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,oB;;CAER,uC,eAAqBA,I,gBAAaC,K;;QAF1B,M;EAAAC,+B;EAAAA,8B;;;QAAA,O;EAAAC,uC;EAAAA;",
+"sources":["DoubleBinaryOperator.java"],
+"names":["left","right","java.util.function.DoubleBinaryOperator.<synthetic: adapt_lambda>","java.util.function.DoubleBinaryOperator.<clinit>"]
+}

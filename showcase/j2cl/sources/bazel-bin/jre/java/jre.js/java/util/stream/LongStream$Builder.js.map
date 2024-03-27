@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStream$Builder.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;;MAoDY,O;;CAEH,oB,eAAYA,C;;CAEU,gD,eAASA,C;;CAKzB,oC;;QALgB,+F,yCAASA,C;EAATC,kB;EACzBA,iC;EACAA,gB;;;QANM,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["LongStream.java"],
+"names":["t","java.util.stream.LongStream$Builder.add__$default","java.util.stream.LongStream$Builder.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IconSpec.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;MAiBmB,Q;;CAAA,W;EAAAA,Q;EAAAA;OAGK,mCAHLA,C;EAAAA;OAMK,kCANLA,C;EAAAA;OASE,uCATFA,K;EAAAA;OAYE,uCAZFA,K;EAAAA;OAeE,qCAfFA,K;EAAAA;OAkBE,sCAlBFA,K;EAAAA;OAqBK,oCArBLA,C;EAAAA;OAwBK,uCAxBLA,C;;;QA0Bf,mG,gBAAgBC,G,iBAAYC,E,gBAAQC,O,gBAAaC,O,gBAAaC,K,gBAAWC,M,iBAAeC,I,iBAAaC,O;EAArGC,mB;EAAAA,+B;EAAAA,yM;EAAAA,iB;;;CAAA,qI,gBAAgBR,G,iBAAYC,E,gBAAQC,O,gBAAaC,O,gBAAaC,K,gBAAWC,M,iBAAeC,I,iBAAaC,O;EAASE,qC;EAC1GA,+C;EACAA,6C;EACAA,uD;EACAA,uD;EACAA,mD;EACAA,qD;EACAA,iD;EACAA,uD;;;QAlCW,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["IconSpec.java"],
+"names":["org.patternfly.icon.IconSpec.<synthetic: ctor_js>","set","id","xOffset","yOffset","width","height","path","license","org.patternfly.icon.IconSpec.<synthetic: ctor_create>","org.patternfly.icon.IconSpec.<init>","org.patternfly.icon.IconSpec.<clinit>"]
+}

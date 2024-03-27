@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PredefinedIcon.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA2BmB,c;;CAAA,W;EAAAA,Q;EAAAA;OAEO,8CAFPA,C;;;QAIf,qC,iBAAwBC,Q;EAAxBC,yB;EAAAA,qC;EAAAA,kG;EAAAA,iB;;;CAAA,6E,iBAAwBD,Q;EACpBE,8mF;EAYAA,+D;;;CAIkB,0C;EAClBC,Y;;;;CAtBW,kD;EAAAA,yD;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["PredefinedIcon.java"],
+"names":["org.patternfly.icon.PredefinedIcon.<synthetic: ctor_js>","iconSpec","org.patternfly.icon.PredefinedIcon.<synthetic: ctor_create>","org.patternfly.icon.PredefinedIcon.<init>","org.patternfly.icon.PredefinedIcon.that","org.patternfly.icon.PredefinedIcon.<clinit>"]
+}

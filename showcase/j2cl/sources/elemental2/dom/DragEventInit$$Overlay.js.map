@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DragEventInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEM,sC;EAASA,mB;EAC5BA,yL;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["DragEventInit.java"],
+"names":["elemental2.dom.DragEventInit$$Overlay.create","elemental2.dom.DragEventInit$$Overlay.<clinit>"]
+}

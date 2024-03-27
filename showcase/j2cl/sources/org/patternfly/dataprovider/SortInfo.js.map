@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SortInfo.impl.java.js",
+"lineCount":98,
+"mappings":"A;;;;;;;;;;;MAoBa,Q;;CAAA,W;EAAAA,Q;EAAAA;OAIM,2CAJNA,C;EAAAA;OAKa,mDALbA,C;EAAAA;OAMO,kDANPA,S;;;;QAQT,S;EAAAC,mB;EAAAA,+B;EAAAA,8D;EAAAA,iB;;;;CAAA,iD;EAAWC,qC;EACPA,qD;;;;QAGG,wD,gBAAgBC,E,uBAAkBC,U,iBAAoBC,S;EAAtDJ,mB;EAAAA,+B;EAAAA,wI;EAAAA,iB;;;;CAAA,kG,gBAAgBE,E,uBAAkBC,U,iBAAoBC,S;EAAWH,qC;EACpEA,sD;EACAA,sE;EACAA,oE;;;CAGC,6C;EACDI,2G;EACAA,gE;EACAA,+D;;;CAGC,8F,gBAAaH,E,uBAAkBC,U,iBAAoBC,S;EACpDE,sD;EACAA,sE;EACAA,oE;;;CAGU,yB;EACVC,wD;;;CAGiB,qC;EACjBC,gE;;;CAGW,sB;EACXC,+D;;;CAGW,kB;EACXC,mL;;;QA3CK,O;EAAAC,2B;EAAAA,wB;EAAAA,qB;;;;;;;;;;;;AAET;SAA4B,8CAA5B;",
+"sources":["SortInfo.java"],
+"names":["org.patternfly.dataprovider.SortInfo.<synthetic: ctor_js>","org.patternfly.dataprovider.SortInfo.<synthetic: ctor_create>","org.patternfly.dataprovider.SortInfo.<init>","id","comparator","ascending","org.patternfly.dataprovider.SortInfo.reset","org.patternfly.dataprovider.SortInfo.apply","org.patternfly.dataprovider.SortInfo.getId","org.patternfly.dataprovider.SortInfo.getComparator","org.patternfly.dataprovider.SortInfo.isAscending","org.patternfly.dataprovider.SortInfo.isEmpty","org.patternfly.dataprovider.SortInfo.<clinit>"]
+}

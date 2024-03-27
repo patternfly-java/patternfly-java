@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsConstructorFn$$Overlay.impl.java.js",
+"lineCount":25,
+"mappings":"A;;;;;;;;MAiCiB,Q;;QAUL,gG,sDAAkCA,I;EAAlCC,mB;EACRA,yC;;;QAKe,mE;EAAAC,mB;EACfA,IAASC,KAATD,oD;EACAA,gF;EACAA,a;;;QAnBa,O;EAAAE,2B;EAAAA;",
+"sources":["JsConstructorFn.java"],
+"names":["args","jsinterop.base.JsConstructorFn$$Overlay.construct__$devirt","jsinterop.base.JsConstructorFn$$Overlay.asClass__$devirt","clazz","jsinterop.base.JsConstructorFn$$Overlay.<clinit>"]
+}

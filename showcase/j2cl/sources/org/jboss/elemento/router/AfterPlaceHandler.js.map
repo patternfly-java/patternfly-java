@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AfterPlaceHandler.impl.java.js",
+"lineCount":24,
+"mappings":"A;;;;;;;;;;;;MAkBiB,iB;;CAER,2H,qBAAwBA,Y,eAAoBC,K,cAAYC,I;;QAFhD,M;EAAAC,4B;EAAAA,8B;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["AfterPlaceHandler.java"],
+"names":["placeManager","place","page","org.jboss.elemento.router.AfterPlaceHandler.<synthetic: adapt_lambda>","org.jboss.elemento.router.AfterPlaceHandler.<clinit>"]
+}

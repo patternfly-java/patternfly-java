@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$ConsumerIterator.impl.java.js",
+"lineCount":86,
+"mappings":"A;;;;;;;;;;;;;;;;;MA2R6B,gB;;CAAA,W;EAAAA,Q;EAAAA;OACc,uDADdA,C;EAAAA;OAEf,uDAFeA,C;EAAAA;OAGT,sDAHSA,S;;;QAKzB,8B,uBAA0CC,W;EAA1CC,2B;EAAAA,uC;EAAAA,mG;EAAAA,iB;;;CAAA,2E,uBAA0CD,W;EAAaE,qC;EAAAA,8D;EACrDA,4M;;;CAIU,gC,UAASC,O;EACnBC,uE;;;CAIa,kB;EACbC;GACEA,oLADFA;G;EAGAA,mE;;;CAIO,wB;EACPC,uF;EACAA,oE;EACAA,IAAEH,OAAFG,gE;EACAA,oE;EACAA,e;;;;CA5BuB,mE;EAAAC,kK;;;;CAAA,qD;EAAAC,yG;;;;CAAA,c;EAAAC,4D;;;CAAA,sD;EAGzBP,oE;;;QAHyB,O;EAAAQ,mC;EAAAA,gC;EAAAA,qB;EAAAA,mB;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$ConsumerIterator.<synthetic: ctor_js>","spliterator","java.util.Spliterators$ConsumerIterator.<synthetic: ctor_create>","java.util.Spliterators$ConsumerIterator.<init>","element","java.util.Spliterators$ConsumerIterator.accept","java.util.Spliterators$ConsumerIterator.hasNext","java.util.Spliterators$ConsumerIterator.next","java.util.Spliterators$ConsumerIterator.andThen","java.util.Spliterators$ConsumerIterator.forEachRemaining","java.util.Spliterators$ConsumerIterator.remove","java.util.Spliterators$ConsumerIterator.<clinit>"]
+}

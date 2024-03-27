@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongUnaryOperator.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;;MAwBiB,iB;;QAEU,gD;EAAWA,4B;EAClCA,+CAAOC,OAAPD;GAAkBE,eAAlBF;K;;;CAGG,yB,eAAiBC,O;;CAEI,qF,0BAA0BE,K;;CAK1B,qF,0BAA0BC,M;;QAbrC,M;EAAAC,4B;EAAAA,8B;;;QAQW,qI,8DAA0BF,K;EAA1BG,4B;EACxBA,wF;EACAA,+CAAOL,OAAPK;GAAkBC,oFAAlBD;K;;;QAGwB,qI,8DAA0BF,M;EAA1BI,4B;EACxBA,yF;EACAA,+CAAOP,OAAPO;GAAkBC,qFAAlBD;K;;;QAfa,O;EAAAE,oC;EAAAA;",
+"sources":["LongUnaryOperator.java"],
+"names":["java.util.function.LongUnaryOperator.identity","operand","java.util.function.LongUnaryOperator.<lambda in identity>","after","before","java.util.function.LongUnaryOperator.<synthetic: adapt_lambda>","java.util.function.LongUnaryOperator.andThen__$default","java.util.function.LongUnaryOperator.<lambda in andThen__$default>","java.util.function.LongUnaryOperator.compose__$default","java.util.function.LongUnaryOperator.<lambda in compose__$default>","java.util.function.LongUnaryOperator.<clinit>"]
+}

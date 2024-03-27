@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeVarargs.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA8BkB,W;;QAAA,O;EAAAA,8B;EAAAA;",
+"sources":["SafeVarargs.java"],
+"names":["java.lang.SafeVarargs.<clinit>"]
+}

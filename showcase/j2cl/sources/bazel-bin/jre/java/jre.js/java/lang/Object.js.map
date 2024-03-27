@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Object.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;;;;MAwBa,U;;CAAA,W;EAAAA,0B;;;QAAA,S;EAAAC,qB;EAAAA,iC;EAAAA,0C;EAAAA,iB;;;CAAA,6B;;CAGI,M,UAAcC,I;EAAMC,qB;EACjCA,mC;;;CAIS,Q;EAAWC,qB;EACpBA,iD;;;CAIY,Q;EAAWC,qB;EACvBA,kQ;;;CAGoB,2B;EAAWC,qB;EAC/BA,wF;;;QAIqB,W,UAAmBC,Q;EAAUC,qB;EAClDA,wC;;;QAvBS,O;EAAAC,6B;EAAAA;",
+"sources":["Object.java"],
+"names":["java.lang.Object.<synthetic: ctor_js>","java.lang.Object.<synthetic: ctor_create>","that","java.lang.Object.equals","java.lang.Object.hashCode","java.lang.Object.toString","java.lang.Object.getClass","instance","java.lang.Object.$isInstance","java.lang.Object.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StackItem.impl.java.js",
+"lineCount":78,
+"mappings":"A;;;;;;;;;;;;;;;;;MA4Ba,S;;CAAA,W;EAAAA,Q;;;QAIe,kD;EAAYC,oB;EAChCA,6H;;;QAG4C,2F,gCAAkCC,O;EAASD,oB;EACvFA,2E;;;QAKoB,gD,gCAAkCC,O;EAAlCC,oB;EAAAA,gC;EAAAA,+G;EAAAA,iB;;;CAAA,2F,gCAAkCD,O;EACtDE,0kB;;;CAMa,6C;EACbC,Y;;;;CAtBK,uC;EAAAA,4D;;;;CAAA,uC;EAAAC,yJ;;;;CAAA,gD;EAAAA,wK;;;;CAAA,6C;EAAAA,yJ;;;;CAAA,sD;EAAAA,wK;;;QAAA,O;EAAAC,4B;EAAAA,yB;EAAAA,qB;EAAAA;",
+"sources":["StackItem.java"],
+"names":["org.patternfly.layout.stack.StackItem.<synthetic: ctor_js>","org.patternfly.layout.stack.StackItem.stackItem","builder","org.patternfly.layout.stack.StackItem.<synthetic: ctor_create>","org.patternfly.layout.stack.StackItem.<init>","org.patternfly.layout.stack.StackItem.that","org.patternfly.layout.stack.StackItem.fill","org.patternfly.layout.stack.StackItem.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MAsYmB,Q;;QAEmC,iF,UAAUA,C;EAAGC,mB;EAC7DA,yE;;;QAI2B,iI;EAAAC,mB;EAC3BA,mG;;;QAIa,sF;EAAAC,mB;EACbA,yD;;;QAIc,uF;EAAAC,mB;EACdA,oC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["MediaTrackConstraintSet.java"],
+"names":["o","elemental2.dom.MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.of","elemental2.dom.MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.asConstrainDoubleRange__$devirt","elemental2.dom.MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.asDouble__$devirt","elemental2.dom.MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.isDouble__$devirt","elemental2.dom.MediaTrackConstraintSet$GetVolumeUnionType$$Overlay.<clinit>"]
+}

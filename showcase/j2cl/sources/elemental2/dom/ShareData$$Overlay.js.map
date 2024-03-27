@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ShareData$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEE,kC;EAASA,mB;EACxBA,qL;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["ShareData.java"],
+"names":["elemental2.dom.ShareData$$Overlay.create","elemental2.dom.ShareData$$Overlay.<clinit>"]
+}

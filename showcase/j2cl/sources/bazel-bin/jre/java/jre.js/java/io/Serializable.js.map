@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Serializable.impl.java.js",
+"lineCount":24,
+"mappings":"A;;;;;;;;;;MA0BiB,Y;;QAGA,W,UAAsCA,Q;EAAUC,uB;EAC7DA;GACEA,aADFA;G;EAIAA,IAAOC,IAAPD,oB;EACAA,0U;;;QATa,O;EAAAE,+B;EAAAA;",
+"sources":["Serializable.java"],
+"names":["instance","java.io.Serializable.$isInstance","type","java.io.Serializable.<clinit>"]
+}

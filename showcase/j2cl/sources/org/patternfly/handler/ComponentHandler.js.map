@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ComponentHandler.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAoBiB,gB;;CAER,sD,cAAaA,K,WAASC,S;;QAFd,M;EAAAC,2B;EAAAA,gE;;;QAAA,O;EAAAC,mC;EAAAA;",
+"sources":["ComponentHandler.java"],
+"names":["event","component","org.patternfly.handler.ComponentHandler.<synthetic: adapt_lambda>","org.patternfly.handler.ComponentHandler.<clinit>"]
+}

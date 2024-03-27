@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TranslationKey.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;MAyBkB,c;;CAEhB,uB;;CAEA,gC;;CAEA,e;;CAEA,+B;;QARgB,O;EAAAA,iC;EAAAA;",
+"sources":["TranslationKey.java"],
+"names":["org.treblereel.j2cl.processors.annotations.TranslationKey.<clinit>"]
+}

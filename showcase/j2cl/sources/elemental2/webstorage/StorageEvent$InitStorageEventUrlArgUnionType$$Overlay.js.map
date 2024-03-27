@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA4BmB,Q;;QAEqC,0F,UAAUA,C;EAAGC,mB;EAC/DA,yE;;;QAIa,yG;EAAAC,mB;EACbA,mE;;;QAIU,wG;EAAAC,mB;EACVA,4G;;;QAIc,gG;EAAAC,mB;EACdA,wC;;;QAIc,6F;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["StorageEvent.java"],
+"names":["o","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.of","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.asString__$devirt","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.asURL__$devirt","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.isString__$devirt","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.isURL__$devirt","elemental2.webstorage.StorageEvent$InitStorageEventUrlArgUnionType$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AssignedNodesOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEa,6C;EAASA,mB;EACnCA,gM;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["AssignedNodesOptions.java"],
+"names":["elemental2.dom.AssignedNodesOptions$$Overlay.create","elemental2.dom.AssignedNodesOptions$$Overlay.<clinit>"]
+}

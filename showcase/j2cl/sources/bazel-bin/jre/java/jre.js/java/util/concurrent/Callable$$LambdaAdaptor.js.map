@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Callable$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;MAyBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;0D;EAAAA,8G;;;CAAA,oG;EAAAC,qC;EAAAA,6D;;;CAAA,wB;EAAAC,mC;EAAAA,0F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Callable.java"],
+"names":["java.util.concurrent.Callable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.concurrent.Callable$$LambdaAdaptor.<init>","java.util.concurrent.Callable$$LambdaAdaptor.call","java.util.concurrent.Callable$$LambdaAdaptor.<clinit>"]
+}

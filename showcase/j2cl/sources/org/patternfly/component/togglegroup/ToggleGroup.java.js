@@ -1,0 +1,35 @@
+goog.module('org.patternfly.component.togglegroup.ToggleGroup');
+
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('java.lang.Boolean');
+goog.require('java.lang.Iterable');
+goog.require('java.lang.String');
+goog.require('java.util.HashMap');
+goog.require('java.util.List');
+goog.require('java.util.Map');
+goog.require('java.util.function.Function');
+goog.require('java.util.function.Predicate');
+goog.require('java.util.stream.Collector');
+goog.require('java.util.stream.Collectors');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.patternfly.component.BaseComponent');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.SelectionMode');
+goog.require('org.patternfly.component.togglegroup.ToggleGroupItem');
+goog.require('org.patternfly.core.Aria');
+goog.require('org.patternfly.core.Attributes');
+goog.require('org.patternfly.core.Logger');
+goog.require('org.patternfly.handler.MultiSelectHandler');
+goog.require('org.patternfly.handler.SelectHandler');
+goog.require('org.patternfly.style.Classes');
+goog.require('org.patternfly.style.Modifiers.Compact');
+goog.require('org.patternfly.style.Modifiers.Disabled');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const ToggleGroup = goog.require('org.patternfly.component.togglegroup.ToggleGroup$impl');
+exports = ToggleGroup;

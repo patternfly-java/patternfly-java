@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiConsumer.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;MA2BiB,U;;CAEV,kD,UAASA,C,WAAKC,C;;CAEM,uE,yBAAyCC,K;;QAJnD,M;EAAAC,qB;EAAAA,mE;;;QAIU,gH,4DAAyCD,K;EAAzCE,qB;EACvBA,wF;EACAA,mCAAQJ,CAARI,WAAWH,CAAXG;GACEC,kEADFD;GAEEC,+DAFFD;K;;;QANa,O;EAAAE,6B;EAAAA;",
+"sources":["BiConsumer.java"],
+"names":["t","u","after","java.util.function.BiConsumer.<synthetic: adapt_lambda>","java.util.function.BiConsumer.andThen__$default","java.util.function.BiConsumer.<lambda in andThen__$default>","java.util.function.BiConsumer.<clinit>"]
+}

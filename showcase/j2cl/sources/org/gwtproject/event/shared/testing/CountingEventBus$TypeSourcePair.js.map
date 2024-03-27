@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CountingEventBus$TypeSourcePair.impl.java.js",
+"lineCount":56,
+"mappings":"A;;;;;;;;;;;MAoGuB,c;;CAAA,W;EAAAA,Q;EAAAA;OACL,2EADKA,C;EAAAA;OAEN,6EAFMA,C;;;QAInB,iE,gBAAuBC,I,WAAaC,M;EAApCC,yB;EAAAA,qC;EAAAA,mK;EAAAA,iB;;;CAAA,0I,gBAAuBF,I,WAAaC,M;EAAQE,qC;EAC1CA,wF;EACAA,4F;;;CAIa,M,UAAcC,C;EAC3BC;GACEA,YADFA;G;EAGAA;GACEA,aADFA;G;EAIAA,IAAeC,IAAfD,+D;EACAA,kd;;;CAIS,Q;EACTE,IAAIC,IAAJD,K;EACAA,6O;EACAA,kR;EACAA,Y;;;QA3BiB,O;EAAAE,iC;EAAAA,8B;EAAAA;",
+"sources":["CountingEventBus.java"],
+"names":["org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.<synthetic: ctor_js>","type","source","org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.<synthetic: ctor_create>","org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.<init>","o","org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.equals","pair","org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.hashCode","hash","org.gwtproject.event.shared.testing.CountingEventBus$TypeSourcePair.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CallSite.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAgBa,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAAC,qC;;;QAAA,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["CallSite.java"],
+"names":["java.lang.invoke.CallSite.<synthetic: ctor_js>","java.lang.invoke.CallSite.<synthetic: ctor_create>","java.lang.invoke.CallSite.<init>","java.lang.invoke.CallSite.<clinit>"]
+}

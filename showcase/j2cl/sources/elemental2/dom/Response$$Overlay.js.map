@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Response$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MA4Ba,Q;;QAkHkB,0D,gBAAgBA,G,gBAASC,M;EAAQC,mB;EAC5DA,+G;;;QAI2B,qD,gBAAgBF,G;EAAKE,mB;EAChDA,uG;;;QAI2B,4D,YAAaF,G,gBAASC,M;EAAQC,mB;EACzDA,+G;;;QAI2B,uD,YAAaF,G;EAAKE,mB;EAC7CA,uG;;;QAlIS,O;EAAAC,2B;EAAAA;",
+"sources":["Response.java"],
+"names":["url","status","elemental2.dom.Response$$Overlay.redirect","elemental2.dom.Response$$Overlay.<clinit>"]
+}

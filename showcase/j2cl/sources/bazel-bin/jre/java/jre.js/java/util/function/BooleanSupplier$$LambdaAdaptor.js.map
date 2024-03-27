@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BooleanSupplier$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;+D;EAAAA,wH;;;CAAA,8G;EAAAC,qC;EAAAA,kE;;;CAAA,uB;EAAAC,yC;EAAAA,+F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["BooleanSupplier.java"],
+"names":["java.util.function.BooleanSupplier$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.BooleanSupplier$$LambdaAdaptor.<init>","java.util.function.BooleanSupplier$$LambdaAdaptor.getAsBoolean","java.util.function.BooleanSupplier$$LambdaAdaptor.<clinit>"]
+}

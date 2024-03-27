@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCIceCandidateStats$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAsBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["RTCIceCandidateStats.java"],
+"names":["elemental2.dom.RTCIceCandidateStats$$Overlay.<clinit>"]
+}

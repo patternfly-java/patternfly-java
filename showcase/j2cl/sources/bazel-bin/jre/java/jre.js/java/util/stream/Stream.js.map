@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Stream.impl.java.js",
+"lineCount":160,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA8CiB,M;;QAkBc,0C;EAAUA,iB;EACrCA,8C;;;QAoBmB,mF,kBAA2BC,C,mBAAuBC,C;EAAGC,iB;EAQxEA,IAA2CC,oBAA3CD,mM;EAGAA,IAAuBE,WAAvBF,mI;EAkCAA,IAAUG,MAAVH,qI;EAEAA;GAAsBI,kBAAtBJ;;GAAwCI,kBAAxCJ;gB;;;QAGmB,gC;EAAQK,iB;EAC3BA,2F;;;QAGmB,gE,sBAAqBC,C;EAAGC,iB;EAC3CA,IAAuBL,WAAvBK,kN;EASAA,sI;;;QAGmB,sF,YAAUC,I,4BAAuBC,C;EAAGC,iB;EACvDA,IAAuBR,WAAvBQ,+O;EAYAA,sI;;;QAGmB,+C,YAAKC,C;EAAGC,iB;EAG3BA,+H;;;QAGmB,uD,mBAAQC,M;EAAQD,iB;EACnCA,6G;;;CAGM,iD,qBAA8BE,S;;CAE9B,iD,qBAA8BA,S;;CAE7B,uD,2BAAmCC,S;;CAEtC,sH,oBACUC,Q,0BAAmCC,W,0BAA8BC,Q;;CAE5E,a;;CAEK,mC;;CAEA,+D,qBAA4BJ,S;;CAE1B,6B;;CAEA,+B;;CAEE,+D,oCAA2DK,M;;CAE5D,6E,oCAA4DA,M;;CAE/D,uE,oCAAsDA,M;;CAErD,yE,oCAAwDA,M;;CAE9D,4C,oBAA4BC,M;;CAE5B,mD,oBAAmCA,M;;CAE9B,sC,eAAWC,O;;CAEP,2D,oCAAqCF,M;;CAEtC,iF,4BAAwCA,M;;CAE3C,wE,yBAAkCA,M;;CAEjC,2E,0BAAoCA,M;;CAEnC,+C,sBAA0BG,U;;CAE1B,+C,sBAA0BA,U;;CAE9B,kD,qBAA+BR,S;;CAE7B,4D,oBAAyBM,M;;CAEvB,+D,0BAAyBH,W;;CAEnC,+E,UAASM,Q,2BAA4BN,W;;CAEjC,8G,UAASM,Q,6BAAsCN,W,2BAA+BC,Q;;CAE1E,qC,eAAUM,C;;CAEV,iC;;CAEA,uD,sBAA6BF,U;;CAE9B,mC;;CAED,mE,8BAAyBG,S;;QAnMlB,O;EAAAC,yB;EAAAA;",
+"sources":["Stream.java"],
+"names":["java.util.stream.Stream.builder","a","b","java.util.stream.Stream.concat","spliteratorOfStreams","spliterator","result","java.util.stream.Stream.<lambda in concat>","java.util.stream.Stream.empty","s","java.util.stream.Stream.generate","seed","f","java.util.stream.Stream.iterate","t","java.util.stream.Stream.of","values","predicate","collector","supplier","accumulator","combiner","mapper","action","maxSize","comparator","identity","n","generator","java.util.stream.Stream.<clinit>"]
+}

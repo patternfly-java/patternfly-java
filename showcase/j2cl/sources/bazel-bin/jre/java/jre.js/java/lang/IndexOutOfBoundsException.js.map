@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IndexOutOfBoundsException.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;MAsBa,yB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,oC;EAAAA,gD;EAAAA,6D;EAAAA,yF;EAAAA,iB;;;;CAAA,gD;EAA4BC,+C;;;;QAG5B,yB,gBAAiCC,O;EAAjCF,oC;EAAAA,gD;EAAAA,sF;EAAAA,yF;EAAAA,iB;;;;CAAA,kE,gBAAiCE,O;EACtCD,wE;;;QANS,O;EAAAE,4C;EAAAA,yC;EAAAA;",
+"sources":["IndexOutOfBoundsException.java"],
+"names":["java.lang.IndexOutOfBoundsException.<synthetic: ctor_js>","java.lang.IndexOutOfBoundsException.<synthetic: ctor_create>","java.lang.IndexOutOfBoundsException.<init>","message","java.lang.IndexOutOfBoundsException.<clinit>"]
+}

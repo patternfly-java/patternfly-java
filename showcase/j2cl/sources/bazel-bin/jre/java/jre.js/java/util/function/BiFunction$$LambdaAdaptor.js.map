@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;;;;;MA4BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;0D;EAAAA,8G;;;CAAA,oG;EAAAC,qC;EAAAA,6D;;;CAAA,6D;EAAAC,uC;EAAAA,oG;;;;CAAA,qE;EAAAC,6I;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["BiFunction.java"],
+"names":["java.util.function.BiFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.BiFunction$$LambdaAdaptor.<init>","java.util.function.BiFunction$$LambdaAdaptor.apply","java.util.function.BiFunction$$LambdaAdaptor.andThen","java.util.function.BiFunction$$LambdaAdaptor.<clinit>"]
+}

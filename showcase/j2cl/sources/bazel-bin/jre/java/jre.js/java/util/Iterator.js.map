@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Iterator.impl.java.js",
+"lineCount":39,
+"mappings":"A;;;;;;;;;;;;;MA2BiB,Q;;CAEP,kB;;CAEN,wB;;CAEW,qD,oBAAqCA,Q;;CAOrC,c;;QAPA,mF,kDAAqCA,Q;EAArCC,mB;EACXA,mF;EACAA;GACEA,+EADFA;G;;;QAKW,4C;EAAAC,mB;EACXA,kE;;;QAda,O;EAAAC,2B;EAAAA;",
+"sources":["Iterator.java"],
+"names":["consumer","java.util.Iterator.forEachRemaining__$default","java.util.Iterator.remove__$default","java.util.Iterator.<clinit>"]
+}

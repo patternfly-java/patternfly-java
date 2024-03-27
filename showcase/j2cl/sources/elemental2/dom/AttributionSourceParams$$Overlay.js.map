@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AttributionSourceParams$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEgB,gD;EAASA,mB;EACtCA,mM;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["AttributionSourceParams.java"],
+"names":["elemental2.dom.AttributionSourceParams$$Overlay.create","elemental2.dom.AttributionSourceParams$$Overlay.<clinit>"]
+}

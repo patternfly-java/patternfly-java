@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collection.impl.java.js",
+"lineCount":94,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAkCiB,U;;CAEP,G,UAAMA,C;;CAEN,M,sBAA+BC,C;;CAElC,K;;CAEG,Q,UAAgBD,C;;CAEhB,W,sBAA0BC,C;;CAE1B,O;;CAGU,yC;;CAKV,M,UAAcD,C;;CAEd,S,sBAAwBC,C;;CAGhB,iD,qBAA8BC,M;;CAYtC,S,sBAAwBD,C;;CAE5B,I;;CAImB,oC;;CAKL,iC;;CAID,O;;CAKD,6D,iBAAYE,C;;QA1CV,yE;EAAAC,qB;EAEhBA,oD;;;QAQc,iF,qDAA8BF,M;EAA9BG,qB;EACdA,iF;EACAA,IAAQC,OAARD,S;EACAA,SAAiBE,EAAjBF;GACEA;IACEA,oBADFA;IAEEA,eAFFA;IADFA;G;EAMAA,e;;;QASqB,oE;EAAAG,qB;EACrBA,+H;;;QAIgB,iE;EAAAC,qB;EAChBA,wK;;;QAGe,mE;EAAAC,qB;EACfA,4F;;;QAIc,6F,iDAAYP,C;EAAZO,qB;EACdA,yH;;;QA1Da,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["Collection.java"],
+"names":["o","c","filter","a","java.util.Collection.parallelStream__$default","java.util.Collection.removeIf__$default","removed","it","java.util.Collection.spliterator__$default","java.util.Collection.stream__$default","java.util.Collection.toArray__$default","java.util.Collection.<clinit>"]
+}

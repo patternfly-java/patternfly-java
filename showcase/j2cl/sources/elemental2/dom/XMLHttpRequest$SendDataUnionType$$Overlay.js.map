@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"XMLHttpRequest$SendDataUnionType$$Overlay.impl.java.js",
+"lineCount":82,
+"mappings":"A;;;;;;;;;;;;MA6HmB,Q;;QAEyB,uE,UAAUA,C;EAAGC,mB;EACnDA,yE;;;QAIkB,sG;EAAAC,mB;EAClBA,4H;;;QAIsB,8G;EAAAC,mB;EACtBA,oI;;;QAIW,uF;EAAAC,mB;EACXA,8G;;;QAIe,+F;EAAAC,mB;EACfA,sH;;;QAIe,+F;EAAAC,mB;EACfA,sH;;;QAIa,sF;EAAAC,mB;EACbA,mE;;;QAIc,kF;EAAAC,mB;EACdA,kD;;;QAIc,sF;EAAAC,mB;EACdA,sD;;;QAIc,2E;EAAAC,mB;EACdA,2C;;;QAIc,+E;EAAAC,mB;EACdA,+C;;;QAIc,+E;EAAAC,mB;EACdA,+C;;;QAIc,6E;EAAAC,mB;EACdA,wC;;;QA/Da,O;EAAAC,2B;EAAAA;",
+"sources":["XMLHttpRequest.java"],
+"names":["o","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.of","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asArrayBufferView__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asBlob__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asDocument__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asFormData__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.asString__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isArrayBufferView__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isBlob__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isDocument__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isFormData__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.isString__$devirt","elemental2.dom.XMLHttpRequest$SendDataUnionType$$Overlay.<clinit>"]
+}

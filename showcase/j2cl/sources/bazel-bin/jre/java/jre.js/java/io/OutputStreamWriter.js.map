@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"OutputStreamWriter.impl.java.js",
+"lineCount":72,
+"mappings":"A;;;;;;;;;;;;MA0Ba,kB;;CAAA,W;EAAAA,Q;EAAAA;OAEgB,kCAFhBA,C;EAAAA;OAIW,sCAJXA,C;;;;QAMJ,+C,qBAAgCC,G,iBAAYC,W;EAA5CC,6B;EAAAA,yC;EAAAA,4G;EAAAA,iB;;;;CAAA,+E,qBAAgCF,G,iBAAYC,W;EACjDE,8K;;;;QAGK,uD,qBAAgCH,G,iBAAaI,O;EAA7CF,6B;EAAAA,yC;EAAAA,gH;EAAAA,iB;;;;CAAA,uF,qBAAgCF,G,iBAAaI,O;EAASD,mC;EAC3DA,8K;EACAA,4K;;;CAIU,a;EACVE,wD;;;CAIU,a;EACVC,wD;;;CAGY,+B;EACZC,8E;;;CAIU,qC,sBAAaC,M,gBAAYC,M,gBAAYC,K;EAC/CC,mF;EACAA,IAAOC,UAAPD,mL;EACAA,gH;;;QAjCS,O;EAAAE,qC;EAAAA,kC;EAAAA;",
+"sources":["OutputStreamWriter.java"],
+"names":["java.io.OutputStreamWriter.<synthetic: ctor_js>","out","charsetName","java.io.OutputStreamWriter.<synthetic: ctor_create>","java.io.OutputStreamWriter.<init>","charset","java.io.OutputStreamWriter.close","java.io.OutputStreamWriter.flush","java.io.OutputStreamWriter.getEncoding","buffer","offset","count","java.io.OutputStreamWriter.write","byteBuffer","java.io.OutputStreamWriter.<clinit>"]
+}

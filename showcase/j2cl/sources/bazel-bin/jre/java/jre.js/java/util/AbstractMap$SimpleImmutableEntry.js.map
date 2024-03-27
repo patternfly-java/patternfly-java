@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractMap$SimpleImmutableEntry.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;MA+CsB,oB;;CAAA,W;EAAAA,Q;;;;QACX,2C,UAAuBC,G,WAAOC,K;EAA9BC,+B;EAAAA,2C;EAAAA,kH;EAAAA,iB;;;;CAAA,2F,UAAuBF,G,WAAOC,K;EACnCE,sG;;;;QAGK,4B,oBAAqDC,K;EAArDF,+B;EAAAA,2C;EAAAA,8F;EAAAA,iB;;;;CAAA,4E,oBAAqDE,K;EAC1DD,oK;;;CAIO,8C,UAAWF,K;EAClBI,kE;;;QAXgB,O;EAAAC,uC;EAAAA,oC;EAAAA;",
+"sources":["AbstractMap.java"],
+"names":["java.util.AbstractMap$SimpleImmutableEntry.<synthetic: ctor_js>","key","value","java.util.AbstractMap$SimpleImmutableEntry.<synthetic: ctor_create>","java.util.AbstractMap$SimpleImmutableEntry.<init>","entry","java.util.AbstractMap$SimpleImmutableEntry.setValue","java.util.AbstractMap$SimpleImmutableEntry.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UmbrellaException.impl.java.js",
+"lineCount":115,
+"mappings":"A;;;;;;;;;;;;MA0Ba,iB;;CAAA,W;EAAAA,Q;EAAAA;OAiCY,wDAjCZA,C;;;QAQgB,+C,uBAAyBC,M;EAAQC,4B;EAC1DA,oJ;;;QAGsB,8C,uBAA2BD,M;EAAQE,4B;EACzDA,IAAIC,KAAJD,iB;EACAA;GACEA,YADFA;G;EAIAA,IAAcE,CAAdF,gR;EACAA,IAAQG,KAARH,Q;EACAA;GAAAA,IAAeI,CAAfJ,wFAAAA;;IACEA;KACEA,cADFA;;KAGEA,4DAHFA;KADFA;IAMEA,0FANFA;;G;EASAA,oB;;;;QAMK,sB,uBAAiCF,M;EAAjCO,4B;EAAAA,wC;EAAAA,4F;EAAAA,yF;EAAAA,iB;;;;CAAA,yE,uBAAiCP,M;EACtCQ,yO;EACAA,uE;EACAA,IAAIC,CAAJD,K;EACAA;GAAAA,IAAeE,KAAfF,wFAAAA;;IAA+BA,yBAA/BA;IACEA;KAEEA,SAFFA;KADFA;IAKEA,uDALFA;;G;;;;QAUQ,S;EAAAD,4B;EAAAA,wC;EAAAA,uE;EAAAA,yF;EAAAA,iB;;;;CAAA,0D;EAERC,4I;EACAA,sI;;;CAQoB,0B;EACpBG,qE;;;QA7DS,O;EAAAC,oC;EAAAA,iC;EAAAA,2B;;;;;;;;;;;;;;;;AAGX;kBAAoB,yDAApB,0B;AAGA;kBAAoB,oDAApB;",
+"sources":["UmbrellaException.java"],
+"names":["org.gwtproject.event.shared.UmbrellaException.<synthetic: ctor_js>","causes","org.gwtproject.event.shared.UmbrellaException.makeCause","org.gwtproject.event.shared.UmbrellaException.makeMessage","count","b","first","t","org.gwtproject.event.shared.UmbrellaException.<synthetic: ctor_create>","org.gwtproject.event.shared.UmbrellaException.<init>","i","cause","org.gwtproject.event.shared.UmbrellaException.getCauses","org.gwtproject.event.shared.UmbrellaException.<clinit>"]
+}

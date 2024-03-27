@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DrawerPanelBody.impl.java.js",
+"lineCount":98,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA6Ba,e;;CAAA,W;EAAAA,Q;;;QAKqB,kE;EAAkBC,0B;EAC5CA,mC;;;QAOJ,S;EAAAC,0B;EAAAA,sC;EAAAA,yE;EAAAA,iB;;;CAAA,4D;EACIC,iyB;;;CAKmB,2G,wBAAwBC,I;EAC3CC,mJ;;;CAMmB,uD;EACnBC,Y;;;;CA3BK,uC;EAAAA,sE;;;;CAAA,4C;EAAAC,oL;;;;CAAA,qD;EAAAA,mM;;;;CAAA,4D;EAAAA,oL;;;;CAAA,qE;EAAAA,mM;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,6B;EAAAA,oB;;;;;;;;;;;;;;;;;;AAWT;gBAAoB,qEAApB;",
+"sources":["DrawerPanelBody.java"],
+"names":["org.patternfly.component.drawer.DrawerPanelBody.<synthetic: ctor_js>","org.patternfly.component.drawer.DrawerPanelBody.drawerPanelBody","org.patternfly.component.drawer.DrawerPanelBody.<synthetic: ctor_create>","org.patternfly.component.drawer.DrawerPanelBody.<init>","head","org.patternfly.component.drawer.DrawerPanelBody.addHead","org.patternfly.component.drawer.DrawerPanelBody.that","org.patternfly.component.drawer.DrawerPanelBody.noPadding","org.patternfly.component.drawer.DrawerPanelBody.<clinit>"]
+}

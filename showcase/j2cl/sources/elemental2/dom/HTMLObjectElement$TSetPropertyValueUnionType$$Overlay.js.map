@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyBmB,Q;;QAEqC,mF,UAAUA,C;EAAGC,mB;EAC/DA,yE;;;QAIa,wF;EAAAC,mB;EACbA,yD;;;QAIa,kG;EAAAC,mB;EACbA,mE;;;QAIc,yF;EAAAC,mB;EACdA,oC;;;QAIc,yF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["HTMLObjectElement.java"],
+"names":["o","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.of","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.asDouble__$devirt","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.asString__$devirt","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.isDouble__$devirt","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.isString__$devirt","elemental2.dom.HTMLObjectElement$TSetPropertyValueUnionType$$Overlay.<clinit>"]
+}

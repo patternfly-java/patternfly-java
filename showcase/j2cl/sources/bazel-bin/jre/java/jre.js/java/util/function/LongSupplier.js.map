@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongSupplier.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAsBiB,Y;;CAEV,iB;;QAFU,M;EAAAA,uB;EAAAA,8B;;;QAAA,O;EAAAC,+B;EAAAA;",
+"sources":["LongSupplier.java"],
+"names":["java.util.function.LongSupplier.<synthetic: adapt_lambda>","java.util.function.LongSupplier.<clinit>"]
+}

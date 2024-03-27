@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SimpleEventBus$Command.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MA4BoB,O;;CACX,e;;QADW,M;EAAAA,kB;EAAAA,8B;;;QAAA,O;EAAAC,0B;EAAAA;",
+"sources":["SimpleEventBus.java"],
+"names":["org.gwtproject.event.shared.SimpleEventBus$Command.<synthetic: adapt_lambda>","org.gwtproject.event.shared.SimpleEventBus$Command.<clinit>"]
+}

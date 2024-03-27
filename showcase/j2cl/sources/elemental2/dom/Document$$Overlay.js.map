@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Document$$Overlay.impl.java.js",
+"lineCount":88,
+"mappings":"A;;;;;;;;MA4Ba,Q;;QAwRO,6E,+CAAeA,K;EAAfC,mB;EAChBA,oL;;;QAIgB,0E,kDAAiBD,K;EAAjBC,mB;EAChBA,oL;;;QAkBmB,mJ,2CACVC,O,WAAiDC,a;EADvCC,mB;EAEnBA,+H;;;QAQmB,6G,2CAAqBF,O,iBAAgBC,a;EAArCC,mB;EACnBA,+H;;;QAyBgB,yF,2CAAsBC,I;EAAtBC,mB;EAChBA,8G;;;QAIgB,+E,0CAAsBD,I;EAAtBC,mB;EAChBA,8G;;;QAeqB,2G,gDAAwBC,O;EAAxBC,mB;EACrBA,6H;;;QAyCgB,8E,+CAAgBR,K;EAAhBS,mB;EAChBA,qL;;;QAMgB,2E,kDAAkBT,K;EAAlBS,mB;EAChBA,qL;;;QAkBgB,sF,+CAAwBT,K;EAAxBU,mB;EAChBA,6L;;;QAMgB,mF,kDAA0BV,K;EAA1BU,mB;EAChBA,6L;;;QAMgB,iE,2CAAaC,I;EAAbC,mB;EAChBA,8F;;;QAIgB,2E,+CAAkBD,I;EAAlBC,mB;EAChBA,8F;;;QAMgB,mE,2CAAeD,I;EAAfE,mB;EAChBA,gG;;;QAIgB,6E,+CAAoBF,I;EAApBE,mB;EAChBA,gG;;;QA7cS,O;EAAAC,2B;EAAAA;",
+"sources":["Document.java"],
+"names":["nodes","elemental2.dom.Document$$Overlay.append__$devirt","tagName","typeExtension","elemental2.dom.Document$$Overlay.createElement__$devirt","data","elemental2.dom.Document$$Overlay.createTextNode__$devirt","touches","elemental2.dom.Document$$Overlay.createTouchList__$devirt","elemental2.dom.Document$$Overlay.prepend__$devirt","elemental2.dom.Document$$Overlay.replaceChildren__$devirt","text","elemental2.dom.Document$$Overlay.write__$devirt","elemental2.dom.Document$$Overlay.writeln__$devirt","elemental2.dom.Document$$Overlay.<clinit>"]
+}

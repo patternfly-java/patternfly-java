@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterator$OfDouble.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;;;;;MA8FY,Q;;CAEQ,kD,oBAAoCA,Q;;CASvC,qD,oBAA0CA,Q;;QATvC,4F,+CAAoCA,Q;EAApCC,mB;EACdA;GACEA,4HADFA;;GAGEA;IAAmCC,gDAAnCD;QAHFA;G;;;QAQW,+F,+CAA0CD,Q;EAA1CG,mB;EACXA;GACEA,wHADFA;;GAGEA;IAAkCC,gDAAlCD;QAHFA;G;;;QAZM,O;EAAAE,2B;EAAAA,wB;EAAAA;",
+"sources":["Spliterator.java"],
+"names":["consumer","java.util.Spliterator$OfDouble.tryAdvance__$default","java.util.Spliterator$OfDouble.<lambda in tryAdvance__$default>","java.util.Spliterator$OfDouble.forEachRemaining__$default","java.util.Spliterator$OfDouble.<lambda in forEachRemaining__$default>","java.util.Spliterator$OfDouble.<clinit>"]
+}

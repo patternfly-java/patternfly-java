@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Formatter.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;MAuBsB,S;;CAAA,W;EAAAA,Q;;;CAAA,wC;EAAAC,qC;;;CACG,uD,kBAAiBC,M;;CAE1B,8D,kBAAwBA,M;EACpCC,4E;;;QAJkB,O;EAAAC,4B;EAAAA,yB;EAAAA;",
+"sources":["Formatter.java"],
+"names":["java.util.logging.Formatter.<synthetic: ctor_js>","java.util.logging.Formatter.<init>","record","java.util.logging.Formatter.formatMessage","java.util.logging.Formatter.<clinit>"]
+}

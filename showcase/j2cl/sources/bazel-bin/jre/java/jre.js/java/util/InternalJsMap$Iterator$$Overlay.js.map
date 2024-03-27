@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InternalJsMap$Iterator$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MA2BY,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["InternalJsMap.java"],
+"names":["java.util.InternalJsMap$Iterator$$Overlay.<clinit>"]
+}

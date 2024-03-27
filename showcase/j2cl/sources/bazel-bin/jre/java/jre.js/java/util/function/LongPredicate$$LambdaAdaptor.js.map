@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongPredicate$$LambdaAdaptor.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;6D;EAAAA,oH;;;CAAA,0G;EAAAC,qC;EAAAA,gE;;;CAAA,qB;EAAAC,+C;EAAAA,iG;;;;CAAA,yE;EAAAC,uJ;;;;CAAA,0C;EAAAC,kH;;;;CAAA,wE;EAAAC,sJ;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["LongPredicate.java"],
+"names":["java.util.function.LongPredicate$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongPredicate$$LambdaAdaptor.<init>","java.util.function.LongPredicate$$LambdaAdaptor.test","java.util.function.LongPredicate$$LambdaAdaptor.and","java.util.function.LongPredicate$$LambdaAdaptor.negate","java.util.function.LongPredicate$$LambdaAdaptor.or","java.util.function.LongPredicate$$LambdaAdaptor.<clinit>"]
+}

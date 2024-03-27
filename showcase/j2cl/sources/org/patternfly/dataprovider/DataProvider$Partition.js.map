@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataProvider$Partition.impl.java.js",
+"lineCount":80,
+"mappings":"A;;;;;;;;;;;;;;;;MA0UyB,S;;CAAA,W;EAAAA,Q;EAAAA;OAkBH,0DAlBGA,C;EAAAA;OAmBP,0DAnBOA,K;;;QAEE,uB,eAAWC,C,gBAAOC,C;EACjCC;GACIA,mFADJA;G;EAIAA,IAAIC,GAAJD,qC;EACAA,IAAIE,GAAJF,6B;EACAA;GACIA,WADJA;G;EAIAA,IAAIG,MAAJH,8D;EACAA,IAAQI,SAARJ,c;EACAA,0C;;;QAMJ,4B,gBAAkBK,I,gBAAUC,I;EAA5BC,oB;EAAAA,gC;EAAAA,2G;EAAAA,iB;;;CAAA,oF,gBAAkBF,I,gBAAUC,I;EAAME,2C;EAC9BA,uE;EACAA,uE;;;CAIW,U,eAAQC,K;EACnBC,mH;EACAA,IAAIC,KAAJD,qF;EACAA,IAAIE,GAAJF,iK;EACAA,2F;;;CAIO,I;EACPG,kL;;;CAIW,O;EACXC,iF;;;CAGS,yF,eAAsBL,K,gBAAWH,I;EAC1CS;GACIA,wHADJA;SAEOA;GACHA,2IADGA;G;;;QA/CM,O;EAAAC,4B;EAAAA,yB;EAAAA;",
+"sources":["DataProvider.java"],
+"names":["org.patternfly.dataprovider.DataProvider$Partition.<synthetic: ctor_js>","p","q","org.patternfly.dataprovider.DataProvider$Partition.divide","div","rem","signum","increment","list","size","org.patternfly.dataprovider.DataProvider$Partition.<synthetic: ctor_create>","org.patternfly.dataprovider.DataProvider$Partition.<init>","index","org.patternfly.dataprovider.DataProvider$Partition.get","start","end","org.patternfly.dataprovider.DataProvider$Partition.size","org.patternfly.dataprovider.DataProvider$Partition.isEmpty","org.patternfly.dataprovider.DataProvider$Partition.checkElementIndex","org.patternfly.dataprovider.DataProvider$Partition.<clinit>"]
+}

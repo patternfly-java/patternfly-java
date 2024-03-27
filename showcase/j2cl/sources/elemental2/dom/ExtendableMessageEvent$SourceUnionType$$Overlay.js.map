@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ExtendableMessageEvent$SourceUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MA0BmB,Q;;QAE+B,6E,UAAUA,C;EAAGC,mB;EACzDA,yE;;;QAIkB,2G;EAAAC,mB;EAClBA,4H;;;QAIoB,+G;EAAAC,mB;EACpBA,gI;;;QAI0B,2H;EAAAC,mB;EAC1BA,4I;;;QAIc,wF;EAAAC,mB;EACdA,kD;;;QAIc,0F;EAAAC,mB;EACdA,oD;;;QAIc,gG;EAAAC,mB;EACdA,0D;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["ExtendableMessageEvent.java"],
+"names":["o","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.of","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.asMessagePort__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.asServiceWorker__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.asServiceWorkerClient__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.isMessagePort__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.isServiceWorker__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.isServiceWorkerClient__$devirt","elemental2.dom.ExtendableMessageEvent$SourceUnionType$$Overlay.<clinit>"]
+}

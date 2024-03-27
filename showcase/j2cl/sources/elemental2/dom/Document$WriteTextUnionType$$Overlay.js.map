@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Document$WriteTextUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA+MmB,Q;;QAEoB,kE,UAAUA,C;EAAGC,mB;EAC9CA,yE;;;QAIa,iF;EAAAC,mB;EACbA,mE;;;QAIkB,gG;EAAAC,mB;EAClBA,4H;;;QAIc,wE;EAAAC,mB;EACdA,wC;;;QAIc,6E;EAAAC,mB;EACdA,kD;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["Document.java"],
+"names":["o","elemental2.dom.Document$WriteTextUnionType$$Overlay.of","elemental2.dom.Document$WriteTextUnionType$$Overlay.asString__$devirt","elemental2.dom.Document$WriteTextUnionType$$Overlay.asTrustedHTML__$devirt","elemental2.dom.Document$WriteTextUnionType$$Overlay.isString__$devirt","elemental2.dom.Document$WriteTextUnionType$$Overlay.isTrustedHTML__$devirt","elemental2.dom.Document$WriteTextUnionType$$Overlay.<clinit>"]
+}

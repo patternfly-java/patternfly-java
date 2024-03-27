@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LinkedList$Node.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;MAkKuB,I;;CAAA,W;EAAAA,Q;EAAAA;OACJ,iCADIA,C;EAAAA;OAEJ,iCAFIA,C;EAAAA;OAGV,kCAHUA,C;;;QAAA,S;EAAAC,e;EAAAA,2B;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAAC,qC;;;QAAA,O;EAAAC,uB;EAAAA,oB;EAAAA;",
+"sources":["LinkedList.java"],
+"names":["java.util.LinkedList$Node.<synthetic: ctor_js>","java.util.LinkedList$Node.<synthetic: ctor_create>","java.util.LinkedList$Node.<init>","java.util.LinkedList$Node.<clinit>"]
+}

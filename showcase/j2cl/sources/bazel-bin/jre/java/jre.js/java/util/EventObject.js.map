@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EventObject.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;MAoBa,W;;CAAA,W;EAAAA,Q;EAAAA;OAEM,+BAFNA,C;;;QAIJ,yB,UAAmBC,M;EAAnBC,sB;EAAAA,kC;EAAAA,uE;EAAAA,iB;;;CAAA,oD,UAAmBD,M;EAAQE,qC;EAChCA,8C;;;CAGY,6B;EACZC,4C;;;QATS,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["EventObject.java"],
+"names":["java.util.EventObject.<synthetic: ctor_js>","source","java.util.EventObject.<synthetic: ctor_create>","java.util.EventObject.<init>","java.util.EventObject.getSource","java.util.EventObject.<clinit>"]
+}

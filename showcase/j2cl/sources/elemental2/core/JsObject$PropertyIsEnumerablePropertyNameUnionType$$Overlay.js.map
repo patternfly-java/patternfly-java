@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAsImB,Q;;QAE2C,0F,UAAUA,C;EAAGC,mB;EACrEA,yE;;;QAIa,yG;EAAAC,mB;EACbA,+D;;;QAIa,yG;EAAAC,mB;EACbA,mE;;;QAIc,gG;EAAAC,mB;EACdA,wC;;;QAIc,gG;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["JsObject.java"],
+"names":["o","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.of","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.asObject__$devirt","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.asString__$devirt","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.isObject__$devirt","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.isString__$devirt","elemental2.core.JsObject$PropertyIsEnumerablePropertyNameUnionType$$Overlay.<clinit>"]
+}

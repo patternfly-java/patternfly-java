@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Elements$AsHTMLElement.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;;;;;MAutDyB,a;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,mE;EAAAA,iB;;;CAAA,sD;EAAAC,qC;;;CAGE,wD,UAAQC,C;EACvBC,4F;;;;CAJa,mE;EAAAC,+L;;;;CAAA,2C;EAAAD,kH;;;;CAAA,mE;EAAAE,yM;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAAAA;",
+"sources":["Elements.java"],
+"names":["org.jboss.elemento.Elements$AsHTMLElement.<synthetic: ctor_js>","org.jboss.elemento.Elements$AsHTMLElement.<synthetic: ctor_create>","org.jboss.elemento.Elements$AsHTMLElement.<init>","t","org.jboss.elemento.Elements$AsHTMLElement.apply","org.jboss.elemento.Elements$AsHTMLElement.andThen","org.jboss.elemento.Elements$AsHTMLElement.compose","org.jboss.elemento.Elements$AsHTMLElement.<clinit>"]
+}

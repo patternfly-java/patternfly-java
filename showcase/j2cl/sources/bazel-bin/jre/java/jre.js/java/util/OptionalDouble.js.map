@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"OptionalDouble.impl.java.js",
+"lineCount":140,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA2BmB,c;;CAAA,W;EAAAA,Q;EAAAA;OAYI,gCAZJA,K;EAAAA;OAaK,oCAbLA,S;;;QAEY,iC;EAAQC,yB;EACnCA,yD;;;QAG2B,sC,eAAUC,K;EAAOC,yB;EAC5CA,6C;;;;QAQM,S;EAAAC,qC;EAAAA,kD;EAAAA,iB;;;;CAAA,qC;EAAiBC,qC;EACvBA,0C;EACAA,kD;;;;QAGM,e,eAAsBH,K;EAAtBE,qC;EAAAA,+D;EAAAA,iB;;;;CAAA,6C,eAAsBF,K;EAAOG,qC;EACnCA,8C;EACAA,iD;;;CAGa,oB;EACbC,iD;;;CAGY,qB;EACZC,uG;EACAA,6C;;;CAGU,oD,uBAAyBC,Q;EACnCC;GACEA,uEADFA;G;;;CAKY,wB,eAAcC,K;EAC1BC,iG;;;CAGY,sD,uBAAyBD,K;EACrCE,yH;;;CAGkC,kD,oBAAwBC,iB;EAC1DC;GACEA,6CADFA;G;EAGAA,qH;;;CAIa,M,UAAcC,G;EAC3BC;GACEA,YADFA;G;EAGAA;GACEA,aADFA;G;EAGAA,IAAeN,KAAfM,iE;EACAA,4N;;;CAIS,Q;EACTC,6H;;;CAIY,Q;EACZC,wP;;;QA1Ee,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAUjBA,+E;;;;;;;;;;;;;;;;;;AAViB;eAUmB,kCAVnB;",
+"sources":["OptionalDouble.java"],
+"names":["java.util.OptionalDouble.<synthetic: ctor_js>","java.util.OptionalDouble.empty","value","java.util.OptionalDouble.of","java.util.OptionalDouble.<synthetic: ctor_create>","java.util.OptionalDouble.<init>","java.util.OptionalDouble.isPresent","java.util.OptionalDouble.getAsDouble","consumer","java.util.OptionalDouble.ifPresent","other","java.util.OptionalDouble.orElse","java.util.OptionalDouble.orElseGet","exceptionSupplier","java.util.OptionalDouble.orElseThrow","obj","java.util.OptionalDouble.equals","java.util.OptionalDouble.hashCode","java.util.OptionalDouble.toString","java.util.OptionalDouble.<clinit>"]
+}

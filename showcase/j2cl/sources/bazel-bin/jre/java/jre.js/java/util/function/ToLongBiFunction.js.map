@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToLongBiFunction.impl.java.js",
+"lineCount":23,
+"mappings":"A;;;;;;;;;;;MAyBiB,gB;;CAEV,uD,UAAcA,C,WAAKC,C;;QAFT,M;EAAAC,2B;EAAAA,mE;;;QAAA,O;EAAAC,mC;EAAAA;",
+"sources":["ToLongBiFunction.java"],
+"names":["t","u","java.util.function.ToLongBiFunction.<synthetic: adapt_lambda>","java.util.function.ToLongBiFunction.<clinit>"]
+}

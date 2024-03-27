@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Banner.impl.java.js",
+"lineCount":95,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MAuCa,M;;CAAA,W;EAAAA,Q;EAAAA;OAsBW,8DAtBXA,C;;;QAIY,gD;EAASC,iB;EAC1BA,oH;;;QAGiB,4E,cAAaC,K;EAAOD,iB;EACrCA,iF;;;QAGiB,kE,gBAAcE,I;EAAMF,iB;EACrCA,oH;;;QAGiB,8F,gBAAcE,I,eAAYD,K;EAAOD,iB;EAClDA,iF;;;QAOJ,qD,gBAAcE,I,eAAYD,K;EAA1BE,iB;EAAAA,6B;EAAAA,yH;EAAAA,iB;;;CAAA,iG,gBAAcD,I,eAAYD,K;EACtBG,qyB;EACAA;GACIA,mIADJA;G;;;CAQU,gD;EACVC,4E;;;CAIU,yD,gBAAeC,M;EACzBD,ia;;;CAGU,wE,gBAAoBH,I;EAC9BK,8H;EACAA,Y;;;CAIU,8C;EACVC,Y;;;CAKgB,mG;EAChBC;GACIA,mrBADJA;G;EAGAA,2E;;;;CA3DK,uC;EAAAD,6D;;;QAAA,O;EAAAE,yB;EAAAA,sB;EAAAA;",
+"sources":["Banner.java"],
+"names":["org.patternfly.component.banner.Banner.<synthetic: ctor_js>","org.patternfly.component.banner.Banner.banner","color","text","org.patternfly.component.banner.Banner.<synthetic: ctor_create>","org.patternfly.component.banner.Banner.<init>","org.patternfly.component.banner.Banner.sticky","sticky","org.patternfly.component.banner.Banner.screenReader","org.patternfly.component.banner.Banner.that","org.patternfly.component.banner.Banner.failSafeScreenReaderElement","org.patternfly.component.banner.Banner.<clinit>"]
+}

@@ -1,0 +1,31 @@
+goog.module('org.patternfly.showcase.component.ExpandableSectionComponent');
+
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('java.lang.Class');
+goog.require('java.util.function.Supplier');
+goog.require('jsinterop.base.JsPropertyMap.$Overlay');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.patternfly.component.badge.Badge');
+goog.require('org.patternfly.component.expandable.ExpandableSection');
+goog.require('org.patternfly.component.expandable.ExpandableSectionContent');
+goog.require('org.patternfly.component.expandable.ExpandableSectionToggle');
+goog.require('org.patternfly.component.expandable.ExpandableSectionToggleText');
+goog.require('org.patternfly.handler.ToggleHandler');
+goog.require('org.patternfly.icon.IconSets.fas');
+goog.require('org.patternfly.layout.stack.Stack');
+goog.require('org.patternfly.layout.stack.StackItem');
+goog.require('org.patternfly.showcase.ApiDoc.Type');
+goog.require('org.patternfly.showcase.Code');
+goog.require('org.patternfly.showcase.Data');
+goog.require('org.patternfly.showcase.LoremIpsum');
+goog.require('org.patternfly.showcase.Snippet');
+goog.require('org.patternfly.showcase.SnippetPage');
+goog.require('org.patternfly.showcase.component.Component.$Overlay');
+goog.require('vmbootstrap.Casts');
+
+const ExpandableSectionComponent = goog.require('org.patternfly.showcase.component.ExpandableSectionComponent$impl');
+exports = ExpandableSectionComponent;

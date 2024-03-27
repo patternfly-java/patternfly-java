@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiConsumer$$LambdaAdaptor.impl.java.js",
+"lineCount":42,
+"mappings":"A;;;;;;;;;;MA2BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;0D;EAAAA,8G;;;CAAA,oG;EAAAC,qC;EAAAA,6D;;;CAAA,kD;;GAAAC,wE;GAAAA,sB;;;;;CAAA,uE;EAAAC,+I;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["BiConsumer.java"],
+"names":["java.util.function.BiConsumer$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.BiConsumer$$LambdaAdaptor.<init>","java.util.function.BiConsumer$$LambdaAdaptor.accept","java.util.function.BiConsumer$$LambdaAdaptor.andThen","java.util.function.BiConsumer$$LambdaAdaptor.<clinit>"]
+}

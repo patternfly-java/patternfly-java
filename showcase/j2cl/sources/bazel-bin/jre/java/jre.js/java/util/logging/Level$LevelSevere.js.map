@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelSevere.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;MAyEuB,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,6D;EAAAA,iB;;;CAAA,gD;EAAAC,4C;;;CACK,2B;EAAYC,gB;;;CACf,e;EAAaC,Y;;;QAFf,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelSevere.<synthetic: ctor_js>","java.util.logging.Level$LevelSevere.<synthetic: ctor_create>","java.util.logging.Level$LevelSevere.<init>","java.util.logging.Level$LevelSevere.getName","java.util.logging.Level$LevelSevere.intValue","java.util.logging.Level$LevelSevere.<clinit>"]
+}

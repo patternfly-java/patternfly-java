@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ClassList.impl.java.js",
+"lineCount":128,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;MA0Ba,S;;CAAA,W;EAAAA,Q;EAAAA;OAUO,wCAVPA,C;;;QAIsC,iE,YAAYC,O;EAASC,oB;EAChEA,yF;;;QAOJ,+B,UAAYD,O;EAAZE,oB;EAAAA,gC;EAAAA,qF;EAAAA,iB;;;CAAA,iE,UAAYF,O;EAASG,qC;EACjBA,mM;;;CASQ,qC,uBAAcC,O;EACtBC;GAAAA,IAAYC,GAAZD,kBAAAA;;IACIA,yFADJA;;G;;;CASQ,wC,uBAAiBD,O;EACzBG;GAAAA,IAAYD,GAAZC,kBAAAA;;IACIA,4FADJA;;G;;;CAMQ,gC,gBAAcC,S;EACtBC;GACIA,kGADJA;G;;;CAMQ,yC,gBAAcD,S,iBAAmBE,K;EACzCD;GACIA,yGADJA;G;;;CAQQ,mD,gBAAeE,Y,iBAAqBC,Y;EAC5CC;GACIA,oHADJA;G;;;CAMoB,8B;EACpBC,yO;;;CAGO,a;EACPC,8F;;;CAKa,qG,uBAA0BX,O;EACvCY;GACIA,IAAaC,eAAbD,4DADJA;GAEIA;IAAAA,IAAYE,CAAZF,kBAAAA;;KACIA;MACIA;OACIA,yMADJA;;OAGIA,uBAHJA;OADJA;MADJA;;IAFJA;GAWIA,oNAXJA;G;EAaAA,uE;;;;CAtFK,4C;EAAAG,gG;;;;CAAA,oC;EAAAC,6H;;;QAAA,O;EAAAC,4B;EAAAA,yB;EAAAA,qB;EAAAA;",
+"sources":["ClassList.java"],
+"names":["org.jboss.elemento.ClassList.<synthetic: ctor_js>","element","org.jboss.elemento.ClassList.classList","org.jboss.elemento.ClassList.<synthetic: ctor_create>","org.jboss.elemento.ClassList.<init>","classes","org.jboss.elemento.ClassList.add","cls","org.jboss.elemento.ClassList.remove","classname","org.jboss.elemento.ClassList.toggle","force","oldClassname","newClassname","org.jboss.elemento.ClassList.replace","org.jboss.elemento.ClassList.iterator","org.jboss.elemento.ClassList.length","org.jboss.elemento.ClassList.failSafeClasses","failSafeClasses","c","org.jboss.elemento.ClassList.forEach","org.jboss.elemento.ClassList.spliterator","org.jboss.elemento.ClassList.<clinit>"]
+}

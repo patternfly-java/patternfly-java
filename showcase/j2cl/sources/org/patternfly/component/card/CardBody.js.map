@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CardBody.impl.java.js",
+"lineCount":93,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA0Ba,Q;;CAAA,W;EAAAA,Q;;;QAKc,kD;EAAWC,mB;EAC9BA,4B;;;QAOJ,S;EAAAC,mB;EAAAA,+B;EAAAA,gE;EAAAA,iB;;;CAAA,mD;EACIC,2wB;;;CAMY,8C;EACZC,Y;;;;CArBK,uC;EAAAA,6D;;;;CAAA,yC;EAAAC,6J;;;;CAAA,kD;EAAAA,4K;;;;CAAA,gD;EAAAA,6J;;;;CAAA,yD;EAAAA,4K;;;QAAA,O;EAAAC,2B;EAAAA,wB;EAAAA,2B;EAAAA,iB;;;;;;;;;;;;;;;;;;AAWT;SAAoB,4DAApB;",
+"sources":["CardBody.java"],
+"names":["org.patternfly.component.card.CardBody.<synthetic: ctor_js>","org.patternfly.component.card.CardBody.cardBody","org.patternfly.component.card.CardBody.<synthetic: ctor_create>","org.patternfly.component.card.CardBody.<init>","org.patternfly.component.card.CardBody.that","org.patternfly.component.card.CardBody.noFill","org.patternfly.component.card.CardBody.<clinit>"]
+}

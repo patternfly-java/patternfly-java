@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResourceException.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;MAqBa,iB;;CAAA,W;EAAAA,Q;;;QACJ,yB,gBAAyBC,G;EAAzBC,4B;EAAAA,wC;EAAAA,0H;EAAAA,yF;EAAAA,iB;;;CAAA,0G,gBAAyBD,G;EAC9BE,oE;;;QAFS,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["ResourceException.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.exception.ResourceException.<synthetic: ctor_js>","msg","org.treblereel.j2cl.processors.common.resources.exception.ResourceException.<synthetic: ctor_create>","org.treblereel.j2cl.processors.common.resources.exception.ResourceException.<init>","org.treblereel.j2cl.processors.common.resources.exception.ResourceException.<clinit>"]
+}

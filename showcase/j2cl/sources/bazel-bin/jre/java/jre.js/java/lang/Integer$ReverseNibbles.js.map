@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Integer$ReverseNibbles.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;MA6CuB,c;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,qC;EAAAA,0D;EAAAA,iB;;;CAAA,6C;EAAAC,qC;;;QACnB,uD;EAAAC,4G;;;QAAA,uD;EAAAC,6G;;;QADmB,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EACnBA,sL;;;;;;;;;;;;;AADmB;;",
+"sources":["Integer.java"],
+"names":["java.lang.Integer$ReverseNibbles.<synthetic: ctor_js>","java.lang.Integer$ReverseNibbles.<synthetic: ctor_create>","java.lang.Integer$ReverseNibbles.<init>","java.lang.Integer$ReverseNibbles.<synthetic: getter>","java.lang.Integer$ReverseNibbles.<synthetic: setter>","java.lang.Integer$ReverseNibbles.<clinit>"]
+}

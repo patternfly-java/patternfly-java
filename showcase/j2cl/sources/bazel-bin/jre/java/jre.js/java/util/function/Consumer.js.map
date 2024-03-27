@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Consumer.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;MA0BiB,Q;;CAEV,gC,UAASA,C;;CAEM,mE,oBAA4BC,K;;QAJjC,M;EAAAC,mB;EAAAA,gE;;;QAIK,0G,kDAA4BD,K;EAA5BE,mB;EAClBA,wF;EACAA,iCAAOH,CAAPG;GACEC,6CADFD;GAEEC,0CAFFD;K;;;QANa,O;EAAAE,2B;EAAAA;",
+"sources":["Consumer.java"],
+"names":["t","after","java.util.function.Consumer.<synthetic: adapt_lambda>","java.util.function.Consumer.andThen__$default","java.util.function.Consumer.<lambda in andThen__$default>","java.util.function.Consumer.<clinit>"]
+}

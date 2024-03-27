@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SVGPolygonElement$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA4Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["SVGPolygonElement.java"],
+"names":["org.jboss.elemento.svg.SVGPolygonElement$$Overlay.<clinit>"]
+}

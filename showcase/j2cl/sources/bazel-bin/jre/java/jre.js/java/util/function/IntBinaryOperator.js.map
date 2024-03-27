@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntBinaryOperator.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,iB;;CAEX,2B,eAAeA,I,gBAAUC,K;;QAFd,M;EAAAC,4B;EAAAA,8B;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["IntBinaryOperator.java"],
+"names":["left","right","java.util.function.IntBinaryOperator.<synthetic: adapt_lambda>","java.util.function.IntBinaryOperator.<clinit>"]
+}

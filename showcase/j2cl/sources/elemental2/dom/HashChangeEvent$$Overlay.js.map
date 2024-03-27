@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HashChangeEvent$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAyBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["HashChangeEvent.java"],
+"names":["elemental2.dom.HashChangeEvent$$Overlay.<clinit>"]
+}

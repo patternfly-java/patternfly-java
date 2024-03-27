@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$AnimationIterationCountUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAyBmB,Q;;QAEuC,qF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAIa,0F;EAAAC,mB;EACbA,yD;;;QAIa,oG;EAAAC,mB;EACbA,mE;;;QAIc,2F;EAAAC,mB;EACdA,oC;;;QAIc,2F;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.of","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$AnimationIterationCountUnionType$$Overlay.<clinit>"]
+}

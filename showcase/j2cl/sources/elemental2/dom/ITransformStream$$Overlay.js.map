@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ITransformStream$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAES,yC;EAASA,mB;EAC/BA,4L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["ITransformStream.java"],
+"names":["elemental2.dom.ITransformStream$$Overlay.create","elemental2.dom.ITransformStream$$Overlay.<clinit>"]
+}

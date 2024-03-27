@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Function$$Overlay.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;MAwBa,Q;;QAeW,+G,qCAAYA,O,kBAAmBC,Q;EAA/BC,mB;EACpBA,mM;;;QAhBS,O;EAAAC,2B;EAAAA;",
+"sources":["Function.java"],
+"names":["selfObj","var_args","elemental2.core.Function$$Overlay.bind__$devirt","elemental2.core.Function$$Overlay.<clinit>"]
+}

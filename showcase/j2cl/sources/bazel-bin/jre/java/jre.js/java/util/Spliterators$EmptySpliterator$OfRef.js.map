@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$EmptySpliterator$OfRef.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;;;;;MA8P+B,K;;CAAA,W;EAAAA,Q;;;QAIzB,S;EAAAC,gB;EAAAA,4B;EAAAA,uE;EAAAA,iB;;;CAAA,0D;EAAQC,4D;;;;CAJiB,qD;EAAAC,uD;;;;CAAA,kD;EAAAC,2D;;;QAAA,O;EAAAC,wB;EAAAA,qB;EAAAA,2B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$EmptySpliterator$OfRef.<synthetic: ctor_js>","java.util.Spliterators$EmptySpliterator$OfRef.<synthetic: ctor_create>","java.util.Spliterators$EmptySpliterator$OfRef.<init>","java.util.Spliterators$EmptySpliterator$OfRef.forEachRemaining","java.util.Spliterators$EmptySpliterator$OfRef.tryAdvance","java.util.Spliterators$EmptySpliterator$OfRef.<clinit>"]
+}

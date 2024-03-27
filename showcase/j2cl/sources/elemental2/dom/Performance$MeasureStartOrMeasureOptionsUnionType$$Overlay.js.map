@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA2BmB,Q;;QAE0C,wF,UAAUA,C;EAAGC,mB;EACpEA,yE;;;QAIgC,kJ;EAAAC,mB;EAChCA,wG;;;QAIa,uG;EAAAC,mB;EACbA,mE;;;QAIc,8F;EAAAC,mB;EACdA,wC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["Performance.java"],
+"names":["o","elemental2.dom.Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.of","elemental2.dom.Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.asPerformanceMeasureOptions__$devirt","elemental2.dom.Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.asString__$devirt","elemental2.dom.Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.isString__$devirt","elemental2.dom.Performance$MeasureStartOrMeasureOptionsUnionType$$Overlay.<clinit>"]
+}

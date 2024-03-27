@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FontFace$ConstructorSourceUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MA4BmB,Q;;QAE4B,0E,UAAUA,C;EAAGC,mB;EACtDA,yE;;;QAIkB,yG;EAAAC,mB;EAClBA,4H;;;QAIsB,iH;EAAAC,mB;EACtBA,oI;;;QAIa,yF;EAAAC,mB;EACbA,mE;;;QAIc,qF;EAAAC,mB;EACdA,kD;;;QAIc,yF;EAAAC,mB;EACdA,sD;;;QAIc,gF;EAAAC,mB;EACdA,wC;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["FontFace.java"],
+"names":["o","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.of","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.asArrayBufferView__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.asString__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.isArrayBufferView__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.isString__$devirt","elemental2.dom.FontFace$ConstructorSourceUnionType$$Overlay.<clinit>"]
+}

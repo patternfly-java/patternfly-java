@@ -1,0 +1,33 @@
+goog.module('org.patternfly.component.textinputgroup.TextInputGroupMain');
+
+goog.require('elemental2.dom.Element.$Overlay');
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.EventListener.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('elemental2.dom.HTMLInputElement.$Overlay');
+goog.require('java.lang.String');
+goog.require('java.util.Objects');
+goog.require('java.util.function.Consumer');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.EventType');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.InputElementBuilder');
+goog.require('org.jboss.elemento.InputType');
+goog.require('org.patternfly.component.HasValue');
+goog.require('org.patternfly.component.WithIcon');
+goog.require('org.patternfly.component.WithText');
+goog.require('org.patternfly.component.chip.ChipGroup');
+goog.require('org.patternfly.component.textinputgroup.TextInputGroup');
+goog.require('org.patternfly.component.textinputgroup.TextInputGroupSubComponent');
+goog.require('org.patternfly.handler.ChangeHandler');
+goog.require('org.patternfly.icon.PredefinedIcon');
+goog.require('org.patternfly.style.Classes');
+goog.require('org.patternfly.style.Modifiers.Disabled');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const TextInputGroupMain = goog.require('org.patternfly.component.textinputgroup.TextInputGroupMain$impl');
+exports = TextInputGroupMain;

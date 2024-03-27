@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Atomics$WaitTypedArrayUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA6pBmB,Q;;QAEwB,uE,UAAUA,C;EAAGC,mB;EAClDA,yE;;;QAIoB,0G;EAAAC,mB;EACpBA,gI;;;QAIiB,oG;EAAAC,mB;EACjBA,0H;;;QAIc,oF;EAAAC,mB;EACdA,oD;;;QAIc,iF;EAAAC,mB;EACdA,iD;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["Atomics.java"],
+"names":["o","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.of","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.asBigInt64Array__$devirt","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.asInt32Array__$devirt","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.isBigInt64Array__$devirt","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.isInt32Array__$devirt","elemental2.core.Atomics$WaitTypedArrayUnionType$$Overlay.<clinit>"]
+}

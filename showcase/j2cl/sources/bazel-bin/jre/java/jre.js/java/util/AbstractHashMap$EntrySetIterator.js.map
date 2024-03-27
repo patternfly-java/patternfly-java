@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractHashMap$EntrySetIterator.impl.java.js",
+"lineCount":104,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA0EsB,gB;;CAAA,W;EAAAA,Q;EAAAA;+D;EAAAA;OACY,+DADZA,C;EAAAA;OAEY,sDAFZA,C;EAAAA;OAGY,mDAHZA,C;EAAAA;OAIF,sDAJEA,S;EAAAA;OAKN,2DALMA,K;;;QAAA,kC;EAAAC,2B;EAAAA,uC;EAAAA,0G;EAAAA,iB;;;CAAA,kF;EAAAC,2E;EAAAA,qC;EAAAA,iE;;;CAQH,kB;EACbC,mE;;;CAGc,uE;EACdC;GACEA,YADFA;G;EAGAA;GACEA,aADFA;G;EAGAA,sM;EACAA,wF;;;CAIiB,2B;EACjBC,0O;EACAA,+E;EAEAA,uH;EACAA,IAAYC,EAAZD,wI;EACAA,6I;EAEAA,U;;;CAIU,c;EACVE,oI;EACAA,0O;EAEAA,0E;EACAA,gE;EACAA,6I;EAEAA,sK;;;;CA5CgB,qD;EAAAC,yG;;;;CAAA,wB;EAAAH,0C;;;CAAA,yD;EAClBH,6M;EACAA,mI;EAEAA,6I;EACAA,sK;;;QALkB,O;EAAAO,mC;EAAAA,gC;EAAAA,qB;EAAAA;",
+"sources":["AbstractHashMap.java"],
+"names":["java.util.AbstractHashMap$EntrySetIterator.<synthetic: ctor_js>","java.util.AbstractHashMap$EntrySetIterator.<synthetic: ctor_create>","java.util.AbstractHashMap$EntrySetIterator.<init>","java.util.AbstractHashMap$EntrySetIterator.hasNext","java.util.AbstractHashMap$EntrySetIterator.computeHasNext","java.util.AbstractHashMap$EntrySetIterator.next","rv","java.util.AbstractHashMap$EntrySetIterator.remove","java.util.AbstractHashMap$EntrySetIterator.forEachRemaining","java.util.AbstractHashMap$EntrySetIterator.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$1.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;;;;MAwlCgC,E;;CAAA,W;EAAAA,Q;EAAAA;6C;;;QAAA,2B;EAAAC,a;EAAAA,yB;EAAAA,iF;EAAAA,iB;;;CAAA,wD;EADVC,0D;EACUC,qC;;;CAEX,0B;EACbC,uE;;;CAIO,+B;EACPC,6E;;;QARwB,O;EAAAC,qB;EAAAA,kB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$1.<synthetic: ctor_js>","java.util.Collections$1.<synthetic: ctor_create>","it","java.util.Collections$1.<init>","java.util.Collections$1.hasMoreElements","java.util.Collections$1.nextElement","java.util.Collections$1.<clinit>"]
+}

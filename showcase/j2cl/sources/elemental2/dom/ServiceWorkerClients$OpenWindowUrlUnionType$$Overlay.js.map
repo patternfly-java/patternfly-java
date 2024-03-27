@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA2BmB,Q;;QAEoC,kF,UAAUA,C;EAAGC,mB;EAC9DA,yE;;;QAIa,iG;EAAAC,mB;EACbA,mE;;;QAIU,gG;EAAAC,mB;EACVA,4G;;;QAIc,wF;EAAAC,mB;EACdA,wC;;;QAIc,qF;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["ServiceWorkerClients.java"],
+"names":["o","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.of","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.asString__$devirt","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.asURL__$devirt","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.isString__$devirt","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.isURL__$devirt","elemental2.dom.ServiceWorkerClients$OpenWindowUrlUnionType$$Overlay.<clinit>"]
+}

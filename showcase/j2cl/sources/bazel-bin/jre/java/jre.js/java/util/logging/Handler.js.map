@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Handler.impl.java.js",
+"lineCount":60,
+"mappings":"A;;;;;;;;;;;;;MAuBsB,O;;CAAA,W;EAAAA,Q;EAAAA;OACF,uCADEA,C;EAAAA;OAEN,mCAFMA,C;;;CAAA,sC;EAAAC,qC;;;CAIC,a;;CACA,a;;CAEJ,2C;EACfC,oD;;;CAGW,mC;EACXC;GACEA,gDADFA;G;EAGAA,4C;;;CAGa,kD,kBAAqBC,M;EAClCC,sI;;;CAGmB,4C,kBAAkBD,M;;CAE3B,iD,kBAAuBE,Y;EACjCC,4D;;;CAGU,yC,cAAeC,Q;EACzBC,oD;;;QA7BkB,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["Handler.java"],
+"names":["java.util.logging.Handler.<synthetic: ctor_js>","java.util.logging.Handler.<init>","java.util.logging.Handler.getFormatter","java.util.logging.Handler.getLevel","record","java.util.logging.Handler.isLoggable","newFormatter","java.util.logging.Handler.setFormatter","newLevel","java.util.logging.Handler.setLevel","java.util.logging.Handler.<clinit>"]
+}

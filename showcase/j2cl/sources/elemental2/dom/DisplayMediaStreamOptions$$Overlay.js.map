@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DisplayMediaStreamOptions$$Overlay.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;MAyBiB,Q;;QAgDkB,kD;EAASA,mB;EACxCA,qM;;;QA4BW,yG,0EAA+BC,K;EAA/BC,mB;EACXA,gG;;;QAIW,4E,4DAAiBD,K;EAAjBC,mB;EACXA,gG;;;QAsBW,yG,0EAA+BC,K;EAA/BC,mB;EACXA,gG;;;QAIW,4E,4DAAiBD,K;EAAjBC,mB;EACXA,gG;;;QA/Ga,O;EAAAC,2B;EAAAA;",
+"sources":["DisplayMediaStreamOptions.java"],
+"names":["elemental2.dom.DisplayMediaStreamOptions$$Overlay.create","audio","elemental2.dom.DisplayMediaStreamOptions$$Overlay.setAudio__$devirt","video","elemental2.dom.DisplayMediaStreamOptions$$Overlay.setVideo__$devirt","elemental2.dom.DisplayMediaStreamOptions$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LabelEditCompleteHandler.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAoBiB,wB;;CAER,8F,cAAeA,K,eAAaC,K,iBAAcC,O;;QAFlC,M;EAAAC,mC;EAAAA,8B;;;QAAA,O;EAAAC,2C;EAAAA;",
+"sources":["LabelEditCompleteHandler.java"],
+"names":["event","label","newText","org.patternfly.component.label.LabelEditCompleteHandler.<synthetic: adapt_lambda>","org.patternfly.component.label.LabelEditCompleteHandler.<clinit>"]
+}

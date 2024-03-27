@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AccordionItemBody.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;MAyBa,iB;;CAAA,W;EAAAA,Q;;;QAIuB,yE;EAAoBC,4B;EAChDA,qC;;;QAOJ,S;EAAAC,4B;EAAAA,wC;EAAAA,8E;EAAAA,iB;;;CAAA,iE;EACIC,42B;;;CAMqB,4D;EACrBC,Y;;;;CApBK,uC;EAAAA,2E;;;QAAA,O;EAAAC,oC;EAAAA,iC;EAAAA,gC;;;;;;;;;;;;;;;;;;AAUT;kBAAoB,0EAApB;",
+"sources":["AccordionItemBody.java"],
+"names":["org.patternfly.component.accordion.AccordionItemBody.<synthetic: ctor_js>","org.patternfly.component.accordion.AccordionItemBody.accordionItemBody","org.patternfly.component.accordion.AccordionItemBody.<synthetic: ctor_create>","org.patternfly.component.accordion.AccordionItemBody.<init>","org.patternfly.component.accordion.AccordionItemBody.that","org.patternfly.component.accordion.AccordionItemBody.<clinit>"]
+}

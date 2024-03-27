@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStream.impl.java.js",
+"lineCount":160,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA0CiB,Y;;QAmBA,gD;EAAUA,uB;EACvBA,sB;;;QAmBkB,qG,qBAAoBC,C,sBAAgBC,C;EAAGC,uB;EAQzDA,IAAoCC,oBAApCD,+M;EAEAA,IAAqBE,WAArBF,2G;EAkCAA,IAAaG,MAAbH,oH;EAEAA;GAAsBI,kBAAtBJ;;GAAwCI,kBAAxCJ;sB;;;QAGkB,sC;EAAQK,uB;EAC1BA,gE;;;QAGkB,4E,uBAAwBC,C;EAAGC,uB;EAC7CA,IAAqBL,WAArBK,gM;EAUAA,gI;;;QAGkB,wF,eAAeC,I,6BAA0BC,C;EAAGC,uB;EAC9DA,IAAqBR,WAArBQ,mN;EAaAA,gI;;;QAGkB,mD,sBAAaC,M;EAAQC,uB;EACvCA,8E;;;QAGkB,2C,eAAUC,C;EAAGD,uB;EAE/BA,oI;;;CAGM,uD,wBAAyBE,S;;CAEzB,uD,wBAAyBA,S;;CAElB,mC;;CAEA,gC;;CAET,6H,oBAAoBC,Q,8BAA+BC,W,0BAA8BC,Q;;CAElF,a;;CAEQ,yC;;CAEA,2E,wBAAuBH,S;;CAErB,mC;;CAEA,qC;;CAEF,2E,0BAA+CI,M;;CAEvD,kD,uBAAuBC,M;;CAEvB,yD,uBAA8BA,M;;CAGR,gD;;CAEd,4C,eAAWC,O;;CAEX,4E,4BAAwBF,M;;CAE3B,8E,4BAA6BA,M;;CAE5B,iF,6BAA+BA,M;;CAE5B,sE,0BAAqCA,M;;CAEpC,+B;;CAEA,+B;;CAEP,wD,wBAA0BJ,S;;CAGrB,yC;;CAEA,wE,uBAAoBK,M;;CAElB,2E,6BAA4BE,E;;CAEpC,iE,eAAcC,Q,8BAA+BD,E;;CAGvC,2C;;CAEA,2C,eAAUE,C;;CAEV,uC;;CAGQ,6C;;CAEd,a;;CAEiB,sD;;CAEf,yB;;QAxMM,O;EAAAC,+B;EAAAA;",
+"sources":["DoubleStream.java"],
+"names":["java.util.stream.DoubleStream.builder","a","b","java.util.stream.DoubleStream.concat","spliteratorOfStreams","spliterator","result","java.util.stream.DoubleStream.<lambda in concat>","java.util.stream.DoubleStream.empty","s","java.util.stream.DoubleStream.generate","seed","f","java.util.stream.DoubleStream.iterate","values","java.util.stream.DoubleStream.of","t","predicate","supplier","accumulator","combiner","mapper","action","maxSize","op","identity","n","java.util.stream.DoubleStream.<clinit>"]
+}

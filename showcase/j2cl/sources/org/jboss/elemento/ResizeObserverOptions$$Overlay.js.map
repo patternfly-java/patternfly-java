@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResizeObserverOptions$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAqBM,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ResizeObserverOptions.java"],
+"names":["org.jboss.elemento.ResizeObserverOptions$$Overlay.<clinit>"]
+}

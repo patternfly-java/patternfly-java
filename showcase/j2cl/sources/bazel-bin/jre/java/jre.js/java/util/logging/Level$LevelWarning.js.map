@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelWarning.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;MA8EuB,Y;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,uB;EAAAA,mC;EAAAA,8D;EAAAA,iB;;;CAAA,iD;EAAAC,4C;;;CACK,2B;EAAYC,iB;;;CACf,e;EAAaC,W;;;QAFf,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelWarning.<synthetic: ctor_js>","java.util.logging.Level$LevelWarning.<synthetic: ctor_create>","java.util.logging.Level$LevelWarning.<init>","java.util.logging.Level$LevelWarning.getName","java.util.logging.Level$LevelWarning.intValue","java.util.logging.Level$LevelWarning.<clinit>"]
+}

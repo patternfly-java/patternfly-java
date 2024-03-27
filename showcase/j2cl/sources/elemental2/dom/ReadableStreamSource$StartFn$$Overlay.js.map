@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ReadableStreamSource$StartFn$$Overlay.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;MAoEmB,Q;;QAsBW,2I,+EAAsCA,E;EAAtCC,mB;EACxBA,6F;;;QAIwB,8I,yFAAgDD,E;EAAhDC,mB;EACxBA,6F;;;QA5Ba,O;EAAAC,2B;EAAAA;",
+"sources":["ReadableStreamSource.java"],
+"names":["p0","elemental2.dom.ReadableStreamSource$StartFn$$Overlay.onInvoke__$devirt","elemental2.dom.ReadableStreamSource$StartFn$$Overlay.<clinit>"]
+}

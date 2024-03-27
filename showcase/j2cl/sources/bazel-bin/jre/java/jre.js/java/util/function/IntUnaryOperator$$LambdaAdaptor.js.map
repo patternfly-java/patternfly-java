@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntUnaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;gE;EAAAA,0H;;;CAAA,gH;EAAAC,qC;EAAAA,mE;;;CAAA,sB;EAAAC,8C;EAAAA,oG;;;;CAAA,mF;EAAAC,uK;;;;CAAA,mF;EAAAC,uK;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["IntUnaryOperator.java"],
+"names":["java.util.function.IntUnaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.IntUnaryOperator$$LambdaAdaptor.<init>","java.util.function.IntUnaryOperator$$LambdaAdaptor.applyAsInt","java.util.function.IntUnaryOperator$$LambdaAdaptor.andThen","java.util.function.IntUnaryOperator$$LambdaAdaptor.compose","java.util.function.IntUnaryOperator$$LambdaAdaptor.<clinit>"]
+}

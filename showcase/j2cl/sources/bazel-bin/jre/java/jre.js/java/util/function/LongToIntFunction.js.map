@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongToIntFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAsBiB,iB;;CAEX,uB,eAAgBA,K;;QAFL,M;EAAAC,4B;EAAAA,8B;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["LongToIntFunction.java"],
+"names":["value","java.util.function.LongToIntFunction.<synthetic: adapt_lambda>","java.util.function.LongToIntFunction.<clinit>"]
+}

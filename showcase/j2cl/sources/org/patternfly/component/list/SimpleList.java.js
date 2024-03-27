@@ -1,0 +1,34 @@
+goog.module('org.patternfly.component.list.SimpleList');
+
+goog.require('elemental2.dom.Element.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('elemental2.dom.HTMLLIElement.$Overlay');
+goog.require('elemental2.dom.HTMLUListElement.$Overlay');
+goog.require('java.lang.Iterable');
+goog.require('java.lang.String');
+goog.require('java.util.ArrayList');
+goog.require('java.util.HashMap');
+goog.require('java.util.List');
+goog.require('java.util.Map');
+goog.require('java.util.function.Function');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.By');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.patternfly.component.BaseComponent');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.list.SimpleListGroup');
+goog.require('org.patternfly.component.list.SimpleListItem');
+goog.require('org.patternfly.component.list.SimpleListType');
+goog.require('org.patternfly.core.Aria');
+goog.require('org.patternfly.core.Attributes');
+goog.require('org.patternfly.core.Logger');
+goog.require('org.patternfly.handler.SelectHandler');
+goog.require('org.patternfly.style.Classes');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const SimpleList = goog.require('org.patternfly.component.list.SimpleList$impl');
+exports = SimpleList;

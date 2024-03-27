@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAEb,iC,eAAaA,K;;QAFA,M;EAAAC,yB;EAAAA,gE;;;QAAA,O;EAAAC,iC;EAAAA;",
+"sources":["DoubleFunction.java"],
+"names":["value","java.util.function.DoubleFunction.<synthetic: adapt_lambda>","java.util.function.DoubleFunction.<clinit>"]
+}

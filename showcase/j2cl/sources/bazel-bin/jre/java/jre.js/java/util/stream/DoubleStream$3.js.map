@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStream$3.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;;MAyIyE,E;;CAAA,W;EAAAA,Q;EAAAA;oD;;;QAAA,qD;EAAAC,a;EAAAA,yB;EAAAA,4H;EAAAA,iB;;;CAAA,0F;EAH3BC,gE;EAG2BC,wF;;;CAEhD,wD,uBAA0BC,M;EACvCC,yG;EACAA,Y;;;;CAJ6D,uC;EAAAA,qI;;;QAAA,O;EAAAC,qB;EAAAA,kB;EAAAA;",
+"sources":["DoubleStream.java"],
+"names":["java.util.stream.DoubleStream$3.<synthetic: ctor_js>","java.util.stream.DoubleStream$3.<synthetic: ctor_create>","s","java.util.stream.DoubleStream$3.<init>","action","java.util.stream.DoubleStream$3.tryAdvance","java.util.stream.DoubleStream$3.<clinit>"]
+}

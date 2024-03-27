@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ClientBundle$MavenArtifactSource.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;;;MA8Ca,mB;;CACT,gC;;CAEA,kC;;CAEA,iC;;CAEA,yB;;CAEA,4B;;CAEA,2B;;CAEA,wB;;CAEA,0B;;CAEA,gB;;QAjBS,O;EAAAA,sC;EAAAA;",
+"sources":["ClientBundle.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ClientBundle$MavenArtifactSource.<clinit>"]
+}

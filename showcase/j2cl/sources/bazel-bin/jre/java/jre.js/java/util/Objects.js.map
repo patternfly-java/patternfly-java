@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Objects.impl.java.js",
+"lineCount":163,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAyBmB,O;;CAAA,W;EAAAA,Q;;;QACT,S;EAAAC,8B;EAAAA,2C;EAAAA,iB;;;CAAA,8B;EAAUC,qC;;;QAGI,wE,UAAUC,C,WAAKC,C,uBAAyBC,C;EAAGC,kB;EAC/DA,8F;;;QAGoB,yD,UAAkBH,C,WAAUC,C;EAAGG,kB;EACnDA;GACEA,YADFA;G;EAGAA;GACEA,aADFA;G;EAKAA,IAASC,MAATD,6D;EACAA,IAASE,MAATF,6D;EACAA;GACEA,4EADFA;G;EAMAA,IAAQG,cAARH,+C;EACAA,IAAQI,cAARJ,+C;EACAA;GACEA,kPADFA;G;EAKAA;GACEA,aADFA;G;EAIAA;GACEA,kMADFA;G;EAGAA;GACEA,oLADFA;G;EAGAA;GACEA,oLADFA;G;EAGAA;GACEA,wLADFA;G;EAGAA;GACEA,gLADFA;G;EAGAA;GACEA,oLADFA;G;EAGAA;GACEA,wLADFA;G;EAIAA,4L;;;QAGoB,qD,UAAcJ,C,WAAUC,C;EAAGQ,kB;EAC/CA,kI;;;QAGoB,qD,gBAAcT,C,iBAAUC,C;EAAGQ,kB;EAC/CA,yF;;;QAGgB,iC,UAAgBC,C;EAAGC,kB;EACnCA,qF;;;QAGgB,qC,iBAAeC,M;EAAQC,kB;EACvCA,gE;;;QAGoB,mC,UAAcC,G;EAAKC,kB;EACvCA,kC;;;QAGoB,oC,UAAeD,G;EAAKE,kB;EACxCA,mC;;;QAGkB,oD,UAAiBF,G;EAAKG,kB;EACxCA;GACEA,yDADFA;G;EAGAA,W;;;QAGkB,sE,UAAiBH,G,iBAAYI,O;EAASD,kB;EACxDA;GACEA,gFADFA;G;EAGAA,W;;;QAGkB,iF,UAAiBH,G,2BAAsBK,e;EAAiBF,kB;EAC1EA;GACEA,iKADFA;G;EAGAA,W;;;QAGmB,8C,UAAgBP,C;EAAGU,kB;EACtCA,mE;;;QAGmB,gE,UAAgBV,C,iBAAUW,W;EAAaD,kB;EAC1DA,4G;;;QA/Ge,O;EAAAE,0B;EAAAA,uB;EAAAA;",
+"sources":["Objects.java"],
+"names":["java.util.Objects.<synthetic: ctor_js>","java.util.Objects.<synthetic: ctor_create>","java.util.Objects.<init>","a","b","c","java.util.Objects.compare","java.util.Objects.deepEquals","class1","class2","isObjectArray1","isObjectArray2","java.util.Objects.equals","o","java.util.Objects.hashCode","values","java.util.Objects.hash","obj","java.util.Objects.isNull","java.util.Objects.nonNull","java.util.Objects.requireNonNull","message","messageSupplier","java.util.Objects.toString","nullDefault","java.util.Objects.<clinit>"]
+}

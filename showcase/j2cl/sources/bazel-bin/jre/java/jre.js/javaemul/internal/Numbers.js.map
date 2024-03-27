@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Numbers.impl.java.js",
+"lineCount":84,
+"mappings":"A;;;;;;;;;MAmBM,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAAC,qC;;;QAKQ,mC,wBAAiBC,G;EAAKC,mB;EAChCA;GACEA,IAAOC,CAAPD,8BADFA;GAEEA,qDAFFA;G;EAIAA,+B;;;QAGY,uC,wBAAmBD,G;EAAKG,mB;EACpCA;GACEA,IAAOD,CAAPC,8BADFA;GAEEA,yDAFFA;G;EAIAA,mC;;;QAGW,qC,wBAAkBH,G;EAAKI,mB;EAClCA;GACEA,IAAOF,CAAPE,8BADFA;GAEEA,uDAFFA;G;EAIAA,iC;;;QAGS,iC,wBAAgBJ,G;EAAKK,mB;EAC9BA;GACEA,IAAOH,CAAPG,8BADFA;GAEEA,mDAFFA;G;EAIAA,6B;;;QAGU,mC,wBAAiBL,G;EAAKM,mB;EAChCA;GACEA,IAAOJ,CAAPI,8BADFA;GAEEA,qDAFFA;G;EAIAA,+B;;;QAGW,qC,wBAAkBN,G;EAAKO,mB;EAClCA;GACEA,IAAOL,CAAPK,8BADFA;GAEEA,uDAFFA;G;EAIAA,iC;;;QAlDE,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Numbers.java"],
+"names":["javaemul.internal.Numbers.<synthetic: ctor_js>","javaemul.internal.Numbers.<synthetic: ctor_create>","javaemul.internal.Numbers.<init>","obj","javaemul.internal.Numbers.byteValue","d","javaemul.internal.Numbers.doubleValue","javaemul.internal.Numbers.floatValue","javaemul.internal.Numbers.intValue","javaemul.internal.Numbers.longValue","javaemul.internal.Numbers.shortValue","javaemul.internal.Numbers.<clinit>"]
+}

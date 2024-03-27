@@ -1,0 +1,32 @@
+goog.module('org.patternfly.dataprovider.DataProvider');
+
+goog.require('java.lang.IllegalStateException');
+goog.require('java.lang.Iterable');
+goog.require('java.lang.Object');
+goog.require('java.lang.String');
+goog.require('java.util.ArrayList');
+goog.require('java.util.Collections');
+goog.require('java.util.HashMap');
+goog.require('java.util.LinkedHashMap');
+goog.require('java.util.List');
+goog.require('java.util.Map');
+goog.require('java.util.function.BiConsumer');
+goog.require('java.util.function.BinaryOperator');
+goog.require('java.util.function.Function');
+goog.require('java.util.function.Predicate');
+goog.require('java.util.function.Supplier');
+goog.require('java.util.stream.Collector');
+goog.require('java.util.stream.Collectors');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.patternfly.dataprovider.DataProvider.Partition');
+goog.require('org.patternfly.dataprovider.Display');
+goog.require('org.patternfly.dataprovider.PageInfo');
+goog.require('org.patternfly.dataprovider.SelectionInfo');
+goog.require('org.patternfly.dataprovider.SortInfo');
+goog.require('org.patternfly.handler.SelectHandler');
+goog.require('vmbootstrap.Casts');
+goog.require('vmbootstrap.Exceptions');
+
+const DataProvider = goog.require('org.patternfly.dataprovider.DataProvider$impl');
+exports = DataProvider;

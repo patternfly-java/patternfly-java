@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SVGCircleElement$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA2Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["SVGCircleElement.java"],
+"names":["org.jboss.elemento.svg.SVGCircleElement$$Overlay.<clinit>"]
+}

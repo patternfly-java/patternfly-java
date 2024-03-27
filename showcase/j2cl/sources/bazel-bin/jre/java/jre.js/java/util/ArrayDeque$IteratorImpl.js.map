@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ArrayDeque$IteratorImpl.impl.java.js",
+"lineCount":81,
+"mappings":"A;;;;;;;;;;;;;;;;MAmCsB,Y;;CAAA,W;EAAAA,Q;EAAAA;sD;EAAAA;OAIN,kDAJMA,K;EAAAA;OAUN,2CAVMA,K;EAAAA;OAgBN,+CAhBMA,K;;;QAAA,6B;EAAAC,uB;EAAAA,mC;EAAAA,4F;EAAAA,iB;;;CAAA,oE;EAAAC,kE;EAAAA,qC;EAAAA,wD;;;CAmBH,kB;EACbC,mH;;;CAIO,wB;EACPC,uF;EAEAA,IAAEC,CAAFD,+I;EAGAA,4N;EACAA,+G;EACAA,kO;EACAA,S;;;CAIU,c;EACVE,6G;EAEAA;GAEEA,kOAFFA;GAGEA,qIAHFA;G;EAKAA,+D;;;;CA7CgB,qD;EAAAC,yG;;;CAAA,gD;EAClBL,4I;EAKAA,qI;EAMAA,+D;;;QAZkB,O;EAAAM,+B;EAAAA,4B;EAAAA,qB;EAAAA;",
+"sources":["ArrayDeque.java"],
+"names":["java.util.ArrayDeque$IteratorImpl.<synthetic: ctor_js>","java.util.ArrayDeque$IteratorImpl.<synthetic: ctor_create>","java.util.ArrayDeque$IteratorImpl.<init>","java.util.ArrayDeque$IteratorImpl.hasNext","java.util.ArrayDeque$IteratorImpl.next","e","java.util.ArrayDeque$IteratorImpl.remove","java.util.ArrayDeque$IteratorImpl.forEachRemaining","java.util.ArrayDeque$IteratorImpl.<clinit>"]
+}

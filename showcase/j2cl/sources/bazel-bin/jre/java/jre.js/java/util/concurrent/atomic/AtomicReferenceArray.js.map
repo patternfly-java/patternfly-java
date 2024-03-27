@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AtomicReferenceArray.impl.java.js",
+"lineCount":91,
+"mappings":"A;;;;;;;;;;;;;;;MA8Ba,oB;;CAAA,W;EAAAA,Q;EAAAA;OAEW,2DAFXA,C;;;;QAIJ,iC,iBAAyBC,K;EAAzBC,+B;EAAAA,2C;EAAAA,yG;EAAAA,iB;;;;CAAA,uF,iBAAyBD,K;EAAOE,qC;EACrCA,iO;;;;QAGK,Y,eAAyBC,M;EAAzBF,+B;EAAAA,2C;EAAAA,qF;EAAAA,iB;;;;CAAA,kE,eAAyBE,M;EAAQD,qC;EACtCA,2O;;;CAGa,iE,eAAkBE,C,WAAKC,M,WAAUC,M;EAC9CC;GACEA,uFADFA;GAEEA,YAFFA;G;EAIAA,a;;;CAGO,4B,eAAQH,C;EACfI,sF;;;CAGO,oD,eAAcJ,C,WAAKK,C;EAC1BC,yF;;;CAGU,sC,eAAYN,C,WAAKK,C;EAC3BE,kF;;;CAGS,a;EACTC,+E;;;CAGU,kC,eAAQR,C,WAAKK,C;EACvBI,kF;;;CAGa,qE,eAAsBT,C,WAAKC,M,WAAUC,M;EAClDQ,iG;;;CAIY,Q;EACZC,iI;;;QA9CS,O;EAAAC,uC;EAAAA,oC;EAAAA;",
+"sources":["AtomicReferenceArray.java"],
+"names":["java.util.concurrent.atomic.AtomicReferenceArray.<synthetic: ctor_js>","array","java.util.concurrent.atomic.AtomicReferenceArray.<synthetic: ctor_create>","java.util.concurrent.atomic.AtomicReferenceArray.<init>","length","i","expect","update","java.util.concurrent.atomic.AtomicReferenceArray.compareAndSet","java.util.concurrent.atomic.AtomicReferenceArray.get","x","java.util.concurrent.atomic.AtomicReferenceArray.getAndSet","java.util.concurrent.atomic.AtomicReferenceArray.lazySet","java.util.concurrent.atomic.AtomicReferenceArray.length","java.util.concurrent.atomic.AtomicReferenceArray.set","java.util.concurrent.atomic.AtomicReferenceArray.weakCompareAndSet","java.util.concurrent.atomic.AtomicReferenceArray.toString","java.util.concurrent.atomic.AtomicReferenceArray.<clinit>"]
+}

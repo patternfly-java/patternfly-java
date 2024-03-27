@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MutationObserverInit$$Overlay.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;MA0BiB,Q;;QAEa,6C;EAASA,mB;EACnCA,gM;;;QA4BW,kG,8DAA4BC,e;EAA5BC,mB;EACXA,iI;;;QAhCa,O;EAAAC,2B;EAAAA;",
+"sources":["MutationObserverInit.java"],
+"names":["elemental2.dom.MutationObserverInit$$Overlay.create","attributeFilter","elemental2.dom.MutationObserverInit$$Overlay.setAttributeFilter__$devirt","elemental2.dom.MutationObserverInit$$Overlay.<clinit>"]
+}

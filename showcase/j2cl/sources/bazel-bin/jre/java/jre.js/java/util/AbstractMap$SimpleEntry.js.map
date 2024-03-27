@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractMap$SimpleEntry.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;MAkCsB,W;;CAAA,W;EAAAA,Q;;;;QACX,2C,UAAcC,G,WAAOC,K;EAArBC,sB;EAAAA,kC;EAAAA,yG;EAAAA,iB;;;;CAAA,kF,UAAcF,G,WAAOC,K;EAC1BE,sG;;;;QAGK,4B,oBAA4CC,K;EAA5CF,sB;EAAAA,kC;EAAAA,qF;EAAAA,iB;;;;CAAA,mE,oBAA4CE,K;EACjDD,oK;;;QANgB,O;EAAAE,8B;EAAAA,2B;EAAAA;",
+"sources":["AbstractMap.java"],
+"names":["java.util.AbstractMap$SimpleEntry.<synthetic: ctor_js>","key","value","java.util.AbstractMap$SimpleEntry.<synthetic: ctor_create>","java.util.AbstractMap$SimpleEntry.<init>","entry","java.util.AbstractMap$SimpleEntry.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntSupplier$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;2D;EAAAA,gH;;;CAAA,sG;EAAAC,qC;EAAAA,8D;;;CAAA,e;EAAAC,wC;EAAAA,2F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["IntSupplier.java"],
+"names":["java.util.function.IntSupplier$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.IntSupplier$$LambdaAdaptor.<init>","java.util.function.IntSupplier$$LambdaAdaptor.getAsInt","java.util.function.IntSupplier$$LambdaAdaptor.<clinit>"]
+}

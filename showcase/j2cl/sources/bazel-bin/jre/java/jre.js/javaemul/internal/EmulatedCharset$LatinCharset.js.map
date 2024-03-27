@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EmulatedCharset$LatinCharset.impl.java.js",
+"lineCount":62,
+"mappings":"A;;;;;;;;;;;;MA8BuB,Y;;CAAA,W;EAAAA,Q;;;QACZ,yB,gBAAoBC,I;EAApBC,uB;EAAAA,mC;EAAAA,8F;EAAAA,iB;;;CAAA,6E,gBAAoBD,I;EACzBE,4E;;;CAIY,yD,sBAAgBC,M,gBAAYC,M,gBAAYC,K,iBAAeC,c;EACnEC,IAAIC,CAAJD,sB;EACAA,IAAOE,KAAPF,8D;EAEAA,mE;EACAA,SAASG,CAATH;GACEA,qEADFA;G;EAGAA,a;;;CAIY,mD,gBAAgBI,G,iBAAaL,c;EACzCC,IAAIC,CAAJD,mD;EACAA,IAAOE,KAAPF,8D;EAEAA,+D;EACAA,SAASG,CAATH;GACEA,oHADFA;G;EAGAA,a;;;CAIY,6D,sBAAoBE,K,gBAAWG,G,gBAASC,G,iBAAaP,c;EACjEQ,IAAOC,KAAPD,8D;EAEAA,iE;EACAA,SAASJ,CAATI;GACEA,8EADFA;G;EAGAA,a;;;QArCiB,O;EAAAE,+B;EAAAA,4B;EAAAA;",
+"sources":["EmulatedCharset.java"],
+"names":["javaemul.internal.EmulatedCharset$LatinCharset.<synthetic: ctor_js>","name","javaemul.internal.EmulatedCharset$LatinCharset.<synthetic: ctor_create>","javaemul.internal.EmulatedCharset$LatinCharset.<init>","buffer","offset","count","throwOnInvalid","javaemul.internal.EmulatedCharset$LatinCharset.getBytes","n","bytes","i","str","ofs","len","javaemul.internal.EmulatedCharset$LatinCharset.decodeString","chars","javaemul.internal.EmulatedCharset$LatinCharset.<clinit>"]
+}

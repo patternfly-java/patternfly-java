@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HashSet.impl.java.js",
+"lineCount":139,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MA0Ba,O;;CAAA,W;EAAAA,Q;EAAAA;OAGgB,yBAHhBA,C;EAAAA;OAUD,mCAVCA,C;;;;QAYJ,S;EAAAC,kB;EAAAA,8B;EAAAA,2C;EAAAA,iB;;;;CAAA,8B;EAAUC,0C;EACfA,mF;;;;QAGK,6B,sBAAgCC,C;EAAhCF,kB;EAAAA,8B;EAAAA,kE;EAAAA,iB;;;;CAAA,oD,sBAAgCE,C;EAAGD,0C;EACxCA,8F;EACAA,e;;;;QAGK,Y,eAAYE,e;EAAZH,kB;EAAAA,8B;EAAAA,+D;EAAAA,iB;;;;CAAA,mC,eAAYG,e;EAAiBF,0C;EAClCA,qG;;;;QAGK,mB,eAAYE,e,gBAAuBC,U;EAAnCJ,kB;EAAAA,8B;EAAAA,kF;EAAAA,iB;;;;CAAA,0C,eAAYG,e,gBAAuBC,U;EAAYH,0C;EACpDA,wH;;;;QASQ,0B,sBAA2BI,G;EAA3BL,kB;EAAAA,8B;EAAAA,iE;EAAAA,iB;;;;CAAA,iD,sBAA2BK,G;EAAKJ,0C;EACxCA,qC;;;CAIa,G,UAAMK,C;EACnBC,IAAOC,GAAPD,+C;EACAA,kC;;;CAIU,K;EACVE,uC;;;CAGY,yB;EACZC,8E;;;CAIa,Q,UAAgBJ,C;EAC7BK,qD;;;CAIa,O;EACbC,gD;;;CAIiB,8B;EACjBC,gF;;;CAIa,M,UAAcP,C;EAC3BQ,wE;;;CAIS,I;EACTC,6C;;;QA5ES,O;EAAAC,0B;EAAAA,uB;EAAAA,sB;EAAAA;",
+"sources":["HashSet.java"],
+"names":["java.util.HashSet.<synthetic: ctor_js>","java.util.HashSet.<synthetic: ctor_create>","java.util.HashSet.<init>","c","initialCapacity","loadFactor","map","o","java.util.HashSet.add","old","java.util.HashSet.clear","java.util.HashSet.clone","java.util.HashSet.contains","java.util.HashSet.isEmpty","java.util.HashSet.iterator","java.util.HashSet.remove","java.util.HashSet.size","java.util.HashSet.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CardSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,gB;;CAAA,W;EAAAA,Q;;;CAEX,yG,gBAAwBC,I,WAAQC,O;EAC5BC,2N;;;QAHO,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["CardSubComponent.java"],
+"names":["org.patternfly.component.card.CardSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.card.CardSubComponent.<init>","org.patternfly.component.card.CardSubComponent.<clinit>"]
+}

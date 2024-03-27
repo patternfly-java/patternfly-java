@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PerformanceObserver__Constants$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAsBM,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["PerformanceObserver__Constants.java"],
+"names":["elemental2.dom.PerformanceObserver__Constants$$Overlay.<clinit>"]
+}

@@ -1,0 +1,35 @@
+goog.module('org.patternfly.component.list.DescriptionList');
+
+goog.require('elemental2.dom.HTMLDListElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('java.lang.Integer');
+goog.require('java.lang.String');
+goog.require('java.lang.StringBuilder');
+goog.require('java.util.function.Function');
+goog.require('java.util.function.Predicate');
+goog.require('java.util.stream.Collector');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.patternfly.component.BaseComponent');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.list.DescriptionListGroup');
+goog.require('org.patternfly.core.Tuple');
+goog.require('org.patternfly.core.Validation');
+goog.require('org.patternfly.style.Breakpoint');
+goog.require('org.patternfly.style.BreakpointCollector');
+goog.require('org.patternfly.style.Breakpoints');
+goog.require('org.patternfly.style.Classes');
+goog.require('org.patternfly.style.Modifiers');
+goog.require('org.patternfly.style.Modifiers.Compact');
+goog.require('org.patternfly.style.Modifiers.Horizontal');
+goog.require('org.patternfly.style.Orientation');
+goog.require('org.patternfly.style.Size');
+goog.require('org.patternfly.style.Variable');
+goog.require('org.patternfly.style.Variables');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const DescriptionList = goog.require('org.patternfly.component.list.DescriptionList$impl');
+exports = DescriptionList;

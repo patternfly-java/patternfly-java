@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterator.impl.java.js",
+"lineCount":90,
+"mappings":"A;;;;;;;;;;;;;;;MA4BiB,W;;CAkBX,sB;;CAEC,oB;;CAEQ,qD,oBAAqCA,Q;;CAIpB,qC;;CAIjB,2B;;CAIG,kC,eAAuBC,e;;CAI/B,kD,oBAA+BD,Q;;CAExB,iC;;QAlBF,sF,qDAAqCA,Q;EAArCE,sB;EACXA,gF;;;QAG4B,sE;EAAAC,sB;EAC5BA,0D;;;QAGW,4D;EAAAC,sB;EACXA,uK;;;QAGc,mE,gDAAuBH,e;EAAvBI,sB;EACdA,kE;;;QAnCa,O;EAAAC,8B;EAAAA,2B;;;;;;;;;;;;;;;;;;;AAEf;YAAI,iCAAJ,K;AAEA;YAAI,gCAAJ,M;AAEA;YAAI,gCAAJ,O;AAEA;YAAI,mCAAJ,Q;AAEA;YAAI,+BAAJ,K;AAEA;YAAI,8BAAJ,M;AAEA;YAAI,kCAAJ,Q;AAEA;YAAI,iCAAJ;",
+"sources":["Spliterator.java"],
+"names":["consumer","characteristics","java.util.Spliterator.forEachRemaining__$default","java.util.Spliterator.getComparator__$default","java.util.Spliterator.getExactSizeIfKnown__$default","java.util.Spliterator.hasCharacteristics__$default","java.util.Spliterator.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableMap$UnmodifiableEntrySet$1.impl.java.js",
+"lineCount":68,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA0kB+C,E;;CAAA,W;EAAAA,Q;EAAAA;iF;EAAAA;kF;;;QAAA,uF;EAAAC,a;EAAAA,yB;EAAAA,+L;EAAAA,iB;;;CAAA,yJ;EAAAC,6F;EADPC,+F;EACOD,qC;;;CAEtB,kB;EACbE,4G;;;CAIqB,2B;EACrBC,wP;;;CAIU,c;EACVC,kE;;;;CAbmC,qD;EAAAC,yG;;;;CAAA,wB;EAAAF,0C;;;QAAA,O;EAAAG,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.<synthetic: ctor_js>","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.<synthetic: ctor_create>","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.<init>","it","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.hasNext","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.next","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.remove","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.forEachRemaining","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1.<clinit>"]
+}

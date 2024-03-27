@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CollectionHelper.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;;;;;MAoBmB,gB;;CAAA,W;EAAAA,Q;;;QACM,yD,sBAAsBC,U;EAAYC,2B;EACvDA,sJ;;;QAGuB,mF,sBAAsBD,U,kBAAgBE,C;EAAGD,2B;EAChEA,IAAIE,IAAJF,qB;EACAA;GACEA,+FADFA;G;EAGAA,IAASG,MAATH,K;EACAA,IAAYI,EAAZJ,+C;EACAA,SAASK,CAATL;GACEA,uDADFA;G;EAGAA;GACEA,4BADFA;G;EAGAA,S;;;QAGM,S;EAAAM,uC;EAAAA,4D;EAAAA,iB;;;CAAA,+C;EAAmBC,qC;;;QArBV,O;EAAAC,mC;EAAAA,gC;EAAAA;",
+"sources":["CollectionHelper.java"],
+"names":["javaemul.internal.CollectionHelper.<synthetic: ctor_js>","collection","javaemul.internal.CollectionHelper.toArray","a","size","result","it","i","javaemul.internal.CollectionHelper.<synthetic: ctor_create>","javaemul.internal.CollectionHelper.<init>","javaemul.internal.CollectionHelper.<clinit>"]
+}

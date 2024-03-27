@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers$NoFill.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;;;MAgKc,M;;CAGI,yC;;CAKA,kD,gBAAeA,M;;QALf,0F;EAAAC,iB;EACNA,yE;;;QAIM,mG,+CAAeD,M;EAAfC,iB;EACNA,iT;;;QATE,O;EAAAC,yB;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["noFill","org.patternfly.style.Modifiers$NoFill.noFill__$default","org.patternfly.style.Modifiers$NoFill.<clinit>"]
+}

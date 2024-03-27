@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageMainBody.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;MA+Ba,Y;;CAAA,W;EAAAA,Q;;;QAOkB,0D;EAAeC,uB;EACtCA,gC;;;QAOJ,S;EAAAC,uB;EAAAA,mC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,i0B;;;CAMgB,kD;EAChBC,Y;;;;CAvBK,uC;EAAAA,iE;;;QAAA,O;EAAAC,+B;EAAAA,4B;EAAAA,2B;;;;;;;;;;;;;;;;;;AAaT;aAAoB,gEAApB;",
+"sources":["PageMainBody.java"],
+"names":["org.patternfly.component.page.PageMainBody.<synthetic: ctor_js>","org.patternfly.component.page.PageMainBody.pageMainBody","org.patternfly.component.page.PageMainBody.<synthetic: ctor_create>","org.patternfly.component.page.PageMainBody.<init>","org.patternfly.component.page.PageMainBody.that","org.patternfly.component.page.PageMainBody.<clinit>"]
+}

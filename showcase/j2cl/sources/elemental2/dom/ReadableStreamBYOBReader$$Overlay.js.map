@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ReadableStreamBYOBReader$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAwBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ReadableStreamBYOBReader.java"],
+"names":["elemental2.dom.ReadableStreamBYOBReader$$Overlay.<clinit>"]
+}

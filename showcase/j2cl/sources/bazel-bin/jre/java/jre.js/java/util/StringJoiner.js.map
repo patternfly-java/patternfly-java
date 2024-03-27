@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StringJoiner.impl.java.js",
+"lineCount":109,
+"mappings":"A;;;;;;;;;;;;;;MAqBmB,Y;;CAAA,W;EAAAA,Q;EAAAA;OAEI,oCAFJA,C;EAAAA;OAGI,iCAHJA,C;EAAAA;OAII,iCAJJA,C;EAAAA;OAMK,kCANLA,C;EAAAA;OAOF,qCAPEA,C;;;;QASV,+B,8BAA0BC,S;EAA1BC,uB;EAAAA,mC;EAAAA,iF;EAAAA,iB;;;;CAAA,2D,8BAA0BD,S;EAC/BE,oI;;;;QAGK,+E,8BAA0BF,S,+BAAwBG,M,+BAAqBC,M;EAAvEH,uB;EAAAA,mC;EAAAA,iJ;EAAAA,iB;;;;CAAA,2G,8BAA0BD,S,+BAAwBG,M,+BAAqBC,M;EAAQF,qC;EACpFA,2H;EACAA,qH;EACAA,qH;EACAA,iP;;;CAGkB,qD,8BAAiBG,U;EACnCC,mE;EACAA,8G;EACAA,Y;;;CAGS,a;EACTC;GACEA,8FADFA;G;EAGAA,wJ;;;CAGkB,uD,qBAAmBC,K;EACrCC;GAGEA,IAAIC,WAAJD,4DAHFA;GAIEA,mEAJFA;GAKEA,wPALFA;G;EAOAA,Y;;;CAGkB,+D,8BAA2BE,U;EAC7CC,6H;EACAA,Y;;;CAIY,Q;EACZC;GACEA,kDADFA;SAEOA;GACLA,0DADKA;;GAGLA,uNAHKA;G;;;CAOI,2D;EACXC;GACEA,0HADFA;;GAGEA,uIAHFA;G;;;QA7De,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["StringJoiner.java"],
+"names":["java.util.StringJoiner.<synthetic: ctor_js>","delimiter","java.util.StringJoiner.<synthetic: ctor_create>","java.util.StringJoiner.<init>","prefix","suffix","newElement","java.util.StringJoiner.add","java.util.StringJoiner.length","other","java.util.StringJoiner.merge","otherLength","emptyValue","java.util.StringJoiner.setEmptyValue","java.util.StringJoiner.toString","java.util.StringJoiner.initBuilderOrAddDelimiter","java.util.StringJoiner.<clinit>"]
+}

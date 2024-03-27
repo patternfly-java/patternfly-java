@@ -1,0 +1,33 @@
+goog.module('org.patternfly.component.expandable.ExpandableSection');
+
+goog.require('elemental2.dom.DomGlobal.$Overlay');
+goog.require('elemental2.dom.HTMLButtonElement.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.HTMLElement.$Overlay');
+goog.require('elemental2.dom.MutationRecord.$Overlay');
+goog.require('java.lang.String');
+goog.require('nativebootstrap.Equality');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Attachable');
+goog.require('org.jboss.elemento.By');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.HTMLElementBuilder');
+goog.require('org.jboss.elemento.Id');
+goog.require('org.patternfly.component.BaseComponent');
+goog.require('org.patternfly.component.ComponentType');
+goog.require('org.patternfly.component.Expandable');
+goog.require('org.patternfly.component.expandable.ExpandableSectionContent');
+goog.require('org.patternfly.component.expandable.ExpandableSectionToggle');
+goog.require('org.patternfly.core.Aria');
+goog.require('org.patternfly.core.Dataset');
+goog.require('org.patternfly.handler.ToggleHandler');
+goog.require('org.patternfly.style.Classes');
+goog.require('org.patternfly.style.Size');
+goog.require('org.patternfly.style.Variable');
+goog.require('org.patternfly.style.Variables');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const ExpandableSection = goog.require('org.patternfly.component.expandable.ExpandableSection$impl');
+exports = ExpandableSection;

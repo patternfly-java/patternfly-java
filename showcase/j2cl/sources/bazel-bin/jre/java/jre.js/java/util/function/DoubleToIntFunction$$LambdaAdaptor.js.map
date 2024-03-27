@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleToIntFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;mE;EAAAA,gI;;;CAAA,sH;EAAAC,qC;EAAAA,sE;;;CAAA,yB;EAAAC,8C;EAAAA,uG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["DoubleToIntFunction.java"],
+"names":["java.util.function.DoubleToIntFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoubleToIntFunction$$LambdaAdaptor.<init>","java.util.function.DoubleToIntFunction$$LambdaAdaptor.applyAsInt","java.util.function.DoubleToIntFunction$$LambdaAdaptor.<clinit>"]
+}

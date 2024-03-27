@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Platform.impl.java.js",
+"lineCount":122,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA2BmB,Q;;CAAA,W;EAAAA,Q;;;QA4BC,+B,eAAwBC,K;EAAOC,mB;EAC/CA,IAAYC,GAAZD,sB;EACAA,mG;EACAA,wF;;;QAGkB,4B,eAAmBD,K;EAAOG,mB;EAC5CA,IAAYD,GAAZC,sB;EACAA,kG;EACAA,qF;;;QAGiB,mC,eAA2BH,K;EAAOI,mB;EACnDA,IAAYF,GAAZE,sB;EACAA,mG;EACAA,IAAMC,OAAND,4E;EACAA,2D;;;QAGmB,gC,eAAsBJ,K;EAAOM,mB;EAChDA,IAAYJ,GAAZI,sB;EACAA,IAAMD,OAANC,4E;EACAA,6D;EACAA,wD;EACAA,qF;;;QAGgB,oC,eAAqBC,C,gBAAUC,C;EAAGC,mB;EAClDA;GACEA,eADFA;G;EAGAA;GACEA,SADFA;G;EAGAA;GACEA;IACEA,SADFA;IADFA;GAKEA,UALFA;GAMEA,UANFA;GAOEA,wCAPFA;G;EASAA;GACEA;IACEA,SADFA;;IAGEA,SAHFA;IADFA;;GAOEA,eAPFA;G;;;QAYoB,kE,gBAA2BF,C,iBAAUC,C;EAAGE,mB;EAE5DA,6B;;;QAGoB,sD,UAAeH,C,WAAUC,C;EAAGG,mB;EAChDA,uG;;;QAGoB,qD,cAAcJ,C,WAAUC,C;EAAGG,mB;EAE/CA,sO;;;QAIgB,uB,eAAgBJ,C;EAAGK,mB;EACnCA,wC;;;QAGgB,sB,eAAeL,C;EAAGK,mB;EAClCA,uC;;;QAGM,S;EAAAC,+B;EAAAA,oD;EAAAA,iB;;;CAAA,uC;EAAWC,qC;;;QA1GF,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Platform.java"],
+"names":["javaemul.internal.Platform.<synthetic: ctor_js>","value","javaemul.internal.Platform.floatToRawIntBits","buf","javaemul.internal.Platform.intBitsToFloat","javaemul.internal.Platform.doubleToRawLongBits","intBits","javaemul.internal.Platform.longBitsToDouble","x","y","javaemul.internal.Platform.compareDouble","javaemul.internal.Platform.objectsStringEquals","javaemul.internal.Platform.isEqual","javaemul.internal.Platform.hashCode","javaemul.internal.Platform.<synthetic: ctor_create>","javaemul.internal.Platform.<init>","javaemul.internal.Platform.<clinit>"]
+}

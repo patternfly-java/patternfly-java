@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$MapToLongSpliterator.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;;;;;;;MAoU6B,oB;;CAAA,W;EAAAA,Q;EAAAA;OACO,4DADPA,C;EAAAA;OAEQ,iEAFRA,C;;;QAIlB,2E,0BAAuCC,G,gBAAwBC,Q;EAA/DC,+B;EAAAA,2C;EAAAA,+J;EAAAA,iB;;;CAAA,qI,0BAAuCF,G,gBAAwBC,Q;EACpEE,iP;EAGAA,8E;EACAA,wE;EACAA,kF;;;CAIa,sD,qBAA8BC,M;EAC3CC,yJAAiCC,CAAjCD;GAAuCE,4HAAvCF;M;;;;CAfuB,uC;EAAAA,+H;;;QAAA,O;EAAAG,uC;EAAAA,oC;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$MapToLongSpliterator.<synthetic: ctor_js>","map","original","java.util.stream.LongStreamImpl$MapToLongSpliterator.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$MapToLongSpliterator.<init>","action","java.util.stream.LongStreamImpl$MapToLongSpliterator.tryAdvance","u","java.util.stream.LongStreamImpl$MapToLongSpliterator.<lambda in tryAdvance>","java.util.stream.LongStreamImpl$MapToLongSpliterator.<clinit>"]
+}

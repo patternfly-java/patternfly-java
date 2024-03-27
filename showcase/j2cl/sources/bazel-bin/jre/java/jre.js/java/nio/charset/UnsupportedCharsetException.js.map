@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UnsupportedCharsetException.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;;MAqBa,2B;;CAAA,W;EAAAA,Q;EAAAA;OACU,4DADVA,C;;;QAGJ,yB,gBAAmCC,W;EAAnCC,sC;EAAAA,kD;EAAAA,mG;EAAAA,yF;EAAAA,iB;;;CAAA,2E,gBAAmCD,W;EACxCE,8I;EACAA,gF;;;CAGY,kC;EACZC,yE;;;QATS,O;EAAAC,8C;EAAAA,2C;EAAAA;",
+"sources":["UnsupportedCharsetException.java"],
+"names":["java.nio.charset.UnsupportedCharsetException.<synthetic: ctor_js>","charsetName","java.nio.charset.UnsupportedCharsetException.<synthetic: ctor_create>","java.nio.charset.UnsupportedCharsetException.<init>","java.nio.charset.UnsupportedCharsetException.getCharsetName","java.nio.charset.UnsupportedCharsetException.<clinit>"]
+}

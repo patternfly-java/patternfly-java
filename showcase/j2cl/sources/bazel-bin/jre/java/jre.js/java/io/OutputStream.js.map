@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"OutputStream.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;;;;;MAsDsB,Y;;CAAA,W;EAAAA,Q;;;CAKX,iC;EAAeC,qC;;;CAWV,a;;CAYA,a;;CAOA,2B,sBAAaC,M;EAIrBC,iF;EACAA,qE;;;CAqBQ,qC,sBAAaD,M,gBAAYE,M,gBAAYC,K;EAC7CF,mF;EACAA,SAASG,CAATH;GACIA,mCADJA;G;;;CAciB,kB,eAAUI,O;;QA7Eb,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["OutputStream.java"],
+"names":["java.io.OutputStream.<synthetic: ctor_js>","java.io.OutputStream.<init>","buffer","java.io.OutputStream.write","offset","count","i","oneByte","java.io.OutputStream.<clinit>"]
+}

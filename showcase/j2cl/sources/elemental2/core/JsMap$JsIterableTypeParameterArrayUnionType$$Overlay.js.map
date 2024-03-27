@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsMap$JsIterableTypeParameterArrayUnionType$$Overlay.impl.java.js",
+"lineCount":25,
+"mappings":"A;;;;;MA+FmB,Q;;QAEoC,mF,UAAUA,C;EAAGC,mB;EAC9DA,yE;;;QAIU,+F;EAAAC,mB;EACVA,+D;;;QAIY,iG;EAAAC,mB;EACZA,+D;;;QAba,O;EAAAC,2B;EAAAA;",
+"sources":["JsMap.java"],
+"names":["o","elemental2.core.JsMap$JsIterableTypeParameterArrayUnionType$$Overlay.of","elemental2.core.JsMap$JsIterableTypeParameterArrayUnionType$$Overlay.asKEY__$devirt","elemental2.core.JsMap$JsIterableTypeParameterArrayUnionType$$Overlay.asVALUE__$devirt","elemental2.core.JsMap$JsIterableTypeParameterArrayUnionType$$Overlay.<clinit>"]
+}

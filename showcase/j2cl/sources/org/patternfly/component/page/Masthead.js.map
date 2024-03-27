@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Masthead.impl.java.js",
+"lineCount":118,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;MAiDa,Q;;CAAA,W;EAAAA,Q;EAAAA;OAaoB,2DAbpBA,C;EAAAA;OAckB,yDAdlBA,C;;;QAOc,kD;EAAWC,mB;EAC9BA,4B;;;QAQJ,S;EAAAC,mB;EAAAA,+B;EAAAA,gE;EAAAA,iB;;;CAAA,mD;EACIC,wrB;EACAA,wT;EACAA,qP;;;CAKY,iG,uBAAyBC,M;EACrCC,kF;EACAA,Y;;;CAGY,6F,qBAAqBC,I;EACjCC,qI;;;CAMY,mG,wBAA2BC,O;EACvCC,wI;;;CAQY,mF,6BAA6BC,gB;EACzCC;GACIA,wPADJA;G;EAGAA,oF;EACAA,qP;EACAA,Y;;;CAMY,iF,2BAAyBC,c;EACrCC;GACIA,sPADJA;G;EAGAA,gF;EACAA,mP;EACAA,gF;EACAA,Y;;;CAMY,qF,mBAAsBC,U;EAClCC;GACIA,6KADJA;G;EAGAA,Y;;;CAIY,8C;EACZC,Y;;;CAKC,4G,aAAkBC,e,cAAsBC,gB;EACzCC;GACIA,2YADJA;GAEIA,uYAFJA;G;EAIAA;GACIA,yYADJA;GAEIA,qYAFJA;G;;;;CAzFK,uC;EAAAH,6D;;;QAAA,O;EAAAI,2B;EAAAA,wB;EAAAA;",
+"sources":["Masthead.java"],
+"names":["org.patternfly.component.page.Masthead.<synthetic: ctor_js>","org.patternfly.component.page.Masthead.masthead","org.patternfly.component.page.Masthead.<synthetic: ctor_create>","org.patternfly.component.page.Masthead.<init>","toggle","org.patternfly.component.page.Masthead.addToggle","main","org.patternfly.component.page.Masthead.addMain","content","org.patternfly.component.page.Masthead.addContent","displayModifiers","org.patternfly.component.page.Masthead.display","insetModifiers","org.patternfly.component.page.Masthead.inset","brightness","org.patternfly.component.page.Masthead.background","org.patternfly.component.page.Masthead.that","currentPageRect","previousPageRect","org.patternfly.component.page.Masthead.onPageResize","org.patternfly.component.page.Masthead.<clinit>"]
+}

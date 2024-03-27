@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DrawerSection.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;;;;;MA2Ba,a;;CAAA,W;EAAAA,Q;;;QAImB,8D;EAAgBC,wB;EACxCA,iC;;;QAOJ,S;EAAAC,wB;EAAAA,oC;EAAAA,uE;EAAAA,iB;;;CAAA,0D;EACIC,gyB;;;CAKiB,mG,oBAAkBC,K;EACnCC,gQ;;;CAIiB,qD;EACjBC,Y;;;;CAxBK,uC;EAAAA,oE;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,6B;;;;;;;;;;;;;;;;;;AAUT;cAAoB,mEAApB;",
+"sources":["DrawerSection.java"],
+"names":["org.patternfly.component.drawer.DrawerSection.<synthetic: ctor_js>","org.patternfly.component.drawer.DrawerSection.drawerSection","org.patternfly.component.drawer.DrawerSection.<synthetic: ctor_create>","org.patternfly.component.drawer.DrawerSection.<init>","color","org.patternfly.component.drawer.DrawerSection.color","org.patternfly.component.drawer.DrawerSection.that","org.patternfly.component.drawer.DrawerSection.<clinit>"]
+}

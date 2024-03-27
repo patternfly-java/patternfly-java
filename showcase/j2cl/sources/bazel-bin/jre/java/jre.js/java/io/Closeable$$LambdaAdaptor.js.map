@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Closeable$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8C;EAAAA,sF;;;CAAA,4E;EAAAC,qC;EAAAA,iD;;;CAAA,a;;GAAAC,4D;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Closeable.java"],
+"names":["java.io.Closeable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.io.Closeable$$LambdaAdaptor.<init>","java.io.Closeable$$LambdaAdaptor.close","java.io.Closeable$$LambdaAdaptor.<clinit>"]
+}

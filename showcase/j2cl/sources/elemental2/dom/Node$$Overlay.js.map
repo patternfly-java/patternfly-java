@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Node$$Overlay.impl.java.js",
+"lineCount":145,
+"mappings":"A;;;;;MAuBa,Q;;QACX,kD;EAAAA,2F;;;QACA,sD;EAAAA,+F;;;QACA,gD;EAAAA,yF;;;QAEA,0D;EAAAA,mG;;;QAGA,iD;EAAAA,0F;;;QAEA,kE;EAAAA,2G;;;QAIA,8D;EAAAA,uG;;;QAGA,kE;EAAAA,2G;;;QAIA,+D;EAAAA,wG;;;QAGA,6E;EAAAA,sH;;;QAIA,+D;EAAAA,wG;;;QAGA,sD;EAAAA,+F;;;QACA,gD;EAAAA,yF;;;QACA,+C;EAAAA,wF;;;QACA,yD;EAAAA,kG;;;QACA,iD;EAAAA,0F;;;QAEA,+D;EAAAA,wG;;;QAGA,6C;EAAAA,sF;;;QAxCW,O;EAAAC,2B;EAAAA,wB;EACXA,oF;EACAA,4F;EACAA,gF;EAEAA,oG;EAGAA,kF;EAEAA,oH;EAIAA,4G;EAGAA,oH;EAIAA,8G;EAGAA,0I;EAIAA,8G;EAGAA,4F;EACAA,gF;EACAA,8E;EACAA,kG;EACAA,kF;EAEAA,8G;EAGAA,0E;;;;;;;;;;AAxCW;kE;AAAA;sE;AAAA;gE;AAAA;0E;AAAA;iE;AAAA;kF;AAAA;8E;AAAA;kF;AAAA;+E;AAAA;6F;AAAA;+E;AAAA;sE;AAAA;gE;AAAA;+D;AAAA;yE;AAAA;iE;AAAA;+E;AAAA;;",
+"sources":["Node.java"],
+"names":["elemental2.dom.Node$$Overlay.<synthetic: getter>","elemental2.dom.Node$$Overlay.<clinit>"]
+}

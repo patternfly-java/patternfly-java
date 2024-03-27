@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MAwUmB,Q;;QAEuC,qF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAI8B,2I;EAAAC,mB;EAC9BA,sG;;;QAIc,4F;EAAAC,mB;EACdA,2D;;;QAIc,4F;EAAAC,mB;EACdA,qC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["Window.java"],
+"names":["o","elemental2.dom.Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.of","elemental2.dom.Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.asAttributionSourceParams__$devirt","elemental2.dom.Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.Window$OpenReplaceOrAttributionParamsUnionType$$Overlay.<clinit>"]
+}

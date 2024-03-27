@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Supplier.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAwBiB,Q;;CAEb,uB;;QAFa,M;EAAAA,mB;EAAAA,gE;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["Supplier.java"],
+"names":["java.util.function.Supplier.<synthetic: adapt_lambda>","java.util.function.Supplier.<clinit>"]
+}

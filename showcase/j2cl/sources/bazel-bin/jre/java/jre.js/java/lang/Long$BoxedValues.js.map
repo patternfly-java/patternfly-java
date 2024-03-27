@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Long$BoxedValues.impl.java.js",
+"lineCount":67,
+"mappings":"A;;;;;;;;;;;MAwBe,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,oD;EAAAA,iB;;;CAAA,uC;EAAAC,qC;;;QAKS,2B,eAASC,C;EAAGC,sB;EAC9BA,IAAIC,MAAJD,4C;EACAA,IAAKE,MAALF,uE;EACAA;GACEA,kHADFA;G;EAGAA,c;;;QATF,6C;EAAAG,4F;;;QAAA,6C;EAAAC,6F;;;QAFW,O;EAAAC,8B;EAAAA,2B;EAAAA,qB;EAEXA,uH;;;;;;;;;;;;;;;AAFW;;",
+"sources":["Long.java"],
+"names":["java.lang.Long$BoxedValues.<synthetic: ctor_js>","java.lang.Long$BoxedValues.<synthetic: ctor_create>","java.lang.Long$BoxedValues.<init>","l","java.lang.Long$BoxedValues.get","rebase","result","java.lang.Long$BoxedValues.<synthetic: getter>","java.lang.Long$BoxedValues.<synthetic: setter>","java.lang.Long$BoxedValues.<clinit>"]
+}

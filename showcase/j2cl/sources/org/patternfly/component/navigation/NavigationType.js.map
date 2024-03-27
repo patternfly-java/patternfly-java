@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NavigationType.impl.java.js",
+"lineCount":12,
+"mappings":"A;;;;;;;MAiBiB,c;;QAAA,O;EAAAA,iC;EAAAA;",
+"sources":["NavigationType.java"],
+"names":["org.patternfly.component.navigation.NavigationType.<clinit>"]
+}

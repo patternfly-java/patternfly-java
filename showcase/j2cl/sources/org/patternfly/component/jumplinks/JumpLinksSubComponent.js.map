@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JumpLinksSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,qB;;CAAA,W;EAAAA,Q;;;CAEX,mH,gBAA6BC,I,WAAQC,O;EACjCC,gO;;;QAHO,O;EAAAC,wC;EAAAA,qC;EAAAA;",
+"sources":["JumpLinksSubComponent.java"],
+"names":["org.patternfly.component.jumplinks.JumpLinksSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.jumplinks.JumpLinksSubComponent.<init>","org.patternfly.component.jumplinks.JumpLinksSubComponent.<clinit>"]
+}

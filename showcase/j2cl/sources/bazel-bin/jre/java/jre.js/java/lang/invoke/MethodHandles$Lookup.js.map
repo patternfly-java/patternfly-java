@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MethodHandles$Lookup.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAiBe,M;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iB;EAAAA,6B;EAAAA,+D;EAAAA,iB;;;CAAA,kD;EAAAC,qC;;;QAAA,O;EAAAC,yB;EAAAA,sB;EAAAA;",
+"sources":["MethodHandles.java"],
+"names":["java.lang.invoke.MethodHandles$Lookup.<synthetic: ctor_js>","java.lang.invoke.MethodHandles$Lookup.<synthetic: ctor_create>","java.lang.invoke.MethodHandles$Lookup.<init>","java.lang.invoke.MethodHandles$Lookup.<clinit>"]
+}

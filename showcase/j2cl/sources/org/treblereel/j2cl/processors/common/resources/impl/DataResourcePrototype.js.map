@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataResourcePrototype.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;MAqBa,qB;;CAAA,W;EAAAA,Q;EAAAA;OACU,mFADVA,C;EAAAA;OAEU,kFAFVA,C;;;QAKJ,2C,gBAA6BC,I,iBAAaC,G;EAA1CC,gC;EAAAA,4C;EAAAA,iJ;EAAAA,iB;;;CAAA,2H,gBAA6BF,I,iBAAaC,G;EAAKE,qC;EACpDA,gG;EACAA,8F;;;CAGY,2B;EACZC,gG;;;CAGY,4B;EACZC,+F;;;QAfS,O;EAAAC,wC;EAAAA,qC;EAAAA;",
+"sources":["DataResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.<synthetic: ctor_js>","name","uri","org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.<synthetic: ctor_create>","org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.<init>","org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.getName","org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.asString","org.treblereel.j2cl.processors.common.resources.impl.DataResourcePrototype.<clinit>"]
+}

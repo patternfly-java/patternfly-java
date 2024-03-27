@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ConstrainDOMStringParameters$GetExactUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA4BmB,Q;;QAEuC,qF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAIsB,4G;EAAAC,mB;EACtBA,2H;;;QAIa,oG;EAAAC,mB;EACbA,mE;;;QAIc,4F;EAAAC,mB;EACdA,8C;;;QAIc,2F;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["ConstrainDOMStringParameters.java"],
+"names":["o","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.of","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.asJsArray__$devirt","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.asString__$devirt","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.isJsArray__$devirt","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.isString__$devirt","elemental2.dom.ConstrainDOMStringParameters$GetExactUnionType$$Overlay.<clinit>"]
+}

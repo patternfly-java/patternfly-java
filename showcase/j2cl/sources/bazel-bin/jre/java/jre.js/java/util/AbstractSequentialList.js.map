@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractSequentialList.impl.java.js",
+"lineCount":103,
+"mappings":"A;;;;;;;;;;;;;;;;;MA0BsB,sB;;CAAA,W;EAAAA,Q;;;CAGV,6C;EAAyBC,2C;;;CAIvB,U,eAAQC,K,WAASC,O;EAC3BC,IAAgBC,IAAhBD,2D;EACAA,4C;;;CAIa,a,eAAWF,K,uBAA+BI,C;EACvDC,4E;EAEAA,IAAQC,QAARD,S;EACAA,IAAgBF,IAAhBE,2D;EACAA;GAAAA,IAAOE,CAAPF,wCAAAA;;IACEA,sCADFA;IAEEA,gBAFFA;;G;EAIAA,gB;;;CAIO,U,eAAQL,K;EACfQ,IAAgBL,IAAhBK,2D;EACAA;GACEA,uCADFA;;GAEmCA,oCAFnCA;GAEmCA;IAAAA,IAAHD,CAAGC,gDAAAA;IACjCA,2GADiCA;;IAAAA,+BAAAA;IAFnCA;G;;;CAQiB,8B;EACjBC,qD;;;CAIO,a,eAAWT,K;EAClBU,IAAgBP,IAAhBO,2D;EACAA;GACEA,IAAEC,GAAFD,mCADFA;GAEEA,sBAFFA;GAGEA,WAHFA;;GAImCA,oCAJnCA;GAImCA;IAAAA,IAAHH,CAAGG,gDAAAA;IACjCA,8GADiCA;;IAAAA,+BAAAA;IAJnCA;G;;;CAUO,U,eAAQV,K,WAASC,O;EACxBW,IAAgBT,IAAhBS,2D;EACAA;GACEA,IAAED,GAAFC,mCADFA;GAEEA,4CAFFA;GAGEA,WAHFA;;GAImCA,oCAJnCA;GAImCA;IAAAA,IAAHL,CAAGK,gDAAAA;IACjCA,2GADiCA;;IAAAA,+BAAAA;IAJnCA;G;;;QAvDkB,O;EAAAC,yC;EAAAA,sC;EAAAA;",
+"sources":["AbstractSequentialList.java"],
+"names":["java.util.AbstractSequentialList.<synthetic: ctor_js>","java.util.AbstractSequentialList.<init>","index","element","java.util.AbstractSequentialList.add","iter","c","java.util.AbstractSequentialList.addAll","modified","e","java.util.AbstractSequentialList.get","java.util.AbstractSequentialList.iterator","java.util.AbstractSequentialList.remove","old","java.util.AbstractSequentialList.set","java.util.AbstractSequentialList.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InputType.impl.java.js",
+"lineCount":155,
+"mappings":"A;;;;;;;;;;;;;MAkBY,S;;CAAA,W;EAAAA,Q;;;QAAA,8B;EAAAC,gC;EAAAA,4F;EAAAA,iB;;;CAAA,gE;EAAAC,qC;EAAAA,2C;EAAAA,yE;;;QAAA,yD;EAAAC,oB;EAAAA;GAAAA,6LAAAA;G;EAAAA,iI;;;QAAA,8C;EAAAC,oB;EAAAA,krC;;;QAAA,O;EAAAC,4B;EAAAA,yB;EAAAA,e;;;;;;;;;;;;;;AAER;4D;AAEA;8D;AAEA;2D;AAEA;0D;AAEA;8D;AAEA;2D;AAEA;0D;AAEA;4D;AAEA;2D;AAEA;2D;AAEA;6D;AAEA;+D;AAEA;4D;AAEA;4D;AAEA;4D;AAEA;6D;AAEA;6D;AAEA;0D;AAEA;2D;AAEA;+D;AAEA;2D;AAEA;0D;AAEA;2D;AA5CA;UAAA,sCAAA,4J;AAEA;UAAA,wCAAA,gK;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,oCAAA,wJ;AAEA;UAAA,wCAAA,gK;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,oCAAA,wJ;AAEA;UAAA,sCAAA,4J;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,sCAAA,4J;AAEA;UAAA,wCAAA,gK;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,qCAAA,0J;AAEA;UAAA,sCAAA,4J;AAEA;UAAA,sCAAA,4J;AAEA;UAAA,mCAAA,sJ;AAEA;UAAA,oCAAA,wJ;AAEA;UAAA,wCAAA,gK;AAEA;UAAA,oCAAA,wJ;AAEA;UAAA,mCAAA,sJ;AAEA;UAAA,oCAAA,wJ;AA9CQ;;",
+"sources":["InputType.java"],
+"names":["org.jboss.elemento.InputType.<synthetic: ctor_js>","org.jboss.elemento.InputType.<synthetic: ctor_create>","org.jboss.elemento.InputType.<init>","org.jboss.elemento.InputType.valueOf","org.jboss.elemento.InputType.values","org.jboss.elemento.InputType.<clinit>"]
+}

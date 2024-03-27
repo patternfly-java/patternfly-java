@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$LongArraySpliterator.impl.java.js",
+"lineCount":81,
+"mappings":"A;;;;;;;;;;;;;;;;;MA4rB6B,oB;;CAAA,W;EAAAA,Q;EAAAA;OAIJ,qDAJIA,C;;;;QAMzB,0B,sBAA4BC,K,gBAAWC,e;EAAvCC,+B;EAAAA,2C;EAAAA,8G;EAAAA,iB;;;;CAAA,2E,sBAA4BF,K,gBAAWC,e;EACrCE,oI;;;;QAGF,oC,sBAA4BH,K,gBAAWI,I,gBAAUC,K,gBAAWJ,e;EAA5DC,+B;EAAAA,2C;EAAAA,qI;EAAAA,iB;;;;CAAA,qF,sBAA4BF,K,gBAAWI,I,gBAAUC,K,gBAAWJ,e;EAC1DE,2G;EACAA,mE;;;CAIa,qD,qBAAqBG,Q,gBAAcC,K;EAChDC,iG;;;;CAjBuB,qD;EAAAC,iH;;;;CAAA,kD;EAAAC,qH;;;;CAAA,6C;EAAAC,0F;;;;CAAA,sC;EAAAH,6H;;;QAAA,O;EAAAI,uC;EAAAA,oC;EAAAA,+B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$LongArraySpliterator.<synthetic: ctor_js>","array","characteristics","java.util.Spliterators$LongArraySpliterator.<synthetic: ctor_create>","java.util.Spliterators$LongArraySpliterator.<init>","from","limit","consumer","index","java.util.Spliterators$LongArraySpliterator.consume","java.util.Spliterators$LongArraySpliterator.forEachRemaining","java.util.Spliterators$LongArraySpliterator.tryAdvance","java.util.Spliterators$LongArraySpliterator.trySplit","java.util.Spliterators$LongArraySpliterator.<clinit>"]
+}

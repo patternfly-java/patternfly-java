@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToLongFunction.impl.java.js",
+"lineCount":23,
+"mappings":"A;;;;;;;;;;;MAwBiB,c;;CAEV,qC,UAAcA,K;;QAFJ,M;EAAAC,yB;EAAAA,gE;;;QAAA,O;EAAAC,iC;EAAAA;",
+"sources":["ToLongFunction.java"],
+"names":["value","java.util.function.ToLongFunction.<synthetic: adapt_lambda>","java.util.function.ToLongFunction.<clinit>"]
+}

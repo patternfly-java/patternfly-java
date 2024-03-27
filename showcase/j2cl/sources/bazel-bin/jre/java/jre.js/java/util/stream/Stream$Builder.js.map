@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Stream$Builder.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;;MAoDY,O;;CAEH,gC,UAASA,C;;CAEY,wD,UAAMA,C;;CAKtB,gC;;QALgB,mG,uCAAMA,C;EAANC,kB;EACxBA,6C;EACAA,gB;;;QANM,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["Stream.java"],
+"names":["t","java.util.stream.Stream$Builder.add__$default","java.util.stream.Stream$Builder.<clinit>"]
+}

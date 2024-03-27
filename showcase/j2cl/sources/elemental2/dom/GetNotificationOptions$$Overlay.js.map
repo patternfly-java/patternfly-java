@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GetNotificationOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEe,+C;EAASA,mB;EACrCA,kM;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["GetNotificationOptions.java"],
+"names":["elemental2.dom.GetNotificationOptions$$Overlay.create","elemental2.dom.GetNotificationOptions$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Cache$DeleteRequestUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAuGmB,Q;;QAEqB,mE,UAAUA,C;EAAGC,mB;EAC/CA,yE;;;QAIc,yF;EAAAC,mB;EACdA,oH;;;QAIa,kF;EAAAC,mB;EACbA,mE;;;QAIU,iF;EAAAC,mB;EACVA,4G;;;QAIc,0E;EAAAC,mB;EACdA,8C;;;QAIc,yE;EAAAC,mB;EACdA,wC;;;QAIc,sE;EAAAC,mB;EACdA,0C;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["Cache.java"],
+"names":["o","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.of","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.asRequest__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.asString__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.asURL__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.isRequest__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.isString__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.isURL__$devirt","elemental2.dom.Cache$DeleteRequestUnionType$$Overlay.<clinit>"]
+}

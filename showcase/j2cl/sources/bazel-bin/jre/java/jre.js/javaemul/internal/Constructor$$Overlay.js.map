@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Constructor$$Overlay.impl.java.js",
+"lineCount":66,
+"mappings":"A;;;;;;;;;;MAyBa,Q;;QAGe,qD,UAAUA,G;EAAKC,mB;EACvCA,0E;;;QASuB,4F;EAAAC,mB;EACvBA,IAAYC,UAAZD,6G;EACAA,+D;;;QAOmB,8D;EAAAE,mB;EACnBA,yF;;;QAImB,yD;EAAAC,mB;EACnBA,oF;;;QAImB,8D;EAAAC,mB;EACnBA,yF;;;QAIkB,iF;EAAAC,mB;EAClBA,8D;;;QAIkB,wE;EAAAC,mB;EAClBA,qD;;;QAImB,kE;EAAAC,mB;EACnBA,oD;;;QAIuB,4F;EAAAC,mB;EACvBA,wD;;;QAIuB,gG;EAAAC,mB;EACvBA,4D;;;QA1DS,O;EAAAC,2B;EAAAA;",
+"sources":["Constructor.java"],
+"names":["obj","javaemul.internal.Constructor$$Overlay.of","javaemul.internal.Constructor$$Overlay.getSuperConstructor__$devirt","parentCtor","javaemul.internal.Constructor$$Overlay.isInterface__$devirt","javaemul.internal.Constructor$$Overlay.isEnum__$devirt","javaemul.internal.Constructor$$Overlay.isPrimitive__$devirt","javaemul.internal.Constructor$$Overlay.getPrimitiveShortName__$devirt","javaemul.internal.Constructor$$Overlay.getClassName__$devirt","javaemul.internal.Constructor$$Overlay.isPrimitiveType__$devirt","javaemul.internal.Constructor$$Overlay.getBoxedConstructor__$devirt","javaemul.internal.Constructor$$Overlay.getPrimitiveConstructor__$devirt","javaemul.internal.Constructor$$Overlay.<clinit>"]
+}

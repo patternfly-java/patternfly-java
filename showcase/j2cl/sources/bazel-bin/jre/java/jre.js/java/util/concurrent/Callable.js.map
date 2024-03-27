@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Callable.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAyBiB,Q;;CACb,wB;;QADa,M;EAAAA,mB;EAAAA,gE;;;QAAA,O;EAAAC,2B;EAAAA;",
+"sources":["Callable.java"],
+"names":["java.util.concurrent.Callable.<synthetic: adapt_lambda>","java.util.concurrent.Callable.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ThreadLocal.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;MA2Ba,W;;CAAA,W;EAAAA,Q;EAAAA;OAED,+BAFCA,C;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,+C;EAAAA,iB;;;CAAA,kC;EAAAC,qC;;;CAIF,uB;EACPC,4C;;;CAGU,6B,UAAMC,K;EAChBC,6C;;;CAGU,c;EACVC,4C;;;QAG+B,iE,oBAAkCC,Q;EAAUC,sB;EAC3EA,IAAeC,WAAfD,0D;EACAA,8E;EACAA,mB;;;QAnBS,O;EAAAE,8B;EAAAA,2B;EAAAA;",
+"sources":["ThreadLocal.java"],
+"names":["java.lang.ThreadLocal.<synthetic: ctor_js>","java.lang.ThreadLocal.<synthetic: ctor_create>","java.lang.ThreadLocal.<init>","java.lang.ThreadLocal.get","value","java.lang.ThreadLocal.set","java.lang.ThreadLocal.remove","supplier","java.lang.ThreadLocal.withInitial","threadLocal","java.lang.ThreadLocal.<clinit>"]
+}

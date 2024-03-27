@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IllegalStateException.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;MAqBa,qB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,gC;EAAAA,4C;EAAAA,yD;EAAAA,yF;EAAAA,iB;;;;CAAA,4C;EAAwBC,+C;;;;QAGxB,yB,gBAA6BC,C;EAA7BF,gC;EAAAA,4C;EAAAA,4E;EAAAA,yF;EAAAA,iB;;;;CAAA,8D,gBAA6BE,C;EAClCD,kE;;;;QAGK,8C,gBAA6BE,O,mBAAmBC,K;EAAhDJ,gC;EAAAA,4C;EAAAA,8G;EAAAA,yF;EAAAA,iB;;;;CAAA,mF,gBAA6BG,O,mBAAmBC,K;EACrDH,oG;;;;QAGK,4B,kBAAgCG,K;EAAhCJ,gC;EAAAA,4C;EAAAA,mF;EAAAA,yF;EAAAA,iB;;;;CAAA,iE,kBAAgCI,K;EACrCH,yE;;;QAdS,O;EAAAI,wC;EAAAA,qC;EAAAA;",
+"sources":["IllegalStateException.java"],
+"names":["java.lang.IllegalStateException.<synthetic: ctor_js>","java.lang.IllegalStateException.<synthetic: ctor_create>","java.lang.IllegalStateException.<init>","s","message","cause","java.lang.IllegalStateException.<clinit>"]
+}

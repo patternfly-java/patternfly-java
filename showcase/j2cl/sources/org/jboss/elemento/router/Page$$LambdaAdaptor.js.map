@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Page$$LambdaAdaptor.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;;;;;;;MA6BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;2D;EAAAA,gH;;;CAAA,sG;EAAAC,qC;EAAAA,8D;;;CAAA,8B;EAAAC,uD;EAAAA,2F;;;;CAAA,4C;EAAAC,gG;;;;CAAA,8B;EAAAC,2F;;;;CAAA,oC;EAAAC,iI;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Page.java"],
+"names":["org.jboss.elemento.router.Page$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.jboss.elemento.router.Page$$LambdaAdaptor.<init>","org.jboss.elemento.router.Page$$LambdaAdaptor.elements","org.jboss.elemento.router.Page$$LambdaAdaptor.forEach","org.jboss.elemento.router.Page$$LambdaAdaptor.iterator","org.jboss.elemento.router.Page$$LambdaAdaptor.spliterator","org.jboss.elemento.router.Page$$LambdaAdaptor.<clinit>"]
+}

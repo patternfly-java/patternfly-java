@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LogManager.impl.java.js",
+"lineCount":116,
+"mappings":"A;;;;;;;;;;;;;;;MA2Ba,U;;CAAA,W;EAAAA,Q;EAAAA;OAcqB,0CAdrBA,C;;;QAIc,6C;EAAgBC,qB;EACvCA;GACEA,+EADFA;GAEEA,IAAOC,UAAPD,gEAFFA;GAGEA,4FAHFA;GAIEA,kJAJFA;G;EAMAA,6D;;;QAKQ,S;EAAAE,qB;EAAAA,iC;EAAAA,sD;EAAAA,iB;;;CAAA,yC;EAAaC,qC;EAAAA,mD;;;CAER,8C,eAAiBC,M;EAC9BC;GACEA,aADFA;G;EAGAA,yG;EACAA,Y;;;CAGY,uD,gBAAiBC,I;EAC7BC,2G;;;CAGyB,uC;EACzBC,4K;;;CAWW,2F,eAAiCJ,M;EAC5CK,IAAOH,IAAPG,wC;EACAA,IAAOC,UAAPD,wK;EACAA,sJ;EACAA,6F;;;CAGW,+E,eAAqBL,M;EAChCO;GACEA;IACEA,0FADFA;IADFA;G;EAKAA,kG;;;CAQK,gF,gBAAoBL,I;EACzBM,IAAOR,MAAPQ,sE;EACAA;GACEA,IAAOC,SAAPD,kEADFA;GAEEA,4GAFFA;GAGEA,iBAHFA;G;EAKAA,c;;;CAtES,2C;EAcXT,+G;;;QAdW,O;EAAAW,6B;EAAAA,0B;EAAAA,qB;;;;;;;;;;;;;;;;;;;AAAA;WAEe,0CAFf;",
+"sources":["LogManager.java"],
+"names":["java.util.logging.LogManager.<synthetic: ctor_js>","java.util.logging.LogManager.getLogManager","rootLogger","java.util.logging.LogManager.<synthetic: ctor_create>","java.util.logging.LogManager.<init>","logger","java.util.logging.LogManager.addLogger","name","java.util.logging.LogManager.getLogger","java.util.logging.LogManager.getLoggerNames","java.util.logging.LogManager.addLoggerAndEnsureParents","parentName","java.util.logging.LogManager.addLoggerImpl","java.util.logging.LogManager.ensureLogger","newLogger","java.util.logging.LogManager.<clinit>"]
+}

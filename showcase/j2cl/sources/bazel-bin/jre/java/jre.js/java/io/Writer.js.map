@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Writer.impl.java.js",
+"lineCount":105,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;MAyBsB,M;;CAAA,W;EAAAA,Q;;;;CAEV,2B;EAASC,qC;;;;CAET,6C,UAAcC,I;EAAMD,qC;;;CAET,a;;CAEA,a;;CAET,2B,sBAAaE,G;EAGvBC,8E;EACAA,+D;;;CAGmB,qC,sBAAaD,G,gBAASE,M,gBAAYC,K;;CAE3C,kB,eAAUC,O;EACpBH,IAAOI,YAAPJ,8D;EACAA,oE;EACAA,+C;;;CAGU,+B,gBAAaK,G;EAGvBL,8E;EACAA,wG;;;CAGU,yC,gBAAaK,G,gBAASJ,M,gBAAYC,K;EAC5CF,IAAOD,GAAPC,kE;EACAA,oH;EACAA,+D;;;CAGY,8B,eAAYM,C;EACxBC,2B;EACAA,Y;;;CAGY,gD,8BAAoBC,G;EAChCD,kG;EACAA,Y;;;CAGY,0D,8BAAoBC,G,gBAASC,K,gBAAWC,G;EACpDH;GACEA,aADFA;G;EAGAA,mN;EACAA,Y;;;;CArDkB,oC;EAAAA,iD;;;;CAAA,sD;EAAAA,mE;;;;CAAA,gE;EAAAA,yF;;;QAAA,O;EAAAI,yB;EAAAA,sB;EAAAA;",
+"sources":["Writer.java"],
+"names":["java.io.Writer.<synthetic: ctor_js>","java.io.Writer.<init>","lock","buf","java.io.Writer.write","offset","count","oneChar","oneCharArray","str","c","java.io.Writer.append","csq","start","end","java.io.Writer.<clinit>"]
+}

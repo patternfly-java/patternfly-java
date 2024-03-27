@@ -1,0 +1,37 @@
+goog.module('org.patternfly.showcase.component.TooltipComponent');
+
+goog.require('elemental2.dom.Element.$Overlay');
+goog.require('elemental2.dom.Event.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('elemental2.dom.MutationRecord.$Overlay');
+goog.require('elemental2.dom.ScrollIntoViewOptions.$Overlay');
+goog.require('java.lang.Class');
+goog.require('java.lang.String');
+goog.require('java.util.function.Supplier');
+goog.require('jsinterop.base.JsPropertyMap.$Overlay');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.By');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.jboss.elemento.ObserverCallback');
+goog.require('org.patternfly.component.button.Button');
+goog.require('org.patternfly.component.tooltip.Tooltip');
+goog.require('org.patternfly.component.tooltip.TooltipToggle');
+goog.require('org.patternfly.component.tooltip.TriggerAria');
+goog.require('org.patternfly.core.Aria');
+goog.require('org.patternfly.handler.CloseHandler');
+goog.require('org.patternfly.handler.ComponentHandler');
+goog.require('org.patternfly.icon.IconSets.fas');
+goog.require('org.patternfly.popper.Placement');
+goog.require('org.patternfly.showcase.ApiDoc.Type');
+goog.require('org.patternfly.showcase.Code');
+goog.require('org.patternfly.showcase.Data');
+goog.require('org.patternfly.showcase.LoremIpsum');
+goog.require('org.patternfly.showcase.Snippet');
+goog.require('org.patternfly.showcase.SnippetPage');
+goog.require('org.patternfly.showcase.component.Component.$Overlay');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+
+const TooltipComponent = goog.require('org.patternfly.showcase.component.TooltipComponent$impl');
+exports = TooltipComponent;

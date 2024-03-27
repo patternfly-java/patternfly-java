@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MA8BmB,Q;;QAEsD,oG,UAAUA,C;EAAGC,mB;EAChFA,yE;;;QAIa,mH;EAAAC,mB;EACbA,0G;;;QAIQ,8G;EAAAC,mB;EACRA,+D;;;QAIc,0G;EAAAC,mB;EACdA,oC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["NodeList.java"],
+"names":["o","elemental2.dom.NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.of","elemental2.dom.NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.asDouble__$devirt","elemental2.dom.NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.asT__$devirt","elemental2.dom.NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.isDouble__$devirt","elemental2.dom.NodeList$EntriesJsIteratorIterableTypeParameterArrayUnionType$$Overlay.<clinit>"]
+}

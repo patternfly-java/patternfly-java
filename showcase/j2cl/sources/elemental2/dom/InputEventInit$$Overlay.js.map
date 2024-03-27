@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InputEventInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEO,uC;EAASA,mB;EAC7BA,0L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["InputEventInit.java"],
+"names":["elemental2.dom.InputEventInit$$Overlay.create","elemental2.dom.InputEventInit$$Overlay.<clinit>"]
+}

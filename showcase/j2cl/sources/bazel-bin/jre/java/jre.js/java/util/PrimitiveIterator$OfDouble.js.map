@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PrimitiveIterator$OfDouble.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;;;MAuCY,Q;;CACD,oB;;CAGQ,wB;;CAKF,2D,uBAAgCA,Q;;CAQhC,qD,oBAA0CA,Q;;QAbxC,wE;EAAAC,mB;EACbA,uC;;;QAIW,2G,kDAAgCD,Q;EAAhCE,mB;EACXA,mF;EACAA;GACEA,iEADFA;G;;;QAMW,qG,+CAA0CF,Q;EAA1CE,mB;EACXA;GACEA,yIADFA;;GAGEA;IAAkCC,gDAAlCD;QAHFA;G;;;QAlBM,O;EAAAE,2B;EAAAA,wB;EAAAA;",
+"sources":["PrimitiveIterator.java"],
+"names":["consumer","java.util.PrimitiveIterator$OfDouble.next__$default","java.util.PrimitiveIterator$OfDouble.forEachRemaining__$default","java.util.PrimitiveIterator$OfDouble.<lambda in forEachRemaining__$default>","java.util.PrimitiveIterator$OfDouble.<clinit>"]
+}

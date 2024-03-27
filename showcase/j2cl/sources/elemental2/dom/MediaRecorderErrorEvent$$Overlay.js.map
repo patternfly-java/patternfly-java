@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MediaRecorderErrorEvent$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAsBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["MediaRecorderErrorEvent.java"],
+"names":["elemental2.dom.MediaRecorderErrorEvent$$Overlay.<clinit>"]
+}

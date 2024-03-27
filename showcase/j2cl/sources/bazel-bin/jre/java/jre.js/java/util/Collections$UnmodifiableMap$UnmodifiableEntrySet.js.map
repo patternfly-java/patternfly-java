@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableMap$UnmodifiableEntrySet.impl.java.js",
+"lineCount":70,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA6gBiB,oB;;CAAA,W;EAAAA,Q;;;QA0CJ,sB,eACgDC,C;EADhDC,+B;EAAAA,2C;EAAAA,oG;EAAAA,iB;;;CAAA,sF,eACgDD,C;EACrDE,oG;;;CAIa,Q,UAAgBC,C;EAC7BC,6E;;;CAIa,W,sBAA0BD,C;EACvCE,gF;;;CAK+B,8B;EAC/BC,IAAgCC,EAAhCD,mI;EACAA,qI;;;CAmBc,O;EACdE,IAASC,KAATD,mB;EACAA,oI;EACAA,a;;;CAKa,6D,iBAAYE,C;EACzBF,IAASG,MAATH,0E;EACAA,yL;EACAA,sC;;;CAUW,yG,iBAAcC,K,gBAAWG,I;EACpCC,SAASC,CAATD;GACEA,uKADFA;G;;;QAtGS,O;EAAAE,uC;EAAAA,oC;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.<synthetic: ctor_js>","s","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.<synthetic: ctor_create>","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.<init>","o","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.contains","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.containsAll","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.iterator","it","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.toArray","array","a","result","size","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.wrap","i","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.<clinit>"]
+}

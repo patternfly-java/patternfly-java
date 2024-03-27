@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ScrollIntoViewOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEc,8C;EAASA,mB;EACpCA,iM;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["ScrollIntoViewOptions.java"],
+"names":["elemental2.dom.ScrollIntoViewOptions$$Overlay.create","elemental2.dom.ScrollIntoViewOptions$$Overlay.<clinit>"]
+}

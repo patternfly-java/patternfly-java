@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Iterable.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;;;;;MAgCiB,Q;;CACH,8B;;CAEC,4C,oBAA4BA,M;;CAOlB,oC;;QAVR,M;EAAAC,mB;EAAAA,gE;;;QAGF,0E,kDAA4BD,M;EAA5BE,mB;EACXA,iF;EACAA;GAAAA,IAAOC,CAAPD,wCAAAA;;IACEA,2CADFA;;G;;;QAKqB,kE;EAAAE,mB;EACrBA,yK;;;QAXa,O;EAAAC,2B;EAAAA;",
+"sources":["Iterable.java"],
+"names":["action","java.lang.Iterable.<synthetic: adapt_lambda>","java.lang.Iterable.forEach__$default","t","java.lang.Iterable.spliterator__$default","java.lang.Iterable.<clinit>"]
+}

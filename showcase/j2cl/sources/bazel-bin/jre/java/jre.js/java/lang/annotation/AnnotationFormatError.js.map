@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AnnotationFormatError.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;MAuBa,qB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,gC;EAAAA,4C;EAAAA,oE;EAAAA,yF;EAAAA,iB;;;CAAA,uD;EAAAC,oC;;;QAAA,O;EAAAC,wC;EAAAA,qC;EAAAA;",
+"sources":["AnnotationFormatError.java"],
+"names":["java.lang.annotation.AnnotationFormatError.<synthetic: ctor_js>","java.lang.annotation.AnnotationFormatError.<synthetic: ctor_create>","java.lang.annotation.AnnotationFormatError.<init>","java.lang.annotation.AnnotationFormatError.<clinit>"]
+}

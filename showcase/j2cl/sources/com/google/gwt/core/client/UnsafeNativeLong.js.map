@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UnsafeNativeLong.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA6BkB,gB;;QAAA,O;EAAAA,mC;EAAAA;",
+"sources":["UnsafeNativeLong.java"],
+"names":["com.google.gwt.core.client.UnsafeNativeLong.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$EmptyMap.impl.java.js",
+"lineCount":63,
+"mappings":"A;;;;;;;;;;;;;;MAqK6B,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAAC,0C;;;CAGV,W,UAAmBC,G;EAChCC,a;;;CAIa,a,UAAqBC,K;EAClCC,a;;;CAIS,yB;EACTC,sD;;;CAIY,G,UAAWJ,G;EACvBK,Y;;;CAKS,M;EACTC,sD;;;CAIS,I;EACTC,S;;;CAI2B,M;EAC3BC,uD;;;QAnCuB,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$EmptyMap.<synthetic: ctor_js>","java.util.Collections$EmptyMap.<synthetic: ctor_create>","java.util.Collections$EmptyMap.<init>","key","java.util.Collections$EmptyMap.containsKey","value","java.util.Collections$EmptyMap.containsValue","java.util.Collections$EmptyMap.entrySet","java.util.Collections$EmptyMap.get","java.util.Collections$EmptyMap.keySet","java.util.Collections$EmptyMap.size","java.util.Collections$EmptyMap.values","java.util.Collections$EmptyMap.<clinit>"]
+}

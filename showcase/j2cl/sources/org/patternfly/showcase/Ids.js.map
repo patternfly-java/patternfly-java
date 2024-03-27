@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Ids.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;MAiBa,G;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,c;EAAAA,0B;EAAAA,qD;EAAAA,iB;;;CAAA,wC;EAAAC,qC;;;QAAA,O;EAAAC,sB;EAAAA,mB;EAAAA,qB;;;;;;;;;;AAET;IAA2B,sCAA3B;",
+"sources":["Ids.java"],
+"names":["org.patternfly.showcase.Ids.<synthetic: ctor_js>","org.patternfly.showcase.Ids.<synthetic: ctor_create>","org.patternfly.showcase.Ids.<init>","org.patternfly.showcase.Ids.<clinit>"]
+}

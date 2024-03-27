@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Flow.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;MAoBmB,I;;CAAA,W;EAAAA,Q;;;QAET,S;EAAAC,2B;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAOC,qC;;;QA+CG,wB;EAAoBC,e;EACpCA,8D;;;QAlDe,O;EAAAC,uB;EAAAA,oB;EAAAA,qB;;;;;;;;;;AA+CjB;KAAyB,iDAAzB;",
+"sources":["Flow.java"],
+"names":["java.util.concurrent.Flow.<synthetic: ctor_js>","java.util.concurrent.Flow.<synthetic: ctor_create>","java.util.concurrent.Flow.<init>","java.util.concurrent.Flow.defaultBufferSize","java.util.concurrent.Flow.<clinit>"]
+}

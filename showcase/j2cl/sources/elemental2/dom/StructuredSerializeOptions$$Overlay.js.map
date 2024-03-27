@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StructuredSerializeOptions$$Overlay.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;MA2BiB,Q;;QAEmB,mD;EAASA,mB;EACzCA,sM;;;QAUW,6G,yEAA2BC,Q;EAA3BC,mB;EACXA,wH;;;QAda,O;EAAAC,2B;EAAAA;",
+"sources":["StructuredSerializeOptions.java"],
+"names":["elemental2.dom.StructuredSerializeOptions$$Overlay.create","transfer","elemental2.dom.StructuredSerializeOptions$$Overlay.setTransfer__$devirt","elemental2.dom.StructuredSerializeOptions$$Overlay.<clinit>"]
+}

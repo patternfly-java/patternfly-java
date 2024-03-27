@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GWT3Resource.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MAyBkB,Y;;QAAA,O;EAAAA,+B;EAAAA;",
+"sources":["GWT3Resource.java"],
+"names":["org.treblereel.j2cl.processors.annotations.GWT3Resource.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CaseMapper.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;MAkBY,U;;CAAA,W;EAAAA,Q;;;QAEQ,gC,eAAyBC,C;EAAGC,qB;EAC5CA,mL;;;QAGgB,gC,eAAyBD,C;EAAGE,qB;EAC5CA,mL;;;QAGiB,6B,eAAqBF,C;EAAGG,qB;EACzCA,0K;;;QAGiB,6B,eAAqBH,C;EAAGI,qB;EACzCA,0K;;;QAGM,S;EAAAC,iC;EAAAA,8C;EAAAA,iB;;;CAAA,iC;EAAaC,qC;;;QAlBX,O;EAAAC,6B;EAAAA,0B;EAAAA;",
+"sources":["CaseMapper.java"],
+"names":["java.lang.CaseMapper.<synthetic: ctor_js>","c","java.lang.CaseMapper.codePointToLowerCase","java.lang.CaseMapper.codePointToUpperCase","java.lang.CaseMapper.charToLowerCase","java.lang.CaseMapper.charToUpperCase","java.lang.CaseMapper.<synthetic: ctor_create>","java.lang.CaseMapper.<init>","java.lang.CaseMapper.<clinit>"]
+}

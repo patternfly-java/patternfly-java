@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TabsComponent$1.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;;;;;;;;;;MA6eqE,E;;CAAA,W;EAAAA,Q;EAAAA;sE;;;QAAA,wD;EAAAC,a;EAAAA,yB;EAAAA,uI;EAAAA,iB;;;CAAA,+G;EAAAC,kF;EAAAA,qC;;;CAEtC,+E,cAAkBC,K,aAAWC,G;EACxCC,0K;;;CAIQ,wE,cAAcF,K,aAAWC,G;EACjCE,0I;;;;CARiD,uD;EAAAA,8H;;;;CAAA,8D;EAAAD,4I;;;QAAA,O;EAAAE,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["TabsComponent.java"],
+"names":["org.patternfly.showcase.component.TabsComponent$1.<synthetic: ctor_js>","org.patternfly.showcase.component.TabsComponent$1.<synthetic: ctor_create>","org.patternfly.showcase.component.TabsComponent$1.<init>","event","tab","org.patternfly.showcase.component.TabsComponent$1.shouldClose","org.patternfly.showcase.component.TabsComponent$1.onClose","org.patternfly.showcase.component.TabsComponent$1.<clinit>"]
+}

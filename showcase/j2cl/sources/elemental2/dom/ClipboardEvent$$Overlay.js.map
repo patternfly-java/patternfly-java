@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ClipboardEvent$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAqBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ClipboardEvent.java"],
+"names":["elemental2.dom.ClipboardEvent$$Overlay.<clinit>"]
+}

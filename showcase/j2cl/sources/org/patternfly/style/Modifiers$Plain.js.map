@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Modifiers$Plain.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;;;;MAoNc,K;;CAGI,wC;;CAKA,iD,gBAAcA,K;;QALd,wF;EAAAC,gB;EACNA,wE;;;QAIM,iG,8CAAcD,K;EAAdC,gB;EACNA,+S;;;QATE,O;EAAAC,wB;EAAAA;",
+"sources":["Modifiers.java"],
+"names":["plain","org.patternfly.style.Modifiers$Plain.plain__$default","org.patternfly.style.Modifiers$Plain.<clinit>"]
+}

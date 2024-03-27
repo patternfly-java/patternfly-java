@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StringReader.impl.java.js",
+"lineCount":61,
+"mappings":"A;;;;;;;;MAsBa,Y;;CAAA,W;EAAAA,Q;EAAAA;OACU,6BADVA,C;EAAAA;OAEC,iCAFDA,K;EAAAA;OAGC,6BAHDA,K;;;QAQJ,yB,gBAAoBC,I;EAApBC,uB;EAAAA,mC;EAAAA,oE;EAAAA,iB;;;CAAA,mD,gBAAoBD,I;EAAME,mC;EAC/BA,0C;;;CAIU,a;;CAMD,mC,sBAAYC,G,gBAASC,G,gBAASC,U;EACvCC;GACEA,eADFA;G;EAGAA,IAAIC,MAAJD,qJ;EACAA,sN;EACAA,6F;EACAA,c;;;CAIa,wB;EACbE,Y;;;CAIU,iB,eAASC,c;EACnBC,0E;EACAA,4E;;;CAIU,a;EACVC,4E;;;QA1CS,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["StringReader.java"],
+"names":["java.io.StringReader.<synthetic: ctor_js>","text","java.io.StringReader.<synthetic: ctor_create>","java.io.StringReader.<init>","buf","off","readLength","java.io.StringReader.read","length","java.io.StringReader.markSupported","readAheadLimit","java.io.StringReader.mark","java.io.StringReader.reset","java.io.StringReader.<clinit>"]
+}

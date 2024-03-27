@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LazyElement.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;;;MAuBsB,W;;CAAA,W;EAAAA,Q;EAAAA;OAER,0CAFQA,C;;;CAAA,2C;EAAAC,qC;;;CAST,qC;EACLC;GACIA,qGADJA;G;EAGAA,uD;;;CAQiB,2C;;CAGH,sB;EACdC,+E;;;;CAzBc,iC;EAAAD,oD;;;QAAA,O;EAAAE,8B;EAAAA,2B;EAAAA;",
+"sources":["LazyElement.java"],
+"names":["org.jboss.elemento.LazyElement.<synthetic: ctor_js>","org.jboss.elemento.LazyElement.<init>","org.jboss.elemento.LazyElement.element","org.jboss.elemento.LazyElement.initialized","org.jboss.elemento.LazyElement.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCStatsReport$GetTimestampUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA4DmB,Q;;QAE6B,2E,UAAUA,C;EAAGC,mB;EACvDA,yE;;;QAIa,gF;EAAAC,mB;EACbA,yD;;;QAIa,gG;EAAAC,mB;EACbA,gH;;;QAIc,iF;EAAAC,mB;EACdA,oC;;;QAIc,iF;EAAAC,mB;EACdA,6C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["RTCStatsReport.java"],
+"names":["o","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.of","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.asDouble__$devirt","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.asJsDate__$devirt","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.isDouble__$devirt","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.isJsDate__$devirt","elemental2.dom.RTCStatsReport$GetTimestampUnionType$$Overlay.<clinit>"]
+}

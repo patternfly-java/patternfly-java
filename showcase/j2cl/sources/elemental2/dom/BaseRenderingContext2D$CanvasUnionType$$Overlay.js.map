@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BaseRenderingContext2D$CanvasUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA2BmB,Q;;QAE+B,6E,UAAUA,C;EAAGC,mB;EACzDA,yE;;;QAIwB,uH;EAAAC,mB;EACxBA,wI;;;QAIsB,mH;EAAAC,mB;EACtBA,oI;;;QAIc,8F;EAAAC,mB;EACdA,wD;;;QAIc,4F;EAAAC,mB;EACdA,sD;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["BaseRenderingContext2D.java"],
+"names":["o","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.of","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.asHTMLCanvasElement__$devirt","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.asOffscreenCanvas__$devirt","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.isHTMLCanvasElement__$devirt","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.isOffscreenCanvas__$devirt","elemental2.dom.BaseRenderingContext2D$CanvasUnionType$$Overlay.<clinit>"]
+}

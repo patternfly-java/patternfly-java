@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongToDoubleFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAsBiB,oB;;CAER,6B,eAAmBA,K;;QAFX,M;EAAAC,+B;EAAAA,8B;;;QAAA,O;EAAAC,uC;EAAAA;",
+"sources":["LongToDoubleFunction.java"],
+"names":["value","java.util.function.LongToDoubleFunction.<synthetic: adapt_lambda>","java.util.function.LongToDoubleFunction.<clinit>"]
+}

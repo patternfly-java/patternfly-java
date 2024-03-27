@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ArrayList$1.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;MA+I6B,E;;CAAA,W;EAAAA,Q;EAAAA;0C;EAAAA;OACnB,0BADmBA,K;EAAAA;OACZ,6BADYA,K;;;QAAA,4B;EAAAC,a;EAAAA,yB;EAAAA,+E;EAAAA,iB;;;CAAA,uD;EAAAC,sD;EAAAA,qC;EAAAA,4C;;;CAIR,kB;EACbC,sH;;;CAIO,wB;EAAOC,yB;EACdA,+E;EAEAA,mK;EACAA,iH;;;CAIU,c;EACVC,mG;EAEAA,4H;EACAA,6C;;;;CArBqB,qD;EAAAC,yG;;;CAAA,oC;EACvBJ,oC;EAAAA,6C;;;QADuB,O;EAAAK,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["ArrayList.java"],
+"names":["java.util.ArrayList$1.<synthetic: ctor_js>","java.util.ArrayList$1.<synthetic: ctor_create>","java.util.ArrayList$1.<init>","java.util.ArrayList$1.hasNext","java.util.ArrayList$1.next","java.util.ArrayList$1.remove","java.util.ArrayList$1.forEachRemaining","java.util.ArrayList$1.<clinit>"]
+}

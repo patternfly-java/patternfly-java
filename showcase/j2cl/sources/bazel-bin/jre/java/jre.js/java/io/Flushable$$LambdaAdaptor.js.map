@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Flushable$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MA0BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8C;EAAAA,sF;;;CAAA,4E;EAAAC,qC;EAAAA,iD;;;CAAA,a;;GAAAC,4D;GAAAA,Y;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Flushable.java"],
+"names":["java.io.Flushable$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.io.Flushable$$LambdaAdaptor.<init>","java.io.Flushable$$LambdaAdaptor.flush","java.io.Flushable$$LambdaAdaptor.<clinit>"]
+}

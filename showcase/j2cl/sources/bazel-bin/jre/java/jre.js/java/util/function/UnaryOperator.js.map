@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UnaryOperator.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;;MAwBiB,a;;QAEa,4C;EAAWA,wB;EACrCA,wCAAOC,CAAPD;GAAYE,SAAZF;K;;;QAHa,M;EAAAG,wB;EAAAA,gE;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["UnaryOperator.java"],
+"names":["java.util.function.UnaryOperator.identity","t","java.util.function.UnaryOperator.<lambda in identity>","java.util.function.UnaryOperator.<synthetic: adapt_lambda>","java.util.function.UnaryOperator.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ObserverCallback$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;MAyBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;gE;EAAAA,0H;;;CAAA,gH;EAAAC,qC;EAAAA,mE;;;CAAA,iD;;GAAAC,8E;GAAAA,gB;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ObserverCallback.java"],
+"names":["org.jboss.elemento.ObserverCallback$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.jboss.elemento.ObserverCallback$$LambdaAdaptor.<init>","org.jboss.elemento.ObserverCallback$$LambdaAdaptor.onObserved","org.jboss.elemento.ObserverCallback$$LambdaAdaptor.<clinit>"]
+}

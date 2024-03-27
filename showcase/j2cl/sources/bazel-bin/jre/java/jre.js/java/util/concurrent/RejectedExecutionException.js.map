@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RejectedExecutionException.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;MAuBa,0B;;CAAA,W;EAAAA,Q;;;;QACJ,S;EAAAC,qC;EAAAA,iD;EAAAA,yE;EAAAA,yF;EAAAA,iB;;;;CAAA,4D;EAA6BC,+C;;;;QAG7B,yB,gBAAkCC,O;EAAlCF,qC;EAAAA,iD;EAAAA,kG;EAAAA,yF;EAAAA,iB;;;;CAAA,8E,gBAAkCE,O;EACvCD,wE;;;;QAGK,8C,gBAAkCC,O,mBAAmBC,K;EAArDH,qC;EAAAA,iD;EAAAA,8H;EAAAA,yF;EAAAA,iB;;;;CAAA,mG,gBAAkCE,O,mBAAmBC,K;EAC1DF,oG;;;;QAGK,4B,kBAAqCE,K;EAArCH,qC;EAAAA,iD;EAAAA,mG;EAAAA,yF;EAAAA,iB;;;;CAAA,iF,kBAAqCG,K;EAC1CF,yE;;;QAbS,O;EAAAG,6C;EAAAA,0C;EAAAA;",
+"sources":["RejectedExecutionException.java"],
+"names":["java.util.concurrent.RejectedExecutionException.<synthetic: ctor_js>","java.util.concurrent.RejectedExecutionException.<synthetic: ctor_create>","java.util.concurrent.RejectedExecutionException.<init>","message","cause","java.util.concurrent.RejectedExecutionException.<clinit>"]
+}

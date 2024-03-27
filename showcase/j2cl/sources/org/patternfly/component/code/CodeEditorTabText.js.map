@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CodeEditorTabText.impl.java.js",
+"lineCount":78,
+"mappings":"A;;;;;;;;;;;;;;;;MA0Ba,iB;;CAAA,W;EAAAA,Q;;;QAIuB,oE;EAAoBC,4B;EAChDA,yD;;;QAG4B,sF,gBAAyBC,I;EAAMD,4B;EAC3DA,yD;;;QAOJ,yB,gBAAyBC,I;EAAzBC,4B;EAAAA,wC;EAAAA,+F;EAAAA,iB;;;CAAA,8E,gBAAyBD,I;EACrBE,gyB;EACAA;GACIA,4EADJA;G;;;CAQqB,uD;EACrBC,Y;;;;CA3BK,uC;EAAAA,sE;;;QAAA,O;EAAAC,oC;EAAAA,iC;EAAAA,iC;;;;;;;;;;;;;;;;;;AAcT;kBAAoB,qEAApB;",
+"sources":["CodeEditorTabText.java"],
+"names":["org.patternfly.component.code.CodeEditorTabText.<synthetic: ctor_js>","org.patternfly.component.code.CodeEditorTabText.codeEditorTabText","text","org.patternfly.component.code.CodeEditorTabText.<synthetic: ctor_create>","org.patternfly.component.code.CodeEditorTabText.<init>","org.patternfly.component.code.CodeEditorTabText.that","org.patternfly.component.code.CodeEditorTabText.<clinit>"]
+}

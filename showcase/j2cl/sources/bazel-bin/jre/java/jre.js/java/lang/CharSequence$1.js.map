@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CharSequence$1.impl.java.js",
+"lineCount":85,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA4CiE,E;;CAAA,W;EAAAA,Q;EAAAA;6C;EAAAA;OACrD,kCADqDA,K;;;QAAA,+B;EAAAC,a;EAAAA,yB;EAAAA,qF;EAAAA,iB;;;CAAA,6D;EAAAC,yD;EAAAA,qC;;;CAI9C,c;EAAUC,yB;EACnBA,+E;EACAA,qQ;;;CAIa,kB;EACbC,kJ;;;;CAXuD,qD;EAAAC,qH;;;;CAAA,wB;EAAAC,0F;;;;CAAA,c;EAAAC,4D;;;;CAAA,0C;EAAAF,4K;;;;CAAA,wD;EAAAA,wH;;;;CAAA,yB;EAAAC,0F;;;QAAA,O;EAAAE,qB;EAAAA,kB;EAAAA,qB;EAAAA;",
+"sources":["CharSequence.java"],
+"names":["java.lang.CharSequence$1.<synthetic: ctor_js>","java.lang.CharSequence$1.<synthetic: ctor_create>","java.lang.CharSequence$1.<init>","java.lang.CharSequence$1.nextInt","java.lang.CharSequence$1.hasNext","java.lang.CharSequence$1.forEachRemaining","java.lang.CharSequence$1.next","java.lang.CharSequence$1.remove","java.lang.CharSequence$1.<clinit>"]
+}

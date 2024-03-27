@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongConsumer.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;MAwBiB,Y;;CAEV,oB,eAAYA,K;;CAEI,2E,qBAAqBC,K;;QAJ3B,M;EAAAC,uB;EAAAA,8B;;;QAIM,sH,oDAAqBD,K;EAArBE,uB;EACnBA,wF;EACAA,0CAAOH,KAAPG;GACEC,qCADFD;GAEEC,kCAFFD;K;;;QANa,O;EAAAE,+B;EAAAA;",
+"sources":["LongConsumer.java"],
+"names":["value","after","java.util.function.LongConsumer.<synthetic: adapt_lambda>","java.util.function.LongConsumer.andThen__$default","java.util.function.LongConsumer.<lambda in andThen__$default>","java.util.function.LongConsumer.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Cache$AddAllRequestsArrayUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MA2BmB,Q;;QAE2B,yE,UAAUA,C;EAAGC,mB;EACrDA,yE;;;QAIc,+F;EAAAC,mB;EACdA,oH;;;QAIa,wF;EAAAC,mB;EACbA,mE;;;QAIU,uF;EAAAC,mB;EACVA,4G;;;QAIc,gF;EAAAC,mB;EACdA,8C;;;QAIc,+E;EAAAC,mB;EACdA,wC;;;QAIc,4E;EAAAC,mB;EACdA,0C;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["Cache.java"],
+"names":["o","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.of","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.asRequest__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.asString__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.asURL__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.isRequest__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.isString__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.isURL__$devirt","elemental2.dom.Cache$AddAllRequestsArrayUnionType$$Overlay.<clinit>"]
+}

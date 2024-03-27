@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MediaStreamConstraints$GetAudioUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA2BmB,Q;;QAEiC,+E,UAAUA,C;EAAGC,mB;EAC3DA,yE;;;QAIc,sF;EAAAC,mB;EACdA,2D;;;QAI4B,iI;EAAAC,mB;EAC5BA,oG;;;QAIc,sF;EAAAC,mB;EACdA,qC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["MediaStreamConstraints.java"],
+"names":["o","elemental2.dom.MediaStreamConstraints$GetAudioUnionType$$Overlay.of","elemental2.dom.MediaStreamConstraints$GetAudioUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.MediaStreamConstraints$GetAudioUnionType$$Overlay.asMediaTrackConstraints__$devirt","elemental2.dom.MediaStreamConstraints$GetAudioUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.MediaStreamConstraints$GetAudioUnionType$$Overlay.<clinit>"]
+}

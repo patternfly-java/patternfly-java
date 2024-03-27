@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Function.impl.java.js",
+"lineCount":50,
+"mappings":"A;;;;;;;;;;;MA2BiB,qB;;QAEW,uC;EAAWA,gC;EACnCA,gDAAOC,CAAPD;GAAYE,SAAZF;K;;;CAGA,2C,UAAQC,C;;CAEiB,mE,oCAAyCE,K;;CAKzC,mE,oCAAyCC,M;;QAbrD,M;EAAAC,gC;EAAAA,mE;;;QAQY,0G,kFAAyCF,K;EAAzCG,gC;EACzBA,wF;EACAA,8CAAOL,CAAPK;GAAYC,kHAAZD;K;;;QAGyB,0G,kFAAyCF,M;EAAzCI,gC;EACzBA,yF;EACAA,8CAAOP,CAAPO;GAAYC,mHAAZD;K;;;QAfa,O;EAAAE,wC;EAAAA;",
+"sources":["Function.java"],
+"names":["java.util.function.Function.identity","t","java.util.function.Function.<lambda in identity>","after","before","java.util.function.Function.<synthetic: adapt_lambda>","java.util.function.Function.andThen__$default","java.util.function.Function.<lambda in andThen__$default>","java.util.function.Function.compose__$default","java.util.function.Function.<lambda in compose__$default>","java.util.function.Function.<clinit>"]
+}

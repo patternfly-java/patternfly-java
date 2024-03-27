@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeHtmlHostedModeUtils$JsImpl.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;MA6HuB,M;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,6B;EAAAA,uF;EAAAA,iB;;;CAAA,0E;EAAAC,qC;;;CAEJ,2C,gBAAsBC,I;EACnCC,Y;;;CAGU,gD,gBAA8BD,I;;CAE3B,gD;EACbE,a;;;QATiB,O;EAAAC,yB;EAAAA,sB;EAAAA;",
+"sources":["SafeHtmlHostedModeUtils.java"],
+"names":["org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.<init>","html","org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.isCompleteHtml","org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.getForceCheckCompleteHtmlFromProperty","org.gwtproject.safehtml.shared.SafeHtmlHostedModeUtils$JsImpl.<clinit>"]
+}

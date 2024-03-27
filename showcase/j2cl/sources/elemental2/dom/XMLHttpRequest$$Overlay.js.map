@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"XMLHttpRequest$$Overlay.impl.java.js",
+"lineCount":128,
+"mappings":"A;;;;;;;MA2Ba,Q;;QA2NO,qI,iDAAYA,M,iBAAeC,G,iBAAaC,O,iBAAcC,I,iBAAaC,Q;EAAnEC,mB;EAChBA,6H;;;QAIgB,mH,iDAAYL,M,iBAAeC,G,iBAAaC,O,iBAAcC,I;EAAtDE,mB;EAChBA,mH;;;QAIgB,iG,iDAAYL,M,iBAAeC,G,iBAAaC,O;EAAxCG,mB;EAChBA,6G;;;QAIgB,wF,iDAAYL,M,iBAAeC,G;EAA3BI,mB;EAChBA,oG;;;QAIgB,uI,iDAAYL,M,aAAYC,G,iBAAaC,O,iBAAcC,I,iBAAaC,Q;EAAhEC,mB;EAChBA,6H;;;QAIgB,qH,iDAAYL,M,aAAYC,G,iBAAaC,O,iBAAcC,I;EAAnDE,mB;EAChBA,mH;;;QAIgB,mG,iDAAYL,M,aAAYC,G,iBAAaC,O;EAArCG,mB;EAChBA,6G;;;QAIgB,0F,iDAAYL,M,aAAYC,G;EAAxBI,mB;EAChBA,oG;;;QAagB,iF,qDAAiBC,I;EAAjBC,mB;EAChBA,6F;;;QAIgB,qF,yDAAqBD,I;EAArBC,mB;EAChBA,6F;;;QAIgB,yE,8CAAUD,I;EAAVC,mB;EAChBA,6F;;;QAIgB,6E,kDAAcD,I;EAAdC,mB;EAChBA,6F;;;QAIgB,6E,kDAAcD,I;EAAdC,mB;EAChBA,6F;;;QAMgB,sE,iDAAYD,I;EAAZC,mB;EAChBA,6F;;;QAnIF,kD;EAAAC,2F;;;QACA,8D;EAAAA,uG;;;QACA,qD;EAAAA,8F;;;QACA,oD;EAAAA,6F;;;QACA,oD;EAAAA,6F;;;QAzKW,O;EAAAC,2B;EAAAA,wB;EAqKXA,oF;EACAA,4G;EACAA,0F;EACAA,wF;EACAA,wF;;;;;;;;;;;;AAzKW;kE;AAAA;8E;AAAA;qE;AAAA;oE;AAAA;;",
+"sources":["XMLHttpRequest.java"],
+"names":["method","url","async","user","password","elemental2.dom.XMLHttpRequest$$Overlay.open__$devirt","data","elemental2.dom.XMLHttpRequest$$Overlay.send__$devirt","elemental2.dom.XMLHttpRequest$$Overlay.<synthetic: getter>","elemental2.dom.XMLHttpRequest$$Overlay.<clinit>"]
+}

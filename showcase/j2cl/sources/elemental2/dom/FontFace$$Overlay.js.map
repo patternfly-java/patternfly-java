@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FontFace$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA0Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["FontFace.java"],
+"names":["elemental2.dom.FontFace$$Overlay.<clinit>"]
+}

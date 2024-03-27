@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageSidebarSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,uB;;CAAA,W;EAAAA,Q;;;CAEX,gH,gBAA+BC,I,WAAQC,O;EACnCC,8N;;;QAHO,O;EAAAC,0C;EAAAA,uC;EAAAA;",
+"sources":["PageSidebarSubComponent.java"],
+"names":["org.patternfly.component.page.PageSidebarSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.page.PageSidebarSubComponent.<init>","org.patternfly.component.page.PageSidebarSubComponent.<clinit>"]
+}

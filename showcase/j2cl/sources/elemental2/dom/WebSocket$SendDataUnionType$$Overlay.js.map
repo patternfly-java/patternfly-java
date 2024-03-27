@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WebSocket$SendDataUnionType$$Overlay.impl.java.js",
+"lineCount":60,
+"mappings":"A;;;;;;;;;;MAgJmB,Q;;QAEoB,kE,UAAUA,C;EAAGC,mB;EAC9CA,yE;;;QAIkB,iG;EAAAC,mB;EAClBA,4H;;;QAIsB,yG;EAAAC,mB;EACtBA,oI;;;QAIW,kF;EAAAC,mB;EACXA,8G;;;QAIa,iF;EAAAC,mB;EACbA,mE;;;QAIc,6E;EAAAC,mB;EACdA,kD;;;QAIc,iF;EAAAC,mB;EACdA,sD;;;QAIc,sE;EAAAC,mB;EACdA,2C;;;QAIc,wE;EAAAC,mB;EACdA,wC;;;QA3Ca,O;EAAAC,2B;EAAAA;",
+"sources":["WebSocket.java"],
+"names":["o","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.of","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.asArrayBufferView__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.asBlob__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.asString__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.isArrayBufferView__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.isBlob__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.isString__$devirt","elemental2.dom.WebSocket$SendDataUnionType$$Overlay.<clinit>"]
+}

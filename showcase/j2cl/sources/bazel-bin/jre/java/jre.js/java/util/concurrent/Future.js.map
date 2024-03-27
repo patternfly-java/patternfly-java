@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Future.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;;;;;;;MA4BiB,M;;CACN,0B,gBAAeA,qB;;CAEf,sB;;CAEA,iB;;CAMN,uB;;CAEA,4D,eAASC,O,kBAAkBC,I;;QAbf,O;EAAAC,yB;EAAAA;",
+"sources":["Future.java"],
+"names":["mayInterruptIfRunning","timeout","unit","java.util.concurrent.Future.<clinit>"]
+}

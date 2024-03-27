@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$DoubleConsumerIterator.impl.java.js",
+"lineCount":105,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA2T6B,sB;;CAAA,W;EAAAA,Q;EAAAA;OAGU,6DAHVA,C;EAAAA;OAIV,6DAJUA,K;EAAAA;OAKT,4DALSA,S;;;QAOzB,uC,iBAA4CC,W;EAA5CC,iC;EAAAA,6C;EAAAA,kH;EAAAA,iB;;;CAAA,0F,iBAA4CD,W;EAAaE,qC;EAAAA,oE;EACvDA,yM;;;CAIU,sB,eAAcC,C;EACxBC,uE;;;CAIa,kB;EACbC;GACEA,qLADFA;G;EAGAA,yE;;;CAIY,oB;EACZC,uF;EACAA,0E;EACAA,0E;;;;CA5BuB,+E;EAAAC,+J;;;;CAAA,qD;EAAAC,6I;;;;CAAA,wB;EAAAC,iH;;;;CAAA,c;EAAAC,4D;;;;CAAA,0C;EAAAF,6M;;;;CAAA,2D;EAAAA,mJ;;;;CAAA,wB;EAAAC,iH;;;CAAA,4D;EAKzBP,0E;;;QALyB,O;EAAAS,yC;EAAAA,sC;EAAAA,qB;EAAAA,yB;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$DoubleConsumerIterator.<synthetic: ctor_js>","spliterator","java.util.Spliterators$DoubleConsumerIterator.<synthetic: ctor_create>","java.util.Spliterators$DoubleConsumerIterator.<init>","d","java.util.Spliterators$DoubleConsumerIterator.accept","java.util.Spliterators$DoubleConsumerIterator.hasNext","java.util.Spliterators$DoubleConsumerIterator.nextDouble","java.util.Spliterators$DoubleConsumerIterator.andThen","java.util.Spliterators$DoubleConsumerIterator.forEachRemaining","java.util.Spliterators$DoubleConsumerIterator.next","java.util.Spliterators$DoubleConsumerIterator.remove","java.util.Spliterators$DoubleConsumerIterator.<clinit>"]
+}

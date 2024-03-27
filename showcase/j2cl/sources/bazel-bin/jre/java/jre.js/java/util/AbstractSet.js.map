@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractSet.impl.java.js",
+"lineCount":79,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MA0BsB,W;;CAAA,W;EAAAA,Q;;;CAGV,kC;EAAcC,iD;;;CAGT,M,UAAcC,C;EAC3BC;GACEA,YADFA;G;EAIAA;GACEA,aADFA;G;EAIAA,IAAOC,KAAPD,4C;EACAA;GACEA,aADFA;G;EAGAA,+B;;;CAIS,Q;EACTE,6D;;;CAIa,S,sBAAwBC,C;EACrCC,4E;EAEAA,IAAIC,IAAJD,e;EACAA;GAGEA,SAAiBE,IAAjBF;IACEA,IAAEL,CAAFK,mCADFA;IAEEA;KACEA,sBADFA;KAFFA;IAHFA;;GAYEA;IAAAA,IAAYL,GAAZK,wCAAAA;;KACEA,iBADFA;;IAZFA;G;EAgBAA,2B;;;;CAhDkB,oC;EAAAG,6G;;;QAAA,O;EAAAC,8B;EAAAA,2B;EAAAA,6B;EAAAA;",
+"sources":["AbstractSet.java"],
+"names":["java.util.AbstractSet.<synthetic: ctor_js>","java.util.AbstractSet.<init>","o","java.util.AbstractSet.equals","other","java.util.AbstractSet.hashCode","c","java.util.AbstractSet.removeAll","size","iter","java.util.AbstractSet.spliterator","java.util.AbstractSet.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$MapToIntSpliterator.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;;;;;;;MAqU6B,mB;;CAAA,W;EAAAA,Q;EAAAA;OACc,uDADdA,C;EAAAA;OAEI,4DAFJA,C;;;QAIlB,gE,yBAA6CC,G,wBAAoBC,Q;EAAjEC,8B;EAAAA,0C;EAAAA,+I;EAAAA,iB;;;CAAA,qH,yBAA6CF,G,wBAAoBC,Q;EACtEE,gP;EAGAA,8E;EACAA,mE;EACAA,6E;;;CAIa,qD,oBAA6BC,M;EAC1CC,sJAA2BC,CAA3BD;GAAgCE,gIAAhCF;M;;;;CAfuB,uC;EAAAA,4H;;;QAAA,O;EAAAG,sC;EAAAA,mC;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$MapToIntSpliterator.<synthetic: ctor_js>","map","original","java.util.stream.StreamImpl$MapToIntSpliterator.<synthetic: ctor_create>","java.util.stream.StreamImpl$MapToIntSpliterator.<init>","action","java.util.stream.StreamImpl$MapToIntSpliterator.tryAdvance","u","java.util.stream.StreamImpl$MapToIntSpliterator.<lambda in tryAdvance>","java.util.stream.StreamImpl$MapToIntSpliterator.<clinit>"]
+}

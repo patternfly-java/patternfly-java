@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StackTraceElement.impl.java.js",
+"lineCount":98,
+"mappings":"A;;;;;;;;;;;;;;;;MAyBmB,iB;;CAAA,W;EAAAA,Q;EAAAA;OAEF,yCAFEA,C;EAAAA;OAIF,wCAJEA,C;EAAAA;OAML,0CANKA,K;EAAAA;OAQF,0CAREA,C;;;;QAUV,S;EAAAC,4B;EAAAA,wC;EAAAA,qD;EAAAA,iB;;;;CAAA,wC;EAAoBC,qC;;;;QAGpB,kE,gBAAyBC,S,iBAAkBC,U,iBACvCC,Q,gBAAcC,U;EADlBL,4B;EAAAA,wC;EAAAA,2J;EAAAA,iB;;;;CAAA,mG,gBAAyBE,S,iBAAkBC,U,iBACvCC,Q,gBAAcC,U;EAAYJ,qC;EACnCA,oD;EACAA,qD;EACAA,2D;EACAA,6D;EACAA,yD;EACAA,6D;;;CAGY,gC;EACZK,sD;;;CAGY,+B;EACZC,qD;;;CAGS,oB;EACTC,uD;;;CAGY,iC;EACZC,uD;;;CAIa,M,UAAcC,K;EAC3BC;GACEA,IAAkBC,EAAlBD,0CADFA;GAEEA,qkBAFFA;G;EAOAA,a;;;CAIS,Q;EACTE,mS;;;CAIY,Q;EACZC,imB;;;QA1De,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["StackTraceElement.java"],
+"names":["java.lang.StackTraceElement.<synthetic: ctor_js>","java.lang.StackTraceElement.<synthetic: ctor_create>","java.lang.StackTraceElement.<init>","className","methodName","fileName","lineNumber","java.lang.StackTraceElement.getClassName","java.lang.StackTraceElement.getFileName","java.lang.StackTraceElement.getLineNumber","java.lang.StackTraceElement.getMethodName","other","java.lang.StackTraceElement.equals","st","java.lang.StackTraceElement.hashCode","java.lang.StackTraceElement.toString","java.lang.StackTraceElement.<clinit>"]
+}

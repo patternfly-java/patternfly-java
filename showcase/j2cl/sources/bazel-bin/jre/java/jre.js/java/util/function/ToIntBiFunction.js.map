@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToIntBiFunction.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAyBiB,e;;CAEX,qD,UAAaA,C,WAAKC,C;;QAFP,M;EAAAC,0B;EAAAA,mE;;;QAAA,O;EAAAC,kC;EAAAA;",
+"sources":["ToIntBiFunction.java"],
+"names":["t","u","java.util.function.ToIntBiFunction.<synthetic: adapt_lambda>","java.util.function.ToIntBiFunction.<clinit>"]
+}

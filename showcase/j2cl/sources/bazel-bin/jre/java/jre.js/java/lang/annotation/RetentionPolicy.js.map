@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RetentionPolicy.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;MAsBY,e;;CAAA,W;EAAAA,Q;;;QAAA,8B;EAAAC,sC;EAAAA,oG;EAAAA,iB;;;CAAA,wE;EAAAC,qC;EAAAA,2C;EAAAA,yE;;;QAAA,iE;EAAAC,0B;EAAAA;GAAAA,+NAAAA;G;EAAAA,qJ;;;QAAA,sD;EAAAC,0B;EAAAA,+Q;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,e;;;;;;;;;;;;;;AACV;yE;AAAO;2E;AAAS;0E;AAAhB;gBAAA,6CAAA,8K;AAAO;gBAAA,+CAAA,kL;AAAS;gBAAA,8CAAA,gL;AADN;;",
+"sources":["RetentionPolicy.java"],
+"names":["java.lang.annotation.RetentionPolicy.<synthetic: ctor_js>","java.lang.annotation.RetentionPolicy.<synthetic: ctor_create>","java.lang.annotation.RetentionPolicy.<init>","java.lang.annotation.RetentionPolicy.valueOf","java.lang.annotation.RetentionPolicy.values","java.lang.annotation.RetentionPolicy.<clinit>"]
+}

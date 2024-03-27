@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterator$OfLong.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;;;;;;;;;;;MA8IY,M;;CAEQ,kD,oBAAkCA,Q;;CASrC,qD,oBAAwCA,Q;;QATrC,0F,6CAAkCA,Q;EAAlCC,iB;EACdA;GACEA,wHADFA;;GAGEA;IAAiCC,sFAAjCD;QAHFA;G;;;QAQW,6F,6CAAwCD,Q;EAAxCG,iB;EACXA;GACEA,oHADFA;;GAGEA;IAAgCC,sFAAhCD;QAHFA;G;;;QAZM,O;EAAAE,yB;EAAAA,sB;EAAAA;",
+"sources":["Spliterator.java"],
+"names":["consumer","java.util.Spliterator$OfLong.tryAdvance__$default","java.util.Spliterator$OfLong.<lambda in tryAdvance__$default>","java.util.Spliterator$OfLong.forEachRemaining__$default","java.util.Spliterator$OfLong.<lambda in forEachRemaining__$default>","java.util.Spliterator$OfLong.<clinit>"]
+}

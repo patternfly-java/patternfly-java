@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntStream$4.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;MA2JyE,E;;CAAA,W;EAAAA,Q;EAAAA;OACnD,qCADmDA,K;EAAAA;wD;EAAAA;iD;;;QAAA,4D;EAAAC,a;EAAAA,yB;EAAAA,gJ;EAAAA,iB;;;CAAA,8F;EAJ1CC,mE;EAAuBC,6D;EAImBC,qF;EAAAA,mD;;;CAIhD,qD,oBAAuBC,M;EACpCC,uE;EACAA,+J;EACAA,Y;;;;CAP6D,uC;EAAAA,4H;;;CAAA,2C;EAC/DF,+F;;;QAD+D,O;EAAAG,qB;EAAAA,kB;EAAAA;",
+"sources":["IntStream.java"],
+"names":["java.util.stream.IntStream$4.<synthetic: ctor_js>","java.util.stream.IntStream$4.<synthetic: ctor_create>","seed","f","java.util.stream.IntStream$4.<init>","action","java.util.stream.IntStream$4.tryAdvance","java.util.stream.IntStream$4.<clinit>"]
+}

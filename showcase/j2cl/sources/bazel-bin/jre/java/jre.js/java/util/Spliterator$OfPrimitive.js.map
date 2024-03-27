@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterator$OfPrimitive.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;MA8EY,W;;CAEA,uC,UAAaA,Q;;CAGnB,6C;;CAEW,0C,UAAmBA,Q;;QAAnB,uF,iDAAmBA,Q;EAAnBC,sB;EACXA,qE;;;QARM,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["Spliterator.java"],
+"names":["consumer","java.util.Spliterator$OfPrimitive.forEachRemaining__$default","java.util.Spliterator$OfPrimitive.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HashCodes.impl.java.js",
+"lineCount":86,
+"mappings":"A;;;;;;;;;;;;MAqBa,S;;CAAA,W;EAAAA,oB;EAAAA,Q;EAAAA,gD;;;CAAA,wC;EAAAA,qC;;;QAEO,mB,UAA2BC,C;EAAGC,oB;EAC9CA;;IAEIA,qGAFJA;;IAIIA,iGAJJA;;IAMIA,oGANJA;;IAQIA,6EARJA;G;;;kBAcuB,yB,UAAiCD,C;;QAExC,W;EAAcE,oB;EAC9BA,uH;;;QApBS,O;EAAAC,4B;EAAAA,yB;EAAAA,qB;;;;;;;;;;;;;;;;;AAAA;UAeQ,wCAfR,K;;;;;;;ACrBbC,G;CACCA,gB;CACAA,kB;CACAA,S;CACAA,E;AACDA,qD;EACEA,uC;EACAA,2B;MACIA,6B;WACKA,oE;SACFA,G;OACFA,mB;AACPA;",
+"sources":["HashCodes.java","HashCodes.native_js"],
+"names":["javaemul.internal.HashCodes.<init>","o","javaemul.internal.HashCodes.getIdentityHashCode","javaemul.internal.HashCodes.getNextHash","javaemul.internal.HashCodes.<clinit>","javaemul.internal.HashCodes.<native>"]
+}

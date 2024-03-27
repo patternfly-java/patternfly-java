@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GwtIncompatible.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MAkBkB,e;;QAAA,O;EAAAA,kC;EAAAA;",
+"sources":["GwtIncompatible.java"],
+"names":["org.gwtproject.safehtml.shared.annotations.GwtIncompatible.<clinit>"]
+}

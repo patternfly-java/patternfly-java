@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PopoverSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,mB;;CAAA,W;EAAAA,Q;;;CAEX,+G,gBAA2BC,I,WAAQC,O;EAC/BC,8N;;;QAHO,O;EAAAC,sC;EAAAA,mC;EAAAA;",
+"sources":["PopoverSubComponent.java"],
+"names":["org.patternfly.component.popover.PopoverSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.popover.PopoverSubComponent.<init>","org.patternfly.component.popover.PopoverSubComponent.<clinit>"]
+}

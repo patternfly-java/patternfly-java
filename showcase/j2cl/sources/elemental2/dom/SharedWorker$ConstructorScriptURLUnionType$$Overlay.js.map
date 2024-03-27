@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SharedWorker$ConstructorScriptURLUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAiDmB,Q;;QAEmC,iF,UAAUA,C;EAAGC,mB;EAC7DA,yE;;;QAIa,gG;EAAAC,mB;EACbA,mE;;;QAIuB,yH;EAAAC,mB;EACvBA,sI;;;QAIU,+F;EAAAC,mB;EACVA,4G;;;QAIc,uF;EAAAC,mB;EACdA,wC;;;QAIc,iG;EAAAC,mB;EACdA,uD;;;QAIc,oF;EAAAC,mB;EACdA,0C;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["SharedWorker.java"],
+"names":["o","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.of","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.asString__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.asTrustedScriptURL__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.asURL__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.isString__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.isTrustedScriptURL__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.isURL__$devirt","elemental2.dom.SharedWorker$ConstructorScriptURLUnionType$$Overlay.<clinit>"]
+}

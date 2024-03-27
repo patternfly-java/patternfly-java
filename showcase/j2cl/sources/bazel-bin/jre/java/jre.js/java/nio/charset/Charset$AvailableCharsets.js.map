@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Charset$AvailableCharsets.impl.java.js",
+"lineCount":58,
+"mappings":"A;;;;;;;;;;;;;;MA8B6B,iB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EAAAC,qC;;;QACzB,2D;EAAAC,sH;;;QADyB,O;EAAAC,oC;EAAAA,iC;EAAAA,qB;EAGvBA,IAA2BC,GAA3BD,iE;EACAA,qK;EACAA,uK;EACAA,2J;EACAA,gN;;;;;;;;;;;;;;AAPuB;;",
+"sources":["Charset.java"],
+"names":["java.nio.charset.Charset$AvailableCharsets.<synthetic: ctor_js>","java.nio.charset.Charset$AvailableCharsets.<synthetic: ctor_create>","java.nio.charset.Charset$AvailableCharsets.<init>","java.nio.charset.Charset$AvailableCharsets.<synthetic: getter>","java.nio.charset.Charset$AvailableCharsets.<clinit>","map"]
+}

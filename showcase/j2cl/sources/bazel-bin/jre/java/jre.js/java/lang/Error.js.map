@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Error.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;MAsBa,S;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,oB;EAAAA,gC;EAAAA,yC;EAAAA,yF;EAAAA,iB;;;;CAAA,4B;EACLC,wC;;;;QAGK,8C,gBAAaC,O,mBAAmBC,K;EAAhCH,oB;EAAAA,gC;EAAAA,8F;EAAAA,yF;EAAAA,iB;;;;CAAA,mE,gBAAaE,O,mBAAmBC,K;EACrCF,6F;;;;QAGK,yB,gBAAaC,O;EAAbF,oB;EAAAA,gC;EAAAA,kE;EAAAA,yF;EAAAA,iB;;;;CAAA,8C,gBAAaE,O;EAClBD,iE;;;;QAGK,4B,kBAAgBE,K;EAAhBH,oB;EAAAA,gC;EAAAA,mE;EAAAA,yF;EAAAA,iB;;;;CAAA,iD,kBAAgBG,K;EACrBF,kE;;;QAfS,O;EAAAG,4B;EAAAA,yB;EAAAA;",
+"sources":["Error.java"],
+"names":["java.lang.Error.<synthetic: ctor_js>","java.lang.Error.<synthetic: ctor_create>","java.lang.Error.<init>","message","cause","java.lang.Error.<clinit>"]
+}

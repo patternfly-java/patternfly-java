@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCIceParameters$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAqBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["RTCIceParameters.java"],
+"names":["elemental2.dom.RTCIceParameters$$Overlay.<clinit>"]
+}

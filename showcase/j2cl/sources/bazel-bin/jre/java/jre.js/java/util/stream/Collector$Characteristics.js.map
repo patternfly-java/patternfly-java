@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collector$Characteristics.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;MAwCO,e;;CAAA,W;EAAAA,Q;;;QAAA,8B;EAAAC,sC;EAAAA,0G;EAAAA,iB;;;CAAA,8E;EAAAC,qC;EAAAA,2C;EAAAA,yE;;;QAAA,uE;EAAAC,0B;EAAAA;GAAAA,2OAAAA;G;EAAAA,2J;;;QAAA,4D;EAAAC,0B;EAAAA,iT;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,e;;;;;;;;;;;;;;AAAkB;oF;AAAY;yF;AAAiB;mF;AAA7B;gBAAA,wDAAA,8L;AAAY;gBAAA,6DAAA,wM;AAAiB;gBAAA,uDAAA,4L;AAA/C;;",
+"sources":["Collector.java"],
+"names":["java.util.stream.Collector$Characteristics.<synthetic: ctor_js>","java.util.stream.Collector$Characteristics.<synthetic: ctor_create>","java.util.stream.Collector$Characteristics.<init>","java.util.stream.Collector$Characteristics.valueOf","java.util.stream.Collector$Characteristics.values","java.util.stream.Collector$Characteristics.<clinit>"]
+}

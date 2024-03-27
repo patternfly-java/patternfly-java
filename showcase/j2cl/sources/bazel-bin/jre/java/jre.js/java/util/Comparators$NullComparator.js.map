@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Comparators$NullComparator.impl.java.js",
+"lineCount":91,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;MAqFqB,c;;CAAA,W;EAAAA,Q;EAAAA;OACK,kDADLA,S;EAAAA;OAEW,iDAFXA,C;;;QAKjB,sC,gBAAuBC,S,uBAAiCC,Q;EAAxDC,yB;EAAAA,qC;EAAAA,gH;EAAAA,iB;;;CAAA,gF,gBAAuBF,S,uBAAiCC,Q;EAAUE,qC;EAChEA,oE;EACAA,+F;;;CAIS,kD,UAAUC,C,WAAKC,C;EACxBC;GACEA,4GADFA;G;EAGAA;GACEA,6EADFA;G;EAGAA,2M;;;CAImB,gC;EACnBC,2U;;;CAImB,2D,sBAAoCC,K;EACvDC,2W;;;;CA5Be,wF;EAAAA,0L;;;;CAAA,kE;EAAAA,8J;;;;CAAA,gF;EAAAC,4K;;;;CAAA,0E;EAAAC,sK;;;;CAAA,4E;EAAAC,wK;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Comparators.java"],
+"names":["java.util.Comparators$NullComparator.<synthetic: ctor_js>","nullFirst","delegate","java.util.Comparators$NullComparator.<synthetic: ctor_create>","java.util.Comparators$NullComparator.<init>","a","b","java.util.Comparators$NullComparator.compare","java.util.Comparators$NullComparator.reversed","other","java.util.Comparators$NullComparator.thenComparing","java.util.Comparators$NullComparator.thenComparingDouble","java.util.Comparators$NullComparator.thenComparingInt","java.util.Comparators$NullComparator.thenComparingLong","java.util.Comparators$NullComparator.<clinit>"]
+}

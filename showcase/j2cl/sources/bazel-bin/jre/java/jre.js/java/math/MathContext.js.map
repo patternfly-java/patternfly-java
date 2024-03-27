@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MathContext.impl.java.js",
+"lineCount":167,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;MA8CmB,W;;CAAA,W;EAAAA,Q;EAAAA;OA0CL,mCA1CKA,K;EAAAA;OAgDI,sCAhDJA,C;;;;QA2DV,Y,eAAgBC,S;EAAhBC,sB;EAAAA,kC;EAAAA,6D;EAAAA,iB;;;;CAAA,uC,eAAgBD,S;EACrBE,gI;;;;QAcK,oC,eAAgBF,S,sBAAwBG,Y;EAAxCF,sB;EAAAA,kC;EAAAA,mG;EAAAA,iB;;;;CAAA,+D,eAAgBD,S,sBAAwBG,Y;EAAcD,qC;EAC3DA,6G;EACAA,kH;EAEAA,qD;EACAA,2D;;;;QAeK,yB,gBAAmBE,G;EAAnBH,sB;EAAAA,kC;EAAAA,oE;EAAAA,iB;;;;CAAA,oD,gBAAmBG,G;EAAKF,qC;EAC7BA,mG;EAEAA,IAAmBG,KAAnBH,oE;EAEAA;GACEA,gGADFA;G;EAIAA;GACEA,uLADFA;GAGEA,iNAHFA;;GAI8BA,oCAJ9BA;GAI8BA;IAAAA,IAAJI,EAAIJ,0CAAAA;IAE5BA,gGAF4BA;;IAAAA,+BAAAA;IAJ9BA;G;EASAA,4I;;;CAca,M,UAAcK,C;EAC3BC,gU;;;CAcS,mB;EACTC,gD;;;CAekB,yC;EAClBC,mD;;;CASS,Q;EAETC,6G;;;CAcY,Q;EACZC,0L;;;QAtLF,uC;EAAAC,sF;;;QAQA,sC;EAAAA,qF;;;QAQA,sC;EAAAA,qF;;;QAQA,sC;EAAAA,qF;;;QA1BiB,O;EAAAC,8B;EAAAA,2B;EAAAA,qB;EAEjBA,+J;EAQAA,6J;EAQAA,8J;EAQAA,2J;;;;;;;;;;;;;;;;;;;;;AA1BiB;sD;AAAA;qD;AAAA;qD;AAAA;qD;AAiCjB;YAG0B,0CAH1B;",
+"sources":["MathContext.java"],
+"names":["java.math.MathContext.<synthetic: ctor_js>","precision","java.math.MathContext.<synthetic: ctor_create>","java.math.MathContext.<init>","roundingMode","val","match","re","x","java.math.MathContext.equals","java.math.MathContext.getPrecision","java.math.MathContext.getRoundingMode","java.math.MathContext.hashCode","java.math.MathContext.toString","java.math.MathContext.<synthetic: getter>","java.math.MathContext.<clinit>"]
+}

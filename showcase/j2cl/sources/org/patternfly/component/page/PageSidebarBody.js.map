@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageSidebarBody.impl.java.js",
+"lineCount":152,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;MAqCa,e;;CAAA,W;EAAAA,Q;;;QAUqB,gE;EAAkBC,0B;EAC5CA,mC;;;QAOJ,S;EAAAC,0B;EAAAA,sC;EAAAA,uE;EAAAA,iB;;;CAAA,0D;EACIC,00B;;;CAQmB,8G,mBAAyBC,U;EAC5CC,yJ;;;CAQmB,sD;EACnBC,iT;;;CAMmB,wD;EACnBC,gT;;;CAImB,qD;EACnBC,Y;;;;CAjDK,uC;EAAAA,oE;;;;CAAA,uC;EAAAC,qK;;;;CAAA,gD;EAAAA,oL;;;;CAAA,yC;EAAAC,2K;;;;CAAA,kD;EAAAA,0L;;;;CAAA,6C;EAAAC,uL;;;;CAAA,sD;EAAAA,sM;;;;CAAA,qD;EAAAF,qK;;;;CAAA,8D;EAAAA,oL;;;;CAAA,uD;EAAAC,2K;;;;CAAA,gE;EAAAA,0L;;;;CAAA,2D;EAAAC,uL;;;;CAAA,oE;EAAAA,sM;;;QAAA,O;EAAAC,kC;EAAAA,+B;EAAAA,2B;EAAAA,e;EAAAA,iB;EAAAA,qB;;;;;;;;;;;;;;;;;;AAgBT;gBAAoB,mEAApB;",
+"sources":["PageSidebarBody.java"],
+"names":["org.patternfly.component.page.PageSidebarBody.<synthetic: ctor_js>","org.patternfly.component.page.PageSidebarBody.pageSidebarBody","org.patternfly.component.page.PageSidebarBody.<synthetic: ctor_create>","org.patternfly.component.page.PageSidebarBody.<init>","navigation","org.patternfly.component.page.PageSidebarBody.addNavigation","org.patternfly.component.page.PageSidebarBody.inset","org.patternfly.component.page.PageSidebarBody.noInset","org.patternfly.component.page.PageSidebarBody.that","org.patternfly.component.page.PageSidebarBody.fill","org.patternfly.component.page.PageSidebarBody.noFill","org.patternfly.component.page.PageSidebarBody.pageInsets","org.patternfly.component.page.PageSidebarBody.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResourcePrototype$DefaultExtensions.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAmCa,iB;;CACT,iC;;QADS,O;EAAAA,oC;EAAAA;",
+"sources":["ResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ResourcePrototype$DefaultExtensions.<clinit>"]
+}

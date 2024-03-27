@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToLongBiFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;;;;;;;MAyBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;gE;EAAAA,0H;;;CAAA,gH;EAAAC,qC;EAAAA,mE;;;CAAA,uD;EAAAC,4C;EAAAA,0G;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ToLongBiFunction.java"],
+"names":["java.util.function.ToLongBiFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.ToLongBiFunction$$LambdaAdaptor.<init>","java.util.function.ToLongBiFunction$$LambdaAdaptor.applyAsLong","java.util.function.ToLongBiFunction$$LambdaAdaptor.<clinit>"]
+}

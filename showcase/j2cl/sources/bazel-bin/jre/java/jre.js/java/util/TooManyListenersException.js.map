@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TooManyListenersException.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;MAqBa,yB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,oC;EAAAA,gD;EAAAA,6D;EAAAA,yF;EAAAA,iB;;;;CAAA,gD;EAA4BC,wC;;;;QAG5B,yB,gBAAiCC,O;EAAjCF,oC;EAAAA,gD;EAAAA,sF;EAAAA,yF;EAAAA,iB;;;;CAAA,kE,gBAAiCE,O;EACtCD,iE;;;QANS,O;EAAAE,4C;EAAAA,yC;EAAAA;",
+"sources":["TooManyListenersException.java"],
+"names":["java.util.TooManyListenersException.<synthetic: ctor_js>","java.util.TooManyListenersException.<synthetic: ctor_create>","java.util.TooManyListenersException.<init>","message","java.util.TooManyListenersException.<clinit>"]
+}

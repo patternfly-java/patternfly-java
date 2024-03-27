@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongUnaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;iE;EAAAA,4H;;;CAAA,kH;EAAAC,qC;EAAAA,oE;;;CAAA,yB;EAAAC,8C;EAAAA,qG;;;;CAAA,qF;EAAAC,2K;;;;CAAA,qF;EAAAC,2K;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["LongUnaryOperator.java"],
+"names":["java.util.function.LongUnaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongUnaryOperator$$LambdaAdaptor.<init>","java.util.function.LongUnaryOperator$$LambdaAdaptor.applyAsLong","java.util.function.LongUnaryOperator$$LambdaAdaptor.andThen","java.util.function.LongUnaryOperator$$LambdaAdaptor.compose","java.util.function.LongUnaryOperator$$LambdaAdaptor.<clinit>"]
+}

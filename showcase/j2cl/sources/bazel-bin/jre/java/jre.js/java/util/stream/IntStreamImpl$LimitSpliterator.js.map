@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntStreamImpl$LimitSpliterator.impl.java.js",
+"lineCount":71,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MAmc6B,gB;;CAAA,W;EAAAA,Q;EAAAA;OACN,yDADMA,oB;EAAAA;OAEO,4DAFPA,C;EAAAA;OAGb,4DAHaA,K;;;QAKlB,0C,eAAsBC,K,eAAyBC,Q;EAA/CC,2B;EAAAA,uC;EAAAA,2H;EAAAA,iB;;;CAAA,+F,eAAsBF,K,eAAyBC,Q;EACpDE,iT;EAD8DA,sE;EAM9DA,uE;EACAA,6E;;;CAIiC,qC;EACjCC,iH;;;CAIa,qD,oBAAuBC,M;EACpCC;GACEA,aADFA;G;EAGAA,IAAQC,MAARD,qH;EACAA,8I;EACAA,c;;;;CA3BuB,uC;EAAAA,4H;;;CAAA,8D;EAGzBH,sE;;;QAHyB,O;EAAAK,mC;EAAAA,gC;EAAAA;",
+"sources":["IntStreamImpl.java"],
+"names":["java.util.stream.IntStreamImpl$LimitSpliterator.<synthetic: ctor_js>","limit","original","java.util.stream.IntStreamImpl$LimitSpliterator.<synthetic: ctor_create>","java.util.stream.IntStreamImpl$LimitSpliterator.<init>","java.util.stream.IntStreamImpl$LimitSpliterator.getComparator","action","java.util.stream.IntStreamImpl$LimitSpliterator.tryAdvance","result","java.util.stream.IntStreamImpl$LimitSpliterator.<clinit>"]
+}

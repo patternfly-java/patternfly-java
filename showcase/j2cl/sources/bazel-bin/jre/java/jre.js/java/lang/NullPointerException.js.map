@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NullPointerException.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;MAsBa,oB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,+B;EAAAA,2C;EAAAA,wD;EAAAA,6F;EAAAA,iB;;;;CAAA,2C;EAAuBC,0C;;;;QAGvB,yB,gBAA4BC,O;EAA5BF,+B;EAAAA,2C;EAAAA,iF;EAAAA,6F;EAAAA,iB;;;;CAAA,6D,gBAA4BE,O;EACjCD,mE;;;;QAGF,yB,UAA4BE,S;EAA5BH,+B;EAAAA,2C;EAAAA,mF;EAAAA,6F;EAAAA,iB;;;;CAAA,6D,UAA4BG,S;EAC1BF,qE;;;QAVS,O;EAAAG,uC;EAAAA,oC;EAAAA;",
+"sources":["NullPointerException.java"],
+"names":["java.lang.NullPointerException.<synthetic: ctor_js>","java.lang.NullPointerException.<synthetic: ctor_create>","java.lang.NullPointerException.<init>","message","typeError","java.lang.NullPointerException.<clinit>"]
+}

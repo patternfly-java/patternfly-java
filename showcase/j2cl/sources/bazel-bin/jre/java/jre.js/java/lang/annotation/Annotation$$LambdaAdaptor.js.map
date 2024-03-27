@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Annotation$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;4D;EAAAA,kH;;;CAAA,wG;EAAAC,qC;EAAAA,+D;;;CAAA,iC;EAAAC,0C;EAAAA,4F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["Annotation.java"],
+"names":["java.lang.annotation.Annotation$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.lang.annotation.Annotation$$LambdaAdaptor.<init>","java.lang.annotation.Annotation$$LambdaAdaptor.annotationType","java.lang.annotation.Annotation$$LambdaAdaptor.<clinit>"]
+}

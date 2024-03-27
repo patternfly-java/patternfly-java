@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA+WmB,Q;;QAEuC,qF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAIyB,iI;EAAAC,mB;EACzBA,iG;;;QAIU,oF;EAAAC,mB;EACVA,mD;;;QAIc,wF;EAAAC,mB;EACdA,oC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["MediaTrackConstraintSet.java"],
+"names":["o","elemental2.dom.MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.of","elemental2.dom.MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.asConstrainLongRange__$devirt","elemental2.dom.MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.asInt__$devirt","elemental2.dom.MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.isInt__$devirt","elemental2.dom.MediaTrackConstraintSet$GetSampleSizeUnionType$$Overlay.<clinit>"]
+}

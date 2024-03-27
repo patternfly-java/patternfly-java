@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$SkipSpliterator.impl.java.js",
+"lineCount":64,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAyZ6B,e;;CAAA,W;EAAAA,Q;EAAAA;OACZ,wDADYA,oB;EAAAA;OAEQ,4DAFRA,C;;;QAIlB,2C,eAAqBC,I,gBAAyBC,Q;EAA9CC,0B;EAAAA,sC;EAAAA,2H;EAAAA,iB;;;CAAA,gG,eAAqBF,I,gBAAyBC,Q;EACnDE,qV;EAKAA,qE;EACAA,6E;;;CAI8B,qC;EAC9BC,iH;;;CAIa,sD,qBAAwBC,M;EACrCC;GACEA,kJAA+BC,MAA/BD;IACEA,aADFA;IADFA;GAIEA,kKAJFA;G;EAMAA,yH;;;;CA3BuB,uC;EAAAA,+H;;;QAAA,O;EAAAE,kC;EAAAA,+B;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$SkipSpliterator.<synthetic: ctor_js>","skip","original","java.util.stream.LongStreamImpl$SkipSpliterator.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$SkipSpliterator.<init>","java.util.stream.LongStreamImpl$SkipSpliterator.getComparator","action","java.util.stream.LongStreamImpl$SkipSpliterator.tryAdvance","ignore","java.util.stream.LongStreamImpl$SkipSpliterator.<clinit>"]
+}

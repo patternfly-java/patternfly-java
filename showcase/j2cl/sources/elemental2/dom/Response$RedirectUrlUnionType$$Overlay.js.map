@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Response$RedirectUrlUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA4GmB,Q;;QAEsB,oE,UAAUA,C;EAAGC,mB;EAChDA,yE;;;QAIa,mF;EAAAC,mB;EACbA,mE;;;QAIU,kF;EAAAC,mB;EACVA,4G;;;QAIc,0E;EAAAC,mB;EACdA,wC;;;QAIc,uE;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["Response.java"],
+"names":["o","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.of","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.asString__$devirt","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.asURL__$devirt","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.isString__$devirt","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.isURL__$devirt","elemental2.dom.Response$RedirectUrlUnionType$$Overlay.<clinit>"]
+}

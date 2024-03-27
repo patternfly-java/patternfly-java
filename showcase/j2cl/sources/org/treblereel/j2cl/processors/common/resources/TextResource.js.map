@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TextResource.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;;;;;MAqBiB,Y;;CACR,2B;;CAEF,8B;;CAEA,6B;;QALU,O;EAAAA,+B;EAAAA;",
+"sources":["TextResource.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.TextResource.<clinit>"]
+}

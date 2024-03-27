@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Function$$LambdaAdaptor.impl.java.js",
+"lineCount":45,
+"mappings":"A;;;;;;;;;;MA2BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;wD;EAAAA,0G;;;CAAA,gG;EAAAC,qC;EAAAA,2D;;;CAAA,2C;EAAAC,oC;EAAAA,4F;;;;CAAA,mE;EAAAC,oJ;;;;CAAA,mE;EAAAC,oJ;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["Function.java"],
+"names":["java.util.function.Function$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.Function$$LambdaAdaptor.<init>","java.util.function.Function$$LambdaAdaptor.apply","java.util.function.Function$$LambdaAdaptor.andThen","java.util.function.Function$$LambdaAdaptor.compose","java.util.function.Function$$LambdaAdaptor.<clinit>"]
+}

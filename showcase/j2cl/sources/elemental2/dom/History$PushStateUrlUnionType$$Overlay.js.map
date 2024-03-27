@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"History$PushStateUrlUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAyBmB,Q;;QAEsB,oE,UAAUA,C;EAAGC,mB;EAChDA,yE;;;QAIa,mF;EAAAC,mB;EACbA,mE;;;QAIU,kF;EAAAC,mB;EACVA,4G;;;QAIc,0E;EAAAC,mB;EACdA,wC;;;QAIc,uE;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["History.java"],
+"names":["o","elemental2.dom.History$PushStateUrlUnionType$$Overlay.of","elemental2.dom.History$PushStateUrlUnionType$$Overlay.asString__$devirt","elemental2.dom.History$PushStateUrlUnionType$$Overlay.asURL__$devirt","elemental2.dom.History$PushStateUrlUnionType$$Overlay.isString__$devirt","elemental2.dom.History$PushStateUrlUnionType$$Overlay.isURL__$devirt","elemental2.dom.History$PushStateUrlUnionType$$Overlay.<clinit>"]
+}

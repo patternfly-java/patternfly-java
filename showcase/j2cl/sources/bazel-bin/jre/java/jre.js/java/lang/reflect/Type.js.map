@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Type.impl.java.js",
+"lineCount":12,
+"mappings":"A;;;;;;;MAsBiB,I;;QAAA,O;EAAAA,uB;EAAAA;",
+"sources":["Type.java"],
+"names":["java.lang.reflect.Type.<clinit>"]
+}

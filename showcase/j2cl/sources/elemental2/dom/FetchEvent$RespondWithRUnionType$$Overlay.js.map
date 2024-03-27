@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FetchEvent$RespondWithRUnionType$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MA4BmB,Q;;QAEyB,uE,UAAUA,C;EAAGC,mB;EACnDA,yE;;;QAI0B,qG;EAAAC,mB;EAC1BA,kG;;;QAIe,+F;EAAAC,mB;EACfA,sH;;;QAIc,+E;EAAAC,mB;EACdA,+C;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["FetchEvent.java"],
+"names":["o","elemental2.dom.FetchEvent$RespondWithRUnionType$$Overlay.of","elemental2.dom.FetchEvent$RespondWithRUnionType$$Overlay.asIThenable__$devirt","elemental2.dom.FetchEvent$RespondWithRUnionType$$Overlay.asResponse__$devirt","elemental2.dom.FetchEvent$RespondWithRUnionType$$Overlay.isResponse__$devirt","elemental2.dom.FetchEvent$RespondWithRUnionType$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ImageResource.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;MA4BiB,a;;CAGX,gB;;CAGE,gC;;CAGF,e;;CAEG,0B;;QAXQ,O;EAAAA,gC;EAAAA;",
+"sources":["ImageResource.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ImageResource.<clinit>"]
+}

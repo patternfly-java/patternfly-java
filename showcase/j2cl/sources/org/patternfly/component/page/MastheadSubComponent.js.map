@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MastheadSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,oB;;CAAA,W;EAAAA,Q;;;CAEX,6G,gBAA4BC,I,WAAQC,O;EAChCC,+N;;;QAHO,O;EAAAC,uC;EAAAA,oC;EAAAA;",
+"sources":["MastheadSubComponent.java"],
+"names":["org.patternfly.component.page.MastheadSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.page.MastheadSubComponent.<init>","org.patternfly.component.page.MastheadSubComponent.<clinit>"]
+}

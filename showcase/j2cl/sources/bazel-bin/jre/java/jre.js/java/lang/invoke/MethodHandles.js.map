@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MethodHandles.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAgBM,a;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAAC,qC;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["MethodHandles.java"],
+"names":["java.lang.invoke.MethodHandles.<synthetic: ctor_js>","java.lang.invoke.MethodHandles.<synthetic: ctor_create>","java.lang.invoke.MethodHandles.<init>","java.lang.invoke.MethodHandles.<clinit>"]
+}

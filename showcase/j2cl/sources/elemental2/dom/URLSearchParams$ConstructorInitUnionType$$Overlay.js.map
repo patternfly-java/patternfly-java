@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"URLSearchParams$ConstructorInitUnionType$$Overlay.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;;;;MA8BmB,Q;;QAEiC,+E,UAAUA,C;EAAGC,mB;EAC3DA,yE;;;QAI+B,sG;EAAAC,mB;EAC/BA,kI;;;QAI4B,iH;EAAAC,mB;EAC5BA,sG;;;QAIa,8F;EAAAC,mB;EACbA,mE;;;QAIc,sF;EAAAC,mB;EACdA,8C;;;QAIc,qF;EAAAC,mB;EACdA,wC;;;QA5Ba,O;EAAAC,2B;EAAAA;",
+"sources":["URLSearchParams.java"],
+"names":["o","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.of","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.asJsArray__$devirt","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.asJsPropertyMap__$devirt","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.asString__$devirt","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.isJsArray__$devirt","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.isString__$devirt","elemental2.dom.URLSearchParams$ConstructorInitUnionType$$Overlay.<clinit>"]
+}

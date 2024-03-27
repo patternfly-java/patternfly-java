@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Base.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;;;;;;;MAiBY,I;;CAAA,W;EAAAA,Q;EAAAA;OAEK,sCAFLA,C;EAAAA;OAGa,4CAHbA,C;EAAAA;OAIc,wCAJdA,S;;;QAMR,yB,gBAAYC,I;EAAZC,e;EAAAA,2B;EAAAA,8E;EAAAA,iB;;;CAAA,6D,gBAAYD,I;EAAME,qC;EACdA,4S;EACAA,gK;EACAA,6I;;;CAGG,4E,gBAAgBC,I;EACnBC;GACIA,IAAOC,QAAPD,wKADJA;GAEIA,kFAFJA;G;EAIAA,Y;;;CAGG,4E,gBAAgBD,I;EACnBG;GACIA,IAAOC,QAAPD,iKADJA;GAEIA,wLAFJA;G;EAIAA,Y;;;QAzBI,O;EAAAE,uB;EAAAA,oB;EAAAA;",
+"sources":["Base.java"],
+"names":["org.jboss.elemento.router.Base.<synthetic: ctor_js>","base","org.jboss.elemento.router.Base.<synthetic: ctor_create>","org.jboss.elemento.router.Base.<init>","path","org.jboss.elemento.router.Base.relative","relative","org.jboss.elemento.router.Base.absolute","safePath","org.jboss.elemento.router.Base.<clinit>"]
+}

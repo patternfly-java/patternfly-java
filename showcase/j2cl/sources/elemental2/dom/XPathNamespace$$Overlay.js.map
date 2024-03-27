@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"XPathNamespace$$Overlay.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAsBa,Q;;QACX,kE;EAAAA,2G;;;QADW,O;EAAAC,2B;EAAAA,wB;EACXA,oH;;;;;;;;;;AADW;;",
+"sources":["XPathNamespace.java"],
+"names":["elemental2.dom.XPathNamespace$$Overlay.<synthetic: getter>","elemental2.dom.XPathNamespace$$Overlay.<clinit>"]
+}

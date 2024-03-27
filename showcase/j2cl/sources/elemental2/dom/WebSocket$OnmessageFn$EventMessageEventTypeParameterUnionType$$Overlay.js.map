@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAiGqB,Q;;QAEsD,oG,UAAUA,C;EAAGC,mB;EAChFA,yE;;;QAIkB,mI;EAAAC,mB;EAClBA,4H;;;QAIW,oH;EAAAC,mB;EACXA,8G;;;QAIa,mH;EAAAC,mB;EACbA,mE;;;QAIc,+G;EAAAC,mB;EACdA,kD;;;QAIc,wG;EAAAC,mB;EACdA,2C;;;QAIc,0G;EAAAC,mB;EACdA,wC;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["WebSocket.java"],
+"names":["o","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.of","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.asBlob__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.asString__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.isBlob__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.isString__$devirt","elemental2.dom.WebSocket$OnmessageFn$EventMessageEventTypeParameterUnionType$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Date$StringData.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;MA8BuB,U;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iC;EAAAA,mD;EAAAA,iB;;;CAAA,sC;EAAAC,qC;;;QACnB,qC;EAAAC,kF;;;QAGA,uC;EAAAA,oF;;;QAJmB,O;EAAAC,6B;EAAAA,0B;EAAAA,qB;EACnBA,iK;EAGAA,sM;;;;;;;;;;;;;AAJmB;mD;AAAA;;",
+"sources":["Date.java"],
+"names":["java.util.Date$StringData.<synthetic: ctor_js>","java.util.Date$StringData.<synthetic: ctor_create>","java.util.Date$StringData.<init>","java.util.Date$StringData.<synthetic: getter>","java.util.Date$StringData.<clinit>"]
+}

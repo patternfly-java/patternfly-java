@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ApiDoc.impl.java.js",
+"lineCount":29,
+"mappings":"A;;;;;;;MA0BiB,M;;QAAA,O;EAAAA,yB;EAAAA,sB;;;;;;;;;;;;;;AAEb;OAAO,8CAAP,gD;AACA;OAAO,gDAAP;",
+"sources":["ApiDoc.java"],
+"names":["org.patternfly.showcase.ApiDoc.<clinit>"]
+}

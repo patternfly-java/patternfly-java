@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiFunction.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;;;MA4BiB,U;;CAEb,6D,UAAQA,C,WAAKC,C;;CAEiB,qE,oCAAyCC,K;;QAJ1D,M;EAAAC,qB;EAAAA,sE;;;QAIiB,8G,0EAAyCD,K;EAAzCE,qB;EAC9BA,wF;EACAA,mCAAQJ,CAARI,WAAWH,CAAXG;GAAiBC,uIAAjBD;K;;;QANa,O;EAAAE,6B;EAAAA;",
+"sources":["BiFunction.java"],
+"names":["t","u","after","java.util.function.BiFunction.<synthetic: adapt_lambda>","java.util.function.BiFunction.andThen__$default","java.util.function.BiFunction.<lambda in andThen__$default>","java.util.function.BiFunction.<clinit>"]
+}

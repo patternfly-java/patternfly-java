@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WebSocket$ConstructorUrlUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAyDmB,Q;;QAE0B,wE,UAAUA,C;EAAGC,mB;EACpDA,yE;;;QAIa,uF;EAAAC,mB;EACbA,mE;;;QAIU,sF;EAAAC,mB;EACVA,4G;;;QAIc,8E;EAAAC,mB;EACdA,wC;;;QAIc,2E;EAAAC,mB;EACdA,0C;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["WebSocket.java"],
+"names":["o","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.of","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.asString__$devirt","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.asURL__$devirt","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.isString__$devirt","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.isURL__$devirt","elemental2.dom.WebSocket$ConstructorUrlUnionType$$Overlay.<clinit>"]
+}

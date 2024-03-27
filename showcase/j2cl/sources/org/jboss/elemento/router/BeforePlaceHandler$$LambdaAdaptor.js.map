@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BeforePlaceHandler$$LambdaAdaptor.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;;;;MAkBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;yE;EAAAA,4I;;;CAAA,kI;EAAAC,qC;EAAAA,4E;;;CAAA,4F;;GAAAC,uF;GAAAA,sB;;;;;CAAA,8F;EAAAC,mM;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["BeforePlaceHandler.java"],
+"names":["org.jboss.elemento.router.BeforePlaceHandler$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.jboss.elemento.router.BeforePlaceHandler$$LambdaAdaptor.<init>","org.jboss.elemento.router.BeforePlaceHandler$$LambdaAdaptor.beforePlace","org.jboss.elemento.router.BeforePlaceHandler$$LambdaAdaptor.shouldGoTo","org.jboss.elemento.router.BeforePlaceHandler$$LambdaAdaptor.<clinit>"]
+}

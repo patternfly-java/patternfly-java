@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$PerspectiveOriginUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAi9BmB,Q;;QAEiC,+E,UAAUA,C;EAAGC,mB;EAC3DA,yE;;;QAIa,oF;EAAAC,mB;EACbA,yD;;;QAIa,8F;EAAAC,mB;EACbA,mE;;;QAIc,qF;EAAAC,mB;EACdA,oC;;;QAIc,qF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.of","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$PerspectiveOriginUnionType$$Overlay.<clinit>"]
+}

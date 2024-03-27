@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MenuToggleSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,sB;;CAAA,W;EAAAA,Q;;;CAEX,+G,gBAA8BC,I,WAAQC,O;EAClCC,iO;;;QAHO,O;EAAAC,yC;EAAAA,sC;EAAAA;",
+"sources":["MenuToggleSubComponent.java"],
+"names":["org.patternfly.component.menu.MenuToggleSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.menu.MenuToggleSubComponent.<init>","org.patternfly.component.menu.MenuToggleSubComponent.<clinit>"]
+}

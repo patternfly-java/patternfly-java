@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MouseEventInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEO,uC;EAASA,mB;EAC7BA,0L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["MouseEventInit.java"],
+"names":["elemental2.dom.MouseEventInit$$Overlay.create","elemental2.dom.MouseEventInit$$Overlay.<clinit>"]
+}

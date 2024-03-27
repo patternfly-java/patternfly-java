@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AbstractMap$2.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;;;;;;MAiSuC,E;;CAAA,W;EAAAA,Q;EAAAA;4C;;;QAAA,8B;EAAAC,a;EAAAA,yB;EAAAA,mF;EAAAA,iB;;;CAAA,2D;EAAAC,wD;EAAAA,iD;;;CAErB,K;EACVC,kD;;;CAIa,Q,UAAgBC,K;EAC7BC,sE;;;CAIiB,8B;EACjBC,IAA4BC,SAA5BD,0G;EACAA,yG;;;CAoBS,I;EACTE,wD;;;QAnC+B,O;EAAAC,qB;EAAAA,kB;EAAAA;",
+"sources":["AbstractMap.java"],
+"names":["java.util.AbstractMap$2.<synthetic: ctor_js>","java.util.AbstractMap$2.<synthetic: ctor_create>","java.util.AbstractMap$2.<init>","java.util.AbstractMap$2.clear","value","java.util.AbstractMap$2.contains","java.util.AbstractMap$2.iterator","outerIter","java.util.AbstractMap$2.size","java.util.AbstractMap$2.<clinit>"]
+}

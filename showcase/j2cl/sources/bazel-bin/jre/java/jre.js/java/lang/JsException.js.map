@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsException.impl.java.js",
+"lineCount":87,
+"mappings":"A;;;;;;;MAsBa,W;;CAAA,W;EAAAA,Q;EAAAA;OAII,yCAJJA,C;;;;QAMD,yB,UAAmBC,e;EAAnBC,sB;EAAAA,kC;EAAAA,gF;EAAAA,yF;EAAAA,iB;;;;CAAA,oD,UAAmBD,e;EAC3BE,gF;EAD4CA,4C;EAE5CA,iE;;;;QAGF,yB,gBAAmBC,G;EAAnBF,sB;EAAAA,kC;EAAAA,oE;EAAAA,yF;EAAAA,iB;;;;CAAA,oD,gBAAmBE,G;EACjBD,oE;EADsBA,4C;;;;QAIxB,S;EAAAD,sB;EAAAA,kC;EAAAA,+C;EAAAA,yF;EAAAA,iB;;;;CAAA,kC;EACEC,+C;EADYA,4C;;;CAKT,wD,UAAwBE,K;EAC3BC,8O;;;CArBS,oC;EAIXH,qG;;;QAJW,O;EAAAI,8B;EAAAA,2B;EAAAA,2B;EAEXA,mE;;;;;;;;;;;;AAFW;YAEiB,uCAFjB;",
+"sources":["JsException.java"],
+"names":["java.lang.JsException.<synthetic: ctor_js>","backingJsObject","java.lang.JsException.<synthetic: ctor_create>","java.lang.JsException.<init>","msg","error","java.lang.JsException.privateInitError","java.lang.JsException.<clinit>"]
+}

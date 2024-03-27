@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HTMLMediaElement$$Overlay.impl.java.js",
+"lineCount":82,
+"mappings":"A;;;;;MAyBa,Q;;QA+GX,iE;EAAAA,0G;;;QAGA,gE;EAAAA,yG;;;QAGA,gE;EAAAA,yG;;;QAGA,6D;EAAAA,sG;;;QACA,4D;EAAAA,qG;;;QACA,6D;EAAAA,sG;;;QACA,4D;EAAAA,qG;;;QACA,+D;EAAAA,wG;;;QAEA,iE;EAAAA,0G;;;QA9HW,O;EAAAC,2B;EAAAA,wB;EA+GXA,kH;EAGAA,gH;EAGAA,gH;EAGAA,0G;EACAA,wG;EACAA,0G;EACAA,wG;EACAA,8G;EAEAA,kH;;;;;;;;;;AA9HW;iF;AAAA;gF;AAAA;gF;AAAA;6E;AAAA;4E;AAAA;6E;AAAA;4E;AAAA;+E;AAAA;;",
+"sources":["HTMLMediaElement.java"],
+"names":["elemental2.dom.HTMLMediaElement$$Overlay.<synthetic: getter>","elemental2.dom.HTMLMediaElement$$Overlay.<clinit>"]
+}

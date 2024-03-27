@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResourcePrototype$$LambdaAdaptor.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8F;EAAAA,sL;;;CAAA,4K;EAAAC,qC;EAAAA,iG;;;CAAA,2B;EAAAC,yC;EAAAA,8H;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ResourcePrototype$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","org.treblereel.j2cl.processors.common.resources.ResourcePrototype$$LambdaAdaptor.<init>","org.treblereel.j2cl.processors.common.resources.ResourcePrototype$$LambdaAdaptor.getName","org.treblereel.j2cl.processors.common.resources.ResourcePrototype$$LambdaAdaptor.<clinit>"]
+}

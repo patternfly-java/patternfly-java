@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NavigationSubComponent.impl.java.js",
+"lineCount":27,
+"mappings":"A;;;;;;;;;;;;;MAuBe,sB;;CAAA,W;EAAAA,Q;;;CAEX,qH,gBAA8BC,I,WAAQC,O;EAClCC,iO;;;QAHO,O;EAAAC,yC;EAAAA,sC;EAAAA;",
+"sources":["NavigationSubComponent.java"],
+"names":["org.patternfly.component.navigation.NavigationSubComponent.<synthetic: ctor_js>","name","element","org.patternfly.component.navigation.NavigationSubComponent.<init>","org.patternfly.component.navigation.NavigationSubComponent.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WithObservableValue.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;;;;;;MAuBiB,mB;;CAGX,4E,2BAAwBA,E;;QAHb,O;EAAAC,sC;EAAAA;",
+"sources":["WithObservableValue.java"],
+"names":["ov","org.patternfly.component.WithObservableValue.<clinit>"]
+}

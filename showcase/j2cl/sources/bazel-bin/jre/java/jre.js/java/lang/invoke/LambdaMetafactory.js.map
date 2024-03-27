@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LambdaMetafactory.impl.java.js",
+"lineCount":41,
+"mappings":"A;;;;;;;;;;MAgBa,iB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,4B;EAAAA,wC;EAAAA,4D;EAAAA,iB;;;CAAA,+C;EAAAC,qC;;;QACY,uN,eACEC,M,iBACdC,mB,oBACIC,W,oBACAC,mB,sBACEC,c,oBACFC,iB;EAAmBC,4B;EAChCA,Y;;;QAGqB,2J,eACEN,M,iBACdC,mB,oBACIC,W,kBACDK,C;EAAGC,4B;EACfA,Y;;;QAhBS,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["LambdaMetafactory.java"],
+"names":["java.lang.invoke.LambdaMetafactory.<synthetic: ctor_js>","java.lang.invoke.LambdaMetafactory.<synthetic: ctor_create>","java.lang.invoke.LambdaMetafactory.<init>","caller","interfaceMethodName","factoryType","interfaceMethodType","implementation","dynamicMethodType","java.lang.invoke.LambdaMetafactory.metafactory","a","java.lang.invoke.LambdaMetafactory.altMetafactory","java.lang.invoke.LambdaMetafactory.<clinit>"]
+}

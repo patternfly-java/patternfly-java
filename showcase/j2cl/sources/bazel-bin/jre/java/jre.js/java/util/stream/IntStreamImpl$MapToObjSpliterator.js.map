@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntStreamImpl$MapToObjSpliterator.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;;;;;;;;;;MAsT6B,mB;;CAAA,W;EAAAA,Q;EAAAA;OACc,0DADdA,C;EAAAA;OAEO,+DAFPA,C;;;QAIlB,oE,uBAA6CC,G,eAAuBC,Q;EAApEC,8B;EAAAA,0C;EAAAA,sJ;EAAAA,iB;;;CAAA,4H,uBAA6CF,G,eAAuBC,Q;EACzEE,6O;EAGAA,8E;EACAA,sE;EACAA,gF;;;CAIa,kD,oBAAqCC,M;EAClDC,sJAAgCC,CAAhCD;GAAsCE,2IAAtCF;M;;;QAfuB,O;EAAAG,sC;EAAAA,mC;EAAAA;",
+"sources":["IntStreamImpl.java"],
+"names":["java.util.stream.IntStreamImpl$MapToObjSpliterator.<synthetic: ctor_js>","map","original","java.util.stream.IntStreamImpl$MapToObjSpliterator.<synthetic: ctor_create>","java.util.stream.IntStreamImpl$MapToObjSpliterator.<init>","action","java.util.stream.IntStreamImpl$MapToObjSpliterator.tryAdvance","u","java.util.stream.IntStreamImpl$MapToObjSpliterator.<lambda in tryAdvance>","java.util.stream.IntStreamImpl$MapToObjSpliterator.<clinit>"]
+}

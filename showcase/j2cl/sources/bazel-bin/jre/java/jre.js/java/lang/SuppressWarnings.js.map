@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SuppressWarnings.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MAiCkB,gB;;CAChB,iC;;QADgB,O;EAAAA,mC;EAAAA;",
+"sources":["SuppressWarnings.java"],
+"names":["java.lang.SuppressWarnings.<clinit>"]
+}

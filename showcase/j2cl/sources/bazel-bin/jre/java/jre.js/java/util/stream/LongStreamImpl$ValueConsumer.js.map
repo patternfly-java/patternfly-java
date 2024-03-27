@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$ValueConsumer.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;;;MA6d6B,a;;CAAA,W;EAAAA,Q;EAAAA;OACpB,sDADoBA,oB;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,uE;EAAAA,iB;;;CAAA,0D;EAAAC,qC;;;CAIb,oB,eAAYC,K;EACtBC,oE;;;;CALuB,2E;EAAAC,uJ;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$ValueConsumer.<synthetic: ctor_js>","java.util.stream.LongStreamImpl$ValueConsumer.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$ValueConsumer.<init>","value","java.util.stream.LongStreamImpl$ValueConsumer.accept","java.util.stream.LongStreamImpl$ValueConsumer.andThen","java.util.stream.LongStreamImpl$ValueConsumer.<clinit>"]
+}

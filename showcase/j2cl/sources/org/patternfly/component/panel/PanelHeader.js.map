@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PanelHeader.impl.java.js",
+"lineCount":78,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA2Ba,W;;CAAA,W;EAAAA,Q;EAAAA;OAYI,sDAZJA,C;;;QAIiB,yD;EAAcC,sB;EACpCA,+B;;;QASJ,S;EAAAC,sB;EAAAA,kC;EAAAA,oE;EAAAA,iB;;;CAAA,uD;EACIC,uxB;EACAA,0T;EACAA,kK;;;CAMe,kD;EACfC,Y;;;;CAxBK,uC;EAAAA,iE;;;QAAA,O;EAAAC,8B;EAAAA,2B;EAAAA,4B;;;;;;;;;;;;;;;;;;;;AAUT;YAAoB,gEAApB;",
+"sources":["PanelHeader.java"],
+"names":["org.patternfly.component.panel.PanelHeader.<synthetic: ctor_js>","org.patternfly.component.panel.PanelHeader.panelHeader","org.patternfly.component.panel.PanelHeader.<synthetic: ctor_create>","org.patternfly.component.panel.PanelHeader.<init>","org.patternfly.component.panel.PanelHeader.that","org.patternfly.component.panel.PanelHeader.<clinit>"]
+}

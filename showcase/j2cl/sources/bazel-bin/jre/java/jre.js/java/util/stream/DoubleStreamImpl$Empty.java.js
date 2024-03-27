@@ -1,0 +1,36 @@
+goog.module('java.util.stream.DoubleStreamImpl.Empty');
+
+goog.require('java.lang.Runnable');
+goog.require('java.util.DoubleSummaryStatistics');
+goog.require('java.util.OptionalDouble');
+goog.require('java.util.PrimitiveIterator.OfDouble');
+goog.require('java.util.Spliterator.OfDouble');
+goog.require('java.util.Spliterators');
+goog.require('java.util.function.BiConsumer');
+goog.require('java.util.function.DoubleBinaryOperator');
+goog.require('java.util.function.DoubleConsumer');
+goog.require('java.util.function.DoubleFunction');
+goog.require('java.util.function.DoublePredicate');
+goog.require('java.util.function.DoubleToIntFunction');
+goog.require('java.util.function.DoubleToLongFunction');
+goog.require('java.util.function.DoubleUnaryOperator');
+goog.require('java.util.function.ObjDoubleConsumer');
+goog.require('java.util.function.Supplier');
+goog.require('java.util.stream.DoubleStream');
+goog.require('java.util.stream.IntStream');
+goog.require('java.util.stream.IntStreamImpl.Empty');
+goog.require('java.util.stream.LongStream');
+goog.require('java.util.stream.LongStreamImpl.Empty');
+goog.require('java.util.stream.Stream');
+goog.require('java.util.stream.StreamImpl.Empty');
+goog.require('java.util.stream.TerminatableStream');
+goog.require('javaemul.internal.InternalPreconditions');
+goog.require('nativebootstrap.Long');
+goog.require('nativebootstrap.Util');
+goog.require('vmbootstrap.Arrays');
+goog.require('vmbootstrap.Casts');
+goog.require('vmbootstrap.LongUtils');
+goog.require('vmbootstrap.primitives.$double');
+
+const Empty = goog.require('java.util.stream.DoubleStreamImpl.Empty$impl');
+exports = Empty;

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoublePredicate$$LambdaAdaptor.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;+D;EAAAA,wH;;;CAAA,8G;EAAAC,qC;EAAAA,kE;;;CAAA,uB;EAAAC,+C;EAAAA,mG;;;;CAAA,6E;EAAAC,+J;;;;CAAA,4C;EAAAC,wH;;;;CAAA,4E;EAAAC,8J;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["DoublePredicate.java"],
+"names":["java.util.function.DoublePredicate$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.DoublePredicate$$LambdaAdaptor.<init>","java.util.function.DoublePredicate$$LambdaAdaptor.test","java.util.function.DoublePredicate$$LambdaAdaptor.and","java.util.function.DoublePredicate$$LambdaAdaptor.negate","java.util.function.DoublePredicate$$LambdaAdaptor.or","java.util.function.DoublePredicate$$LambdaAdaptor.<clinit>"]
+}

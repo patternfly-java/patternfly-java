@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$EmptySet.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;;;MAmJ6B,Q;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,mB;EAAAA,+B;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAAC,0C;;;CAGV,Q,UAAgBC,M;EAC7BC,a;;;CAIc,8B;EACdC,oF;;;CAIS,I;EACTC,S;;;;CAduB,4C;EAAAC,gG;;;QAAA,O;EAAAC,2B;EAAAA,wB;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$EmptySet.<synthetic: ctor_js>","java.util.Collections$EmptySet.<synthetic: ctor_create>","java.util.Collections$EmptySet.<init>","object","java.util.Collections$EmptySet.contains","java.util.Collections$EmptySet.iterator","java.util.Collections$EmptySet.size","java.util.Collections$EmptySet.forEach","java.util.Collections$EmptySet.<clinit>"]
+}

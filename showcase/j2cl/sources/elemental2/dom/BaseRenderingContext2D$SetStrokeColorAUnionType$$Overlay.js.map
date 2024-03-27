@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MA2RmB,Q;;QAEwC,sF,UAAUA,C;EAAGC,mB;EAClEA,yE;;;QAIa,2F;EAAAC,mB;EACbA,yD;;;QAIa,qG;EAAAC,mB;EACbA,mE;;;QAIc,4F;EAAAC,mB;EACdA,oC;;;QAIc,4F;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["BaseRenderingContext2D.java"],
+"names":["o","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.of","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.asDouble__$devirt","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.asString__$devirt","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.isDouble__$devirt","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.isString__$devirt","elemental2.dom.BaseRenderingContext2D$SetStrokeColorAUnionType$$Overlay.<clinit>"]
+}

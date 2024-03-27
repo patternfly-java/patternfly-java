@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsWeakMap$ConstructorIterableUnionType$$Overlay.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;MA2CmB,Q;;QAE+B,8E,UAAUA,C;EAAGC,mB;EACzDA,yE;;;QAME,qG;EAAAC,mB;EACFA,4H;;;QAME,2G;EAAAC,mB;EACFA,iG;;;QAIc,qF;EAAAC,mB;EACdA,8C;;;QAtBa,O;EAAAC,2B;EAAAA;",
+"sources":["JsWeakMap.java"],
+"names":["o","elemental2.core.JsWeakMap$ConstructorIterableUnionType$$Overlay.of","elemental2.core.JsWeakMap$ConstructorIterableUnionType$$Overlay.asJsArray__$devirt","elemental2.core.JsWeakMap$ConstructorIterableUnionType$$Overlay.asJsIterable__$devirt","elemental2.core.JsWeakMap$ConstructorIterableUnionType$$Overlay.isJsArray__$devirt","elemental2.core.JsWeakMap$ConstructorIterableUnionType$$Overlay.<clinit>"]
+}

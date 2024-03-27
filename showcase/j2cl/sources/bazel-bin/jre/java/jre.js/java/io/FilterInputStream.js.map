@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FilterInputStream.impl.java.js",
+"lineCount":63,
+"mappings":"A;;;;;;;MA+Ba,iB;;CAAA,W;EAAAA,Q;EAAAA;OAKsB,+BALtBA,C;;;QAiBC,4B,oBAA8BC,I;EAA9BC,4B;EAAAA,wC;EAAAA,4E;EAAAA,iB;;;CAAA,2D,oBAA8BD,I;EAAIE,wC;EACxCA,4C;;;CAIO,gB;EACPC,+D;;;CAUQ,a;EACRC,qD;;;CAkBQ,iB,eAASC,S;EACjBC,kE;;;CAeW,wB;EACXC,uE;;;CAcO,W;EACPC,0D;;;CAIO,mC,sBAAYC,M,gBAAYC,U,gBAAgBC,S;EAC/CH,+G;;;CAeQ,a;EACRI,qD;;;CAgBQ,kB,eAAUD,S;EAClBE,0E;;;QA1HK,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["FilterInputStream.java"],
+"names":["java.io.FilterInputStream.<synthetic: ctor_js>","in","java.io.FilterInputStream.<synthetic: ctor_create>","java.io.FilterInputStream.<init>","java.io.FilterInputStream.available","java.io.FilterInputStream.close","readlimit","java.io.FilterInputStream.mark","java.io.FilterInputStream.markSupported","java.io.FilterInputStream.read","buffer","byteOffset","byteCount","java.io.FilterInputStream.reset","java.io.FilterInputStream.skip","java.io.FilterInputStream.<clinit>"]
+}

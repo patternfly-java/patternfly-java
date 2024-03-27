@@ -1,0 +1,45 @@
+goog.module('elemental2.dom.CSSProperties.$Overlay');
+
+goog.require('elemental2.dom.CSSProperties.AnimationIterationCountUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.AnimationUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderBottomLeftRadiusUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderBottomRightRadiusUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderBottomWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderImageOutsetUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderImageSliceUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderImageWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderLeftWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderRadiusUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderRightWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderTopLeftRadiusUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderTopRightRadiusUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderTopWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.BorderWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.FontSizeUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.HeightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.LineHeightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MarginBottomUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MarginLeftUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MarginRightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MarginTopUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MarginUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MaxHeightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MaxWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MinHeightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.MinWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.OpacityUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.OutlineWidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PaddingBottomUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PaddingLeftUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PaddingRightUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PaddingTopUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PaddingUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.PerspectiveOriginUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.TransformOriginUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.WidthUnionType.$Overlay');
+goog.require('elemental2.dom.CSSProperties.ZIndexUnionType.$Overlay');
+goog.require('nativebootstrap.Util');
+
+const $Overlay = goog.require('elemental2.dom.CSSProperties.$Overlay$impl');
+/** @nodts */
+exports = $Overlay;

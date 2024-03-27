@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HashMap.impl.java.js",
+"lineCount":99,
+"mappings":"A;;;;;;;;;;;;;;;;;;MA4Ba,O;;CAAA,W;EAAAA,Q;EAAAA;OAQD,+BARCA,C;EAAAA;OAeD,iCAfCA,C;;;;QAiBJ,S;EAAAC,kB;EAAAA,8B;EAAAA,2C;EAAAA,iB;;;;CAAA,8B;EAAUC,8C;;;;QAGV,Y,eAAYC,O;EAAZF,kB;EAAAA,8B;EAAAA,uD;EAAAA,iB;;;;CAAA,mC,eAAYE,O;EACjBD,0D;;;;QAGK,mB,eAAYC,O,gBAAeC,W;EAA3BH,kB;EAAAA,8B;EAAAA,2E;EAAAA,iB;;;;CAAA,0C,eAAYE,O,gBAAeC,W;EAChCF,8E;;;;QAGK,sB,kBAAsCG,U;EAAtCJ,kB;EAAAA,8B;EAAAA,oE;EAAAA,iB;;;;CAAA,6C,kBAAsCI,U;EAC3CH,uE;;;CAGY,yB;EACZI,0E;;;CAIM,mE,UAAcC,M,WAAeC,M;EACnCC,qF;;;CAIE,kD,UAAmBC,G;EACrBC;GACEA,SADFA;G;EAGAA,uD;;;QA9CS,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["HashMap.java"],
+"names":["java.util.HashMap.<synthetic: ctor_js>","java.util.HashMap.<synthetic: ctor_create>","java.util.HashMap.<init>","ignored","alsoIgnored","toBeCopied","java.util.HashMap.clone","value1","value2","java.util.HashMap.equals","key","java.util.HashMap.getHashCode","java.util.HashMap.<clinit>"]
+}

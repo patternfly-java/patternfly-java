@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Element$SetAttributeNSValueUnionType$$Overlay.impl.java.js",
+"lineCount":48,
+"mappings":"A;;;;;;;;MAqfmB,Q;;QAE6B,2E,UAAUA,C;EAAGC,mB;EACvDA,yE;;;QAIc,kF;EAAAC,mB;EACdA,2D;;;QAIa,gF;EAAAC,mB;EACbA,yD;;;QAIa,0F;EAAAC,mB;EACbA,mE;;;QAIc,kF;EAAAC,mB;EACdA,qC;;;QAIc,iF;EAAAC,mB;EACdA,oC;;;QAIc,iF;EAAAC,mB;EACdA,wC;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["Element.java"],
+"names":["o","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.of","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.asDouble__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.asString__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.isDouble__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.isString__$devirt","elemental2.dom.Element$SetAttributeNSValueUnionType$$Overlay.<clinit>"]
+}

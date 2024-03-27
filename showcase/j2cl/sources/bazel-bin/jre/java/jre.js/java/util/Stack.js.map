@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Stack.impl.java.js",
+"lineCount":74,
+"mappings":"A;;;;;;;;;;;;MAwBa,K;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,gB;EAAAA,4B;EAAAA,yC;EAAAA,iB;;;CAAA,4B;EAAAC,qC;;;CAGG,yB;EACZC,IAASC,CAATD,8C;EACAA,e;EACAA,S;;;CAGa,gB;EACbE,sB;;;CAGO,wB;EACPC,IAAIC,EAAJD,e;EACAA;GACEA,mCADFA;;GAGEA,wDAHFA;G;;;CAOO,uB;EACPE,IAAID,EAAJC,e;EACAA;GACEA,sCADFA;;GAGEA,wDAHFA;G;;;CAOO,0C,UAAOC,C;EACdC,Y;EACAA,S;;;CAGS,+B,UAAcD,C;EACvBE,IAAIC,GAAJD,uB;EACAA;GACEA,6BADFA;G;EAGAA,e;;;QAzCS,O;EAAAE,wB;EAAAA,qB;EAAAA;",
+"sources":["Stack.java"],
+"names":["java.util.Stack.<synthetic: ctor_js>","java.util.Stack.<synthetic: ctor_create>","java.util.Stack.<init>","java.util.Stack.clone","s","java.util.Stack.empty","java.util.Stack.peek","sz","java.util.Stack.pop","o","java.util.Stack.push","java.util.Stack.search","pos","java.util.Stack.<clinit>"]
+}

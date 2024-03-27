@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Level$LevelConfig.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;MA2CuB,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,sB;EAAAA,kC;EAAAA,6D;EAAAA,iB;;;CAAA,gD;EAAAC,4C;;;CACK,2B;EAAYC,gB;;;CACf,e;EAAaC,W;;;QAFf,O;EAAAC,8B;EAAAA,2B;EAAAA;",
+"sources":["Level.java"],
+"names":["java.util.logging.Level$LevelConfig.<synthetic: ctor_js>","java.util.logging.Level$LevelConfig.<synthetic: ctor_create>","java.util.logging.Level$LevelConfig.<init>","java.util.logging.Level$LevelConfig.getName","java.util.logging.Level$LevelConfig.intValue","java.util.logging.Level$LevelConfig.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleStreamImpl$MapToLongSpliterator.impl.java.js",
+"lineCount":55,
+"mappings":"A;;;;;;;;;;;;;;;;MA+T6B,oB;;CAAA,W;EAAAA,Q;EAAAA;OACU,8DADVA,C;EAAAA;OAEU,mEAFVA,C;;;QAIlB,gF,6BAA0CC,G,kBAA0BC,Q;EAApEC,+B;EAAAA,2C;EAAAA,sK;EAAAA,iB;;;CAAA,4I,6BAA0CF,G,kBAA0BC,Q;EACzEE,iP;EAGAA,8E;EACAA,0E;EACAA,oF;;;CAIa,sD,qBAA8BC,M;EAC3CC,6JAAmCC,CAAnCD;GAAyCE,gIAAzCF;M;;;;CAfuB,uC;EAAAA,+H;;;QAAA,O;EAAAG,uC;EAAAA,oC;EAAAA;",
+"sources":["DoubleStreamImpl.java"],
+"names":["java.util.stream.DoubleStreamImpl$MapToLongSpliterator.<synthetic: ctor_js>","map","original","java.util.stream.DoubleStreamImpl$MapToLongSpliterator.<synthetic: ctor_create>","java.util.stream.DoubleStreamImpl$MapToLongSpliterator.<init>","action","java.util.stream.DoubleStreamImpl$MapToLongSpliterator.tryAdvance","u","java.util.stream.DoubleStreamImpl$MapToLongSpliterator.<lambda in tryAdvance>","java.util.stream.DoubleStreamImpl$MapToLongSpliterator.<clinit>"]
+}

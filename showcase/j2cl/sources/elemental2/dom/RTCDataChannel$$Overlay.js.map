@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RTCDataChannel$$Overlay.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;MA2BiB,Q;;QAwIF,iF,qDAAiBA,I;EAAjBC,mB;EACXA,6F;;;QAIW,qF,yDAAqBD,I;EAArBC,mB;EACXA,6F;;;QAIW,yE,8CAAUD,I;EAAVC,mB;EACXA,6F;;;QAMW,sE,iDAAYD,I;EAAZC,mB;EACXA,6F;;;QA1Ja,O;EAAAC,2B;EAAAA;",
+"sources":["RTCDataChannel.java"],
+"names":["data","elemental2.dom.RTCDataChannel$$Overlay.send__$devirt","elemental2.dom.RTCDataChannel$$Overlay.<clinit>"]
+}

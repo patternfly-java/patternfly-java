@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GWT3Export.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;MA0BkB,U;;CAEhB,6B;;CAEA,wB;;QAJgB,O;EAAAA,6B;EAAAA;",
+"sources":["GWT3Export.java"],
+"names":["org.treblereel.j2cl.processors.annotations.GWT3Export.<clinit>"]
+}

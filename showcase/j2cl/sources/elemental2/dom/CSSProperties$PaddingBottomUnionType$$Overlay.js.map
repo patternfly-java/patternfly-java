@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CSSProperties$PaddingBottomUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MAq0BmB,Q;;QAE6B,2E,UAAUA,C;EAAGC,mB;EACvDA,yE;;;QAIa,gF;EAAAC,mB;EACbA,yD;;;QAIa,0F;EAAAC,mB;EACbA,mE;;;QAIc,iF;EAAAC,mB;EACdA,oC;;;QAIc,iF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["CSSProperties.java"],
+"names":["o","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.of","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.asDouble__$devirt","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.asString__$devirt","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.isDouble__$devirt","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.isString__$devirt","elemental2.dom.CSSProperties$PaddingBottomUnionType$$Overlay.<clinit>"]
+}

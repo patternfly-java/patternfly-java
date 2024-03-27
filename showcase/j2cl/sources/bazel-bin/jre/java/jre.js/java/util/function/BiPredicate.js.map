@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BiPredicate.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;;MA2BiB,W;;CAEP,mD,UAAOA,C,WAAKC,C;;CAEM,wC;;CAIA,qE,0BAAsCC,K;;CAKtC,oE,0BAAqCA,K;;QAbhD,M;EAAAC,sB;EAAAA,mE;;;QAIW,kF;EAAAC,sB;EACxBA,oCAAQJ,CAARI,WAAWH,CAAXG;GAAiBC,2EAAjBD;K;;;QAGwB,+G,8DAAsCF,K;EAAtCI,sB;EACxBA,wF;EACAA,oCAAQN,CAARM,WAAWL,CAAXK;GAAiBC,6IAAjBD;K;;;QAGwB,8G,8DAAqCJ,K;EAArCM,sB;EACxBA,wF;EACAA,oCAAQR,CAARQ,WAAWP,CAAXO;GAAiBC,6IAAjBD;K;;;QAfa,O;EAAAE,8B;EAAAA;",
+"sources":["BiPredicate.java"],
+"names":["t","u","other","java.util.function.BiPredicate.<synthetic: adapt_lambda>","java.util.function.BiPredicate.negate__$default","java.util.function.BiPredicate.<lambda in negate__$default>","java.util.function.BiPredicate.and__$default","java.util.function.BiPredicate.<lambda in and__$default>","java.util.function.BiPredicate.or__$default","java.util.function.BiPredicate.<lambda in or__$default>","java.util.function.BiPredicate.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TrustedTypePolicyOptions$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA0BiB,Q;;QAiBiB,iD;EAASA,mB;EACvCA,oM;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["TrustedTypePolicyOptions.java"],
+"names":["elemental2.dom.TrustedTypePolicyOptions$$Overlay.create","elemental2.dom.TrustedTypePolicyOptions$$Overlay.<clinit>"]
+}

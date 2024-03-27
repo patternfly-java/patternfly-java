@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleUnaryOperator.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;;MAwBiB,mB;;QAEY,kD;EAAWA,8B;EACpCA,iDAAOC,OAAPD;GAAkBE,eAAlBF;K;;;CAGK,+B,eAAqBC,O;;CAEA,yF,4BAA4BE,K;;CAK5B,yF,4BAA4BC,M;;QAbzC,M;EAAAC,8B;EAAAA,8B;;;QAQa,2I,kEAA4BF,K;EAA5BG,8B;EAC1BA,wF;EACAA,iDAAOL,OAAPK;GAAkBC,gGAAlBD;K;;;QAG0B,2I,kEAA4BF,M;EAA5BI,8B;EAC1BA,yF;EACAA,iDAAOP,OAAPO;GAAkBC,iGAAlBD;K;;;QAfa,O;EAAAE,sC;EAAAA;",
+"sources":["DoubleUnaryOperator.java"],
+"names":["java.util.function.DoubleUnaryOperator.identity","operand","java.util.function.DoubleUnaryOperator.<lambda in identity>","after","before","java.util.function.DoubleUnaryOperator.<synthetic: adapt_lambda>","java.util.function.DoubleUnaryOperator.andThen__$default","java.util.function.DoubleUnaryOperator.<lambda in andThen__$default>","java.util.function.DoubleUnaryOperator.compose__$default","java.util.function.DoubleUnaryOperator.<lambda in compose__$default>","java.util.function.DoubleUnaryOperator.<clinit>"]
+}

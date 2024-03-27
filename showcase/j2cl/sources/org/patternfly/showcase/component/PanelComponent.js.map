@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PanelComponent.impl.java.js",
+"lineCount":72,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;MAkCa,c;;CAAA,W;EAAAA,Q;;;QAEF,S;EAAAC,yB;EAAAA,qC;EAAAA,0E;EAAAA,iB;;;CAAA,6D;EACHC,8S;EAEAA,6B;EACAA;GAGQC,0PAHRD;O;EASAA;GAGQC,qYAHRD;O;EAWAA;GAGQC,gVAHRD;O;EAUAA;GAGQC,2dAHRD;O;EAYAA;GAGQC,2SAHRD;O;EAUAA;GAGQC,gVAHRD;O;EAUAA;GAGQC,2oIAHRD;O;EA2BAA;GAGQC,42IAHRD;O;EA8BAA,8D;EACAA,uJ;EACAA,gK;EACAA,gK;EACAA,8J;;;QAjIK,O;EAAAE,iC;EAAAA,8B;EAAAA;",
+"sources":["PanelComponent.java"],
+"names":["org.patternfly.showcase.component.PanelComponent.<synthetic: ctor_js>","org.patternfly.showcase.component.PanelComponent.<synthetic: ctor_create>","org.patternfly.showcase.component.PanelComponent.<init>","org.patternfly.showcase.component.PanelComponent.<lambda in <init>>","org.patternfly.showcase.component.PanelComponent.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LogRecord.impl.java.js",
+"lineCount":110,
+"mappings":"A;;;;;;;;;;;;;;MAyBa,S;;CAAA,W;EAAAA,Q;EAAAA;OACG,qCADHA,C;EAAAA;OAEI,0CAFJA,C;EAAAA;OAGI,mCAHJA,C;EAAAA;OAIO,sCAJPA,C;EAAAA;OAKE,sCALFA,oB;;;;QAOJ,kD,cAAgBC,K,iBAAcC,G;EAA9BC,oB;EAAAA,gC;EAAAA,0G;EAAAA,iB;;;;CAAA,mF,cAAgBF,K,iBAAcC,G;EAAKE,qC;EAAAA,kD;EACxCA,mD;EACAA,+C;EACAA,iF;;;;QAGQ,S;EAAAD,oB;EAAAA,gC;EAAAA,qD;EAAAA,iB;;;;CAAA,wC;EAAYC,qC;EAAAA,kD;;;CAIT,mC;EACXC,kD;;;CAGY,iC;EACZC,uD;;;CAGY,8B;EACZC,gD;;;CAGU,iB;EACVC,mD;;;CAGe,gC;EACfC,mD;;;CAGU,yC,cAAeC,Q;EACzBC,sD;;;CAGU,uC,gBAAqBC,O;EAC/BC,0D;;;CAGU,oC,gBAAkBC,U;EAC5BC,sD;;;CAGU,uB,eAAeC,S;EACzBC,wD;;;CAGU,sC,kBAAoBC,S;EAC9BC,wD;;;CAtDS,0C;EAEXf,qD;EAEAA,mD;;;QAJW,O;EAAAgB,4B;EAAAA,yB;EAAAA;",
+"sources":["LogRecord.java"],
+"names":["java.util.logging.LogRecord.<synthetic: ctor_js>","level","msg","java.util.logging.LogRecord.<synthetic: ctor_create>","java.util.logging.LogRecord.<init>","java.util.logging.LogRecord.getLevel","java.util.logging.LogRecord.getLoggerName","java.util.logging.LogRecord.getMessage","java.util.logging.LogRecord.getMillis","java.util.logging.LogRecord.getThrown","newLevel","java.util.logging.LogRecord.setLevel","newName","java.util.logging.LogRecord.setLoggerName","newMessage","java.util.logging.LogRecord.setMessage","newMillis","java.util.logging.LogRecord.setMillis","newThrown","java.util.logging.LogRecord.setThrown","java.util.logging.LogRecord.<clinit>"]
+}

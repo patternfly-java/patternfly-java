@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Exception.impl.java.js",
+"lineCount":99,
+"mappings":"A;;;;;MAsBa,S;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,oB;EAAAA,gC;EAAAA,6C;EAAAA,yF;EAAAA,iB;;;;CAAA,gC;EAAYC,wC;;;;QAGZ,yB,gBAAiBC,O;EAAjBF,oB;EAAAA,gC;EAAAA,sE;EAAAA,yF;EAAAA,iB;;;;CAAA,kD,gBAAiBE,O;EACtBD,iE;;;;QAGK,8C,gBAAiBC,O,mBAAmBC,K;EAApCH,oB;EAAAA,gC;EAAAA,kG;EAAAA,yF;EAAAA,iB;;;;CAAA,uE,gBAAiBE,O,mBAAmBC,K;EACzCF,6F;;;;QAGK,4B,kBAAoBE,K;EAApBH,oB;EAAAA,gC;EAAAA,uE;EAAAA,yF;EAAAA,iB;;;;CAAA,qD,kBAAoBG,K;EACzBF,kE;;;;QAGQ,gE,gBAAiBC,O,mBAAmBC,K,iBAAeC,iB,iBACjDC,kB;EADFL,oB;EAAAA,gC;EAAAA,2J;EAAAA,yF;EAAAA,iB;;;;CAAA,yF,gBAAiBE,O,mBAAmBC,K,iBAAeC,iB,iBACjDC,kB;EACVJ,sJ;;;;QAGF,yB,UAAiBK,e;EAAjBN,oB;EAAAA,gC;EAAAA,8E;EAAAA,yF;EAAAA,iB;;;;CAAA,kD,UAAiBM,e;EACfL,yE;;;QAvBS,O;EAAAM,4B;EAAAA,yB;EAAAA;",
+"sources":["Exception.java"],
+"names":["java.lang.Exception.<synthetic: ctor_js>","java.lang.Exception.<synthetic: ctor_create>","java.lang.Exception.<init>","message","cause","enableSuppression","writableStackTrace","backingJsObject","java.lang.Exception.<clinit>"]
+}

@@ -1,0 +1,35 @@
+goog.module('org.patternfly.showcase.component.DescriptionListComponent');
+
+goog.require('elemental2.dom.HTMLAnchorElement.$Overlay');
+goog.require('elemental2.dom.HTMLDivElement.$Overlay');
+goog.require('java.lang.Class');
+goog.require('java.lang.Integer');
+goog.require('java.util.function.Supplier');
+goog.require('jsinterop.base.JsPropertyMap.$Overlay');
+goog.require('nativebootstrap.Util');
+goog.require('org.jboss.elemento.Elements');
+goog.require('org.jboss.elemento.HTMLContainerBuilder');
+goog.require('org.patternfly.component.IconPosition');
+goog.require('org.patternfly.component.button.Button');
+goog.require('org.patternfly.component.card.Card');
+goog.require('org.patternfly.component.list.DescriptionList');
+goog.require('org.patternfly.component.list.DescriptionListDescription');
+goog.require('org.patternfly.component.list.DescriptionListGroup');
+goog.require('org.patternfly.component.list.DescriptionListTerm');
+goog.require('org.patternfly.component.popover.Popover');
+goog.require('org.patternfly.icon.IconSets.fas');
+goog.require('org.patternfly.icon.IconSets.patternfly');
+goog.require('org.patternfly.showcase.ApiDoc.Type');
+goog.require('org.patternfly.showcase.Code');
+goog.require('org.patternfly.showcase.Data');
+goog.require('org.patternfly.showcase.Snippet');
+goog.require('org.patternfly.showcase.SnippetPage');
+goog.require('org.patternfly.showcase.component.Component.$Overlay');
+goog.require('org.patternfly.style.Breakpoint');
+goog.require('org.patternfly.style.Breakpoints');
+goog.require('org.patternfly.style.Orientation');
+goog.require('org.patternfly.style.Size');
+goog.require('vmbootstrap.Casts');
+
+const DescriptionListComponent = goog.require('org.patternfly.showcase.component.DescriptionListComponent$impl');
+exports = DescriptionListComponent;

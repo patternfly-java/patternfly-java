@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"MenuActionHandler.impl.java.js",
+"lineCount":24,
+"mappings":"A;;;;;;;;;;;;MAkBiB,iB;;CAER,0I,aAAcA,I,kBAAeC,I,wBAAqBC,U;;QAF1C,M;EAAAC,4B;EAAAA,8B;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["MenuActionHandler.java"],
+"names":["menu","item","itemAction","org.patternfly.component.menu.MenuActionHandler.<synthetic: adapt_lambda>","org.patternfly.component.menu.MenuActionHandler.<clinit>"]
+}

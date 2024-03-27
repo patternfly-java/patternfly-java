@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SVG.impl.java.js",
+"lineCount":107,
+"mappings":"A;;;;;;;;;;;;;;;;;MAoBmB,G;;CAAA,W;EAAAA,Q;;;QAI+B,iD;EAAMC,c;EAChDA,8L;;;QAGgD,oD;EAASC,c;EACzDA,uM;;;QAGiD,qD;EAAUC,c;EAC3DA,yM;;;QAG2C,+C;EAAIC,c;EAC/CA,6L;;;QAG8C,kD;EAAOC,c;EACrDA,mM;;;QAG8C,kD;EAAOC,c;EACrDA,mM;;;QAGiD,qD;EAAUC,c;EAC3DA,yM;;;QAG8C,kD;EAAOC,c;EACrDA,mM;;;QAG8C,kD;EAAOC,c;EACrDA,mM;;;QAMsD,yF,gBAAkBC,O,kBAAkBC,I;EAAMC,c;EAChGA,sN;;;QAIsD,6F,UAAiBF,O;EAASG,c;EAChFA,kH;;;QAIwD,6F,gBAAoBH,O,kBAAkBC,I;EAAMG,c;EACpGA,0N;;;QAIwD,iG,UAAmBJ,O;EAASK,c;EACpFA,sH;;;QAImC,wF,gBAAwBL,O,kBAAkBC,I;EAAMK,c;EACnFA,yP;;;QAMI,S;EAAAC,0B;EAAAA,oD;EAAAA,iB;;;CAAA,uC;EAAMC,qC;;;QAtEC,O;EAAAC,sB;EAAAA,mB;EAAAA;",
+"sources":["SVG.java"],
+"names":["org.jboss.elemento.svg.SVG.<synthetic: ctor_js>","org.jboss.elemento.svg.SVG.svg","org.jboss.elemento.svg.SVG.circle","org.jboss.elemento.svg.SVG.ellipse","org.jboss.elemento.svg.SVG.g","org.jboss.elemento.svg.SVG.line","org.jboss.elemento.svg.SVG.path","org.jboss.elemento.svg.SVG.polygon","org.jboss.elemento.svg.SVG.rect","org.jboss.elemento.svg.SVG.text","element","type","org.jboss.elemento.svg.SVG.svgElement","org.jboss.elemento.svg.SVG.wrapSvgElement","org.jboss.elemento.svg.SVG.svgContainer","org.jboss.elemento.svg.SVG.wrapSvgContainer","org.jboss.elemento.svg.SVG.createSvgElement","org.jboss.elemento.svg.SVG.<synthetic: ctor_create>","org.jboss.elemento.svg.SVG.<init>","org.jboss.elemento.svg.SVG.<clinit>"]
+}

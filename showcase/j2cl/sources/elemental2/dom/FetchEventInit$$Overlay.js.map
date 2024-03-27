@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FetchEventInit$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA0BiB,Q;;QAEO,uC;EAASA,mB;EAC7BA,0L;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["FetchEventInit.java"],
+"names":["elemental2.dom.FetchEventInit$$Overlay.create","elemental2.dom.FetchEventInit$$Overlay.<clinit>"]
+}

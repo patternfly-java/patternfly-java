@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BlobEvent$BlobEventEventInitDictType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA2BmB,Q;;QAE6B,6D;EAASA,mB;EACnDA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["BlobEvent.java"],
+"names":["elemental2.dom.BlobEvent$BlobEventEventInitDictType$$Overlay.create","elemental2.dom.BlobEvent$BlobEventEventInitDictType$$Overlay.<clinit>"]
+}

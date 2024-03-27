@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SimpleConsoleLogHandler.impl.java.js",
+"lineCount":63,
+"mappings":"A;;;;;;;;;;MAsBM,uB;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,kC;EAAAA,8C;EAAAA,mE;EAAAA,iB;;;CAAA,sD;EAAAC,8C;;;CAGQ,4C,kBAAkBC,M;EAC5BC,IAAcC,OAAdD,wE;EACAA;GACEA,OADFA;G;EAGAA;GACEA,OADFA;G;EAIAA,IAAOE,KAAPF,kK;EACAA,wG;EACAA;GACEA,6GADFA;G;;;CAKa,2G,cAAwBE,K;EACrCC,IAAIC,GAAJD,2B;EACAA;GACEA,eADFA;SAEOA;GACLA,cADKA;SAEAA;GACLA,cADKA;;GAGLA,aAHKA;G;;;CAQG,a;;CAKA,a;;QAtCR,O;EAAAE,0C;EAAAA,uC;EAAAA;",
+"sources":["SimpleConsoleLogHandler.java"],
+"names":["java.util.logging.SimpleConsoleLogHandler.<synthetic: ctor_js>","java.util.logging.SimpleConsoleLogHandler.<synthetic: ctor_create>","java.util.logging.SimpleConsoleLogHandler.<init>","record","java.util.logging.SimpleConsoleLogHandler.publish","console","level","java.util.logging.SimpleConsoleLogHandler.toConsoleLogLevel","val","java.util.logging.SimpleConsoleLogHandler.<clinit>"]
+}

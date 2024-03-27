@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamSupport.impl.java.js",
+"lineCount":108,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;MAwBmB,a;;CAAA,W;EAAAA,Q;;;QAEU,sF,iBAAkCC,W,iBAAqBC,Q;EAAUC,wB;EAC1FA,wH;;;QAGyB,wF,oBACkBC,Q,gBAAcC,e,iBAAyBH,Q;EAAUC,wB;EAE5FA;GACSG,gEADTH;GACSG,+EADTH;mHAGQI,iBAHRJ;GAGQG,IAAAC,mBAAAD,mEAHRH;GAIUG,mKAJVH;M;;;QAQsB,6E,cAA4BF,W,iBAAqBC,Q;EAAUM,wB;EACjFA,kH;;;QAGsB,kF,oBACkBJ,Q,gBAAcC,e,iBAAyBH,Q;EAAUM,wB;EAEzFA;GACSC,gEADTD;GACSC,4EADTD;6GAGQE,cAHRF;GAGQC,IAAAC,gBAAAD,0DAHRD;GAIUC,oJAJVD;M;;;QAQuB,gF,eAA8BP,W,iBAAqBC,Q;EAAUS,wB;EACpFA,oH;;;QAGuB,oF,oBACkBP,Q,gBACnCC,e,iBACUH,Q;EAAUS,wB;EAE1BA;GACSC,gEADTD;GACSC,6EADTD;+GAGQE,eAHRF;GAGQC,IAAAC,iBAAAD,6DAHRD;GAIUC,yJAJVD;M;;;QAQ0B,iE,uBAAsBV,W,iBAAqBC,Q;EAAUY,wB;EAC/EA,uI;;;QAG0B,4E,oBACWV,Q,gBAAcC,e,iBAA+BH,Q;EAAUY,wB;EAE5FA;GACSC,gEADTD;GACSC,kFADTD;qGAGQb,WAHRa;GAGQC,IAAAd,aAAAc,mEAHRD;GAIUC,uKAJVD;O;;;QAQM,S;EAAAE,oC;EAAAA,wD;EAAAA,iB;;;CAAA,2C;EAAgBC,qC;;;QAhEP,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["StreamSupport.java"],
+"names":["java.util.stream.StreamSupport.<synthetic: ctor_js>","spliterator","parallel","java.util.stream.StreamSupport.doubleStream","supplier","characteristics","java.util.stream.StreamSupport.<lambda in doubleStream>","doubleSpliterator","java.util.stream.StreamSupport.intStream","java.util.stream.StreamSupport.<lambda in intStream>","intSpliterator","java.util.stream.StreamSupport.longStream","java.util.stream.StreamSupport.<lambda in longStream>","longSpliterator","java.util.stream.StreamSupport.stream","java.util.stream.StreamSupport.<lambda in stream>","java.util.stream.StreamSupport.<synthetic: ctor_create>","java.util.stream.StreamSupport.<init>","java.util.stream.StreamSupport.<clinit>"]
+}

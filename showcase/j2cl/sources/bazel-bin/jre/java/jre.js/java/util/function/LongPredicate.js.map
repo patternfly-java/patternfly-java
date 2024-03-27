@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongPredicate.impl.java.js",
+"lineCount":52,
+"mappings":"A;;;;;;;;;;;MAwBiB,a;;CAEP,qB,eAAUA,K;;CAEI,0C;;CAIA,yE,sBAAkBC,K;;CAKlB,wE,sBAAiBA,K;;QAbxB,M;EAAAC,wB;EAAAA,8B;;;QAIO,sF;EAAAC,wB;EACpBA,2CAAOH,KAAPG;GAAgBC,8CAAhBD;K;;;QAGoB,qH,sDAAkBF,K;EAAlBI,wB;EACpBA,wF;EACAA,2CAAOL,KAAPK;GAAgBC,mFAAhBD;K;;;QAGoB,oH,sDAAiBJ,K;EAAjBM,wB;EACpBA,wF;EACAA,2CAAOP,KAAPO;GAAgBC,mFAAhBD;K;;;QAfa,O;EAAAE,gC;EAAAA;",
+"sources":["LongPredicate.java"],
+"names":["value","other","java.util.function.LongPredicate.<synthetic: adapt_lambda>","java.util.function.LongPredicate.negate__$default","java.util.function.LongPredicate.<lambda in negate__$default>","java.util.function.LongPredicate.and__$default","java.util.function.LongPredicate.<lambda in and__$default>","java.util.function.LongPredicate.or__$default","java.util.function.LongPredicate.<lambda in or__$default>","java.util.function.LongPredicate.<clinit>"]
+}

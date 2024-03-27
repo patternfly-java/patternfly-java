@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Place.impl.java.js",
+"lineCount":146,
+"mappings":"A;;;;;;;;;;;;;;;MAmCa,K;;CAAA,W;EAAAA,Q;EAAAA;OAEW,wCAFXA,C;EAAAA;OAGW,wCAHXA,C;EAAAA;OAI0B,uCAJ1BA,C;;;;QAMF,yB,gBAAaC,K;EAAbC,gB;EAAAA,4B;EAAAA,gF;EAAAA,iB;;;;CAAA,8D,gBAAaD,K;EAChBE,2K;;;;QAGG,2C,gBAAaF,K,iBAAcG,K;EAA3BF,gB;EAAAA,4B;EAAAA,yG;EAAAA,iB;;;;CAAA,gF,gBAAaD,K,iBAAcG,K;EAC9BD,4K;;;;QAGG,6D,gBAAaF,K,iBAAcG,K,iBAAcC,Q;EAAzCH,gB;EAAAA,4B;EAAAA,qI;EAAAA,iB;;;;CAAA,kG,gBAAaD,K,iBAAcG,K,iBAAcC,Q;EAC5CF;GAAyBG,mOAAzBH;M;;;;QAGG,kE,gBAAaF,K,iBAAcG,K,YAAUC,Q;EAArCH,gB;EAAAA,4B;EAAAA,0I;EAAAA,iB;;;;CAAA,uG,gBAAaD,K,iBAAcG,K,YAAUC,Q;EACxCF;GAAyBG,2KAAzBH;M;;;;QAGG,uE,gBAAaF,K,iBAAcG,K,qBAAmBG,O;EAA9CL,gB;EAAAA,4B;EAAAA,8I;EAAAA,iB;;;;CAAA,4G,gBAAaD,K,iBAAcG,K,qBAAmBG,O;EACjDJ;GAAyBG,eAAzBH;M;;;;QAGG,wE,gBAAaF,K,iBAAcG,K,+BAA6BI,I;EAAxDN,gB;EAAAA,4B;EAAAA,4I;EAAAA,iB;;;;CAAA,6G,gBAAaD,K,iBAAcG,K,+BAA6BI,I;EAAML,qC;EACjEA,sD;EACAA,sD;EACAA,oD;;;CAIW,M,UAAcM,C;EACzBC;GACIA,YADJA;G;EAGAA;GACIA,aADJA;G;EAGAA,IAAMC,KAAND,6C;EACAA,oK;;;CAIO,Q;EACPE,sG;;;CAIU,Q;EACVC,IAAcC,OAAdD,6B;EACAA,yK;EACAA;GACIA,qKADJA;G;EAGAA;GACIA,6EADJA;G;EAGAA,8D;EACAA,0B;;;QA5DK,O;EAAAE,wB;EAAAA,qB;EAAAA;",
+"sources":["Place.java"],
+"names":["org.jboss.elemento.router.Place.<synthetic: ctor_js>","route","org.jboss.elemento.router.Place.<synthetic: ctor_create>","org.jboss.elemento.router.Place.<init>","title","selector","org.jboss.elemento.router.Place.<lambda in <init>>","element","root","o","org.jboss.elemento.router.Place.equals","place","org.jboss.elemento.router.Place.hashCode","org.jboss.elemento.router.Place.toString","builder","org.jboss.elemento.router.Place.<clinit>"]
+}

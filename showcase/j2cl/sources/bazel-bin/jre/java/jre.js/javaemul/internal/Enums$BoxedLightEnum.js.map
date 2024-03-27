@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Enums$BoxedLightEnum.impl.java.js",
+"lineCount":39,
+"mappings":"A;;;;;;;;;;;;;MAuEuB,qB;;CAEX,W,UAAiBA,K,qBAAmBC,I;EAApCC,gC;EAAAA,Q;EAAAA;OAOA,+CAPAA,C;EAAAA;OAQsB,WARtBA,C;EAAAA,uH;;;CAAA,oG,UAAiBF,K,qBAAmBC,I;EAAMC,qC;EAChDA,6D;EAGAA,wB;;;CAMY,Q;EACZC,qH;;;QAbiB,O;EAAAC,wC;EAAAA,qC;EAAAA;",
+"sources":["Enums.java"],
+"names":["value","ctor","javaemul.internal.Enums$BoxedLightEnum.<init>","javaemul.internal.Enums$BoxedLightEnum.toString","javaemul.internal.Enums$BoxedLightEnum.<clinit>"]
+}

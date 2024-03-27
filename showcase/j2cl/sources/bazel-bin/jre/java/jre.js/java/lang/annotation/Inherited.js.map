@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Inherited.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MAyBkB,S;;QAAA,O;EAAAA,4B;EAAAA;",
+"sources":["Inherited.java"],
+"names":["java.lang.annotation.Inherited.<clinit>"]
+}

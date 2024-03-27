@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TabsToggle.impl.java.js",
+"lineCount":143,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;;MAwCM,U;;CAAA,W;EAAAA,Q;EAAAA;OAWmB,mDAXnBA,C;EAAAA;OAYwB,wDAZxBA,C;;;QAIgB,sD;EAAaC,qB;EAC3BA,8B;;;QASJ,S;EAAAC,qB;EAAAA,iC;EAAAA,kE;EAAAA,iB;;;CAAA,qD;EACIC,+xB;EACAA,IAAOC,cAAPD,wQ;EACAA,IAAOE,YAAPF,sQ;EACAA,wwDAK2BG,CAL3BH;GAK2BI,IAAAD,GAAAC,gEAL3BJ;GAKgCI,kEALhCJ;6tD;;;CAgBc,gD;EACdK,Y;;;CAKI,mD;EACJC,sO;;;CAGC,gE,gBAAYC,I;EACbC,iF;;;CAGC,qE,gBAAiBC,K;EAClBC,oL;;;CAGS,0D;EACTC,IAAKC,IAALD,kH;EACAA,sB;;;;CAtDF,uC;EAAAN,+D;;;;CAAA,2C;EAAAQ,uK;;;;CAAA,oD;EAAAA,sL;;;;CAAA,qB;EAAAC,+F;;;;CAAA,oD;EAAAD,uK;;;;CAAA,6D;EAAAA,sL;;;QAAA,O;EAAAE,6B;EAAAA,0B;EAAAA,0B;EAAAA,mB;;;;;;;;;;;;;;;;;;;;;;;;;;;AAUF;WAAoB,8DAApB;",
+"sources":["TabsToggle.java"],
+"names":["org.patternfly.component.tabs.TabsToggle.<synthetic: ctor_js>","org.patternfly.component.tabs.TabsToggle.tabsToggle","org.patternfly.component.tabs.TabsToggle.<synthetic: ctor_create>","org.patternfly.component.tabs.TabsToggle.<init>","toggleButtonId","toggleTextId","e","org.patternfly.component.tabs.TabsToggle.<lambda in <init>>","org.patternfly.component.tabs.TabsToggle.that","org.patternfly.component.tabs.TabsToggle.noText","text","org.patternfly.component.tabs.TabsToggle.text","label","org.patternfly.component.tabs.TabsToggle.ariaLabel","org.patternfly.component.tabs.TabsToggle.toggle","tabs","org.patternfly.component.tabs.TabsToggle.disabled","org.patternfly.component.tabs.TabsToggle.isDisabled","org.patternfly.component.tabs.TabsToggle.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Float64Array$FromSourceUnionType$$Overlay.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;MA0FmB,Q;;QAEyB,wE,UAAUA,C;EAAGC,mB;EACnDA,yE;;;QAI0B,sG;EAAAC,mB;EAC1BA,kG;;;QAIyB,qG;EAAAC,mB;EACzBA,gG;;;QAIa,uF;EAAAC,mB;EACbA,mE;;;QAIc,8E;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["Float64Array.java"],
+"names":["o","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.of","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.asJsArrayLike__$devirt","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.asJsIterable__$devirt","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.asString__$devirt","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.isString__$devirt","elemental2.core.Float64Array$FromSourceUnionType$$Overlay.<clinit>"]
+}

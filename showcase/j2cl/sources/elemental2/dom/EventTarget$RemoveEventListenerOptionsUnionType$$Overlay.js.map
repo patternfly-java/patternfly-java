@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA2DmB,Q;;QAEwC,sF,UAAUA,C;EAAGC,mB;EAClEA,yE;;;QAIc,6F;EAAAC,mB;EACdA,2D;;;QAI2B,sI;EAAAC,mB;EAC3BA,mG;;;QAIc,6F;EAAAC,mB;EACdA,qC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["EventTarget.java"],
+"names":["o","elemental2.dom.EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.of","elemental2.dom.EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.asBoolean__$devirt","elemental2.dom.EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.asEventListenerOptions__$devirt","elemental2.dom.EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.isBoolean__$devirt","elemental2.dom.EventTarget$RemoveEventListenerOptionsUnionType$$Overlay.<clinit>"]
+}

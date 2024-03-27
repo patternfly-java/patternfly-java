@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SelectionInfo.impl.java.js",
+"lineCount":107,
+"mappings":"A;;;;;;;;;;;;;;;;;;MAwBa,a;;CAAA,W;EAAAA,Q;EAAAA;OAEyB,wDAFzBA,C;EAAAA;OAGoB,uDAHpBA,C;;;;QAKT,oC,0CAAkCC,U;EAAlCC,wB;EAAAA,oC;EAAAA,0G;EAAAA,iB;;;;CAAA,mF,0CAAkCD,U;EAC9BE,6K;;;;QAGJ,mD,0CAAkCF,U,yBAA2BG,S;EAA7DF,wB;EAAAA,oC;EAAAA,oI;EAAAA,iB;;;;CAAA,kG,0CAAkCD,U,yBAA2BG,S;EAAWD,qC;EACpEA,2E;EACAA,yE;;;CAGC,6C;EACDE,qE;;;CAGC,+E,gBAAWC,E,WAAMC,I;EAClBC,2E;;;CAGC,gE,gBAAcF,E;EACfG,wE;;;CAIW,M,UAAcC,C;EACzBC;GACIA,YADJA;G;EAGAA;GACIA,aADJA;G;EAIAA,IAAiBC,KAAjBD,gE;EACAA,0I;;;CAIO,Q;EACPE,gH;;;CAIU,Q;EACVC,uL;;;CAGW,8B;EACXC,mJ;;;CAGW,uB;EACXC,+E;;;CAGW,uC,UAAaT,I;EACxBU,gP;;;CAGO,wB;EACPC,2E;;;QA9DK,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["SelectionInfo.java"],
+"names":["org.patternfly.dataprovider.SelectionInfo.<synthetic: ctor_js>","identifier","org.patternfly.dataprovider.SelectionInfo.<synthetic: ctor_create>","org.patternfly.dataprovider.SelectionInfo.<init>","selection","org.patternfly.dataprovider.SelectionInfo.reset","id","item","org.patternfly.dataprovider.SelectionInfo.add","org.patternfly.dataprovider.SelectionInfo.remove","o","org.patternfly.dataprovider.SelectionInfo.equals","other","org.patternfly.dataprovider.SelectionInfo.hashCode","org.patternfly.dataprovider.SelectionInfo.toString","org.patternfly.dataprovider.SelectionInfo.getSelection","org.patternfly.dataprovider.SelectionInfo.hasSelection","org.patternfly.dataprovider.SelectionInfo.isSelected","org.patternfly.dataprovider.SelectionInfo.getSelectionCount","org.patternfly.dataprovider.SelectionInfo.<clinit>"]
+}

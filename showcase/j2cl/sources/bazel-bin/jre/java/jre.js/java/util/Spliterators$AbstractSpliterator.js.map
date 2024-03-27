@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$AbstractSpliterator.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;;;;;MAgE+B,mB;;CAAA,W;EAAAA,Q;;;CAGjB,kE,eAAyBC,I,gBAAUC,e;EAC3CC,2F;;;QAJyB,O;EAAAC,sC;EAAAA,mC;EAAAA,0B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$AbstractSpliterator.<synthetic: ctor_js>","size","characteristics","java.util.Spliterators$AbstractSpliterator.<init>","java.util.Spliterators$AbstractSpliterator.<clinit>"]
+}

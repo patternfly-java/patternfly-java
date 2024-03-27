@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DomGlobal$SetTimeoutCallbackUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAyXmB,Q;;QAE8B,4E,UAAUA,C;EAAGC,mB;EACxDA,yE;;;QAIqC,sI;EAAAC,mB;EACrCA,oI;;;QAIa,2F;EAAAC,mB;EACbA,mE;;;QAIoB,+G;EAAAC,mB;EACpBA,gI;;;QAIc,gG;EAAAC,mB;EACdA,iD;;;QAIc,kF;EAAAC,mB;EACdA,wC;;;QAIc,yF;EAAAC,mB;EACdA,oD;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["DomGlobal.java"],
+"names":["o","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.of","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.asSetTimeoutCallbackFn__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.asString__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.asTrustedScript__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.isSetTimeoutCallbackFn__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.isString__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.isTrustedScript__$devirt","elemental2.dom.DomGlobal$SetTimeoutCallbackUnionType$$Overlay.<clinit>"]
+}

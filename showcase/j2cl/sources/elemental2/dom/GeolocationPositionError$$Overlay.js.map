@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"GeolocationPositionError$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MAyBiB,Q;;QAEiB,iD;EAASA,mB;EACvCA,oM;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["GeolocationPositionError.java"],
+"names":["elemental2.dom.GeolocationPositionError$$Overlay.create","elemental2.dom.GeolocationPositionError$$Overlay.<clinit>"]
+}

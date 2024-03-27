@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"HasHandlers.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAoBiB,W;;CAWV,oD,iBAAmBA,K;;QAXT,M;EAAAC,sB;EAAAA,8B;;;QAAA,O;EAAAC,8B;EAAAA;",
+"sources":["HasHandlers.java"],
+"names":["event","org.gwtproject.event.shared.HasHandlers.<synthetic: adapt_lambda>","org.gwtproject.event.shared.HasHandlers.<clinit>"]
+}

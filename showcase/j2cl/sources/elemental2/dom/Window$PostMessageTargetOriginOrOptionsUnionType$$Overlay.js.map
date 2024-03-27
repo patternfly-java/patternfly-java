@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.impl.java.js",
+"lineCount":31,
+"mappings":"A;;;;;;MA2XmB,Q;;QAEyC,uF,UAAUA,C;EAAGC,mB;EACnEA,yE;;;QAIa,sG;EAAAC,mB;EACbA,mE;;;QAI+B,+I;EAAAC,mB;EAC/BA,uG;;;QAIc,6F;EAAAC,mB;EACdA,wC;;;QAlBa,O;EAAAC,2B;EAAAA;",
+"sources":["Window.java"],
+"names":["o","elemental2.dom.Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.of","elemental2.dom.Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.asString__$devirt","elemental2.dom.Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.asWindowPostMessageOptions__$devirt","elemental2.dom.Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.isString__$devirt","elemental2.dom.Window$PostMessageTargetOriginOrOptionsUnionType$$Overlay.<clinit>"]
+}

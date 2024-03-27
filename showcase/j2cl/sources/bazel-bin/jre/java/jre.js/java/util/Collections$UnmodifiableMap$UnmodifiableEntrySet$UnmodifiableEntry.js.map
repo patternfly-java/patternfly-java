@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.impl.java.js",
+"lineCount":62,
+"mappings":"A;;;;;;;;;;;;;;MAghB2B,iB;;CAAA,W;EAAAA,Q;EAAAA;OACyB,sFADzBA,C;;;QAGZ,4B,oBAAsDC,K;EAAtDC,4B;EAAAA,wC;EAAAA,gI;EAAAA,iB;;;CAAA,8G,oBAAsDD,K;EAAOE,qC;EAClEA,oG;;;CAIa,M,UAAcC,C;EAC3BC,6G;;;CAIO,0B;EACPC,gI;;;CAIO,4B;EACPC,kI;;;CAIS,Q;EACTC,8G;;;CAIO,8C,UAAWC,K;EAClBC,kE;;;CAIY,Q;EACZC,4J;;;QAlCiB,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["Collections.java"],
+"names":["java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.<synthetic: ctor_js>","entry","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.<synthetic: ctor_create>","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.<init>","o","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.equals","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.getKey","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.getValue","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.hashCode","value","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.setValue","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.toString","java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry.<clinit>"]
+}

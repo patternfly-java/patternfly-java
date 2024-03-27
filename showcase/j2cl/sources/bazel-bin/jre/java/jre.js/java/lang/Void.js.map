@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Void.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;;;MAoBmB,I;;CAAA,W;EAAAA,Q;;;QAKT,S;EAAAC,0B;EAAAA,gB;;;QAHR,0B;EAAAC,2D;;;QAFiB,O;EAAAC,uB;EAAAA,oB;EAAAA,qB;EAEjBA,uD;;;;;;;;;;;;;AAFiB;;",
+"sources":["Void.java"],
+"names":["java.lang.Void.<synthetic: ctor_js>","java.lang.Void.<synthetic: ctor_create>","java.lang.Void.<synthetic: getter>","java.lang.Void.<clinit>"]
+}

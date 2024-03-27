@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongStreamImpl$3.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;MAuvBuE,E;;CAAA,W;EAAAA,Q;EAAAA;sD;EAAAA;2D;;;QAAA,oF;EAAAC,a;EAAAA,yB;EAAAA,+K;EAAAA,iB;;;CAAA,2H;EAAAC,kE;EANjCC,4E;EAMiCD,sF;;;CAE9C,sD,qBAA8BE,W;EAC3CC,sS;;;;CAH2D,uC;EAAAA,+H;;;QAAA,O;EAAAC,qB;EAAAA,kB;EAAAA;",
+"sources":["LongStreamImpl.java"],
+"names":["java.util.stream.LongStreamImpl$3.<synthetic: ctor_js>","java.util.stream.LongStreamImpl$3.<synthetic: ctor_create>","java.util.stream.LongStreamImpl$3.<init>","action","innerAction","java.util.stream.LongStreamImpl$3.tryAdvance","java.util.stream.LongStreamImpl$3.<clinit>"]
+}

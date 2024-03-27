@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeUriHostedModeUtils$JreImpl.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAsJuB,O;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,kB;EAAAA,8B;EAAAA,uF;EAAAA,iB;;;CAAA,0E;EAAAC,iF;;;QAAA,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["SafeUriHostedModeUtils.java"],
+"names":["org.gwtproject.safehtml.shared.SafeUriHostedModeUtils$JreImpl.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.SafeUriHostedModeUtils$JreImpl.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeUriHostedModeUtils$JreImpl.<init>","org.gwtproject.safehtml.shared.SafeUriHostedModeUtils$JreImpl.<clinit>"]
+}

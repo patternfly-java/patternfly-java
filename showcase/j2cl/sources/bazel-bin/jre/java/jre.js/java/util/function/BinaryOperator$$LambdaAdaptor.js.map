@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BinaryOperator$$LambdaAdaptor.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;;;;;;;;;MA4BiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;8D;EAAAA,sH;;;CAAA,4G;EAAAC,qC;EAAAA,iE;;;CAAA,6D;EAAAC,uC;EAAAA,wG;;;;CAAA,qE;EAAAC,gL;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA,qB;EAAAA;",
+"sources":["BinaryOperator.java"],
+"names":["java.util.function.BinaryOperator$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.BinaryOperator$$LambdaAdaptor.<init>","java.util.function.BinaryOperator$$LambdaAdaptor.apply","java.util.function.BinaryOperator$$LambdaAdaptor.andThen","java.util.function.BinaryOperator$$LambdaAdaptor.<clinit>"]
+}

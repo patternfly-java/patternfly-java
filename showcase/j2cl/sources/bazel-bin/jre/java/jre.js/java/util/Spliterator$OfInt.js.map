@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterator$OfInt.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;;;;;MAsHY,K;;CAEQ,kD,oBAAqCA,Q;;CASxC,qD,oBAA2CA,Q;;QATxC,yF,4CAAqCA,Q;EAArCC,gB;EACdA;GACEA,sHADFA;;GAGEA;IAAgCC,2FAAhCD;QAHFA;G;;;QAQW,4F,4CAA2CD,Q;EAA3CG,gB;EACXA;GACEA,kHADFA;;GAGEA;IAA+BC,2FAA/BD;QAHFA;G;;;QAZM,O;EAAAE,wB;EAAAA,qB;EAAAA;",
+"sources":["Spliterator.java"],
+"names":["consumer","java.util.Spliterator$OfInt.tryAdvance__$default","java.util.Spliterator$OfInt.<lambda in tryAdvance__$default>","java.util.Spliterator$OfInt.forEachRemaining__$default","java.util.Spliterator$OfInt.<lambda in forEachRemaining__$default>","java.util.Spliterator$OfInt.<clinit>"]
+}

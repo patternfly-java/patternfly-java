@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleConsumer.impl.java.js",
+"lineCount":33,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAEV,sB,eAAcA,K;;CAEI,+E,uBAAuBC,K;;QAJ/B,M;EAAAC,yB;EAAAA,8B;;;QAIQ,4H,wDAAuBD,K;EAAvBE,yB;EACrBA,wF;EACAA,4CAAOH,KAAPG;GACEC,uCADFD;GAEEC,oCAFFD;K;;;QANa,O;EAAAE,iC;EAAAA;",
+"sources":["DoubleConsumer.java"],
+"names":["value","after","java.util.function.DoubleConsumer.<synthetic: adapt_lambda>","java.util.function.DoubleConsumer.andThen__$default","java.util.function.DoubleConsumer.<lambda in andThen__$default>","java.util.function.DoubleConsumer.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongBinaryOperator.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAsBiB,kB;;CAEV,+B,eAAiBA,I,gBAAWC,K;;QAFlB,M;EAAAC,6B;EAAAA,8B;;;QAAA,O;EAAAC,qC;EAAAA;",
+"sources":["LongBinaryOperator.java"],
+"names":["left","right","java.util.function.LongBinaryOperator.<synthetic: adapt_lambda>","java.util.function.LongBinaryOperator.<clinit>"]
+}

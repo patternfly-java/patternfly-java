@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DoubleSupplier.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,c;;CAER,qB;;QAFQ,M;EAAAA,yB;EAAAA,8B;;;QAAA,O;EAAAC,iC;EAAAA;",
+"sources":["DoubleSupplier.java"],
+"names":["java.util.function.DoubleSupplier.<synthetic: adapt_lambda>","java.util.function.DoubleSupplier.<clinit>"]
+}

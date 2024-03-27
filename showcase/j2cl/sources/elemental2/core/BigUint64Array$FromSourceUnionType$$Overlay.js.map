@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BigUint64Array$FromSourceUnionType$$Overlay.impl.java.js",
+"lineCount":36,
+"mappings":"A;;;;;;MA2FmB,Q;;QAE2B,0E,UAAUA,C;EAAGC,mB;EACrDA,yE;;;QAI4B,wG;EAAAC,mB;EAC5BA,iG;;;QAI2B,uG;EAAAC,mB;EAC3BA,+F;;;QAIa,yF;EAAAC,mB;EACbA,mE;;;QAIc,gF;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["BigUint64Array.java"],
+"names":["o","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.of","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.asJsArrayLike__$devirt","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.asJsIterable__$devirt","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.asString__$devirt","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.isString__$devirt","elemental2.core.BigUint64Array$FromSourceUnionType$$Overlay.<clinit>"]
+}

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 21
+Specification-Title: PatternFly Java Showcase J2CL
+Specification-Version: 0.2
+Specification-Vendor: Red Hat
+Implementation-Title: PatternFly Java Showcase J2CL
+Implementation-Version: 0.2.0
+Implementation-Vendor: Red Hat
+Implementation-URL: https://patternfly-java.github.io
+Java-Vendor: Eclipse Adoptium
+Java-Version: 11
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 6.5.0-1016-azure
+Scm-Connection: scm:git:git@github.com:patternfly-java/patternfly-java.g
+ it
+Scm-Revision: 7638a23c90283ee9dda8bb101e9dd4051a2b0d6b
+Scm-Url: https://github.com/patternfly-java/patternfly-java
+

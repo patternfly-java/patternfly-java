@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IsSafeHtml.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA4BkB,U;;QAAA,O;EAAAA,6B;EAAAA;",
+"sources":["IsSafeHtml.java"],
+"names":["org.gwtproject.safehtml.shared.annotations.IsSafeHtml.<clinit>"]
+}

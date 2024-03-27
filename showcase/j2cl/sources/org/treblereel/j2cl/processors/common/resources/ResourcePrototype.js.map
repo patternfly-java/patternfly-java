@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResourcePrototype.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAwBiB,iB;;CAMR,2B;;QANQ,M;EAAAA,4B;EAAAA,8B;;;QAAA,O;EAAAC,oC;EAAAA;",
+"sources":["ResourcePrototype.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.ResourcePrototype.<synthetic: adapt_lambda>","org.treblereel.j2cl.processors.common.resources.ResourcePrototype.<clinit>"]
+}

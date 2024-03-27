@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.impl.java.js",
+"lineCount":65,
+"mappings":"A;;;;;;;;;;MAwImB,Q;;QAEuC,qF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAIwB,+H;EAAAC,mB;EACxBA,wI;;;QAIuB,6H;EAAAC,mB;EACvBA,sI;;;QAIuB,6H;EAAAC,mB;EACvBA,sI;;;QAIkB,mH;EAAAC,mB;EAClBA,0F;;;QAIsB,2H;EAAAC,mB;EACtBA,oI;;;QAIc,sG;EAAAC,mB;EACdA,wD;;;QAIc,qG;EAAAC,mB;EACdA,uD;;;QAIc,qG;EAAAC,mB;EACdA,uD;;;QAIc,oG;EAAAC,mB;EACdA,sD;;;QAhDa,O;EAAAC,2B;EAAAA;",
+"sources":["BaseRenderingContext2D.java"],
+"names":["o","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.of","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.asHTMLCanvasElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.asHTMLImageElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.asHTMLVideoElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.asImageBitmap__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.asOffscreenCanvas__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.isHTMLCanvasElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.isHTMLImageElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.isHTMLVideoElement__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.isOffscreenCanvas__$devirt","elemental2.dom.BaseRenderingContext2D$DrawImageImageUnionType$$Overlay.<clinit>"]
+}

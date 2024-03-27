@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Map$Entry.impl.java.js",
+"lineCount":60,
+"mappings":"A;;;;;;;;;;;;;;;MAwCY,K;;CAEA,M,UAAcA,C;;CAEpB,0B;;CAEA,4B;;CAGE,Q;;CAEF,8C,UAAWC,K;;QAE0D,sC;EAAiBC,gB;EACtFA,uM;;;QAGwC,4D,sBAAqCC,G;EAAKD,gB;EAClFA,8E;EACAA,kFACKE,CADLF,EACQG,CADRH;GACII,IAACF,GAADE,6CADJJ;GACII,IAAID,GAAJC,6CADJJ;GACcI,kIADdJ;mB;;;QAIqE,wC;EAAmBK,gB;EACxFA,yM;;;QAGwC,8D,sBAAuCJ,G;EAAKI,gB;EACpFA,8E;EACAA,kFACKH,CADLG,EACQF,CADRE;GACIC,IAACJ,GAADI,6CADJD;GACIC,IAAIH,GAAJG,6CADJD;GACcC,sIADdD;mB;;;QA7BM,O;EAAAE,wB;EAAAA;",
+"sources":["Map.java"],
+"names":["o","value","java.util.Map$Entry.comparingByKey","cmp","a","b","java.util.Map$Entry.<lambda in comparingByKey>","java.util.Map$Entry.comparingByValue","java.util.Map$Entry.<lambda in comparingByValue>","java.util.Map$Entry.<clinit>"]
+}

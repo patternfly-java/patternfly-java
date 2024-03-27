@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ResettableEventBus.impl.java.js",
+"lineCount":88,
+"mappings":"A;;;;;;;;;;;;MA0Ba,kB;;CAAA,W;EAAAA,Q;EAAAA;OACY,0DADZA,C;EAAAA;OAE4B,gEAF5BA,C;;;QAIJ,6C,iBAA4BC,U;EAA5BC,6B;EAAAA,yC;EAAAA,wH;EAAAA,iB;;;CAAA,iG,iBAA4BD,U;EAAYE,yD;EAAAA,qE;EAC7CA,6E;;;CAI6B,uH,gBAAmBC,I,WAAQC,O;EACxDC,IAAoBC,GAApBD,0M;EACAA,yL;;;CAI6B,iJ,gBAAiCF,I,WAAaI,M,WAAUH,O;EACrFI,IAAoBF,GAApBE,4O;EACAA,yL;;;CAIU,oD,iBAAmBC,K;EAC7BC,4H;;;CAIU,gF,iBAA6BD,K,WAAcF,M;EACrDI,gK;;;CAIU,sB;EACVC,IAA8BC,EAA9BD,0G;EACAA;GACEA,IAAoBE,CAApBF,qGADFA;GAOEA,oBAPFA;GASEA,0BATFA;G;;;CAcE,0D;EACFG,oF;;;CAG0B,uK,4BAA4CC,Y;EACtEC,wF;EACAA;GAAaC,kJAAbD;K;;;CAGW,8H,4BAAwCD,Y;EACnDG;GACEA,qCADFA;GAEEA,2FAFFA;G;;;CAzDS,6D;EAEXjB,yI;;;QAFW,O;EAAAkB,qC;EAAAA,kC;EAAAA;",
+"sources":["ResettableEventBus.java"],
+"names":["org.gwtproject.event.shared.ResettableEventBus.<synthetic: ctor_js>","wrappedBus","org.gwtproject.event.shared.ResettableEventBus.<synthetic: ctor_create>","org.gwtproject.event.shared.ResettableEventBus.<init>","type","handler","org.gwtproject.event.shared.ResettableEventBus.addHandler","rtn","source","org.gwtproject.event.shared.ResettableEventBus.addHandlerToSource","event","org.gwtproject.event.shared.ResettableEventBus.fireEvent","org.gwtproject.event.shared.ResettableEventBus.fireEventFromSource","org.gwtproject.event.shared.ResettableEventBus.removeHandlers","it","r","org.gwtproject.event.shared.ResettableEventBus.getRegistrationSize","registration","org.gwtproject.event.shared.ResettableEventBus.doRegisterHandler","org.gwtproject.event.shared.ResettableEventBus.<lambda in doRegisterHandler>","org.gwtproject.event.shared.ResettableEventBus.doUnregisterHandler","org.gwtproject.event.shared.ResettableEventBus.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RealToString.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MAkBY,Y;;CAAA,W;EAAAA,Q;;;QAEW,wC,eAAoBC,C;EAAGC,uB;EAC1CA,c;;;QAGmB,0C,eAAsBC,C;EAAGC,uB;EAC5CA,c;;;QAGM,S;EAAAC,mC;EAAAA,gD;EAAAA,iB;;;CAAA,mC;EAAeC,qC;;;QAVb,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["RealToString.java"],
+"names":["java.lang.RealToString.<synthetic: ctor_js>","f","java.lang.RealToString.floatToString","d","java.lang.RealToString.doubleToString","java.lang.RealToString.<synthetic: ctor_create>","java.lang.RealToString.<init>","java.lang.RealToString.<clinit>"]
+}

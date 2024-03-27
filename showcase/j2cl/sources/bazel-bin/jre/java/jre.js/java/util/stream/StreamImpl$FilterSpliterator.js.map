@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$FilterSpliterator.impl.java.js",
+"lineCount":61,
+"mappings":"A;;;;;;;;;;;;;;;;MA8Y6B,iB;;CAAA,W;EAAAA,Q;EAAAA;OACU,wDADVA,C;EAAAA;OAEI,0DAFJA,C;EAAAA;OAIT,uDAJSA,S;;;QAMlB,4D,qBAAuCC,M,wBAAuBC,Q;EAA9DC,4B;EAAAA,wC;EAAAA,4I;EAAAA,iB;;;CAAA,+G,qBAAuCF,M,wBAAuBC,Q;EACnEE,4O;EAGAA,iF;EACAA,uE;EACAA,2E;;;CAI2B,qC;EAC3BC,+G;;;CAIa,kD,oBAAqCC,M;EAClDC,qE;EACAA,qNAEQC,IAFRD;GAGUE;IACEA,oEADFA;IAEEA,8CAFFA;IAHVF;S;EAWAA,oE;;;QAlCuB,O;EAAAG,oC;EAAAA,iC;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$FilterSpliterator.<synthetic: ctor_js>","filter","original","java.util.stream.StreamImpl$FilterSpliterator.<synthetic: ctor_create>","java.util.stream.StreamImpl$FilterSpliterator.<init>","java.util.stream.StreamImpl$FilterSpliterator.getComparator","action","java.util.stream.StreamImpl$FilterSpliterator.tryAdvance","item","java.util.stream.StreamImpl$FilterSpliterator.<lambda in tryAdvance>","java.util.stream.StreamImpl$FilterSpliterator.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CollectorImpl.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA2BY,a;;CAAA,W;EAAAA,Q;EAAAA;OACgB,2CADhBA,C;EAAAA;OAEqB,8CAFrBA,C;EAAAA;OAGyB,kDAHzBA,C;EAAAA;OAIsB,2CAJtBA,C;EAAAA;OAKmB,2CALnBA,C;;;QAOH,uL,oBACSC,Q,0BACKC,W,2BACCC,Q,qCACHC,Q,gCACIC,e;EALhBC,wB;EAAAA,oC;EAAAA,kS;EAAAA,iB;;;CAAA,2N,oBACSL,Q,0BACKC,W,2BACCC,Q,qCACHC,Q,gCACIC,e;EAAiBE,qC;EACtCA,4D;EACAA,kE;EACAA,sI;EACAA,4D;EACAA,4D;;;CAIiB,uC;EACjBC,wD;;;CAIsB,4C;EACtBC,2D;;;CAIuB,6C;EACvBC,wD;;;CAIoB,uC;EACpBC,wD;;;CAI0B,gC;EAC1BC,+D;;;QA1CQ,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["CollectorImpl.java"],
+"names":["java.util.stream.CollectorImpl.<synthetic: ctor_js>","supplier","accumulator","combiner","finisher","characteristics","java.util.stream.CollectorImpl.<synthetic: ctor_create>","java.util.stream.CollectorImpl.<init>","java.util.stream.CollectorImpl.supplier","java.util.stream.CollectorImpl.accumulator","java.util.stream.CollectorImpl.combiner","java.util.stream.CollectorImpl.finisher","java.util.stream.CollectorImpl.characteristics","java.util.stream.CollectorImpl.<clinit>"]
+}

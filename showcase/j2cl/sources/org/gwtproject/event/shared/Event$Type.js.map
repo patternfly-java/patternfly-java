@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Event$Type.impl.java.js",
+"lineCount":51,
+"mappings":"A;;;;;;;;MA4BsB,I;;CAAA,W;EAAAA,Q;EAAAA;OAEA,gDAFAA,K;;;QAKX,S;EAAAC,e;EAAAA,2B;EAAAA,gE;EAAAA,iB;;;CAAA,mD;EAAOC,qC;EACZA,4L;;;CAIe,Q;EACfC,6D;;;CAIY,Q;EACZC,oB;;;QAhBgB,O;EAAAC,uB;EAAAA,oB;EAAAA,qB;;;;;;;;;;AAAA;KACC,uDADD;",
+"sources":["Event.java"],
+"names":["org.gwtproject.event.shared.Event$Type.<synthetic: ctor_js>","org.gwtproject.event.shared.Event$Type.<synthetic: ctor_create>","org.gwtproject.event.shared.Event$Type.<init>","org.gwtproject.event.shared.Event$Type.hashCode","org.gwtproject.event.shared.Event$Type.toString","org.gwtproject.event.shared.Event$Type.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PageSectionBuilder.impl.java.js",
+"lineCount":81,
+"mappings":"A;;;;;;;;;;;;;;;;;;;;;;;;;;MAiCsB,kB;;CAAA,W;EAAAA,Q;;;CAGlB,2G,gBAA0BC,I,WAAQC,O;EAC9BC,8H;;;CASK,uG,qBAAqBC,I;EAC1BC,sH;;;CAOK,mG,qBAAiBD,I;EACtBE,+L;EACAA,uG;;;CASK,8D;EACLC,sS;;;CAMK,4F,4BAA2BC,M;EAChCC,kO;;;CAGK,6F,6BAA6BC,O;EAClCC,mO;;;CAMK,iE;EACLC,uS;;;CAMK,6D;EACLC,qS;;;CAMK,gE;EACLC,wS;;;CAMK,kE;EACLC,0S;;;QAxEc,O;EAAAC,qC;EAAAA,kC;EAAAA,2B;EAAAA,qB;EAAAA,yB;EAAAA,iB;EAAAA;",
+"sources":["PageSectionBuilder.java"],
+"names":["org.patternfly.component.page.PageSectionBuilder.<synthetic: ctor_js>","name","element","org.patternfly.component.page.PageSectionBuilder.<init>","body","org.patternfly.component.page.PageSectionBuilder.addBody","org.patternfly.component.page.PageSectionBuilder.add","org.patternfly.component.page.PageSectionBuilder.limitWidth","sticky","org.patternfly.component.page.PageSectionBuilder.sticky","padding","org.patternfly.component.page.PageSectionBuilder.padding","org.patternfly.component.page.PageSectionBuilder.centerAligned","org.patternfly.component.page.PageSectionBuilder.shadowTop","org.patternfly.component.page.PageSectionBuilder.shadowBottom","org.patternfly.component.page.PageSectionBuilder.overflowScroll","org.patternfly.component.page.PageSectionBuilder.<clinit>"]
+}

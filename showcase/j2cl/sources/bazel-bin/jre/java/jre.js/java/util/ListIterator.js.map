@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ListIterator.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;MA2BiB,Y;;CAEV,6B,UAAMA,C;;CAEH,sB;;CAEJ,gB;;CAEF,4B;;CAEE,oB;;CAGC,c;;CAEA,6B,UAAMA,C;;QAfI,O;EAAAC,+B;EAAAA,4B;EAAAA;",
+"sources":["ListIterator.java"],
+"names":["o","java.util.ListIterator.<clinit>"]
+}

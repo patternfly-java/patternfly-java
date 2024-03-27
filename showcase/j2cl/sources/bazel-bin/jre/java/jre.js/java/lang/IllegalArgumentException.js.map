@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IllegalArgumentException.impl.java.js",
+"lineCount":73,
+"mappings":"A;;;;;;;MAsBa,wB;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,mC;EAAAA,+C;EAAAA,4D;EAAAA,yF;EAAAA,iB;;;;CAAA,+C;EAA2BC,+C;;;;QAG3B,yB,gBAAgCC,O;EAAhCF,mC;EAAAA,+C;EAAAA,qF;EAAAA,yF;EAAAA,iB;;;;CAAA,iE,gBAAgCE,O;EACrCD,wE;;;;QAGK,8C,gBAAgCC,O,mBAAmBC,K;EAAnDH,mC;EAAAA,+C;EAAAA,iH;EAAAA,yF;EAAAA,iB;;;;CAAA,sF,gBAAgCE,O,mBAAmBC,K;EACxDF,oG;;;;QAGK,4B,kBAAmCE,K;EAAnCH,mC;EAAAA,+C;EAAAA,sF;EAAAA,yF;EAAAA,iB;;;;CAAA,oE,kBAAmCG,K;EACxCF,yE;;;QAdS,O;EAAAG,2C;EAAAA,wC;EAAAA;",
+"sources":["IllegalArgumentException.java"],
+"names":["java.lang.IllegalArgumentException.<synthetic: ctor_js>","java.lang.IllegalArgumentException.<synthetic: ctor_create>","java.lang.IllegalArgumentException.<init>","message","cause","java.lang.IllegalArgumentException.<clinit>"]
+}

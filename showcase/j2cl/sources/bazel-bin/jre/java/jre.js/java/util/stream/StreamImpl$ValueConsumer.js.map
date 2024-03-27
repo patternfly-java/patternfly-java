@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StreamImpl$ValueConsumer.impl.java.js",
+"lineCount":44,
+"mappings":"A;;;;;;;;;;;MA+f6B,a;;CAAA,W;EAAAA,Q;EAAAA;OACvB,kDADuBA,C;;;QAAA,S;EAAAC,wB;EAAAA,oC;EAAAA,mE;EAAAA,iB;;;CAAA,sD;EAAAC,qC;;;CAIb,gC,UAASC,K;EACnBC,gE;;;;CALuB,mE;EAAAC,kK;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,qB;EAAAA;",
+"sources":["StreamImpl.java"],
+"names":["java.util.stream.StreamImpl$ValueConsumer.<synthetic: ctor_js>","java.util.stream.StreamImpl$ValueConsumer.<synthetic: ctor_create>","java.util.stream.StreamImpl$ValueConsumer.<init>","value","java.util.stream.StreamImpl$ValueConsumer.accept","java.util.stream.StreamImpl$ValueConsumer.andThen","java.util.stream.StreamImpl$ValueConsumer.<clinit>"]
+}

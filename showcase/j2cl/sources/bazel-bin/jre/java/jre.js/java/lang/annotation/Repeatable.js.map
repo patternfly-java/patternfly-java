@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Repeatable.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;;;MAyBkB,U;;CAChB,wB;;QADgB,O;EAAAA,6B;EAAAA;",
+"sources":["Repeatable.java"],
+"names":["java.lang.annotation.Repeatable.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"FinalizationRegistry$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAsBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["FinalizationRegistry.java"],
+"names":["elemental2.core.FinalizationRegistry$$Overlay.<clinit>"]
+}

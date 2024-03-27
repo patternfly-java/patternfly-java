@@ -1,0 +1,24 @@
+goog.module('elemental2.dom.TransformStream.$Overlay$impl');
+
+const $Util = goog.require('nativebootstrap.Util$impl');
+
+/** @nodts */
+class $Overlay {
+ /** @nodts */
+ static $clinit() {
+  $Overlay.$clinit = () =>{};
+  $Overlay.$loadModules();
+ }
+ /** @nodts @return {boolean} */
+ static $isInstance(/** ? */ instance) {
+  return instance instanceof TransformStream;
+ }
+ 
+ /** @nodts */
+ static $loadModules() {}
+}
+$Util.$setClassMetadata($Overlay, 'TransformStream');
+
+exports = $Overlay;
+
+//# sourceMappingURL=TransformStream$$Overlay.js.map

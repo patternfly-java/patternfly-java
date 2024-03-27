@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataResource.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;;;;MA4BiB,Y;;CAER,4B;;QAFQ,O;EAAAA,+B;EAAAA;",
+"sources":["DataResource.java"],
+"names":["org.treblereel.j2cl.processors.common.resources.DataResource.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AtomicBoolean.impl.java.js",
+"lineCount":84,
+"mappings":"A;;;;;;;;;;;MAuBa,a;;CAAA,W;EAAAA,Q;EAAAA;OACK,mDADLA,S;;;;QAGJ,gB,gBAAsBC,Y;EAAtBC,wB;EAAAA,oC;EAAAA,wF;EAAAA,iB;;;;CAAA,+D,gBAAsBD,Y;EAAcE,qC;EACzCA,wE;;;;QAGK,S;EAAAD,wB;EAAAA,oC;EAAAA,mE;EAAAA,iB;;;;CAAA,sD;EAAgBC,qC;;;CAGF,c;EACnBC,gE;;;CAGmB,0C,gBAAsBC,M,iBAAgBC,M;EACzDC;GACEA,kCADFA;GAEEA,YAFFA;G;EAKAA,a;;;CAGa,8C,gBAA0BF,M,iBAAgBC,M;EACvDE,uE;;;CAGgB,oB,gBAAYC,Q;EAC5BC,oE;;;CAGgB,wB,gBAAgBD,Q;EAChCE,oC;;;CAGmB,6B,gBAAkBF,Q;EACrCG,IAAQC,OAARD,yB;EACAA,oC;EACAA,e;;;CAGY,Q;EACZE,4E;;;QA1CS,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["AtomicBoolean.java"],
+"names":["java.util.concurrent.atomic.AtomicBoolean.<synthetic: ctor_js>","initialValue","java.util.concurrent.atomic.AtomicBoolean.<synthetic: ctor_create>","java.util.concurrent.atomic.AtomicBoolean.<init>","java.util.concurrent.atomic.AtomicBoolean.get","expect","update","java.util.concurrent.atomic.AtomicBoolean.compareAndSet","java.util.concurrent.atomic.AtomicBoolean.weakCompareAndSet","newValue","java.util.concurrent.atomic.AtomicBoolean.set","java.util.concurrent.atomic.AtomicBoolean.lazySet","java.util.concurrent.atomic.AtomicBoolean.getAndSet","current","java.util.concurrent.atomic.AtomicBoolean.toString","java.util.concurrent.atomic.AtomicBoolean.<clinit>"]
+}

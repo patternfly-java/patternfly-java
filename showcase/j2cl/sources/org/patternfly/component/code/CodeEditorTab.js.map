@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CodeEditorTab.impl.java.js",
+"lineCount":93,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA6Ba,a;;CAAA,W;EAAAA,Q;;;QAImB,4D;EAAgBC,wB;EACxCA,iC;;;QAGwB,kH,uBAA6BC,I,iBAAaC,I;EAAMF,wB;EACxEA,sgB;;;QAKwB,sG,gBAAsBC,I,iBAAaC,I;EAAMF,wB;EACjEA,ud;;;QASJ,S;EAAAG,wB;EAAAA,oC;EAAAA,qE;EAAAA,iB;;;CAAA,wD;EACIC,+yB;;;CAKiB,uG,0BAA0BH,I;EAC3CI,+I;;;CAGiB,uG,0BAA0BH,I;EAC3CI,+I;;;CAMiB,mD;EACjBC,Y;;;;CA1CK,uC;EAAAA,kE;;;QAAA,O;EAAAC,gC;EAAAA,6B;EAAAA,iC;;;;;;;;;;;;;;;;;;;;AAsBT;cAAoB,iEAApB;",
+"sources":["CodeEditorTab.java"],
+"names":["org.patternfly.component.code.CodeEditorTab.<synthetic: ctor_js>","org.patternfly.component.code.CodeEditorTab.codeEditorTab","icon","text","org.patternfly.component.code.CodeEditorTab.<synthetic: ctor_create>","org.patternfly.component.code.CodeEditorTab.<init>","org.patternfly.component.code.CodeEditorTab.addIcon","org.patternfly.component.code.CodeEditorTab.addText","org.patternfly.component.code.CodeEditorTab.that","org.patternfly.component.code.CodeEditorTab.<clinit>"]
+}

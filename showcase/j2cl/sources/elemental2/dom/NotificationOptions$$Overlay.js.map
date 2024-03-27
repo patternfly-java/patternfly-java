@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"NotificationOptions$$Overlay.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;;MA0BiB,Q;;QAEY,4C;EAASA,mB;EAClCA,+L;;;QAiDW,0G,wEAAgCC,O;EAAhCC,mB;EACXA,4H;;;QA2CW,+E,4DAAoBC,O;EAApBC,mB;EACXA,iH;;;QAjGa,O;EAAAC,2B;EAAAA;",
+"sources":["NotificationOptions.java"],
+"names":["elemental2.dom.NotificationOptions$$Overlay.create","actions","elemental2.dom.NotificationOptions$$Overlay.setActions__$devirt","vibrate","elemental2.dom.NotificationOptions$$Overlay.setVibrate__$devirt","elemental2.dom.NotificationOptions$$Overlay.<clinit>"]
+}

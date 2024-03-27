@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"DataView$ConstructorBufferUnionType$$Overlay.impl.java.js",
+"lineCount":38,
+"mappings":"A;;;;;;;;MA0BmB,Q;;QAE4B,2E,UAAUA,C;EAAGC,mB;EACtDA,yE;;;QAIkB,0G;EAAAC,mB;EAClBA,4H;;;QAIwB,sH;EAAAC,mB;EACxBA,wI;;;QAIc,sF;EAAAC,mB;EACdA,kD;;;QAIc,4F;EAAAC,mB;EACdA,wD;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["DataView.java"],
+"names":["o","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.of","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.asArrayBuffer__$devirt","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.asSharedArrayBuffer__$devirt","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.isArrayBuffer__$devirt","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.isSharedArrayBuffer__$devirt","elemental2.core.DataView$ConstructorBufferUnionType$$Overlay.<clinit>"]
+}

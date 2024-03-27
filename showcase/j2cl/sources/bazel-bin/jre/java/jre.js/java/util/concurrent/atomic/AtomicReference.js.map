@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AtomicReference.impl.java.js",
+"lineCount":85,
+"mappings":"A;;;;;;;;;;;MAuBa,e;;CAAA,W;EAAAA,Q;EAAAA;OAED,qDAFCA,C;;;;QAIJ,S;EAAAC,0B;EAAAA,sC;EAAAA,qE;EAAAA,iB;;;;CAAA,wD;EAAkBC,qC;;;;QAGlB,yB,UAAkBC,Y;EAAlBF,0B;EAAAA,sC;EAAAA,mG;EAAAA,iB;;;;CAAA,0E,UAAkBE,Y;EAAcD,qC;EACrCA,0E;;;CAGmB,4D,UAAgBE,M,WAAUC,M;EAC7CC;GACEA,oEADFA;GAEEA,YAFFA;;GAIEA,aAJFA;G;;;CAQa,uB;EACbC,kE;;;CAGa,+C,UAAYC,Q;EACzBC,IAAEC,QAAFD,8D;EACAA,sE;EACAA,gB;;;CAGgB,iC,UAAUD,Q;EAC1BG,6C;;;CAGgB,6B,UAAMH,Q;EACtBI,sE;;;CAGmB,gE,UAAoBR,M,WAAUC,M;EACjDQ,yF;;;CAIY,Q;EACZC,4H;;;QA5CS,O;EAAAC,kC;EAAAA,+B;EAAAA;",
+"sources":["AtomicReference.java"],
+"names":["java.util.concurrent.atomic.AtomicReference.<synthetic: ctor_js>","java.util.concurrent.atomic.AtomicReference.<synthetic: ctor_create>","java.util.concurrent.atomic.AtomicReference.<init>","initialValue","expect","update","java.util.concurrent.atomic.AtomicReference.compareAndSet","java.util.concurrent.atomic.AtomicReference.get","newValue","java.util.concurrent.atomic.AtomicReference.getAndSet","oldValue","java.util.concurrent.atomic.AtomicReference.lazySet","java.util.concurrent.atomic.AtomicReference.set","java.util.concurrent.atomic.AtomicReference.weakCompareAndSet","java.util.concurrent.atomic.AtomicReference.toString","java.util.concurrent.atomic.AtomicReference.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"RunnableFuture.impl.java.js",
+"lineCount":17,
+"mappings":"A;;;;;;;;;;;;MAyBiB,c;;QAAA,O;EAAAA,iC;EAAAA;",
+"sources":["RunnableFuture.java"],
+"names":["java.util.concurrent.RunnableFuture.<clinit>"]
+}

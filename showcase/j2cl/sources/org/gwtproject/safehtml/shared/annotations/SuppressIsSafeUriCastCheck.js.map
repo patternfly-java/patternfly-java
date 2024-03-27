@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SuppressIsSafeUriCastCheck.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA2BkB,0B;;QAAA,O;EAAAA,6C;EAAAA;",
+"sources":["SuppressIsSafeUriCastCheck.java"],
+"names":["org.gwtproject.safehtml.shared.annotations.SuppressIsSafeUriCastCheck.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WritableStreamDefaultController$$LambdaAdaptor.impl.java.js",
+"lineCount":32,
+"mappings":"A;;;;;;;;MAuBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;2E;EAAAA,gJ;;;CAAA,sI;EAAAC,qC;EAAAA,8E;;;CAAA,K;EAAAC,iD;EAAAA,+G;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["WritableStreamDefaultController.java"],
+"names":["elemental2.dom.WritableStreamDefaultController$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","elemental2.dom.WritableStreamDefaultController$$LambdaAdaptor.<init>","elemental2.dom.WritableStreamDefaultController$$LambdaAdaptor.error","elemental2.dom.WritableStreamDefaultController$$LambdaAdaptor.<clinit>"]
+}

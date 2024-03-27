@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ArrayHelper$NativeArray$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA6SuB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["ArrayHelper.java"],
+"names":["javaemul.internal.ArrayHelper$NativeArray$$Overlay.<clinit>"]
+}

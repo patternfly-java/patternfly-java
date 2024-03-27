@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"URLSearchParams$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MA4Ba,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["URLSearchParams.java"],
+"names":["elemental2.dom.URLSearchParams$$Overlay.<clinit>"]
+}

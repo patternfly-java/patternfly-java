@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Component.impl.java.js",
+"lineCount":22,
+"mappings":"A;;;;;;;;;;MAiBiB,S;;CAEC,uD;;QAFD,M;EAAAA,oB;EAAAA,8B;;;QAAA,O;EAAAC,4B;EAAAA;",
+"sources":["Component.java"],
+"names":["org.patternfly.component.Component.<synthetic: adapt_lambda>","org.patternfly.component.Component.<clinit>"]
+}

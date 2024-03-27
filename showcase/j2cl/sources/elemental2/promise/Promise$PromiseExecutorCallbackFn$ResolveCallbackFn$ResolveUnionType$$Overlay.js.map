@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Promise$PromiseExecutorCallbackFn$ResolveCallbackFn$ResolveUnionType$$Overlay.impl.java.js",
+"lineCount":25,
+"mappings":"A;;;;;MAqEgB,Q;;QAEmB,+G,UAAUA,C;EAAGC,mB;EACtCA,yE;;;QAImB,6I;EAAAC,mB;EACnBA,2F;;;QAIQ,yH;EAAAC,mB;EACRA,+D;;;QAbM,O;EAAAC,2B;EAAAA;",
+"sources":["Promise.java"],
+"names":["o","elemental2.promise.Promise$PromiseExecutorCallbackFn$ResolveCallbackFn$ResolveUnionType$$Overlay.of","elemental2.promise.Promise$PromiseExecutorCallbackFn$ResolveCallbackFn$ResolveUnionType$$Overlay.asIThenable__$devirt","elemental2.promise.Promise$PromiseExecutorCallbackFn$ResolveCallbackFn$ResolveUnionType$$Overlay.asT__$devirt","elemental2.promise.Promise$PromiseExecutorCallbackFn$ResolveCallbackFn$ResolveUnionType$$Overlay.<clinit>"]
+}

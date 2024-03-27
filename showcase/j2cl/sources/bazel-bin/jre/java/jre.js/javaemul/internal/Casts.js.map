@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Casts.impl.java.js",
+"lineCount":79,
+"mappings":"A;;;;;;;;;;;;MAsBM,M;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,iB;EAAAA,6B;EAAAA,iD;EAAAA,iB;;;CAAA,oC;EAAAC,qC;;;kBAGwB,G,UAAWC,Q,qBAAsBC,Q;;QAOxC,W,UACVD,Q,8BAAuBE,kB,qBAAgCD,Q;EAAUE,iB;EAG1EA;GACEA,IAAQC,YAARD,mEADFA;GAEEA;IACEA,IAAOE,OAAPF,mSADFA;IAGEA,mFAHFA;IAFFA;G;EAQAA,gB;;;QAtBE,O;EAAAG,yB;EAAAA,sB;EAAAA,qB;;;;;;;;;;;;;;;;;;;;;;ACtBNC,G;CACCA,mD;CACAA,qB;CACAA,0B;CACAA,a;CACAA,E;AACDA,2C;EACEA,0B;MACIA,oE;MACAA,uC;AACNA;",
+"sources":["Casts.java","Casts.native_js"],
+"names":["javaemul.internal.Casts.<synthetic: ctor_js>","javaemul.internal.Casts.<synthetic: ctor_create>","javaemul.internal.Casts.<init>","instance","castType","castTypeIsInstance","javaemul.internal.Casts.$toInternal","castSucceeds","message","javaemul.internal.Casts.<clinit>","javaemul.internal.Casts.<native>"]
+}

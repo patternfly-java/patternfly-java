@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ArithmeticException.impl.java.js",
+"lineCount":43,
+"mappings":"A;;;;;MAyBa,mB;;CAAA,W;EAAAA,Q;;;;QACJ,yB,gBAA2BC,W;EAA3BC,8B;EAAAA,0C;EAAAA,oF;EAAAA,yF;EAAAA,iB;;;;CAAA,4D,gBAA2BD,W;EAChCE,4E;;;;QAEK,S;EAAAD,8B;EAAAA,0C;EAAAA,uD;EAAAA,yF;EAAAA,iB;;;;CAAA,0C;EACLC,+C;;;QALS,O;EAAAC,sC;EAAAA,mC;EAAAA;",
+"sources":["ArithmeticException.java"],
+"names":["java.lang.ArithmeticException.<synthetic: ctor_js>","explanation","java.lang.ArithmeticException.<synthetic: ctor_create>","java.lang.ArithmeticException.<init>","java.lang.ArithmeticException.<clinit>"]
+}

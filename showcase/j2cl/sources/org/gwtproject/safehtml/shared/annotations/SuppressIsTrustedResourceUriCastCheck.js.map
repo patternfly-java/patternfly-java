@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SuppressIsTrustedResourceUriCastCheck.impl.java.js",
+"lineCount":14,
+"mappings":"A;;;;;;;;;MA2BkB,qC;;QAAA,O;EAAAA,wD;EAAAA;",
+"sources":["SuppressIsTrustedResourceUriCastCheck.java"],
+"names":["org.gwtproject.safehtml.shared.annotations.SuppressIsTrustedResourceUriCastCheck.<clinit>"]
+}

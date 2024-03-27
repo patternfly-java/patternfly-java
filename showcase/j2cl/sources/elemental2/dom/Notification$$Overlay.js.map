@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Notification$$Overlay.impl.java.js",
+"lineCount":10,
+"mappings":"A;;;;;MAuBa,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["Notification.java"],
+"names":["elemental2.dom.Notification$$Overlay.<clinit>"]
+}

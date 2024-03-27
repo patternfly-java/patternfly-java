@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BaseStream.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;;;;;;MA4BiB,U;;CACH,8B;;CAEG,oC;;CAEP,qB;;CAEN,yC;;CAEA,uC;;CAEA,wC;;CAEA,0D,iBAAiBA,Y;;CAGd,a;;QAhBU,O;EAAAC,6B;EAAAA;",
+"sources":["BaseStream.java"],
+"names":["closeHandler","java.util.stream.BaseStream.<clinit>"]
+}

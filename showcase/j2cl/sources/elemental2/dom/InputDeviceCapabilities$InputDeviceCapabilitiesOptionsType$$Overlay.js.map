@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"InputDeviceCapabilities$InputDeviceCapabilitiesOptionsType$$Overlay.impl.java.js",
+"lineCount":16,
+"mappings":"A;;;;;;MA2BmB,Q;;QAEmD,mF;EAASA,mB;EACzEA,6K;;;QAHa,O;EAAAC,2B;EAAAA;",
+"sources":["InputDeviceCapabilities.java"],
+"names":["elemental2.dom.InputDeviceCapabilities$InputDeviceCapabilitiesOptionsType$$Overlay.create","elemental2.dom.InputDeviceCapabilities$InputDeviceCapabilitiesOptionsType$$Overlay.<clinit>"]
+}

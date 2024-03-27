@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Generated.impl.java.js",
+"lineCount":20,
+"mappings":"A;;;;;;;;;MAoCkB,S;;CAChB,iC;;CACA,4B;;CACA,wB;;QAHgB,O;EAAAA,4B;EAAAA;",
+"sources":["Generated.java"],
+"names":["javax.annotation.processing.Generated.<clinit>"]
+}

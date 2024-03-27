@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ScheduledFuture.impl.java.js",
+"lineCount":17,
+"mappings":"A;;;;;;;;;;;;MAmBiB,e;;QAAA,O;EAAAA,kC;EAAAA;",
+"sources":["ScheduledFuture.java"],
+"names":["java.util.concurrent.ScheduledFuture.<clinit>"]
+}

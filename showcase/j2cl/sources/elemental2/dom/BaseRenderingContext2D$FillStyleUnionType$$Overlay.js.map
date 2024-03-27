@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BaseRenderingContext2D$FillStyleUnionType$$Overlay.impl.java.js",
+"lineCount":49,
+"mappings":"A;;;;;;;;;MAyNmB,Q;;QAEkC,gF,UAAUA,C;EAAGC,mB;EAC5DA,yE;;;QAIqB,oH;EAAAC,mB;EACrBA,kI;;;QAIoB,kH;EAAAC,mB;EACpBA,gI;;;QAIa,+F;EAAAC,mB;EACbA,mE;;;QAIc,8F;EAAAC,mB;EACdA,qD;;;QAIc,6F;EAAAC,mB;EACdA,oD;;;QAIc,sF;EAAAC,mB;EACdA,wC;;;QAjCa,O;EAAAC,2B;EAAAA;",
+"sources":["BaseRenderingContext2D.java"],
+"names":["o","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.of","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.asCanvasGradient__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.asCanvasPattern__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.asString__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.isCanvasGradient__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.isCanvasPattern__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.isString__$devirt","elemental2.dom.BaseRenderingContext2D$FillStyleUnionType$$Overlay.<clinit>"]
+}

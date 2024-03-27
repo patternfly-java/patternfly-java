@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"LongSupplier$$LambdaAdaptor.impl.java.js",
+"lineCount":35,
+"mappings":"A;;;;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;4D;EAAAA,kH;;;CAAA,wG;EAAAC,qC;EAAAA,+D;;;CAAA,iB;EAAAC,wC;EAAAA,4F;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["LongSupplier.java"],
+"names":["java.util.function.LongSupplier$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.LongSupplier$$LambdaAdaptor.<init>","java.util.function.LongSupplier$$LambdaAdaptor.getAsLong","java.util.function.LongSupplier$$LambdaAdaptor.<clinit>"]
+}

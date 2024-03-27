@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"ToIntFunction$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;;;MAwBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;6D;EAAAA,oH;;;CAAA,0G;EAAAC,qC;EAAAA,gE;;;CAAA,mC;EAAAC,yC;EAAAA,iG;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["ToIntFunction.java"],
+"names":["java.util.function.ToIntFunction$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","java.util.function.ToIntFunction$$LambdaAdaptor.<init>","java.util.function.ToIntFunction$$LambdaAdaptor.applyAsInt","java.util.function.ToIntFunction$$LambdaAdaptor.<clinit>"]
+}

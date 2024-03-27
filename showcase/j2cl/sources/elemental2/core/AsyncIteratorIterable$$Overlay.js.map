@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"AsyncIteratorIterable$$Overlay.impl.java.js",
+"lineCount":8,
+"mappings":"A;;;MAqBiB,Q;;QAAA,O;EAAAA,2B;EAAAA;",
+"sources":["AsyncIteratorIterable.java"],
+"names":["elemental2.core.AsyncIteratorIterable$$Overlay.<clinit>"]
+}

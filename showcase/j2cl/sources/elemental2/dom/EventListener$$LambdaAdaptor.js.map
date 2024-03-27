@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EventListener$$LambdaAdaptor.impl.java.js",
+"lineCount":34,
+"mappings":"A;;;;;;;;MAsBiB,c;;CAAA,W;EAAAA,yB;EAAAA,Q;EAAAA;yD;EAAAA,4G;;;CAAA,kG;EAAAC,qC;EAAAA,4D;;;CAAA,W;;GAAAC,uE;GAAAA,gB;;;;QAAA,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["EventListener.java"],
+"names":["elemental2.dom.EventListener$$LambdaAdaptor.<synthetic: lambda_adaptor_ctor>","elemental2.dom.EventListener$$LambdaAdaptor.<init>","elemental2.dom.EventListener$$LambdaAdaptor.handleEvent","elemental2.dom.EventListener$$LambdaAdaptor.<clinit>"]
+}

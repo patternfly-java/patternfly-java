@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"BackToTopComponent.impl.java.js",
+"lineCount":46,
+"mappings":"A;;;;;;;;;;;;;;;;;;;MA6Ba,kB;;CAAA,W;EAAAA,Q;;;QAEF,S;EAAAC,6B;EAAAA,yC;EAAAA,8E;EAAAA,iB;;;CAAA,iE;EACHC,oT;EAEAA,6B;EACAA;GAGQC,2nBAHRD;O;EASAA,kE;EACAA,2J;;;QAhBK,O;EAAAE,qC;EAAAA,kC;EAAAA;",
+"sources":["BackToTopComponent.java"],
+"names":["org.patternfly.showcase.component.BackToTopComponent.<synthetic: ctor_js>","org.patternfly.showcase.component.BackToTopComponent.<synthetic: ctor_create>","org.patternfly.showcase.component.BackToTopComponent.<init>","org.patternfly.showcase.component.BackToTopComponent.<lambda in <init>>","org.patternfly.showcase.component.BackToTopComponent.<clinit>"]
+}

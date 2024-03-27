@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Stream$4.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;MA2JyE,E;;CAAA,W;EAAAA,Q;EAAAA;OACrD,kCADqDA,C;EAAAA;iD;EAAAA;8C;;;QAAA,sE;EAAAC,a;EAAAA,yB;EAAAA,uJ;EAAAA,iB;;;CAAA,qG;EAHxCC,gE;EAAuBC,0D;EAGiBC,kF;EAAAA,gD;;;CAIhD,kD,oBAA+BC,M;EAC5CC,iF;EACAA,2K;EACAA,Y;;;CAP6D,wC;EAC/DF,yF;;;QAD+D,O;EAAAG,qB;EAAAA,kB;EAAAA;",
+"sources":["Stream.java"],
+"names":["java.util.stream.Stream$4.<synthetic: ctor_js>","java.util.stream.Stream$4.<synthetic: ctor_create>","seed","f","java.util.stream.Stream$4.<init>","action","java.util.stream.Stream$4.tryAdvance","java.util.stream.Stream$4.<clinit>"]
+}

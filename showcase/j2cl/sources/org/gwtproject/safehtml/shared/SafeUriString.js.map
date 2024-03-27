@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"SafeUriString.impl.java.js",
+"lineCount":75,
+"mappings":"A;;;;;;;;;;;;;;;MA4BM,a;;CAAA,W;EAAAA,Q;EAAAA;OAEsB,oDAFtBA,C;;;;QAWJ,yB,gBAAgCC,G;EAAhCC,wB;EAAAA,oC;EAAAA,2F;EAAAA,iB;;;;CAAA,2E,gBAAgCD,G;EAAKE,qC;EACnCA;GACEA,sFADFA;G;EAGAA,gE;;;;QAKM,S;EAAAD,oC;EAAAA,sE;EAAAA,iB;;;;CAAA,yD;EAAgBC,qC;;;CAIb,Q;EACTC,+G;;;CAKa,M,UAAcC,G;EAC3BC;GACEA,aADFA;G;EAGAA,mN;;;CAIY,Q;EACZC,yH;;;CAKY,4B;EACZC,iE;;;QA7CE,O;EAAAC,gC;EAAAA,6B;EAAAA;",
+"sources":["SafeUriString.java"],
+"names":["org.gwtproject.safehtml.shared.SafeUriString.<synthetic: ctor_js>","uri","org.gwtproject.safehtml.shared.SafeUriString.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.SafeUriString.<init>","org.gwtproject.safehtml.shared.SafeUriString.hashCode","obj","org.gwtproject.safehtml.shared.SafeUriString.equals","org.gwtproject.safehtml.shared.SafeUriString.toString","org.gwtproject.safehtml.shared.SafeUriString.asString","org.gwtproject.safehtml.shared.SafeUriString.<clinit>"]
+}

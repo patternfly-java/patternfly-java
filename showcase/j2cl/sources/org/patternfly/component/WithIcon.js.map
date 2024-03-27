@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"WithIcon.impl.java.js",
+"lineCount":30,
+"mappings":"A;;;;;;;;;;;;;;MAuBiB,Q;;CAGH,2E,uBAAoBA,I;;CAI5B,+D,gBAAaA,I;;CAEb,6C;;QANQ,wH,wDAAoBA,I;EAApBC,mB;EACNA,qI;;;QAJS,O;EAAAC,2B;EAAAA;",
+"sources":["WithIcon.java"],
+"names":["icon","org.patternfly.component.WithIcon.icon__$default","org.patternfly.component.WithIcon.<clinit>"]
+}

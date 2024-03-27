@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"IntSupplier.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MAsBiB,W;;CAEX,e;;QAFW,M;EAAAA,sB;EAAAA,8B;;;QAAA,O;EAAAC,8B;EAAAA;",
+"sources":["IntSupplier.java"],
+"names":["java.util.function.IntSupplier.<synthetic: adapt_lambda>","java.util.function.IntSupplier.<clinit>"]
+}

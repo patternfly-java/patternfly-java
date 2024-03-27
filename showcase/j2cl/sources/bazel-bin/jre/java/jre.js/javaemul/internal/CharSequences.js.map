@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"CharSequences.impl.java.js",
+"lineCount":61,
+"mappings":"A;;;;;;;;MAmBM,c;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,yB;EAAAA,qC;EAAAA,yD;EAAAA,iB;;;CAAA,4C;EAAAC,qC;;;QAKO,qC,8BAAoBC,G;EAAKC,yB;EAClCA;GACEA,IAAOC,GAAPD,8BADFA;GAEEA,uDAFFA;G;EAIAA,2B;;;QAGU,2C,8BAAoBD,G,gBAASG,K;EAAOC,yB;EAC9CA;GACEA,IAAOF,GAAPE,8BADFA;GAEEA,oEAFFA;G;EAIAA,sC;;;QAGY,oD,8BAAsBJ,G;EAAKK,yB;EACvCA,sB;;;QAGkB,uE,8BAAyBL,G,gBAASM,K,gBAAWC,G;EAAKC,yB;EACpEA;GACEA,IAAON,GAAPM,8BADFA;GAEEA,qGAFFA;G;EAIAA,uE;;;QA9BE,O;EAAAC,iC;EAAAA,8B;EAAAA;",
+"sources":["CharSequences.java"],
+"names":["javaemul.internal.CharSequences.<synthetic: ctor_js>","javaemul.internal.CharSequences.<synthetic: ctor_create>","javaemul.internal.CharSequences.<init>","obj","javaemul.internal.CharSequences.length","str","index","javaemul.internal.CharSequences.charAt","javaemul.internal.CharSequences.toString","start","end","javaemul.internal.CharSequences.subSequence","javaemul.internal.CharSequences.<clinit>"]
+}

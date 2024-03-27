@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Spliterators$EmptySpliterator$OfLong.impl.java.js",
+"lineCount":53,
+"mappings":"A;;;;;;;;;;;;;;;;MAmR+B,M;;CAAA,W;EAAAA,Q;;;QAIzB,S;EAAAC,iB;EAAAA,6B;EAAAA,wE;EAAAA,iB;;;CAAA,2D;EAASC,4D;;;;CAJgB,qD;EAAAC,6H;;;;CAAA,kD;EAAAC,iI;;;;CAAA,6C;EAAAC,kH;;;QAAA,O;EAAAC,yB;EAAAA,sB;EAAAA,2B;EAAAA;",
+"sources":["Spliterators.java"],
+"names":["java.util.Spliterators$EmptySpliterator$OfLong.<synthetic: ctor_js>","java.util.Spliterators$EmptySpliterator$OfLong.<synthetic: ctor_create>","java.util.Spliterators$EmptySpliterator$OfLong.<init>","java.util.Spliterators$EmptySpliterator$OfLong.forEachRemaining","java.util.Spliterators$EmptySpliterator$OfLong.tryAdvance","java.util.Spliterators$EmptySpliterator$OfLong.trySplit","java.util.Spliterators$EmptySpliterator$OfLong.<clinit>"]
+}

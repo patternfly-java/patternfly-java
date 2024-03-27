@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"UriUtils$JvmImpl.impl.java.js",
+"lineCount":26,
+"mappings":"A;;;;;MAwPuB,O;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,kB;EAAAA,8B;EAAAA,yE;EAAAA,iB;;;CAAA,4D;EAAAC,mE;;;QAAA,O;EAAAC,0B;EAAAA,uB;EAAAA;",
+"sources":["UriUtils.java"],
+"names":["org.gwtproject.safehtml.shared.UriUtils$JvmImpl.<synthetic: ctor_js>","org.gwtproject.safehtml.shared.UriUtils$JvmImpl.<synthetic: ctor_create>","org.gwtproject.safehtml.shared.UriUtils$JvmImpl.<init>","org.gwtproject.safehtml.shared.UriUtils$JvmImpl.<clinit>"]
+}

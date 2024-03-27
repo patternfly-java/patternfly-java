@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Character$BoxedValues.impl.java.js",
+"lineCount":54,
+"mappings":"A;;;;;;;;;MAwGuB,W;;CAAA,W;EAAAA,Q;;;QAAA,S;EAAAC,kC;EAAAA,yD;EAAAA,iB;;;CAAA,4C;EAAAC,qC;;;QAKM,gC,eAASC,C;EAAGC,sB;EACnCA,IAAUC,MAAVD,kE;EACAA;GACEA,kHADFA;G;EAGAA,c;;;QAViB,O;EAAAE,8B;EAAAA,2B;EAAAA,qB;EAEnBA,iI;;;;;;;;;;;;;;AAFmB;YAEQ,+CAFR;",
+"sources":["Character.java"],
+"names":["java.lang.Character$BoxedValues.<synthetic: ctor_js>","java.lang.Character$BoxedValues.<synthetic: ctor_create>","java.lang.Character$BoxedValues.<init>","c","java.lang.Character$BoxedValues.get","result","java.lang.Character$BoxedValues.<clinit>"]
+}

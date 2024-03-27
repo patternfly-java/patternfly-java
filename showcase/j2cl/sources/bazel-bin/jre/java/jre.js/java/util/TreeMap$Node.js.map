@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"TreeMap$Node.impl.java.js",
+"lineCount":94,
+"mappings":"A;;;;;;;;;;;MAymBuB,I;;CAAA,W;EAAAA,Q;EAAAA;OACR,gCADQA,C;EAAAA;OAER,8BAFQA,C;EAAAA;OAGR,+BAHQA,C;EAAAA;OAIf,gCAJeA,K;;;QAMnB,iD,mBAAgBC,M,WAAUC,G;EAA1BC,e;EAAAA,2B;EAAAA,qG;EAAAA,iB;;;CAAA,6E,mBAAgBF,M,WAAUC,G;EACxBE,mG;EACAA,+C;EACAA,0C;;;CAMS,4C;EACTC;GACEA,4FADFA;G;EAGAA,IAAWC,IAAXD,Q;EACAA,IAAWJ,MAAXI,yC;EACAA;GACEA;IACEA,cADFA;IADFA;GAIEA,cAJFA;GAKEA,+CALFA;G;EAOAA,Y;;;CAOS,4C;EACTE;GACEA,0FADFA;G;EAGAA,IAAWD,IAAXC,Q;EACAA,IAAWN,MAAXM,yC;EACAA;GACEA;IACEA,cADFA;IADFA;GAIEA,cAJFA;GAKEA,+CALFA;G;EAOAA,Y;;;CAIS,6C;EACTC,IAAWF,IAAXE,Q;EACAA,IAAWC,KAAXD,uC;EACAA;GACEA,aADFA;GAEEA,4CAFFA;G;EAIAA,Y;;;CAIS,4C;EACTE,IAAWJ,IAAXI,Q;EACAA,IAAWD,KAAXC,wC;EACAA;GACEA,aADFA;GAEEA,6CAFFA;G;EAIAA,Y;;;QAtEiB,O;EAAAC,uB;EAAAA,oB;EAAAA;",
+"sources":["TreeMap.java"],
+"names":["java.util.TreeMap$Node.<synthetic: ctor_js>","parent","key","java.util.TreeMap$Node.<synthetic: ctor_create>","java.util.TreeMap$Node.<init>","java.util.TreeMap$Node.next","node","java.util.TreeMap$Node.prev","java.util.TreeMap$Node.first","child","java.util.TreeMap$Node.last","java.util.TreeMap$Node.<clinit>"]
+}

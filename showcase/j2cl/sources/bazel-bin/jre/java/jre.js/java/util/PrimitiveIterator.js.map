@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"PrimitiveIterator.impl.java.js",
+"lineCount":18,
+"mappings":"A;;;;;;;;;;MA+BiB,iB;;CAEV,0C,UAAmBA,Q;;QAFT,O;EAAAC,oC;EAAAA,iC;EAAAA;",
+"sources":["PrimitiveIterator.java"],
+"names":["consumer","java.util.PrimitiveIterator.<clinit>"]
+}

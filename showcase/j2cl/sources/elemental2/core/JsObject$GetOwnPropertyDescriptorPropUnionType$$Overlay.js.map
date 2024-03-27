@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.impl.java.js",
+"lineCount":37,
+"mappings":"A;;;;;;;MA8EmB,Q;;QAEuC,sF,UAAUA,C;EAAGC,mB;EACjEA,yE;;;QAIa,qG;EAAAC,mB;EACbA,+D;;;QAIa,qG;EAAAC,mB;EACbA,mE;;;QAIc,4F;EAAAC,mB;EACdA,wC;;;QAIc,4F;EAAAC,mB;EACdA,wC;;;QAvBa,O;EAAAC,2B;EAAAA;",
+"sources":["JsObject.java"],
+"names":["o","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.of","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.asObject__$devirt","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.asString__$devirt","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.isObject__$devirt","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.isString__$devirt","elemental2.core.JsObject$GetOwnPropertyDescriptorPropUnionType$$Overlay.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"StringIndexOutOfBoundsException.impl.java.js",
+"lineCount":57,
+"mappings":"A;;;;;MAsBa,+B;;CAAA,W;EAAAA,Q;;;;QAEJ,S;EAAAC,0C;EAAAA,sD;EAAAA,mE;EAAAA,yF;EAAAA,iB;;;;CAAA,sD;EACLC,wD;;;;QAGK,yB,gBAAuCC,O;EAAvCF,0C;EAAAA,sD;EAAAA,4F;EAAAA,yF;EAAAA,iB;;;;CAAA,wE,gBAAuCE,O;EAC5CD,iF;;;;QAGK,Y,eAAoCE,K;EAApCH,0C;EAAAA,sD;EAAAA,6E;EAAAA,yF;EAAAA,iB;;;;CAAA,2D,eAAoCG,K;EACzCF,+G;;;QAXS,O;EAAAG,kD;EAAAA,+C;EAAAA;",
+"sources":["StringIndexOutOfBoundsException.java"],
+"names":["java.lang.StringIndexOutOfBoundsException.<synthetic: ctor_js>","java.lang.StringIndexOutOfBoundsException.<synthetic: ctor_create>","java.lang.StringIndexOutOfBoundsException.<init>","message","index","java.lang.StringIndexOutOfBoundsException.<clinit>"]
+}

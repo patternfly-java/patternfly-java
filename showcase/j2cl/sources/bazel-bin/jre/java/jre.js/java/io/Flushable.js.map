@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Flushable.impl.java.js",
+"lineCount":21,
+"mappings":"A;;;;;;;;;MA0BiB,S;;CAQR,a;;QARQ,M;EAAAA,oB;EAAAA,8B;;;QAAA,O;EAAAC,4B;EAAAA;",
+"sources":["Flushable.java"],
+"names":["java.io.Flushable.<synthetic: adapt_lambda>","java.io.Flushable.<clinit>"]
+}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"Range$$Overlay.impl.java.js",
+"lineCount":47,
+"mappings":"A;;;;;MAsBa,Q;;QACX,+C;EAAAA,wF;;;QACA,iD;EAAAA,0F;;;QACA,iD;EAAAA,0F;;;QACA,mD;EAAAA,4F;;;QAJW,O;EAAAC,2B;EAAAA,wB;EACXA,8E;EACAA,kF;EACAA,kF;EACAA,sF;;;;;;;;;;AAJW;+D;AAAA;iE;AAAA;iE;AAAA;;",
+"sources":["Range.java"],
+"names":["elemental2.dom.Range$$Overlay.<synthetic: getter>","elemental2.dom.Range$$Overlay.<clinit>"]
+}
