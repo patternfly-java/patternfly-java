@@ -23,6 +23,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
+import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLButtonElement;
@@ -36,7 +37,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.icon.IconSets.patternfly.help;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.modifier;
@@ -113,7 +113,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
     public FormGroupLabel help(String ariaLabel, Popover popover) {
         HTMLButtonElement helpButton = button().css(component(Classes.form, group, Classes.label, Classes.help))
                 .aria(Aria.label, ariaLabel)
-                .add(help)
+                .add(IconSets.patternfly.help())
                 .element();
         add(helpButton);
         popover.trigger(helpButton).appendToBody();

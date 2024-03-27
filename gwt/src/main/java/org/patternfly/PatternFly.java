@@ -21,6 +21,6 @@ public class PatternFly implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-
+        // nyi
     }
 }

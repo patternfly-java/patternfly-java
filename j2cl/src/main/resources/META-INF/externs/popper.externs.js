@@ -2,61 +2,42 @@
 
 /**
  * @fileoverview Declarations for @popperjs/core v2.11.8
+ * @see https://popper.js.org/docs/v2/
  * @externs
  */
 
-// ------------------------------------------------------ strategy
-
-/** @enum {string} */
-var Strategy = {
-    absolute: 'absolute',
-    fixed: 'fixed'
-}
-
-// ------------------------------------------------------ modifier arguments
+// ------------------------------------------------------ popper
 
 /** @constructor */
-function ModifierArguments() {
+function Popper() {
 }
 
-/** @type {string} */
-ModifierArguments.prototype.name
+/**
+ * @param {HTMLElement} reference
+ * @param {HTMLElement} popper
+ * @param {!Options} options
+ * @return {Popper}
+ */
+Popper.prototype.createPopper = function (reference, popper, options) {
+};
 
 /** @type {State} */
-ModifierArguments.prototype.state
+Popper.prototype.state;
 
-// ------------------------------------------------------ modifier options
+Popper.prototype.destroy = function () {
+};
 
-/** @constructor */
-function ModifierOptions() {
-}
+/**
+ * @param {function(Options)} updateOptionsFn
+ */
+Popper.prototype.setOptions = function (updateOptionsFn) {
+};
 
-/** @type {Array<number>} */
-ModifierOptions.prototype.offset
-
-// ------------------------------------------------------ modifier
-
-/** @constructor */
-function Modifier() {
-}
-
-/** @type {string} */
-Modifier.prototype.name
-
-/** @type {boolean} */
-Modifier.prototype.enabled
-
-/** @type {string} */
-Modifier.prototype.phase
-
-/** @type {Array<string>} */
-Modifier.prototype.requires
-
-/** @type {ModifierOptions} */
-Modifier.prototype.options
-
-/** @type {function(ModifierArguments)} */
-Modifier.prototype.fn
+/**
+ * @return {Promise<!State>}
+ */
+Popper.prototype.update = function () {
+};
 
 // ------------------------------------------------------ options
 
@@ -70,11 +51,95 @@ Options.prototype.placement;
 /** @type {Array<Modifier>} */
 Options.prototype.modifiers;
 
-/** @type {Strategy} */
+/** @type {string} */
 Options.prototype.strategy;
 
 /** @type {function(State)} */
 Options.prototype.onFirstUpdate;
+
+// ------------------------------------------------------ modifier
+
+/** @constructor */
+function Modifier() {
+}
+
+/** @type {string} */
+Modifier.prototype.name;
+
+/** @type {boolean} */
+Modifier.prototype.enabled;
+
+/** @type {string} */
+Modifier.prototype.phase;
+
+/** @type {Array<string>} */
+Modifier.prototype.requires;
+
+/** @type {ModifierOptions} */
+Modifier.prototype.options;
+
+/** @type {function(ModifierArguments)} */
+Modifier.prototype.fn;
+
+// ------------------------------------------------------ modifier arguments
+
+/** @constructor */
+function ModifierArguments() {
+}
+
+/** @type {string} */
+ModifierArguments.prototype.name;
+
+/** @type {State} */
+ModifierArguments.prototype.state;
+
+// ------------------------------------------------------ modifiers data
+
+/** @constructor */
+function ModifiersData() {
+}
+
+/** @type {{}} */
+ModifiersData.prototype.applyStyles;
+
+/** @type {{ x?: number, y?: number, centerOffset: number }} */
+ModifiersData.prototype.arrow;
+
+/** @type {{}} */
+ModifiersData.prototype.flip;
+
+/** @type {{ isReferenceHidden: boolean, hasPopperEscaped: boolean, referenceClippingOffsets: SideObject, popperEscapeOffsets: SideObject }} */
+ModifiersData.prototype.hide;
+
+/** @type {{}} */
+ModifiersData.prototype.offset;
+
+/** @type {{}} */
+ModifiersData.prototype.placements;
+
+/** @type {Offsets} */
+ModifiersData.prototype.popperOffsets;
+
+// ------------------------------------------------------ modifier options
+
+/** @constructor */
+function ModifierOptions() {
+}
+
+/** @type {Array<number>} */
+ModifierOptions.prototype.offset;
+
+// ------------------------------------------------------ offsets
+
+/** @constructor */
+function Offsets() {
+}
+
+/** @type {number} */
+Offsets.prototype.x;
+
+/** @type {number} */
+Offsets.prototype.y;
 
 // ------------------------------------------------------ state
 
@@ -83,30 +148,25 @@ function State() {
 }
 
 /** @type {StateElements} */
-State.prototype.elements
+State.prototype.elements;
+
+/** @type {ModifiersData} */
+State.prototype.modifiersData;
+
+/** @type Array<Modifier> */
+State.prototype.orderedModifiers;
 
 /** @type {string} */
-State.prototype.placement
+State.prototype.placement;
 
 /** @type {StateRects} */
-State.prototype.rects
+State.prototype.rects;
+
+/** @type {ScrollParents} */
+State.prototype.scrollParents;
 
 /** @type {StyleDefinitions} */
-State.prototype.styles
-
-// ------------------------------------------------------ rect
-
-/** @type number */
-Rect.prototype.x;
-
-/** @type number */
-Rect.prototype.y;
-
-/** @type number */
-Rect.prototype.width;
-
-/** @type number */
-Rect.prototype.height;
+State.prototype.styles;
 
 // ------------------------------------------------------ state rects
 
@@ -119,15 +179,6 @@ StateRects.prototype.reference;
 
 /** @type {Rect} */
 StateRects.prototype.popper;
-
-// ------------------------------------------------------ style definitions
-
-/** @constructor */
-function StyleDefinitions() {
-}
-
-/** @type {CSSStyleDeclaration} */
-StyleDefinitions.prototype.popper;
 
 // ------------------------------------------------------ state elements
 
@@ -144,35 +195,55 @@ StateElements.prototype.popper
 /** @type {HTMLElement} */
 StateElements.prototype.arrow
 
-// ------------------------------------------------------ popper
+// ------------------------------------------------------ scroll parents
 
 /** @constructor */
-function Popper() {
+function ScrollParents() {
 }
 
-/** @type {State} */
-Popper.prototype.state;
+/** @type Array<HTMLElement> */
+ScrollParents.prototype.reference;
 
-/**
- * @param {HTMLElement} reference
- * @param {HTMLElement} popper
- * @param {Options} options
- * @return {Popper}
- */
-Popper.prototype.createPopper = function (reference, popper, options) {
-};
+/** @type Array<HTMLElement> */
+ScrollParents.prototype.popper;
 
-Popper.prototype.destroy = function () {
-};
+// ------------------------------------------------------ rect
 
-/**
- * @param {function(Options)} updateOptionsFn
- */
-Popper.prototype.setOptions = function (updateOptionsFn) {
-};
+/** @type number */
+Rect.prototype.x;
 
-/**
- * @return {Promise<!State>}
- */
-Popper.prototype.update = function () {
-};
+/** @type number */
+Rect.prototype.y;
+
+/** @type number */
+Rect.prototype.width;
+
+/** @type number */
+Rect.prototype.height;
+
+// ------------------------------------------------------ side object
+
+/** @constructor */
+function SideObject() {
+}
+
+/** @type {number} */
+SideObject.prototype.top;
+
+/** @type {number} */
+SideObject.prototype.left;
+
+/** @type {number} */
+SideObject.prototype.right;
+
+/** @type {number} */
+SideObject.prototype.bottom;
+
+// ------------------------------------------------------ style definxitions
+
+/** @constructor */
+function StyleDefinitions() {
+}
+
+/** @type {CSSStyleDeclaration} */
+StyleDefinitions.prototype.popper;

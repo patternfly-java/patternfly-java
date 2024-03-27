@@ -25,7 +25,7 @@ import static jsinterop.annotations.JsPackage.GLOBAL;
 /**
  * Java API for Popper JS library.
  *
- * @see <a href="https://popper.js.org/">https://popper.js.org/</a>
+ * @see <a href="https://popper.js.org/docs/v2/">https://popper.js.org/docs/v2/</a>
  */
 @JsType(isNative = true, name = "Popper", namespace = GLOBAL)
 class PopperJs {

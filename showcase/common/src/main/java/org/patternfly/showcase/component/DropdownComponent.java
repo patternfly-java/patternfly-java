@@ -79,7 +79,7 @@ public class DropdownComponent extends SnippetPage {
                 // @code-start:dropdown-kebab
                 div()
                         .add(dropdown()
-                                .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                                .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                                 .addMenu(menu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -125,7 +125,7 @@ public class DropdownComponent extends SnippetPage {
                 div()
                         .add(dropdown()
                                 .addToggle(menuToggle("Icon")
-                                        .icon(cog))
+                                        .icon(cog()))
                                 .addMenu(menu()
                                         .addContent(menuContent()
                                                 .addList(menuList()

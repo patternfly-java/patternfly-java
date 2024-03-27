@@ -42,7 +42,7 @@ public class DrawerCloseButton extends DrawerSubComponent<HTMLDivElement, Drawer
     DrawerCloseButton() {
         super(SUB_COMPONENT_NAME, div().css(component(drawer, actions)).element());
         add(div().css(component(drawer, close))
-                .add(button().plain().icon(times)
+                .add(button().plain().icon(times())
                         .aria(label, "Close drawer panel")
                         .on(click, e -> close())));
     }

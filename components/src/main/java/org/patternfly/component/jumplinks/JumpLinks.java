@@ -307,7 +307,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
                             .aria(Aria.label, "Toggle jump links")
                             .on(click, e -> toggle())
                             .add(span().css(component(jumpLinks, toggle, icon))
-                                    .add(angleRight))
+                                    .add(angleRight()))
                             .add(toggleTextElement = span().css(component(jumpLinks, toggle, text))
                                     .textContent(labelElement.element().textContent))));
         }

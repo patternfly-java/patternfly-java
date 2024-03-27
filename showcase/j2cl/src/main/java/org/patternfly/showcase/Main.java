@@ -21,8 +21,6 @@ import static org.patternfly.showcase.Environment.env;
 
 public class Main {
 
-    static final String MAIN_ID = "pfj-main-id";
-
     @GWT3EntryPoint
     public void onModuleLoad() {
         Showcase.init(env().base());

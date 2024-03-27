@@ -134,7 +134,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
                         .id(textId)
                         .element())
                 .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                        .add(angleRight.element()))
+                        .add(angleRight().element()))
                 .element());
         text(this.text);
 

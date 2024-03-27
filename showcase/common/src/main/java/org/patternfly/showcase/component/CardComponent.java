@@ -110,7 +110,7 @@ public class CardComponent extends SnippetPage {
                 code("card-header-image"), () -> {
             // @code-start:card-header-image
             Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -146,7 +146,7 @@ public class CardComponent extends SnippetPage {
                 code("card-title-inline"), () -> {
             // @code-start:card-title-inline
             Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -177,7 +177,7 @@ public class CardComponent extends SnippetPage {
                 code("card-header-no-title"), () -> {
             // @code-start:card-header-no-title
             Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -382,7 +382,7 @@ public class CardComponent extends SnippetPage {
                 code("card-expandable"), () -> {
             // @code-start:card-expandable
             Dropdown dropdown1 = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -397,7 +397,7 @@ public class CardComponent extends SnippetPage {
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
 
             Dropdown dropdown2 = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -439,7 +439,7 @@ public class CardComponent extends SnippetPage {
                 code("card-expandable-image"), () -> {
             // @code-start:card-expandable-image
             Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()

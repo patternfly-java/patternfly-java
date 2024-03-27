@@ -137,7 +137,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
                                     .aria(label, "Details")
                                     .aria(labelledBy, titleId + " " + toggleId)
                                     .add(span().css(component(form, fieldGroup, toggle, icon))
-                                            .add(angleRight))))
+                                            .add(angleRight()))))
                     .element());
         }
         this.expandable = true;

@@ -47,11 +47,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-layouts</artifactId>
         </dependency>
         <dependency>

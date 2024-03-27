@@ -65,13 +65,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-basic"), () ->
                 // @code-start:icon-basic
                 div()
-                        .add(icon(longArrowAltDown))
+                        .add(icon(longArrowAltDown()))
                         .add(" ")
-                        .add(icon(angleRight))
+                        .add(icon(angleRight()))
                         .add(" ")
-                        .add(icon(angleDown))
+                        .add(icon(angleDown()))
                         .add(" ")
-                        .add(icon(cog))
+                        .add(icon(cog()))
                         .element()
                 // @code-end:icon-basic
         ));
@@ -80,13 +80,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-sizes"), () ->
                 // @code-start:icon-sizes
                 div()
-                        .add(icon(plusCircle).size(sm))
+                        .add(icon(plusCircle()).size(sm))
                         .add(" ")
-                        .add(icon(plusCircle).size(md))
+                        .add(icon(plusCircle()).size(md))
                         .add(" ")
-                        .add(icon(plusCircle).size(lg))
+                        .add(icon(plusCircle()).size(lg))
                         .add(" ")
-                        .add(icon(plusCircle).size(xl))
+                        .add(icon(plusCircle()).size(xl))
                         .element()
                 // @code-end:icon-sizes
         ));
@@ -96,15 +96,15 @@ public class IconComponent extends SnippetPage {
                 code("icon-status-colors"), () ->
                 // @code-start:icon-status-colors
                 div()
-                        .add(icon(exclamationCircle).status(danger))
+                        .add(icon(exclamationCircle()).status(danger))
                         .add(" ")
-                        .add(icon(exclamationTriangle).status(warning))
+                        .add(icon(exclamationTriangle()).status(warning))
                         .add(" ")
-                        .add(icon(check).status(success))
+                        .add(icon(check()).status(success))
                         .add(" ")
-                        .add(icon(infoCircle).status(info))
+                        .add(icon(infoCircle()).status(info))
                         .add(" ")
-                        .add(icon(bell).status(custom))
+                        .add(icon(bell()).status(custom))
                         .element()
                 // @code-end:icon-status-colors
         ));
@@ -114,13 +114,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-container"), () ->
                 // @code-start:icon-container
                 div()
-                        .add(icon(plusCircle).size(xl).iconSize(sm))
+                        .add(icon(plusCircle()).size(xl).iconSize(sm))
                         .add(" ")
-                        .add(icon(plusCircle).size(xl).iconSize(md))
+                        .add(icon(plusCircle()).size(xl).iconSize(md))
                         .add(" ")
-                        .add(icon(plusCircle).size(xl).iconSize(lg))
+                        .add(icon(plusCircle()).size(xl).iconSize(lg))
                         .add(" ")
-                        .add(icon(plusCircle).size(xl))
+                        .add(icon(plusCircle()).size(xl))
                         .element()
                 // @code-end:icon-container
         ));
@@ -132,31 +132,31 @@ public class IconComponent extends SnippetPage {
                         .add(textContent()
                                 .add(h(1)
                                         .add("Heading ")
-                                        .add(icon(plusCircle).inline()))
+                                        .add(icon(plusCircle()).inline()))
                                 .add(p().textContent(LoremIpsum.paragraph()))
                                 .add(h(2)
                                         .add("Second level ")
-                                        .add(icon(plusCircle).inline()))
+                                        .add(icon(plusCircle()).inline()))
                                 .add(p()
-                                        .add(icon(plusCircle).inline())
+                                        .add(icon(plusCircle()).inline())
                                         .add(" " + LoremIpsum.paragraphs(2) + " ")
                                         .add(strong()
                                                 .add(LoremIpsum.words(2) + " ")
-                                                .add(icon(plusCircle).inline()))
+                                                .add(icon(plusCircle()).inline()))
                                         .add(" " + LoremIpsum.words(5))
                                         .add(LoremIpsum.paragraphs(2)))
                                 .add(small()
                                         .add("Sometimes you need small text ")
-                                        .add(icon(plusCircle).inline()))
+                                        .add(icon(plusCircle()).inline()))
                                 .add(div()
                                         .add("Inline with size specified: ")
-                                        .add(icon(plusCircle).size(sm).inline())
+                                        .add(icon(plusCircle()).size(sm).inline())
                                         .add(" small, ")
-                                        .add(icon(plusCircle).size(md).inline())
+                                        .add(icon(plusCircle()).size(md).inline())
                                         .add(" medium, ")
-                                        .add(icon(plusCircle).size(lg).inline())
+                                        .add(icon(plusCircle()).size(lg).inline())
                                         .add(" large, ")
-                                        .add(icon(plusCircle).size(xl).inline())
+                                        .add(icon(plusCircle()).size(xl).inline())
                                         .add(" extra large")))
                         .element()
                 // @code-end:icon-inline
@@ -165,7 +165,7 @@ public class IconComponent extends SnippetPage {
         addSnippet(new Snippet("icon-in-progress", "In progress",
                 code("icon-in-progress"), () -> {
             // @code-start:icon-in-progress
-            Icon icon = icon(checkCircle);
+            Icon icon = icon(checkCircle());
             return div()
                     .add(div().css(util("mb-md"))
                             .add(checkbox("in-progress-cb", "in-progress-cb", "Toggle in progress state")
@@ -178,7 +178,7 @@ public class IconComponent extends SnippetPage {
         addSnippet(new Snippet("icon-in-progress-custom", "Custom in progress icon",
                 code("icon-in-progress-custom"), () -> {
             // @code-start:icon-in-progress-custom
-            Icon icon = icon(checkCircle);
+            Icon icon = icon(checkCircle());
             return div()
                     .add(div().css(util("mb-md"))
                             .add(checkbox("in-progress-custom-cb", "in-progress-custom-cb", "Toggle in progress state")

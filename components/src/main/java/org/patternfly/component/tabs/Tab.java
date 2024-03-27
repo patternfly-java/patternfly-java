@@ -177,7 +177,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                     .add(helpButton = Button.button().plain()
                             .aria(Aria.label, "More info for " + text())
                             .add(span().css(component(tabs, item, action, icon))
-                                    .add(patternfly.help)))
+                                    .add(patternfly.help())))
                     .element();
             if (closeButton == null) {
                 add(helpContainer);
@@ -215,7 +215,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                             .aria(Aria.label, "Close " + text())
                             .on(click, e -> close(e, true))
                             .add(span().css(component(tabs, item, action, icon))
-                                    .add(times))));
+                                    .add(times()))));
         }
         return onClose(closeHandler);
     }

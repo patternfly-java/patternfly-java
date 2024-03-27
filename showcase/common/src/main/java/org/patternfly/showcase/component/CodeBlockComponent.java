@@ -55,7 +55,7 @@ public class CodeBlockComponent extends SnippetPage {
                 div()
                         .add(codeBlock()
                                 .addAction(codeBlockCopyToClipboardAction())
-                                .addAction(codeBlockAction(play)
+                                .addAction(codeBlockAction(play())
                                         .ariaLabel("Play")
                                         .onClick((action, codeBlock) -> console.log(
                                                 "Play not yet implemented")))
@@ -70,7 +70,7 @@ public class CodeBlockComponent extends SnippetPage {
                 div()
                         .add(codeBlock()
                                 .addAction(codeBlockCopyToClipboardAction())
-                                .addAction(codeBlockAction(play)
+                                .addAction(codeBlockAction(play())
                                         .ariaLabel("Play")
                                         .onClick((action, codeBlock) -> console.log("Play not yet implemented")))
                                 .truncate()

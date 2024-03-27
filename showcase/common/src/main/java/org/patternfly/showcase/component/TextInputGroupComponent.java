@@ -80,11 +80,11 @@ public class TextInputGroupComponent extends SnippetPage {
             TextInputGroup textInputGroup = textInputGroup();
             textInputGroup
                     .addMain(textInputGroupMain("tig-utilities-and-icon-0")
-                            .icon(search)
+                            .icon(search())
                             .placeholder("Placeholder")
                             .onChange((e, tig, value) -> setVisible(tig.utilities(), !value.isEmpty())))
                     .addUtilities(textInputGroupUtilities()
-                            .add(button().icon(times).plain()
+                            .add(button().icon(times()).plain()
                                     .on(click, e -> textInputGroup.main().value("", true))));
             return div()
                     .add(textInputGroup)
@@ -118,7 +118,7 @@ public class TextInputGroupComponent extends SnippetPage {
                                 }
                             }))
                     .addUtilities(textInputGroupUtilities(false)
-                            .add(button().icon(times).plain()
+                            .add(button().icon(times()).plain()
                                     .on(click, e -> {
                                         chipGroup.clear();
                                         textInputGroup.main().value("");
@@ -131,7 +131,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 if (current) {
                     textInputGroup.main().removeIcon();
                 } else {
-                    textInputGroup.main().icon(search);
+                    textInputGroup.main().icon(search());
                     setVisible(textInputGroup.utilities(), textEntered.get());
                 }
             });

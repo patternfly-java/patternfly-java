@@ -203,15 +203,15 @@ public class AlertComponent extends SnippetPage {
                 code("alert-custom-icons"), () ->
                 // @code-start:alert-custom-icons
                 div()
-                        .add(alert(custom, "Default alert title").icon(users))
+                        .add(alert(custom, "Default alert title").icon(users()))
                         .add(br())
-                        .add(alert(info, "Info alert title").icon(box))
+                        .add(alert(info, "Info alert title").icon(box()))
                         .add(br())
-                        .add(alert(success, "Success alert title").icon(database))
+                        .add(alert(success, "Success alert title").icon(database()))
                         .add(br())
-                        .add(alert(warning, "Warning alert title").icon(server))
+                        .add(alert(warning, "Warning alert title").icon(server()))
                         .add(br())
-                        .add(alert(danger, "Danger alert title").icon(laptop))
+                        .add(alert(danger, "Danger alert title").icon(laptop()))
                         .element()
                 // @code-end:alert-custom-icons
         ));

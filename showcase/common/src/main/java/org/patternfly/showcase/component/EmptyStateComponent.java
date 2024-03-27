@@ -57,7 +57,7 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(cubes)
+                                        .icon(cubes())
                                         .text("Empty state"))
                                 .addBody(emptyStateBody()
                                         .textContent(
@@ -106,7 +106,7 @@ public class EmptyStateComponent extends SnippetPage {
                         .add(emptyState()
                                 .size(sm)
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(cubes)
+                                        .icon(cubes())
                                         .text("Empty state"))
                                 .addBody(emptyStateBody()
                                         .textContent(
@@ -132,7 +132,7 @@ public class EmptyStateComponent extends SnippetPage {
                         .add(emptyState()
                                 .size(lg)
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(cubes)
+                                        .icon(cubes())
                                         .text("Empty state"))
                                 .addBody(emptyStateBody()
                                         .textContent(
@@ -158,7 +158,7 @@ public class EmptyStateComponent extends SnippetPage {
                         .add(emptyState()
                                 .size(xl)
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(cubes)
+                                        .icon(cubes())
                                         .text("Empty state"))
                                 .addBody(emptyStateBody()
                                         .textContent(
@@ -195,7 +195,7 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(search)
+                                        .icon(search())
                                         .text("No results found"))
                                 .addBody(emptyStateBody()
                                         .textContent("No results match the filter criteria. Clear all filters and try again."))
@@ -212,7 +212,7 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(check, globalVar("success-color", "100"))
+                                        .icon(check(), globalVar("success-color", "100"))
                                         .text("Custom icon color"))
                                 .addBody(emptyStateBody()
                                         .textContent(

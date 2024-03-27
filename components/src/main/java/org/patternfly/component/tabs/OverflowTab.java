@@ -104,7 +104,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .aria(hasPopup, "menu")
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
-                        .add(angleRight)));
+                        .add(angleRight())));
         add(menu = menu(single)
                 .onSingleSelect((event, menuItem, selected) -> select(menuItem))
                 .addContent(menuContent()

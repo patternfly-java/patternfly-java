@@ -99,7 +99,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
                         .element())
                 .element());
         add(actionsElement = span().css(component(chip, actions))
-                .add(closeButton = button().icon(times).plain()
+                .add(closeButton = button().icon(times()).plain()
                         .id(buttonId)
                         .aria(label, "Close")
                         .aria(labelledBy, buttonId + " " + textId)

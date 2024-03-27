@@ -62,7 +62,7 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     <E extends HTMLElement> BreadcrumbItem(String text) {
         super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item)).element());
         add(span().css(component(breadcrumb, item, divider))
-                .add(angleRight.element()));
+                .add(angleRight().element()));
         add(textElement = span().textContent(text).element());
     }
 

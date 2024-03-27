@@ -177,7 +177,7 @@ public class PopoverComponent extends SnippetPage {
                 code("popover-icon"), () -> {
             // @code-start:popover-icon
             popover(By.id("popover-icon-button"))
-                    .icon(bullhorn)
+                    .icon(bullhorn())
                     .ariaLabel("Popover with icon in the title example.")
                     .addHeader("Popover with icon")
                     .addBody(LoremIpsum.words(20))

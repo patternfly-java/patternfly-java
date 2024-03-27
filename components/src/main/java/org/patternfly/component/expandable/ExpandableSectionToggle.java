@@ -72,7 +72,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLB
 
         id(id = Id.unique(ComponentType.ExpandableSection.id, "tgl"));
         add(toggleIconElement = span().css(component(Classes.expandableSection, toggle, icon))
-                .add(angleRight.element())
+                .add(angleRight().element())
                 .element());
         if (moreText != null || lessText != null) {
             add(expandableSectionToggleText(moreText, lessText));

@@ -23,15 +23,15 @@ import static org.patternfly.style.Classes.modifier;
 
 public enum ValidationStatus {
 
-    default_(null, IconSets.fas.minus),
+    default_(null, IconSets.fas.minus()),
 
-    indeterminate(modifier(Classes.indeterminate), IconSets.fas.minus),
+    indeterminate(modifier(Classes.indeterminate), IconSets.fas.minus()),
 
-    warning(modifier(Classes.warning), IconSets.fas.exclamationTriangle),
+    warning(modifier(Classes.warning), IconSets.fas.exclamationTriangle()),
 
-    success(modifier(Classes.success), IconSets.fas.checkCircle),
+    success(modifier(Classes.success), IconSets.fas.checkCircle()),
 
-    error(modifier(Classes.error), IconSets.fas.exclamationCircle),
+    error(modifier(Classes.error), IconSets.fas.exclamationCircle()),
 
     ;
 

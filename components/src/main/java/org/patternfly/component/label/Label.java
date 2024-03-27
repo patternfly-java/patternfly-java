@@ -174,7 +174,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
         onClose(closeHandler);
         insertAfter(actionsElement = span().css(component(Classes.label, actions))
                 .add(closeButton = Button.button()
-                        .icon(times)
+                        .icon(times())
                         .plain()
                         .aria(Aria.label, "Close " + textElement.textContent)
                         .on(click, event -> close(event, true)))

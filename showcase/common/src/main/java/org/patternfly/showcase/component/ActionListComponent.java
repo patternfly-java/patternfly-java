@@ -55,7 +55,7 @@ public class ActionListComponent extends SnippetPage {
                 code("action-list-single-group"), () -> {
             // @code-start:action-list-single-group
             Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV, "kebab dropdown toggle"))
+                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(menu()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -93,9 +93,9 @@ public class ActionListComponent extends SnippetPage {
                 div()
                         .add(actionList().icons()
                                 .addItem(actionListItem()
-                                        .add(button().icon(times).plain()))
+                                        .add(button().icon(times()).plain()))
                                 .addItem(actionListItem()
-                                        .add(button().icon(check).plain())))
+                                        .add(button().icon(check()).plain())))
                         .element()
                 // @code-end:action-list-icons
         ));

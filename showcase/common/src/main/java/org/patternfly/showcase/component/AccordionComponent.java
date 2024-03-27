@@ -140,7 +140,7 @@ public class AccordionComponent extends SnippetPage {
                                                 .add(p().textContent(LoremIpsum.paragraphs(30))))
                                         .addBody(accordionItemBody()
                                                 .add(button()
-                                                        .iconAndText(arrowRight, "Call to action", end)
+                                                        .iconAndText(arrowRight(), "Call to action", end)
                                                         .link()
                                                         .inline()
                                                         .callToAction())))

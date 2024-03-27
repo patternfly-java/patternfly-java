@@ -58,7 +58,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     }
 
     static MenuItemAction favoriteMenuItemAction(String id) {
-        return new MenuItemAction(id, star.element(), true)
+        return new MenuItemAction(id, star().element(), true)
                 .css(modifier(favorite))
                 .aria(Aria.label, "not starred");
     }

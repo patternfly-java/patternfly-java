@@ -88,9 +88,9 @@ public class TextInputComponent extends SnippetPage {
                 // @code-start:text-input-custom-icon
                 div()
                         .add(textInput("custom-icon-text-input-0").css(util("mb-sm"))
-                                .icon(calendar))
+                                .icon(calendar()))
                         .add(textInput("custom-icon-text-input-1")
-                                .icon(clock))
+                                .icon(clock()))
                         .element()
                 // @code-end:text-input-custom-icon
         ));
@@ -101,7 +101,7 @@ public class TextInputComponent extends SnippetPage {
                 div()
                         .add(textInput("custom-icon-and-invalid-text-input-0")
                                 .validated(error)
-                                .icon(calendar))
+                                .icon(calendar()))
                         .element()
                 // @code-end:text-input-custom-icon-and-invalid
         ));

@@ -319,7 +319,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).target = "_blank";
             mainElement.appendChild(span().css(component(Classes.menu, item, externalIcon))
-                    .add(externalLinkAlt)
+                    .add(externalLinkAlt())
                     .element());
             mainElement.appendChild(span().css(screenReader)
                     .textContent("(opens a new window)")
@@ -411,7 +411,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         } else {
             if (selectIcon == null) {
                 selectIcon = span().css(component(Classes.menu, item, select, icon))
-                        .add(check)
+                        .add(check())
                         .element();
             }
             itemElement.setAttribute(Aria.selected, selected);

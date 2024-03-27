@@ -15,27 +15,29 @@
  */
 package org.patternfly.component;
 
+import java.util.function.Supplier;
+
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Status;
 
 public enum Severity {
 
-    custom(IconSets.fas.bell, Status.custom, "custom alert"),
+    custom(IconSets.fas::bell, Status.custom, "custom alert"),
 
-    info(IconSets.fas.infoCircle, Status.info, "info alert"),
+    info(IconSets.fas::infoCircle, Status.info, "info alert"),
 
-    success(IconSets.fas.checkCircle, Status.success, "success alert"),
+    success(IconSets.fas::checkCircle, Status.success, "success alert"),
 
-    warning(IconSets.fas.exclamationTriangle, Status.warning, "warning alert"),
+    warning(IconSets.fas::exclamationTriangle, Status.warning, "warning alert"),
 
-    danger(IconSets.fas.exclamationCircle, Status.danger, "danger alert");
+    danger(IconSets.fas::exclamationCircle, Status.danger, "danger alert");
 
-    public final PredefinedIcon icon;
+    public final Supplier<PredefinedIcon> icon;
     public final Status status;
     public final String aria;
 
-    Severity(PredefinedIcon icon, Status status, String aria) {
+    Severity(Supplier<PredefinedIcon> icon, Status status, String aria) {
         this.icon = icon;
         this.status = status;
         this.aria = aria;

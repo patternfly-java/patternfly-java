@@ -114,11 +114,11 @@ public class MenuComponent extends SnippetPage {
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(actionMenuItem("item-0", "Item 1")
-                                                        .icon(codeBranch))
+                                                        .icon(codeBranch()))
                                                 .addItem(actionMenuItem("item-1", "Container image")
-                                                        .icon(layerGroup))
+                                                        .icon(layerGroup()))
                                                 .addItem(actionMenuItem("item-2", "From Dockerfile")
-                                                        .icon(cube)))))
+                                                        .icon(cube())))))
                         .element()
                 // @code-end:menu-icons
         ));
@@ -135,19 +135,19 @@ public class MenuComponent extends SnippetPage {
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Item 1")
                                                                 .description("This is a description")
-                                                                .addAction(menuItemAction("action-0", codeBranch)
+                                                                .addAction(menuItemAction("action-0", codeBranch())
                                                                         .aria(Aria.label, "Code")
                                                                         .onClick((e, itemAction) -> console.log(
                                                                                 "Code action clicked"))))
                                                         .addItem(actionMenuItem("item-1", "Item 2")
                                                                 .description("This is a description")
                                                                 .disabled()
-                                                                .addAction(menuItemAction("action-1", bell)))
+                                                                .addAction(menuItemAction("action-1", bell())))
                                                         .addItem(actionMenuItem("item-2", "Item 3")
-                                                                .addAction(menuItemAction("action-2", clipboard)))
+                                                                .addAction(menuItemAction("action-2", clipboard())))
                                                         .addItem(actionMenuItem("item-3", "Item 4")
                                                                 .description("This is a description")
-                                                                .addAction(menuItemAction("action-3", bars)))))))
+                                                                .addAction(menuItemAction("action-3", bars())))))))
                         .element()
                 // @code-end:menu-actions
         ));
@@ -176,14 +176,14 @@ public class MenuComponent extends SnippetPage {
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(actionMenuItem("item-0", "Action 1")
-                                                        .icon(codeBranch)
+                                                        .icon(codeBranch())
                                                         .description("Description"))
                                                 .addItem(actionMenuItem("item-1", "Action 2 disabled")
-                                                        .icon(codeBranch)
+                                                        .icon(codeBranch())
                                                         .description("Description")
                                                         .disabled())
                                                 .addItem(actionMenuItem("item-2", "Action 3")
-                                                        .icon(codeBranch)
+                                                        .icon(codeBranch())
                                                         .description(LoremIpsum.words(50))))))
                         .element()
                 // @code-end:menu-descriptions
@@ -281,19 +281,19 @@ public class MenuComponent extends SnippetPage {
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Item 1")
                                                                 .description("Description 1")
-                                                                .addAction(menuItemAction("action-0", bars)))
+                                                                .addAction(menuItemAction("action-0", bars())))
                                                         .addItem(actionMenuItem("item-1", "Item 2")
                                                                 .onClick((e, item) -> console.log(
                                                                         "# Item " + item.id + " clicked"))
                                                                 .description("Description 2")
-                                                                .addAction(menuItemAction("action-1", clipboard)
+                                                                .addAction(menuItemAction("action-1", clipboard())
                                                                         .onClick((e, itemAction) -> console.log(
                                                                                 "# Action " + itemAction.id + " on item "
                                                                                         + itemAction.menuItem.id
                                                                                         + " clicked"))))
                                                         .addItem(actionMenuItem("item-2", "Item 3")
                                                                 .description("Description 3")
-                                                                .addAction(menuItemAction("action-2", bell)))))))
+                                                                .addAction(menuItemAction("action-2", bell())))))))
                         .element()
                 // @code-end:menu-favorites
         ));

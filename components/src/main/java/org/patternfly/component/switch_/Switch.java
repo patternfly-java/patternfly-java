@@ -124,7 +124,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     public Switch checkIcon(boolean checkIcon) {
         if (checkIcon && iconElement == null) {
             toggleElement.appendChild(span().css(component(switch_, toggle, icon))
-                    .add(check)
+                    .add(check())
                     .element());
         } else {
             failSafeRemoveFromParent(iconElement);

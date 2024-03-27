@@ -37,7 +37,7 @@ public class CodeEditorLink extends CodeEditorSubComponent<HTMLElement, CodeEdit
     }
 
     public static CodeEditorLink codeEditorViewShortcutsLink() {
-        return new CodeEditorLink(button().link().iconAndText(help, "View shortcuts"))
+        return new CodeEditorLink(button().link().iconAndText(help(), "View shortcuts"))
                 .ariaLabel("View shortcuts");
     }
 

@@ -193,7 +193,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         }
 
         add(div().css(component(chipGroup, close))
-                .add(closeButton = button().icon(timesCircle).plain()
+                .add(closeButton = button().icon(timesCircle()).plain()
                         .id(closeId)
                         .aria(label, "Close chip group")
                         .aria(Aria.labelledBy, labelledBy)

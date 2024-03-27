@@ -87,9 +87,9 @@ public class ToggleGroupComponent extends SnippetPage {
                 // @code-start:toggle-group-icon
                 div()
                         .add(toggleGroup(multi)
-                                .addItem(toggleGroupItem("toggle-group-icon-0").icon(copy))
-                                .addItem(toggleGroupItem("toggle-group-icon-1").icon(undo))
-                                .addItem(toggleGroupItem("toggle-group-icon-2").icon(shareSquare)))
+                                .addItem(toggleGroupItem("toggle-group-icon-0").icon(copy()))
+                                .addItem(toggleGroupItem("toggle-group-icon-1").icon(undo()))
+                                .addItem(toggleGroupItem("toggle-group-icon-2").icon(shareSquare())))
                         .element()
                 // @code-end:toggle-group-icon
         ));
@@ -99,9 +99,9 @@ public class ToggleGroupComponent extends SnippetPage {
                 // @code-start:toggle-group-text-icon
                 div()
                         .add(toggleGroup(multi)
-                                .addItem(toggleGroupItem("toggle-group-text-icon-0", "Copy").icon(copy))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-1", "Undo").icon(undo))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-2", "Share").icon(shareSquare)))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-0", "Copy").icon(copy()))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-1", "Undo").icon(undo()))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-2", "Share").icon(shareSquare())))
                         .element()
                 // @code-end:toggle-group-text-icon
         ));

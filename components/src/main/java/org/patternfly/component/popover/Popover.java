@@ -274,7 +274,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             insertFirst(contentElement, div().css(component(popover, close))
                     .add(closeButton = button()
                             .plain()
-                            .icon(times)
+                            .icon(times())
                             .aria(label, "Close")
                             .on(click, event -> close(event, true)))
                     .element());
@@ -329,7 +329,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         this.severity = severity;
         css(severity.status.modifier);
         removeChildrenFrom(failSafeIconContainer());
-        icon(severity.icon.element());
+        icon((severity.icon.get().element()));
         failSafeScreenReaderElement().textContent = screenReaderText;
         return this;
     }

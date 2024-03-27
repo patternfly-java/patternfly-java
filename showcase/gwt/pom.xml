@@ -34,7 +34,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-gwt</artifactId>
         </dependency>
         <dependency>
@@ -42,4 +42,36 @@
             <artifactId>patternfly-java-showcase-common</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/resources.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <settings.base>/showcase/gwt</settings.base>
+            </properties>
+        </profile>
+    </profiles>
 </project>

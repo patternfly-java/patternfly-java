@@ -13,10 +13,10 @@ public class IconDemo {
 
     public void iconDemo() {
         // @start region = icon
-        icon(check);
-        icon(filter)
+        icon(check());
+        icon(filter())
                 .size(lg);
-        icon(exclamationTriangle)
+        icon(exclamationTriangle())
                 .inline()
                 .status(warning);
         // @end region = icon
@@ -24,7 +24,7 @@ public class IconDemo {
 
     public void progressDemo() {
         // @start region = progress
-        Icon icon = icon(check).progress(true);
+        Icon icon = icon(check()).progress(true);
         boolean finished = new Random().nextBoolean(); // @replace substring = 'new Random().nextBoolean();' replacement = "..."
         if (finished) {
             icon.progress(false);

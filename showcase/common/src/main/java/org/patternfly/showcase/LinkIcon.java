@@ -29,7 +29,7 @@ class LinkIcon implements IsElement<SVGElement> {
     private final SVGElement root;
 
     LinkIcon() {
-        root = link.css("ws-heading-anchor-icon")
+        root = link().css("ws-heading-anchor-icon")
                 .style("vertical-align", "middle")
                 .element();
     }

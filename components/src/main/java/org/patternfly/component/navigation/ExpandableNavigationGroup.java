@@ -107,7 +107,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
                 .add("")
                 .add(span().css(component(nav, toggle))
                         .add(span().css(component(nav, toggle, icon))
-                                .add(angleRight)))
+                                .add(angleRight())))
                 .element());
         element().appendChild(section = section().css(component(nav, subnav))
                 .aria(labelledBy, titleId)

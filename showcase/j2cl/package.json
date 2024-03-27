@@ -1,15 +1,14 @@
 {
-  "name": "patternfly-showcase",
-  "description": "Showcase for PatternFly Java",
+  "name": "patternfly-java-showcase-j2cl",
   "private": true,
   "parcelIgnore": [
     "showcase.j2cl.js"
   ],
   "source": ["src/web/dev.html", "src/web/index.html"],
   "scripts": {
-    "watch": "parcel serve src/web/dev.html --https --dist-dir target/showcase --open",
-    "dev": "parcel build src/web/dev.html --https --dist-dir target/showcase --no-optimize",
-    "prod": "parcel build src/web/index.html --dist-dir target/showcase --public-url /showcase"
+    "watch": "parcel serve src/web/dev.html --https --dist-dir target/showcase/j2cl --open",
+    "dev": "parcel build src/web/dev.html --dist-dir target/showcase/j2cl --no-optimize",
+    "prod": "parcel build src/web/index.html --dist-dir target/showcase/j2cl --public-url /showcase/j2cl"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",

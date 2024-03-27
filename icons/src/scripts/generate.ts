@@ -16,40 +16,20 @@
 
 import camelCase from 'camelcase';
 // @ts-ignore
-import {mkdir, writeFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import type {IconSpec} from './icons.js';
 import * as SETS from './icons.js';
 
-const keywords = ["import", "package", "private"];
-const root = "../main/java";
-const package_ = "org/patternfly/icon";
+// ------------------------------------------------------ constants
 
-const iconSpec = (set: string, id: string, name: string, {
-    license,
-    height,
-    width,
-    path,
-    xOffset = 0,
-    yOffset = 0
-}: IconSpec) => `package org.patternfly.icon.${set};
+const keywords: string[] = ["clone", "import", "package", "private"];
+const root: string = "../main/java";
+const path: string = "org/patternfly/icon";
+const package_: string = path.replaceAll('/', '.');
 
-import javax.annotation.processing.Generated;
+// ------------------------------------------------------ icon spec
 
-import org.patternfly.icon.IconSpec;
-
-/*
-* WARNING! This class is generated. Do not modify.
-*/
-@Generated("generate.ts")
-public class ${name} extends IconSpec {
-
-    public ${name}() {
-        super("${set}", "${id}", ${xOffset}, ${yOffset}, ${width}, ${height}, "${path}", "${license}");
-    }
-}
-`;
-
-const iconSets = (entries: [string, Record<string, IconSpec>][]) => `package org.patternfly.icon;
+const iconSpecs = (entries: [string, Record<string, IconSpec>][]) => `package ${package_};
 
 import javax.annotation.processing.Generated;
 
@@ -58,59 +38,67 @@ import javax.annotation.processing.Generated;
 */
 @Generated("generate.ts")
 @SuppressWarnings("SpellCheckingInspection")
-public final class IconSets {
+public interface IconSpecs {
+    ${entries.map(([set, icons]) => iconSpec(set, icons)).join('\n    ')}
+}
+`;
 
+const iconSpec = (set: string, icons: Record<string, IconSpec>) =>
+    `public enum ${set} {
+        ${Object.entries(icons)
+        .map(([id, icon]) => {
+            const constant = failSafeName(camelCase(id));
+            camelCase(id, {pascalCase: true});
+            return `${constant}(new IconSpec("${set}", "${id}", ${icon.xOffset || 0}, ${icon.yOffset || 0}, ${icon.width}, ${icon.height}, "${icon.path}", "${icon.license}")),`;
+        })
+        .join('\n        ')};
+
+        final IconSpec iconSpec;
+
+        ${set}(IconSpec iconSpec) {
+            this.iconSpec = iconSpec;
+        }
+    }`;
+
+// ------------------------------------------------------ icon set
+
+const iconSets = (entries: [string, Record<string, IconSpec>][]) => `package ${package_};
+
+import javax.annotation.processing.Generated;
+
+/*
+* WARNING! This class is generated. Do not modify.
+*/
+@Generated("generate.ts")
+@SuppressWarnings("SpellCheckingInspection")
+public interface IconSets {
     ${entries.map(([set, icons]) => iconSet(set, icons)).join('\n    ')}
 }
 `;
 
 const iconSet = (set: string, icons: Record<string, IconSpec>) =>
-    `public enum ${set} implements IconSet, PredefinedIcon {
-
+    `public interface ${set} {
         ${Object.entries(icons)
-        .map(([id, icon]) => {
-            const enumConstant = failSafeName(camelCase(id));
-            const className = camelCase(id, {pascalCase: true});
-            return `${enumConstant}(new org.patternfly.icon.${set}.${className}()),`;
+        .map(([id]) => {
+            const constant = failSafeName(camelCase(id));
+            return `static PredefinedIcon ${constant}() { return new PredefinedIcon(IconSpecs.${set}.${constant}.iconSpec); }`;
         })
-        .join('\n        ')};
-
-        private final IconSpec spec;
-
-        ${set}(IconSpec spec) {
-            this.spec = spec;
-        }
-
-        @Override
-        public IconSpec spec() {
-            return spec;
-        }
-
-        @Override
-        public ${set} that() {
-            return this;
-        }
-    }
-`;
+        .join('\n        ')}
+    }`;
 
 const failSafeName = (value: string) => keywords.includes(value) ? value + "_" : value
 
+// ------------------------------------------------------ main
+
 let iconsCount = 0;
 const setEntries: [string, Record<string, IconSpec>][] = Object.entries(SETS);
-for (const [set, icons] of setEntries) {
-    const setDir = new URL(`${root}/${package_}/${set}/`, import.meta.url);
-    await mkdir(setDir, {recursive: true});
-    const iconEntries = Object.entries(icons);
-    for (const [id, icon] of iconEntries) {
-        const name = camelCase(id, {pascalCase: true});
-        const iconSpecCode = iconSpec(set, id, name, icon);
-        await writeFile(new URL(`./${name}.java`, setDir), iconSpecCode, 'utf8');
-    }
-    iconsCount += iconEntries.length;
-    console.info(`Generated ${iconEntries.length} icons for set '${set}'`);
+for (const [_, icons] of setEntries) {
+    iconsCount += Object.entries(icons).length;
 }
 
-const dir = new URL(`${root}/${package_}/`, import.meta.url);
-const predefinedIconCode = iconSets(setEntries);
-await writeFile(new URL(`./IconSets.java`, dir), predefinedIconCode, 'utf8');
-console.info(`Generated 'IconSets.java' with ${iconsCount} icons`);
+const dir = new URL(`${root}/${path}/`, import.meta.url);
+const iconSpecsCode = iconSpecs(setEntries);
+await writeFile(new URL(`./IconSpecs.java`, dir), iconSpecsCode, 'utf8');
+const iconSetsCode = iconSets(setEntries);
+await writeFile(new URL(`./IconSets.java`, dir), iconSetsCode, 'utf8');
+console.info(`Generated code for ${iconsCount} icons`);

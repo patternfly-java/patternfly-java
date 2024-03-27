@@ -172,7 +172,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     .aria(hidden, true)
                     .aria(label, "Scroll back")
                     .on(click, e -> scrollBack())
-                    .add(angleLeft));
+                    .add(angleLeft()));
             add(itemsContainer = ul().css(component(nav, list))
                     .attr(role, "list")
                     .on(EventType.scroll, e -> updateScrollState())
@@ -182,7 +182,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     .aria(hidden, true)
                     .aria(label, "Scroll forward")
                     .on(click, e -> scrollForward())
-                    .add(angleRight));
+                    .add(angleRight()));
 
         } else if (type instanceof NavigationType.Vertical) {
             NavigationType.Vertical vt = (NavigationType.Vertical) type;

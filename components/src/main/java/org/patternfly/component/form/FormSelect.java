@@ -81,7 +81,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
                 .element(),
                 ComponentType.FormSelect);
         failSafeUtilitiesContainer().appendChild(span().css(component(formControl, toggle, icon))
-                .add(caretDown)
+                .add(caretDown())
                 .element());
         selectElement = (HTMLSelectElement) element().firstElementChild;
         if (value != null) {

@@ -85,7 +85,6 @@ function convertJsonIconPack(icons: JsonIconPack): Record<string, IconSpec> {
 export const fab = convertFontAwesomePack(FAB);
 export const far = convertFontAwesomePack(FAR);
 export const fas = convertFontAwesomePack(FAS);
-
 export const patternfly = convertJsonIconPack({
   ...pfIcons,
   ...customIcons,

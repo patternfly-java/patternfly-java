@@ -138,7 +138,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             aria(expanded, false);
             add(controlElement = span().css(component(menuToggle, controls))
                     .add(span().css(component(menuToggle, toggle, Classes.icon))
-                            .add(caretDown))
+                            .add(caretDown()))
                     .element());
             toggleElement = element();
         } else if (type == MenuToggleType.split || type == MenuToggleType.typeahead) {
@@ -146,7 +146,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                     .aria(expanded, false)
                     .add(span().css(component(menuToggle, controls))
                             .add(span().css(component(menuToggle, toggle, Classes.icon))
-                                    .add(caretDown)))
+                                    .add(caretDown())))
                     .element());
             controlElement = toggleElement;
         } else {

@@ -217,19 +217,19 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
             removeChildrenFrom(iconContainer);
             switch (status) {
                 case danger:
-                    failSafeIconContainer().appendChild(timesCircle.element());
+                    failSafeIconContainer().appendChild(timesCircle().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.error);
                     }
                     break;
                 case warning:
-                    failSafeIconContainer().appendChild(exclamationTriangle.element());
+                    failSafeIconContainer().appendChild(exclamationTriangle().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.warning);
                     }
                     break;
                 case success:
-                    failSafeIconContainer().appendChild(checkCircle.element());
+                    failSafeIconContainer().appendChild(checkCircle().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.success);
                     }

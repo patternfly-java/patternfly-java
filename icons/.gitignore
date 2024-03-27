@@ -1,3 +1,2 @@
 src/main/java/org/patternfly/icon/IconSets.java
-src/main/java/org/patternfly/icon/fa?/*.java
-src/main/java/org/patternfly/icon/patternfly/*.java
+src/main/java/org/patternfly/icon/IconSpecs.java

@@ -76,13 +76,13 @@ public class FormControlComponent extends SnippetPage {
                         .add(br())
                         .add(textInput("text-input-8", "Expanded").expanded())
                         .add(br())
-                        .add(textInput("text-input-9", "Calendar").icon(calendar))
+                        .add(textInput("text-input-9", "Calendar").icon(calendar()))
                         .add(br())
                         .add(textInput("text-input-10", "Clock (invalid)")
                                 .validated(warning)
-                                .icon(clock))
+                                .icon(clock()))
                         .add(br())
-                        .add(textInput("text-input-11", "Custom icon").icon(bell))
+                        .add(textInput("text-input-11", "Custom icon").icon(bell()))
                         .element()
                 // @code-end:form-control-text-input
         ));

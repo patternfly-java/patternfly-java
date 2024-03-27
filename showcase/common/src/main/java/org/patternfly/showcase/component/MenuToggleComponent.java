@@ -84,19 +84,19 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-start:menu-toggle-icons
                 div()
                         .add(menuToggle()
-                                .icon(cog)
+                                .icon(cog())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().primary()
-                                .icon(cog)
+                                .icon(cog())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().secondary()
-                                .icon(cog)
+                                .icon(cog())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().disabled()
-                                .iconAndText(cog, "Icon")) // same as above
+                                .iconAndText(cog(), "Icon")) // same as above
                         .element()
                 // @code-end:menu-toggle-icons
         ));
@@ -128,9 +128,9 @@ public class MenuToggleComponent extends SnippetPage {
                 code("menu-toggle-plain-icon"), () ->
                 // @code-start:menu-toggle-plain-icon
                 div()
-                        .add(menuToggle(ellipsisV, "plain kebab"))
+                        .add(menuToggle(ellipsisV(), "plain kebab"))
                         .add(" ")
-                        .add(menuToggle(ellipsisV, "disabled kebab")
+                        .add(menuToggle(ellipsisV(), "disabled kebab")
                                 .disabled())
                         .element()
                 // @code-end:menu-toggle-plain-icon

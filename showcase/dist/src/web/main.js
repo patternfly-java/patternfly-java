@@ -13,16 +13,5 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
-
-import jsinterop.annotations.JsEnum;
-
-import static jsinterop.annotations.JsPackage.GLOBAL;
-
-@JsEnum(isNative = true, namespace = GLOBAL)
-public enum Strategy {
-
-    absolute,
-
-    fixed
-}
+import "@patternfly/patternfly/patternfly.css";
+import "@patternfly/patternfly/patternfly-addons.css";

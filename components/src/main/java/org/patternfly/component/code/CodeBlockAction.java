@@ -61,7 +61,7 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
         Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
                 .onClose((e, t) -> t.text(copyText)) // restore text
                 .appendToBody();
-        return new CodeBlockAction(copy.element())
+        return new CodeBlockAction(copy().element())
                 .id(copyId)
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {

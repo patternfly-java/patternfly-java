@@ -57,7 +57,7 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
         super(SUB_COMPONENT_NAME, div().css(component(masthead, toggle)).element());
         add(toggleButton = button()
                 .plain()
-                .icon(bars)
+                .icon(bars())
                 .aria(label, "Global Navigation")
                 .aria(expanded, true)); // expanded by default
     }

@@ -105,9 +105,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-icons
                 div()
                         .add(list().plain()
-                                .addItem(listItem().text("First").icon(bookOpen))
-                                .addItem(listItem().text("Second").icon(key))
-                                .addItem(listItem().text("Third").icon(desktop)))
+                                .addItem(listItem().text("First").icon(bookOpen()))
+                                .addItem(listItem().text("Second").icon(key()))
+                                .addItem(listItem().text("Third").icon(desktop())))
                         .element()
                 // @code-end:list-icons
         ));
@@ -117,9 +117,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-icons-lg
                 div()
                         .add(list().plain().largeIcons()
-                                .addItem(listItem().text("First").icon(bookOpen))
-                                .addItem(listItem().text("Second").icon(key))
-                                .addItem(listItem().text("Third").icon(desktop)))
+                                .addItem(listItem().text("First").icon(bookOpen()))
+                                .addItem(listItem().text("Second").icon(key()))
+                                .addItem(listItem().text("Third").icon(desktop())))
                         .element()
                 // @code-end:list-icons-lg
         ));

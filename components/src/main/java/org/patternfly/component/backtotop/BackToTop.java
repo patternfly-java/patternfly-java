@@ -82,7 +82,7 @@ public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
         scrollToOptions.setBehavior("smooth");
         button = button(a())
                 .primary()
-                .iconAndText(angleUp, text, end)
+                .iconAndText(angleUp(), text, end)
                 .href("#")
                 .on(click, e -> {
                     e.preventDefault();

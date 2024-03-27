@@ -93,7 +93,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
                             })
                             .on(click, e -> card.toggle())
                             .add(span().css(component(Classes.card, header, toggle, icon))
-                                    .add(angleRight.element())))
+                                    .add(angleRight().element())))
                     .element();
             if (card.toggleRightAligned) {
                 css(modifier(toggleRight));

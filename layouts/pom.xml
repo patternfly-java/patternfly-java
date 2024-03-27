@@ -35,7 +35,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-core</artifactId>
         </dependency>
     </dependencies>

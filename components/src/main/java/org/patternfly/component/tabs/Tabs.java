@@ -166,7 +166,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         .aria(hidden, true)
                         .aria(label, "Scroll back")
                         .on(click, e -> scrollBack())
-                        .add(angleLeft))
+                        .add(angleLeft()))
                 .add(tabsContainer = ul().css(component(Classes.tabs, list))
                         .attr(role, "tablist")
                         .on(scroll, e -> updateState()))
@@ -175,7 +175,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         .aria(hidden, true)
                         .aria(label, "Scroll forward")
                         .on(click, e -> scrollForward())
-                        .add(angleRight));
+                        .add(angleRight()));
 
         element().appendChild(mainContainer.element());
         storeFlatComponent();
@@ -526,7 +526,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     public Tabs onAdd(Function<Tabs, Tab> addHandler) {
         if (addButton == null) {
             insertAfter(span().css(component(Classes.tabs, Classes.add))
-                    .add(addButton = Button.button().plain().icon(plus)
+                    .add(addButton = Button.button().plain().icon(plus())
                             .aria(label, "Add new tab")
                             .on(click, e -> addTab(addHandler.apply(this))))
                     .element(), tabsContainer.element());

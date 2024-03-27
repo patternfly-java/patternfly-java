@@ -65,7 +65,7 @@ public class TooltipComponent extends SnippetPage {
                             .onClose((e, t) -> t.text("Copy to clipboard"))
                             .appendToBody();
                     return div().style("margin", "100px")
-                            .add(button().icon(copy).plain()
+                            .add(button().icon(copy()).plain()
                                     .aria(label, "Copy")
                                     .id("tooltip-dynamic-button")
                                     .onClick((e, b) -> tooltip.text("Successfully copied to clipboard!")))

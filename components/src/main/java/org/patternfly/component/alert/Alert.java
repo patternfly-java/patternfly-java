@@ -117,7 +117,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         this.timeoutHandle = 0;
 
         add(iconContainer = div().css(component(alert, icon))
-                .add(severity.icon.element())
+                .add(severity.icon.get().element())
                 .element());
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader)
@@ -175,7 +175,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button().icon(times.element()).plain()
+                .add(closeButton = button().icon(times().element()).plain()
                         .aria(label, "Close " + severity.aria + ": " + title)
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);
@@ -207,7 +207,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                         .aria(expanded, false)
                         .aria(label, severity.aria + ": " + title + " details")
                         .add(span().css(component(alert, toggle, icon))
-                                .add(angleRight.element())))
+                                .add(angleRight().element())))
                 .element());
         this.expandable = true;
         this.toggleHandler = toggleHandler;

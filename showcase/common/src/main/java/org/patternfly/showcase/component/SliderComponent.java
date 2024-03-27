@@ -239,10 +239,10 @@ public class SliderComponent extends SnippetPage {
                     .add(slider0
                             .value(50)
                             .addStartActions(sliderActions()
-                                    .addAction(button().plain().icon(minus)
+                                    .addAction(button().plain().icon(minus())
                                             .on(click, e -> slider0.decrease())))
                             .addEndActions(sliderActions()
-                                    .addAction(button().plain().icon(plus)
+                                    .addAction(button().plain().icon(plus())
                                             .on(click, e -> slider0.increase())))
                             .onChange((e, s, v) -> value.textContent(String.valueOf(v))))
                     .add(br())
@@ -253,13 +253,13 @@ public class SliderComponent extends SnippetPage {
                                             .addFormControl(textInput(number, Id.unique())))
                                     .addText(inputGroupText("%")))
                             .addEndActions(sliderActions()
-                                    .addAction(button().plain().icon(lockOpen).style("width", "16px")
+                                    .addAction(button().plain().icon(lockOpen()).style("width", "16px")
                                             .onClick((event, button) -> {
                                                 slider1.disabled(!slider1.isDisabled());
                                                 if (slider1.isDisabled()) {
-                                                    button.icon(lock);
+                                                    button.icon(lock());
                                                 } else {
-                                                    button.icon(lockOpen);
+                                                    button.icon(lockOpen());
                                                 }
                                             }), false)))
                     .element();

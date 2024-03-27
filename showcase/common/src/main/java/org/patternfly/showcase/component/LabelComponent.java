@@ -58,9 +58,9 @@ public class LabelComponent extends SnippetPage {
             for (Color color : values) {
                 String name = color.name().substring(0, 1).toUpperCase() + color.name().substring(1);
                 div.add(label(name, color)).add(" ");
-                div.add(label(name + " icon", color).icon(infoCircle)).add(" ");
+                div.add(label(name + " icon", color).icon(infoCircle())).add(" ");
                 div.add(label(name + " removable", color).closable()).add(" ");
-                div.add(label(name + " icon removable", color).icon(infoCircle).closable()).add(" ");
+                div.add(label(name + " icon removable", color).icon(infoCircle()).closable()).add(" ");
                 div.add(label(name + " link", color).href("#")).add(" ");
                 div.add(label(name + " link removable", color).href("#").closable()).add(" ");
                 div.add(label(name + " clickable", color).uniqueId()
@@ -88,9 +88,9 @@ public class LabelComponent extends SnippetPage {
                 Color color = values[i];
                 String name = color.name().substring(0, 1).toUpperCase() + color.name().substring(1);
                 div.add(label(name, color).outline()).add(" ");
-                div.add(label(name + " icon", color).outline().icon(infoCircle)).add(" ");
+                div.add(label(name + " icon", color).outline().icon(infoCircle())).add(" ");
                 div.add(label(name + " removable", color).outline().closable()).add(" ");
-                div.add(label(name + " icon removable", color).outline().icon(infoCircle).closable()).add(" ");
+                div.add(label(name + " icon removable", color).outline().icon(infoCircle()).closable()).add(" ");
                 div.add(label(name + " link", color).outline().href("#")).add(" ");
                 div.add(label(name + " link removable", color).outline().href("#").closable()).add(" ");
                 div.add(label(name + " clickable", color).outline().uniqueId()
@@ -114,9 +114,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-compact
                 div()
                         .add(label("Grey").compact()).add(" ")
-                        .add(label("Grey icon").compact().icon(infoCircle)).add(" ")
+                        .add(label("Grey icon").compact().icon(infoCircle())).add(" ")
                         .add(label("Grey removable").compact().closable()).add(" ")
-                        .add(label("Grey icon removable").compact().icon(infoCircle).closable()).add(" ")
+                        .add(label("Grey icon removable").compact().icon(infoCircle()).closable()).add(" ")
                         .add(label("Grey link").compact().href("#")).add(" ")
                         .add(label("Grey link removable").compact().href("#").closable()).add(" ")
                         .add(label("Grey clickable").compact().uniqueId()
@@ -152,9 +152,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-basic
                 div()
                         .add(labelGroup()
-                                .addLabel(label("Label 1").icon(infoCircle))
-                                .addLabel(label("Label 2", blue).icon(infoCircle))
-                                .addLabel(label("Label 3", green).icon(infoCircle)))
+                                .addLabel(label("Label 1").icon(infoCircle()))
+                                .addLabel(label("Label 2", blue).icon(infoCircle()))
+                                .addLabel(label("Label 3", green).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-basic
         ));
@@ -164,12 +164,12 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-overflow
                 div()
                         .add(labelGroup()
-                                .addLabel(label("Label 1").icon(infoCircle))
-                                .addLabel(label("Label 2", blue).icon(infoCircle))
-                                .addLabel(label("Label 3", green).icon(infoCircle))
-                                .addLabel(label("Label 4", orange).icon(infoCircle))
-                                .addLabel(label("Label 5", red).icon(infoCircle))
-                                .addLabel(label("Label 6", purple).icon(infoCircle)))
+                                .addLabel(label("Label 1").icon(infoCircle()))
+                                .addLabel(label("Label 2", blue).icon(infoCircle()))
+                                .addLabel(label("Label 3", green).icon(infoCircle()))
+                                .addLabel(label("Label 4", orange).icon(infoCircle()))
+                                .addLabel(label("Label 5", red).icon(infoCircle()))
+                                .addLabel(label("Label 6", purple).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-overflow
         ));
@@ -179,9 +179,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category
                 div()
                         .add(labelGroup("Group label")
-                                .addLabel(label("Label 1").icon(infoCircle))
-                                .addLabel(label("Label 2", blue).icon(infoCircle))
-                                .addLabel(label("Label 3", green).icon(infoCircle)))
+                                .addLabel(label("Label 1").icon(infoCircle()))
+                                .addLabel(label("Label 2", blue).icon(infoCircle()))
+                                .addLabel(label("Label 3", green).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-category
         ));
@@ -191,11 +191,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category-removable
                 div()
                         .add(labelGroup("Group label").closable()
-                                .addLabel(label("Label 1").icon(infoCircle))
-                                .addLabel(label("Label 2", blue).icon(infoCircle))
-                                .addLabel(label("Label 3", green).icon(infoCircle))
-                                .addLabel(label("Label 4", orange).icon(infoCircle))
-                                .addLabel(label("Label 5", red).icon(infoCircle)))
+                                .addLabel(label("Label 1").icon(infoCircle()))
+                                .addLabel(label("Label 2", blue).icon(infoCircle()))
+                                .addLabel(label("Label 3", green).icon(infoCircle()))
+                                .addLabel(label("Label 4", orange).icon(infoCircle()))
+                                .addLabel(label("Label 5", red).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-category-removable
         ));
@@ -205,11 +205,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-vertical
                 div()
                         .add(labelGroup("Group label with a very long name").vertical().closable()
-                                .addLabel(label("Label 1").icon(infoCircle))
-                                .addLabel(label("Label 2", blue).icon(infoCircle))
-                                .addLabel(label("Label 3", green).icon(infoCircle))
-                                .addLabel(label("Label 4", orange).icon(infoCircle))
-                                .addLabel(label("Label 5", red).icon(infoCircle)))
+                                .addLabel(label("Label 1").icon(infoCircle()))
+                                .addLabel(label("Label 2", blue).icon(infoCircle()))
+                                .addLabel(label("Label 3", green).icon(infoCircle()))
+                                .addLabel(label("Label 4", orange).icon(infoCircle()))
+                                .addLabel(label("Label 5", red).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-vertical
         ));

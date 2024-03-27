@@ -63,7 +63,7 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
         Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
                 .onClose((e, t) -> t.text(copyText)) // restore text
                 .appendToBody();
-        return new CodeEditorAction(button().icon(copy.element()).control())
+        return new CodeEditorAction(button().icon(copy()).control())
                 .id(copyId)
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {

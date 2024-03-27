@@ -45,7 +45,6 @@ import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.tabindex;
-import static org.patternfly.icon.IconSets.fas.undo;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.SpaceItems.none;
@@ -109,7 +108,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                                 .id(codeId)
                                                 .css("ws-code-editor-control")
                                                 .control()
-                                                .iconAndText(IconSets.fas.code, "Java"))
+                                                .iconAndText(IconSets.fas.code(), "Java"))
                                                 .onClick((event, ce) -> {
                                                     HTMLElement mainElement = ce
                                                             .find(By.classname(component(Classes.codeEditor, main)));
@@ -118,7 +117,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                         .add(tooltip(By.id(codeId), "Toggle Java code"))
                                         .addAction(codeEditorCopyToClipboardAction("Copy code to clipboard", "Code copied")
                                                 .css("ws-code-editor-control"))
-                                        .addAction(codeEditorAction(undo)
+                                        .addAction(codeEditorAction(IconSets.fas.undo())
                                                 .id(undoId)
                                                 .css("ws-code-editor-control")
                                                 .onClick((event, codeEditorAction) -> undo()))

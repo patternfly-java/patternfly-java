@@ -25,6 +25,6 @@ public class Options {
 
     public String placement;
     public JsArray<Modifier> modifiers;
-    public Strategy strategy;
+    public String strategy;
     public FirstUpdateFn onFirstUpdate;
 }

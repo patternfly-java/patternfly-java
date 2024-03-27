@@ -128,7 +128,7 @@ public class ExpandableSectionComponent extends SnippetPage {
                                     .addText(expandableSectionToggleText()
                                             .add(div()
                                                     .add(span().textContent("You can also use icons "))
-                                                    .add(checkCircle)
+                                                    .add(checkCircle())
                                                     .add(span().textContent(" or badges "))
                                                     .add(badge)
                                                     .add(span().textContent(" !")))))

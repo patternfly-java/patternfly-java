@@ -35,7 +35,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-core</artifactId>
         </dependency>
     </dependencies>
@@ -66,8 +66,7 @@
                             <directory>src/main/java/</directory>
                             <includes>
                                 <include>org/patternfly/icon/IconSets.java</include>
-                                <include>org/patternfly/icon/fa?/*.java</include>
-                                <include>org/patternfly/icon/patternfly/*.java</include>
+                                <include>org/patternfly/icon/IconSpecs.java</include>
                             </includes>
                         </fileset>
                     </filesets>

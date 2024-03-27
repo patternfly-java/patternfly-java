@@ -15,7 +15,7 @@
  */
 package org.patternfly.icon;
 
-public abstract class IconSpec {
+public final class IconSpec {
 
     /** name of icon set */
     public final String set;
@@ -41,7 +41,7 @@ public abstract class IconSpec {
     /** copyright holder and SPDX short license identifier */
     public final String license;
 
-    protected IconSpec(String set, String id, int xOffset, int yOffset, int width, int height, String path, String license) {
+    IconSpec(String set, String id, int xOffset, int yOffset, int width, int height, String path, String license) {
         this.set = set;
         this.id = id;
         this.xOffset = xOffset;

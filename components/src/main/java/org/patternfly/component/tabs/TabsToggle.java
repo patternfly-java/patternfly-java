@@ -63,7 +63,7 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements Mod
                         .aria(labelledBy, toggleButtonId + " " + toggleTextId)
                         .on(click, e -> toggle())
                         .add(span().css(component(tabs, toggle, icon))
-                                .add(angleRight))
+                                .add(angleRight()))
                         .add(textElement = span().css(component(tabs, toggle, text))
                                 .id(toggleTextId)
                                 .element())));

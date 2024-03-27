@@ -202,7 +202,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         add(div().css(component(labelGroup, close))
                 .add(closeButton = button()
                         .plain()
-                        .icon(timesCircle)
+                        .icon(timesCircle())
                         .id(closeId)
                         .aria(Aria.label, "Close label group")
                         .aria(Aria.labelledBy, labelledBy)

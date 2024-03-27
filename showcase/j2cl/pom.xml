@@ -34,7 +34,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.patternfly</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-j2cl</artifactId>
         </dependency>
         <dependency>
@@ -53,7 +53,6 @@
     </dependencies>
 
     <build>
-        <finalName>showcase</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -113,14 +112,44 @@
                         </goals>
                         <configuration>
                             <compilationLevel>${j2cl.compilationLevel}</compilationLevel>
-                            <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>
+<!--                            <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>-->
+                            <enableSourcemaps>true</enableSourcemaps>
+                            <initialScriptFilename>showcase.j2cl.js</initialScriptFilename>
                             <defines>
                                 <settings.base>${settings.base}</settings.base>
                             </defines>
+                            <webappDirectory>${project.build.directory}/showcase/j2cl</webappDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/resources.xml</descriptor>
+                            </descriptors>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <settings.base>/showcase/j2cl</settings.base>
+            </properties>
+        </profile>
+    </profiles>
 </project>

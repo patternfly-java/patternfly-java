@@ -15,38 +15,38 @@
  */
 package org.patternfly.icon;
 
-import org.jboss.elemento.Container;
-import org.jboss.elemento.Finder;
-import org.jboss.elemento.HasElement;
-import org.jboss.elemento.svg.HasSVGElement;
+import org.jboss.elemento.svg.SVGContainerBuilder;
 import org.jboss.elemento.svg.SVGElement;
 
+import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.svg.SVG.path;
 import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.svg;
 
-public interface PredefinedIcon extends
-        HasElement<SVGElement, IconSet>,
-        HasSVGElement<SVGElement, IconSet>,
-        Finder<SVGElement>,
-        Container<SVGElement, IconSet> {
+public final class PredefinedIcon extends SVGContainerBuilder<SVGElement> {
 
-    IconSpec spec();
+    public final IconSpec iconSpec;
 
-    @Override
-    default SVGElement element() {
-        return svg().css(svg)
-                .attr("viewBox", spec().xOffset + " " + spec().yOffset + " " + spec().width + " " + spec().height)
+    PredefinedIcon(IconSpec iconSpec) {
+        super(svg().css(svg)
+                .attr("viewBox", iconSpec.xOffset + " " + iconSpec.yOffset + " " + iconSpec.width + " " + iconSpec.height)
                 .attr("width", "1em")
                 .attr("height", "1em")
                 .attr("fill", "currentColor")
                 .attr(role, "img")
                 .aria(hidden, true)
-                .data("iconName", spec().id)
+                .data("iconName", iconSpec.id)
+                .add(document.createComment(iconSpec.license))
                 .add(path()
-                        .attr("d", spec().path))
-                .element();
+                        .attr("d", iconSpec.path))
+                .element());
+        this.iconSpec = iconSpec;
+    }
+
+    @Override
+    public PredefinedIcon that() {
+        return this;
     }
 }

@@ -142,7 +142,7 @@
         // anyway.
         // Browsers where the left scrollbar doesn't cause an issue report `0` for
         // this (e.g. Edge 2019, IE11, Safari)
-        return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
+        return getBoundingClientRect(getDocumentElement(element), false, false).left + getWindowScroll(element).scrollLeft;
     }
 
     function getComputedStyle(element) {
@@ -193,7 +193,7 @@
             }
 
             if (isHTMLElement(offsetParent)) {
-                offsets = getBoundingClientRect(offsetParent, true);
+                offsets = getBoundingClientRect(offsetParent, true, false);
                 offsets.x += offsetParent.clientLeft;
                 offsets.y += offsetParent.clientTop;
             } else if (documentElement) {
@@ -212,7 +212,7 @@
     // means it doesn't take into account transforms.
 
     function getLayoutRect(element) {
-        var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
+        var clientRect = getBoundingClientRect(element, false, false); // Use the clientRect sizes if it's not been transformed.
         // Fixes https://github.com/popperjs/popper-core/issues/1223
 
         var width = element.offsetWidth;
@@ -284,7 +284,7 @@
         var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
         var updatedList = list.concat(target);
         return isBody ? updatedList : // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
-            updatedList.concat(listScrollParents(getParentNode(target)));
+            updatedList.concat(listScrollParents(getParentNode(target), []));
     }
 
     function isTableElement(element) {
@@ -565,7 +565,7 @@
 
 
     function getClippingParents(element) {
-        var clippingParents = listScrollParents(getParentNode(element));
+        var clippingParents = listScrollParents(getParentNode(element), []);
         var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle(element).position) >= 0;
         var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
 
@@ -722,7 +722,7 @@
         var popperRect = state.rects.popper;
         var element = state.elements[altBoundary ? altContext : elementContext];
         var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
-        var referenceClientRect = getBoundingClientRect(state.elements.reference);
+        var referenceClientRect = getBoundingClientRect(state.elements.reference, false, false);
         var popperOffsets = computeOffsets({
             reference: referenceClientRect,
             element: popperRect,
@@ -805,8 +805,8 @@
                     cleanupModifierEffects();
                     state.options = Object.assign({}, defaultOptions, state.options, options);
                     state.scrollParents = {
-                        reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
-                        popper: listScrollParents(popper)
+                        reference: isElement(reference) ? listScrollParents(reference, []) : reference.contextElement ? listScrollParents(reference.contextElement, []) : [],
+                        popper: listScrollParents(popper, [])
                     }; // Orders the modifiers based on their dependencies and `phase`
                     // properties
 
@@ -1769,7 +1769,7 @@
         var popperAltOverflow = detectOverflow(state, {
             altBoundary: true
         });
-        var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
+        var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect, { x: 0, y: 0});
         var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
         var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
         var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);

@@ -51,6 +51,7 @@
 
     <modules>
         <module>common</module>
+        <module>dist</module>
         <module>gwt</module>
         <module>j2cl</module>
     </modules>
@@ -123,13 +124,6 @@
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
                 <j2cl.sourcemaps>false</j2cl.sourcemaps>
                 <npm.script>prod</npm.script>
-                <settings.base>/showcase</settings.base>
-            </properties>
-        </profile>
-        <profile>
-            <id>release</id>
-            <properties>
-                <settings.base>/showcase</settings.base>
             </properties>
         </profile>
     </profiles>

@@ -83,7 +83,7 @@ public class User {
                 .add(location.postcode + " " + location.city)
                 .add(br())
                 .add(location.state + ", " + nat)
-                .add(a(googleMaps()).attr("target", "map").css(util("ml-sm")).add(mapMarkedAlt))
+                .add(a(googleMaps()).attr("target", "map").css(util("ml-sm")).add(mapMarkedAlt()))
                 .element();
     }
 
@@ -92,15 +92,15 @@ public class User {
         return ul()
                 .add(li()
                         .add(a("mailto:" + email)
-                                .add(fas.envelope.css(util("mr-sm")))
+                                .add(fas.envelope().css(util("mr-sm")))
                                 .add(email)))
                 .add(li()
                         .add(a("tel:" + phone)
-                                .add(fas.phone.css(util("mr-sm")))
+                                .add(fas.phone().css(util("mr-sm")))
                                 .add(phone)))
                 .add(li()
                         .add(a("tel:" + cell)
-                                .add(fas.mobileAlt.css(util("mr-sm")))
+                                .add(fas.mobileAlt().css(util("mr-sm")))
                                 .add(cell))).element();
     }
 
