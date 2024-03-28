@@ -20,10 +20,13 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-      - name: Build API Documentation
+      - name: Install
+        id: install
+        run: $MVN -D quickly install
+      - name: Build
         id: build-api-docs
         run: ./javadoc.sh
-      - name: Publish API Documentation
+      - name: Publish
         id: publish-api-docs
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
