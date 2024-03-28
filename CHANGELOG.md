@@ -12,15 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Split PatternFly Java into multiple modules:
 
-- core
-- icons
-- components
-- layouts
-- extensions
-  - codeeditor
-  - finder
-- gwt
-- j2cl
+![Modules](dependency-graph.png)
 
 ### Changed
 
