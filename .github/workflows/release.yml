@@ -60,9 +60,6 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-      - name: Install
-        id: install
-        run: $MVN -D quickly install
       - name: Build API Documentation
         id: build-api-docs
         run: ./javadoc.sh
