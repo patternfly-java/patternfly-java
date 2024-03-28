@@ -16,7 +16,7 @@ Split PatternFly Java into multiple modules:
 
 ### Changed
 
-- Add showcase to the PatternFly Java codebase. The extra [showcase repository](https://github.com/patternfly-java/showcase) has been archived.
+- Add showcase to the PatternFly Java codebase.
 
 ### Upgrades
 
