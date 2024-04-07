@@ -215,13 +215,12 @@
                                     <exclude>**/node/**</exclude>
                                     <exclude>**/node_modules/**</exclude>
                                     <exclude>**/src/demo/java/**</exclude>
+                                    <exclude>degraph-style.json</exclude>
+                                    <exclude>dependency-graph.dot</exclude>
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
-                                    <exclude>**/src/main/resources/org/patternfly/thirdparty/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
-                                    <exclude>**/src/main/java/org/patternfly/icon/fa?/*.java</exclude>
-                                    <exclude>**/src/main/java/org/patternfly/icon/patternfly/*.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>

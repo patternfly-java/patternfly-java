@@ -51,7 +51,6 @@
 
     <modules>
         <module>common</module>
-        <module>dist</module>
         <module>gwt</module>
         <module>j2cl</module>
     </modules>
@@ -62,18 +61,6 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-showcase-common</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase-gwt</artifactId>
-                <version>${project.version}</version>
-                <classifier>resources</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase-j2cl</artifactId>
-                <version>${project.version}</version>
-                <classifier>resources</classifier>
             </dependency>
             <dependency>
                 <groupId>org.gwtproject</groupId>

@@ -3,14 +3,26 @@
     "rankdir": "TB"
   },
   "node-styles": {
+    "org.patternfly": {
+      "type": "box",
+      "style": "filled,bold,rounded",
+      "fill-color": "#E7F1FA",
+      "default-font": {
+        "size": 14,
+        "name": "Red Hat Display"
+      },
+      "group-id-font": {
+        "size": 10
+      }
+    },
     "com.google.elemental2": {
       "type": "box",
       "style": "rounded",
-      "color": "grey50",
+      "color": "darkslateblue",
       "default-font": {
         "size": 14,
-        "name": "Helvetica",
-        "color": "grey50"
+        "name": "Red Hat Display",
+        "color": "darkslateblue"
       },
       "group-id-font": {
         "size": 10
@@ -19,11 +31,11 @@
     "org.gwtproject": {
       "type": "box",
       "style": "rounded",
-      "color": "grey50",
+      "color": "darkred",
       "default-font": {
         "size": 14,
-        "name": "Helvetica",
-        "color": "grey50"
+        "name": "Red Hat Display",
+        "color": "darkred"
       },
       "group-id-font": {
         "size": 10
@@ -32,11 +44,11 @@
     "org.jboss.elemento": {
       "type": "box",
       "style": "rounded",
-      "color": "grey50",
+      "color": "darkgreen",
       "default-font": {
         "size": 14,
-        "name": "Helvetica",
-        "color": "grey50"
+        "name": "Red Hat Display",
+        "color": "darkgreen"
       },
       "group-id-font": {
         "size": 10

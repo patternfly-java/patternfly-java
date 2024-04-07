@@ -65,7 +65,7 @@ jobs:
         run: $MVN -D quickly install
       - name: Build API Documentation
         id: build-api-docs
-        run: ./javadoc.sh
+        run: ./apidocs.sh
       - name: Publish API Documentation
         id: publish-api-docs
         uses: JamesIves/github-pages-deploy-action@v4.5.0
@@ -81,9 +81,10 @@ jobs:
         id: publish-showcase
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
-          branch: gh-pages
-          folder: ./showcase/dist/target/showcase
-          target-folder: showcase
+          repository-name: patternfly-java/apidocs
+          token: ${{ secrets.PUBLISH_CONTENT }}
+          branch: main
+          folder: ./target/site/apidocs
           clean: true
 
   release:

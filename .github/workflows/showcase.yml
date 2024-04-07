@@ -1,4 +1,4 @@
-name: Publish API Documentation
+name: Publish Showcase
 
 on:
   workflow_dispatch:
@@ -17,19 +17,18 @@ jobs:
         id: setup-jdk
         uses: actions/setup-java@v4
         with:
-          java-version: 21
+          java-version: 11
           distribution: temurin
           cache: maven
-      - name: Build API Documentation
-        id: build-api-docs
-        run: |
-          ./apidocs.sh
-      - name: Publish API Documentation
-        id: publish-api-docs
+      - name: Build Showcase
+        id: build-showcase
+        run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
+      - name: Publish Showcase
+        id: publish-showcase
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
-          repository-name: patternfly-java/apidocs
+          repository-name: patternfly-java/patternfly-java.github.io
           token: ${{ secrets.PUBLISH_CONTENT }}
           branch: main
-          folder: ./target/site/apidocs
+          folder: ./showcase/j2cl/target/showcase
           clean: true

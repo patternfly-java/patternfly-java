@@ -97,7 +97,7 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-./mvnw --show-version --batch-mode clean
-./mvnw --show-version --batch-mode -P snippets javadoc:aggregate
-./mvnw --show-version --batch-mode -P snippets javadoc:javadoc
-./mvnw --show-version --batch-mode -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
+./mvnw -D quickly clean install
+./mvnw -P snippets javadoc:aggregate
+./mvnw -P snippets javadoc:javadoc
+./mvnw -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
