@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
-    name: Publish
+  publish-apidocs:
+    name: Publish API Documentation
     runs-on: ubuntu-latest
     env:
       MVN: ./mvnw --show-version --batch-mode

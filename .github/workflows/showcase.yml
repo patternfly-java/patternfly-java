@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
-    name: Publish
+  publish-showcase:
+    name: Publish Showcase
     runs-on: ubuntu-latest
     env:
       MVN: ./mvnw --show-version --batch-mode
