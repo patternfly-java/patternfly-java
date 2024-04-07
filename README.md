@@ -59,6 +59,8 @@ and add a dependency to either `org.patternfly:patternfly-java-gwt` or `org.patt
 </module>
 ```
 
+The best way to see how PatternFly Java is used is to take a look at the [showcase](https://patternfly-java.github.io/) and its [code](showcase/common/src/main/java/org/patternfly/showcase/Showcase.java).
+
 # Modules
 
 PatternFly Java consists of these Maven modules (a-z):
