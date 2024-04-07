@@ -1,19 +1,19 @@
-[![Verify Codebase](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml/badge.svg)](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml) [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://patternfly-java.github.io/apidocs/) [![Maven Central](https://img.shields.io/maven-central/v/org.patternfly/patternfly-java)](https://search.maven.org/search?q=g:org.patternfly%20AND%20a:patternfly-java) ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg) [![Chat on Gitter](https://badges.gitter.im/patternfly-java/patternfly-java.svg)](https://app.gitter.im/#/room/#pf4-java_core:gitter.im)
+[![Verify Codebase](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml/badge.svg)](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml) [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://patternfly-java.github.io/apidocs/) [![Maven Central](https://img.shields.io/maven-central/v/org.patternfly/patternfly-java-parent)](https://central.sonatype.com/search?q=g%3Aorg.patternfly) ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg) [![Chat on Gitter](https://badges.gitter.im/patternfly-java/patternfly-java.svg)](https://app.gitter.im/#/room/#pf4-java_core:gitter.im)
 
-PatternFly Java is a Java implementation of [PatternFly 5](https://www.patternfly.org) based on GWT/J2CL and [Elemento](https://github.com/hal/elemento). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. The following code snippet gives a taste of what PatternFly Java looks like:
+PatternFly Java is a Java implementation of [PatternFly](https://www.patternfly.org/). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
 
 ```java
 body().add(page()
         .addSkipToContent(skipToContent("main-id"))
         .addMasthead(masthead()
                 .addToggle(mastheadToggle())
-                .addBrand(brand("/assets/your-logo.svg"), "#home"))
+                .addBrand(brand("/assets/your-logo.svg"), "/home"))
         .addSidebar(sidebar()
                 .addBody(sidebarBody()
                         .addNavigation(navigation(flat)
-                                .addItem(navigationItem("get-started", "Get started", "#get-started"))
-                                .addItem(navigationItem("contribute", "Contribute", "#contribute"))
-                                .addItem(navigationItem("get-in-touch", "Get in touch", "#get-in-touch")))))
+                                .addItem(navigationItem("get-started", "Get started", "/get-started"))
+                                .addItem(navigationItem("contribute", "Contribute", "/contribute"))
+                                .addItem(navigationItem("get-in-touch", "Get in touch", "/get-in-touch")))))
         .addMain(pageMain("main-id")
                 .addSection(pageMainSection()
                         .light()
@@ -25,33 +25,61 @@ body().add(page()
                                         .add(" is a Java implementation of ")
                                         .add(a("https://www.patternfly.org/", "_blank")
                                                 .textContent("PatternFly"))
-                                        .add(" based on GWT and ")
+                                        .add(" based on GWT/J2CL and ")
                                         .add(a("https://github.com/hal/elemento", "_blank")
                                                 .textContent("Elemento"))
                                         .add("."))))));
 ```
 
-To see more components in action, head over to the PatternFly Java [showcase](https://patternfly-java.github.io/showcase/). It demonstrates the usage of all currently supported components. To get all details about how to use PatternFly Java take a look at the [API documentation](https://patternfly-java.github.io/apidocs/).
+PatternFly Java aims to provide almost complete support for all components, charts, extensions, and layouts. To see it in action, head over to the [showcase](https://patternfly-java.github.io/). It demonstrates all currently supported components and layouts. To get all the details about using PatternFly Java, look at the [API documentation](https://patternfly-java.github.io/apidocs/).
 
 # Getting Started
 
-PatternFly Java is available in [Maven Central](https://search.maven.org/search?q=g:org.patternfly%20AND%20a:patternfly-java). To use it, add the following dependency to your POM:
+PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
 
 ```xml
-<dependency>
-    <groupId>org.patternfly</groupId>
-    <artifactId>patternfly-java</artifactId>
-    <version>0.2.0</version>
-</dependency>
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.patternfly</groupId>
+            <artifactId>patternfly-java-bom</artifactId>
+            <version>0.2.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 ```
 
-If you're using GWT, inherit from `org.patternfly.PatternFly`:
+and add a dependency to either `org.patternfly:patternfly-java-gwt` or `org.patternfly:patternfly-java-j2cl` depending on your stack. If you're using GWT, inherit from `org.patternfly.PatternFly`:
 
 ```xml
 <module>
     <inherits name="org.patternfly.PatternFly"/>
 </module>
 ```
+
+The best way to see how PatternFly Java is used is to take a look at the [showcase](https://patternfly-java.github.io/) and its [code](showcase/common/src/main/java/org/patternfly/showcase/Showcase.java).
+
+# Modules
+
+PatternFly Java consists of these Maven modules (a-z):
+
+| Module                     | Description                      |
+|----------------------------|----------------------------------|
+| patternfly-java-bom        | Bill of materials                |
+| patternfly-java-codeeditor | PatternFly codeeditor            |
+| patternfly-java-components | PatternFly components            |
+| patternfly-java-core       | Core PatternFly Java classes     |
+| patternfly-java-finder     | PatternFly Java Finder extension |
+| patternfly-java-gwt        | PatternFly Java for GWT          |
+| patternfly-java-icons      | PatternFly Java icons            |
+| patternfly-java-j2cl       | PatternFly Java for J2CL         |
+| patternfly-java-layouts    | PatternFly Java layouts          |
+
+Here’s the dependency graph of these maven modules and its external dependencies:
+
+![Dependency graph](./dependency-graph.png)
 
 # API Design
 
@@ -81,10 +109,6 @@ dropdown()
                                 .addItem(actionMenuItem("item-4", "Separated action"))
                                 .addItem(linkMenuItem("item-5", "Separated link", "#home")))))
 ```
-
-# PatternFly Assets
-
-PatternFly Java does *not* come with stylesheets, fonts, or other static PatternFly assets. We don't want to dictate how to embed these assets. One way is to download or get PatternFly using a CDN provider like [jsDelivr](https://www.jsdelivr.com/package/npm/@patternfly/patternfly) and include the stylesheets in your HTML page. See the [getting started](https://www.patternfly.org/get-started/develop#htmlcss) section on the PatternFly website for more details.
 
 # PatternFly Support
 
