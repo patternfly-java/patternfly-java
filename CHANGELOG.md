@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.2.1] - 2024-04-08
-
 ### Added
 
 - Add GWT support and GWT showcase (#146)
@@ -264,8 +262,7 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.1...HEAD
-[0.2.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...v0.2.1
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
 [0.1.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.3...v0.1.4
