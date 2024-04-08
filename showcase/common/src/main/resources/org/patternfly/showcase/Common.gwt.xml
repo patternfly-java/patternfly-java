@@ -16,9 +16,8 @@
      limitations under the License.
 
 -->
-
 <module>
-    <inherits name="org.patternfly.Components"/>
-    <inherits name="org.patternfly.Layouts"/>
+    <inherits name="org.jboss.elemento.Router"/>
+    <inherits name="org.patternfly.PatternFly"/>
     <source path=""/>
 </module>

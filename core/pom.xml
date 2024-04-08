@@ -65,7 +65,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>org/patternfly/Core.gwt.xml</include>
+                    <include>org/patternfly/**/*.gwt.xml</include>
                 </includes>
             </resource>
         </resources>

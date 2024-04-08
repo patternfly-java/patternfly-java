@@ -29,7 +29,7 @@
     </parent>
 
     <artifactId>patternfly-java-showcase-gwt</artifactId>
-    <packaging>jar</packaging>
+    <packaging>gwt-app</packaging>
     <name>PatternFly Java Showcase GWT</name>
 
     <dependencies>
@@ -41,7 +41,73 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-showcase-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.gwtproject</groupId>
+            <artifactId>gwt-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtproject</groupId>
+            <artifactId>gwt-dev</artifactId>
+        </dependency>
     </dependencies>
+
+    <build>
+        <finalName>showcase</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-node-and-yarn</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${version.node}</nodeVersion>
+                            <yarnVersion>${version.yarn}</yarnVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn-install</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn-parcel</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run ${npm.script}</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <devmodeArgs>
+                        <devmodeArg>-startupUrl</devmodeArg>
+                        <devmodeArg>showcase/index.html</devmodeArg>
+                    </devmodeArgs>
+                    <draftCompile>${gwt.draftCompile}</draftCompile>
+                    <moduleName>org.patternfly.Showcase</moduleName>
+                    <moduleShortName>showcase</moduleShortName>
+                    <sourceLevel>${java.version}</sourceLevel>
+                    <style>${gwt.style}</style>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

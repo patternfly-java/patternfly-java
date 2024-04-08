@@ -1,4 +1,4 @@
-/*
+/**
  *  Copyright 2023 Red Hat
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
+#ws-core-c-back-to-top-basic {
+    height: 300px;
+    position: relative;
+}
 
-import com.google.gwt.core.client.EntryPoint;
-
-public class Main implements EntryPoint {
-
-    @Override
-    public void onModuleLoad() {
-        Showcase.init("/showcase");
-        Showcase.start();
-    }
+.ws-back-to-top {
+    z-index: var(--pf-v5-c-page__main--ZIndex);
 }

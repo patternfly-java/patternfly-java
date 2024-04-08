@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add GWT support and GWT showcase (#146)
+
 ## [0.2.0] - 2024-03-27
 
 ### Added
@@ -149,7 +153,7 @@ Split PatternFly Java into multiple modules:
 
 ### Changed
 
-- Refactor [popper.txt](https://popper.js.org/) integration
+- Refactor [popper.txt](https://popper.txt.org/) integration
 
 ## [0.0.6] - 2023-10-25
 

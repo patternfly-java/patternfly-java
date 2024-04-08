@@ -1,4 +1,4 @@
-/*
+/**
  *  Copyright 2023 Red Hat
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
+.ws-color-box {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  border: var(--pf-v5-global--BorderWidth--sm) solid var(--pf-v5-global--BorderColor--200);
+  border-radius: var(--pf-v5-global--BorderRadius--lg);
+}
 
-import com.google.gwt.core.client.EntryPoint;
+.ws-td-text {
+  font-size: var(--pf-v5-global--FontSize--sm) !important;
+}
 
-public class Main implements EntryPoint {
-
-    @Override
-    public void onModuleLoad() {
-        Showcase.init("/showcase");
-        Showcase.start();
-    }
+.ws-css-property {
+  padding: var(--pf-v5-global--spacer--xs) var(--pf-v5-global--spacer--md);
 }

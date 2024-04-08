@@ -36,15 +36,12 @@ cd "${script_dir}"
 usage() {
   cat <<EOF
 USAGE:
-    $(basename "${BASH_SOURCE[0]}") [FLAGS] <mode>
+    $(basename "${BASH_SOURCE[0]}") [FLAGS]
 
 FLAGS:
     -h, --help          Prints help information
     -v, --version       Prints version information
     --no-color          Uses plain text output
-
-ARGS:
-    <mode>              One of 'gwt' or 'j2cl'
 EOF
   exit
 }
@@ -89,24 +86,10 @@ parse_params() {
     esac
     shift
   done
-
-  ARGS=("$@")
-  [[ ${#ARGS[@]} -eq 1 ]] || die "Missing mode. Please use one of 'gwt' or 'j2cl'"
-  MODE=${ARGS[0]}
-  [[ "${MODE}" =~ ^(gwt|j2cl)$ ]] || die "Wrong mode. Please use one of 'gwt' or 'j2cl'"
   return 0
 }
 
 parse_params "$@"
 setup_colors
-if [[ "${MODE}" == "gwt" ]]; then
-    LABEL=GWT
-    ARTIFACT=patternfly-java-showcase-gwt
-    GOAL=gwt:devmode
-else
-    LABEL=J2CL
-    ARTIFACT=patternfly-java-showcase-j2cl
-    GOAL=j2cl:watch
-fi
-msg "Start ${YELLOW}${LABEL}${NOFORMAT} dev mode..."
-mvn --projects org.patternfly:${ARTIFACT} --also-make -P showcase ${GOAL}
+msg "Start dev mode..."
+mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch

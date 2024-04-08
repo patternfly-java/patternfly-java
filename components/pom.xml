@@ -60,7 +60,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>org/patternfly/Components.gwt.xml</include>
+                    <include>org/patternfly/**/*.gwt.xml</include>
                 </includes>
             </resource>
         </resources>

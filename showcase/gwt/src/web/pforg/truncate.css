@@ -1,4 +1,4 @@
-/*
+/**
  *  Copyright 2023 Red Hat
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,14 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly;
-
-import com.google.gwt.core.client.EntryPoint;
-
-public class PatternFly implements EntryPoint {
-
-    @Override
-    public void onModuleLoad() {
-        // nyi
-    }
+.truncate-example-resize {
+  width: 320px;
+  resize: horizontal;
+  overflow: auto;
+  min-width: 161px;
+  max-width: 100%;
+  padding: var(--pf-v5-global--spacer--md);
+  border: var(--pf-v5-global--BorderWidth--sm) solid var(--pf-v5-global--BorderColor--100);
 }

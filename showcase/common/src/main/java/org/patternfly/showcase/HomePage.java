@@ -35,17 +35,17 @@ public class HomePage implements Page {
     public Iterable<HTMLElement> elements() {
         return singletonList(pageMainSection()
                 .background(light)
-                .add(textContent().add(title(1, "PatternFly - Java"))
+                .add(textContent().add(title(1, "PatternFly - Java!!"))
                         .add(p()
                                 .add(a("https://github.com/patternfly-java/patternfly-java", "_blank")
                                         .textContent("PatternFly Java"))
                                 .add(" is a Java implementation of ")
                                 .add(a("https://www.patternfly.org/", "_blank")
                                         .textContent("PatternFly"))
-                                .add(" based on J2CL and ")
+                                .add(". Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's ")
                                 .add(a("https://github.com/hal/elemento", "_blank")
-                                        .textContent("Elemento"))
-                                .add(".")))
+                                        .textContent("builder API"))
+                                .add(". It works with both GWT and J2CL.")))
                 .element());
     }
 }
