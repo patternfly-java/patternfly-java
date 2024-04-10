@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Automatic resource injection of [`@popperjs/core`](https://www.npmjs.com/package/@popperjs/core) for PatternFly Java GWT
 
+### Changed
+
+- Update documentation
+
 ## [0.2.1] - 2024-04-08
 
 ### Added
@@ -211,7 +215,7 @@ Split PatternFly Java into multiple modules:
 
 - Badge component (#24)
 - Button component (#28)
-- Checkbox component  (#48)
+- Checkbox component (#48)
 - Code block component (#32)
 - Divider component (#40)
 - Expandable section component (#45)
@@ -268,6 +272,7 @@ Stay tuned for more to come...
 
 - for dependency upgrades
 -->
+
 [Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
