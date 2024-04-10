@@ -31,7 +31,7 @@
     <artifactId>patternfly-java-gwt</artifactId>
     <packaging>jar</packaging>
     <name>PatternFly Java GWT</name>
-    <description>PatternFly Java GWT dependency for GWT applications</description>
+    <description>PatternFly Java dependency for GWT applications</description>
 
     <dependencyManagement>
         <dependencies>

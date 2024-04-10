@@ -97,6 +97,8 @@ public enum ComponentType {
 
     MenuToggle("mt", "PF5/MenuToggle"),
 
+    MultiSelect("ms", "PF5/MultiSelect"),
+
     Navigation("nav", "PF5/Nav"),
 
     NotificationBadge("nb", null),
@@ -115,11 +117,11 @@ public enum ComponentType {
 
     Radio("rd", "PF5/Radio"),
 
-    Select("sel", null),
-
     Sidebar("sb", "PF5/Sidebar"),
 
     SimpleList("sl", "PF5/SimpleList"),
+
+    SingleSelect("ss", "PF5/SingleSelect"),
 
     Skeleton("sk", null),
 

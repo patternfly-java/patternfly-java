@@ -31,7 +31,7 @@
     <artifactId>patternfly-java-j2cl</artifactId>
     <packaging>jar</packaging>
     <name>PatternFly Java J2CL</name>
-    <description>PatternFly Java GWT dependency for J2CL applications</description>
+    <description>PatternFly Java dependency for J2CL applications</description>
 
     <dependencies>
         <dependency>

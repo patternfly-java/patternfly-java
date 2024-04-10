@@ -6,7 +6,6 @@
   ],
   "source": "src/web/index.html",
   "scripts": {
-    "watch": "parcel watch --https --dist-dir target/gwt/devmode/war/showcase",
     "dev": "parcel build --dist-dir target/gwt/devmode/war/showcase --no-optimize --public-url /showcase",
     "prod": "parcel build --dist-dir target/showcase --public-url /showcase"
   },
@@ -18,7 +17,6 @@
   },
   "dependencies": {
     "@github/relative-time-element": "^4.3.1",
-    "@patternfly/patternfly": "^5.2.1",
-    "@popperjs/core": "^2.11.8"
+    "@patternfly/patternfly": "^5.2.1"
   }
 }

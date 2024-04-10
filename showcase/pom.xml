@@ -35,10 +35,7 @@
     <properties>
         <!-- Dependency versions -->
         <version.gwt>2.11.0</version.gwt>
-        <version.kotlin>1.9.23</version.kotlin>
-        <version.node>v20.8.1</version.node>
         <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
-        <version.yarn>v1.22.21</version.yarn>
 
         <!-- Build related -->
         <gwt.draftCompile>true</gwt.draftCompile>
@@ -70,12 +67,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib</artifactId>
-                <version>${version.kotlin}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.treblereel.j2cl.processors</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${version.treblereel.j2cl.processors}</version>
@@ -88,19 +79,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Ordered by artifactID -->
-                <plugin>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-plugin</artifactId>
-                    <version>${version.kotlin}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
     <profiles>
         <profile>

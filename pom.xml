@@ -89,9 +89,11 @@
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.junit>5.10.2</version.junit>
+        <version.kotlin>1.9.23</version.kotlin>
         <version.mockito>5.11.0</version.mockito>
         <version.node>v21.7.1</version.node>
         <version.patternfly>5.2.1</version.patternfly>
+        <version.yarn>v1.22.21</version.yarn>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
@@ -185,13 +187,18 @@
                     <artifactId>j2cl-maven-plugin</artifactId>
                     <version>${version.j2cl.plugin}</version>
                     <configuration>
-                        <webappDirectory>${project.build.directory}/showcase/j2cl</webappDirectory>
+                        <webappDirectory>${project.build.directory}/showcase</webappDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>co.enear.maven.plugins</groupId>
                     <artifactId>keepachangelog-maven-plugin</artifactId>
                     <version>${version.keepachangelog}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-maven-plugin</artifactId>
+                    <version>${version.kotlin}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.mycila</groupId>
@@ -220,6 +227,7 @@
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSpecs.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>

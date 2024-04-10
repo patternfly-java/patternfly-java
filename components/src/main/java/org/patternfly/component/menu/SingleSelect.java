@@ -19,6 +19,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLElement;
 
@@ -30,7 +31,8 @@ import static org.jboss.elemento.EventType.click;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleSelect extends BaseComponent<HTMLElement, SingleSelect> {
+public class SingleSelect extends BaseComponent<HTMLElement, SingleSelect> implements
+        Disabled<HTMLElement, SingleSelect> {
 
     // ------------------------------------------------------ factory
 
@@ -41,7 +43,7 @@ public class SingleSelect extends BaseComponent<HTMLElement, SingleSelect> {
     // ------------------------------------------------------ instance
 
     SingleSelect() {
-        super((ComponentType) null, div().element());
+        super(ComponentType.SingleSelect, div().element());
     }
 
     // ------------------------------------------------------ add

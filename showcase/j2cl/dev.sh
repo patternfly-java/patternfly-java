@@ -91,5 +91,8 @@ parse_params() {
 
 parse_params "$@"
 setup_colors
-msg "Start dev mode..."
+cd ../..
+msg "${YELLOW}Install quickly${NOFORMAT}"
+mvn install -Dquickly
+msg "${YELLOW}J2CL watch${NOFORMAT}"
 mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch

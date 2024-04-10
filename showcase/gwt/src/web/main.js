@@ -28,9 +28,3 @@ import "./pforg/sideNav.css";
 import "./pforg/sideNavLayout.css";
 import "./pforg/truncate.css";
 import "./styles.css";
-import {createPopper} from "@popperjs/core";
-
-// Make Popper.createPopper available in GWT
-window.Popper = {
-    createPopper: createPopper
-};

@@ -17,7 +17,5 @@
 
 -->
 <module>
-    <inherits name="org.jboss.elemento.Router"/>
-    <inherits name="org.patternfly.PatternFly"/>
     <source path=""/>
 </module>

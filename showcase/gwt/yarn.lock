@@ -779,11 +779,6 @@
   resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-5.2.1.tgz#7ca014a1fdb45c8ac88abf7b57fccb8731e27542"
   integrity sha512-n5xFjyj1J4eIFZ7XeU6K44POKRAuDlO5yALPbn084y+jPy1j861AaQ+zIUbzCi4IzBlHrvoXVKij7p1zy7Ditg==
 
-"@popperjs/core@^2.11.8":
-  version "2.11.8"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
-  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
-
 "@swc/core-darwin-arm64@1.4.12":
   version "1.4.12"
   resolved "https://registry.yarnpkg.com/@swc/core-darwin-arm64/-/core-darwin-arm64-1.4.12.tgz#4aa5080adaeea415dcdb6139415dabe1680933f3"

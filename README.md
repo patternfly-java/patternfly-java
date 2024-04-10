@@ -51,7 +51,25 @@ PatternFly Java is available on [Maven Central](https://central.sonatype.com/sea
 </dependencyManagement>
 ```
 
-and add a dependency to either `org.patternfly:patternfly-java-gwt` or `org.patternfly:patternfly-java-j2cl` depending on your stack. If you're using GWT, inherit from `org.patternfly.PatternFly`:
+and add a dependency to either
+
+```xml
+<dependency>
+    <groupId>org.patternfly</groupId>
+    <artifactId>patternfly-java-gwt</artifactId>
+</dependency>
+```
+
+or
+
+```xml
+<dependency>
+    <groupId>org.patternfly</groupId>
+    <artifactId>patternfly-java-j2cl</artifactId>
+</dependency>
+```
+
+depending on your stack. If you're using GWT, inherit from `org.patternfly.PatternFly`:
 
 ```xml
 <module>
@@ -59,7 +77,11 @@ and add a dependency to either `org.patternfly:patternfly-java-gwt` or `org.patt
 </module>
 ```
 
-The best way to see how PatternFly Java is used is to take a look at the [showcase](https://patternfly-java.github.io/) and its [code](showcase/common/src/main/java/org/patternfly/showcase/Showcase.java).
+## Dependencies
+
+PatternFly Java has no external JavaScript dependencies. Everything necessary is included in the code base for both GWT and J2CL. However, Patternfly Java does **not** come with stylesheets. You are expected to include or bundle the necessary stylesheets yourself. Take a look at the PatternFly [getting started guide](https://www.patternfly.org/get-started/develop#htmlcss) for more information.
+
+You can also take a look at the code of the showcase for [GWT](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/gwt) and [J2CL](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/j2cl) to see how to setup and use PatternFly Java.
 
 # Modules
 

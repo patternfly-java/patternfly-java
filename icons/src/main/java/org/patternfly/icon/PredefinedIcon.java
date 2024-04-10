@@ -25,6 +25,10 @@ import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.svg;
 
+/**
+ * The PredefinedIcon class represents a predefined SVG icon. It extends the SVGContainerBuilder class
+ * and provides methods for creating and configuring the SVG element for the icon.
+ */
 public final class PredefinedIcon extends SVGContainerBuilder<SVGElement> {
 
     public final IconSpec iconSpec;

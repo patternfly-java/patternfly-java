@@ -15,6 +15,12 @@
  */
 package org.patternfly.icon;
 
+/**
+ * The IconSpec class represents the specification of an SVG icon.
+ * It contains information such as the name of the icon set, the unique icon name,
+ * the x and y offsets of the SVG view box, the icon width and height in pixels,
+ * the SVG path attribute value, and the copyright holder and SPDX short license identifier.
+ */
 public final class IconSpec {
 
     /** name of icon set */

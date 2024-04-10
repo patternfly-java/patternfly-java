@@ -16,9 +16,9 @@
      limitations under the License.
 
 -->
-
 <module>
     <inherits name="org.patternfly.Components"/>
     <inherits name="org.patternfly.Layouts"/>
     <source path=""/>
+    <entry-point class="org.patternfly.PatternFly" />
 </module>

@@ -222,10 +222,4 @@ public class Dropdown extends ComponentDelegate<HTMLElement, Dropdown> implement
     public Menu menu() {
         return menu;
     }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
-    }
 }

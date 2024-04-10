@@ -35,7 +35,7 @@ public class HomePage implements Page {
     public Iterable<HTMLElement> elements() {
         return singletonList(pageMainSection()
                 .background(light)
-                .add(textContent().add(title(1, "PatternFly - Java!!"))
+                .add(textContent().add(title(1, "PatternFly - Java"))
                         .add(p()
                                 .add(a("https://github.com/patternfly-java/patternfly-java", "_blank")
                                         .textContent("PatternFly Java"))

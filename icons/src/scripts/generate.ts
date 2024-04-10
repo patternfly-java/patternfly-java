@@ -33,11 +33,25 @@ const iconSpecs = (entries: [string, Record<string, IconSpec>][]) => `package ${
 
 import javax.annotation.processing.Generated;
 
-/*
-* WARNING! This class is generated. Do not modify.
-*/
+/**
+ * This interface contains the specifications for all icons in PatternFly Java. The icons are grouped in four enums:
+ * <dl>
+ *     <dt>{@link fab}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&f=brands">Fontawesome brand icons</a></dd>
+ *     <dt>{@link far}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=regular">Fontawesome regular icons</a></dd>
+ *     <dt>{@link fas}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=solid">Fontawesome solid icons</a></dd>
+ *     <dt>{@link patternfly}</dt>
+ *     <dd><a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a></dd>
+ * </dl>
+ * <p>You probably won't need to use these classes directly, but instead work with {@link IconSets}.</p>
+ * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
+ * @see <a href="https://fontawesome.com/icons?d=gallery&m=free">https://fontawesome.com/icons?d=gallery&m=free</a>
+ */
 @Generated("generate.ts")
 @SuppressWarnings("SpellCheckingInspection")
+// WARNING: This class is generated. Do not modify.
 public interface IconSpecs {
     ${entries.map(([set, icons]) => iconSpec(set, icons)).join('\n    ')}
 }
@@ -66,11 +80,25 @@ const iconSets = (entries: [string, Record<string, IconSpec>][]) => `package ${p
 
 import javax.annotation.processing.Generated;
 
-/*
-* WARNING! This class is generated. Do not modify.
-*/
+/**
+ * This interface provides methods for accessing all icons in PatternFly Java. The icons are grouped in four interfaces:
+ * <dl>
+ *     <dt>{@link fab}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&f=brands">Fontawesome brand icons</a></dd>
+ *     <dt>{@link far}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=regular">Fontawesome regular icons</a></dd>
+ *     <dt>{@link fas}</dt>
+ *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=solid">Fontawesome solid icons</a></dd>
+ *     <dt>{@link patternfly}</dt>
+ *     <dd><a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a></dd>
+ * </dl>
+ * <p>The icons are retunred as {@link PredefinedIcon}s and can be adjusted if necessary.</p>
+ * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
+ * @see <a href="https://fontawesome.com/icons?d=gallery&m=free">https://fontawesome.com/icons?d=gallery&m=free</a>
+ */
 @Generated("generate.ts")
 @SuppressWarnings("SpellCheckingInspection")
+// WARNING: This class is generated. Do not modify.
 public interface IconSets {
     ${entries.map(([set, icons]) => iconSet(set, icons)).join('\n    ')}
 }
