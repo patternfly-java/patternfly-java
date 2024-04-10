@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.patternfly</groupId>
         <artifactId>patternfly-java-showcase</artifactId>
-        <version>0.2.2</version>
+        <version>0.2.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
