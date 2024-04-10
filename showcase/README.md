@@ -66,4 +66,4 @@ open http://localhost:8080
 
 # Feedback
 
-Please let me know if you have troublw building the showcase. File an [issue](https://github.com/patternfly-java/patternfly-java/issues/new) or join the [chat](https://app.gitter.im/#/room/#pf4-java_core:gitter.im).
+Please let me know if you have trouble building the showcase. File an [issue](https://github.com/patternfly-java/patternfly-java/issues/new) or join the [chat](https://app.gitter.im/#/room/#pf4-java_core:gitter.im).
