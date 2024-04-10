@@ -2,7 +2,7 @@
 
 The [showcase](https://patternfly-java.github.io/) for PatternFly Java is inspired by the [PatternFly](https://www.patternfly.org/) website. It provides pages for all supported components, layouts and extensions.
 
-The bulk of the showcase code is in the [`common`](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/common) module. The `gwt` and `j2cl` modules contain just some bootstrapping code and depend on the `common` module.
+The bulk of the showcase code is in the `common` module. The `gwt` and `j2cl` modules contain just some bootstrapping code and depend on the `common` module.
 
 # Build
 
