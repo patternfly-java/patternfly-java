@@ -1,5 +1,19 @@
 [![Verify Codebase](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml/badge.svg)](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml) [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://patternfly-java.github.io/apidocs/) [![Maven Central](https://img.shields.io/maven-central/v/org.patternfly/patternfly-java-parent)](https://central.sonatype.com/search?q=g%3Aorg.patternfly) ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg) [![Chat on Gitter](https://badges.gitter.im/patternfly-java/patternfly-java.svg)](https://app.gitter.im/#/room/#pf4-java_core:gitter.im)
 
+**TOC**
+* [Getting Started](#getting-started)
+  * [Dependencies](#dependencies)
+* [Modules](#modules)
+* [API Design](#api-design)
+  * [Static Factory Methods](#static-factory-methods)
+  * [Add Methods](#add-methods)
+  * [Builder / Modifier Methods](#builder--modifier-methods)
+  * [ARIA Related Methods](#aria-related-methods)
+  * [Event Handlers](#event-handlers)
+  * [Public API / Getters](#public-api--getters)
+* [PatternFly Support](#patternfly-support)
+* [Get Involved](#get-involved)
+
 PatternFly Java is a Java implementation of [PatternFly](https://www.patternfly.org/). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
 
 ```java
@@ -154,7 +168,7 @@ Navigation navigation = navigation(flat)
 
 ## Event Handlers
 
-These methods add event handlers for various event to the component. They are usually named `on<Event>()` and return the component so that the method call can be chained with other methods.
+These methods add event handlers for various event to the component. They are usually named `on<Event>()`, accept an event handler, and return the component so that the method call can be chained with other methods. PatternFly Java defines some [common event handlers](https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html) that are reused in all components. In some cases, components also use specific event handlers that only apply to the component.
 
 ```java
 Drawer drawer = drawer().id("drw")
@@ -163,7 +177,7 @@ Drawer drawer = drawer().id("drw")
 
 ## Public API / Getters
 
-These methods do something with the component or return a value, a property or some other kind of information.
+These methods do something with the component or return a value, a property or some other kind of information. They return either `void` or a value/property.
 
 ```java
 Switch switch_ = switch_("id", "name");
