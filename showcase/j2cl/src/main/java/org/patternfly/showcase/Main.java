@@ -23,7 +23,7 @@ public class Main {
 
     @GWT3EntryPoint
     public void onModuleLoad() {
-        Showcase.init(env().base());
+        Showcase.init(env());
         Showcase.start();
     }
 }

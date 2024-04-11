@@ -108,7 +108,13 @@
                     <devmodeArgs>
                         <devmodeArg>-startupUrl</devmodeArg>
                         <devmodeArg>showcase/index.html</devmodeArg>
+                        <devmodeArg>-setProperty</devmodeArg>
+                        <devmodeArg>settings.base=${settings.base}</devmodeArg>
                     </devmodeArgs>
+                    <compilerArgs>
+                        <compilerArg>-setProperty</compilerArg>
+                        <compilerArg>settings.base=${settings.base}</compilerArg>
+                    </compilerArgs>
                     <draftCompile>${gwt.draftCompile}</draftCompile>
                     <moduleName>org.patternfly.Showcase</moduleName>
                     <moduleShortName>showcase</moduleShortName>

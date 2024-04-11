@@ -22,5 +22,6 @@
     <inherits name="org.patternfly.showcase.Common"/>
     <source path="showcase"/>
     <entry-point class="org.patternfly.showcase.Main" />
+    <define-configuration-property name="settings.base" is-multi-valued="false"/>
     <collapse-all-properties/>
 </module>

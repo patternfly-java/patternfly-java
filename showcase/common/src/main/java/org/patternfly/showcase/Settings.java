@@ -15,15 +15,9 @@
  */
 package org.patternfly.showcase;
 
-import com.google.gwt.core.client.EntryPoint;
+public interface Settings {
 
-import static org.patternfly.showcase.Environment.env;
-
-public class Main implements EntryPoint {
-
-    @Override
-    public void onModuleLoad() {
-        Showcase.init(env());
-        Showcase.start();
+    default String base() {
+        return System.getProperty("settings.base", "/");
     }
 }

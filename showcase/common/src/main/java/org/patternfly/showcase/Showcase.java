@@ -57,13 +57,13 @@ public final class Showcase {
     private static PlaceManager placeManager;
     private static Page page;
 
-    public static void init(String base) {
+    public static void init(Settings settings) {
         // navigation #1
         navigation = navigation(expandable);
 
         // place manager
         placeManager = new PlaceManager()
-                .base(base)
+                .base(settings.base())
                 .root(By.id(MAIN_ID))
                 .linkSelector(By.attribute("target", ApiDoc.API_DOC_TARGET), true)
                 .title(title -> "PatternFly Java • " + title)
