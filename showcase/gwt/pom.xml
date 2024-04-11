@@ -124,22 +124,33 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
+                <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>resources</id>
-                        <phase>package</phase>
+                        <id>copy-compiled-gwt-artifacts</id>
                         <goals>
-                            <goal>single</goal>
+                            <goal>run</goal>
                         </goals>
+                        <phase>prepare-package</phase>
                         <configuration>
-                            <descriptors>
-                                <descriptor>src/assembly/gwt-app.xml</descriptor>
-                            </descriptors>
+                            <target>
+                                <copy todir="${project.build.directory}/showcase">
+                                    <fileset dir="${project.build.directory}/${project.build.finalName}/showcase"/>
+                                </copy>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <settings.base>/</settings.base>
+            </properties>
+        </profile>
+    </profiles>
 </project>

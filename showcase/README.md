@@ -13,56 +13,54 @@ To build the showcase follow theses steps
 ### Development Mode
 
 ```shell
-cd $PATTERNFLY_JAVA_HOME
 mvn -Dquickly install
 cd showcase/gwt
 mvn gwt:devmode
-open http://localhost:8888/showcase
 ```
+
+http://localhost:8888/showcase
 
 ### Production Mode
 
 ```shell
-cd $PATTERNFLY_JAVA_HOME
 mvn --projects org.patternfly:patternfly-java-showcase-gwt --also-make -P prod,showcase install
 ```
 
-The compiled HTML, JavaScript and CSS filed are in `showcase/gwt/target/patternfly-java-showcase-gwt-<version>-gwt-app`. Please use a local HTTP server like https://www.npmjs.com/package/http-server open the showcase:
+The compiled HTML, JavaScript and CSS filed are in `showcase/gwt/target/showcase`. Please use a local HTTP server like https://www.npmjs.com/package/http-server to serve the showcase:
 
 ```shell
-http-server showcase/gwt/target/patternfly-java-showcase-gwt-0.2.2-SNAPSHOT-gwt-app
-open http://localhost:8080/showcase
+http-server showcase/gwt/target/showcase
 ```
+
+http://localhost:8080
 
 ## J2CL
 
 ### Development Mode
 
 ```shell
-cd $PATTERNFLY_JAVA_HOME
 mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch
 ```
 
 In another shell execute
 
 ```shell
-cd $PATTERNFLY_JAVA_HOME/showcase/j2cl
 yarn run watch
 ```
 
 ### Production Mode
 
 ```shell
-cd $PATTERNFLY_JAVA_HOME
 mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P prod,showcase install
 ```
 
-The compiled HTML, JavaScript and CSS filed are in `showcase/j2cl/target/showcase`. Please use a local HTTP server like https://www.npmjs.com/package/http-server open the showcase:
+The compiled HTML, JavaScript and CSS filed are in `showcase/j2cl/target/showcase`. Please use a local HTTP server like https://www.npmjs.com/package/http-server to serve the showcase:
 
 ```shell
 http-server showcase/j2cl/target/showcase
-open http://localhost:8080
 ```
+
+http://localhost:8080
 
 # Feedback
 
