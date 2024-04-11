@@ -105,32 +105,39 @@ Here’s the dependency graph of these maven modules and its external dependenci
 
 # API Design
 
-PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods modify and add child elements.
+PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
+
+In general the API for an component can be classified into these groups:
+
+## Static Factory Methods
+
+These methods are used to create a component. They are usually named after the component and return an instance of the newly created component:
 
 ```java
-expandableSection()
-        .indented()
-        .addToggle(expandableSectionToggle("Show more", "Show less"))
-        .addContent(expandableSectionContent()
-                .textContent("This content is visible only when the component is expanded."))
-```
-
-```java
-dropdown()
+Button button = button("Click me!");
+Dropdown dropdown = dropdown()
         .addToggle(menuToggle("Dropdown"))
         .addMenu(menu()
                 .addContent(menuContent()
                         .addList(menuList()
-                                .addItem(actionMenuItem("item-0", "Action"))
-                                .addItem(linkMenuItem("item-1", "Link", "#home"))
-                                .addItem(actionMenuItem("item-2", "Disabled action")
-                                        .disabled())
-                                .addItem(linkMenuItem("item-3", "Disabled link", "#")
-                                        .disabled())
-                                .addDivider()
-                                .addItem(actionMenuItem("item-4", "Separated action"))
-                                .addItem(linkMenuItem("item-5", "Separated link", "#home")))))
+                                .addItem(actionMenuItem("item-0", "Action"))))))
 ```
+
+## Add Methods
+
+These methods add subcomponents to a main component. They are usually called `add<SubComponent>()` and return the main component so that the method call can be chained with other methods.
+
+
+
+## Builder / Modifier Methods
+
+## ARIA Related Methods
+
+## Event Handlers
+
+## Public API / Getters
+
+The best way to experience the API is to take a look at the code snippets of the various components and layouts in the [showcase](https://patternfly-java.github.io/).
 
 # PatternFly Support
 
