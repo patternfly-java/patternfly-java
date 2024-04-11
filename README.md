@@ -111,10 +111,18 @@ In general the API for an component can be classified into these groups:
 
 ## Static Factory Methods
 
-These methods are used to create a component. They are usually named after the component and return an instance of the newly created component:
+These methods are used to create a component. They are usually named after the component, are overloaded to accept required and optional arguments, and return an instance of the newly created component:
 
 ```java
-Button button = button("Click me!");
+Button button1 = button("Click me!");
+Button button2 = button("PatternFly", "https://www.patternfly.org");
+```
+
+## Add Methods
+
+These methods add subcomponents to a main component. They are usually called `add<SubComponent>()` and return the main component so that the method call can be chained with other methods.
+
+```java
 Dropdown dropdown = dropdown()
         .addToggle(menuToggle("Dropdown"))
         .addMenu(menu()
@@ -123,19 +131,46 @@ Dropdown dropdown = dropdown()
                                 .addItem(actionMenuItem("item-0", "Action"))))))
 ```
 
-## Add Methods
-
-These methods add subcomponents to a main component. They are usually called `add<SubComponent>()` and return the main component so that the method call can be chained with other methods.
-
-
-
 ## Builder / Modifier Methods
+
+These methods modify the current componemt. They return the current component so that the method call can be chained with other methods.
+
+```java
+Card card = card()
+        .flat()
+        .rounded()
+        .large();
+```
 
 ## ARIA Related Methods
 
+These methods set ARIA related attributes in the component. They're usually named `aria<Attribute>()` and return the component so that the method call can be chained with other methods.
+
+```java
+Navigation navigation = navigation(flat)
+        .ariaScrollBackLabel("← back")
+        .ariaScrollForwardLabel("→ forward");
+```
+
 ## Event Handlers
 
+These methods add event handlers for various event to the component. They are usually named `on<Event>()` and return the component so that the method call can be chained with other methods.
+
+```java
+Drawer drawer = drawer().id("drw")
+        .onToggle((e, c, expanded) -> console.log("Drawer expanded: " + expanded));
+```
+
 ## Public API / Getters
+
+These methods do something with the component or return a value, a property or some other kind of information.
+
+```java
+Switch switch_ = switch_("id", "name");
+boolean value = switch_.value();
+```
+
+---
 
 The best way to experience the API is to take a look at the code snippets of the various components and layouts in the [showcase](https://patternfly-java.github.io/).
 
