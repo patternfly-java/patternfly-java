@@ -183,7 +183,7 @@ PatternFly Java comes with predefined icons for
 - FontAwesome solid ([fas](https://fontawesome.com/search?o=r&m=free&s=solid)) and
 - PatternFly icons ([patternfly](https://www.patternfly.org/design-foundations/icons/#patternfly-icons))
 
-There are static factory methods in [`IconsSets`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/IconSets.html) to easily use these icons. The icons are returned as instances of the [PredefinedIcon``](https://patternfly-java.github.io/apidocs/org/patternfly/icon/PredefinedIcon.html) class, which is essentially an instance of an SVG builder and allows easy customization of the returned icon.
+There are static factory methods in [`IconsSets`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/IconSets.html) to easily use these icons. The icons are returned as instances of the [`PredefinedIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/PredefinedIcon.html) class, which is essentially an instance of an SVG builder and allows easy customization of the returned icon.
 
 Components that support icons usually implement the interface [`WithIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/component/WithIcon.html) or [`WithIconAndText`](https://patternfly-java.github.io/apidocs/org/patternfly/component/WithIconAndText.html) and thus use a common API.
 
