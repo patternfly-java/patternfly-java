@@ -1,4 +1,4 @@
-# Getting Started
+# Get Started
 
 PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
 
