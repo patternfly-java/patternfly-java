@@ -17,6 +17,8 @@ package org.patternfly.showcase;
 
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.router.Page;
 
@@ -24,6 +26,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static java.util.Collections.singletonList;
+import static org.jboss.elemento.By.AttributeOperator.STARTS_WITH;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.showcase.Documentation.doc;
@@ -32,6 +35,7 @@ import static org.patternfly.style.Brightness.light;
 public abstract class DocumentationPage implements Page, IsElement<HTMLElement>, Attachable {
 
     private final HTMLElement root;
+    private By apiDocLinks;
 
     DocumentationPage(String doc) {
         this.root = pageMainSection()
@@ -43,6 +47,12 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
 
     @Override
     public void attach(MutationRecord mutationRecord) {
+        // post process API doc links
+        apiDocLinks = By.element("a").and(By.attribute("href", STARTS_WITH, "https://patternfly-java.github.io/apidocs/"));
+        for (HTMLElement element : Elements.findAll(root, apiDocLinks)) {
+            // exclude the links from being handled by the place manager!
+            element.setAttribute("target", ApiDoc.API_DOC_TARGET);
+        }
         Highlight.highlightAll();
     }
 

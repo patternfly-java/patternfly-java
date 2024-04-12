@@ -46,7 +46,7 @@ depending on your stack. If you're using GWT, inherit from `org.patternfly.Patte
 
 PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. However, Patternfly Java does **not** come with **stylesheets**. You are expected to include or bundle the necessary stylesheets yourself. Take a look at the PatternFly [getting started guide](https://www.patternfly.org/get-started/develop#htmlcss) for more information.
 
-You can also take a look at the code of this [showcase](https://github.com/patternfly-java/patternfly-java/tree/main/showcase#readme) to see how to set up and use PatternFly Java.
+You can also take a look at the code of the [showcase](https://github.com/patternfly-java/patternfly-java/tree/main/showcase#readme) to see how to set up and use PatternFly Java.
 
 # Modules
 
