@@ -137,4 +137,4 @@ boolean value = switch_.value();
 
 ---
 
-The best way to experience the API is to take a look at the code snippets of the various components and layouts in the [showcase](https://patternfly-java.github.io/).
+The best way to experience the API is to take a look at the code snippets of the various components and layouts in this [showcase](https://patternfly-java.github.io/).
