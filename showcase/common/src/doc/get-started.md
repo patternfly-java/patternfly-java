@@ -1,4 +1,4 @@
-# Get Started
+# Get started
 
 PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
 
@@ -68,13 +68,13 @@ Here’s the dependency graph of these maven modules and its external dependenci
 
 ![Dependency graph](https://raw.githubusercontent.com/patternfly-java/patternfly-java/main/dependency-graph.png)
 
-# API Design
+# API design
 
 PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
 
 In general the API for a component can be classified into these groups:
 
-## Static Factory Methods
+## Static factory methods
 
 These methods are used to create a component. They are usually named after the component, are overloaded to accept required and optional arguments, and return an instance of the newly created component:
 
@@ -83,7 +83,7 @@ Button button1 = button("Click me!");
 Button button2 = button("PatternFly", "https://www.patternfly.org");
 ```
 
-## Add Methods
+## Add methods
 
 These methods add subcomponents to a main component. They are usually called `add<SubComponent>()` and return the main component so that the method call can be chained with other methods.
 
@@ -96,7 +96,7 @@ Dropdown dropdown = dropdown()
                                 .addItem(actionMenuItem("item-0", "Action"))))))
 ```
 
-## Builder / Modifier Methods
+## Builder / modifier methods
 
 These methods modify the current component. They return the current component so that the method call can be chained with other methods.
 
@@ -107,7 +107,7 @@ Card card = card()
         .large();
 ```
 
-## ARIA Related Methods
+## ARIA related methods
 
 These methods set ARIA related attributes in the component. They're usually named `aria<Attribute>()` and return the component so that the method call can be chained with other methods.
 
@@ -117,7 +117,7 @@ Navigation navigation = navigation(flat)
         .ariaScrollForwardLabel("→ forward");
 ```
 
-## Event Handlers
+## Event handlers
 
 These methods add event handlers for various event to the component. They are usually named `on<Event>()`, accept an event handler, and return the component so that the method call can be chained with other methods. PatternFly Java defines some [common event handlers](https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html) that are reused in all components. In some cases, components also use specific event handlers that only apply to the component.
 
@@ -126,7 +126,7 @@ Drawer drawer = drawer().id("drw")
         .onToggle((e, c, expanded) -> console.log("Drawer expanded: " + expanded));
 ```
 
-## Public API / Getters
+## Public API / getters
 
 These methods do something with the component or return a value, a property or some other kind of information. They return either `void` or a value/property.
 

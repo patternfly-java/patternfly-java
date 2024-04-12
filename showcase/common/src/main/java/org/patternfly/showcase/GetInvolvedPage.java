@@ -17,7 +17,7 @@ package org.patternfly.showcase;
 
 import org.jboss.elemento.router.Route;
 
-@Route(value = "/get-involved", title = "Get Involved")
+@Route(value = "/get-involved", title = "Get involved")
 public class GetInvolvedPage extends DocumentationPage {
 
     public GetInvolvedPage() {
