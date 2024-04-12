@@ -41,6 +41,6 @@
     left: 600px;
 }
 
-.pfj-api-doc {
-
+.hljs {
+    background-color: var(--pf-v5-global--BackgroundColor--200) !important;
 }

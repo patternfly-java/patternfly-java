@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@github/relative-time-element": "^4.3.1",
-    "@patternfly/patternfly": "^5.2.1"
+    "@patternfly/patternfly": "^5.2.1",
+    "highlight.js": "^11.9.0"
   }
 }

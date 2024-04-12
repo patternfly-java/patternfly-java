@@ -33,7 +33,7 @@ body().add(page()
 
 PatternFly Java aims to provide almost complete support for all components, charts, extensions, and layouts. To see it in action, head over to the [showcase](https://patternfly-java.github.io/). It demonstrates all currently supported components and layouts. To get all the details about using PatternFly Java, look at the [API documentation](https://patternfly-java.github.io/apidocs/).
 
-# Getting Started
+# Get Started
 
 PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
 
@@ -81,7 +81,7 @@ depending on your stack. If you're using GWT, inherit from `org.patternfly.Patte
 
 PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. However, Patternfly Java does **not** come with **stylesheets**. You are expected to include or bundle the necessary stylesheets yourself. Take a look at the PatternFly [getting started guide](https://www.patternfly.org/get-started/develop#htmlcss) for more information.
 
-You can also take a look at the code of the [showcase](https://github.com/patternfly-java/patternfly-java/tree/main/showcase#readme) for [GWT](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/gwt) and [J2CL](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/j2cl) to see how to setup and use PatternFly Java.
+You can also take a look at the code of the [showcase](https://github.com/patternfly-java/patternfly-java/tree/main/showcase#readme) for [GWT](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/gwt) and [J2CL](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/j2cl) to see how to set up and use PatternFly Java.
 
 # Modules
 
@@ -107,7 +107,7 @@ Here’s the dependency graph of these maven modules and its external dependenci
 
 PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
 
-In general the API for an component can be classified into these groups:
+In general the API for a component can be classified into these groups:
 
 ## Static Factory Methods
 
@@ -133,7 +133,7 @@ Dropdown dropdown = dropdown()
 
 ## Builder / Modifier Methods
 
-These methods modify the current componemt. They return the current component so that the method call can be chained with other methods.
+These methods modify the current component. They return the current component so that the method call can be chained with other methods.
 
 ```java
 Card card = card()

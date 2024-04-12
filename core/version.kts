@@ -13,15 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import java.io.File
+
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 
+import org.jetbrains.kotlin.maven.ExecuteKotlinScriptMojo
+
 // ------------------------------------------------------ init
 
+val mojo = ExecuteKotlinScriptMojo.INSTANCE
 require(args.size == 3) {
-    System.err.println("Wrong number of arguments: Provided ${args.size}, required 3")
-    System.err.println("Use version.kts <basedir> <patternfly.java.version> <patternfly-version>")
+    mojo.getLog().error("Wrong number of arguments: Provided ${args.size}, required 3")
+    mojo.getLog().error("Use version.kts <basedir> <patternfly.java.version> <patternfly-version>")
     System.exit(1)
 }
 
@@ -30,7 +35,7 @@ require(args.size == 3) {
 val packageName = "org.patternfly.core"
 val className = "Version"
 val target = "src/main/java"
-val targetPath = Path(args[0], "${target}/${packageName.replace('.', '/')}")
+val targetPath = Path(args[0], "$target/${packageName.replace('.', '/')}")
 val patternFlyJavaVersion = args[1]
 val patternFlyVersion = args[2]
 val patternFlyMajor = "v${patternFlyVersion.substringBefore('.')}"
@@ -38,7 +43,7 @@ val patternFlyMajor = "v${patternFlyVersion.substringBefore('.')}"
 // ------------------------------------------------------ main
 
 targetPath.createDirectories()
-val javaSource = File(targetPath.toFile(), "${className}.java")
+val javaSource = File(targetPath.toFile(), "$className.java")
 if (javaSource.exists()) {
     javaSource.delete()
 }
@@ -54,8 +59,10 @@ javaSource.appendText("""
     |@Generated("version.kts")
     |public interface $className {
     |
-    |    String PATTERN_FLY_JAVA_VERSION = "${patternFlyJavaVersion}";
-    |    String PATTERN_FLY_VERSION = "${patternFlyVersion}";
-    |    String PATTERN_FLY_MAJOR_VERSION = "${patternFlyMajor}";
+    |    String PATTERN_FLY_JAVA_VERSION = "$patternFlyJavaVersion";
+    |    String PATTERN_FLY_VERSION = "$patternFlyVersion";
+    |    String PATTERN_FLY_MAJOR_VERSION = "$patternFlyMajor";
     |}
-""".trimMargin())
+    """.trimMargin())
+
+mojo.getLog().info("Generated Version.java using $patternFlyJavaVersion, $patternFlyVersion, $patternFlyMajor")

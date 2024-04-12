@@ -15,6 +15,7 @@
  */
 import "@patternfly/patternfly/patternfly.css";
 import "@patternfly/patternfly/patternfly-addons.css";
+
 import "./pforg/autoLinkHeader.css";
 import "./pforg/backToTop.css";
 import "./pforg/cssVariables.css";
@@ -25,6 +26,11 @@ import "./pforg/layouts.css";
 import "./pforg/mdx.css";
 import "./pforg/sectionGallery.css";
 import "./pforg/sideNav.css";
-import "./pforg/sideNavLayout.css";
-import "./pforg/truncate.css";
+import './pforg/sideNavLayout.css';
+import './pforg/truncate.css';
+
+import hljs from "highlight.js/lib/common";
+import "highlight.js/styles/github.css";
+window["hljs"] = hljs; // 'export' for GWT
+
 import "./styles.css";

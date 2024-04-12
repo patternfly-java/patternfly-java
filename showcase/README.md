@@ -6,7 +6,7 @@ The bulk of the showcase code is in the [`common`](https://github.com/patternfly
 
 # Build
 
-To build the showcase follow theses steps
+To build the showcase follow these steps
 
 ## GWT
 
@@ -64,4 +64,4 @@ http://localhost:8080
 
 # Feedback
 
-Please let me know if you have trouble building the showcase. File an [issue](https://github.com/patternfly-java/patternfly-java/issues/new) or join the [chat](https://app.gitter.im/#/room/#pf4-java_core:gitter.im).
+Please let us know if you have trouble building the showcase. File an [issue](https://github.com/patternfly-java/patternfly-java/issues/new) or join the [chat](https://app.gitter.im/#/room/#pf4-java_core:gitter.im).

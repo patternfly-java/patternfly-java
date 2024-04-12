@@ -15,33 +15,44 @@
  */
 package org.patternfly.showcase;
 
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.IsElement;
 import org.jboss.elemento.router.Page;
-import org.jboss.elemento.router.Route;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static java.util.Collections.singletonList;
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.text.TextContent.textContent;
-import static org.patternfly.component.title.Title.title;
+import static org.patternfly.showcase.Documentation.doc;
 import static org.patternfly.style.Brightness.light;
 
-@Route(value = "/get-in-touch", title = "Get in touch")
-public class GetInTouchPage implements Page {
+public abstract class DocumentationPage implements Page, IsElement<HTMLElement>, Attachable {
+
+    private final HTMLElement root;
+
+    DocumentationPage(String doc) {
+        this.root = pageMainSection()
+                .background(light)
+                .add(textContent().innerHtml(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
+                .element();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        Highlight.highlightAll();
+    }
+
+    @Override
+    public HTMLElement element() {
+        return root;
+    }
 
     @Override
     public Iterable<HTMLElement> elements() {
-        return singletonList(pageMainSection()
-                .background(light)
-                .add(textContent()
-                        .add(title(1, "Get in touch"))
-                        .add(p()
-                                .add("Please see the ")
-                                .add(a("https://github.com/patternfly-java/patternfly-java#get-involved", "_blank")
-                                        .textContent("get in touch"))
-                                .add(" section on the GitHub repository.")))
-                .element());
+        return singletonList(root);
     }
 }

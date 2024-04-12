@@ -15,12 +15,14 @@
  */
 package org.patternfly.showcase;
 
-import org.jboss.elemento.router.Route;
+import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsType;
 
-@Route("/")
-public class HomePage extends DocumentationPage {
+import static jsinterop.annotations.JsPackage.GLOBAL;
 
-    public HomePage() {
-        super("home");
-    }
+@JsType(isNative = true, name = "hljs", namespace = GLOBAL)
+public class Highlight {
+
+    @JsMethod
+    static native void highlightAll();
 }

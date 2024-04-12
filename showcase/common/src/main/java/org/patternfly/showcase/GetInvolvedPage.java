@@ -17,10 +17,10 @@ package org.patternfly.showcase;
 
 import org.jboss.elemento.router.Route;
 
-@Route("/")
-public class HomePage extends DocumentationPage {
+@Route(value = "/get-involved", title = "Get Involved")
+public class GetInvolvedPage extends DocumentationPage {
 
-    public HomePage() {
-        super("home");
+    public GetInvolvedPage() {
+        super("get-involved");
     }
 }

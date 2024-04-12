@@ -17,10 +17,10 @@ package org.patternfly.showcase;
 
 import org.jboss.elemento.router.Route;
 
-@Route("/")
-public class HomePage extends DocumentationPage {
+@Route(value = "/icons", title = "Icons")
+public class IconsPage extends DocumentationPage {
 
-    public HomePage() {
-        super("home");
+    public IconsPage() {
+        super("icons");
     }
 }

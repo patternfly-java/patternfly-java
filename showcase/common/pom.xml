@@ -83,6 +83,7 @@
                             <directory>src/main/java</directory>
                             <includes>
                                 <include>org/patternfly/showcase/Code.java</include>
+                                <include>org/patternfly/showcase/Documentation.java</include>
                                 <include>org/patternfly/showcase/ResourceBundle.java</include>
                             </includes>
                         </fileset>
@@ -115,7 +116,40 @@
                             <scriptArguments>${project.basedir}</scriptArguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>documentation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>script</goal>
+                        </goals>
+                        <configuration>
+                            <scriptFile>doc.kts</scriptFile>
+                            <scriptArguments>${project.basedir}</scriptArguments>
+                        </configuration>
+                    </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven</groupId>
+                        <artifactId>maven-plugin-api</artifactId>
+                        <version>${maven.min.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.maven</groupId>
+                        <artifactId>maven-core</artifactId>
+                        <version>${maven.min.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-text</artifactId>
+                        <version>${version.commons.text}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains</groupId>
+                        <artifactId>markdown-jvm</artifactId>
+                        <version>${version.intellij.markdown}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,3 +1,5 @@
+// noinspection JSAnnotator,JSUnusedAssignment,SpellCheckingInspection,ES6ConvertVarToLetConst
+
 /*
  *  Copyright 2023 Red Hat
  *
@@ -13,14 +15,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
 
-import org.jboss.elemento.router.Route;
+/**
+ * @fileoverview Externs for https://highlightjs.org/
+ * @externs
+ */
 
-@Route("/")
-public class HomePage extends DocumentationPage {
+/**
+ * @const
+ */
+var hljs = {};
 
-    public HomePage() {
-        super("home");
-    }
-}
+/**
+ */
+hljs.highlightAll = function() {};

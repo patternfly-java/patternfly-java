@@ -13,13 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import java.io.File
+
 import kotlin.io.path.*
+
+import org.jetbrains.kotlin.maven.ExecuteKotlinScriptMojo
 
 // ------------------------------------------------------ init
 
+val mojo = ExecuteKotlinScriptMojo.INSTANCE
 require(args.isNotEmpty()) {
-    System.err.println("Missing base directory!")
+    mojo.getLog().error("Missing base directory!")
     System.exit(1)
 }
 
@@ -34,7 +39,7 @@ val sourcePaths = mapOf(
         "*Component.java" to Path(args[0], "src/main/java/org/patternfly/showcase/component"),
         "*Layout.java" to Path(args[0], "src/main/java/org/patternfly/showcase/layout")
 )
-val targetPath = Path(args[0], "${target}/${packageName.replace('.', '/')}")
+val targetPath = Path(args[0], "$target/${packageName.replace('.', '/')}")
 
 // ------------------------------------------------------ main
 
@@ -45,7 +50,7 @@ val code = mutableListOf<String>()
 var counter = 0
 
 targetPath.createDirectories()
-val javaSource = File(targetPath.toFile(), "${className}.java")
+val javaSource = File(targetPath.toFile(), "$className.java")
 if (javaSource.exists()) {
     javaSource.delete()
 }
@@ -54,7 +59,7 @@ startClass()
 processSnippets()
 endClass()
 
-println("Processed $counter code snippets")
+mojo.getLog().info("Processed $counter code snippets")
 
 // ------------------------------------------------------ functions and classes
 
@@ -76,7 +81,7 @@ fun startClass() {
         |   private static final Map<String, String> snippets = new HashMap<>();
         |
         |   static {
-    """.trimMargin())
+        """.trimMargin())
 }
 
 fun processSnippets() {
@@ -121,7 +126,7 @@ fun endClass() {
         |       return snippets.getOrDefault(name, "n/a");
         |    }
         |}
-    """.trimMargin())
+        """.trimMargin())
 }
 
 data class CodeBlock(val name: String, val code: List<String>)
@@ -129,8 +134,8 @@ data class CodeBlock(val name: String, val code: List<String>)
 fun CodeBlock.addSnippet() {
     javaSource.appendText("""
         |
-        |        snippets.put("${name}", "${code.joinToString("\\n").escapeJava()}");
-    """.trimMargin())
+        |        snippets.put("$name", "${code.joinToString("\\n").escapeJava()}");
+        """.trimMargin())
 }
 
 fun String.escapeJava() = this.replace("\"", "\\\"")

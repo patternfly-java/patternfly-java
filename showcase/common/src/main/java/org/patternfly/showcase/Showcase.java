@@ -90,8 +90,8 @@ public final class Showcase {
                         .addItem(ni(placeManager.place("/layouts/about-layouts"), "About layouts"))
                         .addItems(layouts(), layout ->
                                 navigationItem(layout.route, layout.title, layout.route)))
-                .addItem(ni(placeManager.place("/contribute")))
-                .addItem(ni(placeManager.place("/get-in-touch")));
+                .addItem(ni(placeManager.place("/icons")))
+                .addItem(ni(placeManager.place("/get-involved")));
 
         // body & page
         body().add(page()

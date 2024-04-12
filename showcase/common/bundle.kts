@@ -13,15 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import java.io.File
 import java.util.Base64
+
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 
+import org.jetbrains.kotlin.maven.ExecuteKotlinScriptMojo
+
 // ------------------------------------------------------ init
 
+val mojo = ExecuteKotlinScriptMojo.INSTANCE
 require(args.isNotEmpty()) {
-    System.err.println("Missing base directory!")
+    mojo.getLog().error("Missing base directory!")
     System.exit(1)
 }
 
@@ -40,12 +45,12 @@ val resources = listOf(
         // TODO String too long!
 //        Resource("users", File(args[0], "src/bundle/users.json")),
 )
-val targetPath = Path(args[0], "${target}/${packageName.replace('.', '/')}")
+val targetPath = Path(args[0], "$target/${packageName.replace('.', '/')}")
 
 // ------------------------------------------------------ main
 
 targetPath.createDirectories()
-val javaSource = File(targetPath.toFile(), "${className}.java")
+val javaSource = File(targetPath.toFile(), "$className.java")
 if (javaSource.exists()) {
     javaSource.delete()
 }
@@ -54,7 +59,7 @@ startClass()
 processResources()
 endClass()
 
-println("Processed ${resources.size} resources")
+mojo.getLog().info("Processed ${resources.size} resources")
 
 // ------------------------------------------------------ functions and classes
 
@@ -70,7 +75,7 @@ fun startClass() {
     |@Generated("bundle.kts")
     |public final class $className {
     |
-""".trimMargin())
+    """.trimMargin())
 }
 
 fun processResources() {
@@ -78,7 +83,8 @@ fun processResources() {
         javaSource.appendText("""
         |    ${it.code()}
         |
-    """.trimMargin())
+        """.trimMargin())
+        mojo.getLog().info("Processed ${it.name}")
     }
 }
 
@@ -89,7 +95,7 @@ fun endClass() {
 data class Resource(val name: String, val file: File, val encode: Boolean)
 
 fun Resource.code() = buildString {
-    append("public static final String ${name} = \"")
+    append("public static final String $name = \"")
     if (encode) {
         append(Base64.getEncoder().encodeToString(file.readText().toByteArray()))
     } else {
