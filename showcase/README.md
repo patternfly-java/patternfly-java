@@ -35,7 +35,7 @@ Run `./dev.sh gwt`, then open http://localhost:8888/showcase
 
 Run `./dev.sh j2cl`, wait until you see
 
-```shell
+```
 [INFO] -----  Build Complete: ready for browser refresh  -----
 ```
 
