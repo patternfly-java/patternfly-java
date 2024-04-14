@@ -26,11 +26,14 @@ ARGS:
 
 ### GWT
 
-Open http://localhost:8888/showcase
+Run `./dev.sh gwt`, then open http://localhost:8888/showcase
+
+> [!WARNING]
+> GWT development mode currently only supports hot code reloading of the `org.patternfly:patternfly-java-showcase-common` module.
 
 ### J2CL
 
-Wait until you see
+Run `./dev.sh j2cl`, wait until you see
 
 ```shell
 [INFO] -----  Build Complete: ready for browser refresh  -----
@@ -60,7 +63,7 @@ ARGS:
     <mode>              One of 'gwt' or 'j2cl'
 ```
 
-The script open https://localhost:8080
+After a successful build, the script will open https://localhost:8080
 
 # Feedback
 
