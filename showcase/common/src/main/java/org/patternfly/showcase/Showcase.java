@@ -22,8 +22,10 @@ import org.jboss.elemento.router.RoutesImpl;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
 import org.patternfly.component.page.Page;
+import org.patternfly.core.Version;
 import org.patternfly.style.Classes;
 
+import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.body;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
@@ -121,5 +123,12 @@ public final class Showcase {
 
     public static void start() {
         placeManager.start();
+    }
+
+    public static void log(Settings settings) {
+        console.log("PatternFly version:      " + Version.PATTERN_FLY_VERSION);
+        console.log("PatternFly Java version: " + Version.PATTERN_FLY_JAVA_VERSION);
+        console.log("Execution mode:          " + settings.mode());
+        console.log("Technology stack:        " + settings.tech());
     }
 }

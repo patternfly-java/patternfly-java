@@ -17,3 +17,9 @@ goog.provide('settings');
 
 /** @define {string} */
 settings.base = goog.define('settings.base', '/');
+
+/** @define {string} */
+settings.mode = goog.define('settings.mode', 'undefined');
+
+/** @define {string} */
+settings.tech = goog.define('settings.tech', 'j2cl');

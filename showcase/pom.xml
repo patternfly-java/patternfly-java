@@ -30,7 +30,7 @@
     <artifactId>patternfly-java-showcase</artifactId>
     <version>0.2.3-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>PatternFly Java Samples</name>
+    <name>PatternFly Java Showcase</name>
 
     <properties>
         <!-- Dependency versions -->
@@ -46,6 +46,8 @@
         <j2cl.sourcemaps>true</j2cl.sourcemaps>
         <npm.script>dev</npm.script>
         <settings.base>/</settings.base>
+        <settings.mode>development</settings.mode>
+        <settings.tech/>
     </properties>
 
     <modules>
@@ -60,7 +62,16 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-showcase-common</artifactId>
                 <version>${project.version}</version>
+<!--                <type>jar</type>-->
             </dependency>
+<!--
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>patternfly-java-showcase-common</artifactId>
+                <version>${project.version}</version>
+                <type>gwt-lib</type>
+            </dependency>
+-->
             <dependency>
                 <groupId>org.gwtproject</groupId>
                 <artifactId>gwt</artifactId>
@@ -91,6 +102,7 @@
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
                 <j2cl.sourcemaps>false</j2cl.sourcemaps>
                 <npm.script>prod</npm.script>
+                <settings.mode>production</settings.mode>
             </properties>
         </profile>
     </profiles>

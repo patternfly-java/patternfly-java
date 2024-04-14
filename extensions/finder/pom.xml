@@ -29,7 +29,7 @@
     </parent>
 
     <artifactId>patternfly-java-finder</artifactId>
-    <packaging>jar</packaging>
+    <packaging>gwt-lib</packaging>
     <name>PatternFly Java Finder</name>
     <description>PatternFly Java finder</description>
 
@@ -37,6 +37,19 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <moduleName>org.patternfly.extension.Finder</moduleName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

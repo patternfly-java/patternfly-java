@@ -71,6 +71,8 @@ public enum ComponentType {
 
     ExpandableSection("exs", "PF5/ExpandableSection"),
 
+    Finder("fnd", "PF5/Finder"),
+
     Form("frm", "PF5/Form"),
 
     FormSelect("frs", "PF5/FormSelect"),

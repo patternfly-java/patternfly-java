@@ -17,11 +17,10 @@
 
 -->
 <module>
-    <inherits name="org.jboss.elemento.Router"/>
-    <inherits name="org.patternfly.PatternFly"/>
-    <inherits name="org.patternfly.showcase.Common"/>
     <source path="showcase"/>
     <entry-point class="org.patternfly.showcase.Main" />
     <define-configuration-property name="settings.base" is-multi-valued="false"/>
+    <define-configuration-property name="settings.mode" is-multi-valued="false"/>
+    <define-configuration-property name="settings.tech" is-multi-valued="false"/>
     <collapse-all-properties/>
 </module>

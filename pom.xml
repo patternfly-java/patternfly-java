@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.4.3</version.elemento>
+        <version.elemento>1.4.5</version.elemento>
         <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
@@ -470,72 +470,6 @@
             </properties>
         </profile>
         <profile>
-            <id>snippets</id>
-            <properties>
-                <java.version>19</java.version>
-                <javadoc.options>--snippet-path ${project.basedir}/src/demo/java</javadoc.options>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>copy-apidocs</id>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <copy todir="target/site/apidocs/org/patternfly"
-                                              overwrite="true"
-                                              failonerror="false">
-                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="components/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="core/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="gwt/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="icons/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="layouts/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                        </copy>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>showcase</id>
-            <modules>
-                <module>showcase</module>
-            </modules>
-        </profile>
-        <profile>
             <id>release</id>
             <build>
                 <plugins>
@@ -605,6 +539,72 @@
                             <nexusUrl>${sonatype.url}</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>showcase</id>
+            <modules>
+                <module>showcase</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>snippets</id>
+            <properties>
+                <java.version>19</java.version>
+                <javadoc.options>--snippet-path ${project.basedir}/src/demo/java</javadoc.options>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>copy-apidocs</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <copy todir="target/site/apidocs/org/patternfly"
+                                              overwrite="true"
+                                              failonerror="false">
+                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="components/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="core/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="gwt/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="icons/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="layouts/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

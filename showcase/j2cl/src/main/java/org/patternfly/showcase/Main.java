@@ -25,5 +25,6 @@ public class Main {
     public void onModuleLoad() {
         Showcase.init(env());
         Showcase.start();
+        Showcase.log(env());
     }
 }

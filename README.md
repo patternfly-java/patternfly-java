@@ -57,6 +57,7 @@ and add a dependency to either
 <dependency>
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java-gwt</artifactId>
+    <type>gwt-lib</type>
 </dependency>
 ```
 

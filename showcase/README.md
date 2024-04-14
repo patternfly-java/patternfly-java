@@ -13,12 +13,10 @@ To build the showcase follow these steps
 ### Development Mode
 
 ```shell
-mvn -Dquickly install
-cd showcase/gwt
-mvn gwt:devmode
+mvn --projects org.patternfly:patternfly-java-showcase-gwt --also-make -P showcase gwt:devmode
 ```
 
-http://localhost:8888/showcase
+Open http://localhost:8888/showcase
 
 ### Production Mode
 
@@ -32,7 +30,7 @@ The compiled HTML, JavaScript and CSS filed are in `showcase/gwt/target/showcase
 http-server showcase/gwt/target/showcase
 ```
 
-http://localhost:8080
+Open http://localhost:8080
 
 ## J2CL
 
@@ -48,6 +46,8 @@ In another shell execute
 yarn run watch
 ```
 
+This will open http://localhost:1234.
+
 ### Production Mode
 
 ```shell
@@ -60,7 +60,7 @@ The compiled HTML, JavaScript and CSS filed are in `showcase/j2cl/target/showcas
 http-server showcase/j2cl/target/showcase
 ```
 
-http://localhost:8080
+Open http://localhost:8080
 
 # Feedback
 

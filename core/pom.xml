@@ -29,7 +29,7 @@
     </parent>
 
     <artifactId>patternfly-java-core</artifactId>
-    <packaging>jar</packaging>
+    <packaging>gwt-lib</packaging>
     <name>PatternFly Java Core</name>
     <description>PatternFly Java core components and layouts</description>
 
@@ -37,10 +37,12 @@
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-core</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-svg</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -60,21 +62,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>org/patternfly/**/*.java</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>org/patternfly/**/*.gwt.xml</include>
-                </includes>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -118,6 +105,13 @@
                         <version>${maven.min.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <moduleName>org.patternfly.Core</moduleName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

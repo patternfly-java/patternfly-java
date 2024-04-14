@@ -25,5 +25,6 @@ public class Main implements EntryPoint {
     public void onModuleLoad() {
         Showcase.init(env());
         Showcase.start();
+        Showcase.log(env());
     }
 }

@@ -29,21 +29,29 @@
     </parent>
 
     <artifactId>patternfly-java-showcase-common</artifactId>
-    <packaging>jar</packaging>
+    <packaging>gwt-lib</packaging>
     <name>PatternFly Java Showcase Common</name>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-layouts</artifactId>
+<!--            <type>gwt-lib</type>-->
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-codeeditor</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-router</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
@@ -58,21 +66,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>org/patternfly/**/*.java</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>org/patternfly/**/*.gwt.xml</include>
-                </includes>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -171,6 +164,13 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <moduleName>org.patternfly.showcase.Common</moduleName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -9,13 +9,15 @@
     "src/web/index.html"
   ],
   "scripts": {
-    "watch": "parcel serve src/web/dev.html --https --dist-dir target/showcase --open",
+    "watch": "parcel serve src/web/dev.html --https --cert cert.pem --key key.pem --dist-dir target/showcase --open",
     "dev": "parcel build src/web/dev.html --dist-dir target/showcase --no-optimize",
-    "prod": "parcel build src/web/index.html --dist-dir target/showcase"
+    "prod": "parcel build src/web/index.html --dist-dir target/showcase",
+    "http-server": "http-server target/showcase --ssl --cert cert.pem -o"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",
     "@parcel/reporter-cli": "^2.12.0",
+    "http-server": "^14.1.1",
     "parcel": "^2.12.0",
     "parcel-resolver-ignore": "^2.2.0"
   },

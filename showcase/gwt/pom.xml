@@ -32,14 +32,21 @@
     <packaging>gwt-app</packaging>
     <name>PatternFly Java Showcase GWT</name>
 
+    <properties>
+        <settings.base>/showcase</settings.base>
+        <settings.tech>gwt</settings.tech>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-gwt</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-showcase-common</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
         <dependency>
             <groupId>org.gwtproject</groupId>
@@ -99,6 +106,16 @@
                             <arguments>run ${npm.script}</arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http-server</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase/>
+                        <configuration>
+                            <arguments>run http-server</arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -110,10 +127,18 @@
                         <devmodeArg>showcase/index.html</devmodeArg>
                         <devmodeArg>-setProperty</devmodeArg>
                         <devmodeArg>settings.base=${settings.base}</devmodeArg>
+                        <devmodeArg>-setProperty</devmodeArg>
+                        <devmodeArg>settings.mode=${settings.mode}</devmodeArg>
+                        <devmodeArg>-setProperty</devmodeArg>
+                        <devmodeArg>settings.tech=${settings.tech}</devmodeArg>
                     </devmodeArgs>
                     <compilerArgs>
                         <compilerArg>-setProperty</compilerArg>
                         <compilerArg>settings.base=${settings.base}</compilerArg>
+                        <compilerArg>-setProperty</compilerArg>
+                        <compilerArg>settings.mode=${settings.mode}</compilerArg>
+                        <compilerArg>-setProperty</compilerArg>
+                        <compilerArg>settings.tech=${settings.tech}</compilerArg>
                     </compilerArgs>
                     <draftCompile>${gwt.draftCompile}</draftCompile>
                     <moduleName>org.patternfly.Showcase</moduleName>

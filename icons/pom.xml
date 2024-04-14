@@ -29,7 +29,7 @@
     </parent>
 
     <artifactId>patternfly-java-icons</artifactId>
-    <packaging>jar</packaging>
+    <packaging>gwt-lib</packaging>
     <name>PatternFly Java Icons</name>
     <description>PatternFly Java icons</description>
 
@@ -37,25 +37,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-core</artifactId>
+<!--            <type>gwt-lib</type>-->
         </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>org/patternfly/**/*.java</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>org/patternfly/**/*.gwt.xml</include>
-                </includes>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -108,6 +94,13 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <moduleName>org.patternfly.Icons</moduleName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

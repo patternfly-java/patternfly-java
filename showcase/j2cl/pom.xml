@@ -32,6 +32,10 @@
     <packaging>jar</packaging>
     <name>PatternFly Java Showcase J2CL</name>
 
+    <properties>
+        <settings.tech>j2cl</settings.tech>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -100,6 +104,16 @@
                             <arguments>run ${npm.script}</arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http-server</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase/>
+                        <configuration>
+                            <arguments>run http-server</arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -116,6 +130,8 @@
                             <initialScriptFilename>showcase.js</initialScriptFilename>
                             <defines>
                                 <settings.base>${settings.base}</settings.base>
+                                <settings.mode>${settings.mode}</settings.mode>
+                                <settings.tech>${settings.tech}</settings.tech>
                             </defines>
                             <webappDirectory>${project.build.directory}/showcase</webappDirectory>
                         </configuration>
@@ -124,13 +140,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <settings.base>/</settings.base>
-            </properties>
-        </profile>
-    </profiles>
 </project>

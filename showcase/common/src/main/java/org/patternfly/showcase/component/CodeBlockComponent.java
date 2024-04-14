@@ -16,18 +16,18 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.code.CodeBlock;
-import org.patternfly.component.code.CodeBlockAction;
-import org.patternfly.component.code.CodeBlockActions;
-import org.patternfly.component.code.CodeBlockHeader;
+import org.patternfly.component.codeblock.CodeBlock;
+import org.patternfly.component.codeblock.CodeBlockAction;
+import org.patternfly.component.codeblock.CodeBlockActions;
+import org.patternfly.component.codeblock.CodeBlockHeader;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.code.CodeBlock.codeBlock;
-import static org.patternfly.component.code.CodeBlockAction.codeBlockAction;
-import static org.patternfly.component.code.CodeBlockAction.codeBlockCopyToClipboardAction;
+import static org.patternfly.component.codeblock.CodeBlock.codeBlock;
+import static org.patternfly.component.codeblock.CodeBlockAction.codeBlockAction;
+import static org.patternfly.component.codeblock.CodeBlockAction.codeBlockCopyToClipboardAction;
 import static org.patternfly.icon.IconSets.fas.play;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;

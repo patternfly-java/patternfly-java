@@ -20,4 +20,12 @@ public interface Settings {
     default String base() {
         return System.getProperty("settings.base", "/");
     }
+
+    default String mode() {
+        return System.getProperty("settings.mode", "undefined");
+    }
+
+    default String tech() {
+        return System.getProperty("settings.tech", "undefined");
+    }
 }
