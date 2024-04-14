@@ -29,7 +29,7 @@ ARGS:
 Run `./dev.sh gwt`, then open http://localhost:8888/showcase
 
 > [!WARNING]
-> GWT development mode currently only supports hot code reloading of the `org.patternfly:patternfly-java-showcase-common` module.
+> GWT development mode currently only supports hot code reloading for the `org.patternfly:patternfly-java-showcase-common` module.
 
 ### J2CL
 
@@ -45,7 +45,7 @@ then open another shell in `showcase/j2cl` and run
 yarn run watch
 ```
 
-This will open https://localhost:1234/ in the browser.
+This will open https://localhost:1234/.
 
 ## Production
 
