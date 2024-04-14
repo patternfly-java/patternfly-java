@@ -49,84 +49,68 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-codeeditor</artifactId>
                 <version>${project.version}</version>
-                <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-codeeditor</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-components</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-components</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-core</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-core</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-finder</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-finder</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-gwt</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-gwt</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-icons</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-icons</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-j2cl</artifactId>
@@ -136,16 +120,13 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-layouts</artifactId>
                 <version>${project.version}</version>
-<!--                <type>jar</type>-->
             </dependency>
-<!--
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-layouts</artifactId>
                 <version>${project.version}</version>
-                <type>gwt-lib</type>
+                <classifier>sources</classifier>
             </dependency>
--->
         </dependencies>
     </dependencyManagement>
 

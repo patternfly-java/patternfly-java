@@ -109,7 +109,7 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
-                        <phase/>
+                        <phase>none</phase>
                         <configuration>
                             <arguments>run http-server</arguments>
                         </configuration>

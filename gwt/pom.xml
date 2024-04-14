@@ -49,12 +49,20 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
-<!--            <type>gwt-lib</type>-->
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-components</artifactId>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-layouts</artifactId>
-<!--            <type>gwt-lib</type>-->
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-layouts</artifactId>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.gwtproject</groupId>

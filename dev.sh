@@ -104,16 +104,14 @@ parse_params "$@"
 setup_colors
 
 if [[ "${MODE}" == "gwt" ]]; then
-  LABEL=GWT
-  ARTIFACT=patternfly-java-showcase-gwt
-  GOAL=gwt:devmode
+  msg "Prepare ${YELLOW}GWT${NOFORMAT} development mode..."
+  mvn --projects org.patternfly:patternfly-java-showcase-common --also-make -P showcase ${CLEAN} install
+  cd showcase/gwt
+  msg "Start ${YELLOW}GWT${NOFORMAT} development mode..."
+  mvn gwt:devmode
 else
-  LABEL=J2CL
-  ARTIFACT=patternfly-java-showcase-j2cl
-  GOAL=j2cl:watch
+  msg "Prepare ${YELLOW}J2CL${NOFORMAT} development mode..."
+  mvn -P showcase ${CLEAN} compile
+  msg "Start ${YELLOW}J2CL${NOFORMAT} development mode..."
+  mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch
 fi
-
-msg "Prepare ${YELLOW}${LABEL}${NOFORMAT} development mode..."
-mvn ${CLEAN} compile -P showcase
-msg "Start ${YELLOW}${LABEL}${NOFORMAT} development mode..."
-mvn --projects org.patternfly:${ARTIFACT} --also-make -P showcase ${GOAL}

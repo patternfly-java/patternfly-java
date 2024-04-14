@@ -38,15 +38,56 @@
     </properties>
 
     <dependencies>
+        <!-- Sources for GWT -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-codeeditor</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-components</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-core</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-icons</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-layouts</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <!-- Regular dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-gwt</artifactId>
-<!--            <type>gwt-lib</type>-->
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-gwt</artifactId>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-showcase-common</artifactId>
-<!--            <type>gwt-lib</type>-->
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-showcase-common</artifactId>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.gwtproject</groupId>
@@ -111,7 +152,7 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
-                        <phase/>
+                        <phase>none</phase>
                         <configuration>
                             <arguments>run http-server</arguments>
                         </configuration>

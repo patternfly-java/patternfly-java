@@ -6,7 +6,7 @@
   ],
   "source": "src/web/index.html",
   "scripts": {
-    "dev": "parcel build --dist-dir ../../target/gwt/devmode/war/showcase --no-optimize --public-url /showcase",
+    "dev": "parcel build --dist-dir target/gwt/devmode/war/showcase --no-optimize --public-url /showcase",
     "prod": "parcel build --dist-dir target/showcase",
     "http-server": "http-server target/showcase --ssl --cert cert.pem -o"
   },

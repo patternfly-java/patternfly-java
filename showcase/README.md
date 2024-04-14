@@ -6,61 +6,61 @@ The bulk of the showcase code is in the [`common`](https://github.com/patternfly
 
 # Build
 
-To build the showcase follow these steps
+To build the showcase you can use the `dev.sh` and `prod.sh` scripts:
 
-## GWT
+## Development
 
-### Development Mode
+```java
+USAGE:
+    dev.sh [FLAGS] <mode>
 
-```shell
-mvn --projects org.patternfly:patternfly-java-showcase-gwt --also-make -P showcase gwt:devmode
+FLAGS:
+    -c, --clean         Adds the 'clean' goal
+    -h, --help          Prints help information
+    -v, --version       Prints version information
+    --no-color          Uses plain text output
+
+ARGS:
+    <mode>              One of 'gwt' or 'j2cl'
 ```
+
+### GWT
 
 Open http://localhost:8888/showcase
 
-### Production Mode
+### J2CL
+
+Wait until you see
 
 ```shell
-mvn --projects org.patternfly:patternfly-java-showcase-gwt --also-make -P prod,showcase install
+[INFO] -----  Build Complete: ready for browser refresh  -----
 ```
 
-The compiled HTML, JavaScript and CSS filed are in `showcase/gwt/target/showcase`. Please use a local HTTP server like https://www.npmjs.com/package/http-server to serve the showcase:
-
-```shell
-http-server showcase/gwt/target/showcase
-```
-
-Open http://localhost:8080
-
-## J2CL
-
-### Development Mode
-
-```shell
-mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch
-```
-
-In another shell execute
+in the console then `cd showcase/j2cl` and run
 
 ```shell
 yarn run watch
 ```
 
-This will open http://localhost:1234.
+This will open https://localhost:1234/ in the browser.
 
-### Production Mode
+## Production
 
-```shell
-mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P prod,showcase install
+```java
+USAGE:
+    prod.sh [FLAGS] <mode>
+
+FLAGS:
+    -c, --clean         Adds the 'clean' goal
+    -h, --help          Prints help information
+    -v, --version       Prints version information
+    --no-color          Uses plain text output
+
+ARGS:
+    <mode>              One of 'gwt' or 'j2cl'
 ```
 
-The compiled HTML, JavaScript and CSS filed are in `showcase/j2cl/target/showcase`. Please use a local HTTP server like https://www.npmjs.com/package/http-server to serve the showcase:
-
-```shell
-http-server showcase/j2cl/target/showcase
-```
-
-Open http://localhost:8080
+The script open https://localhost:8080
 
 # Feedback
 

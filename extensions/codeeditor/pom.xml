@@ -37,7 +37,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
-<!--            <type>gwt-lib</type>-->
         </dependency>
     </dependencies>
 
