@@ -39,7 +39,7 @@ Run `./dev.sh j2cl`, wait until you see
 [INFO] -----  Build Complete: ready for browser refresh  -----
 ```
 
-in the console then `cd showcase/j2cl` and run
+then open another shell in `showcase/j2cl` and run
 
 ```shell
 yarn run watch
