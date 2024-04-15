@@ -9,7 +9,7 @@
     "src/web/index.html"
   ],
   "scripts": {
-    "watch": "parcel serve src/web/dev.html --https --cert cert.pem --key key.pem --dist-dir target/showcase --open",
+    "watch": "parcel serve src/web/dev.html --https --cert cert.pem --dist-dir target/showcase --open",
     "dev": "parcel build src/web/dev.html --dist-dir target/showcase --no-optimize",
     "prod": "parcel build src/web/index.html --dist-dir target/showcase",
     "http-server": "http-server target/showcase --ssl --cert cert.pem -o"
