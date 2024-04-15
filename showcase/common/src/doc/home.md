@@ -1,6 +1,6 @@
 # PatternFly Java
 
-PatternFly Java is a 💯Java implementation of [PatternFly](https://www.patternfly.org/) without any JavaScript dependencies. Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
+PatternFly Java is a 💯 Java implementation of [PatternFly](https://www.patternfly.org/) without any JavaScript dependencies. Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
 
 ```java
 body().add(page()
@@ -21,7 +21,7 @@ body().add(page()
                                 .add(p()
                                         .add(a("https://github.com/patternfly-java/patternfly-java", "_blank")
                                                 .textContent("PatternFly Java"))
-                                        .add(" is a 💯Java implementation of ")
+                                        .add(" is a 💯 Java implementation of ")
                                         .add(a("https://www.patternfly.org/", "_blank")
                                                 .textContent("PatternFly"))
                                         .add(" without any JavaScript dependencies based on GWT/J2CL and ")
