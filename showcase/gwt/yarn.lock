@@ -469,6 +469,17 @@
     "@parcel/node-resolver-core" "3.3.0"
     "@parcel/plugin" "2.12.0"
 
+"@parcel/resolver-glob@^2.12.0":
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@parcel/resolver-glob/-/resolver-glob-2.12.0.tgz#82915ddcc7820e136347f895f1431036f5e229f2"
+  integrity sha512-vyv2YZQlj9Pg5mL7Lz92nlN0zo8VkPdauCTqjj19OVrDTF2BiBw6sf2vukUOl1RzFfAruBMcTzxjkWXaTyDgpQ==
+  dependencies:
+    "@parcel/diagnostic" "2.12.0"
+    "@parcel/node-resolver-core" "3.3.0"
+    "@parcel/plugin" "2.12.0"
+    "@parcel/utils" "2.12.0"
+    nullthrows "^1.1.1"
+
 "@parcel/runtime-browser-hmr@2.12.0":
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/@parcel/runtime-browser-hmr/-/runtime-browser-hmr-2.12.0.tgz#9d045785b83760e305c9efd3d6300a9ff73bcfaf"
@@ -1765,6 +1776,9 @@ set-function-length@^1.2.1:
     get-intrinsic "^1.2.4"
     gopd "^1.0.1"
     has-property-descriptors "^1.0.2"
+
+"showcase-common@file:../common/local_modules/showcase-common":
+  version "0.0.1"
 
 side-channel@^1.0.6:
   version "1.0.6"

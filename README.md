@@ -1,6 +1,6 @@
 [![Verify Codebase](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml/badge.svg)](https://github.com/patternfly-java/patternfly-java/actions/workflows/verify.yml) [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://patternfly-java.github.io/apidocs/) [![Maven Central](https://img.shields.io/maven-central/v/org.patternfly/patternfly-java-parent)](https://central.sonatype.com/search?q=g%3Aorg.patternfly) ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg) [![Chat on Gitter](https://badges.gitter.im/patternfly-java/patternfly-java.svg)](https://app.gitter.im/#/room/#pf4-java_core:gitter.im)
 
-PatternFly Java is a Java implementation of [PatternFly](https://www.patternfly.org/). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
+PatternFly Java is a 💯Java implementation of [PatternFly](https://www.patternfly.org/) without any JavaScript dependencies. Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
 
 ```java
 body().add(page()
@@ -12,8 +12,7 @@ body().add(page()
                 .addBody(sidebarBody()
                         .addNavigation(navigation(flat)
                                 .addItem(navigationItem("get-started", "Get started", "/get-started"))
-                                .addItem(navigationItem("contribute", "Contribute", "/contribute"))
-                                .addItem(navigationItem("get-in-touch", "Get in touch", "/get-in-touch")))))
+                                .addItem(navigationItem("get-involved", "Get involved", "/get-involved")))))
         .addMain(pageMain("main-id")
                 .addSection(pageMainSection()
                         .light()
@@ -22,10 +21,10 @@ body().add(page()
                                 .add(p()
                                         .add(a("https://github.com/patternfly-java/patternfly-java", "_blank")
                                                 .textContent("PatternFly Java"))
-                                        .add(" is a Java implementation of ")
+                                        .add(" is a 💯Java implementation of ")
                                         .add(a("https://www.patternfly.org/", "_blank")
                                                 .textContent("PatternFly"))
-                                        .add(" based on GWT/J2CL and ")
+                                        .add(" without any JavaScript dependencies based on GWT/J2CL and ")
                                         .add(a("https://github.com/hal/elemento", "_blank")
                                                 .textContent("Elemento"))
                                         .add("."))))));

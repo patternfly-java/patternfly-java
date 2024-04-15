@@ -44,3 +44,30 @@
 .hljs {
     background-color: var(--pf-v5-global--BackgroundColor--200) !important;
 }
+
+.markdown table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.markdown table tr {
+    background-color: #fff;
+    border-top: 1px solid #d0d7deb3;
+}
+
+.markdown table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+.markdown table th {
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+    font-weight: 600;
+}
+
+.markdown table td {
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+}
