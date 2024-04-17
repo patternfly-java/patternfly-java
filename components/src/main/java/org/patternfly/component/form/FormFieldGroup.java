@@ -39,6 +39,7 @@ import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.group;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fieldGroup;
@@ -75,7 +76,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
 
     FormFieldGroup(boolean expandable) {
         super(SUB_COMPONENT_NAME, div().css(component(form, fieldGroup))
-                .attr(role, "group")
+                .attr(role, group)
                 .element());
         this.titleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_NAME, "title");
         this.expandable = false;

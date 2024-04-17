@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.List;
+import java.util.function.Function;
+
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -37,7 +41,10 @@ import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
+import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
@@ -52,10 +59,15 @@ import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.MenuItemAction.favoriteMenuItemAction;
+import static org.patternfly.component.menu.MenuItemType.async;
 import static org.patternfly.component.menu.MenuItemType.checkbox;
 import static org.patternfly.component.menu.MenuItemType.link;
+import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Roles.menuitem;
+import static org.patternfly.core.Roles.none;
+import static org.patternfly.core.Roles.option;
 import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.icon.IconSets.fas.externalLinkAlt;
 import static org.patternfly.style.Classes.component;
@@ -67,10 +79,14 @@ import static org.patternfly.style.Classes.favorite;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.load;
+import static org.patternfly.style.Classes.loading;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.select;
+import static org.patternfly.style.Size.lg;
+import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Disabled<HTMLElement, MenuItem>,
@@ -85,33 +101,38 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
      * Create a new menu item with type {@link MenuItemType#action}.
      */
     public static MenuItem actionMenuItem(String id, String text) {
-        return new MenuItem(id, text, MenuItemType.action);
+        return new MenuItem(id, text, MenuItemType.action, null);
     }
 
     /**
      * Create a new menu item with type {@link MenuItemType#link}.
      */
     public static MenuItem linkMenuItem(String id, String text, String href) {
-        return new MenuItem(id, text, link);
+        return new MenuItem(id, text, link, null).href(href);
     }
 
     /**
      * Create a new menu item with type {@link MenuItemType#link}.
      */
     public static MenuItem checkboxMenuItem(String id, String text) {
-        return new MenuItem(id, text, checkbox);
+        return new MenuItem(id, text, checkbox, null);
+    }
+
+    public static MenuItem asyncMenuItem(String id, String text, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+        return new MenuItem(id, text, async, loadItems);
     }
 
     /**
      * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
      */
     public static MenuItem menuItem(String id, MenuItemType type) {
-        return new MenuItem(id, null, MenuItemType.action);
+        return new MenuItem(id, null, MenuItemType.action, null);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "";
+
 
     public final String id;
     final MenuItemType itemType;
@@ -121,6 +142,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     MenuItem sourceItem;
     MenuItem favoriteItem;
     MenuItemAction favoriteItemAction;
+    private String loadingText;
+    private double loadingTimeout;
     private boolean initialSelection;
     private Checkbox checkboxComponent;
     private MenuItemAction itemAction;
@@ -129,16 +152,18 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private HTMLElement selectIcon;
     private ComponentHandler<MenuItem> handler;
 
-    MenuItem(String id, String text, MenuItemType itemType) {
+    MenuItem(String id, String text, MenuItemType itemType, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
-                .attr(role, "none")
+                .attr(role, none)
                 .element());
         this.id = id;
         this.itemType = itemType;
 
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
-        if (itemType == MenuItemType.action || itemType == link) {
-            itemBuilder = itemType == MenuItemType.action ? button().attr(tabindex, 0) : a().attr(tabindex, -1);
+        if (itemType == MenuItemType.action || itemType == link || itemType == async) {
+            itemBuilder = itemType == MenuItemType.action || itemType == MenuItemType.async
+                    ? button().attr(tabindex, 0)
+                    : a().attr(tabindex, -1);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
                     .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                             .element())
@@ -168,6 +193,20 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (text != null) {
             textElement.textContent = text;
         }
+
+        if (itemType == async) {
+            css(modifier(load));
+            if (loadItems == null) {
+                Logger.undefined(ComponentType.Menu.componentName, element(),
+                        "No load items promise on menu item '" + id + "' defined!");
+            } else {
+                loadItems(loadItems);
+            }
+        } else if (loadItems != null) {
+            Logger.unsupported(ComponentType.Menu.componentName, element(),
+                    "Ignore load items promise on menu item '" + id + "' with type '" + itemType.name() + "'");
+        }
+
         Attachable.register(this, this);
     }
 
@@ -218,10 +257,10 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         switch (menu.menuType) {
             case menu:
             case dropdown:
-                itemElement.setAttribute(role, "menuitem");
+                itemElement.setAttribute(role, menuitem);
                 break;
             case select:
-                itemElement.setAttribute(role, "option");
+                itemElement.setAttribute(role, option);
                 break;
         }
         if (checkboxComponent != null) {
@@ -278,6 +317,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     public MenuItem disabled(boolean disabled) {
         switch (itemType) {
             case action:
+            case async:
                 ((HTMLButtonElement) itemElement).disabled = disabled;
                 break;
             case link:
@@ -392,6 +432,13 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(textElement);
+    }
+
     // ------------------------------------------------------ internal
 
     MenuItemAction addFavoriteItemAction() {
@@ -431,5 +478,41 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         } else {
             return Boolean.parseBoolean(itemElement.getAttribute(Aria.selected));
         }
+    }
+
+    private void loadItems(Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+        itemElement.addEventListener(click.name, e -> {
+            clearTimeout(loadingTimeout);
+            MenuList menuList = lookupSubComponent(MenuList.SUB_COMPONENT_NAME);
+            loadingTimeout = setTimeout(__ -> startLoading(), LOADING_TIMEOUT);
+            loadItems.apply(menuList).then(loadedItems -> {
+                        stopLoading();
+                        menuList.removeItem(this);
+                        for (MenuItem item : loadedItems) {
+                            menuList.addItem(item);
+                        }
+                        return null;
+                    })
+                    .catch_(error -> {
+                        stopLoading();
+                        text(loadingText);
+                        Logger.undefined(ComponentType.Menu.componentName, element(),
+                                "Unable to load menu items: " + error);
+                        return null;
+                    });
+        });
+    }
+
+    private void startLoading() {
+        loadingText = text(); // store in case of an error
+        Elements.removeChildrenFrom(textElement);
+        classList().remove(modifier(load));
+        classList().add(modifier(loading));
+        textElement.appendChild(spinner(lg).element());
+    }
+
+    private void stopLoading() {
+        clearTimeout(loadingTimeout);
+        Elements.removeChildrenFrom(textElement);
     }
 }

@@ -21,7 +21,7 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.core.Aria;
-import org.patternfly.style.Classes;
+import org.patternfly.core.Roles;
 
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
@@ -38,6 +38,7 @@ import static org.patternfly.component.menu.MenuItemType.link;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.menu;
 
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements Attachable {
 
@@ -57,8 +58,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     final Map<String, MenuItem> items;
 
     MenuList() {
-        super(SUB_COMPONENT_NAME, ul().css(component(Classes.menu, list)).attr(role, "menu").element());
+        super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).attr(role, Roles.menu).element());
         this.items = new HashMap<>();
+        storeSubComponent();
         Attachable.register(this, this);
     }
 
@@ -68,10 +70,10 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         switch (menu.menuType) {
             case menu:
             case dropdown:
-                attr(role, "menu");
+                attr(role, Roles.menu);
                 break;
             case select:
-                attr(role, "listbox");
+                attr(role, Roles.listbox);
                 break;
         }
         if (menu.selectionMode == single) {
@@ -134,8 +136,8 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ internal
 
-    void removeItem(MenuItem favoriteItem) {
-        items.remove(favoriteItem.id);
-        failSafeRemoveFromParent(favoriteItem);
+    void removeItem(MenuItem item) {
+        items.remove(item.id);
+        failSafeRemoveFromParent(item);
     }
 }

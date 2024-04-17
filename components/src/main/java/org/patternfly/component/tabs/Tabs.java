@@ -82,6 +82,8 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.LanguageDirection.languageDirection;
 import static org.patternfly.core.ObservableValue.ov;
+import static org.patternfly.core.Roles.region;
+import static org.patternfly.core.Roles.tablist;
 import static org.patternfly.icon.IconSets.fas.angleLeft;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.plus;
@@ -160,7 +162,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         this.disableForwardScrollButton = ov(false);
 
         this.mainContainer = builder.css(component(Classes.tabs))
-                .attr(role, "region")
+                .attr(role, region)
                 .add(scrollBack = button().css(component(Classes.tabs, scrollButton))
                         .apply(b -> b.disabled = true)
                         .aria(hidden, true)
@@ -168,7 +170,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         .on(click, e -> scrollBack())
                         .add(angleLeft()))
                 .add(tabsContainer = ul().css(component(Classes.tabs, list))
-                        .attr(role, "tablist")
+                        .attr(role, tablist)
                         .on(scroll, e -> updateState()))
                 .add(scrollForward = button().css(component(Classes.tabs, scrollButton))
                         .apply(b -> b.disabled = true)

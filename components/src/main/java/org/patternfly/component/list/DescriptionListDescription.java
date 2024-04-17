@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.list;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
@@ -71,5 +72,12 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
     @Override
     public DescriptionListDescription that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(textElement);
     }
 }

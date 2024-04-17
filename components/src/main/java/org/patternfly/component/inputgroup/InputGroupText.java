@@ -92,4 +92,11 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
     public InputGroupText that() {
         return this;
     }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return textElement.textContent;
+    }
 }

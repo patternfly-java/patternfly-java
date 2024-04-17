@@ -107,11 +107,24 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     public BreadcrumbItem that() {
         return this;
     }
+
     // ------------------------------------------------------ events
 
     public BreadcrumbItem onClick(ComponentHandler<BreadcrumbItem> actionHandler) {
         failSafeAnchorElement().addEventListener(click.name, e -> actionHandler.handle(e, this));
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (anchorElement != null) {
+            return anchorElement.textContent;
+        } else if (textElement != null) {
+            return textElement.textContent;
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

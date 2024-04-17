@@ -15,6 +15,10 @@
  */
 package org.patternfly.showcase.component;
 
+import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
+
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuActionHandler;
@@ -34,26 +38,34 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
+import elemental2.promise.Promise;
+
 import static elemental2.dom.DomGlobal.console;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.SelectionMode.multi;
+import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
+import static org.patternfly.component.menu.MenuItem.asyncMenuItem;
 import static org.patternfly.component.menu.MenuItem.checkboxMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.cube;
 import static org.patternfly.icon.IconSets.fas.layerGroup;
+import static org.patternfly.icon.IconSets.fas.table;
 import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.handler;
@@ -61,6 +73,7 @@ import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 
 @Route(value = "/components/menus/menu", title = "Menu")
 public class MenuComponent extends SnippetPage {
@@ -297,6 +310,120 @@ public class MenuComponent extends SnippetPage {
                         .element()
                 // @code-end:menu-favorites
         ));
+
+        addSnippet(new Snippet("menu-filter", "Filtering with search input",
+                code("menu-filter"), () ->
+                // @code-start:menu-filter
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:menu-filter
+        ));
+
+        addSnippet(new Snippet("menu-option-single", "Option single select menu",
+                code("menu-option-single"), () ->
+                // @code-start:menu-option-single
+                div()
+                        .add(menu(select, single)
+                                .addContent(menuContent()
+                                        .addList(menuList()
+                                                .addItem(actionMenuItem("option-0", "Option 1"))
+                                                .addItem(actionMenuItem("option-1", "Option 2"))
+                                                .addItem(actionMenuItem("option-2", "Option 3").icon(table())))))
+                        .element()
+                // @code-end:menu-option-single
+        ));
+
+        addSnippet(new Snippet("menu-option-multi", "Option multi select menu",
+                code("menu-option-multi"), () ->
+                // @code-start:menu-option-multi
+                div()
+                        .add(menu(select, multi)
+                                .addContent(menuContent()
+                                        .addList(menuList()
+                                                .addItem(actionMenuItem("option-0", "Option 1"))
+                                                .addItem(actionMenuItem("option-1", "Option 2"))
+                                                .addItem(actionMenuItem("option-2", "Option 3").icon(table())))))
+                        .element()
+                // @code-end:menu-option-multi
+        ));
+
+        addSnippet(new Snippet("menu-scrollable", "Scrollable menus",
+                code("menu-scrollable"), () ->
+                // @code-start:menu-scrollable
+                div()
+                        .add(menu(click).scrollable()
+                                .addContent(menuContent()
+                                        .addList(menuList()
+                                                .run(ml -> {
+                                                    for (int i = 0; i < 15; i++) {
+                                                        ml.addItem(actionMenuItem("item-" + 1, "Action " + (i + 1)));
+                                                    }
+                                                })
+                                                .addItem(linkMenuItem("item-1", "Link", "#item-1")
+                                                        .onClick((e, item) -> e.preventDefault()))
+                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                        .disabled())
+                                                .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
+                                                        .disabled()))))
+                        .element()
+                // @code-end:menu-scrollable
+        ));
+
+        addSnippet(new Snippet("menu-scrollable-height", "Scrollable menu with custom height",
+                code("menu-scrollable-height"), () ->
+                // @code-start:menu-scrollable-height
+                div()
+                        .add(menu(click).scrollable()
+                                .addContent(menuContent().height("200px")
+                                        .addList(menuList()
+                                                .run(ml -> {
+                                                    for (int i = 0; i < 15; i++) {
+                                                        ml.addItem(actionMenuItem("item-" + 1, "Action " + (i + 1)));
+                                                    }
+                                                })
+                                                .addItem(linkMenuItem("item-1", "Link", "#item-1")
+                                                        .onClick((e, item) -> e.preventDefault()))
+                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                        .disabled())
+                                                .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
+                                                        .disabled()))))
+                        .element()
+                // @code-end:menu-scrollable-height
+        ));
+
+        addSnippet(new Snippet("menu-async", "Basic menu",
+                code("menu-async"), () -> {
+            // @code-start:menu-async
+            Function<MenuList, Promise<List<MenuItem>>> nextNetworkCall = ml -> new Promise<>((res, rej) ->
+                    setTimeout(__ -> res.onInvoke(asList(
+                                    actionMenuItem("item-20", "Action 4"),
+                                    actionMenuItem("item-21", "Action 5"),
+                                    actionMenuItem("item-22", "Final action"))),
+                            1234 + new Random().nextInt(3456)));
+
+            Function<MenuList, Promise<List<MenuItem>>> firstNetworkCall = ml -> new Promise<>((res, rej) ->
+                    setTimeout(__ -> res.onInvoke(asList(
+                                    actionMenuItem("item-10", "Action 2"),
+                                    actionMenuItem("item-11", "Action 3"),
+                                    asyncMenuItem("item-12", "View even more", nextNetworkCall))),
+                            1234 + new Random().nextInt(3456)));
+
+            return div()
+                    .add(menu(click)
+                            .addContent(menuContent()
+                                    .addList(menuList()
+                                            .addItem(actionMenuItem("item-0", "Action")
+                                                    .onClick((e, actionItem) -> console.log(
+                                                            "Clicked on action item " + actionItem.id)))
+                                            .addItem(linkMenuItem("item-1", "Link", "#item-1")
+                                                    .onClick((e, item) -> e.preventDefault()))
+                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                                    .disabled())
+                                            .addItem(asyncMenuItem("item-3", "View more", firstNetworkCall)))))
+                    .element();
+            // @code-end:menu-async
+        }));
 
         startApiDocs(Menu.class);
         addApiDoc(Menu.class, component);

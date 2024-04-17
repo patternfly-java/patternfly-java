@@ -289,4 +289,22 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         toggleElement.setAttribute(Aria.label, label);
         return this;
     }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+            if (textElement != null) {
+                return textElement.textContent;
+            }
+        } else if (type == MenuToggleType.split) {
+            if (checkbox != null) {
+                checkbox.text();
+            } else if (action != null) {
+                action.text();
+            }
+        }
+        return null;
+    }
 }

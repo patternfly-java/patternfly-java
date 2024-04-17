@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `String WithText.text()` to get the text of the implementing component
+
 ## [0.2.2] - 2024-04-10
 
 ### Added

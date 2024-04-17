@@ -304,6 +304,11 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     @Override
+    public String text() {
+        return textElement.textContent;
+    }
+
+    @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             LabelGroup labelGroup = lookupComponent(ComponentType.LabelGroup, true);

@@ -25,6 +25,7 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.ElementDelegate;
+import org.patternfly.core.Roles;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
@@ -78,7 +79,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
         element().appendChild(heading = h(2).css(component(nav, section, title)).element());
         element().appendChild(ul = ul().css(component(nav, list))
-                .attr(role, "list")
+                .attr(role, Roles.list)
                 .element());
     }
 
@@ -158,6 +159,17 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     @Override
     public NavigationGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (this.text != null) {
+            return Elements.textNode(this.text);
+        } else {
+            return Elements.textNode(heading);
+        }
     }
 
     // ------------------------------------------------------ internal

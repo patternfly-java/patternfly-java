@@ -15,7 +15,7 @@
  */
 package org.patternfly.showcase;
 
-import org.treblereel.j2cl.processors.annotations.GWT3EntryPoint;
+import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
 
 import static org.patternfly.showcase.Environment.env;
 

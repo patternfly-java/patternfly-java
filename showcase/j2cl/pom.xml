@@ -46,11 +46,11 @@
             <artifactId>patternfly-java-showcase-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
             <artifactId>annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.treblereel.j2cl.processors</groupId>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
             <artifactId>processors</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -117,7 +117,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.vertispan.j2cl</groupId>
+                <groupId>org.kie.j2cl.tools</groupId>
                 <artifactId>j2cl-maven-plugin</artifactId>
                 <executions>
                     <execution>

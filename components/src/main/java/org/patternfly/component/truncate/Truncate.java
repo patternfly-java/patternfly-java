@@ -109,6 +109,13 @@ public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implement
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return text;
+    }
+
     // ------------------------------------------------------ internal
 
     private void internalUpdate(TruncatePosition current, TruncatePosition previous) {

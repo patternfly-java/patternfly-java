@@ -34,6 +34,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -168,7 +169,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
                         .aria(hidden, true))
                 .add(thumb = div().css(component(slider, Classes.thumb))
                         .apply(e -> e.tabIndex = 0)
-                        .attr(role, "slider")
+                        .attr(role, Roles.slider)
                         .aria(Aria.label, "Value")
                         .aria(Aria.disabled, false)
                         .on(mousedown, this::handleThumbMouseDown)

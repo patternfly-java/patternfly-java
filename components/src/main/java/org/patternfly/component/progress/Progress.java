@@ -50,6 +50,7 @@ import static org.patternfly.core.Aria.valueNow;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Numbers.percentage;
 import static org.patternfly.core.ObservableValue.ov;
+import static org.patternfly.core.Roles.progressbar;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.fas.checkCircle;
 import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
@@ -114,7 +115,7 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
                 .aria(hidden, true);
         element().appendChild(statusElement.element());
         this.progressbarElement = div().css(component(progress, bar))
-                .attr(role, "progressbar")
+                .attr(role, progressbar)
                 .add(indicatorElement = div().css(component(progress, indicator)));
         element().appendChild(progressbarElement.element());
 

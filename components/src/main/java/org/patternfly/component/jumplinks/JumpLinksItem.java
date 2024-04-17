@@ -124,6 +124,13 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return textElement.textContent;
+    }
+
     // ------------------------------------------------------ internal
 
     void markSelected(boolean selected) {

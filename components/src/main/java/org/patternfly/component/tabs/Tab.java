@@ -29,6 +29,7 @@ import org.patternfly.component.popover.Popover;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets.patternfly;
 import org.patternfly.style.Classes;
@@ -58,6 +59,7 @@ import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Aria.selected;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Roles.presentation;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
@@ -71,6 +73,7 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
@@ -95,7 +98,6 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tab";
-    private static final double LOADING_TIMEOUT = 222;
 
     public final String id;
 
@@ -118,7 +120,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String id, String text) {
         super(SUB_COMPONENT_NAME, li().css(component(tabs, item))
-                .attr(role, "presentation")
+                .attr(role, presentation)
                 .element());
         this.id = id;
         this.buttonId = Id.build(id, "tab");
@@ -127,7 +129,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
         add(button = builder.css(component(tabs, link))
                 .id(buttonId)
-                .attr(role, "tab")
+                .attr(role, Roles.tab)
                 .aria(selected, false)
                 .on(click, e -> {
                     HTMLElement currentTarget = (HTMLElement) e.currentTarget;
@@ -347,6 +349,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         return !isVisible(this);
     }
 
+    @Override
     public String text() {
         return textElement.textContent;
     }

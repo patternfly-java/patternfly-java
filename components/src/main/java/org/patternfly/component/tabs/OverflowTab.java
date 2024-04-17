@@ -28,6 +28,7 @@ import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Roles;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
@@ -50,6 +51,7 @@ import static org.patternfly.component.menu.MenuItemType.action;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.presentation;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.popper.Modifiers.eventListeners;
 import static org.patternfly.popper.Modifiers.flip;
@@ -94,12 +96,12 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     OverflowTab() {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.tabs, item), modifier(overflow))
                 .id(Id.unique(ComponentType.Tabs.id, "overflow"))
-                .attr(role, "presentation")
+                .attr(role, presentation)
                 .element());
         this.tabs = new LinkedHashMap<>();
 
         add(button = button().css(component(Classes.tabs, link))
-                .attr(role, "tab")
+                .attr(role, Roles.tab)
                 .aria(expanded, false)
                 .aria(hasPopup, "menu")
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())

@@ -148,6 +148,8 @@ public interface Classes {
     String limitWidth = "limit-width";
     String link = "link";
     String list = "list";
+    String load = "load";
+    String loading = "loading";
     String main = "main";
     String masthead = "masthead";
     String measure = "measure";

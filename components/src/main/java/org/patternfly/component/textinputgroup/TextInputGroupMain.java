@@ -184,6 +184,11 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return inputElement.value;
     }
 
+    @Override
+    public String text() {
+        return value();
+    }
+
     /** Returns the underlying input element */
     public InputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);

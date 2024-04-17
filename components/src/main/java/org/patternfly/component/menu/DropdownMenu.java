@@ -15,13 +15,26 @@
  */
 package org.patternfly.component.menu;
 
-public enum MenuItemType {
+import org.patternfly.component.SelectionMode;
 
-    action,
+public class DropdownMenu extends Menu {
 
-    link,
+    // ------------------------------------------------------ factory
 
-    checkbox,
+    public static DropdownMenu dropdownMenu() {
+        return new DropdownMenu();
+    }
 
-    async
+    // ------------------------------------------------------ instance
+
+    DropdownMenu() {
+        super(MenuType.dropdown, SelectionMode.click);
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public DropdownMenu that() {
+        return this;
+    }
 }

@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
+import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
@@ -40,7 +41,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 
 public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, MenuToggleCheckbox> implements HasValue<Boolean>,
-        Modifiers.Disabled<HTMLElement, MenuToggleCheckbox> {
+        Modifiers.Disabled<HTMLElement, MenuToggleCheckbox>, WithText<HTMLElement, MenuToggleCheckbox> {
 
     // ------------------------------------------------------ factory
 
@@ -86,6 +87,7 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
         return this;
     }
 
+    @Override
     public MenuToggleCheckbox text(String text) {
         failSafeTextElement().textContent = text;
         return this;
@@ -138,6 +140,14 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
 
     public HTMLInputElement inputElement() {
         return inputElement;
+    }
+
+    @Override
+    public String text() {
+        if (textElement != null) {
+            return textElement.textContent;
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

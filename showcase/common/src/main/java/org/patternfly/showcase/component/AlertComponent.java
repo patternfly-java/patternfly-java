@@ -57,6 +57,7 @@ import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Aria.relevant;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.list;
 import static org.patternfly.icon.IconSets.fas.box;
 import static org.patternfly.icon.IconSets.fas.database;
 import static org.patternfly.icon.IconSets.fas.laptop;
@@ -139,7 +140,7 @@ public class AlertComponent extends SnippetPage {
                     HTMLElement alerts = ul().css(component(alertGroup), util("mt-sm"))
                             .aria(live, "polite")
                             .aria(Aria.atomic, false)
-                            .attr(role, "list")
+                            .attr(role, list)
                             .element();
                     return div()
                             .add(actionList()

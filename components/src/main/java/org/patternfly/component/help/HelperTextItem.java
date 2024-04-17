@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.help;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
@@ -186,7 +187,12 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     @Override
     public String value() {
-        return textElement.textContent;
+        return Elements.textNode(textElement);
+    }
+
+    @Override
+    public String text() {
+        return value();
     }
 
     // ------------------------------------------------------ internal

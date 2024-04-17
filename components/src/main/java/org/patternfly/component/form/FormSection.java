@@ -25,6 +25,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.group;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.section;
@@ -51,7 +52,7 @@ public class FormSection extends FormSubComponent<HTMLElement, FormSection> {
 
     <E extends HTMLElement> FormSection(String title, HTMLContainerBuilder<E> titleElement) {
         super(SUB_COMPONENT_NAME, div().css(component(form, section))
-                .attr(role, "group")
+                .attr(role, group)
                 .element());
         if (title != null) {
             String titleId = Id.unique(ComponentType.Form.id, "section", "title");

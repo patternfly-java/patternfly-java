@@ -123,6 +123,13 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return text;
+    }
+
     // ------------------------------------------------------ internal
 
     void appendTo(Accordion accordion) {

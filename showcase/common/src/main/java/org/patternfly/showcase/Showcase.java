@@ -59,6 +59,8 @@ public final class Showcase {
     private static PlaceManager placeManager;
     private static Page page;
 
+    // ------------------------------------------------------ init
+
     public static void init(Settings settings) {
         // navigation #1
         navigation = navigation(expandable);
@@ -113,22 +115,30 @@ public final class Showcase {
                         .scrollableSelector(By.id(MAIN_ID))));
     }
 
-    private static NavigationItem ni(Place place) {
-        return ni(place, place.title);
-    }
-
-    private static NavigationItem ni(Place place, String text) {
-        return navigationItem(place.route, text, place.route);
-    }
-
     public static void start() {
         placeManager.start();
     }
+
+    // ------------------------------------------------------ api
 
     public static void log(Settings settings) {
         console.log("PatternFly version:      " + Version.PATTERN_FLY_VERSION);
         console.log("PatternFly Java version: " + Version.PATTERN_FLY_JAVA_VERSION);
         console.log("Execution mode:          " + settings.mode());
         console.log("Technology stack:        " + settings.tech());
+    }
+
+    public static PlaceManager placeManager() {
+        return placeManager;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private static NavigationItem ni(Place place) {
+        return ni(place, place.title);
+    }
+
+    private static NavigationItem ni(Place place, String text) {
+        return navigationItem(place.route, text, place.route);
     }
 }

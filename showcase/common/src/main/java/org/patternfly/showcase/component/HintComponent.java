@@ -33,7 +33,7 @@ import static org.patternfly.component.hint.HintBody.hintBody;
 import static org.patternfly.component.hint.HintFooter.hintFooter;
 import static org.patternfly.component.hint.HintTitle.hintTitle;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
@@ -58,9 +58,8 @@ public class HintComponent extends SnippetPage {
                 div()
                         .add(hint()
                                 .addActions(hintActions()
-                                        .add(dropdown()
-                                                .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                                                .addMenu(menu()
+                                        .add(dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                                                .addMenu(dropdownMenu()
                                                         .addContent(menuContent()
                                                                 .addList(menuList()
                                                                         .addItem(actionMenuItem("hint-basic-item-0", "Action"))
@@ -101,9 +100,8 @@ public class HintComponent extends SnippetPage {
                         .add(br())
                         .add(hint()
                                 .addActions(hintActions()
-                                        .add(dropdown()
-                                                .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                                                .addMenu(menu()
+                                        .add(dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                                                .addMenu(dropdownMenu()
                                                         .addContent(menuContent()
                                                                 .addList(menuList()
                                                                         .addItem(actionMenuItem("hint-basic-no-title-item-0",

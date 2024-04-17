@@ -64,6 +64,7 @@ import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Aria.modal;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
@@ -138,7 +139,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     Popover(Supplier<HTMLElement> trigger) {
         super(ComponentType.Popover, div().css(component(popover))
                 .style("display", "none")
-                .attr(role, "dialog")
+                .attr(role, dialog)
                 .aria(modal, true)
                 .element());
 

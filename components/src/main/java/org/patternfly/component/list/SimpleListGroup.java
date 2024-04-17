@@ -23,6 +23,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ElementDelegate;
+import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -64,7 +65,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
                 .textContent(text)
                 .element());
         element().appendChild(ulElement = ul().css(component(simpleList, list))
-                .attr(role, "list")
+                .attr(role, Roles.list)
                 .aria(labelledBy, headerId)
                 .element());
     }

@@ -21,6 +21,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.tabpanel;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
@@ -39,7 +40,7 @@ public class TabContent extends TabSubComponent<HTMLElement, TabContent> impleme
     TabContent() {
         super(SUB_COMPONENT_NAME, section().css(component(tabContent))
                 .apply(s -> s.tabIndex = 0)
-                .attr(role, "tabpanel")
+                .attr(role, tabpanel)
                 .element());
     }
 

@@ -31,6 +31,7 @@ import org.patternfly.component.HasValues;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
@@ -112,7 +113,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
 
         add(div().css(component(labelGroup, main))
                 .add(listElement = ul().css(component(labelGroup, list))
-                        .attr(role, "list")
+                        .attr(role, Roles.list)
                         .element()));
         if (category != null) {
             category(category);

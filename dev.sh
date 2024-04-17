@@ -105,13 +105,13 @@ setup_colors
 
 if [[ "${MODE}" == "gwt" ]]; then
   msg "Prepare ${YELLOW}GWT${NOFORMAT} development mode..."
-  mvn --projects org.patternfly:patternfly-java-showcase-common --also-make -P showcase ${CLEAN} install
+  mvn --projects org.patternfly:patternfly-java-showcase-common --also-make -P quick-build,showcase ${CLEAN} install
   cd showcase/gwt
   msg "Start ${YELLOW}GWT${NOFORMAT} development mode..."
   mvn gwt:devmode
 else
   msg "Prepare ${YELLOW}J2CL${NOFORMAT} development mode..."
-  mvn -P showcase ${CLEAN} compile
+  mvn -P quick-build,showcase ${CLEAN} compile
   msg "Start ${YELLOW}J2CL${NOFORMAT} development mode..."
   mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch
 fi

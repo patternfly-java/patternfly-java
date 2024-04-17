@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.list;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.popover.Popover;
@@ -31,6 +32,7 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.helpText;
@@ -96,7 +98,7 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
 
     public DescriptionListTerm help(Popover popover) {
         textElement.classList.add(modifier(helpText));
-        textElement.setAttribute(role, "button");
+        textElement.setAttribute(role, button);
         textElement.setAttribute("type", "button");
         textElement.tabIndex = 0;
         popover.trigger(textElement).appendToBody();
@@ -106,6 +108,13 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
     @Override
     public DescriptionListTerm that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(textElement);
     }
 
     // ------------------------------------------------------ internal

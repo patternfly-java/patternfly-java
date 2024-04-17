@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.patternfly.core.Roles;
+
 import elemental2.dom.HTMLLIElement;
 
 import static org.jboss.elemento.Elements.li;
@@ -41,7 +43,7 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     final Map<String, JumpLinksItem> items;
 
     JumpLinksList() {
-        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, list)).attr(role, "list").element());
+        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, list)).attr(role, Roles.list).element());
         this.items = new HashMap<>();
     }
 

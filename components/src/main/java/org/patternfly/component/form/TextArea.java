@@ -192,6 +192,11 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return wrapHtmlElement(textAreaElement);
     }
 
+    @Override
+    public String text() {
+        return value();
+    }
+
     // ------------------------------------------------------ internal
 
     @Override

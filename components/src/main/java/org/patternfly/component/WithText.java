@@ -15,6 +15,7 @@
  */
 package org.patternfly.component;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
 
@@ -24,4 +25,8 @@ public interface WithText<E extends Element, B extends TypedBuilder<E, B>> exten
         IsElement<E> {
 
     B text(String text);
+
+    default String text() {
+        return Elements.textNode(element());
+    }
 }

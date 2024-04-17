@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.navigation;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ElementDelegate;
@@ -122,6 +123,17 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     public NavigationItem onClick(ComponentHandler<NavigationItem> handler) {
         a(a).on(click, e -> handler.handle(e, this));
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (this.text != null) {
+            return Elements.textNode(this.text);
+        } else {
+            return Elements.textNode(a);
+        }
     }
 
     // ------------------------------------------------------ internal

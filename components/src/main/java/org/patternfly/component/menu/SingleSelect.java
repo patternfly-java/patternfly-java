@@ -15,84 +15,43 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
-import org.patternfly.style.Modifiers.Disabled;
-
-import elemental2.dom.HTMLElement;
-
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.EventType.click;
 
 /**
  * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleSelect extends BaseComponent<HTMLElement, SingleSelect> implements
-        Disabled<HTMLElement, SingleSelect> {
+public class SingleSelect extends MenuToggleMenu<SingleSelect> {
 
     // ------------------------------------------------------ factory
 
-    public static SingleSelect singleSelect() {
-        return new SingleSelect();
+    public static SingleSelect singleSelect(String text) {
+        return new SingleSelect(MenuToggle.menuToggle(text));
+    }
+
+    public static SingleSelect singleSelect(MenuToggle menuToggle) {
+        return new SingleSelect(menuToggle);
     }
 
     // ------------------------------------------------------ instance
 
-    SingleSelect() {
-        super(ComponentType.SingleSelect, div().element());
+    SingleSelect(MenuToggle menuToggle) {
+        super(menuToggle, ComponentType.SingleSelect);
     }
 
     // ------------------------------------------------------ add
 
-    public SingleSelect addFoo(/* Foo foo */) {
-        return this;
-    }
-
-    // override to assure internal wiring
-    public SingleSelect add(/* Foo foo */) {
-        return this;
+    @Override
+    public SingleSelect add(Menu menu) {
+        menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
+        return super.add(menu);
     }
 
     // ------------------------------------------------------ builder
 
-    public SingleSelect methodsReturningAReferenceToItself() {
-        return this;
-    }
-
     @Override
     public SingleSelect that() {
         return this;
-    }
-
-    // ------------------------------------------------------ aria
-
-    public SingleSelect ariaLabel(String label) {
-        return aria(Aria.label, label);
-    }
-
-    // ------------------------------------------------------ events
-
-    public SingleSelect onFoo(ComponentHandler<SingleSelect> handler) {
-        return on(click, e -> handler.handle(e, this));
-    }
-
-    // ------------------------------------------------------ api
-
-    public void doSomething() {
-
-    }
-
-    public String getter() {
-        return "some piece of information";
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void foo() {
-        // internal stuff happens here
     }
 }

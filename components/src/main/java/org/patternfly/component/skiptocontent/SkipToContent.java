@@ -73,4 +73,11 @@ public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> 
     public SkipToContent that() {
         return this;
     }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return button.text();
+    }
 }

@@ -22,6 +22,7 @@ import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.region;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.expandableSection;
@@ -43,7 +44,7 @@ public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTML
     ExpandableSectionContent() {
         super(SUB_COMPONENT_NAME, div().css(component(expandableSection, content))
                 .apply(e -> e.hidden = true)
-                .attr(role, "region")
+                .attr(role, region)
                 .element());
 
         id(this.id = Id.unique(ComponentType.ExpandableSection.id, "cnt"));

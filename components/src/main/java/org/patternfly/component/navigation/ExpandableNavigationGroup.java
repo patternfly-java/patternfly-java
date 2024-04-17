@@ -27,6 +27,7 @@ import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ElementDelegate;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -112,7 +113,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         element().appendChild(section = section().css(component(nav, subnav))
                 .aria(labelledBy, titleId)
                 .add(ul = ul().css(component(nav, list))
-                        .attr(role, "list")
+                        .attr(role, Roles.list)
                         .element())
                 .element());
         collapse();
@@ -219,6 +220,17 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     @Override
     public ExpandableNavigationGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (this.text != null) {
+            return Elements.textNode(this.text);
+        } else {
+            return Elements.textNode(button);
+        }
     }
 
     // ------------------------------------------------------ internal

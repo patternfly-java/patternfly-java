@@ -30,6 +30,7 @@ import static org.patternfly.component.divider.DividerType.div;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.list;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.FlexItem.flexItem;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -66,7 +67,7 @@ public class DividerComponent extends SnippetPage {
                 code("divider-li"), () ->
                 // @code-start:divider-li
                 div()
-                        .add(ul().attr(role, "list")
+                        .add(ul().attr(role, list)
                                 .add(li().textContent("List item one"))
                                 .add(divider(li))
                                 .add(li().textContent("List item two")))

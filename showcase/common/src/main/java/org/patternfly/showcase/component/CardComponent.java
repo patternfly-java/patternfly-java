@@ -45,7 +45,7 @@ import static org.patternfly.component.card.CardSelectableActions.cardSelectable
 import static org.patternfly.component.card.CardTitle.cardTitle;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
@@ -109,9 +109,8 @@ public class CardComponent extends SnippetPage {
         addSnippet(new Snippet("card-header-image", "Header images and actions",
                 code("card-header-image"), () -> {
             // @code-start:card-header-image
-            Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))
@@ -145,9 +144,8 @@ public class CardComponent extends SnippetPage {
         addSnippet(new Snippet("card-title-inline", "Title inline with images and actions",
                 code("card-title-inline"), () -> {
             // @code-start:card-title-inline
-            Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))
@@ -176,9 +174,8 @@ public class CardComponent extends SnippetPage {
         addSnippet(new Snippet("card-header-no-title", "Card header without title",
                 code("card-header-no-title"), () -> {
             // @code-start:card-header-no-title
-            Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))
@@ -381,9 +378,8 @@ public class CardComponent extends SnippetPage {
         addSnippet(new Snippet("card-expandable", "Expandable cards",
                 code("card-expandable"), () -> {
             // @code-start:card-expandable
-            Dropdown dropdown1 = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown1 = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))
@@ -396,9 +392,8 @@ public class CardComponent extends SnippetPage {
                                             .addItem(actionMenuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
 
-            Dropdown dropdown2 = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown2 = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))
@@ -438,9 +433,8 @@ public class CardComponent extends SnippetPage {
         addSnippet(new Snippet("card-expandable-image", "Expandable with icon",
                 code("card-expandable-image"), () -> {
             // @code-start:card-expandable-image
-            Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))

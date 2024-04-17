@@ -34,6 +34,7 @@ import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
 import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.list;
 import static org.patternfly.style.Classes.alertGroup;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.inline;
@@ -88,7 +89,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     AlertGroup(AlertGroupType type, int timeout) {
         super(ComponentType.AlertGroup, ul().css(component(alertGroup))
-                .attr(role, "list")
+                .attr(role, list)
                 .element());
         this.type = type;
         this.timeout = timeout;

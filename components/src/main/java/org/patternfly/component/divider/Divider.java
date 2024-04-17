@@ -30,6 +30,7 @@ import elemental2.dom.HTMLLIElement;
 import static org.jboss.elemento.Elements.htmlElement;
 import static org.patternfly.component.divider.DividerType.div;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.separator;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.divider;
 
@@ -63,7 +64,7 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
     <E extends HTMLElement> Divider(String element, Class<E> type) {
         super(ComponentType.Divider, htmlElement(element, type)
                 .css(component(divider))
-                .attr(role, "separator")
+                .attr(role, separator)
                 .element());
     }
 

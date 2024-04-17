@@ -27,6 +27,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 
 import elemental2.dom.Event;
@@ -195,7 +196,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
     private HTMLUListElement failSafeUlElement() {
         if (ulElement == null) {
             add(ulElement = ul().css(component(simpleList, list))
-                    .attr(role, "list")
+                    .attr(role, Roles.list)
                     .element());
         }
         return ulElement;

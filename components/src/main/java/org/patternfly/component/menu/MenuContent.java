@@ -37,6 +37,9 @@ import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.menu;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Height;
 
 public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> implements Attachable {
 
@@ -86,6 +89,9 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
             }
 
             for (MenuItem item : menu.items()) {
+                if (item.itemType == MenuItemType.async) {
+                    continue;
+                }
                 // Don't use item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item)) here !!
                 item.addFavoriteItemAction().on(click, e -> menu.toggleFavorite(item));
             }
@@ -121,6 +127,11 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
     }
 
     // ------------------------------------------------------ builder
+
+    public MenuContent height(String height) {
+        // --pf-v5-c-menu__content--Height: 200px;
+        return componentVar(component(menu, content), Height).applyTo(this, height);
+    }
 
     @Override
     public MenuContent that() {

@@ -37,7 +37,7 @@
         <version.commons.text>1.11.0</version.commons.text>
         <version.gwt>2.11.0</version.gwt>
         <version.intellij.markdown>0.7.0</version.intellij.markdown>
-        <version.treblereel.j2cl.processors>0.6.4</version.treblereel.j2cl.processors>
+        <version.kie.j2cl.bom>0.1</version.kie.j2cl.bom>
 
         <!-- Build related -->
         <gwt.draftCompile>true</gwt.draftCompile>
@@ -70,22 +70,18 @@
                 <classifier>sources</classifier>
             </dependency>
             <dependency>
+                <groupId>org.kie.j2cl.tools</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.kie.j2cl.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.gwtproject</groupId>
                 <artifactId>gwt</artifactId>
                 <version>${version.gwt}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.treblereel.j2cl.processors</groupId>
-                <artifactId>processors</artifactId>
-                <version>${version.treblereel.j2cl.processors}</version>
-                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

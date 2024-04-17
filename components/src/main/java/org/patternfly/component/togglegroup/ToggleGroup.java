@@ -36,6 +36,7 @@ import elemental2.dom.HTMLElement;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.group;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.toggleGroup;
 
@@ -63,7 +64,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     private MultiSelectHandler<ToggleGroup, ToggleGroupItem> multiSelectHandler;
 
     ToggleGroup(SelectionMode selectionMode) {
-        super(ComponentType.ToggleGroup, div().css(component(toggleGroup)).attr(role, "group").element());
+        super(ComponentType.ToggleGroup, div().css(component(toggleGroup)).attr(role, group).element());
         this.items = new HashMap<>();
         this.disabledSnapshot = new HashMap<>();
         if (selectionMode == SelectionMode.click) {

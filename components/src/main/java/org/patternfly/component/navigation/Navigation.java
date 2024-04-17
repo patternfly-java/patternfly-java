@@ -34,6 +34,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Brightness;
@@ -174,7 +175,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     .on(click, e -> scrollBack())
                     .add(angleLeft()));
             add(itemsContainer = ul().css(component(nav, list))
-                    .attr(role, "list")
+                    .attr(role, Roles.list)
                     .on(EventType.scroll, e -> updateScrollState())
                     .element());
             add(scrollForward = button().css(component(nav, scroll, button))
@@ -190,7 +191,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                 case flat:
                 case expandable:
                     add(itemsContainer = ul().css(component(nav, list))
-                            .attr(role, "list")
+                            .attr(role, Roles.list)
                             .element());
                     break;
                 case grouped:

@@ -153,6 +153,13 @@ public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return button.text();
+    }
+
     // ------------------------------------------------------ internal
 
     private void toggleVisible(int y) {

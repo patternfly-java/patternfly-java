@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.4.6</version.elemento>
+        <version.elemento>1.4.8</version.elemento>
         <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
@@ -102,7 +102,7 @@
         <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
         <version.frontend.plugin>1.15.0</version.frontend.plugin>
         <version.gwt.plugin>1.1.0</version.gwt.plugin>
-        <version.j2cl.plugin>0.22.0</version.j2cl.plugin>
+        <version.j2cl.plugin>0.23.0</version.j2cl.plugin>
         <version.impsort.plugin>1.9.0</version.impsort.plugin>
         <version.javadoc.plugin>3.6.3</version.javadoc.plugin>
         <version.keepachangelog>2.1.1</version.keepachangelog>
@@ -183,11 +183,12 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>com.vertispan.j2cl</groupId>
+                    <groupId>org.kie.j2cl.tools</groupId>
                     <artifactId>j2cl-maven-plugin</artifactId>
                     <version>${version.j2cl.plugin}</version>
                     <configuration>
                         <webappDirectory>${project.build.directory}/showcase</webappDirectory>
+                        <workerThreadCount>4</workerThreadCount>
                     </configuration>
                 </plugin>
                 <plugin>

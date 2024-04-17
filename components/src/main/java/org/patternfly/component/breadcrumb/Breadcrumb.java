@@ -22,6 +22,7 @@ import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -31,9 +32,9 @@ import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.list;
 import static org.patternfly.style.Classes.breadcrumb;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.list;
 
 /**
  * A breadcrumb provides page context to help users navigate more efficiently and understand where they are in the application
@@ -56,7 +57,7 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
 
     Breadcrumb() {
         super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
-        this.ol = ol().css(component(breadcrumb, list)).attr(role, "list");
+        this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
         storeFlatComponent();
         element().appendChild(ol.element());
     }

@@ -27,6 +27,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.banner.Banner.banner;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.link;
 import static org.patternfly.icon.IconSets.far.checkCircle;
 import static org.patternfly.icon.IconSets.fas.exclamationCircle;
 import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
@@ -85,7 +86,7 @@ public class BannerComponent extends SnippetPage {
                                 .add("Default banner with a ")
                                 .add(a("#")
                                         .css(modifier(disabled))
-                                        .attr(role, "link")
+                                        .attr(role, link)
                                         .aria(Aria.disabled, true)
                                         .textContent("disabled link")))
                         .add(br())

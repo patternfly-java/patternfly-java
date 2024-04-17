@@ -136,6 +136,14 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
         return button.element().disabled;
     }
 
+    @Override
+    public String text() {
+        if (textElement != null) {
+            return textElement.textContent;
+        }
+        return null;
+    }
+
     // ------------------------------------------------------ internal
 
     void onClick(Event event) {

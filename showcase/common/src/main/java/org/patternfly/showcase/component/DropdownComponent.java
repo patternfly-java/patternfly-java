@@ -18,6 +18,7 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Dropdown;
+import org.patternfly.component.menu.DropdownMenu;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -27,7 +28,7 @@ import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
@@ -56,9 +57,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-basic"), () ->
                 // @code-start:dropdown-basic
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle("Dropdown"))
-                                .addMenu(menu()
+                        .add(dropdown("Dropdown")
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -78,9 +78,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-kebab"), () ->
                 // @code-start:dropdown-kebab
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                                .addMenu(menu()
+                        .add(dropdown(ellipsisV(), "kebab dropdown toggle")
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -100,10 +99,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-badge"), () ->
                 // @code-start:dropdown-badge
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle("Count")
-                                        .addBadge(badge(4).unread()))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle("Count").addBadge(badge(4).unread()))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -123,10 +120,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-icon"), () ->
                 // @code-start:dropdown-icon
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle("Icon")
-                                        .icon(cog()))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle("Icon").icon(cog()))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -146,10 +141,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-avatar"), () ->
                 // @code-start:dropdown-avatar
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle("John Doe")
-                                        .addAvatar(avatar(avatarLight, "avatar")))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle("John Doe").addAvatar(avatar(avatarLight, "avatar")))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -169,10 +162,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-check"), () ->
                 // @code-start:dropdown-split-check
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle(split)
-                                        .addCheckbox(menuToggleCheckbox()))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle(split).addCheckbox(menuToggleCheckbox()))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -186,11 +177,10 @@ public class DropdownComponent extends SnippetPage {
                                                         .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
                         .add(br())
                         .add(br())
-                        .add(dropdown()
-                                .addToggle(menuToggle(split)
-                                        .addCheckbox(menuToggleCheckbox())
-                                        .text("10 selected"))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle(split)
+                                .addCheckbox(menuToggleCheckbox())
+                                .text("10 selected"))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -210,10 +200,9 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-action"), () ->
                 // @code-start:dropdown-split-action
                 div()
-                        .add(dropdown()
-                                .addToggle(menuToggle(split)
-                                        .addAction(menuToggleAction("Action")))
-                                .addMenu(menu()
+                        .add(dropdown(menuToggle(split)
+                                .addAction(menuToggleAction("Action")))
+                                .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(actionMenuItem("item-0", "Action"))
@@ -231,5 +220,6 @@ public class DropdownComponent extends SnippetPage {
 
         startApiDocs(Dropdown.class);
         addApiDoc(Dropdown.class, component);
+        addApiDoc(DropdownMenu.class, component);
     }
 }

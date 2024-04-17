@@ -1,6 +1,8 @@
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
+import org.patternfly.component.menu.MenuType;
 
+import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -12,7 +14,7 @@ public class MenuDemo {
 
     public void menuDemo() {
         // @start region = menu
-        Menu menu = menu()
+        Menu menu = menu(MenuType.menu, click)
                 .scrollable()
                 .height("200px")
                 .addHeader("Header")
@@ -29,7 +31,7 @@ public class MenuDemo {
 
     public void groupsDemo() {
         // @start region = groups
-        Menu menu = menu()
+        Menu menu = menu(MenuType.menu, click)
                 .addContent(menuContent()
                         .addGroup(menuGroup()
                                 .addList(menuList()

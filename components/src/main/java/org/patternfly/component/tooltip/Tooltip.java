@@ -28,6 +28,7 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Logger;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Placement;
@@ -132,7 +133,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     Tooltip(Supplier<HTMLElement> trigger, String text, By selector) {
         super(ComponentType.Tooltip, div().css(component(tooltip))
                 .style("display", "none")
-                .attr(role, "tooltip")
+                .attr(role, Roles.tooltip)
                 .aria(live, "polite")
                 .element());
 
@@ -338,7 +339,9 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         }
     }
 
+    @Override
     public String text() {
         return contentElement.textContent;
     }
+
 }

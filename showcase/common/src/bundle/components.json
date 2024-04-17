@@ -374,7 +374,7 @@
     "route": "/components/menus/menu",
     "clazz": "org.patternfly.component.menu.Menu",
     "illustration": "menu.png",
-    "summary": "A <b>menu</b> is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user needs to choose between multiple values, options, or actions. A menu is most often paired with a <a href='/components/menu-toggle'>menu toggle</a> as its trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close."
+    "summary": "A <b>menu</b> is a list of options or actions that users can choose from. It can be used in a variety of contexts whenever the user needs to choose between multiple values, options, or actions. A menu is most often paired with a <a href='menu-toggle'>menu toggle</a> as its trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close."
   },
   "modal": {
     "name": "modal",
@@ -498,6 +498,7 @@
     "name": "select",
     "title": "Select",
     "route": "/components/menus/select",
+    "clazz": "org.patternfly.component.menu.SingleSelect",
     "illustration": "select.png",
     "summary": "A <b>select</b> list enables users to select one or more items from a list. Use a select list when options are dynamic or variable."
   },

@@ -210,4 +210,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     public Badge badge() {
         return badge;
     }
+
+    @Override
+    public String text() {
+        return textElement.textContent;
+    }
 }

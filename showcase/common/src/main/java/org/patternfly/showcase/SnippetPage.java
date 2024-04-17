@@ -26,6 +26,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Page;
 import org.patternfly.component.jumplinks.JumpLinks;
+import org.patternfly.core.Roles;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
 import org.patternfly.style.Classes;
@@ -60,6 +61,8 @@ import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Roles.columnheader;
+import static org.patternfly.core.Roles.rowgroup;
 import static org.patternfly.icon.IconSets.fas.swatchbook;
 import static org.patternfly.icon.IconSets.patternfly.catalog;
 import static org.patternfly.layout.flex.AlignItems.center;
@@ -317,22 +320,22 @@ public class SnippetPage implements Page {
             // TODO Replace this with the table component once implemented.
             contentContainer.appendChild(
                     table().css(component(table), modifier(grid, lg), modifier(compact), util("mt-md"), util("mb-lg"))
-                            .attr(role, "grid")
+                            .attr(role, Roles.grid)
                             .add(thead().css(component(table, thead))
                                     .add(tr().css(component(table, tr))
                                             .add(th().css(component(table, th), modifier("width-30"))
-                                                    .attr(role, "columnheader")
+                                                    .attr(role, columnheader)
                                                     .apply(th -> th.scope = "col")
                                                     .textContent("Name"))
                                             .add(th().css(component(table, th), modifier("width-20"))
-                                                    .attr(role, "columnheader")
+                                                    .attr(role, columnheader)
                                                     .apply(th -> th.scope = "col")
                                                     .textContent("Type"))
                                             .add(th().css(component(table, th))
-                                                    .attr(role, "columnheader")
+                                                    .attr(role, columnheader)
                                                     .apply(th -> th.scope = "col")
                                                     .textContent("API documentation"))))
-                            .add(tbody = tbody().css(component(table, Classes.tbody)).attr(role, "rowgroup"))
+                            .add(tbody = tbody().css(component(table, Classes.tbody)).attr(role, rowgroup))
                             .element());
         }
         return tbody;

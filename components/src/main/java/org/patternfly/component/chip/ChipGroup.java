@@ -31,6 +31,7 @@ import org.patternfly.component.HasValues;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 
@@ -54,6 +55,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.group;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.timesCircle;
@@ -98,7 +100,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     private CloseHandler<ChipGroup> closeHandler;
 
     ChipGroup(String category) {
-        super(ComponentType.ChipGroup, div().css(component(chipGroup)).attr(role, "group").element());
+        super(ComponentType.ChipGroup, div().css(component(chipGroup)).attr(role, group).element());
         this.chips = new LinkedHashMap<>();
         this.expanded = false;
         this.numChips = DEFAULT_NUM_CHIPS;
@@ -107,7 +109,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
 
         add(div().css(component(chipGroup, main))
                 .add(listElement = ul().css(component(chipGroup, list))
-                        .attr(role, "list")
+                        .attr(role, Roles.list)
                         .element()));
         if (category != null) {
             category(category);

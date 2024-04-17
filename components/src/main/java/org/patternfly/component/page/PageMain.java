@@ -16,6 +16,7 @@
 package org.patternfly.component.page;
 
 import org.jboss.elemento.IsElement;
+import org.patternfly.core.Roles;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -55,7 +56,7 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
     PageMain(String id) {
         super(SUB_COMPONENT_NAME, main().css(component(page, main))
                 .id(id)
-                .attr(role, main)
+                .attr(role, Roles.main)
                 .attr(tabindex, -1)
                 .element());
         on(mousedown, e -> onMainClick());

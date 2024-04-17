@@ -23,6 +23,7 @@ import static org.jboss.elemento.svg.SVG.path;
 import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.img;
 import static org.patternfly.style.Classes.svg;
 
 /**
@@ -39,7 +40,7 @@ public final class PredefinedIcon extends SVGContainerBuilder<SVGElement> {
                 .attr("width", "1em")
                 .attr("height", "1em")
                 .attr("fill", "currentColor")
-                .attr(role, "img")
+                .attr(role, img)
                 .aria(hidden, true)
                 .data("iconName", iconSpec.id)
                 .add(document.createComment(iconSpec.license))

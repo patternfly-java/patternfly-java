@@ -31,6 +31,7 @@ import org.patternfly.component.Expandable;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Logger;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Breakpoints;
@@ -111,7 +112,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
                 .add(headerElement = div().css(component(jumpLinks, header))
                         .add(labelElement = div().css(component(jumpLinks, Classes.label))))
                 .add(ulElement = ul().css(component(jumpLinks, list))
-                        .attr(role, "list"))
+                        .attr(role, Roles.list))
                 .element());
         if (label != null) {
             label(label);

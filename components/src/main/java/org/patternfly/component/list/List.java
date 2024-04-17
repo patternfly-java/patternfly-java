@@ -18,6 +18,7 @@ package org.patternfly.component.list;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
 import org.patternfly.style.Modifiers.Inline;
@@ -57,7 +58,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
 
     <E extends HTMLElement> List(HTMLContainerBuilder<E> builder) {
         super(ComponentType.List, builder.css(Classes.component(list))
-                .attr(role, "list")
+                .attr(role, Roles.list)
                 .element());
     }
 

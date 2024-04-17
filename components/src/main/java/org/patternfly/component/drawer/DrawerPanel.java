@@ -60,6 +60,7 @@ import static org.patternfly.core.Aria.valueMin;
 import static org.patternfly.core.Aria.valueNow;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.LanguageDirection.languageDirection;
+import static org.patternfly.core.Roles.separator;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.handle;
@@ -129,7 +130,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
             // create splitter and main container
             splitterElement = div().css(component(Classes.drawer, splitter))
                     .apply(e -> e.tabIndex = 0)
-                    .attr(role, "separator")
+                    .attr(role, separator)
                     .aria(label, ariaResizeLabel)
                     .aria(controls, id)
                     .aria(valueMin, 0)

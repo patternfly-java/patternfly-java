@@ -30,7 +30,7 @@ import static org.patternfly.component.list.ActionList.actionList;
 import static org.patternfly.component.list.ActionListGroup.actionListGroup;
 import static org.patternfly.component.list.ActionListItem.actionListItem;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
@@ -54,9 +54,8 @@ public class ActionListComponent extends SnippetPage {
         addSnippet(new Snippet("action-list-single-group", "Action list single group",
                 code("action-list-single-group"), () -> {
             // @code-start:action-list-single-group
-            Dropdown dropdown = dropdown()
-                    .addToggle(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                    .addMenu(menu()
+            Dropdown dropdown = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
+                    .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action"))

@@ -231,6 +231,11 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return wrapInputElement(inputElement);
     }
 
+    @Override
+    public String text() {
+        return value();
+    }
+
     // ------------------------------------------------------ internal
 
     @Override

@@ -128,6 +128,17 @@ public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, Emp
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (titleElement != null) {
+            return titleElement.textContent;
+        }
+        return null;
+    }
+
+
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeIconContainer() {

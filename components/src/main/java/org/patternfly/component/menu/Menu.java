@@ -67,12 +67,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     // ------------------------------------------------------ factory
 
-    public static Menu menu() {
-        return new Menu(MenuType.menu, click);
-    }
-
     public static Menu menu(SelectionMode selectionMode) {
         return new Menu(MenuType.menu, selectionMode);
+    }
+
+    public static Menu menu(MenuType menuType, SelectionMode selectionMode) {
+        return new Menu(menuType, selectionMode);
     }
 
     // ------------------------------------------------------ instance
