@@ -131,13 +131,13 @@ class ReleaseCommand : CliktCommand(name = "release") {
         """.trimMargin(), terminal).ask() ?: false
 
     fun step(message: String, code: () -> Unit) {
-        echo("  ${yellow(message)}...", trailingNewline = false)
+        echo("${yellow("…")} $message")
         if (dryRun) {
             sleep(Random.nextLong(1111, 4444))
         } else {
             code.invoke()
         }
-        echo(green("\r✓ $message"))
+        echo("\r${green("✓")} $message")
     }
 
     fun release(release: Release) {
