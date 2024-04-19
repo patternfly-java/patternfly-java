@@ -79,10 +79,10 @@ class ReleaseCommand : CliktCommand(name = "release") {
         when (val validate = validate(Release(releaseVersion, nextVersion))) {
             is Left -> die(validate.value)
             is Right -> if (really(validate.value)) {
-                    release(validate.value)
-                } else {
-                    terminal.warning("\nAborted")
-                }
+                release(validate.value)
+            } else {
+                terminal.warning("\nAborted")
+            }
         }
     }
 
