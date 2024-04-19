@@ -80,12 +80,11 @@ class ReleaseCommand : CliktCommand(name = "release") {
         when (val validate = validate(release)) {
             is Left -> die(validate.value)
             is Right -> {
-                echo()
                 val validatedRelease = validate.value
                 if (really(validatedRelease)) {
                     release(validatedRelease)
                 } else {
-                    terminal.warning("Aborted")
+                    terminal.warning("\nAborted")
                 }
             }
         }
@@ -142,6 +141,7 @@ class ReleaseCommand : CliktCommand(name = "release") {
     }
 
     fun release(release: Release) {
+        echo()
         step("Update to version ${release.releaseVersion}") {
             shellRun("mvn", listOf("-DnewVersion=${release.releaseVersion}", "versions:set"))
         }
