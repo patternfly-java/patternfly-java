@@ -41,9 +41,9 @@ import kotlin.system.exitProcess
 
 // ------------------------------------------------------ error & success types
 
-sealed interface ReleaseError {
-    data object UncommittedChanges : ReleaseError
-    data class TagExists(val tag: String) : ReleaseError
+sealed class ReleaseError(val message: String) {
+    data object UncommittedChanges : ReleaseError("You have uncommitted changes.")
+    data class TagExists(val tag: String) : ReleaseError("The tag '$tag' already exists.")
 }
 
 data class Release(val releaseVersion: Version, val nextVersion: Version) {
@@ -110,15 +110,7 @@ class ReleaseCommand : CliktCommand(name = "release") {
     }
 
     fun die(errors: NonEmptyList<ReleaseError>) {
-        errors.map { error ->
-            when (error) {
-                UncommittedChanges -> "You have uncommitted changes"
-                is TagExists -> "Tag ${error.tag} already exists"
-                else -> "Unknown error"
-            }
-        }.forEach { errorMessage ->
-            terminal.println("${terminal.theme.danger("Error:")} $errorMessage", stderr = true)
-        }
+        errors.forEach { terminal.println("${terminal.theme.danger("Error:")} ${it.message}", stderr = true) }
         exitProcess(1)
     }
 
@@ -140,13 +132,13 @@ class ReleaseCommand : CliktCommand(name = "release") {
         """.trimMargin(), terminal).ask() ?: false
 
     fun step(message: String, code: () -> Unit) {
-        echo("  ${yellow(message)}\r", trailingNewline = false)
+        echo("  ${yellow(message)}", trailingNewline = false)
         if (dryRun) {
             sleep(Random.nextLong(1111, 4444))
         } else {
             code.invoke()
         }
-        echo(green("✓ $message"))
+        echo(green("\r✓ $message"))
     }
 
     fun release(release: Release) {
