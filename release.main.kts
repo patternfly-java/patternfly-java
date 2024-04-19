@@ -76,17 +76,13 @@ class ReleaseCommand : CliktCommand(name = "release") {
             }
 
     override fun run() {
-        val release = Release(releaseVersion, nextVersion)
-        when (val validate = validate(release)) {
+        when (val validate = validate(Release(releaseVersion, nextVersion))) {
             is Left -> die(validate.value)
-            is Right -> {
-                val validatedRelease = validate.value
-                if (really(validatedRelease)) {
-                    release(validatedRelease)
+            is Right -> if (really(validate.value)) {
+                    release(validate.value)
                 } else {
                     terminal.warning("\nAborted")
                 }
-            }
         }
     }
 
