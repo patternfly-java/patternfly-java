@@ -226,6 +226,7 @@
                                     <exclude>**/src/demo/java/**</exclude>
                                     <exclude>degraph-style.json</exclude>
                                     <exclude>dependency-graph.dot</exclude>
+                                    <exclude>release.main.kts</exclude>
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>

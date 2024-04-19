@@ -1,8 +1,6 @@
 #!/usr/bin/env kotlin
 
-@file:Repository("https://repo.maven.apache.org/maven2/", "https://jitpack.io")
 @file:DependsOn("com.github.ajalt.clikt:clikt-jvm:4.3.0")
-@file:DependsOn("com.github.ajalt.mordant:mordant-coroutines-jvm:2.4.0")
 @file:DependsOn("com.lordcodes.turtle:turtle:0.9.0")
 @file:DependsOn("io.arrow-kt:arrow-core:1.2.4")
 @file:DependsOn("io.github.z4kn4fein:semver-jvm:2.0.0")
@@ -26,21 +24,11 @@ import com.github.ajalt.clikt.parameters.arguments.validate
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.help
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.mordant.animation.coroutines.animateInCoroutine
-import com.github.ajalt.mordant.animation.progress.advance
-import com.github.ajalt.mordant.rendering.TextColors
 import com.github.ajalt.mordant.rendering.TextColors.*
-import com.github.ajalt.mordant.terminal.Terminal
 import com.github.ajalt.mordant.terminal.YesNoPrompt
-import com.github.ajalt.mordant.widgets.Spinner
-import com.github.ajalt.mordant.widgets.progress.*
 import com.lordcodes.turtle.shellRun
 import io.github.z4kn4fein.semver.Version
 import io.github.z4kn4fein.semver.toVersionOrNull
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.lang.Thread.sleep
 import kotlin.random.Random
 import kotlin.system.exitProcess
@@ -48,8 +36,10 @@ import kotlin.system.exitProcess
 /*
  * This is an alternative version of 'release.sh' written in Kotlin
  * It was primarily an experiment to replace the bash script crap with something more readable.
- * While the lines of code are not much less, the script hopefully reads way better.
+ * There are slightly more lines of code, but hopefully the script reads much better.
  */
+
+// ------------------------------------------------------ error & success types
 
 sealed interface ReleaseError {
     data object UncommittedChanges : ReleaseError
@@ -60,6 +50,8 @@ data class Release(val releaseVersion: Version, val nextVersion: Version) {
     val tag = "v$releaseVersion"
     val snapshot = "$nextVersion-SNAPSHOT"
 }
+
+// ------------------------------------------------------ release command
 
 class ReleaseCommand : CliktCommand(name = "release") {
 
@@ -83,26 +75,69 @@ class ReleaseCommand : CliktCommand(name = "release") {
                 }
             }
 
+    override fun run() {
+        val release = Release(releaseVersion, nextVersion)
+        when (val validate = validate(release)) {
+            is Left -> die(validate.value)
+            is Right -> {
+                echo()
+                val validatedRelease = validate.value
+                if (really(validatedRelease)) {
+                    release(validatedRelease)
+                } else {
+                    terminal.warning("Aborted")
+                }
+            }
+        }
+    }
+
+    // ------------------------------------------------------ validation
+
     fun validate(release: Release): EitherNel<ReleaseError, Release> = either {
         zipOrAccumulate(
-                // if there are uncommitted changes 'git diff-index' will throw an exception, which is detected by 'catch { }.isRight'
-                { ensure(catch { shellRun("git", listOf("diff-index", "--quiet", "HEAD")) }.isRight()) { UncommittedChanges } },
-                { ensure(shellRun("git", listOf("tag", "-l", release.tag)).isEmpty()) { TagExists(release.tag) } }
+                {
+                    // If there are no uncommitted changes 'git diff-index' will return 0 and 'isRight()' is true.
+                    // Otherwise, the command will return 1 and shellRun() will throw an exception
+                    ensure(catch {
+                        shellRun("git", listOf("diff-index", "--quiet", "HEAD"))
+                    }.isRight()) { UncommittedChanges }
+                },
+                {
+                    // if the output of 'git -l <tag>' is not empty, the tag already exists
+                    ensure(shellRun("git", listOf("tag", "-l", release.tag)).isEmpty()) { TagExists(release.tag) }
+                }
         ) { _, _ -> release }
     }
 
     fun die(errors: NonEmptyList<ReleaseError>) {
-        errors.map {
-            when (it) {
+        errors.map { error ->
+            when (error) {
                 UncommittedChanges -> "You have uncommitted changes"
-                is TagExists -> "Tag ${it.tag} already exists"
+                is TagExists -> "Tag ${error.tag} already exists"
                 else -> "Unknown error"
             }
-        }.forEach {
-            terminal.println("${terminal.theme.danger("Error:")} $it", stderr = true)
+        }.forEach { errorMessage ->
+            terminal.println("${terminal.theme.danger("Error:")} $errorMessage", stderr = true)
         }
         exitProcess(1)
     }
+
+    // ------------------------------------------------------ release
+
+    fun really(release: Release) = YesNoPrompt("""
+        |Codebase is ready to be released.
+        |
+        |If you decide to continue, this script will
+        |
+        |   1. Bump the version to ${cyan(release.releaseVersion.toString())}
+        |   2. Update the ${cyan("changelog")} (there should already be entries in the ${cyan("Unreleased")} section!)
+        |   3. Create a tag for ${cyan(release.tag)}
+        |   4. ${cyan("Commit")} and ${cyan("push")} to origin (which will trigger the ${cyan("release workflow")} at GitHub)
+        |   5. Bump the version to ${cyan(release.snapshot)}
+        |   6. ${cyan("Commit")} and ${cyan("push")} to origin
+        |
+        |Do you wish to continue
+        """.trimMargin(), terminal).ask() ?: false
 
     fun step(message: String, code: () -> Unit) {
         echo("  ${yellow(message)}\r", trailingNewline = false)
@@ -114,19 +149,18 @@ class ReleaseCommand : CliktCommand(name = "release") {
         echo(green("✓ $message"))
     }
 
-    fun doIt(release: Release) {
+    fun release(release: Release) {
         step("Update to version ${release.releaseVersion}") {
             shellRun("mvn", listOf("-DnewVersion=${release.releaseVersion}", "versions:set"))
         }
 
         step("Update README & changelog") {
             shellRun {
-                command("sleep", listOf("2"))
                 command("sed", listOf(
                         "-i",
                         "''",
                         "-E",
-                        "s/<version>[0-9]+\\.[0-9]+\\.[0-9]+(.*)<\\/version>/<version>${release.releaseVersion}\\1<\\/version>/",
+                        """s/<version>[0-9]+\.[0-9]+\.[0-9]+(.*)<\/version>/<version>${release.releaseVersion}\1<\/version>/""",
                         "README.md"
                 ))
                 command("mvn", listOf("-DskipModules", "keepachangelog:release"))
@@ -159,38 +193,6 @@ class ReleaseCommand : CliktCommand(name = "release") {
         }
 
         echo("\n${green("All done")}. Watch the release workflow at https://github.com/patternfly-java/patternfly-java/actions/workflows/release.yml")
-    }
-
-    fun really(release: Release) = YesNoPrompt("""
-        |Codebase is ready to be released.
-        |
-        |If you decide to continue, this script will
-        |
-        |   1. Bump the version to ${cyan(release.releaseVersion.toString())}
-        |   2. Update the ${cyan("changelog")} (there should already be entries in the ${cyan("Unreleased")} section!)
-        |   3. Create a tag for ${cyan(release.tag)}
-        |   4. ${cyan("Commit")} and ${cyan("push")} to origin (which will trigger the ${cyan("release workflow")} at GitHub)
-        |   5. Bump the version to ${cyan(release.snapshot)}
-        |   6. ${cyan("Commit")} and ${cyan("push")} to origin
-        |
-        |Do you wish to continue
-        """.trimMargin(), terminal).ask()
-
-    // ------------------------------------------------------ main
-
-    override fun run() {
-        val release = Release(releaseVersion, nextVersion)
-        when (val validate = validate(release)) {
-            is Left -> die(validate.value)
-            is Right -> {
-                echo()
-                if (really(release) == true) {
-                    doIt(release)
-                } else {
-                    terminal.warning("Aborted")
-                }
-            }
-        }
     }
 }
 
