@@ -133,7 +133,7 @@ class ReleaseCommand : CliktCommand(name = "release") {
         } else {
             code.invoke()
         }
-        echo("\r${green("✓")} $message")
+        echo("\r${green("✓")}")
     }
 
     fun release(release: Release) {
