@@ -29,7 +29,7 @@ jobs:
           $MVN -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
       - name: Publish API Documentation
         id: publish-apidocs
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.0
         with:
           repository-name: patternfly-java/apidocs
           token: ${{ secrets.PUBLISH_CONTENT }}
