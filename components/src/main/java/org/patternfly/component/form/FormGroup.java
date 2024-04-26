@@ -16,9 +16,8 @@
 package org.patternfly.component.form;
 
 import org.jboss.elemento.Attachable;
-import org.patternfly.component.ComponentType;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.core.Attributes;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -39,6 +38,7 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(FormGroup.class.getName());
     static final String SUB_COMPONENT_NAME = "fg";
 
     String fieldId;
@@ -56,8 +56,7 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
     @Override
     public void attach(MutationRecord mutationRecord) {
         if ((role == FormGroupRole.radiogroup || role == FormGroupRole.group) && fieldId == null) {
-            Logger.missing(ComponentType.Form.componentName, element(),
-                    "Missing field ID for form group with role '" + role.name() + "'.");
+            logger.error("Missing field ID for form group %o with role '%s'.", element(), role.name());
         }
     }
 

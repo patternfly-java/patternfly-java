@@ -19,21 +19,23 @@ import java.util.function.Function;
 
 import org.jboss.elemento.HasHTMLElement;
 import org.jboss.elemento.TypedBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Tuple;
 import org.patternfly.core.Version;
 
 import elemental2.dom.HTMLElement;
 
 import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.VariableNames.componentName;
+import static org.patternfly.style.VariableNames.globalName;
 
 /**
  * Provides methods to build and apply PatternFly global and component variables.
  *
  * @see <a href=
- *      "https://www.patternfly.org/developer-resources/global-css-variables">https://www.patternfly.org/developer-resources/global-css-variables</a>
+ * "https://www.patternfly.org/developer-resources/global-css-variables">https://www.patternfly.org/developer-resources/global-css-variables</a>
  */
 public class Variable {
 
@@ -42,58 +44,34 @@ public class Variable {
     /**
      * Constructs a global {@linkplain Variable variable} with the given elements.
      *
-     * @param firstElement the first element to include in the variable name
+     * @param firstElement  the first element to include in the variable name
      * @param otherElements additional elements to append to the variable name
      * @return a new {@link Variable} object with the constructed variable name
      */
     public static Variable globalVar(String firstElement, String... otherElements) {
-        StringBuilder builder = new StringBuilder();
-        if (firstElement != null && !firstElement.isEmpty()) {
-            builder.append("--pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-global--").append(firstElement);
-            if (otherElements != null && otherElements.length != 0) {
-                builder.append("--");
-                for (int i = 0; i < otherElements.length; i++) {
-                    builder.append(otherElements[i]);
-                    if (i < otherElements.length - 1) {
-                        builder.append("--");
-                    }
-                }
-            }
-        }
-        return new Variable(VariableScope.global, builder.toString());
+        return new Variable(VariableScope.global, globalName(firstElement, otherElements));
     }
 
     /**
      * Constructs a component {@linkplain Variable variable} with the given component and elements.
      *
      * @param component the fully qualified component name built with {@link Classes#component(String, String...)}
-     * @param elements optional elements to append to the component name
+     * @param elements  optional elements to append to the component name
      * @return a new {@link Variable} object
      */
     public static Variable componentVar(String component, String... elements) {
-        StringBuilder builder = new StringBuilder();
-        if (component != null && component.startsWith("pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-")) {
-            builder.append("--").append(component);
-            if (elements != null && elements.length != 0) {
-                builder.append("--");
-                for (int i = 0; i < elements.length; i++) {
-                    builder.append(elements[i]);
-                    if (i < elements.length - 1) {
-                        builder.append("--");
-                    }
-                }
-            }
-        } else {
-            Logger.undefined("PF5/Variable", null,
-                    "Component \"" + component + "\" in Variable.componentVar(String) does not start with " +
-                            "\"pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-\".\n" +
-                            "Please use Classes.component(String) to build the component.");
+        String name = componentName(component, elements);
+        if (name.isEmpty()) {
+            logger.error(
+                    "Component '%s' in Variable.componentVar(String) does not start with 'pf-%s-'. Please use Classes.component(String) to build the component.",
+                    component, Version.PATTERN_FLY_MAJOR_VERSION);
         }
-        return new Variable(VariableScope.component, builder.toString());
+        return new Variable(VariableScope.component, name);
     }
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Variable.class.getName());
     public final VariableScope scope;
     public final String name;
     private final boolean valid;

@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.panel;
 
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Modifiers;
 
 import elemental2.dom.HTMLDivElement;
@@ -52,6 +52,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Panel.class.getName());
     private PanelHeader header;
     private PanelMain main;
     private PanelFooter footer;
@@ -72,7 +73,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelHeader header) {
         if (this.header != null) {
-            Logger.unsupported(componentType().componentName, this.header.element(), "Header already added");
+            logger.warn("Header already added for panel %o", element());
         }
         this.header = header;
         element().appendChild(header.element());
@@ -95,7 +96,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelMain main) {
         if (this.main != null) {
-            Logger.unsupported(componentType().componentName, this.main.element(), "Main already added");
+            logger.warn("Main already added for panel %o", element());
         }
         this.main = main;
         element().appendChild(main.element());
@@ -112,7 +113,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelFooter footer) {
         if (this.footer != null) {
-            Logger.unsupported(componentType().componentName, this.footer.element(), "Footer already added");
+            logger.warn("Footer already added for panel %o", element());
         }
         this.footer = footer;
         element().appendChild(footer.element());

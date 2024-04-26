@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
@@ -30,7 +31,6 @@ import org.patternfly.component.WithText;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -116,6 +116,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Button.class.getName());
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
     private Element icon;
@@ -198,8 +199,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         if (anchorElement != null) {
             anchorElement.href = href;
         } else {
-            Logger.undefined(componentType().componentName, element(),
-                    "Unable to set href: This button is not an <a/> button.");
+            logger.error("Unable to set an href for button %o. The button is not an <a/> button.", element());
         }
         return this;
     }
@@ -208,8 +208,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         if (anchorElement != null) {
             anchorElement.target = target;
         } else {
-            Logger.undefined(componentType().componentName, element(),
-                    "Unable to set target: This button is not an <a/> button.");
+            logger.error("Unable to set a target for button %o. The button is not an <a/> button.", element());
         }
         return this;
     }

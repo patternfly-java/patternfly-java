@@ -16,12 +16,13 @@
 package org.patternfly.popper;
 
 import org.jboss.elemento.Callback;
-import org.patternfly.core.Logger;
+import org.jboss.elemento.logger.Logger;
 
 import elemental2.promise.Promise;
 
 public class PopperError implements Popper {
 
+    private static final Logger logger = Logger.getLogger(PopperError.class.getName());
     private static final String ERROR_MESSAGE = "Unable to create popper: '" + Popper.POPPER_CREATE + "' is undefined.";
 
     private final String category;
@@ -32,22 +33,22 @@ public class PopperError implements Popper {
 
     @Override
     public Promise<State> update() {
-        Logger.undefined(category, null, ERROR_MESSAGE);
+        logger.error(ERROR_MESSAGE);
         return null;
     }
 
     @Override
     public void show(Callback visible) {
-        Logger.undefined(category, null, ERROR_MESSAGE);
+        logger.error(ERROR_MESSAGE);
     }
 
     @Override
     public void hide(Callback hidden) {
-        Logger.undefined(category, null, ERROR_MESSAGE);
+        logger.error(ERROR_MESSAGE);
     }
 
     @Override
     public void cleanup() {
-        Logger.undefined(category, null, ERROR_MESSAGE);
+        logger.error(ERROR_MESSAGE);
     }
 }

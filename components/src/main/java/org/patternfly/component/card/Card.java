@@ -15,12 +15,12 @@
  */
 package org.patternfly.component.card;
 
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
@@ -70,6 +70,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Card.class.getName());
     String name;
     SelectionMode selectionMode;
     boolean expandable;
@@ -176,7 +177,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     public Card selectable(SelectionMode selectionMode, SelectHandler<Card> onSelect) {
         if (selectionMode == click) {
-            Logger.unsupported(componentType().componentName, element(), "Selection mode '" + click.name() + "' is not supported");
+            logger.warn("Selection mode '%s' is not supported for card %o", click.name(), element());
             return this;
         }
         this.selectionMode = selectionMode;
@@ -265,9 +266,9 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     public void select(boolean selected, boolean fireEvent) {
         if (selectionMode == null) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Card '" + element().id + "' is not selectable.\n" +
-                            "Please add a call to 'Card.selectable(SelectionMode)', before calling 'Card.select()'.");
+            logger.warn(
+                    "Card %o is not selectable. Please add a call to Card.selectable(SelectionMode), before calling Card.select().",
+                    element());
             return;
         }
         if (header != null && header.actions != null && header.actions.selectableActions != null) {
@@ -295,9 +296,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     @Override
     public void collapse(boolean fireEvent) {
         if (!expandable || expandableContent == null || header.toggleButton == null) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Card '" + element().id + "' is not expandable.\n" +
-                            "Please use Card.expandable() to make this an expandable card.");
+            logger.warn("Card %o is is not expandable. Please use Card.expandable() to make this an expandable card.",
+                    element());
             return;
         }
         Expandable.collapse(element(), header.toggleButton.element(), expandableContent.element());
@@ -310,9 +310,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     @Override
     public void expand(boolean fireEvent) {
         if (!expandable || expandableContent == null || header.toggleButton == null) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Card '" + element().id + "' is not expandable.\n" +
-                            "Please use Card.expandable() to make this an expandable card.");
+            logger.warn("Card %o is is not expandable. Please use Card.expandable() to make this an expandable card.",
+                    element());
             return;
         }
         Expandable.expand(element(), header.toggleButton.element(), expandableContent.element());

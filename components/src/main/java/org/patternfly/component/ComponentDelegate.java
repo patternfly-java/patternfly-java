@@ -19,7 +19,7 @@ import org.jboss.elemento.Finder;
 import org.jboss.elemento.HasElement;
 import org.jboss.elemento.HasHTMLElement;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.core.Logger;
+import org.jboss.elemento.logger.Logger;
 
 import elemental2.dom.HTMLElement;
 
@@ -28,6 +28,7 @@ import static java.util.Objects.requireNonNull;
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>>
         implements Component, HasElement<E, B>, HasHTMLElement<E, B>, Finder<E> {
 
+    private static final Logger logger = Logger.getLogger(ComponentDelegate.class.getName());
     private final ComponentType componentType;
     private E delegate;
 
@@ -43,7 +44,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
     @Override
     public E element() {
         if (delegate == null) {
-            Logger.undefined(componentType().componentName, null, "No delegate defined");
+            logger.error("No delegate defined for component %s", componentType().componentName);
         }
         return delegate;
     }

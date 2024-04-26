@@ -15,7 +15,10 @@
  */
 package org.patternfly.icon;
 
-import org.jboss.elemento.svg.SVGContainerBuilder;
+import org.jboss.elemento.Container;
+import org.jboss.elemento.Finder;
+import org.jboss.elemento.HasElement;
+import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
 
 import static elemental2.dom.DomGlobal.document;
@@ -27,15 +30,21 @@ import static org.patternfly.core.Roles.img;
 import static org.patternfly.style.Classes.svg;
 
 /**
- * The PredefinedIcon class represents a predefined SVG icon. It extends the SVGContainerBuilder class
- * and provides methods for creating and configuring the SVG element for the icon.
+ * The PredefinedIcon class represents a predefined SVG icon. It implements SVG builder interfaces and provides methods for
+ * creating and configuring the SVG element for the icon.
  */
-public final class PredefinedIcon extends SVGContainerBuilder<SVGElement> {
+public final class PredefinedIcon implements
+        HasElement<SVGElement, PredefinedIcon>,
+        HasSVGElement<SVGElement, PredefinedIcon>,
+        Finder<SVGElement>,
+        Container<SVGElement, PredefinedIcon> {
 
     public final IconSpec iconSpec;
+    private final SVGElement element;
 
     PredefinedIcon(IconSpec iconSpec) {
-        super(svg().css(svg)
+        this.iconSpec = iconSpec;
+        this.element = svg().css(svg)
                 .attr("viewBox", iconSpec.xOffset + " " + iconSpec.yOffset + " " + iconSpec.width + " " + iconSpec.height)
                 .attr("width", "1em")
                 .attr("height", "1em")
@@ -46,8 +55,12 @@ public final class PredefinedIcon extends SVGContainerBuilder<SVGElement> {
                 .add(document.createComment(iconSpec.license))
                 .add(path()
                         .attr("d", iconSpec.path))
-                .element());
-        this.iconSpec = iconSpec;
+                .element();
+    }
+
+    @Override
+    public SVGElement element() {
+        return element;
     }
 
     @Override

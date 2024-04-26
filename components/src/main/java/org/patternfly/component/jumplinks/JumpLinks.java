@@ -25,12 +25,12 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
@@ -90,6 +90,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(JumpLinks.class.getName());
     private static final By JUMP_LINKS_ITEMS = By.classname(component(jumpLinks, item));
 
     private final Map<String, JumpLinksItem> items;
@@ -99,7 +100,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     private boolean expandable;
     private boolean vertical;
     private Button toggleButton;
-    private Supplier<HTMLElement> scrollableElement;
+    private Supplier<HTMLElement> scrollableElement; // TODO Implement scrollable selector support
     private HTMLContainerBuilder<HTMLElement> toggleTextElement;
     private SelectHandler<JumpLinksItem> selectHandler;
     private ToggleHandler<JumpLinks> toggleHandler;
@@ -125,7 +126,8 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (expandable && !vertical) {
-            Logger.unsupported(componentType().componentName, element(), "Expandable is only supported for vertical jump links!");
+            logger.warn("Jump links component %o is not vertical. Expandable is only supported for vertical jump links.",
+                    element());
         } else {
             failSafeToggleButton();
         }

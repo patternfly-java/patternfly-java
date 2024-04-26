@@ -23,10 +23,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 
@@ -61,6 +61,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(SimpleList.class.getName());
     private static final By SIMPLE_LIST_ITEMS = By.classname(component(simpleList, item, link));
 
     private final List<SimpleListGroup> groups;
@@ -86,8 +87,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
     // override to assure internal wiring
     public SimpleList add(SimpleListGroup group) {
         if (type == SimpleListType.items) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "This simple list already contains items. A mix of groups and items is not supported!");
+            logger.warn("Simple list %o already contains items. A mix of groups and items is not supported!", element());
             return this;
         }
         type = SimpleListType.groups;
@@ -111,8 +111,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
     // override to assure internal wiring
     public SimpleList add(SimpleListItem item) {
         if (type == SimpleListType.groups) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "This simple list already contains groups. A mix of groups and items is not supported!");
+            logger.warn("Simple list %o already contains groups. A mix of groups and items is not supported!", element());
             return this;
         }
         type = SimpleListType.items;

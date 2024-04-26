@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.help.HelperText;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
 
@@ -47,6 +47,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(FormGroupControl.class.getName());
     static final String SUB_COMPONENT_NAME = "fgc";
 
     private FormControl<?, ?> control;
@@ -65,9 +66,8 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
         if (formGroup.fieldId != null && control != null && !formGroup.fieldId.equals(control.id)) {
-            Logger.wrong(ComponentType.Form.componentName, element(),
-                    "The field id of the form group is different from the id of its control: " +
-                            "'" + formGroup.fieldId + "' != '" + control.id + "'");
+            logger.error("The field id of the form group %o is different from the id of its control %o: '%s' != '%s'",
+                    formGroup.element(), element(), formGroup.fieldId, control.id);
         }
 
         if (formGroup.fieldId != null) {

@@ -21,11 +21,11 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputElementBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -77,6 +77,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Switch.class.getName());
     private final HTMLInputElement inputElement;
     private final HTMLElement toggleElement;
     private HTMLElement iconElement;
@@ -102,8 +103,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
         if (labelOnElement == null) {
             String ariaLabel = inputElement.getAttribute(Aria.label);
             if (ariaLabel == null || ariaLabel.isEmpty()) {
-                Logger.missing(componentType().componentName, element(),
-                        "Switch requires either a label or an aria-label to be specified.");
+                logger.error("Switch %o requires either a label or an aria-label to be specified.", element());
             }
         }
     }

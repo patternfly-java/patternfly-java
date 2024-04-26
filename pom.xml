@@ -84,7 +84,7 @@
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.elemental2>1.2.1</version.elemental2>
-        <version.elemento>1.4.8</version.elemento>
+        <version.elemento>1.4.10</version.elemento>
         <version.gwt>2.11.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
@@ -216,6 +216,11 @@
                             <licenseSet>
                                 <header>build-config/src/main/resources/etc/license.txt</header>
                                 <excludes>
+                                    <exclude>degraph-style.json</exclude>
+                                    <exclude>dependency-graph.dot</exclude>
+                                    <exclude>release.main.kts</exclude>
+                                    <exclude>LICENSE</exclude>
+                                    <exclude>README.md</exclude>
                                     <exclude>**/*.ftl</exclude>
                                     <exclude>**/*.pem</exclude>
                                     <exclude>**/yarn.lock</exclude>
@@ -224,11 +229,6 @@
                                     <exclude>**/node/**</exclude>
                                     <exclude>**/node_modules/**</exclude>
                                     <exclude>**/src/demo/java/**</exclude>
-                                    <exclude>degraph-style.json</exclude>
-                                    <exclude>dependency-graph.dot</exclude>
-                                    <exclude>release.main.kts</exclude>
-                                    <exclude>LICENSE</exclude>
-                                    <exclude>README.md</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
@@ -319,7 +319,25 @@
         </pluginManagement>
 
         <plugins>
-            <!-- Ordered semantically -->
+            <!-- Ordered by artifactID -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-demos</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.basedir}/src/demo/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.github.ferstl</groupId>
                 <artifactId>depgraph-maven-plugin</artifactId>
@@ -344,37 +362,6 @@
                     <outputDirectory>${project.basedir}</outputDirectory>
                     <showGroupIds>true</showGroupIds>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforcer-enforce</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-demos</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.basedir}/src/demo/java</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.ec4j.maven</groupId>
@@ -445,6 +432,19 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforcer-enforce</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>enforce</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -575,14 +575,6 @@
                                         <copy todir="target/site/apidocs/org/patternfly"
                                               overwrite="true"
                                               failonerror="false">
-                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
                                             <fileset dir="components/target/site/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
@@ -591,11 +583,23 @@
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
+                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
                                             <fileset dir="gwt/target/site/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
                                             <fileset dir="icons/target/site/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
+                                            <fileset dir="j2cl/target/site/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>

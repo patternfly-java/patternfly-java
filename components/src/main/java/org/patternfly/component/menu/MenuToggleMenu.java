@@ -20,11 +20,11 @@ import java.util.Set;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.TypedBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentDelegate;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
@@ -49,6 +49,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(MenuToggleMenu.class.getName());
     private static final int Z_INDEX = 9999;
 
     private final Set<TriggerAction> triggerActions;
@@ -94,7 +95,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                             event -> expand(), event -> collapse())
                     .build();
         } else {
-            Logger.undefined(componentType().componentName, element(), "No toggle and/or menu defined for dropdown");
+            logger.error("No toggle and/or menu defined for dropdown %o", element());
         }
     }
 

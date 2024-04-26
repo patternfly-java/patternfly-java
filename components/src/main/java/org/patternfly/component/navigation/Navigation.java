@@ -26,13 +26,13 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
-import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
@@ -117,6 +117,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Navigation.class.getName());
     private static final By A_NAV_LINK_CURRENT = By.element("a")
             .and(By.classnames(component(nav, link), modifier(current)));
     private static final By LI_NAV_ITEM_EXPANDABLE = By.element("li")
@@ -199,15 +200,15 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     break;
                 case drillDown:
                 case flyout:
-                    Logger.nyi(componentType().componentName, element(), "Drill-down and fly-out not yet implemented");
+                    logger.error("Drill-down and fly-out not yet implemented");
                     itemsContainer = div().element();
                     break;
                 default:
-                    Logger.unknown(componentType().componentName, element(), "Unknown navigation type: " + type);
+                    logger.error("Unknown navigation type: '%s' for navigation %o", type, element());
                     itemsContainer = div().element();
             }
         } else {
-            Logger.unknown(componentType().componentName, element(), "Unknown navigation type: " + type);
+            logger.error("Unknown navigation type: '%s' for navigation %o", type, element());
             itemsContainer = div().element();
         }
 
@@ -262,7 +263,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public <T> Navigation addItems(Iterable<T> items, Function<T, NavigationItem> display) {
         if (type == grouped) {
-            Logger.unsupported(componentType().componentName, element(), "addItem(NavigationItem) is not supported for type " + type);
+            logger.warn("addItem(NavigationItem) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
         for (T item : items) {
@@ -278,7 +279,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public Navigation add(NavigationItem item) {
         if (type == grouped) {
-            Logger.unsupported(componentType().componentName, element(), "addItem(NavigationItem) is not supported for type " + type);
+            logger.warn("addItem(NavigationItem) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
         internalAddItem(item, itm -> itemsContainer.appendChild(itm.element()));
@@ -291,7 +292,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public Navigation add(NavigationGroup group) {
         if (type == flat || type == expandable || type instanceof Horizontal) {
-            Logger.unsupported(componentType().componentName, element(), "addGroup(NavigationGroup) is not supported for type " + type);
+            logger.warn("addGroup(NavigationGroup) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
         internalAddGroup(group, grp -> itemsContainer.appendChild(grp.element()));
@@ -304,8 +305,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public Navigation add(ExpandableNavigationGroup group) {
         if (type == flat || type == grouped || type instanceof Horizontal) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "addGroup(ExpandableNavigationGroup) is not supported for type " + type);
+            logger.warn("addGroup(ExpandableNavigationGroup) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
         internalAddGroup(group, grp -> itemsContainer.appendChild(group.element()));

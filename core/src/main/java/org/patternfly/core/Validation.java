@@ -17,14 +17,19 @@ package org.patternfly.core;
 
 import java.util.EnumSet;
 
+import org.jboss.elemento.logger.Logger;
+
 import elemental2.dom.Element;
+
+import static java.util.stream.Collectors.joining;
 
 public final class Validation {
 
+    private static final Logger logger = Logger.getLogger(Validation.class.getName());
+
     public static boolean verifyRange(String category, Element element, String property, int value, int min, int max) {
         if (value < 1 || value > 12) {
-            Logger.unsupported(category, element, "'" + property + "' out of range. " +
-                    "Given: " + value + ", allowed [" + min + "," + max + "].");
+            logger.warn("'%s' in element %o out of range. Given: %d, allowed [%d,%d].", property, element, value, min, max);
             return false;
         }
         return true;
@@ -35,8 +40,8 @@ public final class Validation {
             E firstAllowedValue, E... otherAllowedValues) {
         EnumSet<E> allowed = EnumSet.of(firstAllowedValue, otherAllowedValues);
         if (!allowed.contains(value)) {
-            Logger.unsupported(category, element, "Unsupported value for '" + property + "'. " +
-                    "Given: " + value + ", allowed " + allowed + ".");
+            logger.warn("Unsupported value for '%s' in element %o. Given: %s, allowed $s.",
+                    property, element, value.name(), allowed.stream().map(Enum::name).collect(joining()));
             return false;
         }
         return true;

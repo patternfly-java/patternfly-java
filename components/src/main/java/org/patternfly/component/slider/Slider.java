@@ -23,6 +23,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Key;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -32,7 +33,6 @@ import org.patternfly.component.inputgroup.InputGroupItem;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
-import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.ChangeHandler;
@@ -118,6 +118,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Slider.class.getName());
     private static final Variable sliderValue = componentVar(component(slider), "value");
     private static final Variable sliderValueInputWidth = componentVar(component(slider, Classes.value),
             "c-form-control", "width-chars");
@@ -280,7 +281,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
             bindValueInput(textInput);
             addValueInputInternal(textInput.element(), inputPosition);
         } else {
-            Logger.unsupported(componentType().componentName, element(), "Value input already added.");
+            logger.warn("Value input already added for slider %o.", element());
         }
         return this;
     }
@@ -298,13 +299,13 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
                     bindValueInput((TextInput) inputGroupItem.formControl());
                     addValueInputInternal(valueInput.element(), inputPosition);
                 } else {
-                    Logger.undefined(componentType().componentName, element(), "Value input does not contain a text input!");
+                    logger.error("Value input in slider %o does not contain a text input", element());
                 }
             } else {
-                Logger.undefined(componentType().componentName, element(), "Value input does not contain a form control!");
+                logger.error("Value input in slider %o does not contain a form control", element());
             }
         } else {
-            Logger.unsupported(componentType().componentName, element(), "Value input already added.");
+            logger.error("Value input already added for slider %o", element());
         }
         return this;
     }
@@ -533,9 +534,9 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
                     .element(), main.element());
         } else {
             if (inputPosition != null) {
-                Logger.unsupported(componentType().componentName, element(), "Unsupported input position: " + inputPosition.name());
+                logger.warn("Unsupported input position '%s' for slider %o: ", inputPosition.name(), element);
             } else {
-                Logger.unsupported(componentType().componentName, element(), "No input position!");
+                logger.error("No input position specified for slider %o", element());
             }
         }
     }

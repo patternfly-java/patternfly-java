@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
@@ -25,7 +26,6 @@ import org.patternfly.component.WithText;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -103,15 +103,14 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             case typeahead:
                 return new MenuToggle(div(), type);
             default:
-                Logger.unknown(ComponentType.MenuToggle.componentName, null,
-                        "Unknown menu toggle type '" + type.name() + "'. " +
-                                "Fallback to '" + MenuToggleType.default_.name() + "'.");
+                logger.error("Unknown menu toggle type '%s'. Fallback to '%s'.", type.name(), MenuToggleType.default_.name());
                 return new MenuToggle(button(), type);
         }
     }
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(MenuToggle.class.getName());
     final HTMLElement toggleElement;
     private final MenuToggleType type;
     private final HTMLElement controlElement;
@@ -152,7 +151,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else {
             toggleElement = div().element();
             controlElement = div().element();
-            Logger.unknown(componentType().componentName, element(), "Unknown menu toggle type '" + type.name() + "'");
+            logger.error("Unknown menu toggle type '%s' for menu toggle %o", type.name(), element());
         }
     }
 
@@ -167,8 +166,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), span().css(component(menuToggle, Classes.icon)).add(avatar).element());
         } else {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Avatar is not supported for menu toggles with type '" + type.name() + "'");
+            logger.warn("Avatar is not supported for menu toggles %o with type '%s'", element(), type.name());
         }
         return this;
     }
@@ -183,8 +181,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             this.badge = badge;
             insertBefore(span().css(component(menuToggle, count)).add(badge), controlElement);
         } else {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Badge is not supported for menu toggles with type '" + type.name() + "'");
+            logger.warn("Badge is not supported for menu toggle %o with type '%s'", element(), type.name());
         }
         return this;
     }
@@ -237,8 +234,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), iconContainer = span().css(component(menuToggle, Classes.icon)).add(icon).element());
         } else {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Icon is not supported for menu toggles with type '" + type.name() + "'");
+            logger.warn("Icon is not supported for menu toggle %o with type '%s'", element(), type.name());
         }
         return this;
     }

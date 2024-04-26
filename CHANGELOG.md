@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Add `String WithText.text()` to get the text of the implementing component
 
+### Changed
+
+- Integrate [Elemento logger](https://github.com/hal/elemento?tab=readme-ov-file#logger)
+
+### Fixed
+
+- Builder inheritance of `PredefinedIcon` class
+
 ## [0.2.2] - 2024-04-10
 
 ### Added

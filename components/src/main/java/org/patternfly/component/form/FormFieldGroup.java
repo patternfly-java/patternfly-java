@@ -17,10 +17,10 @@ package org.patternfly.component.form;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.button.Button;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -65,6 +65,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(FormFieldGroup.class.getName());
     static final String SUB_COMPONENT_NAME = "ffg";
 
     private final String titleId;
@@ -156,8 +157,9 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     @Override
     public void collapse(boolean fireEvent) {
         if (!expandable) {
-            Logger.unsupported(ComponentType.Form.componentName, element(), "Form field group is not expandable.\n" +
-                    "Please use FormFieldGroup.expandable() to make this an expandable field group.");
+            logger.warn(
+                    "Form field group %o is not expandable. Please use FormFieldGroup.expandable() to make this an expandable field group.",
+                    element());
             return;
         }
         if (toggleButton != null && body != null) {
@@ -172,8 +174,9 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     @Override
     public void expand(boolean fireEvent) {
         if (!expandable) {
-            Logger.unsupported(ComponentType.Form.componentName, element(), "Form field group is not expandable.\n" +
-                    "Please use FormFieldGroup.expandable() to make this an expandable field group.");
+            logger.warn(
+                    "Form field group %o is not expandable. Please use FormFieldGroup.expandable() to make this an expandable field group.",
+                    element());
             return;
         }
         if (toggleButton != null && body != null) {

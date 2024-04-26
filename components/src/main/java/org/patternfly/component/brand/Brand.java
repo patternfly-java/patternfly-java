@@ -16,9 +16,9 @@
 package org.patternfly.component.brand;
 
 import org.jboss.elemento.HTMLElementBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 
@@ -54,6 +54,7 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Brand.class.getName());
     private final boolean picture;
 
     <E extends HTMLElement> Brand(E element, String src, String alt) {
@@ -85,8 +86,7 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
                 }
             }));
         } else {
-            Logger.unsupported(componentType().componentName, element(), "Adding sources is not supported for image based brands.\n" +
-                    "Please create the brand w/o src and alt to add sources.");
+            logger.warn("Brand %o contains a <img/> element. Adding sources is not supported.", element());
         }
         return this;
     }
@@ -99,9 +99,7 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
         if (picture) {
             add(img.element());
         } else {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Adding a fallback image is not supported for image based brands.\n" +
-                            "Please create the brand w/o src and alt to add a fallback image.");
+            logger.warn("Brand %o contains a <picture/> element. Adding a fallback image is not supported.", element());
         }
         return this;
     }

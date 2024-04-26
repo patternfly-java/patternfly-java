@@ -26,13 +26,13 @@ import java.util.function.Function;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
-import org.patternfly.core.Logger;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.SelectHandler;
@@ -120,6 +120,8 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Tabs.class.getName());
+
     private final Map<String, Tab> tabs;
     private final HTMLContainerBuilder<? extends HTMLElement> mainContainer;
     private final HTMLContainerBuilder<HTMLButtonElement> scrollBack;
@@ -188,18 +190,16 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     public void attach(MutationRecord mutationRecord) {
         if (vertical) {
             if (overflowHorizontal) {
-                Logger.unsupported(componentType().componentName, mainContainer.element(),
-                        "Horizontal overflow is not supported for vertical tabs!");
+                logger.warn("Horizontal overflow is not supported for vertical tabs %o", element());
             }
             attachVertical();
         } else {
             if (expandable) {
-                Logger.unsupported(componentType().componentName, mainContainer.element(),
-                        "Expandable is not supported for horizontal tabs!");
+                logger.warn("Expandable is not supported for horizontal tabs %o", element());
             }
             if (overflowHorizontal) {
                 if (addHandler != null) {
-                    Logger.wrong(componentType().componentName, element(), "Overflow tabs should not have an onAdd() handler.");
+                    logger.warn("Overflow tabs %o should not have an onAdd() handler.", element());
                 }
                 attachOverflow();
             } else {
@@ -209,7 +209,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         }
 
         if (tabs.isEmpty()) {
-            Logger.missing(componentType().componentName, mainContainer.element(), "No tabs given!");
+            logger.error("No tabs given for %o", element());
         } else {
             attachTabs();
             updateState();
@@ -482,8 +482,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (addButton != null) {
             addButton.aria(Aria.label, label);
         } else {
-            Logger.undefined(componentType().componentName, element(),
-                    "Unable to set aria add label. Please make call onAdd() first.");
+            logger.error("Unable to set aria add label for tabs %o. Please make call onAdd() first.", element());
         }
         return this;
     }
@@ -583,7 +582,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (id != null) {
             close(tabs.get(id));
         } else {
-            Logger.undefined(componentType().componentName, mainContainer.element(), "Cannot close tab: No tab id given.");
+            logger.error("Cannot close tab in tabs %o: No tab id given.", element());
         }
     }
 
@@ -596,7 +595,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             failSafeRemoveFromParent(tab);
             updateState();
         } else {
-            Logger.undefined(componentType().componentName, mainContainer.element(), "Cannot close tab: No tab given.");
+            logger.error("Cannot close tab in tabs %o: No tab given.", element());
         }
     }
 
@@ -604,7 +603,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (id != null) {
             select(tabs.get(id));
         } else {
-            Logger.undefined(componentType().componentName, mainContainer.element(), "Cannot select tab: No tab id given.");
+            logger.error("Cannot select tab in tabs %o: No tab id given.", element());
         }
     }
 
@@ -625,7 +624,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                 selectHandler.onSelect(new Event(""), tab, true);
             }
         } else {
-            Logger.undefined(componentType().componentName, mainContainer.element(), "Cannot select tab: No tab given.");
+            logger.error("Cannot select tab in tabs %o: No tab given.", element());
         }
     }
 

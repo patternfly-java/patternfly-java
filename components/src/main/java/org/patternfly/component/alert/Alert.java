@@ -16,6 +16,7 @@
 package org.patternfly.component.alert;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
@@ -24,7 +25,6 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
@@ -89,6 +89,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Alert.class.getName());
     public static final int DEFAULT_TIMEOUT = 8_000; // ms
     static final int NO_TIMEOUT = -1; // ms
     static final int MIN_TIMEOUT = 1_000; // ms
@@ -191,7 +192,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     @Override
     public Alert removeIcon() {
-        Logger.unsupported(componentType().componentName, element(), "Removing the icon is not supported for this component.");
+        logger.warn("Removing the icon is not supported for alert %o", element());
         return this;
     }
 
@@ -302,8 +303,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     @Override
     public void collapse(boolean fireEvent) {
         if (!expandable) {
-            Logger.unsupported(ComponentType.Alert.componentName, element(), "Alert is not expandable.\n" +
-                    "Please use Alert.expandable() to make this an expandable alert.");
+            logger.warn("Alert %o is not expandable. Please use Alert.expandable() to make this an expandable alert.",
+                    element());
             return;
         }
         Expandable.collapse(element(), toggleButton.element(), description.element());
@@ -315,8 +316,8 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     @Override
     public void expand(boolean fireEvent) {
         if (!expandable) {
-            Logger.unsupported(ComponentType.Alert.componentName, element(), "Alert is not expandable.\n" +
-                    "Please use Alert.expandable() to make this an expandable alert.");
+            logger.warn("Alert %o is not expandable. Please use Alert.expandable() to make this an expandable alert.",
+                    element());
             return;
         }
         Expandable.expand(element(), toggleButton.element(), description.element());

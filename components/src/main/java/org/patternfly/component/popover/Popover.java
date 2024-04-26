@@ -23,6 +23,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
@@ -30,7 +31,6 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Placement;
@@ -52,6 +52,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
@@ -113,6 +114,8 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Popover.class.getName());
+
     public static final int ANIMATION_DURATION = 300;
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
@@ -172,24 +175,28 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         if (trigger != null) {
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
-                popper = new PopperBuilder(componentType().componentName, triggerElement, element())
-                        .animationDuration(animationDuration)
-                        .zIndex(zIndex)
-                        .placement(placement)
-                        .addModifier(Modifiers.offset(distance),
-                                Modifiers.noOverflow(),
-                                Modifiers.hide(),
-                                Modifiers.flip(placement == auto || flip),
-                                Modifiers.placement(),
-                                Modifiers.eventListeners(false))
-                        .registerHandler(triggerActions, this::show, this::close)
-                        .removePopperOnTriggerDetach()
-                        .build();
+                if (isAttached(triggerElement)) {
+                    popper = new PopperBuilder(componentType().componentName, triggerElement, element())
+                            .animationDuration(animationDuration)
+                            .zIndex(zIndex)
+                            .placement(placement)
+                            .addModifier(Modifiers.offset(distance),
+                                    Modifiers.noOverflow(),
+                                    Modifiers.hide(),
+                                    Modifiers.flip(placement == auto || flip),
+                                    Modifiers.placement(),
+                                    Modifiers.eventListeners(false))
+                            .registerHandler(triggerActions, this::show, this::close)
+                            .removePopperOnTriggerDetach()
+                            .build();
+                } else {
+                    logger.error("Trigger element %o is not attached for popover %o", triggerElement, element());
+                }
             } else {
-                Logger.undefined(componentType().componentName, element(), "Unable to get trigger element");
+                logger.error("Unable to find trigger element for popover %o", element());
             }
         } else {
-            Logger.undefined(componentType().componentName, element(), "No trigger element defined");
+            logger.error("No trigger element defined for popover %o", element());
         }
     }
 

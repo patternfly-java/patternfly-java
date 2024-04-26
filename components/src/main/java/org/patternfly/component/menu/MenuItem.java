@@ -23,7 +23,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
@@ -31,7 +31,6 @@ import org.patternfly.component.WithIconAndText;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -131,8 +130,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(MenuItem.class.getName());
     static final String SUB_COMPONENT_NAME = "";
-
 
     public final String id;
     final MenuItemType itemType;
@@ -186,7 +185,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .add(mainElement = div()
                             .add(textElement = div().element())
                             .element());
-            Logger.unknown(ComponentType.Menu.componentName, element(), "Unknown menu item type " + itemType);
+            logger.error("Unknown menu item type %s for %o", itemType, element());
         }
 
         add(itemElement = itemBuilder.css(component(Classes.menu, item)).element());
@@ -197,14 +196,12 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemType == async) {
             css(modifier(load));
             if (loadItems == null) {
-                Logger.undefined(ComponentType.Menu.componentName, element(),
-                        "No load items promise on menu item '" + id + "' defined!");
+                logger.error("No load items promise for menu item %o defined!", element());
             } else {
                 loadItems(loadItems);
             }
         } else if (loadItems != null) {
-            Logger.unsupported(ComponentType.Menu.componentName, element(),
-                    "Ignore load items promise on menu item '" + id + "' with type '" + itemType.name() + "'");
+            logger.warn("Ignore load items promise for menu item %o with type '%s'", element(), itemType.name());
         }
 
         Attachable.register(this, this);
@@ -271,6 +268,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         } else if (menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> {
                 if (itemType == checkbox) {
+                    //noinspection ObjectEquality,EqualsBetweenInconvertibleTypes
                     if (e.target == checkboxComponent.inputElement()) {
                         menu.select(this, isSelected(), true);
                     } else {
@@ -349,8 +347,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).href = href;
         } else {
-            Logger.unsupported(ComponentType.Menu.componentName, element(),
-                    "Ignore href on menu item '" + id + "' with type '" + itemType.name() + "'");
+            logger.warn("Ignore href for menu item %o with type '%s'", element(), itemType.name());
         }
         return this;
     }
@@ -365,8 +362,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .textContent("(opens a new window)")
                     .element());
         } else {
-            Logger.unsupported(ComponentType.Menu.componentName, element(),
-                    "Ignore external flag on menu item '" + id + "' with type '" + itemType.name() + "'");
+            logger.warn("Ignore external flag for menu item %o with type '%s'", element(), itemType.name());
         }
         return this;
     }
@@ -496,8 +492,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .catch_(error -> {
                         stopLoading();
                         text(loadingText);
-                        Logger.undefined(ComponentType.Menu.componentName, element(),
-                                "Unable to load menu items: " + error);
+                        logger.error("Unable to load menu items for %o: %s", element(), error);
                         return null;
                     });
         });

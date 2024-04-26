@@ -18,10 +18,10 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.form.Radio;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -49,6 +49,7 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(CardSelectableActions.class.getName());
     static final String SUB_COMPONENT_NAME = "csa";
 
     Checkbox checkbox;
@@ -75,10 +76,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
             String radioName = card.name;
             if (radioName == null) {
                 radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                Logger.undefined(ComponentType.Card.componentName, card.element(),
-                        "Name is undefined for clickable card '" + cardId + "'.\n" +
-                                "You should provide a common name for all clickable cards using 'Card.name(String)'.\n" +
-                                "Fallback to generated name '" + radioName + "', which will cause selection issues!");
+                logger.error(
+                        "Name is undefined for clickable card %o. You must provide a common name for all clickable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
+                        card.element(), radioName);
             }
             add(radio = radio(selectId, radioName).standalone(false));
             radio.inputElement().css(screenReader);
@@ -95,11 +95,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 String radioName = card.name;
                 if (radioName == null) {
                     radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    Logger.undefined(ComponentType.Card.componentName, card.element(),
-                            "Name is undefined for single selectable card '" + cardId + "'.\n" +
-                                    "You must provide a common name for all single selectable cards using 'Card.name(String)'.\n"
-                                    +
-                                    "Fallback to generated name '" + radioName + "', which will cause selection issues!");
+                    logger.error(
+                            "Name is undefined for single selectable card %o. You must provide a common name for all single selectable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
+                            card.element(), radioName);
                 }
                 add(radio = radio(selectId, radioName)
                         .standalone(false)
@@ -112,11 +110,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 String checkboxName = card.name;
                 if (checkboxName == null) {
                     checkboxName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    Logger.undefined(ComponentType.Card.componentName, card.element(),
-                            "Name is undefined for multi-select card '" + cardId + "'.\n" +
-                                    "You must provide a common name for all selectable cards using 'Card.name(String)'.\n"
-                                    +
-                                    "Fallback to generated name '" + checkboxName + "', which will cause selection issues!");
+                    logger.error(
+                            "Name is undefined for multi-select card %o. You must provide a common name for all selectable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
+                            card.element(), checkboxName);
                 }
                 add(checkbox = checkbox(selectId, checkboxName)
                         .standalone(false)

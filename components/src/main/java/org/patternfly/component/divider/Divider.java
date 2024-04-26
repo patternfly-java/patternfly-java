@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.divider;
 
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Logger;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Inset;
 import org.patternfly.style.Orientation;
@@ -53,13 +53,14 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
             case div:
                 return new Divider("div", HTMLDivElement.class);
             default:
-                Logger.undefined(ComponentType.Divider.componentName, null,
-                        "Unknown divider type " + type + ". Fallback to " + div.name());
+                logger.error("Unknown divider type %s. Fallback to %s", type, div.name());
                 return new Divider("div", HTMLDivElement.class);
         }
     }
 
     // ------------------------------------------------------ instance
+
+    private static final Logger logger = Logger.getLogger(Divider.class.getName());
 
     <E extends HTMLElement> Divider(String element, Class<E> type) {
         super(ComponentType.Divider, htmlElement(element, type)

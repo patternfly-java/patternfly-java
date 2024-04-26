@@ -23,11 +23,11 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Modifiers;
@@ -75,38 +75,40 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     // ------------------------------------------------------ factory
 
     public static Tooltip tooltip() {
-        return new Tooltip(null, null, null);
+        return new Tooltip(null, null);
     }
 
     public static Tooltip tooltip(String text) {
-        return new Tooltip(null, text, null);
+        return new Tooltip(null, text);
     }
 
     public static Tooltip tooltip(By trigger) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), null, trigger);
+        return new Tooltip(() -> Elements.find(document.body, trigger), null);
     }
 
     public static Tooltip tooltip(By trigger, String text) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), text, trigger);
+        return new Tooltip(() -> Elements.find(document.body, trigger), text);
     }
 
     public static Tooltip tooltip(HTMLElement trigger) {
-        return new Tooltip(() -> trigger, null, null);
+        return new Tooltip(() -> trigger, null);
     }
 
     public static Tooltip tooltip(HTMLElement trigger, String text) {
-        return new Tooltip(() -> trigger, text, null);
+        return new Tooltip(() -> trigger, text);
     }
 
     public static Tooltip tooltip(Supplier<HTMLElement> trigger) {
-        return new Tooltip(trigger, null, null);
+        return new Tooltip(trigger, null);
     }
 
     public static Tooltip tooltip(Supplier<HTMLElement> trigger, String text) {
-        return new Tooltip(trigger, text, null);
+        return new Tooltip(trigger, text);
     }
 
     // ------------------------------------------------------ instance
+
+    private static final Logger logger = Logger.getLogger(Tooltip.class.getName());
 
     public static final int ANIMATION_DURATION = 300;
     public static final int ENTRY_DELAY = 300;
@@ -117,7 +119,6 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private final String id;
     private final HTMLElement contentElement;
     private final Set<TriggerAction> triggerActions;
-    private final By selector;
     private Supplier<HTMLElement> trigger;
     private boolean flip;
     private int distance;
@@ -130,7 +131,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private Placement placement;
     private CloseHandler<Tooltip> closeHandler;
 
-    Tooltip(Supplier<HTMLElement> trigger, String text, By selector) {
+    Tooltip(Supplier<HTMLElement> trigger, String text) {
         super(ComponentType.Tooltip, div().css(component(tooltip))
                 .style("display", "none")
                 .attr(role, Roles.tooltip)
@@ -140,7 +141,6 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         this.id = Id.unique(componentType().id);
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(mouseenter, focus);
-        this.selector = selector;
         this.flip = true;
         this.placement = top;
         this.aria = describedBy;
@@ -182,19 +182,13 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
                             .removePopperOnTriggerDetach()
                             .build();
                 } else {
-                    Logger.undefined(componentType().componentName, element(),
-                            "Trigger element " + Elements.toString(triggerElement) + " is not attached");
+                    logger.error("Trigger element %o is not attached for tooltip %o", triggerElement, element());
                 }
             } else {
-                if (selector != null) {
-                    Logger.undefined(componentType().componentName, element(),
-                            "Unable to get trigger element using selector '" + selector + "'");
-                } else {
-                    Logger.undefined(componentType().componentName, element(), "Unable to get trigger element");
-                }
+                logger.error("Unable to find trigger element for tooltip %o", element());
             }
         } else {
-            Logger.undefined(componentType().componentName, element(), "No trigger element defined");
+            logger.error("No trigger element defined for tooltip %o", element());
         }
     }
 

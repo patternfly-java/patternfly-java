@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Modifiers.Compact;
@@ -56,6 +56,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(ToggleGroup.class.getName());
     final SelectionMode selectionMode;
     private final Map<String, ToggleGroupItem> items;
     private final Map<String, Boolean> disabledSnapshot;
@@ -68,8 +69,8 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         this.items = new HashMap<>();
         this.disabledSnapshot = new HashMap<>();
         if (selectionMode == SelectionMode.click) {
-            Logger.unsupported(componentType().componentName, element(),
-                    "Selection mode '" + SelectionMode.click.name() + "' is not supported. Fall back to '" + SelectionMode.single.name() + "'");
+            logger.warn("Selection mode '%s' is not supported for %e. Fall back to '%s'",
+                    SelectionMode.click.name(), element(), SelectionMode.single.name());
             this.selectionMode = SelectionMode.single;
         } else {
             this.selectionMode = selectionMode;

@@ -19,9 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.core.Logger;
+import org.jboss.elemento.logger.Logger;
 
 import elemental2.dom.HTMLElement;
 
@@ -31,6 +30,7 @@ import static org.jboss.elemento.Id.uuid;
 
 final class ComponentStore {
 
+    private static final Logger logger = Logger.getLogger(ComponentStore.class.getName());
     private static final String KEY_PREFIX = "pfcs"; // PatternFly component store
     private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
@@ -44,8 +44,8 @@ final class ComponentStore {
         components.put(uuid, component);
         component.element().dataset.set(key(component.componentType()), uuid);
         onDetach(component.element(), __ -> remove(uuid));
-        Logger.debug(CATEGORY, "Store component " + component.componentType().componentName + " as " + uuid +
-                " on " + Elements.toString(component.element()) + count());
+        logger.debug("Store component %s as %s on %o%s", component.componentType().componentName, uuid,
+                component.element(), count());
     }
 
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeFlatComponent(BaseComponentFlat<E, B> component) {
@@ -53,8 +53,8 @@ final class ComponentStore {
         flatComponents.put(uuid, component);
         component.element().dataset.set(key(component.componentType()), uuid);
         onDetach(component.element(), __ -> remove(uuid));
-        Logger.debug(CATEGORY, "Store flat component " + component.componentType().componentName + " as " + uuid +
-                " on " + Elements.toString(component.element()) + count());
+        logger.debug("Store flat component %s as %s on %o%s", component.componentType().componentName, uuid,
+                component.element(), count());
     }
 
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(SubComponent<E, B> subComponent) {
@@ -62,8 +62,8 @@ final class ComponentStore {
         subComponents.put(uuid, subComponent);
         subComponent.element().dataset.set(key(subComponent.componentType, subComponent.name), uuid);
         onDetach(subComponent.element(), mr -> remove(uuid));
-        Logger.debug(CATEGORY, "Store subcomponent " + subComponent.componentType.componentName + "/"
-                + subComponent.name + " as " + uuid + " on " + Elements.toString(subComponent.element()) + count());
+        logger.debug("Store subcomponent %s/%s as %s on %o%s", subComponent.componentType.componentName, subComponent.name,
+                uuid, subComponent.element(), count());
     }
 
     // ------------------------------------------------------ lookup
@@ -82,17 +82,17 @@ final class ComponentStore {
                     component = (C) components.get(uuid);
                 } catch (ClassCastException e) {
                     if (!lenient) {
-                        Logger.undefined(CATEGORY, closest, "Cannot cast component to " + componentType.componentName);
+                        logger.error("Cannot cast component %o to %s", closest, componentType.componentName);
                     }
                 }
             } else {
                 if (!lenient) {
-                    Logger.undefined(CATEGORY, closest, "No UUID found on component element");
+                    logger.error("No UUID found on component element %o", closest);
                 }
             }
         } else {
             if (!lenient) {
-                Logger.undefined(CATEGORY, element, "Unable to find element of component using " + selector);
+                logger.error("Unable to find element of component %o using %s", element, selector);
             }
         }
         return component;
@@ -112,17 +112,17 @@ final class ComponentStore {
                     component = (C) flatComponents.get(uuid);
                 } catch (ClassCastException e) {
                     if (!lenient) {
-                        Logger.undefined(CATEGORY, closest, "Cannot cast component to " + componentType.componentName);
+                        logger.error("Cannot cast component %o to %s", closest, componentType.componentName);
                     }
                 }
             } else {
                 if (!lenient) {
-                    Logger.undefined(CATEGORY, closest, "No UUID found on component element");
+                    logger.error("No UUID found on component element %o", closest);
                 }
             }
         } else {
             if (!lenient) {
-                Logger.undefined(CATEGORY, element, "Unable to find element of component using " + selector);
+                logger.error("Unable to find element of component %o using %s", element, selector);
             }
         }
         return component;
@@ -142,18 +142,17 @@ final class ComponentStore {
                     subComponent = (S) subComponents.get(uuid);
                 } catch (Exception e) {
                     if (!lenient) {
-                        Logger.undefined(CATEGORY, closest,
-                                "Cannot cast subcomponent to " + componentType.componentName + "/" + name);
+                        logger.error("Cannot cast subcomponent %o to %s/%s", closest, componentType.componentName, name);
                     }
                 }
             } else {
                 if (!lenient) {
-                    Logger.undefined(CATEGORY, closest, "No UUID found on subcomponent element");
+                    logger.error("No UUID found on subcomponent element %o", closest);
                 }
             }
         } else {
             if (!lenient) {
-                Logger.undefined(CATEGORY, element, "Unable to find element of subcomponent using " + selector);
+                logger.error("Unable to find element of subcomponent %o using %s", element, selector);
             }
         }
         return subComponent;
@@ -174,11 +173,11 @@ final class ComponentStore {
         BaseComponentFlat<?, ?> cf = flatComponents.remove(uuid);
         SubComponent<?, ?> s = subComponents.remove(uuid);
         if (c != null || cf != null) {
-            Logger.debug(CATEGORY, "Remove component for " + uuid + count());
+            logger.debug("Remove component for %s%s", uuid, count());
         } else if (s != null) {
-            Logger.debug(CATEGORY, "Remove subcomponent for " + uuid + count());
+            logger.debug("Remove subcomponent for %s%s", uuid, count());
         } else {
-            Logger.undefined(CATEGORY, null, "Unable to remove (sub)component for " + uuid);
+            logger.error("Unable to remove (sub)component for %s", uuid);
         }
     }
 

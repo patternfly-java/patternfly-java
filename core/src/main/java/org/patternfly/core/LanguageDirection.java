@@ -15,6 +15,8 @@
  */
 package org.patternfly.core;
 
+import org.jboss.elemento.logger.Logger;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.DomGlobal.window;
@@ -24,6 +26,8 @@ public enum LanguageDirection {
     ltr,
 
     rtl;
+
+    private static final Logger logger = Logger.getLogger(LanguageDirection.class.getName());
 
     public static LanguageDirection languageDirection(HTMLElement element) {
         return languageDirection(element, ltr);
@@ -36,8 +40,7 @@ public enum LanguageDirection {
             try {
                 result = LanguageDirection.valueOf(direction);
             } catch (IllegalArgumentException e) {
-                Logger.undefined("Language direction", element,
-                        "Unable to get language direction from element. Fall back to " + defaultValue);
+                logger.error("Unable to get language direction from %o. Fall back to '%s'", element, defaultValue.name());
             }
         }
         return result;

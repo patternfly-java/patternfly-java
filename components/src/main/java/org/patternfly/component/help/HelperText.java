@@ -16,10 +16,10 @@
 package org.patternfly.component.help;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.ValidationStatus;
-import org.patternfly.core.Logger;
 
 import elemental2.dom.HTMLElement;
 
@@ -62,6 +62,7 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(HelperText.class.getName());
     private HelperTextItem firstItem;
 
     <E extends HTMLElement> HelperText(HTMLContainerBuilder<E> builder) {
@@ -104,8 +105,7 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
 
     public HelperTextItem firstItem() {
         if (firstItem == null) {
-            Logger.undefined(componentType().componentName, element(),
-                    "Helper text does not contain any items. Returning empty item instead");
+            logger.error("Helper text %o does not contain any items. Returning empty item instead", element());
             return helperTextItem();
         }
         return firstItem;

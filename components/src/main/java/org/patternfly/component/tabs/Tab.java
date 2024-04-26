@@ -20,15 +20,14 @@ import java.util.function.Function;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.Closeable;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Logger;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets.patternfly;
@@ -97,6 +96,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Tab.class.getName());
     static final String SUB_COMPONENT_NAME = "tab";
 
     public final String id;
@@ -285,8 +285,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (anchorElement) {
             ((HTMLAnchorElement) button.element()).href = href;
         } else {
-            Logger.unsupported(ComponentType.Tabs.componentName, element(),
-                    "Links are not supported for this tab. Please create the tab using the right factory method.");
+            logger.warn("Links are not supported for tab %o. Please create the tab using the right factory method.", element());
         }
         return this;
     }
@@ -307,8 +306,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (closeButton != null) {
             closeButton.aria(Aria.label, label);
         } else {
-            Logger.undefined(ComponentType.Tabs.componentName, element(),
-                    "Unable to set aria close label for tab " + id + ". Please make the tab closeable first.");
+            logger.error("Unable to set aria close label for tab %o. Please make the tab closeable first.", element());
         }
         return this;
     }
@@ -317,8 +315,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (helpButton != null) {
             helpButton.aria(Aria.label, label);
         } else {
-            Logger.undefined(ComponentType.Tabs.componentName, element(),
-                    "Unable to set aria help label for tab " + id + ". Please add the help popover first.");
+            logger.error("Unable to set aria help label for tab %o. Please add the help popover first.", element());
         }
         return this;
     }
@@ -381,13 +378,12 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                                 return null;
                             })
                             .catch_(error -> {
-                                Logger.undefined(ComponentType.Tabs.componentName, element(),
-                                        "Unable to load content for tab " + id + ": " + error);
+                                logger.error("Unable to load content for tab %o: %s", element(), error);
                                 return null;
                             })
                             .finally_(this::stopLoading);
                 } else {
-                    Logger.missing(ComponentType.Tabs.componentName, element(), "No content defined for tab " + id);
+                    logger.error("No content defined for tab %o", element());
                 }
             } else {
                 content.element().hidden = false;

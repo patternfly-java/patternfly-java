@@ -16,10 +16,9 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.ComponentType;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ElementDelegate;
-import org.patternfly.core.Logger;
 import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLAnchorElement;
@@ -64,6 +63,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
     static final String SUB_COMPONENT_NAME = "sli";
     public final String id;
     private final HTMLElement itemElement;
@@ -98,8 +98,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
         if (anchorElement != null) {
             anchorElement.href = href;
         } else {
-            Logger.undefined(ComponentType.SimpleList.componentName, element(),
-                    "Unable to set href: This simple list item is not an <a/> item.");
+            logger.error("Unable to set href on %o: This simple list item is not an <a/> item.", element());
         }
         return this;
     }
@@ -108,8 +107,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
         if (anchorElement != null) {
             anchorElement.target = target;
         } else {
-            Logger.undefined(ComponentType.SimpleList.componentName, element(),
-                    "Unable to set target: This simple list item is not an <a/> item.");
+            logger.error("Unable to set target on %o: This simple list item is not an <a/> item.", element());
         }
         return this;
     }
