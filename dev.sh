@@ -110,8 +110,6 @@ if [[ "${MODE}" == "gwt" ]]; then
   msg "Start ${YELLOW}GWT${NOFORMAT} development mode..."
   mvn gwt:devmode
 else
-  msg "Prepare ${YELLOW}J2CL${NOFORMAT} development mode..."
-  mvn -P quick-build,showcase ${CLEAN} compile
   msg "Start ${YELLOW}J2CL${NOFORMAT} development mode..."
-  mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase j2cl:watch
+  mvn --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase ${CLEAN} compile j2cl:watch
 fi

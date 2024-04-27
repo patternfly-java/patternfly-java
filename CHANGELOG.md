@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Automatic reload after changes to Java sources in J2CL dev mode
+
 ## [0.2.4] - 2024-04-26
 
 ### Added
@@ -19,6 +23,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Builder inheritance of `PredefinedIcon` class
+
+## [0.2.3]
+
+Release skipped.
 
 ## [0.2.2] - 2024-04-10
 
