@@ -36,7 +36,7 @@
         <!-- Dependency versions -->
         <version.commons.text>1.12.0</version.commons.text>
         <version.gwt>2.11.0</version.gwt>
-        <version.intellij.markdown>0.7.0</version.intellij.markdown>
+        <version.intellij.markdown>0.7.1</version.intellij.markdown>
         <version.kie.j2cl.bom>0.1</version.kie.j2cl.bom>
 
         <!-- Build related -->
