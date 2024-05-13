@@ -157,8 +157,6 @@
                             <exclude>**/.parcel-cache/**</exclude>
                             <exclude>**/node/**</exclude>
                             <exclude>**/node_modules/**</exclude>
-                            <exclude>**/org/patternfly/icon/IconsSets.java</exclude>
-                            <exclude>**/org/patternfly/icon/IconsSpecs.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
