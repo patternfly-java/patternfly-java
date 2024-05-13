@@ -199,17 +199,17 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
 
     /** The starting size of a resizable drawer, in either pixels or percentage. */
     public DrawerPanel defaultSize(String defaultSize) {
-        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis).applyTo(this, defaultSize);
+        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis).applyTo(this).set(defaultSize);
     }
 
     /** The minimum size of a drawer, in either pixels or percentage. */
     public DrawerPanel minSize(String minSize) {
-        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis, "min").applyTo(this, minSize);
+        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis, "min").applyTo(this).set(minSize);
     }
 
     /** The maximum size of a drawer, in either pixels or percentage. */
     public DrawerPanel maxSize(String maxSize) {
-        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis, "max").applyTo(this, maxSize);
+        return componentVar(component(Classes.drawer, panel), md.value, FlexBasis, "max").applyTo(this).set(maxSize);
     }
 
     public DrawerPanel color(DrawerColor color) {
@@ -487,7 +487,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     private void updateSize(double newSize) {
         currentWidth = newSize;
         splitterElement.aria(valueNow, calcValueNow());
-        componentVar(component(Classes.drawer, panel), md.value, FlexBasis).applyTo(this, newSize + "px");
+        componentVar(component(Classes.drawer, panel), md.value, FlexBasis).applyTo(this).set(newSize + "px");
     }
 
     private boolean resizableDrawer() {

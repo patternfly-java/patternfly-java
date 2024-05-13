@@ -30,7 +30,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
 
     private static final Logger logger = Logger.getLogger(ComponentDelegate.class.getName());
     private final ComponentType componentType;
-    private E delegate;
+    E delegate;
 
     protected ComponentDelegate(ComponentType componentType) {
         this.componentType = requireNonNull(componentType, "component type required");
@@ -52,5 +52,11 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
     @Override
     public ComponentType componentType() {
         return componentType;
+    }
+
+    // ------------------------------------------------------ component store
+
+    protected void storeComponent() {
+        ComponentStore.storeComponentDelegate(this);
     }
 }

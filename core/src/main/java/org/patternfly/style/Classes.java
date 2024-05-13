@@ -35,11 +35,13 @@ public interface Classes {
     String alert = "alert";
     String alertGroup = "alert-group";
     String alignCenter = "align-center";
+    String alignTop = "align-top";
     String ariaDisabled = "aria-disabled";
     String arrow = "arrow";
     String autoColumnWidths = "auto-column-widths";
     String autoFit = "auto-fit";
     String avatar = "avatar";
+    String backdrop = "backdrop";
     String backToTop = "back-to-top";
     String badge = "badge";
     String banner = "banner";
@@ -155,6 +157,7 @@ public interface Classes {
     String measure = "measure";
     String menu = "menu";
     String menuToggle = "menu-toggle";
+    String modalBox = "modal-box";
     String nav = "nav";
     String noBorder = "no-border";
     String noBorderBottom = "no-border-bottom";
@@ -165,6 +168,7 @@ public interface Classes {
     String noPaddingTop = "no-padding-top";
     String off = "off";
     String on = "on";
+    String open = "open";
     String option = "option";
     String outline = "outline";
     String overflow = "overflow";

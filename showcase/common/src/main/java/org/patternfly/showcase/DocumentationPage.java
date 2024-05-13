@@ -19,7 +19,10 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.IsElement;
+import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
+import org.jboss.elemento.router.Parameter;
+import org.jboss.elemento.router.Place;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -77,7 +80,7 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
     }
 
     @Override
-    public Iterable<HTMLElement> elements() {
+    public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(root);
     }
 }

@@ -56,7 +56,7 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
     // ------------------------------------------------------ builder
 
     public PageMainSection background(Brightness brightness) {
-        if (verifyEnum("PF5/PageMainSection", element(), "background", brightness, light, light100, dark100, dark200)) {
+        if (verifyEnum(element(), "background", brightness, light, light100, dark100, dark200)) {
             css(brightness.modifier());
         }
         return this;

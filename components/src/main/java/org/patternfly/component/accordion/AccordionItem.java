@@ -18,6 +18,7 @@ package org.patternfly.component.accordion;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -135,7 +136,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     void appendTo(Accordion accordion) {
         String textId = Id.unique(ComponentType.Accordion.id, "text");
         HTMLContainerBuilder<? extends HTMLElement> toggle = accordion.dl ? dt() : h(accordion.headingLevel);
-        toggle.add(toggleElement = button().css(component(Classes.accordion, Classes.toggle))
+        toggle.add(toggleElement = button(ButtonType.button).css(component(Classes.accordion, Classes.toggle))
                 .on(click, e -> toggle(accordion))
                 .add(textElement = span().css(component(Classes.accordion, Classes.toggle, Classes.text))
                         .id(textId)

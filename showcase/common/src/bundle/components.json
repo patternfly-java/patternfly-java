@@ -380,6 +380,7 @@
     "name": "modal",
     "title": "Modal",
     "route": "/components/modal",
+    "clazz": "org.patternfly.component.modal.Modal",
     "illustration": "modal.png",
     "summary": "A <b>modal</b> displays important information to a user without requiring them to navigate to a new page."
   },

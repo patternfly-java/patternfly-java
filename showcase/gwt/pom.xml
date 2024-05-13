@@ -172,6 +172,7 @@
                         <devmodeArg>settings.mode=${settings.mode}</devmodeArg>
                         <devmodeArg>-setProperty</devmodeArg>
                         <devmodeArg>settings.tech=${settings.tech}</devmodeArg>
+                        <devmodeArg>-generateJsInteropExports</devmodeArg>
                     </devmodeArgs>
                     <compilerArgs>
                         <compilerArg>-setProperty</compilerArg>
@@ -180,6 +181,7 @@
                         <compilerArg>settings.mode=${settings.mode}</compilerArg>
                         <compilerArg>-setProperty</compilerArg>
                         <compilerArg>settings.tech=${settings.tech}</compilerArg>
+                        <compilerArg>-generateJsInteropExports</compilerArg>
                     </compilerArgs>
                     <draftCompile>${gwt.draftCompile}</draftCompile>
                     <moduleName>org.patternfly.Showcase</moduleName>

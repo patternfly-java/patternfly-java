@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.expandable;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -62,7 +63,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLB
     private ExpandableSectionToggleText text;
 
     ExpandableSectionToggle(String moreText, String lessText) {
-        super(SUB_COMPONENT_NAME, button().css(component(Classes.expandableSection, toggle))
+        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(Classes.expandableSection, toggle))
                 .aria(expanded, false)
                 .element());
         on(click, e -> {

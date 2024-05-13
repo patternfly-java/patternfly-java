@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.WithIcon;
@@ -73,8 +74,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     public MenuItem menuItem;
 
     MenuItemAction(String id, Element icon, boolean favorite) {
-        super(SUB_COMPONENT_NAME, button()
-                .css(component(Classes.menu, item, action))
+        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(Classes.menu, item, action))
                 .attr(tabindex, -1)
                 .add(span().css(component(Classes.menu, item, action, Classes.icon))
                         .add(icon))

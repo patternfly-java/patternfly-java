@@ -17,6 +17,7 @@ package org.patternfly.component.tabs;
 
 import java.util.function.Function;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -83,11 +84,11 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     // ------------------------------------------------------ factory
 
     public static Tab tab(String id) {
-        return new Tab(button(), id, null);
+        return new Tab(button(ButtonType.button), id, null);
     }
 
     public static Tab tab(String id, String text) {
-        return new Tab(button(), id, text);
+        return new Tab(button(ButtonType.button), id, text);
     }
 
     public static <E extends HTMLElement> Tab tab(HTMLContainerBuilder<E> builder, String id, String text) {
@@ -162,44 +163,6 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     public Tab add(Function<Tabs, Promise<TabContent>> content) {
         dynamicContent = content;
-        return this;
-    }
-
-    public Tab addHelp(Popover help) {
-        return add(help);
-    }
-
-    // Override to add the tooltip to the tabs element in Tabs.attach()
-    // If added to this element, the tooltip won't show,
-    // because this element is inside a scrolling container (<ul/>)
-    public Tab add(Popover help) {
-        if (helpButton == null) {
-            css(modifier(action));
-            HTMLElement helpContainer = span().css(component(tabs, item, action))
-                    .add(helpButton = Button.button().plain()
-                            .aria(Aria.label, "More info for " + text())
-                            .add(span().css(component(tabs, item, action, icon))
-                                    .add(patternfly.help())))
-                    .element();
-            if (closeButton == null) {
-                add(helpContainer);
-            } else {
-                insertBefore(helpContainer, closeButton.element());
-            }
-        }
-        this.help = help;
-        return this;
-    }
-
-    public Tab addTooltip(Tooltip tooltip) {
-        return add(tooltip);
-    }
-
-    // Override to add the tooltip to the tabs element in Tabs.attach()
-    // If added to this element, the tooltip won't show,
-    // because this element is inside a scrolling container (<ul/>)
-    public Tab add(Tooltip tooltip) {
-        this.tooltip = tooltip;
         return this;
     }
 
@@ -287,6 +250,36 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         } else {
             logger.warn("Links are not supported for tab %o. Please create the tab using the right factory method.", element());
         }
+        return this;
+    }
+
+    public Tab help(Popover help) {
+        // Override to add the tooltip to the tabs element in Tabs.attach()
+        // If added to this element, the tooltip won't show,
+        // because this element is inside a scrolling container (<ul/>)
+        if (helpButton == null) {
+            css(modifier(action));
+            HTMLElement helpContainer = span().css(component(tabs, item, action))
+                    .add(helpButton = Button.button().plain()
+                            .aria(Aria.label, "More info for " + text())
+                            .add(span().css(component(tabs, item, action, icon))
+                                    .add(patternfly.help())))
+                    .element();
+            if (closeButton == null) {
+                add(helpContainer);
+            } else {
+                insertBefore(helpContainer, closeButton.element());
+            }
+        }
+        this.help = help;
+        return this;
+    }
+
+    public Tab tooltip(Tooltip tooltip) {
+        // Override to add the tooltip to the tabs element in Tabs.attach()
+        // If added to this element, the tooltip won't show,
+        // because this element is inside a scrolling container (<ul/>)
+        this.tooltip = tooltip;
         return this;
     }
 

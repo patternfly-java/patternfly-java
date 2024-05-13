@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -282,7 +283,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     private void overflow() {
         if (chips.size() > numChips && overflowItem == null && overflowChip == null) {
             overflowItem = li().css(component(chipGroup, list, item))
-                    .add(overflowChip = new Chip(Elements.button(), "")
+                    .add(overflowChip = new Chip(Elements.button(ButtonType.button), "")
                             .readonly()
                             .css(modifier(overflow))
                             .on(click, event -> toggle()))

@@ -27,7 +27,7 @@ public final class Validation {
 
     private static final Logger logger = Logger.getLogger(Validation.class.getName());
 
-    public static boolean verifyRange(String category, Element element, String property, int value, int min, int max) {
+    public static boolean verifyRange(Element element, String property, int value, int min, int max) {
         if (value < 1 || value > 12) {
             logger.warn("'%s' in element %o out of range. Given: %d, allowed [%d,%d].", property, element, value, min, max);
             return false;
@@ -36,8 +36,8 @@ public final class Validation {
     }
 
     @SafeVarargs
-    public static <E extends Enum<E>> boolean verifyEnum(String category, Element element, String property, E value,
-            E firstAllowedValue, E... otherAllowedValues) {
+    public static <E extends Enum<E>> boolean verifyEnum(Element element, String property, E value, E firstAllowedValue,
+            E... otherAllowedValues) {
         EnumSet<E> allowed = EnumSet.of(firstAllowedValue, otherAllowedValues);
         if (!allowed.contains(value)) {
             logger.warn("Unsupported value for '%s' in element %o. Given: %s, allowed $s.",

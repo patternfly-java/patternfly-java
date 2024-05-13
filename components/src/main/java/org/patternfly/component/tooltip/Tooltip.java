@@ -165,25 +165,21 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         if (trigger != null) {
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
-                if (isAttached(triggerElement)) {
-                    popper = new PopperBuilder(componentType().componentName, triggerElement, element())
-                            .animationDuration(animationDuration)
-                            .entryDelay(entryDelay)
-                            .exitDelay(exitDelay)
-                            .zIndex(zIndex)
-                            .placement(placement)
-                            .addModifier(Modifiers.offset(distance),
-                                    Modifiers.noOverflow(),
-                                    Modifiers.hide(),
-                                    Modifiers.flip(placement == auto || flip),
-                                    Modifiers.placement(),
-                                    Modifiers.eventListeners(false))
-                            .registerHandler(triggerActions, this::show, this::close)
-                            .removePopperOnTriggerDetach()
-                            .build();
-                } else {
-                    logger.error("Trigger element %o is not attached for tooltip %o", triggerElement, element());
-                }
+                popper = new PopperBuilder(componentType().componentName, triggerElement, element())
+                        .animationDuration(animationDuration)
+                        .entryDelay(entryDelay)
+                        .exitDelay(exitDelay)
+                        .zIndex(zIndex)
+                        .placement(placement)
+                        .addModifier(Modifiers.offset(distance),
+                                Modifiers.noOverflow(),
+                                Modifiers.hide(),
+                                Modifiers.flip(placement == auto || flip),
+                                Modifiers.placement(),
+                                Modifiers.eventListeners(false))
+                        .registerHandler(triggerActions, this::show, this::close)
+                        .removePopperOnTriggerDetach()
+                        .build();
             } else {
                 logger.error("Unable to find trigger element for tooltip %o", element());
             }

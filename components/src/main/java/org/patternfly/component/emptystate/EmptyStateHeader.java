@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.emptystate;
 
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.spinner.Spinner;
@@ -64,7 +63,7 @@ public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, Emp
 
     EmptyStateHeader(int headingLevel) {
         super(SUB_COMPONENT_NAME, div().css(component(emptyState, header)).element());
-        if (verifyRange(ComponentType.EmptyState.componentName, element(), "headingLevel", headingLevel, 1, 6)) {
+        if (verifyRange(element(), "headingLevel", headingLevel, 1, 6)) {
             this.headingLevel = headingLevel;
         } else {
             this.headingLevel = 1;
@@ -158,6 +157,6 @@ public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, Emp
     }
 
     private void iconColor(String color) {
-        componentVar(component(emptyState, icon), Color).applyTo(iconContainer, color);
+        componentVar(component(emptyState, icon), Color).applyTo(iconContainer).set(color);
     }
 }

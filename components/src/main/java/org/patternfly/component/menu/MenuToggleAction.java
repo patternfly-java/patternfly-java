@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.ButtonType;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
@@ -42,7 +43,7 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
     static final String SUB_COMPONENT_NAME = "mta";
 
     MenuToggleAction(String text) {
-        super(SUB_COMPONENT_NAME, button().css(component(menuToggle, button))
+        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(menuToggle, button))
                 .textContent(text)
                 .element());
     }

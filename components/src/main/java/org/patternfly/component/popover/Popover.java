@@ -52,7 +52,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
@@ -175,23 +174,19 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         if (trigger != null) {
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
-                if (isAttached(triggerElement)) {
-                    popper = new PopperBuilder(componentType().componentName, triggerElement, element())
-                            .animationDuration(animationDuration)
-                            .zIndex(zIndex)
-                            .placement(placement)
-                            .addModifier(Modifiers.offset(distance),
-                                    Modifiers.noOverflow(),
-                                    Modifiers.hide(),
-                                    Modifiers.flip(placement == auto || flip),
-                                    Modifiers.placement(),
-                                    Modifiers.eventListeners(false))
-                            .registerHandler(triggerActions, this::show, this::close)
-                            .removePopperOnTriggerDetach()
-                            .build();
-                } else {
-                    logger.error("Trigger element %o is not attached for popover %o", triggerElement, element());
-                }
+                popper = new PopperBuilder(componentType().componentName, triggerElement, element())
+                        .animationDuration(animationDuration)
+                        .zIndex(zIndex)
+                        .placement(placement)
+                        .addModifier(Modifiers.offset(distance),
+                                Modifiers.noOverflow(),
+                                Modifiers.hide(),
+                                Modifiers.flip(placement == auto || flip),
+                                Modifiers.placement(),
+                                Modifiers.eventListeners(false))
+                        .registerHandler(triggerActions, this::show, this::close)
+                        .removePopperOnTriggerDetach()
+                        .build();
             } else {
                 logger.error("Unable to find trigger element for popover %o", element());
             }

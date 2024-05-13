@@ -17,6 +17,7 @@ package org.patternfly.component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.TypedBuilder;
@@ -27,6 +28,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.closest;
 import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.Id.uuid;
+import static org.jboss.elemento.logger.Level.DEBUG;
 
 final class ComponentStore {
 
@@ -34,6 +36,7 @@ final class ComponentStore {
     private static final String KEY_PREFIX = "pfcs"; // PatternFly component store
     private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
+    private static final Map<String, ComponentDelegate<?, ?>> componentDelegates = new HashMap<>();
     private static final Map<String, BaseComponentFlat<?, ?>> flatComponents = new HashMap<>();
     private static final Map<String, SubComponent<?, ?>> subComponents = new HashMap<>();
 
@@ -43,27 +46,49 @@ final class ComponentStore {
         String uuid = uuid();
         components.put(uuid, component);
         component.element().dataset.set(key(component.componentType()), uuid);
-        onDetach(component.element(), __ -> remove(uuid));
-        logger.debug("Store component %s as %s on %o%s", component.componentType().componentName, uuid,
-                component.element(), count());
+        onDetach(component.element(), __ -> remove(uuid, "component", components::remove));
+        if (logger.isEnabled(DEBUG)) {
+            logger.debug("Store component %s as %s on %o%s", component.componentType().componentName, uuid,
+                    component.element(), count());
+        }
+    }
+
+    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeComponentDelegate(
+            ComponentDelegate<E, B> component) {
+        if (component.delegate == null) {
+            logger.error("Unable to store component delegate %s. Delegate is null!", component.componentType().componentName);
+        } else {
+            String uuid = uuid();
+            componentDelegates.put(uuid, component);
+            component.element().dataset.set(key(component.componentType()), uuid);
+            onDetach(component.element(), __ -> remove(uuid, "component delegate", componentDelegates::remove));
+            if (logger.isEnabled(DEBUG)) {
+                logger.debug("Store component delegate %s as %s on %o%s", component.componentType().componentName, uuid,
+                        component.element(), count());
+            }
+        }
     }
 
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeFlatComponent(BaseComponentFlat<E, B> component) {
         String uuid = uuid();
         flatComponents.put(uuid, component);
         component.element().dataset.set(key(component.componentType()), uuid);
-        onDetach(component.element(), __ -> remove(uuid));
-        logger.debug("Store flat component %s as %s on %o%s", component.componentType().componentName, uuid,
-                component.element(), count());
+        onDetach(component.element(), __ -> remove(uuid, "flat component", flatComponents::remove));
+        if (logger.isEnabled(DEBUG)) {
+            logger.debug("Store flat component %s as %s on %o%s", component.componentType().componentName, uuid,
+                    component.element(), count());
+        }
     }
 
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(SubComponent<E, B> subComponent) {
         String uuid = uuid();
         subComponents.put(uuid, subComponent);
         subComponent.element().dataset.set(key(subComponent.componentType, subComponent.name), uuid);
-        onDetach(subComponent.element(), mr -> remove(uuid));
-        logger.debug("Store subcomponent %s/%s as %s on %o%s", subComponent.componentType.componentName, subComponent.name,
-                uuid, subComponent.element(), count());
+        onDetach(subComponent.element(), mr -> remove(uuid, "sub component", subComponents::remove));
+        if (logger.isEnabled(DEBUG)) {
+            logger.debug("Store subcomponent %s/%s as %s on %o%s", subComponent.componentType.componentName, subComponent.name,
+                    uuid, subComponent.element(), count());
+        }
     }
 
     // ------------------------------------------------------ lookup
@@ -71,91 +96,29 @@ final class ComponentStore {
     @SuppressWarnings("unchecked")
     static <C extends BaseComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupComponent(
             ComponentType componentType, HTMLElement element, boolean lenient) {
-        C component = null;
-        String key = key(componentType);
-        By selector = By.data(key);
-        HTMLElement closest = closest(element, selector);
-        if (closest != null) {
-            String uuid = closest.dataset.get(key);
-            if (uuid != null) {
-                try {
-                    component = (C) components.get(uuid);
-                } catch (ClassCastException e) {
-                    if (!lenient) {
-                        logger.error("Cannot cast component %o to %s", closest, componentType.componentName);
-                    }
-                }
-            } else {
-                if (!lenient) {
-                    logger.error("No UUID found on component element %o", closest);
-                }
-            }
-        } else {
-            if (!lenient) {
-                logger.error("Unable to find element of component %o using %s", element, selector);
-            }
-        }
-        return component;
+        return lookup(componentType, null, key(componentType), element, lenient, "component",
+                key -> (C) components.get(key));
+    }
+
+    @SuppressWarnings("unchecked")
+    static <C extends ComponentDelegate<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupComponentDelegate(
+            ComponentType componentType, HTMLElement element, boolean lenient) {
+        return lookup(componentType, null, key(componentType), element, lenient, "component delegate",
+                key -> (C) componentDelegates.get(key));
     }
 
     @SuppressWarnings("unchecked")
     static <C extends BaseComponentFlat<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupFlatComponent(
             ComponentType componentType, HTMLElement element, boolean lenient) {
-        C component = null;
-        String key = key(componentType);
-        By selector = By.data(key);
-        HTMLElement closest = closest(element, selector);
-        if (closest != null) {
-            String uuid = closest.dataset.get(key);
-            if (uuid != null) {
-                try {
-                    component = (C) flatComponents.get(uuid);
-                } catch (ClassCastException e) {
-                    if (!lenient) {
-                        logger.error("Cannot cast component %o to %s", closest, componentType.componentName);
-                    }
-                }
-            } else {
-                if (!lenient) {
-                    logger.error("No UUID found on component element %o", closest);
-                }
-            }
-        } else {
-            if (!lenient) {
-                logger.error("Unable to find element of component %o using %s", element, selector);
-            }
-        }
-        return component;
+        return lookup(componentType, null, key(componentType), element, lenient, "flat component",
+                key -> (C) flatComponents.get(key));
     }
 
     @SuppressWarnings("unchecked")
     static <S extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> S lookupSubComponent(
             ComponentType componentType, String name, HTMLElement element, boolean lenient) {
-        S subComponent = null;
-        String key = key(componentType, name);
-        By selector = By.data(key);
-        HTMLElement closest = closest(element, selector);
-        if (closest != null) {
-            String uuid = closest.dataset.get(key);
-            if (uuid != null) {
-                try {
-                    subComponent = (S) subComponents.get(uuid);
-                } catch (Exception e) {
-                    if (!lenient) {
-                        logger.error("Cannot cast subcomponent %o to %s/%s", closest, componentType.componentName, name);
-                    }
-                }
-            } else {
-                if (!lenient) {
-                    logger.error("No UUID found on subcomponent element %o", closest);
-                }
-            }
-        } else {
-            if (!lenient) {
-                logger.error("Unable to find element of subcomponent %o using %s", element, selector);
-            }
-        }
-        return subComponent;
+        return lookup(componentType, name, key(componentType, name), element, lenient, "sub component",
+                key -> (S) subComponents.get(key));
     }
 
     // ------------------------------------------------------ internal
@@ -168,20 +131,47 @@ final class ComponentStore {
         return KEY_PREFIX + componentType.id + name;
     }
 
-    private static void remove(String uuid) {
-        BaseComponent<?, ?> c = components.remove(uuid);
-        BaseComponentFlat<?, ?> cf = flatComponents.remove(uuid);
-        SubComponent<?, ?> s = subComponents.remove(uuid);
-        if (c != null || cf != null) {
-            logger.debug("Remove component for %s%s", uuid, count());
-        } else if (s != null) {
-            logger.debug("Remove subcomponent for %s%s", uuid, count());
+    private static <T> T lookup(ComponentType componentType, String name, String key, HTMLElement element, boolean lenient,
+            String type, Function<String, T> lookupFn) {
+        T value = null;
+        By selector = By.data(key);
+        HTMLElement closest = closest(element, selector);
+        if (closest != null) {
+            String uuid = closest.dataset.get(key);
+            if (uuid != null) {
+                try {
+                    value = lookupFn.apply(uuid);
+                } catch (Exception e) {
+                    if (!lenient) {
+                        String target = name == null ? componentType.componentName : componentType.componentName + "/" + name;
+                        logger.error("Cannot cast %s %o to %s", type, closest, target, name);
+                    }
+                }
+            } else {
+                if (!lenient) {
+                    logger.error("No UUID found on %s element %o", element, closest);
+                }
+            }
         } else {
-            logger.error("Unable to remove (sub)component for %s", uuid);
+            if (!lenient) {
+                logger.error("Unable to find element of %s %o using %s", type, element, selector);
+            }
+        }
+        return value;
+    }
+
+    private static <T> void remove(String uuid, String type, Function<String, T> removeFn) {
+        T value = removeFn.apply(uuid);
+        if (value != null) {
+            if (logger.isEnabled(DEBUG)) {
+                logger.debug("Remove %s for %s%s", type, uuid, count());
+            }
+        } else {
+            logger.error("Unable to remove %s for %s", type, uuid);
         }
     }
 
     private static String count() {
-        return " (" + components.size() + "/" + flatComponents.size() + "/" + subComponents.size() + ")";
+        return " (c:" + components.size() + "|cd:" + componentDelegates.size() + "|fc:" + flatComponents.size() + "|sc:" + subComponents.size() + ")";
     }
 }

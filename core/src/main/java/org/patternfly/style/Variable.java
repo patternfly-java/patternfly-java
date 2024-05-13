@@ -15,19 +15,15 @@
  */
 package org.patternfly.style;
 
-import java.util.function.Function;
-
 import org.jboss.elemento.HasHTMLElement;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
-import org.patternfly.core.Tuple;
 import org.patternfly.core.Version;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.VariableNames.componentName;
 import static org.patternfly.style.VariableNames.globalName;
 
@@ -74,7 +70,7 @@ public class Variable {
     private static final Logger logger = Logger.getLogger(Variable.class.getName());
     public final VariableScope scope;
     public final String name;
-    private final boolean valid;
+    final boolean valid;
 
     Variable(VariableScope scope, String name) {
         this.scope = scope;
@@ -84,82 +80,17 @@ public class Variable {
 
     // ------------------------------------------------------ api
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B applyTo(HasHTMLElement<E, B> element, int value) {
-        if (valid) {
-            element.style(name, value);
-        }
-        return element.that();
+    public <E extends HTMLElement, B extends TypedBuilder<E, B>> VariableAssignments.HTMLBuilder<E, B> applyTo(
+            HasHTMLElement<E, B> element) {
+        return new VariableAssignments.HTMLBuilder<>(this, element);
     }
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>> B applyTo(HasHTMLElement<E, B> element, String value) {
-        if (valid) {
-            element.style(name, value);
-        }
-        return element.that();
+    public <E extends SVGElement, B extends TypedBuilder<E, B>> VariableAssignments.SVGBuilder<E, B> applyTo(
+            HasSVGElement<E, B> element) {
+        return new VariableAssignments.SVGBuilder<>(this, element);
     }
 
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>, V> B applyTo(HasHTMLElement<E, B> element,
-            Breakpoints<V> breakpoints) {
-        if (breakpoints.typedModifier()) {
-            return applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
-        } else {
-            return applyTo(element, breakpoints, String::valueOf);
-        }
-    }
-
-    public <E extends HTMLElement, B extends TypedBuilder<E, B>, V> B applyTo(HasHTMLElement<E, B> element,
-            Breakpoints<V> breakpoints, Function<V, String> stringValue) {
-        if (valid && breakpoints != null && !breakpoints.isEmpty()) {
-            for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
-                String property = breakpoint.key == default_ ? name : name + "-on-" + breakpoint.key.value;
-                String value = stringValue.apply(breakpoint.value);
-                element.style(property, value);
-            }
-        }
-        return element.that();
-    }
-
-    public <E extends SVGElement, B extends TypedBuilder<E, B>> B applyTo(HasSVGElement<E, B> element, int value) {
-        if (valid) {
-            element.element().style.setProperty(name, String.valueOf(value));
-        }
-        return element.that();
-    }
-
-    public <E extends SVGElement, B extends TypedBuilder<E, B>> B applyTo(HasSVGElement<E, B> element, String value) {
-        if (valid) {
-            element.element().style.setProperty(name, value);
-        }
-        return element.that();
-    }
-
-    public void applyTo(HTMLElement element, int value) {
-        if (valid) {
-            applyTo(element, String.valueOf(value));
-        }
-    }
-
-    public void applyTo(HTMLElement element, String value) {
-        if (valid) {
-            element.style.setProperty(name, value);
-        }
-    }
-
-    public <V> void applyTo(HTMLElement element, Breakpoints<V> breakpoints) {
-        if (breakpoints.typedModifier()) {
-            applyTo(element, breakpoints, v -> ((TypedModifier) v).value());
-        } else {
-            applyTo(element, breakpoints, String::valueOf);
-        }
-    }
-
-    public <V> void applyTo(HTMLElement element, Breakpoints<V> breakpoints, Function<V, String> stringValue) {
-        if (valid && breakpoints != null && !breakpoints.isEmpty()) {
-            for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
-                String property = breakpoint.key == default_ ? name : name + "-on-" + breakpoint.key.value;
-                String value = stringValue.apply(breakpoint.value);
-                element.style.setProperty(property, value);
-            }
-        }
+    public VariableAssignments.HTMLElement applyTo(HTMLElement element) {
+        return new VariableAssignments.HTMLElement(this, element);
     }
 }

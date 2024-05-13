@@ -82,7 +82,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
     }
 
     public Spinner diameter(String diameter) {
-        return componentVar(component(spinner), "diameter").applyTo(this, diameter);
+        return componentVar(component(spinner), "diameter").applyTo(this).set(diameter);
     }
 
     @Override

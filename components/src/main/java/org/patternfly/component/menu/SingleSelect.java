@@ -37,7 +37,7 @@ public class SingleSelect extends MenuToggleMenu<SingleSelect> {
     // ------------------------------------------------------ instance
 
     SingleSelect(MenuToggle menuToggle) {
-        super(menuToggle, ComponentType.SingleSelect);
+        super(ComponentType.SingleSelect, menuToggle);
     }
 
     // ------------------------------------------------------ add

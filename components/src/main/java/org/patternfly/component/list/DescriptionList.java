@@ -99,7 +99,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-md: 100px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-lg: 150px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-xl: 200px;
-        return componentVar(component(descriptionList), GridTemplateColumns, "min").applyTo(this, autoFitMin);
+        return componentVar(component(descriptionList), GridTemplateColumns, "min").applyTo(this).set(autoFitMin);
     }
 
     /**
@@ -108,7 +108,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     public DescriptionList columns(Breakpoints<Integer> columns) {
         if (columns != null) {
             String modifiers = columns.stream()
-                    .filter(bp -> verifyRange(componentType().componentName, element(), "columns", bp.value, 1, 3))
+                    .filter(bp -> verifyRange(element(), "columns", bp.value, 1, 3))
                     .collect(modifiers(col -> col + "-col"));
             css(modifiers);
         }
@@ -119,7 +119,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
      * Sets the display size of the descriptions in the description list.
      */
     public DescriptionList displaySize(Size size) {
-        if (verifyEnum(componentType().componentName, element(), "displaySize", size, lg, _2xl)) {
+        if (verifyEnum(element(), "displaySize", size, lg, _2xl)) {
             css(modifier(display, size));
         }
         return this;
@@ -149,7 +149,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
      * Sets the horizontal description list's term column width at various breakpoints.
      */
     public DescriptionList horizontalTermWidth(Breakpoints<String> horizontalTermWidth) {
-        return componentVar(component(descriptionList), "m-horizontal__term", "width").applyTo(this, horizontalTermWidth);
+        return componentVar(component(descriptionList), "m-horizontal__term", "width").applyTo(this).set(horizontalTermWidth);
     }
 
     /** Same as {@linkplain #inlineGrid(boolean) inlineGrid(true)} */
@@ -169,7 +169,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
 
     public DescriptionList termWidth(String width) {
         // --pf-v5-c-description-list__term--width: 10ch;
-        return componentVar(component(descriptionList), "term", "width").applyTo(this, width);
+        return componentVar(component(descriptionList), "term", "width").applyTo(this).set(width);
     }
 
     @Override

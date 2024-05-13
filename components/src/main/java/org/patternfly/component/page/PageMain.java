@@ -18,6 +18,7 @@ package org.patternfly.component.page;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.Roles;
 
+import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -59,8 +60,10 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
                 .attr(role, Roles.main)
                 .attr(tabindex, -1)
                 .element());
+        AddEventListenerOptions options = AddEventListenerOptions.create();
+        options.setPassive(true);
         on(mousedown, e -> onMainClick());
-        on(touchstart, e -> onMainClick());
+        on(touchstart, options, e -> onMainClick());
     }
 
     // ------------------------------------------------------ add

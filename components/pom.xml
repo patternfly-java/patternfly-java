@@ -40,6 +40,10 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-layouts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-icons</artifactId>
         </dependency>
         <dependency>

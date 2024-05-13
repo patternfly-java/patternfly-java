@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.togglegroup;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
@@ -72,7 +73,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     ToggleGroupItem(String id, String text) {
         super(SUB_COMPONENT_NAME, div().css(component(toggleGroup, item)).element());
         this.id = id;
-        this.button = button().css(component(toggleGroup, Classes.button))
+        this.button = button(ButtonType.button).css(component(toggleGroup, Classes.button))
                 .aria(pressed, false)
                 .on(click, this::onClick);
         element().appendChild(button.element());

@@ -138,7 +138,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     }
 
     public Flex order(Breakpoints<String> order) {
-        return componentVar(layout(flex), item, Order).applyTo(this, order);
+        return componentVar(layout(flex), item, Order).applyTo(this).set(order);
     }
 
     /** Gap between rows at various breakpoints. This will override spacers for the main axis. */

@@ -24,7 +24,10 @@ import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
+import org.jboss.elemento.router.Parameter;
+import org.jboss.elemento.router.Place;
 import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.core.Roles;
 import org.patternfly.showcase.component.Component;
@@ -162,7 +165,7 @@ public class SnippetPage implements Page {
     }
 
     @Override
-    public Iterable<HTMLElement> elements() {
+    public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         if (!tocReady) {
             for (Toc toc : tocs.values()) {
                 jumpLinks.addItem(jumpLinksItem(toc.id, toc.text, "#" + toc.id).css("ws-toc-item")

@@ -15,7 +15,9 @@
  */
 package org.patternfly.showcase;
 
+import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
+import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
 
 import elemental2.dom.HTMLElement;
@@ -29,14 +31,8 @@ import static org.patternfly.style.Brightness.light;
 
 class NotFound implements Page {
 
-    private final Place place;
-
-    NotFound(Place place) {
-        this.place = place;
-    }
-
     @Override
-    public Iterable<HTMLElement> elements() {
+    public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainSection()
                 .background(light)
                 .add(textContent()

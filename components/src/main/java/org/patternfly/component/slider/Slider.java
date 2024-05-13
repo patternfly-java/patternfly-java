@@ -194,7 +194,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
             for (SliderStep step : customSteps) {
                 HTMLContainerBuilder<HTMLDivElement> stepElement = div().css(component(slider, Classes.step))
                         .data(sliderStepValue, String.valueOf(step.value));
-                sliderStepLeft.applyTo(stepElement, step.percentage() + "%");
+                sliderStepLeft.applyTo(stepElement).set(step.percentage() + "%");
                 stepElement.add(div().css(component(slider, Classes.step, tick)));
                 if (!step.labelHidden) {
                     stepElement.add(div().css(component(slider, Classes.step, label)).textContent(step.label));
@@ -211,7 +211,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
                     }
                     HTMLContainerBuilder<HTMLDivElement> stepElement = div().css(component(slider, Classes.step))
                             .data(sliderStepValue, String.valueOf(index));
-                    sliderStepLeft.applyTo(stepElement, percentage(index, min, max) + "%");
+                    sliderStepLeft.applyTo(stepElement).set(percentage(index, min, max) + "%");
                     if (showTicks) {
                         stepElement.add(div().css(component(slider, Classes.step, tick)));
                     }
@@ -481,7 +481,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         double percentage = customSteps != null
                 ? percentage(current, customSteps.firstValue(), customSteps.lastValue())
                 : percentage(current, min, max);
-        sliderValue.applyTo(element(), percentage + "%");
+        sliderValue.applyTo(element()).set(percentage + "%");
 
         for (HTMLElement stepElement : children(stepsContainer)) {
             double stepValue = parseDouble(stepElement.dataset.get(sliderStepValue));
@@ -493,7 +493,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         thumb.aria(valueText, labelOrValue);
         if (textInput != null) {
             textInput.value(stringValue);
-            sliderValueInputWidth.applyTo(element(), textInput.value().length());
+            sliderValueInputWidth.applyTo(element()).set(textInput.value().length());
         }
         if (tooltip != null) {
             tooltip.text(labelOrValue);
@@ -705,7 +705,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         if (disabled) {
             return;
         }
-        sliderValueInputWidth.applyTo(element(), textInput.value().length());
+        sliderValueInputWidth.applyTo(element()).set(textInput.value().length());
         if (Key.Enter.match(event)) {
             event.preventDefault();
             handleInputChanged();

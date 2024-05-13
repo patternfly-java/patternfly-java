@@ -59,7 +59,7 @@ public class Skeleton extends BaseComponentFlat<HTMLElement, Skeleton> {
     }
 
     public Skeleton height(String height) {
-        return componentVar(component(skeleton), Height).applyTo(this, height);
+        return componentVar(component(skeleton), Height).applyTo(this).set(height);
     }
 
     public Skeleton shape(Shape shape) {
@@ -67,7 +67,7 @@ public class Skeleton extends BaseComponentFlat<HTMLElement, Skeleton> {
     }
 
     public Skeleton width(String width) {
-        return componentVar(component(skeleton), Width).applyTo(this, width);
+        return componentVar(component(skeleton), Width).applyTo(this).set(width);
     }
 
     public Skeleton screenReaderText(String text) {

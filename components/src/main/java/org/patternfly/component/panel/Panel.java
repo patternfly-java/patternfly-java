@@ -23,6 +23,9 @@ import org.patternfly.style.Modifiers;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.panel.PanelFooter.panelFooter;
@@ -73,10 +76,10 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelHeader header) {
         if (this.header != null) {
-            logger.warn("Header already added for panel %o", element());
+            logger.warn("Header already added to panel %o", element());
         }
         this.header = header;
-        element().appendChild(header.element());
+        insertFirst(element(), header);
         aria(labelledBy, header.headerId);
         return this;
     }
@@ -96,10 +99,16 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelMain main) {
         if (this.main != null) {
-            logger.warn("Main already added for panel %o", element());
+            logger.warn("Main already added to panel %o", element());
         }
         this.main = main;
-        element().appendChild(main.element());
+        if (header != null) {
+            insertAfter(main, header.element());
+        } else {
+            if (footer != null) {
+                insertBefore(main, footer.element());
+            }
+        }
         return this;
     }
 
@@ -113,7 +122,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
 
     public Panel add(PanelFooter footer) {
         if (this.footer != null) {
-            logger.warn("Footer already added for panel %o", element());
+            logger.warn("Footer already added to panel %o", element());
         }
         this.footer = footer;
         element().appendChild(footer.element());

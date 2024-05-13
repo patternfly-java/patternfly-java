@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -281,7 +282,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     private void overflow() {
         if (labels.size() > numLabels && overflowItem == null && overflowLabel == null) {
             overflowItem = li().css(component(chipGroup, list, item))
-                    .add(overflowLabel = new Label(Elements.button(), "", Color.grey)
+                    .add(overflowLabel = new Label(Elements.button(ButtonType.button), "", Color.grey)
                             .css(modifier(overflow))
                             .on(click, event -> toggle()))
                     .element();

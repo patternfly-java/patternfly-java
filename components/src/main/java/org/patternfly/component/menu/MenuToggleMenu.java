@@ -62,7 +62,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     final MenuToggle menuToggle;
     Menu menu;
 
-    MenuToggleMenu(MenuToggle menuToggle, ComponentType componentType) {
+    MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
         super(componentType);
         this.menuToggle = menuToggle;
         this.triggerActions = EnumSet.of(TriggerAction.click);

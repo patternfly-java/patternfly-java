@@ -16,7 +16,6 @@
 package org.patternfly.showcase.layout;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.card.Card;
 import org.patternfly.layout.gallery.Gallery;
@@ -43,7 +42,7 @@ import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.modifier;
 
 @Route(value = "/layouts/about-layouts", title = "Layouts")
-public class LayoutsPage extends OverviewPage<Layout> implements Page {
+public class LayoutsPage extends OverviewPage<Layout> {
 
     public LayoutsPage() {
         super("Layouts");

@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -100,7 +101,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .element());
         this.tabs = new LinkedHashMap<>();
 
-        add(button = button().css(component(Classes.tabs, link))
+        add(button = button(ButtonType.button).css(component(Classes.tabs, link))
                 .attr(role, Roles.tab)
                 .aria(expanded, false)
                 .aria(hasPopup, "menu")

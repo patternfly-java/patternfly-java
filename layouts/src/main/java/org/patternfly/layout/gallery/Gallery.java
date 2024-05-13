@@ -109,6 +109,6 @@ public class Gallery extends BaseLayout<HTMLElement, Gallery> implements Gutter<
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-md: 200px;
         // --pf-v5-l-gallery--GridTemplateColumns--max-on-xl: 1fr;
         String minMaxBreak = tuple.key == default_ ? minMax : minMax + "-on-" + tuple.key.value;
-        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element(), tuple.value);
+        componentVar(layout(gallery), GridTemplateColumns, minMaxBreak).applyTo(element()).set(tuple.value);
     }
 }

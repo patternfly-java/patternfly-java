@@ -79,7 +79,7 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
      */
     public Grid columns(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
-                .filter(bp -> verifyRange("PF5/Grid", element(), "columns", bp.value, 1, 12))
+                .filter(bp -> verifyRange(element(), "columns", bp.value, 1, 12))
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "all-" + col + "-col"));
         return css(modifiers);
@@ -87,14 +87,14 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
 
     /** Modifies the flex layout element order property. */
     public Grid order(Breakpoints<String> order) {
-        return componentVar(layout(grid), item, Order).applyTo(this, order);
+        return componentVar(layout(grid), item, Order).applyTo(this).set(order);
     }
 
     /**
      * The number of rows a column in the grid should span. Value should be a number 1-12.
      */
     public Grid span(int rows) {
-        if (verifyRange("PF5/Grid", element(), "span", rows, 1, 12)) {
+        if (verifyRange(element(), "span", rows, 1, 12)) {
             css(modifier("all-" + rows + "-col"));
         }
         return this;

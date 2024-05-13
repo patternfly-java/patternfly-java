@@ -100,7 +100,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
      * Modifies empty state max-width and sizes of icon, title and body.
      */
     public EmptyState size(Size size) {
-        if (verifyEnum(componentType().componentName, element(), "size", size, xs, sm, lg, xl)) {
+        if (verifyEnum(element(), "size", size, xs, sm, lg, xl)) {
             css(size.modifier());
         }
         return this;

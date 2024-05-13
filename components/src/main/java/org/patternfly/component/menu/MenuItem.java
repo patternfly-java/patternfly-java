@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -161,7 +162,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
             itemBuilder = itemType == MenuItemType.action || itemType == MenuItemType.async
-                    ? button().attr(tabindex, 0)
+                    ? button(ButtonType.button).attr(tabindex, 0)
                     : a().attr(tabindex, -1);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
                     .add(textElement = span().css(component(Classes.menu, item, Classes.text))

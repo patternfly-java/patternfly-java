@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.list;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.WithText;
@@ -42,11 +43,11 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     // ------------------------------------------------------ factory
 
     public static SimpleListItem simpleListItem(String id) {
-        return new SimpleListItem(id, button());
+        return new SimpleListItem(id, button(ButtonType.button));
     }
 
     public static SimpleListItem simpleListItem(String id, String text) {
-        return new SimpleListItem(id, button()).text(text);
+        return new SimpleListItem(id, button(ButtonType.button)).text(text);
     }
 
     public static SimpleListItem simpleListItem(String id, String text, String href) {

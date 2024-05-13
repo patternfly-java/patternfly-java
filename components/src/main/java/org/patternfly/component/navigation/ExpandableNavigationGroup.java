@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
@@ -101,7 +102,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         this.expandableGroups = new HashMap<>();
 
         String titleId = Id.unique(id, "title");
-        element().appendChild(button = button().css(component(nav, link))
+        element().appendChild(button = button(ButtonType.button).css(component(nav, link))
                 .id(titleId)
                 .aria(Aria.expanded, false)
                 .on(click, e -> toggle())

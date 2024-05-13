@@ -22,6 +22,7 @@ import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
@@ -169,7 +170,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                 css(modifier(Classes.tertiary));
             }
 
-            add(scrollBack = button().css(component(nav, scroll, button))
+            add(scrollBack = button(ButtonType.button).css(component(nav, scroll, button))
                     .apply(b -> b.disabled = true)
                     .aria(hidden, true)
                     .aria(label, "Scroll back")
@@ -179,7 +180,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     .attr(role, Roles.list)
                     .on(EventType.scroll, e -> updateScrollState())
                     .element());
-            add(scrollForward = button().css(component(nav, scroll, button))
+            add(scrollForward = button(ButtonType.button).css(component(nav, scroll, button))
                     .apply(b -> b.disabled = true)
                     .aria(hidden, true)
                     .aria(label, "Scroll forward")
@@ -372,7 +373,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     // ------------------------------------------------------ builder
 
     public Navigation theme(Brightness theme) {
-        if (verifyEnum(componentType().componentName, element(), "theme", theme, dark, light)) {
+        if (verifyEnum(element(), "theme", theme, dark, light)) {
             css(theme.modifier());
         }
         return this;

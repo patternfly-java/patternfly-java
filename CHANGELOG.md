@@ -6,9 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Backdrop component (#22)
+- Modal component (#69)
+
 ### Changed
 
 - Automatic reload after changes to Java sources in J2CL dev mode
+
+### Removed
+
+- Mockito dependency
 
 ## [0.2.4] - 2024-04-26
 

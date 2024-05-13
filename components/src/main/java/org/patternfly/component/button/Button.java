@@ -129,6 +129,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         if (element().tagName.equalsIgnoreCase("button")) {
             anchorElement = null;
             buttonElement = (HTMLButtonElement) element();
+            buttonElement.type = "button";
         } else {
             anchorElement = (HTMLAnchorElement) element();
             buttonElement = null;

@@ -130,7 +130,7 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
 
     public MenuContent height(String height) {
         // --pf-v5-c-menu__content--Height: 200px;
-        return componentVar(component(menu, content), Height).applyTo(this, height);
+        return componentVar(component(menu, content), Height).applyTo(this).set(height);
     }
 
     @Override

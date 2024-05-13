@@ -68,7 +68,7 @@ public class Avatar extends BaseComponentFlat<HTMLImageElement, Avatar> {
     }
 
     public Avatar border(Brightness border) {
-        if (verifyEnum(componentType().componentName, element(), "border", border, light, dark)) {
+        if (verifyEnum(element(), "border", border, light, dark)) {
             css(border.modifier());
         }
         return this;

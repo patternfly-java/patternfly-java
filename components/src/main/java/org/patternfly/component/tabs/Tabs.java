@@ -25,6 +25,7 @@ import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
@@ -165,7 +166,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
         this.mainContainer = builder.css(component(Classes.tabs))
                 .attr(role, region)
-                .add(scrollBack = button().css(component(Classes.tabs, scrollButton))
+                .add(scrollBack = button(ButtonType.button).css(component(Classes.tabs, scrollButton))
                         .apply(b -> b.disabled = true)
                         .aria(hidden, true)
                         .aria(label, "Scroll back")
@@ -174,7 +175,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                 .add(tabsContainer = ul().css(component(Classes.tabs, list))
                         .attr(role, tablist)
                         .on(scroll, e -> updateState()))
-                .add(scrollForward = button().css(component(Classes.tabs, scrollButton))
+                .add(scrollForward = button(ButtonType.button).css(component(Classes.tabs, scrollButton))
                         .apply(b -> b.disabled = true)
                         .aria(hidden, true)
                         .aria(label, "Scroll forward")

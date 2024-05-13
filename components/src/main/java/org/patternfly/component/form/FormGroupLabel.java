@@ -18,6 +18,7 @@ package org.patternfly.component.form;
 import java.util.Iterator;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -111,7 +112,8 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
     }
 
     public FormGroupLabel help(String ariaLabel, Popover popover) {
-        HTMLButtonElement helpButton = button().css(component(Classes.form, group, Classes.label, Classes.help))
+        HTMLButtonElement helpButton = button(ButtonType.button)
+                .css(component(Classes.form, group, Classes.label, Classes.help))
                 .aria(Aria.label, ariaLabel)
                 .add(IconSets.patternfly.help())
                 .element();

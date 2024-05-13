@@ -13,31 +13,35 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.icon;
+package org.patternfly.component.modal;
 
-import org.jboss.elemento.HTMLContainerBuilder;
+import elemental2.dom.HTMLDivElement;
 
-import elemental2.dom.HTMLElement;
+import static org.jboss.elemento.Elements.div;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.description;
+import static org.patternfly.style.Classes.modalBox;
 
-import static org.jboss.elemento.Elements.i;
-import static org.patternfly.core.Aria.hidden;
-
-public class InlineIcon extends HTMLContainerBuilder<HTMLElement> {
+public class ModalHeaderDescription extends ModalSubComponent<HTMLDivElement, ModalHeaderDescription> {
 
     // ------------------------------------------------------ factory
 
-    public static InlineIcon inlineIcon(String iconClass) {
-        return new InlineIcon(iconClass);
+    public static ModalHeaderDescription modalHeaderDescription() {
+        return new ModalHeaderDescription();
     }
 
     // ------------------------------------------------------ instance
 
-    InlineIcon(String iconClass) {
-        super(i().css(iconClass).aria(hidden, true).element());
+    static final String SUB_COMPONENT_NAME = "mhd";
+
+    ModalHeaderDescription() {
+        super(SUB_COMPONENT_NAME, div().css(component(modalBox, description)).element());
     }
 
+    // ------------------------------------------------------ builder
+
     @Override
-    public InlineIcon that() {
+    public ModalHeaderDescription that() {
         return this;
     }
 }

@@ -165,7 +165,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
     public Menu height(String height) {
-        return componentVar(component(menu, Classes.content), MaxHeight).applyTo(this, height);
+        return componentVar(component(menu, Classes.content), MaxHeight).applyTo(this).set(height);
     }
 
     @Override

@@ -85,7 +85,7 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
     }
 
     public FlexItem order(Breakpoints<String> order) {
-        return componentVar(layout(flex), item, Order).applyTo(this, order);
+        return componentVar(layout(flex), item, Order).applyTo(this).set(order);
     }
 
     /** Whether to add flex: shrink at various breakpoints */

@@ -162,7 +162,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
 
     public Chip textMaxWidth(String maxWidth) {
         // --pf-v5-c-chip__text--MaxWidth: <maxWidth>
-        componentVar(component(chip, text), MaxWidth).applyTo(this, maxWidth);
+        componentVar(component(chip, text), MaxWidth).applyTo(this).set(maxWidth);
         tooltipToggle.eval(tt -> element().tabIndex = 0, tt -> element().removeAttribute(tabindex));
         return this;
     }

@@ -27,6 +27,8 @@ public enum ComponentType {
 
     Avatar("av", "PF5/Avatar"),
 
+    Backdrop("bd", "PF5/Backdrop"),
+
     BackToTop("btt", "PF5/BackToTop"),
 
     Badge("bdg", "PF5/Badge"),
@@ -98,6 +100,8 @@ public enum ComponentType {
     Menu("mu", "PF5/Menu"),
 
     MenuToggle("mt", "PF5/MenuToggle"),
+
+    Modal("mo", "PF5/Modal"),
 
     MultiSelect("ms", "PF5/MultiSelect"),
 

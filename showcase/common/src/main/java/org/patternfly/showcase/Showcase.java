@@ -16,18 +16,23 @@
 package org.patternfly.showcase;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.logger.Level;
+import org.jboss.elemento.logger.Logger;
+import org.jboss.elemento.router.AnnotatedPlaces;
 import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
-import org.jboss.elemento.router.RoutesImpl;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
 import org.patternfly.component.page.Page;
 import org.patternfly.core.Version;
 import org.patternfly.style.Classes;
 
-import static elemental2.dom.DomGlobal.console;
+import elemental2.dom.URLSearchParams;
+
+import static elemental2.dom.DomGlobal.location;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.body;
+import static org.jboss.elemento.logger.Level.INFO;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
@@ -54,6 +59,8 @@ import static org.patternfly.style.Variables.Height;
 public final class Showcase {
 
     static final String MAIN_ID = "pfj-main-id";
+    private static final String LOG_LEVEL_PARAMETER = "log-level";
+    private static final Logger logger = Logger.getLogger(Showcase.class.getName());
 
     private static Navigation navigation;
     private static PlaceManager placeManager;
@@ -62,6 +69,25 @@ public final class Showcase {
     // ------------------------------------------------------ init
 
     public static void init(Settings settings) {
+        // log level
+        if (!location.search.isEmpty()) {
+            URLSearchParams query = new URLSearchParams(location.search);
+            if (query.has(LOG_LEVEL_PARAMETER)) {
+                String logLevel = query.get(LOG_LEVEL_PARAMETER);
+                try {
+                    Level level = Level.valueOf(logLevel.toUpperCase());
+                    Logger.setLevel(level);
+                } catch (IllegalArgumentException e) {
+                    logger.error("Unknown log level '%s'", logLevel);
+                    Logger.setLevel(INFO);
+                }
+            } else {
+                Logger.setLevel(INFO);
+            }
+        } else {
+            Logger.setLevel(INFO);
+        }
+
         // navigation #1
         navigation = navigation(expandable);
 
@@ -72,8 +98,8 @@ public final class Showcase {
                 .linkSelector(By.attribute("target", ApiDoc.API_DOC_TARGET), true)
                 .title(title -> "PatternFly Java • " + title)
                 .notFound(NotFound::new)
-                .register(RoutesImpl.INSTANCE.places())
-                .afterPlace((pm, place, page) -> navigation.select(place.route));
+                .register(new AnnotatedPlaces())
+                .afterPlace((pm, place) -> navigation.select(place.route));
 
         // navigation #2
         navigation
@@ -122,10 +148,10 @@ public final class Showcase {
     // ------------------------------------------------------ api
 
     public static void log(Settings settings) {
-        console.log("PatternFly version:      " + Version.PATTERN_FLY_VERSION);
-        console.log("PatternFly Java version: " + Version.PATTERN_FLY_JAVA_VERSION);
-        console.log("Execution mode:          " + settings.mode());
-        console.log("Technology stack:        " + settings.tech());
+        logger.info("PatternFly version:      %s", Version.PATTERN_FLY_VERSION);
+        logger.info("PatternFly Java version: %s", Version.PATTERN_FLY_JAVA_VERSION);
+        logger.info("Execution mode:          %s", settings.mode());
+        logger.info("Technology stack:        %s", settings.tech());
     }
 
     public static PlaceManager placeManager() {

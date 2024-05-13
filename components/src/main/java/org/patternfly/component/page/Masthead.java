@@ -118,7 +118,7 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
      * Background theme color of the masthead
      */
     public Masthead background(Brightness brightness) {
-        if (verifyEnum(componentType().componentName, element(), "background", brightness, dark, light, light200)) {
+        if (verifyEnum(element(), "background", brightness, dark, light, light200)) {
             css(brightness.modifier());
         }
         return this;

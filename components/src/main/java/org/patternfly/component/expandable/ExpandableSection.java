@@ -54,7 +54,7 @@ import static org.patternfly.style.Variables.LineClamp;
  * inputs, and charts.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/expandable-section">https://www.patternfly.org/components/expandable-section</a>
+ * "https://www.patternfly.org/components/expandable-section">https://www.patternfly.org/components/expandable-section</a>
  */
 public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable,
         Expandable<HTMLDivElement, ExpandableSection> {
@@ -99,7 +99,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
                 toggle.removeIcon();
             }
             if (truncate != DEFAULT_TRUNCATE && content != null) {
-                componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content, truncate);
+                componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content).set(truncate);
             }
         }
         if (detachedFromId != null) {

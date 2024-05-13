@@ -201,14 +201,14 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     }
 
     public Progress size(Size size) {
-        if (verifyEnum(componentType().componentName, element(), "size", size, sm, md, lg)) {
+        if (verifyEnum(element(), "size", size, sm, md, lg)) {
             css(size.modifier());
         }
         return this;
     }
 
     public Progress status(Status status) {
-        if (verifyEnum(componentType().componentName, element(), "status", status, info, danger, success, warning)) {
+        if (verifyEnum(element(), "status", status, info, danger, success, warning)) {
             if (this.status != null) {
                 classList().remove(this.status.modifier);
             }

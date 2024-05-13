@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -98,13 +99,13 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             case default_:
             case plain:
             case plainText:
-                return new MenuToggle(button(), type);
+                return new MenuToggle(button(ButtonType.button), type);
             case split:
             case typeahead:
                 return new MenuToggle(div(), type);
             default:
                 logger.error("Unknown menu toggle type '%s'. Fallback to '%s'.", type.name(), MenuToggleType.default_.name());
-                return new MenuToggle(button(), type);
+                return new MenuToggle(button(ButtonType.button), type);
         }
     }
 
@@ -141,7 +142,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                     .element());
             toggleElement = element();
         } else if (type == MenuToggleType.split || type == MenuToggleType.typeahead) {
-            add(toggleElement = button().css(component(menuToggle, button))
+            add(toggleElement = button(ButtonType.button).css(component(menuToggle, button))
                     .aria(expanded, false)
                     .add(span().css(component(menuToggle, controls))
                             .add(span().css(component(menuToggle, toggle, Classes.icon))

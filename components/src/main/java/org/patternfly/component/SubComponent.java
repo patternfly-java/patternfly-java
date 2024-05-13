@@ -58,6 +58,15 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         return ComponentStore.lookupComponent(componentType, element, lenient);
     }
 
+    protected <C extends ComponentDelegate<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponentDelegate() {
+        return lookupComponentDelegate(false);
+    }
+
+    protected <C extends ComponentDelegate<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponentDelegate(
+            boolean lenient) {
+        return ComponentStore.lookupComponentDelegate(componentType, element, lenient);
+    }
+
     protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupFlatComponent() {
         return lookupFlatComponent(false);
     }

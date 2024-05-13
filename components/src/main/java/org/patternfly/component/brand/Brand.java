@@ -107,11 +107,11 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
     // ------------------------------------------------------ builder
 
     public Brand widths(Breakpoints<String> widths) {
-        return componentVar(component(brand), Width).applyTo(this, widths);
+        return componentVar(component(brand), Width).applyTo(this).set(widths);
     }
 
     public Brand heights(Breakpoints<String> heights) {
-        return componentVar(component(brand), Height).applyTo(this, heights);
+        return componentVar(component(brand), Height).applyTo(this).set(heights);
     }
 
     @Override

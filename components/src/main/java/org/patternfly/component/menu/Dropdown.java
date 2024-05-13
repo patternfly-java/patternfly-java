@@ -45,7 +45,7 @@ public class Dropdown extends MenuToggleMenu<Dropdown> {
     // ------------------------------------------------------ instance
 
     Dropdown(MenuToggle menuToggle) {
-        super(menuToggle, ComponentType.Dropdown);
+        super(ComponentType.Dropdown, menuToggle);
     }
 
     // ------------------------------------------------------ builder

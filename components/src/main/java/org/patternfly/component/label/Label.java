@@ -20,6 +20,7 @@ import java.util.Objects;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -188,8 +189,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
 
     public Label clickable(ComponentHandler<Label> clickHandler) {
         onClick(clickHandler);
-        replaceContent(button()
-                .css(component(Classes.label, content))
+        replaceContent(button(ButtonType.button).css(component(Classes.label, content))
                 .on(click, e -> {
                     if (this.clickHandler != null) {
                         this.clickHandler.handle(e, this);
@@ -206,7 +206,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     public Label editable(LabelEditCancelHandler cancelHandler, LabelEditCompleteHandler completeHandler) {
         onEditCancel(cancelHandler);
         onEditComplete(completeHandler);
-        replaceContent(button().css(component(Classes.label, content))
+        replaceContent(button(ButtonType.button).css(component(Classes.label, content))
                 .aria(Aria.label, "Editable label with text " + textElement.textContent)
                 .on(click, e -> enterEdit())
                 .on(keydown, e -> {
@@ -254,7 +254,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
 
     public Label textMaxWidth(String maxWidth) {
         // --pf-v5-c-label__text--MaxWidth: <maxWidth>
-        componentVar(component(Classes.label, Classes.text), MaxWidth).applyTo(textElement, maxWidth);
+        componentVar(component(Classes.label, Classes.text), MaxWidth).applyTo(textElement).set(maxWidth);
         tooltipToggle.eval();
         return this;
     }

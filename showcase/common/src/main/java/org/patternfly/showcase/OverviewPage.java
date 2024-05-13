@@ -16,7 +16,10 @@
 package org.patternfly.showcase;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
+import org.jboss.elemento.router.Parameter;
+import org.jboss.elemento.router.Place;
 import org.patternfly.component.card.Card;
 import org.patternfly.layout.gallery.Gallery;
 
@@ -54,7 +57,7 @@ public abstract class OverviewPage<T> implements Page {
     }
 
     @Override
-    public Iterable<HTMLElement> elements() {
+    public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainGroup()
                 .add(pageMainSection().limitWidth().background(light)
                         .add(pageMainBody()
