@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.Key;
+import org.jboss.elemento.logger.Logger;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
@@ -42,6 +43,8 @@ import static org.jboss.elemento.EventType.bind;
 import static org.patternfly.popper.Placement.auto;
 
 public class PopperBuilder {
+
+    private static final Logger logger = Logger.getLogger(PopperBuilder.class.getName());
 
     private final String componentName;
     private final HTMLElement triggerElement;
@@ -150,7 +153,10 @@ public class PopperBuilder {
     }
 
     public PopperBuilder removePopperOnTriggerDetach() {
-        onDetach(triggerElement, mr -> failSafeRemoveFromParent(popperElement));
+        onDetach(triggerElement, mr -> {
+            logger.debug("Remove popper %o on trigger element detach %o", popperElement, triggerElement);
+            failSafeRemoveFromParent(popperElement);
+        });
         return this;
     }
 
@@ -163,6 +169,7 @@ public class PopperBuilder {
             options.placement = placement.value;
             options.modifiers = modifiers;
             PopperJs popper = PopperJs.createPopper(triggerElement, popperElement, options);
+            logger.debug("Create popper %o for trigger element %o", popperElement, triggerElement);
             return new PopperImpl(popper, handlerRegistrations, animationDuration, entryDelay, exitDelay);
         }
     }

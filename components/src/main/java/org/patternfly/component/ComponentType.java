@@ -141,6 +141,8 @@ public enum ComponentType {
 
     Tabs("tbs", "PF5/Tabs"),
 
+    Table("tbl", "PF5/Table"),
+
     TextContent("tc", "PF5/TextContent"),
 
     TextInput("ti", "PF5/TextInput"),

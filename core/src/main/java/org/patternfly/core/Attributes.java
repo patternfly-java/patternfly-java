@@ -21,4 +21,5 @@ public interface Attributes {
     String tabindex = "tabindex";
     String role = "role";
     String required = "required";
+    String scope = "scope";
 }

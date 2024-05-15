@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -137,5 +139,13 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     @Override
     public FormGroupControl that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void removeHelperText() {
+        for (HTMLElement helperText : findAll(By.classname(component(Classes.form, Classes.helperText)))) {
+            Elements.failSafeRemoveFromParent(helperText);
+        }
     }
 }

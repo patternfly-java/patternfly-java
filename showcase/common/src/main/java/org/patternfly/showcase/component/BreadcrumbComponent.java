@@ -68,18 +68,14 @@ public class BreadcrumbComponent extends SnippetPage {
         addSnippet(new Snippet("breadcrumb-heading", "With heading",
                 code("breadcrumb-heading"), () ->
                 // @code-start:breadcrumb-heading
-                div()
-                        .add(nyi())
-                        .element()
+                nyi().element()
                 // @code-end:breadcrumb-heading
         ));
 
         addSnippet(new Snippet("breadcrumb-dropdown", "With dropdown",
                 code("breadcrumb-dropdown"), () ->
                 // @code-start:breadcrumb-dropdown
-                div()
-                        .add(nyi())
-                        .element()
+                nyi().element()
                 // @code-end:breadcrumb-dropdown
         ));
 

@@ -24,7 +24,6 @@ import org.patternfly.component.drawer.DrawerContentBody;
 import org.patternfly.component.drawer.DrawerPanel;
 import org.patternfly.component.drawer.DrawerPanelBody;
 import org.patternfly.component.drawer.DrawerPanelHead;
-import org.patternfly.component.drawer.DrawerPanelWidth;
 import org.patternfly.component.drawer.DrawerSection;
 import org.patternfly.component.drawer.Position;
 import org.patternfly.showcase.LoremIpsum;
@@ -41,7 +40,6 @@ import static org.patternfly.component.drawer.DrawerContentBody.drawerContentBod
 import static org.patternfly.component.drawer.DrawerPanel.drawerPanel;
 import static org.patternfly.component.drawer.DrawerPanelBody.drawerPanelBody;
 import static org.patternfly.component.drawer.DrawerPanelHead.drawerPanelHead;
-import static org.patternfly.component.drawer.DrawerPanelWidth.width33;
 import static org.patternfly.component.drawer.DrawerSection.drawerSection;
 import static org.patternfly.component.drawer.Position.bottom;
 import static org.patternfly.component.drawer.Position.end;
@@ -56,6 +54,7 @@ import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size._2xl;
+import static org.patternfly.style.Width.width33;
 
 @Route(value = "/components/drawer", title = "Drawer")
 public class DrawerComponent extends SnippetPage {
@@ -413,7 +412,6 @@ public class DrawerComponent extends SnippetPage {
         addApiDoc(DrawerPanel.class, subcomponent);
         addApiDoc(DrawerPanelBody.class, subcomponent);
         addApiDoc(DrawerPanelHead.class, subcomponent);
-        addApiDoc(DrawerPanelWidth.class, modifier);
         addApiDoc(DrawerSection.class, subcomponent);
         addApiDoc(Position.class, modifier);
     }

@@ -51,7 +51,6 @@ import elemental2.dom.HTMLInputElement;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
-import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.button;
@@ -136,6 +135,11 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     @Override
     public void attach(MutationRecord mutationRecord) {
         tooltipToggle.eval();
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        tooltipToggle.stop();
     }
 
     @Override
@@ -333,7 +337,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     private void enterEdit() {
-        console.log("Enter edit mode");
         tooltipToggle.stop();
         setVisible(contentElement, false);
         setVisible(actionsElement, false);
@@ -349,7 +352,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     private void cancelEdit(Event event, String previousText) {
-        console.log("Cancel edit mode");
         if (editCancelHandler != null) {
             editCancelHandler.cancel(event, this, previousText);
         }
@@ -357,7 +359,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     private void completeEdit(Event event, String newText) {
-        console.log("Complete edit mode");
         textElement.textContent = newText;
         if (editCompleteHandler != null) {
             editCompleteHandler.complete(event, this, newText);
@@ -366,7 +367,6 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     private void leaveEdit() {
-        console.log("Leave edit mode");
         if (cancelEditModeOnDocumentClick != null) {
             cancelEditModeOnDocumentClick.removeHandler();
         }

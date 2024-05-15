@@ -128,6 +128,13 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         }
     }
 
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        if (tooltipToggle != null) {
+            tooltipToggle.stop();
+        }
+    }
+
     // ------------------------------------------------------ add
 
     public <T> ChipGroup addChips(Iterable<T> items, Function<T, Chip> display) {

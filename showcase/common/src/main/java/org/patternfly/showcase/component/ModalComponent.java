@@ -335,9 +335,7 @@ public class ModalComponent extends SnippetPage {
         addSnippet(new Snippet("modal-wizard", "With wizard",
                 code("modal-wizard"), () -> {
             // @code-start:modal-wizard
-            return div()
-                    .add(nyi())
-                    .element();
+            return nyi().element();
             // @code-end:modal-wizard
         }));
 

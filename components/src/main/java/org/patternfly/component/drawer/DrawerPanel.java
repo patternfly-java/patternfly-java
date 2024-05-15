@@ -24,6 +24,7 @@ import org.patternfly.core.LanguageDirection;
 import org.patternfly.handler.ResizeHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Width;
 
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.DOMRect;
@@ -242,7 +243,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
      * Width for drawer panel at various breakpoints. Overridden by resizable drawer {@link #minSize(String)} and
      * {@link #defaultSize(String)}.
      */
-    public DrawerPanel widths(Breakpoints<DrawerPanelWidth> widths) {
+    public DrawerPanel widths(Breakpoints<Width> widths) {
         return css(widths.modifiers());
     }
 

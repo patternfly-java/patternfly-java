@@ -29,27 +29,19 @@ import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
 import org.patternfly.component.jumplinks.JumpLinks;
-import org.patternfly.core.Roles;
+import org.patternfly.component.table.Tbody;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
-import elemental2.dom.HTMLTableSectionElement;
 
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.table;
-import static org.jboss.elemento.Elements.tbody;
-import static org.jboss.elemento.Elements.td;
-import static org.jboss.elemento.Elements.th;
-import static org.jboss.elemento.Elements.thead;
-import static org.jboss.elemento.Elements.tr;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
 import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
@@ -58,14 +50,19 @@ import static org.patternfly.component.label.Label.label;
 import static org.patternfly.component.page.PageMainBody.pageMainBody;
 import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.table.GridBreakpoint.gridMd;
+import static org.patternfly.component.table.Table.table;
+import static org.patternfly.component.table.Tbody.tbody;
+import static org.patternfly.component.table.Td.td;
+import static org.patternfly.component.table.Th.th;
+import static org.patternfly.component.table.Thead.thead;
+import static org.patternfly.component.table.Tr.tr;
+import static org.patternfly.component.table.Wrap.breakWord;
 import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
-import static org.patternfly.core.Roles.columnheader;
-import static org.patternfly.core.Roles.rowgroup;
 import static org.patternfly.icon.IconSets.fas.swatchbook;
 import static org.patternfly.icon.IconSets.patternfly.catalog;
 import static org.patternfly.layout.flex.AlignItems.center;
@@ -78,23 +75,14 @@ import static org.patternfly.style.Breakpoint._2xl;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Brightness.light;
-import static org.patternfly.style.Classes.breakWord;
-import static org.patternfly.style.Classes.compact;
-import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.floatRight;
-import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.table;
-import static org.patternfly.style.Classes.td;
-import static org.patternfly.style.Classes.text;
-import static org.patternfly.style.Classes.th;
-import static org.patternfly.style.Classes.thead;
-import static org.patternfly.style.Classes.tr;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.ExpandableModifier.expandable;
 import static org.patternfly.style.ExpandableModifier.nonExpandable;
 import static org.patternfly.style.Size._4xl;
-import static org.patternfly.style.Size.lg;
+import static org.patternfly.style.Width.width20;
+import static org.patternfly.style.Width.width30;
 
 public class SnippetPage implements Page {
 
@@ -105,7 +93,7 @@ public class SnippetPage implements Page {
     private final Map<String, Toc> tocs;
     private final List<HTMLElement> elements;
     private boolean tocReady;
-    private HTMLContainerBuilder<HTMLTableSectionElement> tbody;
+    private Tbody tbody;
 
     public SnippetPage(Component component) {
         this(component.title, component.summary(), component.apiDoc(), component.designGuidelines());
@@ -224,21 +212,19 @@ public class SnippetPage implements Page {
         String id = Id.build(simpleName);
 
         failSafeToc(Toc.API_DOCS).add(id, simpleName);
-        failSafeTableBody().add(tr().css(component(table, tr))
-                .add(td().css(component(table, td)).apply(td -> td.tabIndex = -1)
-                        .add(span().css(component(table, text), modifier(breakWord))
+        failSafeTbody().addRow(tr()
+                .addData(td("Name").wrap(breakWord)
+                        .add(span().css("ws-heading")
                                 .id(id)
                                 .add(a("#" + id).css("ws-heading-anchor")
                                         .aria(hidden, true)
                                         .attr(tabindex, -1)
                                         .add(linkIcon()))
                                 .add(simpleName)))
-                .add(td().css(component(table, td)).apply(td -> td.tabIndex = -1)
-                        .add(span().css(component(table, text), modifier(breakWord))
-                                .add(label(type.name, type.color))))
-                .add(td().css(component(table, td)).apply(td -> td.tabIndex = -1)
-                        .add(span().css(component(table, text), modifier(breakWord))
-                                .add(a(apiDocLink(clazz), ApiDoc.API_DOC_TARGET).textContent(fullName)))));
+                .addData(td("Type").wrap(breakWord)
+                        .add(label(type.name, type.color)))
+                .addData(td("API Documentation").wrap(breakWord)
+                        .add(a(apiDocLink(clazz), ApiDoc.API_DOC_TARGET).textContent(fullName))));
     }
 
     // ------------------------------------------------------ header
@@ -318,27 +304,18 @@ public class SnippetPage implements Page {
         return name.substring(0, name.lastIndexOf('.'));
     }
 
-    private HTMLContainerBuilder<HTMLTableSectionElement> failSafeTableBody() {
+    private Tbody failSafeTbody() {
         if (tbody == null) {
-            // TODO Replace this with the table component once implemented.
             contentContainer.appendChild(
-                    table().css(component(table), modifier(grid, lg), modifier(compact), util("mt-md"), util("mb-lg"))
-                            .attr(role, Roles.grid)
-                            .add(thead().css(component(table, thead))
-                                    .add(tr().css(component(table, tr))
-                                            .add(th().css(component(table, th), modifier("width-30"))
-                                                    .attr(role, columnheader)
-                                                    .apply(th -> th.scope = "col")
-                                                    .textContent("Name"))
-                                            .add(th().css(component(table, th), modifier("width-20"))
-                                                    .attr(role, columnheader)
-                                                    .apply(th -> th.scope = "col")
-                                                    .textContent("Type"))
-                                            .add(th().css(component(table, th))
-                                                    .attr(role, columnheader)
-                                                    .apply(th -> th.scope = "col")
-                                                    .textContent("API documentation"))))
-                            .add(tbody = tbody().css(component(table, Classes.tbody)).attr(role, rowgroup))
+                    table().css(util("mt-md"), util("mb-lg"))
+                            .compact()
+                            .gridBreakpoint(gridMd)
+                            .addHead(thead()
+                                    .addRow(tr()
+                                            .addHeader(th().width(width30).textContent("Name"))
+                                            .addHeader(th().width(width20).textContent("Type"))
+                                            .addHeader(th().textContent("API Documentation"))))
+                            .addBody(tbody = tbody())
                             .element());
         }
         return tbody;

@@ -314,9 +314,7 @@ public class MenuComponent extends SnippetPage {
         addSnippet(new Snippet("menu-filter", "Filtering with search input",
                 code("menu-filter"), () ->
                 // @code-start:menu-filter
-                div()
-                        .add(nyi())
-                        .element()
+                nyi().element()
                 // @code-end:menu-filter
         ));
 

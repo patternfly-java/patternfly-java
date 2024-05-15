@@ -13,15 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase.demo.user;
+package org.patternfly.component.table;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsType;
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-public class Name {
+import elemental2.dom.HTMLElement;
 
-    public String title;
-    public String first;
-    public String last;
+abstract class TableSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+
+    TableSubComponent(String name, E element) {
+        super(ComponentType.Table, name, element);
+    }
 }

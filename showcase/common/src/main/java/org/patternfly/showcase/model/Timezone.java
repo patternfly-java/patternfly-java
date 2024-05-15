@@ -13,14 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase.demo.user;
+package org.patternfly.showcase.model;
 
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-public class DateOfBirth {
+public class Timezone {
 
-    public String date;
-    public int age;
+    public String offset;
+    public String description;
 }

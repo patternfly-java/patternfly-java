@@ -13,29 +13,49 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.drawer;
+package org.patternfly.style;
 
-import org.patternfly.style.Classes;
-import org.patternfly.style.TypedModifier;
+public enum Width implements TypedModifier {
 
-public enum DrawerPanelWidth implements TypedModifier {
+    width10("width-10"),
+
+    width15("width-15"),
+
+    width20("width-20"),
 
     width25("width-25"),
 
+    width30("width-30"),
+
     width33("width-33"),
+
+    width35("width-35"),
+
+    width40("width-40"),
+
+    width45("width-45"),
 
     width50("width-50"),
 
+    width60("width-60"),
+
     width66("width-66"),
+
+    width70("width-70"),
 
     width75("width-75"),
 
-    width100("width-100");
+    width80("width-80"),
+
+    width90("width-90"),
+
+    width100("width-100"),
+    ;
 
     private final String value;
     private final String modifier;
 
-    DrawerPanelWidth(String value) {
+    Width(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

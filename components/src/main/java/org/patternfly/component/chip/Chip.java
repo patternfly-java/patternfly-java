@@ -116,6 +116,11 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     }
 
     @Override
+    public void detach(MutationRecord mutationRecord) {
+        tooltipToggle.stop();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -13,15 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.showcase.model;
 
-public interface Dataset {
+import java.util.Arrays;
+import java.util.List;
 
-    String expandableSectionId = "expandableSectionId";
-    String expandableSectionTarget = "expandableSectionTarget";
-    String label = "label";
-    String placeholder = "placeholder";
-    String navigationGroup = "navigationGroup";
-    String navigationItem = "navigationItem";
-    String sliderStepValue = "sliderStepValue";
+import elemental2.core.JsDate;
+
+public class Repository {
+
+    public static final List<String> keys = Arrays.asList("Repository", "Branches", "Pull requests", "Workspaces",
+            "Last commit");
+
+    public String name;
+    public int branches;
+    public int pullRequests;
+    public int workspaces;
+    public JsDate lastCommit;
+    public String extraData;
 }

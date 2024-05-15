@@ -17,6 +17,8 @@ package org.patternfly.component.tooltip;
 
 import java.util.function.Consumer;
 
+import org.jboss.elemento.logger.Logger;
+
 import elemental2.dom.HTMLElement;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -26,6 +28,7 @@ import static org.patternfly.component.tooltip.Tooltip.tooltip;
 public class TooltipToggle {
 
     private static final double CALCULATE_WIDTH_TIMEOUT = 333;
+    private static final Logger logger = Logger.getLogger(TooltipToggle.class.getName());
 
     public final HTMLElement textElement;
     public Tooltip tooltip;
@@ -45,6 +48,7 @@ public class TooltipToggle {
             if (enableTooltip) {
                 if (tooltip == null) {
                     // no tooltip -> create
+                    logger.debug("Tooltip toggle enabled for %o", textElement);
                     tooltip = tooltip(textElement, textElement.textContent).appendToBody();
                 } else {
                     // just update text
@@ -65,7 +69,10 @@ public class TooltipToggle {
     }
 
     public void stop() {
-        failSafeRemoveFromParent(tooltip);
+        if (tooltip != null) {
+            logger.debug("Stop tooltip toggle for %o", textElement);
+            failSafeRemoveFromParent(tooltip);
+        }
         tooltip = null;
     }
 }

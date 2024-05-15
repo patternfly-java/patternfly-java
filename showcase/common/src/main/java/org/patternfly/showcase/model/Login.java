@@ -13,15 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.showcase.model;
 
-public interface Dataset {
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-    String expandableSectionId = "expandableSectionId";
-    String expandableSectionTarget = "expandableSectionTarget";
-    String label = "label";
-    String placeholder = "placeholder";
-    String navigationGroup = "navigationGroup";
-    String navigationItem = "navigationItem";
-    String sliderStepValue = "sliderStepValue";
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class Login {
+
+    public String uuid;
+    public String username;
+    public String password;
+    public String salt;
+    public String md5;
+    public String sha1;
+    public String sha256;
 }

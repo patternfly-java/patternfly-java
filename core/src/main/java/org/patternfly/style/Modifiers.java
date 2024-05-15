@@ -50,6 +50,19 @@ public interface Modifiers {
         }
     }
 
+    interface Center<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #center(boolean) center(true)} */
+        default B center() {
+            return center(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(center)} */
+        default B center(boolean center) {
+            return toggleModifier(that(), element(), Classes.center, center);
+        }
+    }
+
     interface Compact<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #compact(boolean) compact(true)} */

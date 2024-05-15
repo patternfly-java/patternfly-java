@@ -37,6 +37,7 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.ExpandableModifier;
+import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Vertical;
 
 import elemental2.dom.Event;
@@ -66,7 +67,6 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggle;
-import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * Jump links allow users to navigate to sections within a page.
@@ -75,6 +75,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  */
 public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> implements
         Attachable,
+        Center<HTMLElement, JumpLinks>,
         Expandable<HTMLElement, JumpLinks>,
         Vertical<HTMLElement, JumpLinks> {
 
@@ -155,16 +156,6 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     // ------------------------------------------------------ builder
-
-    /** Same as {@linkplain #center(boolean) center(true)} */
-    public JumpLinks center() {
-        return center(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(center)} */
-    public JumpLinks center(boolean center) {
-        return toggleModifier(this, element(), Classes.center, center);
-    }
 
     /**
      * When to collapse/expand at different breakpoints ({@link #vertical()} should be set to true for this to work).

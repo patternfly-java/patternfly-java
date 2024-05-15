@@ -53,9 +53,9 @@ public interface Classes {
     String box = "box";
     String brand = "brand";
     String breadcrumb = "breadcrumb";
-    String breakWord = "break-word";
     String bullseye = "bullseye";
     String button = "button";
+    String caption = "caption";
     String card = "card";
     String category = "category";
     String center = "center";
@@ -161,6 +161,7 @@ public interface Classes {
     String nav = "nav";
     String noBorder = "no-border";
     String noBorderBottom = "no-border-bottom";
+    String noBorderRows = "no-border-rows";
     String noFill = "no-fill";
     String none = "none";
     String noOffset = "no-offset";

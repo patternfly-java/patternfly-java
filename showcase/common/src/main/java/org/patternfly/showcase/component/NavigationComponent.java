@@ -158,18 +158,14 @@ public class NavigationComponent extends SnippetPage {
         addSnippet(new Snippet("nav-flyout", "Flyout",
                 code("nav-flyout"), () ->
                 // @code-start:nav-flyout
-                div()
-                        .add(nyi())
-                        .element()
+                nyi().element()
                 // @code-end:nav-flyout
         ));
 
         addSnippet(new Snippet("nav-drilldown", "Drilldown",
                 code("nav-drilldown"), () ->
                 // @code-start:nav-drilldown
-                div()
-                        .add(nyi())
-                        .element()
+                nyi().element()
                 // @code-end:nav-drilldown
         ));
 

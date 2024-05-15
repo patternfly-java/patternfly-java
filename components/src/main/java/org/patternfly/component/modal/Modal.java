@@ -87,7 +87,6 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     private final Backdrop backdrop;
     private final HTMLElement closeContainer;
     private boolean open;
-    private boolean autoClose;
     private boolean hideClose;
     private ModalHeader header;
     private ModalBody body;
@@ -95,6 +94,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     private HTMLElement target;
     private CloseHandler<Modal> closeHandler;
     private HandlerRegistration escapeHandler;
+    boolean autoClose;
 
     Modal() {
         super(ComponentType.Modal);

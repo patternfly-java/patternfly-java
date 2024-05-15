@@ -19,8 +19,8 @@
     "parcel-resolver-ignore": "^2.2.0"
   },
   "dependencies": {
-    "@github/relative-time-element": "^4.3.1",
-    "@patternfly/patternfly": "^5.2.1",
+    "@github/relative-time-element": "^4.4.0",
+    "@patternfly/patternfly": "^5.3.1",
     "highlight.js": "^11.9.0",
     "showcase-common": "file:../common/local_modules/showcase-common"
   }

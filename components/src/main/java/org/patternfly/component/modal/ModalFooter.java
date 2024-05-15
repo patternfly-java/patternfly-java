@@ -15,16 +15,22 @@
  */
 package org.patternfly.component.modal;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jboss.elemento.Attachable;
 import org.patternfly.component.button.Button;
+import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.footer;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.modalBox;
 
-public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> {
+public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> implements Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -35,22 +41,44 @@ public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> {
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mf";
+    private final List<ButtonHandler> buttons;
 
     ModalFooter() {
         super(SUB_COMPONENT_NAME, footer().css(component(modalBox, footer)).element());
+        this.buttons = new ArrayList<>();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        Modal modal = lookupComponentDelegate();
+        for (ButtonHandler bh : buttons) {
+            if (bh.handler != null) {
+                bh.button.onClick((event, component) -> bh.handler.handle(event, modal));
+            } else {
+                if (modal.autoClose) {
+                    bh.button.onClick((event, component) -> modal.close());
+                }
+            }
+        }
     }
 
     // ------------------------------------------------------ add
 
     public ModalFooter addButton(Button button) {
-        return add(button);
+        return add(button, null);
+    }
+
+    public ModalFooter addButton(Button button, ComponentHandler<Modal> handler) {
+        return add(button, handler);
     }
 
     public ModalFooter add(Button button) {
-        button.onClick((event, component) -> {
-            Modal modal = lookupComponentDelegate();
-            modal.close();
-        });
+        return add(button, null);
+    }
+
+    public ModalFooter add(Button button, ComponentHandler<Modal> handler) {
+        buttons.add(new ButtonHandler(button, handler));
         return add(button.element());
     }
 
@@ -59,5 +87,18 @@ public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> {
     @Override
     public ModalFooter that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private static class ButtonHandler {
+
+        private final Button button;
+        private final ComponentHandler<Modal> handler;
+
+        public ButtonHandler(Button button, ComponentHandler<Modal> handler) {
+            this.button = button;
+            this.handler = handler;
+        }
     }
 }

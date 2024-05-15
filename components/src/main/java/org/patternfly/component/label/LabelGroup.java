@@ -132,6 +132,13 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         }
     }
 
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        if (tooltipToggle != null) {
+            tooltipToggle.stop();
+        }
+    }
+
     // ------------------------------------------------------ add
 
     public <T> LabelGroup addLabels(Iterable<T> items, Function<T, Label> display) {

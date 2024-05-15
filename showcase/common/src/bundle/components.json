@@ -563,6 +563,7 @@
     "name": "table",
     "title": "Table",
     "route": "/components/table",
+    "clazz": "org.patternfly.component.Table.Table",
     "illustration": "table.png",
     "summary": "A <b>table</b> is used to display large data sets that can be easily laid out in a simple grid with column headers."
   },
