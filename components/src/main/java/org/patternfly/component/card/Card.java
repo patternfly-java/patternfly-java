@@ -166,8 +166,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     }
 
     /** Same as {@linkplain #selectable(SelectionMode, SelectHandler) selectable(multi, onSelect)} */
-    public Card selectable(SelectHandler<Card> onSelect) {
-        return selectable(multi, onSelect);
+    public Card selectable(SelectHandler<Card> selectHandler) {
+        return selectable(multi, selectHandler);
     }
 
     /** Same as {@linkplain #selectable(SelectionMode, SelectHandler) selectable(selectionMode, null)} */
@@ -175,13 +175,13 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         return selectable(selectionMode, null);
     }
 
-    public Card selectable(SelectionMode selectionMode, SelectHandler<Card> onSelect) {
+    public Card selectable(SelectionMode selectionMode, SelectHandler<Card> selectHandler) {
         if (selectionMode == click) {
             logger.warn("Selection mode '%s' is not supported for card %o", click.name(), element());
             return this;
         }
         this.selectionMode = selectionMode;
-        this.selectHandler = onSelect;
+        this.selectHandler = selectHandler;
         return css(modifier(selectable));
     }
 

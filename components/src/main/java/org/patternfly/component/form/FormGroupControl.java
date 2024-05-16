@@ -118,6 +118,11 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         return add(helperText);
     }
 
+    public FormGroupControl setHelperText(HelperText helperText) {
+        removeHelperText();
+        return add(helperText);
+    }
+
     // override to assure internal wiring
     public FormGroupControl add(HelperText helperText) {
         return add(div().css(component(Classes.form, Classes.helperText))

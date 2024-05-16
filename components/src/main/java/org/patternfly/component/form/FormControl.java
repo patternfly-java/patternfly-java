@@ -85,10 +85,20 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
                 css(status.modifier);
             }
             if (status != default_ && status.icon != null) {
-                failSafeValidatedContainer().appendChild(status.icon.element());
+                failSafeValidatedContainer().appendChild(status.icon.get().element());
             }
         }
         return that();
+    }
+
+    // ------------------------------------------------------ api
+
+    public void resetValidation() {
+        if (status != null) {
+            element().classList.remove(this.status.modifier);
+            failSafeRemoveFromParent(validationContainer);
+            validationContainer = null;
+        }
     }
 
     // ------------------------------------------------------ internal

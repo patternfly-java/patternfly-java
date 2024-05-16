@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.table;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
@@ -41,11 +43,13 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tbd";
+    final Map<String, Tr> rows;
 
     Tbody() {
         super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
                 .attr(role, rowgroup)
                 .element());
+        this.rows = new HashMap<>();
     }
 
     // ------------------------------------------------------ add
@@ -62,6 +66,12 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
         return add(row);
     }
 
+    public Tbody add(Tr row) {
+        rows.put(row.key, row);
+        add(row.element());
+        return this;
+    }
+
     // ------------------------------------------------------ builder
 
     @Override
@@ -71,7 +81,8 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
 
     // ------------------------------------------------------ api
 
-    public void clearRows() {
+    public void removeRows() {
+        rows.clear();
         Elements.removeChildrenFrom(element());
     }
 }

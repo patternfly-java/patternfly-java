@@ -158,17 +158,31 @@ public class TableComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("table-sel-click", "Row click handler, clickable rows",
-                code("table-sel-click"), () ->
-                // @code-start:table-sel-click
-                nyi().element()
-                // @code-end:table-sel-click
-        ));
+                code("table-sel-click"), () -> {
+            // @code-start:table-sel-click
+            List<Repository> repositories = repositories(5);
+            return table()
+                    .addHead(thead()
+                            .addRow(tr()
+                                    .addHeaders(Repository.keys, name -> th().textContent(name))))
+                    .addBody(tbody()
+                            .addRows(repositories, repository -> tr(repository.name).clickable()
+                                    .addData(td("Repositories").textContent(repository.name))
+                                    .addData(td("Branches").textContent(String.valueOf(repository.branches)))
+                                    .addData(td("Pull requests").textContent(String.valueOf(repository.pullRequests)))
+                                    .addData(td("Workspaces").textContent(String.valueOf(repository.workspaces)))
+                                    .addData(td("Last commit")
+                                            .add(htmlElement("relative-time", HTMLElement.class)
+                                                    .attr("datetime", repository.lastCommit.toISOString())
+                                                    .textContent(repository.lastCommit.toISOString())))))
+                    .element();
+            // @code-end:table-sel-click
+        }));
 
         addSnippet(new Snippet("table-actions", "Actions",
                 code("table-actions"), () -> {
             // @code-start:table-actions
             List<Repository> repositories = repositories(5);
-            String[] columns = {"Repositories", "Branches", "Pull requests", "Workspaces", "Last commit"};
             Supplier<Dropdown> dropdown = () -> dropdown(ellipsisV(), "kebab dropdown toggle")
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()

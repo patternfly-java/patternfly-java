@@ -19,6 +19,7 @@ public interface Dataset {
 
     String expandableSectionId = "expandableSectionId";
     String expandableSectionTarget = "expandableSectionTarget";
+    String key = "key";
     String label = "label";
     String placeholder = "placeholder";
     String navigationGroup = "navigationGroup";

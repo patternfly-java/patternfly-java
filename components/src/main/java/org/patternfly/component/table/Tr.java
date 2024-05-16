@@ -17,11 +17,24 @@ package org.patternfly.component.table;
 
 import java.util.function.Function;
 
+import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
+import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLTableRowElement;
 
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.Key.Enter;
+import static org.jboss.elemento.Key.Spacebar;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.selected;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tr;
 
@@ -33,15 +46,28 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
      * Factory method to create a new instance of this component.
      */
     public static Tr tr() {
-        return new Tr();
+        return new Tr(Id.unique(ComponentType.Table.id, "row"));
+    }
+
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static Tr tr(String key) {
+        return new Tr(key);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tr";
+    public final String key;
+    private HandlerRegistration clickHandler;
+    private HandlerRegistration keyHandler;
 
-    Tr() {
-        super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr)).element());
+    Tr(String key) {
+        super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
+                .data(Dataset.key, key)
+                .element());
+        this.key = key;
     }
 
     // ------------------------------------------------------ add
@@ -72,8 +98,52 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
 
     // ------------------------------------------------------ builder
 
+    public Tr clickable() {
+        return clickable(true);
+    }
+
+    public Tr clickable(boolean clickable) {
+        if (clickable) {
+            element().tabIndex = 0;
+            classList().add(modifier(Classes.clickable));
+            clickHandler = bind(element(), click, e -> {
+                Table table = lookupComponent();
+                table.select(this);
+            });
+            keyHandler = bind(element(), keydown, e -> {
+                if (Enter.match(e) || Spacebar.match(e)) {
+                    e.preventDefault();
+                    Table table = lookupComponent();
+                    table.select(this);
+                }
+            });
+        } else {
+            element().tabIndex = -1;
+            classList().remove(modifier(Classes.clickable));
+            if (clickHandler != null) {
+                clickHandler.removeHandler();
+            }
+            if (keyHandler != null) {
+                keyHandler.removeHandler();
+            }
+        }
+        return this;
+    }
+
     @Override
     public Tr that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    void markSelected() {
+        classList().add(modifier(selected));
+        aria(Aria.label, "Row selected");
+    }
+
+    void clearSelection() {
+        classList().remove(modifier(selected));
+        element().removeAttribute(Aria.label);
     }
 }

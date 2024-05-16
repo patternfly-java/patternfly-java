@@ -35,7 +35,6 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.component.ValidationStatus.default_;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.dynamic;
@@ -114,7 +113,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     public HelperTextItem defaultIcon() {
         defaultIcon = true;
-        failSafeIconContainer().appendChild(status.icon.css("fa-fw").element());
+        failSafeIconContainer().appendChild(status.icon.get().element());
         return this;
     }
 
@@ -141,7 +140,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     }
 
     public HelperTextItem status(ValidationStatus status) {
-        return status(status, defaultIcon ? status.icon.element() : null);
+        return status(status, defaultIcon ? status.icon.get().element() : null);
     }
 
     public HelperTextItem status(ValidationStatus status, PredefinedIcon icon) {
@@ -168,7 +167,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
         // don't override a possible screen reader text by calling
         // textElement.textContent = text;
         // instead modify the first text node of textElement:
-        wrapHtmlElement(textElement).textNode(text);
+        Elements.textNode(textElement, text);
         return this;
     }
 

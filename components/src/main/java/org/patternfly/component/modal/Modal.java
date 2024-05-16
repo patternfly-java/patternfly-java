@@ -295,6 +295,10 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
         }
     }
 
+    public ModalBody body() {
+        return body;
+    }
+
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeTarget() {

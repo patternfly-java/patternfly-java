@@ -15,17 +15,19 @@
  */
 package org.patternfly.component.table;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
+import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 
+import elemental2.dom.Event;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTableElement;
 
-import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.table.GridBreakpoint.gridMd;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.grid;
@@ -49,10 +51,14 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     // ------------------------------------------------------ instance
 
+    private Tbody tbody;
+    private SelectHandler<Tr> selectHandler;
+
     Table() {
-        super(ComponentType.Tabs, Elements.table().css(component(table))
+        super(ComponentType.Table, Elements.table().css(component(table))
                 .attr(role, grid)
                 .element());
+        storeComponent();
     }
 
     // ------------------------------------------------------ add
@@ -67,6 +73,11 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     public Table addBody(Tbody tbody) {
         return add(tbody);
+    }
+
+    public Table add(Tbody tbody) {
+        this.tbody = tbody;
+        return add(tbody.element());
     }
 
     // ------------------------------------------------------ builder
@@ -98,23 +109,51 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     // ------------------------------------------------------ events
 
-    public Table onFoo(ComponentHandler<Table> handler) {
-        return on(click, e -> handler.handle(e, this));
+    public Table onSelect(SelectHandler<Tr> handler) {
+        this.selectHandler = handler;
+        return this;
     }
 
     // ------------------------------------------------------ api
 
-    public void doSomething() {
-
+    public void select(String key) {
+        if (tbody != null) {
+            Tr row = tbody.rows.get(key);
+            if (row != null) {
+                select(row);
+            }
+        }
     }
 
-    public String getter() {
-        return "some piece of information";
+    public void select(Tr row) {
+        select(row, true);
+    }
+
+    public void select(Tr row, boolean fireEvent) {
+        unselectAll();
+        if (row != null) {
+            row.markSelected();
+            if (fireEvent && selectHandler != null) {
+                selectHandler.onSelect(new Event(""), row, true);
+            }
+        }
+    }
+
+    public Tbody tbody() {
+        return tbody;
     }
 
     // ------------------------------------------------------ internal
 
-    private void foo() {
-        // internal stuff happens here
+    private Iterable<HTMLElement> rows() {
+        return tbody.findAll(By.element("tr"));
+    }
+
+    private void unselectAll() {
+        if (tbody != null) {
+            for (Tr row : tbody.rows.values()) {
+                row.clearSelection();
+            }
+        }
     }
 }
