@@ -107,8 +107,12 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
             element().tabIndex = 0;
             classList().add(modifier(Classes.clickable));
             clickHandler = bind(element(), click, e -> {
-                Table table = lookupComponent();
-                table.select(this);
+                // Lenient, because the event might bubble up from an action in a <td>
+                // If that action had removed the <tr>, the lookup would fail.
+                Table table = lookupComponent(true);
+                if (table != null) {
+                    table.select(this);
+                }
             });
             keyHandler = bind(element(), keydown, e -> {
                 if (Enter.match(e) || Spacebar.match(e)) {

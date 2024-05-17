@@ -15,6 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Automatic reload after changes to Java sources in J2CL dev mode
 
+### Fixed
+
+- Fix missing JS file for PatternFly Java J2CL
+
 ### Removed
 
 - Mockito dependency

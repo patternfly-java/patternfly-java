@@ -273,11 +273,13 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
             HTMLElement failSafeTarget = failSafeTarget();
             failSafeTarget.appendChild(backdrop.element());
             failSafeTarget.classList.add(component(Classes.backdrop, Classes.open));
-            escapeHandler = bind(failSafeTarget, keydown, e -> {
-                if (Key.Escape.match(e)) {
-                    close(e, true);
-                }
-            });
+            if (autoClose) {
+                escapeHandler = bind(failSafeTarget, keydown, e -> {
+                    if (Key.Escape.match(e) && autoClose) {
+                        close(e, true);
+                    }
+                });
+            }
             open = true;
         }
     }
