@@ -25,7 +25,7 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@github/relative-time-element@^4.3.1":
+"@github/relative-time-element@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@github/relative-time-element/-/relative-time-element-4.4.0.tgz#713a8e5c4b9648b32a175a5a3adb37025d0d61bf"
   integrity sha512-CrI6oAecoahG7PF5dsgjdvlF5kCtusVMjg810EULD81TvnDsP+k/FRi/ClFubWLgBo4EGpr2EfvmumtqQFo7ow==
@@ -785,10 +785,10 @@
     "@parcel/utils" "2.12.0"
     nullthrows "^1.1.1"
 
-"@patternfly/patternfly@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-5.2.1.tgz#7ca014a1fdb45c8ac88abf7b57fccb8731e27542"
-  integrity sha512-n5xFjyj1J4eIFZ7XeU6K44POKRAuDlO5yALPbn084y+jPy1j861AaQ+zIUbzCi4IzBlHrvoXVKij7p1zy7Ditg==
+"@patternfly/patternfly@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-5.3.1.tgz#3bc80386482ee86291a34fbc72b651ab9f40d752"
+  integrity sha512-KYIr9pKRTzHZNGuDuaa5j5CaZyLltvotPFGG1BiJalBDBGSOyk0BZCgHLowm4txKZXrLhorEuuv9XLrMQL8eoA==
 
 "@swc/core-darwin-arm64@1.4.12":
   version "1.4.12"
