@@ -25,7 +25,7 @@ jobs:
         run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
       - name: Publish Showcase
         id: publish-showcase
-        uses: JamesIves/github-pages-deploy-action@v4.6.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.1
         with:
           repository-name: patternfly-java/patternfly-java.github.io
           token: ${{ secrets.PUBLISH_CONTENT }}
