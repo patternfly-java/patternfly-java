@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.5] - 2024-05-21
+
 ### Added
 
 - Backdrop component (#22)
@@ -311,8 +313,10 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.4...HEAD
-[0.2.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.2...v0.2.4
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.4...v0.2.5
+[0.2.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
