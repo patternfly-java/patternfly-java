@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Backdrop component (#22)
 - Modal component (#69)
+- Table component (#90) - work in progress
 
 ### Changed
 
