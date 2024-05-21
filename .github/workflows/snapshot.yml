@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  verify:
+  snapshot:
     name: Deploy Snapshot
     runs-on: ubuntu-latest
     env:
@@ -20,11 +20,24 @@ jobs:
         id: setup-jdk
         uses: actions/setup-java@v4
         with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+      - name: Package
+        id: package
+        run: $MVN package -P prod
+      - name: Set up Maven Settings
+        id: setup-maven-settings
+        uses: actions/setup-java@v4
+        with: # running setup-java again overwrites the settings.xml
           java-version: 11
           distribution: temurin
-          cache: maven
+          server-id: ossrh
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
       - name: Deploy
         id: deploy
-        run: $MVN deploy
+        run: $MVN deploy -P prod
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
