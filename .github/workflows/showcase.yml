@@ -8,27 +8,19 @@ jobs:
     name: Publish Showcase
     runs-on: ubuntu-latest
     env:
-      MVN: ./mvnw --show-version --batch-mode
+      MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
     steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v4
-      - name: Set up JDK
-        id: setup-jdk
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: 11
           distribution: temurin
           cache: maven
-      - name: Build Showcase
-        id: build-showcase
-        run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
-      - name: Publish Showcase
-        id: publish-showcase
-        uses: JamesIves/github-pages-deploy-action@v4.6.1
+      - run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
+      - uses: JamesIves/github-pages-deploy-action@v4.6.1
         with:
-          repository-name: patternfly-java/patternfly-java.github.io
           token: ${{ secrets.PUBLISH_CONTENT }}
+          repository-name: patternfly-java/patternfly-java.github.io
           branch: main
           folder: ./showcase/j2cl/target/showcase
           clean: true
