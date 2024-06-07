@@ -95,6 +95,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         typeMapping.put(TextInputType.tel, InputType.tel);
         typeMapping.put(TextInputType.text, InputType.text);
         typeMapping.put(TextInputType.time, InputType.time);
+        typeMapping.put(TextInputType.password, InputType.password);
     }
 
     private final HTMLInputElement inputElement;
