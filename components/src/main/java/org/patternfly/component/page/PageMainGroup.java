@@ -24,6 +24,8 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.main;
@@ -69,6 +71,13 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Same as {@code sticky(breakpoints(default_, sticky))}
+     */
+    public PageMainGroup sticky(Sticky sticky) {
+        return sticky(breakpoints(default_, sticky));
+    }
 
     /**
      * Modifies this component to be sticky at the given breakpoints.

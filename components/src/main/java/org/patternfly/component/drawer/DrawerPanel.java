@@ -62,7 +62,9 @@ import static org.patternfly.core.Aria.valueNow;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.LanguageDirection.languageDirection;
 import static org.patternfly.core.Roles.separator;
+import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoint.md;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.handle;
 import static org.patternfly.style.Classes.main;
@@ -237,6 +239,13 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     public DrawerPanel increment(int increment) {
         this.increment = increment;
         return this;
+    }
+
+    /**
+     * Same as {@code widths(breakpoints(default_, widths))}
+     */
+    public DrawerPanel widths(Width widths) {
+        return widths(breakpoints(default_, widths));
     }
 
     /**

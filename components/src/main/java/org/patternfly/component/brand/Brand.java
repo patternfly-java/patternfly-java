@@ -28,6 +28,8 @@ import elemental2.dom.HTMLImageElement;
 import static org.jboss.elemento.Elements.img;
 import static org.jboss.elemento.Elements.picture;
 import static org.jboss.elemento.Elements.source;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
@@ -106,8 +108,22 @@ public class Brand extends BaseComponent<HTMLElement, Brand> {
 
     // ------------------------------------------------------ builder
 
+    /**
+     * Same as {@code widths(breakpoints(default_, widths))}
+     */
+    public Brand widths(String widths) {
+        return widths(breakpoints(default_, widths));
+    }
+
     public Brand widths(Breakpoints<String> widths) {
         return componentVar(component(brand), Width).applyTo(this).set(widths);
+    }
+
+    /**
+     * Same as {@code heights(breakpoints(default_, heights))}
+     */
+    public Brand heights(String heights) {
+        return heights(breakpoints(default_, heights));
     }
 
     public Brand heights(Breakpoints<String> heights) {

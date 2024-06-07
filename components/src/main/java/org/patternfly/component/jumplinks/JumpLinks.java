@@ -56,6 +56,8 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.header;
@@ -156,6 +158,13 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Same as {@code expandable(breakpoints(default_, expandable))}
+     */
+    public JumpLinks expandable(ExpandableModifier expandable) {
+        return expandable(breakpoints(default_, expandable));
+    }
 
     /**
      * When to collapse/expand at different breakpoints ({@link #vertical()} should be set to true for this to work).

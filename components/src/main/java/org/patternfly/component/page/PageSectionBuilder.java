@@ -21,6 +21,8 @@ import org.patternfly.style.Sticky;
 
 import elemental2.dom.HTMLElement;
 
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.alignCenter;
 import static org.patternfly.style.Classes.limitWidth;
 import static org.patternfly.style.Classes.modifier;
@@ -68,10 +70,24 @@ public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSe
     }
 
     /**
+     * Same as {@code sticky(breakpoints(default_, sticky))}
+     */
+    public P sticky(Sticky sticky) {
+        return sticky(breakpoints(default_, sticky));
+    }
+
+    /**
      * Modifies this component to be sticky at the given breakpoints.
      */
     public P sticky(Breakpoints<Sticky> sticky) {
         return css(sticky.modifiers());
+    }
+
+    /**
+     * Same as {@code padding(breakpoints(default_, padding))}
+     */
+    public P padding(Padding padding) {
+        return padding(breakpoints(default_, padding));
     }
 
     public P padding(Breakpoints<Padding> padding) {

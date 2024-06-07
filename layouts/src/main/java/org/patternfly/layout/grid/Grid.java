@@ -28,6 +28,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.BreakpointCollector.modifiers;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -75,6 +76,13 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     // ------------------------------------------------------ builder
 
     /**
+     * Same as {@code columns(breakpoints(default_, columns))}
+     */
+    public Grid columns(int columns) {
+        return columns(breakpoints(default_, columns));
+    }
+
+    /**
      * The number of columns all grid items should span on a specific breakpoint.
      */
     public Grid columns(Breakpoints<Integer> columns) {
@@ -83,6 +91,13 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "all-" + col + "-col"));
         return css(modifiers);
+    }
+
+    /**
+     * Same as {@code order(breakpoints(default_, order))}
+     */
+    public Grid order(String order) {
+        return order(breakpoints(default_, order));
     }
 
     /** Modifies the flex layout element order property. */

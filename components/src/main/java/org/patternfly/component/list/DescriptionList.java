@@ -29,7 +29,9 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.dl;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.core.Validation.verifyRange;
+import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.BreakpointCollector.modifiers;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.display;
@@ -91,6 +93,13 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     /**
+     * Same as {@code autoFitMin(breakpoints(default_, autoFitMin))}
+     */
+    public DescriptionList autoFitMin(String autoFitMin) {
+        return autoFitMin(breakpoints(default_, autoFitMin));
+    }
+
+    /**
      * Sets the minimum column size for the auto-fit layout at various breakpoints.
      */
     public DescriptionList autoFitMin(Breakpoints<String> autoFitMin) {
@@ -100,6 +109,13 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-lg: 150px;
         // --pf-v5-c-description-list--GridTemplateColumns--min-on-xl: 200px;
         return componentVar(component(descriptionList), GridTemplateColumns, "min").applyTo(this).set(autoFitMin);
+    }
+
+    /**
+     * Same as {@code columns(breakpoints(default_, columns))}
+     */
+    public DescriptionList columns(Integer columns) {
+        return columns(breakpoints(default_, columns));
     }
 
     /**
@@ -146,6 +162,13 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     /**
+     * Same as {@code horizontalTermWidth(breakpoints(default_, horizontalTermWidth))}
+     */
+    public DescriptionList horizontalTermWidth(String horizontalTermWidth) {
+        return horizontalTermWidth(breakpoints(default_, horizontalTermWidth));
+    }
+
+    /**
      * Sets the horizontal description list's term column width at various breakpoints.
      */
     public DescriptionList horizontalTermWidth(Breakpoints<String> horizontalTermWidth) {
@@ -160,6 +183,13 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     /** Modifies the description list display to inline-grid. */
     public DescriptionList inlineGrid(boolean inlineGrid) {
         return toggleModifier(that(), element(), Classes.inlineGrid, inlineGrid);
+    }
+
+    /**
+     * Same as {@code orientation(breakpoints(default_, orientation))}
+     */
+    public DescriptionList orientation(Orientation orientation) {
+        return orientation(breakpoints(default_, orientation));
     }
 
     /** Indicates how the menu will align at various breakpoints. */

@@ -88,6 +88,8 @@ import static org.patternfly.core.Roles.tablist;
 import static org.patternfly.icon.IconSets.fas.angleLeft;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.plus;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
@@ -345,6 +347,13 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     /**
+     * Same as {@code expandable(breakpoints(default_, expandable))}
+     */
+    public Tabs expandable(ExpandableModifier expandable) {
+        return expandable(breakpoints(default_, expandable));
+    }
+
+    /**
      * Enable expandable vertical tabs at various breakpoints ({@link #vertical()} should be set to true for this to work).
      */
     public Tabs expandable(Breakpoints<ExpandableModifier> expandable) {
@@ -379,6 +388,13 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             }
         }
         return this;
+    }
+
+    /**
+     * Same as {@code inset(breakpoints(default_, inset))}
+     */
+    public Tabs inset(Inset inset) {
+        return inset(breakpoints(default_, inset));
     }
 
     /**

@@ -25,10 +25,10 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.BreakpointCollector.modifiers;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.grid;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
-import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Order;
 
@@ -53,13 +53,10 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     // ------------------------------------------------------ builder
 
     /**
-     * The number of columns the grid item spans. Value should be a number 1-12.
+     * Same as {@code span(breakpoints(default_, columns))}
      */
     public GridItem span(int columns) {
-        if (verifyRange(element(), "span", columns, 1, 12)) {
-            css(modifier(columns + "-col"));
-        }
-        return this;
+        return span(breakpoints(default_, columns));
     }
 
     /**
@@ -74,13 +71,10 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     }
 
     /**
-     * The number of rows the grid item spans. Value should be a number 1-12.
+     * Same as {@code rowSpan(breakpoints(default_, rows))}
      */
     public GridItem rowSpan(int rows) {
-        if (verifyRange(element(), "rowSpan", rows, 1, 12)) {
-            css(modifier(rows + "-row"));
-        }
-        return this;
+        return rowSpan(breakpoints(default_, rows));
     }
 
     /**
@@ -95,13 +89,10 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     }
 
     /**
-     * The number of columns a grid item is offset.
+     * Same as {@code offset(breakpoints(default_, columns))}
      */
     public GridItem offset(int columns) {
-        if (verifyRange(element(), "offset", columns, 1, 12)) {
-            css(modifier("offset-" + columns + "-col"));
-        }
-        return this;
+        return offset(breakpoints(default_, columns));
     }
 
     /**
@@ -113,6 +104,13 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
                 .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "offset-" + col + "-col"));
         return css(modifiers);
+    }
+
+    /**
+     * Same as {@code order(breakpoints(default_, order))}
+     */
+    public GridItem order(String order) {
+        return order(breakpoints(default_, order));
     }
 
     /**

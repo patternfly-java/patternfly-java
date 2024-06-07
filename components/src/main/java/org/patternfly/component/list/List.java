@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.list;
 
+import java.util.function.Function;
+
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -63,6 +65,14 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     // ------------------------------------------------------ add
+
+    public <T> List addItems(Iterable<T> items, Function<T, ListItem> display) {
+        for (T item : items) {
+            ListItem li = display.apply(item);
+            addItem(li);
+        }
+        return this;
+    }
 
     public List addItem(ListItem item) {
         return add(item);

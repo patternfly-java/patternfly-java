@@ -31,6 +31,8 @@ import static org.jboss.elemento.Elements.htmlElement;
 import static org.patternfly.component.divider.DividerType.div;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.separator;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.divider;
 
@@ -71,8 +73,22 @@ public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
 
     // ------------------------------------------------------ builder
 
+    /**
+     * Same as {@code inset(breakpoints(default_, inset))}
+     */
+    public Divider inset(Inset inset) {
+        return inset(breakpoints(default_, inset));
+    }
+
     public Divider inset(Breakpoints<Inset> inset) {
         return css(inset.modifiers());
+    }
+
+    /**
+     * Same as {@code orientation(breakpoints(default_, orientation))}
+     */
+    public Divider orientation(Orientation orientation) {
+        return orientation(breakpoints(default_, orientation));
     }
 
     public Divider orientation(Breakpoints<Orientation> orientation) {

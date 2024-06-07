@@ -27,6 +27,8 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Tuple.tuple;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
@@ -53,14 +55,35 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
 
     // ------------------------------------------------------ builder
 
+    /**
+     * Same as {@code align(breakpoints(default_, align))}
+     */
+    public FlexItem align(Align align) {
+        return align(breakpoints(default_, align));
+    }
+
     /** Value to use for margin: auto at various breakpoints */
     public FlexItem align(Breakpoints<Align> align) {
         return css(align.modifiers());
     }
 
+    /**
+     * Same as {@code alignSelf(breakpoints(default_, alignSelf))}
+     */
+    public FlexItem alignSelf(AlignSelf alignSelf) {
+        return alignSelf(breakpoints(default_, alignSelf));
+    }
+
     /** Value to add for align-self property at various breakpoints */
     public FlexItem alignSelf(Breakpoints<AlignSelf> alignSelf) {
         return css(alignSelf.modifiers());
+    }
+
+    /**
+     * Same as {@code flex(breakpoints(default_, flexShorthand))}
+     */
+    public FlexItem flex(FlexShorthand flexShorthand) {
+        return flex(breakpoints(default_, flexShorthand));
     }
 
     /** Value to add for flex property at various breakpoints */
@@ -84,6 +107,13 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
         return css(modifiers);
     }
 
+    /**
+     * Same as {@code order(breakpoints(default_, order))}
+     */
+    public FlexItem order(String order) {
+        return order(breakpoints(default_, order));
+    }
+
     public FlexItem order(Breakpoints<String> order) {
         return componentVar(layout(flex), item, Order).applyTo(this).set(order);
     }
@@ -94,6 +124,13 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
                 .map(bp -> tuple(bp, "shrink"))
                 .collect(BreakpointCollector.modifiers());
         return css(modifiers);
+    }
+
+    /**
+     * Same as {@code spacer(breakpoints(default_, spacer))}
+     */
+    public FlexItem spacer(Spacer spacer) {
+        return spacer(breakpoints(default_, spacer));
     }
 
     /** Spacers at various breakpoints */

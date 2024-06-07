@@ -28,6 +28,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.header;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Breakpoint.breakpoint;
+import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Brightness.dark;
@@ -90,6 +91,13 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
     // ------------------------------------------------------ builder
 
     /**
+     * Same as {@code display(breakpoints(default_, displayModifiers))}
+     */
+    public Masthead display(Display displayModifiers) {
+        return display(breakpoints(default_, displayModifiers));
+    }
+
+    /**
      * Display type at various breakpoints. Defaults to {@code tuples(md, inline)}.
      */
     public Masthead display(Breakpoints<Display> displayModifiers) {
@@ -99,6 +107,13 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
         this.displayModifiers = displayModifiers;
         classList().add(this.displayModifiers.modifiers());
         return this;
+    }
+
+    /**
+     * Same as {@code inset(breakpoints(default_, insetModifiers))}
+     */
+    public Masthead inset(Inset insetModifiers) {
+        return inset(breakpoints(default_, insetModifiers));
     }
 
     /**
