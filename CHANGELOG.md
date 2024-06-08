@@ -9,11 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add shortcut methods for default breakpoints
+- Add `Variable.asVar()` to wrap the variable name inside `var()`
 - Add `List.addItems(Iterable<T> items, Function<T, ListItem> display)` to add multiple list items
 
 ### Fixed
 
-- Added missing password type to the type mapping in `TextInput` (thanks @kolka213)
+- Added missing password type to the type mapping for `TextInput` (thanks @kolka213)
 
 ## [0.2.5] - 2024-05-21
 

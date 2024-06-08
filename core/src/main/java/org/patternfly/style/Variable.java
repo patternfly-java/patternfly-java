@@ -80,6 +80,10 @@ public class Variable {
 
     // ------------------------------------------------------ api
 
+    public String asVar() {
+        return "var(" + name + ")";
+    }
+
     public <E extends HTMLElement, B extends TypedBuilder<E, B>> VariableAssignments.HTMLBuilder<E, B> applyTo(
             HasHTMLElement<E, B> element) {
         return new VariableAssignments.HTMLBuilder<>(this, element);
