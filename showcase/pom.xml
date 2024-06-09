@@ -23,12 +23,12 @@
     <parent>
         <groupId>org.patternfly</groupId>
         <artifactId>patternfly-java-code-parent</artifactId>
-        <version>0.2.7-SNAPSHOT</version>
+        <version>0.2.6-SNAPSHOT</version>
         <relativePath>../code-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>patternfly-java-showcase</artifactId>
-    <version>0.2.7-SNAPSHOT</version>
+    <version>0.2.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PatternFly Java Showcase</name>
 
