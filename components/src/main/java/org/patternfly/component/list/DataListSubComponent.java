@@ -13,29 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.style;
+package org.patternfly.component.list;
 
-public enum Display implements TypedModifier {
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-    inline("display-inline"),
+import elemental2.dom.HTMLElement;
 
-    stack("display-stack");
+abstract class DataListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    private final String value;
-    private final String modifier;
-
-    Display(String value) {
-        this.value = value;
-        this.modifier = Classes.modifier(value);
-    }
-
-    @Override
-    public String value() {
-        return value;
-    }
-
-    @Override
-    public String modifier() {
-        return modifier;
+    DataListSubComponent(String name, E element) {
+        super(ComponentType.DataList, name, element);
     }
 }

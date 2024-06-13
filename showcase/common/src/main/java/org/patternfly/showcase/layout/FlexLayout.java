@@ -37,6 +37,7 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.layout.flex.Align.right;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.FlexItem.flexItem;
 import static org.patternfly.showcase.ApiDoc.Type.layout;
@@ -383,7 +384,7 @@ public class FlexLayout extends SnippetPage {
                                 .addItem(flexItem().textContent("Flex item"))
                                 .addItem(flexItem().textContent("Flex item"))
                                 .addItem(flexItem().textContent("Flex item"))
-                                .addItem(flexItem().align(breakpoints(default_, Align.right)).textContent("Flex item"))
+                                .addItem(flexItem().align(breakpoints(default_, right)).textContent("Flex item"))
                                 .addItem(flexItem().textContent("Flex item")))
                         .element()
                 // @code-end:flex-align-right
@@ -394,7 +395,7 @@ public class FlexLayout extends SnippetPage {
                 // @code-start:flex-align-right-single
                 div().css("ws-core-l-flex")
                         .add(flex().css("example-border")
-                                .addItem(flexItem().align(breakpoints(default_, Align.right)).textContent("Flex item"))
+                                .addItem(flexItem().align(breakpoints(default_, right)).textContent("Flex item"))
                                 .addItem(flexItem().textContent("Flex item")))
                         .element()
                 // @code-end:flex-align-right-single
@@ -408,10 +409,10 @@ public class FlexLayout extends SnippetPage {
                                 .add(flex()
                                         .addItem(flexItem().textContent("Flex item"))
                                         .addItem(flexItem().textContent("Flex item")))
-                                .add(flex().align(breakpoints(default_, Align.right))
+                                .add(flex().align(breakpoints(default_, right))
                                         .addItem(flexItem().textContent("Flex item"))
                                         .addItem(flexItem().textContent("Flex item")))
-                                .add(flex().align(breakpoints(default_, Align.right))
+                                .add(flex().align(breakpoints(default_, right))
                                         .addItem(flexItem().textContent("Flex item"))
                                         .addItem(flexItem().textContent("Flex item"))))
                         .element()

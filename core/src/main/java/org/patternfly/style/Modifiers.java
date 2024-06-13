@@ -24,6 +24,8 @@ import static org.patternfly.style.Classes.modifier;
 
 public interface Modifiers {
 
+    // ------------------------------------------------------ flags (a-z)
+
     interface Bordered<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #bordered(boolean) bordered(true)} */
@@ -300,6 +302,8 @@ public interface Modifiers {
             return toggleModifier(that(), element(), Classes.vertical, vertical);
         }
     }
+
+    // ------------------------------------------------------ helper methods
 
     static <E extends Element, B extends TypedBuilder<E, B>> B toggleModifier(B builder, E element,
             String pureModifier, boolean flag) {

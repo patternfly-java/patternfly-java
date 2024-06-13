@@ -55,6 +55,9 @@ public class Skeleton extends BaseComponentFlat<HTMLElement, Skeleton> {
     // ------------------------------------------------------ builder
 
     public Skeleton fontSize(Size size) {
+        for (Size s : Size.values()) {
+            classList().remove(modifier(text, s));
+        }
         return css(modifier(text, size));
     }
 

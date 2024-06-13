@@ -15,7 +15,46 @@
  */
 package org.patternfly.style;
 
+import org.jboss.elemento.TypedBuilder;
+
+import elemental2.dom.Element;
+
 public interface TypedModifier {
+
+    /**
+     * Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as {@code values} and then
+     * setting the new modifier given as {@code value}.
+     */
+    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, E element,
+            T value, T[] values) {
+        if (values != null) {
+            for (T v : values) {
+                element.classList.remove(v.modifier());
+            }
+        }
+        if (value != null) {
+            element.classList.add(value.modifier());
+        }
+        return builder;
+    }
+
+    /**
+     * Swaps a typed modifier on an element builder. Swapping is done by removing the previous modifier, applying the current
+     * modifier, and optionally performing an assignment.
+     */
+    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, E element,
+            T current, T previous, Runnable assignment) {
+        if (previous != null) {
+            element.classList.remove(previous.modifier());
+        }
+        if (assignment != null) {
+            assignment.run();
+        }
+        if (current != null) {
+            element.classList.add(current.modifier());
+        }
+        return builder;
+    }
 
     String value();
 

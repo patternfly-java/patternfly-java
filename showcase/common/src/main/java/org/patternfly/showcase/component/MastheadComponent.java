@@ -30,6 +30,8 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.page.Display.inline;
+import static org.patternfly.component.page.Display.stack;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
@@ -47,8 +49,6 @@ import static org.patternfly.style.Breakpoint.lg;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Brightness.light200;
-import static org.patternfly.style.Display.inline;
-import static org.patternfly.style.Display.stack;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 

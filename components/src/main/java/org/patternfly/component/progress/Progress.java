@@ -72,6 +72,7 @@ import static org.patternfly.style.Status.danger;
 import static org.patternfly.style.Status.info;
 import static org.patternfly.style.Status.success;
 import static org.patternfly.style.Status.warning;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A progress bar informs users about the completion status of an ongoing process or task.
@@ -202,7 +203,7 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
 
     public Progress size(Size size) {
         if (verifyEnum(element(), "size", size, sm, md, lg)) {
-            css(size.modifier());
+            swap(this, element(), size, Size.values());
         }
         return this;
     }
@@ -210,10 +211,10 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     public Progress status(Status status) {
         if (verifyEnum(element(), "status", status, info, danger, success, warning)) {
             if (this.status != null) {
-                classList().remove(this.status.modifier);
+                classList().remove(this.status.modifier());
             }
             if (status != info) {
-                css(status.modifier);
+                css(status.modifier());
             }
             removeChildrenFrom(iconContainer);
             switch (status) {

@@ -20,7 +20,6 @@ import java.util.function.Supplier;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Dropdown;
-import org.patternfly.component.table.GridBreakpoint;
 import org.patternfly.component.table.Table;
 import org.patternfly.component.table.TableCaption;
 import org.patternfly.component.table.TableText;
@@ -416,7 +415,6 @@ public class TableComponent extends SnippetPage {
         startApiDocs(Table.class);
         addApiDoc(Table.class, component);
         addApiDoc(TableText.class, subcomponent);
-        addApiDoc(GridBreakpoint.class, modifier);
         addApiDoc(TableCaption.class, subcomponent);
         addApiDoc(Tbody.class, subcomponent);
         addApiDoc(Td.class, subcomponent);

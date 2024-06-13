@@ -33,6 +33,7 @@ import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.sidebar;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * Container for the page sidebar.
@@ -80,7 +81,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     public PageSidebar theme(Brightness theme) {
         if (verifyEnum(element(), "theme", theme, dark, light)) {
-            css(theme.modifier());
+            swap(this, element(), theme, Brightness.values());
         }
         return this;
     }

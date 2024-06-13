@@ -32,6 +32,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Size.xl;
 import static org.patternfly.style.Size.xs;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * An empty state is a screen that is not yet populated with data or information. Empty states typically contain a short message
@@ -101,7 +102,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
      */
     public EmptyState size(Size size) {
         if (verifyEnum(element(), "size", size, xs, sm, lg, xl)) {
-            css(size.modifier());
+            swap(this, element(), size, Size.values());
         }
         return this;
     }

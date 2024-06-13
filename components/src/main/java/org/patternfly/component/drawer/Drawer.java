@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A drawer is a sliding panel that enters from the right edge of the viewport. It can be configured to either overlay content
@@ -111,8 +112,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
     }
 
     public Drawer position(Position position) {
-        this.position = position;
-        return css(position.modifier());
+        return swap(this, element(), position, this.position, () -> this.position = position);
     }
 
     @Override

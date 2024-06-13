@@ -39,6 +39,7 @@ import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.progress;
 import static org.patternfly.style.Size.md;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
@@ -89,19 +90,15 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
      * Modifies the size of this component.
      */
     public Icon size(Size size) {
-        this.size = size;
-        return css(size.modifier());
+        return swap(this, element(), size, this.size, () -> this.size = size);
     }
 
-    public Icon iconSize(Size size) {
-        iconSize = size;
-        content.classList.add(iconSize.modifier());
-        return this;
+    public Icon iconSize(Size iconSize) {
+        return swap(this, content, iconSize, this.iconSize, () -> this.iconSize = iconSize);
     }
 
     public Icon status(Status status) {
-        content.classList.add(status.modifier);
-        return this;
+        return swap(this, content, status, Status.values());
     }
 
     public Icon progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {

@@ -58,6 +58,7 @@ public interface Classes {
     String caption = "caption";
     String card = "card";
     String category = "category";
+    String cell = "cell";
     String center = "center";
     String check = "check";
     String chip = "chip";
@@ -76,6 +77,7 @@ public interface Classes {
     String count = "count";
     String current = "current";
     String danger = "danger";
+    String dataList = "data-list";
     String description = "description";
     String descriptionList = "description-list";
     String detached = "detached";
@@ -202,6 +204,7 @@ public interface Classes {
     String reverse = "reverse";
     String right = "right";
     String rounded = "rounded";
+    String row = "row";
     String screenReader = "pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-screen-reader";
     String scroll = "scroll";
     String scrollable = "scrollable";

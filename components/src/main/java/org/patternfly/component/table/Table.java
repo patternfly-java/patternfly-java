@@ -22,19 +22,26 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
+import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTableElement;
 
-import static org.patternfly.component.table.GridBreakpoint.gridMd;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.grid;
+import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.noBorderRows;
 import static org.patternfly.style.Classes.table;
+import static org.patternfly.style.GridBreakpoint.empty;
+import static org.patternfly.style.GridBreakpoint.gird2xl;
+import static org.patternfly.style.GridBreakpoint.gridLg;
+import static org.patternfly.style.GridBreakpoint.gridMd;
+import static org.patternfly.style.GridBreakpoint.gridXl;
 import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A table is used to display large data sets that can be easily laid out in a simple grid with column headers.
@@ -46,7 +53,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     // ------------------------------------------------------ factory
 
     public static Table table() {
-        return new Table().gridBreakpoint(gridMd);
+        return new Table();
     }
 
     // ------------------------------------------------------ instance
@@ -58,6 +65,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
         super(ComponentType.Table, Elements.table().css(component(table))
                 .attr(role, grid)
                 .element());
+        gridBreakpoint(gridMd);
         storeComponent();
     }
 
@@ -93,7 +101,10 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     }
 
     public Table gridBreakpoint(GridBreakpoint breakpoint) {
-        return css(breakpoint.modifier());
+        if (verifyEnum(element(), "gridBreakpoint", breakpoint, empty, GridBreakpoint.grid, gridMd, gridLg, gridXl, gird2xl)) {
+            swap(this, element(), breakpoint, GridBreakpoint.values());
+        }
+        return this;
     }
 
     @Override

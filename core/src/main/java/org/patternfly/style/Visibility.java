@@ -13,27 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.table;
+package org.patternfly.style;
 
-import org.patternfly.style.Classes;
-import org.patternfly.style.TypedModifier;
+public enum Visibility implements TypedModifier {
 
-public enum Wrap implements TypedModifier {
+    hidden("hidden"),
 
-    wrap("wrap"),
-
-    nowrap("nowrap"),
-
-    truncate("truncate"),
-
-    breakWord("break-word"),
-
-    fitContent("fit-content");
+    visible("visible");
 
     private final String value;
     private final String modifier;
 
-    Wrap(String value) {
+    Visibility(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

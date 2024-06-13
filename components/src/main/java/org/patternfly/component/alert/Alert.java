@@ -108,7 +108,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private ToggleHandler<Alert> toggleHandler;
 
     Alert(Severity severity, String title) {
-        super(ComponentType.Alert, div().css(component(alert), severity.status.modifier)
+        super(ComponentType.Alert, div().css(component(alert), severity.status.modifier())
                 .aria(label, severity.aria)
                 .element());
         this.severity = severity;

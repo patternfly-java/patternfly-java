@@ -327,10 +327,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     public Popover severity(Severity severity, String screenReaderText) {
         if (this.severity != null) {
-            element().classList.remove(this.severity.status.modifier);
+            element().classList.remove(this.severity.status.modifier());
         }
         this.severity = severity;
-        css(severity.status.modifier);
+        css(severity.status.modifier());
         removeChildrenFrom(failSafeIconContainer());
         icon((severity.icon.get().element()));
         failSafeScreenReaderElement().textContent = screenReaderText;

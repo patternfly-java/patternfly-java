@@ -21,6 +21,8 @@ import org.patternfly.style.Width;
 
 import elemental2.dom.HTMLTableCellElement;
 
+import static org.patternfly.style.TypedModifier.swap;
+
 abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
         implements
         Center<HTMLTableCellElement, B> {
@@ -39,10 +41,10 @@ abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends Tab
     }
 
     public B width(Width width) {
-        return css(width.modifier());
+        return swap(that(), element(), width, Width.values());
     }
 
     public B wrap(Wrap wrap) {
-        return css(wrap.modifier());
+        return swap(that(), element(), wrap, Wrap.values());
     }
 }

@@ -13,27 +13,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.table;
+package org.patternfly.component.page;
 
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
-public enum Wrap implements TypedModifier {
+public enum Display implements TypedModifier {
 
-    wrap("wrap"),
+    inline("display-inline"),
 
-    nowrap("nowrap"),
-
-    truncate("truncate"),
-
-    breakWord("break-word"),
-
-    fitContent("fit-content");
+    stack("display-stack");
 
     private final String value;
     private final String modifier;
 
-    Wrap(String value) {
+    Display(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

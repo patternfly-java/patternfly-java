@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add methods to swap typed modifiers:
+
+  - Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as `values` and then setting the new modifier given as `value`.
+    `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
+    T value, T[] values)`
+  - Swaps a typed modifier on an element builder. Swapping is done by removing the previous modifier, applying the current modifier, and optionally performing an assignment.
+    `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
+    T current, T previous, Runnable assignment)`
+
+### Fixed
+
+- Swapping of typed modifiers
+
 ## [0.2.6] - 2024-06-09
 
 ### Added

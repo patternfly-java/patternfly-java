@@ -64,6 +64,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.md;
 import static org.patternfly.style.Size.sm;
+import static org.patternfly.style.TypedModifier.swap;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.MaxWidth;
 import static org.patternfly.style.Variables.Width;
@@ -134,7 +135,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
                 }
                 aria(labelledBy, titleId);
                 if (header.title.severity != null) {
-                    css(header.title.severity.status.modifier);
+                    css(header.title.severity.status.modifier());
                 }
             }
         }
@@ -236,7 +237,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
 
     public Modal size(Size size) {
         if (verifyEnum(element(), "size", size, sm, md, lg)) {
-            css(size.modifier());
+            swap(this, element(), size, Size.values());
         }
         return this;
     }

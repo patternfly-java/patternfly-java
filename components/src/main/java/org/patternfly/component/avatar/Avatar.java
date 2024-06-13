@@ -28,6 +28,7 @@ import static org.patternfly.style.Brightness.dark;
 import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.avatar;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * An avatar is a visual used to represent a user. It may contain an image or a placeholder graphic.
@@ -64,12 +65,12 @@ public class Avatar extends BaseComponentFlat<HTMLImageElement, Avatar> {
     }
 
     public Avatar size(Size size) {
-        return css(size.modifier());
+        return swap(this, element(), size, Size.values());
     }
 
     public Avatar border(Brightness border) {
         if (verifyEnum(element(), "border", border, light, dark)) {
-            css(border.modifier());
+            swap(this, element(), border, Brightness.values());
         }
         return this;
     }

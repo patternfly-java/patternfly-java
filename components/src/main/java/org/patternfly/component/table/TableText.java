@@ -21,6 +21,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.TypedModifier.swap;
 
 public class TableText extends TableSubComponent<HTMLElement, TableText> {
 
@@ -44,7 +45,7 @@ public class TableText extends TableSubComponent<HTMLElement, TableText> {
     // ------------------------------------------------------ builder
 
     public TableText wrap(Wrap wrap) {
-        return css(wrap.modifier());
+        return swap(that(), element(), wrap, Wrap.values());
     }
 
     @Override

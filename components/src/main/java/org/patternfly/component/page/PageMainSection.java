@@ -31,6 +31,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.section;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * Container for a section in a {@link PageMainGroup} or {@link PageMain} component. Note: By default, the last/only section
@@ -57,7 +58,7 @@ public class PageMainSection extends PageSectionBuilder<HTMLElement, PageMainSec
 
     public PageMainSection background(Brightness brightness) {
         if (verifyEnum(element(), "background", brightness, light, light100, dark100, dark200)) {
-            css(brightness.modifier());
+            swap(this, element(), brightness, Brightness.values());
         }
         return this;
     }

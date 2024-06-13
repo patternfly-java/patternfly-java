@@ -13,16 +13,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.table;
+package org.patternfly.style;
 
-import org.patternfly.style.Classes;
-import org.patternfly.style.TypedModifier;
-
+/**
+ * Union enum of the different {@code gridBreakpoint} properties for data list and table.
+ *
+ * @see <a href="https://www.patternfly.org/components/data-list#datalist">Data list component</a>
+ * @see <a href="https://www.patternfly.org/components/table#table">Table component</a>
+ */
 public enum GridBreakpoint implements TypedModifier {
 
-    none(""),
+    empty(""),
+
+    none("none"),
+
+    always("grid"),
 
     grid("grid"),
+
+    gridSm("grid-sm"),
 
     gridMd("grid-md"),
 

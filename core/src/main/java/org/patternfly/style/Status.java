@@ -15,7 +15,7 @@
  */
 package org.patternfly.style;
 
-public enum Status {
+public enum Status implements TypedModifier {
 
     danger("danger"),
 
@@ -27,9 +27,21 @@ public enum Status {
 
     custom("custom");
 
-    public final String modifier;
+    private final String value;
+    private final String modifier;
 
     Status(String value) {
+        this.value = value;
         this.modifier = Classes.modifier(value);
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
     }
 }

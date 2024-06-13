@@ -136,6 +136,9 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
      */
     public DescriptionList displaySize(Size size) {
         if (verifyEnum(element(), "displaySize", size, lg, _2xl)) {
+            for (Size s : Size.values()) {
+                classList().remove(modifier(display, s));
+            }
             css(modifier(display, size));
         }
         return this;

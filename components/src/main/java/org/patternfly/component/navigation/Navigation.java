@@ -95,6 +95,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.scroll;
 import static org.patternfly.style.Classes.scrollable;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
@@ -374,7 +375,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     public Navigation theme(Brightness theme) {
         if (verifyEnum(element(), "theme", theme, dark, light)) {
-            css(theme.modifier());
+            swap(this, element(), theme, Brightness.values());
         }
         return this;
     }

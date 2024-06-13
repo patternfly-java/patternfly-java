@@ -29,6 +29,7 @@ import static org.patternfly.core.Roles.progressbar;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.path;
 import static org.patternfly.style.Classes.spinner;
+import static org.patternfly.style.TypedModifier.swap;
 import static org.patternfly.style.Variable.componentVar;
 
 /**
@@ -78,7 +79,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
     // ------------------------------------------------------ builder
 
     public Spinner size(Size size) {
-        return css(size.modifier());
+        return swap(this, element(), size, Size.values());
     }
 
     public Spinner diameter(String diameter) {
