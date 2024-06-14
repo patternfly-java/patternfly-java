@@ -29,11 +29,15 @@ public interface TypedModifier {
             T value, T[] values) {
         if (values != null) {
             for (T v : values) {
-                element.classList.remove(v.modifier());
+                if (!v.modifier().isEmpty()) {
+                    element.classList.remove(v.modifier());
+                }
             }
         }
         if (value != null) {
-            element.classList.add(value.modifier());
+            if (!value.modifier().isEmpty()) {
+                element.classList.add(value.modifier());
+            }
         }
         return builder;
     }
@@ -44,13 +48,13 @@ public interface TypedModifier {
      */
     static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, E element,
             T current, T previous, Runnable assignment) {
-        if (previous != null) {
+        if (previous != null && !previous.modifier().isEmpty()) {
             element.classList.remove(previous.modifier());
         }
         if (assignment != null) {
             assignment.run();
         }
-        if (current != null) {
+        if (current != null && !current.modifier().isEmpty()) {
             element.classList.add(current.modifier());
         }
         return builder;

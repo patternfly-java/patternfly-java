@@ -35,6 +35,7 @@ public interface Classes {
     String alert = "alert";
     String alertGroup = "alert-group";
     String alignCenter = "align-center";
+    String alignRight = "align-right";
     String alignTop = "align-top";
     String ariaDisabled = "aria-disabled";
     String arrow = "arrow";

@@ -16,20 +16,30 @@
 package org.patternfly.component.list;
 
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.table.Wrap;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.patternfly.component.table.Wrap.breakWord;
+import static org.patternfly.component.table.Wrap.nowrap;
+import static org.patternfly.component.table.Wrap.truncate;
+import static org.patternfly.core.Validation.verifyEnum;
+import static org.patternfly.core.Validation.verifyRange;
+import static org.patternfly.style.Classes.alignRight;
 import static org.patternfly.style.Classes.cell;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.dataList;
-import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.TypedModifier.swap;
 
 public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell> implements
+        NoFill<HTMLElement, DataListCell>,
         WithIcon<HTMLElement, DataListCell> {
 
     // ------------------------------------------------------ factory
@@ -44,11 +54,15 @@ public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell
     private Element icon;
 
     DataListCell() {
-        super(SUB_COMPONENT_NAME, div().css(component(dataList, item, cell))
-                .element());
+        super(SUB_COMPONENT_NAME, div().css(component(dataList, cell)).element());
     }
 
     // ------------------------------------------------------ builder
+
+    /** Aligns the cell content to the right of its parent. */
+    public DataListCell alignRight() {
+        return css(modifier(alignRight));
+    }
 
     @Override
     public DataListCell icon(Element icon) {
@@ -61,6 +75,24 @@ public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell
     public DataListCell removeIcon() {
         failSafeRemoveFromParent(icon);
         classList().remove(modifier(Classes.icon));
+        return this;
+    }
+
+    /** Width (from 1-5) to the data list cell */
+    public DataListCell width(int width) {
+        if (verifyRange(element(), "width", width, 1, 5)) {
+            if (width > 1) {
+                css(modifier(flex) + "-" + width);
+            }
+        }
+        return this;
+    }
+
+    /** Determines which wrapping modifier to apply to the data list */
+    public DataListCell wrap(Wrap wrap) {
+        if (verifyEnum(element(), "wrap", wrap, nowrap, truncate, breakWord)) {
+            swap(this, element(), wrap, Wrap.values());
+        }
         return this;
     }
 

@@ -29,13 +29,13 @@ import static org.patternfly.style.Classes.dataList;
 import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
-public class DataListContent extends DataListSubComponent<HTMLElement, DataListContent>
-        implements ElementDelegate<HTMLElement, DataListContent>, NoPadding<HTMLElement, DataListContent> {
+public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent>
+        implements ElementDelegate<HTMLElement, DataListExpandableContent>, NoPadding<HTMLElement, DataListExpandableContent> {
 
     // ------------------------------------------------------ factory
 
-    public static DataListContent dataListContent() {
-        return new DataListContent();
+    public static DataListExpandableContent dataListExpandableContent() {
+        return new DataListExpandableContent();
     }
 
     // ------------------------------------------------------ instance
@@ -43,7 +43,7 @@ public class DataListContent extends DataListSubComponent<HTMLElement, DataListC
     static final String SUB_COMPONENT_NAME = "dlc";
     private final HTMLElement body;
 
-    DataListContent() {
+    DataListExpandableContent() {
         super(SUB_COMPONENT_NAME, section().css(component(dataList, expandable, content))
                 .element());
         element().appendChild(body = div().css(component(dataList, expandable, content, Classes.body)).element());
@@ -57,12 +57,12 @@ public class DataListContent extends DataListSubComponent<HTMLElement, DataListC
     // ------------------------------------------------------ builder
 
     @Override
-    public DataListContent noPadding(boolean noPadding) {
+    public DataListExpandableContent noPadding(boolean noPadding) {
         return toggleModifier(that(), body, Classes.noPadding, noPadding);
     }
 
     @Override
-    public DataListContent that() {
+    public DataListExpandableContent that() {
         return this;
     }
 }

@@ -90,7 +90,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
         return this;
     }
 
-    /** Determines which wrapping modifier to apply to the DataList */
+    /** Determines which wrapping modifier to apply to the data list */
     public DataList wrap(Wrap wrap) {
         if (verifyEnum(element(), "wrap", wrap, nowrap, truncate, breakWord)) {
             swap(this, element(), wrap, Wrap.values());

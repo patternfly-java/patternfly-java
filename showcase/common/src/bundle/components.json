@@ -165,6 +165,7 @@
     "name": "data-list",
     "title": "Data list",
     "route": "/components/data-list",
+    "clazz": "org.patternfly.component.list.DataList",
     "illustration": "data-list.png",
     "summary": "A <b>data list</b> is used to display large data sets when you need a flexible layout or need to include interactive content like charts."
   },

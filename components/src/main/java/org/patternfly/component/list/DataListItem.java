@@ -15,43 +15,195 @@
  */
 package org.patternfly.component.list;
 
+import java.util.function.Function;
+
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.Expandable;
+import org.patternfly.component.button.Button;
+import org.patternfly.core.Aria;
+import org.patternfly.handler.ToggleHandler;
+
+import elemental2.dom.Event;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.core.Aria.controls;
+import static org.patternfly.core.Aria.expanded;
+import static org.patternfly.core.Aria.labelledBy;
+import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.control;
 import static org.patternfly.style.Classes.dataList;
+import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.row;
+import static org.patternfly.style.Classes.toggle;
 
-public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> {
+public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
+        Expandable<HTMLLIElement, DataListItem> {
 
     // ------------------------------------------------------ factory
 
-    public static DataListItem dataListItem() {
-        return new DataListItem();
+    /**
+     * Creates a new data list item. The id is not used directly as an element ID, but used to wire ARIA related attributes. It
+     * is expected that you add a {@link DataListCell} with an element using that id.
+     */
+    public static DataListItem dataListItem(String id) {
+        return new DataListItem(id);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "dli";
+    public final String id;
+    private final HTMLElement rowElement;
+    private HTMLElement controlElement;
+    private HTMLElement contentElement;
+    private HTMLElement actionElement;
+    private Button toggleButton;
+    private DataListExpandableContent expandableContent;
+    private ToggleHandler<DataListItem> toggleHandler;
 
-    DataListItem() {
-        super(SUB_COMPONENT_NAME, li().css(component(dataList, item)).element());
+    DataListItem(String id) {
+        super(SUB_COMPONENT_NAME, li().css(component(dataList, item))
+                .aria(labelledBy, id)
+                .element());
+        add(rowElement = div().css(component(dataList, item, row)).element());
+        this.id = id;
     }
 
     // ------------------------------------------------------ add
 
-    public DataListItem addRow(DataListRow row) {
-        return add(row);
+    public <T> DataListItem addCells(Iterable<T> items, Function<T, DataListCell> display) {
+        for (T item : items) {
+            DataListCell dlc = display.apply(item);
+            addCell(dlc);
+        }
+        return this;
     }
 
-    public DataListItem addContent(DataListContent content) {
-        return add(content);
+    public DataListItem addCell(DataListCell cell) {
+        return add(cell);
+    }
+
+    public DataListItem add(DataListCell cell) {
+        failSafeContentElement().appendChild(cell.element());
+        return this;
+    }
+
+    public DataListItem addAction(DataListAction action) {
+        return add(action);
+    }
+
+    public DataListItem add(DataListAction action) {
+        action.attr("rowid", id);
+        rowElement.appendChild(action.element());
+        return this;
+    }
+
+    public DataListItem addExpandableContent(DataListExpandableContent expandableContent) {
+        return add(expandableContent);
+    }
+
+    public DataListItem add(DataListExpandableContent expandableContent) {
+        this.expandableContent = expandableContent;
+        wireExpandable();
+        return add(expandableContent.element());
     }
 
     // ------------------------------------------------------ builder
 
+    /**
+     * Make this data list item expandable. Please make sure to add expandable content using
+     * {@link #addExpandableContent(DataListExpandableContent)}.
+     */
+    public DataListItem expandable() {
+        return expandable(null);
+    }
+
+    /**
+     * Make this data list item expandable and register a {@link ToggleHandler}. Please make sure to add expandable content
+     * using {@link #addExpandableContent(DataListExpandableContent)}.
+     */
+    public DataListItem expandable(ToggleHandler<DataListItem> toggleHandler) {
+        this.toggleHandler = toggleHandler;
+        failSafeControlElement().appendChild(div().css(component(dataList, toggle))
+                .add(toggleButton = button().plain()
+                        .aria(expanded, false)
+                        .on(click, e -> toggle())
+                        .add(div().css(component(dataList, toggle, icon))
+                                .add(angleRight().element())))
+                .element());
+        wireExpandable();
+        return this;
+    }
+
     @Override
     public DataListItem that() {
         return this;
+    }
+
+    // ------------------------------------------------------ aria
+
+    public DataListItem ariaToggleLabel(String label) {
+        if (toggleButton != null) {
+            toggleButton.aria(Aria.label, label);
+        }
+        return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public void collapse(boolean fireEvent) {
+        Expandable.collapse(element(), toggleButton.element(), expandableContent.element());
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, false);
+        }
+    }
+
+    @Override
+    public void expand(boolean fireEvent) {
+        Expandable.expand(element(), toggleButton.element(), expandableContent.element());
+        if (fireEvent && toggleHandler != null) {
+            toggleHandler.onToggle(new Event(""), this, true);
+        }
+    }
+
+    // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeControlElement() {
+        if (controlElement == null) {
+            rowElement.appendChild(controlElement = div().css(component(dataList, item, control)).element());
+        }
+        return controlElement;
+    }
+
+    private HTMLElement failSafeContentElement() {
+        if (contentElement == null) {
+            rowElement.appendChild(contentElement = div().css(component(dataList, item, content)).element());
+        }
+        return contentElement;
+    }
+
+    private void wireExpandable() {
+        if (toggleButton != null && expandableContent != null) {
+            String toggleId = toggleButton.element().id == null || toggleButton.element().id.isEmpty()
+                    ? Id.unique(ComponentType.DataList.id, id, "toggle")
+                    : toggleButton.element().id;
+            String expandableContentId = expandableContent.element().id == null || expandableContent.element().id.isEmpty()
+                    ? Id.unique(ComponentType.DataList.id, id, "expandable", "content")
+                    : expandableContent.element().id;
+            toggleButton.aria(controls, expandableContentId);
+            toggleButton.aria(labelledBy, id + " " + toggleId);
+            // data item are collapsed by default
+            Expandable.collapse(element(), toggleButton.element(), expandableContent.element(), true);
+        }
     }
 }

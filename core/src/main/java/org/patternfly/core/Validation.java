@@ -28,7 +28,7 @@ public final class Validation {
     private static final Logger logger = Logger.getLogger(Validation.class.getName());
 
     public static boolean verifyRange(Element element, String property, int value, int min, int max) {
-        if (value < 1 || value > 12) {
+        if (value < min || value > max) {
             logger.warn("'%s' in element %o out of range. Given: %d, allowed [%d,%d].", property, element, value, min, max);
             return false;
         }
