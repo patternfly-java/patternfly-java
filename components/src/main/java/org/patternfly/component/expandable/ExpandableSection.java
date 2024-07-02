@@ -128,7 +128,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return add(toggle);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public ExpandableSection add(ExpandableSectionToggle toggle) {
         this.toggle = toggle;
         add(toggle.element());
@@ -139,7 +139,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return add(content);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public ExpandableSection add(ExpandableSectionContent content) {
         this.content = content;
         add(content.element());

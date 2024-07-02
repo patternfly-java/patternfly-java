@@ -43,4 +43,6 @@ public interface Roles {
     String tablist = "tablist";
     String tabpanel = "tabpanel";
     String tooltip = "tooltip";
+    String tree = "tree";
+    String treeItem = "treeitem";
 }

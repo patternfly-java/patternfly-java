@@ -134,7 +134,7 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
         return add(helperText);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Progress add(HelperText helperText) {
         if (this.helperText != null) {
             this.helperText.element().replaceWith(helperText.element());

@@ -95,7 +95,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         return add(header);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Card add(CardHeader header) {
         this.header = header;
         return add(header.element());
@@ -117,7 +117,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         return add(expandableContent);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Card add(CardExpandableContent expandableContent) {
         this.expandableContent = expandableContent;
         return add(expandableContent.element());

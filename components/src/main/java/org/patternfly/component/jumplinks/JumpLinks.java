@@ -150,7 +150,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public JumpLinks add(JumpLinksItem item) {
         items.put(item.id, item);
         ulElement.add(item);

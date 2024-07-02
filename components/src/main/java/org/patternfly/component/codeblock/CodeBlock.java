@@ -105,7 +105,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         return add(header);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CodeBlock add(CodeBlockHeader header) {
         this.header = header;
         insertFirst(element(), header.element());

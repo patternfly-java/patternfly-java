@@ -118,7 +118,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
         return add(alert);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public AlertGroup add(Alert alert) {
         if (type == AlertGroupType.toast) {
             if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {

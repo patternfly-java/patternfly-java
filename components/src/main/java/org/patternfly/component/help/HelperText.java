@@ -75,7 +75,7 @@ public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public HelperText add(HelperTextItem item) {
         if (firstItem == null) {
             firstItem = item;

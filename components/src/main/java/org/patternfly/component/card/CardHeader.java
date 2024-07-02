@@ -115,7 +115,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
         return add(actions);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CardHeader add(CardActions actions) {
         this.actions = actions;
         insertFirst(element(), actions.element());
@@ -126,7 +126,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
         return add(title);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CardHeader add(CardTitle title) {
         this.title = title;
         return add(title.element());

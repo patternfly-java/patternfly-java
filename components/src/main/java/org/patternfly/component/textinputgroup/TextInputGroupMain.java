@@ -88,7 +88,7 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return add(chipGroup);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public TextInputGroupMain add(ChipGroup chipGroup) {
         this.chipGroup = chipGroup;
         insertFirst(element(), chipGroup);

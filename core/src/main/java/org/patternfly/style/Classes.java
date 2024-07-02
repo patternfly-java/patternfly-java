@@ -72,6 +72,7 @@ public interface Classes {
     String col = "col";
     String collapsed = "collapsed";
     String compact = "compact";
+    String container = "container";
     String content = "content";
     String control = "control";
     String controls = "controls";
@@ -166,6 +167,7 @@ public interface Classes {
     String noBorderBottom = "no-border-bottom";
     String noBorderRows = "no-border-rows";
     String noFill = "no-fill";
+    String node = "node";
     String none = "none";
     String noOffset = "no-offset";
     String noPadding = "no-padding";
@@ -271,6 +273,7 @@ public interface Classes {
     String top = "top";
     String tr = "tr";
     String track = "track";
+    String treeView = "tree-view";
     String truncate = "truncate";
     String typeahead = "typeahead";
     String unread = "unread";

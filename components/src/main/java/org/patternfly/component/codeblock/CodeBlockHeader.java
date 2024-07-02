@@ -47,7 +47,7 @@ public class CodeBlockHeader extends CodeBlockSubComponent<HTMLDivElement, CodeB
         return add(actions);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CodeBlockHeader add(CodeBlockActions actions) {
         this.actions = actions;
         add(actions.element());

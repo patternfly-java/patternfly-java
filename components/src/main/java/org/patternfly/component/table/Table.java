@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.table;
 
-import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -26,7 +25,6 @@ import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.Event;
-import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTableElement;
 
 import static org.patternfly.core.Attributes.role;
@@ -155,10 +153,6 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     }
 
     // ------------------------------------------------------ internal
-
-    private Iterable<HTMLElement> rows() {
-        return tbody.findAll(By.element("tr"));
-    }
 
     private void unselectAll() {
         if (tbody != null) {

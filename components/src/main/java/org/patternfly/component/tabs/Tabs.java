@@ -318,7 +318,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         return add(tab);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Tabs add(Tab tab) {
         tabs.put(tab.id, tab);
         if (isAttached(element())) {

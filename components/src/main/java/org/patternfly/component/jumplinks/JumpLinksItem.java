@@ -78,7 +78,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
         return add(list);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public JumpLinksItem add(JumpLinksList list) {
         this.list = list;
         add(list.element());

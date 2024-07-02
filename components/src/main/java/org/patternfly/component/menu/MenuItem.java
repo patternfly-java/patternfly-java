@@ -293,7 +293,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return add(itemAction);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuItem add(MenuItemAction itemAction) {
         this.itemAction = itemAction;
         this.itemAction.menuItem = this;

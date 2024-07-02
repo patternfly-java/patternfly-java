@@ -52,7 +52,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> {
         return this;
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Wizard add(/* Foo foo */) {
         return this;
     }

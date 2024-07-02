@@ -160,7 +160,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         return add(description);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Alert add(AlertDescription description) {
         this.description = description;
         this.description.element().hidden = element().classList.contains(modifier(Classes.expandable)) && !expanded();

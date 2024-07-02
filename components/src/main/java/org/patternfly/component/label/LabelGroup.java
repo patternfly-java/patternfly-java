@@ -153,7 +153,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         return add(label);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public LabelGroup add(Label label) {
         labels.put(label.id, label);
 

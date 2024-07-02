@@ -89,7 +89,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public SimpleListGroup add(SimpleListItem item) {
         items.put(item.id, item);
         ulElement.appendChild(item.element());

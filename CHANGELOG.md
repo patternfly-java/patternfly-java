@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Data list component (#34)
+- Tree view component (#100)
+- Add `FlexWrap.noWrap` modifier
 - Add methods to swap typed modifiers:
 
   - Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as `values` and then setting the new modifier given as `value`.
@@ -259,7 +262,7 @@ Split PatternFly Java into multiple modules:
 
 ### Changed
 
-- Move masthead, sidebar and skip to content components to its own packages
+- Move masthead, sidebar, and skip to content components to its own packages
 - Refactor `org.patternfly.component.WithProgress` interface
 - Simplify `org.patternfly.style.Modifiers.*` interfaces
 - Rename `org.patternfly.js` → `org.patternfly.dom`

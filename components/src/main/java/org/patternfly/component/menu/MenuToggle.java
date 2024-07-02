@@ -191,7 +191,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return add(action);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuToggle add(MenuToggleAction action) {
         this.action = action;
         css(modifier(Classes.action));
@@ -203,7 +203,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return add(checkbox);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuToggle add(MenuToggleCheckbox checkbox) {
         this.checkbox = checkbox;
         insertFirst(element(), checkbox.element());

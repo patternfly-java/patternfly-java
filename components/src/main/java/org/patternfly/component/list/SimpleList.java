@@ -84,7 +84,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
         return add(group);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public SimpleList add(SimpleListGroup group) {
         if (type == SimpleListType.items) {
             logger.warn("Simple list %o already contains items. A mix of groups and items is not supported!", element());
@@ -108,7 +108,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public SimpleList add(SimpleListItem item) {
         if (type == SimpleListType.groups) {
             logger.warn("Simple list %o already contains groups. A mix of groups and items is not supported!", element());

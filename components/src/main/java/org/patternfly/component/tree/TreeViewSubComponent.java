@@ -13,34 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.layout.flex;
+package org.patternfly.component.tree;
 
-import org.patternfly.style.Classes;
-import org.patternfly.style.TypedModifier;
+import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.SubComponent;
 
-public enum FlexWrap implements TypedModifier {
+import elemental2.dom.HTMLElement;
 
-    wrap("wrap"),
+abstract class TreeViewSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    noWrap("nowrap"),
-
-    wrapReverse("wrap-reverse");
-
-    private final String value;
-    private final String modifier;
-
-    FlexWrap(String value) {
-        this.value = value;
-        this.modifier = Classes.modifier(value);
-    }
-
-    @Override
-    public String value() {
-        return value;
-    }
-
-    @Override
-    public String modifier() {
-        return modifier;
+    TreeViewSubComponent(String name, E element) {
+        super(ComponentType.TreeView, name, element);
     }
 }

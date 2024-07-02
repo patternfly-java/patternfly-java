@@ -92,7 +92,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public ToggleGroup add(ToggleGroupItem item) {
         items.put(item.id, item);
         add(item.element());

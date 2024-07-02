@@ -665,6 +665,7 @@
     "name": "tree-view",
     "title": "Tree view",
     "route": "/components/tree-view",
+    "clazz": "org.patternfly.component.tree.TreeView",
     "illustration": "tree-view.png",
     "summary": "A <b>tree view</b> is a structure that displays data in a hierarchical view. It can be used in a <a href='/components/menus/dropdown'>dropdown</a>, <a href='/components/drawer'>drawer</a>, <a href='https://www.patternfly.org/patterns/primary-detail' target='patternfly'>primary-detail</a>, <a href='/components/modal'>modal</a>, or <a href='/components/wizard'>wizard</a>."
   },

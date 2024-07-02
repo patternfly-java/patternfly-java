@@ -63,7 +63,7 @@ public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
         return add(selectableActions);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CardActions add(CardSelectableActions selectableActions) {
         this.selectableActions = selectableActions;
         return add(selectableActions.element());

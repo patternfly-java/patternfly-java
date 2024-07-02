@@ -74,7 +74,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         return add(header);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public CodeEditor add(CodeEditorHeader header) {
         insertFirst(element(), header.element());
         return this;

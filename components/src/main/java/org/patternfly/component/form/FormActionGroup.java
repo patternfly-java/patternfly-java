@@ -52,7 +52,7 @@ public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGro
         return add(button);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormActionGroup add(Button button) {
         actionsContainer.appendChild(button.element());
         return this;

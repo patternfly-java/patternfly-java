@@ -49,7 +49,7 @@ public class TemplateComponent extends BaseComponent<HTMLElement, TemplateCompon
         return this;
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public TemplateComponent add(/* Foo foo */) {
         return this;
     }

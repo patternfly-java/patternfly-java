@@ -69,7 +69,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
         return add(header);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public EmptyState add(EmptyStateHeader header) {
         contentContainer.appendChild(header.element());
         return this;
@@ -79,7 +79,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
         return add(body);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public EmptyState add(EmptyStateBody body) {
         contentContainer.appendChild(body.element());
         return this;
@@ -89,7 +89,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
         return add(footer);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public EmptyState add(EmptyStateFooter footer) {
         contentContainer.appendChild(footer.element());
         return this;

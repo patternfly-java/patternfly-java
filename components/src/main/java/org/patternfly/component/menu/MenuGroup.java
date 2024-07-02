@@ -56,7 +56,7 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
         return add(list);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuGroup add(MenuList list) {
         this.list = list;
         add(list.element());

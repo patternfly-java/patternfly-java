@@ -112,14 +112,14 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
         return add(divider(hr));
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuContent add(MenuGroup group) {
         groups.add(group);
         add(group.element());
         return this;
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuContent add(MenuList list) {
         this.list = list;
         add(list.element());

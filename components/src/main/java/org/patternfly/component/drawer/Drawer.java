@@ -71,7 +71,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         return add(section);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Drawer add(DrawerSection section) {
         element().appendChild(section.element());
         return this;
@@ -81,7 +81,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         return add(content);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Drawer add(DrawerContent content) {
         this.content = content;
         failSafeMainContainer().appendChild(content.element());
@@ -92,7 +92,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         return add(panel);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Drawer add(DrawerPanel panel) {
         this.panel = panel;
         failSafeMainContainer().appendChild(panel.element());

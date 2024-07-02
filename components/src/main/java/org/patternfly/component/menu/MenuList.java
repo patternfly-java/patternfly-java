@@ -108,7 +108,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         return add(item);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public MenuList add(MenuItem item) {
         items.put(item.id, item);
         return add(item.element());

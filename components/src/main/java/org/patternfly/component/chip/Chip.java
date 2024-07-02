@@ -143,7 +143,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
         return add(badge);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Chip add(Badge badge) {
         this.badge = badge;
         contentElement.appendChild(badge.element());

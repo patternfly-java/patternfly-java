@@ -111,7 +111,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         return add(menu);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public B add(Menu menu) {
         this.menu = menu;
         // Do *not* add the menu now, delay it to attach()

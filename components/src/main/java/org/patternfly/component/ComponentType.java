@@ -157,7 +157,7 @@ public enum ComponentType {
 
     Tooltip("tt", "PF5/Tooltip"),
 
-    TreeView("tv", null),
+    TreeView("tv", "PF5/TreeView"),
 
     Truncate("tr", "PF5/Truncate"),
 

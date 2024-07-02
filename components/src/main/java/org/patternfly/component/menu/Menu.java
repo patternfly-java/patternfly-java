@@ -114,7 +114,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
         return add(content);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public Menu add(MenuContent content) {
         this.content = content;
         add(content.element());

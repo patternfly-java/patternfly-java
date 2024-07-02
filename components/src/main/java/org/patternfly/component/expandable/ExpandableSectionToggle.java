@@ -86,7 +86,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLB
         return add(text);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public ExpandableSectionToggle add(ExpandableSectionToggleText text) {
         this.text = text;
         add(text.element());

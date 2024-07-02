@@ -149,7 +149,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         return add(chip);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public ChipGroup add(Chip chip) {
         chips.put(chip.id, chip);
         HTMLLIElement itemElement = li().css(component(chipGroup, list, item))

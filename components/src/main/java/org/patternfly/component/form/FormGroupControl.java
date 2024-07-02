@@ -88,7 +88,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         return add(control);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public <E extends HTMLElement, B extends BaseComponent<E, B>> FormGroupControl add(FormControl<E, B> control) {
         this.control = control;
         return add(control.element());
@@ -98,7 +98,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         return add(checkbox);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormGroupControl add(Checkbox checkbox) {
         checkboxes.add(checkbox);
         return add(checkbox.element());
@@ -108,7 +108,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         return add(radio);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormGroupControl add(Radio radio) {
         radios.add(radio);
         return add(radio.element());
@@ -123,7 +123,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         return add(helperText);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormGroupControl add(HelperText helperText) {
         return add(div().css(component(Classes.form, Classes.helperText))
                 .add(helperText));

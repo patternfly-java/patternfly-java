@@ -115,7 +115,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         return add(group);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormSelect add(FormSelectOptionGroup group) {
         selectElement.appendChild(group.element());
         return this;
@@ -133,7 +133,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         return add(option);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public FormSelect add(FormSelectOption option) {
         selectElement.appendChild(option.element());
         return this;

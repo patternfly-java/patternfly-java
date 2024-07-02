@@ -68,7 +68,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return add(main);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public TextInputGroup add(TextInputGroupMain main) {
         this.main = main;
         add(main.element());
@@ -80,7 +80,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return add(utilities);
     }
 
-    // override to assure internal wiring
+    // override to ensure internal wiring
     public TextInputGroup add(TextInputGroupUtilities utilities) {
         this.utilities = utilities;
         add(utilities.element());
