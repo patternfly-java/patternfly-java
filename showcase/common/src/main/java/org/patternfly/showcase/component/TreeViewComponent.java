@@ -63,6 +63,34 @@ public class TreeViewComponent extends SnippetPage {
                 // @code-end:tv-default
         ));
 
+        addSnippet(new Snippet("tv-guides", "Guides",
+                code("tv-guides"), () ->
+                // @code-start:tv-guides
+                treeView().guides()
+                        .addItem(treeViewItem("tv-guides-app-launcher", "Application launcher")
+                                .addItem(treeViewItem("tv-guides-app-1", "Application 1")
+                                        .addItem(treeViewItem("tv-guides-settings-1", "Settings"))
+                                        .addItem(treeViewItem("tv-guides-current-1", "Current")))
+                                .addItem(treeViewItem("tv-guides-app-2", "Application 2")
+                                        .addItem(treeViewItem("tv-guides-settings-2", "Settings"))
+                                        .addItem(treeViewItem("tv-guides-loader", "Loader")
+                                                .addItem(treeViewItem("tv-guides-loading-1", "Loading App 1"))
+                                                .addItem(treeViewItem("tv-guides-loading-2", "Loading App 2"))
+                                                .addItem(treeViewItem("tv-guides-loading-3", "Loading App 3")))))
+                        .addItem(treeViewItem("tv-guides-cost", "Cost management")
+                                .addItem(treeViewItem("tv-guides-app-3", "Application 3")
+                                        .addItem(treeViewItem("tv-guides-settings-3", "Settings"))
+                                        .addItem(treeViewItem("tv-guides-current-2", "Current"))))
+                        .addItem(treeViewItem("tv-guides-sources", "Sources")
+                                .addItem(treeViewItem("tv-guides-app-4", "Application 4")
+                                        .addItem(treeViewItem("tv-guides-settings-4", "Settings"))))
+                        .addItem(treeViewItem("tv-guides-long",
+                                "Really really really long folder name that overflows the container it is in")
+                                .addItem(treeViewItem("tv-guides-app-5", "Application 5")))
+                        .element()
+                // @code-end:tv-guides
+        ));
+
         startApiDocs(TreeView.class);
         addApiDoc(TreeView.class, component);
         addApiDoc(TreeViewItem.class, subcomponent);

@@ -23,6 +23,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -38,6 +39,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.node;
 import static org.patternfly.style.Classes.treeView;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * A tree view is a structure that displays data in a hierarchical view. It can be used in a
@@ -90,6 +92,16 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> {
     }
 
     // ------------------------------------------------------ builder
+
+    /** Same as {@linkplain #guides(boolean) guides(true)} */
+    public TreeView guides() {
+        return guides(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(guides)} */
+    public TreeView guides(boolean guides) {
+        return toggleModifier(that(), element(), Classes.guides, guides);
+    }
 
     @Override
     public TreeView that() {

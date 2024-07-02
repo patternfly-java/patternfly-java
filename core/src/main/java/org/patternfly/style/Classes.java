@@ -121,6 +121,7 @@ public interface Classes {
     String global = "global";
     String grid = "grid";
     String group = "group";
+    String guides = "guides";
     String gutter = "gutter";
     String handle = "handle";
     String hasPopup = "haspopup";
