@@ -18,7 +18,7 @@ package org.patternfly.component.toolbar;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -30,7 +30,8 @@ import static org.patternfly.style.Classes.toolbar;
 /**
  * Container for a toolbar item.
  */
-public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem> implements DataHolder<HTMLDivElement, ToolbarItem> {
+public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem> implements
+        ComponentContext<HTMLDivElement, ToolbarItem> {
 
     // ------------------------------------------------------ factory
 

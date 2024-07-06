@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
 
@@ -29,7 +29,7 @@ import static org.patternfly.style.TypedModifier.swap;
 
 abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
         implements
-        DataHolder<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B> {
+        ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B> {
 
     private final Map<String, Object> data;
 

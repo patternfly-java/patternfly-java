@@ -18,7 +18,7 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -28,7 +28,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
 public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem>
-        implements DataHolder<HTMLDivElement, ActionListItem> {
+        implements ComponentContext<HTMLDivElement, ActionListItem> {
 
     // ------------------------------------------------------ factory
 

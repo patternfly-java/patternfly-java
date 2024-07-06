@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -36,7 +36,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
 
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
-        DataHolder<HTMLLIElement, ListItem>,
+        ComponentContext<HTMLLIElement, ListItem>,
         WithText<HTMLLIElement, ListItem>,
         WithIcon<HTMLLIElement, ListItem> {
 

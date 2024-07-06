@@ -22,7 +22,7 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.WithText;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -42,7 +42,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.simpleList;
 
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
-        DataHolder<HTMLLIElement, SimpleListItem>, WithText<HTMLLIElement, SimpleListItem>, ElementDelegate<HTMLLIElement, SimpleListItem> {
+        ComponentContext<HTMLLIElement, SimpleListItem>, WithText<HTMLLIElement, SimpleListItem>, ElementDelegate<HTMLLIElement, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 

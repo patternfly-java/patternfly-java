@@ -224,6 +224,10 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
         return selected;
     }
 
+    public void reset() {
+        traverseItems(items.values(), TreeViewItem::reset);
+    }
+
     // ------------------------------------------------------ internal
 
     private void traverseItems(Iterable<TreeViewItem> items, Consumer<TreeViewItem> code) {

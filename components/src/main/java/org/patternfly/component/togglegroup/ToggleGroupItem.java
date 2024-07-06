@@ -23,7 +23,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
@@ -51,7 +51,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggleGroup;
 
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
-        DataHolder<HTMLDivElement, ToggleGroupItem>,
+        ComponentContext<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementDelegate<HTMLDivElement, ToggleGroupItem>,
         WithIcon<HTMLDivElement, ToggleGroupItem>,

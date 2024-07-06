@@ -21,7 +21,7 @@ import java.util.Map;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -42,7 +42,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
-        DataHolder<HTMLLIElement, NavigationItem>, WithText<HTMLLIElement, NavigationItem>, ElementDelegate<HTMLLIElement, NavigationItem> {
+        ComponentContext<HTMLLIElement, NavigationItem>, WithText<HTMLLIElement, NavigationItem>, ElementDelegate<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
 

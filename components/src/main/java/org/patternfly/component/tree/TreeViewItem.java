@@ -19,13 +19,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -39,6 +41,8 @@ import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
 import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -47,14 +51,17 @@ import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.component.tree.TreeViewItemStatus.pending;
 import static org.patternfly.component.tree.TreeViewItemStatus.rejected;
 import static org.patternfly.component.tree.TreeViewItemStatus.resolved;
+import static org.patternfly.component.tree.TreeViewItemStatus.static_;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
@@ -64,6 +71,7 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.group;
 import static org.patternfly.core.Roles.treeItem;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
@@ -76,9 +84,10 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.node;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.treeView;
+import static org.patternfly.style.Size.md;
 
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
-        DataHolder<HTMLLIElement, TreeViewItem>,
+        ComponentContext<HTMLLIElement, TreeViewItem>,
         Compact<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
         WithIcon<HTMLLIElement, TreeViewItem>,
@@ -98,6 +107,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     static final String SUB_COMPONENT_NAME = "tvi";
     private static final Logger logger = Logger.getLogger(TreeViewItem.class.getName());
+    private static final Supplier<TreeViewItem> loading = () -> treeViewItem(
+            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "loading"))
+            .text("Loading")
+            .icon(spinner(md, "Loading").element());
 
     public final String id;
     final LinkedHashMap<String, TreeViewItem> items;
@@ -128,7 +141,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 .element());
         this.id = id;
         this.domFinished = false;
-        this.status = resolved;
+        this.status = static_;
         this.items = new LinkedHashMap<>();
         this.data = new HashMap<>();
 
@@ -275,6 +288,18 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
+    public void reset() {
+        if (status == resolved || status == rejected) {
+            status = pending;
+            items.clear();
+            collapse(false);
+            removeChildrenFrom(childrenElement);
+            if (domFinished && !containerElement.contains(toggleElement)) {
+                insertFirst(containerElement, toggleElement);
+            }
+        }
+    }
+
     @Override
     public boolean has(String key) {
         return data.containsKey(key);
@@ -303,9 +328,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 nodeElement = button().css(Classes.component(treeView, node))
                         .attr(tabindex, -1)
                         .on(click, e -> {
-                            if (status == pending) {
-                                load();
-                            }
+                            load();
                             if (status == pending || !items.isEmpty()) {
                                 tv.toggle(this);
                             }
@@ -328,9 +351,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         .attr(tabindex, -1)
                         .aria(labelledBy, selectableId)
                         .on(click, e -> {
-                            if (status == pending) {
-                                load();
-                            }
+                            load();
                             tv.toggle(this);
                             e.stopPropagation();
                         })
@@ -352,9 +373,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         .attr(tabindex, -1)
                         .aria(labelledBy, labelId)
                         .on(click, e -> {
-                            if (status == pending) {
-                                load();
-                            }
+                            load();
                             tv.toggle(this);
                             e.stopPropagation();
                         })
@@ -403,10 +422,9 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
         // children
         for (TreeViewItem child : items.values()) {
-            if (child.domFinished) {
-                continue;
+            if (!child.domFinished) {
+                child.finishDOM(tv);
             }
-            child.finishDOM(tv);
         }
     }
 
@@ -461,7 +479,20 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     private void load() {
-        if (asyncItems != null) {
+        if (status == pending && asyncItems != null) {
+
+            // show loading indicator after a given timeout
+            TreeViewItem[] loadingItem = new TreeViewItem[1];
+            double handle = setTimeout(__ -> {
+                loadingItem[0] = loading.get();
+                childrenElement.appendChild(loadingItem[0].element());
+                TreeView treeView = lookupComponent(true);
+                if (treeView != null) {
+                    loadingItem[0].finishDOM(treeView);
+                }
+            }, LOADING_TIMEOUT);
+
+            // load items
             asyncItems.apply(this)
                     .then(items -> {
                         status = resolved;
@@ -478,6 +509,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         status = rejected;
                         logger.error("Unable to load items for %o: %s", element(), error);
                         return null;
+                    })
+                    .finally_(() -> {
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
                     });
         }
     }

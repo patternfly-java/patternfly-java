@@ -18,7 +18,7 @@ package org.patternfly.component.tabs;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLElement;
@@ -29,7 +29,7 @@ import static org.patternfly.core.Roles.tabpanel;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements DataHolder<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent> {
+public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements ComponentContext<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent> {
 
     // ------------------------------------------------------ factory
 

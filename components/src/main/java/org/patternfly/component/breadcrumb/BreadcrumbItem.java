@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -41,7 +41,7 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 
 public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, BreadcrumbItem> implements
-        DataHolder<HTMLLIElement, BreadcrumbItem>, WithText<HTMLLIElement, BreadcrumbItem> {
+        ComponentContext<HTMLLIElement, BreadcrumbItem>, WithText<HTMLLIElement, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
 

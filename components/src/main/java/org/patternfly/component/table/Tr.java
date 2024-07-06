@@ -24,7 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
 
@@ -41,7 +41,7 @@ import static org.patternfly.style.Classes.selected;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tr;
 
-public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements DataHolder<HTMLTableRowElement, Tr> {
+public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements ComponentContext<HTMLTableRowElement, Tr> {
 
     // ------------------------------------------------------ factory
 

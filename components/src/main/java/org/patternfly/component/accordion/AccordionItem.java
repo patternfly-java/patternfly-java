@@ -26,7 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.WithText;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
@@ -53,7 +53,7 @@ import static org.patternfly.style.Classes.modifier;
  * content to the specific {@link AccordionItemBody} instead of this item.
  */
 public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
-        DataHolder<HTMLDivElement, AccordionItem>,
+        ComponentContext<HTMLDivElement, AccordionItem>,
         ElementDelegate<HTMLDivElement, AccordionItem>,
         WithText<HTMLDivElement, AccordionItem> {
 

@@ -34,7 +34,9 @@ import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tree.TreeView.treeView;
 import static org.patternfly.component.tree.TreeViewItem.treeViewItem;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
@@ -48,6 +50,7 @@ import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.model.Discography.records;
+import static org.patternfly.style.Classes.util;
 
 @Route(value = "/components/tree-view", title = "Tree view")
 public class TreeViewComponent extends SnippetPage {
@@ -206,7 +209,8 @@ public class TreeViewComponent extends SnippetPage {
                                 .textContent("discography"))
                         .add(" of the Red Hot Chili Peppers. ")
                         .add("The decades are added statically, the records are loaded asynchronously (with a random delay). ")
-                        .add("If there are no records in a decade, the toggle icon is removed."),
+                        .add("If there are no records in a decade, the toggle icon is removed. Once loaded the items ")
+                        .add("won't be loaded again, until you reset the state."),
                 code("tv-async"), () -> {
             // @code-start:tv-async
             int[][] decades = new int[][]{
@@ -220,7 +224,7 @@ public class TreeViewComponent extends SnippetPage {
             };
 
             Function<Record, TreeViewItem> recordItem = record -> treeViewItem(Id.build(record.title))
-                    .text(record.title)
+                    .text(record.title + " (" + record.year + ")")
                     .icon(recordVinyl())
                     .addItems(record.tracks.asList(), track ->
                             treeViewItem(Id.build(record.title, String.valueOf(track.track)))
@@ -231,8 +235,12 @@ public class TreeViewComponent extends SnippetPage {
                                                     .text(writer)
                                                     .icon(pencilAlt())));
 
-            return treeView()
-                    .addItems(asList(decades), decade ->
+            TreeView treeView = treeView(selectableItems);
+            return div()
+                    .add(button("Reset all").css(util("mb-sm"))
+                            .primary()
+                            .onClick((e, b) -> treeView.reset()))
+                    .add(treeView.addItems(asList(decades), decade ->
                             treeViewItem(Id.build("tv-async", String.valueOf(decade[0]), String.valueOf(decade[1])))
                                     .icon(fas.folder())
                                     .expandedIcon(fas.folderOpen())
@@ -240,12 +248,12 @@ public class TreeViewComponent extends SnippetPage {
                                     .text(decade[0] + " - " + decade[1])
                                     .addItems(item -> new Promise<>((resolve, reject) -> {
                                         int[] range = item.get("range");
-                                        int delay = 200 + new Random().nextInt(2000); // simulate remote call
+                                        int delay = new Random().nextInt(2000); // simulate remote call
                                         setTimeout(__ -> resolve.onInvoke(records(r -> r.year >= range[0] && r.year <= range[1])
                                                 .stream()
                                                 .map(recordItem)
                                                 .collect(toList())), delay);
-                                    })))
+                                    }))))
                     .element();
             // @code-end:tv-async
         }));

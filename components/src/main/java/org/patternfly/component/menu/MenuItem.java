@@ -34,7 +34,7 @@ import org.patternfly.component.WithIconAndText;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -92,7 +92,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
-        DataHolder<HTMLElement, MenuItem>,
+        ComponentContext<HTMLElement, MenuItem>,
         Disabled<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,

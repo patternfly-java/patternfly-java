@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
-import org.patternfly.core.DataHolder;
+import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -40,7 +40,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
-        DataHolder<HTMLLIElement, JumpLinksItem>, WithText<HTMLLIElement, JumpLinksItem> {
+        ComponentContext<HTMLLIElement, JumpLinksItem>, WithText<HTMLLIElement, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
 
