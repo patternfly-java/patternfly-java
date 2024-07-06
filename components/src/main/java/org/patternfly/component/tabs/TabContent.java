@@ -15,6 +15,10 @@
  */
 package org.patternfly.component.tabs;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.patternfly.core.DataHolder;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLElement;
@@ -25,7 +29,7 @@ import static org.patternfly.core.Roles.tabpanel;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements Disabled<HTMLElement, TabContent> {
+public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements DataHolder<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent> {
 
     // ------------------------------------------------------ factory
 
@@ -36,12 +40,14 @@ public class TabContent extends TabSubComponent<HTMLElement, TabContent> impleme
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tc";
+    private final Map<String, Object> data;
 
     TabContent() {
         super(SUB_COMPONENT_NAME, section().css(component(tabContent))
                 .apply(s -> s.tabIndex = 0)
                 .attr(role, tabpanel)
                 .element());
+        this.data = new HashMap<>();
     }
 
     // ------------------------------------------------------ add
@@ -53,7 +59,28 @@ public class TabContent extends TabSubComponent<HTMLElement, TabContent> impleme
     // ------------------------------------------------------ builder
 
     @Override
+    public <T> TabContent store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public TabContent that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 }

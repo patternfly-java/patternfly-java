@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.list;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
+import org.patternfly.core.DataHolder;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -32,6 +36,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
 
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
+        DataHolder<HTMLLIElement, ListItem>,
         WithText<HTMLLIElement, ListItem>,
         WithIcon<HTMLLIElement, ListItem> {
 
@@ -44,10 +49,12 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "li";
+    private final Map<String, Object> data;
     private HTMLElement iconContainer;
 
     ListItem() {
         super(SUB_COMPONENT_NAME, li().element());
+        this.data = new HashMap<>();
     }
 
     // ------------------------------------------------------ builder
@@ -73,8 +80,29 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
     }
 
     @Override
+    public <T> ListItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public ListItem that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

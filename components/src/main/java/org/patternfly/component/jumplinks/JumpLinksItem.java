@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.jumplinks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -36,7 +40,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
-        WithText<HTMLLIElement, JumpLinksItem> {
+        DataHolder<HTMLLIElement, JumpLinksItem>, WithText<HTMLLIElement, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
 
@@ -56,6 +60,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     static final String SUB_COMPONENT_NAME = "jli";
     public final String id;
+    private final Map<String, Object> data;
     private final HTMLAnchorElement anchorElement;
     private final HTMLElement textElement;
     JumpLinksList list;
@@ -63,6 +68,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     JumpLinksItem(String id) {
         super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, item)).element());
         this.id = id;
+        this.data = new HashMap<>();
         add(anchorElement = a().css(component(jumpLinks, link))
                 .on(click, e -> {
                     JumpLinks jumpLinks = lookupFlatComponent();
@@ -113,6 +119,12 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     }
 
     @Override
+    public <T> JumpLinksItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public JumpLinksItem that() {
         return this;
     }
@@ -129,6 +141,19 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     @Override
     public String text() {
         return textElement.textContent;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

@@ -146,19 +146,23 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
     // ------------------------------------------------------ api
 
     public void select(String itemId) {
-        select(findItem(itemId), true);
+        select(findItem(itemId), true, true);
     }
 
-    public void select(String itemId, boolean fireEvent) {
-        select(findItem(itemId), fireEvent);
+    public void select(String itemId, boolean selected) {
+        select(findItem(itemId), selected, true);
+    }
+
+    public void select(String itemId, boolean selected, boolean fireEvent) {
+        select(findItem(itemId), selected, fireEvent);
     }
 
     public void select(SimpleListItem item) {
         select(item, true, true);
     }
 
-    public void select(SimpleListItem item, boolean fireEvent) {
-        select(item, true, fireEvent);
+    public void select(SimpleListItem item, boolean selected) {
+        select(item, selected, true);
     }
 
     public void select(SimpleListItem item, boolean selected, boolean fireEvent) {

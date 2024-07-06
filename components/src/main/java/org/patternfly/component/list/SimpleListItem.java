@@ -15,10 +15,14 @@
  */
 package org.patternfly.component.list;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.WithText;
+import org.patternfly.core.DataHolder;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -38,7 +42,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.simpleList;
 
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
-        WithText<HTMLLIElement, SimpleListItem>, ElementDelegate<HTMLLIElement, SimpleListItem> {
+        DataHolder<HTMLLIElement, SimpleListItem>, WithText<HTMLLIElement, SimpleListItem>, ElementDelegate<HTMLLIElement, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -67,12 +71,14 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
     static final String SUB_COMPONENT_NAME = "sli";
     public final String id;
+    private final Map<String, Object> data;
     private final HTMLElement itemElement;
     private final HTMLAnchorElement anchorElement;
 
     <E extends HTMLElement> SimpleListItem(String id, HTMLContainerBuilder<E> builder) {
         super(SUB_COMPONENT_NAME, li().css(component(simpleList, item)).element());
         this.id = id;
+        this.data = new HashMap<>();
         this.itemElement = builder.css(component(simpleList, item, link))
                 .on(click, e -> {
                     SimpleList simpleList = lookupComponent();
@@ -114,6 +120,12 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     }
 
     @Override
+    public <T> SimpleListItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public SimpleListItem that() {
         return this;
     }
@@ -123,6 +135,21 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     public SimpleListItem onClick(ComponentHandler<SimpleListItem> actionHandler) {
         itemElement.addEventListener(click.name, e -> actionHandler.handle(e, this));
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

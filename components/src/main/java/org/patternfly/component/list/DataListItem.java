@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.list;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
@@ -22,6 +24,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.handler.ToggleHandler;
 
 import elemental2.dom.Event;
@@ -46,7 +49,7 @@ import static org.patternfly.style.Classes.row;
 import static org.patternfly.style.Classes.toggle;
 
 public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
-        Expandable<HTMLLIElement, DataListItem> {
+        DataHolder<HTMLLIElement, DataListItem>, Expandable<HTMLLIElement, DataListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -62,6 +65,7 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
 
     static final String SUB_COMPONENT_NAME = "dli";
     public final String id;
+    private final Map<String, Object> data;
     private final HTMLElement rowElement;
     private HTMLElement controlElement;
     private HTMLElement contentElement;
@@ -74,8 +78,9 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
         super(SUB_COMPONENT_NAME, li().css(component(dataList, item))
                 .aria(labelledBy, id)
                 .element());
-        add(rowElement = div().css(component(dataList, item, row)).element());
         this.id = id;
+        this.data = new HashMap<>();
+        add(rowElement = div().css(component(dataList, item, row)).element());
     }
 
     // ------------------------------------------------------ add
@@ -145,6 +150,12 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     }
 
     @Override
+    public <T> DataListItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public DataListItem that() {
         return this;
     }
@@ -174,6 +185,19 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
         if (fireEvent && toggleHandler != null) {
             toggleHandler.onToggle(new Event(""), this, true);
         }
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

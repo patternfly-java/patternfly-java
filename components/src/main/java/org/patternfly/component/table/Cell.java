@@ -15,7 +15,11 @@
  */
 package org.patternfly.component.table;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.DataHolder;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
 
@@ -25,10 +29,13 @@ import static org.patternfly.style.TypedModifier.swap;
 
 abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
         implements
-        Center<HTMLTableCellElement, B> {
+        DataHolder<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B> {
+
+    private final Map<String, Object> data;
 
     Cell(String name, HTMLTableCellElement element) {
         super(name, element);
+        this.data = new HashMap<>();
     }
 
     public B addText(TableText text) {
@@ -46,5 +53,24 @@ abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends Tab
 
     public B wrap(Wrap wrap) {
         return swap(that(), element(), wrap, Wrap.values());
+    }
+
+    @Override
+    public <T> B store(String key, T value) {
+        data.put(key, value);
+        return that();
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 }

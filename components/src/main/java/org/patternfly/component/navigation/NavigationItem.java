@@ -15,9 +15,13 @@
  */
 package org.patternfly.component.navigation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jboss.elemento.Elements;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -38,7 +42,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
-        WithText<HTMLLIElement, NavigationItem>, ElementDelegate<HTMLLIElement, NavigationItem> {
+        DataHolder<HTMLLIElement, NavigationItem>, WithText<HTMLLIElement, NavigationItem>, ElementDelegate<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
 
@@ -60,11 +64,13 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
 
     public final String id;
     final HTMLAnchorElement a;
+    private final Map<String, Object> data;
     private NavigationLinkText text;
 
     NavigationItem(String id) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item)).element());
         this.id = id;
+        this.data = new HashMap<>();
 
         element().appendChild(a = a().css(component(nav, link))
                 .on(click, e -> {
@@ -114,6 +120,12 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     }
 
     @Override
+    public <T> NavigationItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public NavigationItem that() {
         return this;
     }
@@ -134,6 +146,19 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         } else {
             return Elements.textNode(a);
         }
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

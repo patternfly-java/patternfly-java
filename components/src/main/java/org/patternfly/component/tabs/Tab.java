@@ -110,7 +110,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     Button helpButton;
     TabContent content;
     CloseHandler<Tab> closeHandler;
-    Function<Tabs, Promise<TabContent>> dynamicContent;
+    Function<Tabs, Promise<TabContent>> asyncContent;
 
     private final HTMLElement textElement;
     private final boolean anchorElement;
@@ -162,7 +162,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     }
 
     public Tab add(Function<Tabs, Promise<TabContent>> content) {
-        dynamicContent = content;
+        asyncContent = content;
         return this;
     }
 
@@ -358,14 +358,14 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (selected) {
             classList().add(modifier(current));
             if (content == null) {
-                if (dynamicContent != null) {
+                if (asyncContent != null) {
                     clearTimeout(loadingTimeout);
                     loadingTimeout = setTimeout(__ -> startLoading(), LOADING_TIMEOUT);
                     Tabs tabs = tabs();
-                    dynamicContent.apply(tabs)
+                    asyncContent.apply(tabs)
                             .then(c -> {
                                 content = c;
-                                dynamicContent = null;
+                                asyncContent = null;
                                 tabs.addTabContent(this);
                                 content.element().hidden = false;
                                 return null;

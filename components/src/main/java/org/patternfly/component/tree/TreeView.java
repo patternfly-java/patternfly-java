@@ -15,29 +15,37 @@
  */
 package org.patternfly.component.tree;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
-import org.jboss.elemento.By;
+import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
+import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
+import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
+import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.component.tree.TreeViewType.default_;
+import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.tree;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.list;
-import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.node;
 import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
@@ -49,34 +57,57 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  *
  * @see <a href= "https://www.patternfly.org/components/tree-view">https://www.patternfly.org/components/tree-view</a>
  */
-public class TreeView extends BaseComponent<HTMLElement, TreeView> {
+public class TreeView extends BaseComponent<HTMLElement, TreeView> implements Attachable {
 
     // ------------------------------------------------------ factory
 
     public static TreeView treeView() {
-        return new TreeView();
+        return new TreeView(default_);
+    }
+
+    public static TreeView treeView(TreeViewType type) {
+        return new TreeView(type);
     }
 
     // ------------------------------------------------------ instance
 
-    private static final By CURRENT_TREE_VIEW_ITEM = By.classname(component(treeView, node))
-            .and(By.classname(modifier(current)));
+    final TreeViewType type;
+    final LinkedHashMap<String, TreeViewItem> items;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    Supplier<Element> icon;
+    Supplier<Element> expandedIcon;
+    private ToggleHandler<TreeViewItem> toggleHandler;
     private SelectHandler<TreeViewItem> selectHandler;
+    private MultiSelectHandler<TreeView, TreeViewItem> multiSelectHandler;
 
-    TreeView() {
+    TreeView(TreeViewType type) {
         super(ComponentType.TreeView, div().css(component(treeView)).element());
-        add(ul = ul().css(component(treeView, list))
-                .attr(role, tree));
+        this.type = type;
+        this.items = new LinkedHashMap<>();
+        this.icon = null;
+        this.expandedIcon = null;
+
+        add(ul = ul().css(component(treeView, list)).attr(role, tree));
         storeComponent();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        if (items.values().iterator().hasNext()) {
+            TreeViewItem item = items.values().iterator().next();
+            if (item.tabElement != null) {
+                item.tabElement.tabIndex = 0;
+            }
+        }
     }
 
     // ------------------------------------------------------ add
 
     public <T> TreeView addItems(Iterable<T> items, Function<T, TreeViewItem> display) {
         for (T item : items) {
-            TreeViewItem sli = display.apply(item);
-            addItem(sli);
+            TreeViewItem tvi = display.apply(item);
+            addItem(tvi);
         }
         return this;
     }
@@ -87,6 +118,8 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> {
 
     // override to ensure internal wiring
     public TreeView add(TreeViewItem item) {
+        items.put(item.id, item);
+        item.finishDOM(this);
         ul.add(item);
         return this;
     }
@@ -103,6 +136,16 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> {
         return toggleModifier(that(), element(), Classes.guides, guides);
     }
 
+    public TreeView icon(Supplier<Element> icon) {
+        this.icon = icon;
+        return this;
+    }
+
+    public TreeView expandedIcon(Supplier<Element> icon) {
+        this.expandedIcon = icon;
+        return this;
+    }
+
     @Override
     public TreeView that() {
         return this;
@@ -116,36 +159,78 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> {
 
     // ------------------------------------------------------ events
 
+    public TreeView onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
+        this.toggleHandler = toggleHandler;
+        return this;
+    }
+
     public TreeView onSelect(SelectHandler<TreeViewItem> selectHandler) {
         this.selectHandler = selectHandler;
         return this;
     }
 
+    public TreeView onMultiSelect(MultiSelectHandler<TreeView, TreeViewItem> selectHandler) {
+        this.multiSelectHandler = selectHandler;
+        return this;
+    }
+
     // ------------------------------------------------------ api
+
+    public void toggle(TreeViewItem item) {
+        toggle(item, true);
+    }
+
+    public void toggle(TreeViewItem item, boolean fireEvent) {
+        if (item != null) {
+            item.toggle(fireEvent);
+            if (toggleHandler != null && fireEvent) {
+                toggleHandler.onToggle(new Event(""), item, item.expanded());
+            }
+        }
+    }
 
     public void select(TreeViewItem item) {
         select(item, true, true);
     }
 
-    public void select(TreeViewItem item, boolean fireEvent) {
-        select(item, true, fireEvent);
+    public void select(TreeViewItem item, boolean selected) {
+        select(item, selected, true);
     }
 
     public void select(TreeViewItem item, boolean selected, boolean fireEvent) {
         if (item != null) {
-            unselectAllItems();
-            item.markSelected(selected);
+            if (type == default_ || type == selectableItems) {
+                // unselect all items
+                traverseItems(items.values(), itm -> itm.markSelected(type, false));
+            }
+            // select specified item
+            item.markSelected(type, selected);
             if (selectHandler != null && fireEvent) {
                 selectHandler.onSelect(new Event(""), item, selected);
+            }
+            if (multiSelectHandler != null) {
+                multiSelectHandler.onSelect(new Event(""), this, selectedItems());
             }
         }
     }
 
+    public List<TreeViewItem> selectedItems() {
+        List<TreeViewItem> selected = new ArrayList<>();
+        traverseItems(items.values(), itm -> {
+            if (itm.selected()) {
+                selected.add(itm);
+            }
+        });
+        return selected;
+    }
+
     // ------------------------------------------------------ internal
 
-    private void unselectAllItems() {
-        for (HTMLElement element : findAll(CURRENT_TREE_VIEW_ITEM)) {
-            element.classList.remove(modifier(current));
+    private void traverseItems(Iterable<TreeViewItem> items, Consumer<TreeViewItem> code) {
+        for (TreeViewItem item : items) {
+            code.accept(item);
+            traverseItems(item.items.values(), code);
         }
     }
+
 }

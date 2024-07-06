@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
@@ -32,6 +34,7 @@ import org.patternfly.component.WithIconAndText;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -89,6 +92,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
+        DataHolder<HTMLElement, MenuItem>,
         Disabled<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,
@@ -136,6 +140,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     public final String id;
     final MenuItemType itemType;
+    private final Map<String, Object> data;
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
     private final HTMLElement textElement;
@@ -158,6 +163,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                 .element());
         this.id = id;
         this.itemType = itemType;
+        this.data = new HashMap<>();
 
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
@@ -213,6 +219,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         super(SUB_COMPONENT_NAME, ((HTMLElement) item.element().cloneNode(true)));
 
         this.id = Id.build("fav", item.id);
+        this.data = new HashMap<>(item.data);
         this.itemType = itemType;
         this.favoriteItem = null;
         this.initialSelection = item.initialSelection;
@@ -417,6 +424,12 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     @Override
+    public <T> MenuItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public MenuItem that() {
         return this;
     }
@@ -434,6 +447,19 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     @Override
     public String text() {
         return Elements.textNode(textElement);
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

@@ -19,6 +19,7 @@ import org.jboss.elemento.Container;
 import org.jboss.elemento.Finder;
 import org.jboss.elemento.HasElement;
 import org.jboss.elemento.HasHTMLElement;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.HTMLElement;
@@ -36,6 +37,10 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         this.componentType = requireNonNull(componentType, "component type required");
         this.name = requireNonNull(name, "name required");
         this.element = requireNonNull(element, "element required");
+    }
+
+    protected String subComponentId() {
+        return Id.build(componentType.id, name);
     }
 
     @Override

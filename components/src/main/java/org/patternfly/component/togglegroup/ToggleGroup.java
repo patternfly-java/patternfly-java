@@ -155,19 +155,23 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     public void select(String itemId) {
-        select(items.get(itemId), true);
+        select(items.get(itemId), true, true);
     }
 
-    public void select(String itemId, boolean fireEvent) {
-        select(items.get(itemId), fireEvent);
+    public void select(String itemId, boolean selected) {
+        select(items.get(itemId), selected, true);
+    }
+
+    public void select(String itemId, boolean selected, boolean fireEvent) {
+        select(items.get(itemId), selected, fireEvent);
     }
 
     public void select(ToggleGroupItem item) {
         select(item, true, true);
     }
 
-    public void select(ToggleGroupItem item, boolean fireEvent) {
-        select(item, true, fireEvent);
+    public void select(ToggleGroupItem item, boolean selected) {
+        select(item, selected, true);
     }
 
     public void select(ToggleGroupItem item, boolean selected, boolean fireEvent) {

@@ -15,11 +15,15 @@
  */
 package org.patternfly.component.togglegroup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
+import org.patternfly.core.DataHolder;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
@@ -47,6 +51,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggleGroup;
 
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
+        DataHolder<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementDelegate<HTMLDivElement, ToggleGroupItem>,
         WithIcon<HTMLDivElement, ToggleGroupItem>,
@@ -66,6 +71,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
 
     static final String SUB_COMPONENT_NAME = "tgi";
     public final String id;
+    private final Map<String, Object> data;
     private final HTMLContainerBuilder<HTMLButtonElement> button;
     private HTMLElement textElement;
     private HTMLElement iconContainer;
@@ -73,6 +79,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     ToggleGroupItem(String id, String text) {
         super(SUB_COMPONENT_NAME, div().css(component(toggleGroup, item)).element());
         this.id = id;
+        this.data = new HashMap<>();
         this.button = button(ButtonType.button).css(component(toggleGroup, Classes.button))
                 .aria(pressed, false)
                 .on(click, this::onClick);
@@ -119,6 +126,12 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     }
 
     @Override
+    public <T> ToggleGroupItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public ToggleGroupItem that() {
         return this;
     }
@@ -141,6 +154,19 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     public String text() {
         if (textElement != null) {
             return textElement.textContent;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
         }
         return null;
     }

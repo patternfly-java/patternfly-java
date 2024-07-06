@@ -20,6 +20,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
     T current, T previous, Runnable assignment)`
 
+### Changed
+
+- Unified `select()` method signatures on various components
+
 ### Fixed
 
 - Swapping of typed modifiers

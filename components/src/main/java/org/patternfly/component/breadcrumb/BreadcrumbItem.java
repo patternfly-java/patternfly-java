@@ -15,8 +15,12 @@
  */
 package org.patternfly.component.breadcrumb;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -37,7 +41,7 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 
 public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, BreadcrumbItem> implements
-        WithText<HTMLLIElement, BreadcrumbItem> {
+        DataHolder<HTMLLIElement, BreadcrumbItem>, WithText<HTMLLIElement, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
 
@@ -56,11 +60,13 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "bci";
+    private final Map<String, Object> data;
     private final HTMLElement textElement;
     private HTMLAnchorElement anchorElement;
 
     <E extends HTMLElement> BreadcrumbItem(String text) {
         super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item)).element());
+        this.data = new HashMap<>();
         add(span().css(component(breadcrumb, item, divider))
                 .add(angleRight().element()));
         add(textElement = span().textContent(text).element());
@@ -104,6 +110,12 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     }
 
     @Override
+    public <T> BreadcrumbItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public BreadcrumbItem that() {
         return this;
     }
@@ -123,6 +135,19 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
             return anchorElement.textContent;
         } else if (textElement != null) {
             return textElement.textContent;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
         }
         return null;
     }

@@ -16,7 +16,9 @@
 package org.patternfly.component.accordion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -24,6 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.WithText;
+import org.patternfly.core.DataHolder;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
@@ -50,6 +53,7 @@ import static org.patternfly.style.Classes.modifier;
  * content to the specific {@link AccordionItemBody} instead of this item.
  */
 public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
+        DataHolder<HTMLDivElement, AccordionItem>,
         ElementDelegate<HTMLDivElement, AccordionItem>,
         WithText<HTMLDivElement, AccordionItem> {
 
@@ -67,6 +71,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
 
     static final String SUB_COMPONENT_NAME = "aci";
     final String id;
+    private final Map<String, Object> data;
     private final AccordionItemBody defaultBody;
     private final List<AccordionItemBody> bodies;
     private String text;
@@ -78,6 +83,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     AccordionItem(String id, String text) {
         super(SUB_COMPONENT_NAME, div().element()); // not a real subcomponent - just pass a fake <div/>
         this.id = id;
+        this.data = new HashMap<>();
         this.expanded = false;
         this.defaultBody = new AccordionItemBody();
         this.bodies = new ArrayList<>();
@@ -120,6 +126,12 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     }
 
     @Override
+    public <T> AccordionItem store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public AccordionItem that() {
         return this;
     }
@@ -129,6 +141,19 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     @Override
     public String text() {
         return text;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

@@ -41,6 +41,7 @@ val resources = listOf(
         Resource("pfLogo", File(args[0], "src/bundle/pf-logo.svg"), true),
         Resource("components", File(args[0], "src/bundle/components.json"), false),
         Resource("layouts", File(args[0], "src/bundle/layouts.json"), false),
+        Resource("rhcp", File(args[0], "src/bundle/rhcp.json"), false),
         Resource("servers", File(args[0], "src/bundle/servers.json"), false),
         // TODO String too long!
 //        Resource("users", File(args[0], "src/bundle/users.json")),

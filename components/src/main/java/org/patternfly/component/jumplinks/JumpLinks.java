@@ -255,22 +255,26 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     public void select(String itemId) {
-        select(findItem(itemId), true);
+        select(findItem(itemId), true, true);
     }
 
-    public void select(String itemId, boolean fireEvent) {
-        select(findItem(itemId), fireEvent);
+    public void select(String itemId, boolean selected) {
+        select(findItem(itemId), selected, true);
+    }
+
+    public void select(String itemId, boolean selected, boolean fireEvent) {
+        select(findItem(itemId), selected, fireEvent);
     }
 
     public void select(JumpLinksItem item) {
         select(item, true, true);
     }
 
-    public void select(JumpLinksItem item, boolean fireEvent) {
-        select(item, true, fireEvent);
+    public void select(JumpLinksItem item, boolean selected) {
+        select(item, selected, true);
     }
 
-    public void select(JumpLinksItem item, boolean selected, boolean fireEvent) {
+    public void select(JumpLinksItem item, boolean fireEvent, boolean selected) {
         if (item != null) {
             unselectAllItems();
             item.markSelected(selected);

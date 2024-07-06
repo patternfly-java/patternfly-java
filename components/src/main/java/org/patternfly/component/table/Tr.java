@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.table;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -22,6 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Aria;
+import org.patternfly.core.DataHolder;
 import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
 
@@ -38,7 +41,7 @@ import static org.patternfly.style.Classes.selected;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tr;
 
-public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
+public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements DataHolder<HTMLTableRowElement, Tr> {
 
     // ------------------------------------------------------ factory
 
@@ -60,6 +63,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
 
     static final String SUB_COMPONENT_NAME = "tr";
     public final String key;
+    private final Map<String, Object> data;
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
 
@@ -68,6 +72,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
                 .data(Dataset.key, key)
                 .element());
         this.key = key;
+        this.data = new HashMap<>();
     }
 
     // ------------------------------------------------------ add
@@ -135,8 +140,29 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> {
     }
 
     @Override
+    public <T> Tr store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public Tr that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal
