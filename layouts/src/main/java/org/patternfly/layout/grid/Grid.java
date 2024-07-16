@@ -88,7 +88,6 @@ public class Grid extends BaseLayout<HTMLElement, Grid> implements Gutter<HTMLEl
     public Grid columns(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "columns", bp.value, 1, 12))
-                .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "all-" + col + "-col"));
         return css(modifiers);
     }

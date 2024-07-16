@@ -16,12 +16,12 @@
 package org.patternfly.component.tree;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
@@ -36,16 +36,22 @@ import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
+import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 
+import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.ul;
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.keydown;
+import static org.patternfly.component.tree.TreeViewItems.traverseItems;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.tree;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
+import static org.patternfly.style.Classes.node;
 import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
@@ -57,7 +63,9 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  *
  * @see <a href= "https://www.patternfly.org/components/tree-view">https://www.patternfly.org/components/tree-view</a>
  */
-public class TreeView extends BaseComponent<HTMLElement, TreeView> implements Attachable {
+public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
+        TreeViewItems<HTMLElement, TreeView>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -79,6 +87,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
     private ToggleHandler<TreeViewItem> toggleHandler;
     private SelectHandler<TreeViewItem> selectHandler;
     private MultiSelectHandler<TreeView, TreeViewItem> multiSelectHandler;
+    private HandlerRegistration keyHandler;
 
     TreeView(TreeViewType type) {
         super(ComponentType.TreeView, div().css(component(treeView)).element());
@@ -100,23 +109,29 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
                 item.tabElement.tabIndex = 0;
             }
         }
+        keyHandler = bind(element(), keydown, event -> {
+            switch (type) {
+                case default_:
+                    handleKeys(event);
+                    break;
+                case selectableItems:
+                case checkboxes:
+                    handleKeysSelectable(event);
+                    break;
+            }
+        });
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        if (keyHandler != null) {
+            keyHandler.removeHandler();
+        }
     }
 
     // ------------------------------------------------------ add
 
-    public <T> TreeView addItems(Iterable<T> items, Function<T, TreeViewItem> display) {
-        for (T item : items) {
-            TreeViewItem tvi = display.apply(item);
-            addItem(tvi);
-        }
-        return this;
-    }
-
-    public TreeView addItem(TreeViewItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public TreeView add(TreeViewItem item) {
         items.put(item.id, item);
         item.finishDOM(this);
@@ -201,7 +216,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
         if (item != null) {
             if (type == default_ || type == selectableItems) {
                 // unselect all items
-                traverseItems(items.values(), itm -> itm.markSelected(type, false));
+                traverseItems(this, itm -> itm.markSelected(type, false));
             }
             // select specified item
             item.markSelected(type, selected);
@@ -216,7 +231,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
 
     public List<TreeViewItem> selectedItems() {
         List<TreeViewItem> selected = new ArrayList<>();
-        traverseItems(items.values(), itm -> {
+        traverseItems(this, itm -> {
             if (itm.selected()) {
                 selected.add(itm);
             }
@@ -225,16 +240,29 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements At
     }
 
     public void reset() {
-        traverseItems(items.values(), TreeViewItem::reset);
+        traverseItems(this, TreeViewItem::reset);
+    }
+
+    @Override
+    public Iterator<TreeViewItem> iterator() {
+        return items.values().iterator();
     }
 
     // ------------------------------------------------------ internal
 
-    private void traverseItems(Iterable<TreeViewItem> items, Consumer<TreeViewItem> code) {
-        for (TreeViewItem item : items) {
-            code.accept(item);
-            traverseItems(item.items.values(), code);
+    private void handleKeys(KeyboardEvent event) {
+        HTMLElement target = (HTMLElement) event.target;
+        if (!target.classList.contains(component(treeView, node))) {
+            return;
         }
+        Element activeElement = document.activeElement;
     }
 
+    private void handleKeysSelectable(KeyboardEvent event) {
+        HTMLElement target = (HTMLElement) event.target;
+        if (!target.classList.contains(component(treeView, node))) {
+            return;
+        }
+        Element activeElement = document.activeElement;
+    }
 }

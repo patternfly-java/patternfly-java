@@ -65,7 +65,6 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     public GridItem span(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "span", bp.value, 1, 12))
-                .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> col + "-col"));
         return css(modifiers);
     }
@@ -83,7 +82,6 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     public GridItem rowSpan(Breakpoints<Integer> rows) {
         String modifiers = rows.stream()
                 .filter(bp -> verifyRange(element(), "rowSpan", bp.value, 1, 12))
-                .filter(bp -> bp.key != default_)
                 .collect(modifiers(row -> row + "-row"));
         return css(modifiers);
     }
@@ -101,7 +99,6 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
     public GridItem offset(Breakpoints<Integer> columns) {
         String modifiers = columns.stream()
                 .filter(bp -> verifyRange(element(), "offset", bp.value, 1, 12))
-                .filter(bp -> bp.key != default_)
                 .collect(modifiers(col -> "offset-" + col + "-col"));
         return css(modifiers);
     }

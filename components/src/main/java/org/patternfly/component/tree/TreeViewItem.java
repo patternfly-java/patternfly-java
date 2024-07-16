@@ -16,6 +16,7 @@
 package org.patternfly.component.tree;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -87,6 +88,7 @@ import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Size.md;
 
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
+        TreeViewItems<HTMLLIElement, TreeViewItem>,
         ComponentContext<HTMLLIElement, TreeViewItem>,
         Compact<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
@@ -152,19 +154,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     // ------------------------------------------------------ add
 
-    public <T> TreeViewItem addItems(Iterable<T> items, Function<T, TreeViewItem> display) {
-        for (T item : items) {
-            TreeViewItem tvi = display.apply(item);
-            addItem(tvi);
-        }
-        return this;
-    }
-
-    public TreeViewItem addItem(TreeViewItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public TreeViewItem add(TreeViewItem item) {
         item.parent = this;
         items.put(item.id, item);
@@ -313,15 +303,20 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         return null;
     }
 
+    @Override
+    public Iterator<TreeViewItem> iterator() {
+        return items.values().iterator();
+    }
+
     // ------------------------------------------------------ internal
 
     void finishDOM(TreeView tv) {
         if (domFinished) {
-            logger.warn("DOM for tree view item %s[%s] is already finished", id, tv.type.name());
+            logger.warn("DOM for tree view item %o - %s[%s] is already finished", element(), id, tv.type.name());
             return;
         }
 
-        logger.debug("Finishing DOM for tree view item %s[%s]", id, tv.type.name());
+        logger.debug("Finishing DOM for tree view item %o - %s[%s]", element(), id, tv.type.name());
         // create node, toggle and text elements based on the tree view type
         switch (tv.type) {
             case default_:
@@ -392,7 +387,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 tabElement = checkboxElement;
                 break;
             default:
-                logger.error("Unsupported tree view type in tree view item %s: %s", id, tv.type.name());
+                logger.error("Unsupported tree view type in tree view item %o - %s: %s", element(), id, tv.type.name());
                 break;
         }
 
@@ -485,11 +480,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             TreeViewItem[] loadingItem = new TreeViewItem[1];
             double handle = setTimeout(__ -> {
                 loadingItem[0] = loading.get();
-                childrenElement.appendChild(loadingItem[0].element());
                 TreeView treeView = lookupComponent(true);
                 if (treeView != null) {
                     loadingItem[0].finishDOM(treeView);
                 }
+                childrenElement.appendChild(loadingItem[0].element());
             }, LOADING_TIMEOUT);
 
             // load items
@@ -507,7 +502,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                     })
                     .catch_(error -> {
                         status = rejected;
-                        logger.error("Unable to load items for %o: %s", element(), error);
+                        logger.error("Unable to load items for %o - %s: %s", element(), id, error);
                         return null;
                     })
                     .finally_(() -> {
