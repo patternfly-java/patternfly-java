@@ -44,7 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Upgrades
 
-- Bump Elemento to 1.6.4
+- Bump Elemento to 1.6.5
 - Bump J2CL tools BOM to 0.2
 - Bump J2CL Maven plugin to 0.23.1
 - Bump JUnit to 5.10.3
