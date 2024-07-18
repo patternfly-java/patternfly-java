@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Data list component (#34) (not yet fully implemented)
-- Tree view component (#100)
+- Tree view component (#100)  (not yet fully implemented)
 - Add `ComponentContext` interface to store and retrieve arbitrary values associated with keys in a component. Implemented by
   - `AccordionItem`
   - `ActionListItem`
@@ -32,7 +32,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
     T current, T previous, Runnable assignment)`:<br/>Swaps a typed modifier on an element builder. Swapping is done by removing the previous modifier, applying the current modifier, and optionally performing an assignment.
 
-
 ### Changed
 
 - Unified `select()` method signatures on various components
@@ -40,6 +39,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Swapping of typed modifiers
+
+### Upgrades
+
+- Bump J2CL tools BOM to 0.2
+- Bump J2CL Maven plugin to 0.23.1
+- Bump JUnit to 5.10.3
 
 ## [0.2.6] - 2024-06-09
 
