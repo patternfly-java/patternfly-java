@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.2.7] - 2024-07-18
-
 ### Added
 
 - Data list component (#34) (not yet fully implemented)
@@ -372,8 +370,7 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.7...HEAD
-[0.2.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.6...v0.2.7
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.6...HEAD
 [0.2.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.3...v0.2.4
