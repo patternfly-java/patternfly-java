@@ -44,6 +44,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Expand tree view item after `TreeView.select(TreeViewItem item)`
 
+### Upgrades
+
+- Bump Elemento to 1.6.6
+
 ## [0.2.7] - 2024-07-18
 
 ### Added
