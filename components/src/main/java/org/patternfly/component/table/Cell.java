@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
@@ -27,14 +28,16 @@ import elemental2.dom.HTMLTableCellElement;
 
 import static org.patternfly.style.TypedModifier.swap;
 
-abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
-        implements
-        ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B> {
+public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
+        implements ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B>,
+        WithIdentifier<HTMLTableCellElement, B> {
 
+    private final String identifier;
     private final Map<String, Object> data;
 
-    Cell(String name, HTMLTableCellElement element) {
+    Cell(String name, String identifier, HTMLTableCellElement element) {
         super(name, element);
+        this.identifier = identifier;
         this.data = new HashMap<>();
     }
 
@@ -59,6 +62,11 @@ abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends Tab
     public <T> B store(String key, T value) {
         data.put(key, value);
         return that();
+    }
+
+    @Override
+    public String identifier() {
+        return identifier;
     }
 
     @Override

@@ -61,11 +61,11 @@ public class ChipComponent extends SnippetPage {
                 // @code-start:chip-group
                 div()
                         .add(chipGroup()
-                                .addChip(chip("Chip one"))
-                                .addChip(chip("Really long chip that goes on and on"))
-                                .addChip(chip("Chip three"))
-                                .addChip(chip("Chip four"))
-                                .addChip(chip("Chip five")))
+                                .addItem(chip("Chip one"))
+                                .addItem(chip("Really long chip that goes on and on"))
+                                .addItem(chip("Chip three"))
+                                .addItem(chip("Chip four"))
+                                .addItem(chip("Chip five")))
                         .element()
                 // @code-end:chip-group
         ));
@@ -75,11 +75,11 @@ public class ChipComponent extends SnippetPage {
                 // @code-start:chip-group-category
                 div()
                         .add(chipGroup("Category one")
-                                .addChip(chip("Chip one"))
-                                .addChip(chip("Really long chip that goes on and on"))
-                                .addChip(chip("Chip three"))
-                                .addChip(chip("Chip four"))
-                                .addChip(chip("Chip five")))
+                                .addItem(chip("Chip one"))
+                                .addItem(chip("Really long chip that goes on and on"))
+                                .addItem(chip("Chip three"))
+                                .addItem(chip("Chip four"))
+                                .addItem(chip("Chip five")))
                         .element()
                 // @code-end:chip-group-category
         ));
@@ -90,17 +90,17 @@ public class ChipComponent extends SnippetPage {
                 div()
                         .add(chipGroup("Category one")
                                 .closable()
-                                .addChip(chip("Chip one"))
-                                .addChip(chip("Chip two"))
-                                .addChip(chip("Chip three")))
+                                .addItem(chip("Chip one"))
+                                .addItem(chip("Chip two"))
+                                .addItem(chip("Chip three")))
                         .add(br())
                         .add(br())
                         .add(chipGroup("Category two has a very long name")
                                 .closable()
-                                .addChip(chip("Chip one"))
-                                .addChip(chip("Chip two"))
-                                .addChip(chip("Chip three"))
-                                .addChip(chip("Chip four")))
+                                .addItem(chip("Chip one"))
+                                .addItem(chip("Chip two"))
+                                .addItem(chip("Chip three"))
+                                .addItem(chip("Chip four")))
                         .element()
                 // @code-end:chip-group-removable-category
         ));

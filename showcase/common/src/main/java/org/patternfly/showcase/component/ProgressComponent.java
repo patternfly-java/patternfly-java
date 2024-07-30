@@ -257,7 +257,7 @@ public class ProgressComponent extends SnippetPage {
                 // @code-start:progress-outer-title
                 div()
                         .add(descriptionList()
-                                .addGroup(descriptionListGroup()
+                                .addItem(descriptionListGroup("progress-outer-title-0")
                                         .addTerm(descriptionListTerm("Title outside of progress bar")
                                                 .id("title-outside-progress-example-label"))
                                         .addDescription(descriptionListDescription()

@@ -15,7 +15,11 @@
  */
 package org.patternfly.component.alert;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
@@ -23,8 +27,11 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.Severity;
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
@@ -75,16 +82,22 @@ import static org.patternfly.style.Variable.componentVar;
  * @see <a href= "https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
+        ComponentContext<HTMLDivElement, Alert>,
         Inline<HTMLDivElement, Alert>,
         Plain<HTMLDivElement, Alert>,
         Closeable<HTMLDivElement, Alert>,
         Expandable<HTMLDivElement, Alert>, Attachable,
+        WithIdentifier<HTMLDivElement, Alert>,
         WithIcon<HTMLDivElement, Alert> {
 
     // ------------------------------------------------------ factory
 
     public static Alert alert(Severity type, String title) {
-        return new Alert(type, title);
+        return new Alert(type, Id.unique(ComponentType.Alert.id), title);
+    }
+
+    public static Alert alert(Severity type, String identifier, String title) {
+        return new Alert(type, identifier, title);
     }
 
     // ------------------------------------------------------ instance
@@ -98,8 +111,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     boolean expandable;
     Button closeButton;
     CloseHandler<Alert> closeHandler;
+    private final String identifier;
     private final Severity severity;
     private final String title;
+    private final Map<String, Object> data;
     private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
     private double timeoutHandle;
@@ -107,12 +122,15 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private AlertDescription description;
     private ToggleHandler<Alert> toggleHandler;
 
-    Alert(Severity severity, String title) {
+    Alert(Severity severity, String identifier, String title) {
         super(ComponentType.Alert, div().css(component(alert), severity.status.modifier())
+                .data(Dataset.identifier, identifier)
                 .aria(label, severity.aria)
                 .element());
+        this.identifier = identifier;
         this.severity = severity;
         this.title = title;
+        this.data = new HashMap<>();
         this.timeout = NO_TIMEOUT;
         this.expandable = false;
         this.timeoutHandle = 0;
@@ -259,6 +277,12 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     }
 
     @Override
+    public <T> Alert store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public Alert that() {
         return this;
     }
@@ -285,6 +309,24 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
+    }
 
     @Override
     public void close(Event event, boolean fireEvent) {

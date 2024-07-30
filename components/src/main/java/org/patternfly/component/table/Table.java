@@ -127,7 +127,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     public void select(String key) {
         if (tbody != null) {
-            Tr row = tbody.rows.get(key);
+            Tr row = tbody.items.get(key);
             if (row != null) {
                 select(row);
             }
@@ -156,7 +156,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     private void unselectAll() {
         if (tbody != null) {
-            for (Tr row : tbody.rows.values()) {
+            for (Tr row : tbody.items.values()) {
                 row.clearSelection();
             }
         }

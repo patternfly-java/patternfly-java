@@ -15,21 +15,25 @@
  */
 package org.patternfly.component.table;
 
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.HasItems;
 
 import elemental2.dom.HTMLTableSectionElement;
 
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.rowgroup;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
 
-public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
+public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
+        HasItems<HTMLTableSectionElement, Tbody, Tr> {
 
     // ------------------------------------------------------ factory
 
@@ -43,31 +47,29 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tbd";
-    final Map<String, Tr> rows;
+    final Map<String, Tr> items;
 
     Tbody() {
         super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
                 .attr(role, rowgroup)
                 .element());
-        this.rows = new HashMap<>();
+        this.items = new LinkedHashMap<>();
     }
 
     // ------------------------------------------------------ add
 
+    /** Same as {@link #addItems(Iterable, Function)} */
     public <T> Tbody addRows(Iterable<T> items, Function<T, Tr> display) {
-        for (T item : items) {
-            Tr row = display.apply(item);
-            addRow(row);
-        }
-        return this;
+        return addItems(items, display);
     }
 
+    /** Same as {@link #addItem(Object)} */
     public Tbody addRow(Tr row) {
-        return add(row);
+        return addItem(row);
     }
 
     public Tbody add(Tr row) {
-        rows.put(row.key, row);
+        items.put(row.identifier(), row);
         add(row.element());
         return this;
     }
@@ -81,8 +83,24 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> {
 
     // ------------------------------------------------------ api
 
-    public void removeRows() {
-        rows.clear();
-        Elements.removeChildrenFrom(element());
+    @Override
+    public Iterator<Tr> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 }

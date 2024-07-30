@@ -57,7 +57,7 @@ public class FormSelectComponent extends SnippetPage {
             // @code-start:form-select-basic
             String[] values = {"Mr", "Miss", "Mrs", "Ms", "Dr", "Other"};
             return div()
-                    // if not specified, Id.build(<label>) is used as value
+                    // if not specified, Id.build(<label>) is used as a value
                     .add(formSelect("basic-form-select-0", Id.build("Mrs"))
                             .addOption(formSelectOption("Select one").placeholder())
                             .addOptions(asList(values), FormSelectOption::formSelectOption))

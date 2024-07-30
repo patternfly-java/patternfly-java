@@ -18,13 +18,23 @@ package org.patternfly.showcase.model;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jboss.elemento.Id;
+import org.patternfly.core.Tuple;
+
 import elemental2.core.JsDate;
+
+import static org.patternfly.core.Tuple.tuple;
 
 public class Repository {
 
-    public static final List<String> keys = Arrays.asList("Repository", "Branches", "Pull requests", "Workspaces",
-            "Last commit");
+    public static final List<Tuple<String, String>> columns = Arrays.asList(
+            tuple(Id.build("Repository"), "Repository"),
+            tuple(Id.build("Branches"), "Branches"),
+            tuple(Id.build("Pull requests"), "Pull requests"),
+            tuple(Id.build("Workspaces"), "Workspaces"),
+            tuple(Id.build("Last commit"), "Last commit"));
 
+    public String id;
     public String name;
     public int branches;
     public int pullRequests;

@@ -17,6 +17,8 @@ package org.patternfly.component.table;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.tooltip.TooltipToggle;
 
 import elemental2.dom.MutationRecord;
@@ -36,7 +38,11 @@ public class Th extends Cell<Th> implements Attachable {
      * Factory method to create a new instance of this component.
      */
     public static Th th() {
-        return new Th();
+        return new Th(Id.unique(ComponentType.Table.id, "th"));
+    }
+
+    public static Th th(String identifier) {
+        return new Th(identifier);
     }
 
     // ------------------------------------------------------ instance
@@ -44,8 +50,8 @@ public class Th extends Cell<Th> implements Attachable {
     static final String SUB_COMPONENT_NAME = "th";
     private final TooltipToggle tooltipToggle;
 
-    Th() {
-        super(SUB_COMPONENT_NAME, Elements.th().css(component(table, th))
+    Th(String identifier) {
+        super(SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, th))
                 .apply(th -> th.scope = "col")
                 .attr(tabindex, -1)
                 .element());

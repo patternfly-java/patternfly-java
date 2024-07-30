@@ -16,6 +16,8 @@
 package org.patternfly.component.table;
 
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.core.Dataset;
 
 import static org.patternfly.core.Attributes.tabindex;
@@ -29,20 +31,25 @@ public class Td extends Cell<Td> {
     // ------------------------------------------------------ factory
 
     public static Td td() {
-        return new Td(null);
+        return new Td(Id.unique(ComponentType.Table.id, "td"), null);
     }
 
     public static Td td(String column) {
-        return new Td(column);
+        return new Td(Id.unique(ComponentType.Table.id, "td"), column);
+    }
+
+    public static Td td(String identifier, String column) {
+        return new Td(identifier, column);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "td";
 
-    Td(String column) {
-        super(SUB_COMPONENT_NAME, Elements.td().css(component(table, td))
+    Td(String identifier, String column) {
+        super(SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))
                 .attr(tabindex, -1)
+                .data(Dataset.identifier, identifier)
                 .element());
         if (column != null) {
             data(Dataset.label, column);

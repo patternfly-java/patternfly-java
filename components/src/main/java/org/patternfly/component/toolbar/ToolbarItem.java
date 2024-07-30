@@ -18,7 +18,11 @@ package org.patternfly.component.toolbar;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -31,7 +35,8 @@ import static org.patternfly.style.Classes.toolbar;
  * Container for a toolbar item.
  */
 public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem> implements
-        ComponentContext<HTMLDivElement, ToolbarItem> {
+        ComponentContext<HTMLDivElement, ToolbarItem>,
+        WithIdentifier<HTMLDivElement, ToolbarItem> {
 
     // ------------------------------------------------------ factory
 
@@ -39,16 +44,27 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
      * Factory method to create a new instance of this component.
      */
     public static ToolbarItem toolbarItem() {
-        return new ToolbarItem();
+        return new ToolbarItem(Id.unique(ComponentType.Toolbar.id, "itm"));
+    }
+
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static ToolbarItem toolbarItem(String identifier) {
+        return new ToolbarItem(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ti";
+    private final String identifier;
     private final Map<String, Object> data;
 
-    ToolbarItem() {
-        super(SUB_COMPONENT_NAME, div().css(component(toolbar, item)).element());
+    ToolbarItem(String identifier) {
+        super(SUB_COMPONENT_NAME, div().css(component(toolbar, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
     }
 
@@ -66,6 +82,12 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
     }
 
     // ------------------------------------------------------ api
+
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean has(String key) {

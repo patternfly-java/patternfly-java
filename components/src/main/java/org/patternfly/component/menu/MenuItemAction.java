@@ -19,7 +19,9 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -41,25 +43,26 @@ import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
-public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction>
-        implements WithIcon<HTMLButtonElement, MenuItemAction> {
+public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> implements
+        WithIdentifier<HTMLButtonElement, MenuItemAction>,
+        WithIcon<HTMLButtonElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 
-    public static MenuItemAction menuItemAction(String id) {
-        return new MenuItemAction(id, null, false);
+    public static MenuItemAction menuItemAction(String identifier) {
+        return new MenuItemAction(identifier, null, false);
     }
 
-    public static MenuItemAction menuItemAction(String id, PredefinedIcon icon) {
-        return new MenuItemAction(id, icon.element(), false);
+    public static MenuItemAction menuItemAction(String identifier, PredefinedIcon icon) {
+        return new MenuItemAction(identifier, icon.element(), false);
     }
 
-    public static MenuItemAction menuItemAction(String id, Element icon) {
-        return new MenuItemAction(id, icon, false);
+    public static MenuItemAction menuItemAction(String identifier, Element icon) {
+        return new MenuItemAction(identifier, icon, false);
     }
 
-    static MenuItemAction favoriteMenuItemAction(String id) {
-        return new MenuItemAction(id, star().element(), true)
+    static MenuItemAction favoriteMenuItemAction(String identifier) {
+        return new MenuItemAction(identifier, star().element(), true)
                 .css(modifier(favorite))
                 .aria(Aria.label, "not starred");
     }
@@ -68,18 +71,19 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
 
     static final String SUB_COMPONENT_NAME = "mia";
 
-    public final String id;
+    private final String identifier;
     private final HTMLElement iconContainer;
     ComponentHandler<MenuItemAction> handler;
     public MenuItem menuItem;
 
-    MenuItemAction(String id, Element icon, boolean favorite) {
+    MenuItemAction(String identifier, Element icon, boolean favorite) {
         super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(Classes.menu, item, action))
                 .attr(tabindex, -1)
+                .data(Dataset.identifier, identifier)
                 .add(span().css(component(Classes.menu, item, action, Classes.icon))
                         .add(icon))
                 .element());
-        this.id = id;
+        this.identifier = identifier;
         this.iconContainer = find(By.classname(component(Classes.menu, item, action, Classes.icon)));
         if (!favorite) {
             on(click, e -> {
@@ -95,7 +99,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     MenuItemAction(Menu menu, MenuItem favoriteItem, MenuItemAction sourceItemAction,
             HTMLButtonElement itemActionElement) {
         super(SUB_COMPONENT_NAME, itemActionElement);
-        this.id = Id.build("fav", sourceItemAction.id);
+        this.identifier = Id.build("fav", sourceItemAction.identifier);
         this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;
         if (sourceItemAction.handler != null) {
@@ -128,5 +132,12 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     public MenuItemAction onClick(ComponentHandler<MenuItemAction> handler) {
         this.handler = handler;
         return on(click, e -> handler.handle(e, this));
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
     }
 }

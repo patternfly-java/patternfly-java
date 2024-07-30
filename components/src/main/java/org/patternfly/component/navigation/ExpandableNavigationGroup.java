@@ -16,17 +16,21 @@
 package org.patternfly.component.navigation;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.HasItems;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.ToggleHandler;
@@ -43,6 +47,7 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
@@ -52,8 +57,6 @@ import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.hidden;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Dataset.navigationGroup;
-import static org.patternfly.core.Dataset.navigationItem;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandable;
@@ -68,23 +71,26 @@ import static org.patternfly.style.Classes.subnav;
 import static org.patternfly.style.Classes.toggle;
 
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
-        WithText<HTMLLIElement, ExpandableNavigationGroup>, ElementDelegate<HTMLLIElement, ExpandableNavigationGroup> {
+        HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem>,
+        WithIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
+        WithText<HTMLLIElement, ExpandableNavigationGroup>,
+        ElementDelegate<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 
-    public static ExpandableNavigationGroup expandableNavigationGroup(String id) {
-        return new ExpandableNavigationGroup(id);
+    public static ExpandableNavigationGroup expandableNavigationGroup(String identifier) {
+        return new ExpandableNavigationGroup(identifier);
     }
 
-    public static ExpandableNavigationGroup expandableNavigationGroup(String id, String text) {
-        return new ExpandableNavigationGroup(id).text(text);
+    public static ExpandableNavigationGroup expandableNavigationGroup(String identifier, String text) {
+        return new ExpandableNavigationGroup(identifier).text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "eng";
 
-    public final String id;
+    private final String identifier;
     private final Map<String, NavigationItem> items;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private final HTMLButtonElement button;
@@ -93,15 +99,15 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private NavigationLinkText text;
     ToggleHandler<ExpandableNavigationGroup> toggleHandler;
 
-    ExpandableNavigationGroup(String id) {
+    ExpandableNavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
-                .data(navigationGroup, id)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.id = id;
-        this.items = new HashMap<>();
+        this.identifier = identifier;
+        this.items = new LinkedHashMap<>();
         this.expandableGroups = new HashMap<>();
 
-        String titleId = Id.unique(id, "title");
+        String titleId = Id.unique(identifier, "title");
         element().appendChild(button = button(ButtonType.button).css(component(nav, link))
                 .id(titleId)
                 .aria(Aria.expanded, false)
@@ -127,18 +133,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     // ------------------------------------------------------ add
 
-    public <T> ExpandableNavigationGroup addItems(Iterable<T> items, Function<T, NavigationItem> display) {
-        for (T item : items) {
-            NavigationItem navigationItem = display.apply(item);
-            addItem(navigationItem);
-        }
-        return this;
-    }
-
-    public ExpandableNavigationGroup addItem(NavigationItem item) {
-        return add(item);
-    }
-
+    @Override
     public ExpandableNavigationGroup add(NavigationItem item) {
         internalAddItem(item, itm -> ul.appendChild(itm.element()));
         return this;
@@ -172,32 +167,32 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         return this;
     }
 
-    public ExpandableNavigationGroup insertItemBefore(NavigationItem item, String beforeItemId) {
-        HTMLElement element = Elements.find(ul, By.data(navigationItem, beforeItemId));
+    public ExpandableNavigationGroup insertItemBefore(NavigationItem item, String beforeIdentifier) {
+        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
         return this;
     }
 
-    public ExpandableNavigationGroup insertItemAfter(NavigationItem item, String afterItemId) {
-        HTMLElement element = Elements.find(ul, By.data(navigationItem, afterItemId));
+    public ExpandableNavigationGroup insertItemAfter(NavigationItem item, String afterIdentifier) {
+        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
         return this;
     }
 
-    public ExpandableNavigationGroup insertGroupBefore(ExpandableNavigationGroup group, String beforeItemId) {
-        HTMLElement element = Elements.find(ul, By.data(navigationItem, beforeItemId));
+    public ExpandableNavigationGroup insertGroupBefore(ExpandableNavigationGroup group, String beforeIdentifier) {
+        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
         return this;
     }
 
-    public ExpandableNavigationGroup insertGroupAfter(ExpandableNavigationGroup group, String afterItemId) {
-        HTMLElement element = Elements.find(ul, By.data(navigationItem, afterItemId));
+    public ExpandableNavigationGroup insertGroupAfter(ExpandableNavigationGroup group, String afterIdentifier) {
+        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -226,6 +221,11 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     // ------------------------------------------------------ api
 
     @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
     public String text() {
         if (this.text != null) {
             return Elements.textNode(this.text);
@@ -234,17 +234,38 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         }
     }
 
+    @Override
+    public Iterator<NavigationItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ul);
+        items.clear();
+    }
+
     // ------------------------------------------------------ internal
 
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         dom.accept(item);
     }
 
     private void internalAddGroup(ExpandableNavigationGroup group, Consumer<ExpandableNavigationGroup> dom) {
         group.collapse(); // all groups are collapsed by default
-        expandableGroups.put(group.id, group);
-        expandableGroups.put(group.id, group);
+        expandableGroups.put(group.identifier, group);
+        expandableGroups.put(group.identifier, group);
         if (toggleHandler != null) {
             group.toggleHandler = toggleHandler;
         }

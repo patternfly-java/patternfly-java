@@ -21,8 +21,10 @@ import java.util.Map;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -42,42 +44,48 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.simpleList;
 
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
-        ComponentContext<HTMLLIElement, SimpleListItem>, WithText<HTMLLIElement, SimpleListItem>, ElementDelegate<HTMLLIElement, SimpleListItem> {
+        ComponentContext<HTMLLIElement, SimpleListItem>,
+        WithIdentifier<HTMLLIElement, SimpleListItem>,
+        WithText<HTMLLIElement, SimpleListItem>,
+        ElementDelegate<HTMLLIElement, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
-    public static SimpleListItem simpleListItem(String id) {
-        return new SimpleListItem(id, button(ButtonType.button));
+    public static SimpleListItem simpleListItem(String identifier) {
+        return new SimpleListItem(identifier, button(ButtonType.button));
     }
 
-    public static SimpleListItem simpleListItem(String id, String text) {
-        return new SimpleListItem(id, button(ButtonType.button)).text(text);
+    public static SimpleListItem simpleListItem(String identifier, String text) {
+        return new SimpleListItem(identifier, button(ButtonType.button)).text(text);
     }
 
-    public static SimpleListItem simpleListItem(String id, String text, String href) {
-        return new SimpleListItem(id, a().apply(a -> a.tabIndex = 0)).text(text).href(href);
+    public static SimpleListItem simpleListItem(String identifier, String text, String href) {
+        return new SimpleListItem(identifier, a().apply(a -> a.tabIndex = 0)).text(text).href(href);
     }
 
-    public static SimpleListItem simpleListItem(String id, String text, String href, String target) {
-        return new SimpleListItem(id, a().apply(a -> a.tabIndex = 0)).text(text).href(href).target(target);
+    public static SimpleListItem simpleListItem(String identifier, String text, String href, String target) {
+        return new SimpleListItem(identifier, a().apply(a -> a.tabIndex = 0)).text(text).href(href).target(target);
     }
 
-    public static <E extends HTMLElement> SimpleListItem simpleListItem(String id, HTMLContainerBuilder<E> builder) {
-        return new SimpleListItem(id, builder);
+    public static <E extends HTMLElement> SimpleListItem simpleListItem(String identifier, HTMLContainerBuilder<E> builder) {
+        return new SimpleListItem(identifier, builder);
     }
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
     static final String SUB_COMPONENT_NAME = "sli";
-    public final String id;
+    private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
+
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement itemElement;
     private final HTMLAnchorElement anchorElement;
 
-    <E extends HTMLElement> SimpleListItem(String id, HTMLContainerBuilder<E> builder) {
-        super(SUB_COMPONENT_NAME, li().css(component(simpleList, item)).element());
-        this.id = id;
+    <E extends HTMLElement> SimpleListItem(String identifier, HTMLContainerBuilder<E> builder) {
+        super(SUB_COMPONENT_NAME, li().css(component(simpleList, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
         this.itemElement = builder.css(component(simpleList, item, link))
                 .on(click, e -> {
@@ -138,6 +146,11 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean has(String key) {

@@ -45,9 +45,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-basic
                 div()
                         .add(list()
-                                .addItem(listItem().text("First"))
-                                .addItem(listItem().text("Second"))
-                                .addItem(listItem().text("Third")))
+                                .addItem(listItem("list-basic-0").text("First"))
+                                .addItem(listItem("list-basic-1").text("Second"))
+                                .addItem(listItem("list-basic-2").text("Third")))
                         .element()
                 // @code-end:list-basic
         ));
@@ -57,9 +57,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-inline
                 div()
                         .add(list().inline()
-                                .addItem(listItem().text("First"))
-                                .addItem(listItem().text("Second"))
-                                .addItem(listItem().text("Third")))
+                                .addItem(listItem("list-inline-0").text("First"))
+                                .addItem(listItem("list-inline-1").text("Second"))
+                                .addItem(listItem("list-inline-2").text("Third")))
                         .element()
                 // @code-end:list-inline
         ));
@@ -69,9 +69,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-ordered
                 div()
                         .add(list(ol())
-                                .addItem(listItem().text("First"))
-                                .addItem(listItem().text("Second"))
-                                .addItem(listItem().text("Third")))
+                                .addItem(listItem("list-ordered-0").text("First"))
+                                .addItem(listItem("list-ordered-1").text("Second"))
+                                .addItem(listItem("list-ordered-2").text("Third")))
                         .element()
                 // @code-end:list-ordered
         ));
@@ -81,9 +81,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-plain
                 div()
                         .add(list().plain()
-                                .addItem(listItem().text("First"))
-                                .addItem(listItem().text("Second"))
-                                .addItem(listItem().text("Third")))
+                                .addItem(listItem("list-plain-0").text("First"))
+                                .addItem(listItem("list-plain-1").text("Second"))
+                                .addItem(listItem("list-plain-2").text("Third")))
                         .element()
                 // @code-end:list-plain
         ));
@@ -93,9 +93,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-bordered
                 div()
                         .add(list().plain().bordered()
-                                .addItem(listItem().text("First"))
-                                .addItem(listItem().text("Second"))
-                                .addItem(listItem().text("Third")))
+                                .addItem(listItem("list-bordered-0").text("First"))
+                                .addItem(listItem("list-bordered-1").text("Second"))
+                                .addItem(listItem("list-bordered-2").text("Third")))
                         .element()
                 // @code-end:list-bordered
         ));
@@ -105,9 +105,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-icons
                 div()
                         .add(list().plain()
-                                .addItem(listItem().text("First").icon(bookOpen()))
-                                .addItem(listItem().text("Second").icon(key()))
-                                .addItem(listItem().text("Third").icon(desktop())))
+                                .addItem(listItem("list-icons-0").text("First").icon(bookOpen()))
+                                .addItem(listItem("list-icons-1").text("Second").icon(key()))
+                                .addItem(listItem("list-icons-2").text("Third").icon(desktop())))
                         .element()
                 // @code-end:list-icons
         ));
@@ -117,9 +117,9 @@ public class ListComponent extends SnippetPage {
                 // @code-start:list-icons-lg
                 div()
                         .add(list().plain().largeIcons()
-                                .addItem(listItem().text("First").icon(bookOpen()))
-                                .addItem(listItem().text("Second").icon(key()))
-                                .addItem(listItem().text("Third").icon(desktop())))
+                                .addItem(listItem("list-icons-lg-0").text("First").icon(bookOpen()))
+                                .addItem(listItem("list-icons-lg-1").text("Second").icon(key()))
+                                .addItem(listItem("list-icons-lg-2").text("Third").icon(desktop())))
                         .element()
                 // @code-end:list-icons-lg
         ));

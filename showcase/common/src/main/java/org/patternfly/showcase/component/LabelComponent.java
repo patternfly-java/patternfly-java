@@ -152,9 +152,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-basic
                 div()
                         .add(labelGroup()
-                                .addLabel(label("Label 1").icon(infoCircle()))
-                                .addLabel(label("Label 2", blue).icon(infoCircle()))
-                                .addLabel(label("Label 3", green).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(infoCircle()))
+                                .addItem(label("Label 2", blue).icon(infoCircle()))
+                                .addItem(label("Label 3", green).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-basic
         ));
@@ -164,12 +164,12 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-overflow
                 div()
                         .add(labelGroup()
-                                .addLabel(label("Label 1").icon(infoCircle()))
-                                .addLabel(label("Label 2", blue).icon(infoCircle()))
-                                .addLabel(label("Label 3", green).icon(infoCircle()))
-                                .addLabel(label("Label 4", orange).icon(infoCircle()))
-                                .addLabel(label("Label 5", red).icon(infoCircle()))
-                                .addLabel(label("Label 6", purple).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(infoCircle()))
+                                .addItem(label("Label 2", blue).icon(infoCircle()))
+                                .addItem(label("Label 3", green).icon(infoCircle()))
+                                .addItem(label("Label 4", orange).icon(infoCircle()))
+                                .addItem(label("Label 5", red).icon(infoCircle()))
+                                .addItem(label("Label 6", purple).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-overflow
         ));
@@ -179,9 +179,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category
                 div()
                         .add(labelGroup("Group label")
-                                .addLabel(label("Label 1").icon(infoCircle()))
-                                .addLabel(label("Label 2", blue).icon(infoCircle()))
-                                .addLabel(label("Label 3", green).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(infoCircle()))
+                                .addItem(label("Label 2", blue).icon(infoCircle()))
+                                .addItem(label("Label 3", green).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-category
         ));
@@ -191,11 +191,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category-removable
                 div()
                         .add(labelGroup("Group label").closable()
-                                .addLabel(label("Label 1").icon(infoCircle()))
-                                .addLabel(label("Label 2", blue).icon(infoCircle()))
-                                .addLabel(label("Label 3", green).icon(infoCircle()))
-                                .addLabel(label("Label 4", orange).icon(infoCircle()))
-                                .addLabel(label("Label 5", red).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(infoCircle()))
+                                .addItem(label("Label 2", blue).icon(infoCircle()))
+                                .addItem(label("Label 3", green).icon(infoCircle()))
+                                .addItem(label("Label 4", orange).icon(infoCircle()))
+                                .addItem(label("Label 5", red).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-category-removable
         ));
@@ -205,11 +205,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-vertical
                 div()
                         .add(labelGroup("Group label with a very long name").vertical().closable()
-                                .addLabel(label("Label 1").icon(infoCircle()))
-                                .addLabel(label("Label 2", blue).icon(infoCircle()))
-                                .addLabel(label("Label 3", green).icon(infoCircle()))
-                                .addLabel(label("Label 4", orange).icon(infoCircle()))
-                                .addLabel(label("Label 5", red).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(infoCircle()))
+                                .addItem(label("Label 2", blue).icon(infoCircle()))
+                                .addItem(label("Label 3", green).icon(infoCircle()))
+                                .addItem(label("Label 4", orange).icon(infoCircle()))
+                                .addItem(label("Label 5", red).icon(infoCircle())))
                         .element()
                 // @code-end:label-group-vertical
         ));
@@ -219,10 +219,10 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-editable
                 div()
                         .add(labelGroup()
-                                .addLabel(label("Editable label", blue).editable().closable())
-                                .addLabel(label("Static label", green))
-                                .addLabel(label("Editable label 2", blue).editable().closable())
-                                .addLabel(label("Editable label 3", blue).editable().closable()))
+                                .addItem(label("Editable label", blue).editable().closable())
+                                .addItem(label("Static label", green))
+                                .addItem(label("Editable label 2", blue).editable().closable())
+                                .addItem(label("Editable label 3", blue).editable().closable()))
                         .element()
                 // @code-end:label-group-editable
         ));

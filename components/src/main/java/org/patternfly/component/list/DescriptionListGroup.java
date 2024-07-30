@@ -15,6 +15,13 @@
  */
 package org.patternfly.component.list;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.patternfly.component.WithIdentifier;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,23 +29,37 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.group;
 
-public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivElement, DescriptionListGroup> {
+public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivElement, DescriptionListGroup> implements
+        ComponentContext<HTMLDivElement, DescriptionListGroup>,
+        WithIdentifier<HTMLDivElement, DescriptionListGroup> {
 
     // ------------------------------------------------------ factory
 
-    public static DescriptionListGroup descriptionListGroup() {
-        return new DescriptionListGroup();
+    public static DescriptionListGroup descriptionListGroup(String identifier) {
+        return new DescriptionListGroup(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "dlg";
+    private final String identifier;
+    private final Map<String, Object> data;
 
-    DescriptionListGroup() {
-        super(SUB_COMPONENT_NAME, div().css(component(descriptionList, group)).element());
+    DescriptionListGroup(String identifier) {
+        super(SUB_COMPONENT_NAME, div().css(component(descriptionList, group))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public <T> DescriptionListGroup store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
 
     @Override
     public DescriptionListGroup that() {
@@ -53,5 +74,25 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
 
     public DescriptionListGroup addDescription(DescriptionListDescription description) {
         return add(description);
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 }

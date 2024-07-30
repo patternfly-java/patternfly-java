@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.accordion;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -33,6 +35,8 @@ import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.dl;
+import static org.jboss.elemento.Elements.isAttached;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.display;
@@ -46,8 +50,10 @@ import static org.patternfly.style.Size.lg;
  *
  * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
  */
-public class Accordion extends BaseComponent<HTMLElement, Accordion>
-        implements Bordered<HTMLElement, Accordion>, Attachable {
+public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
+        Bordered<HTMLElement, Accordion>,
+        HasItems<HTMLElement, Accordion, AccordionItem>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -91,12 +97,12 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion>
 
     // ------------------------------------------------------ add
 
-    public Accordion addItem(AccordionItem item) {
-        return add(item);
-    }
-
+    @Override
     public Accordion add(AccordionItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
+        if (isAttached(this)) {
+            item.appendTo(this);
+        }
         return this;
     }
 
@@ -158,26 +164,47 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion>
 
     // ------------------------------------------------------ api
 
-    public void collapse(String itemId) {
-        collapse(itemId, true);
+    public void collapse(String identifier) {
+        collapse(identifier, true);
     }
 
-    public void collapse(String itemId, boolean fireEvent) {
-        AccordionItem item = items.get(itemId);
+    public void collapse(String identifier, boolean fireEvent) {
+        AccordionItem item = items.get(identifier);
         if (item != null) {
             collapseItem(item, fireEvent);
         }
     }
 
-    public void expand(String itemId) {
-        expand(itemId, true);
+    public void expand(String identifier) {
+        expand(identifier, true);
     }
 
-    public void expand(String itemId, boolean fireEvent) {
-        AccordionItem item = items.get(itemId);
+    public void expand(String identifier, boolean fireEvent) {
+        AccordionItem item = items.get(identifier);
         if (item != null) {
             expandItem(item, fireEvent);
         }
+    }
+
+    @Override
+    public Iterator<AccordionItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 
     // ------------------------------------------------------ internal
@@ -196,7 +223,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion>
         }
         if (singleExpand) {
             for (AccordionItem otherItem : items.values()) {
-                if (otherItem.id.equals(item.id)) {
+                if (otherItem.identifier().equals(item.identifier())) {
                     continue;
                 }
                 otherItem.collapse();

@@ -26,9 +26,12 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -44,12 +47,14 @@ import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
@@ -74,6 +79,7 @@ import static org.patternfly.core.Roles.group;
 import static org.patternfly.core.Roles.treeItem;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.fas.exclamationCircle;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.container;
@@ -88,21 +94,22 @@ import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Size.md;
 
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
-        TreeViewItems<HTMLLIElement, TreeViewItem>,
         ComponentContext<HTMLLIElement, TreeViewItem>,
         Compact<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
+        HasItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
+        WithIdentifier<HTMLLIElement, TreeViewItem>,
         WithIcon<HTMLLIElement, TreeViewItem>,
         WithText<HTMLLIElement, TreeViewItem> {
 
     // ------------------------------------------------------ factory
 
-    public static TreeViewItem treeViewItem(String id) {
-        return new TreeViewItem(id);
+    public static TreeViewItem treeViewItem(String identifier) {
+        return new TreeViewItem(identifier);
     }
 
-    public static TreeViewItem treeViewItem(String id, String text) {
-        return new TreeViewItem(id).text(text);
+    public static TreeViewItem treeViewItem(String identifier, String text) {
+        return new TreeViewItem(identifier).text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -113,13 +120,18 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "loading"))
             .text("Loading")
             .icon(spinner(md, "Loading").element());
+    private static final Supplier<TreeViewItem> error = () -> treeViewItem(
+            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "error"))
+            .text("Error")
+            .icon(exclamationCircle());
 
-    public final String id;
     final LinkedHashMap<String, TreeViewItem> items;
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement contentElement;
     private final HTMLElement containerElement;
     private final HTMLUListElement childrenElement;
+
     TreeViewItem parent;
     HTMLElement tabElement;
     private String text;
@@ -135,13 +147,14 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private ToggleHandler<TreeViewItem> toggleHandler;
     private Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> asyncItems;
 
-    TreeViewItem(String id) {
+    TreeViewItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(treeView, list, item))
                 .aria(expanded, false)
                 .attr(role, treeItem)
                 .attr(tabindex, -1)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.id = id;
+        this.identifier = identifier;
         this.domFinished = false;
         this.status = static_;
         this.items = new LinkedHashMap<>();
@@ -157,12 +170,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     @Override
     public TreeViewItem add(TreeViewItem item) {
         item.parent = this;
-        items.put(item.id, item);
+        items.put(item.identifier, item);
         childrenElement.appendChild(item.element());
         TreeView treeView = lookupComponent(true);
-        if (treeView != null) {
-            item.finishDOM(treeView);
-        }
+        item.finishDOM(treeView);
         return this;
     }
 
@@ -245,6 +256,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     // ------------------------------------------------------ api
 
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
     public boolean selected() {
         if (checkboxElement != null) {
             return checkboxElement.checked;
@@ -256,25 +272,31 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public void collapse(boolean fireEvent) {
-        Expandable.collapse(element(), element(), null);
-        failSafeRemoveFromParent(childrenElement);
-        if (domFinished && icon != null && expandedIcon != null) {
-            failSafeIconContainer().replaceChildren(icon);
-        }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, false);
+        if (expanded()) {
+            Expandable.collapse(element(), element(), null);
+            failSafeRemoveFromParent(childrenElement);
+            if (domFinished && icon != null && expandedIcon != null) {
+                failSafeIconContainer().replaceChildren(icon);
+            }
+            if (fireEvent && toggleHandler != null) {
+                toggleHandler.onToggle(new Event(""), this, false);
+            }
         }
     }
 
     @Override
     public void expand(boolean fireEvent) {
-        Expandable.expand(element(), element(), null);
-        add(childrenElement);
-        if (domFinished && icon != null && expandedIcon != null) {
-            failSafeIconContainer().replaceChildren(expandedIcon);
-        }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, true);
+        if (!expanded()) {
+            Expandable.expand(element(), element(), null);
+            if (!isAttached(childrenElement)) {
+                add(childrenElement);
+            }
+            if (domFinished && icon != null && expandedIcon != null) {
+                failSafeIconContainer().replaceChildren(expandedIcon);
+            }
+            if (fireEvent && toggleHandler != null) {
+                toggleHandler.onToggle(new Event(""), this, true);
+            }
         }
     }
 
@@ -308,15 +330,37 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         return items.values().iterator();
     }
 
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
+    }
+
     // ------------------------------------------------------ internal
 
     void finishDOM(TreeView tv) {
+        if (tv == null) {
+            logger.warn("DOM for tree view item %s cannot be finished: Unable to find parent tree view component: %o",
+                    identifier,
+                    element());
+            return;
+        }
         if (domFinished) {
-            logger.warn("DOM for tree view item %o - %s[%s] is already finished", element(), id, tv.type.name());
+            logger.warn("DOM for tree view item %s[%s] is already finished: %o", identifier, tv.type.name(), element());
             return;
         }
 
-        logger.debug("Finishing DOM for tree view item %o - %s[%s]", element(), id, tv.type.name());
+        logger.debug("Finish DOM for tree view item %s[%s]: %o", identifier, tv.type.name(), element());
         // create node, toggle and text elements based on the tree view type
         switch (tv.type) {
             case default_:
@@ -378,7 +422,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 containerElement.appendChild(span().css(component(treeView, node, check))
                         .add(checkboxElement = input(checkbox)
                                 .id(checkboxId)
-                                .aria(labelledBy, Id.build(id, "check"))
+                                .aria(labelledBy, Id.build(identifier, "check"))
                                 .tabIndex(-1)
                                 .on(change, e -> tv.select(this, ((HTMLInputElement) e.target).checked))
                                 .on(click, Event::stopPropagation)
@@ -387,7 +431,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 tabElement = checkboxElement;
                 break;
             default:
-                logger.error("Unsupported tree view type in tree view item %o - %s: %s", element(), id, tv.type.name());
+                logger.error("Unsupported tree view type in tree view item %s: %s %o", identifier, tv.type.name(), element());
                 break;
         }
 
@@ -420,6 +464,53 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             if (!child.domFinished) {
                 child.finishDOM(tv);
             }
+        }
+    }
+
+    Promise<Iterable<TreeViewItem>> load() {
+        if (status == pending && asyncItems != null) {
+            // show loading indicator after a given timeout
+            TreeViewItem[] loadingItem = new TreeViewItem[1];
+            double handle = setTimeout(__ -> {
+                TreeView treeView = lookupComponent(true);
+                if (treeView != null) {
+                    loadingItem[0] = loading.get();
+                    loadingItem[0].finishDOM(treeView);
+                    childrenElement.appendChild(loadingItem[0].element());
+                }
+            }, LOADING_TIMEOUT);
+
+            // load items
+            Promise<Iterable<TreeViewItem>> promise = asyncItems.apply(this);
+            return promise
+                    .then(items -> {
+                        status = resolved;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        for (TreeViewItem child : items) {
+                            addItem(child);
+                        }
+                        if (this.items.isEmpty()) {
+                            failSafeRemoveFromParent(toggleElement);
+                            collapse(false);
+                        }
+                        return Promise.resolve(items);
+                    })
+                    .catch_(error -> {
+                        status = rejected;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
+                        TreeView treeView = lookupComponent(true);
+                        if (treeView != null) {
+                            TreeViewItem errorItem = TreeViewItem.error.get();
+                            errorItem.finishDOM(treeView);
+                            childrenElement.appendChild(errorItem.element());
+                        }
+                        return Promise.reject(error);
+                    });
+        } else {
+            return Promise.resolve(emptyList());
         }
     }
 
@@ -470,45 +561,6 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 }
             }
             indeterminate(item.parent);
-        }
-    }
-
-    private void load() {
-        if (status == pending && asyncItems != null) {
-
-            // show loading indicator after a given timeout
-            TreeViewItem[] loadingItem = new TreeViewItem[1];
-            double handle = setTimeout(__ -> {
-                loadingItem[0] = loading.get();
-                TreeView treeView = lookupComponent(true);
-                if (treeView != null) {
-                    loadingItem[0].finishDOM(treeView);
-                }
-                childrenElement.appendChild(loadingItem[0].element());
-            }, LOADING_TIMEOUT);
-
-            // load items
-            asyncItems.apply(this)
-                    .then(items -> {
-                        status = resolved;
-                        for (TreeViewItem child : items) {
-                            addItem(child);
-                        }
-                        if (this.items.isEmpty()) {
-                            failSafeRemoveFromParent(toggleElement);
-                            collapse(false);
-                        }
-                        return null;
-                    })
-                    .catch_(error -> {
-                        status = rejected;
-                        logger.error("Unable to load items for %o - %s: %s", element(), id, error);
-                        return null;
-                    })
-                    .finally_(() -> {
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                    });
         }
     }
 

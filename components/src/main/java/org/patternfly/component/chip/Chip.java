@@ -15,7 +15,8 @@
  */
 package org.patternfly.component.chip;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -24,11 +25,14 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 
@@ -62,36 +66,46 @@ import static org.patternfly.style.Variables.MaxWidth;
  * @see <a href="https://www.patternfly.org/components/chip">https://www.patternfly.org/components/chip</a>
  */
 public class Chip extends BaseComponent<HTMLElement, Chip> implements
+        ComponentContext<HTMLElement, Chip>,
         Closeable<HTMLElement, Chip>,
         HasValue<String>,
+        WithIdentifier<HTMLElement, Chip>,
         WithText<HTMLElement, Chip>,
         Attachable {
 
     // ------------------------------------------------------ factory
 
     public static Chip chip(String text) {
-        return new Chip(div(), text);
+        return new Chip(div(), Id.unique(ComponentType.Chip.id), text);
+    }
+
+    public static Chip chip(String identifier, String text) {
+        return new Chip(div(), identifier, text);
     }
 
     // ------------------------------------------------------ instance
 
     private static final int DEFAULT_MAX_WIDTH = 16; // characters
 
-    final String id;
     final HTMLElement textElement;
+    private final String identifier;
     private final HTMLElement contentElement;
     private final HTMLElement actionsElement;
     private final TooltipToggle tooltipToggle;
+    private final Map<String, Object> data;
     private Badge badge;
     private Button closeButton;
     private CloseHandler<Chip> closeHandler;
 
-    <E extends HTMLElement> Chip(HTMLContainerBuilder<E> builder, String text) {
-        super(ComponentType.Chip, builder.css(component(chip)).element());
-        this.id = Id.unique(componentType().id);
+    <E extends HTMLElement> Chip(HTMLContainerBuilder<E> builder, String identifier, String text) {
+        super(ComponentType.Chip, builder.css(component(chip))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
 
-        String textId = Id.unique(id, "text");
-        String buttonId = Id.unique(id, "close");
+        String textId = Id.unique(identifier, "text");
+        String buttonId = Id.unique(identifier, "close");
         add(contentElement = span().css(component(chip, content))
                 .add(textElement = span().css(component(chip, Classes.text))
                         .id(textId)
@@ -118,23 +132,6 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     @Override
     public void detach(MutationRecord mutationRecord) {
         tooltipToggle.stop();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Chip chip = (Chip) o;
-        return Objects.equals(id, chip.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     // ------------------------------------------------------ add
@@ -173,6 +170,12 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     }
 
     @Override
+    public <T> Chip store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public Chip that() {
         return this;
     }
@@ -194,6 +197,12 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     }
 
     // ------------------------------------------------------ api
+
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public String value() {
@@ -219,5 +228,18 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     @Override
     public String text() {
         return textElement.textContent;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 }

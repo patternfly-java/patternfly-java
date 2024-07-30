@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.label;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -33,16 +35,20 @@ import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIconAndText;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
 import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -87,26 +93,38 @@ import static org.patternfly.style.Variables.MaxWidth;
 public class Label extends BaseComponentFlat<HTMLElement, Label> implements
         Closeable<HTMLElement, Label>,
         Compact<HTMLElement, Label>,
+        ComponentContext<HTMLElement, Label>,
+        Disabled<HTMLElement, Label>,
+        HasValue<String>,
         WithText<HTMLElement, Label>,
         WithIcon<HTMLElement, Label>,
         WithIconAndText<HTMLElement, Label>,
-        HasValue<String>,
+        WithIdentifier<HTMLElement, Label>,
         Attachable {
 
     // ------------------------------------------------------ factory
 
     public static Label label(String text) {
-        return new Label(span(), text, grey);
+        return new Label(span(), Id.unique(ComponentType.Label.id), text, grey);
+    }
+
+    public static Label label(String identifier, String text) {
+        return new Label(span(), identifier, text, grey);
     }
 
     public static Label label(String text, Color color) {
-        return new Label(span(), text, color);
+        return new Label(span(), Id.unique(ComponentType.Label.id), text, color);
+    }
+
+    public static Label label(String identifier, String text, Color color) {
+        return new Label(span(), identifier, text, color);
     }
 
     // ------------------------------------------------------ instance
 
-    final String id;
     final HTMLElement textElement;
+    private final String identifier;
+    private final Map<String, Object> data;
     private final TooltipToggle tooltipToggle;
     private HTMLElement contentElement;
     private HTMLElement actionsElement;
@@ -120,9 +138,12 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     private LabelEditCompleteHandler editCompleteHandler;
     private HandlerRegistration cancelEditModeOnDocumentClick;
 
-    <E extends HTMLElement> Label(HTMLContainerBuilder<E> builder, String text, Color color) {
-        super(ComponentType.Label, builder.css(component(Classes.label), color.modifier).element());
-        this.id = Id.unique(componentType().id);
+    <E extends HTMLElement> Label(HTMLContainerBuilder<E> builder, String identifier, String text, Color color) {
+        super(ComponentType.Label, builder.css(component(Classes.label), color.modifier)
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
         element().appendChild(contentElement = span().css(component(Classes.label, content))
                 .add(textElement = span().css(component(Classes.label, Classes.text))
                         .textContent(text)
@@ -151,15 +172,23 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
             return false;
         }
         Label label = (Label) o;
-        return Objects.equals(id, label.id);
+        return Objects.equals(identifier, label.identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(identifier);
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public Label disabled(boolean disabled) {
+        if (closeButton != null) {
+            closeButton.disabled(disabled);
+        }
+        return Disabled.super.disabled(disabled);
+    }
 
     /** Same as {@linkplain #outline(boolean) outline(true)} */
     public Label outline() {
@@ -264,6 +293,12 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     @Override
+    public <T> Label store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public Label that() {
         return this;
     }
@@ -301,6 +336,25 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     // ------------------------------------------------------ api
+
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
+    }
 
     @Override
     public String value() {

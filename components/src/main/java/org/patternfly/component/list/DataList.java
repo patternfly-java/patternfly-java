@@ -15,16 +15,20 @@
  */
 package org.patternfly.component.list;
 
-import java.util.function.Function;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.table.Wrap.breakWord;
 import static org.patternfly.component.table.Wrap.nowrap;
@@ -49,7 +53,9 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/data-list">https://www.patternfly.org/components/data-list</a>
  */
-public class DataList extends BaseComponent<HTMLUListElement, DataList> implements Compact<HTMLUListElement, DataList> {
+public class DataList extends BaseComponent<HTMLUListElement, DataList> implements
+        Compact<HTMLUListElement, DataList>,
+        HasItems<HTMLUListElement, DataList, DataListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -59,25 +65,22 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
 
     // ------------------------------------------------------ instance
 
+    private final Map<String, DataListItem> items;
+
     DataList() {
         super(ComponentType.DataList, ul().css(component(dataList))
                 .attr(role, list)
                 .element());
+        this.items = new LinkedHashMap<>();
         gridBreakpoint(gridMd);
     }
 
     // ------------------------------------------------------ add
 
-    public <T> DataList addItems(Iterable<T> items, Function<T, DataListItem> display) {
-        for (T item : items) {
-            DataListItem dli = display.apply(item);
-            addItem(dli);
-        }
-        return this;
-    }
-
-    public DataList addItem(DataListItem item) {
-        return add(item);
+    @Override
+    public DataList add(DataListItem item) {
+        items.put(item.identifier(), item);
+        return add(item.element());
     }
 
     // ------------------------------------------------------ builder
@@ -101,5 +104,28 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     @Override
     public DataList that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<DataListItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 }

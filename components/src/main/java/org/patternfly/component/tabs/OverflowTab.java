@@ -91,7 +91,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     private int count;
     private String text;
     private boolean showCount;
-    private Popper popper;
+    private final Popper popper;
     private MenuItem selectedMenuItem;
 
     OverflowTab() {
@@ -112,7 +112,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .onSingleSelect((event, menuItem, selected) -> select(menuItem))
                 .addContent(menuContent()
                         .addList(menuList = menuList()
-                                .addItems(tabs.values(), tab -> menuItem(tab.id, action).text(tab.text())))));
+                                .addItems(tabs.values(), tab -> menuItem(tab.identifier(), action).text(tab.text())))));
         setVisible(menu, false);
 
         popper = new PopperBuilder(ComponentType.Tabs.componentName, button.element(), menu.element())
@@ -165,9 +165,9 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
             count = overflowTabs.size();
             updateText();
             for (Tab tab : overflowTabs) {
-                tabs.put(tab.id, tab);
+                tabs.put(tab.identifier(), tab);
             }
-            menuList.addItems(overflowTabs, tab -> menuItem(tab.id, action).text(tab.text()));
+            menuList.addItems(overflowTabs, tab -> menuItem(tab.identifier(), action).text(tab.text()));
         }
     }
 
@@ -181,7 +181,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
 
     private void select(MenuItem menuItem) {
         selectedMenuItem = menuItem;
-        Tab tab = tabs.get(menuItem.id);
+        Tab tab = tabs.get(menuItem.identifier());
         if (tab != null) {
             classList().add(modifier(current));
             textElement.textContent = tab.text();

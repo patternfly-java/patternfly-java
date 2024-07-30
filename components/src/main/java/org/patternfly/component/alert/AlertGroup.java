@@ -15,10 +15,13 @@
  */
 package org.patternfly.component.alert;
 
-import java.util.function.Function;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -29,6 +32,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.alert.Alert.NO_TIMEOUT;
 import static org.patternfly.core.Aria.atomic;
@@ -48,7 +52,8 @@ import static org.patternfly.style.Classes.modifier;
  * @see <a href=
  *      "https://www.patternfly.org/components/alert#alert-group-examples">https://www.patternfly.org/components/alert#alert-group-examples</a>
  */
-public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
+public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> implements
+        HasItems<HTMLUListElement, AlertGroup, Alert> {
 
     // ------------------------------------------------------ factory
 
@@ -85,6 +90,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     // ------------------------------------------------------ instance
 
     private final AlertGroupType type;
+    private final Map<String, Alert> items;
     private final int timeout;
 
     AlertGroup(AlertGroupType type, int timeout) {
@@ -92,6 +98,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
                 .attr(role, list)
                 .element());
         this.type = type;
+        this.items = new LinkedHashMap<>();
         this.timeout = timeout;
         storeComponent();
 
@@ -106,20 +113,9 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
 
     // ------------------------------------------------------ add
 
-    public <T> AlertGroup addAlerts(Iterable<T> items, Function<T, Alert> display) {
-        for (T item : items) {
-            Alert alert = display.apply(item);
-            addAlert(alert);
-        }
-        return this;
-    }
-
-    public AlertGroup addAlert(Alert alert) {
-        return add(alert);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public AlertGroup add(Alert alert) {
+        items.put(alert.identifier(), alert);
         if (type == AlertGroupType.toast) {
             if (timeout != NO_TIMEOUT && alert.timeout == NO_TIMEOUT) {
                 alert.timeout(timeout);
@@ -143,6 +139,30 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> {
     public AlertGroup that() {
         return this;
     }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<Alert> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
+    }
+
 
     // ------------------------------------------------------ internal
 

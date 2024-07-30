@@ -98,7 +98,7 @@ public class NavigationComponent extends SnippetPage {
                                         .addItem(navigationItem("nav-exp-02", "Subnav 1 link 3", "#item-02")))
                                 .addGroup(expandableNavigationGroup("nav-exp-1", "Expandable group 2")
                                         .addItem(navigationItem("nav-exp-10", "Custom onClick link", "#item-10")
-                                                .onClick((event, ni) -> console.log("Clicked on item " + ni.id)))
+                                                .onClick((event, ni) -> console.log("Clicked on item " + ni.identifier())))
                                         .addItem(navigationItem("nav-exp-11", "Subnav 2 link 1", "#item-11"))
                                         .addItem(navigationItem("nav-exp-12", "Subnav 2 link 2", "#item-12"))
                                         .addItem(navigationItem("nav-exp-13", "Subnav 2 link 3", "#item-13"))))

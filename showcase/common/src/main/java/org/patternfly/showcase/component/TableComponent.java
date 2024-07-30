@@ -72,6 +72,7 @@ import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 import static org.patternfly.showcase.model.Repositories.repositories;
+import static org.patternfly.showcase.model.Repository.columns;
 
 @Route(value = "/components/table", title = "Table")
 public class TableComponent extends SnippetPage {
@@ -87,16 +88,18 @@ public class TableComponent extends SnippetPage {
             Table table = table()
                     .addCaption(tableCaption().textContent("Simple table using composable components"))
                     .addHead(thead()
-                            .addRow(tr().addHeaders(Repository.keys, name -> th().textContent(name))))
+                            .addRow(tr("table-basic-head")
+                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
                     .addBody(tbody()
-                            .addRows(repositories, repository -> tr()
-                                    .addData(td("Repositories").textContent(repository.name))
-                                    .addData(td("Branches").textContent(String.valueOf(repository.branches)))
-                                    .addData(td("Pull requests").textContent(String.valueOf(repository.pullRequests)))
-                                    .addData(td("Workspaces").textContent(String.valueOf(repository.workspaces)))
-                                    .addData(td("Last commit").add(htmlElement("relative-time", HTMLElement.class)
-                                            .attr("datetime", repository.lastCommit.toISOString())
-                                            .textContent(repository.lastCommit.toISOString())))));
+                            .addRows(repositories, repository -> tr("table-basic-" + repository.id)
+                                    .addItem(td(columns.get(0).value).textContent(repository.name))
+                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(4).value)
+                                            .add(htmlElement("relative-time", HTMLElement.class)
+                                                    .attr("datetime", repository.lastCommit.toISOString())
+                                                    .textContent(repository.lastCommit.toISOString())))));
             ToggleGroup toggleGroup = toggleGroup(single)
                     .addItem(toggleGroupItem("table-basic-default", "Default")
                             .onClick((e, tgi) -> {
@@ -162,15 +165,15 @@ public class TableComponent extends SnippetPage {
             List<Repository> repositories = repositories(5);
             return table()
                     .addHead(thead()
-                            .addRow(tr()
-                                    .addHeaders(Repository.keys, name -> th().textContent(name))))
+                            .addRow(tr("table-sel-click-head")
+                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
                     .addBody(tbody()
-                            .addRows(repositories, repository -> tr(repository.name).clickable()
-                                    .addData(td("Repositories").textContent(repository.name))
-                                    .addData(td("Branches").textContent(String.valueOf(repository.branches)))
-                                    .addData(td("Pull requests").textContent(String.valueOf(repository.pullRequests)))
-                                    .addData(td("Workspaces").textContent(String.valueOf(repository.workspaces)))
-                                    .addData(td("Last commit")
+                            .addRows(repositories, repository -> tr("table-sel-click" + repository.id).clickable()
+                                    .addItem(td(columns.get(0).value).textContent(repository.name))
+                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(4).value)
                                             .add(htmlElement("relative-time", HTMLElement.class)
                                                     .attr("datetime", repository.lastCommit.toISOString())
                                                     .textContent(repository.lastCommit.toISOString())))))
@@ -197,17 +200,17 @@ public class TableComponent extends SnippetPage {
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             return table()
                     .addHead(thead()
-                            .addRow(tr()
-                                    .addHeaders(Repository.keys, name -> th().textContent(name))
-                                    .addHeader(th().screenReader("Primary action"))
-                                    .addHeader(th().screenReader("Secondary action"))))
+                            .addRow(tr("table-actions-head")
+                                    .addItems(columns, t -> th(t.key).textContent(t.value))
+                                    .addItem(th().screenReader("Primary action"))
+                                    .addItem(th().screenReader("Secondary action"))))
                     .addBody(tbody()
-                            .addRows(repositories, repository -> tr()
-                                    .addData(td("Repositories").textContent(repository.name))
-                                    .addData(td("Branches").textContent(String.valueOf(repository.branches)))
-                                    .addData(td("Pull requests").textContent(String.valueOf(repository.pullRequests)))
-                                    .addData(td("Workspaces").textContent(String.valueOf(repository.workspaces)))
-                                    .addData(td("Last commit")
+                            .addRows(repositories, repository -> tr("table-actions" + repository.id)
+                                    .addItem(td(columns.get(0).value).textContent(repository.name))
+                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(4).value)
                                             .add(htmlElement("relative-time", HTMLElement.class)
                                                     .attr("datetime", repository.lastCommit.toISOString())
                                                     .textContent(repository.lastCommit.toISOString())))
@@ -215,13 +218,13 @@ public class TableComponent extends SnippetPage {
                                         boolean primaryAction = repository.pullRequests % 5 != 0;
                                         boolean secondaryAction = repository.pullRequests % 2 != 0;
                                         if (primaryAction) {
-                                            tr.addData(td("Primary action").wrap(fitContent)
+                                            tr.addItem(td("Primary action").wrap(fitContent)
                                                     .add(tableText()
                                                             .add(button().secondary().text("Start"))));
-                                            tr.addData(td().actionCell().add(dropdown.get().disabled(secondaryAction)));
+                                            tr.addItem(td().actionCell().add(dropdown.get().disabled(secondaryAction)));
                                         } else {
-                                            tr.addData(td());
-                                            tr.addData(td());
+                                            tr.addItem(td());
+                                            tr.addItem(td());
                                         }
                                     })))
                     .element();
@@ -275,11 +278,11 @@ public class TableComponent extends SnippetPage {
             // @code-start:table-empty
             return table()
                     .addHead(thead()
-                            .addRow(tr()
-                                    .addHeaders(Repository.keys, name -> th().textContent(name))))
+                            .addRow(tr("table-empty-head")
+                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
                     .addBody(tbody()
-                            .addRow(tr()
-                                    .addData(td().colSpan(Repository.keys.size())
+                            .addItem(tr("table-empty-row")
+                                    .addItem(td().colSpan(columns.size())
                                             .add(bullseye()
                                                     .add(emptyState().size(Size.sm)
                                                             .addHeader(emptyStateHeader(2)

@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -26,6 +28,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
@@ -38,13 +41,18 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
+import elemental2.dom.ScrollIntoViewOptions;
+import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.document;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.reverse;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.isElementInView;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.keydown;
-import static org.patternfly.component.tree.TreeViewItems.traverseItems;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Attributes.role;
@@ -64,7 +72,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  * @see <a href= "https://www.patternfly.org/components/tree-view">https://www.patternfly.org/components/tree-view</a>
  */
 public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
-        TreeViewItems<HTMLElement, TreeView>,
+        HasItems<HTMLElement, TreeView, TreeViewItem>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -80,7 +88,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     // ------------------------------------------------------ instance
 
     final TreeViewType type;
-    final LinkedHashMap<String, TreeViewItem> items;
+    private final LinkedHashMap<String, TreeViewItem> items;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
     Supplier<Element> icon;
     Supplier<Element> expandedIcon;
@@ -103,6 +111,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     @Override
     public void attach(MutationRecord mutationRecord) {
+        traverseItems(this, treeViewItem -> treeViewItem.finishDOM(this));
         if (items.values().iterator().hasNext()) {
             TreeViewItem item = items.values().iterator().next();
             if (item.tabElement != null) {
@@ -133,7 +142,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     @Override
     public TreeView add(TreeViewItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         item.finishDOM(this);
         ul.add(item);
         return this;
@@ -191,6 +200,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     // ------------------------------------------------------ api
 
+    public Promise<Iterable<TreeViewItem>> load(String identifier) {
+        return load(findItem(identifier, items));
+    }
+
+    public Promise<Iterable<TreeViewItem>> load(TreeViewItem item) {
+        if (item != null) {
+            return item.load();
+        } else {
+            return Promise.resolve(emptyList());
+        }
+    }
+
     public void toggle(TreeViewItem item) {
         toggle(item, true);
     }
@@ -202,6 +223,10 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
                 toggleHandler.onToggle(new Event(""), item, item.expanded());
             }
         }
+    }
+
+    public void select(String identifier) {
+        select(findItem(identifier, items), true, true);
     }
 
     public void select(TreeViewItem item) {
@@ -226,6 +251,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
             if (multiSelectHandler != null) {
                 multiSelectHandler.onSelect(new Event(""), this, selectedItems());
             }
+            // collapse items from root to item
+            List<TreeViewItem> parents = parents(item);
+            reverse(parents);
+            for (TreeViewItem treeViewItem : parents) {
+                treeViewItem.expand(false);
+            }
+            if (!isElementInView((HTMLElement) item.element().parentElement, item.element(), false)) {
+                ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
+                options.setBlock("nearest");
+                options.setInline("nearest");
+                item.element().scrollIntoView(options);
+            }
         }
     }
 
@@ -243,12 +280,72 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         traverseItems(this, TreeViewItem::reset);
     }
 
+    public TreeViewItem findItem(String identifier) {
+        return findItem(identifier, items);
+    }
+
     @Override
     public Iterator<TreeViewItem> iterator() {
         return items.values().iterator();
     }
 
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ul);
+        items.clear();
+    }
+
     // ------------------------------------------------------ internal
+
+    /**
+     * Traverses the tree structure of TreeViewItems and applies the provided code to each item. This method recursively
+     * traverses the items and their children.
+     *
+     * @param items the TreeViewItems to traverse
+     * @param code  the Consumer that will be applied to each TreeViewItem
+     */
+    static void traverseItems(HasItems<?, ?, TreeViewItem> items, Consumer<TreeViewItem> code) {
+        for (TreeViewItem item : items) {
+            code.accept(item);
+            traverseItems(item, code);
+        }
+    }
+
+    private TreeViewItem findItem(String id, LinkedHashMap<String, TreeViewItem> items) {
+        TreeViewItem treeViewItem = items.get(id);
+        if (treeViewItem == null) {
+            for (Map.Entry<String, TreeViewItem> entry : items.entrySet()) {
+                treeViewItem = findItem(id, entry.getValue().items);
+                if (treeViewItem != null) {
+                    break;
+                }
+            }
+        }
+        return treeViewItem;
+    }
+
+    private List<TreeViewItem> parents(TreeViewItem item) {
+        List<TreeViewItem> parents = new ArrayList<>();
+        addParent(item, parents);
+        return parents;
+    }
+
+    private void addParent(TreeViewItem item, List<TreeViewItem> parents) {
+        if (item != null && item.parent != null) {
+            parents.add(item.parent);
+            addParent(item.parent, parents);
+        }
+    }
 
     private void handleKeys(KeyboardEvent event) {
         HTMLElement target = (HTMLElement) event.target;

@@ -18,9 +18,11 @@ package org.patternfly.component.breadcrumb;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -41,31 +43,37 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 
 public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, BreadcrumbItem> implements
-        ComponentContext<HTMLLIElement, BreadcrumbItem>, WithText<HTMLLIElement, BreadcrumbItem> {
+        ComponentContext<HTMLLIElement, BreadcrumbItem>,
+        WithIdentifier<HTMLLIElement, BreadcrumbItem>,
+        WithText<HTMLLIElement, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
 
-    public static BreadcrumbItem breadcrumbItem(String text) {
-        return new BreadcrumbItem(text);
+    public static BreadcrumbItem breadcrumbItem(String identifier, String text) {
+        return new BreadcrumbItem(identifier, text);
     }
 
-    public static BreadcrumbItem breadcrumbItem(String text, String href) {
-        return new BreadcrumbItem(text).href(href);
+    public static BreadcrumbItem breadcrumbItem(String identifier, String text, String href) {
+        return new BreadcrumbItem(identifier, text).href(href);
     }
 
-    public static BreadcrumbItem breadcrumbItem(String text, String href, String target) {
-        return new BreadcrumbItem(text).href(href).target(target);
+    public static BreadcrumbItem breadcrumbItem(String identifier, String text, String href, String target) {
+        return new BreadcrumbItem(identifier, text).href(href).target(target);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "bci";
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;
     private HTMLAnchorElement anchorElement;
 
-    <E extends HTMLElement> BreadcrumbItem(String text) {
-        super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item)).element());
+    <E extends HTMLElement> BreadcrumbItem(String identifier, String text) {
+        super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
         add(span().css(component(breadcrumb, item, divider))
                 .add(angleRight().element()));
@@ -128,6 +136,12 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     }
 
     // ------------------------------------------------------ api
+
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public String text() {

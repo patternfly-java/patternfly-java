@@ -15,14 +15,22 @@
  */
 package org.patternfly.component.list;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.patternfly.component.HasItems;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 
-public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> {
+public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> implements
+        HasItems<HTMLDivElement, ActionListGroup, ActionListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -33,9 +41,11 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "alg";
+    private final Map<String, ActionListItem> items;
 
     ActionListGroup() {
         super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
+        this.items = new LinkedHashMap<>();
     }
 
     // ------------------------------------------------------ builder
@@ -47,7 +57,32 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
 
     // ------------------------------------------------------ add
 
-    public ActionListGroup addItem(ActionListItem item) {
-        return add(item);
+    @Override
+    public ActionListGroup add(ActionListItem item) {
+        items.put(item.identifier(), item);
+        return add(item.element());
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<ActionListItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 }

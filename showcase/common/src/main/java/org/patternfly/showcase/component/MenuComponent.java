@@ -87,12 +87,12 @@ public class MenuComponent extends SnippetPage {
                 // @code-start:menu-basic
                 div()
                         .add(menu(click)
-                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.id + " selected"))
+                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(actionMenuItem("item-0", "Action")
                                                         .onClick((e, actionItem) -> console.log(
-                                                                "Clicked on action item " + actionItem.id)))
+                                                                "Clicked on action item " + actionItem.identifier())))
                                                 .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                         .onClick((e, item) -> e.preventDefault()))
                                                 .addItem(actionMenuItem("item-2", "Disabled action")
@@ -142,7 +142,7 @@ public class MenuComponent extends SnippetPage {
                 div()
                         .add(menu(multi)
                                 .onAction((menu, item, itemAction) -> console.log(
-                                        "Action " + itemAction.id + " on item " + item.id + " clicked"))
+                                        "Action " + itemAction.identifier() + " on item " + item.identifier() + " clicked"))
                                 .addContent(menuContent()
                                         .addGroup(menuGroup("Actions")
                                                 .addList(menuList()
@@ -208,16 +208,16 @@ public class MenuComponent extends SnippetPage {
                 div()
                         .add(menu(multi)
                                 .onMultiSelect((e, menu, menuItems) -> console.log("### Selected items: " + menuItems.stream()
-                                        .map(mi -> mi.id)
+                                        .map(MenuItem::identifier)
                                         .collect(joining(", "))))
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(checkboxMenuItem("item-0", "Checkbox 1")
-                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.id)))
+                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.identifier())))
                                                 .addItem(checkboxMenuItem("item-1", "Checkbox 2")
-                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.id)))
+                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.identifier())))
                                                 .addItem(checkboxMenuItem("item-2", "Checkbox 3")
-                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.id))
+                                                        .onClick((e, mi) -> console.log("Clicked on item " + mi.identifier()))
                                                         .disabled()))))
                         .element()
                 // @code-end:menu-checkbox
@@ -285,9 +285,9 @@ public class MenuComponent extends SnippetPage {
                 // @code-start:menu-favorites
                 div()
                         .add(menu(click)
-                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.id + " selected"))
+                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
                                 .onAction((menu, item, itemAction) -> console.log(
-                                        "Action " + itemAction.id + " on item " + item.id + " clicked"))
+                                        "Action " + itemAction.identifier() + " on item " + item.identifier() + " clicked"))
                                 .favorites()
                                 .addContent(menuContent()
                                         .addGroup(menuGroup("All actions")
@@ -297,12 +297,12 @@ public class MenuComponent extends SnippetPage {
                                                                 .addAction(menuItemAction("action-0", bars())))
                                                         .addItem(actionMenuItem("item-1", "Item 2")
                                                                 .onClick((e, item) -> console.log(
-                                                                        "# Item " + item.id + " clicked"))
+                                                                        "# Item " + item.identifier() + " clicked"))
                                                                 .description("Description 2")
                                                                 .addAction(menuItemAction("action-1", clipboard())
                                                                         .onClick((e, itemAction) -> console.log(
-                                                                                "# Action " + itemAction.id + " on item "
-                                                                                        + itemAction.menuItem.id
+                                                                                "# Action " + itemAction.identifier() + " on item "
+                                                                                        + itemAction.menuItem.identifier()
                                                                                         + " clicked"))))
                                                         .addItem(actionMenuItem("item-2", "Item 3")
                                                                 .description("Description 3")
@@ -413,7 +413,7 @@ public class MenuComponent extends SnippetPage {
                                     .addList(menuList()
                                             .addItem(actionMenuItem("item-0", "Action")
                                                     .onClick((e, actionItem) -> console.log(
-                                                            "Clicked on action item " + actionItem.id)))
+                                                            "Clicked on action item " + actionItem.identifier())))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                     .onClick((e, item) -> e.preventDefault()))
                                             .addItem(actionMenuItem("item-2", "Disabled action")

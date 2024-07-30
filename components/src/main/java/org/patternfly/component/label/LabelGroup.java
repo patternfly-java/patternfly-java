@@ -15,11 +15,9 @@
  */
 package org.patternfly.component.label;
 
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
@@ -28,7 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValues;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
@@ -72,9 +70,11 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
 
-public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
-        implements HasValues<Label>, Attachable, Closeable<HTMLDivElement, LabelGroup>,
-        Vertical<HTMLDivElement, LabelGroup> {
+public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implements
+        Closeable<HTMLDivElement, LabelGroup>,
+        HasItems<HTMLDivElement, LabelGroup, Label>,
+        Vertical<HTMLDivElement, LabelGroup>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -92,7 +92,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     private static final String REMAINING_PLACEHOLDER = "${remaining}";
 
     private final HTMLElement listElement;
-    private final Map<String, Label> labels;
+    private final Map<String, Label> items;
     private boolean expanded;
     private int numLabels;
     private String collapsedText;
@@ -106,7 +106,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
 
     LabelGroup(String category) {
         super(ComponentType.ChipGroup, div().css(component(labelGroup)).element());
-        this.labels = new LinkedHashMap<>();
+        this.items = new LinkedHashMap<>();
         this.expanded = false;
         this.numLabels = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -141,21 +141,9 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
 
     // ------------------------------------------------------ add
 
-    public <T> LabelGroup addLabels(Iterable<T> items, Function<T, Label> display) {
-        for (T item : items) {
-            Label label = display.apply(item);
-            addLabel(label);
-        }
-        return this;
-    }
-
-    public LabelGroup addLabel(Label label) {
-        return add(label);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public LabelGroup add(Label label) {
-        labels.put(label.id, label);
+        items.put(label.identifier(), label);
 
         HTMLLIElement itemElement = li().css(component(labelGroup, list, item))
                 .add(label)
@@ -254,11 +242,6 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     // ------------------------------------------------------ api
 
     @Override
-    public Set<Label> values() {
-        return new HashSet<>(labels.values());
-    }
-
-    @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             failSafeRemoveFromParent(this);
@@ -266,9 +249,25 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
         }
     }
 
+    @Override
+    public Iterator<Label> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(listElement);
-        labels.clear();
+        items.clear();
         overflowItem = null;
         overflowLabel = null;
     }
@@ -276,7 +275,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     // ------------------------------------------------------ internal
 
     void close(Label label) {
-        labels.remove(label.id);
+        items.remove(label.identifier());
         Element element = label.element().parentElement;
         if (element != null) {
             failSafeRemoveFromParent(element);
@@ -287,23 +286,24 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup>
     }
 
     private void overflow() {
-        if (labels.size() > numLabels && overflowItem == null && overflowLabel == null) {
+        if (items.size() > numLabels && overflowItem == null && overflowLabel == null) {
+            String identifier = Id.unique(componentType().id, "overflow");
             overflowItem = li().css(component(chipGroup, list, item))
-                    .add(overflowLabel = new Label(Elements.button(ButtonType.button), "", Color.grey)
+                    .add(overflowLabel = new Label(Elements.button(ButtonType.button), identifier, "", Color.grey)
                             .css(modifier(overflow))
                             .on(click, event -> toggle()))
                     .element();
             listElement.appendChild(overflowItem);
         }
         int index = 0;
-        for (Label label : labels.values()) {
+        for (Label label : items.values()) {
             setVisible((HTMLElement) label.element().parentElement, expanded || index < numLabels);
             index++;
         }
         if (overflowItem != null && overflowLabel != null) {
-            setVisible(overflowItem, labels.size() > numLabels);
+            setVisible(overflowItem, items.size() > numLabels);
             overflowLabel.textElement.textContent = expanded ? expandedText
-                    : collapsedText.replace(REMAINING_PLACEHOLDER, String.valueOf(labels.size() - numLabels));
+                    : collapsedText.replace(REMAINING_PLACEHOLDER, String.valueOf(items.size() - numLabels));
         }
     }
 

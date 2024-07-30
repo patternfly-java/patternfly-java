@@ -16,16 +16,16 @@
 package org.patternfly.component.list;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
@@ -35,6 +35,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
@@ -51,7 +52,8 @@ import static org.patternfly.style.Classes.simpleList;
  *
  * @see <a href= "https://www.patternfly.org/components/simple-list">https://www.patternfly.org/components/simple-list</a>
  */
-public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
+public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implements
+        HasItems<HTMLElement, SimpleList, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -73,8 +75,8 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
     SimpleList() {
         super(ComponentType.SimpleList, div().css(component(simpleList)).element());
         this.type = SimpleListType.undefined;
+        this.items = new LinkedHashMap<>();
         this.groups = new ArrayList<>();
-        this.items = new HashMap<>();
         storeComponent();
     }
 
@@ -96,26 +98,14 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
         return this;
     }
 
-    public <T> SimpleList addItems(Iterable<T> items, Function<T, SimpleListItem> display) {
-        for (T item : items) {
-            SimpleListItem sli = display.apply(item);
-            addItem(sli);
-        }
-        return this;
-    }
-
-    public SimpleList addItem(SimpleListItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public SimpleList add(SimpleListItem item) {
         if (type == SimpleListType.groups) {
             logger.warn("Simple list %o already contains groups. A mix of groups and items is not supported!", element());
             return this;
         }
         type = SimpleListType.items;
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         failSafeUlElement().appendChild(item.element());
         return this;
     }
@@ -145,16 +135,16 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
 
     // ------------------------------------------------------ api
 
-    public void select(String itemId) {
-        select(findItem(itemId), true, true);
+    public void select(String identifier) {
+        select(findItem(identifier), true, true);
     }
 
-    public void select(String itemId, boolean selected) {
-        select(findItem(itemId), selected, true);
+    public void select(String identifier, boolean selected) {
+        select(findItem(identifier), selected, true);
     }
 
-    public void select(String itemId, boolean selected, boolean fireEvent) {
-        select(findItem(itemId), selected, fireEvent);
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(findItem(identifier), selected, fireEvent);
     }
 
     public void select(SimpleListItem item) {
@@ -175,17 +165,38 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> {
         }
     }
 
+    @Override
+    public Iterator<SimpleListItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ulElement);
+        items.clear();
+    }
+
     // ------------------------------------------------------ internal
 
-    private SimpleListItem findItem(String id) {
+    private SimpleListItem findItem(String identifier) {
         SimpleListItem item = null;
         if (type == SimpleListType.groups) {
             for (Iterator<SimpleListGroup> iterator = groups.iterator(); iterator.hasNext() && item == null; ) {
                 SimpleListGroup group = iterator.next();
-                item = group.items.get(id);
+                item = group.items.get(identifier);
             }
         } else if (type == SimpleListType.items) {
-            item = items.get(id);
+            item = items.get(identifier);
         }
         return item;
     }

@@ -212,8 +212,8 @@ public class SnippetPage implements Page {
         String id = Id.build(simpleName);
 
         failSafeToc(Toc.API_DOCS).add(id, simpleName);
-        failSafeTbody().addRow(tr()
-                .addData(td("Name").wrap(breakWord)
+        failSafeTbody().addRow(tr(Id.build("api-doc", id))
+                .addItem(td("Name").wrap(breakWord)
                         .add(span().css("ws-heading")
                                 .id(id)
                                 .add(a("#" + id).css("ws-heading-anchor")
@@ -221,9 +221,9 @@ public class SnippetPage implements Page {
                                         .attr(tabindex, -1)
                                         .add(linkIcon()))
                                 .add(simpleName)))
-                .addData(td("Type").wrap(breakWord)
+                .addItem(td("Type").wrap(breakWord)
                         .add(label(type.name, type.color)))
-                .addData(td("API Documentation").wrap(breakWord)
+                .addItem(td("API Documentation").wrap(breakWord)
                         .add(a(apiDocLink(clazz), ApiDoc.API_DOC_TARGET).textContent(fullName))));
     }
 
@@ -311,10 +311,10 @@ public class SnippetPage implements Page {
                             .compact()
                             .gridBreakpoint(gridMd)
                             .addHead(thead()
-                                    .addRow(tr()
-                                            .addHeader(th().width(width30).textContent("Name"))
-                                            .addHeader(th().width(width20).textContent("Type"))
-                                            .addHeader(th().textContent("API Documentation"))))
+                                    .addRow(tr("api-doc-header")
+                                            .addItem(th().width(width30).textContent("Name"))
+                                            .addItem(th().width(width20).textContent("Type"))
+                                            .addItem(th().textContent("API Documentation"))))
                             .addBody(tbody = tbody())
                             .element());
         }

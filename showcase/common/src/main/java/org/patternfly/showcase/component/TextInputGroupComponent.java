@@ -100,8 +100,8 @@ public class TextInputGroupComponent extends SnippetPage {
 
             TextInputGroup textInputGroup = textInputGroup();
             ChipGroup chipGroup = chipGroup();
-            CloseHandler<Chip> closeHandler = (event, chip) -> chipsPresent.set(!chipGroup.values().isEmpty());
-            chipGroup.addChips(asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+            CloseHandler<Chip> closeHandler = (event, chip) -> chipsPresent.set(!chipGroup.isEmpty());
+            chipGroup.addItems(asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
                     "eleven", "twelve"), text -> chip(text).onClose(closeHandler));
 
             textInputGroup
@@ -111,7 +111,7 @@ public class TextInputGroupComponent extends SnippetPage {
                             .onChange((e, tig, value) -> {
                                 textEntered.set(!value.isEmpty());
                                 if (Key.Enter.match(e) && !value.isEmpty()) {
-                                    chipGroup.addChip(chip(value).onClose(closeHandler));
+                                    chipGroup.addItem(chip(value).onClose(closeHandler));
                                     tig.main().value("");
                                     chipsPresent.set(true);
                                     textEntered.set(false);

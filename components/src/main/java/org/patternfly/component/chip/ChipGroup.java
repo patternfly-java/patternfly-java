@@ -15,11 +15,9 @@
  */
 package org.patternfly.component.chip;
 
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
@@ -28,7 +26,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValues;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
@@ -69,8 +67,10 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
 
-public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
-        implements HasValues<Chip>, Attachable, Closeable<HTMLDivElement, ChipGroup> {
+public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implements
+        HasItems<HTMLDivElement, ChipGroup, Chip>,
+        Closeable<HTMLDivElement, ChipGroup>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -88,7 +88,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     private static final String REMAINING_PLACEHOLDER = "${remaining}";
 
     private final HTMLElement listElement;
-    private final Map<String, Chip> chips;
+    private final Map<String, Chip> items;
     private boolean expanded;
     private int numChips;
     private String collapsedText;
@@ -102,7 +102,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
 
     ChipGroup(String category) {
         super(ComponentType.ChipGroup, div().css(component(chipGroup)).attr(role, group).element());
-        this.chips = new LinkedHashMap<>();
+        this.items = new LinkedHashMap<>();
         this.expanded = false;
         this.numChips = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -137,21 +137,9 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
 
     // ------------------------------------------------------ add
 
-    public <T> ChipGroup addChips(Iterable<T> items, Function<T, Chip> display) {
-        for (T item : items) {
-            Chip chip = display.apply(item);
-            addChip(chip);
-        }
-        return this;
-    }
-
-    public ChipGroup addChip(Chip chip) {
-        return add(chip);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public ChipGroup add(Chip chip) {
-        chips.put(chip.id, chip);
+        items.put(chip.identifier(), chip);
         HTMLLIElement itemElement = li().css(component(chipGroup, list, item))
                 .add(chip)
                 .element();
@@ -231,7 +219,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     @Override
     public ChipGroup aria(String name, String value) {
         if (name.equals(label)) {
-            // set label also on list element
+            // set label also on the list element
             listElement.setAttribute(label, value);
         }
         return super.aria(name, value);
@@ -255,11 +243,6 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     // ------------------------------------------------------ api
 
     @Override
-    public Set<Chip> values() {
-        return new HashSet<>(chips.values());
-    }
-
-    @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
             failSafeRemoveFromParent(this);
@@ -267,9 +250,24 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
         }
     }
 
+    @Override
+    public Iterator<Chip> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
     public void clear() {
         removeChildrenFrom(listElement);
-        chips.clear();
+        items.clear();
         overflowItem = null;
         overflowChip = null;
     }
@@ -277,7 +275,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     // ------------------------------------------------------ internal
 
     void close(Chip chip) {
-        chips.remove(chip.id);
+        items.remove(chip.identifier());
         Element element = chip.element().parentElement;
         if (element != null) {
             failSafeRemoveFromParent(element);
@@ -288,9 +286,10 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
     }
 
     private void overflow() {
-        if (chips.size() > numChips && overflowItem == null && overflowChip == null) {
+        if (items.size() > numChips && overflowItem == null && overflowChip == null) {
+            String identifier = Id.unique(componentType().id, "overflow");
             overflowItem = li().css(component(chipGroup, list, item))
-                    .add(overflowChip = new Chip(Elements.button(ButtonType.button), "")
+                    .add(overflowChip = new Chip(Elements.button(ButtonType.button), identifier, "")
                             .readonly()
                             .css(modifier(overflow))
                             .on(click, event -> toggle()))
@@ -298,14 +297,14 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup>
             listElement.appendChild(overflowItem);
         }
         int index = 0;
-        for (Chip chip : chips.values()) {
+        for (Chip chip : items.values()) {
             setVisible((HTMLElement) chip.element().parentElement, expanded || index < numChips);
             index++;
         }
         if (overflowItem != null && overflowChip != null) {
-            setVisible(overflowItem, chips.size() > numChips);
+            setVisible(overflowItem, items.size() > numChips);
             overflowChip.textElement.textContent = expanded ? expandedText
-                    : collapsedText.replace(REMAINING_PLACEHOLDER, String.valueOf(chips.size() - numChips));
+                    : collapsedText.replace(REMAINING_PLACEHOLDER, String.valueOf(items.size() - numChips));
         }
     }
 

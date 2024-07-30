@@ -29,6 +29,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -56,13 +57,14 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * A switch toggles the state of a setting (between on and off). Switches and checkboxes can often be used interchangeably, but
- * the switch provides a more explicit, visible representation on a setting.
+ * the switch provides a more explicit, visible representation of a setting.
  *
  * @see <a href= "https://www.patternfly.org/components/switch">https://www.patternfly.org/components/switch</a>
  */
 public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implements
         HasValue<Boolean>,
         Disabled<HTMLLabelElement, Switch>,
+        Readonly<HTMLLabelElement, Switch>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -116,7 +118,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
         return this;
     }
 
-    /** Same as {@linkplain #checkIcon(boolean)} checkIcon(true)} */
+    /** Same as {@linkplain #checkIcon(boolean) checkIcon(true)} */
     public Switch checkIcon() {
         return checkIcon(true);
     }
@@ -150,8 +152,20 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
                     .element());
             onChange((e, s, value) -> inputElement().aria(labelledBy, value ? onId : offId));
         }
+        //noinspection DataFlowIssue
         labelOnElement.textContent = labelOn;
         labelOffElement.textContent = labelOff;
+        return this;
+    }
+
+    @Override
+    public Switch readonly(boolean readonly) {
+        if (readonly) {
+            style("pointer-events", "none");
+        } else {
+            style("pointer-events", "unset");
+        }
+        inputElement.readOnly = readonly;
         return this;
     }
 

@@ -15,11 +15,12 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
+import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 
@@ -40,7 +41,9 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
 
-public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements Attachable {
+public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
+        HasItems<HTMLUListElement, MenuList, MenuItem>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -54,12 +57,11 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ml";
-
     final Map<String, MenuItem> items;
 
     MenuList() {
         super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).attr(role, Roles.menu).element());
-        this.items = new HashMap<>();
+        this.items = new LinkedHashMap<>();
         storeSubComponent();
         Attachable.register(this, this);
     }
@@ -85,14 +87,6 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ add
 
-    public <T> MenuList addItems(Iterable<T> items, Function<T, MenuItem> display) {
-        for (T item : items) {
-            MenuItem menuItem = display.apply(item);
-            addItem(menuItem);
-        }
-        return this;
-    }
-
     public MenuList addItem(String id, String text) {
         return addItem(menuItem(id, action)
                 .text(text));
@@ -104,13 +98,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                 .href(href));
     }
 
-    public MenuList addItem(MenuItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public MenuList add(MenuItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         return add(item.element());
     }
 
@@ -127,6 +117,22 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ api
 
+    @Override
+    public Iterator<MenuItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
     public void clear() {
         for (MenuItem item : items.values()) {
             failSafeRemoveFromParent(item);
@@ -137,7 +143,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     // ------------------------------------------------------ internal
 
     void removeItem(MenuItem item) {
-        items.remove(item.id);
+        items.remove(item.identifier());
         failSafeRemoveFromParent(item);
     }
 }

@@ -19,8 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -37,23 +39,26 @@ import static org.patternfly.style.Classes.list;
 
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
         ComponentContext<HTMLLIElement, ListItem>,
+        WithIdentifier<HTMLLIElement, ListItem>,
         WithText<HTMLLIElement, ListItem>,
         WithIcon<HTMLLIElement, ListItem> {
 
     // ------------------------------------------------------ factory
 
-    public static ListItem listItem() {
-        return new ListItem();
+    public static ListItem listItem(String identifier) {
+        return new ListItem(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "li";
+    private final String identifier;
     private final Map<String, Object> data;
     private HTMLElement iconContainer;
 
-    ListItem() {
-        super(SUB_COMPONENT_NAME, li().element());
+    ListItem(String identifier) {
+        super(SUB_COMPONENT_NAME, li().data(Dataset.identifier, identifier).element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
     }
 
@@ -91,6 +96,12 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
     }
 
     // ------------------------------------------------------ api
+
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean has(String key) {

@@ -25,8 +25,10 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
@@ -55,22 +57,23 @@ import static org.patternfly.style.Classes.modifier;
 public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
         ComponentContext<HTMLDivElement, AccordionItem>,
         ElementDelegate<HTMLDivElement, AccordionItem>,
+        WithIdentifier<HTMLDivElement, AccordionItem>,
         WithText<HTMLDivElement, AccordionItem> {
 
     // ------------------------------------------------------ factory
 
-    public static AccordionItem accordionItem(String id) {
-        return new AccordionItem(id, null);
+    public static AccordionItem accordionItem(String identifier) {
+        return new AccordionItem(identifier, null);
     }
 
-    public static AccordionItem accordionItem(String id, String text) {
-        return new AccordionItem(id, text);
+    public static AccordionItem accordionItem(String identifier, String text) {
+        return new AccordionItem(identifier, text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "aci";
-    final String id;
+    private final String identifier;
     private final Map<String, Object> data;
     private final AccordionItemBody defaultBody;
     private final List<AccordionItemBody> bodies;
@@ -80,9 +83,9 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     private HTMLElement textElement;
     private HTMLElement contentElement;
 
-    AccordionItem(String id, String text) {
+    AccordionItem(String identifier, String text) {
         super(SUB_COMPONENT_NAME, div().element()); // not a real subcomponent - just pass a fake <div/>
-        this.id = id;
+        this.identifier = identifier;
         this.data = new HashMap<>();
         this.expanded = false;
         this.defaultBody = new AccordionItemBody();
@@ -139,6 +142,11 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     // ------------------------------------------------------ api
 
     @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
     public String text() {
         return text;
     }
@@ -161,14 +169,15 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     void appendTo(Accordion accordion) {
         String textId = Id.unique(ComponentType.Accordion.id, "text");
         HTMLContainerBuilder<? extends HTMLElement> toggle = accordion.dl ? dt() : h(accordion.headingLevel);
-        toggle.add(toggleElement = button(ButtonType.button).css(component(Classes.accordion, Classes.toggle))
-                .on(click, e -> toggle(accordion))
-                .add(textElement = span().css(component(Classes.accordion, Classes.toggle, Classes.text))
-                        .id(textId)
-                        .element())
-                .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                        .add(angleRight().element()))
-                .element());
+        toggle.data(Dataset.identifier, identifier)
+                .add(toggleElement = button(ButtonType.button).css(component(Classes.accordion, Classes.toggle))
+                        .on(click, e -> toggle(accordion))
+                        .add(textElement = span().css(component(Classes.accordion, Classes.toggle, Classes.text))
+                                .id(textId)
+                                .element())
+                        .add(span().css(component(Classes.accordion, Classes.toggle, icon))
+                                .add(angleRight().element()))
+                        .element());
         text(this.text);
 
         HTMLContainerBuilder<? extends HTMLElement> content = accordion.dl ? dd() : div();

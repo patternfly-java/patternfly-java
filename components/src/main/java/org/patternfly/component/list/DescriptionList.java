@@ -15,8 +15,13 @@
  */
 package org.patternfly.component.list;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
@@ -27,6 +32,7 @@ import org.patternfly.style.Size;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.dl;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Breakpoint.default_;
@@ -50,7 +56,8 @@ import static org.patternfly.style.Variables.GridTemplateColumns;
  */
 public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList> implements
         Compact<HTMLElement, DescriptionList>,
-        Horizontal<HTMLElement, DescriptionList> {
+        Horizontal<HTMLElement, DescriptionList>,
+        HasItems<HTMLElement, DescriptionList, DescriptionListGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -60,14 +67,20 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
 
     // ------------------------------------------------------ instance
 
+    private final Map<String, DescriptionListGroup> items;
+
     DescriptionList() {
         super(ComponentType.DescriptionList, dl().css(component(descriptionList)).element());
+        this.items = new LinkedHashMap<>();
+
     }
 
     // ------------------------------------------------------ add
 
-    public DescriptionList addGroup(DescriptionListGroup group) {
-        return add(group);
+    @Override
+    public DescriptionList add(DescriptionListGroup item) {
+        items.put(item.identifier(), item);
+        return add(item.element());
     }
 
     // ------------------------------------------------------ builder
@@ -208,5 +221,28 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     @Override
     public DescriptionList that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<DescriptionListGroup> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 }

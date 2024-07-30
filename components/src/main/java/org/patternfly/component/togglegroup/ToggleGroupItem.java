@@ -22,8 +22,10 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
@@ -54,31 +56,34 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementDelegate<HTMLDivElement, ToggleGroupItem>,
+        WithIdentifier<HTMLDivElement, ToggleGroupItem>,
         WithIcon<HTMLDivElement, ToggleGroupItem>,
         WithText<HTMLDivElement, ToggleGroupItem> {
 
     // ------------------------------------------------------ factory
 
-    public static ToggleGroupItem toggleGroupItem(String id) {
-        return new ToggleGroupItem(id, null);
+    public static ToggleGroupItem toggleGroupItem(String identifier) {
+        return new ToggleGroupItem(identifier, null);
     }
 
-    public static ToggleGroupItem toggleGroupItem(String id, String text) {
-        return new ToggleGroupItem(id, text);
+    public static ToggleGroupItem toggleGroupItem(String identifier, String text) {
+        return new ToggleGroupItem(identifier, text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tgi";
-    public final String id;
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLContainerBuilder<HTMLButtonElement> button;
     private HTMLElement textElement;
     private HTMLElement iconContainer;
 
-    ToggleGroupItem(String id, String text) {
-        super(SUB_COMPONENT_NAME, div().css(component(toggleGroup, item)).element());
-        this.id = id;
+    ToggleGroupItem(String identifier, String text) {
+        super(SUB_COMPONENT_NAME, div().css(component(toggleGroup, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
         this.button = button(ButtonType.button).css(component(toggleGroup, Classes.button))
                 .aria(pressed, false)
@@ -144,6 +149,11 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean isDisabled() {

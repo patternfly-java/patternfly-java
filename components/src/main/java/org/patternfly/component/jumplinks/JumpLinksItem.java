@@ -18,9 +18,11 @@ package org.patternfly.component.jumplinks;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -40,34 +42,38 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
-        ComponentContext<HTMLLIElement, JumpLinksItem>, WithText<HTMLLIElement, JumpLinksItem> {
+        ComponentContext<HTMLLIElement, JumpLinksItem>,
+        WithIdentifier<HTMLLIElement, JumpLinksItem>,
+        WithText<HTMLLIElement, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
 
-    public static JumpLinksItem jumpLinksItem(String id, String text) {
-        return new JumpLinksItem(id).text(text);
+    public static JumpLinksItem jumpLinksItem(String identifier, String text) {
+        return new JumpLinksItem(identifier).text(text);
     }
 
-    public static JumpLinksItem jumpLinksItem(String id, String text, String href) {
-        return new JumpLinksItem(id).text(text).href(href);
+    public static JumpLinksItem jumpLinksItem(String identifier, String text, String href) {
+        return new JumpLinksItem(identifier).text(text).href(href);
     }
 
-    public static JumpLinksItem jumpLinksItem(String id, String text, String href, String target) {
-        return new JumpLinksItem(id).text(text).href(href).target(target);
+    public static JumpLinksItem jumpLinksItem(String identifier, String text, String href, String target) {
+        return new JumpLinksItem(identifier).text(text).href(href).target(target);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "jli";
-    public final String id;
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLAnchorElement anchorElement;
     private final HTMLElement textElement;
     JumpLinksList list;
 
-    JumpLinksItem(String id) {
-        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, item)).element());
-        this.id = id;
+    JumpLinksItem(String identifier) {
+        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
         add(anchorElement = a().css(component(jumpLinks, link))
                 .on(click, e -> {
@@ -137,6 +143,11 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public String text() {

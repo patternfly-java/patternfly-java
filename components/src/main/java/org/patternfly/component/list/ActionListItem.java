@@ -18,7 +18,9 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -27,22 +29,27 @@ import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
-public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem>
-        implements ComponentContext<HTMLDivElement, ActionListItem> {
+public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem> implements
+        WithIdentifier<HTMLDivElement, ActionListItem>,
+        ComponentContext<HTMLDivElement, ActionListItem> {
 
     // ------------------------------------------------------ factory
 
-    public static ActionListItem actionListItem() {
-        return new ActionListItem();
+    public static ActionListItem actionListItem(String identifier) {
+        return new ActionListItem(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ali";
+    private final String identifier;
     private final Map<String, Object> data;
 
-    ActionListItem() {
-        super(SUB_COMPONENT_NAME, div().css(component(actionList, item)).element());
+    ActionListItem(String identifier) {
+        super(SUB_COMPONENT_NAME, div().css(component(actionList, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
     }
 
@@ -60,6 +67,11 @@ public class ActionListItem extends ActionListSubComponent<HTMLDivElement, Actio
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean has(String key) {

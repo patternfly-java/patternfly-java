@@ -15,11 +15,15 @@
  */
 package org.patternfly.component.breadcrumb;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -42,7 +46,8 @@ import static org.patternfly.style.Classes.component;
  *
  * @see <a href= "https://www.patternfly.org/components/breadcrumb">https://www.patternfly.org/components/breadcrumb</a>
  */
-public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
+public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> implements
+        HasItems<HTMLElement, Breadcrumb, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
 
@@ -53,10 +58,12 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
     // ------------------------------------------------------ instance
 
     private final HTMLContainerBuilder<HTMLOListElement> ol;
+    private final Map<String, BreadcrumbItem> items;
     private SelectHandler<BreadcrumbItem> selectHandler;
 
     Breadcrumb() {
         super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
+        this.items = new LinkedHashMap<>();
         this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
         storeFlatComponent();
         element().appendChild(ol.element());
@@ -64,20 +71,9 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
 
     // ------------------------------------------------------ add
 
-    public <T> Breadcrumb addItems(Iterable<T> items, Function<T, BreadcrumbItem> display) {
-        for (T item : items) {
-            BreadcrumbItem bi = display.apply(item);
-            addItem(bi);
-        }
-        return this;
-    }
-
-    public Breadcrumb addItem(BreadcrumbItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public Breadcrumb add(BreadcrumbItem item) {
+        items.put(item.identifier(), item);
         ol.add(item);
         return this;
     }
@@ -107,6 +103,27 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> {
     public <T> void updateItems(Iterable<T> items, Function<T, BreadcrumbItem> display) {
         removeChildrenFrom(ol);
         addItems(items, display);
+    }
+
+    @Override
+    public Iterator<BreadcrumbItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ol);
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

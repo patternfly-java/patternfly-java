@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.jboss.elemento.Id;
 import org.patternfly.showcase.LoremIpsum;
 
 import elemental2.core.JsDate;
@@ -34,6 +35,7 @@ public class Repositories {
         List<Repository> repositories = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             Repository repository = new Repository();
+            repository.id = Id.uuid();
             repository.name = LoremIpsum.word() + "/" + LoremIpsum.word();
             repository.branches = 1 + new Random().nextInt(10);
             repository.pullRequests = 5 + new Random().nextInt(50);

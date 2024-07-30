@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
@@ -33,7 +35,6 @@ import elemental2.dom.ScrollIntoViewOptions;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.core.Dataset.navigationItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.item;
@@ -42,34 +43,39 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
-        ComponentContext<HTMLLIElement, NavigationItem>, WithText<HTMLLIElement, NavigationItem>, ElementDelegate<HTMLLIElement, NavigationItem> {
+        ComponentContext<HTMLLIElement, NavigationItem>,
+        WithIdentifier<HTMLLIElement, NavigationItem>,
+        WithText<HTMLLIElement, NavigationItem>,
+        ElementDelegate<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
 
-    public static NavigationItem navigationItem(String id) {
-        return new NavigationItem(id);
+    public static NavigationItem navigationItem(String identifier) {
+        return new NavigationItem(identifier);
     }
 
-    public static NavigationItem navigationItem(String id, String text) {
-        return new NavigationItem(id).text(text);
+    public static NavigationItem navigationItem(String identifier, String text) {
+        return new NavigationItem(identifier).text(text);
     }
 
-    public static NavigationItem navigationItem(String id, String text, String href) {
-        return new NavigationItem(id).text(text).href(href);
+    public static NavigationItem navigationItem(String identifier, String text, String href) {
+        return new NavigationItem(identifier).text(text).href(href);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ni";
 
-    public final String id;
     final HTMLAnchorElement a;
+    private final String identifier;
     private final Map<String, Object> data;
     private NavigationLinkText text;
 
-    NavigationItem(String id) {
-        super(SUB_COMPONENT_NAME, li().css(component(nav, item)).element());
-        this.id = id;
+    NavigationItem(String identifier) {
+        super(SUB_COMPONENT_NAME, li().css(component(nav, item))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
         this.data = new HashMap<>();
 
         element().appendChild(a = a().css(component(nav, link))
@@ -77,7 +83,6 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
                     Navigation navigation = lookupComponent();
                     navigation.select(this);
                 })
-                .data(navigationItem, id)
                 .element());
     }
 
@@ -138,6 +143,11 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public String text() {

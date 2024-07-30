@@ -6,12 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `Switch.readonly()`
+- Add `Label.disabled()`
+- Add `TreeView.select(String id)`
+- Add `HasItems` → `WithIdentifier` and `ComponentContext` (if missing) interfaces. Implemented by
+  - `Accordion` → `AccordionItem`
+  - `ActionList`, `ActionListGroup` → `ActionListItem`
+  - `AlterGroup` → `Alert`
+  - `Breadcrumb` → `BreadcrumbItem`
+  - `ChipGroup` → `Chip`
+  - `DataList` → `DataListItem`
+  - `DescriptionList` → `DescriptionListGroup`
+  - `JumpLinks`, `JumpLinksList` → `JumpLinksItem`
+  - `LabelGroup` → `Label`
+  - `List` → `ListItem`
+  - `MenuList` → `MenuItem`
+  - `Navigation`, `NavigationGroup`, `ExpandableNavigationGroup` → `NavigationItem`
+  - `SimpleList`, `SimpleListGroup` → `SimpleListItem`
+  - `Tabs` → `Tab`
+  - `TBody` → `Tr`
+  - `ToggleGroup` → `ToggleGroupItem`
+  - `ToolbarContent`, `ToolbarGroup` → `ToolbarItem`
+  - `Tr` → `Cell` (`Th` | `Td`)
+  - `TreeView`, `TreeViewItem` → `TreeViewItem`
+
+### Changed
+
+- Add warning when the DOM of a tree view item cannot be finished
+
+### Removed
+
+- Remove `HasValues<Chip>` from `ChipGroup`. This is replaced now by `HasItems`.
+
+### Fix
+
+- Expand tree view item after `TreeView.select(TreeViewItem item)`
+
 ## [0.2.7] - 2024-07-18
 
 ### Added
 
 - Data list component (#34) (not yet fully implemented)
-- Tree view component (#100)  (not yet fully implemented)
+- Tree view component (#100) (not yet fully implemented)
 - Add `ComponentContext` interface to store and retrieve arbitrary values associated with keys in a component. Implemented by
   - `AccordionItem`
   - `ActionListItem`

@@ -22,9 +22,11 @@ import java.util.function.Function;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
 
 import elemental2.dom.Event;
@@ -49,22 +51,24 @@ import static org.patternfly.style.Classes.row;
 import static org.patternfly.style.Classes.toggle;
 
 public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
-        ComponentContext<HTMLLIElement, DataListItem>, Expandable<HTMLLIElement, DataListItem> {
+        ComponentContext<HTMLLIElement, DataListItem>,
+        Expandable<HTMLLIElement, DataListItem>,
+        WithIdentifier<HTMLLIElement, DataListItem> {
 
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new data list item. The id is not used directly as an element ID, but used to wire ARIA related attributes. It
-     * is expected that you add a {@link DataListCell} with an element using that id.
+     * Creates a new data list item. The identifier is not used directly as an element ID but used to wire ARIA-related attributes. It
+     * is expected that you add a {@link DataListCell} with an element ID matching the identifier.
      */
-    public static DataListItem dataListItem(String id) {
-        return new DataListItem(id);
+    public static DataListItem dataListItem(String identifier) {
+        return new DataListItem(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "dli";
-    public final String id;
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement rowElement;
     private HTMLElement controlElement;
@@ -74,11 +78,12 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     private DataListExpandableContent expandableContent;
     private ToggleHandler<DataListItem> toggleHandler;
 
-    DataListItem(String id) {
+    DataListItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(dataList, item))
-                .aria(labelledBy, id)
+                .aria(labelledBy, identifier)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.id = id;
+        this.identifier = identifier;
         this.data = new HashMap<>();
         add(rowElement = div().css(component(dataList, item, row)).element());
     }
@@ -107,7 +112,7 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     }
 
     public DataListItem add(DataListAction action) {
-        action.attr("rowid", id);
+        action.attr("rowid", identifier);
         rowElement.appendChild(action.element());
         return this;
     }
@@ -171,6 +176,12 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
 
     // ------------------------------------------------------ api
 
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
     @Override
     public void collapse(boolean fireEvent) {
         Expandable.collapse(element(), toggleButton.element(), expandableContent.element());
@@ -219,13 +230,13 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     private void wireExpandable() {
         if (toggleButton != null && expandableContent != null) {
             String toggleId = toggleButton.element().id == null || toggleButton.element().id.isEmpty()
-                    ? Id.unique(ComponentType.DataList.id, id, "toggle")
+                    ? Id.unique(ComponentType.DataList.id, identifier, "toggle")
                     : toggleButton.element().id;
             String expandableContentId = expandableContent.element().id == null || expandableContent.element().id.isEmpty()
-                    ? Id.unique(ComponentType.DataList.id, id, "expandable", "content")
+                    ? Id.unique(ComponentType.DataList.id, identifier, "expandable", "content")
                     : expandableContent.element().id;
             toggleButton.aria(controls, expandableContentId);
-            toggleButton.aria(labelledBy, id + " " + toggleId);
+            toggleButton.aria(labelledBy, identifier + " " + toggleId);
             // data item are collapsed by default
             Expandable.collapse(element(), toggleButton.element(), expandableContent.element(), true);
         }

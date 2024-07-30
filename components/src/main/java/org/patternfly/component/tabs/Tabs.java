@@ -16,6 +16,7 @@
 package org.patternfly.component.tabs;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
@@ -107,6 +109,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         Box<HTMLElement, Tabs>,
         Expandable<HTMLElement, Tabs>,
         Fill<HTMLElement, Tabs>,
+        HasItems<HTMLElement, Tabs, Tab>,
         PageInsets<HTMLElement, Tabs>,
         Secondary<HTMLElement, Tabs>,
         Vertical<HTMLElement, Tabs> {
@@ -125,7 +128,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     private static final Logger logger = Logger.getLogger(Tabs.class.getName());
 
-    private final Map<String, Tab> tabs;
+    private final Map<String, Tab> items;
     private final HTMLContainerBuilder<? extends HTMLElement> mainContainer;
     private final HTMLContainerBuilder<HTMLButtonElement> scrollBack;
     private final HTMLContainerBuilder<HTMLUListElement> tabsContainer;
@@ -159,7 +162,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     <E extends HTMLElement> Tabs(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Tabs, div().element());
-        this.tabs = new LinkedHashMap<>();
+        this.items = new LinkedHashMap<>();
         this.enableScrollButtons = ov(false);
         this.showScrollButtons = ov(false);
         this.renderScrollButtons = ov(false);
@@ -211,7 +214,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             resizeHandler = bind(window, resize.name, e -> updateState());
         }
 
-        if (tabs.isEmpty()) {
+        if (items.isEmpty()) {
             logger.error("No tabs given for %o", element());
         } else {
             attachTabs();
@@ -225,8 +228,8 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (expandable) {
             TabsToggle tt = failSafeTabsToggle();
             if (tt.noText()) {
-                if (!tabs.isEmpty()) {
-                    tt.text(tabs.values().iterator().next().text());
+                if (!items.isEmpty()) {
+                    tt.text(items.values().iterator().next().text());
                 }
                 onSelect((e, tab, selected) -> tt.text(tab.text()));
             }
@@ -267,14 +270,14 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     private void attachTabs() {
-        for (Tab tab : tabs.values()) {
+        for (Tab tab : items.values()) {
             addTabToDOM(tab);
         }
         if (overflowHorizontal) {
             tabsContainer.add(overflowTab);
         }
         if (!noInitialSelection) {
-            tabs.values().iterator().next().select(true);
+            items.values().iterator().next().select(true);
         }
     }
 
@@ -290,7 +293,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (overflowTab != null) {
             overflowTab.detach();
         }
-        for (Tab tab : tabs.values()) {
+        for (Tab tab : items.values()) {
             // help and tooltip are appended to the body!
             failSafeRemoveFromParent(tab.help);
             failSafeRemoveFromParent(tab.tooltip);
@@ -299,11 +302,12 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     // ------------------------------------------------------ add
 
-    public <T> Tabs addTabs(Iterable<T> items, Function<T, Tab> display) {
+    @Override
+    public <T> Tabs addItems(Iterable<T> items, Function<T, Tab> display) {
         boolean attached = isAttached(element());
         for (T item : items) {
             Tab tab = display.apply(item);
-            tabs.put(tab.id, tab);
+            this.items.put(tab.identifier(), tab);
             if (attached) {
                 addTabToDOM(tab);
             }
@@ -314,13 +318,9 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         return this;
     }
 
-    public Tabs addTab(Tab tab) {
-        return add(tab);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public Tabs add(Tab tab) {
-        tabs.put(tab.id, tab);
+        items.put(tab.identifier(), tab);
         if (isAttached(element())) {
             addTabToDOM(tab);
             updateState();
@@ -381,7 +381,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             mainContainer.classList().remove(modifier("color-scheme--light-300"));
         }
         if (isAttached(this)) {
-            for (Tab tab : tabs.values()) {
+            for (Tab tab : items.values()) {
                 if (tab.content != null) {
                     tab.content.classList().toggle(modifier("light-300"), lightTabs);
                 }
@@ -546,7 +546,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             insertAfter(span().css(component(Classes.tabs, Classes.add))
                     .add(addButton = Button.button().plain().icon(plus())
                             .aria(label, "Add new tab")
-                            .on(click, e -> addTab(addHandler.apply(this))))
+                            .on(click, e -> addItem(addHandler.apply(this))))
                     .element(), tabsContainer.element());
         }
         this.addHandler = addHandler;
@@ -595,39 +595,35 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         }
     }
 
-    public void close(String id) {
-        if (id != null) {
-            close(tabs.get(id));
+    public void close(String identifier) {
+        if (identifier != null) {
+            close(items.get(identifier));
         } else {
-            logger.error("Cannot close tab in tabs %o: No tab id given.", element());
+            logger.error("Cannot close tab in tabs %o: No tab identifier given.", element());
         }
     }
 
     public void close(Tab tab) {
         if (tab != null) {
-            tabs.remove(tab.id);
-            failSafeRemoveFromParent(tab.help);
-            failSafeRemoveFromParent(tab.tooltip);
-            failSafeRemoveFromParent(tab.content);
-            failSafeRemoveFromParent(tab);
+            internalClose(tab);
             updateState();
         } else {
             logger.error("Cannot close tab in tabs %o: No tab given.", element());
         }
     }
 
-    public void select(String id) {
-        if (id != null) {
-            select(tabs.get(id));
+    public void select(String identifier) {
+        if (identifier != null) {
+            select(items.get(identifier));
         } else {
-            logger.error("Cannot select tab in tabs %o: No tab id given.", element());
+            logger.error("Cannot select tab in tabs %o: No tab identifier given.", element());
         }
     }
 
     public void select(Tab tab) {
         if (tab != null) {
-            for (Tab t : tabs.values()) {
-                if (tab.id.equals(t.id)) {
+            for (Tab t : items.values()) {
+                if (tab.identifier().equals(t.identifier())) {
                     currentTab = t;
                     t.select(true);
                 } else {
@@ -650,7 +646,30 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     public Tab tab(String id) {
-        return tabs.get(id);
+        return items.get(id);
+    }
+
+    @Override
+    public Iterator<Tab> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        for (Tab tab : items.values()) {
+            internalClose(tab);
+        }
+        updateState();
     }
 
     // ------------------------------------------------------ internal
@@ -691,6 +710,14 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         tab.content.element().hidden = true;
     }
 
+    private void internalClose(Tab tab) {
+        items.remove(tab.identifier());
+        failSafeRemoveFromParent(tab.help);
+        failSafeRemoveFromParent(tab.tooltip);
+        failSafeRemoveFromParent(tab.content);
+        failSafeRemoveFromParent(tab);
+    }
+
     private void updateState() {
         // debounce scroll event!
         clearTimeout(scrollTimeout);
@@ -707,8 +734,8 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             if (overflowHorizontal) {
                 updateOverflow();
             }
-            int size = tabs.size();
-            for (Tab tab : tabs.values()) {
+            int size = items.size();
+            for (Tab tab : items.values()) {
                 tab.disableCloseButton(size == 1);
             }
         }, 100);
@@ -763,7 +790,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     private void updateOverflow() {
         int count = 0;
         List<Tab> overflowingTabs = new ArrayList<>();
-        for (Tab tab : tabs.values()) {
+        for (Tab tab : items.values()) {
             // to calculate the visibility, temporarily make all, but the overflow tab visible
             setVisible(tab, true);
             if (!isElementInView(tabsContainer, tab, false)) {
@@ -772,7 +799,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         }
         if (count > 0) {
             setVisible(overflowTab, true);
-            LinkedList<Tab> tabValues = new LinkedList<>(tabs.values());
+            LinkedList<Tab> tabValues = new LinkedList<>(items.values());
             // iterate from last tab, until overflow tab becomes fully visible
             for (ListIterator<Tab> iterator = tabValues.listIterator(tabValues.size());
                     iterator.hasPrevious() && !isElementInView(tabsContainer, overflowTab, false); ) {

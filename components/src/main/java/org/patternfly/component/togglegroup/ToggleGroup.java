@@ -16,13 +16,15 @@
 package org.patternfly.component.togglegroup;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
@@ -35,6 +37,7 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.group;
 import static org.patternfly.style.Classes.component;
@@ -46,7 +49,9 @@ import static org.patternfly.style.Classes.toggleGroup;
  * @see <a href= "https://www.patternfly.org/components/toggle-group">https://www.patternfly.org/components/toggle-group</a>
  */
 public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> implements
-        Compact<HTMLElement, ToggleGroup>, Disabled<HTMLElement, ToggleGroup> {
+        Compact<HTMLElement, ToggleGroup>,
+        Disabled<HTMLElement, ToggleGroup>,
+        HasItems<HTMLElement, ToggleGroup, ToggleGroupItem> {
 
     // ------------------------------------------------------ factory
 
@@ -66,10 +71,10 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     ToggleGroup(SelectionMode selectionMode) {
         super(ComponentType.ToggleGroup, div().css(component(toggleGroup)).attr(role, group).element());
-        this.items = new HashMap<>();
+        this.items = new LinkedHashMap<>();
         this.disabledSnapshot = new HashMap<>();
         if (selectionMode == SelectionMode.click) {
-            logger.warn("Selection mode '%s' is not supported for %e. Fall back to '%s'",
+            logger.warn("Selection mode '%s' is not supported for %o. Fall back to '%s'",
                     SelectionMode.click.name(), element(), SelectionMode.single.name());
             this.selectionMode = SelectionMode.single;
         } else {
@@ -80,21 +85,9 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     // ------------------------------------------------------ add
 
-    public <T> ToggleGroup addItems(Iterable<T> items, Function<T, ToggleGroupItem> display) {
-        for (T item : items) {
-            ToggleGroupItem tgi = display.apply(item);
-            addItem(tgi);
-        }
-        return this;
-    }
-
-    public ToggleGroup addItem(ToggleGroupItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public ToggleGroup add(ToggleGroupItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         add(item.element());
         return this;
     }
@@ -106,14 +99,14 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         if (disabled) {
             for (ToggleGroupItem item : items.values()) {
                 // save state
-                disabledSnapshot.put(item.id, item.isDisabled());
+                disabledSnapshot.put(item.identifier(), item.isDisabled());
                 // disable all items
                 item.disabled(true);
             }
         } else {
             // enable all items, but restore previous state
             for (ToggleGroupItem item : items.values()) {
-                boolean previouslyDisabled = disabledSnapshot.getOrDefault(item.id, false);
+                boolean previouslyDisabled = disabledSnapshot.getOrDefault(item.identifier(), false);
                 if (!previouslyDisabled) {
                     item.disabled(false);
                 }
@@ -148,22 +141,21 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     // ------------------------------------------------------ api
 
-
     @Override
     public boolean isDisabled() {
         return disabled;
     }
 
-    public void select(String itemId) {
-        select(items.get(itemId), true, true);
+    public void select(String identifier) {
+        select(items.get(identifier), true, true);
     }
 
-    public void select(String itemId, boolean selected) {
-        select(items.get(itemId), selected, true);
+    public void select(String identifier, boolean selected) {
+        select(items.get(identifier), selected, true);
     }
 
-    public void select(String itemId, boolean selected, boolean fireEvent) {
-        select(items.get(itemId), selected, fireEvent);
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(items.get(identifier), selected, fireEvent);
     }
 
     public void select(ToggleGroupItem item) {
@@ -193,6 +185,27 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
                 }
             }
         }
+    }
+
+    @Override
+    public Iterator<ToggleGroupItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

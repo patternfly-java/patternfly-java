@@ -16,20 +16,23 @@
 package org.patternfly.component.jumplinks;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.function.Function;
 
+import org.patternfly.component.HasItems;
 import org.patternfly.core.Roles;
+import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLLIElement;
+import elemental2.dom.HTMLUListElement;
 
-import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.jumpLinks;
-import static org.patternfly.style.Classes.list;
 
-public class JumpLinksList extends JumpLinksSubComponent<HTMLLIElement, JumpLinksList> {
+public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpLinksList> implements
+        HasItems<HTMLUListElement, JumpLinksList, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
 
@@ -43,29 +46,18 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     final Map<String, JumpLinksItem> items;
 
     JumpLinksList() {
-        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, list)).attr(role, Roles.list).element());
+        super(SUB_COMPONENT_NAME, ul().css(component(jumpLinks, Classes.list))
+                .attr(role, Roles.list)
+                .element());
         this.items = new HashMap<>();
     }
 
     // ------------------------------------------------------ add
 
-    public <T> JumpLinksList addItems(Iterable<T> items, Function<T, JumpLinksItem> display) {
-        for (T item : items) {
-            JumpLinksItem bi = display.apply(item);
-            addItem(bi);
-        }
-        return this;
-    }
-
-    public JumpLinksList addItem(JumpLinksItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public JumpLinksList add(JumpLinksItem item) {
-        items.put(item.id, item);
-        add(item.element());
-        return this;
+        items.put(item.identifier(), item);
+        return add(item.element());
     }
 
     // ------------------------------------------------------ builder
@@ -73,5 +65,28 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     @Override
     public JumpLinksList that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<JumpLinksItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
     }
 }

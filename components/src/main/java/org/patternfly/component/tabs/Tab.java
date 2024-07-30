@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.tabs;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.ButtonType;
@@ -24,11 +26,14 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.WithIcon;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets.patternfly;
@@ -77,30 +82,30 @@ import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
+        ComponentContext<HTMLElement, Tab>,
         Disabled<HTMLElement, Tab>,
+        WithIdentifier<HTMLElement, Tab>,
         WithText<HTMLElement, Tab>,
         WithIcon<HTMLElement, Tab> {
 
     // ------------------------------------------------------ factory
 
-    public static Tab tab(String id) {
-        return new Tab(button(ButtonType.button), id, null);
+    public static Tab tab(String identifier) {
+        return new Tab(button(ButtonType.button), identifier, null);
     }
 
-    public static Tab tab(String id, String text) {
-        return new Tab(button(ButtonType.button), id, text);
+    public static Tab tab(String identifier, String text) {
+        return new Tab(button(ButtonType.button), identifier, text);
     }
 
-    public static <E extends HTMLElement> Tab tab(HTMLContainerBuilder<E> builder, String id, String text) {
-        return new Tab(builder, id, text);
+    public static <E extends HTMLElement> Tab tab(HTMLContainerBuilder<E> builder, String identifier, String text) {
+        return new Tab(builder, identifier, text);
     }
 
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Tab.class.getName());
     static final String SUB_COMPONENT_NAME = "tab";
-
-    public final String id;
 
     final String buttonId;
     final String contentId;
@@ -112,6 +117,8 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     CloseHandler<Tab> closeHandler;
     Function<Tabs, Promise<TabContent>> asyncContent;
 
+    private final String identifier;
+    private final Map<String, Object> data;
     private final HTMLElement textElement;
     private final boolean anchorElement;
     private double loadingTimeout;
@@ -119,13 +126,15 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     private HTMLElement iconContainer;
     private HTMLElement loadingContainer;
 
-    <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String id, String text) {
+    <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String identifier, String text) {
         super(SUB_COMPONENT_NAME, li().css(component(tabs, item))
                 .attr(role, presentation)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.id = id;
-        this.buttonId = Id.build(id, "tab");
-        this.contentId = Id.build(id, "content");
+        this.identifier = identifier;
+        this.data = new HashMap<>();
+        this.buttonId = Id.build(identifier, "tab");
+        this.contentId = Id.build(identifier, "content");
         this.anchorElement = builder.element().tagName.equalsIgnoreCase("a");
 
         add(button = builder.css(component(tabs, link))
@@ -237,7 +246,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Elements.setVisible(this, !hidden);
         Tabs tabs = lookupFlatComponent(true);
         if (tabs != null && tabs.currentTab() != null) {
-            if (id.equals(tabs.currentTab().id)) {
+            if (identifier.equals(tabs.currentTab().identifier)) {
                 select(false);
             }
         }
@@ -280,6 +289,12 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         // If added to this element, the tooltip won't show,
         // because this element is inside a scrolling container (<ul/>)
         this.tooltip = tooltip;
+        return this;
+    }
+
+    @Override
+    public <T> Tab store(String key, T value) {
+        data.put(key, value);
         return this;
     }
 
@@ -349,6 +364,24 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
      */
     public Tabs tabs() {
         return lookupFlatComponent();
+    }
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 
     // ------------------------------------------------------ internal

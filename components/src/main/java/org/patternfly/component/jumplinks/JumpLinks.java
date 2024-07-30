@@ -18,7 +18,6 @@ package org.patternfly.component.jumplinks;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.Attachable;
@@ -29,6 +28,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
@@ -49,6 +49,7 @@ import elemental2.dom.MutationRecord;
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.nav;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
@@ -79,6 +80,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
         Attachable,
         Center<HTMLElement, JumpLinks>,
         Expandable<HTMLElement, JumpLinks>,
+        HasItems<HTMLElement, JumpLinks, JumpLinksItem>,
         Vertical<HTMLElement, JumpLinks> {
 
     // ------------------------------------------------------ factory
@@ -138,21 +140,9 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
 
     // ------------------------------------------------------ add
 
-    public <T> JumpLinks addItems(Iterable<T> items, Function<T, JumpLinksItem> display) {
-        for (T item : items) {
-            JumpLinksItem bi = display.apply(item);
-            addItem(bi);
-        }
-        return this;
-    }
-
-    public JumpLinks addItem(JumpLinksItem item) {
-        return add(item);
-    }
-
-    // override to ensure internal wiring
+    @Override
     public JumpLinks add(JumpLinksItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         ulElement.add(item);
         return this;
     }
@@ -254,16 +244,16 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
         }
     }
 
-    public void select(String itemId) {
-        select(findItem(itemId), true, true);
+    public void select(String identifier) {
+        select(findItem(identifier), true, true);
     }
 
-    public void select(String itemId, boolean selected) {
-        select(findItem(itemId), selected, true);
+    public void select(String identifier, boolean selected) {
+        select(findItem(identifier), selected, true);
     }
 
-    public void select(String itemId, boolean selected, boolean fireEvent) {
-        select(findItem(itemId), selected, fireEvent);
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(findItem(identifier), selected, fireEvent);
     }
 
     public void select(JumpLinksItem item) {
@@ -284,15 +274,41 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
         }
     }
 
+    @Override
+    public Iterator<JumpLinksItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ulElement);
+        for (JumpLinksItem item : items.values()) {
+            if (item.list != null) {
+                item.list.clear();
+            }
+        }
+        items.clear();
+    }
+
     // ------------------------------------------------------ internal
 
-    private JumpLinksItem findItem(String id) {
-        JumpLinksItem item = items.get(id);
+    private JumpLinksItem findItem(String identifier) {
+        JumpLinksItem item = items.get(identifier);
         if (item == null) {
             for (Iterator<JumpLinksItem> iterator = items.values().iterator(); iterator.hasNext() && item == null; ) {
                 JumpLinksItem itm = iterator.next();
                 if (itm.list != null) {
-                    item = itm.list.items.get(id);
+                    item = itm.list.items.get(identifier);
                 }
             }
         }

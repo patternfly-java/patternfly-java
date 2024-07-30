@@ -31,10 +31,12 @@ import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIconAndText;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -94,6 +96,7 @@ import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         ComponentContext<HTMLElement, MenuItem>,
         Disabled<HTMLElement, MenuItem>,
+        WithIdentifier<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
         WithIcon<HTMLElement, MenuItem>,
         WithIconAndText<HTMLElement, MenuItem>,
@@ -104,33 +107,34 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     /**
      * Create a new menu item with type {@link MenuItemType#action}.
      */
-    public static MenuItem actionMenuItem(String id, String text) {
-        return new MenuItem(id, text, MenuItemType.action, null);
+    public static MenuItem actionMenuItem(String identifier, String text) {
+        return new MenuItem(identifier, text, MenuItemType.action, null);
     }
 
     /**
      * Create a new menu item with type {@link MenuItemType#link}.
      */
-    public static MenuItem linkMenuItem(String id, String text, String href) {
-        return new MenuItem(id, text, link, null).href(href);
+    public static MenuItem linkMenuItem(String identifier, String text, String href) {
+        return new MenuItem(identifier, text, link, null).href(href);
     }
 
     /**
      * Create a new menu item with type {@link MenuItemType#link}.
      */
-    public static MenuItem checkboxMenuItem(String id, String text) {
-        return new MenuItem(id, text, checkbox, null);
+    public static MenuItem checkboxMenuItem(String identifier, String text) {
+        return new MenuItem(identifier, text, checkbox, null);
     }
 
-    public static MenuItem asyncMenuItem(String id, String text, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
-        return new MenuItem(id, text, async, loadItems);
+    public static MenuItem asyncMenuItem(String identifier, String text,
+            Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+        return new MenuItem(identifier, text, async, loadItems);
     }
 
     /**
-     * Create a new menu item with the specified type. Use this method, if you want full control over the text and type.
+     * Create a new menu item with the specified type. Use this method if you want full control over the text and type.
      */
-    public static MenuItem menuItem(String id, MenuItemType type) {
-        return new MenuItem(id, null, MenuItemType.action, null);
+    public static MenuItem menuItem(String identifier, MenuItemType type) {
+        return new MenuItem(identifier, null, MenuItemType.action, null);
     }
 
     // ------------------------------------------------------ instance
@@ -138,8 +142,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private static final Logger logger = Logger.getLogger(MenuItem.class.getName());
     static final String SUB_COMPONENT_NAME = "";
 
-    public final String id;
     final MenuItemType itemType;
+    private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
@@ -157,11 +161,12 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private HTMLElement selectIcon;
     private ComponentHandler<MenuItem> handler;
 
-    MenuItem(String id, String text, MenuItemType itemType, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+    MenuItem(String identifier, String text, MenuItemType itemType, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
                 .attr(role, none)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.id = id;
+        this.identifier = identifier;
         this.itemType = itemType;
         this.data = new HashMap<>();
 
@@ -176,7 +181,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .element());
 
         } else if (itemType == checkbox) {
-            String checkboxId = Id.build(id, "check");
+            String checkboxId = Id.build(identifier, "check");
             itemBuilder = label()
                     .apply(l -> l.htmlFor = checkboxId);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
@@ -187,7 +192,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .element());
 
         } else {
-            // create a pseudo-element, but don't add it
+            // create a pseudo-element but don't add it
             itemBuilder = div()
                     .add(mainElement = div()
                             .add(textElement = div().element())
@@ -214,11 +219,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Attachable.register(this, this);
     }
 
-    // constructor must only be used to clone an item as favorite item!
+    // constructor must only be used to clone an item as a favorite item!
     MenuItem(Menu menu, MenuItem item, MenuItemType itemType) {
         super(SUB_COMPONENT_NAME, ((HTMLElement) item.element().cloneNode(true)));
 
-        this.id = Id.build("fav", item.id);
+        this.identifier = Id.build("fav", item.identifier);
         this.data = new HashMap<>(item.data);
         this.itemType = itemType;
         this.favoriteItem = null;
@@ -254,7 +259,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     public void attach(MutationRecord mutationRecord) {
         Menu menu = lookupComponent();
         if (itemAction != null) {
-            // redo initial disabled call for item action
+            // redo the initially disabled call for the  item action
             if (element().classList.contains(modifier(disabled))) {
                 itemAction.element().disabled = true;
             }
@@ -444,6 +449,12 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     // ------------------------------------------------------ api
 
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
     @Override
     public String text() {
         return Elements.textNode(textElement);
@@ -465,7 +476,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     // ------------------------------------------------------ internal
 
     MenuItemAction addFavoriteItemAction() {
-        String actionId = Id.build(id, "mark-as-favorite");
+        String actionId = Id.build(identifier, "mark-as-favorite");
         favoriteItemAction = favoriteMenuItemAction(actionId);
         element().appendChild(favoriteItemAction.element());
         return favoriteItemAction;

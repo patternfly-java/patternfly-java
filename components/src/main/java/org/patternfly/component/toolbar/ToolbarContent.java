@@ -15,12 +15,18 @@
  */
 package org.patternfly.component.toolbar;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.patternfly.component.HasItems;
 import org.patternfly.core.ElementDelegate;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.section;
@@ -29,8 +35,9 @@ import static org.patternfly.style.Classes.toolbar;
 /**
  * Container for a toolbar content.
  */
-public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent>
-        implements ElementDelegate<HTMLDivElement, ToolbarContent> {
+public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent> implements
+        HasItems<HTMLDivElement, ToolbarContent, ToolbarItem>,
+        ElementDelegate<HTMLDivElement, ToolbarContent> {
 
     // ------------------------------------------------------ factory
 
@@ -44,10 +51,12 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tc";
+    private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
 
     ToolbarContent() {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
+        this.items = new LinkedHashMap<>();
         element().appendChild(contentSection = div().css(component(toolbar, content, section)).element());
     }
 
@@ -58,11 +67,9 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
 
     // ------------------------------------------------------ add
 
-    public ToolbarContent addItem(ToolbarItem item) {
-        return add(item);
-    }
-
+    @Override
     public ToolbarContent add(ToolbarItem item) {
+        items.put(item.identifier(), item);
         contentSection.appendChild(item.element());
         return this;
     }
@@ -81,5 +88,28 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     @Override
     public ToolbarContent that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<ToolbarItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(contentSection);
+        items.clear();
     }
 }

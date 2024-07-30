@@ -16,13 +16,14 @@
 package org.patternfly.component.table;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -30,6 +31,7 @@ import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLTableRowElement;
 
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
@@ -41,64 +43,44 @@ import static org.patternfly.style.Classes.selected;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tr;
 
-public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements ComponentContext<HTMLTableRowElement, Tr> {
+public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
+        ComponentContext<HTMLTableRowElement, Tr>,
+        HasItems<HTMLTableRowElement, Tr, Cell<?>>,
+        WithIdentifier<HTMLTableRowElement, Tr> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static Tr tr() {
-        return new Tr(Id.unique(ComponentType.Table.id, "row"));
-    }
-
-    /**
-     * Factory method to create a new instance of this component.
-     */
-    public static Tr tr(String key) {
-        return new Tr(key);
+    public static Tr tr(String identifier) {
+        return new Tr(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "tr";
-    public final String key;
+    private final String identifier;
+    private final Map<String, Cell<?>> items;
     private final Map<String, Object> data;
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
 
-    Tr(String key) {
+    Tr(String identifier) {
         super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
-                .data(Dataset.key, key)
+                .data(Dataset.identifier, identifier)
                 .element());
-        this.key = key;
+        this.identifier = identifier;
+        this.items = new LinkedHashMap<>();
         this.data = new HashMap<>();
     }
 
     // ------------------------------------------------------ add
 
-    public <T> Tr addHeaders(Iterable<T> items, Function<T, Th> display) {
-        for (T item : items) {
-            Th header = display.apply(item);
-            addHeader(header);
-        }
-        return this;
-    }
-
-    public Tr addHeader(Th header) {
-        return add(header);
-    }
-
-    public <T> Tr addData(Iterable<T> items, Function<T, Td> display) {
-        for (T item : items) {
-            Td data = display.apply(item);
-            addData(data);
-        }
-        return this;
-    }
-
-    public Tr addData(Td data) {
-        return add(data);
+    @Override
+    public Tr add(Cell<?> item) {
+        items.put(item.identifier(), item);
+        return add(item.element());
     }
 
     // ------------------------------------------------------ builder
@@ -151,6 +133,32 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements Co
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<Cell<?>> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.clear();
+    }
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
 
     @Override
     public boolean has(String key) {

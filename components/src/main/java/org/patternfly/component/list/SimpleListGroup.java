@@ -15,11 +15,13 @@
  */
 package org.patternfly.component.list;
 
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
+import org.patternfly.component.HasItems;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ElementDelegate;
@@ -30,6 +32,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Aria.labelledBy;
@@ -40,7 +43,9 @@ import static org.patternfly.style.Classes.simpleList;
 import static org.patternfly.style.Classes.title;
 
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
-        WithText<HTMLElement, SimpleListGroup>, ElementDelegate<HTMLElement, SimpleListGroup> {
+        HasItems<HTMLElement, SimpleListGroup, SimpleListItem>,
+        WithText<HTMLElement, SimpleListGroup>,
+        ElementDelegate<HTMLElement, SimpleListGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -57,7 +62,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     SimpleListGroup(String text) {
         super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
-        this.items = new HashMap<>();
+        this.items = new LinkedHashMap<>();
         String headerId = Id.unique(SUB_COMPONENT_NAME);
         element().appendChild(headerElement = h(2).css(component(simpleList, title))
                 .id(headerId)
@@ -89,9 +94,9 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
         return add(item);
     }
 
-    // override to ensure internal wiring
+    @Override
     public SimpleListGroup add(SimpleListItem item) {
-        items.put(item.id, item);
+        items.put(item.identifier(), item);
         ulElement.appendChild(item.element());
         return this;
     }
@@ -107,4 +112,28 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public SimpleListGroup that() {
         return this;
     }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<SimpleListItem> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ulElement);
+        items.clear();
+    }
+
 }

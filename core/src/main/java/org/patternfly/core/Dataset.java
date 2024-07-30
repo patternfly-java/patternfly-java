@@ -19,10 +19,8 @@ public interface Dataset {
 
     String expandableSectionId = "expandableSectionId";
     String expandableSectionTarget = "expandableSectionTarget";
-    String key = "key";
+    String identifier = "identifier";
     String label = "label";
     String placeholder = "placeholder";
-    String navigationGroup = "navigationGroup";
-    String navigationItem = "navigationItem";
     String sliderStepValue = "sliderStepValue";
 }
