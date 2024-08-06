@@ -16,7 +16,6 @@
 package org.patternfly.showcase;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.logger.Level;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
 import org.jboss.elemento.router.Place;
@@ -27,12 +26,9 @@ import org.patternfly.component.page.Page;
 import org.patternfly.core.Version;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.URLSearchParams;
-
 import static elemental2.dom.DomGlobal.location;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.body;
-import static org.jboss.elemento.logger.Level.INFO;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
@@ -59,7 +55,6 @@ import static org.patternfly.style.Variables.Height;
 public final class Showcase {
 
     static final String MAIN_ID = "pfj-main-id";
-    private static final String LOG_LEVEL_PARAMETER = "log-level";
     private static final Logger logger = Logger.getLogger(Showcase.class.getName());
 
     private static Navigation navigation;
@@ -70,23 +65,7 @@ public final class Showcase {
 
     public static void init(Settings settings) {
         // log level
-        if (!location.search.isEmpty()) {
-            URLSearchParams query = new URLSearchParams(location.search);
-            if (query.has(LOG_LEVEL_PARAMETER)) {
-                String logLevel = query.get(LOG_LEVEL_PARAMETER);
-                try {
-                    Level level = Level.valueOf(logLevel.toUpperCase());
-                    Logger.setLevel(level);
-                } catch (IllegalArgumentException e) {
-                    logger.error("Unknown log level '%s'", logLevel);
-                    Logger.setLevel(INFO);
-                }
-            } else {
-                Logger.setLevel(INFO);
-            }
-        } else {
-            Logger.setLevel(INFO);
-        }
+        Logger.initFrom(location);
 
         // navigation #1
         navigation = navigation(expandable);
@@ -120,6 +99,7 @@ public final class Showcase {
                         .addItem(ni(placeManager.place("/layouts/about-layouts"), "About layouts"))
                         .addItems(layouts(), layout ->
                                 navigationItem(layout.route, layout.title, layout.route)))
+                .addItem(ni(placeManager.place("/api-design")))
                 .addItem(ni(placeManager.place("/icons")))
                 .addItem(ni(placeManager.place("/get-involved")));
 

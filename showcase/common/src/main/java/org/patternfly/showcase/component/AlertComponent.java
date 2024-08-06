@@ -144,7 +144,7 @@ public class AlertComponent extends SnippetPage {
                             .element();
                     return div()
                             .add(actionList()
-                                    .addItem(actionListItem("alert-timeout-0")
+                                    .addItem(actionListItem()
                                             .add(button("Add alert").secondary()
                                                     .onClick((event, button) -> alerts.appendChild(li()
                                                             .add(alert(custom, "Default timeout Alert")
@@ -154,7 +154,7 @@ public class AlertComponent extends SnippetPage {
                                                                             .addAction("View details")
                                                                             .addAction("Ignore")))
                                                             .element()))))
-                                    .addItem(actionListItem("alert-timeout-1")
+                                    .addItem(actionListItem()
                                             .add(button("Remove all alerts").secondary()
                                                     .onClick((event, button) -> removeChildrenFrom(alerts)))))
                             .add(alerts)
@@ -349,15 +349,15 @@ public class AlertComponent extends SnippetPage {
                 // @code-start:alert-group-toast
                 div()
                         .add(actionList()
-                                .addItem(actionListItem("alert-group-toast-0")
+                                .addItem(actionListItem()
                                         .add(button("Add toast success alert").secondary()
                                                 .onClick((e, b) -> alertGroup(toast)
                                                         .addItem(alert(success, "Toast success alert")))))
-                                .addItem(actionListItem("alert-group-toast-1")
+                                .addItem(actionListItem()
                                         .add(button("Add toast danger alert").secondary()
                                                 .onClick((e, b) -> alertGroup(toast)
                                                         .addItem(alert(danger, "Toast danger alert")))))
-                                .addItem(actionListItem("alert-group-toast-2")
+                                .addItem(actionListItem()
                                         .add(button("Add toast info alert").secondary()
                                                 .onClick((e, b) -> alertGroup(toast)
                                                         .addItem(alert(info, "Toast info alert"))))))
@@ -373,7 +373,7 @@ public class AlertComponent extends SnippetPage {
                     final double[] intervalHandle = {0};
                     return div()
                             .add(actionList()
-                                    .addItem(actionListItem("alert-group-asynchronous-0")
+                                    .addItem(actionListItem()
                                             .add(button("Start async alerts").secondary()
                                                     .onClick((e, b) -> intervalHandle[0] = setInterval(__ -> {
                                                         counter[0] = counter[0] + 1;
@@ -381,7 +381,7 @@ public class AlertComponent extends SnippetPage {
                                                                 .addItem(alert(danger, "Async notification " + counter[0]
                                                                         + " was added to the queue."));
                                                     }, 1_000))))
-                                    .addItem(actionListItem("alert-group-asynchronous-1")
+                                    .addItem(actionListItem()
                                             .add(button("Stop async alerts").secondary()
                                                     .onClick((e, b) -> {
                                                         counter[0] = 0;

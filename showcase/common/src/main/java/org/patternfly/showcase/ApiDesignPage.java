@@ -13,15 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.tree;
+package org.patternfly.showcase;
 
-public enum TreeViewItemStatus {
+import org.jboss.elemento.router.Route;
 
-    static_,
+@Route(value = "/api-design", title = "API design")
+public class ApiDesignPage extends DocumentationPage {
 
-    pending,
-
-    resolved,
-
-    rejected
+    public ApiDesignPage() {
+        super("api-design");
+    }
 }

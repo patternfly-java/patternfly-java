@@ -15,9 +15,11 @@
  */
 package org.patternfly.component.tree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -36,9 +38,11 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLIElement;
@@ -96,6 +100,7 @@ import static org.patternfly.style.Size.md;
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
         ComponentContext<HTMLLIElement, TreeViewItem>,
         Compact<HTMLLIElement, TreeViewItem>,
+        Disabled<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
         HasItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
         WithIdentifier<HTMLLIElement, TreeViewItem>,
@@ -144,6 +149,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private HTMLElement toggleElement;
     private HTMLElement iconContainer;
     private HTMLInputElement checkboxElement;
+    private List<HTMLButtonElement> buttonElements;
+    private List<HTMLInputElement> inputElements;
     private ToggleHandler<TreeViewItem> toggleHandler;
     private Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> asyncItems;
 
@@ -159,6 +166,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         this.status = static_;
         this.items = new LinkedHashMap<>();
         this.data = new HashMap<>();
+        this.buttonElements = new ArrayList<>();
+        this.inputElements = new ArrayList<>();
 
         add(contentElement = div().css(component(treeView, content)).element());
         containerElement = span().css(component(treeView, node, container)).element();
@@ -188,6 +197,17 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public TreeViewItem disabled(boolean disabled) {
+        for (HTMLButtonElement buttonElement : buttonElements) {
+            buttonElement.disabled = disabled;
+        }
+        for (HTMLInputElement inputElement : inputElements) {
+            inputElement.disabled = disabled;
+        }
+        return Disabled.super.disabled(disabled);
+    }
 
     @Override
     public TreeViewItem text(String text) {
@@ -300,6 +320,53 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
+    public Promise<Iterable<TreeViewItem>> load() {
+        if (status == pending && asyncItems != null) {
+            // show loading indicator after a given timeout
+            TreeViewItem[] loadingItem = new TreeViewItem[1];
+            double handle = setTimeout(__ -> {
+                TreeView treeView = lookupComponent(true);
+                if (treeView != null) {
+                    loadingItem[0] = loading.get();
+                    loadingItem[0].finishDOM(treeView);
+                    childrenElement.appendChild(loadingItem[0].element());
+                }
+            }, LOADING_TIMEOUT);
+
+            // load items
+            Promise<Iterable<TreeViewItem>> promise = asyncItems.apply(this);
+            return promise
+                    .then(items -> {
+                        status = resolved;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        for (TreeViewItem child : items) {
+                            addItem(child);
+                        }
+                        if (this.items.isEmpty()) {
+                            failSafeRemoveFromParent(toggleElement);
+                            collapse(false);
+                        }
+                        return Promise.resolve(items);
+                    })
+                    .catch_(error -> {
+                        status = rejected;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
+                        TreeView treeView = lookupComponent(true);
+                        if (treeView != null) {
+                            TreeViewItem errorItem = TreeViewItem.error.get();
+                            errorItem.finishDOM(treeView);
+                            childrenElement.appendChild(errorItem.element());
+                        }
+                        return Promise.reject(error);
+                    });
+        } else {
+            return Promise.resolve(emptyList());
+        }
+    }
+
     public void reset() {
         if (status == resolved || status == rejected) {
             status = pending;
@@ -310,6 +377,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 insertFirst(containerElement, toggleElement);
             }
         }
+    }
+
+    public TreeViewItemStatus status() {
+        return status;
     }
 
     @Override
@@ -364,7 +435,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         // create node, toggle and text elements based on the tree view type
         switch (tv.type) {
             case default_:
-                nodeElement = button().css(Classes.component(treeView, node))
+                nodeElement = button().css(component(treeView, node))
                         .attr(tabindex, -1)
                         .on(click, e -> {
                             load();
@@ -379,10 +450,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         .element();
                 textElement = span().css(component(treeView, node, Classes.text)).element();
                 tabElement = nodeElement;
+                buttonElements.add((HTMLButtonElement) nodeElement);
                 break;
             case selectableItems:
                 String selectableId = Id.unique(subComponentId(), "selectable");
-                nodeElement = div().css(Classes.component(treeView, node), modifier(Classes.selectable))
+                nodeElement = div().css(component(treeView, node), modifier(Classes.selectable))
                         .id(selectableId)
                         .on(click, e -> tv.select(this))
                         .element();
@@ -400,11 +472,13 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         .attr(tabindex, -1)
                         .element();
                 tabElement = textElement;
+                buttonElements.add((HTMLButtonElement) toggleElement);
+                buttonElements.add((HTMLButtonElement) textElement);
                 break;
             case checkboxes:
                 String labelId = Id.unique(subComponentId(), "label");
                 String checkboxId = Id.unique(subComponentId(), "checkbox");
-                nodeElement = label().css(Classes.component(treeView, node))
+                nodeElement = label().css(component(treeView, node))
                         .id(labelId)
                         .apply(l -> l.htmlFor = checkboxId)
                         .element();
@@ -429,6 +503,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                                 .element())
                         .element());
                 tabElement = checkboxElement;
+                buttonElements.add((HTMLButtonElement) toggleElement);
+                inputElements.add(checkboxElement);
                 break;
             default:
                 logger.error("Unsupported tree view type in tree view item %s: %s %o", identifier, tv.type.name(), element());
@@ -464,53 +540,6 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             if (!child.domFinished) {
                 child.finishDOM(tv);
             }
-        }
-    }
-
-    Promise<Iterable<TreeViewItem>> load() {
-        if (status == pending && asyncItems != null) {
-            // show loading indicator after a given timeout
-            TreeViewItem[] loadingItem = new TreeViewItem[1];
-            double handle = setTimeout(__ -> {
-                TreeView treeView = lookupComponent(true);
-                if (treeView != null) {
-                    loadingItem[0] = loading.get();
-                    loadingItem[0].finishDOM(treeView);
-                    childrenElement.appendChild(loadingItem[0].element());
-                }
-            }, LOADING_TIMEOUT);
-
-            // load items
-            Promise<Iterable<TreeViewItem>> promise = asyncItems.apply(this);
-            return promise
-                    .then(items -> {
-                        status = resolved;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        for (TreeViewItem child : items) {
-                            addItem(child);
-                        }
-                        if (this.items.isEmpty()) {
-                            failSafeRemoveFromParent(toggleElement);
-                            collapse(false);
-                        }
-                        return Promise.resolve(items);
-                    })
-                    .catch_(error -> {
-                        status = rejected;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
-                        TreeView treeView = lookupComponent(true);
-                        if (treeView != null) {
-                            TreeViewItem errorItem = TreeViewItem.error.get();
-                            errorItem.finishDOM(treeView);
-                            childrenElement.appendChild(errorItem.element());
-                        }
-                        return Promise.reject(error);
-                    });
-        } else {
-            return Promise.resolve(emptyList());
         }
     }
 

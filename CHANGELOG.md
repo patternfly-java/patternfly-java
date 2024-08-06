@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Add
+
+- Add `TreeViewItem.disabled(boolean)`
+
+### Changed
+
+- Make `TreeViewItem.load()` and `TreeViewItem.status()` public
+
+### Upgrades
+
+- Bump Elemento to 1.6.7
+
 ## [0.2.8] - 2024-07-30
 
 ### Added

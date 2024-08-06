@@ -18,6 +18,8 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -34,6 +36,10 @@ public class ActionListItem extends ActionListSubComponent<HTMLDivElement, Actio
         ComponentContext<HTMLDivElement, ActionListItem> {
 
     // ------------------------------------------------------ factory
+
+    public static ActionListItem actionListItem() {
+        return new ActionListItem(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_NAME));
+    }
 
     public static ActionListItem actionListItem(String identifier) {
         return new ActionListItem(identifier);

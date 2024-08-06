@@ -18,6 +18,8 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
@@ -44,6 +46,10 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
         WithIcon<HTMLLIElement, ListItem> {
 
     // ------------------------------------------------------ factory
+
+    public static ListItem listItem() {
+        return new ListItem(Id.unique(ComponentType.List.id, SUB_COMPONENT_NAME));
+    }
 
     public static ListItem listItem(String identifier) {
         return new ListItem(identifier);
