@@ -89,7 +89,7 @@
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.junit>5.10.3</version.junit>
-        <version.kotlin>2.0.0</version.kotlin>
+        <version.kotlin>2.0.10</version.kotlin>
         <version.node>v21.7.1</version.node>
         <version.patternfly>5.2.1</version.patternfly>
         <version.yarn>v1.22.21</version.yarn>
