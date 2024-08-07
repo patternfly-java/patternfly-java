@@ -20,9 +20,9 @@ import { fas as FAS } from '@fortawesome/free-solid-svg-icons';
 import { far as FAR } from '@fortawesome/free-regular-svg-icons';
 import { fab as FAB } from '@fortawesome/free-brands-svg-icons';
 
-import pfIcons from '@patternfly/patternfly/icons/pf-icons.json' assert { type: 'json' };
+import pfIcons from '@patternfly/patternfly/icons/pf-icons.json' with { type: 'json' };
 // @ts-ignore
-import customIcons from './custom.json' assert { type: 'json' };
+import customIcons from './custom.json' with { type: 'json' };
 
 export interface IconSpec {
   /** SVG view box x offset */
