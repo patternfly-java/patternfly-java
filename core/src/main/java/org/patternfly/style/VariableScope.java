@@ -19,5 +19,7 @@ public enum VariableScope {
 
     global,
 
+    util,
+
     component
 }

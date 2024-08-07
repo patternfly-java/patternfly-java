@@ -131,9 +131,9 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             .icon(exclamationCircle());
 
     final LinkedHashMap<String, TreeViewItem> items;
+    final HTMLElement contentElement;
     private final String identifier;
     private final Map<String, Object> data;
-    private final HTMLElement contentElement;
     private final HTMLElement containerElement;
     private final HTMLUListElement childrenElement;
 

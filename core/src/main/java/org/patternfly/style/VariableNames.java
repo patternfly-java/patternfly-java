@@ -36,6 +36,23 @@ class VariableNames {
         return builder.toString();
     }
 
+    static String utilName(String firstElement, String... otherElements) {
+        StringBuilder builder = new StringBuilder();
+        if (firstElement != null && !firstElement.isEmpty()) {
+            builder.append("--pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-u-").append(firstElement);
+            if (otherElements != null && otherElements.length != 0) {
+                builder.append("--");
+                for (int i = 0; i < otherElements.length; i++) {
+                    builder.append(otherElements[i]);
+                    if (i < otherElements.length - 1) {
+                        builder.append("--");
+                    }
+                }
+            }
+        }
+        return builder.toString();
+    }
+
     static String componentName(String component, String... elements) {
         StringBuilder builder = new StringBuilder();
         if (component != null && component.startsWith("pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-")) {

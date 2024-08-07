@@ -26,6 +26,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.patternfly.style.VariableNames.componentName;
 import static org.patternfly.style.VariableNames.globalName;
+import static org.patternfly.style.VariableNames.utilName;
 
 /**
  * Provides methods to build and apply PatternFly global and component variables.
@@ -46,6 +47,17 @@ public class Variable {
      */
     public static Variable globalVar(String firstElement, String... otherElements) {
         return new Variable(VariableScope.global, globalName(firstElement, otherElements));
+    }
+
+    /**
+     * Constructs a utility {@linkplain Variable variable} with the given elements.
+     *
+     * @param firstElement  the first element to include in the variable name
+     * @param otherElements additional elements to append to the variable name
+     * @return a new {@link Variable} object with the constructed variable name
+     */
+    public static Variable utilVar(String firstElement, String... otherElements) {
+        return new Variable(VariableScope.global, utilName(firstElement, otherElements));
     }
 
     /**

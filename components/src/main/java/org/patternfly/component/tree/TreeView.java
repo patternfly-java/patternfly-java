@@ -260,7 +260,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
             ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
             options.setBlock("nearest");
             options.setInline("nearest");
-            item.element().scrollIntoView(options);
+            item.contentElement.scrollIntoView(options);
         }
     }
 

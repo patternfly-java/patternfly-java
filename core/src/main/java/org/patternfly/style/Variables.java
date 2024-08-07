@@ -22,6 +22,7 @@ public interface Variables {
     String Height = "Height";
     String Left = "Left";
     String LineClamp = "LineClamp";
+    String MinWidth = "MinWidth";
     String MaxWidth = "MaxWidth";
     String MaxHeight = "MaxHeight";
     String Order = "Order";
