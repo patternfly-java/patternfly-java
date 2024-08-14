@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.form;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
@@ -29,7 +28,6 @@ import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.CSSStyleDeclaration;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
 import elemental2.dom.MutationRecord;
@@ -69,7 +67,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     private final HTMLTextAreaElement textAreaElement;
     private boolean autoResize;
     private TextAreaResize resize;
-    private ChangeHandler<TextArea, String> changeHandler;
 
     TextArea(String id, String value) {
         super(id, formControlContainer()
@@ -143,17 +140,8 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return value(text);
     }
 
-    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextArea value(String value) {
-        return value(value, false);
-    }
-
-    public TextArea value(String value, boolean fireEvent) {
-        boolean changed = !Objects.equals(textAreaElement.value, value);
         textAreaElement.value = value;
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, value);
-        }
         return this;
     }
 
@@ -175,7 +163,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
      * adding an event listener for the keyup event to the text area element.
      */
     public TextArea onChange(ChangeHandler<TextArea, String> changeHandler) {
-        this.changeHandler = changeHandler;
         textAreaElement.addEventListener(keyup.name, e -> changeHandler.onChange(e, this, textAreaElement.value));
         return this;
     }

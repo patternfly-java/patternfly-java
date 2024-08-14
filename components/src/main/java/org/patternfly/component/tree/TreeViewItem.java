@@ -136,7 +136,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private final Map<String, Object> data;
     private final HTMLElement containerElement;
     private final HTMLUListElement childrenElement;
+    private final List<HTMLButtonElement> buttonElements;
+    private final List<HTMLInputElement> inputElements;
 
+    TreeView tv;
     TreeViewItem parent;
     HTMLElement tabElement;
     private String text;
@@ -149,9 +152,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private HTMLElement toggleElement;
     private HTMLElement iconContainer;
     private HTMLInputElement checkboxElement;
-    private List<HTMLButtonElement> buttonElements;
-    private List<HTMLInputElement> inputElements;
-    private ToggleHandler<TreeViewItem> toggleHandler;
+    private final List<ToggleHandler<TreeViewItem>> toggleHandler;
     private Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> asyncItems;
 
     TreeViewItem(String identifier) {
@@ -168,6 +169,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         this.data = new HashMap<>();
         this.buttonElements = new ArrayList<>();
         this.inputElements = new ArrayList<>();
+        this.toggleHandler = new ArrayList<>();
 
         add(contentElement = div().css(component(treeView, content)).element());
         containerElement = span().css(component(treeView, node, container)).element();
@@ -181,8 +183,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         item.parent = this;
         items.put(item.identifier, item);
         childrenElement.appendChild(item.element());
-        TreeView treeView = lookupComponent(true);
-        item.finishDOM(treeView);
+        item.finishDOM(tv);
         return this;
     }
 
@@ -270,7 +271,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     // ------------------------------------------------------ events
 
     public TreeViewItem onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -298,8 +299,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             if (domFinished && icon != null && expandedIcon != null) {
                 failSafeIconContainer().replaceChildren(icon);
             }
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), this, false);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
             }
         }
     }
@@ -314,8 +315,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             if (domFinished && icon != null && expandedIcon != null) {
                 failSafeIconContainer().replaceChildren(expandedIcon);
             }
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), this, true);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
             }
         }
     }
@@ -325,17 +326,13 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             // show loading indicator after a given timeout
             TreeViewItem[] loadingItem = new TreeViewItem[1];
             double handle = setTimeout(__ -> {
-                TreeView treeView = lookupComponent(true);
-                if (treeView != null) {
-                    loadingItem[0] = loading.get();
-                    loadingItem[0].finishDOM(treeView);
-                    childrenElement.appendChild(loadingItem[0].element());
-                }
+                loadingItem[0] = loading.get();
+                loadingItem[0].finishDOM(tv);
+                childrenElement.appendChild(loadingItem[0].element());
             }, LOADING_TIMEOUT);
 
             // load items
-            Promise<Iterable<TreeViewItem>> promise = asyncItems.apply(this);
-            return promise
+            return asyncItems.apply(this)
                     .then(items -> {
                         status = resolved;
                         clearTimeout(handle);
@@ -354,12 +351,9 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         clearTimeout(handle);
                         failSafeRemoveFromParent(loadingItem[0]);
                         logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
-                        TreeView treeView = lookupComponent(true);
-                        if (treeView != null) {
-                            TreeViewItem errorItem = TreeViewItem.error.get();
-                            errorItem.finishDOM(treeView);
-                            childrenElement.appendChild(errorItem.element());
-                        }
+                        TreeViewItem errorItem = TreeViewItem.error.get();
+                        errorItem.finishDOM(tv);
+                        childrenElement.appendChild(errorItem.element());
                         return Promise.reject(error);
                     });
         } else {
@@ -422,8 +416,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     void finishDOM(TreeView tv) {
         if (tv == null) {
             logger.warn("DOM for tree view item %s cannot be finished: Unable to find parent tree view component: %o",
-                    identifier,
-                    element());
+                    identifier, element());
             return;
         }
         if (domFinished) {
@@ -431,6 +424,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
             return;
         }
 
+        this.tv = tv;
         logger.debug("Finish DOM for tree view item %s[%s]: %o", identifier, tv.type.name(), element());
         // create node, toggle and text elements based on the tree view type
         switch (tv.type) {

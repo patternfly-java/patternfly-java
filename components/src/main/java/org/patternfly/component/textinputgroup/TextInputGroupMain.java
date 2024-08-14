@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Elements;
@@ -30,7 +29,6 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -70,7 +68,6 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
     private HTMLElement iconContainer;
     private ChipGroup chipGroup;
     private TextInputGroup textInputGroup;
-    private ChangeHandler<TextInputGroup, String> changeHandler;
 
     TextInputGroupMain(String id) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, main)).element());
@@ -128,24 +125,8 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return value(text);
     }
 
-    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextInputGroupMain value(String value) {
-        return value(value, false);
-    }
-
-    public TextInputGroupMain value(String value, boolean fireEvent) {
-        boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
-        if (fireEvent && changed && changeHandler != null) {
-            if (textInputGroup == null) {
-                textInputGroup = lookupComponent(true); // might not be available yet!
-                if (textInputGroup != null) {
-                    changeHandler.onChange(new Event(""), textInputGroup, value);
-                }
-            } else {
-                changeHandler.onChange(new Event(""), textInputGroup, value);
-            }
-        }
         return this;
     }
 
@@ -167,7 +148,6 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
      * adding an event listener for the keyup event to the text area element.
      */
     public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> changeHandler) {
-        this.changeHandler = changeHandler;
         inputElement.addEventListener(keyup.name, e -> {
             if (textInputGroup == null) {
                 textInputGroup = lookupComponent();

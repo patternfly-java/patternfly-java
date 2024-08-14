@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.jumplinks;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -99,6 +101,8 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     private static final By JUMP_LINKS_ITEMS = By.classname(component(jumpLinks, item));
 
     private final Map<String, JumpLinksItem> items;
+    private final List<ToggleHandler<JumpLinks>> toggleHandler;
+    private final List<SelectHandler<JumpLinksItem>> selectHandler;
     private final HTMLContainerBuilder<HTMLDivElement> headerElement;
     private final HTMLContainerBuilder<HTMLDivElement> labelElement;
     private final HTMLContainerBuilder<HTMLUListElement> ulElement;
@@ -107,12 +111,12 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     private Button toggleButton;
     private Supplier<HTMLElement> scrollableElement; // TODO Implement scrollable selector support
     private HTMLContainerBuilder<HTMLElement> toggleTextElement;
-    private SelectHandler<JumpLinksItem> selectHandler;
-    private ToggleHandler<JumpLinks> toggleHandler;
 
     JumpLinks(String label) {
         super(ComponentType.JumpLinks, nav().css(component(jumpLinks)).element());
         this.items = new HashMap<>();
+        this.toggleHandler = new ArrayList<>();
+        this.selectHandler = new ArrayList<>();
 
         element().appendChild(div().css(component(jumpLinks, main))
                 .add(headerElement = div().css(component(jumpLinks, header))
@@ -217,12 +221,12 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     // ------------------------------------------------------ events
 
     public JumpLinks onSelect(SelectHandler<JumpLinksItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public JumpLinks onToggle(ToggleHandler<JumpLinks> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -231,16 +235,16 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     @Override
     public void collapse(boolean fireEvent) {
         Expandable.collapse(element(), toggleButton.element(), null);
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, false);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
         }
     }
 
     @Override
     public void expand(boolean fireEvent) {
         Expandable.expand(element(), toggleButton.element(), null);
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, true);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
         }
     }
 
@@ -268,8 +272,8 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
         if (item != null) {
             unselectAllItems();
             item.markSelected(selected);
-            if (selectHandler != null && fireEvent) {
-                selectHandler.onSelect(new Event(""), item, selected);
+            if (fireEvent) {
+                selectHandler.forEach(selectHandler -> selectHandler.onSelect(new Event(""), item, selected));
             }
         }
     }

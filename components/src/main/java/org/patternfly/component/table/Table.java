@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -57,12 +60,13 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     // ------------------------------------------------------ instance
 
     private Tbody tbody;
-    private SelectHandler<Tr> selectHandler;
+    private final List<SelectHandler<Tr>> selectHandler;
 
     Table() {
         super(ComponentType.Table, Elements.table().css(component(table))
                 .attr(role, grid)
                 .element());
+        this.selectHandler = new ArrayList<>();
         gridBreakpoint(gridMd);
         storeComponent();
     }
@@ -119,7 +123,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     // ------------------------------------------------------ events
 
     public Table onSelect(SelectHandler<Tr> handler) {
-        this.selectHandler = handler;
+        this.selectHandler.add(handler);
         return this;
     }
 
@@ -142,8 +146,8 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
         unselectAll();
         if (row != null) {
             row.markSelected();
-            if (fireEvent && selectHandler != null) {
-                selectHandler.onSelect(new Event(""), row, true);
+            if (fireEvent) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), row, true));
             }
         }
     }

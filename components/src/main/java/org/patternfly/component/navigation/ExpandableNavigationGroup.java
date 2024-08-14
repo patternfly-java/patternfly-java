@@ -15,9 +15,11 @@
  */
 package org.patternfly.component.navigation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -90,6 +92,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     static final String SUB_COMPONENT_NAME = "eng";
 
+    final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
     private final String identifier;
     private final Map<String, NavigationItem> items;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
@@ -97,7 +100,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final HTMLElement section;
     private final HTMLUListElement ul;
     private NavigationLinkText text;
-    ToggleHandler<ExpandableNavigationGroup> toggleHandler;
 
     ExpandableNavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
@@ -106,6 +108,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
         this.expandableGroups = new HashMap<>();
+        this.toggleHandler = new ArrayList<>();
 
         String titleId = Id.unique(identifier, "title");
         element().appendChild(button = button(ButtonType.button).css(component(nav, link))
@@ -267,7 +270,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         expandableGroups.put(group.identifier, group);
         expandableGroups.put(group.identifier, group);
         if (toggleHandler != null) {
-            group.toggleHandler = toggleHandler;
+            group.toggleHandler.addAll(toggleHandler);
         }
         dom.accept(group);
     }
@@ -306,10 +309,8 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         } else {
             expand();
         }
-        if (toggleHandler != null) {
-            // !expanded -> state has been toggled!
-            toggleHandler.onToggle(new Event(""), this, !expanded);
-        }
+        // !expanded -> state has been toggled!
+        toggleHandler.forEach(th -> th.onToggle(new Event(""), this, !expanded));
     }
 
     void expand() {

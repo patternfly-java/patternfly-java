@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.popover;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -123,6 +125,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     private final HTMLElement contentElement;
     private final Set<TriggerAction> triggerActions;
+    private final List<CloseHandler<Popover>> closeHandler;
     private Supplier<HTMLElement> trigger;
     private boolean flip;
     private boolean showClose;
@@ -136,7 +139,6 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     private PopoverHeader header;
     private HTMLElement screenReaderElement;
     private HTMLElement iconContainer;
-    private CloseHandler<Popover> closeHandler;
 
     Popover(Supplier<HTMLElement> trigger) {
         super(ComponentType.Popover, div().css(component(popover))
@@ -147,6 +149,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(TriggerAction.click);
+        this.closeHandler = new ArrayList<>();
         this.flip = true;
         this.showClose = true;
         this.placement = top;
@@ -166,7 +169,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (showClose) {
-            closable(closeHandler);
+            closable();
         } else {
             failSafeRemoveFromParent(closeButton);
         }
@@ -395,7 +398,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     @Override
     public Popover onClose(CloseHandler<Popover> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

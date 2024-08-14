@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.togglegroup;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -65,14 +66,17 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     final SelectionMode selectionMode;
     private final Map<String, ToggleGroupItem> items;
     private final Map<String, Boolean> disabledSnapshot;
+    private final List<SelectHandler<ToggleGroupItem>> selectHandler;
+    private final List<MultiSelectHandler<ToggleGroup, ToggleGroupItem>> multiSelectHandler;
     private boolean disabled;
-    private SelectHandler<ToggleGroupItem> selectHandler;
-    private MultiSelectHandler<ToggleGroup, ToggleGroupItem> multiSelectHandler;
 
     ToggleGroup(SelectionMode selectionMode) {
         super(ComponentType.ToggleGroup, div().css(component(toggleGroup)).attr(role, group).element());
         this.items = new LinkedHashMap<>();
         this.disabledSnapshot = new HashMap<>();
+        this.selectHandler = new ArrayList<>();
+        this.multiSelectHandler = new ArrayList<>();
+
         if (selectionMode == SelectionMode.click) {
             logger.warn("Selection mode '%s' is not supported for %o. Fall back to '%s'",
                     SelectionMode.click.name(), element(), SelectionMode.single.name());
@@ -130,12 +134,12 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     // ------------------------------------------------------ events
 
     public ToggleGroup onSingleSelect(SelectHandler<ToggleGroupItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public ToggleGroup onMultiSelect(MultiSelectHandler<ToggleGroup, ToggleGroupItem> selectHandler) {
-        this.multiSelectHandler = selectHandler;
+        this.multiSelectHandler.add(selectHandler);
         return this;
     }
 
@@ -173,15 +177,13 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
             }
             item.markSelected(selected);
             if (fireEvent) {
-                if (selectHandler != null) {
-                    selectHandler.onSelect(new Event(""), item, selected);
-                }
-                if (multiSelectHandler != null) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
+                if (!multiSelectHandler.isEmpty()) {
                     List<ToggleGroupItem> selection = items.values()
                             .stream()
                             .filter(ToggleGroupItem::isSelected)
                             .collect(toList());
-                    multiSelectHandler.onSelect(new Event(""), this, selection);
+                    multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selection));
                 }
             }
         }

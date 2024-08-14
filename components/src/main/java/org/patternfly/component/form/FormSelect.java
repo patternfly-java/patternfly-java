@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.form;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -28,7 +27,6 @@ import org.patternfly.core.Dataset;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOptionElement;
@@ -52,7 +50,7 @@ import static org.patternfly.style.Classes.toggle;
  * A form select embeds browser native select lists into a form.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/forms/form-select">https://www.patternfly.org/components/forms/form-select</a>
+ * "https://www.patternfly.org/components/forms/form-select">https://www.patternfly.org/components/forms/form-select</a>
  */
 public class FormSelect extends FormControl<HTMLElement, FormSelect> implements HasValue<String>, Attachable {
 
@@ -70,15 +68,14 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
 
     private final HTMLSelectElement selectElement;
     private String initialValue;
-    private ChangeHandler<FormSelect, String> changeHandler;
 
     FormSelect(String id, String value) {
         super(id, formControlContainer()
-                .add(select()
-                        .id(id)
-                        .apply(s -> s.name = id)
-                        .aria(invalid, false))
-                .element(),
+                        .add(select()
+                                .id(id)
+                                .apply(s -> s.name = id)
+                                .aria(invalid, false))
+                        .element(),
                 ComponentType.FormSelect);
         failSafeUtilitiesContainer().appendChild(span().css(component(formControl, toggle, icon))
                 .add(caretDown())
@@ -151,19 +148,8 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         return this;
     }
 
-    /**
-     * Same as {@linkplain #value(String, boolean) value(String, false)}
-     */
     public FormSelect value(String value) {
-        return value(value, false);
-    }
-
-    public FormSelect value(String value, boolean fireEvent) {
-        boolean changed = !Objects.equals(selectElement.value, value);
         selectElement.value = value;
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, value);
-        }
         return this;
     }
 
@@ -185,7 +171,6 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
      * an event listener for input event to the select element.
      */
     public FormSelect onChange(ChangeHandler<FormSelect, String> changeHandler) {
-        this.changeHandler = changeHandler;
         selectElement.addEventListener(input.name, e -> changeHandler.onChange(e, this, selectElement.value));
         return this;
     }

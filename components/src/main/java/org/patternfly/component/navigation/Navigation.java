@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.navigation;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -134,6 +136,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private final Map<String, NavigationItem> items;
     private final Map<String, NavigationGroup> groups;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
+    private final List<SelectHandler<NavigationItem>> selectHandler;
+    private final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
     private final ObservableValue<Boolean> enableScrollButtons;
     private final ObservableValue<Boolean> showScrollButtons;
     private final ObservableValue<Boolean> renderScrollButtons;
@@ -143,8 +147,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private double scrollTimeout;
     private HandlerRegistration resizeHandler;
     private HandlerRegistration transitionEndHandler;
-    private SelectHandler<NavigationItem> onSelect;
-    private ToggleHandler<ExpandableNavigationGroup> toggleHandler;
     private HTMLContainerBuilder<HTMLButtonElement> scrollBack;
     private HTMLContainerBuilder<HTMLButtonElement> scrollForward;
 
@@ -154,6 +156,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         this.items = new LinkedHashMap<>();
         this.groups = new LinkedHashMap<>();
         this.expandableGroups = new LinkedHashMap<>();
+        this.selectHandler = new ArrayList<>();
+        this.toggleHandler = new ArrayList<>();
         this.enableScrollButtons = ov(false);
         this.showScrollButtons = ov(false);
         this.renderScrollButtons = ov(false);
@@ -414,12 +418,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     // ------------------------------------------------------ events
 
     public Navigation onSelect(SelectHandler<NavigationItem> selectHandler) {
-        this.onSelect = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public Navigation onToggle(ToggleHandler<ExpandableNavigationGroup> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -441,8 +445,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         if (item != null) {
             unselectAllItems();
             item.select();
-            if (fireEvent && onSelect != null) {
-                onSelect.onSelect(new Event(""), item, true);
+            if (fireEvent) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, true));
             }
 
             if (type == expandable) {
@@ -495,7 +499,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         group.collapse(); // all groups are collapsed by default
         expandableGroups.put(group.identifier(), group);
         if (toggleHandler != null) {
-            group.toggleHandler = toggleHandler;
+            group.toggleHandler.addAll(toggleHandler);
         }
         dom.accept(group);
     }
@@ -523,8 +527,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
             ExpandableNavigationGroup group = findGroup(groupId);
             if (group != null) {
                 group.expand();
-                if (fireEvent && toggleHandler != null) {
-                    toggleHandler.onToggle(new Event(""), group, true);
+                if (fireEvent) {
+                    toggleHandler.forEach(sh -> sh.onToggle(new Event(""), group, true));
                 }
             }
             // select the parent group (if any)

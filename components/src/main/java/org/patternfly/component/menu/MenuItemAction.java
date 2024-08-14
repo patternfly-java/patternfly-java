@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
@@ -73,7 +76,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
 
     private final String identifier;
     private final HTMLElement iconContainer;
-    ComponentHandler<MenuItemAction> handler;
+    private final List<ComponentHandler<MenuItemAction>> handler;
     public MenuItem menuItem;
 
     MenuItemAction(String identifier, Element icon, boolean favorite) {
@@ -85,12 +88,12 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
                 .element());
         this.identifier = identifier;
         this.iconContainer = find(By.classname(component(Classes.menu, item, action, Classes.icon)));
+        this.handler = new ArrayList<>();
+
         if (!favorite) {
             on(click, e -> {
                 Menu menu = lookupComponent();
-                if (menu.actionHandler != null) {
-                    menu.actionHandler.onAction(menu, menuItem, this);
-                }
+                menu.actionHandler.forEach(ah -> ah.onAction(menu, menuItem, this));
             });
         }
     }
@@ -102,8 +105,9 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
         this.identifier = Id.build("fav", sourceItemAction.identifier);
         this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;
-        if (sourceItemAction.handler != null) {
-            onClick(sourceItemAction.handler);
+        this.handler = new ArrayList<>();
+        for (ComponentHandler<MenuItemAction> h : sourceItemAction.handler) {
+            onClick(h);
         }
     }
 
@@ -130,7 +134,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     // ------------------------------------------------------ events
 
     public MenuItemAction onClick(ComponentHandler<MenuItemAction> handler) {
-        this.handler = handler;
+        this.handler.add(handler);
         return on(click, e -> handler.handle(e, this));
     }
 

@@ -15,31 +15,18 @@
  */
 package org.patternfly.showcase.component;
 
-import org.jboss.elemento.Key;
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.chip.Chip;
-import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.component.textinputgroup.TextInputGroupMain;
 import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
-import org.patternfly.core.ObservableValue;
-import org.patternfly.handler.CloseHandler;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
-import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.setVisible;
-import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.chip.Chip.chip;
-import static org.patternfly.component.chip.ChipGroup.chipGroup;
+import static org.patternfly.component.textinputgroup.TextInputGroup.filterInputGroup;
+import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
 import static org.patternfly.component.textinputgroup.TextInputGroupMain.textInputGroupMain;
-import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
-import static org.patternfly.core.ObservableValue.ov;
-import static org.patternfly.icon.IconSets.fas.search;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
@@ -75,79 +62,22 @@ public class TextInputGroupComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("tig-utilities-and-icon", "Utilities and icon",
-                code("tig-utilities-and-icon"), () -> {
-            // @code-start:tig-utilities-and-icon
-            TextInputGroup textInputGroup = textInputGroup();
-            textInputGroup
-                    .addMain(textInputGroupMain("tig-utilities-and-icon-0")
-                            .icon(search())
-                            .placeholder("Placeholder")
-                            .onChange((e, tig, value) -> setVisible(tig.utilities(), !value.isEmpty())))
-                    .addUtilities(textInputGroupUtilities()
-                            .add(button().icon(times()).plain()
-                                    .on(click, e -> textInputGroup.main().value("", true))));
-            return div()
-                    .add(textInputGroup)
-                    .element();
-            // @code-end:tig-utilities-and-icon
-        }));
+                code("tig-utilities-and-icon"), () ->
+                // @code-start:tig-utilities-and-icon
+                div()
+                        .add(searchInputGroup("Placeholder"))
+                        .element()
+                // @code-end:tig-utilities-and-icon
+        ));
 
         addSnippet(new Snippet("tig-filters", "Filters",
-                code("tig-filters"), () -> {
-            // @code-start:tig-filters
-            ObservableValue<Boolean> chipsPresent = ov(true);
-            ObservableValue<Boolean> textEntered = ov(false);
-
-            TextInputGroup textInputGroup = textInputGroup();
-            ChipGroup chipGroup = chipGroup();
-            CloseHandler<Chip> closeHandler = (event, chip) -> chipsPresent.set(!chipGroup.isEmpty());
-            chipGroup.addItems(asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-                    "eleven", "twelve"), text -> chip(text).onClose(closeHandler));
-
-            textInputGroup
-                    .addMain(textInputGroupMain("tig-filters-0")
-                            .addChipGroup(chipGroup)
-                            .placeholder("Placeholder")
-                            .onChange((e, tig, value) -> {
-                                textEntered.set(!value.isEmpty());
-                                if (Key.Enter.match(e) && !value.isEmpty()) {
-                                    chipGroup.addItem(chip(value).onClose(closeHandler));
-                                    tig.main().value("");
-                                    chipsPresent.set(true);
-                                    textEntered.set(false);
-                                }
-                            }))
-                    .addUtilities(textInputGroupUtilities(false)
-                            .add(button().icon(times()).plain()
-                                    .on(click, e -> {
-                                        chipGroup.clear();
-                                        textInputGroup.main().value("");
-                                        chipsPresent.set(false);
-                                        textEntered.change(false);
-                                    })));
-
-            chipsPresent.subscribe((current, previous) -> {
-                setVisible(chipGroup, current);
-                if (current) {
-                    textInputGroup.main().removeIcon();
-                } else {
-                    textInputGroup.main().icon(search());
-                    setVisible(textInputGroup.utilities(), textEntered.get());
-                }
-            });
-            textEntered.subscribe((current, previous) -> {
-                if (current) {
-                    setVisible(textInputGroup.utilities(), true);
-                } else {
-                    setVisible(textInputGroup.utilities(), chipsPresent.get());
-                }
-            });
-
-            return div()
-                    .add(textInputGroup)
-                    .element();
-            // @code-end:tig-filters
-        }));
+                code("tig-filters"), () ->
+                // @code-start:tig-filters
+                div()
+                        .add(filterInputGroup("Placeholder"))
+                        .element()
+                // @code-end:tig-filters
+        ));
 
         startApiDocs(TextInputGroup.class);
         addApiDoc(TextInputGroup.class, component);

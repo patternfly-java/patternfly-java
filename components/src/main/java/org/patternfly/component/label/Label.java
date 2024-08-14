@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.label;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -126,16 +128,16 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     private final String identifier;
     private final Map<String, Object> data;
     private final TooltipToggle tooltipToggle;
+    private final List<CloseHandler<Label>> closeHandler;
+    private final List<ComponentHandler<Label>> clickHandler;
+    private final List<LabelEditCancelHandler> editCancelHandler;
+    private final List<LabelEditCompleteHandler> editCompleteHandler;
     private HTMLElement contentElement;
     private HTMLElement actionsElement;
     private HTMLElement iconContainer;
     private HTMLInputElement inputElement;
     private Tooltip tooltip;
     private Button closeButton;
-    private CloseHandler<Label> closeHandler;
-    private ComponentHandler<Label> clickHandler;
-    private LabelEditCancelHandler editCancelHandler;
-    private LabelEditCompleteHandler editCompleteHandler;
     private HandlerRegistration cancelEditModeOnDocumentClick;
 
     <E extends HTMLElement> Label(HTMLContainerBuilder<E> builder, String identifier, String text, Color color) {
@@ -144,6 +146,11 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
+        this.closeHandler = new ArrayList<>();
+        this.clickHandler = new ArrayList<>();
+        this.editCancelHandler = new ArrayList<>();
+        this.editCompleteHandler = new ArrayList<>();
+
         element().appendChild(contentElement = span().css(component(Classes.label, content))
                 .add(textElement = span().css(component(Classes.label, Classes.text))
                         .textContent(text)
@@ -225,7 +232,7 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
         replaceContent(button(ButtonType.button).css(component(Classes.label, content))
                 .on(click, e -> {
                     if (this.clickHandler != null) {
-                        this.clickHandler.handle(e, this);
+                        this.clickHandler.forEach(ch -> ch.handle(e, this));
                     }
                 })
                 .element());
@@ -316,22 +323,22 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
 
     @Override
     public Label onClose(CloseHandler<Label> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 
     public Label onClick(ComponentHandler<Label> clickHandler) {
-        this.clickHandler = clickHandler;
+        this.clickHandler.add(clickHandler);
         return this;
     }
 
     public Label onEditCancel(LabelEditCancelHandler cancelHandler) {
-        this.editCancelHandler = cancelHandler;
+        this.editCancelHandler.add(cancelHandler);
         return this;
     }
 
     public Label onEditComplete(LabelEditCompleteHandler completeHandler) {
-        this.editCompleteHandler = completeHandler;
+        this.editCompleteHandler.add(completeHandler);
         return this;
     }
 
@@ -406,17 +413,13 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
     }
 
     private void cancelEdit(Event event, String previousText) {
-        if (editCancelHandler != null) {
-            editCancelHandler.cancel(event, this, previousText);
-        }
+            editCancelHandler.forEach(ech -> ech.cancel(event, this, previousText));
         leaveEdit();
     }
 
     private void completeEdit(Event event, String newText) {
         textElement.textContent = newText;
-        if (editCompleteHandler != null) {
-            editCompleteHandler.complete(event, this, newText);
-        }
+        editCompleteHandler.forEach(ech -> ech.complete(event, this, newText));
         leaveEdit();
     }
 

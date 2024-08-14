@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.accordion;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
@@ -77,7 +79,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     boolean fixed;
     boolean singleExpand;
     private final Map<String, AccordionItem> items;
-    private ToggleHandler<AccordionItem> toggleHandler;
+    private final List<ToggleHandler<AccordionItem>> toggleHandler;
 
     <E extends HTMLElement> Accordion(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Accordion, builder.css(component(accordion)).element());
@@ -85,6 +87,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         this.headingLevel = 3;
         this.singleExpand = false;
         this.items = new LinkedHashMap<>();
+        this.toggleHandler = new ArrayList<>();
         Attachable.register(this, this);
     }
 
@@ -158,7 +161,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     // ------------------------------------------------------ events
 
     public Accordion onToggle(ToggleHandler<AccordionItem> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -211,15 +214,15 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
 
     void collapseItem(AccordionItem item, boolean fireEvent) {
         item.collapse();
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), item, false);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), item, false));
         }
     }
 
     void expandItem(AccordionItem item, boolean fireEvent) {
         item.expand();
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), item, true);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), item, true));
         }
         if (singleExpand) {
             for (AccordionItem otherItem : items.values()) {

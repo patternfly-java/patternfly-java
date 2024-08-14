@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.drawer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -100,7 +103,6 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     private String ariaResizeLabel;
     private Drawer drawer;
     private HTMLContainerBuilder<HTMLDivElement> splitterElement;
-    private ResizeHandler<DrawerPanel> resizeHandler;
     private HandlerRegistration mouseDownHandler;
     private HandlerRegistration mouseMoveHandler;
     private HandlerRegistration mouseUpHandler;
@@ -108,6 +110,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     private HandlerRegistration touchMoveHandler;
     private HandlerRegistration touchEndHandler;
     private HandlerRegistration keyDownHandler;
+    private final List<ResizeHandler<DrawerPanel>> resizeHandler;
 
     DrawerPanel() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.drawer, panel)).element());
@@ -116,6 +119,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
         this.isResizing = false;
         this.setInitialVals = true;
         this.ariaResizeLabel = "Resize";
+        this.resizeHandler = new ArrayList<>();
         Attachable.register(this, this);
     }
 
@@ -271,7 +275,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     // ------------------------------------------------------ events
 
     public DrawerPanel onResize(ResizeHandler<DrawerPanel> resizeHandler) {
-        this.resizeHandler = resizeHandler;
+        this.resizeHandler.add(resizeHandler);
         return this;
     }
 
@@ -425,8 +429,10 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
         if (resizableDrawer() && isResizing) {
             drawer.classList().remove(modifier(resizing));
             isResizing = false;
-            if (resizeHandler != null) {
-                resizeHandler.onResize(this);
+            if (!resizeHandler.isEmpty()) {
+                for (ResizeHandler<DrawerPanel> rh : resizeHandler) {
+                    rh.onResize(this);
+                }
             }
             setInitialVals = true;
             mouseMoveHandler.removeHandler();
@@ -439,9 +445,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
             event.stopPropagation();
             if (isResizing) {
                 isResizing = false;
-                if (resizeHandler != null) {
-                    resizeHandler.onResize(this);
-                }
+                resizeHandler.forEach(rh -> rh.onResize(this));
                 touchMoveHandler.removeHandler();
                 touchEndHandler.removeHandler();
             }
@@ -456,9 +460,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
                 event.preventDefault();
 
                 if (Escape.match(event) || Enter.match(event)) {
-                    if (resizeHandler != null) {
-                        resizeHandler.onResize(this);
-                    }
+                    resizeHandler.forEach(rh -> rh.onResize(this));
                 }
                 double delta = 0;
                 DOMRect panelRect = element().getBoundingClientRect();

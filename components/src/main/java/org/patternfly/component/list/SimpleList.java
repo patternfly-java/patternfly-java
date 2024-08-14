@@ -68,14 +68,15 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
 
     private final List<SimpleListGroup> groups;
     private final Map<String, SimpleListItem> items;
+    private final List<SelectHandler<SimpleListItem>> selectHandler;
     private SimpleListType type;
     private HTMLUListElement ulElement;
-    private SelectHandler<SimpleListItem> selectHandler;
 
     SimpleList() {
         super(ComponentType.SimpleList, div().css(component(simpleList)).element());
         this.type = SimpleListType.undefined;
         this.items = new LinkedHashMap<>();
+        this.selectHandler = new ArrayList<>();
         this.groups = new ArrayList<>();
         storeComponent();
     }
@@ -129,7 +130,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     // ------------------------------------------------------ events
 
     public SimpleList onSelect(SelectHandler<SimpleListItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
@@ -159,8 +160,8 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         if (item != null) {
             unselectAllItems();
             item.markSelected(selected);
-            if (selectHandler != null && fireEvent) {
-                selectHandler.onSelect(new Event(""), item, selected);
+            if (fireEvent) {
+                selectHandler.forEach(selectHandler -> selectHandler.onSelect(new Event(""), item, selected));
             }
         }
     }

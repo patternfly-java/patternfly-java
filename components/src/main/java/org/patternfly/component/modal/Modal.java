@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.modal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
@@ -87,13 +90,13 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     private static final Logger logger = Logger.getLogger(Modal.class.getName());
     private final Backdrop backdrop;
     private final HTMLElement closeContainer;
+    private final List<CloseHandler<Modal>> closeHandler;
     private boolean open;
     private boolean hideClose;
     private ModalHeader header;
     private ModalBody body;
     private ModalFooter footer;
     private HTMLElement target;
-    private CloseHandler<Modal> closeHandler;
     private HandlerRegistration escapeHandler;
     boolean autoClose;
 
@@ -102,6 +105,8 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
         this.open = false;
         this.autoClose = false;
         this.hideClose = false;
+        this.closeHandler = new ArrayList<>();
+
         HTMLElement modalElement;
         this.backdrop = backdrop()
                 .add(bullseye()
@@ -260,7 +265,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
 
     @Override
     public Modal onClose(CloseHandler<Modal> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return null;
     }
 

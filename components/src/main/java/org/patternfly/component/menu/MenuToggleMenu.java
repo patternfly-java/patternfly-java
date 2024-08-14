@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import org.jboss.elemento.Attachable;
@@ -53,12 +55,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     private static final int Z_INDEX = 9999;
 
     private final Set<TriggerAction> triggerActions;
+    private final List<ToggleHandler<B>> toggleHandler;
     private int zIndex;
     private boolean flip;
     private boolean disabled;
     private Placement placement;
     private Popper popper;
-    private ToggleHandler<B> toggleHandler;
     final MenuToggle menuToggle;
     Menu menu;
 
@@ -66,6 +68,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         super(componentType);
         this.menuToggle = menuToggle;
         this.triggerActions = EnumSet.of(TriggerAction.click);
+        this.toggleHandler = new ArrayList<>();
         this.flip = true;
         this.placement = bottomStart;
         this.zIndex = Z_INDEX;
@@ -163,7 +166,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     // ------------------------------------------------------ events
 
     public B onToggle(ToggleHandler<B> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return that();
     }
 
@@ -173,8 +176,8 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     public void collapse(boolean fireEvent) {
         popper.hide(() -> {
             Expandable.collapse(element(), element(), null);
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), that(), false);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), false));
             }
         });
     }
@@ -183,8 +186,8 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     public void expand(boolean fireEvent) {
         popper.show(() -> {
             Expandable.expand(element(), element(), null);
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), that(), true);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
         });
     }

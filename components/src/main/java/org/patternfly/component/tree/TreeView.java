@@ -89,22 +89,24 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     final TreeViewType type;
     private final LinkedHashMap<String, TreeViewItem> items;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private final List<ToggleHandler<TreeViewItem>> toggleHandler;
+    private final List<SelectHandler<TreeViewItem>> selectHandler;
+    private final List<MultiSelectHandler<TreeView, TreeViewItem>> multiSelectHandler;
     Supplier<Element> icon;
     Supplier<Element> expandedIcon;
-    private ToggleHandler<TreeViewItem> toggleHandler;
-    private SelectHandler<TreeViewItem> selectHandler;
-    private MultiSelectHandler<TreeView, TreeViewItem> multiSelectHandler;
     private HandlerRegistration keyHandler;
 
     TreeView(TreeViewType type) {
         super(ComponentType.TreeView, div().css(component(treeView)).element());
         this.type = type;
         this.items = new LinkedHashMap<>();
+        this.toggleHandler = new ArrayList<>();
+        this.selectHandler = new ArrayList<>();
+        this.multiSelectHandler = new ArrayList<>();
         this.icon = null;
         this.expandedIcon = null;
 
         add(ul = ul().css(component(treeView, list)).attr(role, tree));
-        storeComponent();
         Attachable.register(this, this);
     }
 
@@ -183,17 +185,17 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     // ------------------------------------------------------ events
 
     public TreeView onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
     public TreeView onSelect(SelectHandler<TreeViewItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public TreeView onMultiSelect(MultiSelectHandler<TreeView, TreeViewItem> selectHandler) {
-        this.multiSelectHandler = selectHandler;
+        this.multiSelectHandler.add(selectHandler);
         return this;
     }
 
@@ -218,8 +220,8 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     public void toggle(TreeViewItem item, boolean fireEvent) {
         if (item != null) {
             item.toggle(fireEvent);
-            if (toggleHandler != null && fireEvent) {
-                toggleHandler.onToggle(new Event(""), item, item.expanded());
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), item, item.expanded()));
             }
         }
     }
@@ -244,11 +246,11 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
             }
             // select specified item
             item.markSelected(type, selected);
-            if (selectHandler != null && fireEvent) {
-                selectHandler.onSelect(new Event(""), item, selected);
-            }
-            if (multiSelectHandler != null) {
-                multiSelectHandler.onSelect(new Event(""), this, selectedItems());
+            if (fireEvent) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
+                if (!multiSelectHandler.isEmpty()) {
+                    multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selectedItems()));
+                }
             }
             // collapse items from root to item
             List<TreeViewItem> parents = parents(item);

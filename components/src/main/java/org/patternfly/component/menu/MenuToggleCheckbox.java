@@ -24,7 +24,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -59,7 +58,6 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
 
     private final HTMLInputElement inputElement;
     private HTMLElement textElement;
-    private ChangeHandler<MenuToggleCheckbox, Boolean> changeHandler;
 
     MenuToggleCheckbox() {
         super(SUB_COMPONENT_NAME, label().css(component(check)).element());
@@ -93,18 +91,9 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
         return this;
     }
 
-    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
-    public MenuToggleCheckbox value(boolean checked) {
-        return value(checked, false);
-    }
-
     /** Sets the {@code checked} attribute of the input element. */
-    public MenuToggleCheckbox value(boolean checked, boolean fireEvent) {
-        boolean changed = inputElement.checked != checked;
+    public MenuToggleCheckbox value(boolean checked) {
         inputElement.checked = checked;
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, inputElement.checked);
-        }
         return this;
     }
 
@@ -126,7 +115,6 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
      * Defines a change handler that is called when the {@link #value()} of the checkbox changes.
      */
     public MenuToggleCheckbox onChange(ChangeHandler<MenuToggleCheckbox, Boolean> changeHandler) {
-        this.changeHandler = changeHandler;
         inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
         return this;
     }

@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.alert;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
@@ -110,14 +112,14 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     int timeout;
     boolean expandable;
     Button closeButton;
-    CloseHandler<Alert> closeHandler;
+    private double timeoutHandle;
     private final String identifier;
     private final Severity severity;
     private final String title;
-    private final Map<String, Object> data;
     private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
-    private double timeoutHandle;
+    private final Map<String, Object> data;
+    private final List<CloseHandler<Alert>> closeHandler;
     private Button toggleButton;
     private AlertDescription description;
     private ToggleHandler<Alert> toggleHandler;
@@ -131,9 +133,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         this.severity = severity;
         this.title = title;
         this.data = new HashMap<>();
+        this.timeoutHandle = 0;
         this.timeout = NO_TIMEOUT;
         this.expandable = false;
-        this.timeoutHandle = 0;
+        this.closeHandler = new ArrayList<>();
 
         add(iconContainer = div().css(component(alert, icon))
                 .add(severity.icon.get().element())
@@ -304,7 +307,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     @Override
     public Alert onClose(CloseHandler<Alert> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

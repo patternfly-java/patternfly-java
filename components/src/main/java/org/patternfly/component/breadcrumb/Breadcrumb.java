@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.breadcrumb;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -59,12 +61,13 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
 
     private final HTMLContainerBuilder<HTMLOListElement> ol;
     private final Map<String, BreadcrumbItem> items;
-    private SelectHandler<BreadcrumbItem> selectHandler;
+    private final List<SelectHandler<BreadcrumbItem>> selectHandler;
 
     Breadcrumb() {
         super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
         this.items = new LinkedHashMap<>();
         this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
+        this.selectHandler = new ArrayList<>();
         storeFlatComponent();
         element().appendChild(ol.element());
     }
@@ -94,7 +97,7 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
     // ------------------------------------------------------ events
 
     public Breadcrumb onSelect(SelectHandler<BreadcrumbItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
@@ -129,8 +132,6 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
     // ------------------------------------------------------ internal
 
     void select(Event event, BreadcrumbItem item) {
-        if (selectHandler != null) {
-            selectHandler.onSelect(event, item, true);
-        }
+        selectHandler.forEach(sh -> sh.onSelect(event, item, true));
     }
 }

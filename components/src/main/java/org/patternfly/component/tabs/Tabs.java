@@ -154,15 +154,18 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     private Button addButton;
 
     private Function<Tabs, Tab> addHandler;
-    private ToggleHandler<Tabs> toggleHandler;
-    private CloseHandler<Tab> closeHandler;
-    private SelectHandler<Tab> selectHandler;
+    private final List<ToggleHandler<Tabs>> toggleHandler;
+    private final List<CloseHandler<Tab>> closeHandler;
+    private final List<SelectHandler<Tab>> selectHandler;
     private HandlerRegistration resizeHandler;
     private HandlerRegistration transitionEndHandler;
 
     <E extends HTMLElement> Tabs(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Tabs, div().element());
         this.items = new LinkedHashMap<>();
+        this.toggleHandler = new ArrayList<>();
+        this.closeHandler = new ArrayList<>();
+        this.selectHandler = new ArrayList<>();
         this.enableScrollButtons = ov(false);
         this.showScrollButtons = ov(false);
         this.renderScrollButtons = ov(false);
@@ -342,7 +345,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
 
     public Tabs closeable(CloseHandler<Tab> closeHandler) {
         this.closeable = true;
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 
@@ -554,17 +557,17 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     public Tabs onClose(CloseHandler<Tab> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return null;
     }
 
     public Tabs onSelect(SelectHandler<Tab> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public Tabs onToggle(ToggleHandler<Tabs> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -579,8 +582,8 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     public void collapse(boolean fireEvent) {
         if (tabsToggle != null) {
             Expandable.collapse(mainContainer.element(), tabsToggle.element(), null);
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), this, false);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
             }
         }
     }
@@ -589,8 +592,8 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     public void expand(boolean fireEvent) {
         if (tabsToggle != null) {
             Expandable.expand(mainContainer.element(), tabsToggle.element(), null);
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), this, true);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
             }
         }
     }
@@ -633,9 +636,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             if (overflowHorizontal && isVisible(tab)) {
                 overflowTab.unselect();
             }
-            if (selectHandler != null) {
-                selectHandler.onSelect(new Event(""), tab, true);
-            }
+            selectHandler.forEach(sh -> sh.onSelect(new Event(""), tab, true));
         } else {
             logger.error("Cannot select tab in tabs %o: No tab given.", element());
         }
@@ -690,8 +691,9 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             tab.help.trigger(tab.helpButton.element());
             tab.help.appendToBody();
         }
-        if (this.closeable && tab.closeHandler == null) {
-            tab.closeable(this.closeHandler);
+        if (this.closeable) {
+            tab.closeable();
+            tab.closeHandler.addAll(this.closeHandler);
         }
         if (isAttached(overflowTab)) {
             insertBefore(tab.element(), overflowTab.element());

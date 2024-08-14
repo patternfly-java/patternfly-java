@@ -27,7 +27,6 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -77,7 +76,6 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
 
     private final HTMLInputElement inputElement;
     private HTMLLabelElement labelElement;
-    private ChangeHandler<Radio, Boolean> changeHandler;
 
     Radio(String id, String name, String label, boolean checked) {
         super(ComponentType.Radio, div().css(component(Classes.radio))
@@ -145,17 +143,8 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         return this;
     }
 
-    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Radio value(boolean checked) {
-        return value(checked, false);
-    }
-
-    public Radio value(boolean checked, boolean fireEvent) {
-        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, inputElement.checked);
-        }
         return this;
     }
 
@@ -176,7 +165,6 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
      * Defines a change handler that is called when the {@link #value()} of this radio changes.
      */
     public Radio onChange(ChangeHandler<Radio, Boolean> changeHandler) {
-        this.changeHandler = changeHandler;
         inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
         return this;
     }

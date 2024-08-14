@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.badge;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -57,10 +59,10 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
     // ------------------------------------------------------ instance
 
     private final HTMLElement valueElement;
+    private final List<ChangeHandler<Badge, Integer>> changeHandler;
     private int value;
     private int limit;
     private HTMLElement screenReader;
-    private ChangeHandler<Badge, Integer> changeHandler;
     private Function<Integer, String> display;
     private Function<Integer, String> maxDisplay;
     private ObservableValue<Integer> ov;
@@ -73,6 +75,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
         super(ComponentType.Badge, span().css(component(badge)).element());
         this.valueElement = add(span()).element();
         this.limit = limit;
+        this.changeHandler = new ArrayList<>();
         count(count);
     }
 
@@ -102,8 +105,8 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
         boolean changed = value != count;
         value = count;
         updateValue(this.value);
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, value);
+        if (fireEvent && changed) {
+            changeHandler.forEach(handler -> handler.onChange(new Event(""), this, value));
         }
         return this;
     }
@@ -152,8 +155,8 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
         this.ov = ov;
         this.ov.subscribe((current, previous) -> {
             updateValue(current);
-            if (!Objects.equals(current, previous) && changeHandler != null) {
-                changeHandler.onChange(new Event(""), this, current);
+            if (!Objects.equals(current, previous)) {
+                changeHandler.forEach(handler -> handler.onChange(new Event(""), this, current));
             }
         });
         updateValue(ov.get());
@@ -171,7 +174,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge>
      * Defines a change handler that is called when the {@link #value()} of this badge changes.
      */
     public Badge onChange(ChangeHandler<Badge, Integer> changeHandler) {
-        this.changeHandler = changeHandler;
+        this.changeHandler.add(changeHandler);
         return this;
     }
 

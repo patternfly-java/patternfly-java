@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.expandable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
@@ -78,12 +81,13 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     private String detachedFromId;
     private ExpandableSectionToggle toggle;
     private ExpandableSectionContent content;
-    private ToggleHandler<ExpandableSection> toggleHandler;
     private HTMLElement detachedContentElement;
+    private final List<ToggleHandler<ExpandableSection>> toggleHandler;
 
     ExpandableSection(String id) {
         super(ComponentType.ExpandableSection, div().css(component(expandableSection)).element());
         this.id = id == null ? Id.unique(componentType().id) : id;
+        this.toggleHandler = new ArrayList<>();
         storeComponent();
         Attachable.register(this, this);
     }
@@ -208,7 +212,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     // ------------------------------------------------------ events
 
     public ExpandableSection onToggle(ToggleHandler<ExpandableSection> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -225,8 +229,8 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = true;
         }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, false);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
         }
     }
 
@@ -241,8 +245,8 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         } else if (detachedContentElement != null) {
             detachedContentElement.hidden = false;
         }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, true);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
         }
     }
 

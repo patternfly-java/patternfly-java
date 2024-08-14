@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.page;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
@@ -76,6 +78,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     // ------------------------------------------------------ instance
 
     private final ObservableValue<Rect> rect;
+    private final List<ResizeHandler<Page>> resizeHandler;
     private SkipToContent skipToContent;
     private Masthead masthead;
     private PageSidebar sidebar;
@@ -83,11 +86,11 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private ResizeObserverCleanup cleanup;
     private Function<Integer, Breakpoint> breakpointFn;
     private Function<Integer, Breakpoint> verticalBreakpointFn;
-    private ResizeHandler<Page> resizeHandler;
 
     protected Page() {
         super(ComponentType.Page, div().css(component(page)).element());
         this.rect = ov(new Rect()).subscribe(this::onChangedRect);
+        this.resizeHandler = new ArrayList<>();
         Attachable.register(this, this);
     }
 
@@ -95,9 +98,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public void attach(MutationRecord mutationRecord) {
         Callback resizeCallback = Scheduler.debounce(250, this::onResize);
         cleanup = resizeObserver(element(), () -> {
-            if (resizeHandler != null) {
-                resizeHandler.onResize(this);
-            }
+            resizeHandler.forEach(rh -> rh.onResize(this));
             resizeCallback.call();
         });
         onResize();
@@ -201,7 +202,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     // ------------------------------------------------------ events
 
     public Page onResize(ResizeHandler<Page> resizeHandler) {
-        this.resizeHandler = resizeHandler;
+        this.resizeHandler.add(resizeHandler);
         return this;
     }
 

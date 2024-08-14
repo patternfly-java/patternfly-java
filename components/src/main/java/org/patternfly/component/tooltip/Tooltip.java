@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.tooltip;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -119,6 +121,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private final String id;
     private final HTMLElement contentElement;
     private final Set<TriggerAction> triggerActions;
+    private final List<CloseHandler<Tooltip>> closeHandler;
     private Supplier<HTMLElement> trigger;
     private boolean flip;
     private int distance;
@@ -129,7 +132,6 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     private Popper popper;
     private TriggerAria aria;
     private Placement placement;
-    private CloseHandler<Tooltip> closeHandler;
 
     Tooltip(Supplier<HTMLElement> trigger, String text) {
         super(ComponentType.Tooltip, div().css(component(tooltip))
@@ -141,6 +143,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         this.id = Id.unique(componentType().id);
         this.trigger = trigger;
         this.triggerActions = EnumSet.of(mouseenter, focus);
+        this.closeHandler = new ArrayList<>();
         this.flip = true;
         this.placement = top;
         this.aria = describedBy;
@@ -299,7 +302,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
 
     @Override
     public Tooltip onClose(CloseHandler<Tooltip> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

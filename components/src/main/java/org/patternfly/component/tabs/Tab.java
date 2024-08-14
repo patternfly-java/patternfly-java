@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.tabs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -110,11 +112,11 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     final String buttonId;
     final String contentId;
     final HTMLContainerBuilder<? extends HTMLElement> button;
+    final List<CloseHandler<Tab>> closeHandler;
     Popover help;
     Tooltip tooltip;
     Button helpButton;
     TabContent content;
-    CloseHandler<Tab> closeHandler;
     Function<Tabs, Promise<TabContent>> asyncContent;
 
     private final String identifier;
@@ -133,6 +135,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
+        this.closeHandler = new ArrayList<>();
         this.buttonId = Id.build(identifier, "tab");
         this.contentId = Id.build(identifier, "content");
         this.anchorElement = builder.element().tagName.equalsIgnoreCase("a");
@@ -335,7 +338,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (closeButton == null) {
             return closeable(closeHandler);
         } else {
-            this.closeHandler = closeHandler;
+            this.closeHandler.add(closeHandler);
             return this;
         }
     }

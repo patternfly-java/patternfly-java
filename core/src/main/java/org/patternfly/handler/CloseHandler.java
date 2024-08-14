@@ -15,6 +15,8 @@
  */
 package org.patternfly.handler;
 
+import java.util.List;
+
 import elemental2.dom.Event;
 
 @FunctionalInterface
@@ -24,9 +26,13 @@ public interface CloseHandler<C> {
      * Helper method which returns the result of {@link #shouldClose(Event, Object)}, if {@code fireEvent} is {@code true} and a
      * close handler has been defined, otherwise {@code true}.
      */
-    static <C> boolean shouldClose(C component, CloseHandler<C> closeHandler, Event event, boolean fireEvent) {
-        if (fireEvent && closeHandler != null) {
-            return closeHandler.shouldClose(event, component);
+    static <C> boolean shouldClose(C component, List<CloseHandler<C>> closeHandler, Event event, boolean fireEvent) {
+        if (fireEvent) {
+            boolean shouldClose = true;
+            for (CloseHandler<C> ch : closeHandler) {
+                shouldClose = shouldClose && ch.shouldClose(event, component);
+            }
+            return shouldClose;
         }
         return true;
     }
@@ -35,9 +41,9 @@ public interface CloseHandler<C> {
      * Helper method which calls {@link #onClose(Event, Object)}, if {@code fireEvent} is {@code true} and a close handler has
      * been defined.
      */
-    static <C> void fireEvent(C component, CloseHandler<C> closeHandler, Event event, boolean fireEvent) {
-        if (fireEvent && closeHandler != null) {
-            closeHandler.onClose(event, component);
+    static <C> void fireEvent(C component, List<CloseHandler<C>> closeHandler, Event event, boolean fireEvent) {
+        if (fireEvent) {
+            closeHandler.forEach(ch -> ch.onClose(event, component));
         }
     }
 

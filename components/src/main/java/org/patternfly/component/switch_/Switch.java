@@ -31,7 +31,6 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Readonly;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -85,7 +84,6 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     private HTMLElement iconElement;
     private HTMLElement labelOnElement;
     private HTMLElement labelOffElement;
-    private ChangeHandler<Switch, Boolean> changeHandler;
 
     Switch(String id, String name, boolean checked) {
         super(ComponentType.Switch, Elements.label().css(component(switch_)).element());
@@ -179,18 +177,9 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
         return this;
     }
 
-    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
-    public Switch value(boolean checked) {
-        return value(checked, false);
-    }
-
     /** Sets the {@code checked} attribute of the input element. */
-    public Switch value(boolean checked, boolean fireEvent) {
-        boolean changed = inputElement.checked != checked;
+    public Switch value(boolean checked) {
         inputElement.checked = checked;
-        if (fireEvent && changed && changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, inputElement.checked);
-        }
         return this;
     }
 
@@ -215,7 +204,6 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     // ------------------------------------------------------ events
 
     public Switch onChange(ChangeHandler<Switch, Boolean> changeHandler) {
-        this.changeHandler = changeHandler;
         inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
         return this;
     }

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jboss.elemento.IsElement;
@@ -46,6 +48,12 @@ public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
     }
 
     B add(S item);
+
+    default List<S> items() {
+        List<S> items = new ArrayList<>();
+        this.forEach(items::add);
+        return items;
+    }
 
     int size();
 

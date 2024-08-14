@@ -15,7 +15,9 @@
  */
 package org.patternfly.component.chip;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
@@ -93,9 +95,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     private final HTMLElement actionsElement;
     private final TooltipToggle tooltipToggle;
     private final Map<String, Object> data;
+    private final List<CloseHandler<Chip>> closeHandler;
     private Badge badge;
     private Button closeButton;
-    private CloseHandler<Chip> closeHandler;
 
     <E extends HTMLElement> Chip(HTMLContainerBuilder<E> builder, String identifier, String text) {
         super(ComponentType.Chip, builder.css(component(chip))
@@ -103,6 +105,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
+        this.closeHandler = new ArrayList<>();
 
         String textId = Id.unique(identifier, "text");
         String buttonId = Id.unique(identifier, "close");
@@ -192,7 +195,7 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     // ------------------------------------------------------ events
 
     public Chip onClose(CloseHandler<Chip> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

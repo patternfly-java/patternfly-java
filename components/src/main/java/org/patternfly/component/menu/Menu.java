@@ -83,17 +83,20 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     final String menuName;
     final MenuType menuType;
     final SelectionMode selectionMode;
+    final List<MenuActionHandler> actionHandler;
     boolean favorites;
-    MenuActionHandler actionHandler;
     private MenuContent content;
-    private SelectHandler<MenuItem> selectHandler;
-    private MultiSelectHandler<Menu, MenuItem> multiSelectHandler;
+    private final List<SelectHandler<MenuItem>> selectHandler;
+    private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(ComponentType.Menu, div().css(component(menu)).element());
         this.menuType = menuType;
         this.selectionMode = selectionMode;
         this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes
+        this.actionHandler = new ArrayList<>();
+        this.selectHandler = new ArrayList<>();
+        this.multiSelectHandler = new ArrayList<>();
         storeComponent();
     }
 
@@ -176,17 +179,17 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     // ------------------------------------------------------ events
 
     public Menu onSingleSelect(SelectHandler<MenuItem> selectHandler) {
-        this.selectHandler = selectHandler;
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
     public Menu onMultiSelect(MultiSelectHandler<Menu, MenuItem> selectHandler) {
-        this.multiSelectHandler = selectHandler;
+        this.multiSelectHandler.add(selectHandler);
         return this;
     }
 
     public Menu onAction(MenuActionHandler actionHandler) {
-        this.actionHandler = actionHandler;
+        this.actionHandler.add(actionHandler);
         return this;
     }
 
@@ -227,15 +230,13 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
                     break;
             }
             if (fireEvent) {
-                if (selectHandler != null) {
-                    selectHandler.onSelect(new Event(""), item, selected);
-                }
-                if (multiSelectHandler != null) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
+                if (!multiSelectHandler.isEmpty()) {
                     List<MenuItem> selection = items()
                             .stream()
                             .filter(MenuItem::isSelected)
                             .collect(toList());
-                    multiSelectHandler.onSelect(new Event(""), this, selection);
+                    multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selection));
                 }
             }
         }

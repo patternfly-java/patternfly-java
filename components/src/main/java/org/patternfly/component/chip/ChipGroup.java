@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.chip;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
@@ -89,6 +91,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
 
     private final HTMLElement listElement;
     private final Map<String, Chip> items;
+    private final List<CloseHandler<ChipGroup>> closeHandler;
     private boolean expanded;
     private int numChips;
     private String collapsedText;
@@ -98,11 +101,11 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
     private HTMLElement categoryElement;
     private HTMLElement overflowItem;
     private TooltipToggle tooltipToggle;
-    private CloseHandler<ChipGroup> closeHandler;
 
     ChipGroup(String category) {
         super(ComponentType.ChipGroup, div().css(component(chipGroup)).attr(role, group).element());
         this.items = new LinkedHashMap<>();
+        this.closeHandler = new ArrayList<>();
         this.expanded = false;
         this.numChips = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -182,7 +185,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
     }
 
     public ChipGroup closable(CloseHandler<ChipGroup> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
 
         String closeId = Id.unique(componentType().id, "close");
         String labelledBy = closeId;
@@ -236,7 +239,7 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
 
     @Override
     public ChipGroup onClose(CloseHandler<ChipGroup> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

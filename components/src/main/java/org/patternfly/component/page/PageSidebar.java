@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Brightness;
@@ -54,13 +57,14 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
     static final String SUB_COMPONENT_NAME = "psb";
 
     private boolean keepExpanded;
-    private ToggleHandler<PageSidebar> toggleHandler;
+    private final List<ToggleHandler<PageSidebar>> toggleHandler;
 
     PageSidebar() {
         super(SUB_COMPONENT_NAME, aside().css(component(page, sidebar), modifier(expanded))
                 .aria(hidden, false)
                 .element());
         this.keepExpanded = false;
+        this.toggleHandler = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -94,7 +98,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
     // ------------------------------------------------------ events
 
     public PageSidebar onToggle(ToggleHandler<PageSidebar> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -106,8 +110,8 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
             element().classList.remove(modifier(expanded));
             element().classList.add(modifier(collapsed));
             aria(hidden, true);
-            if (fireEvent && toggleHandler != null) {
-                toggleHandler.onToggle(new Event(""), this, false);
+            if (fireEvent) {
+                toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
             }
         }
     }
@@ -117,8 +121,8 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
         element().classList.remove(modifier(collapsed));
         element().classList.add(modifier(expanded));
         aria(hidden, false);
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, true);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
         }
     }
 }

@@ -130,6 +130,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
     private final HTMLContainerBuilder<HTMLDivElement> sliderRail;
     private final HTMLContainerBuilder<HTMLDivElement> stepsContainer;
     private final List<SliderActions> actions;
+    private final List<ChangeHandler<Slider, Double>> changeHandler;
 
     private double min;
     private double max;
@@ -146,7 +147,6 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
     private TextInput textInput;
     private InputGroup inputGroup;
     private SliderSteps customSteps;
-    private ChangeHandler<Slider, Double> changeHandler;
     private HandlerRegistration mouseMoveHandler;
     private HandlerRegistration mouseUpHandler;
     private HandlerRegistration touchMoveHandler;
@@ -161,6 +161,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         this.step = 1;
         this.showBoundaries = true;
         this.actions = new ArrayList<>();
+        this.changeHandler = new ArrayList<>();
 
         main = div().css(component(slider, Classes.main))
                 .add(sliderRail = div().css(component(slider, rail))
@@ -424,7 +425,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
     // ------------------------------------------------------ events
 
     public Slider onChange(ChangeHandler<Slider, Double> changeHandler) {
-        this.changeHandler = changeHandler;
+        this.changeHandler.add(changeHandler);
         return this;
     }
 
@@ -498,10 +499,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
         if (tooltip != null) {
             tooltip.text(labelOrValue);
         }
-
-        if (changeHandler != null) {
-            changeHandler.onChange(new Event(""), this, current);
-        }
+        changeHandler.forEach(ch -> ch.onChange(new Event(""), this, current));
     }
 
     private String labelOrValue(double value) {

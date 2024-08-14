@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.progress;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponentFlat;
@@ -103,13 +106,13 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     private HelperText helperText;
     private HTMLElement titleElement;
     private HTMLElement iconContainer;
-    private MeasureLocation measureLocation;
-    private ChangeHandler<Progress, Integer> changeHandler;
+    private final List<ChangeHandler<Progress, Integer>> changeHandler;
 
     Progress() {
         super(ComponentType.Progress, div().css(component(progress), modifier(singleline)).element());
         this.value = ov(0).subscribe(this::onValueChanged);
         this.label = (min, max, step, value) -> value + "%";
+        this.changeHandler = new ArrayList<>();
 
         // these elements are mandatory
         this.statusElement = div().css(component(progress, Classes.status))
@@ -120,7 +123,7 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
                 .add(indicatorElement = div().css(component(progress, indicator)));
         element().appendChild(progressbarElement.element());
 
-        // these element is added/removed based on the measure location
+        // this element is added/removed based on the measure location
         this.measureElement = span().css(component(progress, measure)).element();
 
         range(0, 100, 1);
@@ -183,7 +186,6 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
     }
 
     public Progress measureLocation(MeasureLocation location) {
-        this.measureLocation = location;
         failSafeRemoveFromParent(measureElement);
         classList().remove(outside.modifier, inside.modifier);
 
@@ -289,7 +291,7 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
      * @return The progress component.
      */
     public Progress onChange(ChangeHandler<Progress, Integer> changeHandler) {
-        this.changeHandler = changeHandler;
+        this.changeHandler.add(changeHandler);
         return this;
     }
     // ------------------------------------------------------ api
@@ -359,8 +361,8 @@ public class Progress extends BaseComponentFlat<HTMLElement, Progress> implement
         measureElement.textContent = label.label(min, max, step, current);
         progressbarElement.aria(valueNow, current);
         indicatorElement.style("width", percentage(current, min, max) + "%");
-        if (changeHandler != null && current != previous) {
-            changeHandler.onChange(new Event(""), this, value.get());
+        if (current != previous) {
+            changeHandler.forEach(ch -> ch.onChange(new Event(""), this, value.get()));
         }
     }
 

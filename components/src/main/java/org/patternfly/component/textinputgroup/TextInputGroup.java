@@ -16,14 +16,30 @@
 package org.patternfly.component.textinputgroup;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Id;
+import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.chip.Chip;
+import org.patternfly.component.chip.ChipGroup;
+import org.patternfly.core.ObservableValue;
+import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.chip.Chip.chip;
+import static org.patternfly.component.chip.ChipGroup.chipGroup;
+import static org.patternfly.component.textinputgroup.TextInputGroupMain.textInputGroupMain;
+import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
+import static org.patternfly.core.ObservableValue.ov;
+import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.textInputGroup;
 
@@ -32,7 +48,7 @@ import static org.patternfly.style.Classes.textInputGroup;
  * inputs for filtering and similar use cases by placing elements like icons, chips groups and buttons within a text input.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/text-input-group">https://www.patternfly.org/components/text-input-group</a>
+ * "https://www.patternfly.org/components/text-input-group">https://www.patternfly.org/components/text-input-group</a>
  */
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Disabled<HTMLDivElement, TextInputGroup>, Attachable {
@@ -41,6 +57,84 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
 
     public static TextInputGroup textInputGroup() {
         return new TextInputGroup();
+    }
+
+    public static TextInputGroup searchInputGroup(String placeholder) {
+        TextInputGroup textInputGroup = textInputGroup();
+        ObservableValue<Boolean> textEntered = ov(false);
+
+        textInputGroup
+                .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "sig"))
+                        .icon(search())
+                        .placeholder(placeholder)
+                        .onChange((e, tig, value) -> textEntered.set(!value.isEmpty())))
+                .addUtilities(textInputGroupUtilities()
+                        .add(button().icon(times()).plain()
+                                .on(click, e -> {
+                                    textInputGroup.main().value("");
+                                    textEntered.change(false);
+                                })));
+
+        textEntered.subscribe((current, previous) -> {
+            if (current) {
+                setVisible(textInputGroup.utilities(), true);
+            }
+        });
+        textEntered.publish();
+
+        return textInputGroup;
+    }
+
+    public static TextInputGroup filterInputGroup(String placeholder) {
+        ChipGroup chipGroup = chipGroup();
+        TextInputGroup textInputGroup = textInputGroup();
+        ObservableValue<Boolean> chipsPresent = ov(false);
+        ObservableValue<Boolean> textEntered = ov(false);
+        CloseHandler<Chip> closeHandler = (event, chip) -> chipsPresent.set(!chipGroup.isEmpty());
+
+        textInputGroup
+                .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "fig"))
+                        .addChipGroup(chipGroup)
+                        .placeholder(placeholder)
+                        .onChange((e, tig, value) -> {
+                            textEntered.set(!value.isEmpty());
+                            if (Key.Enter.match(e) && !value.isEmpty()) {
+                                chipGroup.addItem(chip(value).onClose(closeHandler));
+                                tig.main().value("");
+                                chipsPresent.set(true);
+                                textEntered.set(false);
+                            }
+                        }))
+                .addUtilities(textInputGroupUtilities(false)
+                        .add(button().icon(times()).plain()
+                                .on(click, e -> {
+                                    chipGroup.clear();
+                                    textInputGroup.main().value("");
+                                    chipsPresent.set(false);
+                                    textEntered.change(false);
+                                })));
+
+        chipsPresent.subscribe((current, previous) -> {
+            setVisible(chipGroup, current);
+            if (current) {
+                textInputGroup.main().removeIcon();
+            } else {
+                textInputGroup.main().icon(search());
+                setVisible(textInputGroup.utilities(), textEntered.get());
+            }
+        });
+        chipsPresent.publish();
+
+        textEntered.subscribe((current, previous) -> {
+            if (current) {
+                setVisible(textInputGroup.utilities(), true);
+            } else {
+                setVisible(textInputGroup.utilities(), chipsPresent.get());
+            }
+        });
+        textEntered.publish();
+
+        return textInputGroup;
     }
 
     // ------------------------------------------------------ instance

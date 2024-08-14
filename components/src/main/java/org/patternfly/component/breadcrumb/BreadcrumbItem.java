@@ -137,7 +137,6 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
 
     // ------------------------------------------------------ api
 
-
     @Override
     public String identifier() {
         return identifier;

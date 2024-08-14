@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.drawer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
@@ -54,13 +57,14 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
 
     private HTMLElement mainContainer;
     private DrawerPanel panel;
-    private ToggleHandler<Drawer> toggleHandler;
+    private final List<ToggleHandler<Drawer>> toggleHandler;
     boolean inline;
     Position position;
     DrawerContent content;
 
     Drawer() {
         super(ComponentType.Drawer, div().css(component(drawer)).element());
+        this.toggleHandler = new ArrayList<>();
         this.position = Position.end;
         storeFlatComponent();
     }
@@ -129,7 +133,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
     // ------------------------------------------------------ events
 
     public Drawer onToggle(ToggleHandler<Drawer> toggleHandler) {
-        this.toggleHandler = toggleHandler;
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -141,8 +145,8 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         if (panel != null) {
             panel.element().hidden = true;
         }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, false);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
         }
     }
 
@@ -152,8 +156,8 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         if (panel != null) {
             panel.element().hidden = false;
         }
-        if (fireEvent && toggleHandler != null) {
-            toggleHandler.onToggle(new Event(""), this, true);
+        if (fireEvent) {
+            toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
         }
     }
 

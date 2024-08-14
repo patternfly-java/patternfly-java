@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.label;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
@@ -93,6 +95,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
 
     private final HTMLElement listElement;
     private final Map<String, Label> items;
+    private final List<CloseHandler<LabelGroup>> closeHandler;
     private boolean expanded;
     private int numLabels;
     private String collapsedText;
@@ -102,11 +105,11 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     private HTMLElement categoryElement;
     private HTMLElement overflowItem;
     private TooltipToggle tooltipToggle;
-    private CloseHandler<LabelGroup> closeHandler;
 
     LabelGroup(String category) {
         super(ComponentType.ChipGroup, div().css(component(labelGroup)).element());
         this.items = new LinkedHashMap<>();
+        this.closeHandler = new ArrayList<>();
         this.expanded = false;
         this.numLabels = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -188,7 +191,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     public LabelGroup closable(CloseHandler<LabelGroup> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
 
         String closeId = Id.unique(componentType().id, "close");
         String labelledBy = closeId;
@@ -235,7 +238,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
 
     @Override
     public LabelGroup onClose(CloseHandler<LabelGroup> closeHandler) {
-        this.closeHandler = closeHandler;
+        this.closeHandler.add(closeHandler);
         return this;
     }
 

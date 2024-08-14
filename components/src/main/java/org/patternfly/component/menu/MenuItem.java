@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,6 +149,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
     private final HTMLElement textElement;
+    private final List<ComponentHandler<MenuItem>> handler;
     MenuItem sourceItem;
     MenuItem favoriteItem;
     MenuItemAction favoriteItemAction;
@@ -159,7 +161,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private HTMLElement iconContainer;
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
-    private ComponentHandler<MenuItem> handler;
 
     MenuItem(String identifier, String text, MenuItemType itemType, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
@@ -169,6 +170,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.identifier = identifier;
         this.itemType = itemType;
         this.data = new HashMap<>();
+        this.handler = new ArrayList<>();
 
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
@@ -235,8 +237,9 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
         // checkbox must not be used for cloned favorite items!
 
-        if (item.handler != null) {
-            onClick(item.handler);
+        this.handler = new ArrayList<>();
+        for (ComponentHandler<MenuItem> h : item.handler) {
+            onClick(h);
         }
         if (item.itemAction != null) {
             HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
@@ -442,7 +445,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     // ------------------------------------------------------ events
 
     public MenuItem onClick(ComponentHandler<MenuItem> handler) {
-        this.handler = handler;
+        this.handler.add(handler);
         itemElement.addEventListener(click.name, e -> handler.handle(e, this));
         return this;
     }
