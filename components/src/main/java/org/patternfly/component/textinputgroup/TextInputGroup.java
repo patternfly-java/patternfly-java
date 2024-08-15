@@ -23,6 +23,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.chip.Chip;
 import org.patternfly.component.chip.ChipGroup;
 import org.patternfly.core.ObservableValue;
+import org.patternfly.handler.ChangeHandler;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Modifiers.Disabled;
 
@@ -75,11 +76,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                                     textEntered.change(false);
                                 })));
 
-        textEntered.subscribe((current, previous) -> {
-            if (current) {
-                setVisible(textInputGroup.utilities(), true);
-            }
-        });
+        textEntered.subscribe((current, previous) -> setVisible(textInputGroup.utilities(), current));
         textEntered.publish();
 
         return textInputGroup;
@@ -195,6 +192,14 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
 
     @Override
     public TextInputGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    /** Delegates to {@link TextInputGroupMain#onChange(ChangeHandler)} */
+    public TextInputGroup onChange(ChangeHandler<TextInputGroup, String> changeHandler) {
+        main.onChange(changeHandler);
         return this;
     }
 

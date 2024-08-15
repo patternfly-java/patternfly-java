@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `TreeViewItem.disabled(boolean)`
 - Add `Variable.utilVar(String, String...)`
 - Add `HasItems.items()`
+- Add `TextInputGroup.onChange(ChangeHandler<TextInputGroup, String> changeHandler)`
 
 ### Changed
 
