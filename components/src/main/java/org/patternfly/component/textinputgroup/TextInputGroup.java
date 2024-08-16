@@ -72,7 +72,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                 .addUtilities(textInputGroupUtilities()
                         .add(button().icon(times()).plain()
                                 .on(click, e -> {
-                                    textInputGroup.main().value("");
+                                    textInputGroup.main().value("", true);
                                     textEntered.change(false);
                                 })));
 
