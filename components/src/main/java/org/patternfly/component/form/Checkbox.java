@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.InputElementBuilder;
@@ -26,6 +28,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -80,6 +83,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
+    private final List<ChangeHandler<Checkbox, Boolean>> changeHandlers;
     private HTMLLabelElement labelElement;
     private HTMLElement requiredMarker;
 
@@ -90,8 +94,10 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
                         .name(name)
                         .checked(checked))
                 .element());
-        this.inputElement = (HTMLInputElement) element().firstElementChild;
+        this.changeHandlers = new ArrayList<>();
 
+        inputElement = (HTMLInputElement) element().firstElementChild;
+        inputElement.addEventListener(change.name, e -> changeHandlers.forEach(h -> h.onChange(e, this, inputElement.checked)));
         add(labelElement = label().css(component(check, Classes.label))
                 .apply(l -> l.htmlFor = id)
                 .element());
@@ -168,9 +174,18 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         return this;
     }
 
-    /** Sets the {@code checked} attribute of the input element. */
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Checkbox value(boolean checked) {
+        return value(checked, false);
+    }
+
+    /** Sets the {@code checked} attribute of the input element. */
+    public Checkbox value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(h -> h.onChange(new Event(""), this, inputElement.checked));
+        }
         return this;
     }
 
@@ -191,7 +206,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
      * Defines a change handler that is called when the {@link #value()} of this checkbox changes.
      */
     public Checkbox onChange(ChangeHandler<Checkbox, Boolean> changeHandler) {
-        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
+        changeHandlers.add(changeHandler);
         return this;
     }
 

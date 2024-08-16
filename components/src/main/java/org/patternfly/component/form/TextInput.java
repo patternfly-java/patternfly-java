@@ -15,8 +15,11 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.InputElementBuilder;
@@ -32,6 +35,7 @@ import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.Element;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 
@@ -97,6 +101,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     private final HTMLInputElement inputElement;
+    private final List<ChangeHandler<TextInput, String>> changeHandlers;
     private HTMLElement iconContainer;
 
     TextInput(TextInputType type, String id, String value) {
@@ -107,7 +112,10 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
                                 .aria(invalid, false))
                         .element(),
                 ComponentType.TextInput);
+        this.changeHandlers = new ArrayList<>();
+
         inputElement = (HTMLInputElement) element().firstElementChild;
+        inputElement.addEventListener(keyup.name, e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
         if (value != null) {
             value(value);
         }
@@ -153,8 +161,17 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return value(text);
     }
 
+    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextInput value(String value) {
+        return value(value, false);
+    }
+
+    public TextInput value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        }
         return this;
     }
 
@@ -203,7 +220,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
      * adding an event listener for the keyup event to the text input element.
      */
     public TextInput onChange(ChangeHandler<TextInput, String> changeHandler) {
-        inputElement.addEventListener(keyup.name, e -> changeHandler.onChange(e, this, inputElement.value));
+        changeHandlers.add(changeHandler);
         return this;
     }
 

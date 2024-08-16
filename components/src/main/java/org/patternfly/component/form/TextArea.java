@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
@@ -28,6 +31,7 @@ import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.CSSStyleDeclaration;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
 import elemental2.dom.MutationRecord;
@@ -43,7 +47,7 @@ import static org.patternfly.core.Aria.invalid;
  * A text area component is used for entering a paragraph of text that is longer than one line.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/forms/text-area">https://www.patternfly.org/components/forms/text-area</a>
+ * "https://www.patternfly.org/components/forms/text-area">https://www.patternfly.org/components/forms/text-area</a>
  */
 public class TextArea extends FormControl<HTMLElement, TextArea> implements
         HasValue<String>,
@@ -65,21 +69,26 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ instance
 
     private final HTMLTextAreaElement textAreaElement;
+    private final List<ChangeHandler<TextArea, String>> changeHandlers;
     private boolean autoResize;
     private TextAreaResize resize;
 
     TextArea(String id, String value) {
         super(id, formControlContainer()
-                .add(textarea()
-                        .id(id)
-                        .apply(ta -> {
-                            ta.name = id;
-                            ta.spellcheck = false;
-                        })
-                        .aria(invalid, false))
-                .element(),
+                        .add(textarea()
+                                .id(id)
+                                .apply(ta -> {
+                                    ta.name = id;
+                                    ta.spellcheck = false;
+                                })
+                                .aria(invalid, false))
+                        .element(),
                 ComponentType.TextInput);
+        this.changeHandlers = new ArrayList<>();
+
         textAreaElement = (HTMLTextAreaElement) element().firstElementChild;
+        textAreaElement.addEventListener(keyup.name,
+                e -> changeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
         if (value != null) {
             value(value);
         }
@@ -140,8 +149,17 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return value(text);
     }
 
+    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextArea value(String value) {
+        return value(value, false);
+    }
+
+    public TextArea value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(textAreaElement.value, value);
         textAreaElement.value = value;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        }
         return this;
     }
 
@@ -163,7 +181,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
      * adding an event listener for the keyup event to the text area element.
      */
     public TextArea onChange(ChangeHandler<TextArea, String> changeHandler) {
-        textAreaElement.addEventListener(keyup.name, e -> changeHandler.onChange(e, this, textAreaElement.value));
+        changeHandlers.add(changeHandler);
         return this;
     }
 

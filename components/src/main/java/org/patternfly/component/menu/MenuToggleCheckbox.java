@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -24,6 +27,7 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -57,10 +61,13 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
     static final String SUB_COMPONENT_NAME = "mtc";
 
     private final HTMLInputElement inputElement;
+    private final List<ChangeHandler<MenuToggleCheckbox, Boolean>> changeHandlers;
     private HTMLElement textElement;
 
     MenuToggleCheckbox() {
         super(SUB_COMPONENT_NAME, label().css(component(check)).element());
+        this.changeHandlers = new ArrayList<>();
+
         String id = Id.unique(ComponentType.MenuToggle.id, "check");
         ((HTMLLabelElement) element()).htmlFor = id;
         add(inputElement = input(checkbox).css(component(check, Classes.input))
@@ -68,6 +75,8 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
                 .name(id)
                 .aria(invalid, false)
                 .element());
+        inputElement.addEventListener(change.name,
+                e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.checked)));
     }
 
     // ------------------------------------------------------ builder
@@ -91,9 +100,18 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
         return this;
     }
 
-    /** Sets the {@code checked} attribute of the input element. */
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public MenuToggleCheckbox value(boolean checked) {
+        return value(checked, false);
+    }
+
+    /** Sets the {@code checked} attribute of the input element. */
+    public MenuToggleCheckbox value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
+        }
         return this;
     }
 
@@ -115,7 +133,7 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
      * Defines a change handler that is called when the {@link #value()} of the checkbox changes.
      */
     public MenuToggleCheckbox onChange(ChangeHandler<MenuToggleCheckbox, Boolean> changeHandler) {
-        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
+        changeHandlers.add(changeHandler);
         return this;
     }
 

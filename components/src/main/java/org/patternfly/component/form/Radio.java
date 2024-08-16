@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.InputElementBuilder;
@@ -27,6 +29,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -75,6 +78,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
+    private final List<ChangeHandler<Radio, Boolean>> changeHandlers;
     private HTMLLabelElement labelElement;
 
     Radio(String id, String name, String label, boolean checked) {
@@ -84,8 +88,11 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
                         .name(name)
                         .checked(checked))
                 .element());
+        this.changeHandlers = new ArrayList<>();
 
         inputElement = (HTMLInputElement) element().firstElementChild;
+        inputElement.addEventListener(change.name,
+                e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.checked)));
         add(labelElement = label().css(component(Classes.radio, Classes.label))
                 .apply(l -> l.htmlFor = id)
                 .element());
@@ -143,8 +150,17 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         return this;
     }
 
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Radio value(boolean checked) {
+        return value(checked, false);
+    }
+
+    public Radio value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
+        }
         return this;
     }
 
@@ -165,7 +181,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
      * Defines a change handler that is called when the {@link #value()} of this radio changes.
      */
     public Radio onChange(ChangeHandler<Radio, Boolean> changeHandler) {
-        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
+        changeHandlers.add(changeHandler);
         return this;
     }
 

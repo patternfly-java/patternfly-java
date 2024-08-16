@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.textinputgroup;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Elements;
@@ -29,6 +32,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
+import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -65,18 +69,28 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
 
     private final HTMLInputElement inputElement;
     private final HTMLElement textContainer;
+    private final List<ChangeHandler<TextInputGroup, String>> changeHandlers;
     private HTMLElement iconContainer;
     private ChipGroup chipGroup;
     private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, main)).element());
+        this.changeHandlers = new ArrayList<>();
+
         add(textContainer = span().css(component(Classes.textInputGroup, Classes.text))
                 .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
                         .id(id)
                         .name(id)
                         .element())
                 .element());
+        inputElement.addEventListener(keyup.name, e -> {
+            if (textInputGroup == null) {
+                textInputGroup = lookupComponent();
+            }
+            changeHandlers.forEach(changeHandler -> changeHandler.onChange(e, textInputGroup, inputElement.value));
+        });
+
     }
 
     // ------------------------------------------------------ add
@@ -125,8 +139,24 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return value(text);
     }
 
+    /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextInputGroupMain value(String value) {
+        return value(value, false);
+    }
+
+    public TextInputGroupMain value(String value, boolean fireEvent) {
+        boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            if (textInputGroup == null) {
+                textInputGroup = lookupComponent(true); // might not be available yet!
+                if (textInputGroup != null) {
+                    changeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
+                }
+            } else {
+                changeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
+            }
+        }
         return this;
     }
 
@@ -148,12 +178,7 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
      * adding an event listener for the keyup event to the text area element.
      */
     public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> changeHandler) {
-        inputElement.addEventListener(keyup.name, e -> {
-            if (textInputGroup == null) {
-                textInputGroup = lookupComponent();
-            }
-            changeHandler.onChange(e, textInputGroup, inputElement.value);
-        });
+        changeHandlers.add(changeHandler);
         return this;
     }
 

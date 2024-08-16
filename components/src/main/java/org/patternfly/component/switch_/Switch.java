@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.switch_;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
@@ -31,6 +33,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Readonly;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -81,12 +84,15 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     private static final Logger logger = Logger.getLogger(Switch.class.getName());
     private final HTMLInputElement inputElement;
     private final HTMLElement toggleElement;
+    private final List<ChangeHandler<Switch, Boolean>> changeHandlers;
     private HTMLElement iconElement;
     private HTMLElement labelOnElement;
     private HTMLElement labelOffElement;
 
     Switch(String id, String name, boolean checked) {
         super(ComponentType.Switch, Elements.label().css(component(switch_)).element());
+        this.changeHandlers = new ArrayList<>();
+
         element().appendChild(inputElement = input(checkbox).css(component(switch_, Classes.input))
                 .id(id)
                 .name(name)
@@ -94,6 +100,9 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
                 .element());
         element().appendChild(toggleElement = span().css(component(switch_, toggle))
                 .element());
+        inputElement.addEventListener(change.name,
+                e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.checked)));
+
         element().htmlFor = id;
         Attachable.register(this, this);
     }
@@ -177,9 +186,18 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
         return this;
     }
 
-    /** Sets the {@code checked} attribute of the input element. */
+    /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
     public Switch value(boolean checked) {
+        return value(checked, false);
+    }
+
+    /** Sets the {@code checked} attribute of the input element. */
+    public Switch value(boolean checked, boolean fireEvent) {
+        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
+        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
+        }
         return this;
     }
 
@@ -204,7 +222,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     // ------------------------------------------------------ events
 
     public Switch onChange(ChangeHandler<Switch, Boolean> changeHandler) {
-        inputElement.addEventListener(change.name, e -> changeHandler.onChange(e, this, inputElement.checked));
+        changeHandlers.add(changeHandler);
         return this;
     }
 
