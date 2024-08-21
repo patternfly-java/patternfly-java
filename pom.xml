@@ -29,7 +29,7 @@
 
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java-parent</artifactId>
-    <version>0.2.9</version>
+    <version>0.2.10-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PatternFly Java Parent</name>
     <description>Java implementation of PatternFly</description>
