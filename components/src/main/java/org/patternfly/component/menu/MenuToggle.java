@@ -304,4 +304,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         }
         return null;
     }
+
+    public Badge badge() {
+        return badge;
+    }
 }

@@ -124,10 +124,16 @@ public class PopperBuilder {
             handlerRegistrations.add(bind(triggerElement, EventType.focus, e -> show.accept(e)));
             handlerRegistrations.add(bind(triggerElement, EventType.blur, e -> hide.accept(e)));
         }
-        if (triggerActions.contains(TriggerAction.click)) {
+        if (triggerActions.contains(TriggerAction.click) || triggerActions.contains(TriggerAction.stayOpen)) {
             handlerRegistrations.add(bind(document, EventType.click, true, e -> {
                 if (isVisible(popperElement)) {
-                    hide.accept(e);
+                    if (triggerActions.contains(TriggerAction.stayOpen)) {
+                        if (!popperElement.contains((Node) e.target)) {
+                            hide.accept(e);
+                        }
+                    } else if (triggerActions.contains(TriggerAction.click)) {
+                        hide.accept(e);
+                    }
                 } else if (e.target == triggerElement || triggerElement.contains(((Node) e.target))) {
                     show.accept(e);
                 }

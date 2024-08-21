@@ -15,7 +15,10 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.EnumSet;
+
 import org.patternfly.component.ComponentType;
+import org.patternfly.popper.TriggerAction;
 
 /**
  * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
@@ -37,7 +40,7 @@ public class SingleSelect extends MenuToggleMenu<SingleSelect> {
     // ------------------------------------------------------ instance
 
     SingleSelect(MenuToggle menuToggle) {
-        super(ComponentType.SingleSelect, menuToggle);
+        super(ComponentType.SingleSelect, menuToggle, EnumSet.of(TriggerAction.click));
     }
 
     // ------------------------------------------------------ add
@@ -53,5 +56,26 @@ public class SingleSelect extends MenuToggleMenu<SingleSelect> {
     @Override
     public SingleSelect that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void select(String itemId) {
+        select(menu.findItem(itemId), true);
+    }
+
+    public void select(String itemId, boolean fireEvent) {
+        select(menu.findItem(itemId), fireEvent);
+    }
+
+    public void select(MenuItem item) {
+        select(item, true);
+    }
+
+    public void select(MenuItem item, boolean fireEvent) {
+        if (menu != null && menuToggle != null && item != null) {
+            menu.select(item, true, fireEvent);
+            menuToggle.text(item.text());
+        }
     }
 }

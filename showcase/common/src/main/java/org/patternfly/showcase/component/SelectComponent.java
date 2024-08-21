@@ -16,6 +16,8 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.menu.MultiSelect;
+import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
 import org.patternfly.showcase.Snippet;
@@ -26,8 +28,11 @@ import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.router.Link.link;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.actionMenuItem;
+import static org.patternfly.component.menu.MenuItem.checkboxMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MultiSelect.multiSelect;
+import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.icon.IconSets.fas.bell;
@@ -87,7 +92,26 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:select-option-variants
         ));
 
-        startApiDocs(SingleSelect.class);
+        addSnippet(new Snippet("multi-select", "Multi select",
+                code("multi-select"), () ->
+                // @code-start:multi-select
+                div()
+                        .add(multiSelect("Filter by status")
+                                .addMenu(multiSelectMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(checkboxMenuItem("debug", "Debug"))
+                                                        .addItem(checkboxMenuItem("info", "Info"))
+                                                        .addItem(checkboxMenuItem("warn", "Warn"))
+                                                        .addItem(checkboxMenuItem("error", "Error")
+                                                                .disabled())))))
+                        .element()
+                // @code-end:multi-select
+        ));
+
+        startApiDocs(MultiSelect.class);
+        addApiDoc(MultiSelect.class, component);
+        addApiDoc(MultiSelectMenu.class, component);
         addApiDoc(SingleSelect.class, component);
         addApiDoc(SingleSelectMenu.class, component);
     }

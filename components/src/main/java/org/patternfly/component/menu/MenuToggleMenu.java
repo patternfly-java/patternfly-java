@@ -16,7 +16,6 @@
 package org.patternfly.component.menu;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
@@ -64,10 +63,10 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     final MenuToggle menuToggle;
     Menu menu;
 
-    MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
+    MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, Set<TriggerAction> triggerActions) {
         super(componentType);
         this.menuToggle = menuToggle;
-        this.triggerActions = EnumSet.of(TriggerAction.click);
+        this.triggerActions = triggerActions;
         this.toggleHandler = new ArrayList<>();
         this.flip = true;
         this.placement = bottomStart;
@@ -171,33 +170,6 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     // ------------------------------------------------------ api
-
-    public void select(String itemId) {
-        select(menu.findItem(itemId), true, true);
-    }
-
-    public void select(String itemId, boolean selected) {
-        select(menu.findItem(itemId), selected, true);
-    }
-
-    public void select(String itemId, boolean selected, boolean fireEvent) {
-        select(menu.findItem(itemId), selected, fireEvent);
-    }
-
-    public void select(MenuItem item) {
-        select(item, true, true);
-    }
-
-    public void select(MenuItem item, boolean selected) {
-        select(item, selected, true);
-    }
-
-    public void select(MenuItem item, boolean selected, boolean fireEvent) {
-        menu.select(item, selected, fireEvent);
-        if (item != null && menuToggle != null) {
-            menuToggle.text(item.text());
-        }
-    }
 
     @Override
     public void collapse(boolean fireEvent) {

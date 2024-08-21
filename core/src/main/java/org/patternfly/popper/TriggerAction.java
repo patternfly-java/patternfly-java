@@ -23,5 +23,7 @@ public enum TriggerAction {
 
     click,
 
+    stayOpen,
+
     manual
 }

@@ -232,11 +232,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             if (fireEvent) {
                 selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
                 if (!multiSelectHandler.isEmpty()) {
-                    List<MenuItem> selection = items()
-                            .stream()
-                            .filter(MenuItem::isSelected)
-                            .collect(toList());
-                    multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selection));
+                    fireMultiSelection();
                 }
             }
         }
@@ -301,6 +297,14 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             sourceItem.favoriteItemAction.element().classList.remove(modifier(favorited));
             sourceItem.favoriteItem = null;
         }
+    }
+
+    void fireMultiSelection() {
+        List<MenuItem> selection = items()
+                .stream()
+                .filter(MenuItem::isSelected)
+                .collect(toList());
+        multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selection));
     }
 
     private void unselectAllItems() {

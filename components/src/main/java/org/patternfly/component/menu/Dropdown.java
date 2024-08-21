@@ -15,8 +15,11 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.EnumSet;
+
 import org.patternfly.component.ComponentType;
 import org.patternfly.icon.PredefinedIcon;
+import org.patternfly.popper.TriggerAction;
 
 /**
  * A dropdown presents a menu of actions or links in a constrained space that will trigger a process or navigate to a new
@@ -45,7 +48,7 @@ public class Dropdown extends MenuToggleMenu<Dropdown> {
     // ------------------------------------------------------ instance
 
     Dropdown(MenuToggle menuToggle) {
-        super(ComponentType.Dropdown, menuToggle);
+        super(ComponentType.Dropdown, menuToggle, EnumSet.of(TriggerAction.click));
     }
 
     // ------------------------------------------------------ builder
