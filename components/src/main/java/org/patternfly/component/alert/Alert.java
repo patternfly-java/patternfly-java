@@ -307,7 +307,9 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     @Override
     public Alert onClose(CloseHandler<Alert> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

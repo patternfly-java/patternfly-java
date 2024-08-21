@@ -205,6 +205,18 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
 
     // ------------------------------------------------------ api
 
+    /** Same as {@code clear(true)}. */
+    public void clear() {
+        clear(true);
+    }
+
+    public void clear(boolean fireEvent) {
+        if (main != null) {
+            main.value("", fireEvent);
+        }
+        setVisible(utilities, false);
+    }
+
     @SuppressWarnings("ConfusingMainMethod")
     public TextInputGroupMain main() {
         return main;

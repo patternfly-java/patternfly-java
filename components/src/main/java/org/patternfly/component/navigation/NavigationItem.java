@@ -79,10 +79,6 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         this.data = new HashMap<>();
 
         element().appendChild(a = a().css(component(nav, link))
-                .on(click, e -> {
-                    Navigation navigation = lookupComponent();
-                    navigation.select(this);
-                })
                 .element());
     }
 

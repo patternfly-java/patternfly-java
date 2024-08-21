@@ -239,7 +239,9 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
 
     @Override
     public ChipGroup onClose(CloseHandler<ChipGroup> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

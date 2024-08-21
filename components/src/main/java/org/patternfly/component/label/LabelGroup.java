@@ -238,7 +238,9 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
 
     @Override
     public LabelGroup onClose(CloseHandler<LabelGroup> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

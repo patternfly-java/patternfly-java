@@ -302,7 +302,9 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
 
     @Override
     public Tooltip onClose(CloseHandler<Tooltip> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

@@ -222,7 +222,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
             itemsContainer = div().element();
         }
 
-        storeComponent();
         Attachable.register(this, this);
     }
 

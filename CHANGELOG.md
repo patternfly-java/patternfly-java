@@ -8,10 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Add
 
-- Add `TreeViewItem.disabled(boolean)`
-- Add `Variable.utilVar(String, String...)`
 - Add `HasItems.items()`
+- Add `Variable.utilVar(String, String...)`
+- Add `TextInputGroup.clear()`
 - Add `TextInputGroup.onChange(ChangeHandler<TextInputGroup, String> changeHandler)`
+- Add `TreeViewItem.disabled(boolean)`
 
 ### Changed
 
@@ -20,7 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Upgrades
 
-- Bump Elemento to 1.6.7
+- Bump Elemento to 1.6.8
 
 ## [0.2.8] - 2024-07-30
 

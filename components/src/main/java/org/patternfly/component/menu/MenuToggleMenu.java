@@ -32,7 +32,7 @@ import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -45,7 +45,7 @@ import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottomStart;
 
 abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B> implements
-        Modifiers.Disabled<HTMLElement, B>,
+        Disabled<HTMLElement, B>,
         Expandable<HTMLElement, B>,
         Attachable {
 
@@ -171,6 +171,33 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     // ------------------------------------------------------ api
+
+    public void select(String itemId) {
+        select(menu.findItem(itemId), true, true);
+    }
+
+    public void select(String itemId, boolean selected) {
+        select(menu.findItem(itemId), selected, true);
+    }
+
+    public void select(String itemId, boolean selected, boolean fireEvent) {
+        select(menu.findItem(itemId), selected, fireEvent);
+    }
+
+    public void select(MenuItem item) {
+        select(item, true, true);
+    }
+
+    public void select(MenuItem item, boolean selected) {
+        select(item, selected, true);
+    }
+
+    public void select(MenuItem item, boolean selected, boolean fireEvent) {
+        menu.select(item, selected, fireEvent);
+        if (item != null && menuToggle != null) {
+            menuToggle.text(item.text());
+        }
+    }
 
     @Override
     public void collapse(boolean fireEvent) {

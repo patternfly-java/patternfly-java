@@ -265,7 +265,9 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
 
     @Override
     public Modal onClose(CloseHandler<Modal> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return null;
     }
 

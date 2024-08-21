@@ -195,7 +195,9 @@ public class Chip extends BaseComponent<HTMLElement, Chip> implements
     // ------------------------------------------------------ events
 
     public Chip onClose(CloseHandler<Chip> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

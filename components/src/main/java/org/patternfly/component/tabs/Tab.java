@@ -338,7 +338,9 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         if (closeButton == null) {
             return closeable(closeHandler);
         } else {
-            this.closeHandler.add(closeHandler);
+            if (closeHandler != null) {
+                this.closeHandler.add(closeHandler);
+            }
             return this;
         }
     }

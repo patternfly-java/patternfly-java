@@ -323,7 +323,9 @@ public class Label extends BaseComponentFlat<HTMLElement, Label> implements
 
     @Override
     public Label onClose(CloseHandler<Label> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 

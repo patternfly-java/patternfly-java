@@ -398,7 +398,9 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     @Override
     public Popover onClose(CloseHandler<Popover> closeHandler) {
-        this.closeHandler.add(closeHandler);
+        if (closeButton == null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 
