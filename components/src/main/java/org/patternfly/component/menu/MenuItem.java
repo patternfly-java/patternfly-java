@@ -183,15 +183,15 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .element());
 
         } else if (itemType == checkbox) {
-            String checkboxId = Id.build(identifier, "check");
+            String checkboxId = Id.unique(identifier, "check");
             itemBuilder = label()
-                    .apply(l -> l.htmlFor = checkboxId);
-            itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
-                    .add(span().css(component(Classes.menu, item, Classes.check))
-                            .add(checkboxComponent = checkbox(checkboxId, checkboxId)))
-                    .add(textElement = span().css(component(Classes.menu, item, Classes.text))
-                            .element())
-                    .element());
+                    .apply(l -> l.htmlFor = checkboxId)
+                    .add(mainElement = span().css(component(Classes.menu, item, main))
+                            .add(span().css(component(Classes.menu, item, Classes.check))
+                                    .add(checkboxComponent = checkbox(checkboxId, checkboxId).standalone()))
+                            .add(textElement = span().css(component(Classes.menu, item, Classes.text))
+                                    .element())
+                            .element());
 
         } else {
             // create a pseudo-element but don't add it

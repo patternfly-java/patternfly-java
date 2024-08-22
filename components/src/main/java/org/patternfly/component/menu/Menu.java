@@ -18,12 +18,10 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -31,11 +29,9 @@ import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
@@ -45,12 +41,9 @@ import static org.patternfly.component.menu.MenuHeader.menuHeader;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.favorited;
 import static org.patternfly.style.Classes.flyout;
-import static org.patternfly.style.Classes.icon;
-import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.menu;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.scrollable;
-import static org.patternfly.style.Classes.select;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.MaxHeight;
 
@@ -76,9 +69,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     }
 
     // ------------------------------------------------------ instance
-
-    private static final By MENU_ITEMS = By.classname(component(menu, item));
-    private static final By SELECT_ICONS = By.classname(component(menu, item, select, icon));
 
     final String menuName;
     final MenuType menuType;
@@ -307,18 +297,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
         multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selection));
     }
 
-    private void unselectAllItems() {
-        if (selectionMode == click) {
-            for (HTMLElement element : findAll(MENU_ITEMS)) {
-                element.setAttribute(Aria.current, false);
-            }
-        } else if (selectionMode == single) {
-            for (HTMLElement element : findAll(MENU_ITEMS)) {
-                element.setAttribute(Aria.selected, false);
-                element.classList.remove(modifier(Classes.selected));
-            }
-            for (HTMLElement element : findAll(SELECT_ICONS)) {
-                failSafeRemoveFromParent(element);
+    void unselectAllItems() {
+        for (MenuItem menuItem : items()) {
+            if (selectionMode == click) {
+                menuItem.makeCurrent(false);
+            } else {
+                menuItem.markSelected(false);
             }
         }
     }

@@ -79,6 +79,15 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
 
     // ------------------------------------------------------ api
 
+    public void clear() {
+        menu.unselectAllItems();
+        Badge badge = menuToggle.badge();
+        if (badge != null) {
+            badge.count(0);
+            badge.style("visibility", "hidden", true);
+        }
+    }
+
     public void selectIds(List<String> itemIds) {
         List<MenuItem> menuItems = new ArrayList<>();
         for (String itemId : itemIds) {
