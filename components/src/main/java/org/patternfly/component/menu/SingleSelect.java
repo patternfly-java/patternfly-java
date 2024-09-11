@@ -15,10 +15,11 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.EnumSet;
-
 import org.patternfly.component.ComponentType;
 import org.patternfly.popper.TriggerAction;
+
+import static org.patternfly.component.SelectionMode.single;
+import static org.patternfly.component.menu.MenuType.select;
 
 /**
  * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
@@ -40,14 +41,16 @@ public class SingleSelect extends MenuToggleMenu<SingleSelect> {
     // ------------------------------------------------------ instance
 
     SingleSelect(MenuToggle menuToggle) {
-        super(ComponentType.SingleSelect, menuToggle, EnumSet.of(TriggerAction.click));
+        super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
     }
 
     // ------------------------------------------------------ add
 
     @Override
     public SingleSelect add(Menu menu) {
-        menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
+        if (menu.menuType == select && menu.selectionMode == single) {
+            menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
+        }
         return super.add(menu);
     }
 

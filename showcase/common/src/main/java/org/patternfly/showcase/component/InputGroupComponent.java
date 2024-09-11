@@ -36,7 +36,7 @@ import static org.patternfly.component.inputgroup.InputGroupText.inputGroupText;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.actionMenuItem;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.popover.Popover.popover;
@@ -103,9 +103,9 @@ public class InputGroupComponent extends SnippetPage {
                                                 .addMenu(dropdownMenu()
                                                         .addContent(menuContent()
                                                                 .addList(menuList()
-                                                                        .addItem(actionMenuItem("option-0", "Option 1"))
-                                                                        .addItem(actionMenuItem("option-1", "Option 2"))
-                                                                        .addItem(actionMenuItem("option-2", "Option 3")))))))
+                                                                        .addItem(menuItem("option-0", "Option 1"))
+                                                                        .addItem(menuItem("option-1", "Option 2"))
+                                                                        .addItem(menuItem("option-2", "Option 3")))))))
                                 .addItem(inputGroupItem().fill()
                                         .addFormControl(textInput("input-group-dropdown-0")))
                                 .addItem(inputGroupItem()

@@ -47,8 +47,8 @@ import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
@@ -113,14 +113,14 @@ public class CardComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-0"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             CardActions cardActions = cardActions();
             return div()
@@ -148,14 +148,14 @@ public class CardComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             return div()
                     .add(card()
@@ -178,14 +178,14 @@ public class CardComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             return div()
                     .add(card()
@@ -382,28 +382,28 @@ public class CardComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
 
             Dropdown dropdown2 = dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
 
             return div()
@@ -437,14 +437,14 @@ public class CardComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled())
                                             .addDivider()
-                                            .addItem(actionMenuItem("item-4", "Separated action"))
+                                            .addItem(menuItem("item-4", "Separated action"))
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
 
             return div()

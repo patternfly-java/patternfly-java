@@ -16,14 +16,15 @@
 package org.patternfly.component.menu;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.popper.TriggerAction;
 
+import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.badge.Badge.badge;
+import static org.patternfly.component.menu.MenuType.checkbox;
 
 /**
  * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
@@ -45,7 +46,7 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
     // ------------------------------------------------------ instance
 
     MultiSelect(MenuToggle menuToggle) {
-        super(ComponentType.MultiSelect, menuToggle, EnumSet.of(TriggerAction.stayOpen));
+        super(ComponentType.MultiSelect, menuToggle, TriggerAction.stayOpen);
         if (menuToggle.badge() != null) {
             menuToggle.badge().style("visibility", "hidden", true);
         }
@@ -55,18 +56,20 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
 
     @Override
     public MultiSelect add(Menu menu) {
-        menu.onMultiSelect((e, m, items) -> {
-            Badge badge = menuToggle.badge();
-            if (badge != null) {
-                int size = items.size();
-                badge.count(size);
-                if (size == 0) {
-                    badge.style("visibility", "hidden", true);
-                } else {
-                    badge.style("visibility", "unset");
+        if (menu.menuType == checkbox && menu.selectionMode == multi) {
+            menu.onMultiSelect((e, m, items) -> {
+                Badge badge = menuToggle.badge();
+                if (badge != null) {
+                    int size = items.size();
+                    badge.count(size);
+                    if (size == 0) {
+                        badge.style("visibility", "hidden", true);
+                    } else {
+                        badge.style("visibility", "unset");
+                    }
                 }
-            }
-        });
+            });
+        }
         return super.add(menu);
     }
 

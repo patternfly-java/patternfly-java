@@ -17,9 +17,28 @@ package org.patternfly.component.menu;
 
 public enum MenuType {
 
+    /**
+     * Menu type whose menu items do not have a special selection mode. Should be used in combination with
+     * {@link org.patternfly.component.SelectionMode#click}.
+     * <p>
+     * Used for menus in {@link Dropdown} components.
+     */
     menu,
 
-    dropdown,
+    /**
+     * Menu type whose selected menu items are marked with a tik (✓). Should be used in combination with
+     * {@link org.patternfly.component.SelectionMode#single}, {@link org.patternfly.component.SelectionMode#group}, or
+     * {@link org.patternfly.component.SelectionMode#multi}.
+     * <p>
+     * Used for menus in {@link SingleSelect} and {@link MultiSelect} components.
+     */
+    select,
 
-    select
+    /**
+     * Menu type whose selected menu items are marked with a tik check box. Should only be used in combination with
+     * {@link org.patternfly.component.SelectionMode#multi}.
+     * <p>
+     * Used for menus in {@link MultiSelect} components.
+     */
+    checkbox
 }

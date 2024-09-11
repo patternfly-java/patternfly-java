@@ -47,8 +47,8 @@ import static org.patternfly.component.form.TextInputType.email;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.modal.Modal.modal;
 import static org.patternfly.component.modal.ModalBody.modalBody;
@@ -346,9 +346,9 @@ public class ModalComponent extends SnippetPage {
                     .addMenu(dropdownMenu()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action"))
+                                            .addItem(menuItem("item-0", "Action"))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                     .disabled()))));

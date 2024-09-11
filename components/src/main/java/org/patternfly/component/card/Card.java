@@ -15,6 +15,9 @@
  */
 package org.patternfly.component.card;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -34,9 +37,10 @@ import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 
 import static elemental2.dom.DomGlobal.window;
+import static java.util.stream.Collectors.joining;
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.SelectionMode.multi;
+import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.clickable;
 import static org.patternfly.style.Classes.component;
@@ -71,6 +75,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Card.class.getName());
+    private static final Set<SelectionMode> SUPPORTED_SELECTION_MODES = EnumSet.of(single, multi);
     String name;
     SelectionMode selectionMode;
     boolean expandable;
@@ -176,8 +181,9 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     }
 
     public Card selectable(SelectionMode selectionMode, SelectHandler<Card> selectHandler) {
-        if (selectionMode == click) {
-            logger.warn("Selection mode '%s' is not supported for card %o", click.name(), element());
+        if (!SUPPORTED_SELECTION_MODES.contains(selectionMode)) {
+            logger.warn("Selection mode '%s' is not supported for card %o. Supported modes are %s", selectionMode.name(),
+                    element(), SUPPORTED_SELECTION_MODES.stream().map(Enum::name).collect(joining(", ")));
             return this;
         }
         this.selectionMode = selectionMode;

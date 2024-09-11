@@ -48,8 +48,8 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuItemType.action;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.presentation;
@@ -108,11 +108,11 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
                         .add(angleRight())));
-        add(menu = menu(single)
+        add(menu = menu(select, single)
                 .onSingleSelect((event, menuItem, selected) -> select(menuItem))
                 .addContent(menuContent()
                         .addList(menuList = menuList()
-                                .addItems(tabs.values(), tab -> menuItem(tab.identifier(), action).text(tab.text())))));
+                                .addItems(tabs.values(), tab -> menuItem(tab.identifier(), tab.text())))));
         setVisible(menu, false);
 
         popper = new PopperBuilder(ComponentType.Tabs.componentName, button.element(), menu.element())
@@ -167,7 +167,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
             for (Tab tab : overflowTabs) {
                 tabs.put(tab.identifier(), tab);
             }
-            menuList.addItems(overflowTabs, tab -> menuItem(tab.identifier(), action).text(tab.text()));
+            menuList.addItems(overflowTabs, tab -> menuItem(tab.identifier(), tab.text()));
         }
     }
 

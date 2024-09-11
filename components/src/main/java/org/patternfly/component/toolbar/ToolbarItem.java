@@ -83,7 +83,6 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
 
     // ------------------------------------------------------ api
 
-
     @Override
     public String identifier() {
         return identifier;

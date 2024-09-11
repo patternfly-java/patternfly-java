@@ -61,6 +61,7 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.SelectionMode.group;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.form.Checkbox.checkbox;
@@ -74,6 +75,7 @@ import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.menuitem;
 import static org.patternfly.core.Roles.none;
 import static org.patternfly.core.Roles.option;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.icon.IconSets.fas.externalLinkAlt;
 import static org.patternfly.style.Classes.component;
@@ -92,7 +94,6 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.select;
 import static org.patternfly.style.Size.lg;
-import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         ComponentContext<HTMLElement, MenuItem>,
@@ -108,7 +109,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     /**
      * Create a new menu item with type {@link MenuItemType#action}.
      */
-    public static MenuItem actionMenuItem(String identifier, String text) {
+    public static MenuItem menuItem(String identifier, String text) {
         return new MenuItem(identifier, text, MenuItemType.action, null);
     }
 
@@ -129,13 +130,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     public static MenuItem asyncMenuItem(String identifier, String text,
             Function<MenuList, Promise<List<MenuItem>>> loadItems) {
         return new MenuItem(identifier, text, async, loadItems);
-    }
-
-    /**
-     * Create a new menu item with the specified type. Use this method if you want full control over the text and type.
-     */
-    public static MenuItem menuItem(String identifier, MenuItemType type) {
-        return new MenuItem(identifier, null, MenuItemType.action, null);
     }
 
     // ------------------------------------------------------ instance
@@ -174,7 +168,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
-            itemBuilder = itemType == MenuItemType.action || itemType == MenuItemType.async
+            itemBuilder = itemType == MenuItemType.action || itemType == async
                     ? button(ButtonType.button).attr(tabindex, 0)
                     : a().attr(tabindex, -1);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
@@ -234,7 +228,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.mainElement = find(By.classname(component(Classes.menu, Classes.item, main)));
         this.textElement = find(By.classname(component(Classes.menu, Classes.item, Classes.text)));
         this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, icon)));
-        this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, Classes.description)));
+        this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, description)));
         // checkbox must not be used for cloned favorite items!
 
         this.handler = new ArrayList<>();
@@ -262,18 +256,20 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     public void attach(MutationRecord mutationRecord) {
         Menu menu = lookupComponent();
         if (itemAction != null) {
-            // redo the initially disabled call for the  item action
+            // redo the initially disabled call for the item action
             if (element().classList.contains(modifier(disabled))) {
                 itemAction.element().disabled = true;
             }
         }
         switch (menu.menuType) {
             case menu:
-            case dropdown:
                 itemElement.setAttribute(role, menuitem);
                 break;
             case select:
                 itemElement.setAttribute(role, option);
+                break;
+            case checkbox:
+                element().setAttribute(role, menuitem);
                 break;
         }
         if (checkboxComponent != null) {
@@ -281,11 +277,10 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         }
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
-        } else if (menu.selectionMode == multi) {
+        } else if (menu.selectionMode == group || menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> {
                 if (itemType == checkbox) {
-                    //noinspection ObjectEquality,EqualsBetweenInconvertibleTypes
-                    if (e.target == checkboxComponent.inputElement()) {
+                    if (((HTMLElement) e.target).id.equals(checkboxComponent.inputElement().element().id)) {
                         menu.select(this, isSelected(), true);
                     } else {
                         e.preventDefault();
@@ -541,7 +536,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     private void startLoading() {
         loadingText = text(); // store in case of an error
-        Elements.removeChildrenFrom(textElement);
+        removeChildrenFrom(textElement);
         classList().remove(modifier(load));
         classList().add(modifier(loading));
         textElement.appendChild(spinner(lg).element());
@@ -549,6 +544,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     private void stopLoading() {
         clearTimeout(loadingTimeout);
-        Elements.removeChildrenFrom(textElement);
+        removeChildrenFrom(textElement);
     }
 }

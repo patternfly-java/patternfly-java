@@ -282,11 +282,11 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
      * part. If the value type implements {@link TypedModifier}, {@link TypedModifier#value()} is used instead.
      * </p>
      */
-    public String modifiers(Breakpoint breakpoint) {
+    public String modifier(Breakpoint breakpoint) {
         if (typedModifier()) {
-            return modifiers(breakpoint, v -> ((TypedModifier) v).value());
+            return modifier(breakpoint, v -> ((TypedModifier) v).value());
         } else {
-            return modifiers(breakpoint, String::valueOf);
+            return modifier(breakpoint, String::valueOf);
         }
     }
 
@@ -301,7 +301,7 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
      * When generating the CSS modifier classes, the specified function is used to build the {@code <value>} part.
      * </p>
      */
-    public String modifiers(Breakpoint breakpoint, Function<V, String> stringValue) {
+    public String modifier(Breakpoint breakpoint, Function<V, String> stringValue) {
         String modifier = "";
         if (hasKey(breakpoint)) {
             modifier = Classes.modifier(stringValue.apply(value(breakpoint)));

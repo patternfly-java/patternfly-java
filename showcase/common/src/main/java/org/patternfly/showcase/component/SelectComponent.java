@@ -27,12 +27,15 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.router.Link.link;
 import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.actionMenuItem;
+import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.checkboxMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MultiSelect.multiSelect;
-import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
+import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
+import static org.patternfly.component.menu.MultiSelectMenu.multiSelectGroupMenu;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.icon.IconSets.fas.bell;
@@ -60,9 +63,9 @@ public class SelectComponent extends SnippetPage {
                                 .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
-                                                        .addItem(actionMenuItem("option-0", "Option 1"))
-                                                        .addItem(actionMenuItem("option-1", "Option 2"))
-                                                        .addItem(actionMenuItem("option-2", "Option 3"))))))
+                                                        .addItem(menuItem("option-0", "Option 1"))
+                                                        .addItem(menuItem("option-1", "Option 2"))
+                                                        .addItem(menuItem("option-2", "Option 3"))))))
                         .element()
                 // @code-end:single-select
         ));
@@ -76,17 +79,17 @@ public class SelectComponent extends SnippetPage {
                                 .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
-                                                        .addItem(actionMenuItem("option-0", "Basic option"))
-                                                        .addItem(actionMenuItem("option-1", "Option with description")
+                                                        .addItem(menuItem("option-0", "Basic option"))
+                                                        .addItem(menuItem("option-1", "Option with description")
                                                                 .description("This is a description"))
                                                         .addItem(linkMenuItem("option-3", "Option with link",
                                                                 placeManager().href("/components/menus/select"))
                                                                 .external())
-                                                        .addItem(actionMenuItem("option-4", "Option with icon")
+                                                        .addItem(menuItem("option-4", "Option with icon")
                                                                 .icon(bell()))
-                                                        .addItem(actionMenuItem("option-5", "Disabled options")
+                                                        .addItem(menuItem("option-5", "Disabled options")
                                                                 .disabled())
-                                                        .addItem(actionMenuItem("option-6",
+                                                        .addItem(menuItem("option-6",
                                                                 "See menu for additional variants"))))))
                         .element()
                 // @code-end:select-option-variants
@@ -97,7 +100,7 @@ public class SelectComponent extends SnippetPage {
                 // @code-start:multi-select
                 div()
                         .add(multiSelect("Filter by status")
-                                .addMenu(multiSelectMenu()
+                                .addMenu(multiSelectCheckboxMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(checkboxMenuItem("debug", "Debug"))
@@ -105,6 +108,31 @@ public class SelectComponent extends SnippetPage {
                                                         .addItem(checkboxMenuItem("warn", "Warn"))
                                                         .addItem(checkboxMenuItem("error", "Error")
                                                                 .disabled())))))
+                        .element()
+                // @code-end:multi-select
+        ));
+
+        addSnippet(new Snippet("groups", "Groups",
+                code("groups"), () ->
+                // @code-start:groups
+                div()
+                        .add(multiSelect(menuToggle("Configuration"))
+                                .addMenu(multiSelectGroupMenu()
+                                        .addContent(menuContent()
+                                                .addGroup(menuGroup("CPU")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("cpu-m3", "M3"))
+                                                                .addItem(menuItem("cpu-m3-pro", "M3 Pro"))
+                                                                .addItem(menuItem("cpu-m3-max", "M3 Max"))))
+                                                .addGroup(menuGroup("Memory")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("memory-32", "32 GB"))
+                                                                .addItem(menuItem("memory-64", "64 GB"))
+                                                                .addItem(menuItem("memory-128", "128 GB"))))
+                                                .addGroup(menuGroup("Storage")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("storage-512", "512 GB"))
+                                                                .addItem(menuItem("storage-1024", "1 TB")))))))
                         .element()
                 // @code-end:multi-select
         ));

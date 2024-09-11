@@ -13,27 +13,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.filter;
 
-public enum SelectionMode {
-
-    /**
-     * Not a real selection mode. A click "selects" an item.
-     */
-    click,
-
-    /**
-     * Only a single item can be selected at any time.
-     */
-    single,
+/**
+ * Represents the logical operators used for combining multiple {@link FilterAttribute}s of a {@link Filter}.
+ * <p>
+ * This enum is used to determine whether all conditions must be met ('AND') or at least one condition must be met ('OR') when
+ * filtering objects.
+ */
+public enum FilterOperator {
 
     /**
-     * Only a single item can be selected in a group.
+     * Logical operator used to combine multiple filter attributes, requiring all conditions to be met for the filter to pass.
      */
-    group,
+    AND,
 
     /**
-     * Multiple items can be selected simultaneously.
+     * Logical operator used to combine multiple filter attributes, requiring at least one condition to be met for the filter to
+     * pass.
      */
-    multi
+    OR
 }

@@ -64,9 +64,9 @@ public class BreakpointsDemo {
                 _2xl, "f")
                 .verticalModifiers();
 
-        breakpoints(md, "foo", lg, "bar").modifiers(md); // pf-m-foo, because md in [md, lg]
-        breakpoints(md, "foo", lg, "bar").modifiers(_2xl); // pf-m-foo, because [md, lg] < _2xl
-        breakpoints(md, "foo", lg, "bar").modifiers(sm); // "", because [md, lg] > sm
+        breakpoints(md, "foo", lg, "bar").modifier(md); // pf-m-foo, because md in [md, lg]
+        breakpoints(md, "foo", lg, "bar").modifier(_2xl); // pf-m-foo, because [md, lg] < _2xl
+        breakpoints(md, "foo", lg, "bar").modifier(sm); // "", because [md, lg] > sm
         // @end region = modifiers
     }
 }

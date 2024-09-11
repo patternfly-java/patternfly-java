@@ -33,9 +33,8 @@ import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
+import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuItemType.action;
-import static org.patternfly.component.menu.MenuItemType.link;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
@@ -60,7 +59,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     final Map<String, MenuItem> items;
 
     MenuList() {
-        super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).attr(role, Roles.menu).element());
+        super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
         storeSubComponent();
         Attachable.register(this, this);
@@ -71,31 +70,28 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         Menu menu = lookupComponent();
         switch (menu.menuType) {
             case menu:
-            case dropdown:
+            case checkbox:
                 attr(role, Roles.menu);
                 break;
             case select:
                 attr(role, Roles.listbox);
+                if (menu.selectionMode == single) {
+                    aria(Aria.multiSelectable, false);
+                } else if (menu.selectionMode == multi) {
+                    aria(Aria.multiSelectable, true);
+                }
                 break;
-        }
-        if (menu.selectionMode == single) {
-            aria(Aria.multiSelectable, false);
-        } else if (menu.selectionMode == multi) {
-            aria(Aria.multiSelectable, true);
         }
     }
 
     // ------------------------------------------------------ add
 
     public MenuList addItem(String id, String text) {
-        return addItem(menuItem(id, action)
-                .text(text));
+        return addItem(menuItem(id, text));
     }
 
     public MenuList addItem(String id, String text, String href) {
-        return addItem(menuItem(id, link)
-                .text(text)
-                .href(href));
+        return addItem(linkMenuItem(id, text, href));
     }
 
     @Override

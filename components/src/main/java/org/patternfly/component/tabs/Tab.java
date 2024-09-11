@@ -67,6 +67,7 @@ import static org.patternfly.core.Aria.selected;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.presentation;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
@@ -80,7 +81,6 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Modifiers.toggleModifier;
-import static org.patternfly.style.Timeouts.LOADING_TIMEOUT;
 
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,

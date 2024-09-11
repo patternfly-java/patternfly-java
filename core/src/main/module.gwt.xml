@@ -19,6 +19,7 @@
 <module>
     <source path="core"/>
     <source path="dataprovider"/>
+    <source path="filter"/>
     <source path="handler"/>
     <source path="popper"/>
     <source path="style"/>

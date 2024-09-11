@@ -148,12 +148,12 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     void onPageResize(Rect currentPageRect, Rect previousPageRect) {
         if (displayModifiers != null) {
-            classList().remove(displayModifiers.modifiers(breakpoint(previousPageRect.width)));
-            classList().add(displayModifiers.modifiers(breakpoint(currentPageRect.width)));
+            classList().remove(displayModifiers.modifier(breakpoint(previousPageRect.width)));
+            classList().add(displayModifiers.modifier(breakpoint(currentPageRect.width)));
         }
         if (insetModifiers != null) {
-            classList().remove(insetModifiers.modifiers(breakpoint(previousPageRect.width)));
-            classList().add(insetModifiers.modifiers(breakpoint(currentPageRect.width)));
+            classList().remove(insetModifiers.modifier(breakpoint(previousPageRect.width)));
+            classList().add(insetModifiers.modifier(breakpoint(currentPageRect.width)));
         }
     }
 }

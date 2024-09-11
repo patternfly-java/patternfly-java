@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.menu;
 
-public enum MenuItemType {
+enum MenuItemType {
 
     action,
 

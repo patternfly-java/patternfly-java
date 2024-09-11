@@ -20,8 +20,8 @@ public class MenuDemo {
                 .addHeader("Header")
                 .addContent(menuContent()
                         .addList(menuList()
-                                .addItem(MenuItem.actionMenuItem("1", "Item 1"))
-                                .addItem(MenuItem.actionMenuItem("2", "Item 2"))
+                                .addItem(MenuItem.menuItem("1", "Item 1"))
+                                .addItem(MenuItem.menuItem("2", "Item 2"))
                                 .addDivider()
                                 .addItem(MenuItem.linkMenuItem("3", "Item 3", "#third"))))
                 .addFooter(menuFooter()
@@ -35,17 +35,17 @@ public class MenuDemo {
                 .addContent(menuContent()
                         .addGroup(menuGroup()
                                 .addList(menuList()
-                                        .addItem(MenuItem.actionMenuItem("1", "Item 1"))))
+                                        .addItem(MenuItem.menuItem("1", "Item 1"))))
                         .addDivider()
                         .addGroup(menuGroup("Group 1")
                                 .addList(menuList()
-                                        .addItem(MenuItem.actionMenuItem("11", "Group 1 - Item 1"))
-                                        .addItem(MenuItem.actionMenuItem("12", "Group 1 - Item 2"))))
+                                        .addItem(MenuItem.menuItem("11", "Group 1 - Item 1"))
+                                        .addItem(MenuItem.menuItem("12", "Group 1 - Item 2"))))
                         .addDivider()
                         .addGroup(menuGroup("Group 2")
                                 .addList(menuList()
-                                        .addItem(MenuItem.actionMenuItem("21", "Group 2 - Item 1"))
-                                        .addItem(MenuItem.actionMenuItem("22", "Group 2 - Item 2")))));
+                                        .addItem(MenuItem.menuItem("21", "Group 2 - Item 1"))
+                                        .addItem(MenuItem.menuItem("22", "Group 2 - Item 2")))));
         // @end region = groups
     }
 }

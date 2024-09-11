@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Add
 
 - MultiSelect component (part of #68)
+- Toolbar component (part of #98)
+- Add `Filter<T>`, `FilterAttribute<T, V>`, and `FilterCondition<T, V>` to filter arbitrary data
+- Add `MenuToggleMenu.stayOpen()`
 
 ## [0.2.9] - 2024-08-21
 
@@ -36,7 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `Switch.readonly()`
 - Add `Label.disabled()`
 - Add `TreeView.select(String id)`
-- Add `HasItems` → `WithIdentifier` and `ComponentContext` (if missing) interfaces. Implemented by
+- Add `HasItems` → `WithIdentifier` and `ComponentContext` interfaces (if missing). Implemented by
   - `Accordion` → `AccordionItem`
   - `ActionList`, `ActionListGroup` → `ActionListItem`
   - `AlterGroup` → `Alert`

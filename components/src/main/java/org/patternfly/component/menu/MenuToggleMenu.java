@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +44,12 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottomStart;
 
+/**
+ * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link Dropdown},
+ * {@link SingleSelect} or {@link MultiSelect}.
+ * <p>
+ * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed by a {@link Popper} instance.
+ */
 abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B> implements
         Disabled<HTMLElement, B>,
         Expandable<HTMLElement, B>,
@@ -63,11 +70,11 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     final MenuToggle menuToggle;
     Menu menu;
 
-    MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, Set<TriggerAction> triggerActions) {
+    MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, TriggerAction triggerAction) {
         super(componentType);
         this.menuToggle = menuToggle;
-        this.triggerActions = triggerActions;
         this.toggleHandler = new ArrayList<>();
+        this.triggerActions = EnumSet.of(triggerAction);
         this.flip = true;
         this.placement = bottomStart;
         this.zIndex = Z_INDEX;
@@ -97,7 +104,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                             event -> expand(), event -> collapse())
                     .build();
         } else {
-            logger.error("No toggle and/or menu defined for dropdown %o", element());
+            logger.error("No toggle and/or menu defined for %s / %o", componentType().name(), element());
         }
     }
 
@@ -148,6 +155,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             flip = true;
         }
         this.placement = placement;
+        return that();
+    }
+
+    public B stayOpen() {
+        this.triggerActions.clear();
+        this.triggerActions.add(TriggerAction.stayOpen);
         return that();
     }
 

@@ -17,18 +17,24 @@ package org.patternfly.component.menu;
 
 import org.patternfly.component.SelectionMode;
 
+/**
+ * Menu used for {@link Dropdown} components.
+ */
 public class DropdownMenu extends Menu {
 
     // ------------------------------------------------------ factory
 
+    /**
+     * Creates a menu with {@link MenuType#menu} and {@link SelectionMode#click}
+     */
     public static DropdownMenu dropdownMenu() {
-        return new DropdownMenu();
+        return new DropdownMenu(MenuType.menu, SelectionMode.click);
     }
 
     // ------------------------------------------------------ instance
 
-    DropdownMenu() {
-        super(MenuType.dropdown, SelectionMode.click);
+    DropdownMenu(MenuType menuType, SelectionMode selectionMode) {
+        super(menuType, selectionMode);
     }
 
     // ------------------------------------------------------ builder

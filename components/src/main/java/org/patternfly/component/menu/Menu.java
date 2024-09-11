@@ -33,6 +33,7 @@ import elemental2.dom.HTMLDivElement;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.SelectionMode.click;
+import static org.patternfly.component.SelectionMode.group;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
@@ -59,10 +60,6 @@ import static org.patternfly.style.Variables.MaxHeight;
 public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<HTMLDivElement, Menu> {
 
     // ------------------------------------------------------ factory
-
-    public static Menu menu(SelectionMode selectionMode) {
-        return new Menu(MenuType.menu, selectionMode);
-    }
 
     public static Menu menu(MenuType menuType, SelectionMode selectionMode) {
         return new Menu(menuType, selectionMode);
@@ -209,12 +206,15 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
         if (item != null) {
             if (selectionMode == click || selectionMode == single) {
                 unselectAllItems();
+            } else if (selectionMode == group) {
+                unselectAllInGroup(item);
             }
             switch (selectionMode) {
                 case click:
                     item.makeCurrent(selected);
                     break;
                 case single:
+                case group:
                 case multi:
                     item.markSelected(selected);
                     break;
@@ -302,6 +302,25 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
             if (selectionMode == click) {
                 menuItem.makeCurrent(false);
             } else {
+                menuItem.markSelected(false);
+            }
+        }
+    }
+
+    private void unselectAllInGroup(MenuItem item) {
+        MenuGroup groupOfItem = null;
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    if (group.list.items.containsKey(item.identifier())) {
+                        groupOfItem = group;
+                        break;
+                    }
+                }
+            }
+        }
+        if (groupOfItem != null) {
+            for (MenuItem menuItem : groupOfItem.list.items.values()) {
                 menuItem.markSelected(false);
             }
         }

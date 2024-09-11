@@ -28,7 +28,6 @@ import org.patternfly.component.menu.MenuGroup;
 import org.patternfly.component.menu.MenuHeader;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuItemAction;
-import org.patternfly.component.menu.MenuItemType;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuSearch;
 import org.patternfly.component.menu.MenuSearchInput;
@@ -53,12 +52,14 @@ import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
-import static org.patternfly.component.menu.MenuItem.actionMenuItem;
 import static org.patternfly.component.menu.MenuItem.asyncMenuItem;
 import static org.patternfly.component.menu.MenuItem.checkboxMenuItem;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuType.checkbox;
+import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
@@ -86,16 +87,16 @@ public class MenuComponent extends SnippetPage {
                 code("menu-basic"), () ->
                 // @code-start:menu-basic
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Action")
+                                                .addItem(menuItem("item-0", "Action")
                                                         .onClick((e, actionItem) -> console.log(
                                                                 "Clicked on action item " + actionItem.identifier())))
                                                 .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                         .onClick((e, item) -> e.preventDefault()))
-                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                .addItem(menuItem("item-2", "Disabled action")
                                                         .disabled())
                                                 .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                         .disabled()))))
@@ -107,13 +108,13 @@ public class MenuComponent extends SnippetPage {
                 code("menu-danger"), () ->
                 // @code-start:menu-danger
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Action 1"))
-                                                .addItem(actionMenuItem("item-1", "Action 2"))
+                                                .addItem(menuItem("item-0", "Action 1"))
+                                                .addItem(menuItem("item-1", "Action 2"))
                                                 .addDivider()
-                                                .addItem(actionMenuItem("item-2", "Delete")
+                                                .addItem(menuItem("item-2", "Delete")
                                                         .danger()))))
                         .element()
                 // @code-end:menu-danger
@@ -123,14 +124,14 @@ public class MenuComponent extends SnippetPage {
                 code("menu-icons"), () ->
                 // @code-start:menu-icons
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Item 1")
+                                                .addItem(menuItem("item-0", "Item 1")
                                                         .icon(codeBranch()))
-                                                .addItem(actionMenuItem("item-1", "Container image")
+                                                .addItem(menuItem("item-1", "Container image")
                                                         .icon(layerGroup()))
-                                                .addItem(actionMenuItem("item-2", "From Dockerfile")
+                                                .addItem(menuItem("item-2", "From Dockerfile")
                                                         .icon(cube())))))
                         .element()
                 // @code-end:menu-icons
@@ -140,25 +141,25 @@ public class MenuComponent extends SnippetPage {
                 code("menu-actions"), () ->
                 // @code-start:menu-actions
                 div()
-                        .add(menu(multi)
+                        .add(menu(select, multi)
                                 .onAction((menu, item, itemAction) -> console.log(
                                         "Action " + itemAction.identifier() + " on item " + item.identifier() + " clicked"))
                                 .addContent(menuContent()
                                         .addGroup(menuGroup("Actions")
                                                 .addList(menuList()
-                                                        .addItem(actionMenuItem("item-0", "Item 1")
+                                                        .addItem(menuItem("item-0", "Item 1")
                                                                 .description("This is a description")
                                                                 .addAction(menuItemAction("action-0", codeBranch())
                                                                         .aria(Aria.label, "Code")
                                                                         .onClick((e, itemAction) -> console.log(
                                                                                 "Code action clicked"))))
-                                                        .addItem(actionMenuItem("item-1", "Item 2")
+                                                        .addItem(menuItem("item-1", "Item 2")
                                                                 .description("This is a description")
                                                                 .disabled()
                                                                 .addAction(menuItemAction("action-1", bell())))
-                                                        .addItem(actionMenuItem("item-2", "Item 3")
+                                                        .addItem(menuItem("item-2", "Item 3")
                                                                 .addAction(menuItemAction("action-2", clipboard())))
-                                                        .addItem(actionMenuItem("item-3", "Item 4")
+                                                        .addItem(menuItem("item-3", "Item 4")
                                                                 .description("This is a description")
                                                                 .addAction(menuItemAction("action-3", bars())))))))
                         .element()
@@ -169,7 +170,7 @@ public class MenuComponent extends SnippetPage {
                 code("menu-links"), () ->
                 // @code-start:menu-links
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(linkMenuItem("item-0", "Link 1", "#item-0")
@@ -185,17 +186,17 @@ public class MenuComponent extends SnippetPage {
                 code("menu-descriptions"), () ->
                 // @code-start:menu-descriptions
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Action 1")
+                                                .addItem(menuItem("item-0", "Action 1")
                                                         .icon(codeBranch())
                                                         .description("Description"))
-                                                .addItem(actionMenuItem("item-1", "Action 2 disabled")
+                                                .addItem(menuItem("item-1", "Action 2 disabled")
                                                         .icon(codeBranch())
                                                         .description("Description")
                                                         .disabled())
-                                                .addItem(actionMenuItem("item-2", "Action 3")
+                                                .addItem(menuItem("item-2", "Action 3")
                                                         .icon(codeBranch())
                                                         .description(LoremIpsum.words(50))))))
                         .element()
@@ -206,7 +207,7 @@ public class MenuComponent extends SnippetPage {
                 code("menu-checkbox"), () ->
                 // @code-start:menu-checkbox
                 div()
-                        .add(menu(multi)
+                        .add(menu(checkbox, multi)
                                 .onMultiSelect((e, menu, menuItems) -> console.log("### Selected items: " + menuItems.stream()
                                         .map(MenuItem::identifier)
                                         .collect(joining(", "))))
@@ -227,12 +228,12 @@ public class MenuComponent extends SnippetPage {
                 code("menu-footer"), () ->
                 // @code-start:menu-footer
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Action"))
+                                                .addItem(menuItem("item-0", "Action"))
                                                 .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                .addItem(menuItem("item-2", "Disabled action")
                                                         .disabled())
                                                 .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                         .disabled())))
@@ -246,13 +247,13 @@ public class MenuComponent extends SnippetPage {
                 code("menu-separator"), () ->
                 // @code-start:menu-separator
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("item-0", "Action 1"))
-                                                .addItem(actionMenuItem("item-1", "Action 2"))
+                                                .addItem(menuItem("item-0", "Action 1"))
+                                                .addItem(menuItem("item-1", "Action 2"))
                                                 .addDivider()
-                                                .addItem(actionMenuItem("item-2", "Action 3")))))
+                                                .addItem(menuItem("item-2", "Action 3")))))
                         .element()
                 // @code-end:menu-separator
         ));
@@ -261,7 +262,7 @@ public class MenuComponent extends SnippetPage {
                 code("menu-titled-groups"), () ->
                 // @code-start:menu-titled-groups
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .addContent(menuContent()
                                         .addGroup(menuGroup()
                                                 .addList(menuList()
@@ -284,7 +285,7 @@ public class MenuComponent extends SnippetPage {
                 code("menu-favorites"), () ->
                 // @code-start:menu-favorites
                 div()
-                        .add(menu(click)
+                        .add(menu(menu, click)
                                 .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
                                 .onAction((menu, item, itemAction) -> console.log(
                                         "Action " + itemAction.identifier() + " on item " + item.identifier() + " clicked"))
@@ -292,10 +293,10 @@ public class MenuComponent extends SnippetPage {
                                 .addContent(menuContent()
                                         .addGroup(menuGroup("All actions")
                                                 .addList(menuList()
-                                                        .addItem(actionMenuItem("item-0", "Item 1")
+                                                        .addItem(menuItem("item-0", "Item 1")
                                                                 .description("Description 1")
                                                                 .addAction(menuItemAction("action-0", bars())))
-                                                        .addItem(actionMenuItem("item-1", "Item 2")
+                                                        .addItem(menuItem("item-1", "Item 2")
                                                                 .onClick((e, item) -> console.log(
                                                                         "# Item " + item.identifier() + " clicked"))
                                                                 .description("Description 2")
@@ -304,7 +305,7 @@ public class MenuComponent extends SnippetPage {
                                                                                 "# Action " + itemAction.identifier() + " on item "
                                                                                         + itemAction.menuItem.identifier()
                                                                                         + " clicked"))))
-                                                        .addItem(actionMenuItem("item-2", "Item 3")
+                                                        .addItem(menuItem("item-2", "Item 3")
                                                                 .description("Description 3")
                                                                 .addAction(menuItemAction("action-2", bell())))))))
                         .element()
@@ -325,9 +326,9 @@ public class MenuComponent extends SnippetPage {
                         .add(menu(select, single)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("option-0", "Option 1"))
-                                                .addItem(actionMenuItem("option-1", "Option 2"))
-                                                .addItem(actionMenuItem("option-2", "Option 3").icon(table())))))
+                                                .addItem(menuItem("option-0", "Option 1"))
+                                                .addItem(menuItem("option-1", "Option 2"))
+                                                .addItem(menuItem("option-2", "Option 3").icon(table())))))
                         .element()
                 // @code-end:menu-option-single
         ));
@@ -339,9 +340,9 @@ public class MenuComponent extends SnippetPage {
                         .add(menu(select, multi)
                                 .addContent(menuContent()
                                         .addList(menuList()
-                                                .addItem(actionMenuItem("option-0", "Option 1"))
-                                                .addItem(actionMenuItem("option-1", "Option 2"))
-                                                .addItem(actionMenuItem("option-2", "Option 3").icon(table())))))
+                                                .addItem(menuItem("option-0", "Option 1"))
+                                                .addItem(menuItem("option-1", "Option 2"))
+                                                .addItem(menuItem("option-2", "Option 3").icon(table())))))
                         .element()
                 // @code-end:menu-option-multi
         ));
@@ -350,17 +351,17 @@ public class MenuComponent extends SnippetPage {
                 code("menu-scrollable"), () ->
                 // @code-start:menu-scrollable
                 div()
-                        .add(menu(click).scrollable()
+                        .add(menu(menu, click).scrollable()
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .run(ml -> {
                                                     for (int i = 0; i < 15; i++) {
-                                                        ml.addItem(actionMenuItem("item-" + 1, "Action " + (i + 1)));
+                                                        ml.addItem(menuItem("item-" + 1, "Action " + (i + 1)));
                                                     }
                                                 })
                                                 .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                         .onClick((e, item) -> e.preventDefault()))
-                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                .addItem(menuItem("item-2", "Disabled action")
                                                         .disabled())
                                                 .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                         .disabled()))))
@@ -372,17 +373,17 @@ public class MenuComponent extends SnippetPage {
                 code("menu-scrollable-height"), () ->
                 // @code-start:menu-scrollable-height
                 div()
-                        .add(menu(click).scrollable()
+                        .add(menu(menu, click).scrollable()
                                 .addContent(menuContent().height("200px")
                                         .addList(menuList()
                                                 .run(ml -> {
                                                     for (int i = 0; i < 15; i++) {
-                                                        ml.addItem(actionMenuItem("item-" + 1, "Action " + (i + 1)));
+                                                        ml.addItem(menuItem("item-" + 1, "Action " + (i + 1)));
                                                     }
                                                 })
                                                 .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                         .onClick((e, item) -> e.preventDefault()))
-                                                .addItem(actionMenuItem("item-2", "Disabled action")
+                                                .addItem(menuItem("item-2", "Disabled action")
                                                         .disabled())
                                                 .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
                                                         .disabled()))))
@@ -395,28 +396,28 @@ public class MenuComponent extends SnippetPage {
             // @code-start:menu-async
             Function<MenuList, Promise<List<MenuItem>>> nextNetworkCall = ml -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(asList(
-                                    actionMenuItem("item-20", "Action 4"),
-                                    actionMenuItem("item-21", "Action 5"),
-                                    actionMenuItem("item-22", "Final action"))),
+                                    menuItem("item-20", "Action 4"),
+                                    menuItem("item-21", "Action 5"),
+                                    menuItem("item-22", "Final action"))),
                             1234 + new Random().nextInt(3456)));
 
             Function<MenuList, Promise<List<MenuItem>>> firstNetworkCall = ml -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(asList(
-                                    actionMenuItem("item-10", "Action 2"),
-                                    actionMenuItem("item-11", "Action 3"),
+                                    menuItem("item-10", "Action 2"),
+                                    menuItem("item-11", "Action 3"),
                                     asyncMenuItem("item-12", "View even more", nextNetworkCall))),
                             1234 + new Random().nextInt(3456)));
 
             return div()
-                    .add(menu(click)
+                    .add(menu(menu, click)
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItem(actionMenuItem("item-0", "Action")
+                                            .addItem(menuItem("item-0", "Action")
                                                     .onClick((e, actionItem) -> console.log(
                                                             "Clicked on action item " + actionItem.identifier())))
                                             .addItem(linkMenuItem("item-1", "Link", "#item-1")
                                                     .onClick((e, item) -> e.preventDefault()))
-                                            .addItem(actionMenuItem("item-2", "Disabled action")
+                                            .addItem(menuItem("item-2", "Disabled action")
                                                     .disabled())
                                             .addItem(asyncMenuItem("item-3", "View more", firstNetworkCall)))))
                     .element();
@@ -432,7 +433,6 @@ public class MenuComponent extends SnippetPage {
         addApiDoc(MenuHeader.class, subcomponent);
         addApiDoc(MenuItem.class, subcomponent);
         addApiDoc(MenuItemAction.class, subcomponent);
-        addApiDoc(MenuItemType.class, other);
         addApiDoc(MenuList.class, subcomponent);
         addApiDoc(MenuSearch.class, subcomponent);
         addApiDoc(MenuSearchInput.class, subcomponent);

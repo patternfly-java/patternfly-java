@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.EnumSet;
-
 import org.patternfly.component.ComponentType;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.popper.TriggerAction;
@@ -48,7 +46,7 @@ public class Dropdown extends MenuToggleMenu<Dropdown> {
     // ------------------------------------------------------ instance
 
     Dropdown(MenuToggle menuToggle) {
-        super(ComponentType.Dropdown, menuToggle, EnumSet.of(TriggerAction.click));
+        super(ComponentType.Dropdown, menuToggle, TriggerAction.click);
     }
 
     // ------------------------------------------------------ builder

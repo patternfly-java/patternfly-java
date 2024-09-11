@@ -16,11 +16,13 @@
 package org.patternfly.component.togglegroup;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -36,9 +38,12 @@ import org.patternfly.style.Modifiers.Disabled;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.component.SelectionMode.multi;
+import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.group;
 import static org.patternfly.style.Classes.component;
@@ -63,6 +68,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(ToggleGroup.class.getName());
+    private static final Set<SelectionMode> SUPPORTED_SELECTION_MODES = EnumSet.of(single, multi);
     final SelectionMode selectionMode;
     private final Map<String, ToggleGroupItem> items;
     private final Map<String, Boolean> disabledSnapshot;
@@ -77,9 +83,10 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
 
-        if (selectionMode == SelectionMode.click) {
-            logger.warn("Selection mode '%s' is not supported for %o. Fall back to '%s'",
-                    SelectionMode.click.name(), element(), SelectionMode.single.name());
+        if (!SUPPORTED_SELECTION_MODES.contains(selectionMode)) {
+            logger.warn("Selection mode %s is not supported for %o. Supported modes are %s. Fall back to %s",
+                    selectionMode.name(), element(), SUPPORTED_SELECTION_MODES.stream().map(Enum::name).collect(joining(", ")),
+                    SelectionMode.single.name());
             this.selectionMode = SelectionMode.single;
         } else {
             this.selectionMode = selectionMode;

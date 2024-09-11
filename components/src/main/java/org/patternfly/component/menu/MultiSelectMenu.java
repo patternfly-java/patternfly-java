@@ -18,21 +18,37 @@ package org.patternfly.component.menu;
 import org.patternfly.component.SelectionMode;
 
 /**
- * SingleSelectMenu is a subclass of Menu that represents a multi-select menu. It extends the Menu class and inherits all its
- * methods and properties.
+ * Menu used for {@link MultiSelect} components.
  */
 public class MultiSelectMenu extends Menu {
 
     // ------------------------------------------------------ factory
 
+    /**
+     * Creates a menu with {@link MenuType#select} and {@link SelectionMode#multi}
+     */
     public static MultiSelectMenu multiSelectMenu() {
-        return new MultiSelectMenu();
+        return new MultiSelectMenu(MenuType.select, SelectionMode.multi);
+    }
+
+    /**
+     * Creates a menu with {@link MenuType#select} and {@link SelectionMode#group}
+     */
+    public static MultiSelectMenu multiSelectGroupMenu() {
+        return new MultiSelectMenu(MenuType.select, SelectionMode.group);
+    }
+
+    /**
+     * Creates a menu with {@link MenuType#checkbox} and {@link SelectionMode#multi}
+     */
+    public static MultiSelectMenu multiSelectCheckboxMenu() {
+        return new MultiSelectMenu(MenuType.checkbox, SelectionMode.multi);
     }
 
     // ------------------------------------------------------ instance
 
-    MultiSelectMenu() {
-        super(MenuType.menu, SelectionMode.multi);
+    MultiSelectMenu(MenuType menuType, SelectionMode selectionMode) {
+        super(menuType, selectionMode);
     }
 
     // ------------------------------------------------------ builder

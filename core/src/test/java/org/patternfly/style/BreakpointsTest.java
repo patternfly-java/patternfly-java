@@ -65,16 +65,16 @@ class BreakpointsTest {
     @Test
     void nil() {
         assertEquals("", breakpoints(null).modifiers());
-        assertEquals("", breakpoints(null).modifiers(default_));
-        assertEquals("", breakpoints(null).modifiers(sm));
+        assertEquals("", breakpoints(null).modifier(default_));
+        assertEquals("", breakpoints(null).modifier(sm));
         assertEquals("", breakpoints(null).verticalModifiers());
     }
 
     @Test
     void empty() {
         assertEquals("", breakpoints(emptyList()).modifiers());
-        assertEquals("", breakpoints(emptyList()).modifiers(default_));
-        assertEquals("", breakpoints(emptyList()).modifiers(sm));
+        assertEquals("", breakpoints(emptyList()).modifier(default_));
+        assertEquals("", breakpoints(emptyList()).modifier(sm));
         assertEquals("", breakpoints(emptyList()).verticalModifiers());
     }
 
@@ -105,16 +105,16 @@ class BreakpointsTest {
 
     @Test
     void breakpoint() {
-        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifiers(md)); // md in [md, lg]
-        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifiers(_2xl)); // [md, lg] < _2xl
-        assertEquals("", breakpoints(md, "foo", lg, "bar").modifiers(sm)); // [md, lg] > sm
+        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifier(md)); // md in [md, lg]
+        assertEquals("pf-m-foo", breakpoints(md, "foo", lg, "bar").modifier(_2xl)); // [md, lg] < _2xl
+        assertEquals("", breakpoints(md, "foo", lg, "bar").modifier(sm)); // [md, lg] > sm
     }
 
     @Test
     void breakpointFn() {
         Function<String, String> fn = v -> "a-" + v;
-        assertEquals("pf-m-a-foo", breakpoints(md, "foo").modifiers(_2xl, fn)); // md < _2xl
-        assertEquals("", breakpoints(md, "foo").modifiers(sm, fn)); // md > sm
+        assertEquals("pf-m-a-foo", breakpoints(md, "foo").modifier(_2xl, fn)); // md < _2xl
+        assertEquals("", breakpoints(md, "foo").modifier(sm, fn)); // md > sm
     }
 
     @Test
