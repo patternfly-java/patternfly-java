@@ -40,18 +40,20 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
 
     // ------------------------------------------------------ factory
 
-    /**
-     * Factory method to create a new instance of this component.
-     */
     public static ToolbarItem toolbarItem() {
-        return new ToolbarItem(Id.unique(ComponentType.Toolbar.id, "itm"));
+        return new ToolbarItem(Id.unique(ComponentType.Toolbar.id, "itm"), null);
     }
 
-    /**
-     * Factory method to create a new instance of this component.
-     */
+    public static ToolbarItem toolbarItem(ToolbarItemType type) {
+        return new ToolbarItem(Id.unique(ComponentType.Toolbar.id, "itm"), type);
+    }
+
     public static ToolbarItem toolbarItem(String identifier) {
-        return new ToolbarItem(identifier);
+        return new ToolbarItem(identifier, null);
+    }
+
+    public static ToolbarItem toolbarItem(String identifier, ToolbarItemType type) {
+        return new ToolbarItem(identifier, type);
     }
 
     // ------------------------------------------------------ instance
@@ -60,12 +62,15 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
     private final String identifier;
     private final Map<String, Object> data;
 
-    ToolbarItem(String identifier) {
+    ToolbarItem(String identifier, ToolbarItemType type) {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
+        if (type != null) {
+            css(type.modifier());
+        }
     }
 
     // ------------------------------------------------------ builder

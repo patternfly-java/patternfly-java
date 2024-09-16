@@ -15,13 +15,14 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.popper.TriggerAction;
 
+import static java.util.stream.Collectors.toList;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.menu.MenuType.checkbox;
@@ -57,18 +58,7 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
     @Override
     public MultiSelect add(Menu menu) {
         if (menu.menuType == checkbox && menu.selectionMode == multi) {
-            menu.onMultiSelect((e, m, items) -> {
-                Badge badge = menuToggle.badge();
-                if (badge != null) {
-                    int size = items.size();
-                    badge.count(size);
-                    if (size == 0) {
-                        badge.style("visibility", "hidden", true);
-                    } else {
-                        badge.style("visibility", "unset");
-                    }
-                }
-            });
+            menu.onMultiSelect((e, m, items) -> updateBadge(items));
         }
         return super.add(menu);
     }
@@ -83,41 +73,83 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
     // ------------------------------------------------------ api
 
     public void clear() {
+        clear(true);
+    }
+
+    public void clear(boolean fireEvent) {
         menu.unselectAllItems();
         Badge badge = menuToggle.badge();
         if (badge != null) {
             badge.count(0);
             badge.style("visibility", "hidden", true);
         }
+        if (fireEvent) {
+            menu.fireMultiSelection();
+        }
     }
 
     public void selectIds(List<String> itemIds) {
-        List<MenuItem> menuItems = new ArrayList<>();
-        for (String itemId : itemIds) {
-            menuItems.add(menu.findItem(itemId));
-        }
-        selectItems(menuItems, true);
+        makeSelection(itemsFromIds(itemIds), true, true);
     }
 
     public void selectIds(List<String> itemIds, boolean fireEvent) {
-        List<MenuItem> menuItems = new ArrayList<>();
-        for (String itemId : itemIds) {
-            menuItems.add(menu.findItem(itemId));
-        }
-        selectItems(menuItems, fireEvent);
+        makeSelection(itemsFromIds(itemIds), true, fireEvent);
     }
 
     public void selectItems(List<MenuItem> items) {
-        selectItems(items, true);
+        makeSelection(items, true, true);
     }
 
     public void selectItems(List<MenuItem> items, boolean fireEvent) {
+        makeSelection(items, true, fireEvent);
+    }
+
+    public void unselectIds(List<String> itemIds) {
+        makeSelection(itemsFromIds(itemIds), false, true);
+    }
+
+    public void unselectIds(List<String> itemIds, boolean fireEvent) {
+        makeSelection(itemsFromIds(itemIds), false, fireEvent);
+    }
+
+    public void unselectItems(List<MenuItem> items) {
+        makeSelection(items, false, true);
+    }
+
+    public void unselectItems(List<MenuItem> items, boolean fireEvent) {
+        makeSelection(items, false, fireEvent);
+    }
+
+    // ------------------------------------------------------ internal
+
+    private List<MenuItem> itemsFromIds(List<String> itemIds) {
+        return itemIds.stream()
+                .map(menu::findItem)
+                .filter(Objects::nonNull)
+                .collect(toList());
+    }
+
+    private void makeSelection(List<MenuItem> items, boolean selected, boolean fireEvent) {
         if (menu != null && menuToggle != null && !items.isEmpty()) {
             for (MenuItem item : items) {
-                menu.select(item, true, false);
+                menu.select(item, selected, false);
             }
+            updateBadge(items);
             if (fireEvent) {
                 menu.fireMultiSelection();
+            }
+        }
+    }
+
+    private void updateBadge(List<MenuItem> items) {
+        Badge badge = menuToggle.badge();
+        if (badge != null) {
+            int size = items.size();
+            badge.count(size);
+            if (size == 0) {
+                badge.style("visibility", "hidden", true);
+            } else {
+                badge.style("visibility", "unset");
             }
         }
     }

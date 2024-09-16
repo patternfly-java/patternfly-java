@@ -496,7 +496,9 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             itemElement.setAttribute(Aria.selected, selected);
             if (selected) {
                 itemElement.classList.add(modifier(Classes.selected));
-                mainElement.appendChild(selectIcon);
+                if (!mainElement.contains(selectIcon)) {
+                    mainElement.appendChild(selectIcon);
+                }
             } else {
                 itemElement.classList.remove(modifier(Classes.selected));
                 failSafeRemoveFromParent(selectIcon);

@@ -16,11 +16,11 @@
 package org.patternfly.filter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.StreamSupport.stream;
@@ -33,8 +33,8 @@ import static org.patternfly.filter.FilterOperator.AND;
  * A filter is made up of a list of {@link FilterAttribute}s. These attributes can be assigned a value, evaluated, and reset.
  * Multiple {@link FilterAttribute}s are combined with {@link FilterOperator#AND} or {@link FilterOperator#OR}.
  * <p>
- * The filter class supports change notifications whenever the filter state changes via the {@link #onChange(Consumer)} method
- * and can be persisted using {@link #save()} and {@link #load(String)} methods.
+ * The filter class supports change notifications whenever the filter state changes via the
+ * {@link #onChange(FilterChangeHandler)} method and can be persisted using {@link #save()} and {@link #load(String)} methods.
  * <p>
  * {@snippet class = FilterDemo region = filter}
  *
@@ -44,28 +44,29 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
 
     // ------------------------------------------------------ instance
 
+    public static final String DEFAULT_ORIGIN = "org.patternfly.filter.defaultOrigin";
     private static final String FILTER_ATTRIBUTE_SEPARATOR = "|";
     private static final String FILTER_ATTRIBUTE_SEPARATOR_REGEX = "\\|";
     private static final String NAME_VALUE_SEPARATOR = "=";
     private final FilterOperator operator;
-    private final LinkedHashMap<String, FilterAttribute<T, ?>> attributes;
-    private final List<Consumer<Filter<T>>> changeHandler;
+    private final Map<String, FilterAttribute<T, ?>> attributes;
+    private final List<FilterChangeHandler<T>> changeHandler;
 
     public Filter(FilterOperator operator) {
         this.operator = operator;
-        this.attributes = new LinkedHashMap<>();
+        this.attributes = new HashMap<>();
         this.changeHandler = new ArrayList<>();
-    }
-
-    @Override
-    public String toString() {
-        return attributes.values().toString();
     }
 
     // ------------------------------------------------------ api
 
     public <V> void add(FilterAttribute<T, V> attribute) {
         attributes.put(attribute.name, attribute);
+    }
+
+    @Override
+    public String toString() {
+        return "Filter(" + attributes.values() + ")";
     }
 
     @Override
@@ -118,21 +119,20 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * @return true if the object matches the filter criteria, false otherwise
      */
     public boolean match(T object) {
-        if (attributes.isEmpty() || !defined()) {
-            return false;
-        }
-
-        boolean matches = operator == AND;
-        for (FilterAttribute<T, ?> filterValue : this) {
-            if (filterValue.defined()) {
-                if (operator == AND) {
-                    matches = matches && filterValue.match(object);
-                } else {
-                    matches = matches || filterValue.match(object);
+        if (defined()) {
+            boolean matches = operator == AND;
+            for (FilterAttribute<T, ?> filterAttribute : this) {
+                if (filterAttribute.defined()) {
+                    if (operator == AND) {
+                        matches = matches && filterAttribute.match(object);
+                    } else {
+                        matches = matches || filterAttribute.match(object);
+                    }
                 }
             }
+            return matches;
         }
-        return matches;
+        return false;
     }
 
     /**
@@ -141,7 +141,26 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * @return true if at least one filter attribute is defined, false otherwise
      */
     public boolean defined() {
-        return attributes.values().stream().anyMatch(FilterAttribute::defined);
+        for (FilterAttribute<T, ?> filterAttribute : this) {
+            if (filterAttribute.defined()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a filter attribute with the specified name is defined.
+     *
+     * @param name the name of the filter attribute to check
+     * @return true if the filter attribute is defined, false otherwise
+     */
+    public boolean defined(String name) {
+        FilterAttribute<T, ?> filterAttribute = attributes.get(name);
+        if (filterAttribute != null) {
+            return filterAttribute.defined();
+        }
+        return false;
     }
 
     /**
@@ -168,13 +187,54 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * @param value the new value to be set for the filter attribute
      * @param <V>   the type of the value for the filter attribute
      */
-    @SuppressWarnings("unchecked")
     public <V> void set(String name, V value) {
+        set(name, value, (v1, v2) -> value, DEFAULT_ORIGIN);
+    }
+
+    /**
+     * Sets the value of the filter attribute with the specified name. If the attribute exists and its value is updated, the
+     * change handlers are notified.
+     *
+     * @param name   the name of the filter attribute to set
+     * @param value  the new value to be set for the filter attribute
+     * @param origin the origin of the change which will be passed to the change handlers
+     * @param <V>    the type of the value for the filter attribute
+     */
+    public <V> void set(String name, V value, String origin) {
+        set(name, value, (v1, v2) -> value, origin);
+    }
+
+    /**
+     * Sets the value of the filter attribute with the specified name using a custom modifier. If the attribute exists and its
+     * value is updated, the change handlers are notified.
+     *
+     * @param name     the name of the filter attribute to set
+     * @param value    the new value to be set for the filter attribute
+     * @param modifier the modifier that defines custom logic for how the attribute value should be set
+     * @param <V>      the type of the value for the filter attribute
+     */
+    public <V> void set(String name, V value, FilterAttributeModifier<V> modifier) {
+        set(name, value, modifier, DEFAULT_ORIGIN);
+    }
+
+    /**
+     * Sets the value of the filter attribute with the specified name using a custom modifier. If the attribute exists and its
+     * value is updated, the change handlers are notified.
+     *
+     * @param name     the name of the filter attribute to set
+     * @param value    the new value to be set for the filter attribute
+     * @param modifier the modifier that defines custom logic for how the attribute value should be set
+     * @param origin   the origin of the change which will be passed to the change handlers
+     * @param <V>      the type of the value for the filter attribute
+     */
+    @SuppressWarnings("unchecked")
+    public <V> void set(String name, V value, FilterAttributeModifier<V> modifier, String origin) {
         FilterAttribute<T, ?> filterAttribute = attributes.get(name);
         if (filterAttribute != null) {
             FilterAttribute<T, V> tfa = (FilterAttribute<T, V>) filterAttribute;
-            if (tfa.set(value)) {
-                notifyChangeHandlers();
+            V newValue = modifier.modify(tfa.value(), value);
+            if (tfa.set(newValue)) {
+                notifyChangeHandlers(origin);
             }
         }
     }
@@ -186,8 +246,19 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * @param name the name of the filter attribute to reset
      */
     public void reset(String name) {
+        reset(name, DEFAULT_ORIGIN);
+    }
+
+    /**
+     * Resets the filter attribute with the specified name to its initial value. If the attribute is successfully reset, the
+     * change handlers are notified.
+     *
+     * @param name   the name of the filter attribute to reset
+     * @param origin the origin of the change which will be passed to the change handlers
+     */
+    public void reset(String name, String origin) {
         if (resetInternal(name)) {
-            notifyChangeHandlers();
+            notifyChangeHandlers(origin);
         }
     }
 
@@ -195,12 +266,25 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * Resets all filter attributes to their initial values. If any attributes were reset, the change handlers are notified.
      */
     public void resetAll() {
+        resetAll(DEFAULT_ORIGIN);
+    }
+
+    /**
+     * Resets all filter attributes to their initial values. If any attributes were reset, the change handlers are notified.
+     *
+     * @param origin the origin of the change which will be passed to the change handlers
+     */
+    public void resetAll(String origin) {
         boolean anyReset = false;
-        for (FilterAttribute<T, ?> filterAttribute : attributes.values()) {
-            anyReset = anyReset || filterAttribute.reset();
+        for (FilterAttribute<T, ?> filterAttribute : this) {
+            // Don't 'optimize' that to anyReset = anyReset || filterAttribute.reset()
+            // The short-circuit evaluation could prevent the execution of filterAttribute.reset()
+            // See https://en.wikipedia.org/wiki/Short-circuit_evaluation
+            boolean attributeReset = filterAttribute.reset();
+            anyReset = anyReset || attributeReset;
         }
         if (anyReset) {
-            notifyChangeHandlers();
+            notifyChangeHandlers(origin);
         }
     }
 
@@ -247,7 +331,7 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
      * @param changeHandler the change handler to be registered
      * @return the current filter instance with the registered change handler
      */
-    public Filter<T> onChange(Consumer<Filter<T>> changeHandler) {
+    public Filter<T> onChange(FilterChangeHandler<T> changeHandler) {
         this.changeHandler.add(changeHandler);
         return this;
     }
@@ -262,9 +346,9 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
         return false;
     }
 
-    private void notifyChangeHandlers() {
-        for (Consumer<Filter<T>> ch : changeHandler) {
-            ch.accept(this);
+    private void notifyChangeHandlers(String origin) {
+        for (FilterChangeHandler<T> fch : changeHandler) {
+            fch.onFilterChange(this, origin);
         }
     }
 }

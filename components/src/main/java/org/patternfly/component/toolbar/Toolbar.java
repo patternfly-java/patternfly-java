@@ -21,6 +21,7 @@ import org.patternfly.component.ComponentType;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.toolbar;
 
@@ -46,6 +47,8 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
 
     // ------------------------------------------------------ instance
 
+    private ToolbarFilterContent filterContent;
+
     Toolbar() {
         super(ComponentType.Toolbar, div().css(component(toolbar)).element());
     }
@@ -56,10 +59,25 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
         return add(content);
     }
 
+    public Toolbar addFilterContent(ToolbarFilterContent filterContent) {
+        return add(filterContent);
+    }
+
+    public Toolbar add(ToolbarFilterContent filterContent) {
+        this.filterContent = filterContent;
+        return add(filterContent.element());
+    }
+
     // ------------------------------------------------------ builder
 
     @Override
     public Toolbar that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void removeFilterContent() {
+        failSafeRemoveFromParent(filterContent);
     }
 }

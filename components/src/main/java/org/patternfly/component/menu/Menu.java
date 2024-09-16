@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jboss.elemento.Id;
@@ -233,7 +234,8 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     MenuItem findItem(String id) {
         MenuItem menuItem = null;
         if (content != null) {
-            for (MenuGroup group : content.groups) {
+            for (Iterator<MenuGroup> iterator = content.groups.iterator(); iterator.hasNext() && menuItem == null; ) {
+                MenuGroup group = iterator.next();
                 if (group.list != null) {
                     menuItem = group.list.items.get(id);
                 }

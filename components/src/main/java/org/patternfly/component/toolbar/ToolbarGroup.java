@@ -37,11 +37,12 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     // ------------------------------------------------------ factory
 
-    /**
-     * Factory method to create a new instance of this component.
-     */
     public static ToolbarGroup toolbarGroup() {
-        return new ToolbarGroup();
+        return new ToolbarGroup(null);
+    }
+
+    public static ToolbarGroup toolbarGroup(ToolbarGroupType type) {
+        return new ToolbarGroup(type);
     }
 
     // ------------------------------------------------------ instance
@@ -49,9 +50,12 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     static final String SUB_COMPONENT_NAME = "tg";
     private final Map<String, ToolbarItem> items;
 
-    ToolbarGroup() {
+    ToolbarGroup(ToolbarGroupType type) {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, group)).element());
         this.items = new LinkedHashMap<>();
+        if (type != null) {
+            css(type.modifier());
+        }
     }
 
     // ------------------------------------------------------ add

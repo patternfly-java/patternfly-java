@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,16 +28,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.patternfly.filter.FilterAttributeModifier.collectionAdd;
+import static org.patternfly.filter.FilterAttributeModifier.collectionRemove;
 
 public class FilterTest {
 
-    static class SimpleChangeHandler implements Consumer<Filter<String>> {
+    static class SimpleChangeHandler implements FilterChangeHandler<String> {
 
         boolean notified = false;
+        String origin;
 
         @Override
-        public void accept(Filter<String> filter) {
-            notified = true;
+        public void onFilterChange(Filter<String> filter, String origin) {
+            this.notified = true;
+            this.origin = origin;
         }
     }
 
@@ -47,7 +50,7 @@ public class FilterTest {
     @BeforeEach
     void beforeEach() {
         filter = new Filter<>(FilterOperator.AND);
-        filter.add(new FilterAttribute<>("string-equals", false, Objects::equals));
+        filter.add(new FilterAttribute<>("string-equals", Objects::equals));
     }
 
     @Test
@@ -94,6 +97,20 @@ public class FilterTest {
         SimpleChangeHandler changeHandler = registerChangeHandler();
         filter.set("unknown", "foo");
         assertFalse(changeHandler.notified);
+    }
+
+    @Test
+    void modifier() {
+        filter.add(new FilterAttribute<String, List<String>>("list", (object, value) -> true));
+
+        filter.set("list", List.of("a"), collectionAdd(ArrayList::new));
+        assertEquals(List.of("a"), filter.<List<String>>get("list").value());
+        filter.set("list", List.of("b"), collectionAdd(ArrayList::new));
+        assertEquals(List.of("a", "b"), filter.<List<String>>get("list").value());
+        filter.set("list", List.of("c"), collectionAdd(ArrayList::new));
+        assertEquals(List.of("a", "b", "c"), filter.<List<String>>get("list").value());
+        filter.set("list", List.of("a", "b"), collectionRemove(ArrayList::new));
+        assertEquals(List.of("c"), filter.<List<String>>get("list").value());
     }
 
     @Test
@@ -152,6 +169,19 @@ public class FilterTest {
         List<String> filtered = filter.filter(new ArrayList<>(data.keySet()),
                 (city, match) -> assertEquals(data.get(city), match, city + " != " + match));
         assertEquals(2, filtered.size());
+    }
+
+    @Test
+    void changeHandler() {
+        SimpleChangeHandler noOrigin = registerChangeHandler();
+        filter.set("string-equals", "foo");
+        assertTrue(noOrigin.notified);
+        assertEquals(Filter.DEFAULT_ORIGIN, noOrigin.origin);
+
+        SimpleChangeHandler withOrigin = registerChangeHandler();
+        filter.set("string-equals", "bar", "unit-test");
+        assertTrue(withOrigin.notified);
+        assertEquals("unit-test", withOrigin.origin);
     }
 
     private SimpleChangeHandler registerChangeHandler() {

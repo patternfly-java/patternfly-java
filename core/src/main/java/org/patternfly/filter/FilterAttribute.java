@@ -18,9 +18,8 @@ package org.patternfly.filter;
 import java.util.Objects;
 
 /**
- * Represents a filter attribute with a specified name, persistence flag, and filter condition.
- * The attribute maintains a value and a defined state, allowing it to determine if it matches
- * a given object based on the defined filter condition.
+ * Represents a filter attribute with a specified name, persistence flag, and filter condition. The attribute maintains a value
+ * and a defined state, allowing it to determine if it matches a given object based on the defined filter condition.
  *
  * @param <T> the type of objects to be filtered
  * @param <V> the type of the attribute's value
@@ -81,14 +80,14 @@ public class FilterAttribute<T, V> {
      * @return true if the object matches the condition, false otherwise
      */
     protected boolean match(T object) {
-        return condition.match(object, this.value);
+        boolean match = condition.match(object, this.value);
+        return match;
     }
 
     /**
-     * Sets the value of the filter attribute. If the new value is equal to the initial value,
-     * the attribute is reset. If the attribute is not yet defined, it will be defined with the
-     * new value. If the attribute is already defined and the new value is different, the value
-     * is updated.
+     * Sets the value of the filter attribute. If the new value is equal to the initial value, the attribute is reset. If the
+     * attribute is not yet defined, it will be defined with the new value. If the attribute is already defined and the new
+     * value is different, the value is updated.
      *
      * @param value the new value to set for the filter attribute
      * @return true if the value of the attribute was changed, or it was defined; false if the value is the same
@@ -112,8 +111,8 @@ public class FilterAttribute<T, V> {
     }
 
     /**
-     * Resets the filter attribute to its initial value if it is currently defined.
-     * This method will also set the attribute to an undefined state.
+     * Resets the filter attribute to its initial value if it is currently defined. This method will also set the attribute to
+     * an undefined state.
      *
      * @return true if the filter attribute was reset, false if it was already undefined
      */
@@ -145,8 +144,8 @@ public class FilterAttribute<T, V> {
     }
 
     /**
-     * Loads a value into the filter attribute. This method acts as a no-operation by default and can be overridden
-     * by subclasses to provide specific value-loading functionality.
+     * Loads a value into the filter attribute. This method acts as a no-operation by default and can be overridden by
+     * subclasses to provide specific value-loading functionality.
      *
      * @param value the value to be loaded into the filter attribute
      */

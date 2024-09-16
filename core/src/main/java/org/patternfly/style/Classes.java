@@ -63,6 +63,7 @@ public interface Classes {
     String center = "center";
     String check = "check";
     String chip = "chip";
+    String chipContainer = "chip-container";
     String chipGroup = "chip-group";
     String clickable = "clickable";
     String close = "close";
