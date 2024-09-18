@@ -9,9 +9,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Add
 
 - MultiSelect component (part of #68)
+- Table component: Tree table (part of #90)
 - Toolbar component (part of #98)
 - Add `Filter<T>`, `FilterAttribute<T, V>`, and `FilterCondition<T, V>` to filter arbitrary data
 - Add `MenuToggleMenu.stayOpen()`
+- Add `Tabs.initialSelection(String)`
 
 ## [0.2.9] - 2024-08-21
 

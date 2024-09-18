@@ -88,12 +88,12 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
         }
     }
 
-    public void selectIds(List<String> itemIds) {
-        makeSelection(itemsFromIds(itemIds), true, true);
+    public void selectIdentifiers(List<String> identifiers) {
+        makeSelection(itemsFromIds(identifiers), true, true);
     }
 
-    public void selectIds(List<String> itemIds, boolean fireEvent) {
-        makeSelection(itemsFromIds(itemIds), true, fireEvent);
+    public void selectIdentifiers(List<String> identifiers, boolean fireEvent) {
+        makeSelection(itemsFromIds(identifiers), true, fireEvent);
     }
 
     public void selectItems(List<MenuItem> items) {
@@ -104,12 +104,12 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
         makeSelection(items, true, fireEvent);
     }
 
-    public void unselectIds(List<String> itemIds) {
-        makeSelection(itemsFromIds(itemIds), false, true);
+    public void unselectIdentifiers(List<String> identifiers) {
+        makeSelection(itemsFromIds(identifiers), false, true);
     }
 
-    public void unselectIds(List<String> itemIds, boolean fireEvent) {
-        makeSelection(itemsFromIds(itemIds), false, fireEvent);
+    public void unselectIdentifiers(List<String> identifiers, boolean fireEvent) {
+        makeSelection(itemsFromIds(identifiers), false, fireEvent);
     }
 
     public void unselectItems(List<MenuItem> items) {
@@ -122,8 +122,8 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
 
     // ------------------------------------------------------ internal
 
-    private List<MenuItem> itemsFromIds(List<String> itemIds) {
-        return itemIds.stream()
+    private List<MenuItem> itemsFromIds(List<String> identifiers) {
+        return identifiers.stream()
                 .map(menu::findItem)
                 .filter(Objects::nonNull)
                 .collect(toList());

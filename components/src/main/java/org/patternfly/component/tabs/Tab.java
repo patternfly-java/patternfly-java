@@ -287,6 +287,10 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         return this;
     }
 
+    public Tab selected() {
+        return this;
+    }
+
     public Tab tooltip(Tooltip tooltip) {
         // Override to add the tooltip to the tabs element in Tabs.attach()
         // If added to this element, the tooltip won't show,

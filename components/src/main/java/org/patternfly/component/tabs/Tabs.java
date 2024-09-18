@@ -148,6 +148,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     private boolean overflowHorizontal;
     private boolean vertical;
 
+    private String initialSelection;
     private Tab currentTab;
     private OverflowTab overflowTab;
     private TabsToggle tabsToggle;
@@ -279,7 +280,14 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
         if (overflowHorizontal) {
             tabsContainer.add(overflowTab);
         }
-        if (!noInitialSelection) {
+        if (initialSelection != null) {
+            Tab tab = items.get(initialSelection);
+            if (tab != null) {
+                select(tab, false);
+            } else if (!noInitialSelection) {
+                items.values().iterator().next().select(true);
+            }
+        } else if (!noInitialSelection) {
             items.values().iterator().next().select(true);
         }
     }
@@ -445,6 +453,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     /** By default, the first tab is selected initially. Call this method to disable thi default behaviour. */
     public Tabs noInitialSelection() {
         this.noInitialSelection = true;
+        return this;
+    }
+
+    public Tabs initialSelection(String identifier) {
+        this.initialSelection = identifier;
         return this;
     }
 
@@ -616,14 +629,22 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     public void select(String identifier) {
+        select(identifier, true);
+    }
+
+    public void select(String identifier, boolean fireEvent) {
         if (identifier != null) {
-            select(items.get(identifier));
+            select(items.get(identifier), fireEvent);
         } else {
             logger.error("Cannot select tab in tabs %o: No tab identifier given.", element());
         }
     }
 
     public void select(Tab tab) {
+        select(tab, true);
+    }
+
+    public void select(Tab tab, boolean fireEvent) {
         if (tab != null) {
             for (Tab t : items.values()) {
                 if (tab.identifier().equals(t.identifier())) {
@@ -636,7 +657,9 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
             if (overflowHorizontal && isVisible(tab)) {
                 overflowTab.unselect();
             }
-            selectHandler.forEach(sh -> sh.onSelect(new Event(""), tab, true));
+            if (fireEvent) {
+                selectHandler.forEach(sh -> sh.onSelect(new Event(""), tab, true));
+            }
         } else {
             logger.error("Cannot select tab in tabs %o: No tab given.", element());
         }
