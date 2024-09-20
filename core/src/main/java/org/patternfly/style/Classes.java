@@ -84,6 +84,7 @@ public interface Classes {
     String description = "description";
     String descriptionList = "description-list";
     String detached = "detached";
+    String details = "details";
     String disabled = "disabled";
     String display = "display";
     String divider = "divider";
@@ -266,6 +267,7 @@ public interface Classes {
     String thumb = "thumb";
     String tick = "tick";
     String title = "title";
+    String titleCell = "title-cell";
     String toast = "toast";
     String toggle = "toggle";
     String toggleGroup = "toggle-group";

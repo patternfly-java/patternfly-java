@@ -19,9 +19,11 @@ package org.patternfly.core;
 public interface Roles {
 
     String button = "button";
+    String cell = "cell";
     String columnheader = "columnheader";
     String dialog = "dialog";
     String grid = "grid";
+    String gridcell = "gridcell";
     String group = "group";
     String img = "img";
     String link = "link";
@@ -36,6 +38,7 @@ public interface Roles {
     String progressbar = "progressbar";
     String radiogroup = "radiogroup";
     String region = "region";
+    String row = "row";
     String rowgroup = "rowgroup";
     String separator = "separator";
     String slider = "slider";

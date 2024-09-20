@@ -20,7 +20,9 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Dataset;
 
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Roles.cell;
 import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
@@ -49,6 +51,7 @@ public class Td extends Cell<Td> {
     Td(String identifier, String column) {
         super(SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))
                 .attr(tabindex, -1)
+                .attr(role, cell)
                 .data(Dataset.identifier, identifier)
                 .element());
         if (column != null) {

@@ -32,6 +32,7 @@ import org.patternfly.component.HasItems;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
+import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
@@ -68,15 +69,15 @@ import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.component.spinner.Spinner.spinner;
-import static org.patternfly.component.tree.TreeViewItemStatus.pending;
-import static org.patternfly.component.tree.TreeViewItemStatus.rejected;
-import static org.patternfly.component.tree.TreeViewItemStatus.resolved;
-import static org.patternfly.component.tree.TreeViewItemStatus.static_;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
+import static org.patternfly.core.AsyncStatus.pending;
+import static org.patternfly.core.AsyncStatus.rejected;
+import static org.patternfly.core.AsyncStatus.resolved;
+import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.group;
@@ -144,7 +145,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     HTMLElement tabElement;
     private String text;
     private boolean domFinished;
-    private TreeViewItemStatus status;
+    private AsyncStatus status;
     private Element icon;
     private Element expandedIcon;
     private HTMLElement nodeElement;
@@ -373,7 +374,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
-    public TreeViewItemStatus status() {
+    public AsyncStatus status() {
         return status;
     }
 
@@ -407,8 +408,12 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
+        if (status == static_) {
+            removeChildrenFrom(element());
+            items.clear();
+        } else if (status == resolved || status == rejected || status == pending) {
+            reset();
+        }
     }
 
     // ------------------------------------------------------ internal

@@ -13,15 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.tree;
+package org.patternfly.component.table;
 
-public enum TreeViewItemStatus {
+public enum TableType {
 
-    static_,
+    table("grid"),
 
-    pending,
+    treeTable("treegrid");
 
-    resolved,
+    public final String role;
 
-    rejected
+    TableType(String role) {
+        this.role = role;
+    }
 }

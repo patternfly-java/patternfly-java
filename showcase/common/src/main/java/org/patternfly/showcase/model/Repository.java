@@ -41,4 +41,5 @@ public class Repository {
     public int workspaces;
     public JsDate lastCommit;
     public String extraData;
+    public List<Repository> children;
 }

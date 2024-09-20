@@ -18,6 +18,8 @@ package org.patternfly.component.table;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -28,19 +30,21 @@ import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.Event;
+import elemental2.dom.HTMLCollection;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableElement;
+import elemental2.dom.HTMLTableRowElement;
+import elemental2.dom.MutationRecord;
 
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Roles.grid;
+import static org.patternfly.core.Roles.gridcell;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.noBorderRows;
 import static org.patternfly.style.Classes.table;
-import static org.patternfly.style.GridBreakpoint.empty;
-import static org.patternfly.style.GridBreakpoint.gird2xl;
-import static org.patternfly.style.GridBreakpoint.gridLg;
-import static org.patternfly.style.GridBreakpoint.gridMd;
-import static org.patternfly.style.GridBreakpoint.gridXl;
+import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.TypedModifier.swap;
 
@@ -49,26 +53,59 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/table">https://www.patternfly.org/components/table</a>
  */
-public class Table extends BaseComponent<HTMLTableElement, Table> implements Compact<HTMLTableElement, Table> {
+public class Table extends BaseComponent<HTMLTableElement, Table> implements
+        Compact<HTMLTableElement, Table>,
+        Attachable {
 
     // ------------------------------------------------------ factory
 
     public static Table table() {
-        return new Table();
+        return new Table(TableType.table);
+    }
+
+    public static Table table(TableType type) {
+        return new Table(type);
     }
 
     // ------------------------------------------------------ instance
 
-    private Tbody tbody;
+    private final TableType type;
     private final List<SelectHandler<Tr>> selectHandler;
+    private Thead thead;
+    private Tbody tbody;
 
-    Table() {
+    Table(TableType type) {
         super(ComponentType.Table, Elements.table().css(component(table))
-                .attr(role, grid)
+                .attr(role, type.role)
                 .element());
+        this.type = type;
         this.selectHandler = new ArrayList<>();
-        gridBreakpoint(gridMd);
+        if (type == TableType.table) {
+            gridBreakpoint(GridBreakpoint.gridMd);
+        } else if (type == TableType.treeTable) {
+            css(modifier(treeView));
+            treeViewGridBreakpoint(TreeViewGridBreakpoint.gridMd);
+        }
         storeComponent();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        if (type == TableType.treeTable) {
+            if (tbody != null) {
+                for (Tr tr : tbody.items.values()) {
+                    tr.aria(Aria.level, 1);
+                    tr.finishChildren();
+                }
+            }
+            By selector = By.classname(component(table))
+                    .and(By.classname(modifier(treeView)))
+                    .desc(By.element("td"));
+            for (HTMLElement td : findAll(selector)) {
+                td.setAttribute(role, gridcell);
+            }
+        }
     }
 
     // ------------------------------------------------------ add
@@ -78,6 +115,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     }
 
     public Table addHead(Thead head) {
+        this.thead = head;
         return add(head);
     }
 
@@ -103,8 +141,23 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
     }
 
     public Table gridBreakpoint(GridBreakpoint breakpoint) {
-        if (verifyEnum(element(), "gridBreakpoint", breakpoint, empty, GridBreakpoint.grid, gridMd, gridLg, gridXl, gird2xl)) {
+        if (verifyEnum(element(), "gridBreakpoint", breakpoint,
+                GridBreakpoint.gridMd,
+                GridBreakpoint.gridLg,
+                GridBreakpoint.gridXl,
+                GridBreakpoint.gird2xl)) {
             swap(this, element(), breakpoint, GridBreakpoint.values());
+        }
+        return this;
+    }
+
+    public Table treeViewGridBreakpoint(TreeViewGridBreakpoint breakpoint) {
+        if (verifyEnum(element(), "treeViewGridBreakpoint", breakpoint,
+                TreeViewGridBreakpoint.gridMd,
+                TreeViewGridBreakpoint.gridLg,
+                TreeViewGridBreakpoint.gridXl,
+                TreeViewGridBreakpoint.gird2xl)) {
+            swap(this, element(), breakpoint, TreeViewGridBreakpoint.values());
         }
         return this;
     }
@@ -129,6 +182,14 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
 
     // ------------------------------------------------------ api
 
+    public void reset() {
+        if (tbody != null) {
+            for (Tr tr : tbody.items()) {
+                tr.reset();
+            }
+        }
+    }
+
     public void select(String key) {
         if (tbody != null) {
             Tr row = tbody.items.get(key);
@@ -152,11 +213,27 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements Com
         }
     }
 
+    public Thead thead() {
+        return thead;
+    }
+
     public Tbody tbody() {
         return tbody;
     }
 
     // ------------------------------------------------------ internal
+
+    int columns() {
+        int columns = 0;
+        if (element().rows.length > 0) {
+            HTMLTableRowElement row = element().rows.item(0);
+            HTMLCollection<HTMLTableCellElement> cells = row.cells;
+            for (int i = 0; i < row.cells.length; i++) {
+                columns += cells.item(i).colSpan;
+            }
+        }
+        return columns;
+    }
 
     private void unselectAll() {
         if (tbody != null) {

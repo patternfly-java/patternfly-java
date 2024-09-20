@@ -24,7 +24,9 @@ import org.patternfly.component.tooltip.TooltipToggle;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Roles.columnheader;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.table;
@@ -54,6 +56,7 @@ public class Th extends Cell<Th> implements Attachable {
         super(SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, th))
                 .apply(th -> th.scope = "col")
                 .attr(tabindex, -1)
+                .attr(role, columnheader)
                 .element());
         tooltipToggle = new TooltipToggle(element());
         Attachable.register(this, this);

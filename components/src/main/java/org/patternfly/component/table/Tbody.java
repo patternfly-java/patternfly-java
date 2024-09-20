@@ -21,13 +21,18 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.emptystate.EmptyState;
 
 import elemental2.dom.HTMLTableSectionElement;
 
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.component.table.Td.td;
+import static org.patternfly.component.table.Tr.tr;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.rowgroup;
+import static org.patternfly.layout.bullseye.Bullseye.bullseye;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
@@ -70,6 +75,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     public Tbody add(Tr row) {
         items.put(row.identifier(), row);
+        row.tbody = this;
         add(row.element());
         return this;
     }
@@ -82,6 +88,13 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     // ------------------------------------------------------ api
+
+    public Tbody empty(int colSpan, EmptyState emptyState) {
+        return addItem(tr(Id.unique("table-empty-row"))
+                .addItem(td().colSpan(colSpan)
+                        .add(bullseye()
+                                .add(emptyState))));
+    }
 
     @Override
     public Iterator<Tr> iterator() {

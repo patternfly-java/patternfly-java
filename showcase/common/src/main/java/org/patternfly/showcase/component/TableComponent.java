@@ -16,6 +16,8 @@
 package org.patternfly.showcase.component;
 
 import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.router.Route;
@@ -37,7 +39,10 @@ import org.patternfly.showcase.model.Repository;
 import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLElement;
+import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.htmlElement;
 import static org.patternfly.component.SelectionMode.single;
@@ -55,16 +60,20 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.table.Table.table;
 import static org.patternfly.component.table.TableCaption.tableCaption;
 import static org.patternfly.component.table.TableText.tableText;
+import static org.patternfly.component.table.TableType.treeTable;
 import static org.patternfly.component.table.Tbody.tbody;
 import static org.patternfly.component.table.Td.td;
 import static org.patternfly.component.table.Th.th;
 import static org.patternfly.component.table.Thead.thead;
+import static org.patternfly.component.table.TitleCell.titleCell;
 import static org.patternfly.component.table.Tr.tr;
 import static org.patternfly.component.table.Wrap.fitContent;
 import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
 import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupItem;
+import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
-import static org.patternfly.layout.bullseye.Bullseye.bullseye;
+import static org.patternfly.icon.IconSets.fas.folder;
+import static org.patternfly.icon.IconSets.fas.folderOpen;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
@@ -73,6 +82,7 @@ import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 import static org.patternfly.showcase.model.Repositories.repositories;
 import static org.patternfly.showcase.model.Repository.columns;
+import static org.patternfly.style.Classes.util;
 
 @Route(value = "/components/table", title = "Table")
 public class TableComponent extends SnippetPage {
@@ -168,7 +178,7 @@ public class TableComponent extends SnippetPage {
                             .addRow(tr("table-sel-click-head")
                                     .addItems(columns, t -> th(t.key).textContent(t.value))))
                     .addBody(tbody()
-                            .addRows(repositories, repository -> tr("table-sel-click" + repository.id).clickable()
+                            .addRows(repositories, repository -> tr("table-sel-click-" + repository.id).clickable()
                                     .addItem(td(columns.get(0).value).textContent(repository.name))
                                     .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
                                     .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
@@ -205,7 +215,7 @@ public class TableComponent extends SnippetPage {
                                     .addItem(th().screenReader("Primary action"))
                                     .addItem(th().screenReader("Secondary action"))))
                     .addBody(tbody()
-                            .addRows(repositories, repository -> tr("table-actions" + repository.id)
+                            .addRows(repositories, repository -> tr("table-actions-" + repository.id)
                                     .addItem(td(columns.get(0).value).textContent(repository.name))
                                     .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
                                     .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
@@ -281,17 +291,14 @@ public class TableComponent extends SnippetPage {
                             .addRow(tr("table-empty-head")
                                     .addItems(columns, t -> th(t.key).textContent(t.value))))
                     .addBody(tbody()
-                            .addItem(tr("table-empty-row")
-                                    .addItem(td().colSpan(columns.size())
-                                            .add(bullseye()
-                                                    .add(emptyState().size(Size.sm)
-                                                            .addHeader(emptyStateHeader(2)
-                                                                    .icon(IconSets.fas.search())
-                                                                    .text("No results found"))
-                                                            .addBody(emptyStateBody().textContent(
-                                                                    "Clear all filters and try again."))
-                                                            .addFooter(emptyStateFooter()
-                                                                    .add(button().link().text("Clear all filters"))))))))
+                            .empty(columns.size(), emptyState().size(Size.sm)
+                                    .addHeader(emptyStateHeader(2)
+                                            .icon(IconSets.fas.search())
+                                            .text("No results found"))
+                                    .addBody(emptyStateBody().textContent(
+                                            "Clear all filters and try again."))
+                                    .addFooter(emptyStateFooter()
+                                            .add(button().link().text("Clear all filters")))))
                     .element();
             // @code-end:table-empty
         }));
@@ -303,12 +310,92 @@ public class TableComponent extends SnippetPage {
                 // @code-end:table-fav
         ));
 
-        addSnippet(new Snippet("table-tree", "Tree table",
-                code("table-tree"), () ->
-                // @code-start:table-tree
-                nyi().element()
-                // @code-end:table-tree
-        ));
+        addSnippet(new Snippet("table-tree-static", "Tree table (static)",
+                code("table-tree-static"), () -> {
+            // @code-start:table-tree-static
+            Function<Repository, Tr> repositoryTr = repository -> tr("table-tree-static-" + repository.id)
+                    .addTitleCell(titleCell()
+                            .text(repository.name)
+                            .run(titleCell -> {
+                                if (repository.children != null && !repository.children.isEmpty()) {
+                                    titleCell.icon(folder()).expandedIcon(folderOpen());
+                                } else {
+                                    titleCell.icon(codeBranch());
+                                }
+                            }))
+                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
+                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
+                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                    .addItem(td(columns.get(4).value)
+                            .add(htmlElement("relative-time", HTMLElement.class)
+                                    .attr("datetime", repository.lastCommit.toISOString())
+                                    .textContent(repository.lastCommit.toISOString())));
+
+            List<Repository> repositories = repositories(5, 2);
+            return table(treeTable)
+                    .addHead(thead()
+                            .addRow(tr("table-tree-static-head")
+                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
+                    .addBody(tbody()
+                            .addRows(repositories, r0 -> repositoryTr.apply(r0) // level 1
+                                    .addChildren(r0.children, r1 -> repositoryTr.apply(r1) // level 2
+                                            .addChildren(r1.children, repositoryTr)))) // level 3
+                    .element();
+            // @code-end:table-tree-static
+        }));
+
+        addSnippet(new Snippet("table-tree-async", "Tree table (async)",
+                code("table-tree-async"), () -> {
+            // @code-start:table-tree-async
+            Function<Repository, Tr> repositoryTr = repository -> tr("table-tree-async-" + repository.id)
+                    .addTitleCell(titleCell()
+                            .text(repository.name)
+                            .run(titleCell -> {
+                                if (repository.children != null && !repository.children.isEmpty()) {
+                                    titleCell.icon(folder()).expandedIcon(folderOpen());
+                                } else {
+                                    titleCell.icon(codeBranch());
+                                }
+                            }))
+                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
+                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
+                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                    .addItem(td(columns.get(4).value)
+                            .add(htmlElement("relative-time", HTMLElement.class)
+                                    .attr("datetime", repository.lastCommit.toISOString())
+                                    .textContent(repository.lastCommit.toISOString())));
+
+            Function<Repository, Function<Tr, Promise<Iterable<Tr>>>> repositoryChildren = repository -> tr ->
+                    new Promise<>((resolve, reject) -> {
+                        boolean boom = Math.random() < 0.25;
+                        int delay = new Random().nextInt(2000); // simulate remote call
+                        setTimeout(__ -> {
+                            if (boom) {
+                                reject.onInvoke("Random error");
+                            } else {
+                                resolve.onInvoke(repository.children.stream()
+                                        .map(repositoryTr)
+                                        .collect(toList()));
+                            }
+                        }, delay);
+                    });
+
+            Table table = table(treeTable);
+            List<Repository> repositories = repositories(5, 1);
+            return div()
+                    .add(button("Reset all").css(util("mb-sm"))
+                            .primary()
+                            .onClick((e, b) -> table.reset()))
+                    .add(table
+                            .addHead(thead()
+                                    .addRow(tr("table-tree-async-head")
+                                            .addItems(columns, t -> th(t.key).textContent(t.value))))
+                            .addBody(tbody()
+                                    .addRows(repositories, repository -> repositoryTr.apply(repository)
+                                            .addChildren(repositoryChildren.apply(repository)))))
+                    .element();
+            // @code-end:table-tree-async
+        }));
 
         addSnippet(new Snippet("table-tree-no-inset", "Flat tree table with no inset",
                 code("table-tree-no-inset"), () ->

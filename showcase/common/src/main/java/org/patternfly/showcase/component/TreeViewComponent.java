@@ -252,11 +252,18 @@ public class TreeViewComponent extends SnippetPage {
                                     .text(decade[0] + " - " + decade[1])
                                     .addItems(item -> new Promise<>((resolve, reject) -> {
                                         int[] range = item.get("range");
+                                        boolean boom = Math.random() < 0.25;
                                         int delay = new Random().nextInt(2000); // simulate remote call
-                                        setTimeout(__ -> resolve.onInvoke(records(r -> r.year >= range[0] && r.year <= range[1])
-                                                .stream()
-                                                .map(recordItem)
-                                                .collect(toList())), delay);
+                                        setTimeout(__ -> {
+                                            if (boom) {
+                                                reject.onInvoke("Random error");
+                                            } else {
+                                                resolve.onInvoke(records(r -> r.year >= range[0] && r.year <= range[1])
+                                                        .stream()
+                                                        .map(recordItem)
+                                                        .collect(toList()));
+                                            }
+                                        }, delay);
                                     }))))
                     .element();
             // @code-end:tv-async

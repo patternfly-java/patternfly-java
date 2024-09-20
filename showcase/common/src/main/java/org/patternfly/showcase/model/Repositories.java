@@ -32,6 +32,14 @@ public class Repositories {
     private static final double[] DELTAS = {ONE_MONTH, ONE_WEEK, ONE_DAY};
 
     public static List<Repository> repositories(int number) {
+        return repositories(number, 0, 0);
+    }
+
+    public static List<Repository> repositories(int number, int levels) {
+        return repositories(number, 0, levels);
+    }
+
+    private static List<Repository> repositories(int number, int level, int levels) {
         List<Repository> repositories = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             Repository repository = new Repository();
@@ -44,6 +52,9 @@ public class Repositories {
             repository.lastCommit = new JsDate(start + Math.random() * (JsDate.now() - start));
             repository.extraData = LoremIpsum.paragraphs(10);
             repositories.add(repository);
+            if (level < levels) {
+                repository.children = repositories(new Random().nextInt(8), level + 1, levels);
+            }
         }
         return repositories;
     }
