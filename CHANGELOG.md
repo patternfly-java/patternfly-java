@@ -15,6 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `MenuToggleMenu.stayOpen()`
 - Add `Tabs.initialSelection(String)`
 
+### Upgrades
+
+- Bump Elemento to 1.6.10
+
 ## [0.2.9] - 2024-08-21
 
 ### Add
