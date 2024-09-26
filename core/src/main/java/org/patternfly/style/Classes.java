@@ -107,6 +107,7 @@ public interface Classes {
     String fieldGroup = "field-group";
     String fill = "fill";
     String fillColumns = "fill-columns";
+    String fitContent = "fit-content";
     String fixed = "fixed";
     String flat = "flat";
     String flex = "flex";

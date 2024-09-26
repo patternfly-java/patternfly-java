@@ -36,7 +36,7 @@ import kotlin.system.exitProcess
 /*
  * This is an alternative version of 'release.sh' written in Kotlin
  * It was primarily an experiment to replace the bash script crap with something more readable.
- * There are slightly more lines of code, but hopefully the script reads much better.
+ * There are slightly more lines of code, but hopefully, the script reads much better.
  */
 
 // ------------------------------------------------------ error & success types
@@ -91,7 +91,7 @@ class ReleaseCommand : CliktCommand(name = "release") {
     fun validate(release: Release): EitherNel<ReleaseError, Release> = either {
         zipOrAccumulate(
                 {
-                    // If there are no uncommitted changes 'git diff-index' will return 0 and 'isRight()' is true.
+                    // If there are no uncommitted changes, 'git diff-index' will return 0 and 'isRight()' is true.
                     // Otherwise, the command will return 1 and shellRun() will throw an exception
                     ensure(catch {
                         shellRun("git", listOf("diff-index", "--quiet", "HEAD"))

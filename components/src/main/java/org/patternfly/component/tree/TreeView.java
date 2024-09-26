@@ -240,7 +240,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     public void select(TreeViewItem item, boolean selected, boolean fireEvent) {
         if (item != null) {
-            if (type == default_ || type == selectableItems) {
+            if ((type == default_ || type == selectableItems) && selected) {
                 // unselect all items
                 traverseItems(this, itm -> itm.markSelected(type, false));
             }
@@ -252,17 +252,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
                     multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selectedItems()));
                 }
             }
-            // collapse items from root to item
-            List<TreeViewItem> parents = parents(item);
-            reverse(parents);
-            for (TreeViewItem treeViewItem : parents) {
-                treeViewItem.expand(false);
+            if (selected) {
+                // expand items from root to item
+                List<TreeViewItem> parents = parents(item);
+                reverse(parents);
+                for (TreeViewItem treeViewItem : parents) {
+                    treeViewItem.expand(false);
+                }
+                ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
+                options.setBlock("nearest");
+                options.setInline("nearest");
+                item.contentElement.scrollIntoView(options);
             }
-
-            ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
-            options.setBlock("nearest");
-            options.setInline("nearest");
-            item.contentElement.scrollIntoView(options);
         }
     }
 
@@ -274,6 +275,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
             }
         });
         return selected;
+    }
+
+    public void unselect() {
+        unselect(false);
+    }
+
+    public void unselect(boolean fireEvent) {
+        traverseItems(this, itm -> select(itm, false, fireEvent));
+    }
+
+    public void collapse() {
+        items().forEach(item -> item.collapse(false));
     }
 
     public void reset() {

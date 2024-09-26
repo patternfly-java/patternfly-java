@@ -27,6 +27,7 @@ import org.patternfly.component.emptystate.EmptyState;
 
 import elemental2.dom.HTMLTableSectionElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.table.Td.td;
 import static org.patternfly.component.table.Tr.tr;
@@ -53,6 +54,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     static final String SUB_COMPONENT_NAME = "tbd";
     final Map<String, Tr> items;
+    private Tr emptyRow;
 
     Tbody() {
         super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
@@ -90,10 +92,16 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     // ------------------------------------------------------ api
 
     public Tbody empty(int colSpan, EmptyState emptyState) {
-        return addItem(tr(Id.unique("table-empty-row"))
+        failSafeRemoveFromParent(emptyRow);
+        emptyRow = tr(Id.unique("table-empty-row"));
+        return addItem(emptyRow
                 .addItem(td().colSpan(colSpan)
                         .add(bullseye()
                                 .add(emptyState))));
+    }
+
+    public void clearEmpty() {
+        failSafeRemoveFromParent(emptyRow);
     }
 
     @Override
