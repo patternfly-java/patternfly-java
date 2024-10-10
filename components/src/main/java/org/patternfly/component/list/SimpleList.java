@@ -182,6 +182,11 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();

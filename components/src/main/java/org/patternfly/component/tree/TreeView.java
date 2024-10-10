@@ -313,6 +313,11 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();

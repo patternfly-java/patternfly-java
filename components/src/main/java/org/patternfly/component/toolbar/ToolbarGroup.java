@@ -91,6 +91,11 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

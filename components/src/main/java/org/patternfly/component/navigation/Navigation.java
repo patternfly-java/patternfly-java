@@ -474,6 +474,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(itemsContainer);
         items.clear();

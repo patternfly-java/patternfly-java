@@ -108,6 +108,11 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(contentSection);
         items.clear();

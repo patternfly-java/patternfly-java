@@ -124,6 +124,11 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ol);
         items.clear();

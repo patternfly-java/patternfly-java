@@ -125,6 +125,11 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         items.clear();
         removeChildrenFrom(this);

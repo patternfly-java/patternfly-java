@@ -129,6 +129,11 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         for (MenuItem item : items.values()) {
             failSafeRemoveFromParent(item);

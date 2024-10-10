@@ -65,18 +65,17 @@
                         <id>install-node-and-yarn</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>install-node-and-yarn</goal>
+                            <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
                             <nodeVersion>${version.node}</nodeVersion>
-                            <yarnVersion>${version.yarn}</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
                         <id>yarn-install</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>yarn</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
                             <arguments>install</arguments>
@@ -86,7 +85,7 @@
                         <id>generate-icon-specs</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>yarn</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
                             <arguments>run generate</arguments>

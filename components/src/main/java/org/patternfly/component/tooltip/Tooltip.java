@@ -338,5 +338,4 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     public String text() {
         return contentElement.textContent;
     }
-
 }

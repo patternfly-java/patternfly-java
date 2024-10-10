@@ -107,6 +107,8 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
         } else {
             if (footer != null) {
                 insertBefore(main, footer.element());
+            } else {
+                element().appendChild(main.element());
             }
         }
         return this;

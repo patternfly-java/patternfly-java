@@ -158,6 +158,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

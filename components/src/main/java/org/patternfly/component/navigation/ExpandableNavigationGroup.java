@@ -253,6 +253,11 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();

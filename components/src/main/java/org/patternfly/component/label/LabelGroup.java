@@ -270,6 +270,11 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(listElement);
         items.clear();

@@ -212,6 +212,11 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

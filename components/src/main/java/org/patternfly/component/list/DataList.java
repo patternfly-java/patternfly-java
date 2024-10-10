@@ -124,6 +124,11 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

@@ -96,6 +96,11 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

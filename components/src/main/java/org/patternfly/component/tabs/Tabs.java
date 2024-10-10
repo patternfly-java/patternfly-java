@@ -689,6 +689,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         for (Tab tab : items.values()) {
             internalClose(tab);

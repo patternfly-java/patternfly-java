@@ -6,13 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-### Add
+### Added
 
 - Add `Tbody.clearEmpty()`
+- Add `TreeViewItem.reload()`
+- Add `HasItems.contains(String identifier)`
+
+### Changed
+
+- Replace yarn with npm
+
+### Fixed
+
+- Fix `Panel.addMain(PanelMain)`
 
 ## [0.2.10] - 2024-09-22
 
-### Add
+### Added
 
 - MultiSelect component (part of #68)
 - Table component: Tree table (part of #90)
@@ -27,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.2.9] - 2024-08-21
 
-### Add
+### Added
 
 - Add `HasItems.items()`
 - Add `Variable.utilVar(String, String...)`
@@ -80,7 +90,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Remove `HasValues<Chip>` from `ChipGroup`. This is replaced now by `HasItems`.
 
-### Fix
+### Fixed
 
 - Expand tree view item after `TreeView.select(TreeViewItem item)`
 
@@ -141,7 +151,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Added missing password type to the type mapping for `TextInput` (thanks @kolka213)
+- Added the missing password type to the type mapping for `TextInput` (thanks @kolka213)
 
 ### Upgrades
 

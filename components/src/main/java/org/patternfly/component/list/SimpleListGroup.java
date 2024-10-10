@@ -131,6 +131,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();

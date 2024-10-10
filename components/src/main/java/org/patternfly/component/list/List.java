@@ -122,6 +122,11 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

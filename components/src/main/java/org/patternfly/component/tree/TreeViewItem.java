@@ -374,6 +374,17 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
+    public Promise<Iterable<TreeViewItem>> reload() {
+        boolean expanded = expanded();
+        reset();
+        return load().then(items -> {
+            if (expanded) {
+                expand(false);
+            }
+            return Promise.resolve(items);
+        });
+    }
+
     public AsyncStatus status() {
         return status;
     }
@@ -404,6 +415,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     @Override
     public boolean isEmpty() {
         return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
     }
 
     @Override

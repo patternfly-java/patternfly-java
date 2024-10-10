@@ -294,6 +294,11 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ulElement);
         for (JumpLinksItem item : items.values()) {

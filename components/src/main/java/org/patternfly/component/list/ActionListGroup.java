@@ -81,6 +81,11 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     }
 
     @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
