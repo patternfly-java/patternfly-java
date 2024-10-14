@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Add `Tbody.clearEmpty()`
 - Add `TreeViewItem.reload()`
+- Add `TreeViewItem.parent()`
 - Add `HasItems.contains(String identifier)`
 
 ### Changed

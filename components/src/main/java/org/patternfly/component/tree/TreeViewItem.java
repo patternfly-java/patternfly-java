@@ -283,6 +283,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         return identifier;
     }
 
+    public TreeViewItem parent() {
+        return parent;
+    }
+
     public boolean selected() {
         if (checkboxElement != null) {
             return checkboxElement.checked;
