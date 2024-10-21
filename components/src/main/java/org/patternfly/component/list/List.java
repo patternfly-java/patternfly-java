@@ -34,6 +34,8 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.list;
@@ -91,6 +93,10 @@ public class List extends BaseComponent<HTMLElement, List> implements
     public List add(ListItem item) {
         items.put(item.identifier(), item);
         return add(item.element());
+    }
+
+    public List addDivider() {
+        return add(divider(li));
     }
 
     // ------------------------------------------------------ builder

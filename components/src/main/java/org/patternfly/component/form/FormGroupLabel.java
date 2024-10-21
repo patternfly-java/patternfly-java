@@ -21,7 +21,6 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.IconSets;
@@ -85,12 +84,12 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
             if (element().id != null && !element().id.isEmpty()) {
                 formGroup.aria(Aria.labelledBy, element().id);
             } else {
-                String labelId = Id.build(formGroup.fieldId != null ? formGroup.fieldId : ComponentType.Form.id, "label");
+                String labelId = Id.build(formGroup.identifier(), "label");
                 id(labelId);
                 formGroup.aria(Aria.labelledBy, labelId);
             }
-        } else if (formGroup.fieldId != null) {
-            ((HTMLLabelElement) labelElement).htmlFor = formGroup.fieldId;
+        } else {
+            ((HTMLLabelElement) labelElement).htmlFor = formGroup.identifier();
         }
         if (formGroup.required) {
             labelElement.appendChild(span().css(component(Classes.form, Classes.label, Classes.required))

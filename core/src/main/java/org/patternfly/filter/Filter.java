@@ -60,8 +60,9 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
 
     // ------------------------------------------------------ api
 
-    public <V> void add(FilterAttribute<T, V> attribute) {
+    public <V> Filter<T> add(FilterAttribute<T, V> attribute) {
         attributes.put(attribute.name, attribute);
+        return this;
     }
 
     @Override

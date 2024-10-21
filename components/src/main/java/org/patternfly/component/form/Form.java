@@ -15,13 +15,20 @@
  */
 package org.patternfly.component.form;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.style.Modifiers;
+import org.patternfly.component.HasItems;
+import org.patternfly.style.Modifiers.Horizontal;
 
 import elemental2.dom.HTMLFormElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.limitWidth;
@@ -34,7 +41,9 @@ import static org.patternfly.style.Classes.modifier;
  *
  * @see <a href= "https://www.patternfly.org/components/forms/form">https://www.patternfly.org/components/forms/form</a>
  */
-public class Form extends BaseComponent<HTMLFormElement, Form> implements Modifiers.Horizontal<HTMLFormElement, Form> {
+public class Form extends BaseComponent<HTMLFormElement, Form> implements
+        HasItems<HTMLFormElement, Form, FormGroup>,
+        Horizontal<HTMLFormElement, Form> {
 
     // ------------------------------------------------------ factory
 
@@ -44,12 +53,37 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements Modifi
 
     // ------------------------------------------------------ instance
 
+    private final Map<String, FormGroup> items;
+
     Form() {
         super(ComponentType.Form, Elements.form().css(component(form)).apply(f -> f.noValidate = true).element());
+        this.items = new LinkedHashMap<>();
         storeComponent();
     }
 
     // ------------------------------------------------------ add
+
+    public <T> Form addItems(Iterable<T> items, Function<T, FormGroup> display) {
+        for (T item : items) {
+            FormGroup group = display.apply(item);
+            addItem(group);
+        }
+        return this;
+    }
+
+    public Form addItem(FormGroup item) {
+        return add(item);
+    }
+
+    public Form addGroup(FormGroup group) {
+        return add(group);
+    }
+
+    @Override
+    public Form add(FormGroup item) {
+        items.put(item.identifier(), item);
+        return add(item.element());
+    }
 
     public Form addAlert(FormAlert alert) {
         return add(alert);
@@ -61,10 +95,6 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements Modifi
 
     public Form addFieldGroup(FormFieldGroup fieldGroup) {
         return add(fieldGroup);
-    }
-
-    public Form addGroup(FormGroup group) {
-        return add(group);
     }
 
     public Form addActionGroup(FormActionGroup actionGroup) {
@@ -80,5 +110,35 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements Modifi
     @Override
     public Form that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public Iterator<FormGroup> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
+    public void clear() {
+        for (FormGroup group : items.values()) {
+            failSafeRemoveFromParent(group);
+        }
+        items.clear();
     }
 }

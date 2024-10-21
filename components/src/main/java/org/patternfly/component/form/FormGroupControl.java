@@ -67,18 +67,16 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     public void attach(MutationRecord mutationRecord) {
         FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
-        if (formGroup.fieldId != null && control != null && !formGroup.fieldId.equals(control.id)) {
-            logger.error("The field id of the form group %o is different from the id of its control %o: '%s' != '%s'",
-                    formGroup.element(), element(), formGroup.fieldId, control.id);
+        if (control != null && !formGroup.identifier().equals(control.id)) {
+            logger.error("The identifier of the form group %o is different from the id of its control %o: '%s' != '%s'",
+                    formGroup.element(), element(), formGroup.identifier(), control.id);
         }
 
-        if (formGroup.fieldId != null) {
-            for (Checkbox checkbox : checkboxes) {
-                checkbox.inputElement().name(formGroup.fieldId);
-            }
-            for (Radio radio : radios) {
-                radio.inputElement().name(formGroup.fieldId);
-            }
+        for (Checkbox checkbox : checkboxes) {
+            checkbox.inputElement().name(formGroup.identifier());
+        }
+        for (Radio radio : radios) {
+            radio.inputElement().name(formGroup.identifier());
         }
     }
 

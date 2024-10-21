@@ -12,9 +12,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `TreeViewItem.reload()`
 - Add `TreeViewItem.parent()`
 - Add `HasItems.contains(String identifier)`
+- `HasItems` → `WithIdentifier` and `ComponentContext` is now implemented by `Form` → `FormGroup`
 
 ### Changed
 
+- Replaced `FormGroup.fieldId(String id)` with `FormGroup.formGroup(String identifier)`
 - Replace yarn with npm
 
 ### Fixed

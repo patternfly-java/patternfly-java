@@ -15,25 +15,36 @@
  */
 package org.patternfly.component.form;
 
-import org.jboss.elemento.Attachable;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.WithIdentifier;
 import org.patternfly.core.Attributes;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 
 public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implements
-        Attachable {
+        WithIdentifier<HTMLElement, FormGroup>,
+        ComponentContext<HTMLElement, FormGroup> {
 
     // ------------------------------------------------------ factory
 
     public static FormGroup formGroup() {
-        return new FormGroup();
+        return new FormGroup(Id.unique(ComponentType.Form.id, SUB_COMPONENT_NAME));
+    }
+
+    public static FormGroup formGroup(String identifier) {
+        return new FormGroup(identifier);
     }
 
     // ------------------------------------------------------ instance
@@ -41,23 +52,19 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
     private static final Logger logger = Logger.getLogger(FormGroup.class.getName());
     static final String SUB_COMPONENT_NAME = "fg";
 
-    String fieldId;
     boolean required;
     FormGroupRole role;
+    private final String identifier;
+    private final Map<String, Object> data;
 
-    FormGroup() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group)).element());
-        this.fieldId = null;
+    FormGroup(String identifier) {
+        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group))
+                .data(Dataset.identifier, identifier)
+                .element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
         this.required = false;
         storeSubComponent();
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        if ((role == FormGroupRole.radiogroup || role == FormGroupRole.group) && fieldId == null) {
-            logger.error("Missing field ID for form group %o with role '%s'.", element(), role.name());
-        }
     }
 
     // ------------------------------------------------------ add
@@ -72,13 +79,12 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
 
     // ------------------------------------------------------ builder
 
-    public FormGroup fieldId(String id) {
-        this.fieldId = id;
-        return this;
+    public FormGroup required() {
+        return required(true);
     }
 
-    public FormGroup required() {
-        this.required = true;
+    public FormGroup required(boolean required) {
+        this.required = required;
         return this;
     }
 
@@ -98,7 +104,34 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
     }
 
     @Override
+    public <T> FormGroup store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
+
+    @Override
     public FormGroup that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
     }
 }
