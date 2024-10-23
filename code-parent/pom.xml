@@ -53,23 +53,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Elemental -->
-            <dependency>
-                <groupId>com.google.elemental2</groupId>
-                <artifactId>elemental2-core</artifactId>
-                <version>${version.elemental2}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.elemental2</groupId>
-                <artifactId>elemental2-dom</artifactId>
-                <version>${version.elemental2}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.elemental2</groupId>
-                <artifactId>elemental2-webstorage</artifactId>
-                <version>${version.elemental2}</version>
-            </dependency>
-
             <!-- GWT -->
             <dependency>
                 <groupId>org.gwtproject.event</groupId>
