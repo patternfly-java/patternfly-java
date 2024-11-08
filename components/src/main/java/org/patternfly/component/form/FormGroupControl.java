@@ -26,6 +26,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.help.HelperText;
+import org.patternfly.component.inputgroup.InputGroup;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
 
@@ -90,6 +91,14 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     public <E extends HTMLElement, B extends BaseComponent<E, B>> FormGroupControl add(FormControl<E, B> control) {
         this.control = control;
         return add(control.element());
+    }
+
+    public FormGroupControl addInputGroup(InputGroup inputGroup) {
+        return add(inputGroup);
+    }
+
+    public FormGroupControl add(InputGroup inputGroup) {
+        return add(inputGroup.element());
     }
 
     public FormGroupControl addCheckbox(Checkbox checkbox) {
