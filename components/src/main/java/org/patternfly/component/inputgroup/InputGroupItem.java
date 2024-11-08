@@ -72,7 +72,7 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
         return add(dropdown.element());
     }
 
-    public InputGroupItem addFormControl(FormControl<?, ?> formControl) {
+    public InputGroupItem addControl(FormControl<?, ?> formControl) {
         return add(formControl);
     }
 

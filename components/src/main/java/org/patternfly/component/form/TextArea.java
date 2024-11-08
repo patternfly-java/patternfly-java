@@ -125,6 +125,11 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return Plain.super.plain(plain);
     }
 
+    public TextArea placeholder(String placeholder) {
+        textAreaElement.placeholder = placeholder;
+        return this;
+    }
+
     public TextArea resize(TextAreaResize resize) {
         if (this.resize != null) {
             element().classList.remove(this.resize.modifier);
