@@ -39,6 +39,7 @@ import elemental2.dom.MutationRecord;
 import static org.jboss.elemento.DomGlobal.window;
 import static org.jboss.elemento.Elements.textarea;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
+import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
@@ -69,7 +70,8 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ instance
 
     private final HTMLTextAreaElement textAreaElement;
-    private final List<ChangeHandler<TextArea, String>> changeHandlers;
+    private final List<ChangeHandler<TextArea, String>> keyupChangeHandlers;
+    private final List<ChangeHandler<TextArea, String>> valueChangeHandlers;
     private boolean autoResize;
     private TextAreaResize resize;
 
@@ -84,11 +86,14 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
                                 .aria(invalid, false))
                         .element(),
                 ComponentType.TextInput);
-        this.changeHandlers = new ArrayList<>();
+        this.keyupChangeHandlers = new ArrayList<>();
+        this.valueChangeHandlers = new ArrayList<>();
 
         textAreaElement = (HTMLTextAreaElement) element().firstElementChild;
         textAreaElement.addEventListener(keyup.name,
-                e -> changeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
+                e -> keyupChangeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
+        textAreaElement.addEventListener(change.name,
+                e -> valueChangeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
         if (value != null) {
             value(value);
         }
@@ -162,8 +167,8 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     public TextArea value(String value, boolean fireEvent) {
         boolean changed = !Objects.equals(textAreaElement.value, value);
         textAreaElement.value = value;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
+            valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
         }
         return this;
     }
@@ -183,10 +188,19 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
 
     /**
      * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
-     * adding an event listener for the keyup event to the text area element.
+     * adding an event listener for the {@link org.jboss.elemento.EventType#keyup} event to the text area element.
+     */
+    public TextArea onKeyup(ChangeHandler<TextArea, String> changeHandler) {
+        keyupChangeHandlers.add(changeHandler);
+        return this;
+    }
+
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the {@link org.jboss.elemento.EventType#change} event to the text area element.
      */
     public TextArea onChange(ChangeHandler<TextArea, String> changeHandler) {
-        changeHandlers.add(changeHandler);
+        valueChangeHandlers.add(changeHandler);
         return this;
     }
 
