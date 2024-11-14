@@ -68,7 +68,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                 .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "sig"))
                         .icon(search())
                         .placeholder(placeholder)
-                        .onChange((e, tig, value) -> textEntered.set(!value.isEmpty())))
+                        .onKeyup((e, tig, value) -> textEntered.set(!value.isEmpty())))
                 .addUtilities(textInputGroupUtilities()
                         .add(button().icon(times()).plain()
                                 .on(click, e -> {
@@ -93,7 +93,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                 .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "fig"))
                         .addChipGroup(chipGroup)
                         .placeholder(placeholder)
-                        .onChange((e, tig, value) -> {
+                        .onKeyup((e, tig, value) -> {
                             textEntered.set(!value.isEmpty());
                             if (Key.Enter.match(e) && !value.isEmpty()) {
                                 chipGroup.addItem(chip(value).onClose(closeHandler));
@@ -196,6 +196,12 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     }
 
     // ------------------------------------------------------ events
+
+    /** Delegates to {@link TextInputGroupMain#onKeyup(ChangeHandler)} */
+    public TextInputGroup onKeyup(ChangeHandler<TextInputGroup, String> changeHandler) {
+        main.onKeyup(changeHandler);
+        return this;
+    }
 
     /** Delegates to {@link TextInputGroupMain#onChange(ChangeHandler)} */
     public TextInputGroup onChange(ChangeHandler<TextInputGroup, String> changeHandler) {

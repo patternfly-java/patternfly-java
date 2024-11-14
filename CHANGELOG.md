@@ -14,9 +14,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `HasItems.contains(String identifier)`
 - `HasItems` → `WithIdentifier` and `ComponentContext` is now implemented by `Form` → `FormGroup`
 - Add `TextArea.placeholder(String placeholder)`
+- Add `AlertGroup.toastAlertGroup()` factory method
+- Add `FormSelect.selectFirstValue()` and `FormSelect.containsValue()`
+- Add `TextArea.onKeyup()` and `TextInput.onKeyup()`
 
 ### Changed
 
+- Change internal event handler for `TextArea.onChange()` and `TextInput.onChange()` from `keyup` to `change`
 - Rename `InputGroupItem.addFormControl(FormControl control)` to `InputGroupItem.addControl(FormControl control)`
 - Replace `FormGroup.fieldId(String id)` with `FormGroup.formGroup(String identifier)`
 - Replace yarn with npm

@@ -69,14 +69,16 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
 
     private final HTMLInputElement inputElement;
     private final HTMLElement textContainer;
-    private final List<ChangeHandler<TextInputGroup, String>> changeHandlers;
+    private final List<ChangeHandler<TextInputGroup, String>> keyupChangeHandlers;
+    private final List<ChangeHandler<TextInputGroup, String>> valueChangeHandlers;
     private HTMLElement iconContainer;
     private ChipGroup chipGroup;
     private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, main)).element());
-        this.changeHandlers = new ArrayList<>();
+        this.keyupChangeHandlers = new ArrayList<>();
+        this.valueChangeHandlers = new ArrayList<>();
 
         add(textContainer = span().css(component(Classes.textInputGroup, Classes.text))
                 .add(inputElement = input(InputType.text).css(component(Classes.textInputGroup, textInput))
@@ -88,9 +90,14 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
             if (textInputGroup == null) {
                 textInputGroup = lookupComponent();
             }
-            changeHandlers.forEach(changeHandler -> changeHandler.onChange(e, textInputGroup, inputElement.value));
+            keyupChangeHandlers.forEach(changeHandler -> changeHandler.onChange(e, textInputGroup, inputElement.value));
         });
-
+        inputElement.addEventListener(keyup.name, e -> {
+            if (textInputGroup == null) {
+                textInputGroup = lookupComponent();
+            }
+            valueChangeHandlers.forEach(changeHandler -> changeHandler.onChange(e, textInputGroup, inputElement.value));
+        });
     }
 
     // ------------------------------------------------------ add
@@ -147,14 +154,14 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
     public TextInputGroupMain value(String value, boolean fireEvent) {
         boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
+        if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
             if (textInputGroup == null) {
                 textInputGroup = lookupComponent(true); // might not be available yet!
                 if (textInputGroup != null) {
-                    changeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
+                    valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
                 }
             } else {
-                changeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
+                valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), textInputGroup, value));
             }
         }
         return this;
@@ -174,11 +181,20 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
     // ------------------------------------------------------ events
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of input element changes. Changes are detected by
-     * adding an event listener for the keyup event to the text area element.
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the {@link org.jboss.elemento.EventType#keyup} event to the text input element.
+     */
+    public TextInputGroupMain onKeyup(ChangeHandler<TextInputGroup, String> changeHandler) {
+        keyupChangeHandlers.add(changeHandler);
+        return this;
+    }
+
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the {@link org.jboss.elemento.EventType#change} event to the text input element.
      */
     public TextInputGroupMain onChange(ChangeHandler<TextInputGroup, String> changeHandler) {
-        changeHandlers.add(changeHandler);
+        valueChangeHandlers.add(changeHandler);
         return this;
     }
 

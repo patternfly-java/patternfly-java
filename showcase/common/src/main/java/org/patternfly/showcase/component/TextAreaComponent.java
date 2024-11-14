@@ -77,7 +77,7 @@ public class TextAreaComponent extends SnippetPage {
             final double[] handle = {0};
             HelperText helperText = helperText("Share your thoughts.");
             TextArea textArea = textArea("validated-text-area-0")
-                    .onChange((e, ta, value) -> {
+                    .onKeyup((e, ta, value) -> {
                         clearTimeout(handle[0]);
                         ta.validated(default_);
                         helperText.firstItem()
