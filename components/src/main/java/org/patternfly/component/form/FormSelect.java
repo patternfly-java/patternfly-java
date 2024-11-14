@@ -173,6 +173,20 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         return this;
     }
 
+    public void selectFirstValue() {
+        if (selectElement.options.length > 0) {
+            String firstValue = selectElement.options.getAt(0).value;
+            value(firstValue);
+        }
+    }
+
+    public void selectFirstValue(boolean fireEvent) {
+        if (selectElement.options.length > 0) {
+            String firstValue = selectElement.options.getAt(0).value;
+            value(firstValue, fireEvent);
+        }
+    }
+
     /** Provides access to the underlying select element using a fluent API style */
     public FormSelect applyTo(Consumer<HTMLElementBuilder<HTMLSelectElement>> consumer) {
         consumer.accept(selectElement());
@@ -200,6 +214,15 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     @Override
     public String value() {
         return selectElement.value;
+    }
+
+    public boolean containsValue(String value) {
+        for (int i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options.getAt(i).value.equals(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Returns the underlying input element */

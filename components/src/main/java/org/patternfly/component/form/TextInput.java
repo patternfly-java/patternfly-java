@@ -45,7 +45,9 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
+import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.keyup;
+import static org.patternfly.component.form.TextInputType.number;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
@@ -92,7 +94,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         typeMapping.put(TextInputType.date, InputType.date);
         typeMapping.put(TextInputType.email, InputType.email);
         typeMapping.put(TextInputType.month, InputType.month);
-        typeMapping.put(TextInputType.number, InputType.number);
+        typeMapping.put(number, InputType.number);
         typeMapping.put(TextInputType.search, InputType.search);
         typeMapping.put(TextInputType.tel, InputType.tel);
         typeMapping.put(TextInputType.text, InputType.text);
@@ -101,7 +103,8 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     private final HTMLInputElement inputElement;
-    private final List<ChangeHandler<TextInput, String>> changeHandlers;
+    private final List<ChangeHandler<TextInput, String>> keyupChangeHandlers;
+    private final List<ChangeHandler<TextInput, String>> valueChangeHandlers;
     private HTMLElement iconContainer;
 
     TextInput(TextInputType type, String id, String value) {
@@ -112,10 +115,14 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
                                 .aria(invalid, false))
                         .element(),
                 ComponentType.TextInput);
-        this.changeHandlers = new ArrayList<>();
+        this.keyupChangeHandlers = new ArrayList<>();
+        this.valueChangeHandlers = new ArrayList<>();
 
         inputElement = (HTMLInputElement) element().firstElementChild;
-        inputElement.addEventListener(keyup.name, e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
+        inputElement.addEventListener(keyup.name,
+                e -> keyupChangeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
+        inputElement.addEventListener(change.name,
+                e -> valueChangeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
         if (value != null) {
             value(value);
         }
@@ -169,8 +176,8 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     public TextInput value(String value, boolean fireEvent) {
         boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
+            valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
         }
         return this;
     }
@@ -216,11 +223,20 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ events
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of this text input changes. Changes are detected by
-     * adding an event listener for the keyup event to the text input element.
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the {@link org.jboss.elemento.EventType#keyup} event to the text input element.
+     */
+    public TextInput onKeyup(ChangeHandler<TextInput, String> changeHandler) {
+        keyupChangeHandlers.add(changeHandler);
+        return this;
+    }
+
+    /**
+     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
+     * adding an event listener for the {@link org.jboss.elemento.EventType#change} event to the text input element.
      */
     public TextInput onChange(ChangeHandler<TextInput, String> changeHandler) {
-        changeHandlers.add(changeHandler);
+        valueChangeHandlers.add(changeHandler);
         return this;
     }
 

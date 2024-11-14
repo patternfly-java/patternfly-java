@@ -17,5 +17,6 @@ package org.patternfly.core;
 
 public interface Timeouts {
 
-    double LOADING_TIMEOUT = 222;
+    int LOADING_TIMEOUT = 222;
+    int TOAST_TIMEOUT = 8000;
 }

@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.form;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -29,6 +31,7 @@ import org.patternfly.style.Modifiers.Horizontal;
 import elemental2.dom.HTMLFormElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.limitWidth;
@@ -54,10 +57,12 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     // ------------------------------------------------------ instance
 
     private final Map<String, FormGroup> items;
+    private final List<FormAlert> alerts;
 
     Form() {
         super(ComponentType.Form, Elements.form().css(component(form)).apply(f -> f.noValidate = true).element());
         this.items = new LinkedHashMap<>();
+        this.alerts = new ArrayList<>();
         storeComponent();
     }
 
@@ -87,6 +92,12 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     public Form addAlert(FormAlert alert) {
         return add(alert);
+    }
+
+    public Form add(FormAlert alert) {
+        alerts.add(alert);
+        insertFirst(element(), alert.element());
+        return this;
     }
 
     public Form addSection(FormSection section) {
@@ -140,5 +151,11 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
             failSafeRemoveFromParent(group);
         }
         items.clear();
+    }
+
+    public void clearAlerts() {
+        for (FormAlert alert : alerts) {
+            failSafeRemoveFromParent(alert);
+        }
     }
 }
