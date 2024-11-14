@@ -22,6 +22,7 @@ import java.util.Map;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.core.Timeouts;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -60,7 +61,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     private static AlertGroup toast;
 
     /**
-     * Creates a new alert group of the given type without timeout.
+     * Creates a new alert group of the given type without a timeout.
      * <p>
      * If the type is {@link AlertGroupType#toast} the alert group is added to the body or if it already has been added the
      * existing alert group is returned (singleton pattern).
@@ -85,6 +86,10 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         } else {
             return new AlertGroup(type, timeout);
         }
+    }
+
+    public static AlertGroup toastAlertGroup() {
+        return alertGroup(AlertGroupType.toast, Timeouts.TOAST_TIMEOUT);
     }
 
     // ------------------------------------------------------ instance
