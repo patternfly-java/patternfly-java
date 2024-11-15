@@ -35,7 +35,7 @@
     <properties>
         <!-- Dependency versions -->
         <version.commons.text>1.12.0</version.commons.text>
-        <version.gwt>2.12.0</version.gwt>
+        <version.gwt>2.12.1</version.gwt>
         <version.intellij.markdown>0.7.3</version.intellij.markdown>
         <version.kie.j2cl.bom>0.2</version.kie.j2cl.bom>
 
