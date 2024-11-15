@@ -275,6 +275,11 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     @Override
+    public Label item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(listElement);
         items.clear();

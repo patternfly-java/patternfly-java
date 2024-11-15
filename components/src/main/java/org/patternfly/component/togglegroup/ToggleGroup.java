@@ -217,6 +217,11 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     @Override
+    public ToggleGroupItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

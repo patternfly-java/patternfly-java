@@ -130,6 +130,11 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
     }
 
     @Override
+    public ToolbarItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         items.clear();
         removeChildrenFrom(this);

@@ -427,6 +427,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     @Override
+    public TreeViewItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         if (status == static_) {
             removeChildrenFrom(element());

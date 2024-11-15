@@ -133,6 +133,11 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     @Override
+    public ListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

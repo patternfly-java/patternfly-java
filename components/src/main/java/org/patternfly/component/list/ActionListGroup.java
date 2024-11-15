@@ -86,6 +86,11 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     }
 
     @Override
+    public ActionListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

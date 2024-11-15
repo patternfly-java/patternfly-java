@@ -136,6 +136,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     @Override
+    public SimpleListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();

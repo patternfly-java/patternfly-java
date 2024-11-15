@@ -246,6 +246,11 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     @Override
+    public DescriptionListGroup item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

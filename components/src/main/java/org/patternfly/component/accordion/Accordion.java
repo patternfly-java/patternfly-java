@@ -210,6 +210,11 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     }
 
     @Override
+    public AccordionItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

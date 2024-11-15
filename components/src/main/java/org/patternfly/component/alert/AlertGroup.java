@@ -168,6 +168,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     }
 
     @Override
+    public Alert item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

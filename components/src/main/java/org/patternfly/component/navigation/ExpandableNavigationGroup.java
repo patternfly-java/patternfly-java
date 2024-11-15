@@ -258,6 +258,11 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     @Override
+    public NavigationItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();

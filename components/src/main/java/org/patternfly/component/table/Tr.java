@@ -363,6 +363,11 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     }
 
     @Override
+    public Cell<?> item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

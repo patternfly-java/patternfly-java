@@ -134,6 +134,11 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     @Override
+    public MenuItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         for (MenuItem item : items.values()) {
             failSafeRemoveFromParent(item);

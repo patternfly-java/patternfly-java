@@ -101,6 +101,11 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     }
 
     @Override
+    public ActionListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

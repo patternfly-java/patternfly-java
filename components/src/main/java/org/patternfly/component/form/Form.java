@@ -146,6 +146,11 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     }
 
     @Override
+    public FormGroup item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         for (FormGroup group : items.values()) {
             failSafeRemoveFromParent(group);

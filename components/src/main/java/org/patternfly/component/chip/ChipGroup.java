@@ -275,6 +275,11 @@ public class ChipGroup extends BaseComponent<HTMLDivElement, ChipGroup> implemen
         return items.containsKey(identifier);
     }
 
+    @Override
+    public Chip item(String identifier) {
+        return items.get(identifier);
+    }
+
     public void clear() {
         removeChildrenFrom(listElement);
         items.clear();

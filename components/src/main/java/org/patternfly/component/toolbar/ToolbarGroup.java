@@ -96,6 +96,11 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     }
 
     @Override
+    public ToolbarItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

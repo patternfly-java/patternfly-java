@@ -113,6 +113,11 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     @Override
+    public ToolbarItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(contentSection);
         items.clear();

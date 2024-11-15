@@ -129,6 +129,11 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     }
 
     @Override
+    public DataListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

@@ -61,5 +61,7 @@ public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
 
     boolean contains(String identifier);
 
+    S item(String identifier);
+
     void clear();
 }

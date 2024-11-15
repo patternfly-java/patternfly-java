@@ -8,15 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `Tbody.clearEmpty()`
-- Add `TreeViewItem.reload()`
-- Add `TreeViewItem.parent()`
+- Add `HasItems.item(String identifier)`
 - Add `HasItems.contains(String identifier)`
 - `HasItems` → `WithIdentifier` and `ComponentContext` is now implemented by `Form` → `FormGroup`
-- Add `TextArea.placeholder(String placeholder)`
 - Add `AlertGroup.toastAlertGroup()` factory method
 - Add `FormSelect.selectFirstValue()` and `FormSelect.containsValue()`
+- Add `Tbody.clearEmpty()`
+- Add `TextArea.placeholder(String placeholder)`
 - Add `TextArea.onKeyup()` and `TextInput.onKeyup()`
+- Add `TreeViewItem.reload()`
+- Add `TreeViewItem.parent()`
 
 ### Changed
 

@@ -694,6 +694,11 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
     }
 
     @Override
+    public Tab item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         for (Tab tab : items.values()) {
             internalClose(tab);

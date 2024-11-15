@@ -90,6 +90,11 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     }
 
     @Override
+    public JumpLinksItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
         items.clear();

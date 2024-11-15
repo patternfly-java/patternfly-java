@@ -129,6 +129,11 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
     }
 
     @Override
+    public BreadcrumbItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ol);
         items.clear();

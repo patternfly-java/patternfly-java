@@ -318,6 +318,11 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     }
 
     @Override
+    public TreeViewItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();

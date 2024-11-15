@@ -192,6 +192,11 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     @Override
+    public NavigationItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();

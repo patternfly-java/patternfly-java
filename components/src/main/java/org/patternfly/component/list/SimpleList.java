@@ -187,6 +187,11 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     @Override
+    public SimpleListItem item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();
