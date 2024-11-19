@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.2.11] - 2024-11-19
 
+## [0.2.11] - 2024-11-19
+
 ### Added
 
 - Add `HasItems.item(String identifier)`
@@ -479,6 +481,7 @@ Stay tuned for more to come...
 -->
 
 [Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...HEAD
+[0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...v0.2.11
 [0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.8...v0.2.9
