@@ -169,7 +169,7 @@ class ReleaseCommand : CliktCommand(name = "release") {
         step("Push tag") {
             shellRun {
                 command("git", listOf("tag", release.tag))
-                command("push", listOf("--tags", "origin", "main"))
+                command("git", listOf("push", "--tags", "origin", "main"))
             }
         }
 
