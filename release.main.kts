@@ -6,7 +6,8 @@
 @file:DependsOn("io.github.z4kn4fein:semver-jvm:2.0.0")
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-import Release_main.ReleaseError.*
+import ReleaseError.TagExists
+import ReleaseError.UncommittedChanges
 import arrow.core.Either.Companion.catch
 import arrow.core.Either.Left
 import arrow.core.Either.Right
