@@ -107,7 +107,7 @@ Here’s the dependency graph of these maven modules and its external dependenci
 
 PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
 
-In general the API for a component can be classified into these groups:
+In general, the API for a component can be classified into these groups:
 
 ## Static factory methods
 
@@ -142,9 +142,9 @@ Card card = card()
         .large();
 ```
 
-## ARIA related methods
+## ARIA-related methods
 
-These methods set ARIA related attributes in the component. They're usually named `aria<Attribute>()` and return the component so that the method call can be chained with other methods.
+These methods set ARIA-related attributes in the component. They're usually named `aria<Attribute>()` and return the component so that the method call can be chained with other methods.
 
 ```java
 Navigation navigation = navigation(flat)

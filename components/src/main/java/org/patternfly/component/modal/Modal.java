@@ -98,11 +98,13 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     private ModalFooter footer;
     private HTMLElement target;
     private HandlerRegistration escapeHandler;
+    boolean closeOnEsc;
     boolean autoClose;
 
     Modal() {
         super(ComponentType.Modal);
         this.open = false;
+        this.closeOnEsc = true;
         this.autoClose = false;
         this.hideClose = false;
         this.closeHandler = new ArrayList<>();
@@ -225,6 +227,11 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
 
     // ------------------------------------------------------ builder
 
+    public Modal closeOnEsc(boolean closeOnEsc) {
+        this.closeOnEsc = closeOnEsc;
+        return this;
+    }
+
     public Modal autoClose(boolean autoClose) {
         this.autoClose = autoClose;
         return this;
@@ -281,9 +288,9 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
             HTMLElement failSafeTarget = failSafeTarget();
             failSafeTarget.appendChild(backdrop.element());
             failSafeTarget.classList.add(component(Classes.backdrop, Classes.open));
-            if (autoClose) {
+            if (closeOnEsc || autoClose) {
                 escapeHandler = bind(failSafeTarget, keydown, e -> {
-                    if (Key.Escape.match(e) && autoClose) {
+                    if (Key.Escape.match(e) && (closeOnEsc || autoClose)) {
                         close(e, true);
                     }
                 });

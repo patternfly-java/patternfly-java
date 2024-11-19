@@ -1,8 +1,8 @@
-First off, thank you for considering contributing to PatternFly Java. PatternFly Java is an open source project, and we love to receive contributions from our community — you! There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into PatternFly Java itself.
+First off, thank you for considering contributing to PatternFly Java. PatternFly Java is an open source project, and we love to receive contributions from our community — you! There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests, or writing code which can be incorporated into PatternFly Java itself.
 
-We expect all contributors and users to follow our [Code of Conduct](CODE_OF_CONDUCT.md) when communicating through project channels. These include, but are not limited to: chat, issues, code.
+We expect all contributors and users to follow our [Code of Conduct](CODE_OF_CONDUCT.md) when communicating through project channels. These include but are not limited to: chat, issues, code.
 
-# One time setup
+# One-time setup
 
 ## Create a GitHub account
 
@@ -39,7 +39,7 @@ git pull --rebase upstream main
 
 > Note that --rebase will automatically move your local commits, if you have
 > any, on top of the latest branch you pull from.
-> If you don't have any commits it is safe to leave off, but for safety it
+> If you don't have any commits, it is safe to leave off, but for safety it
 > doesn't hurt to use it each time just in case you have a commit you've
 > forgotten about!
 
@@ -61,7 +61,7 @@ Make whatever code changes, including new tests to verify your change, are neces
 mvn clean verify
 ```
 
-> If you're making non code changes, the above step is not required.
+> If you're making non-code changes, the above step is not required.
 
 ## Commit changes
 
@@ -91,9 +91,9 @@ git push origin my_cool_feature
 
 Now your updates are in your GitHub repo, you will need to notify the project that you have code/docs for inclusion.
 
- * Send a pull request, by clicking the pull request link while in your repository fork
+ * Send a pull request by clicking the pull request link while in your repository fork
  * After review a maintainer will merge your pull request, update/resolve associated issues, and reply when complete
- * Lastly, switch back to main from your topic branch and pull the updates
+ * Lastly, switch back to the main branch from your topic branch and pull the updates
 
 ```bash
 git checkout main
@@ -111,4 +111,4 @@ git push origin
 Here are some tips on increasing the chance that your pull request is accepted:
 
  * Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
- * Include tests that fail without your code, and pass with it
+ * Include tests that fail without your code and pass with it

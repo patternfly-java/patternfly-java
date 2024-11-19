@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `HasItems` → `WithIdentifier` and `ComponentContext` is now implemented by `Form` → `FormGroup`
 - Add `AlertGroup.toastAlertGroup()` factory method
 - Add `FormSelect.selectFirstValue()` and `FormSelect.containsValue()`
+- Add `Modal.closeOnEsc(boolean)`
 - Add `Tbody.clearEmpty()`
 - Add `TextArea.placeholder(String placeholder)`
 - Add `TextArea.onKeyup()` and `TextInput.onKeyup()`
@@ -29,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Fix `Panel.addMain(PanelMain)`
+- Fix `GridBreakpoint.none` constant
 
 ## [0.2.10] - 2024-09-22
 

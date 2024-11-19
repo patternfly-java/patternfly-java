@@ -25,7 +25,7 @@ public enum GridBreakpoint implements TypedModifier {
 
     empty(""),
 
-    none("none"),
+    none("grid-none"),
 
     always("grid"),
 

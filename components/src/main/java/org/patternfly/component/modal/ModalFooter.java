@@ -55,10 +55,9 @@ public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> imp
         for (ButtonHandler bh : buttons) {
             if (bh.handler != null) {
                 bh.button.onClick((event, component) -> bh.handler.handle(event, modal));
-            } else {
-                if (modal.autoClose) {
-                    bh.button.onClick((event, component) -> modal.close());
-                }
+            }
+            if (modal.autoClose) {
+                bh.button.onClick((event, component) -> modal.close());
             }
         }
     }

@@ -6,7 +6,7 @@ The bulk of the showcase code is in the [`common`](https://github.com/patternfly
 
 # Build
 
-To build the showcase you can use the `dev.sh` and `prod.sh` scripts:
+To build the showcase, you can use the `dev.sh` and `prod.sh` scripts:
 
 ## Development
 
@@ -42,7 +42,7 @@ Run `./dev.sh j2cl`, wait until you see
 then open another shell in `showcase/j2cl` and run
 
 ```shell
-yarn run watch
+npm run watch
 ```
 
 This will open https://localhost:1234/.
