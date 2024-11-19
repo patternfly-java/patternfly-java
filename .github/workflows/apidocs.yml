@@ -26,5 +26,5 @@ jobs:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/apidocs
           branch: main
-          folder: ./target/site/apidocs
+          folder: ./target/reports/apidocs
           clean: true

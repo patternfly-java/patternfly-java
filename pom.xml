@@ -565,38 +565,39 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <copy todir="target/site/apidocs/org/patternfly"
+                                        <mkdir dir="target/reports/apidocs/org/patternfly"/>
+                                        <copy todir="target/reports/apidocs/org/patternfly"
                                               overwrite="true"
                                               failonerror="false">
-                                            <fileset dir="components/target/site/apidocs/org/patternfly">
+                                            <fileset dir="components/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="core/target/site/apidocs/org/patternfly">
+                                            <fileset dir="core/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="extensions/codeeditor/target/site/apidocs/org/patternfly">
+                                            <fileset dir="extensions/codeeditor/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="extensions/finder/target/site/apidocs/org/patternfly">
+                                            <fileset dir="extensions/finder/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="gwt/target/site/apidocs/org/patternfly">
+                                            <fileset dir="gwt/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="icons/target/site/apidocs/org/patternfly">
+                                            <fileset dir="icons/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="j2cl/target/site/apidocs/org/patternfly">
+                                            <fileset dir="j2cl/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
-                                            <fileset dir="layouts/target/site/apidocs/org/patternfly">
+                                            <fileset dir="layouts/target/reports/apidocs/org/patternfly">
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
