@@ -28,7 +28,7 @@ import org.patternfly.icon.PredefinedIcon;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.DomGlobal.navigator;
+import static elemental2.dom.DomGlobal.navigator;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;

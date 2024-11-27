@@ -21,11 +21,11 @@ import java.util.Map;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLAnchorElement;

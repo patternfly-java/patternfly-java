@@ -83,14 +83,14 @@
     <properties>
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
-        <version.elemento>1.6.11</version.elemento>
+        <version.elemento>1.6.12-SNAPSHOT</version.elemento>
         <version.gwt>2.12.1</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
         <version.junit>5.11.3</version.junit>
         <version.kotlin>2.0.21</version.kotlin>
         <version.node>v20.18.0</version.node>
-        <version.patternfly>5.2.1</version.patternfly>
+        <version.patternfly>6.0.0</version.patternfly>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
@@ -99,7 +99,7 @@
         <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
         <version.frontend.plugin>1.15.1</version.frontend.plugin>
         <version.gwt.plugin>1.1.0</version.gwt.plugin>
-        <version.j2cl.plugin>0.23.1</version.j2cl.plugin>
+        <version.j2cl.plugin>0.23.2</version.j2cl.plugin>
         <version.impsort.plugin>1.12.0</version.impsort.plugin>
         <version.javadoc.plugin>3.11.1</version.javadoc.plugin>
         <version.keepachangelog>2.1.1</version.keepachangelog>
@@ -132,6 +132,7 @@
         <module>icons</module>
         <module>j2cl</module>
         <module>layouts</module>
+        <module>tokens</module>
     </modules>
 
     <!-- No dependencies! Dependencies are managed in core-parent -->
@@ -218,9 +219,9 @@
                                     <exclude>release.main.kts</exclude>
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
+                                    <exclude>**/package-lock.json</exclude>
                                     <exclude>**/*.ftl</exclude>
                                     <exclude>**/*.pem</exclude>
-                                    <exclude>**/yarn.lock</exclude>
                                     <exclude>**/*license*.txt</exclude>
                                     <exclude>**/.parcel-cache/**</exclude>
                                     <exclude>**/node/**</exclude>
@@ -233,6 +234,7 @@
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/token/Token.java</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>

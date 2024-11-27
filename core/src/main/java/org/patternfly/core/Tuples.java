@@ -127,6 +127,7 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
             K key6, V value6,
             K key7, V value7,
             K key8, V value8) {
+        //noinspection DuplicatedCode
         List<Tuple<K, V>> tuples = new ArrayList<>();
         tuples.add(new Tuple<>(key1, value1));
         tuples.add(new Tuple<>(key2, value2));
@@ -149,6 +150,7 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
             K key7, V value7,
             K key8, V value8,
             K key9, V value9) {
+        //noinspection DuplicatedCode
         List<Tuple<K, V>> tuples = new ArrayList<>();
         tuples.add(new Tuple<>(key1, value1));
         tuples.add(new Tuple<>(key2, value2));
@@ -173,6 +175,7 @@ public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
             K key8, V value8,
             K key9, V value9,
             K key10, V value10) {
+        //noinspection DuplicatedCode
         List<Tuple<K, V>> tuples = new ArrayList<>();
         tuples.add(new Tuple<>(key1, value1));
         tuples.add(new Tuple<>(key2, value2));

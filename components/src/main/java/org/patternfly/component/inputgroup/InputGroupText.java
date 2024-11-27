@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.inputgroup;
 
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
 

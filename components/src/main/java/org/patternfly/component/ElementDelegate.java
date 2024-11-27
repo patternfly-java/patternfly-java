@@ -13,10 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.component;
 
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.Container;
+import org.jboss.elemento.ElementAttributeMethods;
+import org.jboss.elemento.ElementClassListMethods;
+import org.jboss.elemento.ElementConsumerMethods;
+import org.jboss.elemento.ElementContainerMethods;
+import org.jboss.elemento.ElementEventMethods;
+import org.jboss.elemento.ElementIdMethods;
+import org.jboss.elemento.ElementQueryMethods;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HasElement;
 import org.jboss.elemento.TypedBuilder;
 
@@ -32,10 +40,17 @@ import elemental2.dom.NodeList;
  * Please note that if you implement this interface in your (sub)component, you must use {@code element().appendChild()} to add
  * something to the (sub)component itself!
  */
+@Deprecated
 public interface ElementDelegate<E extends Element, B extends TypedBuilder<E, B>> extends
         TypedBuilder<E, B>,
-        HasElement<E, B>,
-        Container<E, B> {
+        ElementAttributeMethods<E, B>,
+        ElementClassListMethods<E, B>,
+        ElementContainerMethods<E, B>,
+        ElementConsumerMethods<E, B>,
+        ElementEventMethods<E, B>,
+        ElementIdMethods<E, B>,
+        ElementQueryMethods<E>,
+        ElementTextMethods<E, B> {
 
     HTMLElement delegate();
 

@@ -515,7 +515,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     private void unselectAllItems() {
         // remove the current modifier from all navigation item <a/> elements
-        for (HTMLElement element : findAll(A_NAV_LINK_CURRENT)) {
+        for (HTMLElement element : querySelectorAll(A_NAV_LINK_CURRENT)) {
             element.classList.remove(modifier(current));
             element.removeAttribute(Aria.current);
         }
@@ -523,7 +523,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     private void unselectAllExpandableGroups() {
         // remove the current modifier from all expandable group <li/> elements
-        for (HTMLElement element : findAll(LI_NAV_ITEM_EXPANDABLE.and(By.classname(modifier(current))))) {
+        for (HTMLElement element : querySelectorAll(LI_NAV_ITEM_EXPANDABLE.and(By.classname(modifier(current))))) {
             element.classList.remove(modifier(current));
         }
     }

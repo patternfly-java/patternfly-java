@@ -15,10 +15,18 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.Container;
-import org.jboss.elemento.Finder;
-import org.jboss.elemento.HasElement;
-import org.jboss.elemento.HasHTMLElement;
+import org.jboss.elemento.ElementAttributeMethods;
+import org.jboss.elemento.ElementClassListMethods;
+import org.jboss.elemento.ElementConsumerMethods;
+import org.jboss.elemento.ElementContainerMethods;
+import org.jboss.elemento.ElementEventMethods;
+import org.jboss.elemento.ElementIdMethods;
+import org.jboss.elemento.ElementQueryMethods;
+import org.jboss.elemento.ElementTextMethods;
+import org.jboss.elemento.HTMLElementAttributeMethods;
+import org.jboss.elemento.HTMLElementDataMethods;
+import org.jboss.elemento.HTMLElementStyleMethods;
+import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
 
@@ -26,8 +34,19 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 
-public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>>
-        implements HasElement<E, B>, HasHTMLElement<E, B>, Finder<E>, Container<E, B> {
+public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
+        ElementAttributeMethods<E, B>,
+        ElementClassListMethods<E, B>,
+        ElementContainerMethods<E, B>,
+        ElementConsumerMethods<E, B>,
+        ElementEventMethods<E, B>,
+        ElementIdMethods<E, B>,
+        ElementQueryMethods<E>,
+        ElementTextMethods<E, B>,
+        HTMLElementAttributeMethods<E, B>,
+        HTMLElementDataMethods<E, B>,
+        HTMLElementStyleMethods<E, B>,
+        HTMLElementVisibilityMethods<E, B> {
 
     final ComponentType componentType;
     final String name;

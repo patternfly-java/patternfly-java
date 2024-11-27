@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;

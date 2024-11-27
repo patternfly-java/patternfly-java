@@ -20,13 +20,13 @@ import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;

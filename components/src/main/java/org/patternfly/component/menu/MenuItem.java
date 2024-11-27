@@ -224,11 +224,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.itemType = itemType;
         this.favoriteItem = null;
         this.initialSelection = item.initialSelection;
-        this.itemElement = find(By.classname(component(Classes.menu, Classes.item)));
-        this.mainElement = find(By.classname(component(Classes.menu, Classes.item, main)));
-        this.textElement = find(By.classname(component(Classes.menu, Classes.item, Classes.text)));
-        this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, icon)));
-        this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, description)));
+        this.itemElement = querySelector(By.classname(component(Classes.menu, Classes.item)));
+        this.mainElement = querySelector(By.classname(component(Classes.menu, Classes.item, main)));
+        this.textElement = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.text)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, icon)));
+        this.descriptionElement = querySelector(By.classname(component(Classes.menu, Classes.item, description)));
         // checkbox must not be used for cloned favorite items!
 
         this.handler = new ArrayList<>();
@@ -236,7 +236,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             onClick(h);
         }
         if (item.itemAction != null) {
-            HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
+            HTMLElement element = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.action)));
             if (element instanceof HTMLButtonElement) {
                 this.itemAction = new MenuItemAction(menu, this, item.itemAction, ((HTMLButtonElement) element));
             }
@@ -244,7 +244,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
         this.sourceItem = item;
         item.favoriteItem = this;
-        HTMLElement favoriteItemActionElement = find(
+        HTMLElement favoriteItemActionElement = querySelector(
                 By.classname(component(Classes.menu, Classes.item, Classes.action))
                         .and(By.classname(modifier(favorite))));
         if (favoriteItemActionElement != null) {

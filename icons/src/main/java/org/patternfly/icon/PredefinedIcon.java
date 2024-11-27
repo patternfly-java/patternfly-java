@@ -15,11 +15,16 @@
  */
 package org.patternfly.icon;
 
-import org.jboss.elemento.Container;
-import org.jboss.elemento.Finder;
-import org.jboss.elemento.HasElement;
-import org.jboss.elemento.svg.HasSVGElement;
+import org.jboss.elemento.ElementAttributeMethods;
+import org.jboss.elemento.ElementClassListMethods;
+import org.jboss.elemento.ElementConsumerMethods;
+import org.jboss.elemento.ElementEventMethods;
+import org.jboss.elemento.ElementIdMethods;
+import org.jboss.elemento.ElementQueryMethods;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.svg.SVGElement;
+import org.jboss.elemento.svg.SVGElementDataMethods;
+import org.jboss.elemento.svg.SVGElementStyleMethods;
 
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.svg.SVG.path;
@@ -34,10 +39,15 @@ import static org.patternfly.style.Classes.svg;
  * creating and configuring the SVG element for the icon.
  */
 public final class PredefinedIcon implements
-        HasElement<SVGElement, PredefinedIcon>,
-        HasSVGElement<SVGElement, PredefinedIcon>,
-        Finder<SVGElement>,
-        Container<SVGElement, PredefinedIcon> {
+        ElementAttributeMethods<SVGElement, PredefinedIcon>,
+        ElementClassListMethods<SVGElement, PredefinedIcon>,
+        ElementConsumerMethods<SVGElement, PredefinedIcon>,
+        ElementEventMethods<SVGElement, PredefinedIcon>,
+        ElementIdMethods<SVGElement, PredefinedIcon>,
+        ElementQueryMethods<SVGElement>,
+        ElementTextMethods<SVGElement, PredefinedIcon>,
+        SVGElementDataMethods<SVGElement, PredefinedIcon>,
+        SVGElementStyleMethods<SVGElement, PredefinedIcon> {
 
     public final IconSpec iconSpec;
     private final SVGElement element;

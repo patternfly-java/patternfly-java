@@ -21,10 +21,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 

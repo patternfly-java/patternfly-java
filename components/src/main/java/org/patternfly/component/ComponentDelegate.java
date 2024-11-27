@@ -15,9 +15,18 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.Finder;
-import org.jboss.elemento.HasElement;
-import org.jboss.elemento.HasHTMLElement;
+import org.jboss.elemento.ElementAttributeMethods;
+import org.jboss.elemento.ElementClassListMethods;
+import org.jboss.elemento.ElementConsumerMethods;
+import org.jboss.elemento.ElementContainerMethods;
+import org.jboss.elemento.ElementEventMethods;
+import org.jboss.elemento.ElementIdMethods;
+import org.jboss.elemento.ElementQueryMethods;
+import org.jboss.elemento.ElementTextMethods;
+import org.jboss.elemento.HTMLElementAttributeMethods;
+import org.jboss.elemento.HTMLElementDataMethods;
+import org.jboss.elemento.HTMLElementStyleMethods;
+import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
 
@@ -25,8 +34,21 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 
-public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>>
-        implements Component, HasElement<E, B>, HasHTMLElement<E, B>, Finder<E> {
+@Deprecated
+public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
+        Component,
+        ElementAttributeMethods<E, B>,
+        ElementClassListMethods<E, B>,
+        ElementContainerMethods<E, B>,
+        ElementConsumerMethods<E, B>,
+        ElementEventMethods<E, B>,
+        ElementIdMethods<E, B>,
+        ElementQueryMethods<E>,
+        ElementTextMethods<E, B>,
+        HTMLElementAttributeMethods<E, B>,
+        HTMLElementDataMethods<E, B>,
+        HTMLElementStyleMethods<E, B>,
+        HTMLElementVisibilityMethods<E, B> {
 
     private static final Logger logger = Logger.getLogger(ComponentDelegate.class.getName());
     private final ComponentType componentType;

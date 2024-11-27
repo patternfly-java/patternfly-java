@@ -15,17 +15,16 @@
  */
 package org.patternfly.style;
 
-import org.jboss.elemento.HasHTMLElement;
+import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
+import org.jboss.elemento.svg.SVGElementStyleMethods;
 import org.patternfly.core.Version;
 
 import elemental2.dom.HTMLElement;
 
 import static org.patternfly.style.VariableNames.componentName;
-import static org.patternfly.style.VariableNames.globalName;
 import static org.patternfly.style.VariableNames.utilName;
 
 /**
@@ -39,17 +38,6 @@ public class Variable {
     // ------------------------------------------------------ factory
 
     /**
-     * Constructs a global {@linkplain Variable variable} with the given elements.
-     *
-     * @param firstElement  the first element to include in the variable name
-     * @param otherElements additional elements to append to the variable name
-     * @return a new {@link Variable} object with the constructed variable name
-     */
-    public static Variable globalVar(String firstElement, String... otherElements) {
-        return new Variable(VariableScope.global, globalName(firstElement, otherElements));
-    }
-
-    /**
      * Constructs a utility {@linkplain Variable variable} with the given elements.
      *
      * @param firstElement  the first element to include in the variable name
@@ -57,7 +45,7 @@ public class Variable {
      * @return a new {@link Variable} object with the constructed variable name
      */
     public static Variable utilVar(String firstElement, String... otherElements) {
-        return new Variable(VariableScope.global, utilName(firstElement, otherElements));
+        return new Variable(utilName(firstElement, otherElements));
     }
 
     /**
@@ -70,22 +58,20 @@ public class Variable {
     public static Variable componentVar(String component, String... elements) {
         String name = componentName(component, elements);
         if (name.isEmpty()) {
-            logger.error(
-                    "Component '%s' in Variable.componentVar(String) does not start with 'pf-%s-'. Please use Classes.component(String) to build the component.",
+            logger.error("Component '%s' in Variable.componentVar(String) does not start with 'pf-%s-'. " +
+                            "Please use Classes.component(String) to build the component.",
                     component, Version.PATTERN_FLY_MAJOR_VERSION);
         }
-        return new Variable(VariableScope.component, name);
+        return new Variable(name);
     }
 
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Variable.class.getName());
-    public final VariableScope scope;
     public final String name;
     final boolean valid;
 
-    Variable(VariableScope scope, String name) {
-        this.scope = scope;
+    Variable(String name) {
         this.name = name;
         this.valid = !name.isEmpty();
     }
@@ -97,12 +83,12 @@ public class Variable {
     }
 
     public <E extends HTMLElement, B extends TypedBuilder<E, B>> VariableAssignments.HTMLBuilder<E, B> applyTo(
-            HasHTMLElement<E, B> element) {
+            HTMLElementStyleMethods<E, B> element) {
         return new VariableAssignments.HTMLBuilder<>(this, element);
     }
 
     public <E extends SVGElement, B extends TypedBuilder<E, B>> VariableAssignments.SVGBuilder<E, B> applyTo(
-            HasSVGElement<E, B> element) {
+            SVGElementStyleMethods<E, B> element) {
         return new VariableAssignments.SVGBuilder<>(this, element);
     }
 

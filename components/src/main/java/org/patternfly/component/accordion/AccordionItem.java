@@ -24,12 +24,12 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;

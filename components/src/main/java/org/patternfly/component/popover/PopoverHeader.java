@@ -17,7 +17,7 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;

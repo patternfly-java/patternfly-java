@@ -21,8 +21,8 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.Id;
-import org.jboss.elemento.InputElementBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponentFlat;
 import org.patternfly.component.ComponentType;
@@ -202,7 +202,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
     }
 
     /** Provides access to the underlying checkbox element using a fluent API style */
-    public Switch applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+    public Switch applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
         consumer.accept(inputElement());
         return this;
     }
@@ -233,7 +233,7 @@ public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implemen
         return inputElement.checked;
     }
 
-    public InputElementBuilder<HTMLInputElement> inputElement() {
+    public HTMLInputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);
     }
 }

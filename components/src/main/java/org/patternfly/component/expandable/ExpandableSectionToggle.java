@@ -129,7 +129,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLB
     }
 
     void removeIcon() {
-        HTMLElement icon = find(By.classname(component(Classes.expandableSection, toggle, Classes.icon)));
+        HTMLElement icon = querySelector(By.classname(component(Classes.expandableSection, toggle, Classes.icon)));
         failSafeRemoveFromParent(icon);
     }
 }

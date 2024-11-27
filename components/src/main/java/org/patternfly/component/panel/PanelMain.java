@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.panel;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;

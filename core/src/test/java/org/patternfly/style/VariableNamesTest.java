@@ -20,26 +20,26 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.VariableNames.componentName;
-import static org.patternfly.style.VariableNames.globalName;
+import static org.patternfly.style.VariableNames.utilName;
 
 class VariableNamesTest {
 
     @Test
     void nil() {
-        assertEquals("", globalName(null));
+        assertEquals("", utilName(null));
         assertEquals("", componentName(null));
     }
 
     @Test
     void empty() {
-        assertEquals("", globalName(""));
+        assertEquals("", utilName(""));
         assertEquals("", componentName(""));
     }
 
     @Test
-    void global() {
-        assertEquals("--pf-v5-global--foo", globalName("foo"));
-        assertEquals("--pf-v5-global--foo--bar", globalName("foo", "bar"));
+    void util() {
+        assertEquals("--pf-v5-u--foo", utilName("foo"));
+        assertEquals("--pf-v5-u--foo--bar", utilName("foo", "bar"));
     }
 
     @Test

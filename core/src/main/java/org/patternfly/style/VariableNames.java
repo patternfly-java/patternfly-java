@@ -17,24 +17,8 @@ package org.patternfly.style;
 
 import org.patternfly.core.Version;
 
+// In an extra class to simplify unit testing
 class VariableNames {
-
-    static String globalName(String firstElement, String... otherElements) {
-        StringBuilder builder = new StringBuilder();
-        if (firstElement != null && !firstElement.isEmpty()) {
-            builder.append("--pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-global--").append(firstElement);
-            if (otherElements != null && otherElements.length != 0) {
-                builder.append("--");
-                for (int i = 0; i < otherElements.length; i++) {
-                    builder.append(otherElements[i]);
-                    if (i < otherElements.length - 1) {
-                        builder.append("--");
-                    }
-                }
-            }
-        }
-        return builder.toString();
-    }
 
     static String utilName(String firstElement, String... otherElements) {
         StringBuilder builder = new StringBuilder();

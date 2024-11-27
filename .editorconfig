@@ -354,7 +354,7 @@ ij_typescript_while_brace_force = never
 ij_typescript_while_on_new_line = false
 ij_typescript_wrap_comments = true
 
-[{*.cjs,*.js}]
+[{*.cjs,*.mjs,*.js}]
 ij_continuation_indent_size = 4
 ij_javascript_align_imports = false
 ij_javascript_align_multiline_array_initializer_expression = false

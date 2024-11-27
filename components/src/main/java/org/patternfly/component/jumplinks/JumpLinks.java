@@ -330,7 +330,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     private void unselectAllItems() {
-        for (HTMLElement element : findAll(JUMP_LINKS_ITEMS)) {
+        for (HTMLElement element : querySelectorAll(JUMP_LINKS_ITEMS)) {
             element.classList.remove(modifier(current));
             element.removeAttribute(Aria.current);
         }

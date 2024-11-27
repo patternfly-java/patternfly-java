@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.jboss.elemento.InputElementBuilder;
+import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -165,7 +165,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     }
 
     /** Provides access to the underlying radio element using a fluent API style */
-    public Radio applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+    public Radio applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
         consumer.accept(inputElement());
         return this;
     }
@@ -192,7 +192,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         return inputElement.checked;
     }
 
-    public InputElementBuilder<HTMLInputElement> inputElement() {
+    public HTMLInputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);
     }
 }

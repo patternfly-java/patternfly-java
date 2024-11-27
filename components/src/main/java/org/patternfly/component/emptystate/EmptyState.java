@@ -17,7 +17,7 @@ package org.patternfly.component.emptystate;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Size;
 

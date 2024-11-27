@@ -9,6 +9,6 @@ import javax.annotation.processing.Generated;
 public interface Version {
 
     String PATTERN_FLY_JAVA_VERSION = "0.2.12-SNAPSHOT";
-    String PATTERN_FLY_VERSION = "5.2.1";
-    String PATTERN_FLY_MAJOR_VERSION = "v5";
+    String PATTERN_FLY_VERSION = "6.0.0";
+    String PATTERN_FLY_MAJOR_VERSION = "v6";
 }

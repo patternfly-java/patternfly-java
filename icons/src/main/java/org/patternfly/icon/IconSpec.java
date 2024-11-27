@@ -23,7 +23,7 @@ package org.patternfly.icon;
  */
 public final class IconSpec {
 
-    /** name of icon set */
+    /** name of the icon set */
     public final String set;
 
     /** unique icon name */

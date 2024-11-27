@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.jboss.elemento.InputElementBuilder;
+import org.jboss.elemento.HTMLInputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -190,7 +190,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
     }
 
     /** Provides access to the underlying checkbox element using a fluent API style */
-    public Checkbox applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+    public Checkbox applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
         consumer.accept(inputElement());
         return this;
     }
@@ -217,7 +217,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         return inputElement.checked;
     }
 
-    public InputElementBuilder<HTMLInputElement> inputElement() {
+    public HTMLInputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);
     }
 }

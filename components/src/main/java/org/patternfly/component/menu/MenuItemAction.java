@@ -87,7 +87,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
                         .add(icon))
                 .element());
         this.identifier = identifier;
-        this.iconContainer = find(By.classname(component(Classes.menu, item, action, Classes.icon)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, item, action, Classes.icon)));
         this.handler = new ArrayList<>();
 
         if (!favorite) {
@@ -103,7 +103,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
             HTMLButtonElement itemActionElement) {
         super(SUB_COMPONENT_NAME, itemActionElement);
         this.identifier = Id.build("fav", sourceItemAction.identifier);
-        this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;
         this.handler = new ArrayList<>();
         for (ComponentHandler<MenuItemAction> h : sourceItemAction.handler) {

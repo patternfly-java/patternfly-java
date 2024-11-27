@@ -266,7 +266,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
             element().classList.add(modifier(progress));
         }
 
-        HTMLElement element = find(By.classname(component(button, progress)));
+        HTMLElement element = querySelector(By.classname(component(button, progress)));
         failSafeRemoveFromParent(element);
         if (inProgress) {
             element().classList.add(modifier(Classes.inProgress));

@@ -18,11 +18,11 @@ package org.patternfly.component.table;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 

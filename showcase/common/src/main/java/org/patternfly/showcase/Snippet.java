@@ -111,7 +111,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                                 .iconAndText(IconSets.fas.code(), "Java"))
                                                 .onClick((event, ce) -> {
                                                     HTMLElement mainElement = ce
-                                                            .find(By.classname(component(Classes.codeEditor, main)));
+                                                            .querySelector(By.classname(component(Classes.codeEditor, main)));
                                                     setVisible(mainElement, !isVisible(mainElement));
                                                 }))
                                         .add(tooltip(By.id(codeId), "Toggle Java code"))
@@ -125,7 +125,7 @@ public class Snippet implements IsElement<HTMLElement> {
                         .code(code))
                 .element();
 
-        HTMLElement mainElement = codeEditor.find(By.classname(component(Classes.codeEditor, main)));
+        HTMLElement mainElement = codeEditor.querySelector(By.classname(component(Classes.codeEditor, main)));
         setVisible(mainElement, false);
     }
 

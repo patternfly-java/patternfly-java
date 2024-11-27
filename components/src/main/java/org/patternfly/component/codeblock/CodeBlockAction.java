@@ -29,7 +29,7 @@ import org.patternfly.style.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 
-import static org.jboss.elemento.DomGlobal.navigator;
+import static elemental2.dom.DomGlobal.navigator;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;

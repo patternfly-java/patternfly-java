@@ -81,7 +81,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
                 .add(span().css(component(Classes.icon, Classes.content))
                         .add(icon))
                 .element());
-        this.content = find(By.classname(component(Classes.icon, Classes.content)));
+        this.content = querySelector(By.classname(component(Classes.icon, Classes.content)));
     }
 
     // ------------------------------------------------------ builder
@@ -102,7 +102,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
     }
 
     public Icon progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
-        HTMLElement element = find(By.classname(component(icon, progress)));
+        HTMLElement element = querySelector(By.classname(component(icon, progress)));
         failSafeRemoveFromParent(element);
         if (inProgress) {
             element().classList.add(modifier(Classes.inProgress));

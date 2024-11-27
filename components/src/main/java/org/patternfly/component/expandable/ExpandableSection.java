@@ -111,9 +111,9 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
             if (detachedElement != null) {
                 HTMLElementBuilder<HTMLElement> detached = wrapHtmlElement(detachedElement);
-                HTMLElement detachedToggleElement = detached.find(
+                HTMLElement detachedToggleElement = detached.querySelector(
                         By.classname(component(expandableSection, Classes.toggle)));
-                detachedContentElement = detached.find(By.classname(component(expandableSection, Classes.content)));
+                detachedContentElement = detached.querySelector(By.classname(component(expandableSection, Classes.content)));
 
                 if (toggle != null && detachedContentElement != null && detachedContentElement.id != null) {
                     toggle.aria(controls, detachedContentElement.id);

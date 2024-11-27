@@ -16,7 +16,7 @@
 package org.patternfly.component.drawer;
 
 import org.jboss.elemento.Attachable;
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.style.Modifiers.NoPadding;
 
 import elemental2.dom.HTMLDivElement;

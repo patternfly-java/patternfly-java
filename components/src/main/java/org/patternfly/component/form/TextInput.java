@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import org.jboss.elemento.InputElementBuilder;
+import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -188,7 +188,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     /** Provides access to the underlying input element using a fluent API style */
-    public TextInput applyTo(Consumer<InputElementBuilder<HTMLInputElement>> consumer) {
+    public TextInput applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
         consumer.accept(inputElement());
         return this;
     }
@@ -248,7 +248,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     /** Returns the underlying input element */
-    public InputElementBuilder<HTMLInputElement> inputElement() {
+    public HTMLInputElementBuilder<HTMLInputElement> inputElement() {
         return wrapInputElement(inputElement);
     }
 

@@ -16,8 +16,8 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.WithText;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;

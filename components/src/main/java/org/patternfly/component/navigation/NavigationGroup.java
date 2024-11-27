@@ -22,12 +22,12 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 
 import elemental2.dom.HTMLElement;

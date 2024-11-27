@@ -16,10 +16,10 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.popover.Popover;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;

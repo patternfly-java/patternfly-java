@@ -19,8 +19,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.patternfly.component.ElementDelegate;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.ElementDelegate;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
