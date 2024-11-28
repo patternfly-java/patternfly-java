@@ -18,7 +18,7 @@ package org.patternfly.component.table;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
@@ -50,7 +50,7 @@ import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.treeView;
 
 public class TitleCell extends Cell<TitleCell> implements
-        ElementDelegate<HTMLTableCellElement, TitleCell>,
+        ElementContainerDelegate<HTMLTableCellElement, TitleCell>,
         WithIcon<HTMLTableCellElement, TitleCell>,
         WithText<HTMLTableCellElement, TitleCell> {
 

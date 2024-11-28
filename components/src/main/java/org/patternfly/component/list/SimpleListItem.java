@@ -21,7 +21,7 @@ import java.util.Map;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
@@ -47,7 +47,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
         ComponentContext<HTMLLIElement, SimpleListItem>,
         WithIdentifier<HTMLLIElement, SimpleListItem>,
         WithText<HTMLLIElement, SimpleListItem>,
-        ElementDelegate<HTMLLIElement, SimpleListItem> {
+        ElementContainerDelegate<HTMLLIElement, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 

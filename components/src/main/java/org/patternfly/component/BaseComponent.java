@@ -22,7 +22,6 @@ import org.jboss.elemento.ElementContainerMethods;
 import org.jboss.elemento.ElementEventMethods;
 import org.jboss.elemento.ElementIdMethods;
 import org.jboss.elemento.ElementQueryMethods;
-import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLElementAttributeMethods;
 import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
@@ -42,7 +41,6 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
         ElementEventMethods<E, B>,
         ElementIdMethods<E, B>,
         ElementQueryMethods<E>,
-        ElementTextMethods<E, B>,
         HTMLElementAttributeMethods<E, B>,
         HTMLElementDataMethods<E, B>,
         HTMLElementStyleMethods<E, B>,

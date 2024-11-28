@@ -85,11 +85,11 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     }
 
     public static Tooltip tooltip(By trigger) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), null);
+        return new Tooltip(() -> Elements.querySelector(document.body, trigger), null);
     }
 
     public static Tooltip tooltip(By trigger, String text) {
-        return new Tooltip(() -> Elements.find(document.body, trigger), text);
+        return new Tooltip(() -> Elements.querySelector(document.body, trigger), text);
     }
 
     public static Tooltip tooltip(HTMLElement trigger) {
@@ -257,11 +257,11 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
     }
 
     public Tooltip trigger(String trigger) {
-        return trigger(() -> Elements.find(document.body, By.selector(trigger)));
+        return trigger(() -> Elements.querySelector(document.body, By.selector(trigger)));
     }
 
     public Tooltip trigger(By trigger) {
-        return trigger(() -> Elements.find(document.body, trigger));
+        return trigger(() -> Elements.querySelector(document.body, trigger));
     }
 
     public Tooltip trigger(HTMLElement trigger) {

@@ -247,7 +247,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     @Override
     public Tab hidden(boolean hidden) {
         Elements.setVisible(this, !hidden);
-        Tabs tabs = lookupFlatComponent(true);
+        Tabs tabs = lookupComponent(true);
         if (tabs != null && tabs.currentTab() != null) {
             if (identifier.equals(tabs.currentTab().identifier)) {
                 select(false);
@@ -372,7 +372,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
      * Returns the enclosing {@link Tabs} component. Only valid <strong>after</strong> the tabs component has been attached!
      */
     public Tabs tabs() {
-        return lookupFlatComponent();
+        return lookupComponent();
     }
 
     @Override

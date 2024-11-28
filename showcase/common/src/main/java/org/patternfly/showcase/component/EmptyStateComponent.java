@@ -42,7 +42,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Size.xl;
 import static org.patternfly.style.Size.xs;
-import static org.patternfly.style.Variable.globalVar;
+import static org.patternfly.style.Status.success;
 
 @Route(value = "/components/empty-state", title = "Empty state")
 public class EmptyStateComponent extends SnippetPage {
@@ -212,7 +212,7 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(check(), globalVar("success-color", "100"))
+                                        .icon(check(), success)
                                         .text("Custom icon color"))
                                 .addBody(emptyStateBody()
                                         .textContent(

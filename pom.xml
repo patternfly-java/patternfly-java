@@ -209,6 +209,7 @@
                         <useDefaultExcludes>true</useDefaultExcludes>
                         <mapping>
                             <parcelrc>DOUBLESLASH_STYLE</parcelrc>
+                            <mjs>SLASHSTAR_STYLE</mjs>
                         </mapping>
                         <licenseSets>
                             <licenseSet>

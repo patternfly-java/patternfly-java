@@ -17,7 +17,7 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -32,7 +32,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
 public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeader>
-        implements ElementDelegate<HTMLElement, PopoverHeader> {
+        implements ElementContainerDelegate<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 

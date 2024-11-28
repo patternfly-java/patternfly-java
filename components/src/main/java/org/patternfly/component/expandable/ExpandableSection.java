@@ -107,7 +107,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             }
         }
         if (detachedFromId != null) {
-            HTMLElement detachedElement = Elements.find(document.body, By.data(expandableSectionId, detachedFromId));
+            HTMLElement detachedElement = Elements.querySelector(document.body, By.data(expandableSectionId, detachedFromId));
 
             if (detachedElement != null) {
                 HTMLElementBuilder<HTMLElement> detached = wrapHtmlElement(detachedElement);

@@ -22,7 +22,6 @@ import org.jboss.elemento.ElementContainerMethods;
 import org.jboss.elemento.ElementEventMethods;
 import org.jboss.elemento.ElementIdMethods;
 import org.jboss.elemento.ElementQueryMethods;
-import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLElementAttributeMethods;
 import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
@@ -34,7 +33,6 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 
-@Deprecated
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
         ElementAttributeMethods<E, B>,
@@ -44,7 +42,6 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
         ElementEventMethods<E, B>,
         ElementIdMethods<E, B>,
         ElementQueryMethods<E>,
-        ElementTextMethods<E, B>,
         HTMLElementAttributeMethods<E, B>,
         HTMLElementDataMethods<E, B>,
         HTMLElementStyleMethods<E, B>,

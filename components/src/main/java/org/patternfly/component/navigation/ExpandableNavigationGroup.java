@@ -27,7 +27,7 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
@@ -76,7 +76,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem>,
         WithIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
         WithText<HTMLLIElement, ExpandableNavigationGroup>,
-        ElementDelegate<HTMLLIElement, ExpandableNavigationGroup> {
+        ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -171,7 +171,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -179,7 +179,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
@@ -187,7 +187,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertGroupBefore(ExpandableNavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -195,7 +195,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertGroupAfter(ExpandableNavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }

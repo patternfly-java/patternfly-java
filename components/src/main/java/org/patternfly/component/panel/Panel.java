@@ -16,7 +16,7 @@
 package org.patternfly.component.panel;
 
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Modifiers;
 
@@ -45,7 +45,7 @@ import static org.patternfly.style.Classes.scrollable;
  *
  * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */
-public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
+public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
 
     // ------------------------------------------------------ factory
 

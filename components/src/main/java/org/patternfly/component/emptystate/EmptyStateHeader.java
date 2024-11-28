@@ -20,7 +20,7 @@ import org.patternfly.component.WithText;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Size;
-import org.patternfly.style.Variable;
+import org.patternfly.style.Status;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
@@ -37,6 +37,7 @@ import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
+import static org.patternfly.style.TypedModifier.swap;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Color;
 
@@ -89,23 +90,17 @@ public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, Emp
         return this;
     }
 
-    public EmptyStateHeader icon(PredefinedIcon icon, Variable color) {
-        return icon(icon.element(), color);
-    }
-
-    public EmptyStateHeader icon(Element icon, Variable color) {
-        icon(icon);
-        iconColor("var(" + color.name + ")");
+    public EmptyStateHeader icon(PredefinedIcon icon, Status status) {
+        icon(icon.element());
+        EmptyState emptyState = lookupComponent();
+        swap(emptyState, emptyState.element(), status, Status.values());
         return this;
     }
 
-    public EmptyStateHeader icon(PredefinedIcon icon, String color) {
-        return icon(icon.element(), color);
-    }
-
-    public EmptyStateHeader icon(Element icon, String color) {
+    public EmptyStateHeader icon(Element icon, Status status) {
         icon(icon);
-        iconColor(color);
+        EmptyState emptyState = lookupComponent();
+        swap(emptyState, emptyState.element(), status, Status.values());
         return this;
     }
 

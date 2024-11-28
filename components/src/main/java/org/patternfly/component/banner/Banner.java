@@ -15,10 +15,13 @@
  */
 package org.patternfly.component.banner;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
+import org.patternfly.style.Status;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -30,6 +33,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Color.grey;
 import static org.patternfly.style.Modifiers.toggleModifier;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A banner is a 1-line, full color, full width container that can be used to communicate short snippets of information to
@@ -37,38 +41,50 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  *
  * @see <a href= "https://www.patternfly.org/components/banner">https://www.patternfly.org/components/banner</a>
  */
-public class Banner extends BaseComponent<HTMLDivElement, Banner> {
+public class Banner extends BaseComponent<HTMLDivElement, Banner> implements WithText<HTMLDivElement, Banner> {
 
     // ------------------------------------------------------ factory
 
     public static Banner banner() {
-        return new Banner(null, grey);
+        return new Banner(grey);
     }
 
     public static Banner banner(Color color) {
-        return new Banner(null, color);
+        return new Banner(color);
     }
 
     public static Banner banner(String text) {
-        return new Banner(text, grey);
+        return new Banner(grey).text(text);
     }
 
     public static Banner banner(String text, Color color) {
-        return new Banner(text, color);
+        return new Banner(color).text(text);
     }
 
     // ------------------------------------------------------ instance
 
     private HTMLElement screenReaderElement;
 
-    Banner(String text, Color color) {
+    Banner(Color color) {
         super(ComponentType.Banner, div().css(component(banner), color.modifier).element());
-        if (text != null) {
-            element().textContent = text;
-        }
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public Banner text(String text) {
+        if (text != null) {
+            Elements.textNode(element(), text);
+        }
+        return this;
+    }
+
+    public Banner status(Status status) {
+        for (Color color : Color.values()) {
+            element().classList.remove(color.modifier);
+        }
+        return swap(this, element(), status, Status.values());
+    }
 
     /** Same as {@linkplain #sticky(boolean) sticky(true)} */
     public Banner sticky() {
@@ -88,6 +104,13 @@ public class Banner extends BaseComponent<HTMLDivElement, Banner> {
     @Override
     public Banner that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(element());
     }
 
     // ------------------------------------------------------ internal

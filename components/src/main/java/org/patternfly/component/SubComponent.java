@@ -42,7 +42,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         ElementEventMethods<E, B>,
         ElementIdMethods<E, B>,
         ElementQueryMethods<E>,
-        ElementTextMethods<E, B>,
+        ElementTextMethods<E, B>, // TODO Remove!
         HTMLElementAttributeMethods<E, B>,
         HTMLElementDataMethods<E, B>,
         HTMLElementStyleMethods<E, B>,
@@ -89,15 +89,6 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
     protected <C extends ComponentDelegate<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupComponentDelegate(
             boolean lenient) {
         return ComponentStore.lookupComponentDelegate(componentType, element, lenient);
-    }
-
-    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupFlatComponent() {
-        return lookupFlatComponent(false);
-    }
-
-    protected <C extends BaseComponentFlat<E1, B1>, E1 extends HTMLElement, B1 extends TypedBuilder<E1, B1>> C lookupFlatComponent(
-            boolean lenient) {
-        return ComponentStore.lookupFlatComponent(componentType, element, lenient);
     }
 
     protected <S extends SubComponent<E2, B2>, E2 extends HTMLElement, B2 extends TypedBuilder<E2, B2>> S lookupSubComponent(

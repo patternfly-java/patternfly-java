@@ -24,15 +24,15 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.Severity.custom;
+import static org.patternfly.component.Severity.danger;
+import static org.patternfly.component.Severity.info;
+import static org.patternfly.component.Severity.success;
+import static org.patternfly.component.Severity.warning;
 import static org.patternfly.component.banner.Banner.banner;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.link;
-import static org.patternfly.icon.IconSets.far.checkCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
-import static org.patternfly.icon.IconSets.fas.infoCircle;
-import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.FlexItem.flexItem;
 import static org.patternfly.layout.flex.SpaceItems.sm;
@@ -44,9 +44,13 @@ import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Color.blue;
-import static org.patternfly.style.Color.gold;
 import static org.patternfly.style.Color.green;
+import static org.patternfly.style.Color.orange;
+import static org.patternfly.style.Color.orangered;
+import static org.patternfly.style.Color.purple;
 import static org.patternfly.style.Color.red;
+import static org.patternfly.style.Color.teal;
+import static org.patternfly.style.Color.yellow;
 
 @Route(value = "/components/banner", title = "Banner")
 public class BannerComponent extends SnippetPage {
@@ -62,13 +66,21 @@ public class BannerComponent extends SnippetPage {
                 div()
                         .add(banner("Default banner"))
                         .add(br())
-                        .add(banner("Blue banner", blue))
-                        .add(br())
                         .add(banner("Red banner", red))
                         .add(br())
-                        .add(banner("Green banner", green))
+                        .add(banner("Red banner", orangered))
                         .add(br())
-                        .add(banner("Gold banner", gold))
+                        .add(banner("Red banner", orange))
+                        .add(br())
+                        .add(banner("Red banner", yellow))
+                        .add(br())
+                        .add(banner("Blue banner", green))
+                        .add(br())
+                        .add(banner("Blue banner", teal))
+                        .add(br())
+                        .add(banner("Blue banner", blue))
+                        .add(br())
+                        .add(banner("Gold banner", purple))
                         .element()
                 // @code-end:banner-basic
         ));
@@ -78,12 +90,12 @@ public class BannerComponent extends SnippetPage {
                 // @code-start:banner-links
                 div()
                         .add(banner()
-                                .add("Default banner with a ")
+                                .text("Default banner with a ")
                                 .add(a("https://www.w3.org/TR/WCAG20-TECHS/ARIA8.html#ARIA8-examples")
                                         .textContent("link")))
                         .add(br())
                         .add(banner()
-                                .add("Default banner with a ")
+                                .text("Default banner with a ")
                                 .add(a("#")
                                         .css(modifier(disabled))
                                         .attr(role, link)
@@ -91,18 +103,18 @@ public class BannerComponent extends SnippetPage {
                                         .textContent("disabled link")))
                         .add(br())
                         .add(banner(blue)
-                                .add("Blue banner with an ")
+                                .text("Blue banner with an ")
                                 .add(button("inline link button")
                                         .link().inline()))
                         .add(br())
-                        .add(banner(gold)
-                                .add("Gold banner with an ")
+                        .add(banner(yellow)
+                                .text("Gold banner with an ")
                                 .add(button("inline link button (anchor)",
                                         "https://www.w3.org/TR/WCAG20-TECHS/ARIA8.html#ARIA8-examples")
                                         .link().inline()))
                         .add(br())
                         .add(banner(red)
-                                .add("Red banner with a ")
+                                .text("Red banner with a ")
                                 .add(button("disabled inline link button")
                                         .link().inline().disabled()))
                         .element()
@@ -114,30 +126,30 @@ public class BannerComponent extends SnippetPage {
                 code("banner-status"), () ->
                 // @code-start:banner-status
                 div()
-                        .add(banner().screenReader("Default banner")
+                        .add(banner().status(success.status).screenReader("Success banner")
                                 .add(flex().spaceItems(breakpoints(default_, sm))
-                                        .addItem(flexItem().add(bell()))
-                                        .addItem(flexItem().textContent("Default banner"))))
-                        .add(br())
-                        .add(banner(blue).screenReader("Info banner")
-                                .add(flex().spaceItems(breakpoints(default_, sm))
-                                        .addItem(flexItem().add(infoCircle()))
-                                        .addItem(flexItem().textContent("Info banner"))))
-                        .add(br())
-                        .add(banner(red).screenReader("Danger banner")
-                                .add(flex().spaceItems(breakpoints(default_, sm))
-                                        .addItem(flexItem().add(exclamationCircle()))
-                                        .addItem(flexItem().textContent("Danger banner"))))
-                        .add(br())
-                        .add(banner(green).screenReader("Success banner")
-                                .add(flex().spaceItems(breakpoints(default_, sm))
-                                        .addItem(flexItem().add(checkCircle()))
+                                        .addItem(flexItem().add(success.icon.get()))
                                         .addItem(flexItem().textContent("Success banner"))))
                         .add(br())
-                        .add(banner(gold).screenReader("Warning banner")
+                        .add(banner().status(warning.status).screenReader("Warning banner")
                                 .add(flex().spaceItems(breakpoints(default_, sm))
-                                        .addItem(flexItem().add(exclamationTriangle()))
+                                        .addItem(flexItem().add(warning.icon.get()))
                                         .addItem(flexItem().textContent("Warning"))))
+                        .add(br())
+                        .add(banner().status(danger.status).screenReader("Danger banner")
+                                .add(flex().spaceItems(breakpoints(default_, sm))
+                                        .addItem(flexItem().add(danger.icon.get()))
+                                        .addItem(flexItem().textContent("Danger banner"))))
+                        .add(br())
+                        .add(banner().status(info.status).screenReader("Info banner")
+                                .add(flex().spaceItems(breakpoints(default_, sm))
+                                        .addItem(flexItem().add(info.icon.get()))
+                                        .addItem(flexItem().textContent("Info banner"))))
+                        .add(br())
+                        .add(banner().status(custom.status).screenReader("Custom banner")
+                                .add(flex().spaceItems(breakpoints(default_, sm))
+                                        .addItem(flexItem().add(custom.icon.get()))
+                                        .addItem(flexItem().textContent("Info banner"))))
                         .element()
                 // @code-end:banner-status
         ));

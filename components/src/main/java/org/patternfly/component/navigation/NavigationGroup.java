@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
@@ -53,7 +53,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
         HasItems<HTMLElement, NavigationGroup, NavigationItem>,
         WithIdentifier<HTMLElement, NavigationGroup>,
         WithText<HTMLElement, NavigationGroup>,
-        ElementDelegate<HTMLElement, NavigationGroup> {
+        ElementContainerDelegate<HTMLElement, NavigationGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -121,7 +121,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     public NavigationGroup insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -129,7 +129,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     public NavigationGroup insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }

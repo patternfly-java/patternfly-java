@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
@@ -28,7 +28,7 @@ import static org.patternfly.style.Classes.dataList;
 import static org.patternfly.style.Classes.item;
 
 public class DataListAction extends DataListSubComponent<HTMLElement, DataListAction>
-        implements ElementDelegate<HTMLElement, DataListAction> {
+        implements ElementContainerDelegate<HTMLElement, DataListAction> {
 
     // ------------------------------------------------------ factory
 

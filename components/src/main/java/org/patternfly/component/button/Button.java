@@ -120,6 +120,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
     private Element icon;
+    private HTMLElement textContainer;
     private HTMLElement iconContainer;
     private Spinner spinner;
 
@@ -153,15 +154,14 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     public Button icon(Element icon) {
         removeIcon();
         this.icon = icon;
-        return add(icon);
+        failSafeIconContainer().appendChild(icon);
+        return this;
     }
 
     @Override
     public Button removeIcon() {
         failSafeRemoveFromParent(icon);
-        failSafeRemoveFromParent(iconContainer);
         this.icon = null;
-        this.iconContainer = null;
         return this;
     }
 
@@ -171,13 +171,17 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         this.icon = icon;
         switch (position) {
             case start:
-                insertFirst(element(), iconContainer = span().css(component(button, Classes.icon), modifier(Classes.start))
+                add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.start))
                         .add(icon)
                         .element());
-                text(text);
+                add(textContainer = span().css(component(button, Classes.text))
+                        .textContent(text)
+                        .element());
                 break;
             case end:
-                text(text);
+                add(textContainer = span().css(component(button, Classes.text))
+                        .textContent(text)
+                        .element());
                 add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.end))
                         .add(icon)
                         .element());
@@ -187,13 +191,14 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     }
 
     /**
-     * Changes the text of this button. Prefer this method over {@link org.jboss.elemento.HasElement#textContent(String)}, since
-     * this method doesn't remove a possible progress spinner.
+     * Changes the text of this button.
      */
     @Override
     public Button text(String text) {
-        // using textContent(text) would remove a possible progress spinner
-        return textNode(text);
+        if (text != null) {
+            failSafeTextContainer().textContent = text;
+        }
+        return this;
     }
 
     public Button href(String href) {
@@ -295,5 +300,21 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     public Button onClick(ComponentHandler<Button> actionHandler) {
         on(click, e -> actionHandler.handle(e, this));
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeIconContainer() {
+        if (iconContainer == null) {
+            add(iconContainer = span().css(component(button, Classes.icon)).element());
+        }
+        return iconContainer;
+    }
+
+    private HTMLElement failSafeTextContainer() {
+        if (textContainer == null) {
+            add(textContainer = span().css(component(button, Classes.text)).element());
+        }
+        return textContainer;
     }
 }

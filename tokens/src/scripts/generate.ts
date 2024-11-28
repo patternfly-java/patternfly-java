@@ -86,6 +86,5 @@ let tokens: [string, Token][] = Object.keys(TOKENS)
     });
 
 const dir = new URL(`${root}/${path}/`, import.meta.url);
-const code = generateTokens(tokens);
-await writeFile(new URL(`./Token.java`, dir), code, 'utf8');
+await writeFile(new URL(`./Token.java`, dir), generateTokens(tokens), 'utf8');
 console.info(`Generated code for ${tokens.length} tokens`);

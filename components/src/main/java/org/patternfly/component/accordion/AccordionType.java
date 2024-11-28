@@ -13,31 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.style;
+package org.patternfly.component.accordion;
 
-public enum Color {
+public enum AccordionType {
 
-    grey(null),
-
-    blue("blue"),
-
-    green("green"),
-
-    orange("orange"),
-
-    orangered("orangered"),
-
-    red("red"),
-
-    purple("purple"),
-
-    teal("teal"),
-
-    yellow("yellow");
-
-    public final String modifier;
-
-    Color(String color) {
-        this.modifier = color == null ? null : Classes.modifier(color);
-    }
+    dl, div
 }

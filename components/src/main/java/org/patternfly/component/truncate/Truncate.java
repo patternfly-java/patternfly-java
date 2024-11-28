@@ -20,7 +20,7 @@ import java.util.Objects;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
 import org.patternfly.component.tooltip.Tooltip;
@@ -47,7 +47,7 @@ import static org.patternfly.style.Classes.truncate;
  *
  * @see <a href= "https://www.patternfly.org/components/truncate">https://www.patternfly.org/components/truncate</a>
  */
-public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implements WithText<HTMLElement, Truncate> {
+public class Truncate extends BaseComponent<HTMLElement, Truncate> implements WithText<HTMLElement, Truncate> {
 
     // ------------------------------------------------------ factory
 

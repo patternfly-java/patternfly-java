@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
@@ -28,7 +28,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.title;
 
 public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> implements
-        ElementDelegate<HTMLDivElement, CardTitle> {
+        ElementContainerDelegate<HTMLDivElement, CardTitle> {
 
     // ------------------------------------------------------ factory
 

@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
@@ -46,7 +46,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         ComponentContext<HTMLLIElement, NavigationItem>,
         WithIdentifier<HTMLLIElement, NavigationItem>,
         WithText<HTMLLIElement, NavigationItem>,
-        ElementDelegate<HTMLLIElement, NavigationItem> {
+        ElementContainerDelegate<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
 

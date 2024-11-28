@@ -17,9 +17,10 @@ package org.patternfly.component.emptystate;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Size;
+import org.patternfly.style.Status;
 
 import elemental2.dom.HTMLElement;
 
@@ -41,7 +42,7 @@ import static org.patternfly.style.TypedModifier.swap;
  * @see <a href= "https://www.patternfly.org/components/empty-state">https://www.patternfly.org/components/empty-state</a>
  */
 public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
-        implements ElementDelegate<HTMLElement, EmptyState>, FullHeight<HTMLElement, EmptyState> {
+        implements ElementContainerDelegate<HTMLElement, EmptyState>, FullHeight<HTMLElement, EmptyState> {
 
     // ------------------------------------------------------ factory
 
@@ -56,6 +57,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
     EmptyState() {
         super(ComponentType.EmptyState, div().css(component(emptyState)).element());
         element().appendChild(contentContainer = div().css(component(emptyState, content)).element());
+        storeComponent();
     }
 
     @Override
@@ -107,8 +109,20 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
         return this;
     }
 
+    public EmptyState status(Status status) {
+        return swap(this, element(), status, Status.values());
+    }
+
     @Override
     public EmptyState that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void clearStatus() {
+        for (Status status : Status.values()) {
+            element().classList.remove(status.modifier());
+        }
     }
 }

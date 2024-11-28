@@ -77,7 +77,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
         this.data = new HashMap<>();
         add(anchorElement = a().css(component(jumpLinks, link))
                 .on(click, e -> {
-                    JumpLinks jumpLinks = lookupFlatComponent();
+                    JumpLinks jumpLinks = lookupComponent();
                     jumpLinks.select(this);
                 })
                 .add(textElement = span().css(component(jumpLinks, link, text)).element())

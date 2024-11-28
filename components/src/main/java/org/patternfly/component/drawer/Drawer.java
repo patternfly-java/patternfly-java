@@ -18,7 +18,7 @@ package org.patternfly.component.drawer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
@@ -44,7 +44,7 @@ import static org.patternfly.style.TypedModifier.swap;
  * @see <a href=
  * "https://www.patternfly.org/components/drawer#with-focus-trap">https://www.patternfly.org/components/drawer#with-focus-trap</a>
  */
-public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
+public class Drawer extends BaseComponent<HTMLElement, Drawer>
         implements Inline<HTMLElement, Drawer>, Expandable<HTMLElement, Drawer> {
 
     // ------------------------------------------------------ factory
@@ -66,7 +66,7 @@ public class Drawer extends BaseComponentFlat<HTMLElement, Drawer>
         super(ComponentType.Drawer, div().css(component(drawer)).element());
         this.toggleHandler = new ArrayList<>();
         this.position = Position.end;
-        storeFlatComponent();
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

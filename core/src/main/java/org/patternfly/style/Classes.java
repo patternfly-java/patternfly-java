@@ -307,19 +307,23 @@ public interface Classes {
     // ------------------------------------------------------ modifiers
 
     static String modifier(String modifier) {
-        return modifier != null && !modifier.isEmpty() ? "pf-m-" + modifier : "";
+        if (modifier != null && !modifier.isEmpty()) {
+            return modifier.startsWith("pf-m-") ? modifier : "pf-m-" + modifier;
+        }
+        return "";
     }
 
     static String modifier(String modifier, Size size) {
         if (modifier != null && !modifier.isEmpty() && size != null) {
-            return "pf-m-" + modifier + "-" + size.value();
+            return modifier.startsWith("pf-m-") ? modifier : "pf-m-" + modifier + "-" + size.value();
         }
         return "";
     }
 
     static String modifier(String modifier, Breakpoint breakpoint) {
         if (modifier != null && !modifier.isEmpty() && breakpoint != null) {
-            return "pf-m-" + modifier + (breakpoint != default_ ? "-on-" + breakpoint.value : "");
+            return modifier.startsWith("pf-m-") ? modifier
+                    : "pf-m-" + modifier + (breakpoint != default_ ? "-on-" + breakpoint.value : "");
         }
         return "";
     }
@@ -359,7 +363,12 @@ public interface Classes {
     static String compose(char abbreviation, String type, String... elements) {
         StringBuilder builder = new StringBuilder();
         if (type != null && !type.isEmpty()) {
-            builder.append("pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-").append(abbreviation).append("-").append(type);
+            builder.append("pf-")
+                    .append(Version.PATTERN_FLY_MAJOR_VERSION)
+                    .append("-")
+                    .append(abbreviation)
+                    .append("-")
+                    .append(type);
             if (elements != null && elements.length != 0) {
                 builder.append("__");
                 for (int i = 0; i < elements.length; i++) {

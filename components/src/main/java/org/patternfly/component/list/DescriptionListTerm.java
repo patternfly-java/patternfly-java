@@ -16,7 +16,7 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.popover.Popover;
@@ -43,7 +43,7 @@ import static org.patternfly.style.Classes.term;
 public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement, DescriptionListTerm> implements
         WithIcon<HTMLElement, DescriptionListTerm>,
         WithText<HTMLElement, DescriptionListTerm>,
-        ElementDelegate<HTMLElement, DescriptionListTerm> {
+        ElementContainerDelegate<HTMLElement, DescriptionListTerm> {
 
     // ------------------------------------------------------ factory
 

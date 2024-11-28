@@ -18,7 +18,7 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
@@ -43,7 +43,7 @@ import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.toggleRight;
 
 public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> implements
-        ElementDelegate<HTMLDivElement, CardHeader>,
+        ElementContainerDelegate<HTMLDivElement, CardHeader>,
         Attachable {
 
     // ------------------------------------------------------ factory

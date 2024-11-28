@@ -91,7 +91,7 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements Mod
     }
 
     private void toggle() {
-        Tabs tabs = lookupFlatComponent();
+        Tabs tabs = lookupComponent();
         tabs.toggle();
     }
 }

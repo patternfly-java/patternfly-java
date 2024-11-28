@@ -331,7 +331,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -339,7 +339,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
@@ -347,7 +347,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupBefore(NavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -355,7 +355,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupAfter(NavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -363,7 +363,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupBefore(ExpandableNavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -371,7 +371,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupAfter(ExpandableNavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }

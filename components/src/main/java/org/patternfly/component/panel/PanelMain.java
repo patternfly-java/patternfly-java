@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.panel;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -27,7 +27,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.panel;
 
 public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
-        implements ElementDelegate<HTMLElement, PanelMain> {
+        implements ElementContainerDelegate<HTMLElement, PanelMain> {
 
     // ------------------------------------------------------ factory
 

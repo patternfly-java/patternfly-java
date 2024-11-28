@@ -24,7 +24,7 @@ import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Key;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.form.TextInput;
@@ -105,7 +105,7 @@ import static org.patternfly.style.Variables.Left;
  * @see <a href=
  * "https://www.patternfly.org/components/slider#sliderstepobject">https://www.patternfly.org/components/slider#sliderstepobject</a>
  */
-public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
+public class Slider extends BaseComponent<HTMLElement, Slider> implements
         Disabled<HTMLElement, Slider>,
         HasValue<Double>,
         Attachable {
@@ -180,7 +180,7 @@ public class Slider extends BaseComponentFlat<HTMLElement, Slider> implements
                         .on(keydown, this::handleThumbKeys));
         element().appendChild(main.element());
 
-        storeFlatComponent();
+        storeComponent();
         Attachable.register(this, this);
     }
 

@@ -102,7 +102,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public static Popover popover(By trigger) {
-        return new Popover(() -> Elements.find(document.body, trigger));
+        return new Popover(() -> Elements.querySelector(document.body, trigger));
     }
 
     public static Popover popover(HTMLElement trigger) {
@@ -341,11 +341,11 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover trigger(String trigger) {
-        return trigger(() -> Elements.find(document.body, By.selector(trigger)));
+        return trigger(() -> Elements.querySelector(document.body, By.selector(trigger)));
     }
 
     public Popover trigger(By trigger) {
-        return trigger(() -> Elements.find(document.body, trigger));
+        return trigger(() -> Elements.querySelector(document.body, trigger));
     }
 
     public Popover trigger(HTMLElement trigger) {

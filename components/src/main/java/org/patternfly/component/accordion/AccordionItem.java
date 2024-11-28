@@ -24,7 +24,7 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
@@ -56,7 +56,7 @@ import static org.patternfly.style.Classes.modifier;
  */
 public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
         ComponentContext<HTMLDivElement, AccordionItem>,
-        ElementDelegate<HTMLDivElement, AccordionItem>,
+        ElementContainerDelegate<HTMLDivElement, AccordionItem>,
         WithIdentifier<HTMLDivElement, AccordionItem>,
         WithText<HTMLDivElement, AccordionItem> {
 

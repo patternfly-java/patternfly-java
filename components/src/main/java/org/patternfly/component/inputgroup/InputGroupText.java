@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.inputgroup;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGroupText> implements
-        ElementDelegate<HTMLElement, InputGroupText>,
+        ElementContainerDelegate<HTMLElement, InputGroupText>,
         Plain<HTMLElement, InputGroupText>,
         WithText<HTMLElement, InputGroupText>,
         WithIcon<HTMLElement, InputGroupText> {

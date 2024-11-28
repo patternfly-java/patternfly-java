@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithIcon;
 import org.patternfly.component.WithIdentifier;
@@ -55,7 +55,7 @@ import static org.patternfly.style.Classes.toggleGroup;
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
-        ElementDelegate<HTMLDivElement, ToggleGroupItem>,
+        ElementContainerDelegate<HTMLDivElement, ToggleGroupItem>,
         WithIdentifier<HTMLDivElement, ToggleGroupItem>,
         WithIcon<HTMLDivElement, ToggleGroupItem>,
         WithText<HTMLDivElement, ToggleGroupItem> {

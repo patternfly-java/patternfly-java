@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
@@ -45,7 +45,7 @@ import static org.patternfly.style.Classes.title;
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
         HasItems<HTMLElement, SimpleListGroup, SimpleListItem>,
         WithText<HTMLElement, SimpleListGroup>,
-        ElementDelegate<HTMLElement, SimpleListGroup> {
+        ElementContainerDelegate<HTMLElement, SimpleListGroup> {
 
     // ------------------------------------------------------ factory
 

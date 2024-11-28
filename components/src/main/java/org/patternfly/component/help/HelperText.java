@@ -17,7 +17,7 @@ package org.patternfly.component.help;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.ValidationStatus;
 
@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.helperText;
  *
  * @see <a href= "https://www.patternfly.org/components/helper-text">https://www.patternfly.org/components/helper-text</a>
  */
-public class HelperText extends BaseComponentFlat<HTMLElement, HelperText> {
+public class HelperText extends BaseComponent<HTMLElement, HelperText> {
 
     // ------------------------------------------------------ factory
 

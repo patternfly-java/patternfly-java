@@ -65,7 +65,7 @@ public class AccordionComponent extends SnippetPage {
                 code("accordion-single"), () ->
                 // @code-start:accordion-single
                 div()
-                        .add(accordion(false).singleExpand()
+                        .add(accordion().singleExpand()
                                 .addItem(accordionItem("accordion-single-0", "Item one").expanded()
                                         .add(p().textContent(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-single-1", "Item two")
@@ -84,7 +84,7 @@ public class AccordionComponent extends SnippetPage {
                 code("accordion-fixed"), () ->
                 // @code-start:accordion-fixed
                 div()
-                        .add(accordion(false).fixed()
+                        .add(accordion().fixed()
                                 .addItem(accordionItem("accordion-fixed-0", "Item one").expanded()
                                         .add(p().textContent(LoremIpsum.paragraphs(20))))
                                 .addItem(accordionItem("accordion-fixed-1", "Item two")

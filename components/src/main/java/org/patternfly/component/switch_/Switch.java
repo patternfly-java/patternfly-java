@@ -24,7 +24,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.core.Aria;
@@ -63,7 +63,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  *
  * @see <a href= "https://www.patternfly.org/components/switch">https://www.patternfly.org/components/switch</a>
  */
-public class Switch extends BaseComponentFlat<HTMLLabelElement, Switch> implements
+public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
         HasValue<Boolean>,
         Disabled<HTMLLabelElement, Switch>,
         Readonly<HTMLLabelElement, Switch>,

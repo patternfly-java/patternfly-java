@@ -22,7 +22,6 @@ import org.jboss.elemento.ElementContainerMethods;
 import org.jboss.elemento.ElementEventMethods;
 import org.jboss.elemento.ElementIdMethods;
 import org.jboss.elemento.ElementQueryMethods;
-import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.svg.SVGElement;
 import org.jboss.elemento.svg.SVGElementDataMethods;
@@ -39,7 +38,6 @@ public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuil
         ElementEventMethods<E, B>,
         ElementIdMethods<E, B>,
         ElementQueryMethods<E>,
-        ElementTextMethods<E, B>,
         SVGElementDataMethods<E, B>,
         SVGElementStyleMethods<E, B> {
 

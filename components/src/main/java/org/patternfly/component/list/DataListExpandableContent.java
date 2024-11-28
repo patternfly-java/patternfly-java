@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 
@@ -30,7 +30,7 @@ import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent>
-        implements ElementDelegate<HTMLElement, DataListExpandableContent>, NoPadding<HTMLElement, DataListExpandableContent> {
+        implements ElementContainerDelegate<HTMLElement, DataListExpandableContent>, NoPadding<HTMLElement, DataListExpandableContent> {
 
     // ------------------------------------------------------ factory
 

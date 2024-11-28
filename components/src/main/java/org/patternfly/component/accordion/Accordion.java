@@ -47,7 +47,7 @@ import static org.patternfly.style.Size.lg;
 
 /**
  * An accordion is an interactive container that expands and collapses to hide or reveal nested content. It takes advantage of
- * progressive disclosure to help reduce page scrolling, by allowing users to choose whether they want to show or hide more
+ * progressive disclosure to help reduce page scrolling by allowing users to choose whether they want to show or hide more
  * detailed information as needed.
  *
  * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
@@ -60,16 +60,20 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new Accordion instance backed by a {@code
-     * <p>
-     * <dl/> }.
+     * Creates a new Accordion instance backed by a {@code <dl/>}.
      */
     public static Accordion accordion() {
-        return accordion(true);
+        return accordion(AccordionType.dl);
     }
 
-    public static Accordion accordion(boolean definitionList) {
-        return definitionList ? new Accordion(dl()) : new Accordion(div());
+    public static Accordion accordion(AccordionType type) {
+        switch (type) {
+            case dl:
+                return new Accordion(dl());
+            case div:
+                return new Accordion(div());
+        }
+        return new Accordion(dl()); // fallback
     }
 
     // ------------------------------------------------------ instance

@@ -185,7 +185,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
         if (tab != null) {
             classList().add(modifier(current));
             textElement.textContent = tab.text();
-            Tabs tabs = lookupFlatComponent();
+            Tabs tabs = lookupComponent();
             tabs.select(tab);
         }
     }

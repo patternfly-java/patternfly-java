@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 
 import elemental2.dom.HTMLDivElement;
@@ -37,7 +37,7 @@ import static org.patternfly.style.Classes.toolbar;
  */
 public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarContent> implements
         HasItems<HTMLDivElement, ToolbarContent, ToolbarItem>,
-        ElementDelegate<HTMLDivElement, ToolbarContent> {
+        ElementContainerDelegate<HTMLDivElement, ToolbarContent> {
 
     // ------------------------------------------------------ factory
 

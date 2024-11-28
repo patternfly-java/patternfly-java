@@ -30,7 +30,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.InputType;
 import org.jboss.elemento.Key;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -92,7 +92,7 @@ import static org.patternfly.style.Variables.MaxWidth;
  *
  * @see <a href= "https://www.patternfly.org/components/label">https://www.patternfly.org/components/label</a>
  */
-public class Label extends BaseComponentFlat<HTMLElement, Label> implements
+public class Label extends BaseComponent<HTMLElement, Label> implements
         Closeable<HTMLElement, Label>,
         Compact<HTMLElement, Label>,
         ComponentContext<HTMLElement, Label>,

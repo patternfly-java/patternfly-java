@@ -16,7 +16,7 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 
@@ -30,7 +30,7 @@ import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.descriptionList;
 
 public class DescriptionListDescription extends DescriptionListSubComponent<HTMLElement, DescriptionListDescription> implements
-        WithText<HTMLElement, DescriptionListDescription>, ElementDelegate<HTMLElement, DescriptionListDescription> {
+        WithText<HTMLElement, DescriptionListDescription>, ElementContainerDelegate<HTMLElement, DescriptionListDescription> {
 
     // ------------------------------------------------------ factory
 

@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
@@ -48,7 +48,7 @@ import static org.patternfly.style.Classes.component;
  *
  * @see <a href= "https://www.patternfly.org/components/breadcrumb">https://www.patternfly.org/components/breadcrumb</a>
  */
-public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> implements
+public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implements
         HasItems<HTMLElement, Breadcrumb, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
@@ -68,7 +68,7 @@ public class Breadcrumb extends BaseComponentFlat<HTMLElement, Breadcrumb> imple
         this.items = new LinkedHashMap<>();
         this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
         this.selectHandler = new ArrayList<>();
-        storeFlatComponent();
+        storeComponent();
         element().appendChild(ol.element());
     }
 

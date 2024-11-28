@@ -16,7 +16,7 @@
 package org.patternfly.component.divider;
 
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Inset;
@@ -42,7 +42,7 @@ import static org.patternfly.style.Classes.divider;
  *
  * @see <a href= "https://www.patternfly.org/components/divider">https://www.patternfly.org/components/divider</a>
  */
-public class Divider extends BaseComponentFlat<HTMLElement, Divider> {
+public class Divider extends BaseComponent<HTMLElement, Divider> {
 
     // ------------------------------------------------------ factory
 
