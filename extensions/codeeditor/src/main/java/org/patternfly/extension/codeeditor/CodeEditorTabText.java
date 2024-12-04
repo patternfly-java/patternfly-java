@@ -15,6 +15,7 @@
  */
 package org.patternfly.extension.codeeditor;
 
+import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -24,27 +25,25 @@ import static org.patternfly.style.Classes.codeEditor;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tab;
 
-public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeEditorTabText> {
+public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeEditorTabText>
+        implements WithText<HTMLElement, CodeEditorTabText> {
 
     // ------------------------------------------------------ factory
 
     public static CodeEditorTabText codeEditorTabText() {
-        return new CodeEditorTabText(null);
+        return new CodeEditorTabText();
     }
 
     public static CodeEditorTabText codeEditorTabText(String text) {
-        return new CodeEditorTabText(text);
+        return new CodeEditorTabText().text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "cett";
 
-    CodeEditorTabText(String text) {
+    CodeEditorTabText() {
         super(SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.text)).element());
-        if (text != null) {
-            textContent(text);
-        }
     }
 
     // ------------------------------------------------------ builder

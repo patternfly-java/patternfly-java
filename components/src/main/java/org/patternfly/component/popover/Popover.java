@@ -30,7 +30,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Severity;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
@@ -92,7 +92,7 @@ import static org.patternfly.style.Classes.widthAuto;
 public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         Closeable<HTMLDivElement, Popover>,
         NoPadding<HTMLDivElement, Popover>,
-        WithIcon<HTMLDivElement, Popover>,
+        ComponentIcon<HTMLDivElement, Popover>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -206,7 +206,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ add
 
     public Popover addHeader(String header) {
-        return add(popoverHeader().textContent(header));
+        return add(popoverHeader().text(header));
     }
 
     public Popover addHeader(PopoverHeader header) {
@@ -222,7 +222,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover addBody(String body) {
-        return add(popoverBody().textContent(body));
+        return add(popoverBody().text(body));
     }
 
     public Popover addBody(PopoverBody body) {
@@ -236,7 +236,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover addFooter(String footer) {
-        return add(popoverFooter().textContent(footer));
+        return add(popoverFooter().text(footer));
     }
 
     public Popover addFooter(PopoverFooter footer) {

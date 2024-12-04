@@ -13,44 +13,46 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.emptystate;
+package org.patternfly.component.page;
 
-import org.jboss.elemento.ElementTextMethods;
+import org.patternfly.component.brand.Brand;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.a;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.emptyState;
-import static org.patternfly.style.Classes.footer;
+import static org.patternfly.style.Classes.logo;
+import static org.patternfly.style.Classes.masthead;
 
-public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, EmptyStateFooter> implements
-        ElementTextMethods<HTMLDivElement, EmptyStateFooter> {
+public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo> {
 
     // ------------------------------------------------------ factory
 
-    public static EmptyStateFooter emptyStateFooter() {
-        return new EmptyStateFooter();
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static MastheadLogo mastheadLogo(String href) {
+        return new MastheadLogo(href);
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "esb";
+    static final String SUB_COMPONENT_NAME = "mhl";
 
-    EmptyStateFooter() {
-        super(SUB_COMPONENT_NAME, div().css(component(emptyState, footer)).element());
+    MastheadLogo(String href) {
+        super(SUB_COMPONENT_NAME, a(href).css(component(masthead, logo)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public EmptyStateFooter addActions(EmptyStateActions actions) {
-        return add(actions);
+    public MastheadLogo addBrand(Brand brand) {
+        return add(brand);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public EmptyStateFooter that() {
+    public MastheadLogo that() {
         return this;
     }
 }

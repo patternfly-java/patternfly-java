@@ -72,11 +72,6 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
 
     // ------------------------------------------------------ add
 
-    public Masthead addToggle(MastheadToggle toggle) {
-        add(toggle);
-        return this;
-    }
-
     public Masthead addMain(MastheadMain main) {
         return add(main);
     }

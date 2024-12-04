@@ -142,7 +142,7 @@ public class CodeEditorComponent extends SnippetPage {
                                                 .addAction(codeEditorAction(download()))
                                                 .addAction(codeEditorAction(upload())))
                                         .addMain(codeEditorHeaderMain()
-                                                .textContent("Header main content"))
+                                                .text("Header main content"))
                                         .addLinks(codeEditorLinks()
                                                 .addLink(codeEditorViewShortcutsLink()))
                                         .addTab(codeEditorTab(code(), "Java")))

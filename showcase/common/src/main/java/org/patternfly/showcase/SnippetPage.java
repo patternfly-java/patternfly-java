@@ -133,7 +133,7 @@ public class SnippetPage implements Page {
                                         .add(textContent()
                                                 .add(flex().alignItems(breakpoints(default_, center))
                                                         .add(title(1, _4xl, title)))
-                                                .add(p().innerHtml(summary)))))
+                                                .add(p().html(summary)))))
                         .addSection(pageMainSection().css(modifier("light-100"))
                                 .fill()
                                 .add(div().css(util("h-100"))
@@ -202,7 +202,7 @@ public class SnippetPage implements Page {
     public void startApiDocs(Class<?> component) {
         addHeader(Toc.API_DOCS, "API documentation", p()
                 .add("All classes for this component are in the package ")
-                .add(a(packageDocLink(component), ApiDoc.API_DOC_TARGET).textContent(package_(component)))
+                .add(a(packageDocLink(component), ApiDoc.API_DOC_TARGET).text(package_(component)))
                 .add("."));
     }
 
@@ -224,7 +224,7 @@ public class SnippetPage implements Page {
                 .addItem(td("Type").wrap(breakWord)
                         .add(label(type.name, type.color)))
                 .addItem(td("API Documentation").wrap(breakWord)
-                        .add(a(apiDocLink(clazz), ApiDoc.API_DOC_TARGET).textContent(fullName))));
+                        .add(a(apiDocLink(clazz), ApiDoc.API_DOC_TARGET).text(fullName))));
     }
 
     // ------------------------------------------------------ header
@@ -237,7 +237,7 @@ public class SnippetPage implements Page {
         if (description == null) {
             addHeader(id, title, (HTMLContainerBuilder<HTMLParagraphElement>) null);
         } else {
-            addHeader(id, title, p().textContent(description));
+            addHeader(id, title, p().text(description));
         }
     }
 
@@ -312,9 +312,9 @@ public class SnippetPage implements Page {
                             .gridBreakpoint(gridMd)
                             .addHead(thead()
                                     .addRow(tr("api-doc-header")
-                                            .addItem(th().width(width30).textContent("Name"))
-                                            .addItem(th().width(width20).textContent("Type"))
-                                            .addItem(th().textContent("API Documentation"))))
+                                            .addItem(th().width(width30).text("Name"))
+                                            .addItem(th().width(width20).text("Type"))
+                                            .addItem(th().text("API Documentation"))))
                             .addBody(tbody = tbody())
                             .element());
         }

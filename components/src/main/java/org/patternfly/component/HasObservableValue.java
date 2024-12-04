@@ -15,22 +15,14 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.ObservableValue;
 
 import elemental2.dom.Element;
 
-@Deprecated
-public interface WithText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
+public interface HasObservableValue<E extends Element, B extends TypedBuilder<E, B>, T> extends TypedBuilder<E, B>,
         IsElement<E> {
 
-    default B text(String text) {
-        Elements.textNode(element(), text);
-        return that();
-    }
-
-    default String text() {
-        return Elements.textNode(element());
-    }
+    B bind(ObservableValue<T> ov);
 }

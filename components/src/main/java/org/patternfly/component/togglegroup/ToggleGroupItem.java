@@ -22,8 +22,8 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -56,8 +56,8 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementContainerDelegate<HTMLDivElement, ToggleGroupItem>,
-        WithIdentifier<HTMLDivElement, ToggleGroupItem>,
-        WithIcon<HTMLDivElement, ToggleGroupItem>,
+        HasIdentifier<HTMLDivElement, ToggleGroupItem>,
+        ComponentIcon<HTMLDivElement, ToggleGroupItem>,
         WithText<HTMLDivElement, ToggleGroupItem> {
 
     // ------------------------------------------------------ factory
@@ -93,7 +93,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return button.element();
     }
 

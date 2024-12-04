@@ -20,13 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
@@ -40,14 +40,12 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.input;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.keyup;
-import static org.patternfly.component.form.TextInputType.number;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
@@ -65,7 +63,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         HasValue<String>,
         Plain<HTMLElement, TextInput>,
         Readonly<HTMLElement, TextInput>,
-        WithIcon<HTMLElement, TextInput>,
+        ComponentIcon<HTMLElement, TextInput>,
         WithText<HTMLElement, TextInput> {
 
     // ------------------------------------------------------ factory
@@ -94,7 +92,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         typeMapping.put(TextInputType.date, InputType.date);
         typeMapping.put(TextInputType.email, InputType.email);
         typeMapping.put(TextInputType.month, InputType.month);
-        typeMapping.put(number, InputType.number);
+        typeMapping.put(TextInputType.number, InputType.number);
         typeMapping.put(TextInputType.search, InputType.search);
         typeMapping.put(TextInputType.tel, InputType.tel);
         typeMapping.put(TextInputType.text, InputType.text);
@@ -109,7 +107,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
 
     TextInput(TextInputType type, String id, String value) {
         super(id, formControlContainer()
-                        .add(input(typeMapping.getOrDefault(type, InputType.text))
+                        .add(Elements.input(typeMapping.getOrDefault(type, InputType.text))
                                 .id(id)
                                 .name(id)
                                 .aria(invalid, false))
@@ -187,12 +185,6 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return this;
     }
 
-    /** Provides access to the underlying input element using a fluent API style */
-    public TextInput applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
-        consumer.accept(inputElement());
-        return this;
-    }
-
     @Override
     public TextInput icon(Element icon) {
         css(modifier(Classes.icon));
@@ -248,7 +240,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     /** Returns the underlying input element */
-    public HTMLInputElementBuilder<HTMLInputElement> inputElement() {
+    public HTMLInputElementBuilder<HTMLInputElement> input() {
         return wrapInputElement(inputElement);
     }
 
@@ -260,7 +252,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ internal
 
     @Override
-    void disableInputElement(boolean disabled) {
+    void disableControl(boolean disabled) {
         inputElement.disabled = disabled;
     }
 }

@@ -1,6 +1,6 @@
 # API design
 
-PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
+PatternFly Java integrates with and builds upon Elemento's [builder API](https://hal-console.gitbook.io/elemento/builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
 
 In general, the API for a component can be classified into these groups:
 
@@ -66,8 +66,5 @@ boolean value = switch_.value();
 ```
 
 ## Common interfaces
-
-
----
 
 The best way to experience the API is to browse the code snippets of the [components](components/all-components) and [layouts](layouts/about-layouts) in this showcase.

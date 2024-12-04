@@ -18,7 +18,7 @@ package org.patternfly.extension.codeeditor;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
@@ -36,7 +36,7 @@ import static org.patternfly.icon.IconSets.fas.copy;
 
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction>
         implements
-        WithIcon<HTMLElement, CodeEditorAction> {
+        ComponentIcon<HTMLElement, CodeEditorAction> {
 
     // ------------------------------------------------------ factory
 

@@ -15,10 +15,13 @@
  */
 package org.patternfly.component.list;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -29,8 +32,10 @@ import static org.patternfly.style.Classes.dataList;
 import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
-public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent>
-        implements ElementContainerDelegate<HTMLElement, DataListExpandableContent>, NoPadding<HTMLElement, DataListExpandableContent> {
+public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent> implements
+        ElementContainerDelegate<HTMLElement, DataListExpandableContent>,
+        NoPadding<HTMLElement, DataListExpandableContent>,
+        WithText<HTMLElement, DataListExpandableContent> {
 
     // ------------------------------------------------------ factory
 
@@ -50,11 +55,17 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return body;
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public DataListExpandableContent text(String text) {
+        Elements.textNode(body, text);
+        return this;
+    }
 
     @Override
     public DataListExpandableContent noPadding(boolean noPadding) {
@@ -64,5 +75,12 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
     @Override
     public DataListExpandableContent that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(body);
     }
 }

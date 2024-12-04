@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.tabs;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Modifiers.Padding;
 
 import elemental2.dom.HTMLElement;
@@ -24,8 +25,9 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-public class TabContentBody extends TabSubComponent<HTMLElement, TabContentBody>
-        implements Padding<HTMLElement, TabContentBody> {
+public class TabContentBody extends TabSubComponent<HTMLElement, TabContentBody> implements
+        ElementTextMethods<HTMLElement, TabContentBody>,
+        Padding<HTMLElement, TabContentBody> {
 
     // ------------------------------------------------------ factory
 

@@ -49,7 +49,7 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
     DocumentationPage(String doc) {
         this.root = pageMainSection().css("markdown")
                 .background(light)
-                .add(textContent().innerHtml(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
+                .add(textContent().html(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
                 .element();
         Attachable.register(this, this);
     }

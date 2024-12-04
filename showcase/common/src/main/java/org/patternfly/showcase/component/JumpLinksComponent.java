@@ -47,7 +47,7 @@ public class JumpLinksComponent extends SnippetPage {
         startExamples(p()
                 .add("These examples are static because they have no element to scroll spy on that makes sense. Check out the code of the ")
                 .add(a("https://github.com/patternfly-java/showcase/blob/main/src/main/java/org/patternfly/showcase/SnippetPage.java",
-                        ApiDoc.API_DOC_TARGET).textContent("showcase"))
+                        ApiDoc.API_DOC_TARGET).text("showcase"))
                 .add(" to see how tu use scroll spying."));
         addSnippet(new Snippet("jump-links-basic", "Basic",
                 code("jump-links-basic"), () ->

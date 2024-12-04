@@ -17,6 +17,7 @@ package org.patternfly.component.popover;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.WithText;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,7 +26,8 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.popover;
 
-public class PopoverBody extends PopoverSubComponent<HTMLDivElement, PopoverBody> {
+public class PopoverBody extends PopoverSubComponent<HTMLDivElement, PopoverBody> implements
+        WithText<HTMLDivElement, PopoverBody> {
 
     // ------------------------------------------------------ factory
 

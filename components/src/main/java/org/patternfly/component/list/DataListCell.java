@@ -15,7 +15,8 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.WithText;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoFill;
@@ -40,7 +41,8 @@ import static org.patternfly.style.TypedModifier.swap;
 
 public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell> implements
         NoFill<HTMLElement, DataListCell>,
-        WithIcon<HTMLElement, DataListCell> {
+        ComponentIcon<HTMLElement, DataListCell>,
+        WithText<HTMLElement, DataListCell> {
 
     // ------------------------------------------------------ factory
 

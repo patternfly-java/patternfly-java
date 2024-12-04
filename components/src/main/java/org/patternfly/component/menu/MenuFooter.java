@@ -17,6 +17,7 @@ package org.patternfly.component.menu;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
+import org.patternfly.component.WithText;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -25,27 +26,24 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.menu;
 
-public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> {
+public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> implements WithText<HTMLDivElement, MenuFooter> {
 
     // ------------------------------------------------------ factory
 
     public static MenuFooter menuFooter() {
-        return new MenuFooter(null);
+        return new MenuFooter();
     }
 
     public static MenuFooter menuFooter(String text) {
-        return new MenuFooter(text);
+        return new MenuFooter().text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mf";
 
-    MenuFooter(String text) {
+    MenuFooter() {
         super(ComponentType.Menu, SUB_COMPONENT_NAME, div().css(component(menu, footer)).element());
-        if (text != null) {
-            textContent(text);
-        }
     }
 
     // ------------------------------------------------------ builder

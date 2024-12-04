@@ -44,8 +44,9 @@ import static org.patternfly.style.TypedModifier.swap;
  * @see <a href=
  * "https://www.patternfly.org/components/drawer#with-focus-trap">https://www.patternfly.org/components/drawer#with-focus-trap</a>
  */
-public class Drawer extends BaseComponent<HTMLElement, Drawer>
-        implements Inline<HTMLElement, Drawer>, Expandable<HTMLElement, Drawer> {
+public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
+        Expandable<HTMLElement, Drawer>,
+        Inline<HTMLElement, Drawer> {
 
     // ------------------------------------------------------ factory
 

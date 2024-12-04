@@ -22,8 +22,8 @@ import java.util.function.Function;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasObservableValue;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithObservableValue;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
@@ -43,8 +43,9 @@ import static org.patternfly.style.Classes.unread;
  *
  * @see <a href= "https://www.patternfly.org/components/badge">https://www.patternfly.org/components/badge</a>
  */
-public class Badge extends BaseComponent<HTMLElement, Badge>
-        implements HasValue<Integer>, WithObservableValue<HTMLElement, Badge, Integer> {
+public class Badge extends BaseComponent<HTMLElement, Badge> implements
+        HasObservableValue<HTMLElement, Badge, Integer>,
+        HasValue<Integer> {
 
     // ------------------------------------------------------ factory
 

@@ -133,7 +133,7 @@ public class IconComponent extends SnippetPage {
                                 .add(h(1)
                                         .add("Heading ")
                                         .add(icon(plusCircle()).inline()))
-                                .add(p().textContent(LoremIpsum.paragraph()))
+                                .add(p().text(LoremIpsum.paragraph()))
                                 .add(h(2)
                                         .add("Second level ")
                                         .add(icon(plusCircle()).inline()))

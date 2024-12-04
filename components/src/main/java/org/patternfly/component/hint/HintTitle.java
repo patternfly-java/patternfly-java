@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.hint;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.hint;
 import static org.patternfly.style.Classes.title;
 
-public class HintTitle extends HintSubComponent<HTMLDivElement, HintTitle> {
+public class HintTitle extends HintSubComponent<HTMLDivElement, HintTitle> implements
+        ElementTextMethods<HTMLDivElement, HintTitle> {
 
     // ------------------------------------------------------ factory
 

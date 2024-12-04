@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.card;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 
-public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> {
+public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> implements
+        ElementTextMethods<HTMLDivElement, CardFooter> {
 
     // ------------------------------------------------------ factory
 

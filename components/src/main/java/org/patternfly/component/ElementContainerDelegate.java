@@ -21,11 +21,10 @@ import org.jboss.elemento.ElementContainerMethods;
 import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.Element;
-import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 
 /**
- * Delegates all {@code add()} methods from {@link ElementContainerMethods} to the element returned by {@link #delegate()}.
+ * Delegates all methods from {@link ElementContainerMethods} to the element returned by {@link #containerDelegate()}.
  * <p>
  * Please note that if you implement this interface in your (sub)component, you must use {@code element().appendChild()} to add
  * something to the (sub)component itself!
@@ -34,17 +33,23 @@ public interface ElementContainerDelegate<E extends Element, B extends TypedBuil
         TypedBuilder<E, B>,
         ElementContainerMethods<E, B> {
 
-    HTMLElement delegate();
+    Element containerDelegate();
+
+    @Override
+    default B add(String text) {
+        containerDelegate().appendChild(element().ownerDocument.createTextNode(text));
+        return that();
+    }
 
     @Override
     default B add(Node node) {
-        delegate().appendChild(node);
+        containerDelegate().appendChild(node);
         return that();
     }
 
     @Override
     default B add(Supplier<Node> supplier) {
-        delegate().appendChild(supplier.get());
+        containerDelegate().appendChild(supplier.get());
         return that();
     }
 }

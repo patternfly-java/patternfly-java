@@ -75,7 +75,7 @@ public class Th extends Cell<Th> implements Attachable {
     // ------------------------------------------------------ builder
 
     public Th screenReader(String text) {
-        return add(span().css(screenReader).textContent(text));
+        return add(span().css(screenReader).text(text));
     }
 
     @Override

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.table;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.caption;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.caption;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 
-public class TableCaption extends TableSubComponent<HTMLElement, TableCaption> {
+public class TableCaption extends TableSubComponent<HTMLElement, TableCaption> implements
+        ElementTextMethods<HTMLElement, TableCaption> {
 
     // ------------------------------------------------------ factory
 

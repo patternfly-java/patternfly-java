@@ -15,10 +15,10 @@
  */
 package org.patternfly.component.banner;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
 import org.patternfly.style.Status;
@@ -41,7 +41,8 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/banner">https://www.patternfly.org/components/banner</a>
  */
-public class Banner extends BaseComponent<HTMLDivElement, Banner> implements WithText<HTMLDivElement, Banner> {
+public class Banner extends BaseComponent<HTMLDivElement, Banner> implements
+        ElementTextMethods<HTMLDivElement, Banner> {
 
     // ------------------------------------------------------ factory
 
@@ -71,14 +72,6 @@ public class Banner extends BaseComponent<HTMLDivElement, Banner> implements Wit
 
     // ------------------------------------------------------ builder
 
-    @Override
-    public Banner text(String text) {
-        if (text != null) {
-            Elements.textNode(element(), text);
-        }
-        return this;
-    }
-
     public Banner status(Status status) {
         for (Color color : Color.values()) {
             element().classList.remove(color.modifier);
@@ -102,6 +95,13 @@ public class Banner extends BaseComponent<HTMLDivElement, Banner> implements Wit
     }
 
     @Override
+    public Banner text(String text) {
+        // Overridden to not mess with a possible screen reader element
+        Elements.textNode(element(), text);
+        return this;
+    }
+
+    @Override
     public Banner that() {
         return this;
     }
@@ -110,6 +110,7 @@ public class Banner extends BaseComponent<HTMLDivElement, Banner> implements Wit
 
     @Override
     public String text() {
+        // Overridden to not mess with a possible screen reader element
         return Elements.textNode(element());
     }
 

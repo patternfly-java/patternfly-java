@@ -68,7 +68,7 @@ public class Snippet implements IsElement<HTMLElement> {
     }
 
     public Snippet(String id, String title, String description, String code, Supplier<HTMLElement> demo) {
-        this(id, title, description == null ? null : p().textContent(description), code, demo);
+        this(id, title, description == null ? null : p().text(description), code, demo);
     }
 
     public Snippet(String id, String title, HTMLContainerBuilder<HTMLParagraphElement> description, String code,

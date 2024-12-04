@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.text;
 
+import org.jboss.elemento.ElementHTMLMethods;
 import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -31,8 +32,9 @@ import static org.patternfly.style.Classes.content;
  *
  * @see <a href= "https://www.patternfly.org/components/text">https://www.patternfly.org/components/text</a>
  */
-public class TextContent extends BaseComponent<HTMLDivElement, TextContent>
-        implements ElementTextMethods<HTMLDivElement, TextContent> {
+public class TextContent extends BaseComponent<HTMLDivElement, TextContent> implements
+        ElementHTMLMethods<HTMLDivElement, TextContent>,
+        ElementTextMethods<HTMLDivElement, TextContent> {
 
     // ------------------------------------------------------ factory
 

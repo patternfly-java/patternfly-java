@@ -21,7 +21,10 @@ import org.patternfly.icon.PredefinedIcon;
 
 import elemental2.dom.Element;
 
-public interface WithIcon<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
+/**
+ * Interface to be implemented by (sub)components that have an icon.
+ */
+public interface ComponentIcon<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {
 
     default B icon(PredefinedIcon icon) {

@@ -47,10 +47,6 @@ public enum ComponentType {
 
     Checkbox("chb", "PF5/Checkbox"),
 
-    Chip("chp", "PF5/Chip"),
-
-    ChipGroup("cpg", "PF5/ChipGroup"),
-
     CodeBlock("cb", "PF5/CodeBlock"),
 
     CodeEditor("ce", "PF5/CodeEditor"),

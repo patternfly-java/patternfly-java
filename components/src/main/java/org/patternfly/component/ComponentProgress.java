@@ -26,7 +26,10 @@ import elemental2.dom.Element;
 import static org.patternfly.style.Classes.inProgress;
 import static org.patternfly.style.Classes.modifier;
 
-public interface WithProgress<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
+/**
+ * Interface to be implemented by (sub)components that support some kind of visual progress.
+ */
+public interface ComponentProgress<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {
 
     default B startProgress() {

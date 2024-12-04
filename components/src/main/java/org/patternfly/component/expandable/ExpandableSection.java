@@ -59,13 +59,14 @@ import static org.patternfly.style.Variables.LineClamp;
  * @see <a href=
  * "https://www.patternfly.org/components/expandable-section">https://www.patternfly.org/components/expandable-section</a>
  */
-public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements Attachable,
+public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements
+        Attachable,
         Expandable<HTMLDivElement, ExpandableSection> {
 
     // ------------------------------------------------------ factory
 
     public static ExpandableSection expandableSection() {
-        return new ExpandableSection(null);
+        return new ExpandableSection(Id.unique(ComponentType.ExpandableSection.id));
     }
 
     public static ExpandableSection expandableSection(String id) {
@@ -86,7 +87,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     ExpandableSection(String id) {
         super(ComponentType.ExpandableSection, div().css(component(expandableSection)).element());
-        this.id = id == null ? Id.unique(componentType().id) : id;
+        this.id = id;
         this.toggleHandler = new ArrayList<>();
         storeComponent();
         Attachable.register(this, this);
@@ -100,7 +101,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         }
         if (truncate > 0) {
             if (toggle != null) {
-                toggle.removeIcon();
+                toggle.truncate();
             }
             if (truncate != DEFAULT_TRUNCATE && content != null) {
                 componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content).set(truncate);

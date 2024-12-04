@@ -40,9 +40,9 @@ public class SplitLayout extends SnippetPage {
                 // @code-start:split-basic
                 div().css("ws-core-l-split")
                         .add(split()
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().fill().textContent("pf-m-fill"))
-                                .addItem(splitItem().textContent("content")))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().fill().text("pf-m-fill"))
+                                .addItem(splitItem().text("content")))
                         .element()
                 // @code-end:split-basic
         ));
@@ -52,9 +52,9 @@ public class SplitLayout extends SnippetPage {
                 // @code-start:split-gutter
                 div().css("ws-core-l-split")
                         .add(split().gutter()
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().fill().textContent("pf-m-fill"))
-                                .addItem(splitItem().textContent("content")))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().fill().text("pf-m-fill"))
+                                .addItem(splitItem().text("content")))
                         .element()
                 // @code-end:split-gutter
         ));
@@ -64,20 +64,20 @@ public class SplitLayout extends SnippetPage {
                 // @code-start:split-wrap
                 div().css("ws-core-l-split")
                         .add(split().wrap().gutter()
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content"))
-                                .addItem(splitItem().textContent("content")))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content"))
+                                .addItem(splitItem().text("content")))
                         .element()
                 // @code-end:split-wrap
         ));

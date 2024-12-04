@@ -18,16 +18,16 @@ package org.patternfly.component.button;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.ComponentProgress;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithProgress;
-import org.patternfly.component.WithText;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
@@ -47,6 +47,7 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.wrapHtmlContainer;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.style.Classes.block;
@@ -76,15 +77,15 @@ import static org.patternfly.style.Size.md;
  * @see <a href= "https://www.patternfly.org/components/button">https://www.patternfly.org/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button> implements
+        ComponentIcon<HTMLElement, Button>,
+        ComponentIconAndText<HTMLElement, Button>,
+        ComponentProgress<HTMLElement, Button>,
         Disabled<HTMLElement, Button>,
+        ElementTextMethods<HTMLElement, Button>,
         Inline<HTMLElement, Button>,
-        Plain<HTMLElement, Button>,
         NoPadding<HTMLElement, Button>,
-        Secondary<HTMLElement, Button>,
-        WithIcon<HTMLElement, Button>,
-        WithText<HTMLElement, Button>,
-        WithIconAndText<HTMLElement, Button>,
-        WithProgress<HTMLElement, Button> {
+        Plain<HTMLElement, Button>,
+        Secondary<HTMLElement, Button> {
 
     // ------------------------------------------------------ factory
 
@@ -120,8 +121,8 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
     private Element icon;
-    private HTMLElement textContainer;
-    private HTMLElement iconContainer;
+    private HTMLElement textElement;
+    private HTMLElement iconElement;
     private Spinner spinner;
 
     <E extends HTMLElement> Button(HTMLContainerBuilder<E> builder) {
@@ -154,14 +155,15 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     public Button icon(Element icon) {
         removeIcon();
         this.icon = icon;
-        failSafeIconContainer().appendChild(icon);
+        failSafeIconElement().appendChild(icon);
         return this;
     }
 
     @Override
     public Button removeIcon() {
-        failSafeRemoveFromParent(icon);
+        failSafeRemoveFromParent(iconElement);
         this.icon = null;
+        this.iconElement = null;
         return this;
     }
 
@@ -171,20 +173,14 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         this.icon = icon;
         switch (position) {
             case start:
-                add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.start))
-                        .add(icon)
-                        .element());
-                add(textContainer = span().css(component(button, Classes.text))
-                        .textContent(text)
-                        .element());
+                failSafeIconElement().classList.add(modifier(Classes.start));
+                icon(icon);
+                text(text);
                 break;
             case end:
-                add(textContainer = span().css(component(button, Classes.text))
-                        .textContent(text)
-                        .element());
-                add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.end))
-                        .add(icon)
-                        .element());
+                text(text);
+                failSafeIconElement().classList.add(modifier(Classes.end));
+                icon(icon);
                 break;
         }
         return this;
@@ -195,9 +191,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
      */
     @Override
     public Button text(String text) {
-        if (text != null) {
-            failSafeTextContainer().textContent = text;
-        }
+        failSafeTextElement().textContent = text;
         return this;
     }
 
@@ -265,6 +259,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return this;
     }
 
+    @Override
     public Button progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
         if (!element().classList.contains(modifier(plain)) && !element().classList.contains(modifier(progress))) {
             // add this once and keep it!
@@ -302,19 +297,37 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return this;
     }
 
-    // ------------------------------------------------------ internal
+    // ------------------------------------------------------ api
 
-    private HTMLElement failSafeIconContainer() {
-        if (iconContainer == null) {
-            add(iconContainer = span().css(component(button, Classes.icon)).element());
+    @Override
+    public String text() {
+        if (textElement != null) {
+            return textElement.textContent;
         }
-        return iconContainer;
+        return "";
     }
 
-    private HTMLElement failSafeTextContainer() {
-        if (textContainer == null) {
-            add(textContainer = span().css(component(button, Classes.text)).element());
+    public HTMLContainerBuilder<HTMLElement> iconElement() {
+        return wrapHtmlContainer(failSafeIconElement());
+    }
+
+    public HTMLContainerBuilder<HTMLElement> textElement() {
+        return wrapHtmlContainer(failSafeTextElement());
+    }
+
+    // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeIconElement() {
+        if (iconElement == null) {
+            add(iconElement = span().css(component(button, Classes.icon)).element());
         }
-        return textContainer;
+        return iconElement;
+    }
+
+    private HTMLElement failSafeTextElement() {
+        if (textElement == null) {
+            add(textElement = span().css(component(button, Classes.text)).element());
+        }
+        return textElement;
     }
 }

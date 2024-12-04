@@ -142,7 +142,7 @@ public class Truncate extends BaseComponent<HTMLElement, Truncate> implements Wi
                 case middle:
                     break;
                 case end:
-                    failSafePrimaryTextElement().textContent(text);
+                    failSafePrimaryTextElement().text(text);
                     break;
             }
             tooltip.text(text);
@@ -150,15 +150,15 @@ public class Truncate extends BaseComponent<HTMLElement, Truncate> implements Wi
     }
 
     private void updatePrimaryText(String text) {
-        failSafePrimaryTextElement().textContent(text);
+        failSafePrimaryTextElement().text(text);
         if (position.get() == end) {
-            failSafePrimaryTextElement().textContent(text);
+            failSafePrimaryTextElement().text(text);
         } else if (position.get() == start) {
             SafeHtml safeHtml = new SafeHtmlBuilder()
                     .appendEscaped(text)
                     .appendHtmlConstant("&lrm;")
                     .toSafeHtml();
-            failSafePrimaryTextElement().innerHtml(safeHtml);
+            failSafePrimaryTextElement().html(safeHtml);
         }
     }
 
@@ -169,9 +169,9 @@ public class Truncate extends BaseComponent<HTMLElement, Truncate> implements Wi
         String second = text.substring(length);
         if (first.length() > MIN_WIDTH_CHARACTERS) {
             failSafePrimaryTextElement().css(component(truncate, Classes.start))
-                    .textContent(first);
+                    .text(first);
             failSafeSecondaryTextElement().css(component(truncate, Classes.end))
-                    .textContent(text.substring(text.length() - trailingNumChars));
+                    .text(text.substring(text.length() - trailingNumChars));
         } else {
             element().textContent = text;
         }

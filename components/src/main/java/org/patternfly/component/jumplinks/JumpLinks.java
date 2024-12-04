@@ -170,9 +170,9 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     }
 
     public JumpLinks label(String label) {
-        labelElement.textContent(label);
+        labelElement.text(label);
         if (toggleTextElement != null) {
-            toggleTextElement.textContent(label);
+            toggleTextElement.text(label);
         }
         return this;
     }
@@ -346,7 +346,7 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
                             .add(span().css(component(jumpLinks, toggle, icon))
                                     .add(angleRight()))
                             .add(toggleTextElement = span().css(component(jumpLinks, toggle, text))
-                                    .textContent(labelElement.element().textContent))));
+                                    .text(labelElement.element().textContent))));
         }
         return toggleButton;
     }

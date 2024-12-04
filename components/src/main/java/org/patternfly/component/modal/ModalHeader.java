@@ -69,7 +69,7 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
     // ------------------------------------------------------ add
 
     public ModalHeader addTitle(String title) {
-        return addTitle(modalHeaderTitle().textContent(title));
+        return addTitle(modalHeaderTitle().text(title));
     }
 
     public ModalHeader addTitle(ModalHeaderTitle title) {
@@ -87,7 +87,7 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
     }
 
     public ModalHeader addDescription(String description) {
-        return add(modalHeaderDescription().textNode(description));
+        return add(modalHeaderDescription().text(description));
     }
 
     public ModalHeader addDescription(ModalHeaderDescription description) {

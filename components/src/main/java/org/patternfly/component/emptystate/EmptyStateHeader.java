@@ -15,8 +15,8 @@
  */
 package org.patternfly.component.emptystate;
 
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithText;
+import org.jboss.elemento.ElementTextMethods;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Size;
@@ -42,8 +42,8 @@ import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Color;
 
 public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, EmptyStateHeader> implements
-        WithText<HTMLDivElement, EmptyStateHeader>,
-        WithIcon<HTMLDivElement, EmptyStateHeader> {
+        ComponentIcon<HTMLDivElement, EmptyStateHeader>,
+        ElementTextMethods<HTMLDivElement, EmptyStateHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -129,9 +129,8 @@ public class EmptyStateHeader extends EmptyStateSubComponent<HTMLDivElement, Emp
         if (titleElement != null) {
             return titleElement.textContent;
         }
-        return null;
+        return "";
     }
-
 
     // ------------------------------------------------------ internal
 

@@ -49,6 +49,11 @@ public class MastheadMain extends MastheadSubComponent<HTMLDivElement, MastheadM
 
     // ------------------------------------------------------ add
 
+    public MastheadMain addToggle(MastheadToggle toggle) {
+        add(toggle);
+        return this;
+    }
+
     public MastheadMain addBrand(MastheadBrand brand) {
         return add(brand);
     }

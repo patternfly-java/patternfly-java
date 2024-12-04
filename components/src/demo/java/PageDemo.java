@@ -66,8 +66,9 @@ public class PageDemo {
     public void mastheadDemo() {
         // @start region = masthead
         masthead()
-                .addToggle(mastheadToggle())
                 .addMain(mastheadMain()
+                        .addToggle(mastheadToggle())
+                        .addBrand(mastheadBrand())
                         .addBrand(mastheadBrand(a("/"))
                                 .addBrand(brand("/logo.svg", "Logo"))))
                 .addContent(mastheadContent()

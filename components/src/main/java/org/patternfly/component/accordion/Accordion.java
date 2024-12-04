@@ -53,9 +53,9 @@ import static org.patternfly.style.Size.lg;
  * @see <a href="https://www.patternfly.org/components/accordion">https://www.patternfly.org/components/accordion</a>
  */
 public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
+        Attachable,
         Bordered<HTMLElement, Accordion>,
-        HasItems<HTMLElement, Accordion, AccordionItem>,
-        Attachable {
+        HasItems<HTMLElement, Accordion, AccordionItem> {
 
     // ------------------------------------------------------ factory
 

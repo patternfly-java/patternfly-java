@@ -450,7 +450,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
             if (type == expandable) {
                 unselectAllExpandableGroups();
-                selectGroup(item.a, fireEvent);
+                selectGroup(item.anchorElement, fireEvent);
             }
         } else {
             unselectAllItems();

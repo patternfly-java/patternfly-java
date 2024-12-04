@@ -18,7 +18,8 @@ package org.patternfly.component.jumplinks;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.component.WithIdentifier;
+import org.jboss.elemento.Elements;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
@@ -43,7 +44,7 @@ import static org.patternfly.style.Classes.text;
 
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
         ComponentContext<HTMLLIElement, JumpLinksItem>,
-        WithIdentifier<HTMLLIElement, JumpLinksItem>,
+        HasIdentifier<HTMLLIElement, JumpLinksItem>,
         WithText<HTMLLIElement, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
@@ -110,7 +111,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     @Override
     public JumpLinksItem text(String text) {
-        textElement.textContent = text;
+        Elements.textNode(textElement, text);
         return this;
     }
 
@@ -151,7 +152,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     @Override
     public String text() {
-        return textElement.textContent;
+        return Elements.textNode(textElement);
     }
 
     @Override

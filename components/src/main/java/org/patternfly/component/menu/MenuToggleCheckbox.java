@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -96,7 +97,7 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
 
     @Override
     public MenuToggleCheckbox text(String text) {
-        failSafeTextElement().textContent = text;
+        Elements.textNode(failSafeTextElement(), text);
         return this;
     }
 
@@ -153,7 +154,7 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
         if (textElement != null) {
             return textElement.textContent;
         }
-        return null;
+        return "";
     }
 
     // ------------------------------------------------------ internal

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.modal;
 
+import org.patternfly.component.WithText;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.modalBox;
 
-public class ModalHeaderDescription extends ModalSubComponent<HTMLDivElement, ModalHeaderDescription> {
+public class ModalHeaderDescription extends ModalSubComponent<HTMLDivElement, ModalHeaderDescription> implements
+        WithText<HTMLDivElement, ModalHeaderDescription> {
 
     // ------------------------------------------------------ factory
 

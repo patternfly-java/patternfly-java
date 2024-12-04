@@ -24,9 +24,9 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.WithText;
-import org.patternfly.component.chip.ChipGroup;
+import org.patternfly.component.label.LabelGroup;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -54,7 +54,7 @@ import static org.patternfly.style.Classes.textInput;
 public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupMain> implements
         HasValue<String>,
         Disabled<HTMLDivElement, TextInputGroupMain>,
-        WithIcon<HTMLDivElement, TextInputGroupMain>,
+        ComponentIcon<HTMLDivElement, TextInputGroupMain>,
         WithText<HTMLDivElement, TextInputGroupMain> {
 
     // ------------------------------------------------------ factory
@@ -72,7 +72,7 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
     private final List<ChangeHandler<TextInputGroup, String>> keyupChangeHandlers;
     private final List<ChangeHandler<TextInputGroup, String>> valueChangeHandlers;
     private HTMLElement iconContainer;
-    private ChipGroup chipGroup;
+    private LabelGroup labelGroup;
     private TextInputGroup textInputGroup;
 
     TextInputGroupMain(String id) {
@@ -102,14 +102,14 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
 
     // ------------------------------------------------------ add
 
-    public TextInputGroupMain addChipGroup(ChipGroup chipGroup) {
-        return add(chipGroup);
+    public TextInputGroupMain addLabelGroup(LabelGroup labelGroup) {
+        return add(labelGroup);
     }
 
     // override to ensure internal wiring
-    public TextInputGroupMain add(ChipGroup chipGroup) {
-        this.chipGroup = chipGroup;
-        insertFirst(element(), chipGroup);
+    public TextInputGroupMain add(LabelGroup labelGroup) {
+        this.labelGroup = labelGroup;
+        insertFirst(element(), labelGroup);
         return this;
     }
 
@@ -215,7 +215,7 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return wrapInputElement(inputElement);
     }
 
-    public ChipGroup chipGroup() {
-        return chipGroup;
+    public LabelGroup labelGroup() {
+        return labelGroup;
     }
 }

@@ -107,7 +107,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     private TooltipToggle tooltipToggle;
 
     LabelGroup(String category) {
-        super(ComponentType.ChipGroup, div().css(component(labelGroup)).element());
+        super(ComponentType.LabelGroup, div().css(component(labelGroup)).element());
         this.items = new LinkedHashMap<>();
         this.closeHandler = new ArrayList<>();
         this.expanded = false;

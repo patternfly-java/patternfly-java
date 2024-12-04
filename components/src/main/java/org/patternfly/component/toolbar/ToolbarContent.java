@@ -22,6 +22,7 @@ import java.util.Map;
 import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -61,7 +62,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return contentSection;
     }
 

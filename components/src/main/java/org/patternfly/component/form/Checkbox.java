@@ -139,7 +139,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
                 if (requiredMarker == null) {
                     requiredMarker = span().css(component(check, label, Classes.required))
                             .aria(hidden, true)
-                            .innerHtml(fromSafeConstant("&#42;"))
+                            .html(fromSafeConstant("&#42;"))
                             .element();
                 }
                 labelElement.appendChild(requiredMarker);

@@ -25,6 +25,7 @@ import java.util.Objects;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -35,9 +36,9 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
@@ -99,9 +100,9 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         Disabled<HTMLElement, Label>,
         HasValue<String>,
         WithText<HTMLElement, Label>,
-        WithIcon<HTMLElement, Label>,
-        WithIconAndText<HTMLElement, Label>,
-        WithIdentifier<HTMLElement, Label>,
+        ComponentIcon<HTMLElement, Label>,
+        ComponentIconAndText<HTMLElement, Label>,
+        HasIdentifier<HTMLElement, Label>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -153,7 +154,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
 
         element().appendChild(contentElement = span().css(component(Classes.label, content))
                 .add(textElement = span().css(component(Classes.label, Classes.text))
-                        .textContent(text)
+                        .text(text)
                         .element())
                 .element());
         tooltipToggle = new TooltipToggle(textElement);
@@ -287,13 +288,13 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
 
     @Override
     public Label text(String text) {
-        textElement.textContent = text;
+        Elements.textNode(textElement, text);
         tooltipToggle.eval();
         return this;
     }
 
     public Label textMaxWidth(String maxWidth) {
-        // --pf-v5-c-label__text--MaxWidth: <maxWidth>
+        // --pf-v6-c-label__text--MaxWidth: <maxWidth>
         componentVar(component(Classes.label, Classes.text), MaxWidth).applyTo(textElement).set(maxWidth);
         tooltipToggle.eval();
         return this;
@@ -372,7 +373,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
 
     @Override
     public String text() {
-        return textElement.textContent;
+        return Elements.textNode(textElement);
     }
 
     @Override
@@ -420,7 +421,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     }
 
     private void completeEdit(Event event, String newText) {
-        textElement.textContent = newText;
+        Elements.textNode(textElement, newText);
         editCompleteHandler.forEach(ech -> ech.complete(event, this, newText));
         leaveEdit();
     }

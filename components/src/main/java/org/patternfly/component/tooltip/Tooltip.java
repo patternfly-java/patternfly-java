@@ -249,7 +249,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
 
     @Override
     public Tooltip text(String text) {
-        contentElement.textContent = text;
+        Elements.textNode(contentElement, text);
         if (isAttached(this) && isVisible(this)) {
             popper.update();
         }
@@ -336,6 +336,6 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
 
     @Override
     public String text() {
-        return contentElement.textContent;
+        return Elements.textNode(contentElement);
     }
 }

@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithProgress;
+import org.patternfly.component.ComponentProgress;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -51,7 +51,7 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class Icon extends BaseComponent<HTMLElement, Icon> implements
         Inline<HTMLElement, Icon>,
-        WithProgress<HTMLElement, Icon> {
+        ComponentProgress<HTMLElement, Icon> {
 
     // ------------------------------------------------------ factory
 

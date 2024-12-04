@@ -15,6 +15,7 @@
  */
 package org.patternfly.showcase;
 
+import org.gwtproject.safehtml.shared.SafeHtmlUtils;
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
@@ -27,16 +28,16 @@ import org.patternfly.core.Version;
 import org.patternfly.style.Classes;
 
 import static elemental2.dom.DomGlobal.location;
-import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.body;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
-import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
+import static org.patternfly.component.page.MastheadContent.mastheadContent;
+import static org.patternfly.component.page.MastheadLogo.mastheadLogo;
 import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
@@ -44,7 +45,6 @@ import static org.patternfly.component.page.PageMain.pageMain;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.page.PageSidebarBody.pageSidebarBody;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
-import static org.patternfly.showcase.Assets.pfLogo;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
@@ -103,16 +103,19 @@ public final class Showcase {
                 .addItem(ni(placeManager.place("/icons")))
                 .addItem(ni(placeManager.place("/get-involved")));
 
-        // body & page
+        // body and page
         body().add(page()
                 .addSkipToContent(skipToContent(MAIN_ID))
-                .addMasthead(masthead().css("ws-masthead")
-                        .addToggle(mastheadToggle()
-                                .toggleSidebar())
+                .addMasthead(masthead()
                         .addMain(mastheadMain()
-                                .addBrand(mastheadBrand(a("/"))
-                                        .addBrand(brand(pfLogo, "PatternFly")
-                                                .style(componentVar(component(Classes.brand), Height).name, "36px")))))
+                                .addToggle(mastheadToggle()
+                                        .toggleSidebar())
+                                .addBrand(mastheadBrand()
+                                        .addLogo(mastheadLogo("/")
+                                                .style(componentVar(component(Classes.brand), Height).name, "36px")
+                                                .apply(e -> e.innerHTML = SafeHtmlUtils.fromSafeConstant(
+                                                        ResourceBundle.pfLogo).asString()))))
+                        .addContent(mastheadContent()))
                 .addSidebar(pageSidebar()
                         .addBody(pageSidebarBody()
                                 .addNavigation(navigation)))

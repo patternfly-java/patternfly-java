@@ -21,8 +21,8 @@ import java.util.List;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
@@ -47,8 +47,8 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> implements
-        WithIdentifier<HTMLButtonElement, MenuItemAction>,
-        WithIcon<HTMLButtonElement, MenuItemAction> {
+        HasIdentifier<HTMLButtonElement, MenuItemAction>,
+        ComponentIcon<HTMLButtonElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 

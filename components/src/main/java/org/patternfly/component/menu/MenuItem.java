@@ -30,9 +30,9 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
@@ -98,10 +98,10 @@ import static org.patternfly.style.Size.lg;
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         ComponentContext<HTMLElement, MenuItem>,
         Disabled<HTMLElement, MenuItem>,
-        WithIdentifier<HTMLElement, MenuItem>,
+        HasIdentifier<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
-        WithIcon<HTMLElement, MenuItem>,
-        WithIconAndText<HTMLElement, MenuItem>,
+        ComponentIcon<HTMLElement, MenuItem>,
+        ComponentIconAndText<HTMLElement, MenuItem>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -344,6 +344,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     @Override
     public MenuItem text(String text) {
+        // Don't use `Elements.textNode(textElement, text)` here.
+        // We want to replace anything that has been added with text(HTMLElement) with a new text!
         textElement.textContent = text;
         return this;
     }
@@ -370,7 +372,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .add(externalLinkAlt())
                     .element());
             mainElement.appendChild(span().css(screenReader)
-                    .textContent("(opens a new window)")
+                    .text("(opens a new window)")
                     .element());
         } else {
             logger.warn("Ignore external flag for menu item %o with type '%s'", element(), itemType.name());
@@ -383,7 +385,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             descriptionElement.textContent = description;
         } else {
             itemElement.appendChild(descriptionElement = span().css(component(Classes.menu, item, Classes.description))
-                    .textContent(description)
+                    .text(description)
                     .element());
         }
         return this;

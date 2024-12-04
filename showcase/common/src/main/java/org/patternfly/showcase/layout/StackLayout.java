@@ -40,9 +40,9 @@ public class StackLayout extends SnippetPage {
                 // @code-start:stack-basic
                 div().css("ws-core-l-stack")
                         .add(stack()
-                                .addItem(stackItem().textContent("content"))
-                                .addItem(stackItem().fill().textContent("pf-m-fill"))
-                                .addItem(stackItem().textContent("content")))
+                                .addItem(stackItem().text("content"))
+                                .addItem(stackItem().fill().text("pf-m-fill"))
+                                .addItem(stackItem().text("content")))
                         .element()
                 // @code-end:stack-basic
         ));
@@ -52,9 +52,9 @@ public class StackLayout extends SnippetPage {
                 // @code-start:stack-gutter
                 div().css("ws-core-l-stack")
                         .add(stack().gutter()
-                                .addItem(stackItem().textContent("content"))
-                                .addItem(stackItem().fill().textContent("pf-m-fill"))
-                                .addItem(stackItem().textContent("content")))
+                                .addItem(stackItem().text("content"))
+                                .addItem(stackItem().fill().text("pf-m-fill"))
+                                .addItem(stackItem().text("content")))
                         .element()
                 // @code-end:stack-gutter
         ));

@@ -38,7 +38,7 @@ val target = "src/main/java"
 val resources = listOf(
         Resource("avatarDark", File(args[0], "src/bundle/avatar-dark.svg"), true),
         Resource("avatarLight", File(args[0], "src/bundle/avatar-light.svg"), true),
-        Resource("pfLogo", File(args[0], "src/bundle/pf-logo.svg"), true),
+        Resource("pfLogo", File(args[0], "src/bundle/pf-logo.svg"), false),
         Resource("components", File(args[0], "src/bundle/components.json"), false),
         Resource("layouts", File(args[0], "src/bundle/layouts.json"), false),
         Resource("rhcp", File(args[0], "src/bundle/rhcp.json"), false),

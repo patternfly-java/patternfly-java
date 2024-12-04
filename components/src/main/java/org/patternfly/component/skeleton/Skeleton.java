@@ -74,7 +74,7 @@ public class Skeleton extends BaseComponent<HTMLElement, Skeleton> {
     }
 
     public Skeleton screenReaderText(String text) {
-        element().appendChild(span().css(screenReader).textContent(text).element());
+        element().appendChild(span().css(screenReader).text(text).element());
         return this;
     }
 

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.drawer;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Modifiers.Padding;
 
 import elemental2.dom.HTMLDivElement;
@@ -28,6 +29,7 @@ import static org.patternfly.style.Classes.drawer;
  * Subcomponent for elements in a {@link DrawerContent}.
  */
 public class DrawerContentBody extends DrawerSubComponent<HTMLDivElement, DrawerContentBody> implements
+        ElementTextMethods<HTMLDivElement, DrawerContentBody>,
         Padding<HTMLDivElement, DrawerContentBody> {
 
     // ------------------------------------------------------ factory

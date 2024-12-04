@@ -82,7 +82,7 @@ public class SpinnerComponent extends SnippetPage {
                                 .add(h(1)
                                         .add("Heading ")
                                         .add(spinner("Spinner in heading").inline()))
-                                .add(p().textContent(LoremIpsum.paragraphs(1)))
+                                .add(p().text(LoremIpsum.paragraphs(1)))
                                 .add(h(2)
                                         .add("Second level ")
                                         .add(spinner("Spinner in subheading").inline()))

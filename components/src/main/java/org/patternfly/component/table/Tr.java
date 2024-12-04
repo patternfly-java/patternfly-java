@@ -32,7 +32,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.tree.TreeViewItem;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;
@@ -80,7 +80,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         ComponentContext<HTMLTableRowElement, Tr>,
         Expandable<HTMLTableRowElement, Tr>,
         HasItems<HTMLTableRowElement, Tr, Cell<?>>,
-        WithIdentifier<HTMLTableRowElement, Tr> {
+        HasIdentifier<HTMLTableRowElement, Tr> {
 
     // ------------------------------------------------------ factory
 

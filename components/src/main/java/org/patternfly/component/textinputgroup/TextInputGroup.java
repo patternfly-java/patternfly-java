@@ -20,8 +20,8 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.chip.Chip;
-import org.patternfly.component.chip.ChipGroup;
+import org.patternfly.component.label.Label;
+import org.patternfly.component.label.LabelGroup;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.handler.CloseHandler;
@@ -34,8 +34,8 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.chip.Chip.chip;
-import static org.patternfly.component.chip.ChipGroup.chipGroup;
+import static org.patternfly.component.label.Label.label;
+import static org.patternfly.component.label.LabelGroup.labelGroup;
 import static org.patternfly.component.textinputgroup.TextInputGroupMain.textInputGroupMain;
 import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
 import static org.patternfly.core.ObservableValue.ov;
@@ -83,20 +83,20 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     }
 
     public static TextInputGroup filterInputGroup(String placeholder) {
-        ChipGroup chipGroup = chipGroup();
+        LabelGroup labelGroup = labelGroup();
         TextInputGroup textInputGroup = textInputGroup();
         ObservableValue<Boolean> chipsPresent = ov(false);
         ObservableValue<Boolean> textEntered = ov(false);
-        CloseHandler<Chip> closeHandler = (event, chip) -> chipsPresent.set(!chipGroup.isEmpty());
+        CloseHandler<Label> closeHandler = (event, chip) -> chipsPresent.set(!labelGroup.isEmpty());
 
         textInputGroup
                 .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "fig"))
-                        .addChipGroup(chipGroup)
+                        .addLabelGroup(labelGroup)
                         .placeholder(placeholder)
                         .onKeyup((e, tig, value) -> {
                             textEntered.set(!value.isEmpty());
                             if (Key.Enter.match(e) && !value.isEmpty()) {
-                                chipGroup.addItem(chip(value).onClose(closeHandler));
+                                labelGroup.addItem(label(value).onClose(closeHandler));
                                 tig.main().value("");
                                 chipsPresent.set(true);
                                 textEntered.set(false);
@@ -105,14 +105,14 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                 .addUtilities(textInputGroupUtilities(false)
                         .add(button().icon(times()).plain()
                                 .on(click, e -> {
-                                    chipGroup.clear();
+                                    labelGroup.clear();
                                     textInputGroup.main().value("");
                                     chipsPresent.set(false);
                                     textEntered.change(false);
                                 })));
 
         chipsPresent.subscribe((current, previous) -> {
-            setVisible(chipGroup, current);
+            setVisible(labelGroup, current);
             if (current) {
                 textInputGroup.main().removeIcon();
             } else {

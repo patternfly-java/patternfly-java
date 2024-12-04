@@ -18,10 +18,9 @@ package org.patternfly.component.form;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.HTMLElementBuilder;
+import org.jboss.elemento.HTMLTextAreaElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.WithText;
@@ -38,7 +37,7 @@ import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.DomGlobal.window;
 import static org.jboss.elemento.Elements.textarea;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
+import static org.jboss.elemento.Elements.wrapTextAreaElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.jboss.elemento.EventType.keyup;
@@ -173,12 +172,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return this;
     }
 
-    /** Provides access to the underlying text area element using a fluent API style */
-    public TextArea applyTo(Consumer<HTMLElementBuilder<HTMLTextAreaElement>> consumer) {
-        consumer.accept(textAreaElement());
-        return this;
-    }
-
     @Override
     public TextArea that() {
         return this;
@@ -211,9 +204,9 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return textAreaElement.value;
     }
 
-    /** Returns the underlying input element */
-    public HTMLElementBuilder<HTMLTextAreaElement> textAreaElement() {
-        return wrapHtmlElement(textAreaElement);
+    /** Returns the underlying text area element */
+    public HTMLTextAreaElementBuilder<HTMLTextAreaElement> textArea() {
+        return wrapTextAreaElement(textAreaElement);
     }
 
     @Override
@@ -224,7 +217,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ internal
 
     @Override
-    void disableInputElement(boolean disabled) {
+    void disableControl(boolean disabled) {
         textAreaElement.disabled = disabled;
     }
 

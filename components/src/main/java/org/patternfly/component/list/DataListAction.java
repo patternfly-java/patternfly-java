@@ -19,6 +19,7 @@ import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -62,7 +63,7 @@ public class DataListAction extends DataListSubComponent<HTMLElement, DataListAc
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         if (plainButtonAction) {
             return delegate;
         }

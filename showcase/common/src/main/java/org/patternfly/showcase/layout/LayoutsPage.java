@@ -53,12 +53,10 @@ public class LayoutsPage extends OverviewPage<Layout> {
         div.add(flex().spaceItems(breakpoints(default_, none))
                 .alignItems(breakpoints(default_, center))
                 .add(title(1, Size._3xl, "About")).css("ws-heading ws-title ws-h1"));
-        div.add(p().css("ws-p")
-                .textContent(
-                        "PatternFly’s layouts are used to place components on a page. They create a fully responsive structure to keep components organized and aligned across screen sizes."));
-        div.add(p().css("ws-p")
-                .textContent(
-                        "Think of layouts as the scaffolding within which your components will live. When laying out your page, consider the layout pattern that suits your content. Multiple layouts can be used within the same page to create versatile and effective UIs."));
+        div.add(p().css("ws-p").text(
+                "PatternFly’s layouts are used to place components on a page. They create a fully responsive structure to keep components organized and aligned across screen sizes."));
+        div.add(p().css("ws-p").text(
+                "Think of layouts as the scaffolding within which your components will live. When laying out your page, consider the layout pattern that suits your content. Multiple layouts can be used within the same page to create versatile and effective UIs."));
     }
 
     protected Gallery createGallery() {
@@ -72,6 +70,6 @@ public class LayoutsPage extends OverviewPage<Layout> {
                 .addTitle(cardTitle(layout.title))
                 .addBody(cardBody()
                         .add(textContent()
-                                .add(p().innerHtml(layout.summary()))));
+                                .add(p().html(layout.summary()))));
     }
 }

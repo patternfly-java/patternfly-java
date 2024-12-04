@@ -22,6 +22,7 @@ import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Size;
 import org.patternfly.style.Status;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -41,8 +42,9 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/empty-state">https://www.patternfly.org/components/empty-state</a>
  */
-public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
-        implements ElementContainerDelegate<HTMLElement, EmptyState>, FullHeight<HTMLElement, EmptyState> {
+public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implements
+        ElementContainerDelegate<HTMLElement, EmptyState>,
+        FullHeight<HTMLElement, EmptyState> {
 
     // ------------------------------------------------------ factory
 
@@ -61,7 +63,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState>
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return contentContainer;
     }
 

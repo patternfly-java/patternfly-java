@@ -67,7 +67,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     // ------------------------------------------------------ add
 
     public Panel addHeader(String header) {
-        return add(panelHeader().textContent(header));
+        return add(panelHeader().text(header));
     }
 
     public Panel addHeader(PanelHeader header) {
@@ -90,7 +90,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     }
 
     public Panel addMain(String main) {
-        return add(panelMain().textContent(main));
+        return add(panelMain().text(main));
     }
 
     public Panel addMain(PanelMain main) {
@@ -115,7 +115,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     }
 
     public Panel addFooter(String footer) {
-        return add(panelFooter().textContent(footer));
+        return add(panelFooter().text(footer));
     }
 
     public Panel addFooter(PanelFooter footer) {

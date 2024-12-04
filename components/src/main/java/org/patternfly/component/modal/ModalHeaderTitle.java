@@ -16,9 +16,8 @@
 package org.patternfly.component.modal;
 
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.Severity;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 
@@ -38,7 +37,7 @@ import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.title;
 
 public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeaderTitle> implements
-        WithIcon<HTMLElement, ModalHeaderTitle>,
+        ComponentIcon<HTMLElement, ModalHeaderTitle>,
         WithText<HTMLElement, ModalHeaderTitle> {
 
     // ------------------------------------------------------ factory
@@ -50,7 +49,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mht";
-    private final HTMLContainerBuilder<HTMLElement> text;
+    private final HTMLElement textElement;
     Severity severity;
     private HTMLElement failSafeIconElement;
     private HTMLElement failSafeScreenReaderElement;
@@ -58,7 +57,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
     ModalHeaderTitle() {
         super(SUB_COMPONENT_NAME, h(1).css(component(modalBox, title))
                 .element());
-        add(text = span().css(component(modalBox, title, Classes.text)));
+        add(textElement = span().css(component(modalBox, title, Classes.text)).element());
     }
 
     // ------------------------------------------------------ builder
@@ -90,7 +89,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
 
     @Override
     public ModalHeaderTitle text(String text) {
-        this.text.textNode(text);
+        Elements.textNode(textElement, text);
         return this;
     }
 
@@ -103,7 +102,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
 
     @Override
     public String text() {
-        return Elements.textNode(text);
+        return Elements.textNode(textElement);
     }
 
     // ------------------------------------------------------ internal

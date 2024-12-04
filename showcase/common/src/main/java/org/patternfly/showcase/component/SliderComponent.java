@@ -83,7 +83,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(75d, "6"),
                                     sliderStep(87.5, "7", true),
                                     sliderStep(100d, "8")))
-                            .onChange((e, s, v) -> values[0].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[0].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[1]))
                     .add(small().add("(min = 0, max = 200, step = 50)"))
@@ -91,7 +91,7 @@ public class SliderComponent extends SnippetPage {
                             .value(50)
                             .range(0, 200, 50)
                             .showTicks()
-                            .onChange((e, s, v) -> values[1].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[1].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[2]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries not shown)"))
@@ -100,7 +100,7 @@ public class SliderComponent extends SnippetPage {
                             .range(-25, 75, 10)
                             .showTicks()
                             .showBoundaries(false)
-                            .onChange((e, s, v) -> values[2].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[2].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[3]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries shown)"))
@@ -108,14 +108,14 @@ public class SliderComponent extends SnippetPage {
                             .value(50)
                             .range(-25, 75, 10)
                             .showTicks()
-                            .onChange((e, s, v) -> values[3].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[3].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[4]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries shown, ticks not shown)"))
                     .add(slider()
                             .value(50)
                             .range(-25, 75, 10)
-                            .onChange((e, s, v) -> values[4].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[4].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[5]))
                     .add(small().add("(max = 5, custom steps)"))
@@ -129,7 +129,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(3, "D"),
                                     sliderStep(4, "E"),
                                     sliderStep(5, "F")))
-                            .onChange((e, s, v) -> values[5].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[5].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[6]))
                     .add(small().add("(min = 12, max = 86, custom steps with non linear data)"))
@@ -143,7 +143,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(54),
                                     sliderStep(67),
                                     sliderStep(86)))
-                            .onChange((e, s, v) -> values[6].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[6].text(String.valueOf(v))))
                     .add(br())
                     .element();
             // @code-end:slider-discrete
@@ -157,7 +157,7 @@ public class SliderComponent extends SnippetPage {
                     .add(p().add("Slider value is ").add(values[0]))
                     .add(slider()
                             .value(50)
-                            .onChange((e, s, v) -> values[0].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[0].text(String.valueOf(v))))
                     .add(br())
                     .add(p().add("Slider value is ").add(values[1]))
                     .add(small().add("(with tooltip over thumb)"))
@@ -167,7 +167,7 @@ public class SliderComponent extends SnippetPage {
                             .customSteps(true, sliderSteps(
                                     sliderStep(0, "0%"),
                                     sliderStep(100, "100%")))
-                            .onChange((e, s, v) -> values[1].textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> values[1].text(String.valueOf(v))))
                     .element();
             // @code-end:slider-continuous
         }));
@@ -244,7 +244,7 @@ public class SliderComponent extends SnippetPage {
                             .addEndActions(sliderActions()
                                     .addAction(button().plain().icon(plus())
                                             .on(click, e -> slider0.increase())))
-                            .onChange((e, s, v) -> value.textContent(String.valueOf(v))))
+                            .onChange((e, s, v) -> value.text(String.valueOf(v))))
                     .add(br())
                     .add(slider1
                             .value(50)
@@ -286,7 +286,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(75d, "6"),
                                     sliderStep(87.5, "7", true),
                                     sliderStep(100d, "8")))
-                            .onChange((e, s, v) -> value.textContent(s.currentStep().label)))
+                            .onChange((e, s, v) -> value.text(s.currentStep().label)))
                     .element();
             // @code-end:slider-disabled
         }));

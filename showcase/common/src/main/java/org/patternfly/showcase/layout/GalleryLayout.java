@@ -48,14 +48,14 @@ public class GalleryLayout extends SnippetPage {
                 // @code-start:gallery-basic
                 div().css("ws-core-l-gallery")
                         .add(gallery()
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item")))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item")))
                         .element()
                 // @code-end:gallery-basic
         ));
@@ -65,12 +65,12 @@ public class GalleryLayout extends SnippetPage {
                 // @code-start:gallery-gutter
                 div().css("ws-core-l-gallery")
                         .add(gallery().gutter()
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item")))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item")))
                         .element()
                 // @code-end:gallery-gutter
         ));
@@ -84,14 +84,14 @@ public class GalleryLayout extends SnippetPage {
                                         tuple(lg, "150px"),
                                         tuple(xl, "200px"),
                                         tuple(_2xl, "300px"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item")))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item")))
                         .element()
                 // @code-end:gallery-min-width
         ));
@@ -104,14 +104,14 @@ public class GalleryLayout extends SnippetPage {
                                 .minWidths(tuple(md, "280px"),
                                         tuple(lg, "320px"),
                                         tuple(_2xl, "400px"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item")))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item")))
                         .element()
                 // @code-end:gallery-max-width
         ));
@@ -126,14 +126,14 @@ public class GalleryLayout extends SnippetPage {
                                         tuple(xl, "300px"))
                                 .maxWidths(tuple(md, "200px"),
                                         tuple(xl, "1fr"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item"))
-                                .addItem(galleryItem().textContent("Gallery item")))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item"))
+                                .addItem(galleryItem().text("Gallery item")))
                         .element()
                 // @code-end:gallery-min-max-width
         ));
@@ -143,11 +143,11 @@ public class GalleryLayout extends SnippetPage {
                 // @code-start:gallery-alternative-components
                 div()
                         .add(gallery(ul())
-                                .addItem(galleryItem(li()).textContent("Gallery item"))
-                                .addItem(galleryItem(li()).textContent("Gallery item"))
-                                .addItem(galleryItem(li()).textContent("Gallery item"))
-                                .addItem(galleryItem(li()).textContent("Gallery item"))
-                                .addItem(galleryItem(li()).textContent("Gallery item")))
+                                .addItem(galleryItem(li()).text("Gallery item"))
+                                .addItem(galleryItem(li()).text("Gallery item"))
+                                .addItem(galleryItem(li()).text("Gallery item"))
+                                .addItem(galleryItem(li()).text("Gallery item"))
+                                .addItem(galleryItem(li()).text("Gallery item")))
                         .element()
                 // @code-end:gallery-alternative-components
         ));

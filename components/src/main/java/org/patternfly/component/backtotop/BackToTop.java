@@ -20,10 +20,10 @@ import java.util.function.Supplier;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.style.Classes;
 
@@ -51,7 +51,7 @@ import static org.patternfly.style.Classes.modifier;
  * @see <a href= "https://www.patternfly.org/components/back-to-top">https://www.patternfly.org/components/back-to-top</a>
  */
 public class BackToTop extends BaseComponent<HTMLElement, BackToTop>
-        implements WithText<HTMLElement, BackToTop>, Attachable {
+        implements ElementTextMethods<HTMLElement, BackToTop>, Attachable {
 
     // ------------------------------------------------------ factory
 

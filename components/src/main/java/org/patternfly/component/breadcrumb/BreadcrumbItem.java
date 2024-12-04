@@ -18,14 +18,15 @@ package org.patternfly.component.breadcrumb;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.component.WithIdentifier;
-import org.patternfly.component.WithText;
+import org.patternfly.component.ElementTextDelegate;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
@@ -44,21 +45,21 @@ import static org.patternfly.style.Classes.modifier;
 
 public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, BreadcrumbItem> implements
         ComponentContext<HTMLLIElement, BreadcrumbItem>,
-        WithIdentifier<HTMLLIElement, BreadcrumbItem>,
-        WithText<HTMLLIElement, BreadcrumbItem> {
+        ElementTextDelegate<HTMLLIElement, BreadcrumbItem>,
+        HasIdentifier<HTMLLIElement, BreadcrumbItem> {
 
     // ------------------------------------------------------ factory
 
     public static BreadcrumbItem breadcrumbItem(String identifier, String text) {
-        return new BreadcrumbItem(identifier, text);
+        return new BreadcrumbItem(identifier).text(text);
     }
 
     public static BreadcrumbItem breadcrumbItem(String identifier, String text, String href) {
-        return new BreadcrumbItem(identifier, text).href(href);
+        return new BreadcrumbItem(identifier).href(href).text(text);
     }
 
     public static BreadcrumbItem breadcrumbItem(String identifier, String text, String href, String target) {
-        return new BreadcrumbItem(identifier, text).href(href).target(target);
+        return new BreadcrumbItem(identifier).href(href).target(target).text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -69,7 +70,7 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     private final HTMLElement textElement;
     private HTMLAnchorElement anchorElement;
 
-    <E extends HTMLElement> BreadcrumbItem(String identifier, String text) {
+    <E extends HTMLElement> BreadcrumbItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item))
                 .data(Dataset.identifier, identifier)
                 .element());
@@ -77,7 +78,15 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
         this.data = new HashMap<>();
         add(span().css(component(breadcrumb, item, divider))
                 .add(angleRight().element()));
-        add(textElement = span().textContent(text).element());
+        add(textElement = span().element());
+    }
+
+    @Override
+    public Element textDelegate() {
+        if (anchorElement != null) {
+            return anchorElement;
+        }
+        return textElement;
     }
 
     // ------------------------------------------------------ builder
@@ -93,16 +102,6 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
         } else {
             failSafeAnchorElement().classList.remove(modifier(Classes.current));
             failSafeAnchorElement().removeAttribute(Aria.current);
-        }
-        return this;
-    }
-
-    @Override
-    public BreadcrumbItem text(String text) {
-        if (anchorElement != null) {
-            anchorElement.textContent = text;
-        } else if (textElement != null) {
-            textElement.textContent = text;
         }
         return this;
     }
@@ -143,16 +142,6 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
     }
 
     @Override
-    public String text() {
-        if (anchorElement != null) {
-            return anchorElement.textContent;
-        } else if (textElement != null) {
-            return textElement.textContent;
-        }
-        return null;
-    }
-
-    @Override
     public boolean has(String key) {
         return data.containsKey(key);
     }
@@ -169,7 +158,7 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
 
     private HTMLAnchorElement failSafeAnchorElement() {
         if (anchorElement == null) {
-            anchorElement = a().css(component(breadcrumb, link)).textContent(textElement.textContent).element();
+            anchorElement = a().css(component(breadcrumb, link)).text(textElement.textContent).element();
             textElement.replaceWith(anchorElement);
         }
         return anchorElement;

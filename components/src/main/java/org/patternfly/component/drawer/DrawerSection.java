@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.drawer;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +27,8 @@ import static org.patternfly.style.Classes.section;
 /**
  * An optional content above the {@link DrawerContent} and {@link DrawerPanel} in a {@link Drawer} component.
  */
-public class DrawerSection extends DrawerSubComponent<HTMLDivElement, DrawerSection> {
+public class DrawerSection extends DrawerSubComponent<HTMLDivElement, DrawerSection> implements
+        ElementTextMethods<HTMLDivElement, DrawerSection> {
 
     // ------------------------------------------------------ factory
 

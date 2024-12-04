@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.title;
 
-import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
@@ -63,14 +62,6 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public Title text(String text) {
-        if (text != null) {
-            Elements.textNode(element(), text);
-        }
-        return this;
-    }
 
     @Override
     public Title that() {

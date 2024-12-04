@@ -160,6 +160,7 @@ public interface Classes {
     String list = "list";
     String load = "load";
     String loading = "loading";
+    String logo = "logo";
     String main = "main";
     String masthead = "masthead";
     String measure = "measure";

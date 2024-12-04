@@ -19,7 +19,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
@@ -51,7 +51,7 @@ import static org.patternfly.style.Classes.treeView;
 
 public class TitleCell extends Cell<TitleCell> implements
         ElementContainerDelegate<HTMLTableCellElement, TitleCell>,
-        WithIcon<HTMLTableCellElement, TitleCell>,
+        ComponentIcon<HTMLTableCellElement, TitleCell>,
         WithText<HTMLTableCellElement, TitleCell> {
 
     // ------------------------------------------------------ factory
@@ -97,7 +97,7 @@ public class TitleCell extends Cell<TitleCell> implements
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return textElement;
     }
 
@@ -142,6 +142,13 @@ public class TitleCell extends Cell<TitleCell> implements
     @Override
     public TitleCell that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return Elements.textNode(textElement);
     }
 
     // ------------------------------------------------------ internal
