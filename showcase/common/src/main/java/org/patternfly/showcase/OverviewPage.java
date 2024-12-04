@@ -31,7 +31,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.page.PageMainBody.pageMainBody;
 import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
@@ -61,7 +61,7 @@ public abstract class OverviewPage<T> implements Page {
         return singletonList(pageMainGroup()
                 .add(pageMainSection().limitWidth().background(light)
                         .add(pageMainBody()
-                                .add(textContent()
+                                .add(content()
                                         .add(flex().alignItems(breakpoints(default_, center))
                                                 .add(title(1, _4xl, title))))))
                 .add(pageMainSection().fill().background(light100)

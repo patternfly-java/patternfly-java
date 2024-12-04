@@ -29,7 +29,7 @@ import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.card.Card.card;
 import static org.patternfly.component.card.CardBody.cardBody;
 import static org.patternfly.component.card.CardTitle.cardTitle;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
@@ -69,7 +69,7 @@ public class LayoutsPage extends OverviewPage<Layout> {
         return card().css(modifier("selectable-raised"))
                 .addTitle(cardTitle(layout.title))
                 .addBody(cardBody()
-                        .add(textContent()
+                        .add(content()
                                 .add(p().html(layout.summary()))));
     }
 }

@@ -26,6 +26,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.IconPosition;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -39,6 +40,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.dl;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.component.IconPosition.end;
 import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.display;
@@ -82,6 +84,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     int headingLevel;
     boolean fixed;
     boolean singleExpand;
+    IconPosition iconPosition;
     private final Map<String, AccordionItem> items;
     private final List<ToggleHandler<AccordionItem>> toggleHandler;
 
@@ -90,6 +93,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         this.dl = element().tagName.equalsIgnoreCase("dl");
         this.headingLevel = 3;
         this.singleExpand = false;
+        this.iconPosition = end;
         this.items = new LinkedHashMap<>();
         this.toggleHandler = new ArrayList<>();
         Attachable.register(this, this);
@@ -154,6 +158,11 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
 
     public Accordion headingLevel(int headingLevel) {
         this.headingLevel = headingLevel;
+        return this;
+    }
+
+    public Accordion iconPosition(IconPosition iconPosition) {
+        this.iconPosition = iconPosition;
         return this;
     }
 

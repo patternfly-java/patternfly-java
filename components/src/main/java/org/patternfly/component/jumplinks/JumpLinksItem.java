@@ -19,15 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.WithText;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 
@@ -35,6 +36,7 @@ import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.jumpLinks;
@@ -44,8 +46,8 @@ import static org.patternfly.style.Classes.text;
 
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
         ComponentContext<HTMLLIElement, JumpLinksItem>,
-        HasIdentifier<HTMLLIElement, JumpLinksItem>,
-        WithText<HTMLLIElement, JumpLinksItem> {
+        ElementTextDelegate<HTMLLIElement, JumpLinksItem>,
+        HasIdentifier<HTMLLIElement, JumpLinksItem> {
 
     // ------------------------------------------------------ factory
 
@@ -66,7 +68,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     static final String SUB_COMPONENT_NAME = "jli";
     private final String identifier;
     private final Map<String, Object> data;
-    private final HTMLAnchorElement anchorElement;
+    private final Button button;
     private final HTMLElement textElement;
     JumpLinksList list;
 
@@ -76,13 +78,19 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
-        add(anchorElement = a().css(component(jumpLinks, link))
-                .on(click, e -> {
-                    JumpLinks jumpLinks = lookupComponent();
-                    jumpLinks.select(this);
-                })
-                .add(textElement = span().css(component(jumpLinks, link, text)).element())
-                .element());
+
+        add(span().css(component(jumpLinks, link))
+                .add(button = button(a()).link()
+                        .add(textElement = span().css(component(jumpLinks, link, text)).element())
+                        .on(click, e -> {
+                            JumpLinks jumpLinks = lookupComponent();
+                            jumpLinks.select(this);
+                        })));
+    }
+
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ add
@@ -116,12 +124,12 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     }
 
     public JumpLinksItem href(String href) {
-        anchorElement.href = href;
+        button.href(href);
         return this;
     }
 
     public JumpLinksItem target(String target) {
-        anchorElement.target = target;
+        button.target(target);
         return this;
     }
 
@@ -138,8 +146,8 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     // ------------------------------------------------------ events
 
-    public JumpLinksItem onClick(ComponentHandler<JumpLinksItem> actionHandler) {
-        anchorElement.addEventListener(click.name, e -> actionHandler.handle(e, this));
+    public JumpLinksItem onClick(ComponentHandler<JumpLinksItem> handler) {
+        button.onClick((e, b) -> handler.handle(e, this));
         return this;
     }
 

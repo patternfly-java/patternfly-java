@@ -27,6 +27,7 @@ import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentProgress;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;
@@ -47,7 +48,6 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.wrapHtmlContainer;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.style.Classes.block;
@@ -81,6 +81,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         ComponentIconAndText<HTMLElement, Button>,
         ComponentProgress<HTMLElement, Button>,
         Disabled<HTMLElement, Button>,
+        ElementContainerDelegate<HTMLElement, Button>,
         ElementTextMethods<HTMLElement, Button>,
         Inline<HTMLElement, Button>,
         NoPadding<HTMLElement, Button>,
@@ -138,6 +139,11 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         }
     }
 
+    @Override
+    public Element containerDelegate() {
+        return failSafeTextElement();
+    }
+
     // ------------------------------------------------------ add
 
     public Button addBadge(Badge badge) {
@@ -145,8 +151,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     }
 
     public Button add(Badge badge) {
-        return add(span().css(component(button, count))
-                .add(badge));
+        element().appendChild(span().css(component(button, count))
+                .add(badge)
+                .element());
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -307,26 +315,18 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return "";
     }
 
-    public HTMLContainerBuilder<HTMLElement> iconElement() {
-        return wrapHtmlContainer(failSafeIconElement());
-    }
-
-    public HTMLContainerBuilder<HTMLElement> textElement() {
-        return wrapHtmlContainer(failSafeTextElement());
-    }
-
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeIconElement() {
         if (iconElement == null) {
-            add(iconElement = span().css(component(button, Classes.icon)).element());
+            element().appendChild(iconElement = span().css(component(button, Classes.icon)).element());
         }
         return iconElement;
     }
 
     private HTMLElement failSafeTextElement() {
         if (textElement == null) {
-            add(textElement = span().css(component(button, Classes.text)).element());
+            element().appendChild(textElement = span().css(component(button, Classes.text)).element());
         }
         return textElement;
     }

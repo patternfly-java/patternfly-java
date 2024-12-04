@@ -1,30 +1,12 @@
-/**
- *  Copyright 2023 Red Hat
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-.ws-color-box {
-  display: inline-block;
-  height: 18px;
-  width: 18px;
-  border: var(--pf-v5-global--BorderWidth--sm) solid var(--pf-v5-global--BorderColor--200);
-  border-radius: var(--pf-v5-global--BorderRadius--lg);
+.circle {
+    height: 1em;
+    display: inline-block;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--background--color--inverse--default);
+    box-shadow: var(--pf-t--global--box-shadow--sm);
 }
 
-.ws-td-text {
-  font-size: var(--pf-v5-global--FontSize--sm) !important;
-}
-
-.ws-css-property {
-  padding: var(--pf-v5-global--spacer--xs) var(--pf-v5-global--spacer--md);
+.rotate-90-deg {
+    transform: rotate(90deg);
 }

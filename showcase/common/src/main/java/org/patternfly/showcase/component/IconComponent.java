@@ -28,7 +28,7 @@ import static org.jboss.elemento.Elements.small;
 import static org.jboss.elemento.Elements.strong;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.icon.Icon.icon;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.icon.IconSets.fas.angleDown;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.check;
@@ -129,7 +129,7 @@ public class IconComponent extends SnippetPage {
                 code("icon-inline"), () ->
                 // @code-start:icon-inline
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(1)
                                         .add("Heading ")
                                         .add(icon(plusCircle()).inline()))

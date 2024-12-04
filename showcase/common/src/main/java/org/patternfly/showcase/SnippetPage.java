@@ -32,7 +32,6 @@ import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
-import org.patternfly.style.Size;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
@@ -43,6 +42,8 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.h2;
 import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
 import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
 import static org.patternfly.component.jumplinks.JumpLinksList.jumpLinksList;
@@ -57,16 +58,17 @@ import static org.patternfly.component.table.Th.th;
 import static org.patternfly.component.table.Thead.thead;
 import static org.patternfly.component.table.Tr.tr;
 import static org.patternfly.component.table.Wrap.breakWord;
-import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.icon.IconSets.fas.link;
 import static org.patternfly.icon.IconSets.fas.swatchbook;
 import static org.patternfly.icon.IconSets.patternfly.catalog;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
-import static org.patternfly.layout.flex.SpaceItems.none;
+import static org.patternfly.layout.flex.SpaceItems.sm;
+import static org.patternfly.layout.stack.Stack.stack;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.showcase.Ids.MAIN_ID;
 import static org.patternfly.showcase.LinkIcon.linkIcon;
@@ -74,7 +76,7 @@ import static org.patternfly.style.Breakpoint._2xl;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Brightness.light;
-import static org.patternfly.style.Classes.floatRight;
+import static org.patternfly.style.Classes.floatInlineEnd;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.ExpandableModifier.expandable;
@@ -112,7 +114,7 @@ public class SnippetPage implements Page {
                                 .background(light)
                                 .limitWidth()
                                 .addBody(pageMainBody()
-                                        .add(div().css(util(floatRight))
+                                        .add(div().css(util(floatInlineEnd))
                                                 .add(button(a())
                                                         .id("design-guidelines")
                                                         .plain()
@@ -121,7 +123,7 @@ public class SnippetPage implements Page {
                                                         .icon(swatchbook()))
                                                 .add(tooltip(By.id("design-guidelines"), "Design guidelines")
                                                         .placement(auto)))
-                                        .add(div().css(util(floatRight))
+                                        .add(div().css(util(floatInlineEnd))
                                                 .add(button(a())
                                                         .id("api-doc")
                                                         .plain()
@@ -130,24 +132,25 @@ public class SnippetPage implements Page {
                                                         .icon(catalog()))
                                                 .add(tooltip(By.id("api-doc"), "API documentation")
                                                         .placement(auto)))
-                                        .add(textContent()
-                                                .add(flex().alignItems(breakpoints(default_, center))
-                                                        .add(title(1, _4xl, title)))
+                                        .add(content().editorial()
+                                                .add(flex().alignItems(center).add(title(1, _4xl, title)))
                                                 .add(p().html(summary)))))
                         .addSection(pageMainSection().css(modifier("light-100"))
                                 .fill()
-                                .add(div().css(util("h-100"))
-                                        .add(div().css(util("display-flex"), "ws-mdx-child-template")
-                                                .add(jumpLinks = jumpLinks("Table of contents").css("ws-toc")
-                                                        .style("top", "0")
-                                                        .vertical()
-                                                        .scrollableSelector(By.id(MAIN_ID))
-                                                        .expandable(breakpoints(
-                                                                default_, expandable,
-                                                                _2xl, nonExpandable))
-                                                        .ariaLabel("Table of contents"))
-                                                .add(div().css("ws-mdx-content")
-                                                        .add(contentContainer = div().css("ws-mdx-content-content")
+                                .addBody(pageMainBody()
+                                        .add(div().css(util("h-100"))
+                                                .add(flex()
+                                                        .add(jumpLinks = jumpLinks("Table of contents")
+                                                                .css("ws-toc")
+                                                                .style("top", "45px")
+                                                                .vertical()
+                                                                .scrollableSelector(By.id(MAIN_ID))
+                                                                .expandable(breakpoints(
+                                                                        default_, expandable,
+                                                                        _2xl, nonExpandable))
+                                                                .ariaLabel("Table of contents"))
+                                                        .add(contentContainer = stack().gutter()
+                                                                .style("max-width", "825px")
                                                                 .element())))))
                         .element());
     }
@@ -243,16 +246,15 @@ public class SnippetPage implements Page {
 
     public void addHeader(String id, String title, HTMLContainerBuilder<HTMLParagraphElement> description) {
         storeToc(id, title);
-        contentContainer.appendChild(flex()
-                .spaceItems(breakpoints(default_, none))
-                .alignItems(breakpoints(default_, center))
-                .add(title(2, Size._2xl, title).css("ws-heading", "ws-title", "ws-h2")
-                        .id(id)
-                        .attr(tabindex, -1)
+        contentContainer.appendChild(flex().spaceItems(sm).alignItems(center)
+                .add(content(h2).editorial().css("ws-heading", "ws-title", "ws-h2")
                         .add(a("#" + id).css("ws-heading-anchor")
                                 .aria(hidden, true)
                                 .attr(tabindex, -1)
-                                .add(linkIcon())))
+                                .add(link()
+                                        .css("ws-heading-anchor-icon")
+                                        .style("vertical-align", "middle")))
+                        .add(title))
                 .element());
         if (description != null) {
             contentContainer.appendChild(description.css("ws-p").element());

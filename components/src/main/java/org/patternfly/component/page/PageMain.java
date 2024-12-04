@@ -15,13 +15,16 @@
  */
 package org.patternfly.component.page;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.core.Roles;
 
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.main;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.EventType.mousedown;
@@ -30,6 +33,7 @@ import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.container;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
 
@@ -39,7 +43,8 @@ import static org.patternfly.style.Classes.page;
  * <p>
  * {@snippet class = PageDemo region = pageMain}
  */
-public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
+public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
+        ElementContainerDelegate<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ factory
 
@@ -53,17 +58,25 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "pm";
+    private final HTMLContainerBuilder<HTMLElement> mc;
 
     PageMain(String id) {
-        super(SUB_COMPONENT_NAME, main().css(component(page, main))
+        super(SUB_COMPONENT_NAME, div().css(component(page, main, container)).element());
+        this.mc = main().css(component(page, main))
                 .id(id)
                 .attr(role, Roles.main)
-                .attr(tabindex, -1)
-                .element());
+                .attr(tabindex, -1);
+
+        element().appendChild(mc.element());
         AddEventListenerOptions options = AddEventListenerOptions.create();
         options.setPassive(true);
-        on(mousedown, e -> onMainClick());
-        on(touchstart, options, e -> onMainClick());
+        mc.on(mousedown, e -> onMainClick());
+        mc.on(touchstart, options, e -> onMainClick());
+    }
+
+    @Override
+    public Element containerDelegate() {
+        return mc.element();
     }
 
     // ------------------------------------------------------ add
@@ -137,7 +150,7 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> {
     // ------------------------------------------------------ internal
 
     private void onMainClick() {
-        if (page().underXl() && page().sidebar() != null && page().sidebar().expanded()) {
+        if (page().belowXl() && page().sidebar() != null && page().sidebar().expanded()) {
             page().sidebar().collapse();
         }
     }

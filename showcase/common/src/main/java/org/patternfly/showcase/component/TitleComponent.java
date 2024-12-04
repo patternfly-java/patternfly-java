@@ -21,7 +21,7 @@ import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -44,7 +44,7 @@ public class TitleComponent extends SnippetPage {
                 code("title-default-sizes"), () ->
                 // @code-start:title-default-sizes
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(title(1, "h1 defaults to 2xl"))
                                 .add(title(2, "h2 defaults to xl"))
                                 .add(title(3, "h3 defaults to lg"))
@@ -59,7 +59,7 @@ public class TitleComponent extends SnippetPage {
                 code("title-custom-sizes"), () ->
                 // @code-start:title-custom-sizes
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(title(1, _4xl, "h1 as 4xl"))
                                 .add(title(2, _3xl, "h2 as 3xl"))
                                 .add(title(3, _2xl, "h3 as 2xl"))

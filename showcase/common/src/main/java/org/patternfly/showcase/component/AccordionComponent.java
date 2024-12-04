@@ -27,6 +27,7 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.IconPosition.end;
+import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.accordion.Accordion.accordion;
 import static org.patternfly.component.accordion.AccordionItem.accordionItem;
 import static org.patternfly.component.accordion.AccordionItemBody.accordionItemBody;
@@ -148,6 +149,25 @@ public class AccordionComponent extends SnippetPage {
                                         .add(p().text(LoremIpsum.paragraphs(3)))))
                         .element()
                 // @code-end:accordion-large
+        ));
+
+        addSnippet(new Snippet("accordion-start", "Toggle icon at start",
+                code("accordion-start"), () ->
+                // @code-start:accordion-start
+                div()
+                        .add(accordion().singleExpand().iconPosition(start)
+                                .addItem(accordionItem("accordion-start-0", "Item one").expanded()
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
+                                .addItem(accordionItem("accordion-start-1", "Item two")
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
+                                .addItem(accordionItem("accordion-start-2", "Item three")
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
+                                .addItem(accordionItem("accordion-start-3", "Item four")
+                                        .add(p().text(LoremIpsum.paragraphs(30))))
+                                .addItem(accordionItem("accordion-start-4", "Item five")
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
+                        .element()
+                // @code-end:accordion-start
         ));
 
         startApiDocs(Accordion.class);

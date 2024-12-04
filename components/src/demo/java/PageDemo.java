@@ -13,7 +13,7 @@ import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
@@ -45,13 +45,13 @@ public class PageDemo {
                 .addSection(pageMainBreadcrumb()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(textContent())))
+                                .add(content())))
                 .addSection(pageMainSection()
-                        .add(textContent()))
+                        .add(content()))
                 .addSection(pageMainSection()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(textContent())));
+                                .add(content())));
         // @end region = pageMainBody
     }
 

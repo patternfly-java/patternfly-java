@@ -33,7 +33,6 @@ import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.button;
@@ -44,12 +43,16 @@ import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
 import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.toggle;
 
 /**
  * Represents an item within an accordion component.
@@ -60,11 +63,11 @@ import static org.patternfly.style.Classes.modifier;
  * <p>
  * Text methods are delegated to the accordion toggle.
  */
-public class AccordionItem extends AccordionSubComponent<HTMLDivElement, AccordionItem> implements
-        ComponentContext<HTMLDivElement, AccordionItem>,
-        ElementContainerDelegate<HTMLDivElement, AccordionItem>,
-        ElementTextDelegate<HTMLDivElement, AccordionItem>,
-        HasIdentifier<HTMLDivElement, AccordionItem> {
+public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionItem> implements
+        ComponentContext<HTMLElement, AccordionItem>,
+        ElementContainerDelegate<HTMLElement, AccordionItem>,
+        ElementTextDelegate<HTMLElement, AccordionItem>,
+        HasIdentifier<HTMLElement, AccordionItem> {
 
     // ------------------------------------------------------ factory
 
@@ -89,11 +92,11 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
     private HTMLElement contentElement;
 
     AccordionItem(String identifier) {
-        super(SUB_COMPONENT_NAME, div().element()); // not a real subcomponent - just pass a fake <div/>
+        super(SUB_COMPONENT_NAME, div().css(component(accordion, item)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.expanded = false;
-        this.textElement = span().css(component(Classes.accordion, Classes.toggle, Classes.text))
+        this.textElement = span().css(component(accordion, toggle, Classes.text))
                 .id(Id.unique(ComponentType.Accordion.id, "text"))
                 .element();
         this.defaultBody = new AccordionItemBody();
@@ -176,9 +179,19 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
         toggle.data(Dataset.identifier, identifier)
                 .add(toggleElement = button(ButtonType.button).css(component(Classes.accordion, Classes.toggle))
                         .on(click, e -> toggle(accordion))
-                        .add(textElement)
-                        .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                                .add(angleRight().element()))
+                        .run(toggleButton -> {
+                            if (accordion.iconPosition == start) {
+                                toggleButton
+                                        .add(span().css(component(Classes.accordion, Classes.toggle, icon))
+                                                .add(angleRight().element()))
+                                        .add(textElement);
+                            } else {
+                                toggleButton
+                                        .add(textElement)
+                                        .add(span().css(component(Classes.accordion, Classes.toggle, icon))
+                                                .add(angleRight().element()));
+                            }
+                        })
                         .element());
 
         HTMLContainerBuilder<? extends HTMLElement> content = accordion.dl ? dd() : div();
@@ -191,17 +204,18 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
         contentElement = content.element();
 
         if (expanded) {
-            Expandable.expand(contentElement, toggleElement, contentElement, true);
-            contentElement.classList.add(modifier(Classes.expanded));
-            toggleElement.classList.add(modifier(Classes.expanded));
+            Expandable.expand(element(), toggleElement, contentElement, true);
         } else {
-            Expandable.collapse(contentElement, toggleElement, contentElement, true);
+            Expandable.collapse(element(), toggleElement, contentElement, true);
         }
-        accordion.addAll(toggle, content);
+
+        element().appendChild(toggleElement);
+        element().appendChild(contentElement);
+        accordion.element().appendChild(this.element());
     }
 
     private void toggle(Accordion accordion) {
-        if (Expandable.expanded(contentElement)) {
+        if (Expandable.expanded(element())) {
             accordion.collapseItem(this, true);
         } else {
             accordion.expandItem(this, true);
@@ -210,17 +224,13 @@ public class AccordionItem extends AccordionSubComponent<HTMLDivElement, Accordi
 
     void collapse() {
         if (contentElement != null && toggleElement != null) {
-            Expandable.collapse(contentElement, toggleElement, contentElement);
-            contentElement.classList.remove(modifier(Classes.expanded));
-            toggleElement.classList.remove(modifier(Classes.expanded));
+            Expandable.collapse(element(), toggleElement, contentElement);
         }
     }
 
     void expand() {
         if (contentElement != null && toggleElement != null) {
-            Expandable.expand(contentElement, toggleElement, contentElement);
-            contentElement.classList.add(modifier(Classes.expanded));
-            toggleElement.classList.add(modifier(Classes.expanded));
+            Expandable.expand(element(), toggleElement, contentElement);
         }
     }
 }

@@ -1,68 +1,20 @@
-/**
- *  Copyright 2023 Red Hat
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-.ws-landing-page > * {
-  max-width: 832px;
-}
-
-.ws-landing-page > .ws-section-gallery-full-width {
-  max-width: initial;
-}
-
-.ws-section-gallery {
-  /* top placement */
-  margin-top: calc(var(--pf-v5-c-page__main-section--PaddingTop) * -1);
-}
-
-* + .ws-section-gallery {
-  /* top placement */
-  margin-top: unset;
-}
-
 /* Toolbar styles */
-.ws-section-gallery .pf-v5-c-toolbar {
-  margin-left: calc(var(--pf-v5-c-page__main-section--PaddingLeft) * -1);
-  border-bottom: var(--pf-v5-c-page__sidebar--m-light--BorderRightWidth) solid var(--pf-v5-c-page__sidebar--m-light--BorderRightColor);
-  margin-bottom: var(--pf-v5-global--spacer--md);
-  width: calc(100% + var(--pf-v5-c-page__main-section--PaddingLeft) + var(--pf-v5-c-page__main-section--PaddingRight));
-  /* avoid hoverable data list items overlapping toolbar */
-  z-index: calc(var(--pf-v5-global--ZIndex--xs) + 2);
-}
-
-/* Match toolbar left-padding to gallery left-padding */
-.ws-section-gallery .pf-v5-c-toolbar .pf-v5-c-toolbar__content {
-  --pf-v5-c-toolbar__content--PaddingLeft: var(--pf-v5-c-page__main-section--PaddingLeft);
-}
-
-/* Avoid toolbar wrap on smaller screens */
-.ws-section-gallery .pf-v5-c-toolbar__content-section {
-  flex-wrap: nowrap;
+.ws-section-gallery .pf-v6-c-toolbar {
+    margin-block-end: var(--pf-t--global--spacer--md);
 }
 
 /* Avoid link styling on gallery/data list item names */
 .ws-section-gallery-item {
-  text-decoration: inherit;
-  color: inherit;
+    text-decoration: inherit;
+    color: inherit;
 }
 
-/* Ensure same height for all cards in a gallery row */
-.ws-section-gallery .pf-v5-c-card {
-  height: 100%;
+/* Ensure cards within a row stretch vertically to fill row height */
+.ws-section-gallery .pf-v6-c-card {
+    height: 100%;
 }
 
 /* Limit width for data list view only */
-.ws-section-gallery .pf-v5-c-data-list {
-  max-width: 956px;
+.ws-section-gallery .pf-v6-c-data-list {
+    max-width: var(--pf-t--global--breakpoint--lg);
 }

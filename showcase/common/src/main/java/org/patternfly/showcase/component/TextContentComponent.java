@@ -16,7 +16,7 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.text.TextContent;
+import org.patternfly.component.content.Content;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -33,7 +33,7 @@ import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.small;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -51,7 +51,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-headings"), () ->
                 // @code-start:text-content-headings
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(1, "Hello World"))
                                 .add(h(2, "Second Level"))
                                 .add(h(3, "Third Level"))
@@ -66,7 +66,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-body"), () ->
                 // @code-start:text-content-body
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(p().text(LoremIpsum.paragraphs(5)))
                                 .add(p()
                                         .add(LoremIpsum.paragraphs(3) + " ")
@@ -82,7 +82,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-ul"), () ->
                 // @code-start:text-content-ul
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(ul()
                                         .add(li().text(LoremIpsum.words()))
                                         .add(li().text(LoremIpsum.words()))
@@ -99,7 +99,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-ol"), () ->
                 // @code-start:text-content-ol
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(ol()
                                         .add(li().text(LoremIpsum.words()))
                                         .add(li().text(LoremIpsum.words()))
@@ -116,7 +116,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-plain-list"), () ->
                 // @code-start:text-content-plain-list
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(3, "Plain unordered list"))
                                 .add(ul().css(modifier(plain))
                                         .add(li().text(LoremIpsum.words()))
@@ -140,7 +140,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-dl"), () ->
                 // @code-start:text-content-dl
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(dl()
                                         .add(dt().text("Web"))
                                         .add(dd().text(
@@ -153,7 +153,7 @@ public class TextContentComponent extends SnippetPage {
                 // @code-end:text-content-dl
         ));
 
-        startApiDocs(TextContent.class);
-        addApiDoc(TextContent.class, component);
+        startApiDocs(Content.class);
+        addApiDoc(Content.class, component);
     }
 }

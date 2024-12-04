@@ -1,25 +1,10 @@
-/**
- *  Copyright 2023 Red Hat
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 .ws-heading {
     position: relative;
 }
 
 .ws-heading-anchor {
-    color: var(--pf-v5-global--Color--100);
-    transform: translate(calc(-100% - var(--pf-v5-global--spacer--xs)), -50%);
+    color: var(--pf-t--global--icon--color--regular);
+    transform: translate(calc(-100% - var(--pf-t--global--spacer--xs)), -50%);
     opacity: 0;
     position: absolute;
     left: 0;
@@ -35,12 +20,3 @@
 .ws-heading-anchor:focus {
     opacity: 1;
 }
-
-.ws-h2 {
-    margin-bottom: var(--pf-v5-c-content--h2--MarginBottom);
-    font-size: var(--pf-v5-c-content--h2--FontSize);
-    font-weight: var(--pf-v5-c-content--h2--FontWeight);
-    line-height: var(--pf-v5-c-content--h2--LineHeight);
-    margin-top: var(--pf-v5-c-content--h2--MarginTop);
-}
-

@@ -29,14 +29,14 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
 
 import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.title.Title.title;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.h3;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.tabindex;
@@ -45,15 +45,14 @@ import static org.patternfly.extension.codeeditor.CodeEditorAction.codeEditorAct
 import static org.patternfly.extension.codeeditor.CodeEditorAction.codeEditorCopyToClipboardAction;
 import static org.patternfly.extension.codeeditor.CodeEditorActions.codeEditorActions;
 import static org.patternfly.extension.codeeditor.CodeEditorHeader.codeEditorHeader;
+import static org.patternfly.icon.IconSets.fas.link;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
-import static org.patternfly.layout.flex.SpaceItems.none;
-import static org.patternfly.showcase.LinkIcon.linkIcon;
-import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.Breakpoints.breakpoints;
+import static org.patternfly.layout.flex.SpaceItems.sm;
+import static org.patternfly.layout.stack.Stack.stack;
+import static org.patternfly.layout.stack.StackItem.stackItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
-import static org.patternfly.style.Size.lg;
 
 public class Snippet implements IsElement<HTMLElement> {
 
@@ -81,48 +80,46 @@ public class Snippet implements IsElement<HTMLElement> {
         String codeId = Id.build(id, "code");
         String undoId = Id.build(id, "undo");
 
-        root = div().css("ws-example")
-                .add(div().css("ws-example-header")
-                        .add(flex()
-                                .spaceItems(breakpoints(default_, none))
-                                .alignItems(breakpoints(default_, center))
-                                .add(title(3, lg, title).css("ws-heading", "ws-example-heading")
+        root = stack().gutter()
+                .addItem(stackItem()
+                        .add(flex().spaceItems(sm).alignItems(center)
+                                .add(content(h3).editorial().css("ws-heading")
                                         .id(id)
-                                        .attr(tabindex, -1)
                                         .add(a("#" + id).css("ws-heading-anchor")
                                                 .aria(hidden, true)
                                                 .attr(tabindex, -1)
-                                                .add(linkIcon()))))
-                        .run(element -> {
-                            if (description != null) {
-                                element.add(description.css("ws-p"));
-                            }
-                        }))
-                .add(preview = div().css("ws-preview")
+                                                .add(link()
+                                                        .css("ws-heading-anchor-icon")
+                                                        .style("vertical-align", "middle")))
+                                        .add(title))))
+                .add(preview = stackItem()
                         .add(demo.get())
                         .element())
-                .add(codeEditor = codeEditor().css("ws-code-editor")
-                        .addHeader(codeEditorHeader()
-                                .addActions(codeEditorActions()
-                                        .addAction(codeEditorAction(button()
-                                                .id(codeId)
-                                                .css("ws-code-editor-control")
-                                                .control()
-                                                .iconAndText(IconSets.fas.code(), "Java"))
-                                                .onClick((event, ce) -> {
-                                                    HTMLElement mainElement = ce
-                                                            .querySelector(By.classname(component(Classes.codeEditor, main)));
-                                                    setVisible(mainElement, !isVisible(mainElement));
-                                                }))
-                                        .add(tooltip(By.id(codeId), "Toggle Java code"))
-                                        .addAction(codeEditorCopyToClipboardAction("Copy code to clipboard", "Code copied")
-                                                .css("ws-code-editor-control"))
-                                        .addAction(codeEditorAction(IconSets.fas.undo())
-                                                .id(undoId)
-                                                .css("ws-code-editor-control")
-                                                .onClick((event, codeEditorAction) -> undo()))
-                                        .add(tooltip(By.id(undoId), "Undo"))))
-                        .code(code))
+                .addItem(stackItem()
+                        .add(codeEditor = codeEditor().css("ws-code-editor")
+                                .addHeader(codeEditorHeader()
+                                        .addActions(codeEditorActions()
+                                                .addAction(codeEditorAction(button()
+                                                        .id(codeId)
+                                                        .css("ws-code-editor-control")
+                                                        .plain()
+                                                        .iconAndText(IconSets.fas.code(), "Java"))
+                                                        .onClick((event, ce) -> {
+                                                            HTMLElement mainElement = ce
+                                                                    .querySelector(
+                                                                            By.classname(component(Classes.codeEditor, main)));
+                                                            setVisible(mainElement, !isVisible(mainElement));
+                                                        }))
+                                                .add(tooltip(By.id(codeId), "Toggle Java code"))
+                                                .addAction(
+                                                        codeEditorCopyToClipboardAction("Copy code to clipboard", "Code copied")
+                                                                .css("ws-code-editor-control"))
+                                                .addAction(codeEditorAction(IconSets.fas.undo())
+                                                        .id(undoId)
+                                                        .css("ws-code-editor-control")
+                                                        .onClick((event, codeEditorAction) -> undo()))
+                                                .add(tooltip(By.id(undoId), "Undo"))))
+                                .code(code)))
                 .element();
 
         HTMLElement mainElement = codeEditor.querySelector(By.classname(component(Classes.codeEditor, main)));

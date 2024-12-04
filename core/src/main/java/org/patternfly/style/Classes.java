@@ -93,6 +93,7 @@ public interface Classes {
     String dynamic = "dynamic";
     String editable = "editable";
     String editableActive = "editable-active";
+    String editorial = "editorial";
     String emptyState = "empty-state";
     String end = "end";
     String error = "error";
@@ -112,8 +113,8 @@ public interface Classes {
     String flat = "flat";
     String flex = "flex";
     String floating = "floating";
-    String floatLeft = "float-left";
-    String floatRight = "float-right";
+    String floatInlineStart = "float-inline-start";
+    String floatInlineEnd = "float-inline-end";
     String fluid = "fluid";
     String flyout = "flyout";
     String footer = "footer";
@@ -192,6 +193,7 @@ public interface Classes {
     String picture = "picture";
     String placeholder = "placeholder";
     String plain = "plain";
+    String plainList = "plainList";
     String popover = "popover";
     String pre = "pre";
     String primary = "primary";
@@ -286,6 +288,7 @@ public interface Classes {
     String utilities = "utilities";
     String value = "value";
     String vertical = "vertical";
+    String visitedLink = "visited-link";
     String warning = "warning";
     String widthAuto = "width-auto";
     String wizard = "wizard";

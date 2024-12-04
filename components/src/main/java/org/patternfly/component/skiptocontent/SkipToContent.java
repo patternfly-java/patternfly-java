@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.skiptocontent;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.style.Classes;
 
@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.component;
  *      "https://www.patternfly.org/components/skip-to-content">https://www.patternfly.org/components/skip-to-content</a>
  */
 public class SkipToContent extends BaseComponent<HTMLDivElement, SkipToContent> implements
-        WithText<HTMLDivElement, SkipToContent> {
+        ElementTextMethods<HTMLDivElement, SkipToContent> {
 
     // ------------------------------------------------------ factory
 

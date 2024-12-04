@@ -17,14 +17,17 @@ package org.patternfly.component.expandable;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.button.Button;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.IconPosition.start;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
@@ -34,7 +37,8 @@ import static org.patternfly.style.Classes.inline;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.toggle;
 
-public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLElement, ExpandableSectionToggle> {
+public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLElement, ExpandableSectionToggle> implements
+        ElementContainerDelegate<HTMLElement, ExpandableSectionToggle> {
 
     // ------------------------------------------------------ factory
 
@@ -68,8 +72,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
         this.iconContainer = span().css(component(expandableSection, toggle, icon))
                 .add(angleRight())
                 .element();
-
-        add(button = button().css(component(expandableSection, toggle))
+        this.button = button().css(component(expandableSection, toggle))
                 .id(id)
                 .link()
                 .aria(expanded, false)
@@ -77,7 +80,14 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
                 .on(click, e -> {
                     ExpandableSection expandableSection = lookupComponent();
                     expandableSection.toggle();
-                }));
+                });
+
+        element().appendChild(button.element());
+    }
+
+    @Override
+    public Element containerDelegate() {
+        return button.containerDelegate();
     }
 
     // ------------------------------------------------------ builder
@@ -91,12 +101,6 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
     @Override
     public ExpandableSectionToggle that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public Button button() {
-        return button;
     }
 
     // ------------------------------------------------------ internal

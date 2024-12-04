@@ -41,15 +41,15 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
     // ------------------------------------------------------ factory
 
     public static CodeEditorAction codeEditorAction(PredefinedIcon icon) {
-        return new CodeEditorAction(button().icon(icon.element()).control());
+        return new CodeEditorAction(button().icon(icon.element()).plain());
     }
 
     public static CodeEditorAction codeEditorAction(Element icon) {
-        return new CodeEditorAction(button().icon(icon).control());
+        return new CodeEditorAction(button().icon(icon).plain());
     }
 
     /**
-     * Adds an action. The button should have the modifiers {@link Button#control()}.
+     * Adds an action. The button should have the modifiers {@link Button#plain()}.
      */
     public static CodeEditorAction codeEditorAction(Button button) {
         return new CodeEditorAction(button);
@@ -64,7 +64,7 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
         Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
                 .onClose((e, t) -> t.text(copyText)) // restore text
                 .appendToBody();
-        return new CodeEditorAction(button().icon(copy()).control())
+        return new CodeEditorAction(button().icon(copy()).plain())
                 .id(copyId)
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {
