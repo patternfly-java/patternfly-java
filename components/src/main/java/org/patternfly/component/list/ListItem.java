@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;

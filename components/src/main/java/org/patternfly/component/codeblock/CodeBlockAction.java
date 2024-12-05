@@ -17,8 +17,8 @@ package org.patternfly.component.codeblock;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;

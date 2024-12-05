@@ -15,37 +15,34 @@
  */
 package org.patternfly.showcase;
 
-import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
 import org.patternfly.component.card.Card;
 import org.patternfly.layout.gallery.Gallery;
+import org.patternfly.layout.stack.Stack;
 
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.PageMainBody.pageMainBody;
 import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
-import static org.patternfly.style.Breakpoint.default_;
-import static org.patternfly.style.Breakpoints.breakpoints;
+import static org.patternfly.layout.stack.Stack.stack;
 import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Brightness.light100;
 import static org.patternfly.style.Classes.hidden;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.sticky;
-import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size._4xl;
 
 public abstract class OverviewPage<T> implements Page {
@@ -60,27 +57,26 @@ public abstract class OverviewPage<T> implements Page {
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainGroup()
                 .add(pageMainSection().limitWidth().background(light)
-                        .add(pageMainBody()
+                        .addBody(pageMainBody()
                                 .add(content()
-                                        .add(flex().alignItems(breakpoints(default_, center))
+                                        .add(flex().alignItems(center)
                                                 .add(title(1, _4xl, title))))))
                 .add(pageMainSection().fill().background(light100)
-                        .add(div().css(util("display-flext"), "ws-mdx-child-template")
-                                .add(div().css("ws-mdx-content")
-                                        .add(div().css("landing-pages")
-                                                .run(this::landingPages)
-                                                .add(div().css("ws-section-gallery ws-section-gallery-full-width")
-                                                        // TODO Implement sticky toolbar once implemented
-                                                        .add(toolbar().css(modifier(sticky))
-                                                                .addContent(toolbarContent()
-                                                                        .addItem(toolbarItem()
-                                                                                .add("Toolbar not yet implemented")))
-                                                                .addContent(toolbarContent().css(modifier(hidden))))
-                                                        .add(createGallery()))))))
+                        .addBody(pageMainBody()
+                                .add(stack().gutter()
+                                        .run(this::landingPages)
+                                        .add(div().css("ws-section-gallery")
+                                                // TODO Implement sticky toolbar once implemented
+                                                .add(toolbar().css(modifier(sticky))
+                                                        .addContent(toolbarContent()
+                                                                .addItem(toolbarItem()
+                                                                        .add("Toolbar not yet implemented")))
+                                                        .addContent(toolbarContent().css(modifier(hidden))))
+                                                .add(createGallery())))))
                 .element());
     }
 
-    protected void landingPages(HTMLContainerBuilder<HTMLDivElement> div) {
+    protected void landingPages(Stack stack) {
         // noop
     }
 

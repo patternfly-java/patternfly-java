@@ -1,5 +1,6 @@
-import static org.jboss.elemento.Elements.a;
-import static org.patternfly.component.brand.Brand.brand;
+import org.patternfly.component.page.MastheadLogo;
+
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
@@ -13,7 +14,6 @@ import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
-import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
@@ -68,9 +68,8 @@ public class PageDemo {
         masthead()
                 .addMain(mastheadMain()
                         .addToggle(mastheadToggle())
-                        .addBrand(mastheadBrand())
-                        .addBrand(mastheadBrand(a("/"))
-                                .addBrand(brand("/logo.svg", "Logo"))))
+                        .addBrand(mastheadBrand()
+                                .addLogo(MastheadLogo.mastheadLogo("/"))))
                 .addContent(mastheadContent()
                         .addToolbar(toolbar()));
         // @end region = masthead

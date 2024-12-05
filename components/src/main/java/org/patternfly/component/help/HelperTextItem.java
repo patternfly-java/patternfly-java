@@ -17,11 +17,11 @@ package org.patternfly.component.help;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.ValidationStatus;
-import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;

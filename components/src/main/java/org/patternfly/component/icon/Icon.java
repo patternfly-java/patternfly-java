@@ -19,8 +19,8 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.ComponentProgress;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;

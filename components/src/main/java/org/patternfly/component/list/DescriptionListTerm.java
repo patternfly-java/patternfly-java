@@ -16,8 +16,8 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.style.Classes;

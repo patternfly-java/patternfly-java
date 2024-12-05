@@ -19,6 +19,7 @@ import org.jboss.elemento.router.Route;
 import org.patternfly.component.accordion.Accordion;
 import org.patternfly.component.accordion.AccordionItem;
 import org.patternfly.component.accordion.AccordionItemBody;
+import org.patternfly.component.accordion.AccordionType;
 import org.patternfly.showcase.ApiDoc;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -174,5 +175,6 @@ public class AccordionComponent extends SnippetPage {
         addApiDoc(Accordion.class, ApiDoc.Type.component);
         addApiDoc(AccordionItem.class, ApiDoc.Type.subcomponent);
         addApiDoc(AccordionItemBody.class, ApiDoc.Type.subcomponent);
+        addApiDoc(AccordionType.class, ApiDoc.Type.other);
     }
 }

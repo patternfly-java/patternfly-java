@@ -16,8 +16,8 @@
 package org.patternfly.component.inputgroup;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;

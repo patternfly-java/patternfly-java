@@ -16,8 +16,8 @@
 package org.patternfly.component.modal;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.Severity;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.Severity;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 
