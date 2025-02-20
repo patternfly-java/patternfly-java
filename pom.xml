@@ -99,7 +99,7 @@
         <version.enforcer.plugin>3.3.0</version.enforcer.plugin>
         <version.frontend.plugin>1.15.1</version.frontend.plugin>
         <version.gwt.plugin>1.1.0</version.gwt.plugin>
-        <version.j2cl.plugin>0.23.2</version.j2cl.plugin>
+        <version.j2cl.plugin>0.23.3</version.j2cl.plugin>
         <version.impsort.plugin>1.12.0</version.impsort.plugin>
         <version.javadoc.plugin>3.11.2</version.javadoc.plugin>
         <version.keepachangelog>2.1.1</version.keepachangelog>
