@@ -178,17 +178,17 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
                 popper = new PopperBuilder(componentType().componentName, triggerElement, element())
-                        .animationDuration(animationDuration)
-                        .zIndex(zIndex)
-                        .placement(placement)
-                        .addModifier(Modifiers.offset(distance),
-                                Modifiers.noOverflow(),
-                                Modifiers.hide(),
+                        .addModifier(Modifiers.eventListeners(false),
                                 Modifiers.flip(placement == auto || flip),
-                                Modifiers.placement(),
-                                Modifiers.eventListeners(false))
+                                Modifiers.hide(),
+                                Modifiers.noOverflow(),
+                                Modifiers.offset(distance),
+                                Modifiers.placement())
+                        .animationDuration(animationDuration)
+                        .placement(placement)
                         .registerHandler(triggerActions, this::show, this::close)
                         .removePopperOnTriggerDetach()
+                        .zIndex(zIndex)
                         .build();
             } else {
                 logger.error("Unable to find trigger element for popover %o", element());

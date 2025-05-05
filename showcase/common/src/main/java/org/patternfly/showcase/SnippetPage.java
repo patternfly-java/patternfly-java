@@ -151,6 +151,7 @@ public class SnippetPage implements Page {
                                                                 .ariaLabel("Table of contents"))
                                                         .add(contentContainer = stack().gutter()
                                                                 .style("max-width", "825px")
+                                                                .style("flex-grow", 1)
                                                                 .element())))))
                         .element());
     }
