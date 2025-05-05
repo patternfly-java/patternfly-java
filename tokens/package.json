@@ -3,12 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "tsx src/scripts/generate.ts"
+    "generate": "node src/scripts/generate.mjs"
   },
   "devDependencies": {
     "@patternfly/react-tokens": "^6.2.2",
     "@types/node": "^22.15.3",
-    "camelcase": "^8.0.0",
-    "tsx": "^4.19.4"
+    "camelcase": "^8.0.0"
   }
 }
