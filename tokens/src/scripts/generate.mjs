@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {writeFile} from 'node:fs/promises';
+import {mkdir, writeFile} from 'node:fs/promises';
 import camelCase from 'camelcase';
 import * as TOKENS from "@patternfly/react-tokens";
 
@@ -78,5 +78,6 @@ let tokens = Object.keys(TOKENS)
     });
 
 const dir = new URL(`${root}/${path}/`, import.meta.url);
+await mkdir(dir, { recursive: true });
 await writeFile(new URL(`./Token.java`, dir), generateTokens(tokens), 'utf8');
 console.info(`Generated code for ${tokens.length} tokens`);
