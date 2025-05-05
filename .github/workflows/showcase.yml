@@ -17,7 +17,7 @@ jobs:
           distribution: temurin
           cache: maven
       - run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
-      - uses: JamesIves/github-pages-deploy-action@v4.6.9
+      - uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/patternfly-java.github.io
