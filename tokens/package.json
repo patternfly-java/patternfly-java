@@ -9,6 +9,6 @@
     "@patternfly/react-tokens": "^6.0.0",
     "@types/node": "^22.9.3",
     "camelcase": "^8.0.0",
-    "tsx": "^4.7.1"
+    "tsx": "^4.19.4"
   }
 }
