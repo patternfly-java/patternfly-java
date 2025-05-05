@@ -9,10 +9,10 @@
     "@fortawesome/free-brands-svg-icons": "^5",
     "@fortawesome/free-regular-svg-icons": "^5",
     "@fortawesome/free-solid-svg-icons": "^5",
-    "@patternfly/patternfly": "^6.0.0",
-    "@patternfly/react-icons": "^6.0.0",
-    "@types/node": "^22.9.3",
+    "@patternfly/patternfly": "^6.2.3",
+    "@patternfly/react-icons": "^6.2.2",
+    "@types/node": "^22.15.3",
     "camelcase": "^8.0.0",
-    "tsx": "^4.19.3"
+    "tsx": "^4.19.4"
   }
 }
