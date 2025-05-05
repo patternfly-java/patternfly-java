@@ -17,11 +17,11 @@ package org.patternfly.component.help;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.ValidationStatus;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
@@ -45,36 +45,36 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 
 public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTextItem> implements
-        WithIcon<HTMLElement, HelperTextItem>,
+        ComponentIcon<HTMLElement, HelperTextItem>,
         WithText<HTMLElement, HelperTextItem>,
-        WithIconAndText<HTMLElement, HelperTextItem>,
+        ComponentIconAndText<HTMLElement, HelperTextItem>,
         HasValue<String> {
 
     // ------------------------------------------------------ factory
 
     public static HelperTextItem helperTextItem() {
-        return new HelperTextItem(div(), null, default_);
+        return new HelperTextItem(div(), default_);
     }
 
     public static HelperTextItem helperTextItem(String text) {
-        return new HelperTextItem(div(), text, default_);
+        return new HelperTextItem(div(), default_).text(text);
     }
 
     public static HelperTextItem helperTextItem(String text, ValidationStatus status) {
-        return new HelperTextItem(div(), text, status);
+        return new HelperTextItem(div(), status).text(text);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder) {
-        return new HelperTextItem(builder, null, default_);
+        return new HelperTextItem(builder, default_);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder, String text) {
-        return new HelperTextItem(builder, text, default_);
+        return new HelperTextItem(builder, default_).text(text);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder, String text,
             ValidationStatus status) {
-        return new HelperTextItem(builder, text, status);
+        return new HelperTextItem(builder, status).text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -88,7 +88,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     private HTMLElement screenReaderElement;
     private HTMLElement iconContainer;
 
-    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, String text, ValidationStatus status) {
+    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, ValidationStatus status) {
         super(SUB_COMPONENT_NAME, builder.css(component(helperText, item)).element());
         this.status = status;
         this.defaultIcon = false;
@@ -97,9 +97,6 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
             css(status.modifier);
         }
         element().appendChild(textElement = span().css(component(helperText, item, Classes.text)).element());
-        if (text != null) {
-            textElement.textContent = text;
-        }
     }
 
     // ------------------------------------------------------ builder
@@ -162,18 +159,15 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
         return this;
     }
 
-    @Override
-    public HelperTextItem text(String text) {
-        // don't override a possible screen reader text by calling
-        // textElement.textContent = text;
-        // instead modify the first text node of textElement:
-        Elements.textNode(textElement, text);
-        return this;
-    }
-
     public HelperTextItem screenReader(String text) {
         customScreenReaderText = true;
         failSafeScreenReaderElement().textContent = text;
+        return this;
+    }
+
+    @Override
+    public HelperTextItem text(String text) {
+        Elements.textNode(textElement, text);
         return this;
     }
 

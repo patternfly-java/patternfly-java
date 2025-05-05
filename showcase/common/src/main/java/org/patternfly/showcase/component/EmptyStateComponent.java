@@ -42,7 +42,7 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Size.xl;
 import static org.patternfly.style.Size.xs;
-import static org.patternfly.style.Variable.globalVar;
+import static org.patternfly.style.Status.success;
 
 @Route(value = "/components/empty-state", title = "Empty state")
 public class EmptyStateComponent extends SnippetPage {
@@ -59,9 +59,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .addHeader(emptyStateHeader(4)
                                         .icon(cubes())
                                         .text("Empty state"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Primary action").primary()))
@@ -84,9 +83,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .size(xs)
                                 .addHeader(emptyStateHeader(4)
                                         .text("Empty state"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Multiple").link())
@@ -108,9 +106,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .addHeader(emptyStateHeader(4)
                                         .icon(cubes())
                                         .text("Empty state"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Primary action").primary()))
@@ -134,9 +131,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .addHeader(emptyStateHeader(4)
                                         .icon(cubes())
                                         .text("Empty state"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Primary action").primary()))
@@ -160,9 +156,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .addHeader(emptyStateHeader(4)
                                         .icon(cubes())
                                         .text("Empty state"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Primary action").primary()))
@@ -197,8 +192,8 @@ public class EmptyStateComponent extends SnippetPage {
                                 .addHeader(emptyStateHeader(4)
                                         .icon(search())
                                         .text("No results found"))
-                                .addBody(emptyStateBody()
-                                        .textContent("No results match the filter criteria. Clear all filters and try again."))
+                                .addBody(emptyStateBody().text(
+                                        "No results match the filter criteria. Clear all filters and try again."))
                                 .addFooter(emptyStateFooter()
                                         .addActions(emptyStateActions()
                                                 .add(button("Clear all filters").link()))))
@@ -212,11 +207,10 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .addHeader(emptyStateHeader(4)
-                                        .icon(check(), globalVar("success-color", "100"))
+                                        .icon(check(), success)
                                         .text("Custom icon color"))
-                                .addBody(emptyStateBody()
-                                        .textContent(
-                                                "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs.")))
+                                .addBody(emptyStateBody().text(
+                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs.")))
                         .element()
                 // @code-end:empty-state-color
         ));

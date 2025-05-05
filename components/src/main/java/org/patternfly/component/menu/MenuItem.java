@@ -28,11 +28,11 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
@@ -98,10 +98,10 @@ import static org.patternfly.style.Size.lg;
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         ComponentContext<HTMLElement, MenuItem>,
         Disabled<HTMLElement, MenuItem>,
-        WithIdentifier<HTMLElement, MenuItem>,
+        HasIdentifier<HTMLElement, MenuItem>,
         WithText<HTMLElement, MenuItem>,
-        WithIcon<HTMLElement, MenuItem>,
-        WithIconAndText<HTMLElement, MenuItem>,
+        ComponentIcon<HTMLElement, MenuItem>,
+        ComponentIconAndText<HTMLElement, MenuItem>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -224,11 +224,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.itemType = itemType;
         this.favoriteItem = null;
         this.initialSelection = item.initialSelection;
-        this.itemElement = find(By.classname(component(Classes.menu, Classes.item)));
-        this.mainElement = find(By.classname(component(Classes.menu, Classes.item, main)));
-        this.textElement = find(By.classname(component(Classes.menu, Classes.item, Classes.text)));
-        this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, icon)));
-        this.descriptionElement = find(By.classname(component(Classes.menu, Classes.item, description)));
+        this.itemElement = querySelector(By.classname(component(Classes.menu, Classes.item)));
+        this.mainElement = querySelector(By.classname(component(Classes.menu, Classes.item, main)));
+        this.textElement = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.text)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, icon)));
+        this.descriptionElement = querySelector(By.classname(component(Classes.menu, Classes.item, description)));
         // checkbox must not be used for cloned favorite items!
 
         this.handler = new ArrayList<>();
@@ -236,7 +236,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             onClick(h);
         }
         if (item.itemAction != null) {
-            HTMLElement element = find(By.classname(component(Classes.menu, Classes.item, Classes.action)));
+            HTMLElement element = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.action)));
             if (element instanceof HTMLButtonElement) {
                 this.itemAction = new MenuItemAction(menu, this, item.itemAction, ((HTMLButtonElement) element));
             }
@@ -244,7 +244,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
         this.sourceItem = item;
         item.favoriteItem = this;
-        HTMLElement favoriteItemActionElement = find(
+        HTMLElement favoriteItemActionElement = querySelector(
                 By.classname(component(Classes.menu, Classes.item, Classes.action))
                         .and(By.classname(modifier(favorite))));
         if (favoriteItemActionElement != null) {
@@ -344,6 +344,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     @Override
     public MenuItem text(String text) {
+        // Don't use `Elements.textNode(textElement, text)` here.
+        // We want to replace anything that has been added with text(HTMLElement) with a new text!
         textElement.textContent = text;
         return this;
     }
@@ -370,7 +372,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                     .add(externalLinkAlt())
                     .element());
             mainElement.appendChild(span().css(screenReader)
-                    .textContent("(opens a new window)")
+                    .text("(opens a new window)")
                     .element());
         } else {
             logger.warn("Ignore external flag for menu item %o with type '%s'", element(), itemType.name());
@@ -383,7 +385,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             descriptionElement.textContent = description;
         } else {
             itemElement.appendChild(descriptionElement = span().css(component(Classes.menu, item, Classes.description))
-                    .textContent(description)
+                    .text(description)
                     .element());
         }
         return this;

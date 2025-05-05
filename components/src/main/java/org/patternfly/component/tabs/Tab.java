@@ -27,8 +27,8 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.Closeable;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
@@ -86,9 +86,9 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
         ComponentContext<HTMLElement, Tab>,
         Disabled<HTMLElement, Tab>,
-        WithIdentifier<HTMLElement, Tab>,
+        HasIdentifier<HTMLElement, Tab>,
         WithText<HTMLElement, Tab>,
-        WithIcon<HTMLElement, Tab> {
+        ComponentIcon<HTMLElement, Tab> {
 
     // ------------------------------------------------------ factory
 
@@ -213,7 +213,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     @Override
     public Tab text(String text) {
-        textElement.textContent = text;
+        Elements.textNode(textElement, text);
         return this;
     }
 
@@ -247,7 +247,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     @Override
     public Tab hidden(boolean hidden) {
         Elements.setVisible(this, !hidden);
-        Tabs tabs = lookupFlatComponent(true);
+        Tabs tabs = lookupComponent(true);
         if (tabs != null && tabs.currentTab() != null) {
             if (identifier.equals(tabs.currentTab().identifier)) {
                 select(false);
@@ -365,14 +365,14 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     @Override
     public String text() {
-        return textElement.textContent;
+        return Elements.textNode(textElement);
     }
 
     /**
      * Returns the enclosing {@link Tabs} component. Only valid <strong>after</strong> the tabs component has been attached!
      */
     public Tabs tabs() {
-        return lookupFlatComponent();
+        return lookupComponent();
     }
 
     @Override

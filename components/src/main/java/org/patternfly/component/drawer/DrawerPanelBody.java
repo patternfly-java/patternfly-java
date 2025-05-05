@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.drawer;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Modifiers.NoPadding;
 
 import elemental2.dom.HTMLDivElement;
@@ -27,8 +28,9 @@ import static org.patternfly.style.Classes.drawer;
 /**
  * Subcomponent for elements in a {@link DrawerPanel}.
  */
-public class DrawerPanelBody extends DrawerSubComponent<HTMLDivElement, DrawerPanelBody>
-        implements NoPadding<HTMLDivElement, DrawerPanelBody> {
+public class DrawerPanelBody extends DrawerSubComponent<HTMLDivElement, DrawerPanelBody> implements
+        ElementTextMethods<HTMLDivElement, DrawerPanelBody>,
+        NoPadding<HTMLDivElement, DrawerPanelBody> {
 
     // ------------------------------------------------------ factory
 

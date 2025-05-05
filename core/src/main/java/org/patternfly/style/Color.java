@@ -25,13 +25,15 @@ public enum Color {
 
     orange("orange"),
 
+    orangered("orangered"),
+
     red("red"),
 
     purple("purple"),
 
-    cyan("cyan"),
+    teal("teal"),
 
-    gold("gold");
+    yellow("yellow");
 
     public final String modifier;
 

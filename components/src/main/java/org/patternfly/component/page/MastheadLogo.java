@@ -13,41 +13,46 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.text;
+package org.patternfly.component.page;
 
-import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentType;
+import org.patternfly.component.brand.Brand;
 
-import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.a;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.logo;
+import static org.patternfly.style.Classes.masthead;
 
-/**
- * Text and TextList components are always wrapped in TextContent and provide correct formatting to a number of standard HTML
- * tags.
- *
- * @see <a href= "https://www.patternfly.org/components/text">https://www.patternfly.org/components/text</a>
- */
-public class TextContent extends BaseComponent<HTMLDivElement, TextContent> {
+public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo> {
 
     // ------------------------------------------------------ factory
 
-    public static TextContent textContent() {
-        return new TextContent();
+    /**
+     * Factory method to create a new instance of this component.
+     */
+    public static MastheadLogo mastheadLogo(String href) {
+        return new MastheadLogo(href);
     }
 
     // ------------------------------------------------------ instance
 
-    TextContent() {
-        super(ComponentType.TextContent, div().css(component(content)).element());
+    static final String SUB_COMPONENT_NAME = "mhl";
+
+    MastheadLogo(String href) {
+        super(SUB_COMPONENT_NAME, a(href).css(component(masthead, logo)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public MastheadLogo addBrand(Brand brand) {
+        return add(brand);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public TextContent that() {
+    public MastheadLogo that() {
         return this;
     }
 }

@@ -25,11 +25,11 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Severity;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
@@ -84,13 +84,13 @@ import static org.patternfly.style.Variable.componentVar;
  * @see <a href= "https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
-        ComponentContext<HTMLDivElement, Alert>,
-        Inline<HTMLDivElement, Alert>,
-        Plain<HTMLDivElement, Alert>,
         Closeable<HTMLDivElement, Alert>,
+        ComponentContext<HTMLDivElement, Alert>,
+        ComponentIcon<HTMLDivElement, Alert>,
         Expandable<HTMLDivElement, Alert>, Attachable,
-        WithIdentifier<HTMLDivElement, Alert>,
-        WithIcon<HTMLDivElement, Alert> {
+        HasIdentifier<HTMLDivElement, Alert>,
+        Inline<HTMLDivElement, Alert>,
+        Plain<HTMLDivElement, Alert> {
 
     // ------------------------------------------------------ factory
 
@@ -142,8 +142,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                 .add(severity.icon.get().element())
                 .element());
         add(titleElement = p().css(component(alert, Classes.title))
-                .add(span().css(screenReader)
-                        .textContent(severity.aria + ":"))
+                .add(span().css(screenReader).text(severity.aria + ":"))
                 .add(title)
                 .element());
         Attachable.register(this, this);
@@ -174,7 +173,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
      * to this alert. Useful if your description is just a simple string.
      */
     public Alert addDescription(String description) {
-        return add(alertDescription().add(p().textContent(description)));
+        return add(alertDescription().add(p().text(description)));
     }
 
     public Alert addDescription(AlertDescription description) {

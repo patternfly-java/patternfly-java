@@ -19,9 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -41,9 +41,9 @@ import static org.patternfly.style.Classes.list;
 
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
         ComponentContext<HTMLLIElement, ListItem>,
-        WithIdentifier<HTMLLIElement, ListItem>,
+        HasIdentifier<HTMLLIElement, ListItem>,
         WithText<HTMLLIElement, ListItem>,
-        WithIcon<HTMLLIElement, ListItem> {
+        ComponentIcon<HTMLLIElement, ListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -83,11 +83,6 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
         failSafeRemoveFromParent(failSafeIconContainer());
         iconContainer = null;
         return this;
-    }
-
-    @Override
-    public ListItem text(String text) {
-        return textNode(text);
     }
 
     @Override

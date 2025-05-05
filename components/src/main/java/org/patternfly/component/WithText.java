@@ -21,10 +21,14 @@ import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.Element;
 
+@Deprecated
 public interface WithText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {
 
-    B text(String text);
+    default B text(String text) {
+        Elements.textNode(element(), text);
+        return that();
+    }
 
     default String text() {
         return Elements.textNode(element());

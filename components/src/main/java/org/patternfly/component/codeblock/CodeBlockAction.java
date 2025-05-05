@@ -17,8 +17,8 @@ package org.patternfly.component.codeblock;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
@@ -29,7 +29,7 @@ import org.patternfly.style.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 
-import static org.jboss.elemento.DomGlobal.navigator;
+import static elemental2.dom.DomGlobal.navigator;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
@@ -40,7 +40,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
 public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeBlockAction> implements
-        WithIcon<HTMLDivElement, CodeBlockAction> {
+        ComponentIcon<HTMLDivElement, CodeBlockAction> {
 
     // ------------------------------------------------------ factory
 

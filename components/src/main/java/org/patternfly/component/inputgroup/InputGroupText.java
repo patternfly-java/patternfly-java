@@ -15,9 +15,10 @@
  */
 package org.patternfly.component.inputgroup;
 
-import org.patternfly.component.WithIcon;
+import org.jboss.elemento.Elements;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
 
@@ -34,10 +35,10 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGroupText> implements
-        ElementDelegate<HTMLElement, InputGroupText>,
+        ElementContainerDelegate<HTMLElement, InputGroupText>,
         Plain<HTMLElement, InputGroupText>,
         WithText<HTMLElement, InputGroupText>,
-        WithIcon<HTMLElement, InputGroupText> {
+        ComponentIcon<HTMLElement, InputGroupText> {
 
     // ------------------------------------------------------ factory
 
@@ -63,7 +64,7 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return textElement;
     }
 
@@ -84,7 +85,7 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
 
     @Override
     public InputGroupText text(String text) {
-        textElement.textContent = text;
+        Elements.textNode(textElement, text);
         return this;
     }
 
@@ -97,6 +98,6 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
 
     @Override
     public String text() {
-        return textElement.textContent;
+        return Elements.textNode(textElement);
     }
 }

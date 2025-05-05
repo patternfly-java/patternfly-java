@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.accordion;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -23,7 +25,8 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
 
-public class AccordionItemBody extends AccordionSubComponent<HTMLDivElement, AccordionItemBody> {
+public class AccordionItemBody extends AccordionSubComponent<HTMLDivElement, AccordionItemBody> implements
+        ElementTextMethods<HTMLDivElement, AccordionItemBody> {
 
     // ------------------------------------------------------ factory
 

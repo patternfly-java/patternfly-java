@@ -73,8 +73,8 @@ public class CardComponent extends SnippetPage {
                 div()
                         .add(card()
                                 .addTitle(cardTitle("Title"))
-                                .addBody(cardBody().textContent("Body"))
-                                .addFooter(cardFooter().textContent("Footer")))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
                         .element()
                 // @code-end:card-basic
         ));
@@ -100,8 +100,8 @@ public class CardComponent extends SnippetPage {
                     .add(div().style("height", "15rem")
                             .add(card
                                     .addTitle(cardTitle("Title"))
-                                    .addBody(cardBody().textContent("Body"))
-                                    .addFooter(cardFooter().textContent("Footer"))))
+                                    .addBody(cardBody().text("Body"))
+                                    .addFooter(cardFooter().text("Footer"))))
                     .element();
             // @code-end:card-modifiers
         }));
@@ -132,8 +132,8 @@ public class CardComponent extends SnippetPage {
                                     .add(brand("https://www.patternfly.org/assets/images/pf_logo.svg", "PatternFly")
                                             .style("width", "300px")))
                             .addTitle(cardTitle("Title"))
-                            .addBody(cardBody().textContent("Body"))
-                            .addFooter(cardFooter().textContent("Footer")))
+                            .addBody(cardBody().text("Body"))
+                            .addFooter(cardFooter().text("Footer")))
                     .add(div().css(util("mt-md"))
                             .add(checkbox("card-header-image-no-offset", "card-header-image-no-offset", "no offset")
                                     .onChange((e, c, value) -> cardActions.noOffset(value))))
@@ -165,8 +165,8 @@ public class CardComponent extends SnippetPage {
                                     .addActions(cardActions()
                                             .add(dropdown)
                                             .add(checkbox("card-title-inline-check", "card-title-inline-check"))))
-                            .addBody(cardBody().textContent("Body"))
-                            .addFooter(cardFooter().textContent("Footer")))
+                            .addBody(cardBody().text("Body"))
+                            .addFooter(cardFooter().text("Footer")))
                     .element();
             // @code-end:card-title-inline
         }));
@@ -194,7 +194,7 @@ public class CardComponent extends SnippetPage {
                                             .add(dropdown)
                                             .add(checkbox("card-header-no-title-check", "card-header-no-title-check"))))
                             .addBody(cardBody()
-                                    .textContent("This is the card body. There are only actions in the card head.")))
+                                    .text("This is the card body. There are only actions in the card head.")))
                     .element();
             // @code-end:card-header-no-title
         }));
@@ -205,8 +205,8 @@ public class CardComponent extends SnippetPage {
                 div()
                         .add(card()
                                 .addTitle(cardTitle("Title within an <h4> element", 4))
-                                .addBody(cardBody().textContent("Body"))
-                                .addFooter(cardFooter().textContent("Footer")))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
                         .element()
                 // @code-end:card-heading
         ));
@@ -217,10 +217,10 @@ public class CardComponent extends SnippetPage {
                 div()
                         .add(card()
                                 .addTitle(cardTitle("Title"))
-                                .addBody(cardBody().textContent("Body"))
-                                .addBody(cardBody().textContent("Body"))
-                                .addBody(cardBody().textContent("Body"))
-                                .addFooter(cardFooter().textContent("Footer")))
+                                .addBody(cardBody().text("Body"))
+                                .addBody(cardBody().text("Body"))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
                         .element()
                 // @code-end:card-multiple-bodies
         ));
@@ -231,10 +231,10 @@ public class CardComponent extends SnippetPage {
                 div()
                         .add(card().style("min-height", "30em")
                                 .addTitle(cardTitle("Title"))
-                                .addBody(cardBody().noFill().textContent("Body " + modifier(noFill)))
-                                .addBody(cardBody().noFill().textContent("Body " + modifier(noFill)))
-                                .addBody(cardBody().textContent("Body"))
-                                .addFooter(cardFooter().textContent("Footer")))
+                                .addBody(cardBody().noFill().text("Body " + modifier(noFill)))
+                                .addBody(cardBody().noFill().text("Body " + modifier(noFill)))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
                         .element()
                 // @code-end:card-primary-body-fill
         ));
@@ -250,7 +250,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("First card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is selectable.")))
+                                .addBody(cardBody().text("This card is selectable.")))
                         .add(card().name("selectable-card")
                                 .selectable(
                                         (e, c, selected) -> console.log("card(" + c.element().id + ") selected: " + selected))
@@ -258,7 +258,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("Second card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is selectable.")))
+                                .addBody(cardBody().text("This card is selectable.")))
                         .add(card().name("selectable-card").disabled()
                                 .selectable(
                                         (e, c, selected) -> console.log("card(" + c.element().id + ") selected: " + selected))
@@ -266,7 +266,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("Third card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is selectable but disabled.")))
+                                .addBody(cardBody().text("This card is selectable but disabled.")))
                         .element()
                 // @code-end:card-selectable
         ));
@@ -282,7 +282,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("First card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is single selectable.")))
+                                .addBody(cardBody().text("This card is single selectable.")))
                         .add(card().name("single-selectable-card")
                                 .selectable(single,
                                         (e, c, selected) -> console.log("card(" + c.element().id + ") selected: " + selected))
@@ -290,7 +290,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("Second card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is single selectable.")))
+                                .addBody(cardBody().text("This card is single selectable.")))
                         .add(card().name("single-selectable-card").disabled()
                                 .selectable(single,
                                         (e, c, selected) -> console.log("card(" + c.element().id + ") selected: " + selected))
@@ -298,7 +298,7 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("Third card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is single selectable but disabled.")))
+                                .addBody(cardBody().text("This card is single selectable but disabled.")))
                         .element()
                 // @code-end:card-single-selectable
         ));
@@ -313,21 +313,21 @@ public class CardComponent extends SnippetPage {
                                         .addTitle(cardTitle("First card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card performs an action on click.")))
+                                .addBody(cardBody().text("This card performs an action on click.")))
                         .add(card().name("clickable-card")
                                 .clickable("#")
                                 .addHeader(cardHeader()
                                         .addTitle(cardTitle("Second card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card can navigate to a link on click.")))
+                                .addBody(cardBody().text("This card can navigate to a link on click.")))
                         .add(card().name("clickable-card").disabled()
                                 .clickable((e, c) -> console.log("Selected card: " + c.element().id))
                                 .addHeader(cardHeader()
                                         .addTitle(cardTitle("Third card"))
                                         .addActions(cardActions().noOffset()
                                                 .addSelectableActions(cardSelectableActions())))
-                                .addBody(cardBody().textContent("This card is single clickable but disabled.")))
+                                .addBody(cardBody().text("This card is single clickable but disabled.")))
                         .element()
                 // @code-end:card-clickable
         ));
@@ -348,7 +348,7 @@ public class CardComponent extends SnippetPage {
                                                     .onClick((e, b) -> card.select(!card.selected()))))
                                     .addActions(cardActions().noOffset()
                                             .addSelectableActions(cardSelectableActions())))
-                            .addBody(cardBody().textContent(
+                            .addBody(cardBody().text(
                                     "This card performs an action upon clicking the card title and is selectable.")))
                     .add(card().name("clickable-selectable-card")
                             .clickable()
@@ -370,7 +370,7 @@ public class CardComponent extends SnippetPage {
                                     .addTitle(cardTitle("Third card"))
                                     .addActions(cardActions().noOffset()
                                             .addSelectableActions(cardSelectableActions())))
-                            .addBody(cardBody().textContent("This card is clickable and selectable, but disabled.")))
+                            .addBody(cardBody().text("This card is clickable and selectable, but disabled.")))
                     .element();
             // @code-end:card-clickable-selectable
         }));
@@ -414,8 +414,8 @@ public class CardComponent extends SnippetPage {
                                             .add(checkbox("card-expandable-check-1", "card-expandable-check")))
                                     .addTitle(cardTitle("Title")))
                             .addExpandableContent(cardExpandableContent()
-                                    .addBody(cardBody().textContent("Body"))
-                                    .addFooter(cardFooter().textContent("Footer"))))
+                                    .addBody(cardBody().text("Body"))
+                                    .addFooter(cardFooter().text("Footer"))))
                     .add(br())
                     .add(card().expandable(true)
                             .addHeader(cardHeader()
@@ -424,8 +424,8 @@ public class CardComponent extends SnippetPage {
                                             .add(checkbox("card-expandable-check-2", "card-expandable-check")))
                                     .addTitle(cardTitle("Title")))
                             .addExpandableContent(cardExpandableContent()
-                                    .addBody(cardBody().textContent("Body"))
-                                    .addFooter(cardFooter().textContent("Footer"))))
+                                    .addBody(cardBody().text("Body"))
+                                    .addFooter(cardFooter().text("Footer"))))
                     .element();
             // @code-end:card-expandable
         }));
@@ -460,8 +460,8 @@ public class CardComponent extends SnippetPage {
                                                 i.setAttribute("width", "27px");
                                             })))
                             .addExpandableContent(cardExpandableContent()
-                                    .addBody(cardBody().textContent("Body"))
-                                    .addFooter(cardFooter().textContent("Footer"))))
+                                    .addBody(cardBody().text("Body"))
+                                    .addFooter(cardFooter().text("Footer"))))
                     .element();
             // @code-end:card-expandable-image
         }));

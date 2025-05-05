@@ -52,7 +52,7 @@ public class SelectComponent extends SnippetPage {
 
         startExamples(p()
                 .add("Select builds off of the menu component suite to adapt commonly used properties and functions to create a select menu. See the ")
-                .add(link(placeManager(), "/components/menus/menu").textContent("menu documentation"))
+                .add(link(placeManager(), "/components/menus/menu").text("menu documentation"))
                 .add(" for a full list of properties that may be used to further customize a select menu."));
         addSnippet(new Snippet("single-select", "Single select",
                 code("single-select"), () ->

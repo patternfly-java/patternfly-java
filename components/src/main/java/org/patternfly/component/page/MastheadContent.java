@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.page;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.toolbar.Toolbar;
 
@@ -30,7 +31,8 @@ import static org.patternfly.style.Classes.masthead;
  * and will typically contain a {@link Toolbar} or other menu-like content such as a
  * {@link Dropdown}.
  */
-public class MastheadContent extends MastheadSubComponent<HTMLDivElement, MastheadContent> {
+public class MastheadContent extends MastheadSubComponent<HTMLDivElement, MastheadContent> implements
+        ElementTextMethods<HTMLDivElement, MastheadContent> {
 
     // ------------------------------------------------------ factory
 

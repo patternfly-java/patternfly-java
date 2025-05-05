@@ -17,10 +17,10 @@ package org.patternfly.style;
 
 import java.util.function.Function;
 
-import org.jboss.elemento.HasHTMLElement;
+import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
+import org.jboss.elemento.svg.SVGElementStyleMethods;
 import org.patternfly.core.Tuple;
 
 import static org.patternfly.style.Breakpoint.default_;
@@ -71,9 +71,9 @@ public class VariableAssignments {
     public static class HTMLBuilder<E extends elemental2.dom.HTMLElement, B extends TypedBuilder<E, B>> {
 
         private final Variable variable;
-        private final HasHTMLElement<E, B> element;
+        private final HTMLElementStyleMethods<E, B> element;
 
-        HTMLBuilder(Variable variable, HasHTMLElement<E, B> element) {
+        HTMLBuilder(Variable variable, HTMLElementStyleMethods<E, B> element) {
             this.variable = variable;
             this.element = element;
         }
@@ -115,9 +115,9 @@ public class VariableAssignments {
     public static class SVGBuilder<E extends SVGElement, B extends TypedBuilder<E, B>> {
 
         private final Variable variable;
-        private final HasSVGElement<E, B> element;
+        private final SVGElementStyleMethods<E, B> element;
 
-        SVGBuilder(Variable variable, HasSVGElement<E, B> element) {
+        SVGBuilder(Variable variable, SVGElementStyleMethods<E, B> element) {
             this.variable = variable;
             this.element = element;
         }

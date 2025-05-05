@@ -19,5 +19,5 @@
 }
 
 .ws-back-to-top {
-    z-index: var(--pf-v5-c-page__main--ZIndex);
+    z-index: var(--pf-t--global--z-index--2xl);
 }

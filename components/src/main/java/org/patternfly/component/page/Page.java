@@ -232,7 +232,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ internal
 
-    boolean underXl() {
+    boolean belowXl() {
         return element().clientWidth < Breakpoint.xl.widthValue;
     }
 
@@ -269,7 +269,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
             masthead.onPageResize(current, previous);
         }
         if (sidebar != null) {
-            if (underXl()) {
+            if (belowXl()) {
                 sidebar.collapse();
             } else {
                 sidebar.expand();

@@ -18,16 +18,17 @@ package org.patternfly.component.button;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.ComponentProgress;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithProgress;
-import org.patternfly.component.WithText;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
@@ -76,15 +77,16 @@ import static org.patternfly.style.Size.md;
  * @see <a href= "https://www.patternfly.org/components/button">https://www.patternfly.org/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button> implements
+        ComponentIcon<HTMLElement, Button>,
+        ComponentIconAndText<HTMLElement, Button>,
+        ComponentProgress<HTMLElement, Button>,
         Disabled<HTMLElement, Button>,
+        ElementContainerDelegate<HTMLElement, Button>,
+        ElementTextMethods<HTMLElement, Button>,
         Inline<HTMLElement, Button>,
-        Plain<HTMLElement, Button>,
         NoPadding<HTMLElement, Button>,
-        Secondary<HTMLElement, Button>,
-        WithIcon<HTMLElement, Button>,
-        WithText<HTMLElement, Button>,
-        WithIconAndText<HTMLElement, Button>,
-        WithProgress<HTMLElement, Button> {
+        Plain<HTMLElement, Button>,
+        Secondary<HTMLElement, Button> {
 
     // ------------------------------------------------------ factory
 
@@ -120,7 +122,8 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
     private Element icon;
-    private HTMLElement iconContainer;
+    private HTMLElement textElement;
+    private HTMLElement iconElement;
     private Spinner spinner;
 
     <E extends HTMLElement> Button(HTMLContainerBuilder<E> builder) {
@@ -136,6 +139,11 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         }
     }
 
+    @Override
+    public Element containerDelegate() {
+        return failSafeTextElement();
+    }
+
     // ------------------------------------------------------ add
 
     public Button addBadge(Badge badge) {
@@ -143,8 +151,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     }
 
     public Button add(Badge badge) {
-        return add(span().css(component(button, count))
-                .add(badge));
+        element().appendChild(span().css(component(button, count))
+                .add(badge)
+                .element());
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -153,15 +163,15 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     public Button icon(Element icon) {
         removeIcon();
         this.icon = icon;
-        return add(icon);
+        failSafeIconElement().appendChild(icon);
+        return this;
     }
 
     @Override
     public Button removeIcon() {
-        failSafeRemoveFromParent(icon);
-        failSafeRemoveFromParent(iconContainer);
+        failSafeRemoveFromParent(iconElement);
         this.icon = null;
-        this.iconContainer = null;
+        this.iconElement = null;
         return this;
     }
 
@@ -171,29 +181,26 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         this.icon = icon;
         switch (position) {
             case start:
-                insertFirst(element(), iconContainer = span().css(component(button, Classes.icon), modifier(Classes.start))
-                        .add(icon)
-                        .element());
+                failSafeIconElement().classList.add(modifier(Classes.start));
+                icon(icon);
                 text(text);
                 break;
             case end:
                 text(text);
-                add(iconContainer = span().css(component(button, Classes.icon), modifier(Classes.end))
-                        .add(icon)
-                        .element());
+                failSafeIconElement().classList.add(modifier(Classes.end));
+                icon(icon);
                 break;
         }
         return this;
     }
 
     /**
-     * Changes the text of this button. Prefer this method over {@link org.jboss.elemento.HasElement#textContent(String)}, since
-     * this method doesn't remove a possible progress spinner.
+     * Changes the text of this button.
      */
     @Override
     public Button text(String text) {
-        // using textContent(text) would remove a possible progress spinner
-        return textNode(text);
+        failSafeTextElement().textContent = text;
+        return this;
     }
 
     public Button href(String href) {
@@ -260,13 +267,14 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return this;
     }
 
+    @Override
     public Button progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer) {
         if (!element().classList.contains(modifier(plain)) && !element().classList.contains(modifier(progress))) {
             // add this once and keep it!
             element().classList.add(modifier(progress));
         }
 
-        HTMLElement element = find(By.classname(component(button, progress)));
+        HTMLElement element = querySelector(By.classname(component(button, progress)));
         failSafeRemoveFromParent(element);
         if (inProgress) {
             element().classList.add(modifier(Classes.inProgress));
@@ -295,5 +303,31 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     public Button onClick(ComponentHandler<Button> actionHandler) {
         on(click, e -> actionHandler.handle(e, this));
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        if (textElement != null) {
+            return textElement.textContent;
+        }
+        return "";
+    }
+
+    // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeIconElement() {
+        if (iconElement == null) {
+            element().appendChild(iconElement = span().css(component(button, Classes.icon)).element());
+        }
+        return iconElement;
+    }
+
+    private HTMLElement failSafeTextElement() {
+        if (textElement == null) {
+            element().appendChild(textElement = span().css(component(button, Classes.text)).element());
+        }
+        return textElement;
     }
 }

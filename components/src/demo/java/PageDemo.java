@@ -1,5 +1,6 @@
-import static org.jboss.elemento.Elements.a;
-import static org.patternfly.component.brand.Brand.brand;
+import org.patternfly.component.page.MastheadLogo;
+
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
@@ -13,7 +14,6 @@ import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
-import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
 public class PageDemo {
@@ -45,13 +45,13 @@ public class PageDemo {
                 .addSection(pageMainBreadcrumb()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(textContent())))
+                                .add(content())))
                 .addSection(pageMainSection()
-                        .add(textContent()))
+                        .add(content()))
                 .addSection(pageMainSection()
                         .limitWidth()
                         .addBody(pageMainBody()
-                                .add(textContent())));
+                                .add(content())));
         // @end region = pageMainBody
     }
 
@@ -66,10 +66,10 @@ public class PageDemo {
     public void mastheadDemo() {
         // @start region = masthead
         masthead()
-                .addToggle(mastheadToggle())
                 .addMain(mastheadMain()
-                        .addBrand(mastheadBrand(a("/"))
-                                .addBrand(brand("/logo.svg", "Logo"))))
+                        .addToggle(mastheadToggle())
+                        .addBrand(mastheadBrand()
+                                .addLogo(MastheadLogo.mastheadLogo("/"))))
                 .addContent(mastheadContent()
                         .addToolbar(toolbar()));
         // @end region = masthead

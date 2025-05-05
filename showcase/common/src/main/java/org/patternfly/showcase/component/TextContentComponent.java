@@ -16,7 +16,7 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.text.TextContent;
+import org.patternfly.component.content.Content;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -33,7 +33,7 @@ import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.small;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.component.text.TextContent.textContent;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -51,7 +51,7 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-headings"), () ->
                 // @code-start:text-content-headings
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(1, "Hello World"))
                                 .add(h(2, "Second Level"))
                                 .add(h(3, "Third Level"))
@@ -66,14 +66,14 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-body"), () ->
                 // @code-start:text-content-body
                 div()
-                        .add(textContent()
-                                .add(p().textContent(LoremIpsum.paragraphs(5)))
+                        .add(content()
+                                .add(p().text(LoremIpsum.paragraphs(5)))
                                 .add(p()
                                         .add(LoremIpsum.paragraphs(3) + " ")
-                                        .add(a("#").textContent(LoremIpsum.paragraph()))
+                                        .add(a("#").text(LoremIpsum.paragraph()))
                                         .add(" " + LoremIpsum.paragraphs(2)))
-                                .add(blockquote().textContent(LoremIpsum.paragraphs(2)))
-                                .add(small().textContent(LoremIpsum.paragraphs(3))))
+                                .add(blockquote().text(LoremIpsum.paragraphs(2)))
+                                .add(small().text(LoremIpsum.paragraphs(3))))
                         .element()
                 // @code-end:text-content-body
         ));
@@ -82,14 +82,14 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-ul"), () ->
                 // @code-start:text-content-ul
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(ul()
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
                                         .add(li().add(LoremIpsum.words())
                                                 .add(ul()
-                                                        .add(li().textContent(LoremIpsum.words()))
-                                                        .add(li().textContent(LoremIpsum.words()))))
+                                                        .add(li().text(LoremIpsum.words()))
+                                                        .add(li().text(LoremIpsum.words()))))
                                         .add(li().add(LoremIpsum.words()))))
                         .element()
                 // @code-end:text-content-ul
@@ -99,15 +99,15 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-ol"), () ->
                 // @code-start:text-content-ol
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(ol()
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))))
                         .element()
                 // @code-end:text-content-ol
         ));
@@ -116,22 +116,22 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-plain-list"), () ->
                 // @code-start:text-content-plain-list
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(3, "Plain unordered list"))
                                 .add(ul().css(modifier(plain))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
                                         .add(li().add(LoremIpsum.words()))
                                         .add(li().add(LoremIpsum.words())))
                                 .add(h(3, "Plain ordered list"))
                                 .add(ol().css(modifier(plain))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))
-                                        .add(li().textContent(LoremIpsum.words()))))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))
+                                        .add(li().text(LoremIpsum.words()))))
                         .element()
                 // @code-end:text-content-plain-list
         ));
@@ -140,20 +140,20 @@ public class TextContentComponent extends SnippetPage {
                 code("text-content-dl"), () ->
                 // @code-start:text-content-dl
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(dl()
-                                        .add(dt().textContent("Web"))
-                                        .add(dd().textContent(
+                                        .add(dt().text("Web"))
+                                        .add(dd().text(
                                                 "The part of the Internet that contains " + "websites and web pages"))
-                                        .add(dt().textContent("HTML"))
-                                        .add(dd().textContent("A markup language for creating web pages"))
-                                        .add(dt().textContent("CSS"))
-                                        .add(dd().textContent("A technology to make HTML look better"))))
+                                        .add(dt().text("HTML"))
+                                        .add(dd().text("A markup language for creating web pages"))
+                                        .add(dt().text("CSS"))
+                                        .add(dd().text("A technology to make HTML look better"))))
                         .element()
                 // @code-end:text-content-dl
         ));
 
-        startApiDocs(TextContent.class);
-        addApiDoc(TextContent.class, component);
+        startApiDocs(Content.class);
+        addApiDoc(Content.class, component);
     }
 }

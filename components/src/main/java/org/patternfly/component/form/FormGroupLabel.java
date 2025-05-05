@@ -62,7 +62,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
         super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.label)).element());
         add(labelElement = Elements.label().css(component(Classes.form, Classes.label))
                 .add(textElement = span().css(component(Classes.form, Classes.label, text))
-                        .textContent(label)
+                        .text(label)
                         .element())
                 .element());
         Attachable.register(this, this);
@@ -94,7 +94,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
         if (formGroup.required) {
             labelElement.appendChild(span().css(component(Classes.form, Classes.label, Classes.required))
                     .aria(hidden, true)
-                    .innerHtml(fromSafeConstant("&#42;"))
+                    .html(fromSafeConstant("&#42;"))
                     .element());
         }
     }

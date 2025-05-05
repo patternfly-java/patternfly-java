@@ -15,17 +15,17 @@
     "http-server": "http-server target/showcase --ssl --cert cert.pem -o"
   },
   "devDependencies": {
-    "@parcel/core": "^2.12.0",
-    "@parcel/reporter-cli": "^2.12.0",
-    "@parcel/resolver-glob": "^2.12.0",
+    "@parcel/core": "^2.13.3",
+    "@parcel/reporter-cli": "^2.13.3",
+    "@parcel/resolver-glob": "^2.13.3",
     "http-server": "^14.1.1",
-    "parcel": "^2.12.0",
+    "parcel": "^2.13.3",
     "parcel-resolver-ignore": "^2.2.0"
   },
   "dependencies": {
-    "@github/relative-time-element": "^4.4.0",
-    "@patternfly/patternfly": "^5.3.1",
-    "highlight.js": "^11.9.0",
+    "@github/relative-time-element": "^4.4.4",
+    "@patternfly/patternfly": "^6.1.0",
+    "highlight.js": "^11.11.1",
     "showcase-common": "file:../common/local_modules/showcase-common"
   }
 }

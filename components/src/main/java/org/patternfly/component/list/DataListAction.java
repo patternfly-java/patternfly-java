@@ -15,10 +15,11 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -28,7 +29,7 @@ import static org.patternfly.style.Classes.dataList;
 import static org.patternfly.style.Classes.item;
 
 public class DataListAction extends DataListSubComponent<HTMLElement, DataListAction>
-        implements ElementDelegate<HTMLElement, DataListAction> {
+        implements ElementContainerDelegate<HTMLElement, DataListAction> {
 
     // ------------------------------------------------------ factory
 
@@ -62,7 +63,7 @@ public class DataListAction extends DataListSubComponent<HTMLElement, DataListAc
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         if (plainButtonAction) {
             return delegate;
         }

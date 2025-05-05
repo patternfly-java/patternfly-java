@@ -24,8 +24,8 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.Elements.p;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.style.Brightness.light;
 
@@ -35,9 +35,9 @@ class NotFound implements Page {
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainSection()
                 .background(light)
-                .add(textContent()
+                .add(content()
                         .add(title(1, "Not Found"))
-                        .add(p().textContent("Page " + place.route + " not found")))
+                        .add(p().text("Page " + place.route + " not found")))
                 .element());
     }
 }

@@ -21,8 +21,8 @@ import java.util.List;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
@@ -47,8 +47,8 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> implements
-        WithIdentifier<HTMLButtonElement, MenuItemAction>,
-        WithIcon<HTMLButtonElement, MenuItemAction> {
+        HasIdentifier<HTMLButtonElement, MenuItemAction>,
+        ComponentIcon<HTMLButtonElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 
@@ -87,7 +87,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
                         .add(icon))
                 .element());
         this.identifier = identifier;
-        this.iconContainer = find(By.classname(component(Classes.menu, item, action, Classes.icon)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, item, action, Classes.icon)));
         this.handler = new ArrayList<>();
 
         if (!favorite) {
@@ -103,7 +103,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
             HTMLButtonElement itemActionElement) {
         super(SUB_COMPONENT_NAME, itemActionElement);
         this.identifier = Id.build("fav", sourceItemAction.identifier);
-        this.iconContainer = find(By.classname(component(Classes.menu, Classes.item, action, icon)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, action, icon)));
         this.menuItem = favoriteItem;
         this.handler = new ArrayList<>();
         for (ComponentHandler<MenuItemAction> h : sourceItemAction.handler) {

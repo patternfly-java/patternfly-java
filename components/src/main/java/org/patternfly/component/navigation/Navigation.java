@@ -331,7 +331,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -339,7 +339,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
@@ -347,7 +347,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupBefore(NavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -355,7 +355,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupAfter(NavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -363,7 +363,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupBefore(ExpandableNavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -371,7 +371,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupAfter(ExpandableNavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -450,7 +450,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
             if (type == expandable) {
                 unselectAllExpandableGroups();
-                selectGroup(item.a, fireEvent);
+                selectGroup(item.anchorElement, fireEvent);
             }
         } else {
             unselectAllItems();
@@ -515,7 +515,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     private void unselectAllItems() {
         // remove the current modifier from all navigation item <a/> elements
-        for (HTMLElement element : findAll(A_NAV_LINK_CURRENT)) {
+        for (HTMLElement element : querySelectorAll(A_NAV_LINK_CURRENT)) {
             element.classList.remove(modifier(current));
             element.removeAttribute(Aria.current);
         }
@@ -523,7 +523,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     private void unselectAllExpandableGroups() {
         // remove the current modifier from all expandable group <li/> elements
-        for (HTMLElement element : findAll(LI_NAV_ITEM_EXPANDABLE.and(By.classname(modifier(current))))) {
+        for (HTMLElement element : querySelectorAll(LI_NAV_ITEM_EXPANDABLE.and(By.classname(modifier(current))))) {
             element.classList.remove(modifier(current));
         }
     }

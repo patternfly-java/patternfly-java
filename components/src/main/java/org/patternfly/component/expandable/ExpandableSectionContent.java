@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.expandable;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 
@@ -27,7 +28,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.expandableSection;
 
-public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTMLDivElement, ExpandableSectionContent> {
+public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTMLDivElement, ExpandableSectionContent> implements
+        ElementTextMethods<HTMLDivElement, ExpandableSectionContent> {
 
     // ------------------------------------------------------ factory
 

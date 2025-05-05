@@ -18,8 +18,9 @@ package org.patternfly.component.table;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
@@ -28,9 +29,11 @@ import elemental2.dom.HTMLTableCellElement;
 
 import static org.patternfly.style.TypedModifier.swap;
 
-public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends TableSubComponent<HTMLTableCellElement, B>
-        implements ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B>,
-        WithIdentifier<HTMLTableCellElement, B> {
+public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends
+        TableSubComponent<HTMLTableCellElement, B> implements
+        ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B>,
+        ElementTextMethods<HTMLTableCellElement, B>,
+        HasIdentifier<HTMLTableCellElement, B> {
 
     private final String identifier;
     private final Map<String, Object> data;

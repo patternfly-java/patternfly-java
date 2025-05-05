@@ -22,14 +22,15 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
 import elemental2.dom.HTMLUListElement;
@@ -51,9 +52,9 @@ import static org.patternfly.style.Classes.title;
 
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> implements
         HasItems<HTMLElement, NavigationGroup, NavigationItem>,
-        WithIdentifier<HTMLElement, NavigationGroup>,
+        HasIdentifier<HTMLElement, NavigationGroup>,
         WithText<HTMLElement, NavigationGroup>,
-        ElementDelegate<HTMLElement, NavigationGroup> {
+        ElementContainerDelegate<HTMLElement, NavigationGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -71,9 +72,9 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     private final String identifier;
     private final Map<String, NavigationItem> items;
-    private final HTMLHeadingElement heading;
+    private final HTMLHeadingElement headingElement;
     private final HTMLUListElement ul;
-    private NavigationLinkText text;
+    private NavigationLinkText navigationLinkText;
 
     NavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, section().css(component(nav, section))
@@ -82,15 +83,15 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
 
-        element().appendChild(heading = h(2).css(component(nav, section, title)).element());
+        element().appendChild(headingElement = h(2).css(component(nav, section, title)).element());
         element().appendChild(ul = ul().css(component(nav, list))
                 .attr(role, Roles.list)
                 .element());
     }
 
     @Override
-    public HTMLElement delegate() {
-        return heading;
+    public Element containerDelegate() {
+        return headingElement;
     }
 
     // ------------------------------------------------------ add
@@ -115,13 +116,13 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     public NavigationGroup add(NavigationLinkText text) {
-        this.text = text;
-        heading.appendChild(text.element());
+        this.navigationLinkText = text;
+        headingElement.appendChild(text.element());
         return this;
     }
 
     public NavigationGroup insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -129,7 +130,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     public NavigationGroup insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
@@ -141,10 +142,10 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     @Override
     public NavigationGroup text(String text) {
         if (text != null) {
-            if (this.text != null) {
-                this.text.textNode(text);
+            if (this.navigationLinkText != null) {
+                this.navigationLinkText.text(text);
             } else {
-                h(heading).textNode(text);
+                Elements.textNode(headingElement, text);
             }
         }
         return this;
@@ -164,10 +165,10 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     @Override
     public String text() {
-        if (this.text != null) {
-            return Elements.textNode(this.text);
+        if (this.navigationLinkText != null) {
+            return navigationLinkText.text();
         } else {
-            return Elements.textNode(heading);
+            return Elements.textNode(headingElement);
         }
     }
 

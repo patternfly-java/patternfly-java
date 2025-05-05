@@ -29,9 +29,9 @@ import elemental2.dom.MutationRecord;
 
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.By.AttributeOperator.STARTS_WITH;
-import static org.jboss.elemento.Elements.findAll;
+import static org.jboss.elemento.Elements.querySelectorAll;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
-import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.showcase.ApiDoc.API_DOC_BASE;
 import static org.patternfly.showcase.ApiDoc.API_DOC_TARGET;
 import static org.patternfly.showcase.Documentation.doc;
@@ -49,7 +49,7 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
     DocumentationPage(String doc) {
         this.root = pageMainSection().css("markdown")
                 .background(light)
-                .add(textContent().innerHtml(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
+                .add(content().html(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
                 .element();
         Attachable.register(this, this);
     }
@@ -57,18 +57,19 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
     @Override
     public void attach(MutationRecord mutationRecord) {
         // post process API doc links
-        for (HTMLElement element : findAll(root, By.element("a").and(By.attribute("href", STARTS_WITH, API_DOC_BASE)))) {
+        for (HTMLElement element : querySelectorAll(root,
+                By.element("a").and(By.attribute("href", STARTS_WITH, API_DOC_BASE)))) {
             // exclude the links from being handled by the place manager!
             element.setAttribute("target", API_DOC_TARGET);
         }
         // adjust headers to match the custom pages
-        for (HTMLElement element : findAll(root, By.element("h1"))) {
+        for (HTMLElement element : querySelectorAll(root, By.element("h1"))) {
             element.classList.add(component(title), _4xl.modifier());
         }
-        for (HTMLElement element : findAll(root, By.element("h2"))) {
+        for (HTMLElement element : querySelectorAll(root, By.element("h2"))) {
             element.classList.add(component(title), _2xl.modifier());
         }
-        for (HTMLElement element : findAll(root, By.element("h3"))) {
+        for (HTMLElement element : querySelectorAll(root, By.element("h3"))) {
             element.classList.add(component(title), lg.modifier());
         }
         Highlight.highlightAll();

@@ -16,7 +16,7 @@
 package org.patternfly.component.panel;
 
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Modifiers;
 
@@ -45,7 +45,7 @@ import static org.patternfly.style.Classes.scrollable;
  *
  * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */
-public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
+public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
 
     // ------------------------------------------------------ factory
 
@@ -67,7 +67,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
     // ------------------------------------------------------ add
 
     public Panel addHeader(String header) {
-        return add(panelHeader().textContent(header));
+        return add(panelHeader().text(header));
     }
 
     public Panel addHeader(PanelHeader header) {
@@ -90,7 +90,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
     }
 
     public Panel addMain(String main) {
-        return add(panelMain().textContent(main));
+        return add(panelMain().text(main));
     }
 
     public Panel addMain(PanelMain main) {
@@ -115,7 +115,7 @@ public class Panel extends BaseComponentFlat<HTMLDivElement, Panel> implements M
     }
 
     public Panel addFooter(String footer) {
-        return add(panelFooter().textContent(footer));
+        return add(panelFooter().text(footer));
     }
 
     public Panel addFooter(PanelFooter footer) {

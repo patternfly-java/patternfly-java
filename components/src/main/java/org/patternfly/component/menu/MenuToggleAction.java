@@ -29,23 +29,22 @@ import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.menuToggle;
 
-public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, MenuToggleAction>
-        implements Disabled<HTMLButtonElement, MenuToggleAction>, WithText<HTMLButtonElement, MenuToggleAction> {
+public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, MenuToggleAction> implements
+        Disabled<HTMLButtonElement, MenuToggleAction>,
+        WithText<HTMLButtonElement, MenuToggleAction> {
 
     // ------------------------------------------------------ factory
 
     public static MenuToggleAction menuToggleAction(String text) {
-        return new MenuToggleAction(text);
+        return new MenuToggleAction().text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mta";
 
-    MenuToggleAction(String text) {
-        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(menuToggle, button))
-                .textContent(text)
-                .element());
+    MenuToggleAction() {
+        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(menuToggle, button)).element());
     }
 
     // ------------------------------------------------------ builder
@@ -54,10 +53,6 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
     public MenuToggleAction disabled(boolean disabled) {
         element().disabled = disabled;
         return this;
-    }
-
-    public MenuToggleAction text(String text) {
-        return textContent(text);
     }
 
     @Override

@@ -15,9 +15,11 @@
  */
 package org.patternfly.component.card;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -28,7 +30,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.title;
 
 public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> implements
-        ElementDelegate<HTMLDivElement, CardTitle> {
+        ElementContainerDelegate<HTMLDivElement, CardTitle>,
+        ElementTextDelegate<HTMLDivElement, CardTitle> {
 
     // ------------------------------------------------------ factory
 
@@ -67,7 +70,12 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
+        return titleText;
+    }
+
+    @Override
+    public Element textDelegate() {
         return titleText;
     }
 

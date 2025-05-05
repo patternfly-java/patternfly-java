@@ -40,7 +40,7 @@ public class BullseyeLayout extends SnippetPage {
                 // @code-start:bullseye-basic
                 div().css("ws-core-l-bullseye")
                         .add(bullseye()
-                                .addItem(bullseyeItem().textContent("Bullseye ◎ layout")))
+                                .addItem(bullseyeItem().text("Bullseye ◎ layout")))
                         .element()
                 // @code-end:bullseye-basic
         ));

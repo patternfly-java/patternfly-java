@@ -18,7 +18,7 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 
@@ -31,7 +31,7 @@ import static org.patternfly.style.Classes.group;
 
 public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivElement, DescriptionListGroup> implements
         ComponentContext<HTMLDivElement, DescriptionListGroup>,
-        WithIdentifier<HTMLDivElement, DescriptionListGroup> {
+        HasIdentifier<HTMLDivElement, DescriptionListGroup> {
 
     // ------------------------------------------------------ factory
 

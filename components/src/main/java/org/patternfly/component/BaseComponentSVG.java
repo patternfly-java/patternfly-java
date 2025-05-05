@@ -15,17 +15,31 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.Container;
-import org.jboss.elemento.Finder;
-import org.jboss.elemento.HasElement;
+import org.jboss.elemento.ElementAttributeMethods;
+import org.jboss.elemento.ElementClassListMethods;
+import org.jboss.elemento.ElementConsumerMethods;
+import org.jboss.elemento.ElementContainerMethods;
+import org.jboss.elemento.ElementEventMethods;
+import org.jboss.elemento.ElementIdMethods;
+import org.jboss.elemento.ElementQueryMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.jboss.elemento.svg.HasSVGElement;
 import org.jboss.elemento.svg.SVGElement;
+import org.jboss.elemento.svg.SVGElementDataMethods;
+import org.jboss.elemento.svg.SVGElementStyleMethods;
 
 import static java.util.Objects.requireNonNull;
 
-public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuilder<E, B>>
-        implements Component, HasElement<E, B>, HasSVGElement<E, B>, Finder<E>, Container<E, B> {
+public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuilder<E, B>> implements
+        Component,
+        ElementAttributeMethods<E, B>,
+        ElementClassListMethods<E, B>,
+        ElementConsumerMethods<E, B>,
+        ElementContainerMethods<E, B>,
+        ElementEventMethods<E, B>,
+        ElementIdMethods<E, B>,
+        ElementQueryMethods<E>,
+        SVGElementDataMethods<E, B>,
+        SVGElementStyleMethods<E, B> {
 
     private final ComponentType componentType;
     private final E element;

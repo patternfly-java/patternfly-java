@@ -15,17 +15,17 @@
  */
 package org.patternfly.component.page;
 
-import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.brand.Brand;
+import org.jboss.elemento.ElementTextMethods;
 
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.masthead;
 
-public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBrand> {
+public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBrand> implements
+        ElementTextMethods<HTMLElement, MastheadBrand> {
 
     // ------------------------------------------------------ factory
 
@@ -33,25 +33,21 @@ public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBra
      * Factory method to create a new instance of this component.
      */
     public static MastheadBrand mastheadBrand() {
-        return new MastheadBrand(span());
-    }
-
-    public static <E extends HTMLElement> MastheadBrand mastheadBrand(HTMLContainerBuilder<E> builder) {
-        return new MastheadBrand(builder);
+        return new MastheadBrand();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mb";
+    static final String SUB_COMPONENT_NAME = "mhb";
 
-    <E extends HTMLElement> MastheadBrand(HTMLContainerBuilder<E> builder) {
-        super(SUB_COMPONENT_NAME, builder.css(component(masthead, brand)).element());
+    MastheadBrand() {
+        super(SUB_COMPONENT_NAME, div().css(component(masthead, brand)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public MastheadBrand addBrand(Brand brand) {
-        return add(brand);
+    public MastheadBrand addLogo(MastheadLogo logo) {
+        return add(logo);
     }
 
     // ------------------------------------------------------ builder

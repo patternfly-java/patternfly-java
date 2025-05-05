@@ -20,10 +20,10 @@ import java.util.function.Supplier;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.style.Classes;
 
@@ -50,8 +50,8 @@ import static org.patternfly.style.Classes.modifier;
  *
  * @see <a href= "https://www.patternfly.org/components/back-to-top">https://www.patternfly.org/components/back-to-top</a>
  */
-public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
-        implements WithText<HTMLElement, BackToTop>, Attachable {
+public class BackToTop extends BaseComponent<HTMLElement, BackToTop>
+        implements ElementTextMethods<HTMLElement, BackToTop>, Attachable {
 
     // ------------------------------------------------------ factory
 
@@ -132,11 +132,11 @@ public class BackToTop extends BaseComponentFlat<HTMLElement, BackToTop>
     }
 
     public BackToTop scrollableSelector(String selector) {
-        return scrollableSelector(() -> Elements.find(document, By.selector(selector)));
+        return scrollableSelector(() -> Elements.querySelector(document, By.selector(selector)));
     }
 
     public BackToTop scrollableSelector(By selector) {
-        return scrollableSelector(() -> Elements.find(document, selector));
+        return scrollableSelector(() -> Elements.querySelector(document, selector));
     }
 
     public BackToTop scrollableSelector(HTMLElement element) {

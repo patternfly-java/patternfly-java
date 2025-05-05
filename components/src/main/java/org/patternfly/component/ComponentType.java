@@ -17,43 +17,41 @@ package org.patternfly.component;
 
 public enum ComponentType {
 
-    Accordion("ac", "PF5/Accordion"),
+    Accordion("ac", "PF6/Accordion"),
 
-    ActionList("al", "PF5/ActionList"),
+    ActionList("al", "PF6/ActionList"),
 
-    Alert("at", "PF5/Alert"),
+    Alert("at", "PF6/Alert"),
 
-    AlertGroup("ag", "PF5/AlertGroup"),
+    AlertGroup("ag", "PF6/AlertGroup"),
 
-    Avatar("av", "PF5/Avatar"),
+    Avatar("av", "PF6/Avatar"),
 
-    Backdrop("bd", "PF5/Backdrop"),
+    Backdrop("bd", "PF6/Backdrop"),
 
-    BackToTop("btt", "PF5/BackToTop"),
+    BackToTop("btt", "PF6/BackToTop"),
 
-    Badge("bdg", "PF5/Badge"),
+    Badge("bdg", "PF6/Badge"),
 
-    Banner("bnr", "PF5/Banner"),
+    Banner("bnr", "PF6/Banner"),
 
-    Brand("bnd", "PF5/Brand"),
+    Brand("bnd", "PF6/Brand"),
 
-    Breadcrumb("bc", "PF5/Breadcrumb"),
+    Breadcrumb("bc", "PF6/Breadcrumb"),
 
-    Button("btn", "PF5/Button"),
+    Button("btn", "PF6/Button"),
 
-    Card("crd", "PF5/Card"),
+    Card("crd", "PF6/Card"),
 
     CardView("cv", null),
 
-    Checkbox("chb", "PF5/Checkbox"),
+    Checkbox("chb", "PF6/Checkbox"),
 
-    Chip("chp", "PF5/Chip"),
+    CodeBlock("cb", "PF6/CodeBlock"),
 
-    ChipGroup("cpg", "PF5/ChipGroup"),
+    CodeEditor("ce", "PF6/CodeEditor"),
 
-    CodeBlock("cb", "PF5/CodeBlock"),
-
-    CodeEditor("ce", "PF5/CodeEditor"),
+    Content("ct", "PF6/Content"),
 
     ContextSelector("cs", null),
 
@@ -61,107 +59,105 @@ public enum ComponentType {
 
     DataTable("dt", null),
 
-    DescriptionList("dsl", "PF5/DescriptionList"),
+    DescriptionList("dsl", "PF6/DescriptionList"),
 
-    Divider("dvr", "PF5/Divider"),
+    Divider("dvr", "PF6/Divider"),
 
-    Drawer("dw", "PF5/Drawer"),
+    Drawer("dw", "PF6/Drawer"),
 
-    Dropdown("dd", "PF5/Dropdown"),
+    Dropdown("dd", "PF6/Dropdown"),
 
-    EmptyState("es", "PF5/EmptyState"),
+    EmptyState("es", "PF6/EmptyState"),
 
-    ExpandableSection("exs", "PF5/ExpandableSection"),
+    ExpandableSection("exs", "PF6/ExpandableSection"),
 
-    Finder("fnd", "PF5/Finder"),
+    Finder("fnd", "PF6/Finder"),
 
-    Form("frm", "PF5/Form"),
+    Form("frm", "PF6/Form"),
 
-    FormSelect("frs", "PF5/FormSelect"),
+    FormSelect("frs", "PF6/FormSelect"),
 
-    HelperText("ht", "PF5/HelperText"),
+    HelperText("ht", "PF6/HelperText"),
 
-    Hint("hnt", "PF5/Hint"),
+    Hint("hnt", "PF6/Hint"),
 
-    Icon("icn", "PF5/Icon"),
+    Icon("icn", "PF6/Icon"),
 
-    InputGroup("ig", "PF5/InputGroup"),
+    InputGroup("ig", "PF6/InputGroup"),
 
-    JumpLinks("jl", "PF5/JumpLinks"),
+    JumpLinks("jl", "PF6/JumpLinks"),
 
-    Label("lbl", "PF5/Label"),
+    Label("lbl", "PF6/Label"),
 
     LabelGroup("lbg", null),
 
-    List("lst", "PF5/List"),
+    List("lst", "PF6/List"),
 
-    Masthead("mh", "PF5/Masthead"),
+    Masthead("mh", "PF6/Masthead"),
 
-    Menu("mu", "PF5/Menu"),
+    Menu("mu", "PF6/Menu"),
 
-    MenuToggle("mt", "PF5/MenuToggle"),
+    MenuToggle("mt", "PF6/MenuToggle"),
 
-    Modal("mo", "PF5/Modal"),
+    Modal("mo", "PF6/Modal"),
 
-    MultiSelect("ms", "PF5/MultiSelect"),
+    MultiSelect("ms", "PF6/MultiSelect"),
 
-    Navigation("nav", "PF5/Nav"),
+    Navigation("nav", "PF6/Nav"),
 
     NotificationBadge("nb", null),
 
     OptionsMenu("opt", null),
 
-    Page("pg", "PF5/Page"),
+    Page("pg", "PF6/Page"),
 
     Pagination("pgn", null),
 
-    Panel("pnl", "PF5/Panel"),
+    Panel("pnl", "PF6/Panel"),
 
-    Popover("pvr", "PF5/Popover"),
+    Popover("pvr", "PF6/Popover"),
 
-    Progress("prg", "PF5/Progress"),
+    Progress("prg", "PF6/Progress"),
 
-    Radio("rd", "PF5/Radio"),
+    Radio("rd", "PF6/Radio"),
 
-    Sidebar("sb", "PF5/Sidebar"),
+    Sidebar("sb", "PF6/Sidebar"),
 
-    SimpleList("sl", "PF5/SimpleList"),
+    SimpleList("sl", "PF6/SimpleList"),
 
-    SingleSelect("ss", "PF5/SingleSelect"),
+    SingleSelect("ss", "PF6/SingleSelect"),
 
     Skeleton("sk", null),
 
-    SkipToContent("stc", "PF5/SkipToContent"),
+    SkipToContent("stc", "PF6/SkipToContent"),
 
-    Slider("sld", "PF5/Slider"),
+    Slider("sld", "PF6/Slider"),
 
-    Spinner("sp", "PF5/Spinner"),
+    Spinner("sp", "PF6/Spinner"),
 
-    Switch("sw", "PF5/Switch"),
+    Switch("sw", "PF6/Switch"),
 
-    Tabs("tbs", "PF5/Tabs"),
+    Tabs("tbs", "PF6/Tabs"),
 
-    Table("tbl", "PF5/Table"),
+    Table("tbl", "PF6/Table"),
 
-    TextContent("tc", "PF5/TextContent"),
+    TextInput("ti", "PF6/TextInput"),
 
-    TextInput("ti", "PF5/TextInput"),
+    TextInputGroup("tig", "PF6/TextInputGroup"),
 
-    TextInputGroup("tig", "PF5/TextInputGroup"),
-
-    Title("tlt", "PF5/Title"),
+    Title("tlt", "PF6/Title"),
 
     ToggleGroup("tg", null),
 
-    Toolbar("tb", "PF5/Toolbar"),
+    Toolbar("tb", "PF6/Toolbar"),
 
-    Tooltip("tt", "PF5/Tooltip"),
+    Tooltip("tt", "PF6/Tooltip"),
 
-    TreeView("tv", "PF5/TreeView"),
+    TreeView("tv", "PF6/TreeView"),
 
-    Truncate("tr", "PF5/Truncate"),
+    Truncate("tr", "PF6/Truncate"),
 
-    Wizard("wzd", "PF5/Wizard");
+    Wizard("wzd", "PF6/Wizard");
 
     public final String id;
     public final String componentName;

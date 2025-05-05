@@ -64,14 +64,6 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements W
     // ------------------------------------------------------ builder
 
     @Override
-    public Title text(String text) {
-        if (text != null) {
-            textNode(text);
-        }
-        return this;
-    }
-
-    @Override
     public Title that() {
         return this;
     }

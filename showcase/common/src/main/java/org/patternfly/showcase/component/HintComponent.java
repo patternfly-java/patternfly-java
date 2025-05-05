@@ -76,11 +76,9 @@ public class HintComponent extends SnippetPage {
                                                                                 "Separated action"))
                                                                         .addItem(linkMenuItem("hint-basic-item-5",
                                                                                 "Separated link", "#item-5")))))))
-                                .addTitle(hintTitle()
-                                        .textContent("Do more with Find it Fix it capabilities"))
-                                .addBody(hintBody()
-                                        .textContent(
-                                                "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
+                                .addTitle(hintTitle().text("Do more with Find it Fix it capabilities"))
+                                .addBody(hintBody().text(
+                                        "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
                                 .addFooter(hintFooter()
                                         .add(button().link().inline()
                                                 .text("Try it for 90 days"))))
@@ -120,9 +118,8 @@ public class HintComponent extends SnippetPage {
                                                                                 "Separated action"))
                                                                         .addItem(linkMenuItem("hint-basic-no-title-item-5",
                                                                                 "Separated link", "#item-5")))))))
-                                .addBody(hintBody()
-                                        .textContent(
-                                                "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
+                                .addBody(hintBody().text(
+                                        "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
                                 .addFooter(hintFooter()
                                         .add(button().link().inline()
                                                 .text("Try it for 90 days"))))

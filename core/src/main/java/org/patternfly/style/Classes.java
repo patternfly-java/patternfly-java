@@ -93,6 +93,7 @@ public interface Classes {
     String dynamic = "dynamic";
     String editable = "editable";
     String editableActive = "editable-active";
+    String editorial = "editorial";
     String emptyState = "empty-state";
     String end = "end";
     String error = "error";
@@ -112,8 +113,8 @@ public interface Classes {
     String flat = "flat";
     String flex = "flex";
     String floating = "floating";
-    String floatLeft = "float-left";
-    String floatRight = "float-right";
+    String floatInlineStart = "float-inline-start";
+    String floatInlineEnd = "float-inline-end";
     String fluid = "fluid";
     String flyout = "flyout";
     String footer = "footer";
@@ -160,6 +161,7 @@ public interface Classes {
     String list = "list";
     String load = "load";
     String loading = "loading";
+    String logo = "logo";
     String main = "main";
     String masthead = "masthead";
     String measure = "measure";
@@ -191,6 +193,7 @@ public interface Classes {
     String picture = "picture";
     String placeholder = "placeholder";
     String plain = "plain";
+    String plainList = "plainList";
     String popover = "popover";
     String pre = "pre";
     String primary = "primary";
@@ -285,6 +288,7 @@ public interface Classes {
     String utilities = "utilities";
     String value = "value";
     String vertical = "vertical";
+    String visitedLink = "visited-link";
     String warning = "warning";
     String widthAuto = "width-auto";
     String wizard = "wizard";
@@ -307,19 +311,23 @@ public interface Classes {
     // ------------------------------------------------------ modifiers
 
     static String modifier(String modifier) {
-        return modifier != null && !modifier.isEmpty() ? "pf-m-" + modifier : "";
+        if (modifier != null && !modifier.isEmpty()) {
+            return modifier.startsWith("pf-m-") ? modifier : "pf-m-" + modifier;
+        }
+        return "";
     }
 
     static String modifier(String modifier, Size size) {
         if (modifier != null && !modifier.isEmpty() && size != null) {
-            return "pf-m-" + modifier + "-" + size.value();
+            return modifier.startsWith("pf-m-") ? modifier : "pf-m-" + modifier + "-" + size.value();
         }
         return "";
     }
 
     static String modifier(String modifier, Breakpoint breakpoint) {
         if (modifier != null && !modifier.isEmpty() && breakpoint != null) {
-            return "pf-m-" + modifier + (breakpoint != default_ ? "-on-" + breakpoint.value : "");
+            return modifier.startsWith("pf-m-") ? modifier
+                    : "pf-m-" + modifier + (breakpoint != default_ ? "-on-" + breakpoint.value : "");
         }
         return "";
     }
@@ -359,7 +367,12 @@ public interface Classes {
     static String compose(char abbreviation, String type, String... elements) {
         StringBuilder builder = new StringBuilder();
         if (type != null && !type.isEmpty()) {
-            builder.append("pf-").append(Version.PATTERN_FLY_MAJOR_VERSION).append("-").append(abbreviation).append("-").append(type);
+            builder.append("pf-")
+                    .append(Version.PATTERN_FLY_MAJOR_VERSION)
+                    .append("-")
+                    .append(abbreviation)
+                    .append("-")
+                    .append(type);
             if (elements != null && elements.length != 0) {
                 builder.append("__");
                 for (int i = 0; i < elements.length; i++) {

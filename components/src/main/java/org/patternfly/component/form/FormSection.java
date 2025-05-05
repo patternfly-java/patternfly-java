@@ -60,11 +60,11 @@ public class FormSection extends FormSubComponent<HTMLElement, FormSection> {
             if (titleElement == null) {
                 add(div().css(component(form, section, Classes.title))
                         .id(titleId)
-                        .textContent(title));
+                        .text(title));
             } else {
                 add(titleElement.css(component(form, section, Classes.title))
                         .id(titleId)
-                        .textContent(title));
+                        .text(title));
             }
         }
     }

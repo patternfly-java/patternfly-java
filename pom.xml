@@ -90,7 +90,7 @@
         <version.junit>5.12.2</version.junit>
         <version.kotlin>2.1.20</version.kotlin>
         <version.node>v20.18.0</version.node>
-        <version.patternfly>5.2.1</version.patternfly>
+        <version.patternfly>6.0.0</version.patternfly>
 
         <!-- Plugin versions -->
         <version.checkstyle.plugin>3.3.0</version.checkstyle.plugin>
@@ -132,6 +132,7 @@
         <module>icons</module>
         <module>j2cl</module>
         <module>layouts</module>
+        <module>tokens</module>
     </modules>
 
     <!-- No dependencies! Dependencies are managed in core-parent -->
@@ -208,6 +209,7 @@
                         <useDefaultExcludes>true</useDefaultExcludes>
                         <mapping>
                             <parcelrc>DOUBLESLASH_STYLE</parcelrc>
+                            <mjs>SLASHSTAR_STYLE</mjs>
                         </mapping>
                         <licenseSets>
                             <licenseSet>
@@ -218,9 +220,9 @@
                                     <exclude>release.main.kts</exclude>
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
+                                    <exclude>**/package-lock.json</exclude>
                                     <exclude>**/*.ftl</exclude>
                                     <exclude>**/*.pem</exclude>
-                                    <exclude>**/yarn.lock</exclude>
                                     <exclude>**/*license*.txt</exclude>
                                     <exclude>**/.parcel-cache/**</exclude>
                                     <exclude>**/node/**</exclude>
@@ -233,6 +235,7 @@
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/token/Token.java</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>

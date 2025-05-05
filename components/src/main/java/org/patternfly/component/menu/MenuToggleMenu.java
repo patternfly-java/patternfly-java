@@ -92,16 +92,16 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             setVisible(menu, false);
             insertAfter(menu.element(), menuToggle.element());
             popper = new PopperBuilder(componentType().componentName, menuToggle.element(), menu.element())
-                    .zIndex(zIndex)
-                    .placement(placement)
-                    .addModifier(org.patternfly.popper.Modifiers.noOverflow(),
-                            org.patternfly.popper.Modifiers.hide(),
+                    .addModifier(org.patternfly.popper.Modifiers.eventListeners(false),
                             org.patternfly.popper.Modifiers.flip(placement == auto || flip),
-                            org.patternfly.popper.Modifiers.widths(),
+                            org.patternfly.popper.Modifiers.hide(),
+                            org.patternfly.popper.Modifiers.noOverflow(),
                             org.patternfly.popper.Modifiers.placement(),
-                            org.patternfly.popper.Modifiers.eventListeners(false))
+                            org.patternfly.popper.Modifiers.widths())
+                    .placement(placement)
                     .registerHandler(menuToggle.toggleElement, triggerActions,
                             event -> expand(), event -> collapse())
+                    .zIndex(zIndex)
                     .build();
         } else {
             logger.error("No toggle and/or menu defined for %s / %o", componentType().name(), element());

@@ -17,12 +17,25 @@ package org.patternfly.component;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.core.ObservableValue;
+import org.patternfly.icon.PredefinedIcon;
 
 import elemental2.dom.Element;
 
-public interface WithObservableValue<E extends Element, B extends TypedBuilder<E, B>, T> extends TypedBuilder<E, B>,
+import static org.patternfly.component.IconPosition.start;
+
+/**
+ * Interface to be implemented by (sub)components that have an icon and a text and where the order is important.
+ */
+public interface ComponentIconAndText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {
 
-    B bind(ObservableValue<T> ov);
+    default B iconAndText(PredefinedIcon icon, String text) {
+        return iconAndText(icon.element(), text, start);
+    }
+
+    default B iconAndText(PredefinedIcon icon, String text, IconPosition position) {
+        return iconAndText(icon.element(), text, position);
+    }
+
+    B iconAndText(Element icon, String text, IconPosition iconPosition);
 }

@@ -80,8 +80,7 @@ public class FilterAttribute<T, V> {
      * @return true if the object matches the condition, false otherwise
      */
     protected boolean match(T object) {
-        boolean match = condition.match(object, this.value);
-        return match;
+        return condition.match(object, this.value);
     }
 
     /**

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.modal;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modalBox;
 
-public class ModalBody extends ModalSubComponent<HTMLElement, ModalBody> {
+public class ModalBody extends ModalSubComponent<HTMLElement, ModalBody> implements
+        ElementTextMethods<HTMLElement, ModalBody> {
 
     // ------------------------------------------------------ factory
 

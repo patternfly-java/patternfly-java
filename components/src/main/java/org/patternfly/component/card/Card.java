@@ -62,9 +62,9 @@ import static org.patternfly.style.Size.lg;
 public class Card extends BaseComponent<HTMLDivElement, Card> implements
         Compact<HTMLDivElement, Card>,
         Disabled<HTMLDivElement, Card>,
+        Expandable<HTMLDivElement, Card>,
         FullHeight<HTMLDivElement, Card>,
-        Plain<HTMLDivElement, Card>,
-        Expandable<HTMLDivElement, Card> {
+        Plain<HTMLDivElement, Card> {
 
     // ------------------------------------------------------ factory
 

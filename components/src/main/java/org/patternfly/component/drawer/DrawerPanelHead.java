@@ -16,9 +16,10 @@
 package org.patternfly.component.drawer;
 
 import org.jboss.elemento.Attachable;
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Modifiers.NoPadding;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -32,8 +33,10 @@ import static org.patternfly.style.Classes.head;
 /**
  * Subcomponent for the header inside a {@link DrawerPanel}.
  */
-public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPanelHead>
-        implements Attachable, ElementDelegate<HTMLDivElement, DrawerPanelHead>, NoPadding<HTMLDivElement, DrawerPanelHead> {
+public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPanelHead> implements
+        Attachable,
+        ElementContainerDelegate<HTMLDivElement, DrawerPanelHead>,
+        NoPadding<HTMLDivElement, DrawerPanelHead> {
 
     // ------------------------------------------------------ factory
 
@@ -56,7 +59,7 @@ public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPa
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (adjustTabIndex) {
-            Drawer drawer = lookupFlatComponent();
+            Drawer drawer = lookupComponent();
             if (headContainer.firstElementChild instanceof HTMLElement) {
                 HTMLElement firstElement = ((HTMLElement) headContainer.firstElementChild);
                 drawer.onToggle((event, drw, expanded) -> firstElement.tabIndex = expanded ? 0 : -1);
@@ -65,7 +68,7 @@ public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPa
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return headContainer;
     }
 

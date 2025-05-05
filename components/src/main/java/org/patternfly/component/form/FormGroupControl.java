@@ -156,7 +156,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     // ------------------------------------------------------ api
 
     public void removeHelperText() {
-        for (HTMLElement helperText : findAll(By.classname(component(Classes.form, Classes.helperText)))) {
+        for (HTMLElement helperText : querySelectorAll(By.classname(component(Classes.form, Classes.helperText)))) {
             Elements.failSafeRemoveFromParent(helperText);
         }
     }

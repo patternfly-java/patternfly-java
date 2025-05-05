@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.ValidationStatus;
@@ -82,7 +82,7 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/progress">https://www.patternfly.org/components/progress</a>
  */
-public class Progress extends BaseComponentFlat<HTMLElement, Progress> implements HasValue<Integer> {
+public class Progress extends BaseComponent<HTMLElement, Progress> implements HasValue<Integer> {
 
     // ------------------------------------------------------ factory
 

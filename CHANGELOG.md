@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+> [!WARNING]
+> This release upgrades to PatternFly 6 and introduces changes that might break existing code.
+
+### Added
+
+- Add new enum `org.patternfly.token.Token` that contains all [PatternFly token](https://www.patternfly.org/tokens/all-patternfly-tokens) as enum constants.
+
+### Upgrades
+
+- Bump Elemento to 1.7.0
+
 ## [0.2.11] - 2024-11-19
 
 ### Added
@@ -394,7 +405,7 @@ Split PatternFly Java into multiple modules:
 ### Changed
 
 - Move masthead, sidebar, and skip to content components to its own packages
-- Refactor `org.patternfly.component.WithProgress` interface
+- Refactor `org.patternfly.component.ComponentProgress` interface
 - Simplify `org.patternfly.style.Modifiers.*` interfaces
 - Rename `org.patternfly.js` → `org.patternfly.dom`
 

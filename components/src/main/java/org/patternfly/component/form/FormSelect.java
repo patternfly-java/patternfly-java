@@ -233,7 +233,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     // ------------------------------------------------------ internal
 
     @Override
-    void disableInputElement(boolean disabled) {
+    void disableControl(boolean disabled) {
         selectElement.disabled = disabled;
     }
 

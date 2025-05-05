@@ -27,7 +27,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
@@ -78,7 +78,7 @@ import static org.patternfly.style.Classes.toggle;
  *
  * @see <a href= "https://www.patternfly.org/components/jump-links">https://www.patternfly.org/components/jump-links</a>
  */
-public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> implements
+public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
         Attachable,
         Center<HTMLElement, JumpLinks>,
         Expandable<HTMLElement, JumpLinks>,
@@ -128,7 +128,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
             label(label);
         }
 
-        storeFlatComponent();
+        storeComponent();
         Attachable.register(this, this);
     }
 
@@ -170,19 +170,19 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     public JumpLinks label(String label) {
-        labelElement.textContent(label);
+        labelElement.text(label);
         if (toggleTextElement != null) {
-            toggleTextElement.textContent(label);
+            toggleTextElement.text(label);
         }
         return this;
     }
 
     public JumpLinks scrollableSelector(String selector) {
-        return scrollableSelector(() -> Elements.find(document.body, By.selector(selector)));
+        return scrollableSelector(() -> Elements.querySelector(document.body, By.selector(selector)));
     }
 
     public JumpLinks scrollableSelector(By selector) {
-        return scrollableSelector(() -> Elements.find(document.body, selector));
+        return scrollableSelector(() -> Elements.querySelector(document.body, selector));
     }
 
     public JumpLinks scrollableSelector(HTMLElement element) {
@@ -330,7 +330,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
     }
 
     private void unselectAllItems() {
-        for (HTMLElement element : findAll(JUMP_LINKS_ITEMS)) {
+        for (HTMLElement element : querySelectorAll(JUMP_LINKS_ITEMS)) {
             element.classList.remove(modifier(current));
             element.removeAttribute(Aria.current);
         }
@@ -346,7 +346,7 @@ public class JumpLinks extends BaseComponentFlat<HTMLElement, JumpLinks> impleme
                             .add(span().css(component(jumpLinks, toggle, icon))
                                     .add(angleRight()))
                             .add(toggleTextElement = span().css(component(jumpLinks, toggle, text))
-                                    .textContent(labelElement.element().textContent))));
+                                    .text(labelElement.element().textContent))));
         }
         return toggleButton;
     }

@@ -42,7 +42,7 @@
             <!--
               Declare all dependency versions. Do not declare <scope> or <optional>.
               Each module should declare its direct dependencies and possibly overwrite scope/optional.
-              Always declare the sources jar too and optionally the test-jar.
+              Always declare the source jar too and optionally the test-jar.
             -->
             <!-- Order a-z -->
             <dependency>
@@ -124,6 +124,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-layouts</artifactId>
+                <version>${project.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>patternfly-java-tokens</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>patternfly-java-tokens</artifactId>
                 <version>${project.version}</version>
                 <classifier>sources</classifier>
             </dependency>

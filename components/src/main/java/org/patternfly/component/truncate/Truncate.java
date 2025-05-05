@@ -20,7 +20,7 @@ import java.util.Objects;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.WithText;
 import org.patternfly.component.tooltip.Tooltip;
@@ -47,7 +47,7 @@ import static org.patternfly.style.Classes.truncate;
  *
  * @see <a href= "https://www.patternfly.org/components/truncate">https://www.patternfly.org/components/truncate</a>
  */
-public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implements WithText<HTMLElement, Truncate> {
+public class Truncate extends BaseComponent<HTMLElement, Truncate> implements WithText<HTMLElement, Truncate> {
 
     // ------------------------------------------------------ factory
 
@@ -142,7 +142,7 @@ public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implement
                 case middle:
                     break;
                 case end:
-                    failSafePrimaryTextElement().textContent(text);
+                    failSafePrimaryTextElement().text(text);
                     break;
             }
             tooltip.text(text);
@@ -150,15 +150,15 @@ public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implement
     }
 
     private void updatePrimaryText(String text) {
-        failSafePrimaryTextElement().textContent(text);
+        failSafePrimaryTextElement().text(text);
         if (position.get() == end) {
-            failSafePrimaryTextElement().textContent(text);
+            failSafePrimaryTextElement().text(text);
         } else if (position.get() == start) {
             SafeHtml safeHtml = new SafeHtmlBuilder()
                     .appendEscaped(text)
                     .appendHtmlConstant("&lrm;")
                     .toSafeHtml();
-            failSafePrimaryTextElement().innerHtml(safeHtml);
+            failSafePrimaryTextElement().html(safeHtml);
         }
     }
 
@@ -169,9 +169,9 @@ public class Truncate extends BaseComponentFlat<HTMLElement, Truncate> implement
         String second = text.substring(length);
         if (first.length() > MIN_WIDTH_CHARACTERS) {
             failSafePrimaryTextElement().css(component(truncate, Classes.start))
-                    .textContent(first);
+                    .text(first);
             failSafeSecondaryTextElement().css(component(truncate, Classes.end))
-                    .textContent(text.substring(text.length() - trailingNumChars));
+                    .text(text.substring(text.length() - trailingNumChars));
         } else {
             element().textContent = text;
         }

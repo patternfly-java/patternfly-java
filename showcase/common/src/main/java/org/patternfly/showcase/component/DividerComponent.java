@@ -68,9 +68,9 @@ public class DividerComponent extends SnippetPage {
                 // @code-start:divider-li
                 div()
                         .add(ul().attr(role, list)
-                                .add(li().textContent("List item one"))
+                                .add(li().text("List item one"))
                                 .add(divider(li))
-                                .add(li().textContent("List item two")))
+                                .add(li().text("List item two")))
                         .element()
                 // @code-end:divider-li
         ));
@@ -111,9 +111,9 @@ public class DividerComponent extends SnippetPage {
                 // @code-start:divider-orientation-vertical
                 div()
                         .add(flex()
-                                .addItem(flexItem().textContent("First item"))
+                                .addItem(flexItem().text("First item"))
                                 .add(divider(hr).orientation(breakpoints(default_, vertical)))
-                                .addItem(flexItem().textContent("Second item")))
+                                .addItem(flexItem().text("Second item")))
                         .element()
                 // @code-end:divider-orientation-vertical
         ));
@@ -123,11 +123,11 @@ public class DividerComponent extends SnippetPage {
                 // @code-start:divider-orientation-vertical-inset-md
                 div()
                         .add(flex()
-                                .addItem(flexItem().textContent("First item"))
+                                .addItem(flexItem().text("First item"))
                                 .add(divider(hr)
                                         .orientation(breakpoints(default_, vertical))
                                         .inset(breakpoints(default_, Inset.md)))
-                                .addItem(flexItem().textContent("Second item")))
+                                .addItem(flexItem().text("Second item")))
                         .element()
                 // @code-end:divider-orientation-vertical-inset-md
         ));
@@ -138,7 +138,7 @@ public class DividerComponent extends SnippetPage {
                 // @code-start:divider-orientation-vertical-inset-breakpoints
                 div()
                         .add(flex()
-                                .addItem(flexItem().textContent("First item"))
+                                .addItem(flexItem().text("First item"))
                                 .add(divider(hr)
                                         .orientation(breakpoints(default_, vertical))
                                         .inset(breakpoints(
@@ -146,7 +146,7 @@ public class DividerComponent extends SnippetPage {
                                                 md, Inset.none,
                                                 lg, Inset.sm,
                                                 xl, Inset.xs)))
-                                .addItem(flexItem().textContent("Second item")))
+                                .addItem(flexItem().text("Second item")))
                         .element()
                 // @code-end:divider-orientation-vertical-inset-breakpoints
         ));
@@ -156,7 +156,7 @@ public class DividerComponent extends SnippetPage {
                 // @code-start:divider-orientation-switch
                 div()
                         .add(flex()
-                                .addItem(flexItem().textContent("First item"))
+                                .addItem(flexItem().text("First item"))
                                 .add(divider(hr).orientation(breakpoints(
                                         default_, vertical,
                                         sm, horizontal,
@@ -164,7 +164,7 @@ public class DividerComponent extends SnippetPage {
                                         lg, horizontal,
                                         xl, vertical,
                                         _2xl, horizontal)))
-                                .addItem(flexItem().textContent("Second item")))
+                                .addItem(flexItem().text("Second item")))
                         .element()
                 // @code-end:divider-orientation-switch
         ));

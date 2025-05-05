@@ -44,4 +44,11 @@ class ModifierTest {
         assertEquals("pf-m-foo", modifier("foo", default_));
         assertEquals("pf-m-foo-on-2xl", modifier("foo", _2xl));
     }
+
+    @Test
+    void noDuplicates() {
+        assertEquals("pf-m-foo", modifier("pf-m-foo"));
+        assertEquals("pf-m-foo", modifier(modifier("foo")));
+        assertEquals("pf-m-foo", modifier(modifier(modifier("foo"))));
+    }
 }

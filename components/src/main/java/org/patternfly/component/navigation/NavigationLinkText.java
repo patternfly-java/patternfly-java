@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.navigation;
 
+import org.patternfly.component.WithText;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
@@ -23,7 +25,8 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.text;
 
-public class NavigationLinkText extends NavigationSubComponent<HTMLElement, NavigationLinkText> {
+public class NavigationLinkText extends NavigationSubComponent<HTMLElement, NavigationLinkText>
+        implements WithText<HTMLElement, NavigationLinkText> {
 
     // ------------------------------------------------------ factory
 

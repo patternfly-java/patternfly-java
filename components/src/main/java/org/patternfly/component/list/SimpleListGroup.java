@@ -20,14 +20,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
@@ -45,12 +47,12 @@ import static org.patternfly.style.Classes.title;
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
         HasItems<HTMLElement, SimpleListGroup, SimpleListItem>,
         WithText<HTMLElement, SimpleListGroup>,
-        ElementDelegate<HTMLElement, SimpleListGroup> {
+        ElementContainerDelegate<HTMLElement, SimpleListGroup> {
 
     // ------------------------------------------------------ factory
 
     public static SimpleListGroup simpleListGroup(String text) {
-        return new SimpleListGroup(text);
+        return new SimpleListGroup().text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -60,14 +62,13 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     private final HTMLElement headerElement;
     private final HTMLUListElement ulElement;
 
-    SimpleListGroup(String text) {
+    SimpleListGroup() {
         super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
         this.items = new LinkedHashMap<>();
         String headerId = Id.unique(SUB_COMPONENT_NAME);
         element().appendChild(headerElement = h(2).css(component(simpleList, title))
                 .id(headerId)
                 .aria(Aria.hidden, true)
-                .textContent(text)
                 .element());
         element().appendChild(ulElement = ul().css(component(simpleList, list))
                 .attr(role, Roles.list)
@@ -76,7 +77,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return headerElement;
     }
 
@@ -105,7 +106,8 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     @Override
     public SimpleListGroup text(String text) {
-        return textNode(text);
+        Elements.textNode(headerElement, text);
+        return this;
     }
 
     @Override
@@ -146,4 +148,8 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
         items.clear();
     }
 
+    @Override
+    public String text() {
+        return Elements.textNode(headerElement);
+    }
 }

@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.emptystate;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.emptyState;
 import static org.patternfly.style.Classes.footer;
 
-public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, EmptyStateFooter> {
+public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, EmptyStateFooter> implements
+        ElementTextMethods<HTMLDivElement, EmptyStateFooter> {
 
     // ------------------------------------------------------ factory
 

@@ -29,7 +29,6 @@ import static org.patternfly.component.card.CardTitle.cardTitle;
 import static org.patternfly.layout.gallery.Gallery.gallery;
 import static org.patternfly.layout.gallery.GalleryItem.galleryItem;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.style.Classes.modifier;
 
 @Route(value = "/components/all-components", title = "All components")
 public class ComponentsPage extends OverviewPage<Component> implements Page {
@@ -45,7 +44,7 @@ public class ComponentsPage extends OverviewPage<Component> implements Page {
     }
 
     protected Card createCard(Component component) {
-        return card().css(modifier("selectable-raised"))
+        return card()
                 .addTitle(cardTitle(component.title))
                 .addBody(cardBody()
                         .add(img(component.illustration())

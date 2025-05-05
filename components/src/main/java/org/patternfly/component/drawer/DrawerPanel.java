@@ -126,7 +126,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (resizable) {
-            drawer = lookupFlatComponent();
+            drawer = lookupComponent();
 
             String id = element().id;
             if (id == null || id.isEmpty()) {

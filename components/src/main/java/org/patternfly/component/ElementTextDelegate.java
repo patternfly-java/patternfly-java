@@ -15,24 +15,28 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.IsElement;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.icon.PredefinedIcon;
 
 import elemental2.dom.Element;
 
-import static org.patternfly.component.IconPosition.start;
+/**
+ * Delegates all methods from {@link ElementTextMethods} to the element returned by {@link #textDelegate()}.
+ */
+public interface ElementTextDelegate<E extends Element, B extends TypedBuilder<E, B>> extends
+        TypedBuilder<E, B>,
+        ElementTextMethods<E, B> {
 
-public interface WithIconAndText<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
-        IsElement<E> {
+    Element textDelegate();
 
-    default B iconAndText(PredefinedIcon icon, String text) {
-        return iconAndText(icon.element(), text, start);
+    @Override
+    default B text(String text) {
+        textDelegate().textContent = text;
+        return that();
     }
 
-    default B iconAndText(PredefinedIcon icon, String text, IconPosition position) {
-        return iconAndText(icon.element(), text, position);
+    @Override
+    default String text() {
+        return textDelegate().textContent;
     }
-
-    B iconAndText(Element icon, String text, IconPosition iconPosition);
 }

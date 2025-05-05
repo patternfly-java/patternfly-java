@@ -22,7 +22,7 @@ import java.util.function.Function;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
@@ -53,7 +53,7 @@ import static org.patternfly.style.Classes.toggle;
 public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
         ComponentContext<HTMLLIElement, DataListItem>,
         Expandable<HTMLLIElement, DataListItem>,
-        WithIdentifier<HTMLLIElement, DataListItem> {
+        HasIdentifier<HTMLLIElement, DataListItem> {
 
     // ------------------------------------------------------ factory
 

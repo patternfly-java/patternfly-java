@@ -18,6 +18,7 @@ package org.patternfly.component.tabs;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Disabled;
 
@@ -29,7 +30,9 @@ import static org.patternfly.core.Roles.tabpanel;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements ComponentContext<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent> {
+public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements
+        ComponentContext<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent>,
+        ElementTextMethods<HTMLElement, TabContent> {
 
     // ------------------------------------------------------ factory
 

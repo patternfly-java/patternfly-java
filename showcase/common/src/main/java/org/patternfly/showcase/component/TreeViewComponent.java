@@ -210,7 +210,7 @@ public class TreeViewComponent extends SnippetPage {
         addSnippet(new Snippet("tv-async", "Async items",
                 p().add("The tree below contains the ")
                         .add(a("https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers#Discography", "_blank")
-                                .textContent("discography"))
+                                .text("discography"))
                         .add(" of the Red Hot Chili Peppers. ")
                         .add("The decades are added statically, the records are loaded asynchronously (with a random delay). ")
                         .add("If there are no records in a decade, the toggle icon is removed. Once loaded the items ")

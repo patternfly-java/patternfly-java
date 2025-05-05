@@ -40,9 +40,9 @@ public class LevelLayout extends SnippetPage {
                 // @code-start:level-basic
                 div().css("ws-core-l-level")
                         .add(level()
-                                .addItem(levelItem().textContent("Level item"))
-                                .addItem(levelItem().textContent("Level item"))
-                                .addItem(levelItem().textContent("Level item")))
+                                .addItem(levelItem().text("Level item"))
+                                .addItem(levelItem().text("Level item"))
+                                .addItem(levelItem().text("Level item")))
                         .element()
                 // @code-end:level-basic
         ));
@@ -52,9 +52,9 @@ public class LevelLayout extends SnippetPage {
                 // @code-start:level-gutter
                 div().css("ws-core-l-level")
                         .add(level().gutter()
-                                .addItem(levelItem().textContent("Level item"))
-                                .addItem(levelItem().textContent("Level item"))
-                                .addItem(levelItem().textContent("Level item")))
+                                .addItem(levelItem().text("Level item"))
+                                .addItem(levelItem().text("Level item"))
+                                .addItem(levelItem().text("Level item")))
                         .element()
                 // @code-end:level-gutter
         ));

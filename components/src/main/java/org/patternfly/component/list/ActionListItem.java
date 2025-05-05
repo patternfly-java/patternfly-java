@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 
@@ -32,7 +32,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
 public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem> implements
-        WithIdentifier<HTMLDivElement, ActionListItem>,
+        HasIdentifier<HTMLDivElement, ActionListItem>,
         ComponentContext<HTMLDivElement, ActionListItem> {
 
     // ------------------------------------------------------ factory

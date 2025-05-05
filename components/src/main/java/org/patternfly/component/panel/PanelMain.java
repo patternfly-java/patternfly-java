@@ -15,8 +15,10 @@
  */
 package org.patternfly.component.panel;
 
-import org.patternfly.core.ElementDelegate;
+import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.WithText;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -27,7 +29,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.panel;
 
 public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
-        implements ElementDelegate<HTMLElement, PanelMain> {
+        implements ElementContainerDelegate<HTMLElement, PanelMain>, WithText<HTMLElement, PanelMain> {
 
     // ------------------------------------------------------ factory
 
@@ -47,7 +49,7 @@ public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return bodyElement;
     }
 

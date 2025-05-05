@@ -16,10 +16,10 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
-import org.patternfly.component.WithIcon;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.component.popover.Popover;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -30,7 +30,6 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.button;
 import static org.patternfly.style.Classes.component;
@@ -41,9 +40,9 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.term;
 
 public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement, DescriptionListTerm> implements
-        WithIcon<HTMLElement, DescriptionListTerm>,
+        ComponentIcon<HTMLElement, DescriptionListTerm>,
         WithText<HTMLElement, DescriptionListTerm>,
-        ElementDelegate<HTMLElement, DescriptionListTerm> {
+        ElementContainerDelegate<HTMLElement, DescriptionListTerm> {
 
     // ------------------------------------------------------ factory
 
@@ -70,7 +69,7 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return textElement;
     }
 
@@ -78,7 +77,7 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
 
     @Override
     public DescriptionListTerm text(String text) {
-        wrapHtmlElement(textElement).textNode(text);
+        Elements.textNode(textElement, text);
         return this;
     }
 

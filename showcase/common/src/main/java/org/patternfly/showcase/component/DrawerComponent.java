@@ -74,10 +74,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-basic
@@ -94,10 +94,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.position(end)
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-end
@@ -114,10 +114,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.position(start)
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-start
@@ -135,10 +135,10 @@ public class DrawerComponent extends SnippetPage {
                             .add(drawer.position(bottom)
                                     .addContent(drawerContent()
                                             .addBody(drawerContentBody()
-                                                    .textContent(LoremIpsum.paragraphs(20))))
+                                                    .text(LoremIpsum.paragraphs(20))))
                                     .addPanel(drawerPanel()
                                             .addHead(drawerPanelHead()
-                                                    .add(span().textContent("drawer-panel"))
+                                                    .add(span().text("drawer-panel"))
                                                     .addCloseButton(drawerCloseButton())))))
                     .element();
             // @code-end:drawer-bottom
@@ -155,10 +155,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.inline()
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-inline
@@ -175,10 +175,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.inline().position(end)
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-inline-end
@@ -195,10 +195,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.inline().position(start)
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-inline-start
@@ -215,20 +215,20 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent("content-body"))
+                                            .text("content-body"))
                                     .addBody(drawerContentBody().padding()
-                                            .textContent("content-body with padding"))
+                                            .text("content-body with padding"))
                                     .addBody(drawerContentBody()
-                                            .textContent("content-body")))
+                                            .text("content-body")))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
                                             .add(title(3, _2xl, "drawer title"))
                                             .addCloseButton(drawerCloseButton())
                                             .add("drawer-panel"))
                                     .addBody(drawerPanelBody().noPadding()
-                                            .textContent("drawer-panel with no padding"))
+                                            .text("drawer-panel with no padding"))
                                     .addBody(drawerPanelBody()
-                                            .textContent("drawer-panel"))))
+                                            .text("drawer-panel"))))
                     .element();
             // @code-end:drawer-stacked
         }));
@@ -244,10 +244,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody().padding()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-content-padding
@@ -264,10 +264,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead().noPadding()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-panel-padding
@@ -282,15 +282,15 @@ public class DrawerComponent extends SnippetPage {
                             .primary()
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
-                            .addSection(drawerSection().textContent("drawer-section above"))
+                            .addSection(drawerSection().text("drawer-section above"))
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton())))
-                            .addSection(drawerSection().textContent("drawer-section below")))
+                            .addSection(drawerSection().text("drawer-section below")))
                     .element();
             // @code-end:drawer-section
         }));
@@ -306,10 +306,10 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.static_()
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-static
@@ -326,11 +326,11 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .widths(breakpoints(default_, width33))
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-breakpoint
@@ -347,12 +347,12 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .resizable()
                                     .minSize("150px").defaultSize("500px")
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-resizable
@@ -369,12 +369,12 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer.position(start)
                             .addContent(drawerContent()
                                     .addBody(drawerContentBody()
-                                            .textContent(LoremIpsum.paragraphs(20))))
+                                            .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .resizable().increment(50)
                                     .minSize("200px").defaultSize("500px")
                                     .addHead(drawerPanelHead()
-                                            .add(span().textContent("drawer-panel"))
+                                            .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
                     .element();
             // @code-end:drawer-resizable-start
@@ -392,12 +392,12 @@ public class DrawerComponent extends SnippetPage {
                             .add(drawer.position(bottom)
                                     .addContent(drawerContent()
                                             .addBody(drawerContentBody()
-                                                    .textContent(LoremIpsum.paragraphs(20))))
+                                                    .text(LoremIpsum.paragraphs(20))))
                                     .addPanel(drawerPanel()
                                             .resizable()
                                             .minSize("100px").defaultSize("200px")
                                             .addHead(drawerPanelHead()
-                                                    .add(span().textContent("drawer-panel"))
+                                                    .add(span().text("drawer-panel"))
                                                     .addCloseButton(drawerCloseButton())))))
                     .element();
             // @code-end:drawer-resizable-bottom

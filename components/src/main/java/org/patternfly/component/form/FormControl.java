@@ -60,7 +60,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
 
     @Override
     public B disabled(boolean disabled) {
-        disableInputElement(disabled);
+        disableControl(disabled);
         return Disabled.super.disabled(disabled);
     }
 
@@ -103,7 +103,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
 
     // ------------------------------------------------------ internal
 
-    abstract void disableInputElement(boolean disabled);
+    abstract void disableControl(boolean disabled);
 
     HTMLElement failSafeUtilitiesContainer() {
         if (utilitiesContainer == null) {

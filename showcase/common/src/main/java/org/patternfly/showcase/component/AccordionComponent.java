@@ -19,6 +19,7 @@ import org.jboss.elemento.router.Route;
 import org.patternfly.component.accordion.Accordion;
 import org.patternfly.component.accordion.AccordionItem;
 import org.patternfly.component.accordion.AccordionItemBody;
+import org.patternfly.component.accordion.AccordionType;
 import org.patternfly.showcase.ApiDoc;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -27,6 +28,7 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.IconPosition.end;
+import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.accordion.Accordion.accordion;
 import static org.patternfly.component.accordion.AccordionItem.accordionItem;
 import static org.patternfly.component.accordion.AccordionItemBody.accordionItemBody;
@@ -48,15 +50,15 @@ public class AccordionComponent extends SnippetPage {
                 div()
                         .add(accordion().singleExpand()
                                 .addItem(accordionItem("accordion-dl-0", "Item one").expanded()
-                                        .add(p().textContent(LoremIpsum.paragraphs(5))))
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-dl-1", "Item two")
-                                        .add(p().textContent(LoremIpsum.paragraphs(7))))
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
                                 .addItem(accordionItem("accordion-dl-2", "Item three")
-                                        .add(p().textContent(LoremIpsum.paragraphs(6))))
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
                                 .addItem(accordionItem("accordion-dl-3", "Item four")
-                                        .add(p().textContent(LoremIpsum.paragraphs(30))))
+                                        .add(p().text(LoremIpsum.paragraphs(30))))
                                 .addItem(accordionItem("accordion-dl-4", "Item five")
-                                        .add(p().textContent(LoremIpsum.paragraphs(3)))))
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
                         .element()
                 // @code-end:accordion-dl
         ));
@@ -65,17 +67,17 @@ public class AccordionComponent extends SnippetPage {
                 code("accordion-single"), () ->
                 // @code-start:accordion-single
                 div()
-                        .add(accordion(false).singleExpand()
+                        .add(accordion().singleExpand()
                                 .addItem(accordionItem("accordion-single-0", "Item one").expanded()
-                                        .add(p().textContent(LoremIpsum.paragraphs(5))))
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-single-1", "Item two")
-                                        .add(p().textContent(LoremIpsum.paragraphs(7))))
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
                                 .addItem(accordionItem("accordion-single-2", "Item three")
-                                        .add(p().textContent(LoremIpsum.paragraphs(6))))
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
                                 .addItem(accordionItem("accordion-single-3", "Item four")
-                                        .add(p().textContent(LoremIpsum.paragraphs(30))))
+                                        .add(p().text(LoremIpsum.paragraphs(30))))
                                 .addItem(accordionItem("accordion-single-4", "Item five")
-                                        .add(p().textContent(LoremIpsum.paragraphs(3)))))
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
                         .element()
                 // @code-end:accordion-single
         ));
@@ -84,17 +86,17 @@ public class AccordionComponent extends SnippetPage {
                 code("accordion-fixed"), () ->
                 // @code-start:accordion-fixed
                 div()
-                        .add(accordion(false).fixed()
+                        .add(accordion().fixed()
                                 .addItem(accordionItem("accordion-fixed-0", "Item one").expanded()
-                                        .add(p().textContent(LoremIpsum.paragraphs(20))))
+                                        .add(p().text(LoremIpsum.paragraphs(20))))
                                 .addItem(accordionItem("accordion-fixed-1", "Item two")
-                                        .add(p().textContent(LoremIpsum.paragraphs(15))))
+                                        .add(p().text(LoremIpsum.paragraphs(15))))
                                 .addItem(accordionItem("accordion-fixed-2", "Item three")
-                                        .add(p().textContent(LoremIpsum.paragraphs(10))))
+                                        .add(p().text(LoremIpsum.paragraphs(10))))
                                 .addItem(accordionItem("accordion-fixed-3", "Item four")
-                                        .add(p().textContent(LoremIpsum.paragraphs(50))))
+                                        .add(p().text(LoremIpsum.paragraphs(50))))
                                 .addItem(accordionItem("accordion-fixed-4", "Item five")
-                                        .add(p().textContent(LoremIpsum.paragraphs(5)))))
+                                        .add(p().text(LoremIpsum.paragraphs(5)))))
                         .element()
                 // @code-end:accordion-fixed
         ));
@@ -105,21 +107,21 @@ public class AccordionComponent extends SnippetPage {
                 div()
                         .add(accordion().singleExpand().bordered()
                                 .addItem(accordionItem("accordion-bordered-0", "Item one").expanded()
-                                        .add(p().textContent(LoremIpsum.paragraphs(5))))
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-bordered-1", "Item two")
-                                        .add(p().textContent(LoremIpsum.paragraphs(7))))
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
                                 .addItem(accordionItem("accordion-bordered-2", "Item three")
-                                        .add(p().textContent(LoremIpsum.paragraphs(6))))
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
                                 .addItem(accordionItem("accordion-bordered-3", "Item four")
                                         .addBody(accordionItemBody()
-                                                .add(p().textContent(LoremIpsum.paragraphs(30))))
+                                                .add(p().text(LoremIpsum.paragraphs(30))))
                                         .addBody(accordionItemBody()
                                                 .add(button()
                                                         .text("Call to action")
                                                         .link()
                                                         .inline())))
                                 .addItem(accordionItem("accordion-bordered-4", "Item five")
-                                        .add(p().textContent(LoremIpsum.paragraphs(3)))))
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
                         .element()
                 // @code-end:accordion-bordered
         ));
@@ -130,14 +132,14 @@ public class AccordionComponent extends SnippetPage {
                 div()
                         .add(accordion().singleExpand().large()
                                 .addItem(accordionItem("accordion-large-0", "Item one").expanded()
-                                        .add(p().textContent(LoremIpsum.paragraphs(5))))
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-large-1", "Item two")
-                                        .add(p().textContent(LoremIpsum.paragraphs(7))))
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
                                 .addItem(accordionItem("accordion-large-2", "Item three")
-                                        .add(p().textContent(LoremIpsum.paragraphs(6))))
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
                                 .addItem(accordionItem("accordion-large-3", "Item four")
                                         .addBody(accordionItemBody()
-                                                .add(p().textContent(LoremIpsum.paragraphs(30))))
+                                                .add(p().text(LoremIpsum.paragraphs(30))))
                                         .addBody(accordionItemBody()
                                                 .add(button()
                                                         .iconAndText(arrowRight(), "Call to action", end)
@@ -145,14 +147,34 @@ public class AccordionComponent extends SnippetPage {
                                                         .inline()
                                                         .callToAction())))
                                 .addItem(accordionItem("accordion-large-4", "Item five")
-                                        .add(p().textContent(LoremIpsum.paragraphs(3)))))
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
                         .element()
                 // @code-end:accordion-large
+        ));
+
+        addSnippet(new Snippet("accordion-start", "Toggle icon at start",
+                code("accordion-start"), () ->
+                // @code-start:accordion-start
+                div()
+                        .add(accordion().singleExpand().iconPosition(start)
+                                .addItem(accordionItem("accordion-start-0", "Item one").expanded()
+                                        .add(p().text(LoremIpsum.paragraphs(5))))
+                                .addItem(accordionItem("accordion-start-1", "Item two")
+                                        .add(p().text(LoremIpsum.paragraphs(7))))
+                                .addItem(accordionItem("accordion-start-2", "Item three")
+                                        .add(p().text(LoremIpsum.paragraphs(6))))
+                                .addItem(accordionItem("accordion-start-3", "Item four")
+                                        .add(p().text(LoremIpsum.paragraphs(30))))
+                                .addItem(accordionItem("accordion-start-4", "Item five")
+                                        .add(p().text(LoremIpsum.paragraphs(3)))))
+                        .element()
+                // @code-end:accordion-start
         ));
 
         startApiDocs(Accordion.class);
         addApiDoc(Accordion.class, ApiDoc.Type.component);
         addApiDoc(AccordionItem.class, ApiDoc.Type.subcomponent);
         addApiDoc(AccordionItemBody.class, ApiDoc.Type.subcomponent);
+        addApiDoc(AccordionType.class, ApiDoc.Type.other);
     }
 }

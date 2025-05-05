@@ -57,7 +57,7 @@ public class DrawerCloseButton extends DrawerSubComponent<HTMLDivElement, Drawer
     // ------------------------------------------------------ internal
 
     private void close() {
-        Drawer drawer = lookupFlatComponent();
+        Drawer drawer = lookupComponent();
         drawer.collapse();
     }
 }

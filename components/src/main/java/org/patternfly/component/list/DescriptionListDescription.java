@@ -16,21 +16,21 @@
 package org.patternfly.component.list;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.dd;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.descriptionList;
 
 public class DescriptionListDescription extends DescriptionListSubComponent<HTMLElement, DescriptionListDescription> implements
-        WithText<HTMLElement, DescriptionListDescription>, ElementDelegate<HTMLElement, DescriptionListDescription> {
+        WithText<HTMLElement, DescriptionListDescription>, ElementContainerDelegate<HTMLElement, DescriptionListDescription> {
 
     // ------------------------------------------------------ factory
 
@@ -57,7 +57,7 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
     }
 
     @Override
-    public HTMLElement delegate() {
+    public Element containerDelegate() {
         return textElement;
     }
 
@@ -65,7 +65,7 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
 
     @Override
     public DescriptionListDescription text(String text) {
-        wrapHtmlElement(textElement).textNode(text);
+        Elements.textNode(textElement, text);
         return this;
     }
 

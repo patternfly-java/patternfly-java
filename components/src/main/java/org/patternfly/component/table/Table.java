@@ -102,7 +102,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
             By selector = By.classname(component(table))
                     .and(By.classname(modifier(treeView)))
                     .desc(By.element("td"));
-            for (HTMLElement td : findAll(selector)) {
+            for (HTMLElement td : querySelectorAll(selector)) {
                 td.setAttribute(role, gridcell);
             }
         }

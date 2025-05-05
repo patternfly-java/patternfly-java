@@ -28,9 +28,9 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Severity;
-import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
@@ -92,7 +92,7 @@ import static org.patternfly.style.Classes.widthAuto;
 public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         Closeable<HTMLDivElement, Popover>,
         NoPadding<HTMLDivElement, Popover>,
-        WithIcon<HTMLDivElement, Popover>,
+        ComponentIcon<HTMLDivElement, Popover>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -102,7 +102,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public static Popover popover(By trigger) {
-        return new Popover(() -> Elements.find(document.body, trigger));
+        return new Popover(() -> Elements.querySelector(document.body, trigger));
     }
 
     public static Popover popover(HTMLElement trigger) {
@@ -178,17 +178,17 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             HTMLElement triggerElement = trigger.get();
             if (triggerElement != null) {
                 popper = new PopperBuilder(componentType().componentName, triggerElement, element())
-                        .animationDuration(animationDuration)
-                        .zIndex(zIndex)
-                        .placement(placement)
-                        .addModifier(Modifiers.offset(distance),
-                                Modifiers.noOverflow(),
-                                Modifiers.hide(),
+                        .addModifier(Modifiers.eventListeners(false),
                                 Modifiers.flip(placement == auto || flip),
-                                Modifiers.placement(),
-                                Modifiers.eventListeners(false))
+                                Modifiers.hide(),
+                                Modifiers.noOverflow(),
+                                Modifiers.offset(distance),
+                                Modifiers.placement())
+                        .animationDuration(animationDuration)
+                        .placement(placement)
                         .registerHandler(triggerActions, this::show, this::close)
                         .removePopperOnTriggerDetach()
+                        .zIndex(zIndex)
                         .build();
             } else {
                 logger.error("Unable to find trigger element for popover %o", element());
@@ -206,7 +206,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ add
 
     public Popover addHeader(String header) {
-        return add(popoverHeader().textContent(header));
+        return add(popoverHeader().text(header));
     }
 
     public Popover addHeader(PopoverHeader header) {
@@ -222,7 +222,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover addBody(String body) {
-        return add(popoverBody().textContent(body));
+        return add(popoverBody().text(body));
     }
 
     public Popover addBody(PopoverBody body) {
@@ -236,7 +236,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover addFooter(String footer) {
-        return add(popoverFooter().textContent(footer));
+        return add(popoverFooter().text(footer));
     }
 
     public Popover addFooter(PopoverFooter footer) {
@@ -341,11 +341,11 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover trigger(String trigger) {
-        return trigger(() -> Elements.find(document.body, By.selector(trigger)));
+        return trigger(() -> Elements.querySelector(document.body, By.selector(trigger)));
     }
 
     public Popover trigger(By trigger) {
-        return trigger(() -> Elements.find(document.body, trigger));
+        return trigger(() -> Elements.querySelector(document.body, trigger));
     }
 
     public Popover trigger(HTMLElement trigger) {

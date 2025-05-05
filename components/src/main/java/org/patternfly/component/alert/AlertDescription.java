@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.alert;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,27 +24,25 @@ import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 
-public class AlertDescription extends AlertSubComponent<HTMLDivElement, AlertDescription> {
+public class AlertDescription extends AlertSubComponent<HTMLDivElement, AlertDescription> implements
+        ElementTextMethods<HTMLDivElement, AlertDescription> {
 
     // ------------------------------------------------------ factory
 
     public static AlertDescription alertDescription() {
-        return new AlertDescription(null);
+        return new AlertDescription();
     }
 
     public static AlertDescription alertDescription(String text) {
-        return new AlertDescription(text);
+        return new AlertDescription().text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ad";
 
-    AlertDescription(String text) {
+    AlertDescription() {
         super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
-        if (text != null) {
-            textContent(text);
-        }
     }
 
     // ------------------------------------------------------ builder

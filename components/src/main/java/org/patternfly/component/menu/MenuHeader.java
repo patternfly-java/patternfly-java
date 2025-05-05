@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.menu;
 
+import org.patternfly.component.WithText;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,27 +24,24 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.menu;
 
-public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> {
+public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> implements WithText<HTMLDivElement, MenuHeader> {
 
     // ------------------------------------------------------ factory
 
     public static MenuHeader menuHeader() {
-        return new MenuHeader(null);
+        return new MenuHeader();
     }
 
     public static MenuHeader menuHeader(String text) {
-        return new MenuHeader(text);
+        return new MenuHeader().text(text);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mh";
 
-    MenuHeader(String text) {
+    MenuHeader() {
         super(SUB_COMPONENT_NAME, div().css(component(menu, header)).element());
-        if (text != null) {
-            textContent(text);
-        }
     }
 
     // ------------------------------------------------------ builder

@@ -96,20 +96,20 @@ public class TableComponent extends SnippetPage {
             // @code-start:table-basic
             List<Repository> repositories = repositories(3);
             Table table = table()
-                    .addCaption(tableCaption().textContent("Simple table using composable components"))
+                    .addCaption(tableCaption().text("Simple table using composable components"))
                     .addHead(thead()
                             .addRow(tr("table-basic-head")
-                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
                     .addBody(tbody()
                             .addRows(repositories, repository -> tr("table-basic-" + repository.id)
-                                    .addItem(td(columns.get(0).value).textContent(repository.name))
-                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
-                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
-                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(0).value).text(repository.name))
+                                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
                                     .addItem(td(columns.get(4).value)
                                             .add(htmlElement("relative-time", HTMLElement.class)
                                                     .attr("datetime", repository.lastCommit.toISOString())
-                                                    .textContent(repository.lastCommit.toISOString())))));
+                                                    .text(repository.lastCommit.toISOString())))));
             ToggleGroup toggleGroup = toggleGroup(single)
                     .addItem(toggleGroupItem("table-basic-default", "Default")
                             .onClick((e, tgi) -> {
@@ -176,17 +176,17 @@ public class TableComponent extends SnippetPage {
             return table()
                     .addHead(thead()
                             .addRow(tr("table-sel-click-head")
-                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
                     .addBody(tbody()
                             .addRows(repositories, repository -> tr("table-sel-click-" + repository.id).clickable()
-                                    .addItem(td(columns.get(0).value).textContent(repository.name))
-                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
-                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
-                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(0).value).text(repository.name))
+                                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
                                     .addItem(td(columns.get(4).value)
                                             .add(htmlElement("relative-time", HTMLElement.class)
                                                     .attr("datetime", repository.lastCommit.toISOString())
-                                                    .textContent(repository.lastCommit.toISOString())))))
+                                                    .text(repository.lastCommit.toISOString())))))
                     .element();
             // @code-end:table-sel-click
         }));
@@ -211,19 +211,19 @@ public class TableComponent extends SnippetPage {
             return table()
                     .addHead(thead()
                             .addRow(tr("table-actions-head")
-                                    .addItems(columns, t -> th(t.key).textContent(t.value))
+                                    .addItems(columns, t -> th(t.key).text(t.value))
                                     .addItem(th().screenReader("Primary action"))
                                     .addItem(th().screenReader("Secondary action"))))
                     .addBody(tbody()
                             .addRows(repositories, repository -> tr("table-actions-" + repository.id)
-                                    .addItem(td(columns.get(0).value).textContent(repository.name))
-                                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
-                                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
-                                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(0).value).text(repository.name))
+                                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
                                     .addItem(td(columns.get(4).value)
                                             .add(htmlElement("relative-time", HTMLElement.class)
                                                     .attr("datetime", repository.lastCommit.toISOString())
-                                                    .textContent(repository.lastCommit.toISOString())))
+                                                    .text(repository.lastCommit.toISOString())))
                                     .run(tr -> {
                                         boolean primaryAction = repository.pullRequests % 5 != 0;
                                         boolean secondaryAction = repository.pullRequests % 2 != 0;
@@ -289,13 +289,13 @@ public class TableComponent extends SnippetPage {
             return table()
                     .addHead(thead()
                             .addRow(tr("table-empty-head")
-                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
                     .addBody(tbody()
                             .empty(columns.size(), emptyState().size(Size.sm)
                                     .addHeader(emptyStateHeader(2)
                                             .icon(IconSets.fas.search())
                                             .text("No results found"))
-                                    .addBody(emptyStateBody().textContent(
+                                    .addBody(emptyStateBody().text(
                                             "Clear all filters and try again."))
                                     .addFooter(emptyStateFooter()
                                             .add(button().link().text("Clear all filters")))))
@@ -323,19 +323,19 @@ public class TableComponent extends SnippetPage {
                                     titleCell.icon(codeBranch());
                                 }
                             }))
-                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
-                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
-                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
                     .addItem(td(columns.get(4).value)
                             .add(htmlElement("relative-time", HTMLElement.class)
                                     .attr("datetime", repository.lastCommit.toISOString())
-                                    .textContent(repository.lastCommit.toISOString())));
+                                    .text(repository.lastCommit.toISOString())));
 
             List<Repository> repositories = repositories(5, 2);
             return table(treeTable)
                     .addHead(thead()
                             .addRow(tr("table-tree-static-head")
-                                    .addItems(columns, t -> th(t.key).textContent(t.value))))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
                     .addBody(tbody()
                             .addRows(repositories, r0 -> repositoryTr.apply(r0) // level 1
                                     .addChildren(r0.children, r1 -> repositoryTr.apply(r1) // level 2
@@ -357,13 +357,13 @@ public class TableComponent extends SnippetPage {
                                     titleCell.icon(codeBranch());
                                 }
                             }))
-                    .addItem(td(columns.get(1).value).textContent(String.valueOf(repository.branches)))
-                    .addItem(td(columns.get(2).value).textContent(String.valueOf(repository.pullRequests)))
-                    .addItem(td(columns.get(3).value).textContent(String.valueOf(repository.workspaces)))
+                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
                     .addItem(td(columns.get(4).value)
                             .add(htmlElement("relative-time", HTMLElement.class)
                                     .attr("datetime", repository.lastCommit.toISOString())
-                                    .textContent(repository.lastCommit.toISOString())));
+                                    .text(repository.lastCommit.toISOString())));
 
             Function<Repository, Function<Tr, Promise<Iterable<Tr>>>> repositoryChildren = repository -> tr ->
                     new Promise<>((resolve, reject) -> {
@@ -389,7 +389,7 @@ public class TableComponent extends SnippetPage {
                     .add(table
                             .addHead(thead()
                                     .addRow(tr("table-tree-async-head")
-                                            .addItems(columns, t -> th(t.key).textContent(t.value))))
+                                            .addItems(columns, t -> th(t.key).text(t.value))))
                             .addBody(tbody()
                                     .addRows(repositories, repository -> repositoryTr.apply(repository)
                                             .addChildren(repositoryChildren.apply(repository)))))

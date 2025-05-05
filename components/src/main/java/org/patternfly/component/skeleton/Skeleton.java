@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.skeleton;
 
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Size;
 
@@ -38,7 +38,7 @@ import static org.patternfly.style.Variables.Width;
  *
  * @see <a href= "https://www.patternfly.org/components/skeleton">https://www.patternfly.org/components/skeleton</a>
  */
-public class Skeleton extends BaseComponentFlat<HTMLElement, Skeleton> {
+public class Skeleton extends BaseComponent<HTMLElement, Skeleton> {
 
     // ------------------------------------------------------ factory
 
@@ -74,7 +74,7 @@ public class Skeleton extends BaseComponentFlat<HTMLElement, Skeleton> {
     }
 
     public Skeleton screenReaderText(String text) {
-        element().appendChild(span().css(screenReader).textContent(text).element());
+        element().appendChild(span().css(screenReader).text(text).element());
         return this;
     }
 

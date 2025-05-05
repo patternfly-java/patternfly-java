@@ -13,13 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.style;
+package org.patternfly.component.accordion;
 
-public enum VariableScope {
+public enum AccordionType {
 
-    global,
-
-    util,
-
-    component
+    dl, div
 }

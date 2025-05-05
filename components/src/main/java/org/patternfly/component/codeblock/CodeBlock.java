@@ -46,7 +46,7 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.pre;
 
 /**
- * A code block is a component that contains 2 or more lines of read-only code. The code in a code block can be copied to the
+ * A code block is a component that contains two or more lines of read-only code. The code in a code block can be copied to the
  * clipboard.
  *
  * @see <a href= "https://www.patternfly.org/components/code-block">https://www.patternfly.org/components/code-block</a>
@@ -56,11 +56,11 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
     // ------------------------------------------------------ factory
 
     public static CodeBlock codeBlock() {
-        return new CodeBlock(null);
+        return new CodeBlock();
     }
 
     public static CodeBlock codeBlock(String code) {
-        return new CodeBlock(code);
+        return new CodeBlock().code(code);
     }
 
     // ------------------------------------------------------ instance
@@ -75,7 +75,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
     private ExpandableSection esCode;
     private ExpandableSection esTrigger;
 
-    CodeBlock(String code) {
+    CodeBlock() {
         super(ComponentType.CodeBlock, div().css(component(codeBlock)).element());
 
         add(div().css(component(codeBlock, content))
@@ -83,10 +83,6 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
                         .add(codeElement = Elements.code().css(component(codeBlock, Classes.code))
                                 .element())
                         .element()));
-
-        if (code != null) {
-            codeElement.textContent = code;
-        }
 
         storeComponent();
         Attachable.register(this, this);
@@ -180,7 +176,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
             String triggerId = Id.unique(componentType().id, "es-trigger");
             esCode = expandableSection(codeId)
                     .detachedFrom(triggerId)
-                    .addContent(expandableSectionContent().textContent(moreCode));
+                    .addContent(expandableSectionContent().text(moreCode));
             esTrigger = expandableSection(triggerId)
                     .detachedFrom(codeId)
                     .addToggle(expandableSectionToggle("Show more", "Show less"));
@@ -193,7 +189,7 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
 
         } else if (esCode != null) {
             codeElement.textContent = visibleCode;
-            esCode.content().textContent(moreCode);
+            esCode.content().text(moreCode);
         }
     }
 

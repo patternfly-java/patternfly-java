@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.avatar;
 
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Brightness;
 import org.patternfly.style.Size;
@@ -35,7 +35,7 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/avatar">https://www.patternfly.org/components/avatar</a>
  */
-public class Avatar extends BaseComponentFlat<HTMLImageElement, Avatar> {
+public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
     // ------------------------------------------------------ factory
 

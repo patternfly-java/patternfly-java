@@ -213,7 +213,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     private void unselectAllItems() {
-        for (HTMLElement element : findAll(SIMPLE_LIST_ITEMS)) {
+        for (HTMLElement element : querySelectorAll(SIMPLE_LIST_ITEMS)) {
             element.classList.remove(modifier(current));
         }
     }

@@ -23,7 +23,7 @@ import java.util.Objects;
  * Inspired by FrontendMasters/obervablish-values.
  *
  * @see <a href=
- *      "https://github.com/FrontendMasters/observablish-values/tree/main">https://github.com/FrontendMasters/observablish-values/tree/main</a>
+ * "https://github.com/FrontendMasters/observablish-values/tree/main">https://github.com/FrontendMasters/observablish-values/tree/main</a>
  */
 public class ObservableValue<T> {
 
@@ -52,14 +52,14 @@ public class ObservableValue<T> {
     }
 
     /**
-     * Sets the value of the ObservableValue, but does not notify subscribers.
+     * Sets the value of this {@link ObservableValue}, but does not notify subscribers.
      */
     public void silent(T value) {
         internalUpdate(value);
     }
 
     /**
-     * Sets the value of the ObservableValue and notifies subscribers if the value has changed.
+     * Sets the value of this {@link ObservableValue} and notifies subscribers if the value has changed.
      */
     public void set(T value) {
         boolean changed = !Objects.equals(this.value, value);
@@ -70,8 +70,8 @@ public class ObservableValue<T> {
     }
 
     /**
-     * Sets the value of the ObservableValue to the specified value and notifies subscribers regardless of whether the value has
-     * changed.
+     * Sets the value of this {@link ObservableValue} to the specified value and notifies subscribers regardless of whether the
+     * value has changed.
      */
     public void change(T value) {
         internalUpdate(value);

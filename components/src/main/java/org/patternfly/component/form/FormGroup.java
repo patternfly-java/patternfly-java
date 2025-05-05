@@ -21,7 +21,7 @@ import java.util.Map;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIdentifier;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -34,7 +34,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 
 public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implements
-        WithIdentifier<HTMLElement, FormGroup>,
+        HasIdentifier<HTMLElement, FormGroup>,
         ComponentContext<HTMLElement, FormGroup> {
 
     // ------------------------------------------------------ factory

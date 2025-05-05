@@ -19,6 +19,6 @@
   overflow: auto;
   min-width: 161px;
   max-width: 100%;
-  padding: var(--pf-v5-global--spacer--md);
-  border: var(--pf-v5-global--BorderWidth--sm) solid var(--pf-v5-global--BorderColor--100);
+  padding: var(--pf-t--global--spacer--md);
+  border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
 }

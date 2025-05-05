@@ -29,7 +29,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.BaseComponentFlat;
+import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
@@ -104,7 +104,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  *
  * @see <a href= "https://www.patternfly.org/components/tabs">https://www.patternfly.org/components/tabs</a>
  */
-public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
+public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         Attachable,
         Box<HTMLElement, Tabs>,
         Expandable<HTMLElement, Tabs>,
@@ -192,7 +192,7 @@ public class Tabs extends BaseComponentFlat<HTMLElement, Tabs> implements
                         .add(angleRight()));
 
         element().appendChild(mainContainer.element());
-        storeFlatComponent();
+        storeComponent();
         Attachable.register(this, this);
     }
 

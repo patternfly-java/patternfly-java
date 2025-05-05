@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.card;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
@@ -25,6 +26,7 @@ import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 
 public class CardBody extends CardSubComponent<HTMLDivElement, CardBody> implements
+        ElementTextMethods<HTMLDivElement, CardBody>,
         NoFill<HTMLDivElement, CardBody> {
 
     // ------------------------------------------------------ factory

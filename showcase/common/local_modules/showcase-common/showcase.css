@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 .pf-m-redhat-font .pf-c-content {
-    --pf-v5-c-content--FontSize: var(--pf-v5-global--FontSize--lg);
+    --pf-v6-c-content--FontSize: var(--pf-t--global--font--size--lg);
 }
 
 .pfj-popover-box, .pfj-tooltip-box {
@@ -42,7 +42,7 @@
 }
 
 .hljs {
-    background-color: var(--pf-v5-global--BackgroundColor--200) !important;
+    background-color: var(--pf-t--global--background--color--200) !important;
 }
 
 .markdown table {

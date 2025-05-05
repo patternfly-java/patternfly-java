@@ -24,13 +24,14 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
@@ -104,8 +105,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         Disabled<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
         HasItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
-        WithIdentifier<HTMLLIElement, TreeViewItem>,
-        WithIcon<HTMLLIElement, TreeViewItem>,
+        HasIdentifier<HTMLLIElement, TreeViewItem>,
+        ComponentIcon<HTMLLIElement, TreeViewItem>,
         WithText<HTMLLIElement, TreeViewItem> {
 
     // ------------------------------------------------------ factory
@@ -215,14 +216,9 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     public TreeViewItem text(String text) {
         this.text = text;
         if (domFinished) {
-            textElement.textContent = text;
+            Elements.textNode(textElement, text);
         }
         return this;
-    }
-
-    @Override
-    public String text() {
-        return text;
     }
 
     @Override
@@ -439,6 +435,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         } else if (status == resolved || status == rejected || status == pending) {
             reset();
         }
+    }
+
+    @Override
+    public String text() {
+        return text;
     }
 
     // ------------------------------------------------------ internal

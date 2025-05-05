@@ -18,11 +18,12 @@ package org.patternfly.component.card;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -43,8 +44,8 @@ import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.toggleRight;
 
 public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> implements
-        ElementDelegate<HTMLDivElement, CardHeader>,
-        Attachable {
+        Attachable,
+        ElementContainerDelegate<HTMLDivElement, CardHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -66,6 +67,11 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
         super(SUB_COMPONENT_NAME, div().css(component(Classes.card, header)).element());
         element().appendChild(mainElement = div().css(component(Classes.card, header, main)).element());
         Attachable.register(this, this);
+    }
+
+    @Override
+    public Element containerDelegate() {
+        return mainElement;
     }
 
     @Override
@@ -102,11 +108,6 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
                 insertFirst(element(), toggleElement);
             }
         }
-    }
-
-    @Override
-    public HTMLElement delegate() {
-        return mainElement;
     }
 
     // ------------------------------------------------------ add

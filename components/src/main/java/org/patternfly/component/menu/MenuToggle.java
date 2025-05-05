@@ -16,14 +16,14 @@
 package org.patternfly.component.menu;
 
 import org.jboss.elemento.ButtonType;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.WithIcon;
-import org.patternfly.component.WithIconAndText;
-import org.patternfly.component.WithText;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.core.Aria;
@@ -62,11 +62,11 @@ import static org.patternfly.style.Classes.toggle;
  * "https://www.patternfly.org/components/menus/menu-toggle">https://www.patternfly.org/components/menus/menu-toggle</a>
  */
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
-        Secondary<HTMLElement, MenuToggle>,
-        WithIcon<HTMLElement, MenuToggle>,
-        WithText<HTMLElement, MenuToggle>,
-        WithIconAndText<HTMLElement, MenuToggle>,
-        Disabled<HTMLElement, MenuToggle> {
+        ComponentIcon<HTMLElement, MenuToggle>,
+        ComponentIconAndText<HTMLElement, MenuToggle>,
+        ElementTextMethods<HTMLElement, MenuToggle>,
+        Disabled<HTMLElement, MenuToggle>,
+        Secondary<HTMLElement, MenuToggle> {
 
     // ------------------------------------------------------ factory
 

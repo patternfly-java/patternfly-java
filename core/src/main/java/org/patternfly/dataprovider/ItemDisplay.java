@@ -34,7 +34,7 @@ public class ItemDisplay<E extends HTMLElement, T> {
     public ItemDisplay() {
         this.identifier = item -> Id.build(String.valueOf(item));
         this.asString = String::valueOf;
-        this.display = (element, item) -> element.textContent(asString.apply(item));
+        this.display = (element, item) -> element.text(asString.apply(item));
     }
 
     public ItemDisplay(Function<T, String> identifier, Function<T, String> asString,

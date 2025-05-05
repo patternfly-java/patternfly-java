@@ -17,8 +17,8 @@ package org.patternfly.extension.codeeditor;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithIcon;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
@@ -28,7 +28,7 @@ import org.patternfly.icon.PredefinedIcon;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.DomGlobal.navigator;
+import static elemental2.dom.DomGlobal.navigator;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
@@ -36,20 +36,20 @@ import static org.patternfly.icon.IconSets.fas.copy;
 
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction>
         implements
-        WithIcon<HTMLElement, CodeEditorAction> {
+        ComponentIcon<HTMLElement, CodeEditorAction> {
 
     // ------------------------------------------------------ factory
 
     public static CodeEditorAction codeEditorAction(PredefinedIcon icon) {
-        return new CodeEditorAction(button().icon(icon.element()).control());
+        return new CodeEditorAction(button().icon(icon.element()).plain());
     }
 
     public static CodeEditorAction codeEditorAction(Element icon) {
-        return new CodeEditorAction(button().icon(icon).control());
+        return new CodeEditorAction(button().icon(icon).plain());
     }
 
     /**
-     * Adds an action. The button should have the modifiers {@link Button#control()}.
+     * Adds an action. The button should have the modifiers {@link Button#plain()}.
      */
     public static CodeEditorAction codeEditorAction(Button button) {
         return new CodeEditorAction(button);
@@ -64,7 +64,7 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
         Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
                 .onClose((e, t) -> t.text(copyText)) // restore text
                 .appendToBody();
-        return new CodeEditorAction(button().icon(copy()).control())
+        return new CodeEditorAction(button().icon(copy()).plain())
                 .id(copyId)
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {

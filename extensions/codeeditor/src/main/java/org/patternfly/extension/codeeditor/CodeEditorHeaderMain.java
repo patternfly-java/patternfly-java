@@ -15,6 +15,8 @@
  */
 package org.patternfly.extension.codeeditor;
 
+import org.patternfly.component.WithText;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -24,7 +26,7 @@ import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.main;
 
 public class CodeEditorHeaderMain extends
-        CodeEditorSubComponent<HTMLDivElement, CodeEditorHeaderMain> {
+        CodeEditorSubComponent<HTMLDivElement, CodeEditorHeaderMain> implements WithText<HTMLDivElement, CodeEditorHeaderMain> {
 
     // ------------------------------------------------------ factory
 

@@ -25,8 +25,8 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.small;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.spinner.Spinner.spinner;
-import static org.patternfly.component.text.TextContent.textContent;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -78,11 +78,11 @@ public class SpinnerComponent extends SnippetPage {
                 code("spinner-inline-size"), () ->
                 // @code-start:spinner-inline-size
                 div()
-                        .add(textContent()
+                        .add(content()
                                 .add(h(1)
                                         .add("Heading ")
                                         .add(spinner("Spinner in heading").inline()))
-                                .add(p().textContent(LoremIpsum.paragraphs(1)))
+                                .add(p().text(LoremIpsum.paragraphs(1)))
                                 .add(h(2)
                                         .add("Second level ")
                                         .add(spinner("Spinner in subheading").inline()))

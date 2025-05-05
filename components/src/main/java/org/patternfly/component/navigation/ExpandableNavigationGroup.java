@@ -27,17 +27,18 @@ import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithIdentifier;
 import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.ElementDelegate;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -74,9 +75,9 @@ import static org.patternfly.style.Classes.toggle;
 
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
         HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem>,
-        WithIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
+        HasIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
         WithText<HTMLLIElement, ExpandableNavigationGroup>,
-        ElementDelegate<HTMLLIElement, ExpandableNavigationGroup> {
+        ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -96,10 +97,10 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final String identifier;
     private final Map<String, NavigationItem> items;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
-    private final HTMLButtonElement button;
+    private final HTMLButtonElement buttonElement;
     private final HTMLElement section;
     private final HTMLUListElement ul;
-    private NavigationLinkText text;
+    private NavigationLinkText navigationLinkText;
 
     ExpandableNavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
@@ -111,7 +112,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         this.toggleHandler = new ArrayList<>();
 
         String titleId = Id.unique(identifier, "title");
-        element().appendChild(button = button(ButtonType.button).css(component(nav, link))
+        element().appendChild(buttonElement = button(ButtonType.button).css(component(nav, link))
                 .id(titleId)
                 .aria(Aria.expanded, false)
                 .on(click, e -> toggle())
@@ -130,8 +131,8 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     @Override
-    public HTMLElement delegate() {
-        return button;
+    public Element containerDelegate() {
+        return buttonElement;
     }
 
     // ------------------------------------------------------ add
@@ -165,13 +166,13 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup add(NavigationLinkText text) {
-        this.text = text;
-        insertFirst(button, text);
+        this.navigationLinkText = text;
+        insertFirst(buttonElement, text);
         return this;
     }
 
     public ExpandableNavigationGroup insertItemBefore(NavigationItem item, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertBefore(itm.element(), element));
         }
@@ -179,7 +180,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertItemAfter(NavigationItem item, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddItem(item, itm -> insertAfter(itm.element(), element));
         }
@@ -187,7 +188,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertGroupBefore(ExpandableNavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, beforeIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -195,7 +196,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     public ExpandableNavigationGroup insertGroupAfter(ExpandableNavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.find(ul, By.data(Dataset.identifier, afterIdentifier));
+        HTMLElement element = Elements.querySelector(ul, By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -207,10 +208,10 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     @Override
     public ExpandableNavigationGroup text(String text) {
         if (text != null) {
-            if (this.text != null) {
-                this.text.textNode(text);
+            if (this.navigationLinkText != null) {
+                this.navigationLinkText.text(text);
             } else {
-                button(button).textNode(text);
+                Elements.textNode(buttonElement, text);
             }
         }
         return this;
@@ -230,10 +231,10 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     @Override
     public String text() {
-        if (this.text != null) {
-            return Elements.textNode(this.text);
+        if (this.navigationLinkText != null) {
+            return navigationLinkText.text();
         } else {
-            return Elements.textNode(button);
+            return Elements.textNode(buttonElement);
         }
     }
 
@@ -325,13 +326,13 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     void expand() {
         element().classList.add(modifier(expanded));
-        button.setAttribute(Aria.expanded, true);
+        buttonElement.setAttribute(Aria.expanded, true);
         section.removeAttribute(hidden);
     }
 
     void collapse() {
         element().classList.remove(modifier("expanded"));
-        button.setAttribute(Aria.expanded, false);
+        buttonElement.setAttribute(Aria.expanded, false);
         section.hidden = true;
     }
 }

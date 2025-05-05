@@ -37,7 +37,6 @@ final class ComponentStore {
     private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
     private static final Map<String, ComponentDelegate<?, ?>> componentDelegates = new HashMap<>();
-    private static final Map<String, BaseComponentFlat<?, ?>> flatComponents = new HashMap<>();
     private static final Map<String, SubComponent<?, ?>> subComponents = new HashMap<>();
 
     // ------------------------------------------------------ store
@@ -69,17 +68,6 @@ final class ComponentStore {
         }
     }
 
-    static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeFlatComponent(BaseComponentFlat<E, B> component) {
-        String uuid = uuid();
-        flatComponents.put(uuid, component);
-        component.element().dataset.set(key(component.componentType()), uuid);
-        onDetach(component.element(), __ -> remove(uuid, "flat component", flatComponents::remove));
-        if (logger.isEnabled(DEBUG)) {
-            logger.debug("Store flat component %s as %s on %o%s", component.componentType().componentName, uuid,
-                    component.element(), count());
-        }
-    }
-
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(SubComponent<E, B> subComponent) {
         String uuid = uuid();
         subComponents.put(uuid, subComponent);
@@ -105,13 +93,6 @@ final class ComponentStore {
             ComponentType componentType, HTMLElement element, boolean lenient) {
         return lookup(componentType, null, key(componentType), element, lenient, "component delegate",
                 key -> (C) componentDelegates.get(key));
-    }
-
-    @SuppressWarnings("unchecked")
-    static <C extends BaseComponentFlat<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupFlatComponent(
-            ComponentType componentType, HTMLElement element, boolean lenient) {
-        return lookup(componentType, null, key(componentType), element, lenient, "flat component",
-                key -> (C) flatComponents.get(key));
     }
 
     @SuppressWarnings("unchecked")
@@ -172,6 +153,6 @@ final class ComponentStore {
     }
 
     private static String count() {
-        return " (c:" + components.size() + "|cd:" + componentDelegates.size() + "|fc:" + flatComponents.size() + "|sc:" + subComponents.size() + ")";
+        return " (c:" + components.size() + "|cd:" + componentDelegates.size() + "|sc:" + subComponents.size() + ")";
     }
 }

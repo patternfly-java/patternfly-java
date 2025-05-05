@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import org.patternfly.component.chip.Chip;
-import org.patternfly.component.chip.ChipGroup;
+import org.patternfly.component.label.Label;
+import org.patternfly.component.label.LabelGroup;
 import org.patternfly.filter.Filter;
 
 import elemental2.dom.HTMLDivElement;
@@ -28,7 +28,7 @@ import elemental2.dom.HTMLDivElement;
 import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
-import static org.patternfly.component.chip.ChipGroup.chipGroup;
+import static org.patternfly.component.label.LabelGroup.labelGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 
 public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterChipGroup<T>> {
@@ -45,27 +45,27 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
     private final Filter<T> filter;
     private final String text;
     private final List<String> filterAttributes;
-    private ChipGroup chipGroup;
-    private Function<Filter<T>, List<Chip>> chipsFn;
+    private LabelGroup labelGroup;
+    private Function<Filter<T>, List<Label>> labelsFn;
 
     ToolbarFilterChipGroup(Filter<T> filter, String text) {
         super(SUB_COMPONENT_NAME, toolbarItem().element());
         this.filter = filter;
         this.text = text;
         this.filterAttributes = new ArrayList<>();
-        this.chipsFn = f -> emptyList();
+        this.labelsFn = f -> emptyList();
 
         setVisible(this, false);
         filter.onChange((f, origin) -> {
             boolean anyDefined = filterAttributes.stream().anyMatch(f::defined);
             setVisible(this, anyDefined);
-            failSafeChipGroup().clear();
+            failSafeLabelGroup().clear();
             if (anyDefined) {
-                List<Chip> chips = chipsFn.apply(f);
-                for (Chip chip : chips) {
-                    failSafeChipGroup().add(chip);
+                List<Label> labels = labelsFn.apply(f);
+                for (Label label : labels) {
+                    failSafeLabelGroup().add(label);
                 }
-                if (chips.isEmpty()) {
+                if (labels.isEmpty()) {
                     filterAttributes.forEach(filter::reset);
                 }
             }
@@ -80,8 +80,8 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
         return this;
     }
 
-    public ToolbarFilterChipGroup<T> filterToChips(Function<Filter<T>, List<Chip>> chipsFn) {
-        this.chipsFn = chipsFn;
+    public ToolbarFilterChipGroup<T> filterToChips(Function<Filter<T>, List<Label>> labelsFn) {
+        this.labelsFn = labelsFn;
         return this;
     }
 
@@ -92,14 +92,14 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
 
     // ------------------------------------------------------ internal
 
-    private ChipGroup failSafeChipGroup() {
-        if (chipGroup == null) {
-            add(chipGroup = chipGroup(text).closable((e, c) -> {
+    private LabelGroup failSafeLabelGroup() {
+        if (labelGroup == null) {
+            add(labelGroup = labelGroup(text).closable((e, c) -> {
                 filterAttributes.forEach(filter::reset);
-                failSafeRemoveFromParent(chipGroup);
-                chipGroup = null;
+                failSafeRemoveFromParent(labelGroup);
+                labelGroup = null;
             }));
         }
-        return chipGroup;
+        return labelGroup;
     }
 }
