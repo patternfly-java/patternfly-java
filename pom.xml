@@ -114,7 +114,6 @@
     </properties>
 
     <modules>
-        <module>bom</module>
         <module>build-config</module>
         <module>code-parent</module>
         <module>components</module>
@@ -529,6 +528,7 @@
                         <configuration>
                             <publishingServerId>central</publishingServerId>
                             <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>
