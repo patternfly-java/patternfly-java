@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 import camelCase from "camelcase";
-import {writeFile} from "node:fs/promises";
+import {mkdir, writeFile} from "node:fs/promises";
 import {fab, far, fas} from "./faIcons.mjs";
 import {patternfly} from "./pfIcons.mjs";
 
@@ -47,7 +47,7 @@ import javax.annotation.processing.Generated;
  * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
  * @see <a href="https://fontawesome.com/icons?d=gallery&m=free">https://fontawesome.com/icons?d=gallery&m=free</a>
  */
-@Generated("generate.ts")
+@Generated("generate.mjs")
 @SuppressWarnings("SpellCheckingInspection")
 // WARNING: This class is generated. Do not modify.
 public interface IconSpecs {
@@ -123,6 +123,7 @@ const iconCount = iconSets
     .map(iconSet => Object.keys(iconSet.icons).length)
     .reduce((acc, cur) => acc + cur, 0);
 const dir = new URL(`${root}/${path}/`, import.meta.url);
+await mkdir(dir, { recursive: true });
 await writeFile(new URL("./IconSpecs.java", dir), generateIconSpecs(iconSets), "utf8");
 await writeFile(new URL("./IconSets.java", dir), generateIconSets(iconSets), "utf8");
 console.info(`Generated code for ${iconCount} icons`);

@@ -79,6 +79,9 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(ComponentType.Menu, div().css(component(menu)).element());
+        // TODO Without this workaround the menu "flickers" when showing.
+        //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
+        componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
         this.menuType = menuType;
         this.selectionMode = selectionMode;
         this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes

@@ -100,7 +100,9 @@ class ReleaseCommand : CliktCommand(name = "release") {
                 },
                 {
                     // if the output of 'git -l <tag>' is not empty, the tag already exists
-                    ensure(shellRun("git", listOf("tag", "-l", release.tag)).isEmpty()) { TagExists(release.tag) }
+                    ensure(shellRun("git", listOf("tag", "-l", release.tag)).isEmpty()) {
+                        TagExists(release.tag)
+                    }
                 }
         ) { _, _ -> release }
     }

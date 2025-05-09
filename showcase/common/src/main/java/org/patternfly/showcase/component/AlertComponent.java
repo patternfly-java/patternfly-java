@@ -52,6 +52,7 @@ import static org.patternfly.component.alert.AlertGroupType.staticInline;
 import static org.patternfly.component.alert.AlertGroupType.toast;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.list.ActionList.actionList;
+import static org.patternfly.component.list.ActionListGroup.actionListGroup;
 import static org.patternfly.component.list.ActionListItem.actionListItem;
 import static org.patternfly.core.Aria.atomic;
 import static org.patternfly.core.Aria.live;
@@ -144,19 +145,21 @@ public class AlertComponent extends SnippetPage {
                             .element();
                     return div()
                             .add(actionList()
-                                    .addItem(actionListItem()
-                                            .add(button("Add alert").secondary()
-                                                    .onClick((event, button) -> alerts.appendChild(li()
-                                                            .add(alert(custom, "Default timeout Alert")
-                                                                    .timeout()
-                                                                    .addDescription("This alert will dismiss after 8 seconds")
-                                                                    .addActionGroup(alertActionGroup()
-                                                                            .addAction("View details")
-                                                                            .addAction("Ignore")))
-                                                            .element()))))
-                                    .addItem(actionListItem()
-                                            .add(button("Remove all alerts").secondary()
-                                                    .onClick((event, button) -> removeChildrenFrom(alerts)))))
+                                    .addGroup(actionListGroup()
+                                            .addItem(actionListItem()
+                                                    .add(button("Add alert").secondary()
+                                                            .onClick((event, button) -> alerts.appendChild(li()
+                                                                    .add(alert(custom, "Default timeout Alert")
+                                                                            .timeout()
+                                                                            .addDescription(
+                                                                                    "This alert will dismiss after 8 seconds")
+                                                                            .addActionGroup(alertActionGroup()
+                                                                                    .addAction("View details")
+                                                                                    .addAction("Ignore")))
+                                                                    .element()))))
+                                            .addItem(actionListItem()
+                                                    .add(button("Remove all alerts").secondary()
+                                                            .onClick((event, button) -> removeChildrenFrom(alerts))))))
                             .add(alerts)
                             .element();
                     // @code-end:alert-timeout
@@ -170,10 +173,7 @@ public class AlertComponent extends SnippetPage {
                                 .expandable()
                                 .closable((e, a) -> DomGlobal.alert("Clicked the close button"))
                                 .addDescription(
-                                        "Success alert description. This should tell the user more information about the alert.")
-                                .addActionGroup(alertActionGroup()
-                                        .addAction("View details", (e, a) -> DomGlobal.alert("Clicked on View details"))
-                                        .addAction("Ignore", (e, a) -> DomGlobal.alert("Clicked on Ignore"))))
+                                        "Success alert description. This should tell the user more information about the alert."))
                         .add(br())
                         .add(alert(success, "Success alert title").inline()
                                 .expandable()
@@ -349,18 +349,19 @@ public class AlertComponent extends SnippetPage {
                 // @code-start:alert-group-toast
                 div()
                         .add(actionList()
-                                .addItem(actionListItem()
-                                        .add(button("Add toast success alert").secondary()
-                                                .onClick((e, b) -> alertGroup(toast)
-                                                        .addItem(alert(success, "Toast success alert")))))
-                                .addItem(actionListItem()
-                                        .add(button("Add toast danger alert").secondary()
-                                                .onClick((e, b) -> alertGroup(toast)
-                                                        .addItem(alert(danger, "Toast danger alert")))))
-                                .addItem(actionListItem()
-                                        .add(button("Add toast info alert").secondary()
-                                                .onClick((e, b) -> alertGroup(toast)
-                                                        .addItem(alert(info, "Toast info alert"))))))
+                                .addGroup(actionListGroup()
+                                        .addItem(actionListItem()
+                                                .add(button("Add toast success alert").secondary()
+                                                        .onClick((e, b) -> alertGroup(toast)
+                                                                .addItem(alert(success, "Toast success alert")))))
+                                        .addItem(actionListItem()
+                                                .add(button("Add toast danger alert").secondary()
+                                                        .onClick((e, b) -> alertGroup(toast)
+                                                                .addItem(alert(danger, "Toast danger alert")))))
+                                        .addItem(actionListItem()
+                                                .add(button("Add toast info alert").secondary()
+                                                        .onClick((e, b) -> alertGroup(toast)
+                                                                .addItem(alert(info, "Toast info alert")))))))
                         .element()
                 // @code-end:alert-group-toast
         ));
@@ -373,20 +374,22 @@ public class AlertComponent extends SnippetPage {
                     final double[] intervalHandle = {0};
                     return div()
                             .add(actionList()
-                                    .addItem(actionListItem()
-                                            .add(button("Start async alerts").secondary()
-                                                    .onClick((e, b) -> intervalHandle[0] = setInterval(__ -> {
-                                                        counter[0] = counter[0] + 1;
-                                                        alertGroup(toast)
-                                                                .addItem(alert(danger, "Async notification " + counter[0]
-                                                                        + " was added to the queue."));
-                                                    }, 1_000))))
-                                    .addItem(actionListItem()
-                                            .add(button("Stop async alerts").secondary()
-                                                    .onClick((e, b) -> {
-                                                        counter[0] = 0;
-                                                        clearInterval(intervalHandle[0]);
-                                                    }))))
+                                    .addGroup(actionListGroup()
+                                            .addItem(actionListItem()
+                                                    .add(button("Start async alerts").secondary()
+                                                            .onClick((e, b) -> intervalHandle[0] = setInterval(__ -> {
+                                                                counter[0] = counter[0] + 1;
+                                                                alertGroup(toast)
+                                                                        .addItem(
+                                                                                alert(danger, "Async notification " + counter[0]
+                                                                                        + " was added to the queue."));
+                                                            }, 1_000))))
+                                            .addItem(actionListItem()
+                                                    .add(button("Stop async alerts").secondary()
+                                                            .onClick((e, b) -> {
+                                                                counter[0] = 0;
+                                                                clearInterval(intervalHandle[0]);
+                                                            })))))
                             .element();
                     // @code-end:alert-group-asynchronous
                 }));

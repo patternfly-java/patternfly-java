@@ -18,7 +18,7 @@ import javax.annotation.processing.Generated;
  * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
  * @see <a href="https://fontawesome.com/icons?d=gallery&m=free">https://fontawesome.com/icons?d=gallery&m=free</a>
  */
-@Generated("generate.ts")
+@Generated("generate.mjs")
 @SuppressWarnings("SpellCheckingInspection")
 // WARNING: This class is generated. Do not modify.
 public interface IconSpecs {

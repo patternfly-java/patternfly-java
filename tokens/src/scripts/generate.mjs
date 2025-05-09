@@ -36,7 +36,7 @@ import javax.annotation.processing.Generated;
  * @see <a href="https://www.patternfly.org/tokens/about-tokens">https://www.patternfly.org/tokens/about-tokens</a>
  * @see <a href="https://www.patternfly.org/tokens/all-patternfly-tokens">https://www.patternfly.org/tokens/all-patternfly-tokens</a>
  */
-@Generated("generate.ts")
+@Generated("generate.mjs")
 @SuppressWarnings("SpellCheckingInspection")
 // WARNING: This class is generated. Do not modify.
 public enum Token {

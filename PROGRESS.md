@@ -1,106 +1,53 @@
-# PatternFly 6 Progress
+# Progress
 
-## Components
+## Refactoring to Patternfly 6
 
-- [ ] About modal
-- [ ] Accordion
-- [ ] Action list
-- [ ] Alert
-- [ ] Avatar
-- [ ] Back to top
-- [ ] Backdrop
-- [ ] Background image
-- [ ] Badge
-- [ ] Banner
-- [ ] Breadcrumb
-- [ ] Button
-- [ ] Card
-- [ ] Clipboard Copy
-- [ ] Code block
-- [ ] Code editor
-- [ ] Content
-- [ ] Data list
-- Date and time
-  - [ ] Calendar month
-  - [ ] Date and time picker
-  - [ ] Date picker
-  - [ ] Time picker
-- [ ] Description list
-- [ ] Divider
-- [ ] Drawer
-- [ ] Dual list selector
-- [ ] Empty state
-- [ ] Expandable section
-- File upload
-  - [ ] Multiple file upload
-  - [ ] Single file upload
-- Forms
-  - [ ] Checkbox
-  - [ ] Form
-  - [ ] Form control
-  - [ ] Form select
-  - [ ] Radio
-  - [ ] Text area
-  - [ ] Text input
-- [ ] Helper text
-- [ ] Hint
-- [ ] Icon
-- [ ] Inline edit
-- [ ] Input group
-- [ ] Jump links
-- [ ] Label
-- [ ] List
-- [ ] Login page
-- [ ] Masthead
-- Menus
-  - [ ] Application launcher
-  - [ ] Context selector
-  - [ ] Custom menus
-  - [ ] Dropdown
-  - [ ] Menu
-  - [ ] Menu toggle
-  - [ ] Options menu
-  - [ ] Select
-- [ ] Modal
-- [ ] Navigation
-- [ ] Notification badge
-- [ ] Notification drawer
-- [ ] Number input
-- [ ] Overflow menu
-- [ ] Page
-- [ ] Pagination
-- [ ] Panel
-- [ ] Password generator
-- [ ] Password strength
-- [ ] Popover
-- [ ] Progress
-- [ ] Progress stepper
-- [ ] Search input
-- [ ] Sidebar
-- [ ] Simple list
-- [ ] Skeleton
-- [ ] Skip to content
-- [ ] Slider
-- [ ] Spinner
-- [ ] Switch
-- [ ] Table
-- [ ] Tabs
-- [ ] Text input group
-- [ ] Timestamp
-- [ ] Title
-- [ ] Toggle Group
-- [ ] Toolbar
-- [ ] Tooltip
-- [ ] Tree View
-- [ ] Truncate
-- [ ] Wizard
+By package name `org.patternfly.compoennt.<name>`
 
-## Layouts
-
-- [ ] Bullseye
-- [ ] Flex
-- [ ] Gallery
-- [ ] Grid
-- [ ] Level
-- [ ] Split
-- [ ] Stack
+- [x] `accordion`
+- [x] `alert`
+- [x] `avatar`
+- [x] `backdrop`
+- [x] `backtotop`
+- [x] `badge`
+- [x] `banner`
+- [x] `brand`
+- [x] `breadcrumb`
+- [x] `button`
+- [x] `card`
+- [x] `codeblock`
+- [x] `divider`
+- [x] `drawer`
+- [x] `emptystate`
+- [x] `expandable`
+- [ ] `form`
+- [ ] `help`
+- [ ] `hint`
+- [ ] `icon`
+- [ ] `inputgroup`
+- [ ] `jumplinks`
+- [ ] `label`
+- [ ] `list`
+- [ ] `menu`
+- [ ] `modal`
+- [ ] `navigation`
+- [ ] `page`
+- [ ] `panel`
+- [ ] `popover`
+- [ ] `progress`
+- [ ] `skeleton`
+- [ ] `skiptocontent`
+- [ ] `slider`
+- [ ] `spinner`
+- [ ] `switch_`
+- [ ] `table`
+- [ ] `tabs`
+- [ ] `text`
+- [ ] `textinputgroup`
+- [ ] `title`
+- [ ] `togglegroup`
+- [ ] `toolbar`
+- [ ] `tooltip`
+- [ ] `tree`
+- [ ] `truncate`
+- [ ] `wizard`
