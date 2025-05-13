@@ -19,18 +19,23 @@ import org.jboss.elemento.router.Route;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.form.CheckboxBody;
 import org.patternfly.component.form.CheckboxDescription;
+import org.patternfly.showcase.Code;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
+import static org.jboss.elemento.Elements.br;
+import static org.jboss.elemento.Elements.code;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.form.Checkbox.checkbox;
+import static org.patternfly.component.form.Checkbox.checkboxWrapped;
 import static org.patternfly.component.form.CheckboxBody.checkboxBody;
 import static org.patternfly.component.form.CheckboxDescription.checkboxDescription;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
-import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.style.Classes.util;
 
 @Route(value = "/components/forms/checkbox", title = "Checkbox")
 public class CheckboxComponent extends SnippetPage {
@@ -40,31 +45,58 @@ public class CheckboxComponent extends SnippetPage {
 
         startExamples();
         addSnippet(new Snippet("checkbox-basic", "Basic",
-                code("checkbox-basic"), () ->
+                Code.code("checkbox-basic"), () ->
                 // @code-start:checkbox-basic
                 div()
-                        .add(checkbox("basic-checkbox-0", "basic-checkbox", "Checkbox 1")
+                        .add(checkbox("checkbox-basic-0", "checkbox-basic", "Checkbox 1")
                                 .value(true))
-                        .add(checkbox("basic-checkbox-1", "basic-checkbox", "Checkbox 2"))
+                        .add(checkbox("checkbox-basic-1", "checkbox-basic", "Checkbox 2"))
                         .element()
                 // @code-end:checkbox-basic
         ));
 
+        addSnippet(new Snippet("checkbox-required", "Required",
+                Code.code("checkbox-required"), () ->
+                // @code-start:checkbox-required
+                div()
+                        .add(checkbox("checkbox-required-0", "checkbox-required", "Required checkbox 1")
+                                .required()
+                                .value(true))
+                        .add(checkbox("checkbox-required-1", "checkbox-required", "Required checkbox 2")
+                                .required())
+                        .element()
+                // @code-end:checkbox-required
+        ));
+
         addSnippet(new Snippet("checkbox-disabled", "Disabled",
-                code("checkbox-disabled"), () ->
+                Code.code("checkbox-disabled"), () ->
                 // @code-start:checkbox-disabled
                 div()
-                        .add(checkbox("disabled-checkbox-0", "disabled-checkbox", "Disabled checkbox 1")
-                                .value(true)
-                                .disabled())
-                        .add(checkbox("disabled-checkbox-1", "disabled-checkbox", "Disabled checkbox 2")
+                        .add(checkbox("checkbox-disabled-0", "checkbox-disabled", "Disabled checkbox 1")
+                                .disabled()
+                                .value(true))
+                        .add(checkbox("checkbox-disabled-1", "checkbox-disabled", "Disabled checkbox 2")
                                 .disabled())
                         .element()
                 // @code-end:checkbox-disabled
         ));
 
+        addSnippet(new Snippet("checkbox-standalone", "Standalone input",
+                Code.code("checkbox-standalone"), () ->
+                // @code-start:checkbox-standalone
+                div()
+                        .add(checkbox("checkbox-standalone-0", "checkbox-standalone")
+                                .standalone())
+                        .add(br())
+                        .add(checkbox("checkbox-standalone-1", "checkbox-standalone")
+                                .standalone()
+                                .value(true))
+                        .element()
+                // @code-end:checkbox-standalone
+        ));
+
         addSnippet(new Snippet("checkbox-description", "Checkbox with description",
-                code("checkbox-description"), () ->
+                Code.code("checkbox-description"), () ->
                 // @code-start:checkbox-description
                 div()
                         .add(checkbox("cwd-0", "cwd", "Checkbox with description")
@@ -74,7 +106,7 @@ public class CheckboxComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("checkbox-body", "Checkbox with body",
-                code("checkbox-body"), () ->
+                Code.code("checkbox-body"), () ->
                 // @code-start:checkbox-body
                 div()
                         .add(checkbox("cwb-0", "cwb", "Checkbox with body")
@@ -84,7 +116,7 @@ public class CheckboxComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("checkbox-description-body", "Checkbox with description and body",
-                code("checkbox-description-body"), () ->
+                Code.code("checkbox-description-body"), () ->
                 // @code-start:checkbox-description-body
                 div()
                         .add(checkbox("cdb-0", "cdb", "Checkbox with description and body")
@@ -94,24 +126,19 @@ public class CheckboxComponent extends SnippetPage {
                 // @code-end:checkbox-description-body
         ));
 
-        addSnippet(new Snippet("checkbox-standalone", "Standalone input",
-                code("checkbox-standalone"), () ->
-                // @code-start:checkbox-standalone
+        addSnippet(new Snippet("checkbox-wrapped", "Wrapped checkbox",
+                Code.code("checkbox-wrapped"), () ->
+                // @code-start:checkbox-wrapped
                 div()
-                        .add(checkbox("standalone-checkbox-0", "standalone-checkbox")
-                                .standalone())
+                        .add(p().css(util("mb-sm")).add(
+                                        "You can expand the clickable area of a checkbox so that it spans wider than the checkbox label by using ")
+                                .add(code().text("wrappedCheckbox()"))
+                                .add(". This allows users to select a checkbox by clicking the checkbox itself, the label, the body, the description, and the area between these elements."))
+                        .add(checkboxWrapped("checkbox-wrapped-0", "checkbox-wrapped", "Wrapped checkbox")
+                                .addDescription(checkboxDescription(LoremIpsum.words(50)))
+                                .addBody(checkboxBody("This is where custom content goes.")))
                         .element()
-                // @code-end:checkbox-standalone
-        ));
-
-        addSnippet(new Snippet("checkbox-required", "Required input",
-                code("checkbox-required"), () ->
-                // @code-start:checkbox-required
-                div()
-                        .add(checkbox("required-checkbox-0", "required-checkbox", "Required checkbox")
-                                .required())
-                        .element()
-                // @code-end:checkbox-required
+                // @code-end:checkbox-wrapped
         ));
 
         startApiDocs(Checkbox.class);

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -31,7 +32,6 @@ import org.patternfly.style.Modifiers.Required;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
-import elemental2.dom.HTMLLabelElement;
 
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.div;
@@ -64,45 +64,55 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     // ------------------------------------------------------ factory
 
+    // TODO Remove the checked parameter; add the wrapped flag
     public static Checkbox checkbox(String id, String name) {
-        return new Checkbox(id, name, null, false);
+        return new Checkbox(div(), id, name, null);
     }
 
-    public static Checkbox checkbox(String id, String name, boolean checked) {
-        return new Checkbox(id, name, null, checked);
+    public static Checkbox checkboxWrapped(String id, String name) {
+        return new Checkbox(label(), id, name, null);
     }
 
     public static Checkbox checkbox(String id, String name, String label) {
-        return new Checkbox(id, name, label, false);
+        return new Checkbox(div(), id, name, label);
     }
 
-    public static Checkbox checkbox(String id, String name, String label, boolean checked) {
-        return new Checkbox(id, name, label, checked);
+    public static Checkbox checkboxWrapped(String id, String name, String label) {
+        return new Checkbox(label(), id, name, label);
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
     private final List<ChangeHandler<Checkbox, Boolean>> changeHandlers;
-    private HTMLLabelElement labelElement;
+    private HTMLElement labelElement;
     private HTMLElement requiredMarker;
 
-    Checkbox(String id, String name, String label, boolean checked) {
-        super(ComponentType.Checkbox, div().css(component(check))
+    <E extends HTMLElement> Checkbox(HTMLContainerBuilder<E> builder, String id, String name, String label) {
+        super(ComponentType.Checkbox, builder.css(component(check))
                 .add(input(checkbox).css(component(check, input))
                         .id(id)
-                        .name(name)
-                        .checked(checked))
+                        .name(name))
                 .element());
         this.changeHandlers = new ArrayList<>();
+        boolean wrapped = "label".equalsIgnoreCase(element().tagName);
+        if (wrapped) {
+            element().setAttribute("for", id);
+        }
 
         inputElement = (HTMLInputElement) element().firstElementChild;
         inputElement.addEventListener(change.name, e -> changeHandlers.forEach(h -> h.onChange(e, this, inputElement.checked)));
-        add(labelElement = label().css(component(check, Classes.label))
-                .apply(l -> l.htmlFor = id)
-                .element());
         if (label != null) {
-            labelElement.textContent = label;
+            if (wrapped) {
+                add(labelElement = span().css(component(check, Classes.label))
+                        .text(label)
+                        .element());
+            } else {
+                add(labelElement = label().css(component(check, Classes.label))
+                        .text(label)
+                        .apply(l -> l.htmlFor = id)
+                        .element());
+            }
         }
     }
 
