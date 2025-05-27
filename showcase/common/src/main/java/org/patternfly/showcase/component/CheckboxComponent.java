@@ -132,7 +132,7 @@ public class CheckboxComponent extends SnippetPage {
                 div()
                         .add(p().css(util("mb-sm")).add(
                                         "You can expand the clickable area of a checkbox so that it spans wider than the checkbox label by using ")
-                                .add(code().text("wrappedCheckbox()"))
+                                .add(code().css("ws-code").text("checkboxWrapped()"))
                                 .add(". This allows users to select a checkbox by clicking the checkbox itself, the label, the body, the description, and the area between these elements."))
                         .add(checkboxWrapped("checkbox-wrapped-0", "checkbox-wrapped", "Wrapped checkbox")
                                 .addDescription(checkboxDescription(LoremIpsum.words(50)))
