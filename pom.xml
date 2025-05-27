@@ -79,7 +79,7 @@
     <properties>
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
-        <version.elemento>1.7.1</version.elemento>
+        <version.elemento>2.0.0</version.elemento>
         <version.gwt>2.12.2</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event>
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml>
