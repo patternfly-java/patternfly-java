@@ -82,24 +82,28 @@ public class TextAreaComponent extends SnippetPage {
                         ta.validated(default_);
                         helperText.firstItem()
                                 .status(default_)
-                                .text("Validating...");
+                                .text("Validating...")
+                                .removeIcon();
                         handle[0] = setTimeout(__ -> {
                             if (value.isEmpty()) {
                                 ta.validated(warning);
                                 helperText.firstItem()
                                         .status(warning)
-                                        .text("You must have something to say");
+                                        .text("You must have something to say")
+                                        .defaultIcon();
                             } else {
                                 if (value.length() < 10) {
                                     ta.validated(error);
                                     helperText.firstItem()
                                             .status(error)
-                                            .text("You're being too brief, please enter at least 10 characters.");
+                                            .text("You're being too brief, please enter at least 10 characters.")
+                                            .defaultIcon();
                                 } else {
                                     ta.validated(success);
                                     helperText.firstItem()
                                             .status(success)
-                                            .text("Thanks for your comments!");
+                                            .text("Thanks for your comments!")
+                                            .defaultIcon();
                                 }
                             }
                         }, 1234);

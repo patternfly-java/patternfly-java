@@ -69,7 +69,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
         FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
         if (control != null && !formGroup.identifier().equals(control.id)) {
-            logger.error("The identifier of the form group %o is different from the id of its control %o: '%s' != '%s'",
+            logger.error("The identifier of the form group %o is different to the id of its control %o: '%s' != '%s'",
                     formGroup.element(), element(), formGroup.identifier(), control.id);
         }
 

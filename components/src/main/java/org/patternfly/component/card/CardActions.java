@@ -18,15 +18,16 @@ package org.patternfly.component.card;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.NoOffset;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Modifiers.toggleModifier;
 
-public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
+public class CardActions extends CardSubComponent<HTMLDivElement, CardActions>
+        implements NoOffset<HTMLDivElement, CardActions> {
 
     // ------------------------------------------------------ factory
 
@@ -70,16 +71,6 @@ public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> {
     }
 
     // ------------------------------------------------------ builder
-
-    /** Same as {@linkplain #noOffset(boolean) noOffset(true)} */
-    public CardActions noOffset() {
-        return noOffset(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(noOffset)} */
-    public CardActions noOffset(boolean noOffset) {
-        return toggleModifier(this, element(), Classes.noOffset, noOffset);
-    }
 
     @Override
     public CardActions that() {

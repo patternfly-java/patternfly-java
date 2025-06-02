@@ -108,6 +108,7 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
 
     /** Sets the {@code checked} attribute of the input element. */
     public MenuToggleCheckbox value(boolean checked, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
         if (fireEvent && changed && !changeHandlers.isEmpty()) {

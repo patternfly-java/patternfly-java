@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.hint;
 
+import org.patternfly.style.Modifiers.NoOffset;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -22,7 +24,8 @@ import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.hint;
 
-public class HintActions extends HintSubComponent<HTMLDivElement, HintActions> {
+public class HintActions extends HintSubComponent<HTMLDivElement, HintActions>
+        implements NoOffset<HTMLDivElement, HintActions> {
 
     // ------------------------------------------------------ factory
 

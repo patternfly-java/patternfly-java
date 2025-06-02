@@ -15,11 +15,14 @@
  */
 package org.patternfly.component.form;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -30,43 +33,38 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.section;
 
-public class FormSection extends FormSubComponent<HTMLElement, FormSection> {
+public class FormSection extends FormSubComponent<HTMLElement, FormSection> implements
+        ElementTextDelegate<HTMLElement, FormSection> {
 
     // ------------------------------------------------------ factory
 
     public static FormSection formSection() {
-        return new FormSection(null, null);
+        return new FormSection(null);
     }
 
     public static FormSection formSection(String title) {
-        return new FormSection(title, div());
+        return new FormSection(div()).text(title);
     }
 
     public static <E extends HTMLElement> FormSection formSection(String title, HTMLContainerBuilder<E> titleElement) {
-        return new FormSection(title, titleElement);
+        return new FormSection(titleElement).text(title);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "fs";
+    private final HTMLContainerBuilder<? extends HTMLElement> titleElement;
 
-    <E extends HTMLElement> FormSection(String title, HTMLContainerBuilder<E> titleElement) {
+    <E extends HTMLElement> FormSection(HTMLContainerBuilder<E> titleElement) {
         super(SUB_COMPONENT_NAME, div().css(component(form, section))
                 .attr(role, group)
                 .element());
-        if (title != null) {
-            String titleId = Id.unique(ComponentType.Form.id, "section", "title");
-            aria(labelledBy, titleId);
-            if (titleElement == null) {
-                add(div().css(component(form, section, Classes.title))
-                        .id(titleId)
-                        .text(title));
-            } else {
-                add(titleElement.css(component(form, section, Classes.title))
-                        .id(titleId)
-                        .text(title));
-            }
-        }
+        this.titleElement = titleElement == null ? div() : titleElement;
+    }
+
+    @Override
+    public Element textDelegate() {
+        return titleElement.element();
     }
 
     // ------------------------------------------------------ add
@@ -78,7 +76,24 @@ public class FormSection extends FormSubComponent<HTMLElement, FormSection> {
     // ------------------------------------------------------ builder
 
     @Override
+    public FormSection text(String text) {
+        failSafeTitle();
+        return ElementTextDelegate.super.text(text);
+    }
+
+    @Override
     public FormSection that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internals
+
+    private void failSafeTitle() {
+        if (!Elements.isAttached(titleElement)) {
+            String titleId = Id.unique(ComponentType.Form.id, "section", "title");
+            aria(labelledBy, titleId);
+            add(titleElement.css(component(form, section, Classes.title))
+                    .id(titleId));
+        }
     }
 }

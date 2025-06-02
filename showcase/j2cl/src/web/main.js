@@ -22,4 +22,5 @@ import "showcase-common/showcase.css";
 import "@github/relative-time-element";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
+
 window["hljs"] = hljs; // 'export' for J2CL

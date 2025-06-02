@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
@@ -60,11 +60,11 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  * "https://www.patternfly.org/components/forms/text-input">https://www.patternfly.org/components/forms/text-input</a>
  */
 public class TextInput extends FormControl<HTMLElement, TextInput> implements
+        ComponentIcon<HTMLElement, TextInput>,
+        ElementTextMethods<HTMLElement, TextInput>,
         HasValue<String>,
         Plain<HTMLElement, TextInput>,
-        Readonly<HTMLElement, TextInput>,
-        ComponentIcon<HTMLElement, TextInput>,
-        WithText<HTMLElement, TextInput> {
+        Readonly<HTMLElement, TextInput> {
 
     // ------------------------------------------------------ factory
 
@@ -172,6 +172,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     public TextInput value(String value, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
         if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {

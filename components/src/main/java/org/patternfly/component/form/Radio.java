@@ -23,12 +23,14 @@ import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -53,6 +55,7 @@ import static org.patternfly.style.Classes.standalone;
  * @see <a href= "https://www.patternfly.org/components/forms/radio">https://www.patternfly.org/components/forms/radio</a>
  */
 public class Radio extends BaseComponent<HTMLElement, Radio> implements
+        ElementTextDelegate<HTMLElement, Radio>,
         HasValue<Boolean>,
         Disabled<HTMLElement, Radio>,
         Required<HTMLElement, Radio> {
@@ -60,33 +63,24 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     // ------------------------------------------------------ factory
 
     public static Radio radio(String id, String name) {
-        return new Radio(id, name, null, false);
-    }
-
-    public static Radio radio(String id, String name, boolean checked) {
-        return new Radio(id, name, null, checked);
+        return new Radio(id, name);
     }
 
     public static Radio radio(String id, String name, String label) {
-        return new Radio(id, name, label, false);
-    }
-
-    public static Radio radio(String id, String name, String label, boolean checked) {
-        return new Radio(id, name, label, checked);
+        return new Radio(id, name).text(label);
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
     private final List<ChangeHandler<Radio, Boolean>> changeHandlers;
-    private HTMLLabelElement labelElement;
+    private final HTMLLabelElement labelElement;
 
-    Radio(String id, String name, String label, boolean checked) {
+    Radio(String id, String name) {
         super(ComponentType.Radio, div().css(component(Classes.radio))
                 .add(input(InputType.radio).css(component(Classes.radio, input))
                         .id(id)
-                        .name(name)
-                        .checked(checked))
+                        .name(name))
                 .element());
         this.changeHandlers = new ArrayList<>();
 
@@ -96,9 +90,11 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         add(labelElement = label().css(component(Classes.radio, Classes.label))
                 .apply(l -> l.htmlFor = id)
                 .element());
-        if (label != null) {
-            labelElement.textContent = label;
-        }
+    }
+
+    @Override
+    public Element textDelegate() {
+        return labelElement;
     }
 
     // ------------------------------------------------------ add
@@ -145,7 +141,6 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         css(modifier(standalone));
         if (removeLabel) {
             failSafeRemoveFromParent(labelElement);
-            labelElement = null;
         }
         return this;
     }
@@ -156,6 +151,7 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     }
 
     public Radio value(boolean checked, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
         if (fireEvent && changed && !changeHandlers.isEmpty()) {

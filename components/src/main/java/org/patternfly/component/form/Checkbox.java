@@ -19,16 +19,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -58,6 +61,7 @@ import static org.patternfly.style.Classes.standalone;
  * @see <a href= "https://www.patternfly.org/components/forms/checkbox">https://www.patternfly.org/components/forms/checkbox</a>
  */
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
+        ElementTextDelegate<HTMLElement, Checkbox>,
         HasValue<Boolean>,
         Disabled<HTMLElement, Checkbox>,
         Required<HTMLElement, Checkbox> {
@@ -66,29 +70,29 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     // TODO Remove the checked parameter; add the wrapped flag
     public static Checkbox checkbox(String id, String name) {
-        return new Checkbox(div(), id, name, null);
+        return new Checkbox(div(), id, name);
     }
 
     public static Checkbox checkboxWrapped(String id, String name) {
-        return new Checkbox(label(), id, name, null);
+        return new Checkbox(label(), id, name);
     }
 
     public static Checkbox checkbox(String id, String name, String label) {
-        return new Checkbox(div(), id, name, label);
+        return new Checkbox(div(), id, name).text(label);
     }
 
     public static Checkbox checkboxWrapped(String id, String name, String label) {
-        return new Checkbox(label(), id, name, label);
+        return new Checkbox(label(), id, name).text(label);
     }
 
     // ------------------------------------------------------ instance
 
     private final HTMLInputElement inputElement;
     private final List<ChangeHandler<Checkbox, Boolean>> changeHandlers;
-    private HTMLElement labelElement;
+    private final HTMLElement labelElement;
     private HTMLElement requiredMarker;
 
-    <E extends HTMLElement> Checkbox(HTMLContainerBuilder<E> builder, String id, String name, String label) {
+    <E extends HTMLElement> Checkbox(HTMLContainerBuilder<E> builder, String id, String name) {
         super(ComponentType.Checkbox, builder.css(component(check))
                 .add(input(checkbox).css(component(check, input))
                         .id(id)
@@ -98,22 +102,20 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         boolean wrapped = "label".equalsIgnoreCase(element().tagName);
         if (wrapped) {
             element().setAttribute("for", id);
+            labelElement = span().css(component(check, Classes.label)).element();
+        } else {
+            labelElement = label().css(component(check, Classes.label))
+                    .apply(l -> l.htmlFor = id)
+                    .element();
         }
 
         inputElement = (HTMLInputElement) element().firstElementChild;
         inputElement.addEventListener(change.name, e -> changeHandlers.forEach(h -> h.onChange(e, this, inputElement.checked)));
-        if (label != null) {
-            if (wrapped) {
-                add(labelElement = span().css(component(check, Classes.label))
-                        .text(label)
-                        .element());
-            } else {
-                add(labelElement = label().css(component(check, Classes.label))
-                        .text(label)
-                        .apply(l -> l.htmlFor = id)
-                        .element());
-            }
-        }
+    }
+
+    @Override
+    public Element textDelegate() {
+        return labelElement;
     }
 
     // ------------------------------------------------------ add
@@ -179,9 +181,16 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         css(modifier(standalone));
         if (removeLabel) {
             failSafeRemoveFromParent(labelElement);
-            labelElement = null;
         }
         return this;
+    }
+
+    @Override
+    public Checkbox text(String text) {
+        if (!Elements.isAttached(labelElement)) {
+            add(labelElement);
+        }
+        return ElementTextDelegate.super.text(text);
     }
 
     /** Same as {@linkplain #value(boolean, boolean) value(checked, false)} */
@@ -191,6 +200,7 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     /** Sets the {@code checked} attribute of the input element. */
     public Checkbox value(boolean checked, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
         if (fireEvent && changed && !changeHandlers.isEmpty()) {

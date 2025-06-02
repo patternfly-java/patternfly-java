@@ -60,7 +60,6 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
     Button toggleButton;
     CardActions actions;
     private final HTMLElement mainElement;
-    private Card card;
     private CardTitle title;
 
     CardHeader() {

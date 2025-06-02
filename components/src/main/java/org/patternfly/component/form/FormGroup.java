@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.Id;
-import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Attributes;
@@ -49,7 +48,6 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(FormGroup.class.getName());
     static final String SUB_COMPONENT_NAME = "fg";
 
     boolean required;

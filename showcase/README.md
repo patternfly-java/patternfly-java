@@ -42,10 +42,10 @@ Run `./dev.sh j2cl`, wait until you see
 then open another shell in `showcase/j2cl` and run
 
 ```shell
-npm run watch
+npm run dev
 ```
 
-This will open https://localhost:1234/.
+This will open https://localhost:8234/.
 
 ## Production
 

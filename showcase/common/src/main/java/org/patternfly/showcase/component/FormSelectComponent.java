@@ -76,14 +76,16 @@ public class FormSelectComponent extends SnippetPage {
                         fs.validated(default_);
                         helperText.firstItem()
                                 .status(default_)
-                                .text("Validating...");
+                                .text("Validating...")
+                                .removeIcon();
                         int number = Integer.parseInt(value);
                         handle[0] = setTimeout(__ -> {
                             if (number == 0) {
                                 fs.validated(warning);
                                 helperText.firstItem()
                                         .status(warning)
-                                        .text("You must have select a value");
+                                        .text("You must have select a value")
+                                        .defaultIcon();
                             } else if (number == 3) {
                                 fs.validated(success);
                                 helperText.firstItem()
@@ -93,13 +95,14 @@ public class FormSelectComponent extends SnippetPage {
                                 fs.validated(error);
                                 helperText.firstItem()
                                         .status(error)
-                                        .text("You must chose Three (thought that was obvious)");
+                                        .text("You must chose Three (thought that was obvious)")
+                                        .defaultIcon();
                             }
                         }, 1234);
                     });
             return div()
                     .add(form()
-                            .add(formGroup()
+                            .add(formGroup("validated-form-select-0")
                                     .addLabel(formGroupLabel("Comments:"))
                                     .addControl(formGroupControl()
                                             .addControl(formSelect

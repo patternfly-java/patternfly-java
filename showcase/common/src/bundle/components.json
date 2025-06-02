@@ -259,14 +259,6 @@
     "illustration": "file-upload.png",
     "summary": "A <b>simple file upload</b> component allows users to select and upload a single file to a specific location."
   },
-  "form-control": {
-    "name": "form-control",
-    "title": "Form control",
-    "route": "/components/forms/form-control",
-    "clazz": "org.patternfly.component.form.FormControl",
-    "illustration": "form-control.png",
-    "summary": "A <b>form control</b> is a form element that guides users and accepts user input, such as text areas and selection menus."
-  },
   "form": {
     "name": "form",
     "title": "Form",
@@ -274,6 +266,14 @@
     "clazz": "org.patternfly.component.form.Form",
     "illustration": "form.png",
     "summary": "A <b>form</b> is a group of related elements that allow users to provide data and configure options in a variety of contexts, such as within modals, wizards, and pages."
+  },
+  "form-control": {
+    "name": "form-control",
+    "title": "Form control",
+    "route": "/components/forms/form-control",
+    "clazz": "org.patternfly.component.form.FormControl",
+    "illustration": "form-control.png",
+    "summary": "A <b>form control</b> is a form element that guides users and accepts user input, such as text areas and selection menus."
   },
   "form-select": {
     "name": "form-select",

@@ -18,32 +18,43 @@ package org.patternfly.component.form;
 import java.util.Iterator;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
-import org.patternfly.icon.IconSets;
+import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLabelElement;
 import elemental2.dom.MutationRecord;
 
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
-import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.iterator;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.core.Attributes.type;
+import static org.patternfly.icon.IconSets.fas.questionCircle;
+import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.help;
+import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.noPadding;
 import static org.patternfly.style.Classes.noPaddingTop;
+import static org.patternfly.style.Classes.plain;
 import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.Classes.util;
 
-public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable {
+public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable,
+        ElementTextDelegate<HTMLElement, FormGroupLabel> {
 
     // ------------------------------------------------------ factory
 
@@ -59,9 +70,9 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
     private HTMLElement labelElement;
 
     FormGroupLabel(String label) {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.label)).element());
-        add(labelElement = Elements.label().css(component(Classes.form, Classes.label))
-                .add(textElement = span().css(component(Classes.form, Classes.label, text))
+        super(SUB_COMPONENT_NAME, div().css(component(form, group, Classes.label)).element());
+        add(labelElement = Elements.label().css(component(form, Classes.label))
+                .add(textElement = span().css(component(form, Classes.label, text))
                         .text(label)
                         .element())
                 .element());
@@ -73,7 +84,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
         FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
 
         if (formGroup.role != null) {
-            HTMLElement pseudoLabelElement = span().css(component(Classes.form, Classes.label)).element();
+            HTMLElement pseudoLabelElement = span().css(component(form, Classes.label)).element();
             for (Iterator<HTMLElement> iterator = iterator(labelElement); iterator.hasNext(); ) {
                 HTMLElement element = iterator.next();
                 pseudoLabelElement.appendChild(element);
@@ -92,32 +103,36 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
             ((HTMLLabelElement) labelElement).htmlFor = formGroup.identifier();
         }
         if (formGroup.required) {
-            labelElement.appendChild(span().css(component(Classes.form, Classes.label, Classes.required))
+            labelElement.appendChild(span().css(component(form, Classes.label, Classes.required))
                     .aria(hidden, true)
                     .html(fromSafeConstant("&#42;"))
                     .element());
         }
     }
 
-    // ------------------------------------------------------ builder
-
-    public FormGroupLabel label(String label) {
-        textElement.textContent = label;
-        return this;
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
+
+    // ------------------------------------------------------ builder
 
     public FormGroupLabel noPaddingTop() {
         return css(modifier(noPaddingTop));
     }
 
     public FormGroupLabel help(String ariaLabel, Popover popover) {
-        HTMLButtonElement helpButton = button(ButtonType.button)
-                .css(component(Classes.form, group, Classes.label, Classes.help))
-                .aria(Aria.label, ariaLabel)
-                .add(IconSets.patternfly.help())
+        HTMLElement helpContainer = span().css(component(form, group, Classes.label, help), util("ml-xs"))
+                .add(span().css(component(button), modifier(plain), modifier(noPadding))
+                        .attr(type, "button")
+                        .attr(role, Roles.button)
+                        .attr(tabindex, 0)
+                        .aria(Aria.label, ariaLabel)
+                        .add(span().css(component(button, icon))
+                                .add(questionCircle())))
                 .element();
-        add(helpButton);
-        popover.trigger(helpButton).appendToBody();
+        add(helpContainer);
+        popover.trigger(helpContainer).appendToBody();
         return this;
     }
 

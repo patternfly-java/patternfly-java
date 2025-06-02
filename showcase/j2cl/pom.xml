@@ -84,7 +84,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>yarn-install</id>
+                        <id>npm-install</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>npm</goal>
@@ -94,7 +94,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>yarn-parcel</id>
+                        <id>npm-parcel</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>npm</goal>

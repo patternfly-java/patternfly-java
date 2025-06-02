@@ -57,7 +57,7 @@ public class HelperText extends BaseComponent<HTMLElement, HelperText> {
      * Shortcut for a helper text with one item {@code helperText().addItem(helperTextItem(text, status))}
      */
     public static HelperText helperText(String text, ValidationStatus status) {
-        return helperText().addItem(helperTextItem(text, status));
+        return helperText().addItem(helperTextItem(text, status).defaultIcon());
     }
 
     // ------------------------------------------------------ instance

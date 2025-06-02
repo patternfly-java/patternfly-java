@@ -38,7 +38,7 @@ import static org.patternfly.style.Classes.limitWidth;
 import static org.patternfly.style.Classes.modifier;
 
 /**
- * A form is a group of elements used to collect information from a user in a variety of contexts including in a modal, in a
+ * A form is a group of elements used to collect information from a user in a variety of contexts, including in a modal, in a
  * wizard, or on a page. Use cases for forms include tasks reliant on user-inputted information for completion like logging in,
  * registering, configuring settings, or completing surveys.
  *

@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLTextAreaElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Attributes;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Modifiers.Plain;
@@ -42,6 +42,8 @@ import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.textarea;
 
 /**
  * A text area component is used for entering a paragraph of text that is longer than one line.
@@ -50,11 +52,11 @@ import static org.patternfly.core.Aria.invalid;
  * "https://www.patternfly.org/components/forms/text-area">https://www.patternfly.org/components/forms/text-area</a>
  */
 public class TextArea extends FormControl<HTMLElement, TextArea> implements
+        Attachable,
+        ElementTextMethods<HTMLElement, TextArea>,
         HasValue<String>,
         Plain<HTMLElement, TextArea>,
-        Readonly<HTMLElement, TextArea>,
-        WithText<HTMLElement, TextArea>,
-        Attachable {
+        Readonly<HTMLElement, TextArea> {
 
     // ------------------------------------------------------ factory
 
@@ -76,6 +78,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
 
     TextArea(String id, String value) {
         super(id, formControlContainer()
+                        .css(modifier(textarea))
                         .add(textarea()
                                 .id(id)
                                 .apply(ta -> {
@@ -164,6 +167,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     }
 
     public TextArea value(String value, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = !Objects.equals(textAreaElement.value, value);
         textAreaElement.value = value;
         if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {

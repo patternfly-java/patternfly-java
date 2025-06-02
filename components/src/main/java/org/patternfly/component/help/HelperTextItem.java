@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.help;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
@@ -46,8 +47,8 @@ import static org.patternfly.style.Classes.screenReader;
 
 public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTextItem> implements
         ComponentIcon<HTMLElement, HelperTextItem>,
-        WithText<HTMLElement, HelperTextItem>,
         ComponentIconAndText<HTMLElement, HelperTextItem>,
+        ElementTextMethods<HTMLElement, HelperTextItem>,
         HasValue<String> {
 
     // ------------------------------------------------------ factory
@@ -110,7 +111,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     public HelperTextItem defaultIcon() {
         defaultIcon = true;
-        failSafeIconContainer().appendChild(status.icon.get().element());
+        icon(status.icon.get().element());
         return this;
     }
 
@@ -127,6 +128,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     @Override
     public HelperTextItem removeIcon() {
         failSafeRemoveFromParent(iconContainer);
+        iconContainer = null;
         return this;
     }
 

@@ -199,6 +199,19 @@ public interface Modifiers {
         }
     }
 
+    interface NoOffset<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #noOffset(boolean) noOffset(true)} */
+        default B noOffset() {
+            return noOffset(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(noOffset)} */
+        default B noOffset(boolean noOffset) {
+            return toggleModifier(that(), element(), Classes.noOffset, noOffset);
+        }
+    }
+
     interface Padding<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #padding(boolean) padding(true)} */

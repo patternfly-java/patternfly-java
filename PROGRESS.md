@@ -20,9 +20,9 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `drawer`
 - [x] `emptystate`
 - [x] `expandable`
-- [ ] `form`
-- [ ] `help`
-- [ ] `hint`
+- [x] `form`
+- [x] `help`
+- [x] `hint`
 - [ ] `icon`
 - [ ] `inputgroup`
 - [ ] `jumplinks`

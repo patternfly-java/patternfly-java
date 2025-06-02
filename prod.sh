@@ -114,4 +114,4 @@ fi
 msg "Start ${YELLOW}${LABEL}${NOFORMAT} production mode..."
 mvn --projects org.patternfly:${ARTIFACT} --also-make -P prod,showcase ${CLEAN} package
 cd ${DIRECTORY}
-mvn com.github.eirslett:frontend-maven-plugin:yarn@http-server
+mvn com.github.eirslett:frontend-maven-plugin:npm@http-server

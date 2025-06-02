@@ -27,6 +27,7 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.hint.Hint.hint;
 import static org.patternfly.component.hint.HintActions.hintActions;
 import static org.patternfly.component.hint.HintBody.hintBody;
@@ -44,6 +45,7 @@ import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.style.Classes.util;
 
 @Route(value = "/components/hint", title = "Hint")
 public class HintComponent extends SnippetPage {
@@ -126,6 +128,23 @@ public class HintComponent extends SnippetPage {
                         .element()
                 // @code-end:hint-basic-no-title
         ));
+
+        addSnippet(new Snippet("hint-with-action", "With actions",
+                code("hint-with-action"), () -> {
+            // @code-start:hint-with-action
+            HintActions hintActions = hintActions();
+            return div()
+                    .add(checkbox("no-offset", "no-offset", "No actions offset")
+                            .onChange((e, c, value) -> hintActions.noOffset(value)))
+                    .add(hint().css(util("mt-sm"))
+                            .addActions(hintActions
+                                    .add(button("Action").primary()))
+                            .addTitle(hintTitle().text("Do more with Find it Fix it capabilities"))
+                            .addBody(hintBody().text(
+                                    "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.")))
+                    .element();
+            // @code-end:hint-with-action
+        }));
 
         startApiDocs(Hint.class);
         addApiDoc(Hint.class, component);

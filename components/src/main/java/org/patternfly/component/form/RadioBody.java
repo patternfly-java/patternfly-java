@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.form;
 
+import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
@@ -22,7 +24,7 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.radio;
 
-public class RadioBody extends RadioSubComponent<HTMLElement, RadioBody> {
+public class RadioBody extends RadioSubComponent<HTMLElement, RadioBody> implements ElementTextMethods<HTMLElement, RadioBody> {
 
     // ------------------------------------------------------ factory
 

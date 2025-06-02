@@ -165,6 +165,7 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     public FormSelect value(String value, boolean fireEvent) {
+        //noinspection DuplicatedCode
         boolean changed = !Objects.equals(selectElement.value, value);
         selectElement.value = value;
         if (fireEvent && changed && !changeHandlers.isEmpty()) {

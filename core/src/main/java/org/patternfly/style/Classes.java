@@ -262,6 +262,7 @@ public interface Classes {
     String term = "term";
     String tertiary = "tertiary";
     String text = "text";
+    String textarea = "textarea";
     String textAlignLeft = "text-align-left";
     String textInput = "text-input";
     String textInputGroup = "text-input-group";
