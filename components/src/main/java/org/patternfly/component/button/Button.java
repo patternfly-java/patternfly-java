@@ -33,6 +33,7 @@ import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
@@ -96,6 +97,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     public static Button button(String text) {
         return button(Elements.button()).text(text);
+    }
+
+    public static Button button(PredefinedIcon icon) {
+        return button(Elements.button()).icon(icon);
     }
 
     /**

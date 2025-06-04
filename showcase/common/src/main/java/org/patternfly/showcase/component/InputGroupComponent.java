@@ -117,12 +117,12 @@ public class InputGroupComponent extends SnippetPage {
         addSnippet(new Snippet("input-group-popover", "With popover",
                 code("input-group-popover"), () ->
                 // @code-start:input-group-popover
-                div().style("width", "500px")
+                div()
                         .add(inputGroup()
                                 .addItem(inputGroupItem().fill()
                                         .addControl(textInput("input-group-popover-0")))
-                                .addText(inputGroupText().id("input-group-popover-icon-0")
-                                        .icon(questionCircle()))
+                                .addItem(inputGroupItem().id("input-group-popover-icon-0")
+                                        .addButton(button(questionCircle()).control()))
                                 .add(popover(By.id("input-group-popover-icon-0"))
                                         .placement(top)
                                         .addBody("This field is an example of an input group with a popover.")))
@@ -130,8 +130,8 @@ public class InputGroupComponent extends SnippetPage {
                         .add(inputGroup()
                                 .addItem(inputGroupItem().fill()
                                         .addControl(textInput("input-group-popover-1")))
-                                .addText(inputGroupText().id("input-group-popover-icon-1")
-                                        .icon(questionCircle()).plain())
+                                .addItem(inputGroupItem().id("input-group-popover-icon-1")
+                                        .addButton(button(questionCircle()).plain()))
                                 .add(popover(By.id("input-group-popover-icon-1"))
                                         .placement(top)
                                         .addBody("This field is an example of an input group with a popover.")))

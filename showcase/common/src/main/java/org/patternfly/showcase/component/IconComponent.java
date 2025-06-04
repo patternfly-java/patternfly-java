@@ -17,6 +17,7 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.icon.Icon;
+import org.patternfly.component.icon.IconSize;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -56,6 +57,7 @@ import static org.patternfly.icon.IconSets.fas.longArrowAltDown;
 import static org.patternfly.icon.IconSets.fas.plusCircle;
 import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
+import static org.patternfly.showcase.ApiDoc.Type.modifier;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.util;
@@ -241,5 +243,6 @@ public class IconComponent extends SnippetPage {
 
         startApiDocs(Icon.class);
         addApiDoc(Icon.class, component);
+        addApiDoc(IconSize.class, modifier);
     }
 }

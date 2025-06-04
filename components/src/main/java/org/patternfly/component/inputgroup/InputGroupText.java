@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.inputgroup;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ElementContainerDelegate;
@@ -35,10 +36,10 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGroupText> implements
+        ComponentIcon<HTMLElement, InputGroupText>,
         ElementContainerDelegate<HTMLElement, InputGroupText>,
-        Plain<HTMLElement, InputGroupText>,
-        WithText<HTMLElement, InputGroupText>,
-        ComponentIcon<HTMLElement, InputGroupText> {
+        ElementTextMethods<HTMLElement, InputGroupText>,
+        Plain<HTMLElement, InputGroupText> {
 
     // ------------------------------------------------------ factory
 

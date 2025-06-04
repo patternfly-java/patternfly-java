@@ -23,7 +23,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `form`
 - [x] `help`
 - [x] `hint`
-- [ ] `icon`
+- [x] `icon`
 - [ ] `inputgroup`
 - [ ] `jumplinks`
 - [ ] `label`
