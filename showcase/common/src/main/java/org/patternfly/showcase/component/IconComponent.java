@@ -29,6 +29,21 @@ import static org.jboss.elemento.Elements.strong;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.icon.Icon.icon;
+import static org.patternfly.component.icon.IconSize._2xl;
+import static org.patternfly.component.icon.IconSize._3xl;
+import static org.patternfly.component.icon.IconSize.bodyDefault;
+import static org.patternfly.component.icon.IconSize.bodyLg;
+import static org.patternfly.component.icon.IconSize.bodySm;
+import static org.patternfly.component.icon.IconSize.heading2xl;
+import static org.patternfly.component.icon.IconSize.heading3xl;
+import static org.patternfly.component.icon.IconSize.headingLg;
+import static org.patternfly.component.icon.IconSize.headingMd;
+import static org.patternfly.component.icon.IconSize.headingSm;
+import static org.patternfly.component.icon.IconSize.headingXl;
+import static org.patternfly.component.icon.IconSize.lg;
+import static org.patternfly.component.icon.IconSize.md;
+import static org.patternfly.component.icon.IconSize.sm;
+import static org.patternfly.component.icon.IconSize.xl;
 import static org.patternfly.icon.IconSets.fas.angleDown;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.check;
@@ -44,10 +59,6 @@ import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.util;
-import static org.patternfly.style.Size.lg;
-import static org.patternfly.style.Size.md;
-import static org.patternfly.style.Size.sm;
-import static org.patternfly.style.Size.xl;
 import static org.patternfly.style.Status.custom;
 import static org.patternfly.style.Status.danger;
 import static org.patternfly.style.Status.info;
@@ -76,7 +87,8 @@ public class IconComponent extends SnippetPage {
                 // @code-end:icon-basic
         ));
 
-        addSnippet(new Snippet("icon-sizes", "Sizes",
+        addSnippet(new Snippet("icon-sizes", "Standalone icon sizes",
+                "These are the standard options for sizing icons.",
                 code("icon-sizes"), () ->
                 // @code-start:icon-sizes
                 div()
@@ -87,8 +99,46 @@ public class IconComponent extends SnippetPage {
                         .add(icon(plusCircle()).size(lg))
                         .add(" ")
                         .add(icon(plusCircle()).size(xl))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(_2xl))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(_3xl))
                         .element()
                 // @code-end:icon-sizes
+        ));
+
+        addSnippet(new Snippet("body-sizes", "Body sizes",
+                "These size options are meant to make icons match the size of body text.",
+                code("body-sizes"), () ->
+                // @code-start:body-sizes
+                div()
+                        .add(icon(plusCircle()).size(bodySm))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(bodyDefault))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(bodyLg))
+                        .element()
+                // @code-end:body-sizes
+        ));
+
+        addSnippet(new Snippet("heading-sizes", "Heading sizes",
+                "These size options are meant to make icons match the size of heading text.",
+                code("heading-sizes"), () ->
+                // @code-start:heading-sizes
+                div()
+                        .add(icon(plusCircle()).size(headingSm))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(headingMd))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(headingLg))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(headingXl))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(heading2xl))
+                        .add(" ")
+                        .add(icon(plusCircle()).size(heading3xl))
+                        .element()
+                // @code-end:heading-sizes
         ));
 
         addSnippet(new Snippet("icon-status-colors", "Status colors",
@@ -114,13 +164,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-container"), () ->
                 // @code-start:icon-container
                 div()
-                        .add(icon(plusCircle()).size(xl).iconSize(sm))
+                        .add(icon(plusCircle()).size(_3xl).iconSize(lg))
                         .add(" ")
-                        .add(icon(plusCircle()).size(xl).iconSize(md))
+                        .add(icon(plusCircle()).size(_3xl).iconSize(xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(xl).iconSize(lg))
+                        .add(icon(plusCircle()).size(_3xl).iconSize(_2xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(xl))
+                        .add(icon(plusCircle()).size(_3xl))
                         .element()
                 // @code-end:icon-container
         ));

@@ -1,12 +1,12 @@
 import java.util.Random;
 
 import org.patternfly.component.icon.Icon;
+import org.patternfly.component.icon.IconSize;
 
 import static org.patternfly.component.icon.Icon.icon;
 import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
 import static org.patternfly.icon.IconSets.fas.filter;
-import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Status.warning;
 
 public class IconDemo {
@@ -15,7 +15,7 @@ public class IconDemo {
         // @start region = icon
         icon(check());
         icon(filter())
-                .size(lg);
+                .size(IconSize.lg);
         icon(exclamationTriangle())
                 .inline()
                 .status(warning);

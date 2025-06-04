@@ -25,7 +25,6 @@ import org.patternfly.component.spinner.Spinner;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
-import org.patternfly.style.Size;
 import org.patternfly.style.Status;
 
 import elemental2.dom.Element;
@@ -72,8 +71,9 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
     // ------------------------------------------------------ instance
 
     private final HTMLElement content;
-    private Size size;
-    private Size iconSize;
+    private IconSize size;
+    private IconSize iconSize;
+    private IconSize progressIconSize;
     private Spinner spinner;
 
     Icon(Element icon) {
@@ -87,14 +87,25 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
     // ------------------------------------------------------ builder
 
     /**
-     * Modifies the size of this component.
+     * Size of the icon component container and icon.
      */
-    public Icon size(Size size) {
+    public Icon size(IconSize size) {
         return swap(this, element(), size, this.size, () -> this.size = size);
     }
 
-    public Icon iconSize(Size iconSize) {
+    /**
+     * Size of icon. Overrides the icon size set by the size property.
+     */
+    public Icon iconSize(IconSize iconSize) {
         return swap(this, content, iconSize, this.iconSize, () -> this.iconSize = iconSize);
+    }
+
+    /**
+     * Size of progress icon. Overrides the icon size set by the {@link #size(IconSize)} property.
+     */
+    public Icon progressIconSize(IconSize progressIconSize) {
+        this.progressIconSize = progressIconSize;
+        return this;
     }
 
     public Icon status(Status status) {
@@ -108,10 +119,12 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
             element().classList.add(modifier(Classes.inProgress));
             if (spinner == null) {
                 spinner = spinner(label);
-                if (size != null) {
-                    spinner.size(size);
+                if (progressIconSize != null) {
+                    spinner.size(progressIconSize.asSize());
                 } else if (iconSize != null) {
-                    spinner.size(iconSize);
+                    spinner.size(iconSize.asSize());
+                } else if (size != null) {
+                    spinner.size(size.asSize());
                 } else {
                     spinner.size(md);
                 }

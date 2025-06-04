@@ -23,7 +23,6 @@ import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.ValidationStatus;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
