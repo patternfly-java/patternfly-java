@@ -36,12 +36,12 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.WithText;
+import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
@@ -78,6 +78,7 @@ import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.actions;
+import static org.patternfly.style.Classes.clickable;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.editable;
@@ -94,16 +95,16 @@ import static org.patternfly.style.Variables.MaxWidth;
  * @see <a href= "https://www.patternfly.org/components/label">https://www.patternfly.org/components/label</a>
  */
 public class Label extends BaseComponent<HTMLElement, Label> implements
+        Attachable,
         Closeable<HTMLElement, Label>,
         Compact<HTMLElement, Label>,
         ComponentContext<HTMLElement, Label>,
-        Disabled<HTMLElement, Label>,
-        HasValue<String>,
-        WithText<HTMLElement, Label>,
         ComponentIcon<HTMLElement, Label>,
         ComponentIconAndText<HTMLElement, Label>,
+        Disabled<HTMLElement, Label>,
+        ElementTextDelegate<HTMLElement, Label>,
         HasIdentifier<HTMLElement, Label>,
-        Attachable {
+        HasValue<String> {
 
     // ------------------------------------------------------ factory
 
@@ -137,7 +138,6 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     private HTMLElement actionsElement;
     private HTMLElement iconContainer;
     private HTMLInputElement inputElement;
-    private Tooltip tooltip;
     private Button closeButton;
     private HandlerRegistration cancelEditModeOnDocumentClick;
 
@@ -159,6 +159,11 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
                 .element());
         tooltipToggle = new TooltipToggle(textElement);
         Attachable.register(this, this);
+    }
+
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     @Override
@@ -198,6 +203,16 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         return Disabled.super.disabled(disabled);
     }
 
+    /** Same as {@linkplain #filled(boolean) filled(true)} */
+    public Label filled() {
+        return filled(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(filled)} */
+    public Label filled(boolean filled) {
+        return toggleModifier(that(), element(), Classes.filled, filled);
+    }
+
     /** Same as {@linkplain #outline(boolean) outline(true)} */
     public Label outline() {
         return outline(true);
@@ -218,6 +233,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
                 .add(closeButton = Button.button()
                         .icon(times())
                         .plain()
+                        .noPadding()
                         .aria(Aria.label, "Close " + textElement.textContent)
                         .on(click, event -> close(event, true)))
                 .element(), contentElement);
@@ -229,6 +245,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     }
 
     public Label clickable(ComponentHandler<Label> clickHandler) {
+        css(modifier(clickable));
         onClick(clickHandler);
         replaceContent(button(ButtonType.button).css(component(Classes.label, content))
                 .on(click, e -> {
@@ -282,7 +299,15 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     }
 
     public Label href(String href) {
+        css(modifier(clickable));
         replaceContent(a(href).css(component(Classes.label, content)).element());
+        return this;
+    }
+
+    public Label status(Severity severity) {
+        css(severity.status.modifier());
+        removeIcon();
+        icon(severity.icon.get());
         return this;
     }
 
@@ -331,17 +356,23 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     }
 
     public Label onClick(ComponentHandler<Label> clickHandler) {
-        this.clickHandler.add(clickHandler);
+        if (clickHandler != null) {
+            this.clickHandler.add(clickHandler);
+        }
         return this;
     }
 
     public Label onEditCancel(LabelEditCancelHandler cancelHandler) {
-        this.editCancelHandler.add(cancelHandler);
+        if (cancelHandler != null) {
+            this.editCancelHandler.add(cancelHandler);
+        }
         return this;
     }
 
     public Label onEditComplete(LabelEditCompleteHandler completeHandler) {
-        this.editCompleteHandler.add(completeHandler);
+        if (completeHandler != null) {
+            this.editCompleteHandler.add(completeHandler);
+        }
         return this;
     }
 
@@ -416,7 +447,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     }
 
     private void cancelEdit(Event event, String previousText) {
-            editCancelHandler.forEach(ech -> ech.cancel(event, this, previousText));
+        editCancelHandler.forEach(ech -> ech.cancel(event, this, previousText));
         leaveEdit();
     }
 

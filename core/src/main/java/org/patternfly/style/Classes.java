@@ -107,6 +107,7 @@ public interface Classes {
     String favorited = "favorited";
     String fieldGroup = "field-group";
     String fill = "fill";
+    String filled = "filled";
     String fillColumns = "fill-columns";
     String fitContent = "fit-content";
     String fixed = "fixed";

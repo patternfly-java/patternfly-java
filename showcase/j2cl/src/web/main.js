@@ -23,4 +23,4 @@ import "@github/relative-time-element";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
 
-window["hljs"] = hljs; // 'export' for J2CL
+window["hljs"] = hljs; // 'export' hljs for J2CL

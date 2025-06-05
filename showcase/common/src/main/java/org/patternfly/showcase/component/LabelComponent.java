@@ -17,6 +17,7 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.Severity;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelEditCancelHandler;
 import org.patternfly.component.label.LabelEditCompleteHandler;
@@ -30,8 +31,10 @@ import elemental2.dom.HTMLDivElement;
 import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.strong;
 import static org.patternfly.component.label.Label.label;
 import static org.patternfly.component.label.LabelGroup.labelGroup;
+import static org.patternfly.icon.IconSets.fas.cube;
 import static org.patternfly.icon.IconSets.fas.infoCircle;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.handler;
@@ -53,80 +56,129 @@ public class LabelComponent extends SnippetPage {
         addSnippet(new Snippet("label-filled", "Filled labels",
                 code("label-filled"), () -> {
             // @code-start:label-filled
-            HTMLContainerBuilder<HTMLDivElement> div = div();
-            Color[] values = Color.values();
-            for (Color color : values) {
+            HTMLContainerBuilder<HTMLDivElement> div = div().id("ws-react-c-label-filled-labels");
+            div.add(strong().text("Non-status")).add(br()).add(br());
+            for (Color color : Color.values()) {
                 String name = color.name().substring(0, 1).toUpperCase() + color.name().substring(1);
-                div.add(label(name, color)).add(" ");
-                div.add(label(name + " icon", color).icon(infoCircle())).add(" ");
-                div.add(label(name + " removable", color).closable()).add(" ");
-                div.add(label(name + " icon removable", color).icon(infoCircle()).closable()).add(" ");
-                div.add(label(name + " link", color).href("#")).add(" ");
-                div.add(label(name + " link removable", color).href("#").closable()).add(" ");
-                div.add(label(name + " clickable", color).uniqueId()
-                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
-                        .add(" ");
-                div.add(label(name + " clickable removable", color).uniqueId().closable()
-                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
-                        .add(" ");
-                div.add(label(name + " label with icon that overflows", color).closable()
+                div.add(label(name, color).filled());
+                div.add(label(name + " icon", color).filled().icon(cube()));
+                div.add(label(name + " removable", color).filled().closable());
+                div.add(label(name + " icon removable", color).filled().icon(cube()).closable());
+                div.add(label(name + " link", color).filled().href("#"));
+                div.add(label(name + " link removable", color).filled().href("#").closable());
+                div.add(label(name + " clickable", color).filled().uniqueId()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " clickable removable", color).filled().uniqueId().closable()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " label with icon that overflows", color).filled().closable()
                         .textMaxWidth("16ch"));
+                div.add(label(name + " link removable (disabled)", color).filled().disabled().href("#").closable());
+                div.add(label(name + " clickable removable (disabled)", color).filled().disabled().clickable().closable());
                 div.add(br()).add(br());
             }
             div.add(div().style("width", "250px")
                     .add(label("Label that overflows its parent, but has no textMaxWidth on its own")));
+
+            div.add(br()).add(strong().text("Status")).add(br()).add(br());
+            for (Severity severity : Severity.values()) {
+                String name = severity.status.name().substring(0, 1).toUpperCase() + severity.status.name().substring(1);
+                div.add(label(name).status(severity).filled());
+                div.add(label(name + " removable").status(severity).filled().closable());
+                div.add(label(name + " link").status(severity).filled().href("#"));
+                div.add(label(name + " link removable").status(severity).filled().href("#").closable());
+                div.add(label(name + " clickable").status(severity).filled().uniqueId()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " clickable removable").status(severity).filled().uniqueId().closable()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " label with icon that overflows").status(severity).filled().closable()
+                        .textMaxWidth("16ch"));
+                div.add(br()).add(br());
+            }
             return div.element();
             // @code-end:label-filled
         }));
 
-        addSnippet(new Snippet("label-outline", "Outlined labels",
-                code("label-outline"), () -> {
-            // @code-start:label-outline
-            HTMLContainerBuilder<HTMLDivElement> div = div();
-            Color[] values = Color.values();
-            for (int i = 0; i < values.length; i++) {
-                Color color = values[i];
+        addSnippet(new Snippet("label-outlined", "Filled labels",
+                code("label-outlined"), () -> {
+            // @code-start:label-outlined
+            HTMLContainerBuilder<HTMLDivElement> div = div().id("ws-react-c-label-outlined-labels");
+            div.add(strong().text("Non-status")).add(br()).add(br());
+            for (Color color : Color.values()) {
                 String name = color.name().substring(0, 1).toUpperCase() + color.name().substring(1);
-                div.add(label(name, color).outline()).add(" ");
-                div.add(label(name + " icon", color).outline().icon(infoCircle())).add(" ");
-                div.add(label(name + " removable", color).outline().closable()).add(" ");
-                div.add(label(name + " icon removable", color).outline().icon(infoCircle()).closable()).add(" ");
-                div.add(label(name + " link", color).outline().href("#")).add(" ");
-                div.add(label(name + " link removable", color).outline().href("#").closable()).add(" ");
+                div.add(label(name, color).outline());
+                div.add(label(name + " icon", color).outline().icon(cube()));
+                div.add(label(name + " removable", color).outline().closable());
+                div.add(label(name + " icon removable", color).outline().icon(cube()).closable());
+                div.add(label(name + " link", color).outline().href("#"));
+                div.add(label(name + " link removable", color).outline().href("#").closable());
                 div.add(label(name + " clickable", color).outline().uniqueId()
-                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
-                        .add(" ");
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
                 div.add(label(name + " clickable removable", color).outline().uniqueId().closable()
-                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
-                        .add(" ");
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
                 div.add(label(name + " label with icon that overflows", color).outline().closable()
                         .textMaxWidth("16ch"));
-                if (i < values.length - 1) {
-                    div.add(br()).add(br());
-                }
+                div.add(label(name + " link removable (disabled)", color).outline().disabled().href("#").closable());
+                div.add(label(name + " clickable removable (disabled)", color).outline().disabled().clickable().closable());
+                div.add(br()).add(br());
+            }
+            div.add(div().style("width", "250px")
+                    .add(label("Label that overflows its parent, but has no textMaxWidth on its own")));
+
+            div.add(br()).add(strong().text("Status")).add(br()).add(br());
+            for (Severity severity : Severity.values()) {
+                String name = severity.status.name().substring(0, 1).toUpperCase() + severity.status.name().substring(1);
+                div.add(label(name).status(severity).outline());
+                div.add(label(name + " removable").status(severity).outline().closable());
+                div.add(label(name + " link").status(severity).outline().href("#"));
+                div.add(label(name + " link removable").status(severity).outline().href("#").closable());
+                div.add(label(name + " clickable").status(severity).outline().uniqueId()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " clickable removable").status(severity).outline().uniqueId().closable()
+                        .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")));
+                div.add(label(name + " label with icon that overflows").status(severity).outline().closable()
+                        .textMaxWidth("16ch"));
+                div.add(br()).add(br());
             }
             return div.element();
-            // @code-end:label-outline
+            // @code-end:label-outlined
         }));
 
         addSnippet(new Snippet("label-compact", "Compact labels",
                 code("label-compact"), () ->
                 // @code-start:label-compact
-                div()
-                        .add(label("Grey").compact()).add(" ")
-                        .add(label("Grey icon").compact().icon(infoCircle())).add(" ")
-                        .add(label("Grey removable").compact().closable()).add(" ")
-                        .add(label("Grey icon removable").compact().icon(infoCircle()).closable()).add(" ")
-                        .add(label("Grey link").compact().href("#")).add(" ")
-                        .add(label("Grey link removable").compact().href("#").closable()).add(" ")
-                        .add(label("Grey clickable").compact().uniqueId()
+                div().id("ws-react-c-label-compact-labels")
+                        .add(label("Compact").compact().filled()).add(" ")
+                        .add(label("Compact icon").compact().filled().icon(cube())).add(" ")
+                        .add(label("Compact removable").compact().filled().closable()).add(" ")
+                        .add(label("Compact icon removable").compact().filled().icon(cube()).closable()).add(" ")
+                        .add(label("Compact link").compact().filled().href("#")).add(" ")
+                        .add(label("Compact link removable").compact().filled().href("#").closable()).add(" ")
+                        .add(label("Compact clickable").compact().filled().uniqueId()
                                 .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
                         .add(" ")
-                        .add(label("Grey clickable removable").compact().uniqueId().closable()
+                        .add(label("Compact clickable removable").compact().filled().uniqueId().closable()
                                 .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
                         .add(" ")
-                        .add(label("Grey label with icon that overflows").compact().closable()
+                        .add(label("Compact label with icon that overflows").compact().filled().closable()
                                 .textMaxWidth("16ch"))
+                        .add(label("Compact link removable (disabled)").compact().filled().disabled().href("#").closable())
+                        .add(label("Compact clickable removable (disabled)").compact().filled().disabled().clickable().closable())
+                        .add(label("Compact").compact().outline()).add(" ")
+                        .add(label("Compact icon").compact().outline().icon(cube())).add(" ")
+                        .add(label("Compact removable").compact().outline().closable()).add(" ")
+                        .add(label("Compact icon removable").compact().outline().icon(cube()).closable()).add(" ")
+                        .add(label("Compact link").compact().outline().href("#")).add(" ")
+                        .add(label("Compact link removable").compact().outline().href("#").closable()).add(" ")
+                        .add(label("Compact clickable").compact().outline().uniqueId()
+                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
+                        .add(" ")
+                        .add(label("Compact clickable removable").compact().outline().uniqueId().closable()
+                                .clickable((e, l) -> console.log("Label " + l.element().id + " clicked")))
+                        .add(" ")
+                        .add(label("Compact label with icon that overflows").compact().outline().closable()
+                                .textMaxWidth("16ch"))
+                        .add(label("Compact link removable (disabled)").compact().outline().disabled().href("#").closable())
+                        .add(label("Compact clickable removable (disabled)").compact().outline().disabled().clickable().closable())
                         .element()
                 // @code-end:label-compact
         ));
