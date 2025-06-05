@@ -69,7 +69,7 @@ public class ActionListComponent extends SnippetPage {
                                             .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             return div()
                     .add(actionList()
-                            .addGroup(actionListGroup()
+                            .addItem(actionListGroup()
                                     .addItem(actionListItem()
                                             .add(button("Next").primary()))
                                     .addItem(actionListItem()
@@ -77,7 +77,7 @@ public class ActionListComponent extends SnippetPage {
                     .add(br())
                     .add("With kebab")
                     .add(actionList()
-                            .addGroup(actionListGroup()
+                            .addItem(actionListGroup()
                                     .addItem(actionListItem()
                                             .add(button("Next").primary()))
                                     .addItem(actionListItem()
@@ -93,7 +93,20 @@ public class ActionListComponent extends SnippetPage {
                 // @code-start:action-list-icons
                 div()
                         .add(actionList().icons()
-                                .addGroup(actionListGroup()
+                                .addItem(actionListGroup()
+                                        .addItem(actionListItem()
+                                                .add(button().icon(times()).plain()))
+                                        .addItem(actionListItem()
+                                                .add(button().icon(check()).plain()))))
+                        .add(br())
+                        .add("With group icons wrapper")
+                        .add(actionList()
+                                .addItem(actionListGroup().icons()
+                                        .addItem(actionListItem()
+                                                .add(button().icon(times()).plain()))
+                                        .addItem(actionListItem()
+                                                .add(button().icon(check()).plain())))
+                                .addItem(actionListGroup().icons()
                                         .addItem(actionListItem()
                                                 .add(button().icon(times()).plain()))
                                         .addItem(actionListItem()
@@ -106,9 +119,28 @@ public class ActionListComponent extends SnippetPage {
                 code("action-list-multiple-groups"), () ->
                 // @code-start:action-list-multiple-groups
                 div()
+                        .add(actionList()
+                                .addItem(actionListGroup()
+                                        .addItem(actionListItem()
+                                                .add(button("Next").primary()))
+                                        .addItem(actionListItem()
+                                                .add(button("Back").secondary())))
+                                .addItem(actionListGroup()
+                                        .addItem(actionListItem()
+                                                .add(button("Submit").primary()))
+                                        .addItem(actionListItem()
+                                                .add(button("Cancel").link()))))
+                        .element()
+                // @code-end:action-list-multiple-groups
+        ));
+
+        addSnippet(new Snippet("action-list-cancel-button", "Action list with cancel button",
+                code("action-list-cancel-button"), () ->
+                // @code-start:action-list-cancel-button
+                div()
                         .add("In modals, forms, data lists")
                         .add(actionList()
-                                .addGroup(actionListGroup()
+                                .addItem(actionListGroup()
                                         .addItem(actionListItem()
                                                 .add(button("Save").primary()))
                                         .addItem(actionListItem()
@@ -116,16 +148,15 @@ public class ActionListComponent extends SnippetPage {
                         .add(br())
                         .add("In wizards")
                         .add(actionList()
-                                .addGroup(actionListGroup()
+                                .addItem(actionListGroup()
                                         .addItem(actionListItem()
                                                 .add(button("Next").primary()))
                                         .addItem(actionListItem()
-                                                .add(button("Back").secondary())))
-                                .addGroup(actionListGroup()
+                                                .add(button("Back").secondary()))
                                         .addItem(actionListItem()
                                                 .add(button("Cancel").link()))))
                         .element()
-                // @code-end:action-list-multiple-groups
+                // @code-end:action-list-cancel-button
         ));
 
         startApiDocs(ActionList.class);

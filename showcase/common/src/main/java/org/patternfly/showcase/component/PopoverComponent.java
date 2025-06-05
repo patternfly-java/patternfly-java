@@ -197,7 +197,7 @@ public class PopoverComponent extends SnippetPage {
                 // @code-start:popover-alert
                 div().style("margin", "50px")
                         .add(actionList()
-                                .addGroup(actionListGroup()
+                                .addItem(actionListGroup()
                                         .addItem(actionListItem()
                                                 .add(button("Custom").primary()
                                                         .id("popover-alert-custom"))

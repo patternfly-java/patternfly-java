@@ -145,7 +145,7 @@ public class AlertComponent extends SnippetPage {
                             .element();
                     return div()
                             .add(actionList()
-                                    .addGroup(actionListGroup()
+                                    .addItem(actionListGroup()
                                             .addItem(actionListItem()
                                                     .add(button("Add alert").secondary()
                                                             .onClick((event, button) -> alerts.appendChild(li()
@@ -349,7 +349,7 @@ public class AlertComponent extends SnippetPage {
                 // @code-start:alert-group-toast
                 div()
                         .add(actionList()
-                                .addGroup(actionListGroup()
+                                .addItem(actionListGroup()
                                         .addItem(actionListItem()
                                                 .add(button("Add toast success alert").secondary()
                                                         .onClick((e, b) -> alertGroup(toast)
@@ -374,7 +374,7 @@ public class AlertComponent extends SnippetPage {
                     final double[] intervalHandle = {0};
                     return div()
                             .add(actionList()
-                                    .addGroup(actionListGroup()
+                                    .addItem(actionListGroup()
                                             .addItem(actionListItem()
                                                     .add(button("Start async alerts").secondary()
                                                             .onClick((e, b) -> intervalHandle[0] = setInterval(__ -> {

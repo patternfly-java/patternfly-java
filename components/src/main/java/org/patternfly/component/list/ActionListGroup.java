@@ -15,11 +15,16 @@
  */
 package org.patternfly.component.list;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -28,27 +33,49 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
+import static org.patternfly.style.Classes.icons;
+import static org.patternfly.style.Classes.modifier;
 
 public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> implements
+        ComponentContext<HTMLDivElement, ActionListGroup>,
+        HasIdentifier<HTMLDivElement, ActionListGroup>,
         HasItems<HTMLDivElement, ActionListGroup, ActionListItem> {
 
     // ------------------------------------------------------ factory
 
     public static ActionListGroup actionListGroup() {
-        return new ActionListGroup();
+        return new ActionListGroup(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_NAME));
+    }
+
+    public static ActionListGroup actionListGroup(String identifier) {
+        return new ActionListGroup(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "alg";
+    private final String identifier;
+    private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;
 
-    ActionListGroup() {
+    ActionListGroup(String identifier) {
         super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
     }
 
     // ------------------------------------------------------ builder
+
+    public ActionListGroup icons() {
+        return css(modifier(icons));
+    }
+
+    @Override
+    public <T> ActionListGroup store(String key, T value) {
+        data.put(key, value);
+        return this;
+    }
 
     @Override
     public ActionListGroup that() {
@@ -64,6 +91,25 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
+    }
 
     @Override
     public Iterator<ActionListItem> iterator() {
