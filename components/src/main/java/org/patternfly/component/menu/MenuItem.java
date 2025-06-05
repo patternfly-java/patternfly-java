@@ -24,16 +24,15 @@ import java.util.function.Function;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.WithText;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
@@ -96,13 +95,13 @@ import static org.patternfly.style.Classes.select;
 import static org.patternfly.style.Size.lg;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
+        Attachable,
         ComponentContext<HTMLElement, MenuItem>,
-        Disabled<HTMLElement, MenuItem>,
-        HasIdentifier<HTMLElement, MenuItem>,
-        WithText<HTMLElement, MenuItem>,
         ComponentIcon<HTMLElement, MenuItem>,
         ComponentIconAndText<HTMLElement, MenuItem>,
-        Attachable {
+        Disabled<HTMLElement, MenuItem>,
+        ElementTextDelegate<HTMLElement, MenuItem>,
+        HasIdentifier<HTMLElement, MenuItem> {
 
     // ------------------------------------------------------ factory
 
@@ -253,6 +252,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     @Override
+    public Element textDelegate() {
+        return textElement;
+    }
+
+    @Override
     public void attach(MutationRecord mutationRecord) {
         Menu menu = lookupComponent();
         if (itemAction != null) {
@@ -340,14 +344,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             itemAction.element().disabled = disabled;
         }
         return Disabled.super.disabled(disabled);
-    }
-
-    @Override
-    public MenuItem text(String text) {
-        // Don't use `Elements.textNode(textElement, text)` here.
-        // We want to replace anything that has been added with text(HTMLElement) with a new text!
-        textElement.textContent = text;
-        return this;
     }
 
     public MenuItem text(HTMLElement element) {
@@ -453,11 +449,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     @Override
     public String identifier() {
         return identifier;
-    }
-
-    @Override
-    public String text() {
-        return Elements.textNode(textElement);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new menu list component .
+     * Creates a new menu list component.
      */
     public static MenuList menuList() {
         return new MenuList();

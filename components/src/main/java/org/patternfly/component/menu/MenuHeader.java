@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.WithText;
 
 import elemental2.dom.HTMLDivElement;
@@ -24,7 +25,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.menu;
 
-public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> implements WithText<HTMLDivElement, MenuHeader> {
+public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> implements
+        ElementTextMethods<HTMLDivElement, MenuHeader> {
 
     // ------------------------------------------------------ factory
 

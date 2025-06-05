@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.WithText;
@@ -26,7 +27,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.menu;
 
-public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> implements WithText<HTMLDivElement, MenuFooter> {
+public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> implements
+        ElementTextMethods<HTMLDivElement, MenuFooter> {
 
     // ------------------------------------------------------ factory
 

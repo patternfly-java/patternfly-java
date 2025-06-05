@@ -18,16 +18,16 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Disabled;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -44,8 +44,10 @@ import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 
-public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, MenuToggleCheckbox> implements HasValue<Boolean>,
-        Modifiers.Disabled<HTMLElement, MenuToggleCheckbox>, WithText<HTMLElement, MenuToggleCheckbox> {
+public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, MenuToggleCheckbox> implements
+        Disabled<HTMLElement, MenuToggleCheckbox>,
+        ElementTextDelegate<HTMLElement, MenuToggleCheckbox>,
+        HasValue<Boolean> {
 
     // ------------------------------------------------------ factory
 
@@ -80,6 +82,11 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
                 e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.checked)));
     }
 
+    @Override
+    public Element textDelegate() {
+        return failSafeTextElement();
+    }
+
     // ------------------------------------------------------ builder
 
     @Override
@@ -92,12 +99,6 @@ public class MenuToggleCheckbox extends MenuToggleSubComponent<HTMLElement, Menu
                 textElement.classList.remove(modifier(Classes.disabled));
             }
         }
-        return this;
-    }
-
-    @Override
-    public MenuToggleCheckbox text(String text) {
-        Elements.textNode(failSafeTextElement(), text);
         return this;
     }
 
