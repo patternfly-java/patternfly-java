@@ -15,9 +15,8 @@
  */
 package org.patternfly.component.list;
 
-import org.jboss.elemento.Elements;
 import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.WithText;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -30,7 +29,8 @@ import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.descriptionList;
 
 public class DescriptionListDescription extends DescriptionListSubComponent<HTMLElement, DescriptionListDescription> implements
-        WithText<HTMLElement, DescriptionListDescription>, ElementContainerDelegate<HTMLElement, DescriptionListDescription> {
+        ElementContainerDelegate<HTMLElement, DescriptionListDescription>,
+        ElementTextDelegate<HTMLElement, DescriptionListDescription> {
 
     // ------------------------------------------------------ factory
 
@@ -61,23 +61,15 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
         return textElement;
     }
 
-    // ------------------------------------------------------ builder
-
     @Override
-    public DescriptionListDescription text(String text) {
-        Elements.textNode(textElement, text);
-        return this;
+    public Element textDelegate() {
+        return textElement;
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public DescriptionListDescription that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    @Override
-    public String text() {
-        return Elements.textNode(textElement);
     }
 }

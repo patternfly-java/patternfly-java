@@ -23,6 +23,7 @@ import java.util.function.Function;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
@@ -45,9 +46,9 @@ import static org.patternfly.style.Classes.simpleList;
 import static org.patternfly.style.Classes.title;
 
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
-        HasItems<HTMLElement, SimpleListGroup, SimpleListItem>,
-        WithText<HTMLElement, SimpleListGroup>,
-        ElementContainerDelegate<HTMLElement, SimpleListGroup> {
+        ElementContainerDelegate<HTMLElement, SimpleListGroup>,
+        ElementTextDelegate<HTMLElement, SimpleListGroup>,
+        HasItems<HTMLElement, SimpleListGroup, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -81,6 +82,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
         return headerElement;
     }
 
+    @Override
+    public Element textDelegate() {
+        return headerElement;
+    }
+
     // ------------------------------------------------------ add
 
     public <T> SimpleListGroup addItems(Iterable<T> items, Function<T, SimpleListItem> display) {
@@ -103,12 +109,6 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public SimpleListGroup text(String text) {
-        Elements.textNode(headerElement, text);
-        return this;
-    }
 
     @Override
     public SimpleListGroup that() {
@@ -146,10 +146,5 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();
-    }
-
-    @Override
-    public String text() {
-        return Elements.textNode(headerElement);
     }
 }

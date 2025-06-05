@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.list;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.WithText;
 import org.patternfly.component.table.Wrap;
@@ -40,9 +41,9 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.TypedModifier.swap;
 
 public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell> implements
-        NoFill<HTMLElement, DataListCell>,
         ComponentIcon<HTMLElement, DataListCell>,
-        WithText<HTMLElement, DataListCell> {
+        ElementTextMethods<HTMLElement, DataListCell>,
+        NoFill<HTMLElement, DataListCell> {
 
     // ------------------------------------------------------ factory
 

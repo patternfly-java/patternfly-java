@@ -27,7 +27,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `inputgroup`
 - [x] `jumplinks`
 - [x] `label`
-- [ ] `list`
+- [x] `list`
 - [ ] `menu`
 - [ ] `modal`
 - [ ] `navigation`

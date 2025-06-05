@@ -15,9 +15,8 @@
  */
 package org.patternfly.component.list;
 
-import org.jboss.elemento.Elements;
 import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.WithText;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 
@@ -34,8 +33,8 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent> implements
         ElementContainerDelegate<HTMLElement, DataListExpandableContent>,
-        NoPadding<HTMLElement, DataListExpandableContent>,
-        WithText<HTMLElement, DataListExpandableContent> {
+        ElementTextDelegate<HTMLElement, DataListExpandableContent>,
+        NoPadding<HTMLElement, DataListExpandableContent> {
 
     // ------------------------------------------------------ factory
 
@@ -59,13 +58,12 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
         return body;
     }
 
-    // ------------------------------------------------------ builder
-
     @Override
-    public DataListExpandableContent text(String text) {
-        Elements.textNode(body, text);
-        return this;
+    public Element textDelegate() {
+        return body;
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public DataListExpandableContent noPadding(boolean noPadding) {
@@ -75,12 +73,5 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
     @Override
     public DataListExpandableContent that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    @Override
-    public String text() {
-        return Elements.textNode(body);
     }
 }

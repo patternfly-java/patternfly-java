@@ -15,10 +15,9 @@
  */
 package org.patternfly.component.list;
 
-import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.WithText;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.style.Classes;
 
@@ -41,8 +40,8 @@ import static org.patternfly.style.Classes.term;
 
 public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement, DescriptionListTerm> implements
         ComponentIcon<HTMLElement, DescriptionListTerm>,
-        WithText<HTMLElement, DescriptionListTerm>,
-        ElementContainerDelegate<HTMLElement, DescriptionListTerm> {
+        ElementContainerDelegate<HTMLElement, DescriptionListTerm>,
+        ElementTextDelegate<HTMLElement, DescriptionListTerm> {
 
     // ------------------------------------------------------ factory
 
@@ -73,13 +72,12 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
         return textElement;
     }
 
-    // ------------------------------------------------------ builder
-
     @Override
-    public DescriptionListTerm text(String text) {
-        Elements.textNode(textElement, text);
-        return this;
+    public Element textDelegate() {
+        return textElement;
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public DescriptionListTerm icon(Element icon) {
@@ -107,13 +105,6 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
     @Override
     public DescriptionListTerm that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    @Override
-    public String text() {
-        return Elements.textNode(textElement);
     }
 
     // ------------------------------------------------------ internal

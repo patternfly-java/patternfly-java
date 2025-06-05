@@ -18,6 +18,7 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
@@ -41,9 +42,9 @@ import static org.patternfly.style.Classes.list;
 
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
         ComponentContext<HTMLLIElement, ListItem>,
-        HasIdentifier<HTMLLIElement, ListItem>,
-        WithText<HTMLLIElement, ListItem>,
-        ComponentIcon<HTMLLIElement, ListItem> {
+        ComponentIcon<HTMLLIElement, ListItem>,
+        ElementTextMethods<HTMLLIElement, ListItem>,
+        HasIdentifier<HTMLLIElement, ListItem> {
 
     // ------------------------------------------------------ factory
 

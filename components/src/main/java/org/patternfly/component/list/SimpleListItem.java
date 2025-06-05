@@ -19,12 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
-import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ElementContainerDelegate;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
@@ -47,9 +46,9 @@ import static org.patternfly.style.Classes.simpleList;
 
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
         ComponentContext<HTMLLIElement, SimpleListItem>,
-        HasIdentifier<HTMLLIElement, SimpleListItem>,
-        WithText<HTMLLIElement, SimpleListItem>,
-        ElementContainerDelegate<HTMLLIElement, SimpleListItem> {
+        ElementContainerDelegate<HTMLLIElement, SimpleListItem>,
+        ElementTextDelegate<HTMLLIElement, SimpleListItem>,
+        HasIdentifier<HTMLLIElement, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -104,11 +103,17 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
         return itemElement;
     }
 
+    @Override
+    public Element textDelegate() {
+        return itemElement;
+    }
+
     // ------------------------------------------------------ builder
 
     public SimpleListItem href(String href) {
         if (anchorElement != null) {
             anchorElement.href = href;
+            anchorElement.classList.add(modifier(link));
         } else {
             logger.error("Unable to set href on %o: This simple list item is not an <a/> item.", element());
         }
@@ -127,12 +132,6 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     @Override
     public <T> SimpleListItem store(String key, T value) {
         data.put(key, value);
-        return this;
-    }
-
-    @Override
-    public SimpleListItem text(String text) {
-        Elements.textNode(itemElement, text);
         return this;
     }
 
@@ -166,11 +165,6 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
             return (T) data.get(key);
         }
         return null;
-    }
-
-    @Override
-    public String text() {
-        return Elements.textNode(itemElement);
     }
 
     // ------------------------------------------------------ internal

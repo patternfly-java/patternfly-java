@@ -53,6 +53,18 @@ public class SimpleListComponent extends SnippetPage {
                 // @code-end:simple-list
         ));
 
+        addSnippet(new Snippet("simple-list-links", "Simple list with links",
+                code("simple-list-links"), () ->
+                // @code-start:simple-list-links
+                div()
+                        .add(simpleList()
+                                .addItems(range(1, 4).boxed().collect(toList()), index ->
+                                        simpleListItem(Id.build("simple-list-links", String.valueOf(index)),
+                                                "List item " + index, "https://patternfly.org", "_blank")))
+                        .element()
+                // @code-end:simple-list-links
+        ));
+
         addSnippet(new Snippet("grouped-list", "Grouped list",
                 code("grouped-list"), () ->
                 // @code-start:grouped-list
