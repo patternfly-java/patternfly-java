@@ -149,10 +149,14 @@ public class MenuComponent extends SnippetPage {
                                                 .addList(menuList()
                                                         .addItem(menuItem("item-0", "Item 1")
                                                                 .description("This is a description")
+                                                                .onClick((e, item) -> console.log(
+                                                                        "Item " + item.identifier() + " clicked (local)"))
                                                                 .addAction(menuItemAction("action-0", codeBranch())
                                                                         .aria(Aria.label, "Code")
                                                                         .onClick((e, itemAction) -> console.log(
-                                                                                "Code action clicked"))))
+                                                                                "Action " + itemAction.identifier() + " on item "
+                                                                                        + itemAction.menuItem.identifier()
+                                                                                        + " clicked (local)"))))
                                                         .addItem(menuItem("item-1", "Item 2")
                                                                 .description("This is a description")
                                                                 .disabled()
@@ -286,7 +290,7 @@ public class MenuComponent extends SnippetPage {
                 // @code-start:menu-favorites
                 div()
                         .add(menu(menu, click)
-                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
+                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " clicked"))
                                 .onAction((menu, item, itemAction) -> console.log(
                                         "Action " + itemAction.identifier() + " on item " + item.identifier() + " clicked"))
                                 .favorites()
@@ -298,13 +302,13 @@ public class MenuComponent extends SnippetPage {
                                                                 .addAction(menuItemAction("action-0", bars())))
                                                         .addItem(menuItem("item-1", "Item 2")
                                                                 .onClick((e, item) -> console.log(
-                                                                        "# Item " + item.identifier() + " clicked"))
+                                                                        "Item " + item.identifier() + " clicked (local)"))
                                                                 .description("Description 2")
                                                                 .addAction(menuItemAction("action-1", clipboard())
                                                                         .onClick((e, itemAction) -> console.log(
-                                                                                "# Action " + itemAction.identifier() + " on item "
+                                                                                "Action " + itemAction.identifier() + " on item "
                                                                                         + itemAction.menuItem.identifier()
-                                                                                        + " clicked"))))
+                                                                                        + " clicked (local)"))))
                                                         .addItem(menuItem("item-2", "Item 3")
                                                                 .description("Description 3")
                                                                 .addAction(menuItemAction("action-2", bell())))))))

@@ -35,7 +35,7 @@ public enum MenuType {
     select,
 
     /**
-     * Menu type whose selected menu items are marked with a tik check box. Should only be used in combination with
+     * Menu type whose selected menu items are marked with a checkbox. Should only be used in combination with
      * {@link org.patternfly.component.SelectionMode#multi}.
      * <p>
      * Used for menus in {@link MultiSelect} components.

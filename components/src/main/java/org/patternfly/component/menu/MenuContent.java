@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Id;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
@@ -35,9 +36,12 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.icon.IconSets.fas.star;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
+import static org.patternfly.style.Classes.favorite;
 import static org.patternfly.style.Classes.menu;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 
@@ -75,7 +79,7 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
             showFavorites(false);
 
             if (groups.isEmpty()) {
-                // repackage existing list into groups
+                // repackage the existing list into groups
                 failSafeRemoveFromParent(list);
                 MenuGroup listGroup = menuGroup().addList(list);
                 addGroup(favoritesGroup);
@@ -92,8 +96,12 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
                 if (item.itemType == MenuItemType.async) {
                     continue;
                 }
-                // Don't use item.addFavoriteItemAction().onClick((e, itemAction) -> menu.toggleFavorite(item)) here !!
-                item.addFavoriteItemAction().on(click, e -> menu.toggleFavorite(item));
+                String actionId = Id.build(item.identifier(), "mark-as-favorite");
+                item.markAsFavorite = new MenuItemAction(actionId, star().element(), true)
+                        .css(modifier(favorite))
+                        .aria(Aria.label, "not starred")
+                        .on(click, e -> menu.toggleFavorite(item));
+                item.element().appendChild(item.markAsFavorite.element());
             }
         }
     }

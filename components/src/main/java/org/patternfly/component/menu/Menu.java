@@ -269,12 +269,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     // called by regular menu items
     void toggleFavorite(MenuItem item) {
-        if (content != null && item.favoriteItemAction != null) {
-            item.favoriteItemAction.element().classList.toggle(modifier(favorited));
-            boolean isFavorite = item.favoriteItemAction.element().classList.contains(modifier(favorited));
+        if (content != null && item.markAsFavorite != null) {
+            item.markAsFavorite.element().classList.toggle(modifier(favorited));
+            boolean isFavorite = item.markAsFavorite.element().classList.contains(modifier(favorited));
             if (isFavorite) {
-                MenuItem favoriteItem = new MenuItem(this, item, item.itemType);
-                content.addToFavorites(favoriteItem);
+                MenuItem favItem = new MenuItem(this, item);
+                content.addToFavorites(favItem);
             } else {
                 if (item.favoriteItem != null) {
                     content.removeFromFavorites(item.favoriteItem);
@@ -286,10 +286,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     // called by cloned favorite items
     void removeFavorite(MenuItem favoriteItem) {
-        if (content != null && favoriteItem.sourceItem != null && favoriteItem.sourceItem.favoriteItemAction != null) {
+        if (content != null && favoriteItem.sourceItem != null && favoriteItem.sourceItem.markAsFavorite != null) {
             content.removeFromFavorites(favoriteItem);
             MenuItem sourceItem = favoriteItem.sourceItem;
-            sourceItem.favoriteItemAction.element().classList.remove(modifier(favorited));
+            sourceItem.markAsFavorite.element().classList.remove(modifier(favorited));
             sourceItem.favoriteItem = null;
         }
     }

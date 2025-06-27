@@ -18,37 +18,32 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
+import org.jboss.elemento.HTMLElementBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.core.Aria;
+import org.patternfly.component.button.Button;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
-import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.button;
-import static org.jboss.elemento.Elements.removeChildrenFrom;
-import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.core.Attributes.tabindex;
-import static org.patternfly.icon.IconSets.fas.star;
-import static org.patternfly.style.Classes.action;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.favorite;
-import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.item;
-import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.menu;
 
-public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItemAction> implements
-        HasIdentifier<HTMLButtonElement, MenuItemAction>,
-        ComponentIcon<HTMLButtonElement, MenuItemAction> {
+public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction> implements
+        HasIdentifier<HTMLElement, MenuItemAction>,
+        ComponentIcon<HTMLElement, MenuItemAction> {
 
     // ------------------------------------------------------ factory
 
@@ -64,34 +59,26 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
         return new MenuItemAction(identifier, icon, false);
     }
 
-    static MenuItemAction favoriteMenuItemAction(String identifier) {
-        return new MenuItemAction(identifier, star().element(), true)
-                .css(modifier(favorite))
-                .aria(Aria.label, "not starred");
-    }
-
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "mia";
 
     private final String identifier;
-    private final HTMLElement iconContainer;
     private final List<ComponentHandler<MenuItemAction>> handler;
+    final Button action;
     public MenuItem menuItem;
 
     MenuItemAction(String identifier, Element icon, boolean favorite) {
-        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(Classes.menu, item, action))
-                .attr(tabindex, -1)
+        super(SUB_COMPONENT_NAME, div().css(component(menu, item, Classes.action))
                 .data(Dataset.identifier, identifier)
-                .add(span().css(component(Classes.menu, item, action, Classes.icon))
-                        .add(icon))
                 .element());
         this.identifier = identifier;
-        this.iconContainer = querySelector(By.classname(component(Classes.menu, item, action, Classes.icon)));
         this.handler = new ArrayList<>();
 
+        add(action = button().icon(icon).plain());
+        action.onClick((e, b) -> handler.forEach(h -> h.handle(e, this)));
         if (!favorite) {
-            on(click, e -> {
+            action.onClick((e, b) -> {
                 Menu menu = lookupComponent();
                 menu.actionHandler.forEach(ah -> ah.onAction(menu, menuItem, this));
             });
@@ -99,15 +86,22 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
     }
 
     // constructor must only be used to clone an item action of a favorite item!
-    MenuItemAction(Menu menu, MenuItem favoriteItem, MenuItemAction sourceItemAction,
-            HTMLButtonElement itemActionElement) {
-        super(SUB_COMPONENT_NAME, itemActionElement);
-        this.identifier = Id.build("fav", sourceItemAction.identifier);
-        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, action, icon)));
-        this.menuItem = favoriteItem;
+    MenuItemAction(MenuItem sourceItem, MenuItemAction sourceItemAction, HTMLElement rootElement) {
+        super(SUB_COMPONENT_NAME, rootElement);
+        this.identifier = Id.build(sourceItemAction.identifier, "favorite");
         this.handler = new ArrayList<>();
-        for (ComponentHandler<MenuItemAction> h : sourceItemAction.handler) {
-            onClick(h);
+        this.handler.addAll(sourceItemAction.handler);
+        this.menuItem = sourceItem;
+        this.action = sourceItemAction.action;
+
+        HTMLElement actionElement = querySelector(By.classname(component(button)));
+        if (actionElement != null) {
+            HTMLElementBuilder<HTMLElement> eb = wrapHtmlElement(actionElement);
+            eb.on(click, e -> handler.forEach(h -> h.handle(e, sourceItemAction)));
+            eb.on(click, e -> {
+                Menu menu = lookupComponent();
+                menu.actionHandler.forEach(ah -> ah.onAction(menu, menuItem, sourceItemAction));
+            });
         }
     }
 
@@ -115,14 +109,13 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
 
     @Override
     public MenuItemAction icon(Element icon) {
-        removeIcon();
-        iconContainer.appendChild(icon);
+        action.icon(icon);
         return this;
     }
 
     @Override
     public MenuItemAction removeIcon() {
-        removeChildrenFrom(iconContainer);
+        action.removeIcon();
         return this;
     }
 
@@ -133,9 +126,17 @@ public class MenuItemAction extends MenuSubComponent<HTMLButtonElement, MenuItem
 
     // ------------------------------------------------------ events
 
+    /**
+     * Registers a click event handler for the menu item action. If the menu item has been marked as a favorite, the handler
+     * will be called with the original menu item action, <em>not</em> the favorite item action.
+     *
+     * @param handler the handler to be executed when the menu item action is clicked. The handler is a {@link ComponentHandler}
+     *                which processes the event and the associated menu item action.
+     * @return the {@code MenuItemAction} instance to allow method chaining.
+     */
     public MenuItemAction onClick(ComponentHandler<MenuItemAction> handler) {
         this.handler.add(handler);
-        return on(click, e -> handler.handle(e, this));
+        return this;
     }
 
     // ------------------------------------------------------ api

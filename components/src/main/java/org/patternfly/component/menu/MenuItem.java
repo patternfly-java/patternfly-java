@@ -64,7 +64,6 @@ import static org.patternfly.component.SelectionMode.group;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.form.Checkbox.checkbox;
-import static org.patternfly.component.menu.MenuItemAction.favoriteMenuItemAction;
 import static org.patternfly.component.menu.MenuItemType.async;
 import static org.patternfly.component.menu.MenuItemType.checkbox;
 import static org.patternfly.component.menu.MenuItemType.link;
@@ -145,7 +144,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private final List<ComponentHandler<MenuItem>> handler;
     MenuItem sourceItem;
     MenuItem favoriteItem;
-    MenuItemAction favoriteItemAction;
+    MenuItemAction markAsFavorite;
     private String loadingText;
     private double loadingTimeout;
     private boolean initialSelection;
@@ -195,7 +194,9 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             logger.error("Unknown menu item type %s for %o", itemType, element());
         }
 
-        add(itemElement = itemBuilder.css(component(Classes.menu, item)).element());
+        add(itemElement = itemBuilder.css(component(Classes.menu, item))
+                .on(click, e -> handler.forEach(h -> h.handle(e, this)))
+                .element());
         if (text != null) {
             textElement.textContent = text;
         }
@@ -215,40 +216,39 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     // constructor must only be used to clone an item as a favorite item!
-    MenuItem(Menu menu, MenuItem item, MenuItemType itemType) {
-        super(SUB_COMPONENT_NAME, ((HTMLElement) item.element().cloneNode(true)));
-
-        this.identifier = Id.build("fav", item.identifier);
-        this.data = new HashMap<>(item.data);
-        this.itemType = itemType;
-        this.favoriteItem = null;
-        this.initialSelection = item.initialSelection;
-        this.itemElement = querySelector(By.classname(component(Classes.menu, Classes.item)));
-        this.mainElement = querySelector(By.classname(component(Classes.menu, Classes.item, main)));
-        this.textElement = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.text)));
-        this.iconContainer = querySelector(By.classname(component(Classes.menu, Classes.item, icon)));
-        this.descriptionElement = querySelector(By.classname(component(Classes.menu, Classes.item, description)));
-        // checkbox must not be used for cloned favorite items!
-
+    MenuItem(Menu menu, MenuItem sourceItem) {
+        super(SUB_COMPONENT_NAME, ((HTMLElement) sourceItem.element().cloneNode(true)));
+        this.identifier = Id.build(sourceItem.identifier, "favorite");
+        this.itemType = sourceItem.itemType;
+        this.data = new HashMap<>();
+        this.data.putAll(sourceItem.data);
         this.handler = new ArrayList<>();
-        for (ComponentHandler<MenuItem> h : item.handler) {
-            onClick(h);
-        }
-        if (item.itemAction != null) {
-            HTMLElement element = querySelector(By.classname(component(Classes.menu, Classes.item, Classes.action)));
-            if (element instanceof HTMLButtonElement) {
-                this.itemAction = new MenuItemAction(menu, this, item.itemAction, ((HTMLButtonElement) element));
-            }
-        }
+        this.handler.addAll(sourceItem.handler);
+        this.initialSelection = false;
+        this.sourceItem = sourceItem;
+        this.favoriteItem = null;
+        sourceItem.favoriteItem = this;
 
-        this.sourceItem = item;
-        item.favoriteItem = this;
+        this.itemElement = querySelector(By.classname(component(Classes.menu, item)));
+        this.itemElement.addEventListener(click.name, e -> handler.forEach(h -> h.handle(e, sourceItem)));
+        this.mainElement = querySelector(By.classname(component(Classes.menu, item, main)));
+        this.textElement = querySelector(By.classname(component(Classes.menu, item, Classes.text)));
+        this.iconContainer = querySelector(By.classname(component(Classes.menu, item, icon)));
+        this.descriptionElement = querySelector(By.classname(component(Classes.menu, item, description)));
         HTMLElement favoriteItemActionElement = querySelector(
-                By.classname(component(Classes.menu, Classes.item, Classes.action))
+                By.classname(component(Classes.menu, item, Classes.action))
                         .and(By.classname(modifier(favorite))));
         if (favoriteItemActionElement != null) {
             favoriteItemActionElement.addEventListener(click.name, e -> menu.removeFavorite(this));
         }
+
+        if (sourceItem.itemAction != null) {
+            HTMLElement element = querySelector(By.classname(component(Classes.menu, item, Classes.action)));
+            if (element != null) {
+                this.itemAction = new MenuItemAction(sourceItem, sourceItem.itemAction, element);
+            }
+        }
+        attachSelectionMode(menu, sourceItem);
     }
 
     @Override
@@ -262,7 +262,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemAction != null) {
             // redo the initially disabled call for the item action
             if (element().classList.contains(modifier(disabled))) {
-                itemAction.element().disabled = true;
+                itemAction.action.disabled(true);
             }
         }
         switch (menu.menuType) {
@@ -279,25 +279,29 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (checkboxComponent != null) {
             checkboxComponent.inputElement().name(menu.menuName);
         }
+        attachSelectionMode(menu, this);
+    }
+
+    private void attachSelectionMode(Menu menu, MenuItem menuItem) {
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
-            itemElement.addEventListener(click.name, e -> menu.select(this, true, true));
+            itemElement.addEventListener(click.name, e -> menu.select(menuItem, true, true));
         } else if (menu.selectionMode == group || menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> {
                 if (itemType == checkbox) {
                     if (((HTMLElement) e.target).id.equals(checkboxComponent.inputElement().element().id)) {
-                        menu.select(this, isSelected(), true);
+                        menu.select(menuItem, isSelected(), true);
                     } else {
                         e.preventDefault();
-                        menu.select(this, !isSelected(), true);
+                        menu.select(menuItem, !isSelected(), true);
                     }
                 } else {
-                    menu.select(this, !isSelected(), true);
+                    menu.select(menuItem, !isSelected(), true);
                 }
             }, itemType == checkbox); // useCapture is true for checkbox!
             // see also: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
         }
         if (initialSelection) {
-            menu.select(this, true, false);
+            menu.select(menuItem, true, false);
         }
     }
 
@@ -341,7 +345,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                 break;
         }
         if (itemAction != null) {
-            itemAction.element().disabled = disabled;
+            itemAction.action.disabled(disabled);
         }
         return Disabled.super.disabled(disabled);
     }
@@ -437,9 +441,16 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     // ------------------------------------------------------ events
 
+    /**
+     * Registers an event handler to be invoked when the menu item is clicked. If the menu item has been marked as a favorite,
+     * the handler will be called with the original menu item, <em>not</em> the favorite item.
+     *
+     * @param handler the event handler to associate with this menu item. This handler is invoked with the event and the current
+     *                menu item instance when a click event occurs.
+     * @return the current {@code MenuItem} instance, allowing for method chaining.
+     */
     public MenuItem onClick(ComponentHandler<MenuItem> handler) {
         this.handler.add(handler);
-        itemElement.addEventListener(click.name, e -> handler.handle(e, this));
         return this;
     }
 
@@ -465,13 +476,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     // ------------------------------------------------------ internal
-
-    MenuItemAction addFavoriteItemAction() {
-        String actionId = Id.build(identifier, "mark-as-favorite");
-        favoriteItemAction = favoriteMenuItemAction(actionId);
-        element().appendChild(favoriteItemAction.element());
-        return favoriteItemAction;
-    }
 
     void makeCurrent(boolean current) {
         itemElement.setAttribute(Aria.current, current);

@@ -28,13 +28,13 @@ public class SingleSelectMenu extends Menu {
      * Creates a menu with {@link MenuType#select} and {@link SelectionMode#single}
      */
     public static SingleSelectMenu singleSelectMenu() {
-        return new SingleSelectMenu(MenuType.select, SelectionMode.single);
+        return new SingleSelectMenu();
     }
 
     // ------------------------------------------------------ instance
 
-    SingleSelectMenu(MenuType menuType, SelectionMode selectionMode) {
-        super(menuType, selectionMode);
+    SingleSelectMenu() {
+        super(MenuType.select, SelectionMode.single);
     }
 
     // ------------------------------------------------------ builder

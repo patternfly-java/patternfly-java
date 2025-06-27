@@ -28,13 +28,13 @@ public class DropdownMenu extends Menu {
      * Creates a menu with {@link MenuType#menu} and {@link SelectionMode#click}
      */
     public static DropdownMenu dropdownMenu() {
-        return new DropdownMenu(MenuType.menu, SelectionMode.click);
+        return new DropdownMenu();
     }
 
     // ------------------------------------------------------ instance
 
-    DropdownMenu(MenuType menuType, SelectionMode selectionMode) {
-        super(menuType, selectionMode);
+    DropdownMenu() {
+        super(MenuType.menu, SelectionMode.click);
     }
 
     // ------------------------------------------------------ builder

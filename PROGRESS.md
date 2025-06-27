@@ -1,6 +1,6 @@
 # Progress
 
-## Refactoring to Patternfly 6
+## Component migration to Patternfly 6
 
 By package name `org.patternfly.compoennt.<name>`
 
