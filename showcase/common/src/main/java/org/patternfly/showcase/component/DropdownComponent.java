@@ -32,6 +32,7 @@ import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
+import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
@@ -53,6 +54,7 @@ public class DropdownComponent extends SnippetPage {
         startExamples(p()
                 .add(Elements.code("Dropdown"))
                 .add(" builds off of the Menu component suite to wrap commonly used properties and functions for a dropdown menu."));
+
         addSnippet(new Snippet("dropdown-basic", "Basic dropdown",
                 code("dropdown-basic"), () ->
                 // @code-start:dropdown-basic
@@ -93,6 +95,55 @@ public class DropdownComponent extends SnippetPage {
                                                         .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
                         .element()
                 // @code-end:dropdown-kebab
+        ));
+
+        addSnippet(new Snippet("dropdown-groups", "With groups of items",
+                code("dropdown-groups"), () ->
+                // @code-start:dropdown-groups
+                div()
+                        .add(dropdown("Dropdown")
+                                .addMenu(dropdownMenu()
+                                        .addContent(menuContent()
+                                                .addGroup(menuGroup()
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("item-00", "Action"))
+                                                                .addItem(linkMenuItem("item-01", "Link", "#item-01"))))
+                                                .addDivider()
+                                                .addGroup(menuGroup("Group 2")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("item-10", "Group 2 action"))
+                                                                .addItem(linkMenuItem("item-11", "Group 2 link", "#item-11"))))
+                                                .addDivider()
+                                                .addGroup(menuGroup("Group 3")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("item-20", "Group 3 action"))
+                                                                .addItem(linkMenuItem("item-21", "Group 3 link",
+                                                                        "#item-21")))))))
+                        .element()
+                // @code-end:dropdown-groups
+        ));
+
+        addSnippet(new Snippet("dropdown-description", "With item descriptions",
+                code("dropdown-description"), () ->
+                // @code-start:dropdown-description
+                div()
+                        .add(dropdown(menuToggle("Dropdown").fullWidth())
+                                .addMenu(dropdownMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(menuItem("item-0", "Action")
+                                                                .description("This is a description"))
+                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1")
+                                                                .description(
+                                                                        "This is a very long description that describes the menu item"))
+                                                        .addItem(menuItem("item-2", "Disabled action")
+                                                                .disabled()
+                                                                .description("Disabled action description"))
+                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
+                                                                .disabled()
+                                                                .description("Disabled link description"))))))
+                        .element()
+                // @code-end:dropdown-description
         ));
 
         addSnippet(new Snippet("dropdown-badge", "With a badge",

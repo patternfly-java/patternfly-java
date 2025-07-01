@@ -15,26 +15,29 @@
  */
 package org.patternfly.component.menu;
 
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.style.Classes;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.section;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.title;
 
-public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
+public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implements ElementTextDelegate<HTMLElement, MenuGroup> {
 
     // ------------------------------------------------------ factory
 
     public static MenuGroup menuGroup() {
-        return new MenuGroup(null);
+        return new MenuGroup();
     }
 
     public static MenuGroup menuGroup(String text) {
-        return new MenuGroup(text);
+        return new MenuGroup().text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -42,12 +45,16 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
     static final String SUB_COMPONENT_NAME = "mg";
 
     MenuList list;
+    private final HTMLElement textElement;
 
-    MenuGroup(String text) {
+    MenuGroup() {
         super(SUB_COMPONENT_NAME, section().css(component(Classes.menu, group)).element());
-        if (text != null) {
-            add(h(3, text).css(component(Classes.menu, group, title)));
-        }
+        this.textElement = h(3).css(component(Classes.menu, group, title)).element();
+    }
+
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ add
@@ -64,6 +71,14 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> {
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public MenuGroup text(String text) {
+        if (!isAttached(textElement)) {
+            add(textElement);
+        }
+        return ElementTextDelegate.super.text(text);
+    }
 
     @Override
     public MenuGroup that() {
