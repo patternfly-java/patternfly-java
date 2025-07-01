@@ -122,6 +122,7 @@ public interface Classes {
     String form = "form";
     String formControl = "form-control";
     String fullHeight = "full-height";
+    String fullWidth = "full-width";
     String gallery = "gallery";
     String global = "global";
     String grid = "grid";

@@ -57,7 +57,7 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
 
     @Override
     public MenuToggleAction that() {
-        return null;
+        return this;
     }
 
     // ------------------------------------------------------ aria
@@ -68,7 +68,7 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
 
     // ------------------------------------------------------ events
 
-    public MenuToggleAction onChange(ComponentHandler<MenuToggleAction> handler) {
+    public MenuToggleAction onClick(ComponentHandler<MenuToggleAction> handler) {
         return on(click, e -> handler.handle(e, this));
     }
 }

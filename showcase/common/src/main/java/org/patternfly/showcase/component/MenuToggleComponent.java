@@ -15,21 +15,30 @@
  */
 package org.patternfly.showcase.component;
 
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.Severity;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MenuToggleAction;
-import org.patternfly.component.menu.MenuToggleCheckbox;
+import org.patternfly.component.textinputgroup.TextInputGroup;
+import org.patternfly.component.textinputgroup.TextInputGroupMain;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.Severity.danger;
+import static org.patternfly.component.Severity.success;
+import static org.patternfly.component.Severity.warning;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.component.badge.Badge.badge;
+import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
-import static org.patternfly.component.menu.MenuToggleCheckbox.menuToggleCheckbox;
 import static org.patternfly.component.menu.MenuToggleType.plainText;
 import static org.patternfly.component.menu.MenuToggleType.split;
+import static org.patternfly.component.menu.MenuToggleType.typeahead;
+import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
+import static org.patternfly.component.textinputgroup.TextInputGroupMain.textInputGroupMain;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -51,13 +60,18 @@ public class MenuToggleComponent extends SnippetPage {
                 div()
                         .add(menuToggle("Toggle"))
                         .add(" ")
-                        .add(menuToggle("Toggle").primary())
-                        .add(" ")
-                        .add(menuToggle("Toggle").secondary())
-                        .add(" ")
                         .add(menuToggle("Toggle").disabled())
                         .element()
                 // @code-end:menu-toggle-basic
+        ));
+
+        addSnippet(new Snippet("menu-toggle-small", "Small toggle",
+                code("menu-toggle-small"), () ->
+                // @code-start:menu-toggle-small
+                div()
+                        .add(menuToggle("Small toggle").small())
+                        .element()
+                // @code-end:menu-toggle-small
         ));
 
         addSnippet(new Snippet("menu-toggle-badge", "With a badge",
@@ -71,6 +85,10 @@ public class MenuToggleComponent extends SnippetPage {
                                 .addBadge(badge(4).unread()))
                         .add(" ")
                         .add(menuToggle("Count").secondary()
+                                .addBadge(badge(4).unread()))
+                        .add(" ")
+                        .add(menuToggle(plainText)
+                                .text("Count")
                                 .addBadge(badge(4).unread()))
                         .add(" ")
                         .add(menuToggle("Count").disabled()
@@ -148,54 +166,45 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-end:menu-toggle-plain-text
         ));
 
-        addSnippet(new Snippet("menu-toggle-split-check", "Split button toggle with checkbox",
-                code("menu-toggle-split-check"), () ->
-                // @code-start:menu-toggle-split-check
+        addSnippet(new Snippet("menu-toggle-split-checkbox", "Split toggle with checkbox",
+                code("menu-toggle-split-checkbox"), () ->
+                // @code-start:menu-toggle-split-checkbox
                 div()
                         .add(menuToggle(split)
-                                .addCheckbox(menuToggleCheckbox()
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").standalone()))
                         .add(" ")
                         .add(menuToggle(split).primary()
-                                .addCheckbox(menuToggleCheckbox()
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").standalone()))
                         .add(" ")
                         .add(menuToggle(split).secondary()
-                                .addCheckbox(menuToggleCheckbox()
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").standalone()))
                         .add(" ")
                         .add(menuToggle(split).disabled()
-                                .addCheckbox(menuToggleCheckbox()
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").standalone()))
                         .element()
-                // @code-end:menu-toggle-split-check
+                // @code-end:menu-toggle-split-checkbox
         ));
 
-        addSnippet(new Snippet("menu-toggle-split-label", "Split button toggle with text label",
-                code("menu-toggle-split-label"), () ->
-                // @code-start:menu-toggle-split-label
+        addSnippet(new Snippet("menu-toggle-split-checkbox-labeled", "Split toggle with labeled checkbox",
+                code("menu-toggle-split-checkbox-labeled"), () ->
+                // @code-start:menu-toggle-split-checkbox-labeled
                 div()
                         .add(menuToggle(split)
-                                .addCheckbox(menuToggleCheckbox("10 selected")
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").text("Select all")))
                         .add(" ")
                         .add(menuToggle(split).primary()
-                                .addCheckbox(menuToggleCheckbox()
-                                        .text("10 selected")
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").text("Select all")))
                         .add(" ")
                         .add(menuToggle(split).secondary()
-                                .addCheckbox(menuToggleCheckbox("10 selected")
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").text("Select all")))
                         .add(" ")
                         .add(menuToggle(split).disabled()
-                                .addCheckbox(menuToggleCheckbox("10 selected")
-                                        .ariaLabel("Select all")))
+                                .addCheckbox(checkbox(Id.unique("checkbox"), "select-all").text("Select all")))
                         .element()
-                // @code-end:menu-toggle-split-label
+                // @code-end:menu-toggle-split-checkbox-labeled
         ));
 
-        addSnippet(new Snippet("menu-toggle-split-action", "Split button toggle with action",
+        addSnippet(new Snippet("menu-toggle-split-action", "Split toggle with action",
                 code("menu-toggle-split-action"), () ->
                 // @code-start:menu-toggle-split-action
                 div()
@@ -214,9 +223,59 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-end:menu-toggle-split-action
         ));
 
+        addSnippet(new Snippet("menu-toggle-full-height", "Full height toggle",
+                code("menu-toggle-full-height"), () ->
+                // @code-start:menu-toggle-full-height
+                div().style("height: 80px;")
+                        .add(menuToggle("Full height").fullHeight())
+                        .element()
+                // @code-end:menu-toggle-full-height
+        ));
+
+        addSnippet(new Snippet("menu-toggle-full-width", "Full width toggle",
+                code("menu-toggle-full-width"), () ->
+                // @code-start:menu-toggle-full-width
+                div()
+                        .add(menuToggle("Full height").fullWidth())
+                        .element()
+                // @code-end:menu-toggle-full-width
+        ));
+
+        addSnippet(new Snippet("menu-toggle-typeahead", "Typeahead toggle",
+                code("menu-toggle-typeahead"), () ->
+                // @code-start:menu-toggle-typeahead
+                div()
+                        .add(menuToggle(typeahead).fullWidth()
+                                .addTextInputGroup(textInputGroup().plain()
+                                        .addMain(textInputGroupMain("menu-toggle-typeahead-tig"))))
+                        .element()
+                // @code-end:menu-toggle-typeahead
+        ));
+
+        addSnippet(new Snippet("menu-toggle-status", "Status toggle",
+                code("menu-toggle-status"), () ->
+                // @code-start:menu-toggle-status
+                div()
+                        .add(menuToggle("Success").status(success))
+                        .add(" ")
+                        .add(menuToggle("Warning").status(warning))
+                        .add(" ")
+                        .add(menuToggle("Danger").status(danger))
+                        .element()
+                // @code-end:menu-toggle-status
+        ));
+
+        addSnippet(new Snippet("menu-toggle-placeholder", "Placeholder text in toggle",
+                code("menu-toggle-placeholder"), () ->
+                // @code-start:menu-toggle-placeholder
+                div()
+                        .add(menuToggle("Placeholder text").placeholder())
+                        .element()
+                // @code-end:menu-toggle-placeholder
+        ));
+
         startApiDocs(MenuToggle.class);
         addApiDoc(MenuToggle.class, component);
         addApiDoc(MenuToggleAction.class, subcomponent);
-        addApiDoc(MenuToggleCheckbox.class, subcomponent);
     }
 }

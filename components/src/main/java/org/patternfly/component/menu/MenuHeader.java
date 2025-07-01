@@ -16,7 +16,6 @@
 package org.patternfly.component.menu;
 
 import org.jboss.elemento.ElementTextMethods;
-import org.patternfly.component.WithText;
 
 import elemental2.dom.HTMLDivElement;
 

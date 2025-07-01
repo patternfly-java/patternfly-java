@@ -121,6 +121,19 @@ public interface Modifiers {
         }
     }
 
+    interface FullWidth<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #fullWidth(boolean) fullWidth(true)} */
+        default B fullWidth() {
+            return fullWidth(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(fullWidth)} */
+        default B fullWidth(boolean fullWidth) {
+            return toggleModifier(that(), element(), Classes.fullWidth, fullWidth);
+        }
+    }
+
     interface Gutter<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #gutter(boolean) gutter(true)} */
@@ -248,6 +261,19 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(plain)} */
         default B plain(boolean plain) {
             return toggleModifier(that(), element(), Classes.plain, plain);
+        }
+    }
+
+    interface Primary<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #primary(boolean) primary(true)} */
+        default B primary() {
+            return primary(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(primary)} */
+        default B primary(boolean primary) {
+            return toggleModifier(that(), element(), Classes.primary, primary);
         }
     }
 

@@ -28,7 +28,6 @@
     </parent>
 
     <artifactId>patternfly-java-showcase</artifactId>
-    <version>0.2.12-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PatternFly Java Showcase</name>
 

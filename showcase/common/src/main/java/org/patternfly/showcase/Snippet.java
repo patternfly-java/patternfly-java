@@ -21,6 +21,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
+import org.patternfly.component.content.ContentType;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
@@ -37,6 +38,7 @@ import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.h3;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.tabindex;
@@ -91,7 +93,12 @@ public class Snippet implements IsElement<HTMLElement> {
                                                 .add(link()
                                                         .css("ws-heading-anchor-icon")
                                                         .style("vertical-align", "middle")))
-                                        .add(title))))
+                                        .add(title)))
+                        .run(stackItem -> {
+                            if (description != null) {
+                                stackItem.add(content(p).css("ws-p")).add(description);
+                            }
+                        }))
                 .add(preview = stackItem()
                         .add(demo.get())
                         .element())

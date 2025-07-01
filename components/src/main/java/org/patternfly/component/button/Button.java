@@ -35,10 +35,12 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Modifiers.Plain;
+import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
 
 import elemental2.dom.Element;
@@ -87,6 +89,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         Inline<HTMLElement, Button>,
         NoPadding<HTMLElement, Button>,
         Plain<HTMLElement, Button>,
+        Primary<HTMLElement, Button>,
         Secondary<HTMLElement, Button> {
 
     // ------------------------------------------------------ factory
@@ -224,10 +227,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
             logger.error("Unable to set a target for button %o. The button is not an <a/> button.", element());
         }
         return this;
-    }
-
-    public Button primary() {
-        return css(modifier(primary));
     }
 
     public Button danger() {

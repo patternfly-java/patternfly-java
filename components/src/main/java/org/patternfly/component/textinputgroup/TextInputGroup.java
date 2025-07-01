@@ -26,6 +26,7 @@ import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
@@ -52,7 +53,9 @@ import static org.patternfly.style.Classes.textInputGroup;
  * "https://www.patternfly.org/components/text-input-group">https://www.patternfly.org/components/text-input-group</a>
  */
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
-        Disabled<HTMLDivElement, TextInputGroup>, Attachable {
+        Attachable,
+        Disabled<HTMLDivElement, TextInputGroup>,
+        Plain<HTMLDivElement, TextInputGroup> {
 
     // ------------------------------------------------------ factory
 

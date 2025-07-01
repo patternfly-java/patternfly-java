@@ -24,12 +24,19 @@ import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
+import org.patternfly.component.Severity;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
+import org.patternfly.component.form.Checkbox;
+import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.FullHeight;
+import org.patternfly.style.Modifiers.FullWidth;
+import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
 
 import elemental2.dom.Element;
@@ -42,6 +49,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.fas.caretDown;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
@@ -50,7 +58,7 @@ import static org.patternfly.style.Classes.count;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.menuToggle;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.primary;
+import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.toggle;
 
 /**
@@ -64,8 +72,11 @@ import static org.patternfly.style.Classes.toggle;
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
         ComponentIcon<HTMLElement, MenuToggle>,
         ComponentIconAndText<HTMLElement, MenuToggle>,
-        ElementTextMethods<HTMLElement, MenuToggle>,
         Disabled<HTMLElement, MenuToggle>,
+        ElementTextMethods<HTMLElement, MenuToggle>,
+        FullHeight<HTMLElement, MenuToggle>,
+        FullWidth<HTMLElement, MenuToggle>,
+        Primary<HTMLElement, MenuToggle>,
         Secondary<HTMLElement, MenuToggle> {
 
     // ------------------------------------------------------ factory
@@ -95,6 +106,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     }
 
     public static MenuToggle menuToggle(MenuToggleType type) {
+        //noinspection EnhancedSwitchMigration
         switch (type) {
             case default_:
             case plain:
@@ -115,21 +127,23 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     final HTMLElement toggleElement;
     private final MenuToggleType type;
     private final HTMLElement controlElement;
-    private HTMLElement labelElement;
-    private HTMLElement textElement;
     private Badge badge;
     private MenuToggleAction action;
-    private MenuToggleCheckbox checkbox;
+    private Checkbox checkbox;
+    private TextInputGroup textInputGroup;
+    private Severity severity;
     private Element icon;
+    private HTMLElement textElement;
     private HTMLElement iconContainer;
+    private HTMLElement statusIconContainer;
 
     <E extends HTMLElement> MenuToggle(HTMLContainerBuilder<E> builder, MenuToggleType type) {
         super(ComponentType.MenuToggle, builder.css(component(menuToggle)).element());
         this.type = type;
+
         if (!this.type.modifier.isEmpty()) {
             css(type.modifier);
         }
-
         if (type == MenuToggleType.plain) {
             aria(expanded, false);
             toggleElement = element();
@@ -194,19 +208,30 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     // override to ensure internal wiring
     public MenuToggle add(MenuToggleAction action) {
         this.action = action;
-        css(modifier(Classes.action));
+        css(modifier(Classes.splitButton));
         insertFirst(element(), action.element());
         return this;
     }
 
-    public MenuToggle addCheckbox(MenuToggleCheckbox checkbox) {
+    public MenuToggle addCheckbox(Checkbox checkbox) {
         return add(checkbox);
     }
 
     // override to ensure internal wiring
-    public MenuToggle add(MenuToggleCheckbox checkbox) {
+    public MenuToggle add(Checkbox checkbox) {
         this.checkbox = checkbox;
         insertFirst(element(), checkbox.element());
+        return this;
+    }
+
+    public MenuToggle addTextInputGroup(TextInputGroup textInputGroup) {
+        return add(textInputGroup);
+    }
+
+    // override to ensure internal wiring
+    public MenuToggle add(TextInputGroup textInputGroup) {
+        this.textInputGroup = textInputGroup;
+        insertFirst(element(), textInputGroup.element());
         return this;
     }
 
@@ -247,8 +272,30 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
-    public MenuToggle primary() {
-        return css(modifier(primary));
+    public MenuToggle placeholder() {
+        return placeholder(true);
+    }
+
+    public MenuToggle placeholder(boolean placeholder) {
+        classList().toggle(modifier(Classes.placeholder), placeholder);
+        return this;
+    }
+
+    public MenuToggle status(Severity severity) {
+        if (severity != null) {
+            if (verifyEnum(element(), "status", severity, Severity.success, Severity.danger, Severity.warning)) {
+                clearStatus();
+                css(severity.status.modifier());
+                insertFirst(controlElement, this.statusIconContainer = span()
+                        .css(component(menuToggle, Classes.status, Classes.icon))
+                        .add(severity.icon.get())
+                        .element());
+                this.severity = severity;
+            }
+        } else {
+            clearStatus();
+        }
+        return this;
     }
 
     @Override
@@ -275,6 +322,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return text(text);
     }
 
+    public MenuToggle small() {
+        return css(modifier(small));
+    }
+
     @Override
     public MenuToggle that() {
         return this;
@@ -288,6 +339,15 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     }
 
     // ------------------------------------------------------ api
+
+    public void clearStatus() {
+        if (severity != null) {
+            classList().remove(severity.status.modifier());
+        }
+        failSafeRemoveFromParent(statusIconContainer);
+        severity = null;
+        statusIconContainer = null;
+    }
 
     @Override
     public String text() {

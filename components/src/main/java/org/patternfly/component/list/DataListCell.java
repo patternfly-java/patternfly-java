@@ -17,7 +17,6 @@ package org.patternfly.component.list;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.WithText;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoFill;

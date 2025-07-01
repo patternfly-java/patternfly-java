@@ -395,10 +395,10 @@ public class MenuComponent extends SnippetPage {
                 // @code-end:menu-scrollable-height
         ));
 
-        addSnippet(new Snippet("menu-async", "Basic menu",
+        addSnippet(new Snippet("menu-async", "With view more",
                 code("menu-async"), () -> {
             // @code-start:menu-async
-            Function<MenuList, Promise<List<MenuItem>>> nextNetworkCall = ml -> new Promise<>((res, rej) ->
+            Function<MenuList, Promise<List<MenuItem>>> finalNetworkCall = ml -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(asList(
                                     menuItem("item-20", "Action 4"),
                                     menuItem("item-21", "Action 5"),
@@ -409,7 +409,7 @@ public class MenuComponent extends SnippetPage {
                     setTimeout(__ -> res.onInvoke(asList(
                                     menuItem("item-10", "Action 2"),
                                     menuItem("item-11", "Action 3"),
-                                    asyncMenuItem("item-12", "View even more", nextNetworkCall))),
+                                    asyncMenuItem("item-12", "View even more", finalNetworkCall))),
                             1234 + new Random().nextInt(3456)));
 
             return div()
@@ -427,6 +427,41 @@ public class MenuComponent extends SnippetPage {
                     .element();
             // @code-end:menu-async
         }));
+
+        addSnippet(new Snippet("menu-drilldown", "With drilldown",
+                code("menu-drilldown"), () ->
+                // @code-start:menu-drilldown
+                nyi().element()
+                // @code-end:menu-drilldown
+        ));
+
+        addSnippet(new Snippet("menu-drilled-in", "Initially drilled-in menu",
+                code("menu-drilled-in"), () ->
+                // @code-start:menu-drilled-in
+                nyi().element()
+                // @code-end:menu-drilled-in
+        ));
+
+        addSnippet(new Snippet("menu-drilled-smf", "With drilldown - submenu functions",
+                code("menu-drilldown-smf"), () ->
+                // @code-start:menu-drilldown-smf
+                nyi().element()
+                // @code-end:menu-drilldown-smf
+        ));
+
+        addSnippet(new Snippet("menu-drilldown-breadcrumb", "With drilldown breadcrumbs",
+                code("menu-drilldown-breadcrumb"), () ->
+                // @code-start:menu-drilldown-breadcrumb
+                nyi().element()
+                // @code-end:menu-drilldown-breadcrumb
+        ));
+
+        addSnippet(new Snippet("menu-drilldown-filter", "With drilldown and inline filter",
+                code("menu-drilldown-filter"), () ->
+                // @code-start:menu-drilldown-filter
+                nyi().element()
+                // @code-end:menu-drilldown-filter
+        ));
 
         startApiDocs(Menu.class);
         addApiDoc(Menu.class, component);

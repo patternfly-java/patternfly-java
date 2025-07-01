@@ -16,6 +16,7 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.menu.DropdownMenu;
@@ -27,6 +28,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.component.badge.Badge.badge;
+import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -34,7 +36,6 @@ import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
-import static org.patternfly.component.menu.MenuToggleCheckbox.menuToggleCheckbox;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
@@ -161,7 +162,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-check"), () ->
                 // @code-start:dropdown-split-check
                 div()
-                        .add(dropdown(menuToggle(split).addCheckbox(menuToggleCheckbox()))
+                        .add(dropdown(menuToggle(split).addCheckbox(checkbox(Id.unique(), "dropdown-split-check")))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -177,7 +178,7 @@ public class DropdownComponent extends SnippetPage {
                         .add(br())
                         .add(br())
                         .add(dropdown(menuToggle(split)
-                                .addCheckbox(menuToggleCheckbox())
+                                .addCheckbox(checkbox(Id.unique(), "dropdown-split-check"))
                                 .text("10 selected"))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
