@@ -16,6 +16,9 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.Severity;
+import org.patternfly.component.help.HelperText;
+import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
@@ -25,7 +28,13 @@ import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
+import static org.patternfly.component.Severity.danger;
+import static org.patternfly.component.Severity.success;
+import static org.patternfly.component.Severity.warning;
+import static org.patternfly.component.help.HelperText.helperText;
+import static org.patternfly.component.help.HelperTextItem.helperTextItem;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.checkboxMenuItem;
@@ -35,7 +44,6 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
-import static org.patternfly.component.menu.MultiSelectMenu.multiSelectGroupMenu;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.icon.IconSets.fas.bell;
@@ -43,6 +51,7 @@ import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.Showcase.placeManager;
+import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 
 @Route(value = "/components/menus/select", title = "Select")
 public class SelectComponent extends SnippetPage {
@@ -54,6 +63,7 @@ public class SelectComponent extends SnippetPage {
                 .add("Select builds off of the menu component suite to adapt commonly used properties and functions to create a select menu. See the ")
                 .add(link(placeManager(), "/components/menus/menu").text("menu documentation"))
                 .add(" for a full list of properties that may be used to further customize a select menu."));
+
         addSnippet(new Snippet("single-select", "Single select",
                 code("single-select"), () ->
                 // @code-start:single-select
@@ -95,7 +105,61 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:select-option-variants
         ));
 
-        addSnippet(new Snippet("multi-select", "Multi select",
+        addSnippet(new Snippet("select-groups", "With grouped items",
+                code("select-groups"), () ->
+                // @code-start:select-groups
+                div()
+                        .add(singleSelect("Select a value")
+                                .style("width", "200px")
+                                .addMenu(singleSelectMenu()
+                                        .addContent(menuContent()
+                                                .addGroup(menuGroup("Group 1")
+                                                        .addList(menuList()
+                                                                .addItem(menuItem("option-0", "Option 1"))
+                                                                .addItem(menuItem("option-1", "Option 2"))
+                                                                .addItem(menuItem("option-2", "Option 3"))))
+                                                .addDivider()
+                                                .addGroup(menuGroup("Group 2"))
+                                                .addList(menuList()
+                                                        .addItem(menuItem("option-3", "Option 4"))
+                                                        .addItem(menuItem("option-4", "Option 5"))
+                                                        .addItem(menuItem("option-5", "Option 6"))))))
+                        .element()
+                // @code-end:select-groups
+        ));
+
+        addSnippet(new Snippet("select-validation", "With validation",
+                code("select-validation"), () -> {
+            // @code-start:select-validation
+            MenuToggle menuToggle = menuToggle("Select a value");
+            HelperText helperText = helperText().liveRegion().addItem(helperTextItem().defaultIcon());
+            setVisible(helperText, false);
+            return div()
+                    .add(singleSelect(menuToggle)
+                            .style("width", "200px")
+                            .addMenu(singleSelectMenu()
+                                    .onSingleSelect((event, menuItem, selected) -> {
+                                        Severity severity = menuItem.get("status");
+                                        menuToggle.status(severity);
+                                        setVisible(helperText, severity == warning || severity == danger);
+                                        helperText.firstItem().status(severity.asValidationStatus());
+                                        if (severity == warning) {
+                                            helperText.firstItem().text("Danger text that explains the issue.");
+                                        } else if (severity == danger) {
+                                            helperText.firstItem().text("Warning text that explains the issue.");
+                                        }
+                                    })
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItem(menuItem("success", "Success").store("status", success))
+                                                    .addItem(menuItem("warning", "Warning").store("status", warning))
+                                                    .addItem(menuItem("danger", "Danger").store("status", danger))))))
+                    .add(helperText)
+                    .element();
+        }));
+        // @code-end:select-validation
+
+        addSnippet(new Snippet("multi-select", "Checkbox select",
                 code("multi-select"), () ->
                 // @code-start:multi-select
                 div()
@@ -112,29 +176,67 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:multi-select
         ));
 
-        addSnippet(new Snippet("groups", "Groups",
-                code("groups"), () ->
-                // @code-start:groups
+        addSnippet(new Snippet("typeahead", "Typeahead",
+                code("typeahead"), () ->
+                // @code-start:typeahead
                 div()
-                        .add(multiSelect(menuToggle("Configuration"))
-                                .addMenu(multiSelectGroupMenu()
-                                        .addContent(menuContent()
-                                                .addGroup(menuGroup("CPU")
-                                                        .addList(menuList()
-                                                                .addItem(menuItem("cpu-m3", "M3"))
-                                                                .addItem(menuItem("cpu-m3-pro", "M3 Pro"))
-                                                                .addItem(menuItem("cpu-m3-max", "M3 Max"))))
-                                                .addGroup(menuGroup("Memory")
-                                                        .addList(menuList()
-                                                                .addItem(menuItem("memory-32", "32 GB"))
-                                                                .addItem(menuItem("memory-64", "64 GB"))
-                                                                .addItem(menuItem("memory-128", "128 GB"))))
-                                                .addGroup(menuGroup("Storage")
-                                                        .addList(menuList()
-                                                                .addItem(menuItem("storage-512", "512 GB"))
-                                                                .addItem(menuItem("storage-1024", "1 TB")))))))
+                        .add(nyi())
                         .element()
-                // @code-end:multi-select
+                // @code-end:typeahead
+        ));
+
+        addSnippet(new Snippet("typeahead-create", "Typeahead with create option",
+                code("typeahead-create"), () ->
+                // @code-start:typeahead-create
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:typeahead-create
+        ));
+
+        addSnippet(new Snippet("typeahead-chips", "Multiple typeahead with chips",
+                code("typeahead-chips"), () ->
+                // @code-start:typeahead-chips
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:typeahead-chips
+        ));
+
+        addSnippet(new Snippet("typeahead-create-multiple", "Multiple typeahead with create option",
+                code("typeahead-create-multiple"), () ->
+                // @code-start:typeahead-create-multiple
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:typeahead-create-multiple
+        ));
+
+        addSnippet(new Snippet("typeahead-checkboxes", "Multiple typeahead with checkboxes",
+                code("typeahead-checkboxes"), () ->
+                // @code-start:typeahead-checkboxes
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:typeahead-checkboxes
+        ));
+
+        addSnippet(new Snippet("select-view-more", "With view more",
+                code("select-view-more"), () ->
+                // @code-start:select-view-more
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:select-view-more
+        ));
+
+        addSnippet(new Snippet("select-footer", "With a footer",
+                code("select-footer"), () ->
+                // @code-start:select-footer
+                div()
+                        .add(nyi())
+                        .element()
+                // @code-end:select-footer
         ));
 
         startApiDocs(MultiSelect.class);

@@ -44,4 +44,20 @@ public enum ValidationStatus {
         this.modifier = modifier;
         this.icon = icon;
     }
+
+    public Severity asSeverity() {
+        //noinspection EnhancedSwitchMigration
+        switch (this) {
+            case indeterminate:
+            case default_:
+                return Severity.info;
+            case warning:
+                return Severity.warning;
+            case success:
+                return Severity.success;
+            case error:
+                return Severity.danger;
+        }
+        return Severity.info;
+    }
 }

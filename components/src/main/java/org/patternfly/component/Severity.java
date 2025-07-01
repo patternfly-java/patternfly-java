@@ -42,4 +42,20 @@ public enum Severity {
         this.status = status;
         this.aria = aria;
     }
+
+    public ValidationStatus asValidationStatus() {
+        //noinspection EnhancedSwitchMigration
+        switch (this) {
+            case custom:
+            case info:
+                return ValidationStatus.default_;
+            case success:
+                return ValidationStatus.success;
+            case warning:
+                return ValidationStatus.warning;
+            case danger:
+                return ValidationStatus.error;
+        }
+        return ValidationStatus.default_;
+    }
 }

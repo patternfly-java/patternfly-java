@@ -86,14 +86,6 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ add
 
-    public MenuList addItem(String id, String text) {
-        return addItem(menuItem(id, text));
-    }
-
-    public MenuList addItem(String id, String text, String href) {
-        return addItem(linkMenuItem(id, text, href));
-    }
-
     @Override
     public MenuList add(MenuItem item) {
         items.put(item.identifier(), item);
