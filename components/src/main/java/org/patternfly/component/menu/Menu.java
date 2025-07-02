@@ -19,7 +19,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
@@ -28,11 +33,27 @@ import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
 
+import elemental2.core.JsArray;
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.KeyboardEvent;
+import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
+import elemental2.dom.NodeList;
 
+import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.window;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.Key.ArrowDown;
+import static org.jboss.elemento.Key.ArrowLeft;
+import static org.jboss.elemento.Key.ArrowRight;
+import static org.jboss.elemento.Key.ArrowUp;
+import static org.jboss.elemento.Key.Enter;
+import static org.jboss.elemento.Key.Spacebar;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.SelectionMode.group;
 import static org.patternfly.component.SelectionMode.single;
@@ -41,11 +62,14 @@ import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.disabled;
+import static org.patternfly.style.Classes.divider;
 import static org.patternfly.style.Classes.favorited;
 import static org.patternfly.style.Classes.flyout;
 import static org.patternfly.style.Classes.menu;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.scrollable;
+import static org.patternfly.style.Classes.search;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.MaxHeight;
 
@@ -58,7 +82,9 @@ import static org.patternfly.style.Variables.MaxHeight;
  *
  * @see <a href="https://www.patternfly.org/components/menu">https://www.patternfly.org/components/menu</a>
  */
-public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<HTMLDivElement, Menu> {
+public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
+        Attachable,
+        Plain<HTMLDivElement, Menu> {
 
     // ------------------------------------------------------ factory
 
@@ -68,6 +94,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Menu.class.getName());
     final String menuName;
     final MenuType menuType;
     final SelectionMode selectionMode;
@@ -76,19 +103,34 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
     private MenuContent content;
     private final List<SelectHandler<MenuItem>> selectHandler;
     private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
+    private HandlerRegistration keyHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(ComponentType.Menu, div().css(component(menu)).element());
-        // TODO Without this workaround the menu "flickers" when showing.
-        //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
-        componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
         this.menuType = menuType;
         this.selectionMode = selectionMode;
         this.menuName = Id.unique(componentType().id, "name"); // a common name for the checkboxes
         this.actionHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
+        // TODO Without this workaround the menu "flickers" when showing.
+        //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
+        componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
         storeComponent();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        allowTabFirstItem();
+        keyHandler = EventType.bind(window, keydown, this::keyHandler);
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        if (keyHandler != null) {
+            keyHandler.removeHandler();
+        }
     }
 
     // ------------------------------------------------------ add
@@ -144,22 +186,22 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
 
     // ------------------------------------------------------ builder
 
-    public Menu flyout() {
-        return css(modifier(flyout));
-    }
-
-    public Menu scrollable() {
-        return css(modifier(scrollable));
-    }
-
     public Menu favorites() {
         favorites = true;
         return this;
     }
 
+    public Menu flyout() {
+        return css(modifier(flyout));
+    }
+
     /** Sets the {@code --pf-v5-c-menu__content--MaxHeight} variable to the specified value */
     public Menu height(String height) {
         return componentVar(component(menu, Classes.content), MaxHeight).applyTo(this).set(height);
+    }
+
+    public Menu scrollable() {
+        return css(modifier(scrollable));
     }
 
     @Override
@@ -329,5 +371,146 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements Plain<H
                 menuItem.markSelected(false);
             }
         }
+    }
+
+    // ------------------------------------------------------ keyboard navigation
+
+    private void allowTabFirstItem() {
+        HTMLElement first = querySelector(By.selector("ul button:not(:disabled), ul a:not(:disabled)"));
+        if (first != null) {
+            first.tabIndex = 0;
+        }
+    }
+
+    private void keyHandler(KeyboardEvent event) {
+        HTMLElement activeElement = (HTMLElement) document.activeElement;
+        if (element().contains(((Node) event.target))) {
+            JsArray<HTMLElement> navigableElements = getNavigableElement(element());
+            if (navigableElements.length == 0) {
+                logger.warn("Menu %o has no navigable elements. Keyboard navigation will be ignored.", element());
+            }
+
+            if (Enter.match(event)) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                activeElement.click();
+            } else if (Spacebar.match(event)) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                activeElement.click();
+            }
+            handleArrows(event, activeElement, navigableElements);
+        }
+    }
+
+    private void handleArrows(KeyboardEvent event, HTMLElement activeElement, JsArray<HTMLElement> navigableElements) {
+        HTMLElement moveTarget = null;
+        boolean arrowUp = ArrowUp.match(event);
+        boolean arrowDown = ArrowDown.match(event);
+        boolean arrowLeft = ArrowLeft.match(event);
+        boolean arrowRight = ArrowRight.match(event);
+
+        if (arrowUp || arrowDown) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            int currentIndex;
+            for (int index = 0; index < navigableElements.length; index++) {
+                HTMLElement element = navigableElements.at(index);
+                if (isActiveElement(element)) {
+                    int increment = 0;
+                    while (moveTarget == null &&
+                            increment < navigableElements.length &&
+                            increment * -1 < navigableElements.length) {
+                        increment = arrowUp ? increment - 1 : increment + 1;
+                        currentIndex = index + increment;
+                        if (currentIndex >= navigableElements.length) {
+                            currentIndex = 0;
+                        }
+                        if (currentIndex < 0) {
+                            currentIndex = navigableElements.length - 1;
+                        }
+                        moveTarget = getFocusableElement(navigableElements.at(currentIndex));
+                    }
+                }
+            }
+
+        } else {
+            if (arrowLeft || arrowRight) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                JsArray<String> validSiblingTags = JsArray.of("BUTTON", "A");
+                for (int i = 0; i < navigableElements.length; i++) {
+                    HTMLElement element = navigableElements.at(i);
+                    if (isActiveElement(element)) {
+                        NodeList<Element> activeRow = element.querySelectorAll(validSiblingTags.join(","));
+                        if (activeRow.length > 0) {
+                            HTMLElement nextSibling = (HTMLElement) document.activeElement;
+                            while (nextSibling != null) {
+                                boolean isDirectChildOfNavigableElement = nextSibling.parentElement == element;
+                                HTMLElement nextSiblingMainElement = isDirectChildOfNavigableElement ? nextSibling : ((HTMLElement) nextSibling.parentElement);
+                                nextSibling = (HTMLElement) (arrowLeft
+                                        ? nextSiblingMainElement.previousElementSibling
+                                        : nextSiblingMainElement.nextElementSibling);
+                                if (nextSibling != null) {
+                                    if (validSiblingTags.includes(nextSibling.tagName)) {
+                                        moveTarget = nextSibling;
+                                        break;
+                                    }
+                                    // For cases where the validSiblingTag is inside a div wrapper
+                                    if (nextSibling.firstElementChild != null && validSiblingTags.includes(
+                                            nextSibling.firstElementChild.tagName)) {
+                                        moveTarget = (HTMLElement) nextSibling.firstElementChild;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (moveTarget != null) {
+            activeElement.tabIndex = -1;
+            moveTarget.tabIndex = 0;
+            moveTarget.focus();
+        }
+    }
+
+    private JsArray<HTMLElement> getNavigableElement(HTMLElement element) {
+        JsArray<HTMLElement> elements = JsArray.from(element.querySelectorAll("li").values());
+        return elements.filter((e, i) ->
+                !(e.classList.contains(modifier(disabled)) || e.classList.contains(component(divider))));
+    }
+
+    private HTMLElement getFocusableElement(HTMLElement navigableElement) {
+        HTMLElement focusableElement = null;
+        if ("DIV".equals(navigableElement.tagName)) {
+            focusableElement = (HTMLElement) navigableElement.querySelector("input");
+        }
+
+        if (focusableElement == null) {
+            HTMLElement firstChild = (HTMLElement) navigableElement.firstChild;
+            if (firstChild != null) {
+                if ("LABEL".equals(firstChild.tagName)) {
+                    focusableElement = (HTMLElement) navigableElement.querySelector("input");
+                } else if ("DIV".equals(firstChild.tagName)) {
+                    focusableElement = (HTMLElement) navigableElement.querySelector("a, button, input");
+                } else {
+                    focusableElement = firstChild;
+                }
+            }
+        }
+        return focusableElement;
+    }
+
+    private boolean isActiveElement(HTMLElement element) {
+        return document.activeElement.closest("li") == element ||
+                document.activeElement.parentElement == element ||
+                document.activeElement.closest(component(menu, search)) == element ||
+                (document.activeElement.closest("ol") != null &&
+                        document.activeElement.closest("ol").firstChild == element);
     }
 }

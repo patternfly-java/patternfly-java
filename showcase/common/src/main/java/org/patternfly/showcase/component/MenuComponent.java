@@ -88,7 +88,7 @@ public class MenuComponent extends SnippetPage {
                 // @code-start:menu-basic
                 div()
                         .add(menu(menu, click)
-                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " selected"))
+                                .onSingleSelect((e, item, selected) -> console.log("Item " + item.identifier() + " clicked"))
                                 .addContent(menuContent()
                                         .addList(menuList()
                                                 .addItem(menuItem("item-0", "Action")
@@ -99,7 +99,12 @@ public class MenuComponent extends SnippetPage {
                                                 .addItem(menuItem("item-2", "Disabled action")
                                                         .disabled())
                                                 .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                        .disabled()))))
+                                                        .disabled())
+                                                .addItem(menuItem("item-4", "Aria-disabled action")
+                                                        .ariaDisabled())
+                                                .addItem(linkMenuItem("item-5", "Aria-disabled link", "#item-5")
+                                                        .ariaDisabled())
+                                        )))
                         .element()
                 // @code-end:menu-basic
         ));

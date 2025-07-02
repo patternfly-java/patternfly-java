@@ -167,7 +167,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
             itemBuilder = itemType == MenuItemType.action || itemType == async
-                    ? button(ButtonType.button).attr(tabindex, 0)
+                    ? button(ButtonType.button).attr(tabindex, -1)
                     : a().attr(tabindex, -1);
             itemBuilder.add(mainElement = span().css(component(Classes.menu, item, main))
                     .add(textElement = span().css(component(Classes.menu, item, Classes.text))
@@ -195,7 +195,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         }
 
         add(itemElement = itemBuilder.css(component(Classes.menu, item))
-                .on(click, e -> handler.forEach(h -> h.handle(e, this)))
+                .on(click, e -> {
+                    if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                        handler.forEach(h -> h.handle(e, this));
+                    }
+                })
                 .element());
         if (text != null) {
             textElement.textContent = text;
@@ -230,7 +234,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         sourceItem.favoriteItem = this;
 
         this.itemElement = querySelector(By.classname(component(Classes.menu, item)));
-        this.itemElement.addEventListener(click.name, e -> handler.forEach(h -> h.handle(e, sourceItem)));
+        this.itemElement.addEventListener(click.name, e -> {
+            if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                handler.forEach(h -> h.handle(e, sourceItem));
+            }
+        });
         this.mainElement = querySelector(By.classname(component(Classes.menu, item, main)));
         this.textElement = querySelector(By.classname(component(Classes.menu, item, Classes.text)));
         this.iconContainer = querySelector(By.classname(component(Classes.menu, item, icon)));
@@ -249,11 +257,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             }
         }
         attachSelectionMode(menu, sourceItem);
-    }
-
-    @Override
-    public Element textDelegate() {
-        return textElement;
     }
 
     @Override
@@ -284,18 +287,24 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     private void attachSelectionMode(Menu menu, MenuItem menuItem) {
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
-            itemElement.addEventListener(click.name, e -> menu.select(menuItem, true, true));
+            itemElement.addEventListener(click.name, e -> {
+                if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                    menu.select(menuItem, true, true);
+                }
+            });
         } else if (menu.selectionMode == group || menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> {
-                if (itemType == checkbox) {
-                    if (((HTMLElement) e.target).id.equals(checkboxComponent.inputElement().element().id)) {
-                        menu.select(menuItem, isSelected(), true);
+                if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                    if (itemType == checkbox) {
+                        if (((HTMLElement) e.target).id.equals(checkboxComponent.inputElement().element().id)) {
+                            menu.select(menuItem, isSelected(), true);
+                        } else {
+                            e.preventDefault();
+                            menu.select(menuItem, !isSelected(), true);
+                        }
                     } else {
-                        e.preventDefault();
                         menu.select(menuItem, !isSelected(), true);
                     }
-                } else {
-                    menu.select(menuItem, !isSelected(), true);
                 }
             }, itemType == checkbox); // useCapture is true for checkbox!
             // see also: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
@@ -303,6 +312,11 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (initialSelection) {
             menu.select(menuItem, true, false);
         }
+    }
+
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ add
@@ -321,13 +335,18 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     // ------------------------------------------------------ builder
 
-    public MenuItem danger() {
-        return css(modifier(danger));
+    public MenuItem ariaDisabled() {
+        return ariaDisabled(true);
     }
 
-    public MenuItem selected() {
-        initialSelection = true;
+    public MenuItem ariaDisabled(boolean ariaDisabled) {
+        classList().toggle(modifier(Classes.ariaDisabled), ariaDisabled);
+        itemElement.setAttribute(Aria.disabled, Boolean.toString(ariaDisabled));
         return this;
+    }
+
+    public MenuItem danger() {
+        return css(modifier(danger));
     }
 
     @Override
@@ -348,36 +367,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             itemAction.action.disabled(disabled);
         }
         return Disabled.super.disabled(disabled);
-    }
-
-    public MenuItem text(HTMLElement element) {
-        removeChildrenFrom(textElement);
-        textElement.appendChild(element);
-        return this;
-    }
-
-    public MenuItem href(String href) {
-        if (itemType == link) {
-            ((HTMLAnchorElement) itemElement).href = href;
-        } else {
-            logger.warn("Ignore href for menu item %o with type '%s'", element(), itemType.name());
-        }
-        return this;
-    }
-
-    public MenuItem external() {
-        if (itemType == link) {
-            ((HTMLAnchorElement) itemElement).target = "_blank";
-            mainElement.appendChild(span().css(component(Classes.menu, item, externalIcon))
-                    .add(externalLinkAlt())
-                    .element());
-            mainElement.appendChild(span().css(screenReader)
-                    .text("(opens a new window)")
-                    .element());
-        } else {
-            logger.warn("Ignore external flag for menu item %o with type '%s'", element(), itemType.name());
-        }
-        return this;
     }
 
     public MenuItem description(String description) {
@@ -403,6 +392,30 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return this;
     }
 
+    public MenuItem external() {
+        if (itemType == link) {
+            ((HTMLAnchorElement) itemElement).target = "_blank";
+            mainElement.appendChild(span().css(component(Classes.menu, item, externalIcon))
+                    .add(externalLinkAlt())
+                    .element());
+            mainElement.appendChild(span().css(screenReader)
+                    .text("(opens a new window)")
+                    .element());
+        } else {
+            logger.warn("Ignore external flag for menu item %o with type '%s'", element(), itemType.name());
+        }
+        return this;
+    }
+
+    public MenuItem href(String href) {
+        if (itemType == link) {
+            ((HTMLAnchorElement) itemElement).href = href;
+        } else {
+            logger.warn("Ignore href for menu item %o with type '%s'", element(), itemType.name());
+        }
+        return this;
+    }
+
     @Override
     public MenuItem icon(Element icon) {
         if (iconContainer != null) {
@@ -417,20 +430,31 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     @Override
-    public MenuItem removeIcon() {
-        failSafeRemoveFromParent(iconContainer);
-        return this;
-    }
-
-    @Override
     public MenuItem iconAndText(Element icon, String text, IconPosition iconPosition) {
         icon(icon);
         return text(text);
     }
 
     @Override
+    public MenuItem removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
+        return this;
+    }
+
+    public MenuItem selected() {
+        initialSelection = true;
+        return this;
+    }
+
+    @Override
     public <T> MenuItem store(String key, T value) {
         data.put(key, value);
+        return this;
+    }
+
+    public MenuItem text(HTMLElement element) {
+        removeChildrenFrom(textElement);
+        textElement.appendChild(element);
         return this;
     }
 
@@ -455,7 +479,6 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     }
 
     // ------------------------------------------------------ api
-
 
     @Override
     public String identifier() {
@@ -509,6 +532,10 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         } else {
             return Boolean.parseBoolean(itemElement.getAttribute(Aria.selected));
         }
+    }
+
+    private boolean isAriaDisabled(HTMLElement element) {
+        return Boolean.parseBoolean(element.getAttribute(Aria.disabled));
     }
 
     private void loadItems(Function<MenuList, Promise<List<MenuItem>>> loadItems) {

@@ -75,7 +75,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction
         this.identifier = identifier;
         this.handler = new ArrayList<>();
 
-        add(action = button().icon(icon).plain());
+        add(action = button().icon(icon).plain().apply(b -> b.tabIndex = -1));
         action.onClick((e, b) -> handler.forEach(h -> h.handle(e, this)));
         if (!favorite) {
             action.onClick((e, b) -> {
