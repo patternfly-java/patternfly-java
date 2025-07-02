@@ -20,7 +20,9 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentDelegate;
@@ -28,19 +30,28 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ToggleHandler;
+import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Modifiers.Disabled;
 
+import elemental2.core.JsArray;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
 
+import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.Key.ArrowDown;
+import static org.jboss.elemento.Key.ArrowUp;
+import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottomStart;
 
@@ -60,6 +71,8 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     private static final Logger logger = Logger.getLogger(MenuToggleMenu.class.getName());
     private static final int Z_INDEX = 9999;
 
+    final MenuToggle menuToggle;
+    Menu menu;
     private final Set<TriggerAction> triggerActions;
     private final List<ToggleHandler<B>> toggleHandler;
     private int zIndex;
@@ -67,8 +80,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     private boolean disabled;
     private Placement placement;
     private Popper popper;
-    final MenuToggle menuToggle;
-    Menu menu;
+    private HandlerRegistration keyHandler;
 
     MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, TriggerAction triggerAction) {
         super(componentType);
@@ -92,17 +104,18 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             setVisible(menu, false);
             insertAfter(menu.element(), menuToggle.element());
             popper = new PopperBuilder(componentType().componentName, menuToggle.element(), menu.element())
-                    .addModifier(org.patternfly.popper.Modifiers.eventListeners(false),
-                            org.patternfly.popper.Modifiers.flip(placement == auto || flip),
-                            org.patternfly.popper.Modifiers.hide(),
-                            org.patternfly.popper.Modifiers.noOverflow(),
-                            org.patternfly.popper.Modifiers.placement(),
-                            org.patternfly.popper.Modifiers.widths())
+                    .addModifier(Modifiers.eventListeners(false),
+                            Modifiers.flip(placement == auto || flip),
+                            Modifiers.hide(),
+                            Modifiers.noOverflow(),
+                            Modifiers.placement(),
+                            Modifiers.widths())
                     .placement(placement)
                     .registerHandler(menuToggle.toggleElement, triggerActions,
                             event -> expand(), event -> collapse())
                     .zIndex(zIndex)
                     .build();
+            keyHandler = EventType.bind(window, keydown, this::keyHandler);
         } else {
             logger.error("No toggle and/or menu defined for %s / %o", componentType().name(), element());
         }
@@ -110,6 +123,9 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     @Override
     public void detach(MutationRecord mutationRecord) {
+        if (keyHandler != null) {
+            keyHandler.removeHandler();
+        }
         failSafeRemoveFromParent(menu);
         popper.cleanup();
     }
@@ -210,5 +226,39 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     public Menu menu() {
         return menu;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void keyHandler(KeyboardEvent event) {
+        if (expanded() && (menuToggle.element().contains((Node) event.target) ||
+                menu.element().contains((Node) event.target))) {
+            if (Tab.match(event)) {
+                collapse();
+                menuToggle.element().focus();
+            }
+        }
+
+        if (expanded() && menuToggle.element().contains((Node) event.target)) {
+            boolean arrowUp = ArrowUp.match(event);
+            boolean arrowDown = ArrowDown.match(event);
+            if (arrowUp || arrowDown) {
+                event.preventDefault();
+                HTMLElement focusableElement;
+                JsArray<HTMLElement> listItems = JsArray.from(menu.element().querySelectorAll("li").values());
+                JsArray<HTMLElement> focusableElements = listItems
+                        .map((li, __) -> ((HTMLElement) li.querySelector(
+                                "button:not(:disabled),input:not(:disabled),a:not([aria-disabled=\"true\"])")))
+                        .filter((li, __) -> li != null);
+                if (arrowDown) {
+                    focusableElement = focusableElements.at(0);
+                } else {
+                    focusableElement = focusableElements.at(focusableElements.length - 1);
+                }
+                if (focusableElement != null) {
+                    focusableElement.focus();
+                }
+            }
+        }
     }
 }

@@ -387,7 +387,8 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         if (element().contains(((Node) event.target))) {
             JsArray<HTMLElement> navigableElements = getNavigableElement(element());
             if (navigableElements.length == 0) {
-                logger.warn("Menu %o has no navigable elements. Keyboard navigation will be ignored.", element());
+                logger.warn("Menu %s %o has no navigable elements. Keyboard navigation will be ignored.",
+                        componentType().name(), element());
             }
 
             if (Enter.match(event)) {
