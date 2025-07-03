@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuActionHandler;
@@ -332,7 +333,11 @@ public class MenuComponent extends SnippetPage {
                                 .addSearch(menuSearch()
                                         .addSearchInput(menuSearchInput()
                                                 .addSearchInput(searchInputGroup(""))))
-                                .onSearch((menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                                .onSearch((menuItem, value) ->
+                                        menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                                .onNoResults(value ->
+                                        menuItem(Id.unique("no-results"), "No results found for \"" + value + "\"")
+                                                .disabled())
                                 .addDivider()
                                 .addContent(menuContent()
                                         .addList(menuList()

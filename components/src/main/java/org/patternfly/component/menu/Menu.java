@@ -135,43 +135,31 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     public void attach(MutationRecord mutationRecord) {
         allowTabFirstItem();
         keyHandler = EventType.bind(window, keydown, this::keyHandler);
-        if (searchFilter != null && search.searchInput() != null) {
-            TextInputGroup textInputGroup = search.searchInput().textInputGroup();
-            if (textInputGroup != null) {
-                textInputGroup
-                        .onKeyup((event, tig, value) -> {
-                            int visibleItems = 0;
-                            for (MenuItem menuItem : items()) {
-                                boolean visible = searchFilter.test(menuItem, value);
-                                setVisible(menuItem, visible);
-                                if (visible) {
-                                    visibleItems++;
+        if (searchFilter != null) {
+            if (content == null) {
+                logger.warn("Menu %o has a search filter, but no content was added.", element());
+            } else if (!content.groups.isEmpty()) {
+                logger.warn("Menu %o a search filter and groups. Search filters are not supported for grouped menus.",
+                        element());
+            } else if (search == null) {
+                logger.warn("Menu %o has a search filter, but no search menu was added.", element());
+            } else if (search.searchInput() == null) {
+                logger.warn("Menu %o has a search filter, but no search input was added.", element());
+            } else if (search.searchInput().textInputGroup() == null) {
+                logger.warn("Menu %o has a search filter, but no text input group was added.", element());
+            } else {
+                TextInputGroup textInputGroup = search.searchInput().textInputGroup();
+                if (textInputGroup != null) {
+                    textInputGroup
+                            .onKeyup((event, tig, value) -> search(value))
+                            .onChange((event, tig, value) -> {
+                                if (value.isEmpty()) {
+                                    clearSearch();
                                 }
-                            }
-                            failSafeRemoveFromParent(noResultsItem);
-                            if (visibleItems == 0) {
-                                if (content != null && content.list != null) {
-                                    noResultsItem = noResultsProvider.apply(value);
-                                    // Don't use content.list.add(noResultsItem) here
-                                    // The no-result item should not be part of the items map
-                                    content.list.add(noResultsItem.element());
-                                }
-                            } else {
-                                allowTabFirstItem();
-                            }
-                        })
-                        .onChange((event, tig, value) -> {
-                            if (value.isEmpty()) {
-                                failSafeRemoveFromParent(noResultsItem);
-                                for (MenuItem menuItem : items()) {
-                                    setVisible(menuItem, true);
-                                }
-                                allowTabFirstItem();
-                            }
-                        });
+                            });
+                }
             }
         }
-
     }
 
     @Override
@@ -273,6 +261,18 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return this;
     }
 
+    /**
+     * Configures a search behavior for the menu by applying a search filter. For this to work, you need to add a
+     * {@link MenuSearch}, {@link MenuSearchInput} and {@link TextInputGroup}.
+     *
+     * <p>
+     * {@snippet class = MenuDemo region = search}
+     *
+     * @param searchFilter a {@link BiPredicate} that defines the search logic. The first parameter is a {@link MenuItem}
+     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
+     *                     The predicate should return {@code true} for items matching the search.
+     * @return the {@link Menu} instance for method chaining.
+     */
     public Menu onSearch(BiPredicate<MenuItem, String> searchFilter) {
         this.searchFilter = searchFilter;
         return this;
@@ -285,6 +285,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     // ------------------------------------------------------ api
 
+    /**
+     * Sets the `tabIndex` property of the first focusable item within a menu to `0`, allowing it to be reachable via the Tab
+     * key. Focusable items are identified as non-disabled `<button>` or `<a>` elements within a `<ul>` container. This method
+     * ensures accessibility by enabling keyboard navigation to the first actionable item in the menu. It should be called after
+     * the menu items have changed (e.g., after filtering or searching items).
+     */
     public void allowTabFirstItem() {
         HTMLElement first = querySelector(By.selector("ul button:not(:disabled), ul a:not(:disabled)"));
         if (first != null) {
@@ -437,6 +443,36 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
+    private void search(String value) {
+        int visibleItems = 0;
+        for (MenuItem menuItem : items()) {
+            boolean visible = searchFilter.test(menuItem, value);
+            setVisible(menuItem, visible);
+            if (visible) {
+                visibleItems++;
+            }
+        }
+        failSafeRemoveFromParent(noResultsItem);
+        if (visibleItems == 0) {
+            if (content != null && content.list != null) {
+                noResultsItem = noResultsProvider.apply(value);
+                // Don't use content.list.add(noResultsItem) here
+                // The no-result item should not be part of the item map
+                content.list.add(noResultsItem.element());
+            }
+        } else {
+            allowTabFirstItem();
+        }
+    }
+
+    private void clearSearch() {
+        failSafeRemoveFromParent(noResultsItem);
+        for (MenuItem menuItem : items()) {
+            setVisible(menuItem, true);
+        }
+        allowTabFirstItem();
+    }
+
     // ------------------------------------------------------ keyboard navigation
 
     private void keyHandler(KeyboardEvent event) {
@@ -444,8 +480,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         if (element().contains(((Node) event.target))) {
             JsArray<HTMLElement> navigableElements = getNavigableElement(element());
             if (navigableElements.length == 0) {
-                logger.warn("Menu %s %o has no navigable elements. Keyboard navigation will be ignored.",
-                        componentType().name(), element());
+                logger.warn("Menu %o has no navigable elements. Keyboard navigation will be ignored.", element());
             }
 
             if (Enter.match(event)) {

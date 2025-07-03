@@ -22,7 +22,6 @@ import java.util.function.Consumer;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
-import org.jboss.elemento.Key;
 import org.jboss.elemento.logger.Logger;
 
 import elemental2.core.JsArray;
@@ -40,6 +39,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.Key.Escape;
 import static org.patternfly.popper.Placement.auto;
 
 public class PopperBuilder {
@@ -54,7 +54,6 @@ public class PopperBuilder {
     private int animationDuration;
     private int entryDelay;
     private int exitDelay;
-    private int zIndex;
     private Placement placement;
 
     public PopperBuilder(String componentName, HTMLElement triggerElement, HTMLElement popperElement) {
@@ -66,7 +65,6 @@ public class PopperBuilder {
         this.animationDuration = Popper.UNDEFINED;
         this.entryDelay = Popper.UNDEFINED;
         this.exitDelay = Popper.UNDEFINED;
-        this.zIndex = Popper.UNDEFINED;
         this.placement = auto;
     }
 
@@ -90,7 +88,6 @@ public class PopperBuilder {
     }
 
     public PopperBuilder zIndex(int zIndex) {
-        this.zIndex = zIndex;
         if (zIndex != Popper.UNDEFINED) {
             popperElement.style.zIndex = CSSProperties.ZIndexUnionType.of(zIndex);
         }
@@ -141,17 +138,8 @@ public class PopperBuilder {
         }
         if (!triggerActions.contains(TriggerAction.manual)) {
             handlerRegistrations.add(bind(document, EventType.keydown, true, e -> {
-                if (isVisible(popperElement) && Key.Escape.match(e)) {
+                if (isVisible(popperElement) && Escape.match(e)) {
                     hide.accept(e);
-                }
-            }));
-            handlerRegistrations.add(bind(popperElement, EventType.keydown, e -> {
-                if (Key.Enter.match(e)) {
-                    if (isVisible(popperElement)) {
-                        hide.accept(e);
-                    } else {
-                        show.accept(e);
-                    }
                 }
             }));
         }

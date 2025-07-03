@@ -177,10 +177,15 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         } else if (itemType == checkbox) {
             String checkboxId = Id.unique(identifier, "check");
             itemBuilder = label()
-                    .apply(l -> l.htmlFor = checkboxId)
+                    .apply(l -> {
+                        l.htmlFor = checkboxId;
+                        l.tabIndex = -1;
+                    })
                     .add(mainElement = span().css(component(Classes.menu, item, main))
                             .add(span().css(component(Classes.menu, item, Classes.check))
-                                    .add(checkboxComponent = checkbox(checkboxId, checkboxId).standalone()))
+                                    .add(checkboxComponent = checkbox(checkboxId, checkboxId)
+                                            .standalone()
+                                            .applyTo(checkbox -> checkbox.tabIndex(-1))))
                             .add(textElement = span().css(component(Classes.menu, item, Classes.text))
                                     .element())
                             .element());
@@ -508,21 +513,24 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemType == checkbox) {
             checkboxComponent.value(selected);
         } else {
-            if (selectIcon == null) {
-                selectIcon = span().css(component(Classes.menu, item, select, icon))
-                        .add(check())
-                        .element();
-            }
             itemElement.setAttribute(Aria.selected, selected);
             if (selected) {
                 itemElement.classList.add(modifier(Classes.selected));
-                if (!mainElement.contains(selectIcon)) {
-                    mainElement.appendChild(selectIcon);
-                }
             } else {
                 itemElement.classList.remove(modifier(Classes.selected));
-                failSafeRemoveFromParent(selectIcon);
             }
+        }
+        if (selectIcon == null) {
+            selectIcon = span().css(component(Classes.menu, item, select, icon))
+                    .add(check())
+                    .element();
+        }
+        if (selected) {
+            if (!mainElement.contains(selectIcon)) {
+                mainElement.appendChild(selectIcon);
+            }
+        } else {
+            failSafeRemoveFromParent(selectIcon);
         }
     }
 

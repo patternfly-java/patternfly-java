@@ -20,6 +20,10 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import elemental2.dom.Element;
+
+import elemental2.dom.Element.FocusOptionsType;
+
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.EventType;
@@ -207,6 +211,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), false));
             }
+            menuToggle.element().focus();
         });
     }
 
@@ -235,7 +240,6 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                 menu.element().contains((Node) event.target))) {
             if (Tab.match(event)) {
                 collapse();
-                menuToggle.element().focus();
             }
         }
 

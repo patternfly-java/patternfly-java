@@ -1,3 +1,4 @@
+import org.jboss.elemento.Id;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuType;
@@ -8,7 +9,11 @@ import static org.patternfly.component.menu.Menu.menu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuSearch.menuSearch;
+import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
+import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 
 public class MenuDemo {
 
@@ -47,5 +52,25 @@ public class MenuDemo {
                                         .addItem(MenuItem.menuItem("21", "Group 2 - Item 1"))
                                         .addItem(MenuItem.menuItem("22", "Group 2 - Item 2")))));
         // @end region = groups
+    }
+
+    public void searchDemo() {
+        // @start region = search
+        Menu menu = menu(MenuType.menu, click)
+                .addSearch(menuSearch()
+                        .addSearchInput(menuSearchInput()
+                                .addSearchInput(searchInputGroup(""))))
+                .onSearch((menuItem, value) ->
+                        menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                .onNoResults(value ->
+                        menuItem(Id.unique("no-results"), "No results found for \"" + value + "\"")
+                                .disabled())
+                .addDivider()
+                .addContent(menuContent()
+                        .addList(menuList()
+                                .addItem(menuItem("item-0", "Action 1"))
+                                .addItem(menuItem("item-1", "Action 2"))
+                                .addItem(menuItem("item-2", "Action 3"))));
+        // @end region = search
     }
 }
