@@ -88,9 +88,9 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     public static TextInputGroup filterInputGroup(String placeholder) {
         LabelGroup labelGroup = labelGroup();
         TextInputGroup textInputGroup = textInputGroup();
-        ObservableValue<Boolean> chipsPresent = ov(false);
+        ObservableValue<Boolean> labelsPresent = ov(false);
         ObservableValue<Boolean> textEntered = ov(false);
-        CloseHandler<Label> closeHandler = (event, chip) -> chipsPresent.set(!labelGroup.isEmpty());
+        CloseHandler<Label> closeHandler = (event, chip) -> labelsPresent.set(!labelGroup.isEmpty());
 
         textInputGroup
                 .addMain(textInputGroupMain(Id.unique(ComponentType.TextInputGroup.id, "fig"))
@@ -101,7 +101,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                             if (Key.Enter.match(e) && !value.isEmpty()) {
                                 labelGroup.addItem(label(value).onClose(closeHandler));
                                 tig.main().value("");
-                                chipsPresent.set(true);
+                                labelsPresent.set(true);
                                 textEntered.set(false);
                             }
                         }))
@@ -110,11 +110,11 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                                 .on(click, e -> {
                                     labelGroup.clear();
                                     textInputGroup.main().value("");
-                                    chipsPresent.set(false);
+                                    labelsPresent.set(false);
                                     textEntered.change(false);
                                 })));
 
-        chipsPresent.subscribe((current, previous) -> {
+        labelsPresent.subscribe((current, previous) -> {
             setVisible(labelGroup, current);
             if (current) {
                 textInputGroup.main().removeIcon();
@@ -123,13 +123,13 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                 setVisible(textInputGroup.utilities(), textEntered.get());
             }
         });
-        chipsPresent.publish();
+        labelsPresent.publish();
 
         textEntered.subscribe((current, previous) -> {
             if (current) {
                 setVisible(textInputGroup.utilities(), true);
             } else {
-                setVisible(textInputGroup.utilities(), chipsPresent.get());
+                setVisible(textInputGroup.utilities(), labelsPresent.get());
             }
         });
         textEntered.publish();

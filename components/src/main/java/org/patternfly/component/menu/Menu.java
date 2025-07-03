@@ -18,6 +18,8 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -28,6 +30,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
+import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -47,6 +50,8 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowLeft;
@@ -61,6 +66,7 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.divider;
@@ -69,7 +75,6 @@ import static org.patternfly.style.Classes.flyout;
 import static org.patternfly.style.Classes.menu;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.scrollable;
-import static org.patternfly.style.Classes.search;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.MaxHeight;
 
@@ -95,14 +100,19 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Menu.class.getName());
+
     final String menuName;
     final MenuType menuType;
     final SelectionMode selectionMode;
     final List<MenuActionHandler> actionHandler;
     boolean favorites;
+    private MenuSearch search;
     private MenuContent content;
+    private MenuItem noResultsItem;
     private final List<SelectHandler<MenuItem>> selectHandler;
     private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
+    private BiPredicate<MenuItem, String> searchFilter;
+    private Function<String, MenuItem> noResultsProvider;
     private HandlerRegistration keyHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
@@ -113,6 +123,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         this.actionHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
+        this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
         // TODO Without this workaround the menu "flickers" when showing.
         //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
         componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
@@ -124,6 +135,43 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     public void attach(MutationRecord mutationRecord) {
         allowTabFirstItem();
         keyHandler = EventType.bind(window, keydown, this::keyHandler);
+        if (searchFilter != null && search.searchInput() != null) {
+            TextInputGroup textInputGroup = search.searchInput().textInputGroup();
+            if (textInputGroup != null) {
+                textInputGroup
+                        .onKeyup((event, tig, value) -> {
+                            int visibleItems = 0;
+                            for (MenuItem menuItem : items()) {
+                                boolean visible = searchFilter.test(menuItem, value);
+                                setVisible(menuItem, visible);
+                                if (visible) {
+                                    visibleItems++;
+                                }
+                            }
+                            failSafeRemoveFromParent(noResultsItem);
+                            if (visibleItems == 0) {
+                                if (content != null && content.list != null) {
+                                    noResultsItem = noResultsProvider.apply(value);
+                                    // Don't use content.list.add(noResultsItem) here
+                                    // The no-result item should not be part of the items map
+                                    content.list.add(noResultsItem.element());
+                                }
+                            } else {
+                                allowTabFirstItem();
+                            }
+                        })
+                        .onChange((event, tig, value) -> {
+                            if (value.isEmpty()) {
+                                failSafeRemoveFromParent(noResultsItem);
+                                for (MenuItem menuItem : items()) {
+                                    setVisible(menuItem, true);
+                                }
+                                allowTabFirstItem();
+                            }
+                        });
+            }
+        }
+
     }
 
     @Override
@@ -168,15 +216,14 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return add(footer);
     }
 
-    public Menu addSearchInput(MenuSearchInput searchInput) {
-        return addSearchInput(searchInput, false);
+    public Menu addSearch(MenuSearch search) {
+        return add(search);
     }
 
-    public Menu addSearchInput(MenuSearchInput searchInput, boolean noSeparator) {
-        add(searchInput);
-        if (!noSeparator) {
-            addDivider();
-        }
+    // override to ensure internal wiring
+    public Menu add(MenuSearch search) {
+        this.search = search;
+        add(search.element());
         return this;
     }
 
@@ -211,6 +258,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     // ------------------------------------------------------ events
 
+    public Menu onAction(MenuActionHandler actionHandler) {
+        this.actionHandler.add(actionHandler);
+        return this;
+    }
+
     public Menu onSingleSelect(SelectHandler<MenuItem> selectHandler) {
         this.selectHandler.add(selectHandler);
         return this;
@@ -221,12 +273,24 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return this;
     }
 
-    public Menu onAction(MenuActionHandler actionHandler) {
-        this.actionHandler.add(actionHandler);
+    public Menu onSearch(BiPredicate<MenuItem, String> searchFilter) {
+        this.searchFilter = searchFilter;
+        return this;
+    }
+
+    public Menu onNoResults(Function<String, MenuItem> noResults) {
+        this.noResultsProvider = noResults;
         return this;
     }
 
     // ------------------------------------------------------ api
+
+    public void allowTabFirstItem() {
+        HTMLElement first = querySelector(By.selector("ul button:not(:disabled), ul a:not(:disabled)"));
+        if (first != null) {
+            first.tabIndex = 0;
+        }
+    }
 
     public void select(String itemId) {
         select(findItem(itemId), true, true);
@@ -375,13 +439,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     // ------------------------------------------------------ keyboard navigation
 
-    private void allowTabFirstItem() {
-        HTMLElement first = querySelector(By.selector("ul button:not(:disabled), ul a:not(:disabled)"));
-        if (first != null) {
-            first.tabIndex = 0;
-        }
-    }
-
     private void keyHandler(KeyboardEvent event) {
         HTMLElement activeElement = (HTMLElement) document.activeElement;
         if (element().contains(((Node) event.target))) {
@@ -510,7 +567,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     private boolean isActiveElement(HTMLElement element) {
         return document.activeElement.closest("li") == element ||
                 document.activeElement.parentElement == element ||
-                document.activeElement.closest(component(menu, search)) == element ||
+                document.activeElement.closest(component(menu, Classes.search)) == element ||
                 (document.activeElement.closest("ol") != null &&
                         document.activeElement.closest("ol").firstChild == element);
     }

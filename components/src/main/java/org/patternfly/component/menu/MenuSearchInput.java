@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -32,9 +33,11 @@ public class MenuSearchInput extends MenuSubComponent<HTMLElement, MenuSearchInp
         return new MenuSearchInput();
     }
 
+
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "msi";
+    private TextInputGroup textInputGroup;
 
     MenuSearchInput() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.menu, search, input)).element());
@@ -44,6 +47,19 @@ public class MenuSearchInput extends MenuSubComponent<HTMLElement, MenuSearchInp
 
     @Override
     public MenuSearchInput that() {
-        return null;
+        return this;
+    }
+
+    // ------------------------------------------------------ add
+
+    public MenuSearchInput addSearchInput(TextInputGroup textInputGroup) {
+        this.textInputGroup = textInputGroup;
+        return add(textInputGroup);
+    }
+
+    // ------------------------------------------------------ api
+
+    public TextInputGroup textInputGroup() {
+        return textInputGroup;
     }
 }

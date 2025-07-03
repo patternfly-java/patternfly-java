@@ -58,9 +58,12 @@ import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuSearch.menuSearch;
+import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
 import static org.patternfly.component.menu.MenuType.checkbox;
 import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.MenuType.select;
+import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
@@ -324,7 +327,19 @@ public class MenuComponent extends SnippetPage {
         addSnippet(new Snippet("menu-filter", "Filtering with search input",
                 code("menu-filter"), () ->
                 // @code-start:menu-filter
-                nyi().element()
+                div()
+                        .add(menu(menu, click)
+                                .addSearch(menuSearch()
+                                        .addSearchInput(menuSearchInput()
+                                                .addSearchInput(searchInputGroup(""))))
+                                .onSearch((menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                                .addDivider()
+                                .addContent(menuContent()
+                                        .addList(menuList()
+                                                .addItem(menuItem("item-0", "Action 1"))
+                                                .addItem(menuItem("item-1", "Action 2"))
+                                                .addItem(menuItem("item-2", "Action 3")))))
+                        .element()
                 // @code-end:menu-filter
         ));
 
