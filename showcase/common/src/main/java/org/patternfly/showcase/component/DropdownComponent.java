@@ -37,6 +37,7 @@ import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
+import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
@@ -213,7 +214,8 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-check"), () ->
                 // @code-start:dropdown-split-check
                 div()
-                        .add(dropdown(menuToggle(split).addCheckbox(checkbox(Id.unique(), "dropdown-split-check")))
+                        .add(dropdown(menuToggle(split)
+                                .addCheckbox(checkbox(Id.unique(), "dropdown-split-check")))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -247,8 +249,6 @@ public class DropdownComponent extends SnippetPage {
                 // @code-end:dropdown-split-check
         ));
 
-/*
-        TODO Fix split type
         addSnippet(new Snippet("dropdown-split-action", "With an action",
                 code("dropdown-split-action"), () ->
                 // @code-start:dropdown-split-action
@@ -270,7 +270,6 @@ public class DropdownComponent extends SnippetPage {
                         .element()
                 // @code-end:dropdown-split-action
         ));
-*/
 
         startApiDocs(Dropdown.class);
         addApiDoc(Dropdown.class, component);

@@ -32,7 +32,6 @@ import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Modifiers.FullWidth;
@@ -48,6 +47,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.fas.caretDown;
@@ -158,6 +158,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         } else if (type == MenuToggleType.split || type == MenuToggleType.typeahead) {
             add(toggleElement = button(ButtonType.button).css(component(menuToggle, button))
                     .aria(expanded, false)
+                    .apply(b -> b.tabIndex = -1)
                     .add(span().css(component(menuToggle, controls))
                             .add(span().css(component(menuToggle, toggle, Classes.icon))
                                     .add(caretDown())))
@@ -246,6 +247,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                 action.disabled(disabled);
             } else if (checkbox != null) {
                 checkbox.disabled(disabled);
+            } else if (textInputGroup != null) {
+                textInputGroup.disabled(disabled);
             }
         }
         return this;
@@ -312,6 +315,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             } else if (action != null) {
                 action.text(text);
             }
+        } else if (type == MenuToggleType.typeahead) {
+            if (textInputGroup != null) {
+                textInputGroup.main().text(text);
+                setVisible(textInputGroup.utilities(), text != null && !text.isEmpty());
+            }
         }
         return this;
     }
@@ -363,6 +371,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             }
         }
         return null;
+    }
+
+    public TextInputGroup textInputGroup() {
+        return textInputGroup;
     }
 
     public Badge badge() {

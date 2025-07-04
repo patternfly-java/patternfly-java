@@ -23,8 +23,10 @@ import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
+import org.patternfly.component.menu.SingleTypeaheadMenu;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.style.Modifiers;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.p;
@@ -46,6 +48,8 @@ import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
+import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
+import static org.patternfly.component.menu.SingleTypeaheadMenu.singleTypeaheadMenu;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -180,7 +184,18 @@ public class SelectComponent extends SnippetPage {
                 code("typeahead"), () ->
                 // @code-start:typeahead
                 div()
-                        .add(nyi())
+                        .add(singleTypeahead("Select a state")
+                                .applyTo(Modifiers.FullWidth::fullWidth)
+                                .addMenu(singleTypeaheadMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(menuItem("alabama", "Alabama"))
+                                                        .addItem(menuItem("florida", "Florida"))
+                                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                                        .addItem(menuItem("new-york", "New York"))
+                                                        .addItem(menuItem("north-carolina", "North Carolina"))
+                                                ))))
                         .element()
                 // @code-end:typeahead
         ));

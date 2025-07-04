@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
-
-import elemental2.dom.Element;
-
-import elemental2.dom.Element.FocusOptionsType;
+import java.util.function.Consumer;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -121,7 +118,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                     .build();
             keyHandler = EventType.bind(window, keydown, this::keyHandler);
         } else {
-            logger.error("No toggle and/or menu defined for %s / %o", componentType().name(), element());
+            logger.error("No toggle and/or menu defined for %s %o", componentType().name(), element());
         }
     }
 
@@ -148,6 +145,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     // ------------------------------------------------------ builder
+
+    /** Provides access to the underlying menu toggle using a fluent API style */
+    public B applyTo(Consumer<MenuToggle> consumer) {
+        consumer.accept(menuToggle);
+        return that();
+    }
 
     @Override
     public B disabled(boolean disabled) {
