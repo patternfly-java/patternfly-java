@@ -18,8 +18,6 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -30,7 +28,6 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -50,8 +47,7 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowLeft;
@@ -66,7 +62,6 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
-import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.divider;
@@ -106,13 +101,9 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     final SelectionMode selectionMode;
     final List<MenuActionHandler> actionHandler;
     boolean favorites;
-    private MenuSearch search;
-    private MenuContent content;
-    private MenuItem noResultsItem;
+    MenuContent content;
     private final List<SelectHandler<MenuItem>> selectHandler;
     private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
-    private BiPredicate<MenuItem, String> searchFilter;
-    private Function<String, MenuItem> noResultsProvider;
     private HandlerRegistration keyHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
@@ -123,7 +114,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         this.actionHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
-        this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
         // TODO Without this workaround the menu "flickers" when showing.
         //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
         componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
@@ -135,31 +125,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     public void attach(MutationRecord mutationRecord) {
         allowTabFirstItem();
         keyHandler = EventType.bind(window, keydown, this::keyHandler);
-        if (searchFilter != null) {
-            if (content == null) {
-                logger.warn("Menu %o has a search filter, but no content was added.", element());
-            } else if (!content.groups.isEmpty()) {
-                logger.warn("Menu %o a search filter and groups. Search filters are not supported for grouped menus.",
-                        element());
-            } else if (search == null) {
-                logger.warn("Menu %o has a search filter, but no search menu was added.", element());
-            } else if (search.searchInput() == null) {
-                logger.warn("Menu %o has a search filter, but no search input was added.", element());
-            } else if (search.searchInput().textInputGroup() == null) {
-                logger.warn("Menu %o has a search filter, but no text input group was added.", element());
-            } else {
-                TextInputGroup textInputGroup = search.searchInput().textInputGroup();
-                if (textInputGroup != null) {
-                    textInputGroup
-                            .onKeyup((event, tig, value) -> search(value))
-                            .onChange((event, tig, value) -> {
-                                if (value.isEmpty()) {
-                                    clearSearch();
-                                }
-                            });
-                }
-            }
-        }
     }
 
     @Override
@@ -208,13 +173,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return add(search);
     }
 
-    // override to ensure internal wiring
-    public Menu add(MenuSearch search) {
-        this.search = search;
-        add(search.element());
-        return this;
-    }
-
     public Menu addDivider() {
         return add(divider(hr));
     }
@@ -258,28 +216,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     public Menu onMultiSelect(MultiSelectHandler<Menu, MenuItem> selectHandler) {
         this.multiSelectHandler.add(selectHandler);
-        return this;
-    }
-
-    /**
-     * Configures a search behavior for the menu by applying a search filter. For this to work, you need to add a
-     * {@link MenuSearch}, {@link MenuSearchInput} and {@link TextInputGroup}.
-     *
-     * <p>
-     * {@snippet class = MenuDemo region = search}
-     *
-     * @param searchFilter a {@link BiPredicate} that defines the search logic. The first parameter is a {@link MenuItem}
-     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
-     *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link Menu} instance for method chaining.
-     */
-    public Menu onSearch(BiPredicate<MenuItem, String> searchFilter) {
-        this.searchFilter = searchFilter;
-        return this;
-    }
-
-    public Menu onNoResults(Function<String, MenuItem> noResults) {
-        this.noResultsProvider = noResults;
         return this;
     }
 
@@ -443,42 +379,12 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    private void search(String value) {
-        int visibleItems = 0;
-        for (MenuItem menuItem : items()) {
-            boolean visible = searchFilter.test(menuItem, value);
-            setVisible(menuItem, visible);
-            if (visible) {
-                visibleItems++;
-            }
-        }
-        failSafeRemoveFromParent(noResultsItem);
-        if (visibleItems == 0) {
-            if (content != null && content.list != null) {
-                noResultsItem = noResultsProvider.apply(value);
-                // Don't use content.list.add(noResultsItem) here
-                // The no-result item should not be part of the item map
-                content.list.add(noResultsItem.element());
-            }
-        } else {
-            allowTabFirstItem();
-        }
-    }
-
-    private void clearSearch() {
-        failSafeRemoveFromParent(noResultsItem);
-        for (MenuItem menuItem : items()) {
-            setVisible(menuItem, true);
-        }
-        allowTabFirstItem();
-    }
-
     // ------------------------------------------------------ keyboard navigation
 
     private void keyHandler(KeyboardEvent event) {
         HTMLElement activeElement = (HTMLElement) document.activeElement;
         if (element().contains(((Node) event.target))) {
-            JsArray<HTMLElement> navigableElements = getNavigableElement(element());
+            JsArray<HTMLElement> navigableElements = navigableElement(element());
             if (navigableElements.length == 0) {
                 logger.warn("Menu %o has no navigable elements. Keyboard navigation will be ignored.", element());
             }
@@ -572,10 +478,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    private JsArray<HTMLElement> getNavigableElement(HTMLElement element) {
+    private JsArray<HTMLElement> navigableElement(HTMLElement element) {
         JsArray<HTMLElement> elements = JsArray.from(element.querySelectorAll("li").values());
         return elements.filter((e, i) ->
-                !(e.classList.contains(modifier(disabled)) || e.classList.contains(component(divider))));
+                isVisible(e) && !(e.classList.contains(modifier(disabled)) || e.classList.contains(component(divider))));
     }
 
     private HTMLElement getFocusableElement(HTMLElement navigableElement) {

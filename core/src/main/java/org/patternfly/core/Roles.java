@@ -21,6 +21,7 @@ public interface Roles {
     String button = "button";
     String cell = "cell";
     String columnheader = "columnheader";
+    String combobox = "combobox";
     String dialog = "dialog";
     String grid = "grid";
     String gridcell = "gridcell";

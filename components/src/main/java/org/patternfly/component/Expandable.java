@@ -108,7 +108,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
     void expand(boolean fireEvent);
 
     /**
-     * @return {@code true} if the elements class list has the modifier {@link Classes#expanded}, {@code false} otherwise.
+     * @return {@code true} if the element's class list has the modifier {@link Classes#expanded}, {@code false} otherwise.
      */
     default boolean expanded() {
         return expanded(element());

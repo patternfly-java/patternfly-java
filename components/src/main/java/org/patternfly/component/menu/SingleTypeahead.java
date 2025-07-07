@@ -15,18 +15,26 @@
  */
 package org.patternfly.component.menu;
 
-import org.jboss.elemento.EventType;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+
+import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.TextInputGroup;
+import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 
-import static elemental2.dom.DomGlobal.console;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.SelectionMode.single;
+import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
+import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Roles.combobox;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -40,37 +48,46 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     public static SingleTypeahead singleTypeahead(String placeholder) {
         return new SingleTypeahead(MenuToggle.menuToggle(typeahead)
-                .addTextInputGroup(searchInputGroup(placeholder)
-                        .plain()));
+                .addTextInputGroup(searchInputGroup(placeholder).plain()));
     }
 
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(SingleTypeahead.class.getName());
     private final TextInputGroup textInputGroup;
+    private MenuItem noResultsItem;
+    private BiPredicate<MenuItem, String> searchFilter;
+    private Function<String, MenuItem> noResultsProvider;
 
     SingleTypeahead(MenuToggle menuToggle) {
         super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
-        TextInputGroup tig = menuToggle.textInputGroup();
-        if (tig == null) {
+        if (menuToggle.textInputGroup() == null) {
             logger.error("MenuToggle for single typeahead must contain a text input group! Using a dummy one instead.");
             this.textInputGroup = searchInputGroup("").plain();
             menuToggle.addTextInputGroup(this.textInputGroup);
         } else {
-            this.textInputGroup = tig;
+            this.textInputGroup = menuToggle.textInputGroup();
         }
+        this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
+        this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
 
-        textInputGroup.main().inputElement().on(click, event -> {
-            console.log("### 0: value: '%s', isEmpty: %s, expanded: %s, classList: %o",
-                    textInputGroup.main().value(), textInputGroup.main().value().isEmpty(), expanded(), menuToggle.element().classList);
-            if (!expanded()) {
-                expand(false);
-            } else if (textInputGroup.main().value().isEmpty()) {
-                collapse(false);
-            }
-            console.log("### 1: value: '%s', isEmpty: %s, expanded: %s, classList: %o",
-                    textInputGroup.main().value(), textInputGroup.main().value().isEmpty(), expanded(), menuToggle.element().classList);
-        });
+        textInputGroup
+                .onKeyup((event, tig, value) -> search(value))
+                .onChange((event, tig, value) -> {
+                    if (value.isEmpty()) {
+                        clearSearch();
+                    }
+                });
+        textInputGroup.main().inputElement()
+                .attr(role, combobox)
+                .aria(Aria.expanded, false)
+                .on(click, event -> {
+                    if (!expanded()) {
+                        expand();
+                    }
+                });
+        onToggle((e, c, expanded) ->
+                textInputGroup.main().inputElement().aria(Aria.expanded, expanded));
     }
 
     // ------------------------------------------------------ add
@@ -84,6 +101,16 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
     }
 
     // ------------------------------------------------------ builder
+
+    public SingleTypeahead onSearch(BiPredicate<MenuItem, String> searchFilter) {
+        this.searchFilter = searchFilter;
+        return this;
+    }
+
+    public SingleTypeahead onNoResults(Function<String, MenuItem> noResults) {
+        this.noResultsProvider = noResults;
+        return this;
+    }
 
     @Override
     public SingleTypeahead that() {
@@ -109,5 +136,37 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
             menu.select(item, true, fireEvent);
             menuToggle.text(item.text());
         }
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void search(String value) {
+        int visibleItems = 0;
+        for (MenuItem menuItem : menu.items()) {
+            boolean visible = searchFilter.test(menuItem, value);
+            setVisible(menuItem, visible);
+            if (visible) {
+                visibleItems++;
+            }
+        }
+        failSafeRemoveFromParent(noResultsItem);
+        if (visibleItems == 0) {
+            if (menu.content != null && menu.content.list != null) {
+                noResultsItem = noResultsProvider.apply(value);
+                // Don't use content.list.addItem(noResultsItem) here
+                // The no-result item should not be part of the item map
+                menu.content.list.add(noResultsItem.element());
+            }
+        } else {
+            menu.allowTabFirstItem();
+        }
+    }
+
+    private void clearSearch() {
+        failSafeRemoveFromParent(noResultsItem);
+        for (MenuItem menuItem : menu.items()) {
+            setVisible(menuItem, true);
+        }
+        menu.allowTabFirstItem();
     }
 }

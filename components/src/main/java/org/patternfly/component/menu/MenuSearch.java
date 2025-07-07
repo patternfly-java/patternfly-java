@@ -34,7 +34,6 @@ public class MenuSearch extends MenuSubComponent<HTMLDivElement, MenuSearch> {
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ms";
-    private MenuSearchInput searchInput;
 
     MenuSearch() {
         super(SUB_COMPONENT_NAME, div().css(component(menu, search)).element());
@@ -50,13 +49,6 @@ public class MenuSearch extends MenuSubComponent<HTMLDivElement, MenuSearch> {
     // ------------------------------------------------------ add
 
     public MenuSearch addSearchInput(MenuSearchInput searchInput) {
-        this.searchInput = searchInput;
         return add(searchInput);
-    }
-
-    // ------------------------------------------------------ api
-
-    public MenuSearchInput searchInput() {
-        return searchInput;
     }
 }

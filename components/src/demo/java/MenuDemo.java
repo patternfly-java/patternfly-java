@@ -59,12 +59,12 @@ public class MenuDemo {
         Menu menu = menu(MenuType.menu, click)
                 .addSearch(menuSearch()
                         .addSearchInput(menuSearchInput()
-                                .addSearchInput(searchInputGroup(""))))
-                .onSearch((menuItem, value) ->
-                        menuItem.text().toLowerCase().contains(value.toLowerCase()))
-                .onNoResults(value ->
-                        menuItem(Id.unique("no-results"), "No results found for \"" + value + "\"")
-                                .disabled())
+                                .addSearchInput(searchInputGroup(""))
+                                .onSearch((menuItem, value) ->
+                                        menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                                .onNoResults(value ->
+                                        menuItem(Id.unique("no-results"), "No results found for \"" + value + "\"")
+                                                .disabled())))
                 .addDivider()
                 .addContent(menuContent()
                         .addList(menuList()
