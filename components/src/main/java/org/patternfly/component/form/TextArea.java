@@ -18,6 +18,7 @@ package org.patternfly.component.form;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementTextMethods;
@@ -111,6 +112,12 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     }
 
     // ------------------------------------------------------ builder
+
+    /** Provides access to the underlying text area element using a fluent API style */
+    public TextArea applyTo(Consumer<HTMLTextAreaElementBuilder<HTMLTextAreaElement>> textArea) {
+        textArea.accept(wrapTextAreaElement(textAreaElement));
+        return this;
+    }
 
     public TextArea autoResize() {
         this.autoResize = true;

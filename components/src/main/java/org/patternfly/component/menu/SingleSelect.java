@@ -19,7 +19,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.popper.TriggerAction;
 
 import static org.patternfly.component.SelectionMode.single;
-import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.menu.MenuType.select;
 
 /**

@@ -46,9 +46,12 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     // ------------------------------------------------------ factory
 
+    public static SingleTypeahead singleTypeahead() {
+        return new SingleTypeahead("");
+    }
+
     public static SingleTypeahead singleTypeahead(String placeholder) {
-        return new SingleTypeahead(MenuToggle.menuToggle(typeahead)
-                .addTextInputGroup(searchInputGroup(placeholder).plain()));
+        return new SingleTypeahead(placeholder);
     }
 
     // ------------------------------------------------------ instance
@@ -59,20 +62,21 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
     private BiPredicate<MenuItem, String> searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
-    SingleTypeahead(MenuToggle menuToggle) {
-        super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
-        if (menuToggle.textInputGroup() == null) {
-            logger.error("MenuToggle for single typeahead must contain a text input group! Using a dummy one instead.");
-            this.textInputGroup = searchInputGroup("").plain();
-            menuToggle.addTextInputGroup(this.textInputGroup);
-        } else {
-            this.textInputGroup = menuToggle.textInputGroup();
-        }
+    SingleTypeahead(String placeholder) {
+        super(ComponentType.SingleSelect, MenuToggle.menuToggle(typeahead), TriggerAction.click);
+        this.textInputGroup = searchInputGroup(placeholder == null ? "" : placeholder, tig -> {
+            tig.main().inputElement().element().focus();
+            menu.unselectAllItems();
+        }).plain();
+        this.menuToggle.addTextInputGroup(textInputGroup);
         this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
         this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
 
         textInputGroup
-                .onKeyup((event, tig, value) -> search(value))
+                .onKeyup((event, tig, value) -> {
+                    search(value);
+                    expand();
+                })
                 .onChange((event, tig, value) -> {
                     if (value.isEmpty()) {
                         clearSearch();
@@ -82,6 +86,9 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
                 .on(click, event -> {
+                    if (!textInputGroup.main().value().isEmpty()) {
+                        search(textInputGroup.main().value());
+                    }
                     if (!expanded()) {
                         expand();
                     }

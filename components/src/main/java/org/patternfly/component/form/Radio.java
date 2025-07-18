@@ -109,6 +109,12 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
 
     // ------------------------------------------------------ builder
 
+    /** Provides access to the underlying radio element using a fluent API style */
+    public Radio applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
+        return this;
+    }
+
     @Override
     public Radio disabled(boolean disabled) {
         inputElement.disabled = disabled;
@@ -157,12 +163,6 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
         if (fireEvent && changed && !changeHandlers.isEmpty()) {
             changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
         }
-        return this;
-    }
-
-    /** Provides access to the underlying radio element using a fluent API style */
-    public Radio applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> consumer) {
-        consumer.accept(inputElement());
         return this;
     }
 

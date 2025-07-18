@@ -33,8 +33,6 @@ import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
-import static org.patternfly.component.menu.MenuItem.linkMenuItem;
-import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;

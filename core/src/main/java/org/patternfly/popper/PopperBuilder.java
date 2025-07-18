@@ -50,6 +50,7 @@ public class PopperBuilder {
     private final HTMLElement triggerElement;
     private final HTMLElement popperElement;
     private final JsArray<Modifier> modifiers;
+    private final List<HTMLElement> stayOpenWhenClickedOn;
     private final List<HandlerRegistration> handlerRegistrations;
     private int animationDuration;
     private int entryDelay;
@@ -61,6 +62,7 @@ public class PopperBuilder {
         this.triggerElement = triggerElement;
         this.popperElement = popperElement;
         this.modifiers = new JsArray<>();
+        this.stayOpenWhenClickedOn = new ArrayList<>();
         this.handlerRegistrations = new ArrayList<>();
         this.animationDuration = Popper.UNDEFINED;
         this.entryDelay = Popper.UNDEFINED;
@@ -151,6 +153,12 @@ public class PopperBuilder {
             logger.debug("Remove popper %o on trigger element detach %o", popperElement, triggerElement);
             failSafeRemoveFromParent(popperElement);
         });
+        return this;
+    }
+
+    public PopperBuilder stayOpen(HTMLElement firstElement, HTMLElement... otherElements) {
+        stayOpenWhenClickedOn.add(firstElement);
+        stayOpenWhenClickedOn.addAll(List.of(otherElements));
         return this;
     }
 

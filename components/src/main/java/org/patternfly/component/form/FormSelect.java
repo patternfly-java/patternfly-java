@@ -33,6 +33,7 @@ import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLOptionElement;
 import elemental2.dom.HTMLSelectElement;
 import elemental2.dom.MutationRecord;
@@ -108,6 +109,12 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     // ------------------------------------------------------ add
+
+    /** Provides access to the underlying radio element using a fluent API style */
+    public FormSelect applyTo(Consumer<HTMLSeleElementBuilder<HTMLInputElement>> consumer) {
+        consumer.accept(inputElement());
+        return this;
+    }
 
     public <T> FormSelect addGroups(Iterable<T> items, Function<T, FormSelectOptionGroup> display) {
         for (T item : items) {

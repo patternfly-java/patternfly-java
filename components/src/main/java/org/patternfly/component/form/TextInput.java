@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
@@ -127,6 +128,12 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     // ------------------------------------------------------ builder
+
+    /** Provides access to the underlying input element using a fluent API style */
+    public TextInput applyTo(Consumer<HTMLInputElementBuilder<HTMLInputElement>> input) {
+        input.accept(wrapInputElement(inputElement));
+        return this;
+    }
 
     @Override
     public TextInput readonly(boolean readonly) {

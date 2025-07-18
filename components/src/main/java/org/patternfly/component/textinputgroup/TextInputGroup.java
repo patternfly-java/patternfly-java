@@ -15,6 +15,8 @@
  */
 package org.patternfly.component.textinputgroup;
 
+import java.util.function.Consumer;
+
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.Key;
@@ -64,6 +66,10 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     }
 
     public static TextInputGroup searchInputGroup(String placeholder) {
+        return searchInputGroup(placeholder, null);
+    }
+
+    public static TextInputGroup searchInputGroup(String placeholder, Consumer<TextInputGroup> onClear) {
         TextInputGroup textInputGroup = textInputGroup();
         ObservableValue<Boolean> textEntered = ov(false);
 
@@ -77,6 +83,9 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                                 .on(click, e -> {
                                     textInputGroup.main().value("", true);
                                     textEntered.change(false);
+                                    if (onClear != null) {
+                                        onClear.accept(textInputGroup);
+                                    }
                                 })));
 
         textEntered.subscribe((current, previous) -> setVisible(textInputGroup.utilities(), current));
@@ -86,6 +95,10 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
     }
 
     public static TextInputGroup filterInputGroup(String placeholder) {
+        return filterInputGroup(placeholder, null);
+    }
+
+    public static TextInputGroup filterInputGroup(String placeholder, Consumer<TextInputGroup> onClear) {
         LabelGroup labelGroup = labelGroup();
         TextInputGroup textInputGroup = textInputGroup();
         ObservableValue<Boolean> labelsPresent = ov(false);
@@ -112,6 +125,9 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                                     textInputGroup.main().value("");
                                     labelsPresent.set(false);
                                     textEntered.change(false);
+                                    if (onClear != null) {
+                                        onClear.accept(textInputGroup);
+                                    }
                                 })));
 
         labelsPresent.subscribe((current, previous) -> {

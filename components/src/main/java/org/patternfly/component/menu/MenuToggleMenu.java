@@ -76,6 +76,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     Menu menu;
     private final Set<TriggerAction> triggerActions;
     private final List<ToggleHandler<B>> toggleHandler;
+    private final List<HTMLElement> stayOpenWhenClickedOn;
     private int zIndex;
     private boolean flip;
     private boolean disabled;
@@ -87,6 +88,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         super(componentType);
         this.menuToggle = menuToggle;
         this.toggleHandler = new ArrayList<>();
+        this.stayOpenWhenClickedOn = new ArrayList<>();
         this.triggerActions = EnumSet.of(triggerAction);
         this.flip = true;
         this.placement = bottomStart;
@@ -184,6 +186,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     public B stayOpen() {
         this.triggerActions.clear();
         this.triggerActions.add(TriggerAction.stayOpen);
+        return that();
+    }
+
+    public B stayOpen(HTMLElement firstElement, HTMLElement... otherElements) {
+        stayOpenWhenClickedOn.add(firstElement);
+        stayOpenWhenClickedOn.addAll(List.of(otherElements));
         return that();
     }
 
