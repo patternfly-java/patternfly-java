@@ -145,6 +145,8 @@ public enum ComponentType {
 
     TextInputGroup("tig", "PF6/TextInputGroup"),
 
+    Timestamp("ts", "PF6/Timestamp"),
+
     Title("tlt", "PF6/Title"),
 
     ToggleGroup("tg", null),
