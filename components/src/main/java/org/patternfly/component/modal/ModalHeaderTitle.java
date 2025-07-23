@@ -17,10 +17,9 @@ package org.patternfly.component.modal;
 
 import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.Severity;
-import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -35,10 +34,11 @@ import static org.patternfly.style.Classes.modalBox;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.title;
+import static org.patternfly.style.TypedModifier.swap;
 
 public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeaderTitle> implements
         ComponentIcon<HTMLElement, ModalHeaderTitle>,
-        WithText<HTMLElement, ModalHeaderTitle> {
+        ElementTextDelegate<HTMLElement, ModalHeaderTitle> {
 
     // ------------------------------------------------------ factory
 
@@ -60,13 +60,19 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
         add(textElement = span().css(component(modalBox, title, Classes.text)).element());
     }
 
+    @Override
+    public Element textDelegate() {
+        return textElement;
+    }
+
     // ------------------------------------------------------ builder
 
     public ModalHeaderTitle severity(Severity severity) {
         if (this.severity != null) {
             removeIcon();
         }
-        this.severity = severity;
+        swap(this, element(), severity.status, this.severity != null ? this.severity.status : null,
+                () -> this.severity = severity);
         icon(severity.icon.get());
         failSafeScreenReaderElement().textContent = severity.aria;
         return this;

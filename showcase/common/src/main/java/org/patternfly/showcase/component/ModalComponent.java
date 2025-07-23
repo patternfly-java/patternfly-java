@@ -34,10 +34,12 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.Severity.warning;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.form.Form.form;
 import static org.patternfly.component.form.FormGroup.formGroup;
 import static org.patternfly.component.form.FormGroupControl.formGroupControl;
@@ -71,7 +73,6 @@ import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 import static org.patternfly.style.Classes.util;
-import static org.patternfly.style.Size._2xl;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.md;
 import static org.patternfly.style.Size.sm;
@@ -244,12 +245,10 @@ public class ModalComponent extends SnippetPage {
                     .aria(labelledBy, "modal-custom-header-label")
                     .aria(describedBy, "modal-custom-header-description")
                     .addHeader(modalHeader()
-                            .add(title(1, _2xl)
-                                    .id("modal-custom-header-label")
-                                    .text("Custom header/footer modal"))
-                            .add(p().css(util("pt-sm"))
-                                    .text(
-                                            "Allows for custom content in the header and/or footer by passing components.")))
+                            .add(content()
+                                    .add(h(1, "Custom header modal").id("modal-custom-header-label"))
+                                    .add(p().text(
+                                            "Allows for custom content in the header and/or footer by passing components."))))
                     .addBody(modalBody()
                             .add(span()
                                     .id("modal-custom-header-description")

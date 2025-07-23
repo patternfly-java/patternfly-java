@@ -25,6 +25,7 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ElementContainerDelegate;
@@ -76,7 +77,7 @@ import static org.patternfly.style.Classes.toggle;
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
         HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem>,
         HasIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
-        WithText<HTMLLIElement, ExpandableNavigationGroup>,
+        ElementTextMethods<HTMLLIElement, ExpandableNavigationGroup>,
         ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup> {
 
     // ------------------------------------------------------ factory

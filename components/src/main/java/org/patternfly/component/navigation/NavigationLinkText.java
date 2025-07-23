@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.navigation;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.WithText;
 
 import elemental2.dom.HTMLElement;
@@ -26,7 +27,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.text;
 
 public class NavigationLinkText extends NavigationSubComponent<HTMLElement, NavigationLinkText>
-        implements WithText<HTMLElement, NavigationLinkText> {
+        implements ElementTextMethods<HTMLElement, NavigationLinkText> {
 
     // ------------------------------------------------------ factory
 

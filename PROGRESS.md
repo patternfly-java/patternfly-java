@@ -28,8 +28,8 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `jumplinks`
 - [x] `label`
 - [x] `list`
-- [ ] `menu`
-- [ ] `modal`
+- [x] `menu`
+- [x] `modal`
 - [ ] `navigation`
 - [ ] `page`
 - [ ] `panel`

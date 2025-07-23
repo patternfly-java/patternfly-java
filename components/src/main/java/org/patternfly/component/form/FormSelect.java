@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.HTMLElementBuilder;
+import org.jboss.elemento.HTMLSelectElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.core.Attributes;
@@ -33,14 +33,13 @@ import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLOptionElement;
 import elemental2.dom.HTMLSelectElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.select;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
+import static org.jboss.elemento.Elements.wrapSelectElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.patternfly.core.Aria.invalid;
@@ -110,9 +109,9 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
 
     // ------------------------------------------------------ add
 
-    /** Provides access to the underlying radio element using a fluent API style */
-    public FormSelect applyTo(Consumer<HTMLSeleElementBuilder<HTMLInputElement>> consumer) {
-        consumer.accept(inputElement());
+    /** Provides access to the underlying select element using a fluent API style */
+    public FormSelect applyTo(Consumer<HTMLSelectElementBuilder<HTMLSelectElement>> select) {
+        select.accept(selectElement());
         return this;
     }
 
@@ -195,12 +194,6 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
         }
     }
 
-    /** Provides access to the underlying select element using a fluent API style */
-    public FormSelect applyTo(Consumer<HTMLElementBuilder<HTMLSelectElement>> consumer) {
-        consumer.accept(selectElement());
-        return this;
-    }
-
     @Override
     public FormSelect that() {
         return this;
@@ -234,8 +227,8 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     /** Returns the underlying input element */
-    public HTMLElementBuilder<HTMLSelectElement> selectElement() {
-        return wrapHtmlElement(selectElement);
+    public HTMLSelectElementBuilder<HTMLSelectElement> selectElement() {
+        return wrapSelectElement(selectElement);
     }
 
     // ------------------------------------------------------ internal

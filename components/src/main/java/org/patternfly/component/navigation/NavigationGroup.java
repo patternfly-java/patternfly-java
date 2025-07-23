@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasIdentifier;
@@ -53,7 +54,7 @@ import static org.patternfly.style.Classes.title;
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> implements
         HasItems<HTMLElement, NavigationGroup, NavigationItem>,
         HasIdentifier<HTMLElement, NavigationGroup>,
-        WithText<HTMLElement, NavigationGroup>,
+        ElementTextMethods<HTMLElement, NavigationGroup>,
         ElementContainerDelegate<HTMLElement, NavigationGroup> {
 
     // ------------------------------------------------------ factory

@@ -115,7 +115,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
 
     /** Provides access to the underlying text area element using a fluent API style */
     public TextArea applyTo(Consumer<HTMLTextAreaElementBuilder<HTMLTextAreaElement>> textArea) {
-        textArea.accept(wrapTextAreaElement(textAreaElement));
+        textArea.accept(textArea());
         return this;
     }
 

@@ -18,6 +18,7 @@ package org.patternfly.component.navigation;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasIdentifier;
@@ -45,7 +46,7 @@ import static org.patternfly.style.Classes.nav;
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         ComponentContext<HTMLLIElement, NavigationItem>,
         HasIdentifier<HTMLLIElement, NavigationItem>,
-        WithText<HTMLLIElement, NavigationItem>,
+        ElementTextMethods<HTMLLIElement, NavigationItem>,
         ElementContainerDelegate<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
