@@ -15,11 +15,11 @@
  */
 package org.patternfly.component.table;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;

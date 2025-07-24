@@ -18,9 +18,9 @@ package org.patternfly.component.form;
 import java.util.Iterator;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;

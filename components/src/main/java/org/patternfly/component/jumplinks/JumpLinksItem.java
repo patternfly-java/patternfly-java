@@ -18,8 +18,8 @@ package org.patternfly.component.jumplinks;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;

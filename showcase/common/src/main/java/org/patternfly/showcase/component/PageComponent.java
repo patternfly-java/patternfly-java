@@ -39,7 +39,7 @@ import static org.patternfly.component.card.Card.card;
 import static org.patternfly.component.card.CardBody.cardBody;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
-import static org.patternfly.component.navigation.NavigationType.Horizontal.tertiary;
+import static org.patternfly.component.navigation.NavigationType.Horizontal.secondary;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
@@ -245,7 +245,7 @@ public class PageComponent extends SnippetPage {
                                 .addMain(pageMain("page-group-main")
                                         .addGroup(pageMainGroup()
                                                 .addSection(pageMainNavigation()
-                                                        .addNavigation(navigation(tertiary)
+                                                        .addNavigation(navigation(secondary)
                                                                 .addItem(navigationItem("page-group-ni-0", "System panel", "#"))
                                                                 .addItem(navigationItem("page-group-ni-1", "Policy", "#"))
                                                                 .addItem(navigationItem("page-group-ni-2", "Authentication",

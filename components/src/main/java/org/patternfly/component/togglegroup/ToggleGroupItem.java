@@ -19,9 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.WithText;

@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.component.ElementContainerDelegate;
+import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 

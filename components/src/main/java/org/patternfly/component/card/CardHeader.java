@@ -16,9 +16,9 @@
 package org.patternfly.component.card;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;

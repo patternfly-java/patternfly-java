@@ -21,16 +21,14 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementTextMethods;
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
@@ -52,10 +50,10 @@ import static org.patternfly.style.Classes.section;
 import static org.patternfly.style.Classes.title;
 
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> implements
-        HasItems<HTMLElement, NavigationGroup, NavigationItem>,
+        ElementContainerDelegate<HTMLElement, NavigationGroup>,
+        ElementTextDelegate<HTMLElement, NavigationGroup>,
         HasIdentifier<HTMLElement, NavigationGroup>,
-        ElementTextMethods<HTMLElement, NavigationGroup>,
-        ElementContainerDelegate<HTMLElement, NavigationGroup> {
+        HasItems<HTMLElement, NavigationGroup, NavigationItem> {
 
     // ------------------------------------------------------ factory
 
@@ -75,7 +73,6 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     private final Map<String, NavigationItem> items;
     private final HTMLHeadingElement headingElement;
     private final HTMLUListElement ul;
-    private NavigationLinkText navigationLinkText;
 
     NavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, section().css(component(nav, section))
@@ -95,6 +92,11 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
         return headingElement;
     }
 
+    @Override
+    public Element textDelegate() {
+        return headingElement;
+    }
+
     // ------------------------------------------------------ add
 
     @Override
@@ -109,16 +111,6 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     public NavigationGroup add(Divider divider) {
         ul.appendChild(divider.element());
-        return this;
-    }
-
-    public NavigationGroup addLinkText(NavigationLinkText text) {
-        return add(text);
-    }
-
-    public NavigationGroup add(NavigationLinkText text) {
-        this.navigationLinkText = text;
-        headingElement.appendChild(text.element());
         return this;
     }
 
@@ -141,18 +133,6 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     // ------------------------------------------------------ builder
 
     @Override
-    public NavigationGroup text(String text) {
-        if (text != null) {
-            if (this.navigationLinkText != null) {
-                this.navigationLinkText.text(text);
-            } else {
-                Elements.textNode(headingElement, text);
-            }
-        }
-        return this;
-    }
-
-    @Override
     public NavigationGroup that() {
         return this;
     }
@@ -162,15 +142,6 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     @Override
     public String identifier() {
         return identifier;
-    }
-
-    @Override
-    public String text() {
-        if (this.navigationLinkText != null) {
-            return navigationLinkText.text();
-        } else {
-            return Elements.textNode(headingElement);
-        }
     }
 
     @Override

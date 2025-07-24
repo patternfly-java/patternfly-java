@@ -18,6 +18,7 @@ package org.patternfly.component.button;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -27,7 +28,6 @@ import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentProgress;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.spinner.Spinner;

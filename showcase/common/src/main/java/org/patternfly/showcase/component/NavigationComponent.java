@@ -36,11 +36,16 @@ import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
 import static org.patternfly.component.navigation.NavigationLinkText.navigationLinkText;
+import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.secondary;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
 import static org.patternfly.icon.IconSets.fas.arrowRight;
+import static org.patternfly.icon.IconSets.fas.cloud;
+import static org.patternfly.icon.IconSets.fas.cube;
+import static org.patternfly.icon.IconSets.fas.folder;
+import static org.patternfly.icon.IconSets.fas.link;
 import static org.patternfly.icon.IconSets.fas.user;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
@@ -144,15 +149,26 @@ public class NavigationComponent extends SnippetPage {
                 // @code-end:nav-mixed
         ));
 
-        addSnippet(new Snippet("nav-horizontal", "Horizontal",
+        addSnippet(new Snippet("nav-horizontal", "Horizontal navigation",
                 code("nav-horizontal"), () ->
                 // @code-start:nav-horizontal
                 div().css("ws-react-c-navigation")
-                        .add(navigation(secondary)
+                        .add(navigation(primary)
                                 .addItems(range(1, 11).boxed().collect(toList()), index ->
-                                        navigationItem("nav-horizontal-" + index, "Horizontal subnav item " + index)))
+                                        navigationItem("nav-horizontal-" + index, "Horizontal navigation item " + index)))
                         .element()
                 // @code-end:nav-horizontal
+        ));
+
+        addSnippet(new Snippet("nav-horizontal-sub", "Horizontal subnav",
+                code("nav-horizontal-sub"), () ->
+                // @code-start:nav-horizontal-sub
+                div().css("ws-react-c-navigation")
+                        .add(navigation(secondary)
+                                .addItems(range(1, 11).boxed().collect(toList()), index ->
+                                        navigationItem("nav-horizontal-sub-" + index, "Horizontal subnav item " + index)))
+                        .element()
+                // @code-end:nav-horizontal-sub
         ));
 
         addSnippet(new Snippet("nav-flyout", "Flyout",
@@ -169,35 +185,29 @@ public class NavigationComponent extends SnippetPage {
                 // @code-end:nav-drilldown
         ));
 
-        addSnippet(new Snippet("nav-link-text", "Link text",
-                code("nav-link-text"), () ->
-                // @code-start:nav-link-text
+        addSnippet(new Snippet("nav-item-icons", "With item icons",
+                code("nav-item-icons"), () ->
+                // @code-start:nav-item-icons
                 div().css("ws-react-c-navigation")
                         .add(navigation(expandable)
-                                .addItem(navigationItem("nav-link-text-0").href("#item-0")
-                                        .addLinkText(navigationLinkText()
-                                                .add("Link 1 ")
-                                                .add(arrowRight())))
-                                .addGroup(expandableNavigationGroup("nav-link-text-0")
-                                        .addLinkText(navigationLinkText()
-                                                .add("Link 2 ")
-                                                .add(small("(small text)")))
-                                        .addItem(navigationItem("nav-link-text-00").href("#item-00")
-                                                .addLinkText(navigationLinkText()
-                                                        .add(user())
-                                                        .add(" Subnav link 1")))
-                                        .addItem(navigationItem("nav-link-text-01").href("#item-01")
-                                                .addLinkText(navigationLinkText()
-                                                        .add(user())
-                                                        .add(" Subnav link 2"))))
-                                .addGroup(expandableNavigationGroup("nav-link-text-1")
-                                        .addLinkText(navigationLinkText()
-                                                .add("Link 3 ")
-                                                .add(strong("(strong text)")))
-                                        .addItem(navigationItem("nav-link-text-10", "Subnav link 1", "#item-10"))
-                                        .addItem(navigationItem("nav-link-text-11", "Subnav link 2", "#item-11"))))
+                                .addItem(navigationItem("nav-item-icons-0")
+                                        .icon(cube())
+                                        .text("Link 1")
+                                        .href("#item-0"))
+                                .addItem(navigationItem("nav-item-icons-1")
+                                        .icon(folder())
+                                        .text("Link 2")
+                                        .href("#item-1"))
+                                .addItem(navigationItem("nav-item-icons-2")
+                                        .icon(cloud())
+                                        .text("Link 3")
+                                        .href("#item-2"))
+                                .addItem(navigationItem("nav-item-icons-3")
+                                        .icon(link())
+                                        .text("Link 4")
+                                        .href("#item-3")))
                         .element()
-                // @code-end:nav-mixed
+                // @code-end:nav-item-icons
         ));
 
         startApiDocs(Navigation.class);

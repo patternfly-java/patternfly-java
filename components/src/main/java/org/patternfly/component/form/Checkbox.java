@@ -19,18 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -61,9 +60,9 @@ import static org.patternfly.style.Classes.standalone;
  * @see <a href= "https://www.patternfly.org/components/forms/checkbox">https://www.patternfly.org/components/forms/checkbox</a>
  */
 public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
+        Disabled<HTMLElement, Checkbox>,
         ElementTextDelegate<HTMLElement, Checkbox>,
         HasValue<Boolean>,
-        Disabled<HTMLElement, Checkbox>,
         Required<HTMLElement, Checkbox> {
 
     // ------------------------------------------------------ factory

@@ -18,14 +18,13 @@ package org.patternfly.component.breadcrumb;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.component.ElementTextDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;

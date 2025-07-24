@@ -19,10 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;

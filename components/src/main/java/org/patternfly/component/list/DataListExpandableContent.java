@@ -15,8 +15,8 @@
  */
 package org.patternfly.component.list;
 
-import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.ElementTextDelegate;
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 

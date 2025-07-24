@@ -15,9 +15,8 @@
  */
 package org.patternfly.component.menu;
 
-import org.patternfly.component.ElementTextDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -28,7 +27,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.title;
 
-public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implements ElementTextDelegate<HTMLElement, MenuGroup> {
+public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implements
+        ElementTextDelegate<HTMLElement, MenuGroup> {
 
     // ------------------------------------------------------ factory
 

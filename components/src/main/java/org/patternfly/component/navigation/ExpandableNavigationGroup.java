@@ -25,20 +25,18 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
-import org.jboss.elemento.ElementTextMethods;
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithText;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -49,7 +47,6 @@ import elemental2.dom.HTMLUListElement;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
-import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
@@ -75,10 +72,10 @@ import static org.patternfly.style.Classes.subnav;
 import static org.patternfly.style.Classes.toggle;
 
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
-        HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem>,
+        ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup>,
+        ElementTextDelegate<HTMLLIElement, ExpandableNavigationGroup>,
         HasIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
-        ElementTextMethods<HTMLLIElement, ExpandableNavigationGroup>,
-        ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup> {
+        HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem> {
 
     // ------------------------------------------------------ factory
 
@@ -101,7 +98,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final HTMLButtonElement buttonElement;
     private final HTMLElement section;
     private final HTMLUListElement ul;
-    private NavigationLinkText navigationLinkText;
 
     ExpandableNavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
@@ -136,6 +132,11 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         return buttonElement;
     }
 
+    @Override
+    public Element textDelegate() {
+        return buttonElement;
+    }
+
     // ------------------------------------------------------ add
 
     @Override
@@ -159,16 +160,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     public ExpandableNavigationGroup add(Divider divider) {
         ul.appendChild(divider.element());
-        return this;
-    }
-
-    public ExpandableNavigationGroup addLinkText(NavigationLinkText text) {
-        return add(text);
-    }
-
-    public ExpandableNavigationGroup add(NavigationLinkText text) {
-        this.navigationLinkText = text;
-        insertFirst(buttonElement, text);
         return this;
     }
 
@@ -207,18 +198,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     // ------------------------------------------------------ builder
 
     @Override
-    public ExpandableNavigationGroup text(String text) {
-        if (text != null) {
-            if (this.navigationLinkText != null) {
-                this.navigationLinkText.text(text);
-            } else {
-                Elements.textNode(buttonElement, text);
-            }
-        }
-        return this;
-    }
-
-    @Override
     public ExpandableNavigationGroup that() {
         return this;
     }
@@ -228,15 +207,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     @Override
     public String identifier() {
         return identifier;
-    }
-
-    @Override
-    public String text() {
-        if (this.navigationLinkText != null) {
-            return navigationLinkText.text();
-        } else {
-            return Elements.textNode(buttonElement);
-        }
     }
 
     @Override

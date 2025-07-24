@@ -18,36 +18,41 @@ package org.patternfly.component.navigation;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.elemento.ElementTextMethods;
-import org.jboss.elemento.Elements;
-import org.patternfly.component.ElementContainerDelegate;
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.ScrollIntoViewOptions;
 
 import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
+import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
+import static org.patternfly.style.Classes.text;
 
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         ComponentContext<HTMLLIElement, NavigationItem>,
-        HasIdentifier<HTMLLIElement, NavigationItem>,
-        ElementTextMethods<HTMLLIElement, NavigationItem>,
-        ElementContainerDelegate<HTMLLIElement, NavigationItem> {
+        ComponentIcon<HTMLLIElement, NavigationItem>,
+        ElementContainerDelegate<HTMLLIElement, NavigationItem>,
+        ElementTextDelegate<HTMLLIElement, NavigationItem>,
+        HasIdentifier<HTMLLIElement, NavigationItem> {
 
     // ------------------------------------------------------ factory
 
@@ -70,7 +75,8 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     final HTMLAnchorElement anchorElement;
     private final String identifier;
     private final Map<String, Object> data;
-    private NavigationLinkText navigationLinkText;
+    private final HTMLElement textElement;
+    private HTMLElement iconContainer;
 
     NavigationItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item))
@@ -80,6 +86,8 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         this.data = new HashMap<>();
 
         element().appendChild(anchorElement = a().css(component(nav, link))
+                .add(textElement = span().css(component(nav, link, text))
+                        .element())
                 .element());
     }
 
@@ -88,36 +96,30 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         return anchorElement;
     }
 
-    // ------------------------------------------------------ add
-
-    public NavigationItem addLinkText(NavigationLinkText text) {
-        return add(text);
-    }
-
-    public NavigationItem add(NavigationLinkText text) {
-        this.navigationLinkText = text;
-        anchorElement.appendChild(text.element());
-        return this;
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public NavigationItem text(String text) {
-        if (text != null) {
-            if (this.navigationLinkText != null) {
-                this.navigationLinkText.text(text);
-            } else {
-                Elements.textNode(anchorElement, text);
-            }
-        }
-        return this;
-    }
 
     public NavigationItem href(String href) {
         if (href != null) {
             anchorElement.href = href;
         }
+        return this;
+    }
+
+    @Override
+    public NavigationItem icon(Element icon) {
+        failSafeIconContainer().appendChild(icon);
+        return this;
+    }
+
+    @Override
+    public NavigationItem removeIcon() {
+        failSafeRemoveFromParent(failSafeIconContainer());
+        iconContainer = null;
         return this;
     }
 
@@ -147,15 +149,6 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     }
 
     @Override
-    public String text() {
-        if (this.navigationLinkText != null) {
-            return navigationLinkText.text();
-        } else {
-            return Elements.textNode(anchorElement);
-        }
-    }
-
-    @Override
     public boolean has(String key) {
         return data.containsKey(key);
     }
@@ -177,5 +170,14 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         options.setBlock("nearest");
         options.setInline("nearest");
         anchorElement.scrollIntoView(options);
+    }
+
+    // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeIconContainer() {
+        if (iconContainer == null) {
+            insertFirst(anchorElement, iconContainer = span().css(component(nav, link, icon)).element());
+        }
+        return iconContainer;
     }
 }
