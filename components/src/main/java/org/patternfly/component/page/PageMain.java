@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.page;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.core.Roles;
 
 import elemental2.dom.AddEventListenerOptions;

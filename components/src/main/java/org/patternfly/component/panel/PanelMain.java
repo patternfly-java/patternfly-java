@@ -15,7 +15,7 @@
  */
 package org.patternfly.component.panel;
 
-import org.patternfly.component.ElementContainerDelegate;
+import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 
 import elemental2.dom.Element;

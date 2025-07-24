@@ -20,9 +20,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Id;
-import org.patternfly.component.ElementContainerDelegate;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;

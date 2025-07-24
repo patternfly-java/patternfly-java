@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementTextDelegate;
 import org.patternfly.component.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
@@ -55,9 +55,9 @@ import static org.patternfly.style.Classes.standalone;
  * @see <a href= "https://www.patternfly.org/components/forms/radio">https://www.patternfly.org/components/forms/radio</a>
  */
 public class Radio extends BaseComponent<HTMLElement, Radio> implements
+        Disabled<HTMLElement, Radio>,
         ElementTextDelegate<HTMLElement, Radio>,
         HasValue<Boolean>,
-        Disabled<HTMLElement, Radio>,
         Required<HTMLElement, Radio> {
 
     // ------------------------------------------------------ factory

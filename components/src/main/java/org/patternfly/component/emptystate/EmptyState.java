@@ -15,9 +15,9 @@
  */
 package org.patternfly.component.emptystate;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Size;
 import org.patternfly.style.Status;

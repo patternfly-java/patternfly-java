@@ -15,10 +15,10 @@
  */
 package org.patternfly.component.popover;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.ElementContainerDelegate;
 import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
 
