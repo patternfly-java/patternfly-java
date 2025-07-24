@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Timestamp component (#95) (thanks @mskacelik)
 - Add new enum `org.patternfly.token.Token` that contains all [PatternFly token](https://www.patternfly.org/tokens/all-patternfly-tokens) as enum constants.
 
 ### Changed
@@ -20,7 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Upgrades
 
-- Bump Elemento to 1.7.1
+- Bump Elemento to 2.0.2
 
 ## [0.2.11] - 2024-11-19
 
