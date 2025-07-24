@@ -272,6 +272,7 @@ public interface Classes {
     String thead = "thead";
     String thumb = "thumb";
     String tick = "tick";
+    String timestamp = "timestamp";
     String title = "title";
     String titleCell = "title-cell";
     String toast = "toast";

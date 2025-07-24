@@ -617,7 +617,8 @@
   "timestamp": {
     "name": "timestamp",
     "title": "Timestamp",
-    "route": "/components/date-and-time/timestamp",
+    "route": "/components/timestamp",
+    "clazz": "org.patternfly.component.timestamp.Timestamp",
     "illustration": "timestamp.png",
     "summary": "A <b>timestamp</b> is a consistently formatted visual that displays date and time values."
   },
