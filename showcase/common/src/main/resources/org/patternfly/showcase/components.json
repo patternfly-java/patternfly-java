@@ -508,7 +508,6 @@
     "name": "sidebar",
     "title": "Sidebar",
     "route": "/components/sidebar",
-    "clazz": "org.patternfly.component.page.Sidebar",
     "illustration": "sidebar.png",
     "summary": "A <b>sidebar</b> is a panel that splits content into a secondary area within a page."
   },

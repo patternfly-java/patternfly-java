@@ -22,14 +22,14 @@ import org.patternfly.component.page.MastheadContent;
 import org.patternfly.component.page.MastheadLogo;
 import org.patternfly.component.page.MastheadMain;
 import org.patternfly.component.page.MastheadToggle;
+import org.patternfly.showcase.ResourcesImpl;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Inset;
 
+import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.page.Display.inline;
 import static org.patternfly.component.page.Display.stack;
@@ -42,15 +42,14 @@ import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
-import static org.patternfly.showcase.Assets.pfLogo;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Breakpoint._2xl;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoint.lg;
 import static org.patternfly.style.Breakpoints.breakpoints;
-import static org.patternfly.style.Brightness.light;
-import static org.patternfly.style.Brightness.light200;
+import static org.patternfly.style.Classes.brand;
+import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 
@@ -69,7 +68,8 @@ public class MastheadComponent extends SnippetPage {
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -84,7 +84,8 @@ public class MastheadComponent extends SnippetPage {
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .add(flex()
                                                 .add(span().text("Content"))
@@ -101,9 +102,10 @@ public class MastheadComponent extends SnippetPage {
                 div()
                         .add(masthead().display(breakpoints(default_, inline))
                                 .addMain(mastheadMain()
+                                        .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo"))
-                                        .addToggle(mastheadToggle()))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -118,7 +120,8 @@ public class MastheadComponent extends SnippetPage {
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -136,7 +139,8 @@ public class MastheadComponent extends SnippetPage {
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -147,11 +151,12 @@ public class MastheadComponent extends SnippetPage {
                 code("masthead-light"), () ->
                 // @code-start:masthead-light
                 div()
-                        .add(masthead().background(light)
+                        .add(masthead()
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -162,11 +167,12 @@ public class MastheadComponent extends SnippetPage {
                 code("masthead-light-200"), () ->
                 // @code-start:masthead-light-200
                 div()
-                        .add(masthead().background(light200)
+                        .add(masthead()
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
@@ -181,31 +187,29 @@ public class MastheadComponent extends SnippetPage {
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
-                                                .text("Logo")))
+                                                .addLogo(mastheadLogo("#")
+                                                        .add("Logo"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
                 // @code-end:masthead-inset
         ));
 
-        addSnippet(new Snippet("masthead-router", "With icon router link",
-                code("masthead-router"), () ->
-                // @code-start:masthead-router
+        addSnippet(new Snippet("masthead-clc", "Custom logo content",
+                code("masthead-clc"), () ->
+                // @code-start:masthead-clc
                 div()
                         .add(masthead()
-
                                 .addMain(mastheadMain()
                                         .addToggle(mastheadToggle())
                                         .addBrand(mastheadBrand()
                                                 .addLogo(mastheadLogo("/")
-                                                        .addBrand(brand(pfLogo, "PatternFly")
-                                                                .style(componentVar(Classes.component(Classes.brand),
-                                                                                Height).name,
-                                                                        "36px")))))
+                                                        .html(fromSafeConstant(ResourcesImpl.INSTANCE.pfLogo().getText()))
+                                                        .style(componentVar(component(brand), Height).name, "36px"))))
                                 .addContent(mastheadContent()
                                         .text("Content")))
                         .element()
-                // @code-end:masthead-router
+                // @code-end:masthead-clc
         ));
 
         startApiDocs(Masthead.class);

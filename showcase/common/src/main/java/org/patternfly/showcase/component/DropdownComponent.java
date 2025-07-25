@@ -42,9 +42,9 @@ import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
-import static org.patternfly.showcase.Assets.avatarLight;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.showcase.Resources.avatarData;
 
 @Route(value = "/components/menus/dropdown", title = "Dropdown")
 public class DropdownComponent extends SnippetPage {
@@ -193,7 +193,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-avatar"), () ->
                 // @code-start:dropdown-avatar
                 div()
-                        .add(dropdown(menuToggle("John Doe").addAvatar(avatar(avatarLight, "avatar")))
+                        .add(dropdown(menuToggle("John Doe").addAvatar(avatar(avatarData(), "avatar")))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()

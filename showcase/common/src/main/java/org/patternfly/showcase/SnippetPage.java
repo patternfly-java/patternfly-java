@@ -32,7 +32,6 @@ import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
-
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLParagraphElement;
 
@@ -75,7 +74,6 @@ import static org.patternfly.showcase.LinkIcon.linkIcon;
 import static org.patternfly.style.Breakpoint._2xl;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.floatInlineEnd;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.util;
@@ -111,7 +109,6 @@ public class SnippetPage implements Page {
         elements = singletonList(
                 pageMainGroup()
                         .addSection(pageMainSection()
-                                .background(light)
                                 .limitWidth()
                                 .addBody(pageMainBody()
                                         .add(div().css(util(floatInlineEnd))

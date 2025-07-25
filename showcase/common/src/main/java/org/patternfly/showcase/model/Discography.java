@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import org.patternfly.showcase.ResourceBundle;
-
+import org.patternfly.showcase.ResourcesImpl;
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
@@ -31,7 +30,7 @@ public class Discography {
     public static JsPropertyMap<Record> data;
 
     static {
-        data = Js.cast(JSON.parse(ResourceBundle.rhcp));
+        data = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.rhcp().getText()));
     }
 
     public static List<Record> records(Predicate<Record> predicate) {

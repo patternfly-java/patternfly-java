@@ -20,23 +20,17 @@ import java.util.List;
 
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.style.Brightness;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.core.Validation.verifyEnum;
-import static org.patternfly.style.Brightness.dark;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.collapsed;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.sidebar;
-import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * Container for the page sidebar.
@@ -80,13 +74,6 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     public PageSidebar keepExpanded() {
         this.keepExpanded = true;
-        return this;
-    }
-
-    public PageSidebar theme(Brightness theme) {
-        if (verifyEnum(element(), "theme", theme, dark, light)) {
-            swap(this, element(), theme, Brightness.values());
-        }
         return this;
     }
 

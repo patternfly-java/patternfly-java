@@ -22,7 +22,6 @@ import org.jboss.elemento.router.Place;
 import org.patternfly.component.card.Card;
 import org.patternfly.layout.gallery.Gallery;
 import org.patternfly.layout.stack.Stack;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
@@ -38,8 +37,6 @@ import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.stack.Stack.stack;
-import static org.patternfly.style.Brightness.light;
-import static org.patternfly.style.Brightness.light100;
 import static org.patternfly.style.Classes.hidden;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.sticky;
@@ -56,12 +53,12 @@ public abstract class OverviewPage<T> implements Page {
     @Override
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainGroup()
-                .add(pageMainSection().limitWidth().background(light)
+                .add(pageMainSection().limitWidth()
                         .addBody(pageMainBody()
                                 .add(content()
                                         .add(flex().alignItems(center)
                                                 .add(title(1, _4xl, title))))))
-                .add(pageMainSection().fill().background(light100)
+                .add(pageMainSection().fill()
                         .addBody(pageMainBody()
                                 .add(stack().gutter()
                                         .run(this::landingPages)

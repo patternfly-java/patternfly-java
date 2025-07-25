@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
-
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
@@ -32,8 +31,8 @@ public final class Data {
     public static JsPropertyMap<Layout> layouts;
 
     static {
-        components = Js.cast(JSON.parse(ResourceBundle.components));
-        layouts = Js.cast(JSON.parse(ResourceBundle.layouts));
+        components = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.components().getText()));
+        layouts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.layouts().getText()));
     }
 
     public static List<Component> components() {

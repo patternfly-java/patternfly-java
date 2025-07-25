@@ -18,25 +18,18 @@ package org.patternfly.component.page;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Breakpoints;
-import org.patternfly.style.Brightness;
 import org.patternfly.style.Inset;
 import org.patternfly.style.Rect;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.header;
 import static org.patternfly.component.page.Display.inline;
-import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.style.Breakpoint.breakpoint;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Breakpoints.breakpoints;
-import static org.patternfly.style.Brightness.dark;
-import static org.patternfly.style.Brightness.light;
-import static org.patternfly.style.Brightness.light200;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.masthead;
-import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A masthead contains global properties such as logotype, navigation and settings in an organized fashion, and it is accessible
@@ -121,16 +114,6 @@ public class Masthead extends BaseComponent<HTMLElement, Masthead> {
         this.insetModifiers = insetModifiers;
         classList().add(this.insetModifiers.modifiers());
         this.insetModifiers = insetModifiers;
-        return this;
-    }
-
-    /**
-     * Background theme color of the masthead
-     */
-    public Masthead background(Brightness brightness) {
-        if (verifyEnum(element(), "background", brightness, dark, light, light200)) {
-            swap(this, element(), brightness, Brightness.values());
-        }
         return this;
     }
 

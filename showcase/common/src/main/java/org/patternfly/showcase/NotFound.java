@@ -19,7 +19,6 @@ import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
@@ -27,14 +26,12 @@ import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.PageMainSection.pageMainSection;
 import static org.patternfly.component.title.Title.title;
-import static org.patternfly.style.Brightness.light;
 
 class NotFound implements Page {
 
     @Override
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageMainSection()
-                .background(light)
                 .add(content()
                         .add(title(1, "Not Found"))
                         .add(p().text("Page " + place.route + " not found")))

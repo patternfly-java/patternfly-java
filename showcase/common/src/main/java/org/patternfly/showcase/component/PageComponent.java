@@ -43,6 +43,7 @@ import static org.patternfly.component.navigation.NavigationType.Horizontal.seco
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
+import static org.patternfly.component.page.MastheadLogo.mastheadLogo;
 import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
@@ -65,9 +66,6 @@ import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoint.md;
 import static org.patternfly.style.Breakpoints.breakpoints;
-import static org.patternfly.style.Brightness.dark100;
-import static org.patternfly.style.Brightness.dark200;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.section;
@@ -92,19 +90,19 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
-                                        .addContent(mastheadContent()
-                                                .add("Header tools")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
+                                        .addContent(mastheadContent().text("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
                                 .addMain(pageMain("page-vertical-nav-main")
-                                        .addSection(pageMainSection().background(dark100)
-                                                .text("Section with darker background"))
-                                        .addSection(pageMainSection().background(dark200)
-                                                .text("Section with dark background"))
-                                        .addSection(pageMainSection().background(light)
-                                                .text("Section with light background"))))
+                                        .addSection(pageMainSection()
+                                                .text("Section 1"))
+                                        .addSection(pageMainSection().secondary()
+                                                .text("Section 2 with secondary styling"))
+                                        .addSection(pageMainSection()
+                                                .text("Section 3"))))
                         .element()
                 // @code-end:page-vertical-nav
         ));
@@ -129,11 +127,11 @@ public class PageComponent extends SnippetPage {
                                         .addBody(pageSidebarBody().pageInsets().noFill()
                                                 .add("Third sidebar body (with insets and no fill)")))
                                 .addMain(pageMain("page-sidebar-body-main")
-                                        .addSection(pageMainSection().background(dark100)
+                                        .addSection(pageMainSection()
                                                 .text("Section with darker background"))
-                                        .addSection(pageMainSection().background(dark200)
+                                        .addSection(pageMainSection().secondary()
                                                 .text("Section with dark background"))
-                                        .addSection(pageMainSection().background(light)
+                                        .addSection(pageMainSection()
                                                 .text("Section with light background"))))
                         .element()
                 // @code-end:page-sidebar-body
@@ -157,11 +155,11 @@ public class PageComponent extends SnippetPage {
                                                                 .addItem(toolbarItem("page-horizontal-nav-1")
                                                                         .add("Header tools"))))))
                                 .addMain(pageMain("page-horizontal-nav-main")
-                                        .addSection(pageMainSection().background(dark100)
+                                        .addSection(pageMainSection()
                                                 .text("Section with darker background"))
-                                        .addSection(pageMainSection().background(dark200)
+                                        .addSection(pageMainSection().secondary()
                                                 .text("Section with dark background"))
-                                        .addSection(pageMainSection().background(light)
+                                        .addSection(pageMainSection()
                                                 .text("Section with light background"))))
                         .element()
                 // @code-end:page-horizontal-nav
@@ -212,7 +210,7 @@ public class PageComponent extends SnippetPage {
                                 .addMain(pageMain("page-section-padding-main")
                                         .addSection(pageMainSection()
                                                 .text("Section with default padding"))
-                                        .addSection(pageMainSection().background(light)
+                                        .addSection(pageMainSection()
                                                 .padding(breakpoints(default_, noPadding))
                                                 .text("Section with no padding"))
                                         .addSection(pageMainSection()
@@ -220,7 +218,7 @@ public class PageComponent extends SnippetPage {
                                                         default_, noPadding,
                                                         md, padding))
                                                 .text("Section with padding on medium"))
-                                        .addSection(pageMainSection().background(light)
+                                        .addSection(pageMainSection()
                                                 .padding(breakpoints(md, noPadding))
                                                 .text("Section with no padding on medium"))))
                         .element()
@@ -260,11 +258,11 @@ public class PageComponent extends SnippetPage {
                                                                 .addItem(breadcrumbItem("page-group-2", "Section title", "#"))
                                                                 .addItem(breadcrumbItem("page-group-3", "Section landing",
                                                                         "#").active())))
-                                                .addSection(pageMainSection().background(light)
+                                                .addSection(pageMainSection()
                                                         .text("Grouped section")))
-                                        .addSection(pageMainSection().background(dark200)
+                                        .addSection(pageMainSection().secondary()
                                                 .text("Section 1"))
-                                        .addSection(pageMainSection().background(dark200)
+                                        .addSection(pageMainSection().secondary()
                                                 .text("Section 2"))))
                         .element()
                 // @code-end:page-group

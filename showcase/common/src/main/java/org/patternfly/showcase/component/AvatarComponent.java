@@ -24,12 +24,9 @@ import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.showcase.ApiDoc.Type.component;
-import static org.patternfly.showcase.Assets.avatarDark;
-import static org.patternfly.showcase.Assets.avatarLight;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.style.Brightness.dark;
-import static org.patternfly.style.Brightness.light;
+import static org.patternfly.showcase.Resources.avatarData;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.md;
 import static org.patternfly.style.Size.sm;
@@ -46,7 +43,7 @@ public class AvatarComponent extends SnippetPage {
                 code("avatar-basic"), () ->
                 // @code-start:avatar-basic
                 div()
-                        .add(avatar(avatarLight, "avatar"))
+                        .add(avatar(avatarData(), "avatar"))
                         .element()
                 // @code-end:avatar-basic
         ));
@@ -56,37 +53,28 @@ public class AvatarComponent extends SnippetPage {
                 // @code-start:avatar-size
                 div()
                         .add("Small").add(br())
-                        .add(avatar(avatarLight, "avatar").size(sm))
+                        .add(avatar(avatarData(), "avatar").size(sm))
                         .add(br()).add(br())
                         .add("Medium").add(br())
-                        .add(avatar(avatarLight, "avatar").size(md))
+                        .add(avatar(avatarData(), "avatar").size(md))
                         .add(br()).add(br())
                         .add("Large").add(br())
-                        .add(avatar(avatarLight, "avatar").size(lg))
+                        .add(avatar(avatarData(), "avatar").size(lg))
                         .add(br()).add(br())
                         .add("Extra large").add(br())
-                        .add(avatar(avatarLight, "avatar").size(xl))
+                        .add(avatar(avatarData(), "avatar").size(xl))
                         .element()
                 // @code-end:avatar-size
         ));
 
-        addSnippet(new Snippet("avatar-bordered-light", "Bordered - light",
-                code("avatar-bordered-light"), () ->
-                // @code-start:avatar-bordered-light
+        addSnippet(new Snippet("avatar-bordered", "Bordered",
+                code("avatar-bordered"), () ->
+                // @code-start:avatar-bordered
                 div()
-                        .add(avatar(avatarLight, "avatar").border(light))
+                        .add(avatar(avatarData(), "avatar").bordered())
                         .element()
-                // @code-end:avatar-bordered-light
+                // @code-end:avatar-bordered
         ));
-
-        addSnippet(new Snippet("avatar-bordered-dark", "Bordered - dark",
-                code("avatar-bordered-dark"), () ->
-                // @code-start:avatar-bordered-dark
-                div()
-                        .add(avatar(avatarDark, "avatar").border(dark))
-                        .element()
-                // @code-end:avatar-bordered-dark
-        ).style("background: var(--pf-v5-global--BackgroundColor--dark-100)"));
 
         startApiDocs(Avatar.class);
         addApiDoc(Avatar.class, component);

@@ -17,15 +17,11 @@ package org.patternfly.component.avatar;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.style.Brightness;
+import org.patternfly.style.Modifiers.Bordered;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;
-import static org.patternfly.core.Validation.verifyEnum;
-import static org.patternfly.style.Brightness.dark;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.avatar;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.TypedModifier.swap;
@@ -35,7 +31,7 @@ import static org.patternfly.style.TypedModifier.swap;
  *
  * @see <a href= "https://www.patternfly.org/components/avatar">https://www.patternfly.org/components/avatar</a>
  */
-public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
+public class Avatar extends BaseComponent<HTMLImageElement, Avatar> implements Bordered<HTMLImageElement, Avatar> {
 
     // ------------------------------------------------------ factory
 
@@ -66,13 +62,6 @@ public class Avatar extends BaseComponent<HTMLImageElement, Avatar> {
 
     public Avatar size(Size size) {
         return swap(this, element(), size, Size.values());
-    }
-
-    public Avatar border(Brightness border) {
-        if (verifyEnum(element(), "border", border, light, dark)) {
-            swap(this, element(), border, Brightness.values());
-        }
-        return this;
     }
 
     @Override

@@ -15,8 +15,7 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.brand.Brand;
-
+import org.jboss.elemento.ElementHTMLMethods;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.a;
@@ -24,7 +23,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.logo;
 import static org.patternfly.style.Classes.masthead;
 
-public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo> {
+public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo> implements
+        ElementHTMLMethods<HTMLElement, MastheadLogo> {
 
     // ------------------------------------------------------ factory
 
@@ -41,12 +41,6 @@ public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo
 
     MastheadLogo(String href) {
         super(SUB_COMPONENT_NAME, a(href).css(component(masthead, logo)).element());
-    }
-
-    // ------------------------------------------------------ add
-
-    public MastheadLogo addBrand(Brand brand) {
-        return add(brand);
     }
 
     // ------------------------------------------------------ builder

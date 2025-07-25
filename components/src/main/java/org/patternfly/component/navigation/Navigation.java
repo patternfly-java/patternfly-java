@@ -39,7 +39,6 @@ import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.style.Brightness;
 import org.patternfly.style.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -62,9 +61,6 @@ import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Validation.verifyEnum;
-import static org.patternfly.style.Brightness.dark;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
@@ -74,7 +70,6 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.subnav;
-import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
@@ -301,13 +296,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     // ------------------------------------------------------ builder
-
-    public Navigation theme(Brightness theme) {
-        if (verifyEnum(element(), "theme", theme, dark, light)) {
-            swap(this, element(), theme, Brightness.values());
-        }
-        return this;
-    }
 
     @Override
     public Navigation that() {

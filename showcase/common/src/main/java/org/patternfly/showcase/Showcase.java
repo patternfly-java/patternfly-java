@@ -23,11 +23,11 @@ import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
-import org.patternfly.component.page.Page;
 import org.patternfly.core.Version;
 import org.patternfly.style.Classes;
 
 import static elemental2.dom.DomGlobal.location;
+import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.body;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
@@ -59,7 +59,6 @@ public final class Showcase {
 
     private static Navigation navigation;
     private static PlaceManager placeManager;
-    private static Page page;
 
     // ------------------------------------------------------ init
 
@@ -112,9 +111,8 @@ public final class Showcase {
                                         .toggleSidebar())
                                 .addBrand(mastheadBrand()
                                         .addLogo(mastheadLogo("/")
-                                                .style(componentVar(component(Classes.brand), Height).name, "36px")
-                                                .apply(e -> e.innerHTML = SafeHtmlUtils.fromSafeConstant(
-                                                        ResourceBundle.pfLogo).asString()))))
+                                                .html(fromSafeConstant(ResourcesImpl.INSTANCE.pfLogo().getText()))
+                                                .style(componentVar(component(Classes.brand), Height).name, "36px"))))
                         .addContent(mastheadContent()))
                 .addSidebar(pageSidebar()
                         .addBody(pageSidebarBody()

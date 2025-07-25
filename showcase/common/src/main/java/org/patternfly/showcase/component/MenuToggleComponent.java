@@ -17,11 +17,8 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.Severity;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MenuToggleAction;
-import org.patternfly.component.textinputgroup.TextInputGroup;
-import org.patternfly.component.textinputgroup.TextInputGroupMain;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -43,9 +40,9 @@ import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
-import static org.patternfly.showcase.Assets.avatarLight;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.showcase.Resources.avatarData;
 
 @Route(value = "/components/menus/menu-toggle", title = "Menu toggle")
 public class MenuToggleComponent extends SnippetPage {
@@ -124,19 +121,19 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-start:menu-toggle-avatar
                 div()
                         .add(menuToggle()
-                                .addAvatar(avatar(avatarLight, "avatar"))
+                                .addAvatar(avatar(avatarData(), "avatar"))
                                 .text("John Doe"))
                         .add(" ")
                         .add(menuToggle().primary()
-                                .addAvatar(avatar(avatarLight, "avatar"))
+                                .addAvatar(avatar(avatarData(), "avatar"))
                                 .text("John Doe"))
                         .add(" ")
                         .add(menuToggle().secondary()
-                                .addAvatar(avatar(avatarLight, "avatar"))
+                                .addAvatar(avatar(avatarData(), "avatar"))
                                 .text("John Doe"))
                         .add(" ")
                         .add(menuToggle().disabled()
-                                .addAvatar(avatar(avatarLight, "avatar"))
+                                .addAvatar(avatar(avatarData(), "avatar"))
                                 .text("John Doe"))
                         .element()
                 // @code-end:menu-toggle-avatar
