@@ -16,8 +16,6 @@
 package org.patternfly.component.navigation;
 
 import org.jboss.elemento.ElementTextMethods;
-import org.patternfly.component.WithText;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;

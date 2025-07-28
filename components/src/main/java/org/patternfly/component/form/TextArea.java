@@ -21,7 +21,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLTextAreaElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
@@ -29,7 +28,6 @@ import org.patternfly.core.Attributes;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.CSSStyleDeclaration;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -54,7 +52,6 @@ import static org.patternfly.style.Classes.textarea;
  */
 public class TextArea extends FormControl<HTMLElement, TextArea> implements
         Attachable,
-        ElementTextMethods<HTMLElement, TextArea>,
         HasValue<String>,
         Plain<HTMLElement, TextArea>,
         Readonly<HTMLElement, TextArea> {
@@ -162,12 +159,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
         return this;
     }
 
-    /** Same as {@link #value(String)} */
-    @Override
-    public TextArea text(String text) {
-        return value(text);
-    }
-
     /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextArea value(String value) {
         return value(value, false);
@@ -218,11 +209,6 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     /** Returns the underlying text area element */
     public HTMLTextAreaElementBuilder<HTMLTextAreaElement> textArea() {
         return wrapTextAreaElement(textAreaElement);
-    }
-
-    @Override
-    public String text() {
-        return value();
     }
 
     // ------------------------------------------------------ internal

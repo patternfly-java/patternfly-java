@@ -23,13 +23,13 @@ import java.util.function.Supplier;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Modifiers;
@@ -37,7 +37,6 @@ import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -70,9 +69,9 @@ import static org.patternfly.style.Classes.tooltip;
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.
  */
 public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
+        Attachable,
         Closeable<HTMLDivElement, Tooltip>,
-        WithText<HTMLDivElement, Tooltip>,
-        Attachable {
+        ElementTextMethods<HTMLDivElement, Tooltip> {
 
     // ------------------------------------------------------ factory
 

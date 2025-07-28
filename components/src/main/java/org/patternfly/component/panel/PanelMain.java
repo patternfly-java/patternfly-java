@@ -16,6 +16,7 @@
 package org.patternfly.component.panel;
 
 import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.ElementTextMethods;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
@@ -29,7 +30,7 @@ import static org.patternfly.style.Classes.panel;
 
 public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> implements
         ElementContainerDelegate<HTMLElement, PanelMain>,
-        ElementTextMethods<HTMLElement, PanelMain> {
+        ElementTextDelegate<HTMLElement, PanelMain> {
 
     // ------------------------------------------------------ factory
 
@@ -50,6 +51,11 @@ public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> impleme
 
     @Override
     public Element containerDelegate() {
+        return bodyElement;
+    }
+
+    @Override
+    public Element textDelegate() {
         return bodyElement;
     }
 

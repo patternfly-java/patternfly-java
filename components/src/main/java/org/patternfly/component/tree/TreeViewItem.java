@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
@@ -32,7 +33,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.WithText;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -41,7 +41,6 @@ import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -100,14 +99,14 @@ import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Size.md;
 
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
-        ComponentContext<HTMLLIElement, TreeViewItem>,
         Compact<HTMLLIElement, TreeViewItem>,
-        Disabled<HTMLLIElement, TreeViewItem>,
-        Expandable<HTMLLIElement, TreeViewItem>,
-        HasItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
-        HasIdentifier<HTMLLIElement, TreeViewItem>,
+        ComponentContext<HTMLLIElement, TreeViewItem>,
         ComponentIcon<HTMLLIElement, TreeViewItem>,
-        WithText<HTMLLIElement, TreeViewItem> {
+        Disabled<HTMLLIElement, TreeViewItem>,
+        ElementTextMethods<HTMLLIElement, TreeViewItem>,
+        Expandable<HTMLLIElement, TreeViewItem>,
+        HasIdentifier<HTMLLIElement, TreeViewItem>,
+        HasItems<HTMLLIElement, TreeViewItem, TreeViewItem> {
 
     // ------------------------------------------------------ factory
 

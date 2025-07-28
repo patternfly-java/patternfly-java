@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
@@ -34,7 +33,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -62,7 +60,6 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  */
 public class TextInput extends FormControl<HTMLElement, TextInput> implements
         ComponentIcon<HTMLElement, TextInput>,
-        ElementTextMethods<HTMLElement, TextInput>,
         HasValue<String>,
         Plain<HTMLElement, TextInput>,
         Readonly<HTMLElement, TextInput> {
@@ -167,12 +164,6 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return this;
     }
 
-    /** Same as {@link #value(String)} */
-    @Override
-    public TextInput text(String text) {
-        return value(text);
-    }
-
     /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextInput value(String value) {
         return value(value, false);
@@ -250,11 +241,6 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     /** Returns the underlying input element */
     public HTMLInputElementBuilder<HTMLInputElement> input() {
         return wrapInputElement(inputElement);
-    }
-
-    @Override
-    public String text() {
-        return value();
     }
 
     // ------------------------------------------------------ internal

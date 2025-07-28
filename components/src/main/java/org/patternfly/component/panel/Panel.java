@@ -15,17 +15,12 @@
  */
 package org.patternfly.component.panel;
 
-import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Modifiers;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.insertAfter;
-import static org.jboss.elemento.Elements.insertBefore;
-import static org.jboss.elemento.Elements.insertFirst;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.panel.PanelFooter.panelFooter;
@@ -55,12 +50,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(Panel.class.getName());
-    private PanelHeader header;
-    private PanelMain main;
-    private PanelFooter footer;
-
-    protected Panel() {
+    Panel() {
         super(ComponentType.Panel, div().css(component(panel)).element());
     }
 
@@ -75,11 +65,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     }
 
     public Panel add(PanelHeader header) {
-        if (this.header != null) {
-            logger.warn("Header already added to panel %o", element());
-        }
-        this.header = header;
-        insertFirst(element(), header);
+        add(header.element());
         aria(labelledBy, header.headerId);
         return this;
     }
@@ -98,20 +84,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     }
 
     public Panel add(PanelMain main) {
-        if (this.main != null) {
-            logger.warn("Main already added to panel %o", element());
-        }
-        this.main = main;
-        if (header != null) {
-            insertAfter(main, header.element());
-        } else {
-            if (footer != null) {
-                insertBefore(main, footer.element());
-            } else {
-                element().appendChild(main.element());
-            }
-        }
-        return this;
+        return add(main.element());
     }
 
     public Panel addFooter(String footer) {
@@ -123,12 +96,7 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
     }
 
     public Panel add(PanelFooter footer) {
-        if (this.footer != null) {
-            logger.warn("Footer already added to panel %o", element());
-        }
-        this.footer = footer;
-        element().appendChild(footer.element());
-        return this;
+        return add(footer.element());
     }
 
     // ------------------------------------------------------ builder

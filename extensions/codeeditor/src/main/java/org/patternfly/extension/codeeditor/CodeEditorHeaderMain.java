@@ -16,8 +16,6 @@
 package org.patternfly.extension.codeeditor;
 
 import org.jboss.elemento.ElementTextMethods;
-import org.patternfly.component.WithText;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;

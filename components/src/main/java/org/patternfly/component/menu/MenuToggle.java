@@ -317,7 +317,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             }
         } else if (type == MenuToggleType.typeahead) {
             if (textInputGroup != null) {
-                textInputGroup.main().text(text);
+                textInputGroup.main().value(text);
                 setVisible(textInputGroup.utilities(), text != null && !text.isEmpty());
             }
         }

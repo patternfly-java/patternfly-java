@@ -20,17 +20,16 @@ import java.util.Map;
 
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.component.WithText;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -54,11 +53,11 @@ import static org.patternfly.style.Classes.toggleGroup;
 
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
+        ComponentIcon<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementContainerDelegate<HTMLDivElement, ToggleGroupItem>,
-        HasIdentifier<HTMLDivElement, ToggleGroupItem>,
-        ComponentIcon<HTMLDivElement, ToggleGroupItem>,
-        WithText<HTMLDivElement, ToggleGroupItem> {
+        ElementTextMethods<HTMLDivElement, ToggleGroupItem>,
+        HasIdentifier<HTMLDivElement, ToggleGroupItem> {
 
     // ------------------------------------------------------ factory
 

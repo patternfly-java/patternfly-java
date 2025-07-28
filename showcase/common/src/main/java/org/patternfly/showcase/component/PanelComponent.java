@@ -80,6 +80,15 @@ public class PanelComponent extends SnippetPage {
                 // @code-end:panel-header-footer
         ));
 
+        addSnippet(new Snippet("panel-no-body", "No body",
+                code("panel-no-body"), () ->
+                // @code-start:panel-no-body
+                panel()
+                        .addMain(panelMain().apply( main -> main.textContent = "Main content"))
+                        .element()
+                // @code-end:panel-no-body
+        ));
+
         addSnippet(new Snippet("panel-raised", "Raised",
                 code("panel-raised"), () ->
                 // @code-start:panel-raised

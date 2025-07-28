@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.jboss.elemento.ButtonType;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
@@ -29,20 +30,17 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.WithText;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
-import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets.patternfly;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Size;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLAnchorElement;
@@ -61,13 +59,13 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.textNode;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Aria.selected;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.presentation;
+import static org.patternfly.core.Roles.tab;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -86,23 +84,23 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
         ComponentContext<HTMLElement, Tab>,
+        ComponentIcon<HTMLElement, Tab>,
         Disabled<HTMLElement, Tab>,
-        HasIdentifier<HTMLElement, Tab>,
-        WithText<HTMLElement, Tab>,
-        ComponentIcon<HTMLElement, Tab> {
+        ElementTextDelegate<HTMLElement, Tab>,
+        HasIdentifier<HTMLElement, Tab> {
 
     // ------------------------------------------------------ factory
 
     public static Tab tab(String identifier) {
-        return new Tab(button(ButtonType.button), identifier, null);
+        return new Tab(button(ButtonType.button), identifier);
     }
 
     public static Tab tab(String identifier, String text) {
-        return new Tab(button(ButtonType.button), identifier, text);
+        return new Tab(button(ButtonType.button), identifier).text(text);
     }
 
     public static <E extends HTMLElement> Tab tab(HTMLContainerBuilder<E> builder, String identifier, String text) {
-        return new Tab(builder, identifier, text);
+        return new Tab(builder, identifier).text(text);
     }
 
     // ------------------------------------------------------ instance
@@ -129,7 +127,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     private HTMLElement iconContainer;
     private HTMLElement loadingContainer;
 
-    <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String identifier, String text) {
+    <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(tabs, item))
                 .attr(role, presentation)
                 .data(Dataset.identifier, identifier)
@@ -143,7 +141,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
         add(button = builder.css(component(tabs, link))
                 .id(buttonId)
-                .attr(role, Roles.tab)
+                .attr(role, tab)
                 .aria(selected, false)
                 .on(click, e -> {
                     HTMLElement currentTarget = (HTMLElement) e.currentTarget;
@@ -154,9 +152,11 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                     }
                 })
                 .add(textElement = span().css(component(tabs, item, Classes.text)).element()));
-        if (text != null) {
-            textElement.textContent = text;
-        }
+    }
+
+    @Override
+    public Element textDelegate() {
+        return textElement;
     }
 
     // ------------------------------------------------------ add
@@ -210,12 +210,6 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         failSafeRemoveFromParent(failSafeIconContainer());
         iconContainer = null;
         return null;
-    }
-
-    @Override
-    public Tab text(String text) {
-        textNode(textElement, text);
-        return this;
     }
 
     @Override
@@ -362,11 +356,6 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     public boolean hidden() {
         return !isVisible(this);
-    }
-
-    @Override
-    public String text() {
-        return textNode(textElement);
     }
 
     /**

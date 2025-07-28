@@ -25,12 +25,10 @@ import org.jboss.elemento.HTMLInputElementBuilder;
 import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.HasValue;
-import org.patternfly.component.WithText;
 import org.patternfly.component.label.LabelGroup;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -52,10 +50,9 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textInput;
 
 public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupMain> implements
-        HasValue<String>,
-        Disabled<HTMLDivElement, TextInputGroupMain>,
         ComponentIcon<HTMLDivElement, TextInputGroupMain>,
-        WithText<HTMLDivElement, TextInputGroupMain> {
+        Disabled<HTMLDivElement, TextInputGroupMain>,
+        HasValue<String> {
 
     // ------------------------------------------------------ factory
 
@@ -140,12 +137,6 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
         return this;
     }
 
-    /** Same as {@link #value(String)} */
-    @Override
-    public TextInputGroupMain text(String text) {
-        return value(text);
-    }
-
     /** Same as {@linkplain #value(String, boolean) value(value, false)} */
     public TextInputGroupMain value(String value) {
         return value(value, false);
@@ -203,11 +194,6 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
     @Override
     public String value() {
         return inputElement.value;
-    }
-
-    @Override
-    public String text() {
-        return value();
     }
 
     /** Returns the underlying input element */
