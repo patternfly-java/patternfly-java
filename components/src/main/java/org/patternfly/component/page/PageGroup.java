@@ -36,37 +36,37 @@ import static org.patternfly.style.Classes.shadowBottom;
 import static org.patternfly.style.Classes.shadowTop;
 
 /**
- * Container to group multiple {@link PageSection} containers. Can be used in combination with the {@link #sticky(Breakpoints)}
+ * Container to group multiple {@link PageSectionLike} containers. Can be used in combination with the {@link #sticky(Breakpoints)}
  * modifier to make multiple sections sticky.
  * <p>
  * {@snippet class = PageDemo region = pageMainGroup}
  */
-public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
+public class PageGroup extends SubComponent<HTMLDivElement, PageGroup> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageMainGroup pageMainGroup() {
-        return new PageMainGroup();
+    public static PageGroup pageGroup() {
+        return new PageGroup();
     }
 
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "pmg";
 
-    PageMainGroup() {
+    PageGroup() {
         super(ComponentType.Page, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());
     }
 
     // ------------------------------------------------------ add
 
     /**
-     * Adds a {@link PageSection} to this component.
+     * Adds a {@link PageSectionLike} to this component.
      */
-    public <E extends HTMLElement, P extends PageSection<E, P>> PageMainGroup addSection(
-            PageSection<E, P> pageSection) {
+    public <E extends HTMLElement, P extends PageSectionLike<E, P>> PageGroup addSection(
+            PageSectionLike<E, P> pageSection) {
         return add(pageSection);
     }
 
@@ -75,40 +75,40 @@ public class PageMainGroup extends SubComponent<HTMLDivElement, PageMainGroup> {
     /**
      * Same as {@code sticky(breakpoints(default_, sticky))}
      */
-    public PageMainGroup sticky(Sticky sticky) {
+    public PageGroup sticky(Sticky sticky) {
         return sticky(breakpoints(default_, sticky));
     }
 
     /**
      * Modifies this component to be sticky at the given breakpoints.
      */
-    public PageMainGroup sticky(Breakpoints<Sticky> sticky) {
+    public PageGroup sticky(Breakpoints<Sticky> sticky) {
         return css(sticky.modifiers());
     }
 
     /**
      * Modifies this component to have a top shadow.
      */
-    public PageMainGroup shadowTop() {
+    public PageGroup shadowTop() {
         return css(modifier(shadowTop));
     }
 
     /**
      * Modifies this component to have a bottom shadow.
      */
-    public PageMainGroup shadowBottom() {
+    public PageGroup shadowBottom() {
         return css(modifier(shadowBottom));
     }
 
     /**
      * Modifies this component to show a scrollbar if it has overflow content.
      */
-    public PageMainGroup overflowScroll() {
+    public PageGroup overflowScroll() {
         return css(modifier(overflowScroll));
     }
 
     @Override
-    public PageMainGroup that() {
+    public PageGroup that() {
         return this;
     }
 }

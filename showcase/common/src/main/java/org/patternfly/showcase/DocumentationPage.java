@@ -31,11 +31,10 @@ import static java.util.Collections.singletonList;
 import static org.jboss.elemento.By.AttributeOperator.STARTS_WITH;
 import static org.jboss.elemento.Elements.querySelectorAll;
 import static org.patternfly.component.content.Content.content;
-import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.showcase.ApiDoc.API_DOC_BASE;
 import static org.patternfly.showcase.ApiDoc.API_DOC_TARGET;
 import static org.patternfly.showcase.Documentation.doc;
-import static org.patternfly.style.Brightness.light;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.Size._2xl;
@@ -47,7 +46,7 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
     private final HTMLElement root;
 
     DocumentationPage(String doc) {
-        this.root = pageMainSection().css("markdown")
+        this.root = pageSection().css("markdown")
                 .add(content().html(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
                 .element();
         Attachable.register(this, this);

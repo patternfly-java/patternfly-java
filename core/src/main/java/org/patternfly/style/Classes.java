@@ -75,6 +75,7 @@ public interface Classes {
     String compact = "compact";
     String container = "container";
     String content = "content";
+    String contextSelector = "context-selector";
     String control = "control";
     String controls = "controls";
     String count = "count";
@@ -185,6 +186,7 @@ public interface Classes {
     String option = "option";
     String outline = "outline";
     String overflow = "overflow";
+    String overflowContainer = "overflow-container";
     String overflowScroll = "overflow-scroll";
     String padding = "padding";
     String page = "page";

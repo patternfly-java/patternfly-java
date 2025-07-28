@@ -16,12 +16,10 @@
 package org.patternfly.component.popover;
 
 import org.jboss.elemento.ElementContainerDelegate;
-import org.jboss.elemento.Elements;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
@@ -36,7 +34,7 @@ import static org.patternfly.style.Classes.title;
 
 public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeader> implements
         ElementContainerDelegate<HTMLElement, PopoverHeader>,
-        WithText<HTMLElement, PopoverHeader> {
+        ElementTextDelegate<HTMLElement, PopoverHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -66,18 +64,12 @@ public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeade
         return headerElement;
     }
 
+    @Override
+    public Element textDelegate() {
+        return headerElement;
+    }
+
     // ------------------------------------------------------ builder
-
-    @Override
-    public PopoverHeader text(String text) {
-        Elements.textNode(headerElement, text);
-        return this;
-    }
-
-    @Override
-    public String text() {
-        return Elements.textNode(headerElement);
-    }
 
     @Override
     public PopoverHeader that() {

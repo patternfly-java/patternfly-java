@@ -23,12 +23,15 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.overflowContainer;
 import static org.patternfly.style.Classes.toolbar;
 
 /**
@@ -74,6 +77,10 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
     }
 
     // ------------------------------------------------------ builder
+
+    public ToolbarItem overflow() {
+        return css(modifier(overflowContainer));
+    }
 
     @Override
     public <T> ToolbarItem store(String key, T value) {

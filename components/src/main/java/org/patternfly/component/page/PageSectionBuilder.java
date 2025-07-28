@@ -18,7 +18,6 @@ package org.patternfly.component.page;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Padding;
 import org.patternfly.style.Sticky;
-
 import elemental2.dom.HTMLElement;
 
 import static org.patternfly.style.Breakpoint.default_;
@@ -31,39 +30,19 @@ import static org.patternfly.style.Classes.shadowBottom;
 import static org.patternfly.style.Classes.shadowTop;
 
 /**
- * Groups common methods/modifiers for page sections like {@link PageMainBreadcrumb} and {@link PageMainSection}.
+ * Groups common methods/modifiers for page sections like {@link PageBreadcrumb} and {@link PageSection}.
  */
 public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSectionBuilder<E, P>>
-        extends PageSubComponent<E, P> implements PageSection<E, P> {
+        extends PageSubComponent<E, P> implements PageSectionLike<E, P> {
 
     PageSectionBuilder(String name, E element) {
         super(name, element);
     }
 
-    // ------------------------------------------------------ add
-
-    /**
-     * Adds a {@link PageMainBody} to this component. Use this method to wrap the content of this component inside a
-     * {@link PageMainBody} if you've applied the {@link #limitWidth()} modifier.
-     */
-    public P addBody(PageMainBody body) {
-        return add(body);
-    }
-
-    /**
-     * Adds a {@link PageMainBody} to this component. Use this method to wrap the content of this component inside a
-     * {@link PageMainBody} if you've applied the {@link #limitWidth()} modifier.
-     */
-    public P add(PageMainBody body) {
-        element().appendChild(body.element());
-        return that();
-    }
-
     // ------------------------------------------------------ builder
 
     /**
-     * Modifies this component to limit the max-width of the content inside. If used, please make sure to wrap the content of
-     * this component inside a {@link PageMainBody} using {@link #addBody(PageMainBody)}.
+     * Modifies this component to limit the max-width of the content inside.
      */
     public P limitWidth() {
         return css(modifier(limitWidth));

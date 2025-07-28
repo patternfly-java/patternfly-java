@@ -61,6 +61,7 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.textNode;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Aria.selected;
@@ -213,7 +214,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     @Override
     public Tab text(String text) {
-        Elements.textNode(textElement, text);
+        textNode(textElement, text);
         return this;
     }
 
@@ -365,7 +366,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
 
     @Override
     public String text() {
-        return Elements.textNode(textElement);
+        return textNode(textElement);
     }
 
     /**

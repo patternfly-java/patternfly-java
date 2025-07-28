@@ -47,9 +47,8 @@ import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
 import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
 import static org.patternfly.component.jumplinks.JumpLinksList.jumpLinksList;
 import static org.patternfly.component.label.Label.label;
-import static org.patternfly.component.page.PageMainBody.pageMainBody;
-import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
-import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.page.PageGroup.pageGroup;
+import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.component.table.Table.table;
 import static org.patternfly.component.table.Tbody.tbody;
 import static org.patternfly.component.table.Td.td;
@@ -107,49 +106,47 @@ public class SnippetPage implements Page {
         tocReady = false;
         tocs = new LinkedHashMap<>();
         elements = singletonList(
-                pageMainGroup()
-                        .addSection(pageMainSection()
+                pageGroup()
+                        .addSection(pageSection()
                                 .limitWidth()
-                                .addBody(pageMainBody()
-                                        .add(div().css(util(floatInlineEnd))
-                                                .add(button(a())
-                                                        .id("design-guidelines")
-                                                        .plain()
-                                                        .href(designGuidelines)
-                                                        .target("patternfly")
-                                                        .icon(swatchbook()))
-                                                .add(tooltip(By.id("design-guidelines"), "Design guidelines")
-                                                        .placement(auto)))
-                                        .add(div().css(util(floatInlineEnd))
-                                                .add(button(a())
-                                                        .id("api-doc")
-                                                        .plain()
-                                                        .href(apiDoc)
-                                                        .target(ApiDoc.API_DOC_TARGET)
-                                                        .icon(catalog()))
-                                                .add(tooltip(By.id("api-doc"), "API documentation")
-                                                        .placement(auto)))
-                                        .add(content().editorial()
-                                                .add(flex().alignItems(center).add(title(1, _4xl, title)))
-                                                .add(p().html(summary)))))
-                        .addSection(pageMainSection().css(modifier("light-100"))
+                                .add(div().css(util(floatInlineEnd))
+                                        .add(button(a())
+                                                .id("design-guidelines")
+                                                .plain()
+                                                .href(designGuidelines)
+                                                .target("patternfly")
+                                                .icon(swatchbook()))
+                                        .add(tooltip(By.id("design-guidelines"), "Design guidelines")
+                                                .placement(auto)))
+                                .add(div().css(util(floatInlineEnd))
+                                        .add(button(a())
+                                                .id("api-doc")
+                                                .plain()
+                                                .href(apiDoc)
+                                                .target(ApiDoc.API_DOC_TARGET)
+                                                .icon(catalog()))
+                                        .add(tooltip(By.id("api-doc"), "API documentation")
+                                                .placement(auto)))
+                                .add(content().editorial()
+                                        .add(flex().alignItems(center).add(title(1, _4xl, title)))
+                                        .add(p().html(summary))))
+                        .addSection(pageSection().css(modifier("light-100"))
                                 .fill()
-                                .addBody(pageMainBody()
-                                        .add(div().css(util("h-100"))
-                                                .add(flex()
-                                                        .add(jumpLinks = jumpLinks("Table of contents")
-                                                                .css("ws-toc")
-                                                                .style("top", "45px")
-                                                                .vertical()
-                                                                .scrollableSelector(By.id(MAIN_ID))
-                                                                .expandable(breakpoints(
-                                                                        default_, expandable,
-                                                                        _2xl, nonExpandable))
-                                                                .ariaLabel("Table of contents"))
-                                                        .add(contentContainer = stack().gutter()
-                                                                .style("max-width", "825px")
-                                                                .style("flex-grow", 1)
-                                                                .element())))))
+                                .add(div().css(util("h-100"))
+                                        .add(flex()
+                                                .add(jumpLinks = jumpLinks("Table of contents")
+                                                        .css("ws-toc")
+                                                        .style("top", "45px")
+                                                        .vertical()
+                                                        .scrollableSelector(By.id(MAIN_ID))
+                                                        .expandable(breakpoints(
+                                                                default_, expandable,
+                                                                _2xl, nonExpandable))
+                                                        .ariaLabel("Table of contents"))
+                                                .add(contentContainer = stack().gutter()
+                                                        .style("max-width", "825px")
+                                                        .style("flex-grow", 1)
+                                                        .element()))))
                         .element());
     }
 

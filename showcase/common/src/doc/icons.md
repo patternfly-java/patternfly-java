@@ -9,7 +9,7 @@ PatternFly Java comes with predefined icons for
 
 There are static factory methods in [`IconsSets`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/IconSets.html) to easily use these icons. The icons are returned as instances of the [`PredefinedIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/PredefinedIcon.html) class, which is essentially an instance of an SVG builder and allows easy customization of the returned icon.
 
-Components that support icons usually implement the interface [`WithIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/component/WithIcon.html) or [`WithIconAndText`](https://patternfly-java.github.io/apidocs/org/patternfly/component/WithIconAndText.html) and thus use a common API.
+Components that support icons usually implement the interface [`ComponentIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/component/ComponentIcon.html) or [`ComponentIconAndText`](https://patternfly-java.github.io/apidocs/org/patternfly/component/ComponentIconAndText.html) and thus use a common API.
 
 ```java
 import static org.patternfly.component.IconPosition.start;

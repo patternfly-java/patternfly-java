@@ -15,9 +15,8 @@
  */
 package org.patternfly.extension.codeeditor;
 
-import org.patternfly.component.WithText;
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
@@ -26,7 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tab;
 
 public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeEditorTabText>
-        implements WithText<HTMLElement, CodeEditorTabText> {
+        implements ElementTextMethods<HTMLElement, CodeEditorTabText> {
 
     // ------------------------------------------------------ factory
 

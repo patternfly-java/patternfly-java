@@ -15,48 +15,49 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.tabs.Tabs;
+import org.patternfly.component.breadcrumb.Breadcrumb;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
+import static org.patternfly.style.Classes.breadcrumb;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
-import static org.patternfly.style.Classes.tabs;
 
 /**
- * Container to nest a {@link Tabs} component in a {@link PageMainGroup} or {@link PageMain} container.
+ * Container to nest a {@link Breadcrumb} in a {@link PageGroup} or {@link PageMain}
+ * container.
  */
-public class PageMainTabs extends PageSectionBuilder<HTMLElement, PageMainTabs> {
+public class PageBreadcrumb extends PageSectionBuilder<HTMLElement, PageBreadcrumb> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageMainTabs pageMainTabs() {
-        return new PageMainTabs();
+    public static PageBreadcrumb pageBreadcrumb() {
+        return new PageBreadcrumb();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmt";
+    static final String SUB_COMPONENT_NAME = "pmb";
 
-    PageMainTabs() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, tabs)).element());
+    PageBreadcrumb() {
+        super(SUB_COMPONENT_NAME, section().css(component(page, main, breadcrumb)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public PageMainTabs addTabs(Tabs tabs) {
-        return add(tabs);
+    public PageBreadcrumb addBreadcrumb(Breadcrumb breadcrumb) {
+        return add(breadcrumb);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public PageMainTabs that() {
+    public PageBreadcrumb that() {
         return this;
     }
 }

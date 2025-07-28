@@ -15,8 +15,7 @@
  */
 package org.patternfly.component.panel;
 
-import org.patternfly.component.WithText;
-
+import org.jboss.elemento.ElementTextMethods;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +24,7 @@ import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.panel;
 
 public class PanelFooter extends PanelSubComponent<HTMLDivElement, PanelFooter> implements
-        WithText<HTMLDivElement, PanelFooter> {
+        ElementTextMethods<HTMLDivElement, PanelFooter> {
 
     // ------------------------------------------------------ factory
 

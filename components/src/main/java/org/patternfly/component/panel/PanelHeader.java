@@ -15,10 +15,9 @@
  */
 package org.patternfly.component.panel;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -26,7 +25,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.panel;
 
-public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> implements WithText<HTMLDivElement, PanelHeader> {
+public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> implements
+        ElementTextMethods<HTMLDivElement, PanelHeader> {
 
     // ------------------------------------------------------ factory
 

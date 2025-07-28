@@ -19,14 +19,13 @@ import java.util.Objects;
 
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -47,7 +46,8 @@ import static org.patternfly.style.Classes.truncate;
  *
  * @see <a href= "https://www.patternfly.org/components/truncate">https://www.patternfly.org/components/truncate</a>
  */
-public class Truncate extends BaseComponent<HTMLElement, Truncate> implements WithText<HTMLElement, Truncate> {
+public class Truncate extends BaseComponent<HTMLElement, Truncate> implements
+        ElementTextMethods<HTMLElement, Truncate> {
 
     // ------------------------------------------------------ factory
 

@@ -25,6 +25,7 @@ import elemental2.dom.HTMLDivElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.contextSelector;
 import static org.patternfly.style.Classes.insetNone;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.page;
@@ -67,6 +68,13 @@ public class PageSidebarBody extends PageSubComponent<HTMLDivElement, PageSideba
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Flag indicating that the page sidebar body is for a context selector/perspective switcher.
+     */
+    public PageSidebarBody contextSelector() {
+        return css(modifier(contextSelector));
+    }
 
     /**
      * Modifies the padding/inset to visually match padding of page elements.

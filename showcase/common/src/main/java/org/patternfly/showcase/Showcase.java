@@ -100,6 +100,7 @@ public final class Showcase {
                                 navigationItem(layout.route, layout.title, layout.route)))
                 .addItem(ni(placeManager.place("/api-design")))
                 .addItem(ni(placeManager.place("/icons")))
+                .addItem(ni(placeManager.place("/tokens")))
                 .addItem(ni(placeManager.place("/get-involved")));
 
         // body and page

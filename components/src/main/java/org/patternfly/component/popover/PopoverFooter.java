@@ -15,8 +15,7 @@
  */
 package org.patternfly.component.popover;
 
-import org.patternfly.component.WithText;
-
+import org.jboss.elemento.ElementTextMethods;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +24,7 @@ import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.popover;
 
 public class PopoverFooter extends PopoverSubComponent<HTMLDivElement, PopoverFooter> implements
-        WithText<HTMLDivElement, PopoverFooter> {
+        ElementTextMethods<HTMLDivElement, PopoverFooter> {
 
     // ------------------------------------------------------ factory
 

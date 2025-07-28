@@ -15,43 +15,48 @@
  */
 package org.patternfly.component.page;
 
-import elemental2.dom.HTMLDivElement;
+import org.patternfly.component.navigation.Navigation;
 
-import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.body;
+import elemental2.dom.HTMLElement;
+
+import static org.jboss.elemento.Elements.section;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.page;
 
 /**
- * Container for the body of a {@link PageSection} container. Required if the {@link PageSection} has a
- * {@link PageSectionBuilder#limitWidth()} modifier.
- * <p>
- * {@snippet class = PageDemo region = pageMainBody}
+ * Container to nest a {@link Navigation} in a {@link PageGroup} or {@link PageMain} container.
  */
-public class PageMainBody extends PageSubComponent<HTMLDivElement, PageMainBody> {
+public class PageNavigation extends PageSectionBuilder<HTMLElement, PageNavigation> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageMainBody pageMainBody() {
-        return new PageMainBody();
+    public static PageNavigation pageNavigation() {
+        return new PageNavigation();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmb";
+    static final String SUB_COMPONENT_NAME = "pmn";
 
-    PageMainBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(page, main, body)).element());
+    PageNavigation() {
+        super(SUB_COMPONENT_NAME, section().css(component(page, main, nav)).element());
+    }
+
+    // ------------------------------------------------------ add
+
+    public PageNavigation addNavigation(Navigation navigation) {
+        return add(navigation);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public PageMainBody that() {
+    public PageNavigation that() {
         return this;
     }
 }

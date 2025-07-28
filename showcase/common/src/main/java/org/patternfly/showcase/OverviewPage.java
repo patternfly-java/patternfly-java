@@ -27,9 +27,8 @@ import elemental2.dom.HTMLElement;
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.content.Content.content;
-import static org.patternfly.component.page.PageMainBody.pageMainBody;
-import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
-import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.page.PageGroup.pageGroup;
+import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.component.title.Title.title;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
@@ -52,24 +51,22 @@ public abstract class OverviewPage<T> implements Page {
 
     @Override
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
-        return singletonList(pageMainGroup()
-                .add(pageMainSection().limitWidth()
-                        .addBody(pageMainBody()
-                                .add(content()
-                                        .add(flex().alignItems(center)
-                                                .add(title(1, _4xl, title))))))
-                .add(pageMainSection().fill()
-                        .addBody(pageMainBody()
-                                .add(stack().gutter()
-                                        .run(this::landingPages)
-                                        .add(div().css("ws-section-gallery")
-                                                // TODO Implement sticky toolbar once implemented
-                                                .add(toolbar().css(modifier(sticky))
-                                                        .addContent(toolbarContent()
-                                                                .addItem(toolbarItem()
-                                                                        .add("Toolbar not yet implemented")))
-                                                        .addContent(toolbarContent().css(modifier(hidden))))
-                                                .add(createGallery())))))
+        return singletonList(pageGroup()
+                .add(pageSection().limitWidth()
+                        .add(content()
+                                .add(flex().alignItems(center)
+                                        .add(title(1, _4xl, title)))))
+                .add(pageSection().fill()
+                        .add(stack().gutter()
+                                .run(this::landingPages)
+                                .add(div().css("ws-section-gallery")
+                                        // TODO Implement sticky toolbar once implemented
+                                        .add(toolbar().css(modifier(sticky))
+                                                .addContent(toolbarContent()
+                                                        .addItem(toolbarItem()
+                                                                .add("Toolbar not yet implemented")))
+                                                .addContent(toolbarContent().css(modifier(hidden))))
+                                        .add(createGallery()))))
                 .element());
     }
 

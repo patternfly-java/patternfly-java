@@ -17,20 +17,22 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.page.Page;
+import org.patternfly.component.page.PageBreadcrumb;
+import org.patternfly.component.page.PageGroup;
 import org.patternfly.component.page.PageMain;
-import org.patternfly.component.page.PageMainBody;
-import org.patternfly.component.page.PageMainBreadcrumb;
-import org.patternfly.component.page.PageMainGroup;
-import org.patternfly.component.page.PageMainNavigation;
-import org.patternfly.component.page.PageMainSection;
-import org.patternfly.component.page.PageMainTabs;
 import org.patternfly.component.page.PageMainWizard;
+import org.patternfly.component.page.PageNavigation;
 import org.patternfly.component.page.PageSection;
 import org.patternfly.component.page.PageSectionBuilder;
+import org.patternfly.component.page.PageSectionLike;
+import org.patternfly.component.page.PageTabs;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.breadcrumb.Breadcrumb.breadcrumb;
@@ -39,6 +41,7 @@ import static org.patternfly.component.card.Card.card;
 import static org.patternfly.component.card.CardBody.cardBody;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
+import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.secondary;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
@@ -47,12 +50,11 @@ import static org.patternfly.component.page.MastheadLogo.mastheadLogo;
 import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
+import static org.patternfly.component.page.PageBreadcrumb.pageBreadcrumb;
+import static org.patternfly.component.page.PageGroup.pageGroup;
 import static org.patternfly.component.page.PageMain.pageMain;
-import static org.patternfly.component.page.PageMainBody.pageMainBody;
-import static org.patternfly.component.page.PageMainBreadcrumb.pageMainBreadcrumb;
-import static org.patternfly.component.page.PageMainGroup.pageMainGroup;
-import static org.patternfly.component.page.PageMainNavigation.pageMainNavigation;
-import static org.patternfly.component.page.PageMainSection.pageMainSection;
+import static org.patternfly.component.page.PageNavigation.pageNavigation;
+import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.page.PageSidebarBody.pageSidebarBody;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
@@ -97,11 +99,11 @@ public class PageComponent extends SnippetPage {
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
                                 .addMain(pageMain("page-vertical-nav-main")
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .text("Section 1"))
-                                        .addSection(pageMainSection().secondary()
+                                        .addSection(pageSection().secondary()
                                                 .text("Section 2 with secondary styling"))
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .text("Section 3"))))
                         .element()
                 // @code-end:page-vertical-nav
@@ -116,54 +118,60 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
-                                        .addContent(mastheadContent()
-                                                .add("Header tools")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
+                                        .addContent(mastheadContent().text("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
+                                        .addBody(pageSidebarBody().contextSelector()
+                                                .add("First sidebar body (for a context selector/perspective switcher)"))
                                         .addBody(pageSidebarBody().pageInsets()
-                                                .add("First sidebar body (with insets)"))
+                                                .add("Second sidebar body (with insets)"))
                                         .addBody(pageSidebarBody().fill()
-                                                .add("Second sidebar body (with fill)"))
+                                                .add("Third sidebar body (with fill)"))
                                         .addBody(pageSidebarBody().pageInsets().noFill()
-                                                .add("Third sidebar body (with insets and no fill)")))
+                                                .add("Fourth sidebar body (with insets and no fill)")))
                                 .addMain(pageMain("page-sidebar-body-main")
-                                        .addSection(pageMainSection()
-                                                .text("Section with darker background"))
-                                        .addSection(pageMainSection().secondary()
-                                                .text("Section with dark background"))
-                                        .addSection(pageMainSection()
-                                                .text("Section with light background"))))
+                                        .addSection(pageSection()
+                                                .text("Section 1"))
+                                        .addSection(pageSection().secondary()
+                                                .text("Section 2 with secondary styling"))
+                                        .addSection(pageSection()
+                                                .text("Section 3"))))
                         .element()
                 // @code-end:page-sidebar-body
         ));
 
         addSnippet(new Snippet("page-horizontal-nav", "Horizontal navigation",
-                code("page-horizontal-nav"), () ->
-                // @code-start:page-horizontal-nav
-                div()
-                        .add(page(true)
-                                .addMasthead(masthead()
-                                        .addMain(mastheadMain()
-                                                .addToggle(mastheadToggle())
-                                                .addBrand(mastheadBrand()
-                                                        .add("Logo")))
-                                        .addContent(mastheadContent()
-                                                .addToolbar(toolbar()
-                                                        .addContent(toolbarContent()
-                                                                .addItem(toolbarItem("page-horizontal-nav-0")
-                                                                        .add("Navigation"))
-                                                                .addItem(toolbarItem("page-horizontal-nav-1")
-                                                                        .add("Header tools"))))))
-                                .addMain(pageMain("page-horizontal-nav-main")
-                                        .addSection(pageMainSection()
-                                                .text("Section with darker background"))
-                                        .addSection(pageMainSection().secondary()
-                                                .text("Section with dark background"))
-                                        .addSection(pageMainSection()
-                                                .text("Section with light background"))))
-                        .element()
-                // @code-end:page-horizontal-nav
-        ));
+                code("page-horizontal-nav"), () -> {
+            // @code-start:page-horizontal-nav
+            Navigation navigation = navigation(primary)
+                    .addItems(range(1, 5).boxed().collect(toList()), index ->
+                            navigationItem("page-horizontal-nav-ni-" + index, "Navigation item " + index));
+            return div()
+                    .add(page(true)
+                            .addMasthead(masthead()
+                                    .addMain(mastheadMain()
+                                            .addBrand(mastheadBrand()
+                                                    .addLogo(mastheadLogo("#")
+                                                            .add("Logo"))))
+                                    .addContent(mastheadContent()
+                                            .addToolbar(toolbar()
+                                                    .addContent(toolbarContent()
+                                                            .addItem(toolbarItem("page-horizontal-nav-ti-0")
+                                                                    .overflow()
+                                                                    .add(navigation))
+                                                            .addItem(toolbarItem("page-horizontal-nav-ti-1")
+                                                                    .add("Header tools"))))))
+                            .addMain(pageMain("page-horizontal-nav-main")
+                                    .addSection(pageSection()
+                                            .text("Section 1"))
+                                    .addSection(pageSection().secondary()
+                                            .text("Section 2 with secondary styling"))
+                                    .addSection(pageSection()
+                                            .text("Section 3"))))
+                    .element();
+        }));
+        // @code-end:page-horizontal-nav
 
         addSnippet(new Snippet("page-filled-sections", "Filled page sections",
                 code("page-filled-sections"), () ->
@@ -174,20 +182,19 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
-                                        .addContent(mastheadContent()
-                                                .add("Header tools")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
+                                        .addContent(mastheadContent().text("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
-                                .addMain(pageMain("page-filled-sections-main")
-                                        .addSection(pageMainSection()
-                                                .text("A default page section"))
-                                        .addSection(pageMainSection().fill()
-                                                .text("This section fills the available space."))
-                                        .addSection(pageMainSection().noFill()
-                                                .text(
-                                                        "This section is set to not fill the available space, since the last page section is set to fill the available space by default."))))
+                                .addMain(pageMain("page-filled-sections-main").fill()
+                                        .addSection(pageSection()
+                                                .text("Section without fill"))
+                                        .addSection(pageSection().secondary().fill()
+                                                .text("Section with fill"))
+                                        .addSection(pageSection()
+                                                .text("Section without fill"))))
                         .element()
                 // @code-end:page-filled-sections
         ));
@@ -201,24 +208,25 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
                                         .addContent(mastheadContent()
                                                 .add("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
                                 .addMain(pageMain("page-section-padding-main")
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .text("Section with default padding"))
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .padding(breakpoints(default_, noPadding))
                                                 .text("Section with no padding"))
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .padding(breakpoints(
                                                         default_, noPadding,
                                                         md, padding))
                                                 .text("Section with padding on medium"))
-                                        .addSection(pageMainSection()
+                                        .addSection(pageSection()
                                                 .padding(breakpoints(md, noPadding))
                                                 .text("Section with no padding on medium"))))
                         .element()
@@ -234,15 +242,16 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
                                         .addContent(mastheadContent()
                                                 .add("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
                                 .addMain(pageMain("page-group-main")
-                                        .addGroup(pageMainGroup()
-                                                .addSection(pageMainNavigation()
+                                        .addGroup(pageGroup()
+                                                .addSection(pageNavigation()
                                                         .addNavigation(navigation(secondary)
                                                                 .addItem(navigationItem("page-group-ni-0", "System panel", "#"))
                                                                 .addItem(navigationItem("page-group-ni-1", "Policy", "#"))
@@ -251,18 +260,18 @@ public class PageComponent extends SnippetPage {
                                                                 .addItem(navigationItem("page-group-ni-3", "Network services",
                                                                         "#"))
                                                                 .addItem(navigationItem("page-group-ni-4", "Server", "#"))))
-                                                .addSection(pageMainBreadcrumb()
+                                                .addSection(pageBreadcrumb()
                                                         .addBreadcrumb(breadcrumb()
                                                                 .addItem(breadcrumbItem("page-group-0", "Section home"))
                                                                 .addItem(breadcrumbItem("page-group-1", "Section title", "#"))
                                                                 .addItem(breadcrumbItem("page-group-2", "Section title", "#"))
                                                                 .addItem(breadcrumbItem("page-group-3", "Section landing",
                                                                         "#").active())))
-                                                .addSection(pageMainSection()
+                                                .addSection(pageSection()
                                                         .text("Grouped section")))
-                                        .addSection(pageMainSection().secondary()
+                                        .addSection(pageSection()
                                                 .text("Section 1"))
-                                        .addSection(pageMainSection().secondary()
+                                        .addSection(pageSection()
                                                 .text("Section 2"))))
                         .element()
                 // @code-end:page-group
@@ -277,26 +286,26 @@ public class PageComponent extends SnippetPage {
                                         .addMain(mastheadMain()
                                                 .addToggle(mastheadToggle())
                                                 .addBrand(mastheadBrand()
-                                                        .add("Logo")))
+                                                        .addLogo(mastheadLogo("#")
+                                                                .add("Logo"))))
                                         .addContent(mastheadContent()
                                                 .add("Header tools")))
                                 .addSidebar(pageSidebar().keepExpanded()
                                         .addBody(pageSidebarBody()
                                                 .add("Navigation")))
                                 .addMain(pageMain("page-centered-main")
-                                        .addSection(pageMainSection().limitWidth().centerAligned()
-                                                .addBody(pageMainBody()
-                                                        .add(card()
-                                                                .addBody(cardBody()
-                                                                        .add("When a width limited page section is wider than the value of ")
-                                                                        .add(Elements.code(componentVar(component(page),
-                                                                                section,
-                                                                                "m-limit-width",
-                                                                                MaxWidth).name))
-                                                                        .add(" the section will be centered in the main section.")
-                                                                        .add(br())
-                                                                        .add(br())
-                                                                        .add("The content in this example is placed in a card to better illustrate how the section behaves when it is centered. A card is not required to center a page section.")))))))
+                                        .addSection(pageSection().limitWidth().centerAligned()
+                                                .add(card()
+                                                        .addBody(cardBody()
+                                                                .add("When a width limited page section is wider than the value of ")
+                                                                .add(Elements.code(componentVar(component(page),
+                                                                        section,
+                                                                        "m-limit-width",
+                                                                        MaxWidth).name))
+                                                                .add(" the section will be centered in the main section.")
+                                                                .add(br())
+                                                                .add(br())
+                                                                .add("The content in this example is placed in a card to better illustrate how the section behaves when it is centered. A card is not required to center a page section."))))))
                         .element()
                 // @code-end:page-centered
         ));
@@ -304,14 +313,13 @@ public class PageComponent extends SnippetPage {
         startApiDocs(Page.class);
         addApiDoc(Page.class, component);
         addApiDoc(PageMain.class, subcomponent);
-        addApiDoc(PageMainBody.class, subcomponent);
-        addApiDoc(PageMainBreadcrumb.class, subcomponent);
-        addApiDoc(PageMainGroup.class, subcomponent);
-        addApiDoc(PageMainNavigation.class, subcomponent);
-        addApiDoc(PageMainSection.class, subcomponent);
-        addApiDoc(PageMainTabs.class, subcomponent);
-        addApiDoc(PageMainWizard.class, subcomponent);
+        addApiDoc(PageBreadcrumb.class, subcomponent);
+        addApiDoc(PageGroup.class, subcomponent);
+        addApiDoc(PageNavigation.class, subcomponent);
         addApiDoc(PageSection.class, subcomponent);
+        addApiDoc(PageTabs.class, subcomponent);
+        addApiDoc(PageMainWizard.class, subcomponent);
+        addApiDoc(PageSectionLike.class, subcomponent);
         addApiDoc(PageSectionBuilder.class, other);
     }
 }

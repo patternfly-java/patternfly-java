@@ -16,8 +16,7 @@
 package org.patternfly.component.panel;
 
 import org.jboss.elemento.ElementContainerDelegate;
-import org.patternfly.component.WithText;
-
+import org.jboss.elemento.ElementTextMethods;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -28,8 +27,9 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.panel;
 
-public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain>
-        implements ElementContainerDelegate<HTMLElement, PanelMain>, WithText<HTMLElement, PanelMain> {
+public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> implements
+        ElementContainerDelegate<HTMLElement, PanelMain>,
+        ElementTextMethods<HTMLElement, PanelMain> {
 
     // ------------------------------------------------------ factory
 

@@ -15,49 +15,48 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.breadcrumb.Breadcrumb;
+import org.patternfly.component.tabs.Tabs;
 
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.section;
-import static org.patternfly.style.Classes.breadcrumb;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
+import static org.patternfly.style.Classes.tabs;
 
 /**
- * Container to nest a {@link Breadcrumb} in a {@link PageMainGroup} or {@link PageMain}
- * container.
+ * Container to nest a {@link Tabs} component in a {@link PageGroup} or {@link PageMain} container.
  */
-public class PageMainBreadcrumb extends PageSectionBuilder<HTMLElement, PageMainBreadcrumb> {
+public class PageTabs extends PageSectionBuilder<HTMLElement, PageTabs> {
 
     // ------------------------------------------------------ factory
 
     /**
      * Factory method to create a new instance of this component.
      */
-    public static PageMainBreadcrumb pageMainBreadcrumb() {
-        return new PageMainBreadcrumb();
+    public static PageTabs pageTabs() {
+        return new PageTabs();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmb";
+    static final String SUB_COMPONENT_NAME = "pmt";
 
-    PageMainBreadcrumb() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, breadcrumb)).element());
+    PageTabs() {
+        super(SUB_COMPONENT_NAME, section().css(component(page, main, tabs)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public PageMainBreadcrumb addBreadcrumb(Breadcrumb breadcrumb) {
-        return add(breadcrumb);
+    public PageTabs addTabs(Tabs tabs) {
+        return add(tabs);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public PageMainBreadcrumb that() {
+    public PageTabs that() {
         return this;
     }
 }

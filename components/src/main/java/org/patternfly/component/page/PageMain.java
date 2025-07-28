@@ -19,7 +19,7 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.Roles;
-
+import org.patternfly.style.Modifiers;
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -38,13 +38,14 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
 
 /**
- * Container for the main page area. The page main container typically contains multiple {@link PageMainGroup}s and/or
- * {@link PageMainSection}s.
+ * Container for the main page area. The page main container typically contains multiple {@link PageGroup}s and/or
+ * {@link PageSection}s.
  * <p>
  * {@snippet class = PageDemo region = pageMain}
  */
 public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
-        ElementContainerDelegate<HTMLElement, PageMain> {
+        ElementContainerDelegate<HTMLElement, PageMain>,
+        Modifiers.Fill<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ factory
 
@@ -82,16 +83,16 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
     // ------------------------------------------------------ add
 
     /**
-     * Adds a {@link PageMainGroup} to this component.
+     * Adds a {@link PageGroup} to this component.
      */
-    public PageMain addGroup(PageMainGroup group) {
+    public PageMain addGroup(PageGroup group) {
         return add(group);
     }
 
     /**
-     * Adds a {@link PageSection} to this component.
+     * Adds a {@link PageSectionLike} to this component.
      */
-    public <E extends HTMLElement, P extends PageSection<E, P>> PageMain addSection(PageSection<E, P> pageSection) {
+    public <E extends HTMLElement, P extends PageSectionLike<E, P>> PageMain addSection(PageSectionLike<E, P> pageSection) {
         return add(pageSection);
     }
 

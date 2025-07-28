@@ -15,11 +15,10 @@
  */
 package org.patternfly.component.title;
 
+import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.WithText;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;
@@ -32,7 +31,8 @@ import static org.patternfly.style.Classes.title;
  *
  * @see <a href= "https://www.patternfly.org/components/title">https://www.patternfly.org/components/title</a>
  */
-public class Title extends BaseComponent<HTMLHeadingElement, Title> implements WithText<HTMLHeadingElement, Title> {
+public class Title extends BaseComponent<HTMLHeadingElement, Title> implements
+        ElementTextMethods<HTMLHeadingElement, Title> {
 
     // ------------------------------------------------------ factory
 
