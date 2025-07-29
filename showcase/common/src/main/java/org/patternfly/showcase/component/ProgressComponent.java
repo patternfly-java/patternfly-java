@@ -97,7 +97,8 @@ public class ProgressComponent extends SnippetPage {
                 code("progress-outside"), () ->
                 // @code-start:progress-outside
                 div()
-                        .add(progress().measureLocation(outside)
+                        .add(progress()
+                                .measureLocation(outside)
                                 .title("Title")
                                 .value(33))
                         .element()

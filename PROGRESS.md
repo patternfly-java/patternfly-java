@@ -34,7 +34,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `page`
 - [x] `panel`
 - [x] `popover`
-- [ ] `progress`
+- [x] `progress`
 - [ ] `skeleton`
 - [ ] `skiptocontent`
 - [ ] `slider`
