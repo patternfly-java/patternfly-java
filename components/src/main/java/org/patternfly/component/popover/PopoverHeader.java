@@ -25,9 +25,13 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.header;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.span;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
@@ -48,6 +52,7 @@ public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeade
 
     final String headerId;
     final HTMLHeadingElement headerElement;
+    private HTMLElement iconContainer;
 
     PopoverHeader() {
         super(SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
@@ -74,5 +79,22 @@ public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeade
     @Override
     public PopoverHeader that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    void icon(Element icon) {
+        failSafeIconContainer().appendChild(icon);
+    }
+
+    void removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
+    }
+
+    private HTMLElement failSafeIconContainer() {
+        if (iconContainer == null) {
+            insertBefore(iconContainer = span().css(component(popover, title, icon)).element(), headerElement);
+        }
+        return iconContainer;
     }
 }

@@ -118,8 +118,6 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     private static final Logger logger = Logger.getLogger(Popover.class.getName());
 
     public static final int ANIMATION_DURATION = 300;
-    public static final int ENTRY_DELAY = 300;
-    public static final int EXIT_DELAY = 300;
     public static final int DISTANCE = 25;
     public static final int Z_INDEX = 9999;
 
@@ -206,7 +204,12 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ add
 
     public Popover addHeader(String header) {
-        return add(popoverHeader().text(header));
+        if (this.header != null) {
+            this.header.text(header);
+            return this;
+        } else {
+            return add(popoverHeader().text(header));
+        }
     }
 
     public Popover addHeader(PopoverHeader header) {
@@ -300,14 +303,16 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     @Override
     public Popover icon(Element icon) {
-        removeIcon();
-        failSafeIconContainer().appendChild(icon);
+        failSafeHeader().removeIcon();
+        failSafeHeader().icon(icon);
         return this;
     }
 
     @Override
     public Popover removeIcon() {
-        failSafeRemoveFromParent(iconContainer);
+        if (header != null) {
+            header.removeIcon();
+        }
         return this;
     }
 
@@ -334,9 +339,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         }
         this.severity = severity;
         css(severity.status.modifier());
-        removeChildrenFrom(failSafeIconContainer());
         icon((severity.icon.get().element()));
-        failSafeScreenReaderElement().textContent = screenReaderText;
         return this;
     }
 
@@ -423,24 +426,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     // ------------------------------------------------------ internal
 
-    private HTMLElement failSafeHeaderElement() {
+    private PopoverHeader failSafeHeader() {
         if (header == null) {
             add(popoverHeader());
         }
-        return header.element();
-    }
-
-    private HTMLElement failSafeIconContainer() {
-        if (iconContainer == null) {
-            insertBefore(iconContainer = span().css(component(popover, title, icon)).element(), failSafeHeaderElement());
-        }
-        return iconContainer;
-    }
-
-    private HTMLElement failSafeScreenReaderElement() {
-        if (screenReaderElement == null) {
-            insertFirst(failSafeHeaderElement(), screenReaderElement = span().css(screenReader).element());
-        }
-        return screenReaderElement;
+        return header;
     }
 }

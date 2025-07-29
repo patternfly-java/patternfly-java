@@ -18,6 +18,7 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.component.popover.PopoverBody;
@@ -26,16 +27,10 @@ import org.patternfly.component.popover.PopoverHeader;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-
 import elemental2.dom.ScrollIntoViewOptions;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.onAttach;
-import static org.patternfly.component.Severity.custom;
-import static org.patternfly.component.Severity.danger;
-import static org.patternfly.component.Severity.info;
-import static org.patternfly.component.Severity.success;
-import static org.patternfly.component.Severity.warning;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.list.ActionList.actionList;
 import static org.patternfly.component.list.ActionListGroup.actionListGroup;
@@ -58,19 +53,21 @@ public class PopoverComponent extends SnippetPage {
 
         startExamples();
         addSnippet(new Snippet("popover-basic", "Basic",
-                code("popover-basic"), () ->
-                // @code-start:popover-basic
-                div().style("margin", "50px")
-                        .add(button("Toggle popover").primary()
-                                .id("popover-basic-button"))
-                        .add(popover(By.id("popover-basic-button"))
-                                .ariaLabel("Basic popover")
-                                .addHeader("Popover header")
-                                .addBody("Popovers are triggered by click rather than hover.")
-                                .addFooter("Popover footer"))
-                        .element()
-                // @code-end:popover-basic
-        ));
+                code("popover-basic"), () -> {
+            // @code-start:popover-basic
+            popover(By.id("popover-basic-button"))
+                    .ariaLabel("Basic popover")
+                    .addHeader("Popover header")
+                    .addBody("Popovers are triggered by click rather than hover.")
+                    .addFooter("Popover footer")
+                    .appendToBody();
+
+            return div().style("margin", "50px")
+                    .add(button("Toggle popover").primary()
+                            .id("popover-basic-button"))
+                    .element();
+            // @code-end:popover-basic
+        }));
 
         addSnippet(new Snippet("popover-hoverable", "Hoverable",
                 code("popover-hoverable"), () -> {
@@ -193,54 +190,32 @@ public class PopoverComponent extends SnippetPage {
         }));
 
         addSnippet(new Snippet("popover-alert", "Alert popover",
-                code("popover-alert"), () ->
-                // @code-start:popover-alert
-                div().style("margin", "50px")
-                        .add(actionList()
-                                .addItem(actionListGroup()
-                                        .addItem(actionListItem()
-                                                .add(button("Custom").primary()
-                                                        .id("popover-alert-custom"))
-                                                .add(popover(By.id("popover-alert-custom"))
-                                                        .severity(custom)
-                                                        .addHeader("Custom popover title")
-                                                        .addBody(LoremIpsum.words(20))
-                                                        .addFooter("Popover footer")))
-                                        .addItem(actionListItem()
-                                                .add(button("Info").secondary()
-                                                        .id("popover-alert-info"))
-                                                .add(popover(By.id("popover-alert-info"))
-                                                        .severity(info)
-                                                        .addHeader("Info popover title")
-                                                        .addBody(LoremIpsum.words(20))
-                                                        .addFooter("Popover footer")))
-                                        .addItem(actionListItem()
-                                                .add(button("Success").tertiary()
-                                                        .id("popover-alert-success"))
-                                                .add(popover(By.id("popover-alert-success"))
-                                                        .severity(success)
-                                                        .addHeader("Success popover title")
-                                                        .addBody(LoremIpsum.words(20))
-                                                        .addFooter("Popover footer")))
-                                        .addItem(actionListItem()
-                                                .add(button("Warning").warning()
-                                                        .id("popover-alert-warning"))
-                                                .add(popover(By.id("popover-alert-warning"))
-                                                        .severity(warning)
-                                                        .addHeader("Warning popover title")
-                                                        .addBody(LoremIpsum.words(20))
-                                                        .addFooter("Popover footer")))
-                                        .addItem(actionListItem()
-                                                .add(button("Danger").danger()
-                                                        .id("popover-alert-danger"))
-                                                .add(popover(By.id("popover-alert-danger"))
-                                                        .severity(danger)
-                                                        .addHeader("Danger popover title")
-                                                        .addBody(LoremIpsum.words(20))
-                                                        .addFooter("Popover footer")))))
-                        .element()
-                // @code-end:popover-alert
-        ));
+                code("popover-alert"), () -> {
+            // @code-start:popover-alert
+            for (Severity severity : Severity.values()) {
+                popover(By.id("popover-alert-" + severity.name()))
+                        .severity(severity)
+                        .addHeader("Popover " + severity.name() + " header")
+                        .addBody(LoremIpsum.words(20))
+                        .addFooter("Popover footer")
+                        .appendToBody();
+            }
+            return div().style("margin", "50px")
+                    .add(actionList()
+                            .addItem(actionListGroup()
+                                    .addItem(actionListItem()
+                                            .add(button("Custom").secondary().id("popover-alert-custom")))
+                                    .addItem(actionListItem()
+                                            .add(button("Info").secondary().id("popover-alert-info")))
+                                    .addItem(actionListItem()
+                                            .add(button("Success").secondary().id("popover-alert-success")))
+                                    .addItem(actionListItem()
+                                            .add(button("Warning").warning().id("popover-alert-warning")))
+                                    .addItem(actionListItem()
+                                            .add(button("Danger").danger().id("popover-alert-danger")))))
+                    .element();
+            // @code-end:popover-alert
+        }));
 
         startApiDocs(Popover.class);
         addApiDoc(Popover.class, component);

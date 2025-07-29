@@ -32,8 +32,8 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `modal`
 - [x] `navigation`
 - [x] `page`
-- [ ] `panel`
-- [ ] `popover`
+- [x] `panel`
+- [x] `popover`
 - [ ] `progress`
 - [ ] `skeleton`
 - [ ] `skiptocontent`
