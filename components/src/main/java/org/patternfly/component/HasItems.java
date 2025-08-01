@@ -21,12 +21,13 @@ import java.util.function.Function;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.Element;
 
 /**
- * The HasItems interface represents a component that can contain a collection of items.
- * It provides methods for adding, removing, and manipulating items within the component.
+ * The HasItems interface represents a component that can contain a collection of items. It provides methods for adding,
+ * removing, and manipulating items within the component.
+ * <p>
+ * Often the child components implement {@link org.patternfly.core.ComponentContext} and {@link HasIdentifier}.
  *
  * @param <E> the element type of the main component
  * @param <B> the builder type of the main component

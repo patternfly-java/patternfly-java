@@ -28,11 +28,11 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Roles;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -47,13 +47,10 @@ import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.labelledBy;
+import static org.patternfly.core.Attributes.role;
 import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
-import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.off;
-import static org.patternfly.style.Classes.on;
-import static org.patternfly.style.Classes.switch_;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
@@ -86,19 +83,19 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
     private final HTMLElement toggleElement;
     private final List<ChangeHandler<Switch, Boolean>> changeHandlers;
     private HTMLElement iconElement;
-    private HTMLElement labelOnElement;
-    private HTMLElement labelOffElement;
+    private HTMLElement labelElement;
 
     Switch(String id, String name, boolean checked) {
-        super(ComponentType.Switch, Elements.label().css(component(switch_)).element());
+        super(ComponentType.Switch, Elements.label().css(component(Classes.switch_)).element());
         this.changeHandlers = new ArrayList<>();
 
-        element().appendChild(inputElement = input(checkbox).css(component(switch_, Classes.input))
+        element().appendChild(inputElement = input(checkbox).css(component(Classes.switch_, Classes.input))
                 .id(id)
                 .name(name)
                 .checked(checked)
+                .attr(role, Roles.switch_)
                 .element());
-        element().appendChild(toggleElement = span().css(component(switch_, toggle))
+        element().appendChild(toggleElement = span().css(component(Classes.switch_, toggle))
                 .element());
         inputElement.addEventListener(change.name,
                 e -> changeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.checked)));
@@ -109,7 +106,7 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (labelOnElement == null) {
+        if (labelElement == null) {
             String ariaLabel = inputElement.getAttribute(Aria.label);
             if (ariaLabel == null || ariaLabel.isEmpty()) {
                 logger.error("Switch %o requires either a label or an aria-label to be specified.", element());
@@ -132,7 +129,7 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
 
     public Switch checkIcon(boolean checkIcon) {
         if (checkIcon && iconElement == null) {
-            toggleElement.appendChild(span().css(component(switch_, toggle, icon))
+            toggleElement.appendChild(iconElement = span().css(component(Classes.switch_, toggle, icon))
                     .add(check())
                     .element());
         } else {
@@ -141,27 +138,15 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
         return this;
     }
 
-    public Switch label(String label) {
-        return label(label, label);
-    }
-
-    public Switch label(String labelOn, String labelOff) {
-        if (labelOnElement == null && labelOffElement == null) {
-            String onId = Id.build(inputElement.id, "on");
-            String offId = Id.build(inputElement.id, "on");
-            element().appendChild(labelOnElement = span().css(component(switch_, Classes.label), modifier(on))
-                    .id(onId)
+    public Switch label(String labelOn) {
+        if (labelElement == null) {
+            String labelId = Id.build(inputElement.id, "label");
+            element().appendChild(labelElement = span().css(component(Classes.switch_, Classes.label))
                     .aria(hidden, true)
                     .element());
-            element().appendChild(labelOffElement = span().css(component(switch_, Classes.label), modifier(off))
-                    .id(offId)
-                    .aria(hidden, true)
-                    .element());
-            onChange((e, s, value) -> inputElement().aria(labelledBy, value ? onId : offId));
+            inputElement().aria(labelledBy, labelId);
         }
-        //noinspection DataFlowIssue
-        labelOnElement.textContent = labelOn;
-        labelOffElement.textContent = labelOff;
+        labelElement.textContent = labelOn;
         return this;
     }
 

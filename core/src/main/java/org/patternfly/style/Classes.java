@@ -98,7 +98,7 @@ public interface Classes {
     String emptyState = "empty-state";
     String end = "end";
     String error = "error";
-    String expandable = "expandable";
+    String expandable = "expandable"; // TODO Is this still used in PF6?
     String expandableContent = "expandable-content";
     String expandableSection = "expandable-section";
     String expanded = "expanded";

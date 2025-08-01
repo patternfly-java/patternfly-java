@@ -40,6 +40,7 @@ import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -83,6 +84,7 @@ import static org.patternfly.style.Classes.subnav;
  *
  * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
+// TODO Horizontal navigation doesn't shrink!
 public class Navigation extends BaseComponent<HTMLElement, Navigation> implements
         HasItems<HTMLElement, Navigation, NavigationItem>,
         Attachable {
@@ -174,7 +176,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (type instanceof Horizontal && scrollButtons != null) {
-            scrollButtons.attach(element(), itemsContainer);
+            scrollButtons.attach();
         }
     }
 

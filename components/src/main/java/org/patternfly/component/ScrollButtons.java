@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.component;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -5,6 +20,7 @@ import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.ObservableValue;
+
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import elemental2.dom.NodeList;
@@ -31,6 +47,7 @@ import static org.patternfly.style.Classes.scrollable;
  * Internal class used by components like {@link org.patternfly.component.navigation.Navigation} or
  * {@link org.patternfly.component.tabs.Tab} that provide buttons to scroll their items horizontally.
  */
+// TODO Use in Tabs.java
 public class ScrollButtons {
 
     public final HTMLElement scrollBackContainer;
@@ -75,7 +92,7 @@ public class ScrollButtons {
                 .element();
     }
 
-    public void attach(HTMLElement component, HTMLElement itemsContainer) {
+    public void attach() {
         scrollBack.onClick((e, b) -> scrollBack());
         scrollForward.onClick((e, b) -> scrollForward());
         enableScrollButtons.subscribe((current, previous) -> {

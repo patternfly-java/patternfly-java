@@ -17,7 +17,7 @@ package org.patternfly.component.panel;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
-import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;

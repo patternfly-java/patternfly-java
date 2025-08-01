@@ -26,6 +26,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;

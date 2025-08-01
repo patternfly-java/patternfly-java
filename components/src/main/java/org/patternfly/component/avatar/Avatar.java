@@ -19,6 +19,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Modifiers.Bordered;
 import org.patternfly.style.Size;
+
 import elemental2.dom.HTMLImageElement;
 
 import static org.jboss.elemento.Elements.img;

@@ -17,6 +17,7 @@ package org.patternfly.component.menu;
 
 import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 

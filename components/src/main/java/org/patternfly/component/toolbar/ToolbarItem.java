@@ -23,7 +23,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
-import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
 

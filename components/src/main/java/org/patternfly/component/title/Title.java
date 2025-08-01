@@ -19,6 +19,7 @@ import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Size;
+
 import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;

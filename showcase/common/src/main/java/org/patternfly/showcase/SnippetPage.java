@@ -136,7 +136,7 @@ public class SnippetPage implements Page {
                                         .add(flex()
                                                 .add(jumpLinks = jumpLinks("Table of contents")
                                                         .css("ws-toc")
-                                                        .style("top", "45px")
+                                                        .style("top", "0")
                                                         .vertical()
                                                         .scrollableSelector(By.id(MAIN_ID))
                                                         .expandable(breakpoints(

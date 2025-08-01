@@ -29,12 +29,18 @@ import static org.patternfly.component.title.Title.title;
 
 class NotFound implements Page {
 
+    final Place notFound;
+
+    NotFound(Place notFound) {
+        this.notFound = notFound;
+    }
+
     @Override
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
         return singletonList(pageSection()
                 .add(content()
                         .add(title(1, "Not Found"))
-                        .add(p().text("Page " + place.route + " not found")))
+                        .add(p().text("Page " + notFound.route + " not found")))
                 .element());
     }
 }

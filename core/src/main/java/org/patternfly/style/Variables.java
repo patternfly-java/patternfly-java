@@ -16,13 +16,12 @@
 package org.patternfly.style;
 
 public interface Variables {
+
     String Color = "Color";
     String FlexBasis = "FlexBasis";
     String GridTemplateColumns = "GridTemplateColumns";
     String Height = "Height";
-    String Left = "Left";
     String LineClamp = "LineClamp";
-    String MinWidth = "MinWidth";
     String MaxWidth = "MaxWidth";
     String MaxHeight = "MaxHeight";
     String Order = "Order";

@@ -18,6 +18,8 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.content.Content;
+import org.patternfly.component.content.ContentType;
 import org.patternfly.component.slider.Slider;
 import org.patternfly.component.slider.SliderActions;
 import org.patternfly.component.slider.SliderInputPosition;
@@ -36,6 +38,9 @@ import static org.jboss.elemento.Elements.small;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.h3;
+import static org.patternfly.component.content.ContentType.h4;
 import static org.patternfly.component.form.TextInput.textInput;
 import static org.patternfly.component.form.TextInputType.number;
 import static org.patternfly.component.inputgroup.InputGroup.inputGroup;
@@ -70,7 +75,7 @@ public class SliderComponent extends SnippetPage {
             HTMLContainerBuilder<HTMLElement>[] values = new HTMLContainerBuilder[]{span(), span(), span(), span(), span(),
                     span(), span()};
             return div()
-                    .add(p().add("Slider value is ").add(values[0]))
+                    .add(content(h4).add("Slider value is ").add(values[0]))
                     .add(slider()
                             .value(50)
                             .customSteps(sliderSteps(
@@ -85,7 +90,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(100d, "8")))
                             .onChange((e, s, v) -> values[0].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[1]))
+                    .add(content(h4).add("Slider value is ").add(values[1]))
                     .add(small().add("(min = 0, max = 200, step = 50)"))
                     .add(slider()
                             .value(50)
@@ -93,7 +98,7 @@ public class SliderComponent extends SnippetPage {
                             .showTicks()
                             .onChange((e, s, v) -> values[1].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[2]))
+                    .add(content(h4).add("Slider value is ").add(values[2]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries not shown)"))
                     .add(slider()
                             .value(25)
@@ -102,7 +107,7 @@ public class SliderComponent extends SnippetPage {
                             .showBoundaries(false)
                             .onChange((e, s, v) -> values[2].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[3]))
+                    .add(content(h4).add("Slider value is ").add(values[3]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries shown)"))
                     .add(slider()
                             .value(50)
@@ -110,14 +115,14 @@ public class SliderComponent extends SnippetPage {
                             .showTicks()
                             .onChange((e, s, v) -> values[3].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[4]))
+                    .add(content(h4).add("Slider value is ").add(values[4]))
                     .add(small().add("(min = -25, max = 75, step = 10, boundaries shown, ticks not shown)"))
                     .add(slider()
                             .value(50)
                             .range(-25, 75, 10)
                             .onChange((e, s, v) -> values[4].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[5]))
+                    .add(content(h4).add("Slider value is ").add(values[5]))
                     .add(small().add("(max = 5, custom steps)"))
                     .add(slider()
                             .value(3)
@@ -131,7 +136,7 @@ public class SliderComponent extends SnippetPage {
                                     sliderStep(5, "F")))
                             .onChange((e, s, v) -> values[5].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[6]))
+                    .add(content(h4).add("Slider value is ").add(values[6]))
                     .add(small().add("(min = 12, max = 86, custom steps with non linear data)"))
                     .add(slider()
                             .value(25)
@@ -154,12 +159,12 @@ public class SliderComponent extends SnippetPage {
             // @code-start:slider-continuous
             HTMLContainerBuilder<HTMLElement>[] values = new HTMLContainerBuilder[]{span(), span()};
             return div()
-                    .add(p().add("Slider value is ").add(values[0]))
+                    .add(content(h4).add("Slider value is ").add(values[0]))
                     .add(slider()
                             .value(50)
                             .onChange((e, s, v) -> values[0].text(String.valueOf(v))))
                     .add(br())
-                    .add(p().add("Slider value is ").add(values[1]))
+                    .add(content(h4).add("Slider value is ").add(values[1]))
                     .add(small().add("(with tooltip over thumb)"))
                     .add(slider()
                             .value(50)
@@ -235,7 +240,7 @@ public class SliderComponent extends SnippetPage {
             HTMLContainerBuilder<HTMLElement> value = span();
 
             return div()
-                    .add(p().add("Slider value is ").add(value))
+                    .add(content(h4).add("Slider value is ").add(value))
                     .add(slider0
                             .value(50)
                             .addStartActions(sliderActions()
@@ -273,7 +278,7 @@ public class SliderComponent extends SnippetPage {
             HTMLContainerBuilder<HTMLElement> value = span();
             setTimeout(__ -> slider.value(50), 333);
             return div()
-                    .add(p().add("Slider value is ").add(value))
+                    .add(content(h4).add("Slider value is ").add(value))
                     .add(slider
                             .disabled()
                             .customSteps(sliderSteps(

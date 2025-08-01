@@ -17,6 +17,7 @@ package org.patternfly.extension.codeeditor;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;

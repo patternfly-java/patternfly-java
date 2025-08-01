@@ -20,6 +20,7 @@ import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;

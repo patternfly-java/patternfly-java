@@ -35,11 +35,11 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `panel`
 - [x] `popover`
 - [x] `progress`
-- [ ] `skeleton`
-- [ ] `skiptocontent`
-- [ ] `slider`
-- [ ] `spinner`
-- [ ] `switch_`
+- [x] `skeleton`
+- [x] `skiptocontent`
+- [x] `slider`
+- [x] `spinner`
+- [x] `switch_`
 - [ ] `table`
 - [ ] `tabs`
 - [ ] `text`

@@ -41,6 +41,7 @@ import org.patternfly.icon.IconSets.patternfly;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Size;
+
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLAnchorElement;
@@ -81,6 +82,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
+// TODO Horizontal tabs don't shrink!
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
         ComponentContext<HTMLElement, Tab>,

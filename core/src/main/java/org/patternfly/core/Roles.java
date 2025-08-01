@@ -43,6 +43,7 @@ public interface Roles {
     String rowgroup = "rowgroup";
     String separator = "separator";
     String slider = "slider";
+    String switch_ = "switch";
     String tab = "tab";
     String tablist = "tablist";
     String tabpanel = "tabpanel";

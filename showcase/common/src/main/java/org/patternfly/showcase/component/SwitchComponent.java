@@ -39,7 +39,7 @@ public class SwitchComponent extends SnippetPage {
                 // @code-start:switch-basic
                 div()
                         .add(switch_("switch-basic-0", "switch-basic-0", true)
-                                .label("Message when on", "Message when off"))
+                                .label("Togglable option for basic example"))
                         .element()
                 // @code-end:switch-basic
         ));
@@ -50,7 +50,7 @@ public class SwitchComponent extends SnippetPage {
                 div()
                         .add(switch_("switch-reversed-0", "switch-reversed-0", true)
                                 .reversed()
-                                .label("Message when on", "Message when off"))
+                                .label("Togglable option for reversed example"))
                         .element()
                 // @code-end:switch-reversed
         ));
@@ -60,7 +60,8 @@ public class SwitchComponent extends SnippetPage {
                 // @code-start:switch-no-label
                 div()
                         .add(switch_("switch-no-label-0", "switch-no-label-0", true)
-                                .checkIcon())
+                                .checkIcon()
+                                .ariaLabel("Togglable option for no visible label example"))
                         .element()
                 // @code-end:switch-no-label
         ));
@@ -71,7 +72,7 @@ public class SwitchComponent extends SnippetPage {
                 div()
                         .add(switch_("switch-checked-label-0", "switch-checked-label-0", true)
                                 .checkIcon()
-                                .label("Message when on", "Message when off"))
+                                .label("Togglable option for check icon example"))
                         .element()
                 // @code-end:switch-checked-label
         ));
@@ -82,19 +83,21 @@ public class SwitchComponent extends SnippetPage {
                 div()
                         .add(switch_("switch-disabled-0", "switch-disabled-0", true)
                                 .disabled()
-                                .label("Message when on", "Message when off"))
+                                .label("Togglable option for disabled checked example"))
                         .add(br())
                         .add(switch_("switch-disabled-1", "switch-disabled-1", false)
                                 .disabled()
-                                .label("Message when on", "Message when off"))
+                                .label("Togglable option for disabled unchecked example"))
                         .add(br())
                         .add(switch_("switch-disabled-2", "switch-disabled-2", true)
                                 .disabled()
-                                .checkIcon())
+                                .checkIcon()
+                                .ariaLabel("Togglable option for checked with no visible label example"))
                         .add(br())
                         .add(switch_("switch-disabled-3", "switch-disabled-3", false)
                                 .disabled()
-                                .checkIcon())
+                                .checkIcon()
+                                .ariaLabel("Togglable option for unchecked with no visible label example"))
                         .element()
                 // @code-end:switch-disabled
         ));

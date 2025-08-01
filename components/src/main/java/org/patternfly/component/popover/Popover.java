@@ -52,10 +52,7 @@ import static elemental2.dom.DomGlobal.document;
 import static java.util.Arrays.asList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.Elements.removeChildrenFrom;
-import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.popover.PopoverBody.popoverBody;
@@ -79,8 +76,6 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.popover;
-import static org.patternfly.style.Classes.screenReader;
-import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.Classes.widthAuto;
 
 /**

@@ -97,7 +97,6 @@ import static org.patternfly.style.Classes.slider;
 import static org.patternfly.style.Classes.tick;
 import static org.patternfly.style.Classes.track;
 import static org.patternfly.style.Variable.componentVar;
-import static org.patternfly.style.Variables.Left;
 
 /**
  * A slider provides a quick and effective way for users to set and adjust a numeric value from a defined range of values.
@@ -122,7 +121,7 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
     private static final Variable sliderValue = componentVar(component(slider), "value");
     private static final Variable sliderValueInputWidth = componentVar(component(slider, Classes.value),
             "c-form-control", "width-chars");
-    private static final Variable sliderStepLeft = componentVar(component(slider, Classes.step), Left);
+    private static final Variable sliderStepStart = componentVar(component(slider, Classes.step), "InsetInlineStart");
 
     private final ObservableValue<Double> value;
     private final HTMLContainerBuilder<HTMLDivElement> main;
@@ -195,7 +194,7 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
             for (SliderStep step : customSteps) {
                 HTMLContainerBuilder<HTMLDivElement> stepElement = div().css(component(slider, Classes.step))
                         .data(sliderStepValue, String.valueOf(step.value));
-                sliderStepLeft.applyTo(stepElement).set(step.percentage() + "%");
+                sliderStepStart.applyTo(stepElement).set(step.percentage() + "%");
                 stepElement.add(div().css(component(slider, Classes.step, tick)));
                 if (!step.labelHidden) {
                     stepElement.add(div().css(component(slider, Classes.step, label)).text(step.label));
@@ -212,7 +211,7 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
                     }
                     HTMLContainerBuilder<HTMLDivElement> stepElement = div().css(component(slider, Classes.step))
                             .data(sliderStepValue, String.valueOf(index));
-                    sliderStepLeft.applyTo(stepElement).set(percentage(index, min, max) + "%");
+                    sliderStepStart.applyTo(stepElement).set(percentage(index, min, max) + "%");
                     if (showTicks) {
                         stepElement.add(div().css(component(slider, Classes.step, tick)));
                     }
