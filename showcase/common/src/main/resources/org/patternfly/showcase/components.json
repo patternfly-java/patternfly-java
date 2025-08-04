@@ -470,6 +470,7 @@
     "name": "progress-stepper",
     "title": "Progress stepper",
     "route": "/components/progress-stepper",
+    "clazz": "org.patternfly.component.progressstepper.ProgressStepper",
     "illustration": "progress-stepper.png",
     "summary": "A <b>progress stepper</b> displays a timeline of tasks in a workflow and tracks a user's progress through the workflow."
   },
