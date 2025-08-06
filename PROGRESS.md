@@ -19,7 +19,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `content`
 - [x] `divider`
 - [x] `drawer`
-- [ ] `emptystate`
+- [x] `emptystate`
 - [x] `expandable`
 - [x] `form`
 - [x] `help`
@@ -45,7 +45,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `tabs`
 - [x] `textinputgroup`
 - [x] `title`
-- [ ] `togglegroup`
+- [x] `togglegroup`
 - [ ] `toolbar`
 - [ ] `tooltip`
 - [ ] `tree`

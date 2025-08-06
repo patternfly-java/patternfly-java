@@ -24,8 +24,10 @@ import org.patternfly.showcase.SnippetPage;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
+import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Id.build;
+import static org.patternfly.component.IconPosition.end;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.button.Button.button;
@@ -48,7 +50,19 @@ public class ToggleGroupComponent extends SnippetPage {
         super(components.get("toggle-group"));
 
         startExamples();
-        addSnippet(new Snippet("toggle-group-multiple", "Default with multiple selectable",
+        addSnippet(new Snippet("toggle-group-single", "Single select toggle group",
+                code("toggle-group-single"), () ->
+                // @code-start:toggle-group-single
+                div()
+                        .add(toggleGroup(single)
+                                .addItems(range(1, 4).boxed().collect(toList()), index ->
+                                        toggleGroupItem(build("toggle-group-single", String.valueOf(index)),
+                                                "Option " + index)))
+                        .element()
+                // @code-end:toggle-group-single
+        ));
+
+        addSnippet(new Snippet("toggle-group-multiple", "Multi select toggle group",
                 code("toggle-group-multiple"), () -> {
             // @code-start:toggle-group-multiple
             Button disableAll = button("Disable all").primary();
@@ -70,19 +84,7 @@ public class ToggleGroupComponent extends SnippetPage {
             // @code-end:toggle-group-multiple
         }));
 
-        addSnippet(new Snippet("toggle-group-single", "Default with single selectable",
-                code("toggle-group-single"), () ->
-                // @code-start:toggle-group-single
-                div()
-                        .add(toggleGroup(single)
-                                .addItems(range(1, 4).boxed().collect(toList()), index ->
-                                        toggleGroupItem(build("toggle-group-single", String.valueOf(index)),
-                                                "Option " + index)))
-                        .element()
-                // @code-end:toggle-group-single
-        ));
-
-        addSnippet(new Snippet("toggle-group-icon", "With icon",
+        addSnippet(new Snippet("toggle-group-icon", "With icons",
                 code("toggle-group-icon"), () ->
                 // @code-start:toggle-group-icon
                 div()
@@ -94,19 +96,24 @@ public class ToggleGroupComponent extends SnippetPage {
                 // @code-end:toggle-group-icon
         ));
 
-        addSnippet(new Snippet("toggle-group-text-icon", "With icon",
+        addSnippet(new Snippet("toggle-group-text-icon", "With text and icons",
                 code("toggle-group-text-icon"), () ->
                 // @code-start:toggle-group-text-icon
                 div()
                         .add(toggleGroup(multi)
-                                .addItem(toggleGroupItem("toggle-group-text-icon-0", "Copy").icon(copy()))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-1", "Undo").icon(undo()))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-2", "Share").icon(shareSquare())))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-0").iconAndText(copy(), "Copy"))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-1").iconAndText(undo(), "Undo"))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(shareSquare(), "Share")))
+                        .add(br())
+                        .add(toggleGroup(multi)
+                                .addItem(toggleGroupItem("toggle-group-text-icon-0").iconAndText(copy(), "Copy", end))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-1").iconAndText(undo(), "Undo", end))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(shareSquare(), "Share", end)))
                         .element()
                 // @code-end:toggle-group-text-icon
         ));
 
-        addSnippet(new Snippet("toggle-group-compact", "Compact variant",
+        addSnippet(new Snippet("toggle-group-compact", "Compact toggle group",
                 code("toggle-group-compact"), () ->
                 // @code-start:toggle-group-compact
                 div()

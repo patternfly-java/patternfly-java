@@ -23,14 +23,15 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
+import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasIdentifier;
+import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -44,6 +45,8 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.patternfly.component.IconPosition.end;
+import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.core.Aria.pressed;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
@@ -55,6 +58,7 @@ import static org.patternfly.style.Classes.toggleGroup;
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
         ComponentIcon<HTMLDivElement, ToggleGroupItem>,
+        ComponentIconAndText<HTMLDivElement, ToggleGroupItem>,
         Disabled<HTMLDivElement, ToggleGroupItem>,
         ElementContainerDelegate<HTMLDivElement, ToggleGroupItem>,
         ElementTextMethods<HTMLDivElement, ToggleGroupItem>,
@@ -108,7 +112,15 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     @Override
     public ToggleGroupItem icon(Element icon) {
         removeChildrenFrom(iconContainer);
-        failSafeIconContainer().appendChild(icon);
+        failSafeIconContainer(start).appendChild(icon);
+        return this;
+    }
+
+    @Override
+    public ToggleGroupItem iconAndText(Element icon, String text, IconPosition iconPosition) {
+        removeIcon();
+        failSafeIconContainer(iconPosition).appendChild(icon);
+        failSafeTextElement(iconPosition).textContent = text;
         return this;
     }
 
@@ -125,7 +137,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
             failSafeRemoveFromParent(textElement);
             textElement = null;
         } else {
-            failSafeTextElement().textContent = text;
+            failSafeTextElement(end).textContent = text;
         }
         return this;
     }
@@ -203,16 +215,26 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
         return Boolean.parseBoolean(button.element().getAttribute(pressed));
     }
 
-    private HTMLElement failSafeTextElement() {
+    private HTMLElement failSafeTextElement(IconPosition iconPosition) {
         if (textElement == null) {
-            button.add(textElement = span().css(component(toggleGroup, text)).element());
+            textElement = span().css(component(toggleGroup, text)).element();
+            if (iconPosition == IconPosition.start) {
+                button.add(textElement);
+            } else {
+                insertFirst(button.element(), textElement);
+            }
         }
         return textElement;
     }
 
-    private HTMLElement failSafeIconContainer() {
+    private HTMLElement failSafeIconContainer(IconPosition iconPosition) {
         if (iconContainer == null) {
-            insertFirst(button.element(), iconContainer = span().css(component(toggleGroup, icon)).element());
+            iconContainer = span().css(component(toggleGroup, icon)).element();
+            if (iconPosition == start) {
+                insertFirst(button.element(), iconContainer);
+            } else {
+                button.add(iconContainer);
+            }
         }
         return iconContainer;
     }
