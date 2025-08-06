@@ -74,7 +74,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 code("tig-filters"), () ->
                 // @code-start:tig-filters
                 div()
-                        .add(filterInputGroup("Placeholder"))
+                        .add(filterInputGroup())
                         .element()
                 // @code-end:tig-filters
         ));

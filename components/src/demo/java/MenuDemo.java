@@ -59,7 +59,7 @@ public class MenuDemo {
         Menu menu = menu(MenuType.menu, click)
                 .addSearch(menuSearch()
                         .addSearchInput(menuSearchInput()
-                                .addSearchInput(searchInputGroup(""))
+                                .addSearchInput(searchInputGroup())
                                 .onSearch((menuItem, value) ->
                                         menuItem.text().toLowerCase().contains(value.toLowerCase()))
                                 .onNoResults(value ->

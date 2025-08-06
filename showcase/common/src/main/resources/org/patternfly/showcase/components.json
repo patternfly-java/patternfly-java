@@ -157,7 +157,7 @@
     "name": "content",
     "title": "Content",
     "route": "/components/content",
-    "clazz": "org.patternfly.component.text.Content",
+    "clazz": "org.patternfly.component.content.Content",
     "illustration": "content.png",
     "summary": "A <b>content</b> component contains a block of styled HTML content."
   },

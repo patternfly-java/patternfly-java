@@ -29,7 +29,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
 
@@ -65,6 +64,10 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return new TextInputGroup();
     }
 
+    public static TextInputGroup searchInputGroup() {
+        return searchInputGroup("", null);
+    }
+
     public static TextInputGroup searchInputGroup(String placeholder) {
         return searchInputGroup(placeholder, null);
     }
@@ -94,6 +97,10 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
         return textInputGroup;
     }
 
+    public static TextInputGroup filterInputGroup() {
+        return filterInputGroup("", null);
+    }
+
     public static TextInputGroup filterInputGroup(String placeholder) {
         return filterInputGroup(placeholder, null);
     }
@@ -112,7 +119,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                         .onKeyup((e, tig, value) -> {
                             textEntered.set(!value.isEmpty());
                             if (Key.Enter.match(e) && !value.isEmpty()) {
-                                labelGroup.addItem(label(value).onClose(closeHandler));
+                                labelGroup.addItem(label(value).outline().closable(closeHandler));
                                 tig.main().value("");
                                 labelsPresent.set(true);
                                 textEntered.set(false);

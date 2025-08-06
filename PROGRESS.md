@@ -16,6 +16,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `button`
 - [x] `card`
 - [x] `codeblock`
+- [x] `content`
 - [x] `divider`
 - [x] `drawer`
 - [ ] `emptystate`
@@ -41,9 +42,8 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `spinner`
 - [x] `switch_`
 - [x] `table`
-- [ ] `tabs`
-- [ ] `text`
-- [ ] `textinputgroup`
+- [x] `tabs`
+- [x] `textinputgroup`
 - [ ] `title`
 - [ ] `togglegroup`
 - [ ] `toolbar`

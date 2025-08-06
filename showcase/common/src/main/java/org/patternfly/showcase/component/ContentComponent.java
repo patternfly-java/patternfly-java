@@ -23,6 +23,7 @@ import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.blockquote;
+import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.dd;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.dl;
@@ -34,37 +35,56 @@ import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.small;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.h1;
+import static org.patternfly.component.content.ContentType.h2;
+import static org.patternfly.component.content.ContentType.h3;
+import static org.patternfly.component.content.ContentType.h4;
+import static org.patternfly.component.content.ContentType.h5;
+import static org.patternfly.component.content.ContentType.h6;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.plain;
 
-@Route(value = "/components/text", title = "Text")
-public class TextContentComponent extends SnippetPage {
+@Route(value = "/components/content", title = "Content")
+public class ContentComponent extends SnippetPage {
 
-    public TextContentComponent() {
-        super(components.get("text"));
+    public ContentComponent() {
+        super(components.get("content"));
 
         startExamples();
-        addSnippet(new Snippet("text-content-headings", "Heading",
-                code("text-content-headings"), () ->
-                // @code-start:text-content-headings
+        addSnippet(new Snippet("content-wrapper", "Content as wrapper",
+                code("content-wrapper"), () ->
+                // @code-start:content-wrapper
                 div()
                         .add(content()
-                                .add(h(1, "Hello World"))
-                                .add(h(2, "Second Level"))
-                                .add(h(3, "Third Level"))
-                                .add(h(4, "Forth Level"))
-                                .add(h(5, "Fifth Level"))
-                                .add(h(6, "Sixth Level")))
+                                .add(content(p).text(
+                                        "Content with a component of type \"p\" still renders the same when wrapped with a Content."))
+                                .add(p().text("If located within a wrapping Content, html elements are styled as well!")))
                         .element()
-                // @code-end:text-content-headings
+                // @code-end:content-wrapper
         ));
 
-        addSnippet(new Snippet("text-content-body", "Body",
-                code("text-content-body"), () ->
-                // @code-start:text-content-body
+        addSnippet(new Snippet("content-headings", "Headings",
+                code("content-headings"), () ->
+                // @code-start:content-headings
+                div()
+                        .add(content()
+                                .add(content(h1).text("Hello World"))
+                                .add(content(h2).text("Second Level"))
+                                .add(content(h3).text("Third Level"))
+                                .add(content(h4).text("Forth Level"))
+                                .add(content(h5).text("Fifth Level"))
+                                .add(content(h6).text("Sixth Level")))
+                        .element()
+                // @code-end:content-headings
+        ));
+
+        addSnippet(new Snippet("content-body", "Body",
+                code("content-body"), () ->
+                // @code-start:content-body
                 div()
                         .add(content()
                                 .add(p().text(LoremIpsum.paragraphs(5)))
@@ -75,12 +95,12 @@ public class TextContentComponent extends SnippetPage {
                                 .add(blockquote().text(LoremIpsum.paragraphs(2)))
                                 .add(small().text(LoremIpsum.paragraphs(3))))
                         .element()
-                // @code-end:text-content-body
+                // @code-end:content-body
         ));
 
-        addSnippet(new Snippet("text-content-ul", "Unordered list",
-                code("text-content-ul"), () ->
-                // @code-start:text-content-ul
+        addSnippet(new Snippet("content-ul", "Unordered list",
+                code("content-ul"), () ->
+                // @code-start:content-ul
                 div()
                         .add(content()
                                 .add(ul()
@@ -92,12 +112,12 @@ public class TextContentComponent extends SnippetPage {
                                                         .add(li().text(LoremIpsum.words()))))
                                         .add(li().add(LoremIpsum.words()))))
                         .element()
-                // @code-end:text-content-ul
+                // @code-end:content-ul
         ));
 
-        addSnippet(new Snippet("text-content-ol", "Ordered list",
-                code("text-content-ol"), () ->
-                // @code-start:text-content-ol
+        addSnippet(new Snippet("content-ol", "Ordered list",
+                code("content-ol"), () ->
+                // @code-start:content-ol
                 div()
                         .add(content()
                                 .add(ol()
@@ -109,12 +129,12 @@ public class TextContentComponent extends SnippetPage {
                                         .add(li().text(LoremIpsum.words()))
                                         .add(li().text(LoremIpsum.words()))))
                         .element()
-                // @code-end:text-content-ol
+                // @code-end:content-ol
         ));
 
-        addSnippet(new Snippet("text-content-plain-list", "Plain list",
-                code("text-content-plain-list"), () ->
-                // @code-start:text-content-plain-list
+        addSnippet(new Snippet("content-plain-list", "Plain list",
+                code("content-plain-list"), () ->
+                // @code-start:content-plain-list
                 div()
                         .add(content()
                                 .add(h(3, "Plain unordered list"))
@@ -133,12 +153,12 @@ public class TextContentComponent extends SnippetPage {
                                         .add(li().text(LoremIpsum.words()))
                                         .add(li().text(LoremIpsum.words()))))
                         .element()
-                // @code-end:text-content-plain-list
+                // @code-end:content-plain-list
         ));
 
-        addSnippet(new Snippet("text-content-dl", "Description list",
-                code("text-content-dl"), () ->
-                // @code-start:text-content-dl
+        addSnippet(new Snippet("content-dl", "Description list",
+                code("content-dl"), () ->
+                // @code-start:content-dl
                 div()
                         .add(content()
                                 .add(dl()
@@ -150,7 +170,22 @@ public class TextContentComponent extends SnippetPage {
                                         .add(dt().text("CSS"))
                                         .add(dd().text("A technology to make HTML look better"))))
                         .element()
-                // @code-end:text-content-dl
+                // @code-end:content-dl
+        ));
+
+        addSnippet(new Snippet("content-editorial", "Editorial content",
+                code("content-editorial"), () ->
+                // @code-start:content-editorial
+                div()
+                        .add(content().editorial()
+                                .add(content(h1).text("Example of editorial content via components"))
+                                .add(content(p).text(LoremIpsum.paragraphs(4))))
+                        .add(br())
+                        .add(content().editorial()
+                                .add(h(1, "Example of editorial content via wrapper"))
+                                .add(p().text(LoremIpsum.paragraphs(4))))
+                        .element()
+                // @code-end:content-editorial
         ));
 
         startApiDocs(Content.class);
