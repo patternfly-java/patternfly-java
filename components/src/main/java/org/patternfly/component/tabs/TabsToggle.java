@@ -15,30 +15,32 @@
  */
 package org.patternfly.component.tabs;
 
+import org.jboss.elemento.ElementTextDelegate;
+import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
-
+import org.patternfly.style.Modifiers.Disabled;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.tabs;
-import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggle;
 
 // internal subcomponent!
-class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements Modifiers.Disabled<HTMLElement, TabsToggle> {
+class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements
+        Disabled<HTMLElement, TabsToggle>,
+        ElementTextMethods<HTMLElement, TabsToggle> {
 
     // ------------------------------------------------------ factory
 
@@ -50,7 +52,6 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements Mod
 
     static final String SUB_COMPONENT_NAME = "tt";
     private final Button button;
-    private final HTMLElement textElement;
 
     TabsToggle() {
         super(SUB_COMPONENT_NAME, div().css(component(tabs, toggle)).element());
@@ -58,32 +59,38 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements Mod
         String toggleTextId = Id.unique(ComponentType.Tabs.id, "toggle", "text");
         add(div().css(component(tabs, toggle, Classes.button))
                 .add(button = button().plain()
+                        .iconAndText(angleRight(), "")
                         .id(toggleButtonId)
                         .aria(expanded, false)
                         .aria(labelledBy, toggleButtonId + " " + toggleTextId)
-                        .on(click, e -> toggle())
-                        .add(span().css(component(tabs, toggle, icon))
-                                .add(angleRight()))
-                        .add(textElement = span().css(component(tabs, toggle, text))
-                                .id(toggleTextId)
-                                .element())));
+                        .on(click, e -> toggle())));
     }
 
     // ------------------------------------------------------ builder
+
+
+    @Override
+    public TabsToggle text(String text) {
+        button.text(text);
+        return this;
+    }
 
     @Override
     public TabsToggle that() {
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    @Override
+    public String text() {
+        return button.text();
+    }
+
     // ------------------------------------------------------ internal
 
     boolean noText() {
-        return textElement.textContent == null || textElement.textContent.isEmpty();
-    }
-
-    void text(String text) {
-        textElement.textContent = text;
+        return button.text() == null || button.text().isEmpty();
     }
 
     void ariaLabel(String label) {

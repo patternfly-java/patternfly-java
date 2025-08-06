@@ -29,7 +29,6 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Inset;
-
 import elemental2.dom.Event;
 import elemental2.promise.Promise;
 
@@ -82,7 +81,7 @@ public class TabsComponent extends SnippetPage {
             // @code-start:tabs-default
             Tabs tabs = tabs();
             Checkbox boxToggle = checkbox("tabs-default-box", "tabs-default-box", "Box");
-            Checkbox lightToggle = checkbox("tabs-default-light", "tabs-default-light", "Light tabs");
+            Checkbox secondaryToggle = checkbox("tabs-default-secondary", "tabs-default-secondary", "Secondary tabs");
             return div()
                     .add(tabs
                             .addItem(tab("tabs-default-users", "Users")
@@ -105,7 +104,7 @@ public class TabsComponent extends SnippetPage {
                     .add(div().css(util("mt-md"))
                             .add(boxToggle.onChange((event, component, value) -> tabs.box(value))))
                     .add(div().css(util("mt-sm"))
-                            .add(lightToggle.onChange((event, component, value) -> tabs.lightTabs(value))))
+                            .add(secondaryToggle.onChange((event, component, value) -> tabs.secondary(value))))
                     .element();
             // @code-end:tabs-default
         }));
@@ -116,7 +115,6 @@ public class TabsComponent extends SnippetPage {
             // @code-start:tabs-vertical
             Tabs tabs = tabs();
             Checkbox boxToggle = checkbox("tabs-vertical-box", "tabs-vertical-box", "Box");
-            Checkbox lightToggle = checkbox("tabs-vertical-light", "tabs-vertical-light", "Light tabs");
             return div()
                     .add(tabs.vertical()
                             .addItem(tab("tabs-vertical-users", "Users")
@@ -138,8 +136,6 @@ public class TabsComponent extends SnippetPage {
                                     .addContent(tabContent().text("ARIA Disabled (Tooltip)"))))
                     .add(div().css(util("mt-md"))
                             .add(boxToggle.onChange((event, component, value) -> tabs.box(value))))
-                    .add(div().css(util("mt-sm"))
-                            .add(lightToggle.onChange((event, component, value) -> tabs.lightTabs(value))))
                     .element();
             // @code-end:tabs-vertical
         }));
@@ -302,38 +298,38 @@ public class TabsComponent extends SnippetPage {
                 // @code-end:tabs-icon-text
         ));
 
-        addSnippet(new Snippet("tabs-secondary", "Secondary tabs",
-                code("tabs-secondary"), () -> {
-            // @code-start:tabs-secondary
+        addSnippet(new Snippet("tabs-subtab", "Subtabs",
+                code("tabs-subtab"), () -> {
+            // @code-start:tabs-subtab
             Tabs tabs = tabs();
-            Tabs secondaryTabs = tabs().secondary();
-            Checkbox boxToggle = checkbox("tabs-secondary-box", "tabs-secondary-box", "Box");
+            Tabs subtab = tabs().subtab();
+            Checkbox boxToggle = checkbox("tabs-subtab-box", "tabs-subtab-box", "Box");
             return div()
                     .add(tabs
-                            .addItem(tab("tabs-secondary-users", "Users")
+                            .addItem(tab("tabs-subtab-users", "Users")
                                     .addContent(tabContent()
-                                            .add(secondaryTabs
+                                            .add(subtab
                                                     .addItems(range(1, 12).boxed().collect(toList()), index ->
                                                             tab("secondary-tab-" + index, "Secondary tab item " + index)
                                                                     .addContent(tabContent()
                                                                             .text("Secondary tab section " + index))))))
-                            .addItem(tab("tabs-secondary-containers", "Containers")
+                            .addItem(tab("tabs-subtab-containers", "Containers")
                                     .addContent(tabContent().text("Containers")))
-                            .addItem(tab("tabs-secondary-database", "Database")
+                            .addItem(tab("tabs-subtab-database", "Database")
                                     .addContent(tabContent().text("Database")))
-                            .addItem(tab("tabs-secondary-server", "Server")
+                            .addItem(tab("tabs-subtab-server", "Server")
                                     .addContent(tabContent().text("Server")))
-                            .addItem(tab("tabs-secondary-system", "System")
+                            .addItem(tab("tabs-subtab-system", "System")
                                     .addContent(tabContent().text("System")))
-                            .addItem(tab("tabs-secondary-network", "Network")
+                            .addItem(tab("tabs-subtab-network", "Network")
                                     .addContent(tabContent().text("Network")))
                             .addItems(range(7, 20).boxed().collect(toList()), index ->
-                                    tab("tabs-secondary-" + index, "Tab item " + index)
+                                    tab("tabs-subtab-" + index, "Tab item " + index)
                                             .addContent(tabContent().text("Tab section " + index))))
                     .add(div().css(util("mt-md"))
                             .add(boxToggle.onChange((event, component, value) -> tabs.box(value))))
                     .element();
-            // @code-end:tabs-secondary
+            // @code-end:tabs-subtab
         }));
 
         addSnippet(new Snippet("tabs-icon-filled", "Filled tabs with icons",
@@ -387,15 +383,15 @@ public class TabsComponent extends SnippetPage {
                 // @code-end:tabs-nav
         ));
 
-        addSnippet(new Snippet("tabs-secondary-nav", "Secondary tabs linked to nav elements",
-                code("tabs-secondary-nav"), () ->
-                // @code-start:tabs-secondary-nav
+        addSnippet(new Snippet("tabs-subtab-nav", "Subtabs linked to nav elements",
+                code("tabs-subtab-nav"), () ->
+                // @code-start:tabs-subtab-nav
                 div()
                         .add(tabs(nav())
-                                .addItem(tab(a(), "tabs-secondary-nav-users", "Users")
+                                .addItem(tab(a(), "tabs-subtab-nav-users", "Users")
                                         .href("#item-0")
                                         .addContent(tabContent()
-                                                .add(tabs(nav()).secondary()
+                                                .add(tabs(nav()).subtab()
                                                         .addItem(tab(a(), "secondary-tab-item-1", "Item 1")
                                                                 .href("#item-00")
                                                                 .addContent(tabContent().text("Item 1")))
@@ -416,17 +412,17 @@ public class TabsComponent extends SnippetPage {
                                                         .addItem(tab(a(), "secondary-tab-item-6", "Item 6")
                                                                 .href("#item-05")
                                                                 .addContent(tabContent().text("Item 6"))))))
-                                .addItem(tab(a(), "tabs-secondary-nav-containers", "Containers")
+                                .addItem(tab(a(), "tabs-subtab-nav-containers", "Containers")
                                         .href("#item-1")
                                         .addContent(tabContent().text("Containers")))
-                                .addItem(tab(a(), "tabs-secondary-nav-database", "Database")
+                                .addItem(tab(a(), "tabs-subtab-nav-database", "Database")
                                         .href("#item-2")
                                         .addContent(tabContent().text("Database")))
-                                .addItem(tab(a(), "tabs-secondary-nav-disabled", "Disabled")
+                                .addItem(tab(a(), "tabs-subtab-nav-disabled", "Disabled")
                                         .href("#item-3")
                                         .disabled()
                                         .addContent(tabContent().text("Disabled")))
-                                .addItem(tab(a(), "tabs-secondary-nav-disabled-aria", "ARIA Disabled")
+                                .addItem(tab(a(), "tabs-subtab-nav-disabled-aria", "ARIA Disabled")
                                         .href("#item-4")
                                         .ariaDisabled()
                                         .addContent(tabContent().text("ARIA Disabled")))
@@ -434,7 +430,7 @@ public class TabsComponent extends SnippetPage {
                                         .href("#item-5")
                                         .addContent(tabContent().text("Network"))))
                         .element()
-                // @code-end:tabs-secondary-nav
+                // @code-end:tabs-subtab-nav
         ));
 
         addSnippet(new Snippet("tabs-body-padding", "With tab content with body and padding",

@@ -20,7 +20,6 @@ import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.ObservableValue;
-
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import elemental2.dom.NodeList;
@@ -33,6 +32,7 @@ import static org.jboss.elemento.Elements.isElementInView;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.resize;
+import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
@@ -64,6 +64,7 @@ public class ScrollButtons {
     private final ObservableValue<Boolean> disableForwardScrollButton;
 
     private double scrollTimeout;
+    private HandlerRegistration scrollHandler;
     private HandlerRegistration resizeHandler;
     private HandlerRegistration transitionEndHandler;
 
@@ -90,9 +91,12 @@ public class ScrollButtons {
                         .aria(hidden, true)
                         .aria(label, "Scroll forward"))
                 .element();
+        setVisible(scrollBackContainer, false);
+        setVisible(scrollForwardContainer, false);
     }
 
     public void attach() {
+        scrollHandler = bind(itemsContainer, scroll, e -> updateScrollState());
         scrollBack.onClick((e, b) -> scrollBack());
         scrollForward.onClick((e, b) -> scrollForward());
         enableScrollButtons.subscribe((current, previous) -> {
@@ -125,6 +129,9 @@ public class ScrollButtons {
 
     public void detach() {
         clearTimeout(scrollTimeout);
+        if (scrollHandler != null) {
+            scrollHandler.removeHandler();
+        }
         if (resizeHandler != null) {
             resizeHandler.removeHandler();
         }

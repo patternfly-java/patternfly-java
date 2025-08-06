@@ -37,6 +37,7 @@ public interface Classes {
     String alignCenter = "align-center";
     String alignRight = "align-right";
     String alignTop = "align-top";
+    String animateCurrent = "animate-current";
     String ariaDisabled = "aria-disabled";
     String arrow = "arrow";
     String autoColumnWidths = "auto-column-widths";
@@ -253,6 +254,7 @@ public interface Classes {
     String steps = "steps";
     String sticky = "sticky";
     String subnav = "subnav";
+    String subtab = "subtab";
     String success = "success";
     String svg = "pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-svg";
     String switch_ = "switch";

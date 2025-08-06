@@ -53,6 +53,7 @@ import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
+import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
@@ -138,7 +139,6 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
                     .attr(role, Roles.list)
                     .element();
             scrollButtons = new ScrollButtons(element(), itemsContainer, component(nav, Classes.scroll, button));
-            itemsContainer.addEventListener(EventType.scroll.name, e -> scrollButtons.updateScrollState());
             addAll(scrollButtons.scrollBackContainer, itemsContainer, scrollButtons.scrollForwardContainer);
 
         } else if (type instanceof NavigationType.Vertical) {

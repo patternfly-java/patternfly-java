@@ -26,17 +26,15 @@ import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.ScrollButtons;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.LanguageDirection;
-import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
@@ -49,24 +47,18 @@ import org.patternfly.style.Modifiers.Fill;
 import org.patternfly.style.Modifiers.PageInsets;
 import org.patternfly.style.Modifiers.Secondary;
 import org.patternfly.style.Modifiers.Vertical;
-
 import elemental2.dom.Event;
-import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
-import elemental2.dom.Node;
-import elemental2.dom.NodeList;
 
-import static elemental2.dom.DomGlobal.clearTimeout;
-import static elemental2.dom.DomGlobal.setTimeout;
 import static elemental2.dom.DomGlobal.window;
 import static java.util.Collections.reverse;
-import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.isElementInView;
 import static org.jboss.elemento.Elements.isVisible;
@@ -76,27 +68,20 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.resize;
-import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.tabs.OverflowTab.overflowTab;
 import static org.patternfly.component.tabs.TabsToggle.tabsToggle;
-import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.LanguageDirection.languageDirection;
-import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.core.Roles.region;
 import static org.patternfly.core.Roles.tablist;
-import static org.patternfly.icon.IconSets.fas.angleLeft;
-import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.plus;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.scrollButton;
-import static org.patternfly.style.Classes.scrollable;
+import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
@@ -130,20 +115,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     private final Map<String, Tab> items;
     private final HTMLContainerBuilder<? extends HTMLElement> mainContainer;
-    private final HTMLContainerBuilder<HTMLButtonElement> scrollBack;
     private final HTMLContainerBuilder<HTMLUListElement> tabsContainer;
-    private final HTMLContainerBuilder<HTMLButtonElement> scrollForward;
+    private final ScrollButtons scrollButtons;
 
-    private final ObservableValue<Boolean> enableScrollButtons;
-    private final ObservableValue<Boolean> showScrollButtons;
-    private final ObservableValue<Boolean> renderScrollButtons;
-    private final ObservableValue<Boolean> disableBackScrollButton;
-    private final ObservableValue<Boolean> disableForwardScrollButton;
-
-    private double scrollTimeout;
     private boolean closeable;
     private boolean expandable;
-    private boolean lightTabs;
+    private boolean secondary;
     private boolean noInitialSelection;
     private boolean overflowHorizontal;
     private boolean vertical;
@@ -167,30 +144,18 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         this.toggleHandler = new ArrayList<>();
         this.closeHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
-        this.enableScrollButtons = ov(false);
-        this.showScrollButtons = ov(false);
-        this.renderScrollButtons = ov(false);
-        this.disableBackScrollButton = ov(false);
-        this.disableForwardScrollButton = ov(false);
-
+        // TODO Support modifier(animateCurrent) and
+        //   --pf-v6-c-tabs--link-accent--length: ??px;
+        //   --pf-v6-c-tabs--link-accent--start: ??px;
         this.mainContainer = builder.css(component(Classes.tabs))
                 .attr(role, region)
-                .add(scrollBack = button(ButtonType.button).css(component(Classes.tabs, scrollButton))
-                        .apply(b -> b.disabled = true)
-                        .aria(hidden, true)
-                        .aria(label, "Scroll back")
-                        .on(click, e -> scrollBack())
-                        .add(angleLeft()))
                 .add(tabsContainer = ul().css(component(Classes.tabs, list))
-                        .attr(role, tablist)
-                        .on(scroll, e -> updateState()))
-                .add(scrollForward = button(ButtonType.button).css(component(Classes.tabs, scrollButton))
-                        .apply(b -> b.disabled = true)
-                        .aria(hidden, true)
-                        .aria(label, "Scroll forward")
-                        .on(click, e -> scrollForward())
-                        .add(angleRight()));
+                        .attr(role, tablist));
+        this.scrollButtons = new ScrollButtons(mainContainer.element(), tabsContainer.element(),
+                component(tabs, Classes.scroll, Classes.button));
 
+        insertFirst(mainContainer.element(), scrollButtons.scrollBackContainer);
+        mainContainer.element().appendChild(scrollButtons.scrollForwardContainer);
         element().appendChild(mainContainer.element());
         storeComponent();
         Attachable.register(this, this);
@@ -227,8 +192,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     private void attachVertical() {
-        failSafeRemoveFromParent(scrollBack);
-        failSafeRemoveFromParent(scrollForward);
+        failSafeRemoveFromParent(scrollButtons.scrollBackContainer);
+        failSafeRemoveFromParent(scrollButtons.scrollForwardContainer);
         if (expandable) {
             TabsToggle tt = failSafeTabsToggle();
             if (tt.noText()) {
@@ -242,35 +207,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     private void attachHorizontal() {
-        enableScrollButtons.subscribe((current, previous) -> {
-            if (!previous && current) {
-                renderScrollButtons.change(true);
-                setTimeout(__ -> {
-                    transitionEndHandler = bind(scrollBack, "transitionend", e -> hideScrollButtons());
-                    showScrollButtons.set(true);
-                }, 100);
-            } else if (previous && !current) {
-                showScrollButtons.change(false);
-            }
-        });
-        showScrollButtons.subscribe((current, __) -> mainContainer.classList().toggle(modifier(scrollable), current));
-        renderScrollButtons.subscribe((current, __) -> {
-            setVisible(scrollBack, current);
-            setVisible(scrollForward, current);
-        });
-        disableBackScrollButton.subscribe((current, __) -> {
-            scrollBack.element().disabled = current;
-            scrollBack.aria(Aria.disabled, current);
-        });
-        disableForwardScrollButton.subscribe((current, __) -> {
-            scrollForward.element().disabled = current;
-            scrollForward.aria(Aria.disabled, current);
-        });
+        scrollButtons.attach();
     }
 
     private void attachOverflow() {
-        failSafeRemoveFromParent(scrollBack);
-        failSafeRemoveFromParent(scrollForward);
+        failSafeRemoveFromParent(scrollButtons.scrollBackContainer);
+        failSafeRemoveFromParent(scrollButtons.scrollForwardContainer);
     }
 
     private void attachTabs() {
@@ -294,7 +236,9 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     @Override
     public void detach(MutationRecord mutationRecord) {
-        clearTimeout(scrollTimeout);
+        if (scrollButtons != null) {
+            scrollButtons.detach();
+        }
         if (resizeHandler != null) {
             resizeHandler.removeHandler();
         }
@@ -353,7 +297,9 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     public Tabs closeable(CloseHandler<Tab> closeHandler) {
         this.closeable = true;
-        this.closeHandler.add(closeHandler);
+        if (closeHandler != null) {
+            this.closeHandler.add(closeHandler);
+        }
         return this;
     }
 
@@ -376,29 +322,6 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     @Override
     public Tabs fill(boolean fill) {
         return toggleModifier(this, mainContainer.element(), Classes.fill, fill);
-    }
-
-    /** Same as {@linkplain #lightTabs(boolean) lightTabs(true)} */
-    public Tabs lightTabs() {
-        return lightTabs(true);
-    }
-
-    /** Enables lightTabs styling to the tab component */
-    public Tabs lightTabs(boolean lightTabs) {
-        this.lightTabs = lightTabs;
-        if (lightTabs) {
-            mainContainer.classList().add(modifier("color-scheme--light-300"));
-        } else {
-            mainContainer.classList().remove(modifier("color-scheme--light-300"));
-        }
-        if (isAttached(this)) {
-            for (Tab tab : items.values()) {
-                if (tab.content != null) {
-                    tab.content.classList().toggle(modifier("light-300"), lightTabs);
-                }
-            }
-        }
-        return this;
     }
 
     /**
@@ -464,6 +387,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     /** Enables secondary styling to the tab component */
     @Override
     public Tabs secondary(boolean secondary) {
+        this.secondary = secondary;
+        for (Tab tab : items()) {
+            if (tab.content != null) {
+                tab.content.classList().toggle(modifier(Classes.secondary), secondary);
+            }
+        }
         return toggleModifier(this, mainContainer.element(), Classes.secondary, secondary);
     }
 
@@ -476,6 +405,16 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     public Tabs showTabCount(boolean showTabCount) {
         failSafeOverflowTab().showCount(showTabCount);
         return this;
+    }
+
+    /** Same as {@linkplain #subtab(boolean) subtab(true)} */
+    public Tabs subtab() {
+        return subtab(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(subtab)} */
+    public Tabs subtab(boolean subtab) {
+        return toggleModifier(this, mainContainer.element(), Classes.subtab, subtab);
     }
 
     /**
@@ -524,7 +463,9 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
      * Aria-label for the back scroll button
      */
     public Tabs ariaScrollBackLabel(String label) {
-        scrollBack.aria(Aria.label, label);
+        if (scrollButtons != null) {
+            scrollButtons.scrollBack.aria(Aria.label, label);
+        }
         return this;
     }
 
@@ -532,7 +473,9 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
      * Aria-label for the forward scroll button
      */
     public Tabs ariaScrollForwardLabel(String label) {
-        scrollForward.aria(Aria.label, label);
+        if (scrollButtons != null) {
+            scrollButtons.scrollForward.aria(Aria.label, label);
+        }
         return this;
     }
 
@@ -738,8 +681,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     void addTabContent(Tab tab) {
         tab.button.aria(Aria.controls, tab.contentId);
         tab.content.aria(labelledBy, tab.buttonId);
-        if (lightTabs) {
-            tab.content.classList().add(modifier("light-300"));
+        if (secondary) {
+            tab.content.classList().add(modifier(Classes.secondary));
         }
         element().appendChild(tab.content.element());
         tab.content.element().hidden = true;
@@ -754,71 +697,14 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     private void updateState() {
-        // debounce scroll event!
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout((__) -> {
-            if (!vertical && !overflowHorizontal) {
-                boolean overflowOnLeft = !isElementInView(tabsContainer,
-                        ((HTMLElement) tabsContainer.element().firstElementChild), false);
-                boolean overflowOnRight = !isElementInView(tabsContainer,
-                        ((HTMLElement) tabsContainer.element().lastElementChild), false);
-                enableScrollButtons.change(overflowOnLeft || overflowOnRight);
-                disableBackScrollButton.change(!overflowOnLeft);
-                disableForwardScrollButton.change(!overflowOnRight);
-            }
-            if (overflowHorizontal) {
-                updateOverflow();
-            }
-            int size = items.size();
-            for (Tab tab : items.values()) {
-                tab.disableCloseButton(size == 1);
-            }
-        }, 100);
-    }
-
-    private void hideScrollButtons() {
-        if (!enableScrollButtons.get() && !showScrollButtons.get() && renderScrollButtons.get()) {
-            renderScrollButtons.change(false);
+        if (!vertical && !overflowHorizontal) {
+            scrollButtons.updateScrollState();
+        } else if (overflowHorizontal) {
+            updateOverflow();
         }
-    }
-
-    private void scrollBack() {
-        HTMLElement firstElementInView = null;
-        HTMLElement lastElementOutOfView = null;
-        NodeList<Node> children = tabsContainer.element().childNodes;
-        for (int i = 0; i < children.length && firstElementInView == null; i++) {
-            HTMLElement child = (HTMLElement) children.item(i);
-            if (isElementInView(tabsContainer, child, false)) {
-                firstElementInView = child;
-                lastElementOutOfView = (HTMLElement) children.item(i - 1);
-            }
-        }
-        if (lastElementOutOfView != null) {
-            if (languageDirection(element()) == LanguageDirection.ltr) {
-                tabsContainer.element().scrollLeft -= lastElementOutOfView.scrollWidth;
-            } else {
-                tabsContainer.element().scrollLeft += lastElementOutOfView.scrollWidth;
-            }
-        }
-    }
-
-    private void scrollForward() {
-        HTMLElement lastElementInView = null;
-        HTMLElement firstElementOutOfView = null;
-        NodeList<Node> children = tabsContainer.element().childNodes;
-        for (int i = children.length - 1; i >= 0 && lastElementInView == null; i--) {
-            HTMLElement child = (HTMLElement) children.item(i);
-            if (isElementInView(tabsContainer, child, false)) {
-                lastElementInView = child;
-                firstElementOutOfView = (HTMLElement) children.item(i + 1);
-            }
-        }
-        if (firstElementOutOfView != null) {
-            if (languageDirection(element()) == LanguageDirection.ltr) {
-                tabsContainer.element().scrollLeft += firstElementOutOfView.scrollWidth;
-            } else {
-                tabsContainer.element().scrollLeft -= firstElementOutOfView.scrollWidth;
-            }
+        int size = items.size();
+        for (Tab tab : items.values()) {
+            tab.disableCloseButton(size == 1);
         }
     }
 
