@@ -15,12 +15,17 @@
  */
 package org.patternfly.showcase.component;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.Severity;
 import org.patternfly.component.emptystate.EmptyState;
 import org.patternfly.component.emptystate.EmptyStateActions;
 import org.patternfly.component.emptystate.EmptyStateBody;
 import org.patternfly.component.emptystate.EmptyStateFooter;
-import org.patternfly.component.emptystate.EmptyStateHeader;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -30,8 +35,6 @@ import static org.patternfly.component.emptystate.EmptyState.emptyState;
 import static org.patternfly.component.emptystate.EmptyStateActions.emptyStateActions;
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
-import static org.patternfly.component.emptystate.EmptyStateHeader.emptyStateHeader;
-import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.icon.IconSets.fas.cubes;
 import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -42,11 +45,11 @@ import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Size.xl;
 import static org.patternfly.style.Size.xs;
-import static org.patternfly.style.Status.success;
 
 @Route(value = "/components/empty-state", title = "Empty state")
 public class EmptyStateComponent extends SnippetPage {
 
+    @SuppressWarnings("unchecked")
     public EmptyStateComponent() {
         super(components.get("empty-state"));
 
@@ -56,9 +59,8 @@ public class EmptyStateComponent extends SnippetPage {
                 // @code-start:empty-state-basic
                 div()
                         .add(emptyState()
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(cubes())
-                                        .text("Empty state"))
+                                .text("Empty State")
+                                .icon(cubes())
                                 .addBody(emptyStateBody().text(
                                         "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
@@ -81,8 +83,8 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .size(xs)
-                                .addHeader(emptyStateHeader(4)
-                                        .text("Empty state"))
+                                .text("Empty State")
+                                .icon(cubes())
                                 .addBody(emptyStateBody().text(
                                         "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
@@ -103,9 +105,8 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .size(sm)
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(cubes())
-                                        .text("Empty state"))
+                                .text("Empty State")
+                                .icon(cubes())
                                 .addBody(emptyStateBody().text(
                                         "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
@@ -128,9 +129,8 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .size(lg)
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(cubes())
-                                        .text("Empty state"))
+                                .text("Empty State")
+                                .icon(cubes())
                                 .addBody(emptyStateBody().text(
                                         "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
@@ -153,9 +153,8 @@ public class EmptyStateComponent extends SnippetPage {
                 div()
                         .add(emptyState()
                                 .size(xl)
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(cubes())
-                                        .text("Empty state"))
+                                .text("Empty State")
+                                .icon(cubes())
                                 .addBody(emptyStateBody().text(
                                         "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
                                 .addFooter(emptyStateFooter()
@@ -172,14 +171,59 @@ public class EmptyStateComponent extends SnippetPage {
                 // @code-end:empty-state-xl
         ));
 
+        addSnippet(new Snippet("empty-state-status", "With status",
+                code("empty-state-status"), () -> {
+            // @code-start:empty-state-status
+            LinkedHashMap<Severity, String> status = new LinkedHashMap<>();
+            status.put(Severity.success, "You're all set!");
+            status.put(Severity.danger, "You're not set");
+            status.put(Severity.warning, "You're probably not set");
+            status.put(Severity.info, "You might be set");
+            status.put(Severity.custom, "You're custom");
+            Iterator<Map.Entry<Severity, String>>[] iterator = new Iterator[]{status.entrySet().iterator()};
+            Supplier<Map.Entry<Severity, String>> nextStatus = () -> {
+                if (!iterator[0].hasNext()) {
+                    iterator[0] = status.entrySet().iterator();
+                }
+                return iterator[0].next();
+            };
+
+            EmptyState emptyState = emptyState();
+            Map.Entry<Severity, String> first = nextStatus.get();
+            return div()
+                    .add(emptyState
+                            .status(first.getKey())
+                            .text(first.getValue())
+                            .addBody(emptyStateBody().text(
+                                    "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs."))
+                            .addFooter(emptyStateFooter()
+                                    .addActions(emptyStateActions()
+                                            .add(button("Toggle status")
+                                                    .primary()
+                                                    .onClick((e, b) -> {
+                                                        Map.Entry<Severity, String> next = nextStatus.get();
+                                                        emptyState.text(next.getValue());
+                                                        emptyState.status(next.getKey());
+                                                    })
+                                            ))
+                                    .addActions(emptyStateActions()
+                                            .add(button("Multiple").link())
+                                            .add(button("Action Buttons").link())
+                                            .add(button("Can").link())
+                                            .add(button("Go here").link())
+                                            .add(button("In the secondary").link())
+                                            .add(button("Action area").link()))))
+                    .element();
+            // @code-end:empty-state-status
+        }));
+
         addSnippet(new Snippet("empty-state-spinner", "Spinner",
                 code("empty-state-spinner"), () ->
                 // @code-start:empty-state-spinner
                 div()
                         .add(emptyState()
-                                .addHeader(emptyStateHeader(4)
-                                        .spinner("Loading...")
-                                        .text("Loading")))
+                                .text("Loading...")
+                                .spinner("Loading..."))
                         .element()
                 // @code-end:empty-state-spinner
         ));
@@ -189,9 +233,8 @@ public class EmptyStateComponent extends SnippetPage {
                 // @code-start:empty-state-no-match
                 div()
                         .add(emptyState()
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(search())
-                                        .text("No results found"))
+                                .text("No results found")
+                                .icon(search())
                                 .addBody(emptyStateBody().text(
                                         "No results match the filter criteria. Clear all filters and try again."))
                                 .addFooter(emptyStateFooter()
@@ -201,25 +244,10 @@ public class EmptyStateComponent extends SnippetPage {
                 // @code-end:empty-state-no-match
         ));
 
-        addSnippet(new Snippet("empty-state-color", "Custom icon color",
-                code("empty-state-color"), () ->
-                // @code-start:empty-state-color
-                div()
-                        .add(emptyState()
-                                .addHeader(emptyStateHeader(4)
-                                        .icon(check(), success)
-                                        .text("Custom icon color"))
-                                .addBody(emptyStateBody().text(
-                                        "This represents an the empty state pattern in PatternFly. Hopefully it's simple enough to use but flexible enough to meet a variety of needs.")))
-                        .element()
-                // @code-end:empty-state-color
-        ));
-
         startApiDocs(EmptyState.class);
         addApiDoc(EmptyState.class, component);
         addApiDoc(EmptyStateActions.class, subcomponent);
         addApiDoc(EmptyStateBody.class, subcomponent);
         addApiDoc(EmptyStateFooter.class, subcomponent);
-        addApiDoc(EmptyStateHeader.class, subcomponent);
     }
 }

@@ -25,6 +25,7 @@ import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.cell;
 import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.td;
 
@@ -61,8 +62,13 @@ public class Td extends Cell<Td> {
 
     // ------------------------------------------------------ builder
 
-    /** Applies pf-v5-c-table__action to the td */
-    public Td actionCell() {
+    /** Marks the cell to contain a single action */
+    public Td action() {
+        return css(modifier(action));
+    }
+
+    /** Marks the cell to contain multiple actions in a kebab dropdown */
+    public Td actions() {
         return css(component(table, action));
     }
 

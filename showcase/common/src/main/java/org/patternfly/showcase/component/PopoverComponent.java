@@ -194,7 +194,7 @@ public class PopoverComponent extends SnippetPage {
             // @code-start:popover-alert
             for (Severity severity : Severity.values()) {
                 popover(By.id("popover-alert-" + severity.name()))
-                        .severity(severity)
+                        .status(severity)
                         .addHeader("Popover " + severity.name() + " header")
                         .addBody(LoremIpsum.words(20))
                         .addFooter("Popover footer")

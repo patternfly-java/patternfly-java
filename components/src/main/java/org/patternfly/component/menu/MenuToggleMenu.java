@@ -45,9 +45,9 @@ import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
+import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
@@ -105,7 +105,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                 menuToggle.disabled(true);
             }
             setVisible(menu, false);
-            insertAfter(menu.element(), menuToggle.element());
+            document.body.appendChild(menu.element()); // always append to the body to prevent display/width/z-index issues!
             popper = new PopperBuilder(componentType().componentName, menuToggle.element(), menu.element())
                     .addModifier(Modifiers.eventListeners(false),
                             Modifiers.flip(placement == auto || flip),

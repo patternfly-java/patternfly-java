@@ -73,7 +73,6 @@ import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
-import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.widthAuto;
@@ -324,11 +323,11 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         return this;
     }
 
-    public Popover severity(Severity severity) {
-        return severity(severity, severity.aria);
+    public Popover status(Severity severity) {
+        return status(severity, severity.aria);
     }
 
-    public Popover severity(Severity severity, String screenReaderText) {
+    public Popover status(Severity severity, String screenReaderText) {
         if (this.severity != null) {
             element().classList.remove(this.severity.status.modifier());
         }

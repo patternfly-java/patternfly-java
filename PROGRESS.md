@@ -18,7 +18,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `codeblock`
 - [x] `divider`
 - [x] `drawer`
-- [x] `emptystate`
+- [ ] `emptystate`
 - [x] `expandable`
 - [x] `form`
 - [x] `help`
@@ -40,7 +40,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `slider`
 - [x] `spinner`
 - [x] `switch_`
-- [ ] `table`
+- [x] `table`
 - [ ] `tabs`
 - [ ] `text`
 - [ ] `textinputgroup`

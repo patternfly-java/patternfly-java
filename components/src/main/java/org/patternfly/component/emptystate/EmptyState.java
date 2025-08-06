@@ -16,20 +16,30 @@
 package org.patternfly.component.emptystate;
 
 import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.Severity;
+import org.patternfly.component.spinner.Spinner;
 import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Size;
 import org.patternfly.style.Status;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Validation.verifyEnum;
+import static org.patternfly.core.Validation.verifyRange;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.emptyState;
+import static org.patternfly.style.Classes.header;
+import static org.patternfly.style.Classes.icon;
+import static org.patternfly.style.Classes.text;
+import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.sm;
 import static org.patternfly.style.Size.xl;
@@ -43,7 +53,9 @@ import static org.patternfly.style.TypedModifier.swap;
  * @see <a href= "https://www.patternfly.org/components/empty-state">https://www.patternfly.org/components/empty-state</a>
  */
 public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implements
+        ComponentIcon<HTMLElement, EmptyState>,
         ElementContainerDelegate<HTMLElement, EmptyState>,
+        ElementTextDelegate<HTMLElement, EmptyState>,
         FullHeight<HTMLElement, EmptyState> {
 
     // ------------------------------------------------------ factory
@@ -55,11 +67,20 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
     // ------------------------------------------------------ instance
 
     private final HTMLElement contentContainer;
+    private final HTMLElement iconContainer;
+    private HTMLElement titleTextContainer;
+    private int level;
 
     EmptyState() {
         super(ComponentType.EmptyState, div().css(component(emptyState)).element());
-        element().appendChild(contentContainer = div().css(component(emptyState, content)).element());
-        storeComponent();
+        level = 4;
+        contentContainer = div().css(component(emptyState, content))
+                .add(div().css(component(emptyState, header))
+                        .add(iconContainer = div().css(component(emptyState, icon)).element())
+                        .add(div().css(component(emptyState, title))
+                                .add(titleTextContainer = h(level).css(component(emptyState, title, text)).element())))
+                .element();
+        element().appendChild(contentContainer); // don't use add(contentContainer)
     }
 
     @Override
@@ -67,17 +88,12 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
         return contentContainer;
     }
 
+    @Override
+    public Element textDelegate() {
+        return titleTextContainer;
+    }
+
     // ------------------------------------------------------ add
-
-    public EmptyState addHeader(EmptyStateHeader header) {
-        return add(header);
-    }
-
-    // override to ensure internal wiring
-    public EmptyState add(EmptyStateHeader header) {
-        contentContainer.appendChild(header.element());
-        return this;
-    }
 
     public EmptyState addBody(EmptyStateBody body) {
         return add(body);
@@ -101,6 +117,41 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
 
     // ------------------------------------------------------ builder
 
+    public EmptyState headingLevel(int level) {
+        if (this.level != level && verifyRange(element(), "headingLevel", level, 1, 6)) {
+            HTMLElement element = h(level).css(component(emptyState, title, text))
+                    .text(titleTextContainer.textContent)
+                    .element();
+            titleTextContainer.replaceWith(element);
+            this.titleTextContainer = element;
+            this.level = level;
+        }
+        return this;
+    }
+
+    @Override
+    public EmptyState icon(Element icon) {
+        removeIcon();
+        iconContainer.appendChild(icon);
+        return this;
+    }
+
+    @Override
+    public EmptyState removeIcon() {
+        removeChildrenFrom(iconContainer);
+        return this;
+    }
+
+    public EmptyState spinner() {
+        return spinner("Loading");
+    }
+
+    public EmptyState spinner(String label) {
+        removeIcon();
+        iconContainer.appendChild(Spinner.spinner(Size.xl, label).element());
+        return this;
+    }
+
     /**
      * Modifies empty state max-width and sizes of icon, title and body.
      */
@@ -111,20 +162,13 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
         return this;
     }
 
-    public EmptyState status(Status status) {
-        return swap(this, element(), status, Status.values());
+    public EmptyState status(Severity severity) {
+        icon(severity.icon.get());
+        return swap(this, element(), severity.status, Status.values());
     }
 
     @Override
     public EmptyState that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public void clearStatus() {
-        for (Status status : Status.values()) {
-            element().classList.remove(status.modifier());
-        }
     }
 }

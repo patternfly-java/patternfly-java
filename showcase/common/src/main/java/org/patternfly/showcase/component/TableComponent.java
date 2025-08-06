@@ -32,12 +32,10 @@ import org.patternfly.component.table.Thead;
 import org.patternfly.component.table.Tr;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.component.togglegroup.ToggleGroup;
-import org.patternfly.icon.IconSets;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Repository;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 
@@ -50,7 +48,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.emptystate.EmptyState.emptyState;
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
-import static org.patternfly.component.emptystate.EmptyStateHeader.emptyStateHeader;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -74,6 +71,7 @@ import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.icon.IconSets.fas.folder;
 import static org.patternfly.icon.IconSets.fas.folderOpen;
+import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
@@ -228,10 +226,10 @@ public class TableComponent extends SnippetPage {
                                         boolean primaryAction = repository.pullRequests % 5 != 0;
                                         boolean secondaryAction = repository.pullRequests % 2 != 0;
                                         if (primaryAction) {
-                                            tr.addItem(td("Primary action").wrap(fitContent)
+                                            tr.addItem(td("Primary action").action().wrap(fitContent)
                                                     .add(tableText()
                                                             .add(button().secondary().text("Start"))));
-                                            tr.addItem(td().actionCell().add(dropdown.get().disabled(secondaryAction)));
+                                            tr.addItem(td().actions().add(dropdown.get().disabled(secondaryAction)));
                                         } else {
                                             tr.addItem(td());
                                             tr.addItem(td());
@@ -291,10 +289,11 @@ public class TableComponent extends SnippetPage {
                             .addRow(tr("table-empty-head")
                                     .addItems(columns, t -> th(t.key).text(t.value))))
                     .addBody(tbody()
-                            .empty(columns.size(), emptyState().size(Size.sm)
-                                    .addHeader(emptyStateHeader(2)
-                                            .icon(IconSets.fas.search())
-                                            .text("No results found"))
+                            .empty(columns.size(), emptyState()
+                                    .size(Size.sm)
+                                    .headingLevel(2)
+                                    .icon(search())
+                                    .text("No results found")
                                     .addBody(emptyStateBody().text(
                                             "Clear all filters and try again."))
                                     .addFooter(emptyStateFooter()
