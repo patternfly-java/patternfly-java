@@ -44,13 +44,12 @@ public class TitleComponent extends SnippetPage {
                 code("title-default-sizes"), () ->
                 // @code-start:title-default-sizes
                 div()
-                        .add(content()
-                                .add(title(1, "h1 defaults to 2xl"))
-                                .add(title(2, "h2 defaults to xl"))
-                                .add(title(3, "h3 defaults to lg"))
-                                .add(title(4, "h4 defaults to md"))
-                                .add(title(5, "h5 defaults to md"))
-                                .add(title(6, "h6 defaults to md")))
+                        .add(title(1, "H1-styled title"))
+                        .add(title(2, "H2-styled title"))
+                        .add(title(3, "H3-styled title"))
+                        .add(title(4, "H4-styled title"))
+                        .add(title(5, "H5-styled title"))
+                        .add(title(6, "H6-styled title"))
                         .element()
                 // @code-end:title-default-sizes
         ));
@@ -59,13 +58,12 @@ public class TitleComponent extends SnippetPage {
                 code("title-custom-sizes"), () ->
                 // @code-start:title-custom-sizes
                 div()
-                        .add(content()
-                                .add(title(1, _4xl, "h1 as 4xl"))
-                                .add(title(2, _3xl, "h2 as 3xl"))
-                                .add(title(3, _2xl, "h3 as 2xl"))
-                                .add(title(4, xl, "h4 as xl"))
-                                .add(title(5, lg, "h5 has lg"))
-                                .add(title(6, md, "h6 as md")))
+                        .add(title(1, _4xl, "4xl title"))
+                        .add(title(2, _3xl, "3xl title"))
+                        .add(title(3, _2xl, "2xl title"))
+                        .add(title(4, xl, "xl title"))
+                        .add(title(5, lg, "lg title"))
+                        .add(title(6, md, "md title"))
                         .element()
                 // @code-end:title-custom-sizes
         ));

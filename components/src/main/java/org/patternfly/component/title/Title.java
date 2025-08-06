@@ -24,6 +24,7 @@ import elemental2.dom.HTMLHeadingElement;
 
 import static org.jboss.elemento.Elements.h;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.title;
 
 /**
@@ -57,7 +58,9 @@ public class Title extends BaseComponent<HTMLHeadingElement, Title> implements
 
     Title(int level, Size size) {
         super(ComponentType.Title, h(level).css(component(title)).element());
-        if (size != null) {
+        if (size == null) {
+            css(modifier("h" + level));
+        } else {
             css(size.modifier());
         }
     }

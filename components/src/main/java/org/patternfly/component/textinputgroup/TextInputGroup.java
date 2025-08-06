@@ -53,6 +53,13 @@ import static org.patternfly.style.Classes.textInputGroup;
  * @see <a href=
  * "https://www.patternfly.org/components/text-input-group">https://www.patternfly.org/components/text-input-group</a>
  */
+// TODO Refactor the text input group:
+//  - remove the custom factory methods
+//  - add builder methods
+//      - search icon
+//      - clear button
+//      - typeahead static / dynamic, only values from the list / new values
+//      - single value / multiple value
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Attachable,
         Disabled<HTMLDivElement, TextInputGroup>,

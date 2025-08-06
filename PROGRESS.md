@@ -44,7 +44,7 @@ By package name `org.patternfly.compoennt.<name>`
 - [x] `table`
 - [x] `tabs`
 - [x] `textinputgroup`
-- [ ] `title`
+- [x] `title`
 - [ ] `togglegroup`
 - [ ] `toolbar`
 - [ ] `tooltip`
