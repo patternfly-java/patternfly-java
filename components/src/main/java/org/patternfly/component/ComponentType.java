@@ -119,6 +119,8 @@ public enum ComponentType {
 
     Progress("prg", "PF6/Progress"),
 
+    ProgressStepper("ps", "PF6/ProgressStepper"),
+
     Radio("rd", "PF6/Radio"),
 
     Sidebar("sb", "PF6/Sidebar"),
