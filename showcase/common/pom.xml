@@ -59,6 +59,10 @@
         </dependency>
         <dependency>
             <groupId>org.kie.j2cl.tools.processors</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
             <artifactId>processors</artifactId>
             <scope>provided</scope>
         </dependency>

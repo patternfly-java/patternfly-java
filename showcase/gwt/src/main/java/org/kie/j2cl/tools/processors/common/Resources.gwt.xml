@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
      Copyright 2023 Red Hat
@@ -17,12 +16,5 @@
 
 -->
 <module>
-    <inherits name="org.kie.j2cl.tools.processors.common.Injectors" />
-    <inherits name="org.kie.j2cl.tools.processors.common.Resources" />
-    <source path="showcase"/>
-    <entry-point class="org.patternfly.showcase.Main" />
-    <define-configuration-property name="settings.base" is-multi-valued="false"/>
-    <define-configuration-property name="settings.mode" is-multi-valued="false"/>
-    <define-configuration-property name="settings.tech" is-multi-valued="false"/>
-    <collapse-all-properties/>
+    <source path="resources" />
 </module>
