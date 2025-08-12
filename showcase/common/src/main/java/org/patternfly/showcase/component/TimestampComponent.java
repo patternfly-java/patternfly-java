@@ -19,13 +19,13 @@ import java.util.Date;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.timestamp.CustomFormat;
-import org.patternfly.component.timestamp.TimestampFormat;
 import org.patternfly.component.timestamp.DateTimeFormatOptions.Day;
 import org.patternfly.component.timestamp.DateTimeFormatOptions.Hour;
 import org.patternfly.component.timestamp.DateTimeFormatOptions.Month;
 import org.patternfly.component.timestamp.DateTimeFormatOptions.Weekday;
 import org.patternfly.component.timestamp.DateTimeFormatOptions.Year;
 import org.patternfly.component.timestamp.Timestamp;
+import org.patternfly.component.timestamp.TimestampFormat;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 

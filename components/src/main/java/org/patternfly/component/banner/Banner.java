@@ -22,6 +22,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.style.Color;
 import org.patternfly.style.Modifiers.Static;
 import org.patternfly.style.Status;
+
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 

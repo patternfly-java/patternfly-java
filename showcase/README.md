@@ -10,7 +10,7 @@ To build the showcase, you can use the `dev.sh` and `prod.sh` scripts:
 
 ## Development
 
-```java
+```shell
 USAGE:
     dev.sh [FLAGS] <mode>
 
@@ -49,7 +49,7 @@ This will open https://localhost:8234/.
 
 ## Production
 
-```java
+```shell
 USAGE:
     prod.sh [FLAGS] <mode>
 

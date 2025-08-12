@@ -21,7 +21,6 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
-import org.patternfly.component.content.ContentType;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;

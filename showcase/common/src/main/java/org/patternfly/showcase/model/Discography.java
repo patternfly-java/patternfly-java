@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.patternfly.showcase.ResourcesImpl;
+
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 

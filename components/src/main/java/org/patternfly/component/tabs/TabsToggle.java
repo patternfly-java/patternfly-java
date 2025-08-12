@@ -15,16 +15,14 @@
  */
 package org.patternfly.component.tabs;
 
-import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Disabled;
-import elemental2.dom.Element;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;

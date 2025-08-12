@@ -15,7 +15,6 @@
  */
 package org.patternfly.showcase;
 
-import org.gwtproject.safehtml.shared.SafeHtmlUtils;
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;

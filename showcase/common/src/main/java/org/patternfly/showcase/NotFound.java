@@ -19,6 +19,7 @@ import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
+
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;

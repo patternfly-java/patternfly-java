@@ -24,6 +24,7 @@ import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Static;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 

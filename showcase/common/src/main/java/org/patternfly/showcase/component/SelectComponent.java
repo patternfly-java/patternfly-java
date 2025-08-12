@@ -23,7 +23,6 @@ import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
-import org.patternfly.component.menu.SingleTypeaheadMenu;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers;
