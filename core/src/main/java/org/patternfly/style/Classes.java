@@ -146,6 +146,7 @@ public interface Classes {
     String indented = "indented";
     String indeterminate = "indeterminate";
     String indicator = "indicator";
+    String info = "info";
     String inline = "inline";
     String inlineGrid = "inline-grid";
     String inProgress = "in-progress";
@@ -194,6 +195,7 @@ public interface Classes {
     String pageInsets = "page-insets";
     String panel = "panel";
     String path = "path";
+    String pending = "pending";
     String picture = "picture";
     String placeholder = "placeholder";
     String plain = "plain";
@@ -202,6 +204,7 @@ public interface Classes {
     String pre = "pre";
     String primary = "primary";
     String progress = "progress";
+    String progressStepper = "progress-stepper";
     String radio = "radio";
     String rail = "rail";
     String raised = "raised";
