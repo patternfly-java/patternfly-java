@@ -21,17 +21,24 @@ import java.util.Map;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
-
+import org.patternfly.style.Breakpoints;
+import org.patternfly.style.Visibility;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.section;
 import static org.patternfly.style.Classes.toolbar;
+import static org.patternfly.style.Orientation.vertical;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * Container for a toolbar content.
@@ -75,6 +82,10 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
         return this;
     }
 
+    public ToolbarContent addDivider() {
+        return add(divider(hr).orientation(vertical));
+    }
+
     public ToolbarContent addGroup(ToolbarGroup group) {
         return add(group);
     }
@@ -85,6 +96,28 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     // ------------------------------------------------------ builder
+
+    /** Vertical alignment of children */
+    public ToolbarContent alignItems(AlignItems alignItems) {
+        return swap(this, contentSection, alignItems, AlignItems.values());
+    }
+
+    /**
+     * Same as {@code rowWrap(breakpoints(default_, inset))}
+     */
+    public ToolbarContent rowWrap(RowWrap rowWrap) {
+        return rowWrap(breakpoints(default_, rowWrap));
+    }
+
+    /** Value to set for content wrapping at various breakpoints */
+    public ToolbarContent rowWrap(Breakpoints<RowWrap> rowWrap) {
+        return css(rowWrap.modifiers());
+    }
+
+    /** Visibility at various breakpoints. */
+    public ToolbarContent visibility(Breakpoints<Visibility> visibility) {
+        return css(visibility.modifiers());
+    }
 
     @Override
     public ToolbarContent that() {

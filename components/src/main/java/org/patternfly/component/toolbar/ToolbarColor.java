@@ -18,20 +18,18 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
-public enum ToolbarGroupType implements TypedModifier {
+public enum ToolbarColor implements TypedModifier {
 
-    actionGroup("action-group"),
+    noBackground("no-background"),
 
-    filterGroup("filter-group"),
+    primary("primary"),
 
-    iconButtonGroup("icon-button-group"),
-
-    buttonGroup("button-group");
+    secondary("secondary");
 
     private final String value;
     private final String modifier;
 
-    ToolbarGroupType(String value) {
+    ToolbarColor(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

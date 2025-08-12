@@ -17,7 +17,6 @@ package org.patternfly.style;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.Element;
 
 import static org.patternfly.style.Classes.modifier;
@@ -326,6 +325,32 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(secondary)} */
         default B secondary(boolean secondary) {
             return toggleModifier(that(), element(), Classes.secondary, secondary);
+        }
+    }
+
+    interface Static<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #static_(boolean) static_(true)} */
+        default B static_() {
+            return static_(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(static_)} */
+        default B static_(boolean static_) {
+            return toggleModifier(that(), element(), Classes.static_, static_);
+        }
+    }
+
+    interface Sticky<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #sticky(boolean) sticky(true)} */
+        default B sticky() {
+            return sticky(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(sticky)} */
+        default B sticky(boolean sticky) {
+            return toggleModifier(that(), element(), Classes.sticky, sticky);
         }
     }
 

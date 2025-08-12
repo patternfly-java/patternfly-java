@@ -25,7 +25,7 @@ public interface TypedModifier {
      * Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as {@code values} and then
      * setting the new modifier given as {@code value}.
      */
-    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, E element,
+    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, Element element,
             T value, T[] values) {
         if (values != null) {
             for (T v : values) {
@@ -46,7 +46,7 @@ public interface TypedModifier {
      * Swaps a typed modifier on an element builder. Swapping is done by removing the previous modifier, applying the current
      * modifier, and optionally performing an assignment.
      */
-    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, E element,
+    static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, Element element,
             T current, T previous, Runnable assignment) {
         if (previous != null && !previous.modifier().isEmpty()) {
             element.classList.remove(previous.modifier());

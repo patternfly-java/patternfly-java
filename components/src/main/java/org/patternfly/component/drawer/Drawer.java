@@ -22,9 +22,8 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
-
+import org.patternfly.style.Modifiers.Static;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
@@ -34,7 +33,6 @@ import static org.patternfly.style.Classes.drawer;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.TypedModifier.swap;
 
 /**
@@ -46,7 +44,8 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         Expandable<HTMLElement, Drawer>,
-        Inline<HTMLElement, Drawer> {
+        Inline<HTMLElement, Drawer>,
+        Static<HTMLElement, Drawer> {
 
     // ------------------------------------------------------ factory
 
@@ -105,16 +104,6 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
     }
 
     // ------------------------------------------------------ builder
-
-    /** Same as {@linkplain #static_(boolean) static_(true)} */
-    public Drawer static_() {
-        return static_(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(static_)} */
-    public Drawer static_(boolean static_) {
-        return toggleModifier(that(), element(), Classes.static_, static_);
-    }
 
     public Drawer position(Position position) {
         return swap(this, element(), position, this.position, () -> this.position = position);

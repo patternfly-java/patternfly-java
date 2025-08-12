@@ -61,7 +61,7 @@ public class ContentComponent extends SnippetPage {
                 div()
                         .add(content()
                                 .add(content(p).text(
-                                        "Content with a component of type \"p\" still renders the same when wrapped with a Content."))
+                                        "Content with a component of type 'p' still renders the same when wrapped with a Content."))
                                 .add(p().text("If located within a wrapping Content, html elements are styled as well!")))
                         .element()
                 // @code-end:content-wrapper

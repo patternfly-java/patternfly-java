@@ -18,20 +18,18 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
-public enum ToolbarGroupType implements TypedModifier {
+public enum AlignItems implements TypedModifier {
 
-    actionGroup("action-group"),
+    center("align-items-center"),
 
-    filterGroup("filter-group"),
+    start("align-items-start"),
 
-    iconButtonGroup("icon-button-group"),
-
-    buttonGroup("button-group");
+    baseline("align-items-baseline");
 
     private final String value;
     private final String modifier;
 
-    ToolbarGroupType(String value) {
+    AlignItems(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

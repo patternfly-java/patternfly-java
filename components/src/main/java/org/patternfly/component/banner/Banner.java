@@ -19,10 +19,9 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
+import org.patternfly.style.Modifiers.Static;
 import org.patternfly.style.Status;
-
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -32,7 +31,6 @@ import static org.patternfly.style.Classes.banner;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Color.grey;
-import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.TypedModifier.swap;
 
 /**
@@ -42,7 +40,8 @@ import static org.patternfly.style.TypedModifier.swap;
  * @see <a href= "https://www.patternfly.org/components/banner">https://www.patternfly.org/components/banner</a>
  */
 public class Banner extends BaseComponent<HTMLDivElement, Banner> implements
-        ElementTextMethods<HTMLDivElement, Banner> {
+        ElementTextMethods<HTMLDivElement, Banner>,
+        Static<HTMLDivElement, Banner> {
 
     // ------------------------------------------------------ factory
 
@@ -77,16 +76,6 @@ public class Banner extends BaseComponent<HTMLDivElement, Banner> implements
             element().classList.remove(color.modifier);
         }
         return swap(this, element(), status, Status.values());
-    }
-
-    /** Same as {@linkplain #sticky(boolean) sticky(true)} */
-    public Banner sticky() {
-        return sticky(true);
-    }
-
-    /** Adds/removes {@linkplain Classes#modifier(String) modifier(sticky)} */
-    public Banner sticky(boolean sticky) {
-        return toggleModifier(that(), element(), Classes.sticky, sticky);
     }
 
     public Banner screenReader(String text) {

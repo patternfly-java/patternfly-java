@@ -18,20 +18,16 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
-public enum ToolbarGroupType implements TypedModifier {
+public enum RowWrap implements TypedModifier {
 
-    actionGroup("action-group"),
+    wrap("wrap"),
 
-    filterGroup("filter-group"),
-
-    iconButtonGroup("icon-button-group"),
-
-    buttonGroup("button-group");
+    noWrap("nowrap");
 
     private final String value;
     private final String modifier;
 
-    ToolbarGroupType(String value) {
+    RowWrap(String value) {
         this.value = value;
         this.modifier = Classes.modifier(value);
     }

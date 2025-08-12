@@ -38,7 +38,6 @@ import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.stack.Stack.stack;
 import static org.patternfly.style.Classes.hidden;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.sticky;
 import static org.patternfly.style.Size._4xl;
 
 public abstract class OverviewPage<T> implements Page {
@@ -61,7 +60,7 @@ public abstract class OverviewPage<T> implements Page {
                                 .run(this::landingPages)
                                 .add(div().css("ws-section-gallery")
                                         // TODO Implement sticky toolbar once implemented
-                                        .add(toolbar().css(modifier(sticky))
+                                        .add(toolbar().sticky()
                                                 .addContent(toolbarContent()
                                                         .addItem(toolbarItem()
                                                                 .add("Toolbar not yet implemented")))

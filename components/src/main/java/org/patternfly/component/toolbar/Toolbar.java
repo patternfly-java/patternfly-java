@@ -15,15 +15,27 @@
  */
 package org.patternfly.component.toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-
+import org.patternfly.handler.ComponentHandler;
+import org.patternfly.style.Breakpoints;
+import org.patternfly.style.Inset;
+import org.patternfly.style.Modifiers.FullHeight;
+import org.patternfly.style.Modifiers.NoPadding;
+import org.patternfly.style.Modifiers.Static;
+import org.patternfly.style.Modifiers.Sticky;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.patternfly.style.Breakpoint.default_;
+import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.toolbar;
+import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * A toolbar allows a user to manage and manipulate a data set. Data can be presented in any valid presentation, a table, a
@@ -34,7 +46,11 @@ import static org.patternfly.style.Classes.toolbar;
  *
  * @see <a href="https://www.patternfly.org/components/toolbar">https://www.patternfly.org/components/toolbar</a>
  */
-public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
+public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> implements
+        FullHeight<HTMLDivElement, Toolbar>,
+        NoPadding<HTMLDivElement, Toolbar>,
+        Static<HTMLDivElement, Toolbar>,
+        Sticky<HTMLDivElement, Toolbar> {
 
     // ------------------------------------------------------ factory
 
@@ -48,9 +64,11 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
     // ------------------------------------------------------ instance
 
     private ToolbarFilterContent filterContent;
+    private List<ComponentHandler<Toolbar>> clearAllFilters;
 
     Toolbar() {
         super(ComponentType.Toolbar, div().css(component(toolbar)).element());
+        this.clearAllFilters = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -70,8 +88,35 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> {
 
     // ------------------------------------------------------ builder
 
+    /** Background color variant of the toolbar */
+    public Toolbar color(ToolbarColor color) {
+        return swap(this, element(), color, ToolbarColor.values());
+    }
+
+    /**
+     * Same as {@code inset(breakpoints(default_, inset))}
+     */
+    public Toolbar inset(Inset inset) {
+        return inset(breakpoints(default_, inset));
+    }
+
+    /** Insets at various breakpoints. */
+    public Toolbar inset(Breakpoints<Inset> inset) {
+        return css(inset.modifiers());
+    }
+
     @Override
     public Toolbar that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    /**
+     * Optional callback for clearing all filters in the toolbar.
+     */
+    public Toolbar onClearAllFilters(ComponentHandler<Toolbar> clearAllFilters) {
+        this.clearAllFilters.add(clearAllFilters);
         return this;
     }
 
