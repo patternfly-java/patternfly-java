@@ -223,10 +223,10 @@ See also the PatternFly website about [icons](https://www.patternfly.org/design-
 
 PatternFly Java aims to provide almost complete support for all components, charts, extensions, and layouts. The following issues show how many components, charts, extensions, and layouts have already been implemented.
 
-- [component progress](https://github.com/patternfly-java/patternfly-java/issues/125)
-- [chart progress](https://github.com/patternfly-java/patternfly-java/issues/127)
-- [extension progress](https://github.com/patternfly-java/patternfly-java/issues/126)
-- [layout progress](https://github.com/patternfly-java/patternfly-java/issues/128)
+- [components](https://github.com/patternfly-java/patternfly-java/issues/125)
+- [charts](https://github.com/patternfly-java/patternfly-java/issues/127)
+- [extensions](https://github.com/patternfly-java/patternfly-java/issues/126)
+- [layouts](https://github.com/patternfly-java/patternfly-java/issues/128)
 
 # Get involved
 
