@@ -25,9 +25,10 @@ import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.component.badge.Badge.badge;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
@@ -52,7 +53,7 @@ public class DropdownComponent extends SnippetPage {
     public DropdownComponent() {
         super(components.get("dropdown"));
 
-        startExamples(p()
+        startExamples(content(p).editorial()
                 .add(Elements.code("Dropdown"))
                 .add(" builds off of the Menu component suite to wrap commonly used properties and functions for a dropdown menu."));
 

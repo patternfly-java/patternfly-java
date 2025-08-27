@@ -34,8 +34,9 @@ import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.tree.TreeView.treeView;
 import static org.patternfly.component.tree.TreeViewItem.treeViewItem;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
@@ -208,7 +209,7 @@ public class TreeViewComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("tv-async", "Async items",
-                p().add("The tree below contains the ")
+                content(p).editorial().add("The tree below contains the ")
                         .add(a("https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers#Discography", "_blank")
                                 .text("discography"))
                         .add(" of the Red Hot Chili Peppers. ")

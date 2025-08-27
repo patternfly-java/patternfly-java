@@ -236,6 +236,7 @@ public interface Classes {
     String shadowBottom = "shadow-bottom";
     String shadowTop = "shadow-top";
     String shortcuts = "shortcuts";
+    String show = "show";
     String sidebar = "sidebar";
     String simpleList = "simple-list";
     String singleline = "singleline";

@@ -22,9 +22,9 @@ public enum ToolbarGroupType implements TypedModifier {
 
     actionGroup("action-group"),
 
-    filterGroup("filter-group"),
+    actionGroupPlain("action-group-plain"),
 
-    iconButtonGroup("icon-button-group"),
+    filterGroup("filter-group"),
 
     buttonGroup("button-group");
 

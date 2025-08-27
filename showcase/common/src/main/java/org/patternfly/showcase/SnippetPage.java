@@ -22,19 +22,18 @@ import java.util.Map;
 
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.jboss.elemento.By;
-import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.LoadedData;
 import org.jboss.elemento.router.Page;
 import org.jboss.elemento.router.Parameter;
 import org.jboss.elemento.router.Place;
+import org.patternfly.component.content.Content;
 import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLParagraphElement;
 
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.Elements.a;
@@ -44,6 +43,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.h2;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
 import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
 import static org.patternfly.component.jumplinks.JumpLinksList.jumpLinksList;
@@ -181,7 +181,7 @@ public class SnippetPage implements Page {
         addHeader(Toc.EXAMPLES, "Examples", description);
     }
 
-    public void startExamples(HTMLContainerBuilder<HTMLParagraphElement> description) {
+    public void startExamples(Content description) {
         addHeader(Toc.EXAMPLES, "Examples", description);
     }
 
@@ -199,7 +199,7 @@ public class SnippetPage implements Page {
     // ------------------------------------------------------ api doc
 
     public void startApiDocs(Class<?> component) {
-        addHeader(Toc.API_DOCS, "API documentation", p()
+        addHeader(Toc.API_DOCS, "API documentation", content(p).editorial()
                 .add("All classes for this component are in the package ")
                 .add(a(packageDocLink(component), ApiDoc.API_DOC_TARGET).text(package_(component)))
                 .add("."));
@@ -229,18 +229,18 @@ public class SnippetPage implements Page {
     // ------------------------------------------------------ header
 
     public void addHeader(String id, String title) {
-        addHeader(id, title, (HTMLContainerBuilder<HTMLParagraphElement>) null);
+        addHeader(id, title, (Content) null);
     }
 
     public void addHeader(String id, String title, String description) {
         if (description == null) {
-            addHeader(id, title, (HTMLContainerBuilder<HTMLParagraphElement>) null);
+            addHeader(id, title, (Content) null);
         } else {
-            addHeader(id, title, p().text(description));
+            addHeader(id, title, content(p).editorial().text(description));
         }
     }
 
-    public void addHeader(String id, String title, HTMLContainerBuilder<HTMLParagraphElement> description) {
+    public void addHeader(String id, String title, Content description) {
         storeToc(id, title);
         contentContainer.appendChild(flex().spaceItems(sm).alignItems(center)
                 .add(content(h2).editorial().css("ws-heading", "ws-title", "ws-h2")

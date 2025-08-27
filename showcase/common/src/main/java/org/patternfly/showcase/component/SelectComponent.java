@@ -28,12 +28,13 @@ import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
 import static org.patternfly.component.Severity.danger;
 import static org.patternfly.component.Severity.success;
 import static org.patternfly.component.Severity.warning;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.help.HelperText.helperText;
 import static org.patternfly.component.help.HelperTextItem.helperTextItem;
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -62,7 +63,7 @@ public class SelectComponent extends SnippetPage {
     public SelectComponent() {
         super(components.get("select"));
 
-        startExamples(p()
+        startExamples(content(p).editorial()
                 .add("Select builds off of the menu component suite to adapt commonly used properties and functions to create a select menu. See the ")
                 .add(link(placeManager(), "/components/menus/menu").text("menu documentation"))
                 .add(" for a full list of properties that may be used to further customize a select menu."));

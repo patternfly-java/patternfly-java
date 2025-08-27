@@ -23,6 +23,7 @@ public interface Aria {
     String describedBy = "aria-describedby";
     String disabled = "aria-disabled";
     String expanded = "aria-expanded";
+    String hasPopup = "aria-haspopup";
     String hidden = "aria-hidden";
     String invalid = "aria-invalid";
     String label = "aria-label";

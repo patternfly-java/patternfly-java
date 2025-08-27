@@ -26,7 +26,8 @@ import org.patternfly.showcase.SnippetPage;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.p;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
 import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
 import static org.patternfly.component.jumplinks.JumpLinksList.jumpLinksList;
@@ -44,7 +45,7 @@ public class JumpLinksComponent extends SnippetPage {
     public JumpLinksComponent() {
         super(components.get("jump-links"));
 
-        startExamples(p()
+        startExamples(content(p).editorial()
                 .add("These examples are static because they have no element to scroll spy on that makes sense. Check out the code of the ")
                 .add(a("https://github.com/patternfly-java/showcase/blob/main/src/main/java/org/patternfly/showcase/SnippetPage.java",
                         ApiDoc.API_DOC_TARGET).text("showcase"))

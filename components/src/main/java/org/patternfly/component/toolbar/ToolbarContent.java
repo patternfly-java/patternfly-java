@@ -96,6 +96,15 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
         return this;
     }
 
+    public ToolbarContent addToggleGroup(ToolbarToggleGroup toggleGroup) {
+        return add(toggleGroup);
+    }
+
+    public ToolbarContent add(ToolbarToggleGroup toggleGroup) {
+        contentSection.appendChild(toggleGroup.element());
+        return this;
+    }
+
     // ------------------------------------------------------ builder
 
     /** Vertical alignment of children */

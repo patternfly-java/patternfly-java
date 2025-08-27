@@ -18,19 +18,17 @@ package org.patternfly.showcase;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
+import org.patternfly.component.content.Content;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLParagraphElement;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.isVisible;
-import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.wrapHtmlElement;
@@ -64,14 +62,14 @@ public class Snippet implements IsElement<HTMLElement> {
     private final HTMLElement preview;
 
     public Snippet(String id, String title, String code, Supplier<HTMLElement> demo) {
-        this(id, title, (HTMLContainerBuilder<HTMLParagraphElement>) null, code, demo);
+        this(id, title, (Content) null, code, demo);
     }
 
     public Snippet(String id, String title, String description, String code, Supplier<HTMLElement> demo) {
-        this(id, title, description == null ? null : p().text(description), code, demo);
+        this(id, title, description == null ? null : content(p).editorial().text(description), code, demo);
     }
 
-    public Snippet(String id, String title, HTMLContainerBuilder<HTMLParagraphElement> description, String code,
+    public Snippet(String id, String title, Content description, String code,
             Supplier<HTMLElement> demo) {
         this.id = id;
         this.title = title;

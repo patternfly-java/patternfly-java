@@ -52,18 +52,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- GWT -->
-            <dependency>
-                <groupId>org.gwtproject.event</groupId>
-                <artifactId>gwt-event</artifactId>
-                <version>${version.gwt.event}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.gwtproject.safehtml</groupId>
-                <artifactId>gwt-safehtml</artifactId>
-                <version>${version.gwt.safehtml}</version>
-            </dependency>
-
             <!-- Test -->
             <dependency>
                 <groupId>org.junit</groupId>
