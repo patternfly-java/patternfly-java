@@ -83,7 +83,6 @@
         <version.gwt.event>1.0.0-RC1</version.gwt.event> <!-- Only used to link the API doc -->
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml> <!-- Only used to link the API doc -->
         <version.junit>5.13.4</version.junit>
-        <version.kotlin>2.2.10</version.kotlin>
         <version.node>v23.11.0</version.node>
         <version.patternfly>6.3.1</version.patternfly>
 
@@ -172,6 +171,11 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>dev.jbang</groupId>
+                    <artifactId>jbang-maven-plugin</artifactId>
+                    <version>0.0.7</version>
+                </plugin>
+                <plugin>
                     <groupId>org.kie.j2cl.tools</groupId>
                     <artifactId>j2cl-maven-plugin</artifactId>
                     <version>${version.j2cl.plugin}</version>
@@ -184,11 +188,6 @@
                     <groupId>co.enear.maven.plugins</groupId>
                     <artifactId>keepachangelog-maven-plugin</artifactId>
                     <version>${version.keepachangelog}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-plugin</artifactId>
-                    <version>${version.kotlin}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.mycila</groupId>
@@ -208,7 +207,6 @@
                                 <excludes>
                                     <exclude>degraph-style.json</exclude>
                                     <exclude>dependency-graph.dot</exclude>
-                                    <exclude>release.main.kts</exclude>
                                     <exclude>LICENSE</exclude>
                                     <exclude>README.md</exclude>
                                     <exclude>**/package-lock.json</exclude>
