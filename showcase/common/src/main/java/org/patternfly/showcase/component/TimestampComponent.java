@@ -29,6 +29,7 @@ import org.patternfly.component.timestamp.TimestampFormat;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
+import static java.util.Calendar.AUGUST;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.timestamp.Timestamp.timestamp;
@@ -40,75 +41,75 @@ import static org.patternfly.style.Classes.timestamp;
 @Route(value = "/components/timestamp", title = "Timestamp")
 public class TimestampComponent extends SnippetPage {
 
+    @SuppressWarnings("deprecation")
     public TimestampComponent() {
         super(components.get(timestamp));
 
         startExamples();
         addSnippet(new Snippet("timestamp-default", "Default",
                 code("timestamp-default"), () -> {
-                    // @code-start:timestamp-default
-                    return div()
-                            .add(timestamp())
-                            .add(br())
-                            .add(timestamp().utc(true))
-                            .add(br())
-                            .add(timestamp().timeFormat(TimestampFormat._short))
-                            .element();
-                    // @code-end:timestamp-default
-                }));
+            // @code-start:timestamp-default
+            return div()
+                    .add(timestamp())
+                    .add(br())
+                    .add(timestamp().utc(true))
+                    .add(br())
+                    .add(timestamp().timeFormat(TimestampFormat._short))
+                    .element();
+            // @code-end:timestamp-default
+        }));
 
         addSnippet(new Snippet("timestamp-basic-formats", "Basic formats",
                 code("timestamp-basic-formats"), () -> {
-                    // @code-start:timestamp-basic-formats
-                    Date currentDateTime = new Date();
-                    return div()
-                            .add(timestamp().dateTime(currentDateTime)
-                                    .dateFormat(TimestampFormat.full)
-                                    .timeFormat(TimestampFormat.full))
-                            .add(br()).add(br())
-                            .add(timestamp().dateTime(currentDateTime)
-                                    .dateFormat(TimestampFormat.full))
-                            .add(br()).add(br())
-                            .add(timestamp().dateTime(currentDateTime)
-                                    .timeFormat(TimestampFormat.full))
-                            .add(br()).add(br())
-                            .add(timestamp().dateTime(currentDateTime)
-                                    .dateFormat(TimestampFormat.medium)
-                                    .timeFormat(TimestampFormat._short)
-                                    .displaySuffix("US Eastern"))
-                            .element();
-                    // @code-end:timestamp-basic-formats
-                }));
+            // @code-start:timestamp-basic-formats
+            Date currentDateTime = new Date();
+            return div()
+                    .add(timestamp().dateTime(currentDateTime)
+                            .dateFormat(TimestampFormat.full)
+                            .timeFormat(TimestampFormat.full))
+                    .add(br()).add(br())
+                    .add(timestamp().dateTime(currentDateTime)
+                            .dateFormat(TimestampFormat.full))
+                    .add(br()).add(br())
+                    .add(timestamp().dateTime(currentDateTime)
+                            .timeFormat(TimestampFormat.full))
+                    .add(br()).add(br())
+                    .add(timestamp().dateTime(currentDateTime)
+                            .dateFormat(TimestampFormat.medium)
+                            .timeFormat(TimestampFormat._short)
+                            .displaySuffix("US Eastern"))
+                    .element();
+            // @code-end:timestamp-basic-formats
+        }));
 
         addSnippet(new Snippet("timestamp-custom-format", "Custom format",
                 code("timestamp-custom-format"), () -> {
-                    // @code-start:timestamp-custom-format
-                    Date currentDate = new Date();
+            // @code-start:timestamp-custom-format
+            Date currentDate = new Date();
 
-                    return div()
-                            .add(timestamp().dateTime(currentDate)
-                                    .customFormat(CustomFormat.create()
-                                            .weekday(Weekday._short)
-                                            .day(Day.numeric)
-                                            .month(Month._short)
-                                            .year(Year._2digit)
-                                            .hour(Hour._2digit)))
-                            .element();
-                    // @code-end:timestamp-custom-format
-                }));
+            return div()
+                    .add(timestamp().dateTime(currentDate)
+                            .customFormat(CustomFormat.create()
+                                    .weekday(Weekday._short)
+                                    .day(Day.numeric)
+                                    .month(Month._short)
+                                    .year(Year._2digit)
+                                    .hour(Hour._2digit)))
+                    .element();
+            // @code-end:timestamp-custom-format
+        }));
 
         addSnippet(new Snippet("timestamp-custom-content", "Custom content",
                 code("timestamp-custom-content"), () -> {
-                    // @code-start:timestamp-custom-content
-                    Date pastDateTime = new Date(122, 7, 9, 14, 57);
-                    return div()
-                            .add(timestamp("1 hour ago").dateTime(pastDateTime))
-                            .add(br()).add(br())
-                            .add(timestamp("Last updated August 9th, 2022 at 2:57 PM EDT")
-                                    .dateTime(pastDateTime))
-                            .element();
-                    // @code-end:timestamp-custom-content
-                }));
+            Date pastDateTime = new Date(122, AUGUST, 9, 14, 57);
+            return div()
+                    .add(timestamp("1 hour ago").dateTime(pastDateTime))
+                    .add(br()).add(br())
+                    .add(timestamp("Last updated August 9th, 2022 at 2:57 PM EDT")
+                            .dateTime(pastDateTime))
+                    .element();
+            // @code-end:timestamp-custom-content
+        }));
 
         startApiDocs(Timestamp.class);
         addApiDoc(Timestamp.class, component);
