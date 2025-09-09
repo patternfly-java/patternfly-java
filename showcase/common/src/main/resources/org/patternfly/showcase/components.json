@@ -397,6 +397,7 @@
     "name": "notification-badge",
     "title": "Notification badge",
     "route": "/components/notification-badge",
+    "clazz": "org.patternfly.component.notification.badge.NotificationBadge",
     "illustration": "notification-badge.png",
     "summary": "A <b>notification badge</b> is a visual indicator that alerts users about incoming notifications."
   },

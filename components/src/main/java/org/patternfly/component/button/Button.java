@@ -64,6 +64,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.plain;
 import static org.patternfly.style.Classes.progress;
 import static org.patternfly.style.Classes.small;
+import static org.patternfly.style.Classes.stateful;
 import static org.patternfly.style.Classes.tertiary;
 import static org.patternfly.style.Classes.warning;
 import static org.patternfly.style.Size.lg;
@@ -249,6 +250,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     public Button control() {
         return css(modifier(control));
+    }
+
+    public Button stateful() {
+        return css(modifier(stateful));
     }
 
     public Button block() {
