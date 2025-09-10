@@ -40,6 +40,7 @@ public interface Classes {
     String animateCurrent = "animate-current";
     String ariaDisabled = "aria-disabled";
     String arrow = "arrow";
+    String attention = "attention";
     String autoColumnWidths = "auto-column-widths";
     String autoFit = "auto-fit";
     String avatar = "avatar";
@@ -67,6 +68,7 @@ public interface Classes {
     String chipContainer = "chip-container";
     String chipGroup = "chip-group";
     String clickable = "clickable";
+    String clicked = "clicked";
     String close = "close";
     String code = "code";
     String codeBlock = "code-block";
@@ -252,6 +254,7 @@ public interface Classes {
     String stack = "stack";
     String standalone = "standalone";
     String start = "start";
+    String stateful = "stateful";
     String static_ = "static";
     String status = "status";
     String step = "step";

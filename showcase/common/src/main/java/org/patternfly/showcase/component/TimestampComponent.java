@@ -29,7 +29,6 @@ import org.patternfly.component.timestamp.TimestampFormat;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
-import static java.util.Calendar.AUGUST;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.timestamp.Timestamp.timestamp;
@@ -101,7 +100,7 @@ public class TimestampComponent extends SnippetPage {
 
         addSnippet(new Snippet("timestamp-custom-content", "Custom content",
                 code("timestamp-custom-content"), () -> {
-            Date pastDateTime = new Date(122, AUGUST, 9, 14, 57);
+            Date pastDateTime = new Date(122, 7, 9, 14, 57);
             return div()
                     .add(timestamp("1 hour ago").dateTime(pastDateTime))
                     .add(br()).add(br())

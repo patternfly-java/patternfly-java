@@ -15,7 +15,8 @@
  */
 /// usr/bin/env jbang "$0" "$@" ; exit $?
 //JAVA 24+
-//PREVIEW
+//JAVAC_OPTIONS --enable-preview -source 24
+//JAVA_OPTIONS --enable-preview
 
 static class SourceSpec {
 
@@ -138,7 +139,7 @@ void addSnippet(StringBuilder out, String name, List<String> code) {
     out.append("\n        snippets.put(\"")
             .append(escapeJava(name))
             .append("\", \"")
-            .append(escapeJava(String.join("\\n", code)))
+            .append(escapeJava(String.join("\n", code)))
             .append("\");");
 }
 

@@ -15,7 +15,8 @@
  */
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //JAVA 24+
-//PREVIEW
+//JAVAC_OPTIONS --enable-preview -source 24
+//JAVA_OPTIONS --enable-preview
 
 void main(String... args) throws IOException {
     if (args.length != 3) {
