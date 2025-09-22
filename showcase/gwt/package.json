@@ -8,20 +8,20 @@
   "scripts": {
     "dev": "parcel build --dist-dir target/gwt/devmode/war/showcase --no-optimize --public-url /showcase",
     "prod": "parcel build --dist-dir target/showcase",
-    "http-server": "http-server target/showcase --ssl --cert cert.pem -o"
-  },
-  "devDependencies": {
-    "@parcel/core": "^2.14.4",
-    "@parcel/reporter-cli": "^2.14.4",
-    "@parcel/resolver-glob": "^2.14.4",
-    "http-server": "^14.1.1",
-    "parcel": "^2.14.4",
-    "parcel-resolver-ignore": "^2.2.0"
+    "http-server": "http-server target/showcase --ssl --cert cert.pem"
   },
   "dependencies": {
     "@github/relative-time-element": "^4.4.6",
     "@patternfly/patternfly": "^6.2.3",
     "highlight.js": "^11.11.1",
     "showcase-common": "file:../common/local_modules/showcase-common"
+  },
+  "devDependencies": {
+    "@parcel/core": "^2.16.0",
+    "@parcel/reporter-cli": "^2.16.0",
+    "@parcel/resolver-glob": "^2.16.0",
+    "http-server": "^14.1.1",
+    "parcel": "^2.16.0",
+    "parcel-resolver-ignore": "^2.2.0"
   }
 }

@@ -184,6 +184,7 @@ public interface Classes {
     String noOffset = "no-offset";
     String noPadding = "no-padding";
     String noPaddingTop = "no-padding-top";
+    String noSidebar = "no-sidebar";
     String off = "off";
     String on = "on";
     String open = "open";

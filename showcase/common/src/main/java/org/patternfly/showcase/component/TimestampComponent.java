@@ -40,7 +40,7 @@ import static org.patternfly.style.Classes.timestamp;
 @Route(value = "/components/timestamp", title = "Timestamp")
 public class TimestampComponent extends SnippetPage {
 
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings({"deprecation", "MagicConstant"})
     public TimestampComponent() {
         super(components.get(timestamp));
 
