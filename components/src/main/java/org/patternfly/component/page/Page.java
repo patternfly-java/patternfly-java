@@ -44,6 +44,7 @@ import static org.jboss.elemento.Elements.resizeObserver;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.noSidebar;
 import static org.patternfly.style.Classes.page;
 
 /**
@@ -182,6 +183,10 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page breakpoint(Function<Integer, Breakpoint> breakpointFn) {
         this.breakpointFn = breakpointFn;
         return this;
+    }
+
+    public Page noSidebar() {
+        return css(noSidebar);
     }
 
     /**
