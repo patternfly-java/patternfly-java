@@ -63,7 +63,7 @@ ARGS:
     <mode>              One of 'gwt' or 'j2cl'
 ```
 
-After a successful build, the script will open https://localhost:8080
+After a successful build, open https://localhost:8080
 
 # Feedback
 

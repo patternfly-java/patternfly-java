@@ -84,6 +84,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
     private String to;
     private boolean external;
     private CardHeader header;
+    // TODO Turn this into list of handlers
     private CardExpandableContent expandableContent;
     private SelectHandler<Card> selectHandler;
     private ComponentHandler<Card> clickHandler;
