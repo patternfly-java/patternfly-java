@@ -14,10 +14,9 @@
  *  limitations under the License.
  */
 /// usr/bin/env jbang "$0" "$@" ; exit $?
-//JAVA 24+
+//JAVA 24
 //JAVAC_OPTIONS --enable-preview -source 24
 //JAVA_OPTIONS --enable-preview
-//DEPS com.vladsch.flexmark:flexmark-all:0.64.8
 
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;

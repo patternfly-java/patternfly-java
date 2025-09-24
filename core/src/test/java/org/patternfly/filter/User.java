@@ -43,7 +43,7 @@ class User {
                     .withGetterVisibility(Visibility.NONE)
                     .withSetterVisibility(Visibility.NONE)
                     .withCreatorVisibility(Visibility.NONE));
-            return asList(mapper.readValue(User.class.getResource("users.json"), User[].class));
+            return asList(mapper.readValue(User.class.getResourceAsStream("users.json"), User[].class));
         } catch (IOException e) {
             System.err.println("Unable to read users.json: " + e.getMessage());
             return emptyList();
