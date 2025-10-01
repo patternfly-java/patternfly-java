@@ -82,7 +82,7 @@
         <version.gwt>2.12.2</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event> <!-- Only used to link the API doc -->
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml> <!-- Only used to link the API doc -->
-        <version.junit>5.13.4</version.junit>
+        <version.junit>6.0.0</version.junit>
         <version.node>v23.11.0</version.node>
         <version.patternfly>6.3.1</version.patternfly>
 
