@@ -13,13 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-goog.provide('settings');
+import "@patternfly/patternfly/patternfly.css";
+import "@patternfly/patternfly/patternfly-addons.css";
+import "./pforg/*.css";
+import "./showcase.css";
 
-/** @define {string} */
-settings.base = goog.define('settings.base', '/');
+import "@github/relative-time-element";
+import hljs from "highlight.js/lib/common";
+import "highlight.js/styles/github.css";
 
-/** @define {string} */
-settings.mode = goog.define('settings.mode', 'undefined');
-
-/** @define {string} */
-settings.tech = goog.define('settings.tech', 'j2cl');
+window["hljs"] = hljs; // 'export' hljs for J2CL

@@ -16,11 +16,11 @@
 #
 
 
-# --------------------------------------------------
+# -----------------------------------------------------
 #
-# Starts the GWT/J2CL development mode for the showcase
+# Starts the showcase in development or production mode
 #
-# --------------------------------------------------
+# -----------------------------------------------------
 
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
@@ -45,7 +45,7 @@ FLAGS:
     --no-color          Uses plain text output
 
 ARGS:
-    <mode>              One of 'gwt' or 'j2cl'
+    <mode>              One of 'd', 'dev', 'development', 'p', 'prod', or 'production'
 EOF
   exit
 }
@@ -94,22 +94,28 @@ parse_params() {
   done
 
   ARGS=("$@")
-  [[ ${#ARGS[@]} -eq 1 ]] || die "Missing mode. Please use one of 'gwt' or 'j2cl'"
+  [[ ${#ARGS[@]} -eq 1 ]] || die "Missing mode. Please use one of 'd', 'dev', 'development', 'p', 'prod', or 'production'"
   MODE=${ARGS[0]}
-  [[ "${MODE}" =~ ^(gwt|j2cl)$ ]] || die "Wrong mode. Please use one of 'gwt' or 'j2cl'"
   return 0
 }
 
 parse_params "$@"
 setup_colors
 
-if [[ "${MODE}" == "gwt" ]]; then
-  msg "Prepare ${YELLOW}GWT${NOFORMAT} development mode..."
-  mvn -D quickly --projects org.patternfly:patternfly-java-showcase-common --also-make -P showcase ${CLEAN} install
-  cd showcase/gwt
-  msg "Start ${YELLOW}GWT${NOFORMAT} development mode..."
-  mvn gwt:devmode
-else
-  msg "Start ${YELLOW}J2CL${NOFORMAT} development mode..."
-  mvn -D quickly --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase ${CLEAN} compile j2cl:watch
-fi
+case "${MODE}" in
+    d|dev|development)
+        cd ..
+        msg "Start ${YELLOW}development${NOFORMAT} mode..."
+        mvn -D quickly --projects org.patternfly:patternfly-java-showcase --also-make -P showcase ${CLEAN} compile j2cl:watch
+        ;;
+    p|prod|production)
+        cd ..
+        msg "Start ${YELLOW}production${NOFORMAT} mode..."
+        mvn --projects org.patternfly:patternfly-java-showcase --also-make -P prod,showcase ${CLEAN} package
+        cd showcase
+        mvn com.github.eirslett:frontend-maven-plugin:npm@http-server
+        ;;
+    *)
+        die "Invalid mode '${MODE}'. Please use one of 'd', 'dev', 'development', 'p', 'prod', or 'production'"
+        ;;
+esac

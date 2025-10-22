@@ -1,5 +1,5 @@
 {
-  "name": "patternfly-java-showcase-j2cl",
+  "name": "patternfly-java-showcase",
   "private": true,
   "parcelIgnore": [
     "showcase.js"
@@ -18,9 +18,8 @@
   },
   "dependencies": {
     "@github/relative-time-element": "^4.4.8",
-    "@patternfly/patternfly": "^6.3.1",
-    "highlight.js": "^11.11.1",
-    "showcase-common": "file:../common/local_modules/showcase-common"
+    "@patternfly/patternfly": "^6.4.0",
+    "highlight.js": "^11.11.1"
   },
   "devDependencies": {
     "@parcel/core": "^2.16.0",
@@ -32,7 +31,7 @@
     "http-server": "^14.1.1",
     "open": "^10.2.0",
     "parcel": "^2.16.0",
-    "parcel-resolver-ignore": "^2.2.0",
-    "wait-on": "^9.0.0"
+    "parcel-resolver-ignore": "^2.2.1",
+    "wait-on": "^9.0.1"
   }
 }

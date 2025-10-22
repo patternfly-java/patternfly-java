@@ -79,7 +79,7 @@ depending on your stack. If you're using GWT, inherit from `org.patternfly.Patte
 
 ## Dependencies
 
-PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. However, Patternfly Java does **not** come with **stylesheets**. You are expected to include or bundle the necessary stylesheets yourself. Take a look at the PatternFly [getting started guide](https://www.patternfly.org/get-started/develop#htmlcss) for more information.
+PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. However, PatternFly Java does **not** come with **stylesheets**. You are expected to include or bundle the necessary stylesheets yourself. Take a look at the PatternFly [getting started guide](https://www.patternfly.org/get-started/develop#htmlcss) for more information.
 
 You can also take a look at the code of the [showcase](https://github.com/patternfly-java/patternfly-java/tree/main/showcase#readme) for [GWT](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/gwt) and [J2CL](https://github.com/patternfly-java/patternfly-java/tree/main/showcase/j2cl) to see how to set up and use PatternFly Java.
 
@@ -90,7 +90,7 @@ PatternFly Java consists of these Maven modules (a-z):
 | Module                     | Description                      |
 |----------------------------|----------------------------------|
 | patternfly-java-bom        | Bill of materials                |
-| patternfly-java-codeeditor | PatternFly codeeditor            |
+| patternfly-java-codeeditor | PatternFly code editor           |
 | patternfly-java-components | PatternFly components            |
 | patternfly-java-core       | Core PatternFly Java classes     |
 | patternfly-java-finder     | PatternFly Java Finder extension |
@@ -99,13 +99,13 @@ PatternFly Java consists of these Maven modules (a-z):
 | patternfly-java-j2cl       | PatternFly Java for J2CL         |
 | patternfly-java-layouts    | PatternFly Java layouts          |
 
-Here’s the dependency graph of these maven modules and its external dependencies:
+Here’s the dependency graph of these maven modules and their external dependencies:
 
 ![Dependency graph](./dependency-graph.png)
 
 # API design
 
-PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.
+PatternFly Java integrates with and builds upon Elemento's [builder API](https://github.com/hal/elemento#builder-api). Static factory methods are used to create the components, and public instance methods add child elements and modify the component.
 
 In general, the API for a component can be classified into these groups:
 
@@ -128,7 +128,7 @@ Dropdown dropdown = dropdown()
         .addMenu(menu()
                 .addContent(menuContent()
                         .addList(menuList()
-                                .addItem(actionMenuItem("item-0", "Action"))))))
+                                .addItem(actionMenuItem("item-0", "Action")))));
 ```
 
 ## Builder / modifier methods
@@ -154,7 +154,7 @@ Navigation navigation = navigation(flat)
 
 ## Event handlers
 
-These methods add event handlers for various event to the component. They are usually named `on<Event>()`, accept an event handler, and return the component so that the method call can be chained with other methods. PatternFly Java defines some [common event handlers](https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html) that are reused in all components. In some cases, components also use specific event handlers that only apply to the component.
+These methods add event handlers for various events to the component. They are usually named `on<Event>()`, accept an event handler, and return the component so that the method call can be chained with other methods. PatternFly Java defines some [common event handlers](https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html) that are reused in all components. In some cases, components also use specific event handlers that only apply to the component.
 
 ```java
 Drawer drawer = drawer().id("drw")
@@ -163,7 +163,7 @@ Drawer drawer = drawer().id("drw")
 
 ## Public API / getters
 
-These methods do something with the component or return a value, a property or some other kind of information. They return either `void` or a value/property.
+These methods do something with the component or return a value, a property, or some other kind of information. They return either `void` or a value/property.
 
 ```java
 Switch switch_ = switch_("id", "name");
@@ -218,6 +218,45 @@ DescriptionList dl = descriptionList()
 ```
 
 See also the PatternFly website about [icons](https://www.patternfly.org/design-foundations/icons#all-icons) to get an overview of the available icons.
+
+# Tokens
+
+PatternFly Java comes with predefined enum constants for all PatternFly design [tokens](https://www.patternfly.org/tokens/about-tokens). They are defined in the enum class [`org.patternfly.token.Token`](https://patternfly-java.github.io/apidocs/org/patternfly/token/Token.html):
+
+```java
+public enum Token {
+
+    // enum constants omitted
+    ;
+
+    /** The CSS custom property name starting with <code>--pf-t</code> */
+    public final String name;
+    /** The default value for the custom property. */
+    public final String value;
+    /** The property name wrapped in <code>var()</code>. */
+    public final String var;
+
+    Token(String name, String value, String var) {
+        this.name = name;
+        this.value = value;
+        this.var = var;
+    }
+}
+```
+
+Here's an example of how to use the token definitions:
+
+```java
+import elemental2.dom.HTMLElement;
+
+import static org.patternfly.token.Token.globalFontSizeSm;
+import static org.patternfly.token.Token.globalTextColorDisabled;
+
+HTMLElement container = div()
+        .style("color", globalTextColorDisabled.var)
+        .style("font-size", globalFontSizeSm.var)
+        .element();
+```
 
 # PatternFly support
 

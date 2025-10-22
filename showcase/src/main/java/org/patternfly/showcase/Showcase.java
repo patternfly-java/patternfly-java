@@ -20,6 +20,7 @@ import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
 import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
+import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
 import org.patternfly.core.Version;
@@ -53,24 +54,20 @@ import static org.patternfly.style.Variables.Height;
 
 public final class Showcase {
 
-    static final String MAIN_ID = "pfj-main-id";
+    private static final String MAIN_ID = "pfj-main-id";
     private static final Logger logger = Logger.getLogger(Showcase.class.getName());
-
-    private static Navigation navigation;
     private static PlaceManager placeManager;
 
-    // ------------------------------------------------------ init
+    public static PlaceManager placeManager() {
+        return placeManager;
+    }
 
-    public static void init(Settings settings) {
-        // log level
+    @GWT3EntryPoint
+    public void onModuleLoad() {
         Logger.initFrom(location);
 
-        // navigation #1
-        navigation = navigation(expandable);
-
-        // place manager
+        Navigation navigation = navigation(expandable);
         placeManager = new PlaceManager()
-                .base(settings.base())
                 .root(By.id(MAIN_ID))
                 .linkSelector(By.attribute("target", ApiDoc.API_DOC_TARGET), true)
                 .title(title -> "PatternFly Java • " + title)
@@ -78,7 +75,6 @@ public final class Showcase {
                 .register(new AnnotatedPlaces())
                 .afterPlace((pm, place) -> navigation.select(place.route));
 
-        // navigation #2
         navigation
                 .addItem(ni(placeManager.place("/get-started")))
                 .addGroup(expandableNavigationGroup("components", "Components")
@@ -102,7 +98,6 @@ public final class Showcase {
                 .addItem(ni(placeManager.place("/tokens")))
                 .addItem(ni(placeManager.place("/get-involved")));
 
-        // body and page
         body().add(page()
                 .addSkipToContent(skipToContent(MAIN_ID))
                 .addMasthead(masthead()
@@ -120,23 +115,10 @@ public final class Showcase {
                 .addMain(pageMain(MAIN_ID))
                 .add(backToTop().css("ws-back-to-top")
                         .scrollableSelector(By.id(MAIN_ID))));
-    }
 
-    public static void start() {
         placeManager.start();
-    }
-
-    // ------------------------------------------------------ api
-
-    public static void log(Settings settings) {
         logger.info("PatternFly version:      %s", Version.PATTERN_FLY_VERSION);
         logger.info("PatternFly Java version: %s", Version.PATTERN_FLY_JAVA_VERSION);
-        logger.info("Execution mode:          %s", settings.mode());
-        logger.info("Technology stack:        %s", settings.tech());
-    }
-
-    public static PlaceManager placeManager() {
-        return placeManager;
     }
 
     // ------------------------------------------------------ internal

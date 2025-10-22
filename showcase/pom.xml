@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>patternfly-java-showcase</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>PatternFly Java Showcase</name>
 
     <properties>
@@ -37,37 +37,14 @@
         <version.node>v24.10.0</version.node>
 
         <!-- Build related -->
-        <gwt.draftCompile>true</gwt.draftCompile>
-        <gwt.sourceLevel>17</gwt.sourceLevel>
-        <gwt.style>DETAILED</gwt.style>
         <j2cl.compilationLevel>BUNDLE_JAR</j2cl.compilationLevel>
         <j2cl.incremental>true</j2cl.incremental>
         <j2cl.sourcemaps>true</j2cl.sourcemaps>
         <npm.script>dev</npm.script>
-        <settings.base>/</settings.base>
-        <settings.mode>development</settings.mode>
-        <settings.tech/>
     </properties>
-
-    <modules>
-        <module>common</module>
-        <module>gwt</module>
-        <module>j2cl</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-showcase-common</artifactId>
-                <version>${project.version}</version>
-                <classifier>sources</classifier>
-            </dependency>
             <dependency>
                 <groupId>org.kie.j2cl.tools</groupId>
                 <artifactId>bom</artifactId>
@@ -75,27 +52,177 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.gwtproject</groupId>
-                <artifactId>gwt</artifactId>
-                <version>${version.gwt}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-components</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-layouts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-codeeditor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-j2cl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-router</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-router-processor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <artifactId>processors</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>.parcel-cache</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/java</directory>
+                            <includes>
+                                <include>org/patternfly/showcase/Code.java</include>
+                                <include>org/patternfly/showcase/Documentation.java</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>dev.jbang</groupId>
+                <artifactId>jbang-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <script>${project.basedir}/code.java</script>
+                            <args>
+                                <arg>${project.basedir}</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-doc</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <script>${project.basedir}/doc.java</script>
+                            <args>
+                                <arg>${project.basedir}</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-node-and-npm</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${version.node}</nodeVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm-install</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm-parcel</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run ${npm.script}</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http-server</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>none</phase>
+                        <configuration>
+                            <arguments>run http-server</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.kie.j2cl.tools</groupId>
+                <artifactId>j2cl-maven-plugin</artifactId>
+                <configuration>
+                    <compilationLevel>${j2cl.compilationLevel}</compilationLevel>
+                    <enableSourcemaps>${j2cl.sourcemaps}</enableSourcemaps>
+                    <incrementalEnabled>${j2cl.incremental}</incrementalEnabled>
+                    <initialScriptFilename>showcase.js</initialScriptFilename>
+                    <webappDirectory>${project.build.directory}/showcase</webappDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>
             <id>prod</id>
             <properties>
-                <gwt.draftCompile>false</gwt.draftCompile>
-                <gwt.style>OBFUSCATED</gwt.style>
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
                 <j2cl.incremental>false</j2cl.incremental>
                 <j2cl.sourcemaps>false</j2cl.sourcemaps>
                 <npm.script>prod</npm.script>
-                <settings.mode>production</settings.mode>
             </properties>
         </profile>
     </profiles>
