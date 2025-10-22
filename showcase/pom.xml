@@ -33,10 +33,8 @@
 
     <properties>
         <!-- Dependency versions -->
-        <version.commons.text>1.14.0</version.commons.text>
-        <version.gwt>2.12.2</version.gwt>
-        <version.intellij.markdown>0.7.3</version.intellij.markdown>
         <version.kie.j2cl.bom>0.4</version.kie.j2cl.bom>
+        <version.node>v24.10.0</version.node>
 
         <!-- Build related -->
         <gwt.draftCompile>true</gwt.draftCompile>

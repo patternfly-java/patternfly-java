@@ -78,13 +78,13 @@
     <properties>
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
-        <version.elemento>2.2.2</version.elemento>
+        <version.elemento>2.3.0</version.elemento>
         <version.gwt>2.12.2</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event> <!-- Only used to link the API doc -->
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml> <!-- Only used to link the API doc -->
         <version.junit>6.0.0</version.junit>
-        <version.node>v23.11.0</version.node>
-        <version.patternfly>6.3.1</version.patternfly>
+        <version.node>v24.10.0</version.node>
+        <version.patternfly>6.4.0</version.patternfly>
 
         <!-- Plugin versions -->
         <version.central.publishing.plugin>0.9.0</version.central.publishing.plugin>
@@ -102,7 +102,7 @@
         <encoding>UTF-8</encoding>
         <github.org>patternfly-java</github.org>
         <github.name>patternfly-java</github.name>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <javadoc.options/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
