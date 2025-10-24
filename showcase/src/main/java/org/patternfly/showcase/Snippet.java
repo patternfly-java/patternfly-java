@@ -101,7 +101,7 @@ public class Snippet implements IsElement<HTMLElement> {
                         .element())
                 .addItem(stackItem()
                         .add(codeEditor = codeEditor().css("ws-code-editor")
-                                .addHeader(codeEditorHeader()
+                                .addHeader(codeEditorHeader().plain()
                                         .addActions(codeEditorActions()
                                                 .addAction(codeEditorAction(button()
                                                         .id(codeId)

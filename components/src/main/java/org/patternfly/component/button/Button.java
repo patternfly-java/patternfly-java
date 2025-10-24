@@ -41,6 +41,7 @@ import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
+import org.patternfly.style.NotificationStatus;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
@@ -128,7 +129,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     private static final Logger logger = Logger.getLogger(Button.class.getName());
     private final HTMLButtonElement buttonElement;
     private final HTMLAnchorElement anchorElement;
-    private Element icon;
     private HTMLElement textElement;
     private HTMLElement iconElement;
     private Spinner spinner;
@@ -169,7 +169,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     @Override
     public Button icon(Element icon) {
         removeIcon();
-        this.icon = icon;
         failSafeIconElement().appendChild(icon);
         return this;
     }
@@ -177,7 +176,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     @Override
     public Button removeIcon() {
         failSafeRemoveFromParent(iconElement);
-        this.icon = null;
         this.iconElement = null;
         return this;
     }
@@ -185,7 +183,6 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
     @Override
     public Button iconAndText(Element icon, String text, IconPosition position) {
         removeIcon();
-        this.icon = icon;
         switch (position) {
             case start:
                 failSafeIconElement().classList.add(modifier(Classes.start));
@@ -252,8 +249,8 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return css(modifier(control));
     }
 
-    public Button stateful() {
-        return css(modifier(stateful));
+    public Button stateful(NotificationStatus status) {
+        return css(modifier(stateful), status.modifier());
     }
 
     public Button block() {

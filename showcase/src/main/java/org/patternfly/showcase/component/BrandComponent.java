@@ -42,7 +42,7 @@ public class BrandComponent extends SnippetPage {
                 code("brand-basic"), () ->
                 // @code-start:brand-basic
                 div()
-                        .add(brand("https://www.patternfly.org/assets/images/pf_logo.svg", "PatternFly logo"))
+                        .add(brand("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg", "PatternFly logo"))
                         .element()
                 // @code-end:brand-basic
         ));
@@ -53,16 +53,16 @@ public class BrandComponent extends SnippetPage {
                 div()
                         .add(brand()
                                 .widths(breakpoints(default_, "40px", sm, "60px", md, "220px"))
-                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo-on-xl.svg",
+                                .addSource("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg",
                                         "(min-width: 1200px)")
-                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo-on-lg.svg",
+                                .addSource("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg",
                                         "(min-width: 992px)")
-                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo-on-md.svg",
+                                .addSource("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg",
                                         "(min-width: 768px)")
-                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo-on-sm.svg",
+                                .addSource("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-IconLogo-color.svg",
                                         "(min-width: 576px)")
-                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo.svg")
-                                .addImg(img("https://www.patternfly.org/assets/images/pf-c-brand__logo-base.jpg")
+                                .addSource("https://www.patternfly.org/assets/images/pf-c-brand__logo.svg", "(min-width: 320px)")
+                                .addImg(img("https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg")
                                         .apply(i -> i.alt = "PatternFly fallback logo")))
                         .element()
                 // @code-end:brand-responsive

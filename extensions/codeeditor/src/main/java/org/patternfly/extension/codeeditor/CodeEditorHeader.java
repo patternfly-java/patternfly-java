@@ -16,14 +16,15 @@
 package org.patternfly.extension.codeeditor;
 
 import org.patternfly.style.Classes;
-
+import org.patternfly.style.Modifiers;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 
-public class CodeEditorHeader extends CodeEditorSubComponent<HTMLDivElement, CodeEditorHeader> {
+public class CodeEditorHeader extends CodeEditorSubComponent<HTMLDivElement, CodeEditorHeader>
+        implements Modifiers.Plain<HTMLDivElement, CodeEditorHeader> {
 
     // ------------------------------------------------------ factory
 

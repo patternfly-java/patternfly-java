@@ -15,7 +15,10 @@
  */
 package org.patternfly.component.notification.badge;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -24,20 +27,22 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
-
+import org.patternfly.style.NotificationStatus;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.notification.badge.NotificationBadgeVariant.attention;
-import static org.patternfly.component.notification.badge.NotificationBadgeVariant.read;
-import static org.patternfly.component.notification.badge.NotificationBadgeVariant.unread;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.NotificationStatus.attention;
+import static org.patternfly.style.NotificationStatus.read;
+import static org.patternfly.style.NotificationStatus.unread;
 
 /**
  * A notification badge is a visual indicator that alerts users about incoming notifications.
+ *
  * @see <a href="https://www.patternfly.org/components/notification-badge">PatternFly Notification Badge</a>
  */
 public class NotificationBadge
@@ -46,17 +51,24 @@ public class NotificationBadge
     // ------------------------------------------------------ factory
 
     public static NotificationBadge notificationBadge() {
-        return new NotificationBadge(button().stateful());
+        return new NotificationBadge(button().stateful(unread));
     }
 
     // ------------------------------------------------------ instance state
 
     private static final Logger logger = Logger.getLogger(NotificationBadge.class.getName());
+    private static final Map<NotificationStatus, Supplier<PredefinedIcon>> statusIcons = new HashMap<>();
+
+    static {
+        statusIcons.put(read, IconSets.patternfly::bell);
+        statusIcons.put(unread, IconSets.patternfly::bell);
+        statusIcons.put(attention, IconSets.patternfly::attentionBell);
+    }
 
     private final Button button;
     private int count = 0;
     private boolean expanded = false;
-    private NotificationBadgeVariant variant;
+    private NotificationStatus status;
     private Element customNormalIcon;
     private Element customAttentionIcon;
 
@@ -85,31 +97,31 @@ public class NotificationBadge
     // ------------------------------------------------------ variants
 
     public NotificationBadge read() {
-        return variant(read);
+        return status(read);
     }
 
     public NotificationBadge unread() {
-        return variant(unread);
+        return status(unread);
     }
 
     public NotificationBadge attention() {
-        return variant(attention);
+        return status(attention);
     }
 
-    public NotificationBadge variant(NotificationBadgeVariant variant) {
-        if (variant == null) {
-            logger.warn("Variant cannot be null, ignoring.");
+    public NotificationBadge status(NotificationStatus status) {
+        if (status == null) {
+            logger.warn("Notification status cannot be null, ignoring.");
             return this;
         }
-        if (this.variant == variant) {
+        if (this.status == status) {
             return this;
         }
-        if (this.variant != null) {
-            classList().remove(this.variant.modifierClass);
+        if (this.status != null) {
+            classList().remove(this.status.modifier());
         }
-        this.variant = variant;
-        css(variant.modifierClass);
-        applyVariantIconForCurrentState();
+        this.status = status;
+        css(status.modifier());
+        applyStatusIconForCurrentState();
         return this;
     }
 
@@ -122,7 +134,7 @@ public class NotificationBadge
             return this;
         }
         customNormalIcon = icon;
-        if (variant != attention) {
+        if (status != attention) {
             button.icon(icon);
         }
         return this;
@@ -136,7 +148,7 @@ public class NotificationBadge
             return this;
         }
         customAttentionIcon = icon;
-        if (variant == attention) {
+        if (status == attention) {
             button.icon(icon);
         }
         return this;
@@ -152,9 +164,9 @@ public class NotificationBadge
             return this;
         }
         customNormalIcon = null;
-        if (variant != attention) {
+        if (status != attention) {
             button.removeIcon();
-            applyVariantIconForCurrentState();
+            applyStatusIconForCurrentState();
         }
         return this;
     }
@@ -164,9 +176,9 @@ public class NotificationBadge
             return this;
         }
         customAttentionIcon = null;
-        if (variant == attention) {
+        if (status == attention) {
             button.removeIcon();
-            applyVariantIconForCurrentState();
+            applyStatusIconForCurrentState();
         }
         return this;
     }
@@ -213,10 +225,12 @@ public class NotificationBadge
         button.aria(Aria.expanded, expanded);
     }
 
-    private void applyVariantIconForCurrentState() {
-        button.icon(
-                (variant == attention) ? customAttentionIcon != null ? customAttentionIcon : variant.defaultIcon.get()
-                        : customNormalIcon != null ? customNormalIcon : variant.defaultIcon.get());
+    private void applyStatusIconForCurrentState() {
+        if (status == attention) {
+            button.icon(customAttentionIcon != null ? customAttentionIcon : statusIcons.get(status).get().element());
+        } else {
+            button.icon(customNormalIcon != null ? customNormalIcon : statusIcons.get(status).get().element());
+        }
     }
 }
 

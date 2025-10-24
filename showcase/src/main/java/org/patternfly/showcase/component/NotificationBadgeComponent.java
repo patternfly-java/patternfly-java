@@ -17,19 +17,18 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.notification.badge.NotificationBadge;
-import org.patternfly.component.notification.badge.NotificationBadgeVariant;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static elemental2.dom.DomGlobal.console;
-import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.notification.badge.NotificationBadge.notificationBadge;
 import static org.patternfly.icon.IconSets.fas.exclamationCircle;
 import static org.patternfly.icon.IconSets.fas.star;
 import static org.patternfly.icon.IconSets.fas.sun;
 import static org.patternfly.icon.IconSets.patternfly.warningTriangle;
+import static org.patternfly.layout.flex.Flex.flex;
+import static org.patternfly.layout.flex.Gap.sm;
 import static org.patternfly.showcase.ApiDoc.Type.component;
-import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 
@@ -39,11 +38,12 @@ public class NotificationBadgeComponent extends SnippetPage {
     public NotificationBadgeComponent() {
         super(components.get("notification-badge"));
 
-        startExamples("Basic notification badges showing read, unread, and attention variants, plus expanded state. The count example shows how to supply a numeric indicator.");
+        startExamples(
+                "Basic notification badges showing read, unread, and attention variants, plus expanded state. The count example shows how to supply a numeric indicator.");
 
         addSnippet(new Snippet("notification-badge-basic", "Basic", code("notification-badge-basic"), () ->
                 // @code-start:notification-badge-basic
-                div()
+                flex().columnGap(sm)
                         .add(notificationBadge().ariaLabel("Notifications")
                                 .onClick((e, nb) -> {
                                     console.log("Read notification badge clicked");
@@ -63,27 +63,27 @@ public class NotificationBadgeComponent extends SnippetPage {
                                 }))
                         .element()
                 // @code-end:notification-badge-basic
-                ));
+        ));
 
-                addSnippet(new Snippet("notification-badge-with-count", "With count",
-                        code("notification-badge-with-count"), () ->
-                        // @code-start:notification-badge-with-count
-                        div()
-                                .add(notificationBadge().ariaLabel("10 read notifications").count(10)
-                                        .onClick((e, nb) -> {
-                                            console.log("Read notification badge clicked");
-                                            nb.expand(!nb.expanded());
-                                        }))
-                                .add(notificationBadge().ariaLabel("10 unread notifications").unread().count(10)
-                                        .onClick((e, nb) -> {
-                                            console.log("Unread notification badge clicked");
-                                            nb.expand(!nb.expanded());
-                                        }))
-                                .add(notificationBadge().ariaLabel("10 attention notifications").attention().count(10)
-                                        .onClick((e, nb) -> {
-                                            console.log("Attention notification badge clicked");
-                                            nb.expand(!nb.expanded());
-                                        }))
+        addSnippet(new Snippet("notification-badge-with-count", "With count",
+                code("notification-badge-with-count"), () ->
+                // @code-start:notification-badge-with-count
+                flex().columnGap(sm)
+                        .add(notificationBadge().ariaLabel("10 read notifications").count(10)
+                                .onClick((e, nb) -> {
+                                    console.log("Read notification badge clicked");
+                                    nb.expand(!nb.expanded());
+                                }))
+                        .add(notificationBadge().ariaLabel("10 unread notifications").unread().count(10)
+                                .onClick((e, nb) -> {
+                                    console.log("Unread notification badge clicked");
+                                    nb.expand(!nb.expanded());
+                                }))
+                        .add(notificationBadge().ariaLabel("10 attention notifications").attention().count(10)
+                                .onClick((e, nb) -> {
+                                    console.log("Attention notification badge clicked");
+                                    nb.expand(!nb.expanded());
+                                }))
                         .element()
                 // @code-end:notification-badge-with-count
         ));
@@ -91,7 +91,7 @@ public class NotificationBadgeComponent extends SnippetPage {
         addSnippet(new Snippet("notification-badge-custom-icons", "Custom icons",
                 code("notification-badge-custom-icons"), () ->
                 // @code-start:notification-badge-custom-icons
-                div()
+                flex().columnGap(sm)
                         .add(notificationBadge().ariaLabel("Custom read notifications")
                                 .icon(star())
                                 .onClick((e, nb) -> nb.expand(!nb.expanded())))
@@ -122,11 +122,10 @@ public class NotificationBadgeComponent extends SnippetPage {
                                     }
                                 }))
                         .element()
-        // @code-end:notification-badge-custom-icons
+                // @code-end:notification-badge-custom-icons
         ));
 
         startApiDocs(NotificationBadge.class);
         addApiDoc(NotificationBadge.class, component);
-        addApiDoc(NotificationBadgeVariant.class, other);
     }
 }
