@@ -17,6 +17,7 @@ package org.patternfly.extension.codeeditor;
 
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
