@@ -23,7 +23,7 @@ jobs:
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/patternfly-java.github.io
-          branch: main
+          branch: gh-pages
           folder: ./showcase/target/showcase
           clean: true
           force: true
