@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/patternfly-java.github.io
           branch: main
-          folder: ./showcase/j2cl/target/showcase
+          folder: ./showcase/target/showcase
           clean: true
           force: true
           single-commit: true
