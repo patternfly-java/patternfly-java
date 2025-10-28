@@ -26,3 +26,5 @@ jobs:
           branch: main
           folder: ./showcase/j2cl/target/showcase
           clean: true
+          force: true
+          single-commit: true
