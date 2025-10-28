@@ -330,24 +330,28 @@
                 <groupId>com.github.ferstl</groupId>
                 <artifactId>depgraph-maven-plugin</artifactId>
                 <configuration>
+
                     <classpathScope>compile</classpathScope>
                     <createImage>true</createImage>
                     <customStyleConfiguration>degraph-style.json</customStyleConfiguration>
                     <includes>
-                        <include>${project.groupId}:patternfly-java-core</include>
-                        <include>${project.groupId}:patternfly-java-icons</include>
-                        <include>${project.groupId}:patternfly-java-components</include>
-                        <include>${project.groupId}:patternfly-java-layouts</include>
                         <include>${project.groupId}:patternfly-java-codeeditor</include>
+                        <include>${project.groupId}:patternfly-java-components</include>
+                        <include>${project.groupId}:patternfly-java-core</include>
                         <include>${project.groupId}:patternfly-java-finder</include>
                         <include>${project.groupId}:patternfly-java-gwt</include>
+                        <include>${project.groupId}:patternfly-java-icons</include>
                         <include>${project.groupId}:patternfly-java-j2cl</include>
+                        <include>${project.groupId}:patternfly-java-layouts</include>
+                        <include>${project.groupId}:patternfly-java-tokens</include>
                         <include>org.jboss.elemento:elemento-*</include>
                         <include>com.google.elemental2:*</include>
                         <include>org.gwtproject:gwt-user</include>
                     </includes>
                     <mergeTypes>true</mergeTypes>
+                    <mergeClassifiers>true</mergeClassifiers>
                     <outputDirectory>${project.basedir}</outputDirectory>
+                    <showDuplicates>false</showDuplicates>
                     <showGroupIds>true</showGroupIds>
                 </configuration>
             </plugin>

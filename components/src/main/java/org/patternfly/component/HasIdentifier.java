@@ -17,12 +17,11 @@ package org.patternfly.component;
 
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.Element;
 
 /**
- * This interface represents a (sub)component that has an identifier. It is normally implemented by subcomponents of components
- * implementing {@link HasItems}.
+ * This interface represents a (sub)component that has an identifier. It is normally implemented by child components of
+ * components implementing {@link HasItems}.
  * <p>
  * It's up to the implementation what to do with the ID. The recommendation is to set it as data attribute using
  * {@link org.patternfly.core.Dataset#identifier} and <em>not</em> set it on the root element as {@link Element#id}. This

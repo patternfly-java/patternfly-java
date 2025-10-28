@@ -10,12 +10,14 @@ digraph "patternfly-java-parent" {
   "com.google.elemental2:elemental2-dom:compile"[shape="box",style="rounded",color="darkslateblue",fontname="Red Hat Display",fontsize="14",fontcolor="darkslateblue",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-dom>]
   "com.google.elemental2:elemental2-webstorage:compile"[shape="box",style="rounded",color="darkslateblue",fontname="Red Hat Display",fontsize="14",fontcolor="darkslateblue",label=<<font point-size="10">com.google.elemental2</font><br/>elemental2-webstorage>]
   "org.patternfly:patternfly-java-core:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-core>]
+  "org.jboss.elemento:elemento-logger:compile"[shape="box",style="rounded",color="darkgreen",fontname="Red Hat Display",fontsize="14",fontcolor="darkgreen",label=<<font point-size="10">org.jboss.elemento</font><br/>elemento-logger>]
   "org.jboss.elemento:elemento-svg:compile"[shape="box",style="rounded",color="darkgreen",fontname="Red Hat Display",fontsize="14",fontcolor="darkgreen",label=<<font point-size="10">org.jboss.elemento</font><br/>elemento-svg>]
+  "org.patternfly:patternfly-java-layouts:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-layouts>]
   "org.patternfly:patternfly-java-icons:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-icons>]
+  "org.patternfly:patternfly-java-tokens:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-tokens>]
   "org.patternfly:patternfly-java-components:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-components>]
   "org.patternfly:patternfly-java-codeeditor:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-codeeditor>]
   "org.patternfly:patternfly-java-finder:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-finder>]
-  "org.patternfly:patternfly-java-layouts:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-layouts>]
   "org.patternfly:patternfly-java-gwt:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-gwt>]
   "org.gwtproject:gwt-user:compile"[shape="box",style="rounded",color="darkred",fontname="Red Hat Display",fontsize="14",fontcolor="darkred",label=<<font point-size="10">org.gwtproject</font><br/>gwt-user>]
   "org.patternfly:patternfly-java-j2cl:compile"[shape="box",style="filled,bold,rounded",fillcolor="#E7F1FA",fontname="Red Hat Display",fontsize="14",label=<<font point-size="10">org.patternfly</font><br/>patternfly-java-j2cl>]
@@ -26,15 +28,17 @@ digraph "patternfly-java-parent" {
   "org.jboss.elemento:elemento-core:compile" -> "com.google.elemental2:elemental2-dom:compile"
   "org.jboss.elemento:elemento-core:compile" -> "com.google.elemental2:elemental2-webstorage:compile"
   "org.patternfly:patternfly-java-core:compile" -> "org.jboss.elemento:elemento-core:compile"
+  "org.patternfly:patternfly-java-core:compile" -> "org.jboss.elemento:elemento-logger:compile"
   "org.patternfly:patternfly-java-core:compile" -> "org.jboss.elemento:elemento-svg:compile"
+  "org.patternfly:patternfly-java-layouts:compile" -> "org.patternfly:patternfly-java-core:compile"
   "org.patternfly:patternfly-java-icons:compile" -> "org.patternfly:patternfly-java-core:compile"
+  "org.patternfly:patternfly-java-tokens:compile" -> "org.patternfly:patternfly-java-core:compile"
+  "org.patternfly:patternfly-java-components:compile" -> "org.patternfly:patternfly-java-layouts:compile"
   "org.patternfly:patternfly-java-components:compile" -> "org.patternfly:patternfly-java-icons:compile"
+  "org.patternfly:patternfly-java-components:compile" -> "org.patternfly:patternfly-java-tokens:compile"
   "org.patternfly:patternfly-java-codeeditor:compile" -> "org.patternfly:patternfly-java-components:compile"
   "org.patternfly:patternfly-java-finder:compile" -> "org.patternfly:patternfly-java-components:compile"
-  "org.patternfly:patternfly-java-layouts:compile" -> "org.patternfly:patternfly-java-core:compile"
   "org.patternfly:patternfly-java-gwt:compile" -> "org.patternfly:patternfly-java-components:compile"
-  "org.patternfly:patternfly-java-gwt:compile" -> "org.patternfly:patternfly-java-layouts:compile"
   "org.patternfly:patternfly-java-gwt:compile" -> "org.gwtproject:gwt-user:compile"
   "org.patternfly:patternfly-java-j2cl:compile" -> "org.patternfly:patternfly-java-components:compile"
-  "org.patternfly:patternfly-java-j2cl:compile" -> "org.patternfly:patternfly-java-layouts:compile"
 }

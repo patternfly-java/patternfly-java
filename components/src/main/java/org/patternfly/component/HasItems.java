@@ -33,6 +33,8 @@ import elemental2.dom.Element;
  * @param <E> the element type of the main component
  * @param <B> the builder type of the main component
  * @param <S> the type of the subcomponent (representing an item)
+ * <p>
+ * {@snippet class = HasItemsDemo region = hasItems}
  */
 public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
         extends Iterable<S>, TypedBuilder<E, B>, IsElement<E> {

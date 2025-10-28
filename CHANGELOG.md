@@ -7,21 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 > [!WARNING]
-> This release upgrades to PatternFly 6 and introduces changes that might break existing code.
+> This release upgrades to PatternFly 6 and introduces breaking changes!
+
+[62/86](https://github.com/patternfly-java/patternfly-java/issues/125) components are now implemented. 
 
 ### Added
 
+- Notification badge component (#71) (thanks @mskacelik)
 - Timestamp component (#95) (thanks @mskacelik)
 - Add new enum `org.patternfly.token.Token` that contains all [PatternFly token](https://www.patternfly.org/tokens/all-patternfly-tokens) as enum constants.
 
 ### Changed
 
+- PatternFly Java now requires Java 21
+- Migrate existing components to PatternFly 6
+- Refactor [common interfaces](https://github.com/patternfly-java/patternfly-java?tab=readme-ov-file#common-interfaces)
 - Wrapped checkbox
 - Migrate to publishing via the Maven Central Portal
 
 ### Upgrades
 
-- Bump Elemento to 2.0.2
+- Bump Elemento to 2.3.0
+- Bump PatternFly to 6.4.0
+
+## Removed
+
+- Remove GWT showcase
 
 ## [0.2.11] - 2024-11-19
 
