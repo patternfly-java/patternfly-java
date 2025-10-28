@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-10-28
+
 🎉 [72% (62/86)](https://github.com/patternfly-java/patternfly-java/issues/125) of the components are now implemented 🎉
 
 > [!IMPORTANT]
@@ -506,7 +508,9 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/vRemoved...v0.3.0
+[Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
 [0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.8...v0.2.9

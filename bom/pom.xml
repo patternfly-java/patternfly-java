@@ -29,7 +29,7 @@
 
     <groupId>org.patternfly</groupId>
     <artifactId>patternfly-java-bom</artifactId>
-    <version>0.2.12-SNAPSHOT</version>
+    <version>0.3.0</version>
     <packaging>pom</packaging>
     <name>PatternFly Java BOM</name>
     <description>Bill of materials</description>
