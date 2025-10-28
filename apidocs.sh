@@ -94,7 +94,6 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-./mvnw clean
 ./mvnw -Dquickly clean install
 ./mvnw -P snippets javadoc:aggregate
 ./mvnw -P snippets javadoc:javadoc

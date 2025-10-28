@@ -32,6 +32,6 @@ public class HasItemsDemo {
             User user = item.get("user");
             item.toggle("invalid-user", !user.valid());
         }
-        // @start region = hasItems
+        // @end region = hasItems
     }
 }
