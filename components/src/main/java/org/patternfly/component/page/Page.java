@@ -186,7 +186,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     }
 
     public Page noSidebar() {
-        return css(noSidebar);
+        return css(modifier(noSidebar));
     }
 
     /**

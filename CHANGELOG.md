@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `Page.noSidebar()`
+
 ## [0.3.0] - 2025-10-28
 
 🎉 [72% (62/86)](https://github.com/patternfly-java/patternfly-java/issues/125) of the components are now implemented 🎉
