@@ -91,6 +91,8 @@ jobs:
           branch: main
           folder: ./target/site/apidocs
           clean: true
+          force: true
+          single-commit: true
 
   publish-showcase:
     name: Publish Showcase
@@ -105,7 +107,7 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-      - run: $MVN --projects org.patternfly:patternfly-java-showcase-j2cl --also-make -P showcase,prod package
+      - run: $MVN --projects org.patternfly:patternfly-java-showcase --also-make -P showcase,prod package
       - uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
