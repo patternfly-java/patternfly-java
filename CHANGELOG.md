@@ -6,10 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-> [!WARNING]
-> This release upgrades to PatternFly 6 and introduces breaking changes!
+🎉 [72% (62/86)](https://github.com/patternfly-java/patternfly-java/issues/125) of the components are now implemented 🎉
 
-[62/86](https://github.com/patternfly-java/patternfly-java/issues/125) components are now implemented. 
+> [!IMPORTANT]
+> This release upgrades to PatternFly 6 and introduces breaking changes!
 
 ### Added
 

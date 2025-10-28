@@ -22,7 +22,6 @@ import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.IconPosition.end;
 import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.badge.Badge.badge;
