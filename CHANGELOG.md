@@ -32,7 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Bump Elemento to 2.3.0
 - Bump PatternFly to 6.4.0
 
-## Removed
+### Removed
 
 - Remove GWT showcase
 
