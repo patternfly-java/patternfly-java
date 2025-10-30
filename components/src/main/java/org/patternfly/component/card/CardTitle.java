@@ -60,7 +60,7 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
     CardTitle(String text, int level) {
         super(SUB_COMPONENT_NAME, div().css(component(card, title)).element());
         if (level > 0) {
-            element().appendChild(titleText = h(level, text).css(component(card, title, Classes.text)).element());
+            element().appendChild(titleText = h(level).css(component(card, title, Classes.text)).element());
         } else {
             element().appendChild(titleText = div().css(component(card, title, Classes.text)).element());
         }
