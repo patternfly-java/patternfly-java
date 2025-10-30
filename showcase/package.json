@@ -9,9 +9,9 @@
     "src/web/index.html"
   ],
   "scripts": {
-    "start:parcel": "parcel watch src/web/dev.html --dist-dir target/showcase --port 1234",
-    "start:server": "node server.js 8234 1234",
-    "open:browser": "wait-on http://localhost:8234 && open http://localhost:8234",
+    "start:parcel": "parcel watch src/web/dev.html --dist-dir target/showcase --port 1235",
+    "start:server": "node server.js 1234 1235",
+    "open:browser": "wait-on http://localhost:1234 && open http://localhost:1234",
     "dev": "concurrently \"npm run start:parcel\" \"npm run start:server\" \"npm run open:browser\"",
     "prod": "parcel build src/web/index.html --dist-dir target/showcase",
     "http-server": "http-server target/showcase --ssl --cert cert.pem"
