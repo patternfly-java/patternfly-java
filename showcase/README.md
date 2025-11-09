@@ -29,7 +29,7 @@ Run `./showcase.sh dev`, wait until you see
 then open another shell and run
 
 ```shell
-npm run dev
+npm run watch
 ```
 
 This will open https://localhost:1234/.

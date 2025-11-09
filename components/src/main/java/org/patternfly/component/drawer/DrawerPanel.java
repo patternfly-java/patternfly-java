@@ -32,7 +32,6 @@ import org.patternfly.style.Width;
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.DOMRect;
 import elemental2.dom.Event;
-import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MouseEvent;
@@ -362,13 +361,10 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     private void handleTouchStart(TouchEvent event) {
         if (resizableDrawer()) {
             event.stopPropagation();
-            // TODO Replace with EventType#bind(EventTarget, EventType<T,?>, AddEventListenerOptions, EventCallbackFn<T>)
-            //  once a new Elemento version has been released
             AddEventListenerOptions options = AddEventListenerOptions.create();
+            options.setOnce(true);
             options.setPassive(true);
-            EventListener listener = evt -> handleTouchMove(((TouchEvent) evt));
-            document.addEventListener(touchmove.name, listener, options);
-            touchMoveHandler = () -> document.removeEventListener(touchmove.name, listener, options);
+            touchMoveHandler = bind(document, touchmove, options, this::handleTouchMove);
             touchEndHandler = bind(document, touchend, this::handleTouchEnd);
             isResizing = true;
         }
@@ -385,8 +381,9 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
         if (resizableDrawer()) {
             event.preventDefault();
             event.stopImmediatePropagation();
-            double touchPos = drawer.position == Position.bottom ? event.touches.item(0).clientY : event.touches.item(
-                    0).clientX;
+            double touchPos = drawer.position == Position.bottom
+                    ? event.touches.item(0).clientY
+                    : event.touches.item(0).clientX;
             handleControlMove(event, touchPos);
         }
     }

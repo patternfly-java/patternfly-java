@@ -40,7 +40,7 @@
         <j2cl.compilationLevel>BUNDLE_JAR</j2cl.compilationLevel>
         <j2cl.incremental>true</j2cl.incremental>
         <j2cl.sourcemaps>true</j2cl.sourcemaps>
-        <npm.script>dev</npm.script>
+        <npm.script>watch</npm.script>
     </properties>
 
     <dependencyManagement>
