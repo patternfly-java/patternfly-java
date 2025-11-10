@@ -133,7 +133,7 @@ jobs:
         with:
           path: ./CHANGELOG.md
           version: ${{ steps.get-version.outputs.version-without-v }}
-      - uses: softprops/action-gh-release@v2.4.1
+      - uses: softprops/action-gh-release@v2.4.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
