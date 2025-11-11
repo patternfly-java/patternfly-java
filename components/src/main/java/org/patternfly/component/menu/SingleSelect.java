@@ -40,21 +40,29 @@ public class SingleSelect extends MenuToggleMenu<SingleSelect> {
 
     // ------------------------------------------------------ instance
 
+    private boolean customSelectHandler;
+
     SingleSelect(MenuToggle menuToggle) {
         super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
+        this.customSelectHandler = false;
     }
 
     // ------------------------------------------------------ add
 
     @Override
     public SingleSelect add(Menu menu) {
-        if (menu.menuType == select && menu.selectionMode == single) {
+        if (menu.menuType == select && menu.selectionMode == single && !customSelectHandler) {
             menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
         }
         return super.add(menu);
     }
 
     // ------------------------------------------------------ builder
+
+    public SingleSelect customSelectHandler() {
+        this.customSelectHandler = true;
+        return this;
+    }
 
     @Override
     public SingleSelect that() {
