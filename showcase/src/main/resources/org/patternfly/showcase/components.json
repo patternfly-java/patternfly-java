@@ -397,7 +397,7 @@
     "name": "notification-badge",
     "title": "Notification badge",
     "route": "/components/notification-badge",
-    "clazz": "org.patternfly.component.notification.badge.NotificationBadge",
+    "clazz": "org.patternfly.component.notification.NotificationBadge",
     "illustration": "notification-badge.png",
     "summary": "A <b>notification badge</b> is a visual indicator that alerts users about incoming notifications."
   },
@@ -405,6 +405,7 @@
     "name": "notification-drawer",
     "title": "Notification drawer",
     "route": "/components/notification-drawer",
+    "clazz": "org.patternfly.component.notification.NotificationDrawer",
     "illustration": "notification-drawer.png",
     "summary": "A <b>notification drawer</b> contains an application's notifications, which users can view and manage without having to navigate to a new screen."
   },

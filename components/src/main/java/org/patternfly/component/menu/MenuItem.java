@@ -133,7 +133,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(MenuItem.class.getName());
-    static final String SUB_COMPONENT_NAME = "";
+    static final String SUB_COMPONENT_NAME = "mi";
 
     final MenuItemType itemType;
     private final String identifier;

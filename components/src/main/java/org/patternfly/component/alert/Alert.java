@@ -40,6 +40,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Plain;
 
+import elemental2.core.JsDate;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -116,6 +117,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private final String identifier;
     private final Severity severity;
     private final String title;
+    private final double timestamp;
     private final HTMLElement iconContainer;
     private final HTMLParagraphElement titleElement;
     private final Map<String, Object> data;
@@ -132,6 +134,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         this.identifier = identifier;
         this.severity = severity;
         this.title = title;
+        this.timestamp = JsDate.now();
         this.data = new HashMap<>();
         this.timeoutHandle = 0;
         this.timeout = NO_TIMEOUT;
@@ -370,6 +373,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         if (fireEvent && toggleHandler != null) {
             toggleHandler.onToggle(new Event(""), this, true);
         }
+    }
+
+    public double timestamp() {
+        return timestamp;
     }
 
     // ------------------------------------------------------ internal

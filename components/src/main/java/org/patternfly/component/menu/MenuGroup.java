@@ -71,6 +71,10 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implemen
         return this;
     }
 
+    public MenuGroup addSearch(MenuSearch search) {
+        return add(search);
+    }
+
     // ------------------------------------------------------ builder
 
     @Override

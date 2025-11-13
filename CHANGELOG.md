@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `SingleSelect.customSelectHandler()` to disable the default behaviour of setting the menu toggle text to the text of the selected menu item.
+- Add `org.patternfly.componentgroup.theme.ThemeSelector`
+- Add `SingleSelect.noDefaultSelectHandler()` to disable the default behavior of setting the menu toggle text to the text of the selected menu item.
 
 ### Fixed
 

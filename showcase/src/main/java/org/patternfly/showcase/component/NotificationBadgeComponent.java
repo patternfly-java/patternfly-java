@@ -16,18 +16,18 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.notification.badge.NotificationBadge;
+import org.patternfly.component.notification.NotificationBadge;
+import org.patternfly.core.ObservableValue;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
-import static elemental2.dom.DomGlobal.console;
-import static org.patternfly.component.notification.badge.NotificationBadge.notificationBadge;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
-import static org.patternfly.icon.IconSets.fas.star;
-import static org.patternfly.icon.IconSets.fas.sun;
-import static org.patternfly.icon.IconSets.patternfly.warningTriangle;
+import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.notification.NotificationBadge.notificationBadge;
+import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.Gap.sm;
+import static org.patternfly.layout.stack.Stack.stack;
+import static org.patternfly.layout.stack.StackItem.stackItem;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -44,23 +44,11 @@ public class NotificationBadgeComponent extends SnippetPage {
         addSnippet(new Snippet("notification-badge-basic", "Basic", code("notification-badge-basic"), () ->
                 // @code-start:notification-badge-basic
                 flex().columnGap(sm)
-                        .add(notificationBadge().ariaLabel("Notifications")
-                                .onClick((e, nb) -> {
-                                    console.log("Read notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
+                        .add(notificationBadge().ariaLabel("Notifications"))
                         .add(notificationBadge().ariaLabel("Unread notifications")
-                                .unread()
-                                .onClick((e, nb) -> {
-                                    console.log("Unread notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
+                                .unread())
                         .add(notificationBadge().ariaLabel("Attention notifications")
-                                .attention()
-                                .onClick((e, nb) -> {
-                                    console.log("Attention notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
+                                .attention())
                         .element()
                 // @code-end:notification-badge-basic
         ));
@@ -69,61 +57,52 @@ public class NotificationBadgeComponent extends SnippetPage {
                 code("notification-badge-with-count"), () ->
                 // @code-start:notification-badge-with-count
                 flex().columnGap(sm)
-                        .add(notificationBadge().ariaLabel("10 read notifications").count(10)
-                                .onClick((e, nb) -> {
-                                    console.log("Read notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
-                        .add(notificationBadge().ariaLabel("10 unread notifications").unread().count(10)
-                                .onClick((e, nb) -> {
-                                    console.log("Unread notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
-                        .add(notificationBadge().ariaLabel("10 attention notifications").attention().count(10)
-                                .onClick((e, nb) -> {
-                                    console.log("Attention notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
+                        .add(notificationBadge().ariaLabel("10 read notifications").count(10))
+                        .add(notificationBadge().ariaLabel("10 unread notifications").unread().count(10))
+                        .add(notificationBadge().ariaLabel("10 attention notifications").attention().count(10))
                         .element()
                 // @code-end:notification-badge-with-count
         ));
 
-        addSnippet(new Snippet("notification-badge-custom-icons", "Custom icons",
-                code("notification-badge-custom-icons"), () ->
-                // @code-start:notification-badge-custom-icons
-                flex().columnGap(sm)
-                        .add(notificationBadge().ariaLabel("Custom read notifications")
-                                .icon(star())
-                                .onClick((e, nb) -> nb.expand(!nb.expanded())))
-                        .add(notificationBadge().ariaLabel("Custom unread notifications")
-                                .unread()
-                                .icon(sun())
-                                .onClick((e, nb) -> {
-                                    console.log("Custom read notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
-                        .add(notificationBadge().ariaLabel("Custom attention notifications")
-                                .attention()
-                                .attentionIcon(warningTriangle())
-                                .onClick((e, nb) -> {
-                                    console.log("Custom attention notification badge clicked");
-                                    nb.expand(!nb.expanded());
-                                }))
-                        .add(notificationBadge().ariaLabel("Toggle variants with retained icons")
-                                .unread()
-                                .icon(star())
-                                .attentionIcon(exclamationCircle())
-                                .onClick((e, nb) -> {
-                                    console.log("Toggle variants with retained icons clicked");
-                                    if (nb.expand(!nb.expanded()).expanded()) {
-                                        nb.attention();
-                                    } else {
-                                        nb.unread();
-                                    }
-                                }))
-                        .element()
-                // @code-end:notification-badge-custom-icons
-        ));
+        addSnippet(new Snippet("notification-badge-with-animation", "With animation",
+                code("notification-badge-with-count"), () -> {
+            // @code-start:notification-badge-with-count
+            ObservableValue<Integer> readValue = ov(10);
+            NotificationBadge readBadge = notificationBadge().ariaLabel("10 read notifications")
+                    .bind(readValue)
+                    .shouldNotify();
+            readValue.subscribe((current, __) -> readBadge.ariaLabel(current + " read notifications"));
+
+            ObservableValue<Integer> unreadValue = ov(10);
+            NotificationBadge unreadBadge = notificationBadge().ariaLabel("10 unread notifications")
+                    .bind(unreadValue)
+                    .shouldNotify()
+                    .unread();
+            unreadValue.subscribe((current, __) -> unreadBadge.ariaLabel(current + " unread notifications"));
+
+            ObservableValue<Integer> attentionValue = ov(10);
+            NotificationBadge attentionBadge = notificationBadge().ariaLabel("10 attention notifications")
+                    .bind(attentionValue)
+                    .shouldNotify()
+                    .attention();
+            attentionValue.subscribe((current, __) -> attentionBadge.ariaLabel(current + " attention notifications"));
+
+            return stack().gutter()
+                    .addItem(stackItem()
+                            .add(flex().columnGap(sm)
+                                    .add(readBadge)
+                                    .add(unreadBadge)
+                                    .add(attentionBadge)))
+                    .addItem(stackItem()
+                            .add(button("Add notification").primary()
+                                    .onClick((event, button) -> {
+                                        readValue.set(readValue.get() + 1);
+                                        unreadValue.set(unreadValue.get() + 1);
+                                        attentionValue.set(attentionValue.get() + 1);
+                                    })))
+                    .element();
+            // @code-end:notification-badge-with-count
+        }));
 
         startApiDocs(NotificationBadge.class);
         addApiDoc(NotificationBadge.class, component);

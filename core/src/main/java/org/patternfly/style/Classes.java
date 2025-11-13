@@ -185,6 +185,8 @@ public interface Classes {
     String noPadding = "no-padding";
     String noPaddingTop = "no-padding-top";
     String noSidebar = "no-sidebar";
+    String notificationDrawer = "notification-drawer";
+    String notify = "notify";
     String off = "off";
     String on = "on";
     String open = "open";
@@ -292,6 +294,7 @@ public interface Classes {
     String toggleGroup = "toggle-group";
     String toggleRight = "toggle-right";
     String toolbar = "toolbar";
+    String themeSelector = "theme-selector";
     String tooltip = "tooltip";
     String top = "top";
     String tr = "tr";

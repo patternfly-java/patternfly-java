@@ -105,7 +105,9 @@ public enum ComponentType {
 
     Navigation("nav", "PF6/Nav"),
 
-    NotificationBadge("nb", null),
+    NotificationBadge("nb", "PF6/NotificationBadge"),
+
+    NotificationDrawer("nd", "PF6/NotificationDrawer"),
 
     OptionsMenu("opt", null),
 
@@ -146,6 +148,8 @@ public enum ComponentType {
     TextInput("ti", "PF6/TextInput"),
 
     TextInputGroup("tig", "PF6/TextInputGroup"),
+
+    ThemeSelector("ths", "PF6/ThemeSelector"),
 
     Timestamp("ts", "PF6/Timestamp"),
 
