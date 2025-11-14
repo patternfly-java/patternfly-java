@@ -33,7 +33,7 @@
 
     <properties>
         <!-- Dependency versions -->
-        <version.kie.j2cl.bom>0.4</version.kie.j2cl.bom>
+        <version.kie.j2cl.bom>0.5</version.kie.j2cl.bom>
         <version.node>v24.10.0</version.node>
 
         <!-- Build related -->
