@@ -33,6 +33,20 @@ public enum Severity {
 
     danger(IconSets.fas::exclamationCircle, Status.danger);
 
+    public static Severity of(String severity) {
+        return of(Status.of(severity));
+    }
+
+    public static Severity of(Status status) {
+        return switch (status) {
+            case custom -> custom;
+            case info -> info;
+            case success -> success;
+            case warning -> warning;
+            case danger -> danger;
+        };
+    }
+
     public final Supplier<PredefinedIcon> icon;
     public final Status status;
 
