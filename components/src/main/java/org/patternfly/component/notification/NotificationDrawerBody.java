@@ -15,9 +15,11 @@
  */
 package org.patternfly.component.notification;
 
+import org.patternfly.component.emptystate.EmptyState;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.notificationDrawer;
@@ -33,6 +35,8 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
     // ------------------------------------------------------ instance
 
     static final String SUB_COMPONENT_NAME = "ndb";
+    private NotificationDrawerList list;
+    private EmptyState emptyState;
 
     NotificationDrawerBody() {
         super(SUB_COMPONENT_NAME, div().css(component(notificationDrawer, body)).element());
@@ -44,10 +48,33 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
         return add(list);
     }
 
+    public NotificationDrawerBody add(NotificationDrawerList list) {
+        this.list = list;
+        element().appendChild(list.element());
+        return this;
+    }
+
+    public NotificationDrawerBody addEmptyState(EmptyState emptyState) {
+        return add(emptyState);
+    }
+
+    public NotificationDrawerBody add(EmptyState emptyState) {
+        this.emptyState = emptyState;
+        element().appendChild(this.emptyState.element());
+        return this;
+    }
+
     // ------------------------------------------------------ builder
 
     @Override
     public NotificationDrawerBody that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public void empty(boolean empty) {
+        setVisible(list.element(), !empty);
+        setVisible(emptyState.element(), empty);
     }
 }

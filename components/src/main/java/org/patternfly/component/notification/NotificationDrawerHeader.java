@@ -17,7 +17,6 @@ package org.patternfly.component.notification;
 
 import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.menu.Dropdown;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -37,8 +36,7 @@ import static org.patternfly.style.Classes.status;
 import static org.patternfly.style.Classes.title;
 
 public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerHeader>
-        implements
-        ElementTextDelegate<HTMLElement, NotificationDrawerHeader> {
+        implements ElementTextDelegate<HTMLElement, NotificationDrawerHeader> {
 
     // ------------------------------------------------------ factory
 

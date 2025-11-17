@@ -324,7 +324,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover status(Severity severity) {
-        return status(severity, severity.aria);
+        return status(severity, severity.name() + " popover");
     }
 
     public Popover status(Severity severity, String screenReaderText) {

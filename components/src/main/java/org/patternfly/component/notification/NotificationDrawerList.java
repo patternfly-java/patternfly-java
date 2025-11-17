@@ -27,6 +27,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.core.Roles.list;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.notificationDrawer;
 
@@ -46,7 +47,7 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     NotificationDrawerList() {
         super(SUB_COMPONENT_NAME, ul().css(component(notificationDrawer, Classes.list))
-                .role(Roles.list)
+                .role(list)
                 .element());
         this.items = new LinkedHashMap<>();
     }

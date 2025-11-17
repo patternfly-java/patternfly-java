@@ -143,6 +143,7 @@ public interface Classes {
     String hidden = "hidden";
     String hint = "hint";
     String horizontal = "horizontal";
+    String hoverable = "hoverable";
     String icon = "icon";
     String icons = "icons";
     String indented = "indented";

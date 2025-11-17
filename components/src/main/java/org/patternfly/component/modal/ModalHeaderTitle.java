@@ -20,20 +20,17 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.Severity;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.h;
-import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modalBox;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.TypedModifier.swap;
 
@@ -53,7 +50,6 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
     private final HTMLElement textElement;
     Severity severity;
     private HTMLElement failSafeIconElement;
-    private HTMLElement failSafeScreenReaderElement;
 
     ModalHeaderTitle() {
         super(SUB_COMPONENT_NAME, h(1).css(component(modalBox, title))
@@ -75,7 +71,6 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
         swap(this, element(), severity.status, this.severity != null ? this.severity.status : null,
                 () -> this.severity = severity);
         icon(severity.icon.get());
-        failSafeScreenReaderElement().textContent = severity.aria;
         return this;
     }
 
@@ -120,12 +115,5 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
                     .element());
         }
         return failSafeIconElement;
-    }
-
-    private HTMLElement failSafeScreenReaderElement() {
-        if (failSafeScreenReaderElement == null) {
-            insertAfter(failSafeScreenReaderElement = span().css(screenReader).element(), failSafeIconElement());
-        }
-        return failSafeScreenReaderElement;
     }
 }

@@ -129,7 +129,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     Alert(Severity severity, String identifier, String title) {
         super(ComponentType.Alert, div().css(component(alert), severity.status.modifier())
                 .data(Dataset.identifier, identifier)
-                .aria(label, severity.aria)
+                .aria(label, severity.name() + " alert")
                 .element());
         this.identifier = identifier;
         this.severity = severity;
@@ -145,7 +145,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                 .add(severity.icon.get().element())
                 .element());
         add(titleElement = p().css(component(alert, Classes.title))
-                .add(span().css(screenReader).text(severity.aria + ":"))
+                .add(span().css(screenReader).text(severity.name() + " alert:"))
                 .add(title)
                 .element());
         Attachable.register(this, this);
@@ -200,7 +200,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
                 .add(closeButton = button().icon(times().element()).plain()
-                        .aria(label, "Close " + severity.aria + ": " + title)
+                        .aria(label, "Close " + severity.name() + " alert: " + title)
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);
         return onClose(closeHandler);
@@ -229,7 +229,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                 .add(toggleButton = button().plain()
                         .on(click, e -> toggle())
                         .aria(expanded, false)
-                        .aria(label, severity.aria + ": " + title + " details")
+                        .aria(label, severity.name() + " alert: " + title + " details")
                         .add(span().css(component(alert, toggle, icon))
                                 .add(angleRight().element())))
                 .element());
