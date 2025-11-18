@@ -32,6 +32,7 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
@@ -144,5 +145,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        SimpleListItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

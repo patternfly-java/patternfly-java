@@ -32,6 +32,7 @@ import org.patternfly.style.Size;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.dl;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.core.Validation.verifyRange;
@@ -254,5 +255,11 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        DescriptionListGroup item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

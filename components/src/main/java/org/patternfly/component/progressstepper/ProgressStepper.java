@@ -25,17 +25,21 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Vertical;
 
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
@@ -355,6 +359,12 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         removeChildrenFrom(element());
         clearCollections();
         currentIndex = -1;
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ProgressStep item = progressStepperMap.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     /**

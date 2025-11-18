@@ -68,22 +68,18 @@ public class NotificationBadgeComponent extends SnippetPage {
                 code("notification-badge-with-count"), () -> {
             // @code-start:notification-badge-with-count
             ObservableValue<Integer> readValue = ov(10);
-            NotificationBadge readBadge = notificationBadge().ariaLabel("10 read notifications")
-                    .bind(readValue)
-                    .shouldNotify();
+            NotificationBadge readBadge = notificationBadge().ariaLabel("10 read notifications").bind(readValue);
             readValue.subscribe((current, __) -> readBadge.ariaLabel(current + " read notifications"));
 
             ObservableValue<Integer> unreadValue = ov(10);
             NotificationBadge unreadBadge = notificationBadge().ariaLabel("10 unread notifications")
                     .bind(unreadValue)
-                    .shouldNotify()
                     .unread();
             unreadValue.subscribe((current, __) -> unreadBadge.ariaLabel(current + " unread notifications"));
 
             ObservableValue<Integer> attentionValue = ov(10);
             NotificationBadge attentionBadge = notificationBadge().ariaLabel("10 attention notifications")
                     .bind(attentionValue)
-                    .shouldNotify()
                     .attention();
             attentionValue.subscribe((current, __) -> attentionBadge.ariaLabel(current + " attention notifications"));
 
@@ -97,8 +93,11 @@ public class NotificationBadgeComponent extends SnippetPage {
                             .add(button("Add notification").primary()
                                     .onClick((event, button) -> {
                                         readValue.set(readValue.get() + 1);
+                                        readBadge.triggerNotification();
                                         unreadValue.set(unreadValue.get() + 1);
+                                        unreadBadge.triggerNotification();
                                         attentionValue.set(attentionValue.get() + 1);
+                                        attentionBadge.triggerNotification();
                                     })))
                     .element();
             // @code-end:notification-badge-with-count

@@ -48,6 +48,7 @@ import static elemental2.dom.DomGlobal.document;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.reverse;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.bind;
@@ -326,6 +327,12 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        TreeViewItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

@@ -51,6 +51,7 @@ public class NotificationDrawer extends BaseComponent<HTMLElement, NotificationD
     private NotificationDrawer() {
         super(ComponentType.NotificationDrawer, div().css(component(notificationDrawer)).element());
         this.closeHandler = new ArrayList<>();
+        storeComponent();
     }
 
     // ------------------------------------------------------ add

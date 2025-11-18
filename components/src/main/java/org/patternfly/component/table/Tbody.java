@@ -134,4 +134,10 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
         removeChildrenFrom(element());
         items.clear();
     }
+
+    @Override
+    public void removeItem(String identifier) {
+        Tr item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
 }

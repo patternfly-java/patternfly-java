@@ -27,6 +27,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
 
@@ -35,6 +36,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Attributes.role;
@@ -195,6 +197,12 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     public void clear() {
         removeChildrenFrom(ulElement);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        SimpleListItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

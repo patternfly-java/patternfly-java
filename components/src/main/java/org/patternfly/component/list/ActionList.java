@@ -26,6 +26,7 @@ import org.patternfly.component.HasItems;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
@@ -105,5 +106,11 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ActionListGroup item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

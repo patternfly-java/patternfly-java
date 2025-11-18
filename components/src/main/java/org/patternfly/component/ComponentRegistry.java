@@ -55,7 +55,7 @@ public class ComponentRegistry {
     }
 
     @SuppressWarnings("unchecked")
-    public <C extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupComponent(
+    public <C extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupSubComponent(
             ComponentType type, String name) {
         return (C) subComponents.get(subComponentKey(type, name));
     }

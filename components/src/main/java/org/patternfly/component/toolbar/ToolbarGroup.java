@@ -19,11 +19,15 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jboss.elemento.By;
 import org.patternfly.component.HasItems;
+import org.patternfly.core.Dataset;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
@@ -104,5 +108,11 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

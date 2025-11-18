@@ -438,6 +438,12 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     @Override
+    public void removeItem(String identifier) {
+        TreeViewItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
+
+    @Override
     public String text() {
         return text;
     }

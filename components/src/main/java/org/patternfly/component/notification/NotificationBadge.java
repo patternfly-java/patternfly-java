@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -37,7 +38,6 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.NotificationStatus;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
@@ -86,7 +86,6 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
     private final List<ChangeHandler<NotificationBadge, Integer>> changeValueHandler;
     private final List<ChangeHandler<NotificationBadge, NotificationStatus>> changeStatusHandler;
     private int value;
-    private boolean shouldNotify;
     private ObservableValue<Integer> ov;
     private ObservableValue<NotificationStatus> os;
     private NotificationStatus status;
@@ -97,7 +96,6 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         this.toggleHandler = new ArrayList<>();
         this.changeValueHandler = new ArrayList<>();
         this.changeStatusHandler = new ArrayList<>();
-        this.shouldNotify = false;
 
         count(count, false);
         status(read, false);
@@ -194,19 +192,6 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         return this;
     }
 
-    /** Same as {@linkplain #shouldNotify(boolean) shouldNotify(true)} */
-    public NotificationBadge shouldNotify() {
-        return shouldNotify(true);
-    }
-
-    /**
-     * Flag indicating whether the notification badge animation should be triggered when the value changes.
-     */
-    public NotificationBadge shouldNotify(boolean shouldNotify) {
-        this.shouldNotify = shouldNotify;
-        return this;
-    }
-
     @Override
     public NotificationBadge that() {
         return this;
@@ -263,6 +248,11 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         }
     }
 
+    public void triggerNotification() {
+        css(modifier(notify));
+        setTimeout(__ -> classList().remove(modifier(notify)), 1000);
+    }
+
     public int count() {
         return value();
     }
@@ -285,11 +275,8 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
 
     private void internalUpdateValue(int current) {
         this.value = current;
+        Elements.setVisible(button.textElement(), current > 0);
         button.text((current > 0) ? String.valueOf(current) : "");
-        if (shouldNotify) {
-            css(modifier(notify));
-            setTimeout(__ -> classList().remove(modifier(notify)), 1000);
-        }
     }
 
     private void internalUpdateStatus(NotificationStatus previous, NotificationStatus current) {

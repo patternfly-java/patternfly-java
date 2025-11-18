@@ -50,6 +50,7 @@ import elemental2.dom.MutationRecord;
 
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
@@ -312,6 +313,13 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
             }
         }
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        JumpLinksItem item = items.remove(identifier);
+        item.list.clear();
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

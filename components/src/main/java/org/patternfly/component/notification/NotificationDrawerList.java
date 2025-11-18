@@ -19,13 +19,13 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Elements;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Roles.list;
 import static org.patternfly.style.Classes.component;
@@ -54,10 +54,24 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ add
 
+    /**
+     * Unlike other add methods this methods doesn't append the item to the list, but inserts it as the first child.
+     */
     @Override
     public NotificationDrawerList add(NotificationDrawerItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        insertFirst(element(), item.element());
+        return this;
+    }
+
+    public NotificationDrawerList insertAfter(NotificationDrawerItem newItem, NotificationDrawerItem afterItem) {
+        items.put(newItem.identifier(), newItem);
+        if (afterItem == null) {
+            insertFirst(element(), newItem.element());
+        } else {
+            Elements.insertAfter(newItem.element(), afterItem.element());
+        }
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -100,5 +114,11 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
             failSafeRemoveFromParent(item);
         }
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        NotificationDrawerItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

@@ -22,11 +22,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 
@@ -34,6 +36,7 @@ import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.nav;
 import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
@@ -137,6 +140,12 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     public void clear() {
         removeChildrenFrom(ol);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        BreadcrumbItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

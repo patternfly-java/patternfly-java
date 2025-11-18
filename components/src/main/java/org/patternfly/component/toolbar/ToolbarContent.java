@@ -19,8 +19,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jboss.elemento.By;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
+import org.patternfly.core.Dataset;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
@@ -29,6 +31,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
@@ -165,5 +168,11 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public void clear() {
         removeChildrenFrom(contentSection);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

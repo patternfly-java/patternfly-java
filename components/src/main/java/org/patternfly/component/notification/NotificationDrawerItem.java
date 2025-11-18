@@ -15,22 +15,30 @@
  */
 package org.patternfly.component.notification;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Severity;
+import org.patternfly.component.menu.Dropdown;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.EventType.click;
 import static org.patternfly.core.Attributes.tabindex;
+import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.item;
@@ -60,6 +68,9 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement screenReaderElement;
+    private final HTMLElement headerElement;
+    private final List<ComponentHandler<NotificationDrawerItem>> handler;
+    private HTMLElement actionElement;
     private HTMLElement timestampElement;
 
     NotificationDrawerItem(Severity severity, String identifier, String title) {
@@ -68,17 +79,29 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
+        this.handler = new ArrayList<>();
 
+        bind(element(), click, e -> handler.forEach(h -> h.handle(e, this)));
         add(screenReaderElement = span().css(screenReader).text("unread").element());
-        add(div().css(component(notificationDrawer, list, item, header))
+        add(headerElement = div().css(component(notificationDrawer, list, item, header))
                 .add(span().css(component(notificationDrawer, list, item, header, Classes.icon))
                         .add(severity.icon.get().element()))
                 .add(h(2).css(component(notificationDrawer, list, item, header, Classes.title))
                         .add(span().css(screenReader).text(severity.name() + " notification:"))
-                        .add(title)));
+                        .add(title))
+                .element());
     }
 
     // ------------------------------------------------------ add
+
+    public NotificationDrawerItem addAction(Dropdown dropdown) {
+        return addAction(dropdown.element());
+    }
+
+    public NotificationDrawerItem addAction(HTMLElement element) {
+        failSafeActionElement().appendChild(element);
+        return this;
+    }
 
     public NotificationDrawerItem addBody(NotificationDrawerItemBody body) {
         return add(body);
@@ -123,6 +146,13 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    public NotificationDrawerItem onClick(ComponentHandler<NotificationDrawerItem> handler) {
+        this.handler.add(handler);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @SuppressWarnings("unchecked")
@@ -144,6 +174,13 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
     }
 
     // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeActionElement() {
+        if (actionElement == null) {
+            insertAfter(actionElement = div().css(component(notificationDrawer, list, item, action)).element(), headerElement);
+        }
+        return actionElement;
+    }
 
     private HTMLElement failSafeTimestampElement() {
         if (timestampElement == null) {

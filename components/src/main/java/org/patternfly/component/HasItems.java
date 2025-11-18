@@ -67,5 +67,7 @@ public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
 
     S item(String identifier);
 
+    void removeItem(String identifier);
+
     void clear();
 }

@@ -28,7 +28,6 @@ import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
@@ -66,7 +65,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         return element;
     }
 
-    public B registerComponent() {
+    public B registerSubComponent() {
         componentRegistry().registerSubComponent(componentType, name, this);
         return that();
     }

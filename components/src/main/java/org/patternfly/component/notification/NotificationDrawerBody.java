@@ -78,7 +78,7 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
     }
 
     public void markEmpty(boolean empty) {
-        setVisible(list.element(), !empty);
-        setVisible(emptyState.element(), empty);
+        setVisible(list, !empty);
+        setVisible(emptyState, empty);
     }
 }

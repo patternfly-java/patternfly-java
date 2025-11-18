@@ -19,13 +19,16 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jboss.elemento.By;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.Timeouts;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.body;
@@ -178,6 +181,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         items.clear();
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        Alert item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
 
     // ------------------------------------------------------ internal
 

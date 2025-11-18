@@ -26,6 +26,7 @@ import org.jboss.elemento.Scheduler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.drawer.Drawer;
+import org.patternfly.component.notification.NotificationBadge;
 import org.patternfly.component.notification.NotificationDrawer;
 import org.patternfly.component.skiptocontent.SkipToContent;
 import org.patternfly.core.ObservableValue;
@@ -42,7 +43,6 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.resizeObserver;
-import static org.patternfly.component.drawer.Drawer.drawer;
 import static org.patternfly.component.drawer.DrawerContent.drawerContent;
 import static org.patternfly.component.drawer.DrawerPanel.drawerPanel;
 import static org.patternfly.core.ObservableValue.ov;
@@ -129,6 +129,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(SkipToContent skipToContent) {
         failSafeRemoveFromParent(this.skipToContent);
         this.skipToContent = skipToContent;
+
         insertFirst(element(), this.skipToContent);
         return this;
     }
@@ -142,6 +143,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(Masthead masthead) {
         failSafeRemoveFromParent(this.masthead);
         this.masthead = masthead;
+
         if (skipToContent != null) {
             insertAfter(this.masthead, skipToContent.element());
         } else {
@@ -159,6 +161,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(PageSidebar sidebar) {
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
+
         if (main != null) {
             insertBefore(this.sidebar, main.element());
         } else if (notificationDrawer != null) {
@@ -177,10 +180,9 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     /** Adds the {@link PageMain} component and removes the previous one (if any). */
     public Page add(PageMain main) {
         failSafeRemoveFromParent(this.main);
-        failSafeRemoveFromParent(this.drawer);
-        failSafeRemoveFromParent(this.notificationDrawer);
         this.main = main;
-        if (drawer != null && notificationDrawer == null) {
+
+        if (drawer != null && notificationDrawer != null) {
             drawer.content().add(main);
         } else {
             add(main.element());
@@ -197,16 +199,16 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
         failSafeRemoveFromParent(this.drawer);
         failSafeRemoveFromParent(this.notificationDrawer);
         this.notificationDrawer = notificationDrawer;
-        this.drawer = drawer()
-                .addContent(drawerContent().run(content -> {
-                    if (main != null) {
-                        content.add(main);
-                    }
-                }))
-                .addPanel(drawerPanel()
-                        .add(notificationDrawer));
+
         add(div().css(component(page, Classes.drawer))
-                .add(drawer));
+                .add(this.drawer = Drawer.drawer()
+                        .addContent(drawerContent().run(content -> {
+                            if (main != null) {
+                                content.add(main);
+                            }
+                        }))
+                        .addPanel(drawerPanel()
+                                .add(notificationDrawer))));
         return this;
     }
 
@@ -250,6 +252,17 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ api
 
+    public void wire(NotificationBadge notificationBadge, NotificationDrawer notificationDrawer) {
+        notificationBadge.onClick((event, component) -> {
+            component.toggle();
+            drawer.toggle();
+        });
+        notificationDrawer.onClose((event, component) -> {
+            notificationBadge.collapse();
+            drawer.collapse();
+        });
+    }
+
     /**
      * Returns the current {@link Masthead} or {@code null} if no masthead has been defined yet.
      */
@@ -270,6 +283,14 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     @SuppressWarnings("ConfusingMainMethod")
     public PageMain main() {
         return main;
+    }
+
+    /**
+     * Returns the {@link Drawer} that contains the current {@link NotificationDrawer} or {@code null} if no notification drawer
+     * has been defined yet.
+     */
+    public Drawer drawer() {
+        return drawer;
     }
 
     /**

@@ -37,7 +37,6 @@ import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Modifiers.FullWidth;
 import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -258,9 +257,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     public MenuToggle icon(Element icon) {
         removeIcon();
         this.icon = icon;
-        if (type == MenuToggleType.plain) {
-            add(icon);
-        } else if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
+        if (type == MenuToggleType.plain || type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
             insertFirst(element(), iconContainer = span().css(component(menuToggle, Classes.icon)).add(icon).element());
         } else {
             logger.warn("Icon is not supported for menu toggle %o with type '%s'", element(), type.name());

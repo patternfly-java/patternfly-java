@@ -391,6 +391,12 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         return null;
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        Cell<?> item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
+
     // ------------------------------------------------------ internal
 
     void markSelected() {
