@@ -74,7 +74,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "sli";
+    public static final String SUB_COMPONENT_NAME = "sli";
     private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
 
     private final String identifier;

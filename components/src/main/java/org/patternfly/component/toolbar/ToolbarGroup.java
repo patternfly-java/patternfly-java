@@ -47,7 +47,7 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tg";
+    public static final String SUB_COMPONENT_NAME = "tg";
     private final Map<String, ToolbarItem> items;
 
     ToolbarGroup(ToolbarGroupType type) {

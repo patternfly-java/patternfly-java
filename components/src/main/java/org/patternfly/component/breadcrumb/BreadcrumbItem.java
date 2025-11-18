@@ -64,7 +64,7 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "bci";
+    public static final String SUB_COMPONENT_NAME = "bci";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;

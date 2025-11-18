@@ -44,7 +44,7 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dlc";
+    public static final String SUB_COMPONENT_NAME = "dlc";
     private final HTMLElement body;
 
     DataListExpandableContent() {

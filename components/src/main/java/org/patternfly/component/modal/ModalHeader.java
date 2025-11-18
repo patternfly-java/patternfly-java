@@ -48,7 +48,7 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(ModalHeader.class.getName());
-    static final String SUB_COMPONENT_NAME = "mh";
+    public static final String SUB_COMPONENT_NAME = "mh";
     ModalHeaderTitle title;
     private Popover popover;
     private HTMLElement help;

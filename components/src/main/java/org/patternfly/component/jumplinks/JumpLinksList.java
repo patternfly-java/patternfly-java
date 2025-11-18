@@ -42,7 +42,7 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "jll";
+    public static final String SUB_COMPONENT_NAME = "jll";
     final Map<String, JumpLinksItem> items;
 
     JumpLinksList() {

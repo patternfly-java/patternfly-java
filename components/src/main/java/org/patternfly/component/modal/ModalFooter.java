@@ -40,7 +40,7 @@ public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> imp
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mf";
+    public static final String SUB_COMPONENT_NAME = "mf";
     private final List<ButtonHandler> buttons;
 
     ModalFooter() {

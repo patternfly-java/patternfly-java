@@ -33,7 +33,7 @@ public class MenuSearch extends MenuSubComponent<HTMLDivElement, MenuSearch> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ms";
+    public static final String SUB_COMPONENT_NAME = "ms";
 
     MenuSearch() {
         super(SUB_COMPONENT_NAME, div().css(component(menu, search)).element());

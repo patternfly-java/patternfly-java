@@ -49,7 +49,7 @@ public class CodeEditorTab extends CodeEditorSubComponent<HTMLDivElement, CodeEd
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "cet";
+    public static final String SUB_COMPONENT_NAME = "cet";
 
     CodeEditorTab() {
         super(SUB_COMPONENT_NAME, div().css(component(codeEditor, tab)).element());

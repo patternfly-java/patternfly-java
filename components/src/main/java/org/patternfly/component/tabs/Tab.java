@@ -108,7 +108,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Tab.class.getName());
-    static final String SUB_COMPONENT_NAME = "tab";
+    public static final String SUB_COMPONENT_NAME = "tab";
 
     final String buttonId;
     final String contentId;

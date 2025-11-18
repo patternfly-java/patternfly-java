@@ -38,7 +38,7 @@ public class TableCaption extends TableSubComponent<HTMLElement, TableCaption> i
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_NAME = "tc";
 
     TableCaption() {
         super(SUB_COMPONENT_NAME, caption().css(component(table, caption)).element());

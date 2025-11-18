@@ -53,7 +53,7 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ct";
+    public static final String SUB_COMPONENT_NAME = "ct";
 
     private final HTMLElement titleText;
 

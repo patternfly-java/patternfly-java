@@ -35,7 +35,7 @@ public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, Emp
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "esb";
+    public static final String SUB_COMPONENT_NAME = "esb";
 
     EmptyStateFooter() {
         super(SUB_COMPONENT_NAME, div().css(component(emptyState, footer)).element());

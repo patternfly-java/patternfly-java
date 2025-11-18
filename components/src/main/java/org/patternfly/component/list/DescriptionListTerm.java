@@ -55,7 +55,7 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dlg";
+    public static final String SUB_COMPONENT_NAME = "dlg";
     private final HTMLElement textElement;
     private HTMLElement iconContainer;
 

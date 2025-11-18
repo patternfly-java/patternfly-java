@@ -34,7 +34,7 @@ public class FormSelectOptionGroup extends FormSelectSubComponent<HTMLOptGroupEl
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fsog";
+    public static final String SUB_COMPONENT_NAME = "fsog";
 
     FormSelectOptionGroup(String label) {
         super(SUB_COMPONENT_NAME, optgroup()

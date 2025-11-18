@@ -33,7 +33,7 @@ public class CodeEditorActions extends CodeEditorSubComponent<HTMLDivElement, Co
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ceas";
+    public static final String SUB_COMPONENT_NAME = "ceas";
 
     CodeEditorActions() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, controls)).element());

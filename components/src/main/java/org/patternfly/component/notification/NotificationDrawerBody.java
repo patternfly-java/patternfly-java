@@ -34,7 +34,7 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ndb";
+    public static final String SUB_COMPONENT_NAME = "ndb";
     private NotificationDrawerList list;
     private EmptyState emptyState;
 
@@ -50,7 +50,7 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
 
     public NotificationDrawerBody add(NotificationDrawerList list) {
         this.list = list;
-        element().appendChild(list.element());
+        add(list.element());
         return this;
     }
 
@@ -60,7 +60,7 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
 
     public NotificationDrawerBody add(EmptyState emptyState) {
         this.emptyState = emptyState;
-        element().appendChild(this.emptyState.element());
+        add(emptyState.element());
         return this;
     }
 
@@ -73,7 +73,11 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ api
 
-    public void empty(boolean empty) {
+    public NotificationDrawerList list() {
+        return list;
+    }
+
+    public void markEmpty(boolean empty) {
         setVisible(list.element(), !empty);
         setVisible(emptyState.element(), empty);
     }

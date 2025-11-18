@@ -33,7 +33,7 @@ public class CodeBlockHeader extends CodeBlockSubComponent<HTMLDivElement, CodeB
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "cbh";
+    public static final String SUB_COMPONENT_NAME = "cbh";
 
     CodeBlockActions actions;
 

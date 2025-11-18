@@ -72,7 +72,7 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "cba";
+    public static final String SUB_COMPONENT_NAME = "cba";
 
     private final Button button;
     private ComponentHandler<CodeBlockAction> handler;

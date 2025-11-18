@@ -40,7 +40,7 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "igi";
+    public static final String SUB_COMPONENT_NAME = "igi";
     private Disabled<?, ?> componentImplementingDisabled;
     private FormControl<?, ?> formControl;
     private Dropdown dropdown;

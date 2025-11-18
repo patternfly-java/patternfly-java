@@ -46,7 +46,7 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tfc";
+    public static final String SUB_COMPONENT_NAME = "tfc";
     private final Map<String, ToolbarItem> items;
 
     ToolbarFilterContent() {

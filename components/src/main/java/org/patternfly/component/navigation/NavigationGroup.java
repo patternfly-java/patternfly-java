@@ -68,7 +68,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ng";
+    public static final String SUB_COMPONENT_NAME = "ng";
 
     private final String identifier;
     private final Map<String, NavigationItem> items;

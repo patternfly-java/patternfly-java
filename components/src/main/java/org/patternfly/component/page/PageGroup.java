@@ -54,7 +54,7 @@ public class PageGroup extends SubComponent<HTMLDivElement, PageGroup> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmg";
+    public static final String SUB_COMPONENT_NAME = "pg";
 
     PageGroup() {
         super(ComponentType.Page, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());

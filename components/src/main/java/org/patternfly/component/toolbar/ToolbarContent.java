@@ -59,7 +59,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_NAME = "tc";
     private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
 

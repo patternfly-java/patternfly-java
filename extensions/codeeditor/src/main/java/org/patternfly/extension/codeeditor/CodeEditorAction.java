@@ -75,7 +75,7 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "cea";
+    public static final String SUB_COMPONENT_NAME = "cea";
 
     private final Button button;
     private ComponentHandler<CodeEditorAction> handler;

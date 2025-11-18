@@ -41,7 +41,7 @@ public class NotificationDrawerItemBody extends NotificationDrawerSubComponent<H
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ndib";
+    public static final String SUB_COMPONENT_NAME = "ndib";
 
     NotificationDrawerItemBody() {
         super(SUB_COMPONENT_NAME, div().css(component(notificationDrawer, list, item, description)).element());

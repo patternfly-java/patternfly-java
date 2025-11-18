@@ -91,7 +91,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "eng";
+    public static final String SUB_COMPONENT_NAME = "eng";
 
     final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
     private final String identifier;

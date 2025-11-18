@@ -59,7 +59,7 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pm";
+    public static final String SUB_COMPONENT_NAME = "pm";
     private final HTMLContainerBuilder<HTMLElement> mc;
 
     PageMain(String id) {

@@ -71,7 +71,7 @@ public class NotificationDrawer extends BaseComponent<HTMLElement, NotificationD
 
     public NotificationDrawer add(NotificationDrawerBody body) {
         this.body = body;
-        element().appendChild(body.element());
+        add(body.element());
         return this;
     }
 

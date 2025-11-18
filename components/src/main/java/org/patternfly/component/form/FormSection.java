@@ -52,7 +52,7 @@ public class FormSection extends FormSubComponent<HTMLElement, FormSection> impl
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fs";
+    public static final String SUB_COMPONENT_NAME = "fs";
     private final HTMLContainerBuilder<? extends HTMLElement> titleElement;
 
     <E extends HTMLElement> FormSection(HTMLContainerBuilder<E> titleElement) {

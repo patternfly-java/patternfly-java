@@ -57,7 +57,7 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "li";
+    public static final String SUB_COMPONENT_NAME = "li";
     private final String identifier;
     private final Map<String, Object> data;
     private HTMLElement iconContainer;

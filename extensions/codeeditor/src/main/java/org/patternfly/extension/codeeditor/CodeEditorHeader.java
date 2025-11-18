@@ -35,7 +35,7 @@ public class CodeEditorHeader extends CodeEditorSubComponent<HTMLDivElement, Cod
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ceh";
+    public static final String SUB_COMPONENT_NAME = "ceh";
 
     CodeEditorHeader() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, header)).element());

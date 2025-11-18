@@ -41,7 +41,7 @@ public class PageTabs extends PageSectionBuilder<HTMLElement, PageTabs> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmt";
+    public static final String SUB_COMPONENT_NAME = "pt";
 
     PageTabs() {
         super(SUB_COMPONENT_NAME, section().css(component(page, main, tabs)).element());

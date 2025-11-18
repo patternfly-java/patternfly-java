@@ -39,7 +39,7 @@ public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> imp
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mh";
+    public static final String SUB_COMPONENT_NAME = "mh";
 
     MenuHeader() {
         super(SUB_COMPONENT_NAME, div().css(component(menu, header)).element());

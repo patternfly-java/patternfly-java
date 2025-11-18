@@ -46,7 +46,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mht";
+    public static final String SUB_COMPONENT_NAME = "mht";
     private final HTMLElement textElement;
     Severity severity;
     private HTMLElement failSafeIconElement;

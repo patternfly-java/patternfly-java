@@ -24,7 +24,6 @@ import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Static;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
@@ -150,6 +149,14 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         if (fireEvent) {
             toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
         }
+    }
+
+    public DrawerContent content() {
+        return content;
+    }
+
+    public DrawerPanel panel() {
+        return panel;
     }
 
     // ------------------------------------------------------ internal

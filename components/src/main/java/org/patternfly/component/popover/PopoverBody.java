@@ -37,7 +37,7 @@ public class PopoverBody extends PopoverSubComponent<HTMLDivElement, PopoverBody
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pb";
+    public static final String SUB_COMPONENT_NAME = "pb";
 
     final String id;
 

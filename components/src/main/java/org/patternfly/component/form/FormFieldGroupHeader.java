@@ -42,7 +42,7 @@ public class FormFieldGroupHeader extends FormSubComponent<HTMLElement, FormFiel
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ffgh";
+    public static final String SUB_COMPONENT_NAME = "ffgh";
     private final HTMLElement mainContainer;
     private HTMLElement actionContainer;
     HTMLElement titleElement;

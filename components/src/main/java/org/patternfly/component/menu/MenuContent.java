@@ -55,7 +55,7 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mc";
+    public static final String SUB_COMPONENT_NAME = "mc";
 
     MenuList list;
     final List<MenuGroup> groups;

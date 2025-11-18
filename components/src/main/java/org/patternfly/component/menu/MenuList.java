@@ -53,7 +53,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ml";
+    public static final String SUB_COMPONENT_NAME = "ml";
     final Map<String, MenuItem> items;
 
     MenuList() {

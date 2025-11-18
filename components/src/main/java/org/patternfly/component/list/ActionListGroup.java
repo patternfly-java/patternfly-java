@@ -53,7 +53,7 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "alg";
+    public static final String SUB_COMPONENT_NAME = "alg";
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;

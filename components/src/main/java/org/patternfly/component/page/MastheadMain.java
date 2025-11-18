@@ -41,7 +41,7 @@ public class MastheadMain extends MastheadSubComponent<HTMLDivElement, MastheadM
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mhm";
+    public static final String SUB_COMPONENT_NAME = "mhm";
 
     MastheadMain() {
         super(SUB_COMPONENT_NAME, div().css(component(masthead, main)).element());

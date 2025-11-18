@@ -43,7 +43,7 @@ public class CodeEditorLink extends CodeEditorSubComponent<HTMLElement, CodeEdit
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "cel";
+    public static final String SUB_COMPONENT_NAME = "cel";
 
     private final HTMLElement buttonElement;
 

@@ -69,7 +69,7 @@ public class TitleCell extends Cell<TitleCell> implements
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_NAME = "tc";
     Tr tr;
     private final HTMLElement mainContainer;
     private final HTMLElement textContainer;

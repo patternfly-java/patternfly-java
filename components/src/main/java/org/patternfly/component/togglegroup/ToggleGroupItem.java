@@ -77,7 +77,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tgi";
+    public static final String SUB_COMPONENT_NAME = "tgi";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLContainerBuilder<HTMLButtonElement> button;

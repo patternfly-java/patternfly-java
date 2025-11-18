@@ -121,7 +121,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tvi";
+    public static final String SUB_COMPONENT_NAME = "tvi";
     private static final Logger logger = Logger.getLogger(TreeViewItem.class.getName());
     private static final Supplier<TreeViewItem> loading = () -> treeViewItem(
             Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "loading"))

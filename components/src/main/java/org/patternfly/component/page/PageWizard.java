@@ -28,32 +28,32 @@ import static org.patternfly.style.Classes.wizard;
 /**
  * Container to nest a {@link Wizard} in a {@link PageGroup} or {@link PageMain} container.
  */
-public class PageMainWizard extends PageSectionBuilder<HTMLElement, PageMainWizard> {
+public class PageWizard extends PageSectionBuilder<HTMLElement, PageWizard> {
 
     // ------------------------------------------------------ factory
 
-    public static PageMainWizard pageMainWizard() {
-        return new PageMainWizard();
+    public static PageWizard pageWizard() {
+        return new PageWizard();
     }
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pmw";
+    public static final String SUB_COMPONENT_NAME = "pw";
 
-    PageMainWizard() {
+    PageWizard() {
         super(SUB_COMPONENT_NAME, section().css(component(page, main, wizard)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public PageMainWizard addWizard(Wizard wizard) {
+    public PageWizard addWizard(Wizard wizard) {
         return add(wizard);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public PageMainWizard that() {
+    public PageWizard that() {
         return this;
     }
 }

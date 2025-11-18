@@ -66,7 +66,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(FormFieldGroup.class.getName());
-    static final String SUB_COMPONENT_NAME = "ffg";
+    public static final String SUB_COMPONENT_NAME = "ffg";
 
     private final String titleId;
     private boolean expandable;

@@ -61,7 +61,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mia";
+    public static final String SUB_COMPONENT_NAME = "mia";
 
     private final String identifier;
     private final List<ComponentHandler<MenuItemAction>> handler;

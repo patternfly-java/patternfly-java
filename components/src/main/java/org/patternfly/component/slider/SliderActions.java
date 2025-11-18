@@ -37,7 +37,7 @@ public class SliderActions extends SliderSubComponent<HTMLDivElement, SliderActi
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "sa";
+    public static final String SUB_COMPONENT_NAME = "sa";
     private final List<Button> actions;
 
     SliderActions() {

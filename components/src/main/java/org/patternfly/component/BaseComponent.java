@@ -27,10 +27,10 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
+import static org.patternfly.component.ComponentRegistry.componentRegistry;
 
 public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
@@ -63,6 +63,11 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
     @Override
     public E element() {
         return element;
+    }
+
+    public B registerComponent() {
+        componentRegistry().registerComponent(componentType(), this);
+        return that();
     }
 
     // ------------------------------------------------------ component store

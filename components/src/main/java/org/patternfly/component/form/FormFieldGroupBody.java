@@ -33,7 +33,7 @@ public class FormFieldGroupBody extends FormSubComponent<HTMLElement, FormFieldG
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ffgb";
+    public static final String SUB_COMPONENT_NAME = "ffgb";
 
     FormFieldGroupBody() {
         super(SUB_COMPONENT_NAME, div().css(component(form, fieldGroup, body)).element());

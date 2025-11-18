@@ -54,7 +54,7 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ttg";
+    public static final String SUB_COMPONENT_NAME = "ttg";
     private final Map<String, ToolbarItem> items;
 
     ToolbarToggleGroup() {

@@ -67,7 +67,7 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dli";
+    public static final String SUB_COMPONENT_NAME = "dli";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement rowElement;

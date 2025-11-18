@@ -93,7 +93,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tr";
+    public static final String SUB_COMPONENT_NAME = "tr";
     private static final Logger logger = Logger.getLogger(Tr.class.getName());
     private static final BiFunction<Integer, Integer, Tr> loading = (colspan, level) -> tr(
             Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "loading"))

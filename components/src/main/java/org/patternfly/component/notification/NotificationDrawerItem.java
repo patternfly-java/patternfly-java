@@ -56,7 +56,7 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ndi";
+    public static final String SUB_COMPONENT_NAME = "ndi";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement screenReaderElement;

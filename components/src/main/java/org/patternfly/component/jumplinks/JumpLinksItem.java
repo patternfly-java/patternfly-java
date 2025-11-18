@@ -65,7 +65,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "jli";
+    public static final String SUB_COMPONENT_NAME = "jli";
     private final String identifier;
     private final Map<String, Object> data;
     private final Button button;

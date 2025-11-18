@@ -52,7 +52,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tbd";
+    public static final String SUB_COMPONENT_NAME = "tbd";
     final Map<String, Tr> items;
     private Tr emptyRow;
 

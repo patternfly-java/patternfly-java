@@ -48,7 +48,7 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tt";
+    public static final String SUB_COMPONENT_NAME = "tt";
     private final Button button;
 
     TabsToggle() {

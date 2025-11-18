@@ -42,7 +42,7 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ndl";
+    public static final String SUB_COMPONENT_NAME = "ndl";
     final Map<String, NotificationDrawerItem> items;
 
     NotificationDrawerList() {

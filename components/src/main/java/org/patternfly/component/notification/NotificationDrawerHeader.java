@@ -46,7 +46,7 @@ public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTM
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ndh";
+    public static final String SUB_COMPONENT_NAME = "ndh";
     private final HTMLElement textElement;
     private final HTMLElement statusElement;
     private final HTMLElement closeElement;

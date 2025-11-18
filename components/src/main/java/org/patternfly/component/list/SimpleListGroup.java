@@ -56,7 +56,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "slg";
+    public static final String SUB_COMPONENT_NAME = "slg";
     final Map<String, SimpleListItem> items;
     private final HTMLElement headerElement;
     private final HTMLUListElement ulElement;

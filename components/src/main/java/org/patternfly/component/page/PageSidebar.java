@@ -49,7 +49,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "psb";
+    public static final String SUB_COMPONENT_NAME = "psb";
 
     private boolean keepExpanded;
     private final List<ToggleHandler<PageSidebar>> toggleHandler;

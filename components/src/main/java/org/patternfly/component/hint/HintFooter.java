@@ -32,7 +32,7 @@ public class HintFooter extends HintSubComponent<HTMLDivElement, HintFooter> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "hf";
+    public static final String SUB_COMPONENT_NAME = "hf";
 
     HintFooter() {
         super(SUB_COMPONENT_NAME, div().css(component(hint, footer)).element());

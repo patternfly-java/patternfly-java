@@ -43,7 +43,7 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mg";
+    public static final String SUB_COMPONENT_NAME = "mg";
 
     MenuList list;
     private final HTMLElement textElement;

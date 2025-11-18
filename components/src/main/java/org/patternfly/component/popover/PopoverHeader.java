@@ -49,7 +49,7 @@ public class PopoverHeader extends PopoverSubComponent<HTMLElement, PopoverHeade
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ph";
+    public static final String SUB_COMPONENT_NAME = "ph";
 
     final String headerId;
     final HTMLHeadingElement headerElement;

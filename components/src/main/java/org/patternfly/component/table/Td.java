@@ -47,7 +47,7 @@ public class Td extends Cell<Td> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "td";
+    public static final String SUB_COMPONENT_NAME = "td";
 
     Td(String identifier, String column) {
         super(SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))

@@ -52,7 +52,7 @@ public class PageSidebarBody extends PageSubComponent<HTMLDivElement, PageSideba
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "psbb";
+    public static final String SUB_COMPONENT_NAME = "psbb";
 
     PageSidebarBody() {
         super(SUB_COMPONENT_NAME, div().css(component(page, sidebar, body)).element());

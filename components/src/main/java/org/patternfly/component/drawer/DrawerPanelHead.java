@@ -46,7 +46,7 @@ public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPa
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dph";
+    public static final String SUB_COMPONENT_NAME = "dph";
     private final HTMLElement headContainer;
     private boolean adjustTabIndex;
 
