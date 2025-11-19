@@ -16,10 +16,10 @@
 package org.patternfly.component.notification;
 
 import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.item;

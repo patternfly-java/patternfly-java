@@ -28,6 +28,7 @@ import org.patternfly.component.menu.Dropdown;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;

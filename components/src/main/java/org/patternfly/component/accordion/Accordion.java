@@ -22,13 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.Attachable;
-import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.IconPosition;
-import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;

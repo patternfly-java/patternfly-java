@@ -22,6 +22,7 @@ import java.util.Map;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.HasItems;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;

@@ -17,6 +17,7 @@ package org.patternfly.component.notification;
 
 import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.menu.Dropdown;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 

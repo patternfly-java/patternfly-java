@@ -34,6 +34,7 @@ import org.patternfly.handler.ResizeHandler;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Rect;
+
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
 

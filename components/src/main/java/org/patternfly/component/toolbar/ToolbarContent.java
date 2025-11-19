@@ -19,10 +19,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.jboss.elemento.By;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.Dataset;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 

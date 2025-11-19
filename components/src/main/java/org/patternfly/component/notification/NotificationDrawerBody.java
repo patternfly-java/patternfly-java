@@ -16,6 +16,7 @@
 package org.patternfly.component.notification;
 
 import org.patternfly.component.emptystate.EmptyState;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;

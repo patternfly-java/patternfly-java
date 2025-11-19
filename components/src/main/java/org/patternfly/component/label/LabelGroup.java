@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
-import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -33,7 +32,6 @@ import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;

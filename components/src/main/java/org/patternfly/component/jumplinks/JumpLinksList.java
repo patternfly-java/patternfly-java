@@ -19,13 +19,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.jboss.elemento.By;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
-import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;

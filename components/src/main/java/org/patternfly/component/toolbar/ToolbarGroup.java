@@ -19,12 +19,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.jboss.elemento.By;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.Dataset;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;

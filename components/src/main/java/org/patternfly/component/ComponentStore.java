@@ -22,6 +22,7 @@ import java.util.function.Function;
 import org.jboss.elemento.By;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.closest;
