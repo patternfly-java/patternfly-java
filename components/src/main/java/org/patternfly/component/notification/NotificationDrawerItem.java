@@ -26,6 +26,7 @@ import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Severity;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -77,6 +78,7 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
     NotificationDrawerItem(Severity severity, String identifier, String title) {
         super(SUB_COMPONENT_NAME, li().css(component(notificationDrawer, list, item), severity.status.modifier())
                 .attr(tabindex, 0)
+                .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();

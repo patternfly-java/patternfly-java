@@ -43,8 +43,6 @@ public enum ComponentType {
 
     Card("crd", "PF6/Card"),
 
-    CardView("cv", null),
-
     Checkbox("chb", "PF6/Checkbox"),
 
     CodeBlock("cb", "PF6/CodeBlock"),
@@ -53,11 +51,7 @@ public enum ComponentType {
 
     Content("ct", "PF6/Content"),
 
-    ContextSelector("cs", null),
-
-    DataList("dl", null),
-
-    DataTable("dt", null),
+    DataList("dl", "PF6/DataList"),
 
     DescriptionList("dsl", "PF6/DescriptionList"),
 
@@ -89,7 +83,7 @@ public enum ComponentType {
 
     Label("lbl", "PF6/Label"),
 
-    LabelGroup("lbg", null),
+    LabelGroup("lbg", "PF6/LabelGroup"),
 
     List("lst", "PF6/List"),
 
@@ -109,11 +103,7 @@ public enum ComponentType {
 
     NotificationDrawer("nd", "PF6/NotificationDrawer"),
 
-    OptionsMenu("opt", null),
-
     Page("pg", "PF6/Page"),
-
-    Pagination("pgn", null),
 
     Panel("pnl", "PF6/Panel"),
 
@@ -131,7 +121,7 @@ public enum ComponentType {
 
     SingleSelect("ss", "PF6/SingleSelect"),
 
-    Skeleton("sk", null),
+    Skeleton("sk", "PF6/Skeleton"),
 
     SkipToContent("stc", "PF6/SkipToContent"),
 
@@ -155,7 +145,7 @@ public enum ComponentType {
 
     Title("tlt", "PF6/Title"),
 
-    ToggleGroup("tg", null),
+    ToggleGroup("tg", "PF6/ToggleGroup"),
 
     Toolbar("tb", "PF6/Toolbar"),
 
@@ -164,8 +154,7 @@ public enum ComponentType {
     TreeView("tv", "PF6/TreeView"),
 
     Truncate("tr", "PF6/Truncate"),
-
-    Wizard("wzd", "PF6/Wizard");
+    ;
 
     public final String id;
     public final String componentName;

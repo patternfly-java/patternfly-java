@@ -87,6 +87,7 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
     private final List<ChangeHandler<NotificationBadge, Integer>> changeValueHandler;
     private final List<ChangeHandler<NotificationBadge, NotificationStatus>> changeStatusHandler;
     private int value;
+    private boolean animated;
     private ObservableValue<Integer> ov;
     private ObservableValue<NotificationStatus> os;
     private NotificationStatus status;
@@ -94,6 +95,7 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
     private NotificationBadge(int count, Button button) {
         super(ComponentType.NotificationBadge, button.element());
         this.button = button;
+        this.animated = false;
         this.toggleHandler = new ArrayList<>();
         this.changeValueHandler = new ArrayList<>();
         this.changeStatusHandler = new ArrayList<>();
@@ -101,7 +103,6 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         count(count, false);
         status(read, false);
         collapse(false);
-        storeComponent();
     }
 
     // ------------------------------------------------------ builder
@@ -250,8 +251,14 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
     }
 
     public void triggerNotification() {
-        css(modifier(notify));
-        setTimeout(__ -> classList().remove(modifier(notify)), 1000);
+        if (!animated) {
+            animated = true;
+            css(modifier(notify));
+            setTimeout(__ -> {
+                classList().remove(modifier(notify));
+                animated = false;
+            }, 1000);
+        }
     }
 
     public int count() {
