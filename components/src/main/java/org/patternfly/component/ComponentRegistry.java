@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.HTMLElement;
 
 /**
@@ -27,9 +26,10 @@ import elemental2.dom.HTMLElement;
  * {@link ComponentType} and name. Only one (sub)component of each type can be registered. Use this class to get singleton
  * instances of PatternFly (sub)components such as {@link org.patternfly.component.page.Page},
  * {@link org.patternfly.component.page.Masthead}, or {@link org.patternfly.component.notification.NotificationDrawerList}.
- *
+ * <p>
  * The registration must be done by calling {@link #registerComponent(ComponentType, BaseComponent)} or
- * {@link #registerSubComponent(ComponentType, String, SubComponent)}.
+ * {@link #registerSubComponent(ComponentType, String, SubComponent)}. The lookup is done by calling
+ * {@link #lookupComponent(ComponentType)} and {@link #lookupSubComponent(ComponentType, String)}.
  */
 public class ComponentRegistry {
 
