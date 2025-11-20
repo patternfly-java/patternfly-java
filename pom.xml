@@ -593,6 +593,10 @@
                                                 <exclude name="**/class-use/**"/>
                                                 <exclude name="package-*.html"/>
                                             </fileset>
+                                            <fileset dir="tokens/target/reports/apidocs/org/patternfly">
+                                                <exclude name="**/class-use/**"/>
+                                                <exclude name="package-*.html"/>
+                                            </fileset>
                                         </copy>
                                     </target>
                                 </configuration>
