@@ -32,6 +32,7 @@ import org.jboss.elemento.TypedBuilder;
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
+import static org.patternfly.component.ComponentRegistry.componentRegistry;
 
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         ElementAttributeMethods<E, B>,
@@ -63,6 +64,11 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
     @Override
     public E element() {
         return element;
+    }
+
+    public B registerSubComponent() {
+        componentRegistry().registerSubComponent(componentType, name, this);
+        return that();
     }
 
     // ------------------------------------------------------ component store

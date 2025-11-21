@@ -47,7 +47,7 @@ public class DataListAction extends DataListSubComponent<HTMLElement, DataListAc
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dla";
+    public static final String SUB_COMPONENT_NAME = "dla";
     private final boolean plainButtonAction;
     private final HTMLElement delegate;
 

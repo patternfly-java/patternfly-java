@@ -63,7 +63,7 @@ public class TextInputGroupMain extends TextInputGroupSubComponent<HTMLDivElemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tigm";
+    public static final String SUB_COMPONENT_NAME = "tigm";
 
     private final HTMLInputElement inputElement;
     private final HTMLElement textContainer;

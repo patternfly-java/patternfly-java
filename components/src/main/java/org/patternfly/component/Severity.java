@@ -23,24 +23,36 @@ import org.patternfly.style.Status;
 
 public enum Severity {
 
-    custom(IconSets.fas::bell, Status.custom, "custom alert"),
+    custom(IconSets.fas::bell, Status.custom),
 
-    info(IconSets.fas::infoCircle, Status.info, "info alert"),
+    info(IconSets.fas::infoCircle, Status.info),
 
-    success(IconSets.fas::checkCircle, Status.success, "success alert"),
+    success(IconSets.fas::checkCircle, Status.success),
 
-    warning(IconSets.fas::exclamationTriangle, Status.warning, "warning alert"),
+    warning(IconSets.fas::exclamationTriangle, Status.warning),
 
-    danger(IconSets.fas::exclamationCircle, Status.danger, "danger alert");
+    danger(IconSets.fas::exclamationCircle, Status.danger);
+
+    public static Severity of(String severity) {
+        return of(Status.of(severity));
+    }
+
+    public static Severity of(Status status) {
+        return switch (status) {
+            case custom -> custom;
+            case info -> info;
+            case success -> success;
+            case warning -> warning;
+            case danger -> danger;
+        };
+    }
 
     public final Supplier<PredefinedIcon> icon;
     public final Status status;
-    public final String aria;
 
-    Severity(Supplier<PredefinedIcon> icon, Status status, String aria) {
+    Severity(Supplier<PredefinedIcon> icon, Status status) {
         this.icon = icon;
         this.status = status;
-        this.aria = aria;
     }
 
     public ValidationStatus asValidationStatus() {

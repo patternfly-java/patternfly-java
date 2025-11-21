@@ -52,7 +52,7 @@ public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dlc";
+    public static final String SUB_COMPONENT_NAME = "dlc";
     private Element icon;
 
     DataListCell() {

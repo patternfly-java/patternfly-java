@@ -43,7 +43,7 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mg";
+    public static final String SUB_COMPONENT_NAME = "mg";
 
     MenuList list;
     private final HTMLElement textElement;
@@ -69,6 +69,10 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implemen
         this.list = list;
         add(list.element());
         return this;
+    }
+
+    public MenuGroup addSearch(MenuSearch search) {
+        return add(search);
     }
 
     // ------------------------------------------------------ builder

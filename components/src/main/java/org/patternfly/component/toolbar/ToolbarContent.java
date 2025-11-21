@@ -29,6 +29,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
@@ -59,7 +60,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_NAME = "tc";
     private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
 
@@ -165,5 +166,11 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public void clear() {
         removeChildrenFrom(contentSection);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

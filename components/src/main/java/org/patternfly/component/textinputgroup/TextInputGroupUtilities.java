@@ -40,7 +40,7 @@ public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivE
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tigu";
+    public static final String SUB_COMPONENT_NAME = "tigu";
 
     TextInputGroupUtilities(boolean hidden) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());

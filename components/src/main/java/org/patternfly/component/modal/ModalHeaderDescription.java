@@ -35,7 +35,7 @@ public class ModalHeaderDescription extends ModalSubComponent<HTMLDivElement, Mo
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mhd";
+    public static final String SUB_COMPONENT_NAME = "mhd";
 
     ModalHeaderDescription() {
         super(SUB_COMPONENT_NAME, div().css(component(modalBox, description)).element());

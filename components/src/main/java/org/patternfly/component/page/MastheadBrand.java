@@ -38,7 +38,7 @@ public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBra
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mhb";
+    public static final String SUB_COMPONENT_NAME = "mhb";
 
     MastheadBrand() {
         super(SUB_COMPONENT_NAME, div().css(component(masthead, brand)).element());

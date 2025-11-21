@@ -41,7 +41,7 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dlg";
+    public static final String SUB_COMPONENT_NAME = "dlg";
     private final String identifier;
     private final Map<String, Object> data;
 

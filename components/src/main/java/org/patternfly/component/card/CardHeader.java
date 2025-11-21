@@ -55,7 +55,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ch";
+    public static final String SUB_COMPONENT_NAME = "ch";
 
     Button toggleButton;
     CardActions actions;

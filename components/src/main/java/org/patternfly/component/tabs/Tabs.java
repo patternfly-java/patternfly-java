@@ -650,6 +650,14 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         updateState();
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        Tab item = items.remove(identifier);
+        internalClose(item);
+        updateState();
+
+    }
+
     // ------------------------------------------------------ internal
 
     private void addTabToDOM(Tab tab) {

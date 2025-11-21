@@ -37,7 +37,7 @@ public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> 
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ph";
+    public static final String SUB_COMPONENT_NAME = "ph";
 
     final String headerId;
 

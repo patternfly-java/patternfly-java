@@ -38,7 +38,7 @@ public class DrawerSection extends DrawerSubComponent<HTMLDivElement, DrawerSect
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ds";
+    public static final String SUB_COMPONENT_NAME = "ds";
 
     DrawerSection() {
         super(SUB_COMPONENT_NAME, div().css(component(drawer, section)).element());

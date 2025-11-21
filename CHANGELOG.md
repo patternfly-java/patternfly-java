@@ -6,10 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-11-20
+
+### Added
+
+- Notification drawer (#72)
+- Add `org.patternfly.component.ComponentRegistry` to register and lookup singleton-like components such as page,
+  masthead, or notification drawer by their component type and/or name
+- Add `org.patternfly.componentgroup.theme.ThemeSelector`
+- Add `org.patternfly.component.HasItems.removeItem(String identifier)`
+- Add `SingleSelect.noDefaultSelectHandler()` to disable the default behavior of setting the menu toggle text to the
+  text of the selected menu item.
+
 ### Fixed
 
 - Fix `Page.noSidebar()`
 - Fix card title text
+
+### Upgrades
+
+- Bump Elemento to 2.4.1
+- Bump PatternFly to 6.4.0
+- Bump JUnit to 6.0.1
+- Bump J2CL Maven plugin to 0.23.6
 
 ## [0.3.0] - 2025-10-28
 
@@ -513,9 +532,10 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/vRemoved...v0.3.0
 [Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...v0.3.0
 [0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.8...v0.2.9

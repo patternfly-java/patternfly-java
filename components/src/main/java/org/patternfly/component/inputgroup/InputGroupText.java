@@ -51,7 +51,7 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "igt";
+    public static final String SUB_COMPONENT_NAME = "igt";
     private final HTMLElement textElement;
 
     InputGroupText(String text) {

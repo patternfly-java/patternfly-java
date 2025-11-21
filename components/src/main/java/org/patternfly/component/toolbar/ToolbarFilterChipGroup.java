@@ -41,7 +41,7 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tfcg";
+    public static final String SUB_COMPONENT_NAME = "tfcg";
     private final Filter<T> filter;
     private final String text;
     private final List<String> filterAttributes;

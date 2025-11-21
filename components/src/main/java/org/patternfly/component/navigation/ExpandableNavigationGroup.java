@@ -46,6 +46,7 @@ import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.li;
@@ -91,7 +92,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "eng";
+    public static final String SUB_COMPONENT_NAME = "eng";
 
     final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
     private final String identifier;
@@ -241,6 +242,12 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        NavigationItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     @Override

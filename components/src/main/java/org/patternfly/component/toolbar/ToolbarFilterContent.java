@@ -27,6 +27,7 @@ import org.patternfly.filter.Filter;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.style.Classes.chipContainer;
@@ -46,7 +47,7 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tfc";
+    public static final String SUB_COMPONENT_NAME = "tfc";
     private final Map<String, ToolbarItem> items;
 
     ToolbarFilterContent() {
@@ -138,5 +139,11 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
     public void clear() {
         items.clear();
         removeChildrenFrom(this);
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

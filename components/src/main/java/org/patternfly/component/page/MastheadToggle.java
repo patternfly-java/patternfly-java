@@ -49,7 +49,7 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "mht";
+    public static final String SUB_COMPONENT_NAME = "mht";
 
     private final Button toggleButton;
 

@@ -47,7 +47,7 @@ public class MenuSearchInput extends MenuSubComponent<HTMLElement, MenuSearchInp
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(MenuSearch.class.getName());
-    static final String SUB_COMPONENT_NAME = "msi";
+    public static final String SUB_COMPONENT_NAME = "msi";
 
     private TextInputGroup textInputGroup;
     private MenuItem noResultsItem;

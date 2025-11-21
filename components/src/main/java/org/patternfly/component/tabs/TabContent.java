@@ -42,7 +42,7 @@ public class TabContent extends TabSubComponent<HTMLElement, TabContent> impleme
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_NAME = "tc";
     private final Map<String, Object> data;
 
     TabContent() {

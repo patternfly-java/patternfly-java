@@ -319,6 +319,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return "";
     }
 
+    public HTMLElement textElement() {
+        return textElement;
+    }
+
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeIconElement() {

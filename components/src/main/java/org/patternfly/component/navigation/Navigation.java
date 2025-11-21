@@ -46,6 +46,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.isAttached;
@@ -397,6 +398,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     public void clear() {
         removeChildrenFrom(itemsContainer);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        NavigationItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

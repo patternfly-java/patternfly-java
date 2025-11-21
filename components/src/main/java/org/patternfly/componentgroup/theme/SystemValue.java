@@ -13,17 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.page;
+package org.patternfly.componentgroup.theme;
 
-import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
+interface SystemValue {
 
-import elemental2.dom.HTMLElement;
-
-abstract class PageSidebarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
-
-    PageSidebarSubComponent(String name, E element) {
-        super(ComponentType.Sidebar, name, element);
+    default boolean systemValue() {
+        return false;
     }
 }

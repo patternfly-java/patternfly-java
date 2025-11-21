@@ -47,7 +47,7 @@ public class ActionListItem extends ActionListSubComponent<HTMLDivElement, Actio
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ali";
+    public static final String SUB_COMPONENT_NAME = "ali";
     private final String identifier;
     private final Map<String, Object> data;
 

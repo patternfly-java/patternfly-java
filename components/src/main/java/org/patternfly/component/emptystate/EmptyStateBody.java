@@ -35,7 +35,7 @@ public class EmptyStateBody extends EmptyStateSubComponent<HTMLDivElement, Empty
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "esb";
+    public static final String SUB_COMPONENT_NAME = "esb";
 
     EmptyStateBody() {
         super(SUB_COMPONENT_NAME, div().css(component(emptyState, body)).element());

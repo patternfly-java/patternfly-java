@@ -81,7 +81,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ot";
+    public static final String SUB_COMPONENT_NAME = "ot";
 
     private final Map<String, Tab> tabs;
     private final HTMLContainerBuilder<HTMLButtonElement> button;

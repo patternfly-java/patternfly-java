@@ -37,9 +37,7 @@ public class AlertActionGroup extends AlertSubComponent<HTMLDivElement, AlertAct
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "aag";
-
-    private Alert alert;
+    public static final String SUB_COMPONENT_NAME = "aag";
 
     AlertActionGroup() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.alert, actionGroup)).element());

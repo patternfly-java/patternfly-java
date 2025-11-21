@@ -37,7 +37,7 @@ public class CardActions extends CardSubComponent<HTMLDivElement, CardActions>
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ca";
+    public static final String SUB_COMPONENT_NAME = "ca";
 
     CardSelectableActions selectableActions;
     private Card card;

@@ -29,6 +29,7 @@ import org.patternfly.core.ComponentContext;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
@@ -53,7 +54,7 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "alg";
+    public static final String SUB_COMPONENT_NAME = "alg";
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;
@@ -140,5 +141,11 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ActionListItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

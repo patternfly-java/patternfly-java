@@ -35,6 +35,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
@@ -68,7 +69,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ng";
+    public static final String SUB_COMPONENT_NAME = "ng";
 
     private final String identifier;
     private final Map<String, NavigationItem> items;
@@ -174,6 +175,12 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     public void clear() {
         removeChildrenFrom(ul);
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        NavigationItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

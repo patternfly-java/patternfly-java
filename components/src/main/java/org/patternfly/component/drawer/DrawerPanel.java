@@ -93,7 +93,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dp";
+    public static final String SUB_COMPONENT_NAME = "dp";
     private int increment;
     private boolean resizable;
     private boolean isResizing;

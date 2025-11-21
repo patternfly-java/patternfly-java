@@ -74,7 +74,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
      * Creates a new alert group of the given type and timeout.
      * <p>
      * If the type is {@link AlertGroupType#toast} the alert group is added to the body or if it already has been added the
-     * existing alert group is returned (singleton pattern).
+     * existing toast alert group is returned (singleton pattern).
      */
     public static AlertGroup alertGroup(AlertGroupType type, int timeout) {
         if (type == AlertGroupType.toast) {
@@ -178,6 +178,11 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         items.clear();
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        Alert item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
 
     // ------------------------------------------------------ internal
 

@@ -24,6 +24,7 @@ import org.patternfly.component.HasItems;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.divider.Divider.divider;
@@ -54,7 +55,7 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ttg";
+    public static final String SUB_COMPONENT_NAME = "ttg";
     private final Map<String, ToolbarItem> items;
 
     ToolbarToggleGroup() {
@@ -125,5 +126,11 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

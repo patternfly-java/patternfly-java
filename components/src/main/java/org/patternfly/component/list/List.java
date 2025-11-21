@@ -32,6 +32,7 @@ import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.divider.Divider.divider;
@@ -141,5 +142,11 @@ public class List extends BaseComponent<HTMLElement, List> implements
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ListItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

@@ -35,7 +35,7 @@ public class HintActions extends HintSubComponent<HTMLDivElement, HintActions>
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ha";
+    public static final String SUB_COMPONENT_NAME = "ha";
 
     HintActions() {
         super(SUB_COMPONENT_NAME, div().css(component(hint, actions)).element());

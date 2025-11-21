@@ -36,7 +36,7 @@ public class NavigationLinkText extends NavigationSubComponent<HTMLElement, Navi
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "nlt";
+    public static final String SUB_COMPONENT_NAME = "nlt";
 
     NavigationLinkText() {
         super(SUB_COMPONENT_NAME, span().css(component(nav, link, text)).element());

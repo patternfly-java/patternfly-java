@@ -65,8 +65,8 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
 
     // ------------------------------------------------------- instance
 
+    public static final String SUB_COMPONENT_NAME = "pss"; // progress stepper step
     private static final Logger logger = Logger.getLogger(ProgressStep.class.getName());
-    private static final String SUB_COMPONENT_NAME = "pss"; // progress stepper step
     private static final String STEP = "step";
     private static final String STEP_CONNECTOR = "step-connector";
     private static final String STEP_ICON = "step-icon";

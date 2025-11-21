@@ -287,6 +287,12 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         overflowLabel = null;
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        Label item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
+
     // ------------------------------------------------------ internal
 
     void close(Label label) {

@@ -22,7 +22,7 @@ import org.patternfly.component.page.Page;
 import org.patternfly.component.page.PageBreadcrumb;
 import org.patternfly.component.page.PageGroup;
 import org.patternfly.component.page.PageMain;
-import org.patternfly.component.page.PageMainWizard;
+import org.patternfly.component.page.PageWizard;
 import org.patternfly.component.page.PageNavigation;
 import org.patternfly.component.page.PageSection;
 import org.patternfly.component.page.PageSectionBuilder;
@@ -318,7 +318,7 @@ public class PageComponent extends SnippetPage {
         addApiDoc(PageNavigation.class, subcomponent);
         addApiDoc(PageSection.class, subcomponent);
         addApiDoc(PageTabs.class, subcomponent);
-        addApiDoc(PageMainWizard.class, subcomponent);
+        addApiDoc(PageWizard.class, subcomponent);
         addApiDoc(PageSectionLike.class, subcomponent);
         addApiDoc(PageSectionBuilder.class, other);
     }

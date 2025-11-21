@@ -152,6 +152,14 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         }
     }
 
+    public DrawerContent content() {
+        return content;
+    }
+
+    public DrawerPanel panel() {
+        return panel;
+    }
+
     // ------------------------------------------------------ internal
 
     private HTMLElement failSafeMainContainer() {

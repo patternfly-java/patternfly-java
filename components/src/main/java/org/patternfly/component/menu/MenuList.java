@@ -53,7 +53,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ml";
+    public static final String SUB_COMPONENT_NAME = "ml";
     final Map<String, MenuItem> items;
 
     MenuList() {
@@ -134,6 +134,12 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
             failSafeRemoveFromParent(item);
         }
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        MenuItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

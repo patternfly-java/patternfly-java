@@ -49,7 +49,7 @@ public class Th extends Cell<Th> implements Attachable {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "th";
+    public static final String SUB_COMPONENT_NAME = "th";
     private final TooltipToggle tooltipToggle;
 
     Th(String identifier) {

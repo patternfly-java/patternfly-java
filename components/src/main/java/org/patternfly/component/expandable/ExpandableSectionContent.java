@@ -39,7 +39,7 @@ public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTML
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "esc";
+    public static final String SUB_COMPONENT_NAME = "esc";
 
     final String id;
 

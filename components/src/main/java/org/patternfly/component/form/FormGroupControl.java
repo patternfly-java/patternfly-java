@@ -51,7 +51,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(FormGroupControl.class.getName());
-    static final String SUB_COMPONENT_NAME = "fgc";
+    public static final String SUB_COMPONENT_NAME = "fgc";
 
     private FormControl<?, ?> control;
     private final List<Checkbox> checkboxes;

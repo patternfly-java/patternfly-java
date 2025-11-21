@@ -79,7 +79,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "hti";
+    public static final String SUB_COMPONENT_NAME = "hti";
 
     private final HTMLElement textElement;
     private boolean defaultIcon;

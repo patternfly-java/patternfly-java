@@ -49,7 +49,7 @@ public class PageSection extends PageSectionBuilder<HTMLElement, PageSection> im
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pms";
+    public static final String SUB_COMPONENT_NAME = "ps";
     private final HTMLElement container;
 
     PageSection() {

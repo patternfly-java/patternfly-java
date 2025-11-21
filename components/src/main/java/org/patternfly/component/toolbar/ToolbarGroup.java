@@ -24,6 +24,7 @@ import org.patternfly.component.HasItems;
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
@@ -47,7 +48,7 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "tg";
+    public static final String SUB_COMPONENT_NAME = "tg";
     private final Map<String, ToolbarItem> items;
 
     ToolbarGroup(ToolbarGroupType type) {
@@ -104,5 +105,11 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ToolbarItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

@@ -71,7 +71,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "ni";
+    public static final String SUB_COMPONENT_NAME = "ni";
 
     final HTMLAnchorElement anchorElement;
     private final String identifier;

@@ -36,7 +36,7 @@ public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGro
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fag";
+    public static final String SUB_COMPONENT_NAME = "fag";
 
     private final HTMLElement actionsContainer;
 

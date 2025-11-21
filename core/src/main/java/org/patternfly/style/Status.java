@@ -27,6 +27,17 @@ public enum Status implements TypedModifier {
 
     custom("custom");
 
+    public static Status of(String status) {
+        return switch (status) {
+            case "danger" -> danger;
+            case "warning" -> warning;
+            case "success" -> success;
+            case "info" -> info;
+            case "custom" -> custom;
+            default -> throw new IllegalArgumentException("Invalid status: " + status);
+        };
+    }
+
     private final String value;
     private final String modifier;
 

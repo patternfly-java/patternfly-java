@@ -158,6 +158,12 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         items.clear();
     }
 
+    @Override
+    public void removeItem(String identifier) {
+        FormGroup item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+    }
+
     public void clearAlerts() {
         for (FormAlert alert : alerts) {
             failSafeRemoveFromParent(alert);

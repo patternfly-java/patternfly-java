@@ -81,7 +81,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "aci";
+    public static final String SUB_COMPONENT_NAME = "aci";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;

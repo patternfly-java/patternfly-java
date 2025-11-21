@@ -25,6 +25,9 @@ import org.jboss.elemento.ResizeObserverCleanup;
 import org.jboss.elemento.Scheduler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.drawer.Drawer;
+import org.patternfly.component.notification.NotificationBadge;
+import org.patternfly.component.notification.NotificationDrawer;
 import org.patternfly.component.skiptocontent.SkipToContent;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ResizeHandler;
@@ -41,6 +44,8 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.resizeObserver;
+import static org.patternfly.component.drawer.DrawerContent.drawerContent;
+import static org.patternfly.component.drawer.DrawerPanel.drawerPanel;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
@@ -84,6 +89,8 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private Masthead masthead;
     private PageSidebar sidebar;
     private PageMain main;
+    private Drawer drawer;
+    private NotificationDrawer notificationDrawer;
     private ResizeObserverCleanup cleanup;
     private Function<Integer, Breakpoint> breakpointFn;
     private Function<Integer, Breakpoint> verticalBreakpointFn;
@@ -114,15 +121,16 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ add
 
-    /** Adds the {@link SkipToContent} component as first element and removes the previous one (if any). */
+    /** Adds the {@link SkipToContent} component as the first element and removes the previous one (if any). */
     public Page addSkipToContent(SkipToContent skipToContent) {
         return add(skipToContent);
     }
 
-    /** Adds the {@link SkipToContent} component as first element and removes the previous one (if any). */
+    /** Adds the {@link SkipToContent} component as the first element and removes the previous one (if any). */
     public Page add(SkipToContent skipToContent) {
         failSafeRemoveFromParent(this.skipToContent);
         this.skipToContent = skipToContent;
+
         insertFirst(element(), this.skipToContent);
         return this;
     }
@@ -136,6 +144,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(Masthead masthead) {
         failSafeRemoveFromParent(this.masthead);
         this.masthead = masthead;
+
         if (skipToContent != null) {
             insertAfter(this.masthead, skipToContent.element());
         } else {
@@ -153,8 +162,11 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(PageSidebar sidebar) {
         failSafeRemoveFromParent(this.sidebar);
         this.sidebar = sidebar;
+
         if (main != null) {
             insertBefore(this.sidebar, main.element());
+        } else if (notificationDrawer != null) {
+            insertBefore(this.sidebar, notificationDrawer.element());
         } else {
             add(sidebar.element());
         }
@@ -170,7 +182,35 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     public Page add(PageMain main) {
         failSafeRemoveFromParent(this.main);
         this.main = main;
-        return add(main.element());
+
+        if (drawer != null && notificationDrawer != null) {
+            drawer.content().add(main);
+        } else {
+            add(main.element());
+        }
+        return this;
+    }
+
+    public Page addNotificationDrawer(NotificationDrawer notificationDrawer) {
+        return add(notificationDrawer);
+    }
+
+    public Page add(NotificationDrawer notificationDrawer) {
+        failSafeRemoveFromParent(this.main);
+        failSafeRemoveFromParent(this.drawer);
+        failSafeRemoveFromParent(this.notificationDrawer);
+        this.notificationDrawer = notificationDrawer;
+
+        add(div().css(component(page, Classes.drawer))
+                .add(this.drawer = Drawer.drawer()
+                        .addContent(drawerContent().run(content -> {
+                            if (main != null) {
+                                content.add(main);
+                            }
+                        }))
+                        .addPanel(drawerPanel()
+                                .add(notificationDrawer))));
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -213,6 +253,17 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ api
 
+    public void wire(NotificationBadge notificationBadge, NotificationDrawer notificationDrawer) {
+        notificationBadge.onClick((event, component) -> {
+            component.toggle();
+            drawer.toggle();
+        });
+        notificationDrawer.onClose((event, component) -> {
+            notificationBadge.collapse();
+            drawer.collapse();
+        });
+    }
+
     /**
      * Returns the current {@link Masthead} or {@code null} if no masthead has been defined yet.
      */
@@ -233,6 +284,21 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     @SuppressWarnings("ConfusingMainMethod")
     public PageMain main() {
         return main;
+    }
+
+    /**
+     * Returns the {@link Drawer} that contains the current {@link NotificationDrawer} or {@code null} if no notification drawer
+     * has been defined yet.
+     */
+    public Drawer drawer() {
+        return drawer;
+    }
+
+    /**
+     * Returns the current {@link NotificationDrawer} or {@code null} if no notification drawer has been defined yet.
+     */
+    public NotificationDrawer notificationDrawer() {
+        return notificationDrawer;
     }
 
     // ------------------------------------------------------ internal

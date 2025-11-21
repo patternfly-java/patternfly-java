@@ -40,7 +40,7 @@ public class DrawerPanelBody extends DrawerSubComponent<HTMLDivElement, DrawerPa
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dpb";
+    public static final String SUB_COMPONENT_NAME = "dpb";
 
     DrawerPanelBody() {
         super(SUB_COMPONENT_NAME, div().css(component(drawer, body)).element());

@@ -34,7 +34,7 @@ public class FormAlert extends FormSubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fa";
+    public static final String SUB_COMPONENT_NAME = "fa";
 
     FormAlert() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.form, alert)).element());

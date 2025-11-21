@@ -40,7 +40,7 @@ public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> impleme
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "pm";
+    public static final String SUB_COMPONENT_NAME = "pm";
     private final HTMLDivElement bodyElement;
 
     PanelMain() {

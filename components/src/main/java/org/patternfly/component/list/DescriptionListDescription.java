@@ -44,7 +44,7 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "dlg";
+    public static final String SUB_COMPONENT_NAME = "dlg";
 
     private final HTMLElement textElement;
 

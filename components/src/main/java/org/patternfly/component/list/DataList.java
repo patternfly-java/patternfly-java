@@ -28,6 +28,7 @@ import org.patternfly.style.Modifiers.Compact;
 
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.table.Wrap.breakWord;
@@ -137,5 +138,11 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        DataListItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }

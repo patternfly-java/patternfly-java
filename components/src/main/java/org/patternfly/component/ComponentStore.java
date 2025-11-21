@@ -30,11 +30,16 @@ import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.Id.uuid;
 import static org.jboss.elemento.logger.Level.DEBUG;
 
+/**
+ * The component store is an internal store for PatternFly (sub)components. It is used to share references between components
+ * and their subcomponents. (Sub)components can store a reference to themselves using {@link #storeComponent(BaseComponent)}
+ * resp. {@link #storeSubComponent(SubComponent)} and subcomponents can look up their parent component using
+ * #lookupComponent(ComponentType, HTMLElement, boolean).
+ */
 final class ComponentStore {
 
     private static final Logger logger = Logger.getLogger(ComponentStore.class.getName());
     private static final String KEY_PREFIX = "pfcs"; // PatternFly component store
-    private static final String CATEGORY = "ComponentStore";
     private static final Map<String, BaseComponent<?, ?>> components = new HashMap<>();
     private static final Map<String, ComponentDelegate<?, ?>> componentDelegates = new HashMap<>();
     private static final Map<String, SubComponent<?, ?>> subComponents = new HashMap<>();

@@ -48,7 +48,7 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fg";
+    public static final String SUB_COMPONENT_NAME = "fg";
 
     boolean required;
     FormGroupRole role;

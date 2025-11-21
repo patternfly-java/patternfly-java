@@ -64,7 +64,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "fgl";
+    public static final String SUB_COMPONENT_NAME = "fgl";
 
     private final HTMLElement textElement;
     private HTMLElement labelElement;

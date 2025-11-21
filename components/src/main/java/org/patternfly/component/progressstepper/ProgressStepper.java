@@ -36,6 +36,7 @@ import org.patternfly.style.Modifiers.Vertical;
 
 import elemental2.dom.HTMLOListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ol;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.core.Attributes.role;
@@ -355,6 +356,12 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         removeChildrenFrom(element());
         clearCollections();
         currentIndex = -1;
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ProgressStep item = progressStepperMap.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 
     /**

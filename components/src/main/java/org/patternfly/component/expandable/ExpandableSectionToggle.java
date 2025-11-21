@@ -56,7 +56,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "est";
+    public static final String SUB_COMPONENT_NAME = "est";
 
     final String id;
     private final Button button;

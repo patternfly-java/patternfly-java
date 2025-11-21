@@ -25,6 +25,7 @@ import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLUListElement;
 
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.core.Attributes.role;
@@ -42,7 +43,7 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     // ------------------------------------------------------ instance
 
-    static final String SUB_COMPONENT_NAME = "jll";
+    public static final String SUB_COMPONENT_NAME = "jll";
     final Map<String, JumpLinksItem> items;
 
     JumpLinksList() {
@@ -98,5 +99,11 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     public void clear() {
         removeChildrenFrom(element());
         items.clear();
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        JumpLinksItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
     }
 }
