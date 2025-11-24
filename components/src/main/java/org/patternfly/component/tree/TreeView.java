@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -93,6 +94,8 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     private final List<ToggleHandler<TreeViewItem>> toggleHandler;
     private final List<SelectHandler<TreeViewItem>> selectHandler;
     private final List<MultiSelectHandler<TreeView, TreeViewItem>> multiSelectHandler;
+    private final List<BiConsumer<TreeView, TreeViewItem>> onAdd;
+    private final List<BiConsumer<TreeView, TreeViewItem>> onRemove;
     Supplier<Element> icon;
     Supplier<Element> expandedIcon;
     private HandlerRegistration keyHandler;
@@ -106,6 +109,8 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         this.multiSelectHandler = new ArrayList<>();
         this.icon = null;
         this.expandedIcon = null;
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
 
         add(ul = ul().css(component(treeView, list)).attr(role, tree));
         Attachable.register(this, this);
@@ -147,6 +152,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         items.put(item.identifier(), item);
         item.finishDOM(this);
         ul.add(item);
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -185,8 +191,20 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     // ------------------------------------------------------ events
 
-    public TreeView onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
-        this.toggleHandler.add(toggleHandler);
+    @Override
+    public TreeView onAdd(BiConsumer<TreeView, TreeViewItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public TreeView onRemove(BiConsumer<TreeView, TreeViewItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
+    public TreeView onMultiSelect(MultiSelectHandler<TreeView, TreeViewItem> selectHandler) {
+        this.multiSelectHandler.add(selectHandler);
         return this;
     }
 
@@ -195,8 +213,8 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         return this;
     }
 
-    public TreeView onMultiSelect(MultiSelectHandler<TreeView, TreeViewItem> selectHandler) {
-        this.multiSelectHandler.add(selectHandler);
+    public TreeView onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
+        this.toggleHandler.add(toggleHandler);
         return this;
     }
 
@@ -324,15 +342,19 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ul);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         TreeViewItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ul);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

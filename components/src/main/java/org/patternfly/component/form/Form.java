@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
@@ -58,11 +59,15 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     private final Map<String, FormGroup> items;
     private final List<FormAlert> alerts;
+    private final List<BiConsumer<Form, FormGroup>> onAdd;
+    private final List<BiConsumer<Form, FormGroup>> onRemove;
 
     Form() {
         super(ComponentType.Form, Elements.form().css(component(form)).apply(f -> f.noValidate = true).element());
         this.items = new LinkedHashMap<>();
         this.alerts = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         storeComponent();
     }
 
@@ -87,7 +92,9 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     @Override
     public Form add(FormGroup item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        Form result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     public Form addAlert(FormAlert alert) {
@@ -123,6 +130,20 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public Form onAdd(BiConsumer<Form, FormGroup> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Form onRemove(BiConsumer<Form, FormGroup> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -155,6 +176,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         for (FormGroup group : items.values()) {
             failSafeRemoveFromParent(group);
         }
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
         items.clear();
     }
 
@@ -162,6 +184,9 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     public void removeItem(String identifier) {
         FormGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     public void clearAlerts() {

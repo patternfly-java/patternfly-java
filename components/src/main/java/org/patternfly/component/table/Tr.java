@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -124,6 +125,8 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
     private Function<Tr, Promise<Iterable<Tr>>> asyncChildren;
+    private final List<BiConsumer<Tr, Cell<?>>> onAdd;
+    private final List<BiConsumer<Tr, Cell<?>>> onRemove;
 
     Tr(String identifier) {
         super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
@@ -132,6 +135,8 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
                 .element());
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         this.data = new HashMap<>();
         this.toggleHandler = new ArrayList<>();
         this.children = new LinkedList<>();
@@ -143,7 +148,9 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     @Override
     public Tr add(Cell<?> item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        Tr result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     public Tr addTitleCell(TitleCell titleCell) {
@@ -237,6 +244,18 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     }
 
     // ------------------------------------------------------ events
+
+    @Override
+    public Tr onAdd(BiConsumer<Tr, Cell<?>> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Tr onRemove(BiConsumer<Tr, Cell<?>> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
 
     public Tr onToggle(ToggleHandler<Tr> toggleHandler) {
         this.toggleHandler.add(toggleHandler);
@@ -368,8 +387,18 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     }
 
     @Override
+    public void removeItem(String identifier) {
+        Cell<?> item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
     public void clear() {
         removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
         items.clear();
     }
 
@@ -389,12 +418,6 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
             return (T) data.get(key);
         }
         return null;
-    }
-
-    @Override
-    public void removeItem(String identifier) {
-        Cell<?> item = items.remove(identifier);
-        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -134,6 +135,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     private Function<Tabs, Tab> addHandler;
     private final List<ToggleHandler<Tabs>> toggleHandler;
+    private final List<BiConsumer<Tabs, Tab>> onAdd;
+    private final List<BiConsumer<Tabs, Tab>> onRemove;
     private final List<CloseHandler<Tab>> closeHandler;
     private final List<SelectHandler<Tab>> selectHandler;
     private HandlerRegistration resizeHandler;
@@ -145,6 +148,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         this.toggleHandler = new ArrayList<>();
         this.closeHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         // TODO Support modifier(animateCurrent) and
         //   --pf-v6-c-tabs--link-accent--length: ??px;
         //   --pf-v6-c-tabs--link-accent--start: ??px;
@@ -267,6 +272,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             if (attached) {
                 addTabToDOM(tab);
             }
+            onAdd.forEach(bc -> bc.accept(this, tab));
         }
         if (attached) {
             updateState();
@@ -281,6 +287,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             addTabToDOM(tab);
             updateState();
         }
+        onAdd.forEach(bc -> bc.accept(this, tab));
         return this;
     }
 
@@ -498,8 +505,14 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     // ------------------------------------------------------ events
 
+    @Override
+    public Tabs onAdd(BiConsumer<Tabs, Tab> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
     /**
-     * Callback for the add button. Passing this property inserts the add button.
+     * Callback for the 'add' button. Passing this property inserts the 'add' button.
      */
     public Tabs onAdd(Function<Tabs, Tab> addHandler) {
         if (addButton == null) {
@@ -516,6 +529,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     public Tabs onClose(CloseHandler<Tab> closeHandler) {
         this.closeHandler.add(closeHandler);
         return null;
+    }
+
+    @Override
+    public Tabs onRemove(BiConsumer<Tabs, Tab> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
     }
 
     public Tabs onSelect(SelectHandler<Tab> selectHandler) {
@@ -643,19 +662,23 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     @Override
-    public void clear() {
-        for (Tab tab : items.values()) {
-            internalClose(tab);
-        }
-        updateState();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         Tab item = items.remove(identifier);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
         internalClose(item);
         updateState();
 
+    }
+
+    @Override
+    public void clear() {
+        for (Tab tab : new ArrayList<>(items.values())) {
+            onRemove.forEach(bc -> bc.accept(this, tab));
+            internalClose(tab);
+        }
+        updateState();
     }
 
     // ------------------------------------------------------ internal

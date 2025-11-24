@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.list;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -69,11 +72,14 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     // ------------------------------------------------------ instance
 
     private final Map<String, DescriptionListGroup> items;
+    private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onAdd;
+    private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onRemove;
 
     DescriptionList() {
         super(ComponentType.DescriptionList, dl().css(component(descriptionList)).element());
         this.items = new LinkedHashMap<>();
-
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -81,7 +87,9 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     @Override
     public DescriptionList add(DescriptionListGroup item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        DescriptionList result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     // ------------------------------------------------------ builder
@@ -224,6 +232,20 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public DescriptionList onAdd(BiConsumer<DescriptionList, DescriptionListGroup> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public DescriptionList onRemove(BiConsumer<DescriptionList, DescriptionListGroup> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -252,14 +274,18 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         DescriptionListGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -111,6 +112,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private final List<SelectHandler<NavigationItem>> selectHandler;
     private final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
+    private final List<BiConsumer<Navigation, NavigationItem>> onAdd;
+    private final List<BiConsumer<Navigation, NavigationItem>> onRemove;
 
     Navigation(NavigationType type) {
         super(ComponentType.Navigation, nav().css(component(nav)).element());
@@ -120,6 +123,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         this.expandableGroups = new LinkedHashMap<>();
         this.selectHandler = new ArrayList<>();
         this.toggleHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
 
         if (type == secondary) {
             aria(label, "Local");
@@ -327,8 +332,20 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     // ------------------------------------------------------ events
 
+    @Override
+    public Navigation onAdd(BiConsumer<Navigation, NavigationItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
     public Navigation onSelect(SelectHandler<NavigationItem> selectHandler) {
         this.selectHandler.add(selectHandler);
+        return this;
+    }
+
+    @Override
+    public Navigation onRemove(BiConsumer<Navigation, NavigationItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -395,15 +412,19 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(itemsContainer);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         NavigationItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(itemsContainer);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal
@@ -414,6 +435,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         if (scrollButtons != null && isAttached(element())) {
             scrollButtons.updateScrollState();
         }
+        onAdd.forEach(bc -> bc.accept(this, item));
     }
 
     private void internalAddGroup(NavigationGroup group, Consumer<NavigationGroup> dom) {

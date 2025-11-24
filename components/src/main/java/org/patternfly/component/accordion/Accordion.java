@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -88,6 +89,8 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     IconPosition iconPosition;
     private final Map<String, AccordionItem> items;
     private final List<ToggleHandler<AccordionItem>> toggleHandler;
+    private final List<BiConsumer<Accordion, AccordionItem>> onAdd;
+    private final List<BiConsumer<Accordion, AccordionItem>> onRemove;
 
     <E extends HTMLElement> Accordion(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Accordion, builder.css(component(accordion)).element());
@@ -97,6 +100,8 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         this.iconPosition = end;
         this.items = new LinkedHashMap<>();
         this.toggleHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         Attachable.register(this, this);
     }
 
@@ -115,6 +120,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         if (isAttached(this)) {
             item.appendTo(this);
         }
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -174,6 +180,18 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
 
     // ------------------------------------------------------ events
 
+    @Override
+    public Accordion onAdd(BiConsumer<Accordion, AccordionItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Accordion onRemove(BiConsumer<Accordion, AccordionItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     public Accordion onToggle(ToggleHandler<AccordionItem> toggleHandler) {
         this.toggleHandler.add(toggleHandler);
         return this;
@@ -229,15 +247,19 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         AccordionItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

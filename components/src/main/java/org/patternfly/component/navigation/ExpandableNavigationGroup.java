@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.ButtonType;
@@ -101,6 +102,8 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final HTMLButtonElement buttonElement;
     private final HTMLElement section;
     private final HTMLUListElement ul;
+    private final List<BiConsumer<ExpandableNavigationGroup, NavigationItem>> onAdd;
+    private final List<BiConsumer<ExpandableNavigationGroup, NavigationItem>> onRemove;
 
     ExpandableNavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
@@ -110,6 +113,8 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         this.items = new LinkedHashMap<>();
         this.expandableGroups = new HashMap<>();
         this.toggleHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
 
         String titleId = Id.unique(identifier, "title");
         element().appendChild(buttonElement = button(ButtonType.button).css(component(nav, link))
@@ -206,6 +211,20 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public ExpandableNavigationGroup onAdd(BiConsumer<ExpandableNavigationGroup, NavigationItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ExpandableNavigationGroup onRemove(BiConsumer<ExpandableNavigationGroup, NavigationItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -239,15 +258,19 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ul);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         NavigationItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ul);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     @Override
@@ -260,6 +283,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
         items.put(item.identifier(), item);
         dom.accept(item);
+        onAdd.forEach(listener -> listener.accept(this, item));
     }
 
     private void internalAddGroup(ExpandableNavigationGroup group, Consumer<ExpandableNavigationGroup> dom) {

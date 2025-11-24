@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.alert;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -97,14 +100,18 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     private final AlertGroupType type;
     private final Map<String, Alert> items;
     private final int timeout;
+    private final List<BiConsumer<AlertGroup, Alert>> onAdd;
+    private final List<BiConsumer<AlertGroup, Alert>> onRemove;
 
     AlertGroup(AlertGroupType type, int timeout) {
         super(ComponentType.AlertGroup, ul().css(component(alertGroup))
                 .attr(role, list)
                 .element());
         this.type = type;
-        this.items = new LinkedHashMap<>();
         this.timeout = timeout;
+        this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         storeComponent();
 
         if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
@@ -137,11 +144,28 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
             }
             add(li().add(alert));
         }
+        onAdd.forEach(listener -> listener.accept(this, alert));
+        return this;
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public AlertGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public AlertGroup onAdd(BiConsumer<AlertGroup, Alert> onAdd) {
+        this.onAdd.add(onAdd);
         return this;
     }
 
     @Override
-    public AlertGroup that() {
+    public AlertGroup onRemove(BiConsumer<AlertGroup, Alert> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -175,6 +199,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     @Override
     public void clear() {
         removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(listener -> listener.accept(this, item)));
         items.clear();
     }
 
@@ -182,6 +207,9 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     public void removeItem(String identifier) {
         Alert item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(listener -> listener.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

@@ -18,6 +18,7 @@ package org.patternfly.component.list;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -29,7 +30,6 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -68,12 +68,16 @@ public class List extends BaseComponent<HTMLElement, List> implements
     // ------------------------------------------------------ instance
 
     private final Map<String, ListItem> items;
+    private final java.util.List<BiConsumer<List, ListItem>> onAdd;
+    private final java.util.List<BiConsumer<List, ListItem>> onRemove;
 
     <E extends HTMLElement> List(HTMLContainerBuilder<E> builder) {
         super(ComponentType.List, builder.css(Classes.component(list))
                 .attr(role, Roles.list)
                 .element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new java.util.ArrayList<>();
+        this.onRemove = new java.util.ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -93,21 +97,37 @@ public class List extends BaseComponent<HTMLElement, List> implements
     @Override
     public List add(ListItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return this;
     }
 
     public List addDivider() {
         return add(divider(li));
     }
 
-    // ------------------------------------------------------ builder
 
+    // ------------------------------------------------------ builder
     public List largeIcons() {
         return css(modifier(icon, lg));
     }
 
     @Override
     public List that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public List onAdd(BiConsumer<List, ListItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public List onRemove(BiConsumer<List, ListItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -139,14 +159,18 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

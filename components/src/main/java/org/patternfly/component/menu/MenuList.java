@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.HasItems;
@@ -55,10 +58,14 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     public static final String SUB_COMPONENT_NAME = "ml";
     final Map<String, MenuItem> items;
+    private final List<BiConsumer<MenuList, MenuItem>> onAdd;
+    private final List<BiConsumer<MenuList, MenuItem>> onRemove;
 
     MenuList() {
         super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         storeSubComponent();
         Attachable.register(this, this);
     }
@@ -87,7 +94,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     @Override
     public MenuList add(MenuItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        MenuList result = add(item.element());
+        onAdd.forEach(listbcner -> listbcner.accept(this, item));
+        return result;
     }
 
     public MenuList addDivider() {
@@ -98,6 +107,20 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public MenuList that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public MenuList onAdd(BiConsumer<MenuList, MenuItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public MenuList onRemove(BiConsumer<MenuList, MenuItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -129,17 +152,21 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     @Override
+    public void removeItem(String identifier) {
+        MenuItem item = items.remove(identifier);
+        failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
     public void clear() {
         for (MenuItem item : items.values()) {
             failSafeRemoveFromParent(item);
         }
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
         items.clear();
-    }
-
-    @Override
-    public void removeItem(String identifier) {
-        MenuItem item = items.remove(identifier);
-        failSafeRemoveFromParent(item);
     }
 
     // ------------------------------------------------------ internal

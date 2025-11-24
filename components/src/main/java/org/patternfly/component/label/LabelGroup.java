@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
@@ -73,10 +74,10 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
 
 public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implements
+        Attachable,
         Closeable<HTMLDivElement, LabelGroup>,
         HasItems<HTMLDivElement, LabelGroup, Label>,
-        Vertical<HTMLDivElement, LabelGroup>,
-        Attachable {
+        Vertical<HTMLDivElement, LabelGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -102,6 +103,8 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     private String expandedText;
     private Label overflowLabel;
     private Button closeButton;
+    private final List<BiConsumer<LabelGroup, Label>> onAdd;
+    private final List<BiConsumer<LabelGroup, Label>> onRemove;
     private HTMLElement categoryElement;
     private HTMLElement overflowItem;
     private TooltipToggle tooltipToggle;
@@ -110,6 +113,8 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         super(ComponentType.LabelGroup, div().css(component(labelGroup)).element());
         this.items = new LinkedHashMap<>();
         this.closeHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         this.expanded = false;
         this.numLabels = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -158,6 +163,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         }
 
         overflow();
+        onAdd.forEach(bc -> bc.accept(this, label));
         return this;
     }
 
@@ -237,10 +243,22 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     // ------------------------------------------------------ events
 
     @Override
+    public LabelGroup onAdd(BiConsumer<LabelGroup, Label> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
     public LabelGroup onClose(CloseHandler<LabelGroup> closeHandler) {
         if (closeHandler != null) {
             this.closeHandler.add(closeHandler);
         }
+        return this;
+    }
+
+    @Override
+    public LabelGroup onRemove(BiConsumer<LabelGroup, Label> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -280,17 +298,21 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(listElement);
-        items.clear();
-        overflowItem = null;
-        overflowLabel = null;
-    }
-
-    @Override
     public void removeItem(String identifier) {
         Label item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(listElement);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
+        overflowItem = null;
+        overflowLabel = null;
     }
 
     // ------------------------------------------------------ internal
@@ -304,6 +326,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
             failSafeRemoveFromParent(label);
         }
         overflow();
+        onRemove.forEach(bc -> bc.accept(this, label));
     }
 
     private void overflow() {

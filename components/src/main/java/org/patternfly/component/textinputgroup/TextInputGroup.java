@@ -21,6 +21,7 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.Key;
 import org.patternfly.component.BaseComponent;
+import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
@@ -30,6 +31,7 @@ import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Plain;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.MutationRecord;
 
@@ -63,6 +65,7 @@ import static org.patternfly.style.Classes.textInputGroup;
 //      - single value / multiple value
 public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup> implements
         Attachable,
+        ComponentIcon<HTMLDivElement, TextInputGroup>,
         Disabled<HTMLDivElement, TextInputGroup>,
         Plain<HTMLDivElement, TextInputGroup> {
 
@@ -133,7 +136,7 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
                                 textEntered.set(false);
                             }
                         }))
-                .addUtilities(textInputGroupUtilities(false)
+                .addUtilities(textInputGroupUtilities()
                         .add(button().icon(times()).plain()
                                 .on(click, e -> {
                                     labelGroup.clear();
@@ -222,6 +225,16 @@ public class TextInputGroup extends BaseComponent<HTMLDivElement, TextInputGroup
             main.disabled(disabled);
         }
         return Disabled.super.disabled(disabled);
+    }
+
+    @Override
+    public TextInputGroup icon(Element icon) {
+        return this;
+    }
+
+    @Override
+    public TextInputGroup removeIcon() {
+        return this;
     }
 
     @Override

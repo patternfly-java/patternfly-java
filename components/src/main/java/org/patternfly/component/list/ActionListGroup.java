@@ -15,10 +15,13 @@
  */
 package org.patternfly.component.list;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
@@ -58,12 +61,16 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;
+    private final List<BiConsumer<ActionListGroup, ActionListItem>> onAdd;
+    private final List<BiConsumer<ActionListGroup, ActionListItem>> onRemove;
 
     ActionListGroup(String identifier) {
         super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
     // ------------------------------------------------------ builder
@@ -88,7 +95,23 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     @Override
     public ActionListGroup add(ActionListItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        ActionListGroup result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public ActionListGroup onAdd(BiConsumer<ActionListGroup, ActionListItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ActionListGroup onRemove(BiConsumer<ActionListGroup, ActionListItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
     }
 
     // ------------------------------------------------------ api
@@ -138,14 +161,18 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ActionListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

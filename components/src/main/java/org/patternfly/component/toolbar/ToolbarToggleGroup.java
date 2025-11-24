@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.toolbar;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
 
@@ -57,14 +60,18 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
 
     public static final String SUB_COMPONENT_NAME = "ttg";
     private final Map<String, ToolbarItem> items;
+    private final List<BiConsumer<ToolbarToggleGroup, ToolbarItem>> onAdd;
+    private final List<BiConsumer<ToolbarToggleGroup, ToolbarItem>> onRemove;
 
     ToolbarToggleGroup() {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, group), modifier(toggleGroup), modifier(show)).element());
+        this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         add(div().css(component(toolbar, toggle))
                 .add(button(filter()).plain()
                         .aria(hasPopup, false)
                         .aria(label, "Show filters")));
-        this.items = new LinkedHashMap<>();
     }
 
     // ------------------------------------------------------ add
@@ -72,7 +79,9 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
     @Override
     public ToolbarToggleGroup add(ToolbarItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        ToolbarToggleGroup result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     public ToolbarToggleGroup addDivider() {
@@ -92,6 +101,20 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
 
     @Override
     public ToolbarToggleGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public ToolbarToggleGroup onAdd(BiConsumer<ToolbarToggleGroup, ToolbarItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ToolbarToggleGroup onRemove(BiConsumer<ToolbarToggleGroup, ToolbarItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -123,14 +146,18 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ToolbarItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

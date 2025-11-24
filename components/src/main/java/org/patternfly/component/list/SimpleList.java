@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
@@ -72,6 +73,8 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     private final List<SelectHandler<SimpleListItem>> selectHandler;
     private SimpleListType type;
     private HTMLUListElement ulElement;
+    private final List<BiConsumer<SimpleList, SimpleListItem>> onAdd;
+    private final List<BiConsumer<SimpleList, SimpleListItem>> onRemove;
 
     SimpleList() {
         super(ComponentType.SimpleList, div().css(component(simpleList)).element());
@@ -79,6 +82,8 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         this.items = new LinkedHashMap<>();
         this.selectHandler = new ArrayList<>();
         this.groups = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         storeComponent();
     }
 
@@ -109,6 +114,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         type = SimpleListType.items;
         items.put(item.identifier(), item);
         failSafeUlElement().appendChild(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -129,6 +135,18 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     // ------------------------------------------------------ events
+
+    @Override
+    public SimpleList onAdd(BiConsumer<SimpleList, SimpleListItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public SimpleList onRemove(BiConsumer<SimpleList, SimpleListItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
 
     public SimpleList onSelect(SelectHandler<SimpleListItem> selectHandler) {
         this.selectHandler.add(selectHandler);
@@ -193,15 +211,19 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ulElement);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         SimpleListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ulElement);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

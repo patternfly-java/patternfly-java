@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
@@ -63,12 +64,16 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     private final HTMLContainerBuilder<HTMLOListElement> ol;
     private final Map<String, BreadcrumbItem> items;
     private final List<SelectHandler<BreadcrumbItem>> selectHandler;
+    private final List<BiConsumer<Breadcrumb, BreadcrumbItem>> onAdd;
+    private final List<BiConsumer<Breadcrumb, BreadcrumbItem>> onRemove;
 
     Breadcrumb() {
         super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
         this.items = new LinkedHashMap<>();
         this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
         this.selectHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         storeComponent();
         element().appendChild(ol.element());
     }
@@ -79,6 +84,7 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     public Breadcrumb add(BreadcrumbItem item) {
         items.put(item.identifier(), item);
         ol.add(item);
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -96,6 +102,18 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     }
 
     // ------------------------------------------------------ events
+
+    @Override
+    public Breadcrumb onAdd(BiConsumer<Breadcrumb, BreadcrumbItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Breadcrumb onRemove(BiConsumer<Breadcrumb, BreadcrumbItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
 
     public Breadcrumb onSelect(SelectHandler<BreadcrumbItem> selectHandler) {
         this.selectHandler.add(selectHandler);
@@ -135,15 +153,19 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ol);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         BreadcrumbItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ol);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

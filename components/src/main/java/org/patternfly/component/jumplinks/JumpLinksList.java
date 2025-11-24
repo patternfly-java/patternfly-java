@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.jumplinks;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
 import org.patternfly.core.Roles;
@@ -45,12 +48,16 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     public static final String SUB_COMPONENT_NAME = "jll";
     final Map<String, JumpLinksItem> items;
+    private final List<BiConsumer<JumpLinksList, JumpLinksItem>> onAdd;
+    private final List<BiConsumer<JumpLinksList, JumpLinksItem>> onRemove;
 
     JumpLinksList() {
         super(SUB_COMPONENT_NAME, ul().css(component(jumpLinks, Classes.list))
                 .attr(role, Roles.list)
                 .element());
         this.items = new HashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -58,13 +65,29 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     @Override
     public JumpLinksList add(JumpLinksItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        JumpLinksList result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     // ------------------------------------------------------ builder
 
     @Override
     public JumpLinksList that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public JumpLinksList onAdd(BiConsumer<JumpLinksList, JumpLinksItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public JumpLinksList onRemove(BiConsumer<JumpLinksList, JumpLinksItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -96,14 +119,18 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         JumpLinksItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

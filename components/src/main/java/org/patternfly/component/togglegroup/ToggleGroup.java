@@ -23,6 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -75,6 +76,8 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     private final Map<String, Boolean> disabledSnapshot;
     private final List<SelectHandler<ToggleGroupItem>> selectHandler;
     private final List<MultiSelectHandler<ToggleGroup, ToggleGroupItem>> multiSelectHandler;
+    private final List<BiConsumer<ToggleGroup, ToggleGroupItem>> onAdd;
+    private final List<BiConsumer<ToggleGroup, ToggleGroupItem>> onRemove;
     private boolean disabled;
 
     ToggleGroup(SelectionMode selectionMode) {
@@ -83,6 +86,8 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         this.disabledSnapshot = new HashMap<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
 
         if (!SUPPORTED_SELECTION_MODES.contains(selectionMode)) {
             logger.warn("Selection mode %s is not supported for %o. Supported modes are %s. Fall back to %s",
@@ -101,6 +106,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     public ToggleGroup add(ToggleGroupItem item) {
         items.put(item.identifier(), item);
         add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -141,13 +147,25 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     // ------------------------------------------------------ events
 
-    public ToggleGroup onSingleSelect(SelectHandler<ToggleGroupItem> selectHandler) {
-        this.selectHandler.add(selectHandler);
+    @Override
+    public ToggleGroup onAdd(BiConsumer<ToggleGroup, ToggleGroupItem> onAdd) {
+        this.onAdd.add(onAdd);
         return this;
     }
 
     public ToggleGroup onMultiSelect(MultiSelectHandler<ToggleGroup, ToggleGroupItem> selectHandler) {
         this.multiSelectHandler.add(selectHandler);
+        return this;
+    }
+
+    @Override
+    public ToggleGroup onRemove(BiConsumer<ToggleGroup, ToggleGroupItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
+    public ToggleGroup onSingleSelect(SelectHandler<ToggleGroupItem> selectHandler) {
+        this.selectHandler.add(selectHandler);
         return this;
     }
 
@@ -223,15 +241,19 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ToggleGroupItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal

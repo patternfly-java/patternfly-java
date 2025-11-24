@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.list;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -50,10 +53,14 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     // ------------------------------------------------------ instance
 
     private final Map<String, ActionListGroup> items;
+    private final List<BiConsumer<ActionList, ActionListGroup>> onAdd;
+    private final List<BiConsumer<ActionList, ActionListGroup>> onRemove;
 
     ActionList() {
         super(ComponentType.ActionList, div().css(component(actionList)).element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -61,7 +68,9 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     @Override
     public ActionList add(ActionListGroup item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        ActionList result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     // ------------------------------------------------------ builder
@@ -72,6 +81,20 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
 
     @Override
     public ActionList that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public ActionList onAdd(BiConsumer<ActionList, ActionListGroup> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ActionList onRemove(BiConsumer<ActionList, ActionListGroup> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -103,14 +126,18 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ActionListGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

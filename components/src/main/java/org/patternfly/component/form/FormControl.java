@@ -18,11 +18,11 @@ package org.patternfly.component.form;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.Validatable;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -35,8 +35,8 @@ import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.utilities;
 
-public abstract class FormControl<E extends HTMLElement, B extends BaseComponent<E, B>>
-        extends BaseComponent<E, B> implements Disabled<E, B>, Required<E, B> {
+public abstract class FormControl<E extends HTMLElement, B extends BaseComponent<E, B>> extends BaseComponent<E, B>
+        implements Disabled<E, B>, Required<E, B>, Validatable<E, B> {
 
     // ------------------------------------------------------ factory
 

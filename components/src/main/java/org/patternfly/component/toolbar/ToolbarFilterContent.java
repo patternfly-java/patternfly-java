@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
 import org.patternfly.filter.Filter;
@@ -49,10 +50,14 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     public static final String SUB_COMPONENT_NAME = "tfc";
     private final Map<String, ToolbarItem> items;
+    private final List<BiConsumer<ToolbarFilterContent, ToolbarItem>> onAdd;
+    private final List<BiConsumer<ToolbarFilterContent, ToolbarItem>> onRemove;
 
     ToolbarFilterContent() {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, content), modifier(chipContainer)).element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         setVisible(this, false);
     }
 
@@ -61,7 +66,9 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
     @Override
     public ToolbarFilterContent add(ToolbarItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        ToolbarFilterContent result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     public ToolbarFilterContent addGroup(ToolbarGroup group) {
@@ -108,6 +115,20 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public ToolbarFilterContent onAdd(BiConsumer<ToolbarFilterContent, ToolbarItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ToolbarFilterContent onRemove(BiConsumer<ToolbarFilterContent, ToolbarItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -136,14 +157,18 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
     }
 
     @Override
-    public void clear() {
-        items.clear();
-        removeChildrenFrom(this);
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ToolbarItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
+        removeChildrenFrom(this);
     }
 }

@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.toolbar;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
@@ -63,10 +66,14 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public static final String SUB_COMPONENT_NAME = "tc";
     private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
+    private final List<BiConsumer<ToolbarContent, ToolbarItem>> onAdd;
+    private final List<BiConsumer<ToolbarContent, ToolbarItem>> onRemove;
 
     ToolbarContent() {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         element().appendChild(contentSection = div().css(component(toolbar, content, section)).element());
     }
 
@@ -81,6 +88,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public ToolbarContent add(ToolbarItem item) {
         items.put(item.identifier(), item);
         contentSection.appendChild(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -135,6 +143,20 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public ToolbarContent onAdd(BiConsumer<ToolbarContent, ToolbarItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public ToolbarContent onRemove(BiConsumer<ToolbarContent, ToolbarItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -163,14 +185,18 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(contentSection);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         ToolbarItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(contentSection);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

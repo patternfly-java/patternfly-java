@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -33,7 +32,6 @@ import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Vertical;
-
 import elemental2.dom.HTMLOListElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -45,24 +43,25 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.progressStepper;
 
 /**
- * A progress stepper displays a timeline of tasks in a workflow and tracks a
- * user's progress through the workflow.
- *
+ * A progress stepper displays a timeline of tasks in a workflow and tracks a user's progress through the workflow.
+ * <p>
  * The navigation semantics use a sentinel index interval of [-1, size]:
  * <ul>
- * <li><strong>-1</strong> &rarr; underflow / before first element (no current
+ * <li><strong>-1</strong> &rarr; underflow / before the first element (no current
  * step)</li>
  * <li><strong>0..n-1</strong> &rarr; valid current step indices</li>
- * <li><strong>size()</strong> &rarr; overflow / after last element (no current
+ * <li><strong>size()</strong> &rarr; overflow / after the last element (no current
  * step)</li>
  * </ul>
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/progress-stepper/">https://www.patternfly.org/components/progress-stepper/</a>
+ * "https://www.patternfly.org/components/progress-stepper/">https://www.patternfly.org/components/progress-stepper/</a>
  */
-public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressStepper>
-        implements Center<HTMLOListElement, ProgressStepper>, Compact<HTMLOListElement, ProgressStepper>,
-        HasItems<HTMLOListElement, ProgressStepper, ProgressStep>, Vertical<HTMLOListElement, ProgressStepper> {
+public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressStepper> implements
+        Center<HTMLOListElement, ProgressStepper>,
+        Compact<HTMLOListElement, ProgressStepper>,
+        HasItems<HTMLOListElement, ProgressStepper, ProgressStep>,
+        Vertical<HTMLOListElement, ProgressStepper> {
 
     // ------------------------------------------------------ factory
 
@@ -76,6 +75,8 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
 
     private final Map<String, ProgressStep> progressStepperMap;
     private final List<ProgressStep> steps;
+    private final List<BiConsumer<ProgressStepper, ProgressStep>> onAdd;
+    private final List<BiConsumer<ProgressStepper, ProgressStep>> onRemove;
 
     private int currentIndex = -1; // [-1, steps.size()]
 
@@ -85,16 +86,21 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
                 .element());
         this.progressStepperMap = new LinkedHashMap<>();
         this.steps = new ArrayList<>(); // needs to be synced with Map#values()
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
-    // ------------------------------------------------------ builder
+    // ------------------------------------------------------ add
 
     @Override
     public ProgressStepper add(ProgressStep item) {
         addToCollections(item);
         element().appendChild(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
+
+    // ------------------------------------------------------ builder
 
     @Override
     public ProgressStepper that() {
@@ -104,8 +110,7 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     // ------------------------------------------------------ navigation
 
     /**
-     * Selects the first step (index 0) if available.
-     * Does nothing if there are no steps or the first step is already current.
+     * Selects the first step (index 0) if available. Does nothing if there are no steps or the first step is already current.
      *
      * @return this instance
      */
@@ -116,14 +121,11 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Selects the first step (index 0) if available.
-     * Previous current (if any) is cleared, then the first step is marked current.
-     * No change if empty or already at index 0.
+     * Selects the first step (index 0) if available. Previous current (if any) is cleared, then the first step is marked
+     * current. No change if empty or already at index 0.
      *
-     * @param actionForTheFirstStep           invoked with the first step after it
-     *                                        becomes current
-     * @param actionForThePreviousCurrentStep invoked with the previous current step
-     *                                        after it is cleared
+     * @param actionForTheFirstStep           invoked with the first step after it becomes current
+     * @param actionForThePreviousCurrentStep invoked with the previous current step after it is cleared
      * @return this instance
      */
     public ProgressStepper first(Consumer<ProgressStep> actionForTheFirstStep,
@@ -165,14 +167,10 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Moves one step backward with callbacks.
-     * See {@link #previous()} for state transitions.
+     * Moves one step backward with callbacks. See {@link #previous()} for state transitions.
      *
-     * @param actionForTheNewCurrentStepWithIndex receives Optional(new step) and
-     *                                            its index, or Optional.empty() on
-     *                                            underflow
-     * @param actionForThePreviousCurrentStep     receives the step that was current
-     *                                            (if it existed) after clearing
+     * @param actionForTheNewCurrentStepWithIndex receives Optional(new step) and its index, or Optional.empty() on underflow
+     * @param actionForThePreviousCurrentStep     receives the step that was current (if it existed) after clearing
      * @return this instance
      */
     public ProgressStepper previous(BiConsumer<Optional<ProgressStep>, Integer> actionForTheNewCurrentStepWithIndex,
@@ -224,13 +222,10 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Moves one step forward with callbacks.
-     * See {@link #next()} for state transitions.
+     * Moves one step forward with callbacks. See {@link #next()} for state transitions.
      *
-     * @param actionForTheNewCurrentWithIndex receives Optional(new step) and its
-     *                                        index, or Optional.empty() on overflow
-     * @param actionForThePreviousCurrent     receives the step that was current (if
-     *                                        it existed) after clearing
+     * @param actionForTheNewCurrentWithIndex receives Optional(new step) and its index, or Optional.empty() on overflow
+     * @param actionForThePreviousCurrent     receives the step that was current (if it existed) after clearing
      * @return this instance
      */
     public ProgressStepper next(BiConsumer<Optional<ProgressStep>, Integer> actionForTheNewCurrentWithIndex,
@@ -263,8 +258,7 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Selects the last step (index size-1) if present.
-     * Does nothing if empty or already at last.
+     * Selects the last step (index size-1) if present. Does nothing if empty or already at last.
      *
      * @return this instance
      */
@@ -275,13 +269,11 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Selects the last step (index size-1) if present.
-     * Previous current (if valid) is cleared, then the last step is marked current.
+     * Selects the last step (index size-1) if present. Previous current (if valid) is cleared, then the last step is marked
+     * current.
      *
-     * @param actionForTheLastStep            invoked with the last step after it
-     *                                        becomes current
-     * @param actionForThePreviousCurrentStep invoked with the previous current step
-     *                                        after it is cleared
+     * @param actionForTheLastStep            invoked with the last step after it becomes current
+     * @param actionForThePreviousCurrentStep invoked with the previous current step after it is cleared
      * @return this instance
      */
     public ProgressStepper last(Consumer<ProgressStep> actionForTheLastStep,
@@ -310,12 +302,21 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         return aria(Aria.label, label);
     }
 
-    // ------------------------------------------------------ api
+    // ------------------------------------------------------ events
 
-    public <T> void updateItems(Iterable<T> items, Function<T, ProgressStep> display) {
-        clear();
-        addItems(items, display);
+    @Override
+    public ProgressStepper onAdd(BiConsumer<ProgressStepper, ProgressStep> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
     }
+
+    @Override
+    public ProgressStepper onRemove(BiConsumer<ProgressStepper, ProgressStep> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
+    // ------------------------------------------------------ api
 
     @Override
     public Iterator<ProgressStep> iterator() {
@@ -343,25 +344,11 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     /**
-     * Returns the index of the current progress step. The interval is [-1, size],
-     * where -1 implies no current step (before first) and size implies no current
-     * step (after last).
+     * Returns the index of the current progress step. The interval is [-1, size], where -1 implies no current step (before
+     * first) and size implies no current step (after last).
      */
     public int currentIndex() {
         return currentIndex;
-    }
-
-    @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        clearCollections();
-        currentIndex = -1;
-    }
-
-    @Override
-    public void removeItem(String identifier) {
-        ProgressStep item = progressStepperMap.remove(identifier);
-        failSafeRemoveFromParent(item);
     }
 
     /**
@@ -375,6 +362,24 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
             stepConsumerWithIndex.accept(steps.get(i), i);
         }
         return this;
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        ProgressStep item = progressStepperMap.remove(identifier);
+        failSafeRemoveFromParent(item);
+        if (item != null) {
+            steps.remove(item);
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        steps.forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        clearCollections();
+        currentIndex = -1;
     }
 
     // ------------------------------------------------------ internal

@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.list;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.ElementContainerDelegate;
@@ -61,10 +64,14 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     final Map<String, SimpleListItem> items;
     private final HTMLElement headerElement;
     private final HTMLUListElement ulElement;
+    private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onAdd;
+    private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onRemove;
 
     SimpleListGroup() {
         super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         String headerId = Id.unique(SUB_COMPONENT_NAME);
         element().appendChild(headerElement = h(2).css(component(simpleList, title))
                 .id(headerId)
@@ -104,6 +111,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public SimpleListGroup add(SimpleListItem item) {
         items.put(item.identifier(), item);
         ulElement.appendChild(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
@@ -111,6 +119,20 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     @Override
     public SimpleListGroup that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public SimpleListGroup onAdd(BiConsumer<SimpleListGroup, SimpleListItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public SimpleListGroup onRemove(BiConsumer<SimpleListGroup, SimpleListItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -144,6 +166,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     @Override
     public void clear() {
         removeChildrenFrom(ulElement);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
         items.clear();
     }
 
@@ -151,5 +174,8 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public void removeItem(String identifier) {
         SimpleListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

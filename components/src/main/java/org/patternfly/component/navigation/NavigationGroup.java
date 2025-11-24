@@ -15,10 +15,13 @@
  */
 package org.patternfly.component.navigation;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.ElementContainerDelegate;
@@ -75,6 +78,8 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     private final Map<String, NavigationItem> items;
     private final HTMLHeadingElement headingElement;
     private final HTMLUListElement ul;
+    private final List<BiConsumer<NavigationGroup, NavigationItem>> onAdd;
+    private final List<BiConsumer<NavigationGroup, NavigationItem>> onRemove;
 
     NavigationGroup(String identifier) {
         super(SUB_COMPONENT_NAME, section().css(component(nav, section))
@@ -82,6 +87,8 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
                 .element());
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
 
         element().appendChild(headingElement = h(2).css(component(nav, section, title)).element());
         element().appendChild(ul = ul().css(component(nav, list))
@@ -139,6 +146,20 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    @Override
+    public NavigationGroup onAdd(BiConsumer<NavigationGroup, NavigationItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public NavigationGroup onRemove(BiConsumer<NavigationGroup, NavigationItem> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -172,15 +193,19 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ul);
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         NavigationItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ul);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 
     // ------------------------------------------------------ internal
@@ -188,6 +213,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
         items.put(item.identifier(), item);
         dom.accept(item);
+        onAdd.forEach(listener -> listener.accept(this, item));
     }
 
     NavigationItem findItem(String id) {

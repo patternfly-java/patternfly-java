@@ -17,6 +17,7 @@ package org.patternfly.component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.IsElement;
@@ -53,6 +54,8 @@ public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
 
     B add(S item);
 
+    B onAdd(BiConsumer<B, S> onAdd);
+
     default List<S> items() {
         List<S> items = new ArrayList<>();
         this.forEach(items::add);
@@ -68,6 +71,8 @@ public interface HasItems<E extends Element, B extends TypedBuilder<E, B>, S>
     S item(String identifier);
 
     void removeItem(String identifier);
+
+    B onRemove(BiConsumer<B, S> onRemove);
 
     void clear();
 }

@@ -16,7 +16,6 @@
 package org.patternfly.component.textinputgroup;
 
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -27,26 +26,16 @@ public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivE
 
     // ------------------------------------------------------ factory
 
-    /** Same as {@linkplain #textInputGroupUtilities(boolean) textInputGroupUtilities(true)} */
     public static TextInputGroupUtilities textInputGroupUtilities() {
-        return new TextInputGroupUtilities(true);
+        return new TextInputGroupUtilities();
     }
-
-    public static TextInputGroupUtilities textInputGroupUtilities(boolean hidden) {
-        return new TextInputGroupUtilities(hidden);
-    }
-
-    private TextInputGroup textInputGroup;
 
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "tigu";
 
-    TextInputGroupUtilities(boolean hidden) {
+    TextInputGroupUtilities() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());
-        if (hidden) {
-            style("display", "none");
-        }
     }
 
     // ------------------------------------------------------ builder

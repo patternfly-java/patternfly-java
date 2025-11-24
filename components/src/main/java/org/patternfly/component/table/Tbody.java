@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.table;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
@@ -55,12 +58,16 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     public static final String SUB_COMPONENT_NAME = "tbd";
     final Map<String, Tr> items;
     private Tr emptyRow;
+    private final List<BiConsumer<Tbody, Tr>> onAdd;
+    private final List<BiConsumer<Tbody, Tr>> onRemove;
 
     Tbody() {
         super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
                 .attr(role, rowgroup)
                 .element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
     }
 
     // ------------------------------------------------------ add
@@ -79,6 +86,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
         items.put(row.identifier(), row);
         row.tbody = this;
         add(row.element());
+        onAdd.forEach(bc -> bc.accept(this, row));
         return this;
     }
 
@@ -86,6 +94,20 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     @Override
     public Tbody that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public Tbody onAdd(BiConsumer<Tbody, Tr> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Tbody onRemove(BiConsumer<Tbody, Tr> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -130,14 +152,18 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         Tr item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

@@ -15,9 +15,12 @@
  */
 package org.patternfly.component.list;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
@@ -67,12 +70,16 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     // ------------------------------------------------------ instance
 
     private final Map<String, DataListItem> items;
+    private final List<BiConsumer<DataList, DataListItem>> onAdd;
+    private final List<BiConsumer<DataList, DataListItem>> onRemove;
 
     DataList() {
         super(ComponentType.DataList, ul().css(component(dataList))
                 .attr(role, list)
                 .element());
         this.items = new LinkedHashMap<>();
+        this.onAdd = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
         gridBreakpoint(gridMd);
     }
 
@@ -81,7 +88,9 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     @Override
     public DataList add(DataListItem item) {
         items.put(item.identifier(), item);
-        return add(item.element());
+        DataList result = add(item.element());
+        onAdd.forEach(bc -> bc.accept(this, item));
+        return result;
     }
 
     // ------------------------------------------------------ builder
@@ -104,6 +113,20 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
 
     @Override
     public DataList that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public DataList onAdd(BiConsumer<DataList, DataListItem> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public DataList onRemove(BiConsumer<DataList, DataListItem> onRemove) {
+        this.onRemove.add(onRemove);
         return this;
     }
 
@@ -135,14 +158,18 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         DataListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
+        if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

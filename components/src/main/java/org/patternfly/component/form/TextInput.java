@@ -133,12 +133,6 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         return this;
     }
 
-    @Override
-    public TextInput readonly(boolean readonly) {
-        inputElement.readOnly = readonly;
-        return Readonly.super.readonly(readonly);
-    }
-
     /** Same as {@linkplain #expanded(boolean) expanded(true)} */
     public TextInput expanded() {
         return expanded(true);
@@ -151,12 +145,45 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     @Override
+    public TextInput icon(Element icon) {
+        css(modifier(Classes.icon));
+        if (iconContainer == null) {
+            insertFirst(failSafeUtilitiesContainer(), iconContainer = span().css(component(formControl, Classes.icon))
+                    .element());
+        }
+        removeChildrenFrom(iconContainer);
+        iconContainer.appendChild(icon);
+        return this;
+    }
+
+    public TextInput placeholder(String placeholder) {
+        inputElement.placeholder = placeholder;
+        return this;
+    }
+
+    @Override
     public TextInput plain(boolean plain) {
         if (plain) {
             // plain requires readonly
             readonly();
         }
         return Plain.super.plain(plain);
+    }
+
+    @Override
+    public TextInput readonly(boolean readonly) {
+        inputElement.readOnly = readonly;
+        return Readonly.super.readonly(readonly);
+    }
+
+    @Override
+    public TextInput removeIcon() {
+        failSafeRemoveFromParent(iconContainer);
+        if (utilitiesContainer != null && utilitiesContainer.childElementCount == 0) {
+            failSafeRemoveFromParent(utilitiesContainer);
+        }
+        element().classList.remove(modifier(icon));
+        return this;
     }
 
     @Override
@@ -177,33 +204,6 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
         if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
             valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
         }
-        return this;
-    }
-
-    public TextInput placeholder(String placeholder) {
-        inputElement.placeholder = placeholder;
-        return this;
-    }
-
-    @Override
-    public TextInput icon(Element icon) {
-        css(modifier(Classes.icon));
-        if (iconContainer == null) {
-            insertFirst(failSafeUtilitiesContainer(), iconContainer = span().css(component(formControl, Classes.icon))
-                    .element());
-        }
-        removeChildrenFrom(iconContainer);
-        iconContainer.appendChild(icon);
-        return this;
-    }
-
-    @Override
-    public TextInput removeIcon() {
-        failSafeRemoveFromParent(iconContainer);
-        if (utilitiesContainer != null && utilitiesContainer.childElementCount == 0) {
-            failSafeRemoveFromParent(utilitiesContainer);
-        }
-        element().classList.remove(modifier(icon));
         return this;
     }
 
