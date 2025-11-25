@@ -32,7 +32,6 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.menu.MenuType.select;
-import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
 
@@ -64,10 +63,13 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     SingleTypeahead(String placeholder) {
         super(ComponentType.SingleSelect, MenuToggle.menuToggle(typeahead), TriggerAction.click);
-        this.textInputGroup = searchInputGroup(placeholder == null ? "" : placeholder, tig -> {
-            tig.main().inputElement().element().focus();
-            menu.unselectAllItems();
-        }).plain();
+        this.textInputGroup = TextInputGroup.textInputGroup(Id.build(ComponentType.SingleSelect.id, "tig"))
+                .plain()
+                .placeholder(placeholder == null ? "" : placeholder)
+                .clear((e, tig) -> {
+                    tig.input().element().focus();
+                    menu.unselectAllItems();
+                });
         this.menuToggle.addTextInputGroup(textInputGroup);
         this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
         this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
@@ -82,19 +84,19 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
                         clearSearch();
                     }
                 });
-        textInputGroup.main().inputElement()
+        textInputGroup.input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
                 .on(click, event -> {
-                    if (!textInputGroup.main().value().isEmpty()) {
-                        search(textInputGroup.main().value());
+                    if (!textInputGroup.value().isEmpty()) {
+                        search(textInputGroup.value());
                     }
                     if (!expanded()) {
                         expand();
                     }
                 });
         onToggle((e, c, expanded) ->
-                textInputGroup.main().inputElement().aria(Aria.expanded, expanded));
+                textInputGroup.input().aria(Aria.expanded, expanded));
     }
 
     // ------------------------------------------------------ add

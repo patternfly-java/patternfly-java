@@ -16,6 +16,7 @@
 package org.patternfly.component.textinputgroup;
 
 import org.patternfly.style.Classes;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;

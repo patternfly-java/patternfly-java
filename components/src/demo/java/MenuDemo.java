@@ -2,6 +2,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuType;
+import org.patternfly.component.textinputgroup.TextInputGroup;
 
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.button.Button.button;
@@ -13,8 +14,8 @@ import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuSearch.menuSearch;
 import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
-import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 
+@SuppressWarnings("unused")
 public class MenuDemo {
 
     public void menuDemo() {
@@ -59,7 +60,7 @@ public class MenuDemo {
         Menu menu = menu(MenuType.menu, click)
                 .addSearch(menuSearch()
                         .addSearchInput(menuSearchInput()
-                                .addSearchInput(searchInputGroup())
+                                .addSearchInput(TextInputGroup.textInputGroup("search").clear())
                                 .onSearch((menuItem, value) ->
                                         menuItem.text().toLowerCase().contains(value.toLowerCase()))
                                 .onNoResults(value ->

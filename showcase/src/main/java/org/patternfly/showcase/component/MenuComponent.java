@@ -33,6 +33,7 @@ import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuSearch;
 import org.patternfly.component.menu.MenuSearchInput;
 import org.patternfly.component.menu.MenuType;
+import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -64,7 +65,6 @@ import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
 import static org.patternfly.component.menu.MenuType.checkbox;
 import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.MenuType.select;
-import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
@@ -332,7 +332,7 @@ public class MenuComponent extends SnippetPage {
                         .add(menu(menu, click)
                                 .addSearch(menuSearch()
                                         .addSearchInput(menuSearchInput()
-                                                .addSearchInput(searchInputGroup())
+                                                .addSearchInput(TextInputGroup.textInputGroup("menu-filter-0").clear())
                                                 .onSearch((menuItem, value) ->
                                                         menuItem.text().toLowerCase().contains(value.toLowerCase()))
                                                 .onNoResults(value ->

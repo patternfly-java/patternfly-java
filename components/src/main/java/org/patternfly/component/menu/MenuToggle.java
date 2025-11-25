@@ -47,7 +47,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.fas.caretDown;
@@ -315,8 +314,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             }
         } else if (type == MenuToggleType.typeahead) {
             if (textInputGroup != null) {
-                textInputGroup.main().value(text);
-                setVisible(textInputGroup.utilities(), text != null && !text.isEmpty());
+                textInputGroup.value(text);
             }
         }
         return this;

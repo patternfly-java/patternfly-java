@@ -52,7 +52,7 @@ import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
-import static org.patternfly.component.textinputgroup.TextInputGroup.searchInputGroup;
+import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
 import static org.patternfly.component.toolbar.AlignItems.center;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 import static org.patternfly.component.toolbar.ToolbarColor.noBackground;
@@ -94,7 +94,7 @@ public class ToolbarComponent extends SnippetPage {
                         .add(toolbar()
                                 .addContent(toolbarContent()
                                         .addItem(toolbarItem()
-                                                .add(searchInputGroup()))
+                                                .add(textInputGroup("toolbar-items-tig-0").clear()))
                                         .addItem(toolbarItem()
                                                 .add(button("Action").secondary()))
                                         .addDivider()
@@ -156,7 +156,7 @@ public class ToolbarComponent extends SnippetPage {
                     .add(toolbar.sticky()
                             .addContent(toolbarContent().alignItems(center)
                                     .addItem(toolbarItem()
-                                            .add(searchInputGroup()))
+                                            .add(textInputGroup("toolbar-sticky-tig-0").clear()))
                                     .addItem(toolbarItem()
                                             .add(even))))
                     .add(numbers.css(util("mt-sm")))
@@ -220,7 +220,7 @@ public class ToolbarComponent extends SnippetPage {
                         .add(toolbar().color(noBackground)
                                 .addContent(toolbarContent()
                                         .addItem(toolbarItem()
-                                                .add(searchInputGroup()))
+                                                .add(textInputGroup("toolbar-color-tig-0").clear()))
                                         .addItem(toolbarItem()
                                                 .add(button("Action").secondary()))
                                         .addDivider()
@@ -231,7 +231,7 @@ public class ToolbarComponent extends SnippetPage {
                         .add(toolbar().color(primary)
                                 .addContent(toolbarContent()
                                         .addItem(toolbarItem()
-                                                .add(searchInputGroup()))
+                                                .add(textInputGroup("toolbar-color-tig-1").clear()))
                                         .addItem(toolbarItem()
                                                 .add(button("Action").secondary()))
                                         .addDivider()
@@ -242,7 +242,7 @@ public class ToolbarComponent extends SnippetPage {
                         .add(toolbar().color(secondary)
                                 .addContent(toolbarContent()
                                         .addItem(toolbarItem()
-                                                .add(searchInputGroup()))
+                                                .add(textInputGroup("toolbar-color-tig-2").clear()))
                                         .addItem(toolbarItem()
                                                 .add(button("Action").secondary()))
                                         .addDivider()
@@ -271,7 +271,7 @@ public class ToolbarComponent extends SnippetPage {
                                 .addContent(toolbarContent()
                                         .addToggleGroup(toolbarToggleGroup()
                                                 .addItem(toolbarItem()
-                                                        .add(searchInputGroup()))
+                                                        .add(textInputGroup("toolbar-tg-0").clear()))
                                                 .addGroup(toolbarGroup(filterGroup)
                                                         .addItem(toolbarItem().add(singleSelect("Running")
                                                                 .style("width", "150px")

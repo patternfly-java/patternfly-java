@@ -164,18 +164,18 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(ulElement);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         SimpleListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
         if (item != null) {
             onRemove.forEach(bc -> bc.accept(this, item));
         }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(ulElement);
+        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
+        items.clear();
     }
 }

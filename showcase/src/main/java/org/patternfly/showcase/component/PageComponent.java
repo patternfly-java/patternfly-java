@@ -22,12 +22,12 @@ import org.patternfly.component.page.Page;
 import org.patternfly.component.page.PageBreadcrumb;
 import org.patternfly.component.page.PageGroup;
 import org.patternfly.component.page.PageMain;
-import org.patternfly.component.page.PageWizard;
 import org.patternfly.component.page.PageNavigation;
 import org.patternfly.component.page.PageSection;
 import org.patternfly.component.page.PageSectionBuilder;
 import org.patternfly.component.page.PageSectionLike;
 import org.patternfly.component.page.PageTabs;
+import org.patternfly.component.page.PageWizard;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 

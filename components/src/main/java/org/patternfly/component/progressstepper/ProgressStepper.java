@@ -32,6 +32,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Vertical;
+
 import elemental2.dom.HTMLOListElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
