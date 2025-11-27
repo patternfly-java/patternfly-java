@@ -24,6 +24,7 @@ import java.util.function.BiConsumer;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
@@ -196,7 +197,11 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     @Override
     public void clear() {
         removeChildrenFrom(contentSection);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<ToolbarItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            ToolbarItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

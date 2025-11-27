@@ -17,7 +17,6 @@ package org.patternfly.component.form;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -29,8 +28,6 @@ import org.patternfly.core.Attributes;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
-
-import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOptionElement;
@@ -43,6 +40,7 @@ import static org.jboss.elemento.Elements.wrapSelectElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.patternfly.core.Aria.invalid;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.icon.IconSets.fas.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
@@ -171,11 +169,9 @@ public class FormSelect extends FormControl<HTMLElement, FormSelect> implements 
     }
 
     public FormSelect value(String value, boolean fireEvent) {
-        //noinspection DuplicatedCode
-        boolean changed = !Objects.equals(selectElement.value, value);
         selectElement.value = value;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        if (fireEvent) {
+            fireIfChanged(this, value, selectElement.value, changeHandlers);
         }
         return this;
     }

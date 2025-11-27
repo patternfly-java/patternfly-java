@@ -19,9 +19,8 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
-import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.textinputgroup.TextInputGroup;
+import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 
@@ -32,6 +31,7 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.menu.MenuType.select;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
 
@@ -55,26 +55,22 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(SingleTypeahead.class.getName());
-    private final TextInputGroup textInputGroup;
+    private final SearchInput searchInput;
     private MenuItem noResultsItem;
     private BiPredicate<MenuItem, String> searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
     SingleTypeahead(String placeholder) {
         super(ComponentType.SingleSelect, MenuToggle.menuToggle(typeahead), TriggerAction.click);
-        this.textInputGroup = TextInputGroup.textInputGroup(Id.build(ComponentType.SingleSelect.id, "tig"))
+        this.searchInput = searchInput(Id.build(ComponentType.SingleSelect.id, "tig"))
                 .plain()
                 .placeholder(placeholder == null ? "" : placeholder)
-                .clear((e, tig) -> {
-                    tig.input().element().focus();
-                    menu.unselectAllItems();
-                });
-        this.menuToggle.addTextInputGroup(textInputGroup);
+                .onClear((e, tig) -> tig.input().element().focus());
+        this.menuToggle.addSearchInput(searchInput);
         this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
         this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
 
-        textInputGroup
+        searchInput
                 .onKeyup((event, tig, value) -> {
                     search(value);
                     expand();
@@ -84,19 +80,19 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
                         clearSearch();
                     }
                 });
-        textInputGroup.input()
+        searchInput.input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
                 .on(click, event -> {
-                    if (!textInputGroup.value().isEmpty()) {
-                        search(textInputGroup.value());
+                    if (!searchInput.value().isEmpty()) {
+                        search(searchInput.value());
                     }
                     if (!expanded()) {
                         expand();
                     }
                 });
         onToggle((e, c, expanded) ->
-                textInputGroup.input().aria(Aria.expanded, expanded));
+                searchInput.input().aria(Aria.expanded, expanded));
     }
 
     // ------------------------------------------------------ add

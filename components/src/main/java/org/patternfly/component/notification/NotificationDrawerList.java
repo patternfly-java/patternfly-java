@@ -24,6 +24,7 @@ import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Elements;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -143,10 +144,12 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     @Override
     public void clear() {
-        for (NotificationDrawerItem item : items.values()) {
+        Iterator<NotificationDrawerItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            NotificationDrawerItem item = iterator.next();
             failSafeRemoveFromParent(item);
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
     }
 }

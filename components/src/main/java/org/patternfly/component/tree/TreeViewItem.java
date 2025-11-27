@@ -34,6 +34,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -458,8 +459,12 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     public void clear() {
         if (status == static_) {
             removeChildrenFrom(element());
-            items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-            items.clear();
+            Iterator<TreeViewItem> iterator = items.values().iterator();
+            while (iterator.hasNext()) {
+                TreeViewItem item = iterator.next();
+                iterator.remove();
+                onRemove.forEach(bc -> bc.accept(this, item));
+            }
         } else if (status == resolved || status == rejected || status == pending) {
             reset();
         }

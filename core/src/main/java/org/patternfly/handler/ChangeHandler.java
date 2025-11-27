@@ -15,6 +15,9 @@
  */
 package org.patternfly.handler;
 
+import java.util.List;
+import java.util.Objects;
+
 import elemental2.dom.Event;
 
 /**
@@ -25,6 +28,13 @@ import elemental2.dom.Event;
  */
 @FunctionalInterface
 public interface ChangeHandler<C, T> {
+
+    static <C, T> void fireIfChanged(C component, T oldValue, T value,  List<ChangeHandler<C, T>> changeHandlers) {
+        boolean changed = !Objects.equals(oldValue, value);
+        if (changed && !changeHandlers.isEmpty()) {
+            changeHandlers.forEach(ch -> ch.onChange(new Event(""), component, value));
+        }
+    }
 
     void onChange(Event event, C component, T value);
 }

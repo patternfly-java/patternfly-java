@@ -30,6 +30,7 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.divider.Divider;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 
@@ -204,8 +205,12 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     @Override
     public void clear() {
         removeChildrenFrom(ul);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<NavigationItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            NavigationItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

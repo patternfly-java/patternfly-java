@@ -17,7 +17,6 @@ package org.patternfly.component.badge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 
 import org.patternfly.component.BaseComponent;
@@ -27,11 +26,11 @@ import org.patternfly.component.HasValue;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.badge;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
@@ -156,9 +155,7 @@ public class Badge extends BaseComponent<HTMLElement, Badge> implements
         this.ov = ov;
         this.ov.subscribe((current, previous) -> {
             updateValue(current);
-            if (!Objects.equals(current, previous)) {
-                changeHandler.forEach(handler -> handler.onChange(new Event(""), this, current));
-            }
+            fireIfChanged(this, current, previous, changeHandler);
         });
         updateValue(ov.get());
         return this;

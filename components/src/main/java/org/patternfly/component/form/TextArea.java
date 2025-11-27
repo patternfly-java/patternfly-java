@@ -17,7 +17,6 @@ package org.patternfly.component.form;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
@@ -28,9 +27,7 @@ import org.patternfly.core.Attributes;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.CSSStyleDeclaration;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
 import elemental2.dom.MutationRecord;
@@ -42,6 +39,7 @@ import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textarea;
 
@@ -166,11 +164,9 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     }
 
     public TextArea value(String value, boolean fireEvent) {
-        //noinspection DuplicatedCode
-        boolean changed = !Objects.equals(textAreaElement.value, value);
         textAreaElement.value = value;
-        if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
-            valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        if (fireEvent) {
+            fireIfChanged(this, textAreaElement.value, value, valueChangeHandlers);
         }
         return this;
     }

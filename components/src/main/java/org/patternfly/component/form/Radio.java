@@ -43,6 +43,7 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.label;
 import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.input;
 import static org.patternfly.style.Classes.modifier;
@@ -157,11 +158,9 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
     }
 
     public Radio value(boolean checked, boolean fireEvent) {
-        //noinspection DuplicatedCode
-        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
+        if (fireEvent) {
+            fireIfChanged(this, inputElement.checked, checked, changeHandlers);
         }
         return this;
     }

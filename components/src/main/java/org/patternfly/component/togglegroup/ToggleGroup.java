@@ -30,6 +30,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.SelectionMode;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
@@ -252,8 +253,12 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<ToggleGroupItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            ToggleGroupItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

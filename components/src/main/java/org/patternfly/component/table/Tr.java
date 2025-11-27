@@ -34,6 +34,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.component.tree.TreeViewItem;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;
@@ -398,8 +399,12 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<Cell<?>> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            Cell<?> item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     @Override

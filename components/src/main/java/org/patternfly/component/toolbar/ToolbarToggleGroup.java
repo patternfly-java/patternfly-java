@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -157,7 +158,11 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<ToolbarItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            ToolbarItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

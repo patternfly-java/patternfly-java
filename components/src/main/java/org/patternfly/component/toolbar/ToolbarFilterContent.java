@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.filter.Filter;
 
 import elemental2.dom.HTMLDivElement;
@@ -167,8 +168,12 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     @Override
     public void clear() {
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
         removeChildrenFrom(this);
+        Iterator<ToolbarItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            ToolbarItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

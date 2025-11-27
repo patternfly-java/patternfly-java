@@ -23,7 +23,6 @@ import org.patternfly.component.menu.MenuContent;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.togglegroup.ToggleGroup;
-
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
@@ -35,7 +34,6 @@ import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuSearch.menuSearch;
-import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
@@ -135,8 +133,7 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
                     .addDivider()
                     .addGroup(menuGroup("High contrast")
                             .addSearch(menuSearch()
-                                    .addSearchInput(menuSearchInput()
-                                            .add(toggleGroup))));
+                                    .add(toggleGroup)));
             toggleGroup.select(contrastManager.value.identifier());
             hasContrast = true;
         }

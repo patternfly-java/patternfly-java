@@ -25,6 +25,7 @@ import java.util.function.BiConsumer;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
@@ -285,7 +286,11 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<DescriptionListGroup> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            DescriptionListGroup item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

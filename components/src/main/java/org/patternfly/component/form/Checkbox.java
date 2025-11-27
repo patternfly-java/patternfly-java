@@ -30,9 +30,7 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
-
 import elemental2.dom.Element;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 
@@ -47,6 +45,7 @@ import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.input;
@@ -200,11 +199,9 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
 
     /** Sets the {@code checked} attribute of the input element. */
     public Checkbox value(boolean checked, boolean fireEvent) {
-        //noinspection DuplicatedCode
-        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(h -> h.onChange(new Event(""), this, inputElement.checked));
+        if (fireEvent) {
+            fireIfChanged(this, inputElement.checked, checked, changeHandlers);
         }
         return this;
     }

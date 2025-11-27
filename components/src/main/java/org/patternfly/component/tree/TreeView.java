@@ -30,6 +30,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
@@ -353,8 +354,12 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     @Override
     public void clear() {
         removeChildrenFrom(ul);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<TreeViewItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            TreeViewItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

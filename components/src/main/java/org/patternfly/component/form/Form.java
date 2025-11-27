@@ -27,6 +27,7 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.style.Modifiers.Horizontal;
 
 import elemental2.dom.HTMLFormElement;
@@ -172,19 +173,21 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     }
 
     @Override
-    public void clear() {
-        for (FormGroup group : items.values()) {
-            failSafeRemoveFromParent(group);
-        }
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         FormGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
         if (item != null) {
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        Iterator<FormGroup> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            FormGroup item = iterator.next();
+            failSafeRemoveFromParent(item);
+            iterator.remove();
             onRemove.forEach(bc -> bc.accept(this, item));
         }
     }

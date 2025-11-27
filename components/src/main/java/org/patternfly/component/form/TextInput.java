@@ -47,6 +47,7 @@ import static org.jboss.elemento.Elements.wrapInputElement;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
 import static org.patternfly.style.Classes.icon;
@@ -198,11 +199,9 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     public TextInput value(String value, boolean fireEvent) {
-        //noinspection DuplicatedCode
-        boolean changed = !Objects.equals(inputElement.value, value);
         inputElement.value = value;
-        if (fireEvent && changed && !valueChangeHandlers.isEmpty()) {
-            valueChangeHandlers.forEach(ch -> ch.onChange(new Event(""), this, value));
+        if (fireEvent) {
+            fireIfChanged(this, inputElement.value, value, valueChangeHandlers);
         }
         return this;
     }

@@ -27,6 +27,7 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
@@ -175,7 +176,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     @Override
     public void clear() {
         removeChildrenFrom(ulElement);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<SimpleListItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            SimpleListItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

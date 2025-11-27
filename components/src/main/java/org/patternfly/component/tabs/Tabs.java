@@ -48,7 +48,6 @@ import org.patternfly.style.Modifiers.Fill;
 import org.patternfly.style.Modifiers.PageInsets;
 import org.patternfly.style.Modifiers.Secondary;
 import org.patternfly.style.Modifiers.Vertical;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
@@ -674,9 +673,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     @Override
     public void clear() {
-        for (Tab tab : new ArrayList<>(items.values())) {
-            onRemove.forEach(bc -> bc.accept(this, tab));
-            internalClose(tab);
+        Iterator<Tab> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            Tab item = iterator.next();
+            internalClose(item);
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
         updateState();
     }

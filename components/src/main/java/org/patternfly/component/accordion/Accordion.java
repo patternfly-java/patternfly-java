@@ -28,6 +28,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.IconPosition;
+import org.patternfly.component.label.Label;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -258,8 +259,12 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<AccordionItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            AccordionItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

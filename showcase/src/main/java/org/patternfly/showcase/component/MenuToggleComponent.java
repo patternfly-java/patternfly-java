@@ -34,7 +34,7 @@ import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.plainText;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
-import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -242,7 +242,7 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-start:menu-toggle-typeahead
                 div()
                         .add(menuToggle(typeahead).fullWidth()
-                                .addTextInputGroup(textInputGroup("menu-toggle-typeahead-tig").plain()))
+                                .addSearchInput(searchInput("menu-toggle-typeahead-tig").plain()))
                         .element()
                 // @code-end:menu-toggle-typeahead
         ));

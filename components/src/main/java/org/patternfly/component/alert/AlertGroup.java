@@ -25,6 +25,7 @@ import java.util.function.BiConsumer;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Timeouts;
 import org.patternfly.style.Classes;
 
@@ -197,18 +198,22 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     }
 
     @Override
-    public void clear() {
-        removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(listener -> listener.accept(this, item)));
-        items.clear();
-    }
-
-    @Override
     public void removeItem(String identifier) {
         Alert item = items.remove(identifier);
         failSafeRemoveFromParent(item);
         if (item != null) {
             onRemove.forEach(listener -> listener.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        removeChildrenFrom(element());
+        Iterator<Alert> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            Alert item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
     }
 

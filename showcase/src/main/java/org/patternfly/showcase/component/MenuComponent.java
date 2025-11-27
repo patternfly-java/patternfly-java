@@ -31,14 +31,11 @@ import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuItemAction;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuSearch;
-import org.patternfly.component.menu.MenuSearchInput;
 import org.patternfly.component.menu.MenuType;
-import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.console;
@@ -61,15 +58,16 @@ import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItemAction.menuItemAction;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuSearch.menuSearch;
-import static org.patternfly.component.menu.MenuSearchInput.menuSearchInput;
 import static org.patternfly.component.menu.MenuType.checkbox;
 import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.MenuType.select;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.cube;
 import static org.patternfly.icon.IconSets.fas.layerGroup;
+import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.icon.IconSets.fas.table;
 import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -331,14 +329,13 @@ public class MenuComponent extends SnippetPage {
                 div()
                         .add(menu(menu, click)
                                 .addSearch(menuSearch()
-                                        .addSearchInput(menuSearchInput()
-                                                .addSearchInput(TextInputGroup.textInputGroup("menu-filter-0").clear())
-                                                .onSearch((menuItem, value) ->
-                                                        menuItem.text().toLowerCase().contains(value.toLowerCase()))
-                                                .onNoResults(value ->
-                                                        menuItem(Id.unique("no-results"),
-                                                                "No results found for '" + value + "'")
-                                                                .disabled())))
+                                        .addSearchInput(searchInput("menu-filter-0").icon(search()))
+                                        .onSearch((menuItem, value) ->
+                                                menuItem.text().toLowerCase().contains(value.toLowerCase()))
+                                        .onNoResults(value ->
+                                                menuItem(Id.unique("no-results"),
+                                                        "No results found for '" + value + "'")
+                                                        .disabled()))
                                 .addDivider()
                                 .addContent(menuContent()
                                         .addList(menuList()
@@ -500,7 +497,7 @@ public class MenuComponent extends SnippetPage {
         addApiDoc(MenuItemAction.class, subcomponent);
         addApiDoc(MenuList.class, subcomponent);
         addApiDoc(MenuSearch.class, subcomponent);
-        addApiDoc(MenuSearchInput.class, subcomponent);
+        addApiDoc(MenuSearch.class, subcomponent);
         addApiDoc(MenuType.class, other);
     }
 }

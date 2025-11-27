@@ -15,18 +15,25 @@
  */
 package org.patternfly.showcase.component;
 
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.textinputgroup.FilterInput;
+import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
-import org.patternfly.icon.IconSets;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static elemental2.dom.DomGlobal.console;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
+import static org.patternfly.component.label.Label.label;
+import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
 import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.layout.flex.Direction.column;
@@ -49,7 +56,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 code("tig-basic"), () ->
                 // @code-start:tig-basic
                 div()
-                        .add(TextInputGroup.textInputGroup("basic-tig-0"))
+                        .add(textInputGroup("basic-tig-0"))
                         .element()
                 // @code-end:tig-basic
         ));
@@ -64,15 +71,13 @@ public class TextInputGroupComponent extends SnippetPage {
                 // @code-end:tig-disabled
         ));
 
-        addSnippet(new Snippet("tig-utilities-and-icon", "Utilities and icon",
-                code("tig-utilities-and-icon"), () ->
-                // @code-start:tig-utilities-and-icon
+        addSnippet(new Snippet("tig-search-input", "Utilities and icon",
+                code("tig-search-input"), () ->
+                // @code-start:tig-search-input
                 div()
-                        .add(TextInputGroup.textInputGroup("utilities-tig-0")
-                                .icon(search())
-                                .clear())
+                        .add(searchInput("tig-search-input-0").icon(search()))
                         .element()
-                // @code-end:tig-utilities-and-icon
+                // @code-end:tig-search-input
         ));
 
         addSnippet(new Snippet("tig-validation", "With validation",
@@ -81,37 +86,48 @@ public class TextInputGroupComponent extends SnippetPage {
                 div()
                         .add(flex().direction(column).rowGap(sm)
                                 .addItem(flexItem()
-                                        .add(textInputGroup("validation-tig-0", "Success validation")
+                                        .add(textInputGroup("tig-validation-0", "Success validation")
                                                 .validated(success)))
                                 .addItem(flexItem()
-                                        .add(textInputGroup("validation-tig-1",
+                                        .add(textInputGroup("tig-validation-1",
                                                 "Warning validation with custom non-status icon at start")
                                                 .icon(search())
                                                 .validated(warning)))
                                 .addItem(flexItem()
-                                        .add(textInputGroup("validation-tig-2",
+                                        .add(searchInput("tig-validation-2",
                                                 "Error validation with custom non-status icon at start and utilities")
                                                 .icon(search())
-                                                .validated(error)
-                                                .clear())))
+                                                .validated(error))))
                         .element()
                 // @code-end:tig-validation
         ));
 
-        addSnippet(new Snippet("tig-filters", "Filters",
-                code("tig-filters"), () ->
-                // @code-start:tig-filters
-                div()
-                        .add(TextInputGroup.textInputGroup("filters-tig-0")
-                                .filter(IconSets.fas::search,
-                                        (tig, filter) -> console.log("Filter added: %s", filter.text()),
-                                        (tig, filter) -> console.log("Filter removed: %s", filter.text())))
-                        .element()
-                // @code-end:tig-filters
-        ));
+        addSnippet(new Snippet("tig-filter-input", "Filters",
+                code("tig-filter-input"), () ->
+        {
+            // @code-start:tig-filter-input
+            FilterInput filterInput = filterInput("tig-filter-input-0").icon(search())
+                    .onAdd((fi, filter) -> {
+                        fi.removeIcon();
+                        console.log("Filter added: %s", filter.text());
+                    })
+                    .onRemove((fi, filter) -> {
+                        if (fi.labelGroup().isEmpty()) {
+                            fi.icon(search());
+                        }
+                        console.log("Filter removed: %s", filter.text());
+                    });
+            filterInput.labelGroup().addItems(range(1, 12).boxed().collect(toList()), index ->
+                    label(Id.build("tig-filter-input-label", String.valueOf(index)),
+                            "Label " + index).closable());
+            return div().add(filterInput).element();
+            // @code-end:tig-filter-input
+        }));
 
         startApiDocs(TextInputGroup.class);
         addApiDoc(TextInputGroup.class, component);
+        addApiDoc(SearchInput.class, component);
+        addApiDoc(FilterInput.class, component);
         addApiDoc(TextInputGroupUtilities.class, subcomponent);
     }
 }

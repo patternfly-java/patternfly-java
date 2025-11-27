@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
@@ -130,7 +131,11 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<JumpLinksItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            JumpLinksItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

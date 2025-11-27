@@ -27,6 +27,7 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -164,8 +165,12 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     @Override
     public void clear() {
         removeChildrenFrom(ol);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<BreadcrumbItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            BreadcrumbItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 
     // ------------------------------------------------------ internal

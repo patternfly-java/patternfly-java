@@ -28,7 +28,7 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.form.Checkbox;
-import org.patternfly.component.textinputgroup.TextInputGroup;
+import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -37,7 +37,6 @@ import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Modifiers.FullWidth;
 import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -61,7 +60,7 @@ import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.toggle;
 
 /**
- * The menu toggle component pairs with the menu OR the panel component to create more customizable dropdown and select
+ * The menu toggle component pairs with the menu OR the panel component to create a more customizable dropdown and select
  * implementations. Using a menu toggle with a menu enables you to create custom component configurations not supported by the
  * standard dropdown or select components.
  *
@@ -104,6 +103,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return menuToggle(MenuToggleType.plain).icon(icon).ariaLabel(label);
     }
 
+    public static MenuToggle menuToggle(SearchInput searchInput) {
+        return menuToggle(MenuToggleType.typeahead).add(searchInput);
+    }
+
     public static MenuToggle menuToggle(MenuToggleType type) {
         //noinspection EnhancedSwitchMigration
         switch (type) {
@@ -129,7 +132,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private Badge badge;
     private MenuToggleAction action;
     private Checkbox checkbox;
-    private TextInputGroup textInputGroup;
+    private SearchInput searchInput;
     private Severity severity;
     private Element icon;
     private HTMLElement textElement;
@@ -224,14 +227,14 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
-    public MenuToggle addTextInputGroup(TextInputGroup textInputGroup) {
-        return add(textInputGroup);
+    public MenuToggle addSearchInput(SearchInput searchInput) {
+        return add(searchInput);
     }
 
     // override to ensure internal wiring
-    public MenuToggle add(TextInputGroup textInputGroup) {
-        this.textInputGroup = textInputGroup;
-        insertFirst(element(), textInputGroup.element());
+    public MenuToggle add(SearchInput searchInput) {
+        this.searchInput = searchInput;
+        insertFirst(element(), searchInput.element());
         return this;
     }
 
@@ -246,8 +249,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                 action.disabled(disabled);
             } else if (checkbox != null) {
                 checkbox.disabled(disabled);
-            } else if (textInputGroup != null) {
-                textInputGroup.disabled(disabled);
+            } else if (searchInput != null) {
+                searchInput.disabled(disabled);
             }
         }
         return this;
@@ -313,8 +316,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                 action.text(text);
             }
         } else if (type == MenuToggleType.typeahead) {
-            if (textInputGroup != null) {
-                textInputGroup.value(text);
+            if (searchInput != null) {
+                searchInput.value(text);
             }
         }
         return this;
@@ -369,8 +372,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return null;
     }
 
-    public TextInputGroup textInputGroup() {
-        return textInputGroup;
+    public SearchInput searchInput() {
+        return searchInput;
     }
 
     public Badge badge() {

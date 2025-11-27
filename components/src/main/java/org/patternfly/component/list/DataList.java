@@ -25,6 +25,7 @@ import java.util.function.BiConsumer;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
@@ -169,7 +170,11 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<DataListItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            DataListItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

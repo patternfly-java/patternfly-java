@@ -24,6 +24,7 @@ import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 
@@ -162,11 +163,13 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public void clear() {
-        for (MenuItem item : items.values()) {
+        Iterator<MenuItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            MenuItem item = iterator.next();
             failSafeRemoveFromParent(item);
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
     }
 
     // ------------------------------------------------------ internal

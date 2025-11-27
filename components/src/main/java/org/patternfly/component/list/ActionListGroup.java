@@ -27,6 +27,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;
@@ -172,7 +173,11 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<ActionListItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            ActionListItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

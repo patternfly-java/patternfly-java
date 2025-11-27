@@ -33,8 +33,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Readonly;
-
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLLabelElement;
@@ -179,10 +177,9 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
 
     /** Sets the {@code checked} attribute of the input element. */
     public Switch value(boolean checked, boolean fireEvent) {
-        boolean changed = inputElement.checked != checked;
         inputElement.checked = checked;
-        if (fireEvent && changed && !changeHandlers.isEmpty()) {
-            changeHandlers.forEach(ch -> ch.onChange(new Event(""), this, inputElement.checked));
+        if (fireEvent) {
+            ChangeHandler.fireIfChanged(this, inputElement.checked, checked, changeHandlers);
         }
         return this;
     }

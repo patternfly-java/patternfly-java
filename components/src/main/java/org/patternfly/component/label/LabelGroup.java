@@ -309,8 +309,12 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     @Override
     public void clear() {
         removeChildrenFrom(listElement);
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<Label> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            Label item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
         overflowItem = null;
         overflowLabel = null;
     }

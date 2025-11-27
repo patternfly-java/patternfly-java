@@ -27,6 +27,7 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.emptystate.EmptyState;
+import org.patternfly.component.label.Label;
 
 import elemental2.dom.HTMLTableSectionElement;
 
@@ -163,7 +164,11 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     @Override
     public void clear() {
         removeChildrenFrom(element());
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
+        Iterator<Tr> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            Tr item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

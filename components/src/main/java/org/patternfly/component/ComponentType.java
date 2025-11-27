@@ -65,6 +65,8 @@ public enum ComponentType {
 
     ExpandableSection("exs", "PF6/ExpandableSection"),
 
+    FilterInput("fi", "PF6/FilterInput"),
+
     Finder("fnd", "PF6/Finder"),
 
     Form("frm", "PF6/Form"),
@@ -114,6 +116,8 @@ public enum ComponentType {
     ProgressStepper("ps", "PF6/ProgressStepper"),
 
     Radio("rd", "PF6/Radio"),
+
+    SearchInput("si", "PF6/SearchInput"),
 
     Sidebar("sb", "PF6/Sidebar"),
 

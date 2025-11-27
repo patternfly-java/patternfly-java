@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.Elements;
@@ -38,12 +37,12 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.NotificationStatus;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static elemental2.dom.DomGlobal.setTimeout;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.clicked;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.notify;
@@ -137,9 +136,7 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         this.ov = ov;
         this.ov.subscribe((current, previous) -> {
             internalUpdateValue(current);
-            if (!Objects.equals(current, previous)) {
-                changeValueHandler.forEach(handler -> handler.onChange(new Event(""), this, current));
-            }
+            fireIfChanged(this, previous, current, changeValueHandler);
         });
         internalUpdateValue(ov.get());
         return this;
@@ -186,9 +183,7 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         this.os = os;
         this.os.subscribe((current, previous) -> {
             internalUpdateStatus(previous, current);
-            if (!Objects.equals(current, previous)) {
-                changeStatusHandler.forEach(handler -> handler.onChange(new Event(""), this, current));
-            }
+            fireIfChanged(this, previous, current, changeStatusHandler);
         });
         internalUpdateStatus(null, os.get());
         return this;

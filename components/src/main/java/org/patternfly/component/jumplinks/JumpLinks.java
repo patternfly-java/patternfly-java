@@ -33,6 +33,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
+import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
@@ -335,13 +336,15 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     @Override
     public void clear() {
         removeChildrenFrom(ulElement);
-        for (JumpLinksItem item : items.values()) {
+        Iterator<JumpLinksItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            JumpLinksItem item = iterator.next();
             if (item.list != null) {
                 item.list.clear();
             }
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
-        items.values().forEach(item -> onRemove.forEach(bc -> bc.accept(this, item)));
-        items.clear();
     }
 
     // ------------------------------------------------------ internal
