@@ -55,7 +55,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textInput;
 import static org.patternfly.style.Classes.textInputGroup;
 
-// TODO Add typeahead feature
+// TODO Implement typeahead and make sure it works also for all sub classes such as search and filter input
 public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extends BaseComponent<HTMLElement, T> implements
         ComponentIcon<HTMLElement, T>,
         Disabled<HTMLElement, T>,

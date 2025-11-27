@@ -20,6 +20,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -37,7 +38,6 @@ import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.core.JsArray;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -76,19 +76,18 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     Menu menu;
     private final Set<TriggerAction> triggerActions;
     private final List<ToggleHandler<B>> toggleHandler;
-    private final List<HTMLElement> stayOpenWhenClickedOn;
     private int zIndex;
     private boolean flip;
     private boolean disabled;
     private Placement placement;
     private Popper popper;
     private HandlerRegistration keyHandler;
+    private Predicate<Event> stayOpen;
 
     MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, TriggerAction triggerAction) {
         super(componentType);
         this.menuToggle = menuToggle;
         this.toggleHandler = new ArrayList<>();
-        this.stayOpenWhenClickedOn = new ArrayList<>();
         this.triggerActions = EnumSet.of(triggerAction);
         this.flip = true;
         this.placement = bottomStart;
@@ -116,6 +115,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                     .placement(placement)
                     .registerHandler(menuToggle.toggleElement, triggerActions,
                             event -> expand(), event -> collapse())
+                    .stayOpen(stayOpen)
                     .zIndex(zIndex)
                     .build();
             keyHandler = EventType.bind(window, keydown, this::keyHandler);
@@ -189,9 +189,8 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         return that();
     }
 
-    public B stayOpen(HTMLElement firstElement, HTMLElement... otherElements) {
-        stayOpenWhenClickedOn.add(firstElement);
-        stayOpenWhenClickedOn.addAll(List.of(otherElements));
+    public B stayOpen(Predicate<Event> stayOpen) {
+        this.stayOpen = stayOpen;
         return that();
     }
 

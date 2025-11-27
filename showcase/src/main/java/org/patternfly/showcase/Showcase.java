@@ -45,10 +45,18 @@ import static org.patternfly.component.page.PageMain.pageMain;
 import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.page.PageSidebarBody.pageSidebarBody;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
+import static org.patternfly.component.toolbar.Toolbar.toolbar;
+import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
+import static org.patternfly.component.toolbar.ToolbarGroup.toolbarGroup;
+import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
+import static org.patternfly.componentgroup.theme.ThemeSelector.themeSelector;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.fullHeight;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.static_;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 
@@ -108,7 +116,12 @@ public final class Showcase {
                                         .addLogo(mastheadLogo("/")
                                                 .html(fromSafeConstant(ResourcesImpl.INSTANCE.pfLogo().getText()))
                                                 .style(componentVar(component(Classes.brand), Height).name, "36px"))))
-                        .addContent(mastheadContent()))
+                        .addContent(mastheadContent()
+                                .addToolbar(toolbar().css(modifier(fullHeight), modifier(static_))
+                                        .addContent(toolbarContent()
+                                                .addGroup(toolbarGroup().css(modifier("align-end"))
+                                                        .addItem(toolbarItem().add(themeSelector("pfj")
+                                                                .withContrast())))))))
                 .addSidebar(pageSidebar()
                         .addBody(pageSidebarBody()
                                 .addNavigation(navigation)))

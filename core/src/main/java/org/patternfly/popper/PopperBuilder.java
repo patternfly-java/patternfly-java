@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.logger.Logger;
-
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.Event;
@@ -50,7 +50,7 @@ public class PopperBuilder {
     private final HTMLElement triggerElement;
     private final HTMLElement popperElement;
     private final JsArray<Modifier> modifiers;
-    private final List<HTMLElement> stayOpenWhenClickedOn;
+    private Predicate<Event> stayOpen;
     private final List<HandlerRegistration> handlerRegistrations;
     private int animationDuration;
     private int entryDelay;
@@ -62,7 +62,6 @@ public class PopperBuilder {
         this.triggerElement = triggerElement;
         this.popperElement = popperElement;
         this.modifiers = new JsArray<>();
-        this.stayOpenWhenClickedOn = new ArrayList<>();
         this.handlerRegistrations = new ArrayList<>();
         this.animationDuration = Popper.UNDEFINED;
         this.entryDelay = Popper.UNDEFINED;
@@ -126,12 +125,18 @@ public class PopperBuilder {
         if (triggerActions.contains(TriggerAction.click) || triggerActions.contains(TriggerAction.stayOpen)) {
             handlerRegistrations.add(bind(document, EventType.click, true, e -> {
                 if (isVisible(popperElement)) {
-                    if (triggerActions.contains(TriggerAction.stayOpen)) {
-                        if (!popperElement.contains((Node) e.target)) {
+                    if (stayOpen != null) {
+                        if (!stayOpen.test(e)) {
                             hide.accept(e);
                         }
-                    } else if (triggerActions.contains(TriggerAction.click)) {
-                        hide.accept(e);
+                    } else {
+                        if (triggerActions.contains(TriggerAction.stayOpen)) {
+                            if (!popperElement.contains((Node) e.target)) {
+                                hide.accept(e);
+                            }
+                        } else if (triggerActions.contains(TriggerAction.click)) {
+                            hide.accept(e);
+                        }
                     }
                 } else if (e.target == triggerElement || triggerElement.contains(((Node) e.target))) {
                     show.accept(e);
@@ -156,9 +161,8 @@ public class PopperBuilder {
         return this;
     }
 
-    public PopperBuilder stayOpen(HTMLElement firstElement, HTMLElement... otherElements) {
-        stayOpenWhenClickedOn.add(firstElement);
-        stayOpenWhenClickedOn.addAll(List.of(otherElements));
+    public PopperBuilder stayOpen(Predicate<Event> stayOpen) {
+        this.stayOpen = stayOpen;
         return this;
     }
 

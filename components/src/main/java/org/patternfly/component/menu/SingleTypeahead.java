@@ -23,13 +23,13 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
+import elemental2.dom.Node;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.Attributes.role;
@@ -45,54 +45,66 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     // ------------------------------------------------------ factory
 
-    public static SingleTypeahead singleTypeahead() {
-        return new SingleTypeahead("");
+    /**
+     * Creates a new {@link SingleTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
+     * {@link SearchInput}.
+     */
+    public static SingleTypeahead singleTypeahead(String placeholder) {
+        return new SingleTypeahead(MenuToggle.menuToggle(searchInput(Id.unique(ComponentType.SingleSelect.id, "si"))
+                .plain()
+                .placeholder(placeholder)));
     }
 
-    public static SingleTypeahead singleTypeahead(String placeholder) {
-        return new SingleTypeahead(placeholder);
+    /**
+     * Creates a new {@link SingleTypeahead} component with the given {@link MenuToggle}. The {@link MenuToggle}
+     * <strong>must</strong> be of type {@link MenuToggleType#typeahead} and <strong>must</strong> contain a
+     * {@link SearchInput}.
+     */
+    public static SingleSelect singleTypeahead(MenuToggle menuToggle) {
+        return new SingleSelect(menuToggle);
     }
 
     // ------------------------------------------------------ instance
 
-    private final SearchInput searchInput;
     private MenuItem noResultsItem;
     private BiPredicate<MenuItem, String> searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
-    SingleTypeahead(String placeholder) {
-        super(ComponentType.SingleSelect, MenuToggle.menuToggle(typeahead), TriggerAction.click);
-        this.searchInput = searchInput(Id.build(ComponentType.SingleSelect.id, "tig"))
-                .plain()
-                .placeholder(placeholder == null ? "" : placeholder)
-                .onClear((e, tig) -> tig.input().element().focus());
-        this.menuToggle.addSearchInput(searchInput);
+    SingleTypeahead(MenuToggle menuToggle) {
+        super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
         this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
-        this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
+        this.noResultsProvider = value -> menuItem(Id.unique("no-results"),
+                "No results found for \"" + value + "\"").disabled();
 
-        searchInput
-                .onKeyup((event, tig, value) -> {
+        menuToggle.searchInput()
+                .onClear((e, si) -> {
+                    clearSearch();
+                    menu().unselectAllItems();
+                    si.input().element().focus();
+                })
+                .onKeyup((event, si, value) -> {
                     search(value);
                     expand();
                 })
-                .onChange((event, tig, value) -> {
+                .onChange((event, si, value) -> {
                     if (value.isEmpty()) {
                         clearSearch();
+                        menu().unselectAllItems();
                     }
                 });
-        searchInput.input()
+
+        menuToggle.searchInput().input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
-                .on(click, event -> {
-                    if (!searchInput.value().isEmpty()) {
-                        search(searchInput.value());
-                    }
-                    if (!expanded()) {
-                        expand();
-                    }
-                });
+                .autocomplete("off")
+                .on(click, event -> toggle());
+
         onToggle((e, c, expanded) ->
-                searchInput.input().aria(Aria.expanded, expanded));
+                menuToggle.searchInput().input().aria(Aria.expanded, expanded));
+        stayOpen(event -> menuToggle.searchInput().utilities() != null && menuToggle.searchInput()
+                .utilities()
+                .element()
+                .contains((Node) event.target));
     }
 
     // ------------------------------------------------------ add
