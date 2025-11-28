@@ -90,7 +90,7 @@
         <!-- Plugin versions -->
         <version.central.publishing.plugin>0.9.0</version.central.publishing.plugin>
         <version.degraph.plugin>4.0.3</version.degraph.plugin>
-        <version.editorconfig.plugin>0.1.3</version.editorconfig.plugin>
+        <version.editorconfig.plugin>0.1.17</version.editorconfig.plugin>
         <version.frontend.plugin>1.15.4</version.frontend.plugin>
         <version.gwt.plugin>1.2.0</version.gwt.plugin>
         <version.j2cl.plugin>0.23.6</version.j2cl.plugin>
