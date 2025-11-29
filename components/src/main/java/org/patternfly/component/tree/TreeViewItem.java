@@ -22,19 +22,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AsyncItems;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -43,7 +42,6 @@ import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -157,7 +155,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private HTMLElement iconContainer;
     private HTMLInputElement checkboxElement;
     private final List<ToggleHandler<TreeViewItem>> toggleHandler;
-    private Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> asyncItems;
+    private AsyncItems<TreeViewItem, TreeViewItem> asyncItems;
     private final List<BiConsumer<TreeViewItem, TreeViewItem>> onAdd;
     private final List<BiConsumer<TreeViewItem, TreeViewItem>> onRemove;
 
@@ -196,11 +194,11 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         return this;
     }
 
-    public TreeViewItem addItems(Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> items) {
+    public TreeViewItem addItems(AsyncItems<TreeViewItem, TreeViewItem> items) {
         return add(items);
     }
 
-    public TreeViewItem add(Function<TreeViewItem, Promise<Iterable<TreeViewItem>>> items) {
+    public TreeViewItem add(AsyncItems<TreeViewItem, TreeViewItem> items) {
         status = pending;
         asyncItems = items;
         return this;
@@ -384,9 +382,8 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     public void reset() {
         if (status == resolved || status == rejected) {
             status = pending;
-            items.clear();
+            internalClear();
             collapse(false);
-            removeChildrenFrom(childrenElement);
             if (domFinished && !containerElement.contains(toggleElement)) {
                 insertFirst(containerElement, toggleElement);
             }
@@ -458,13 +455,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     @Override
     public void clear() {
         if (status == static_) {
-            removeChildrenFrom(element());
-            Iterator<TreeViewItem> iterator = items.values().iterator();
-            while (iterator.hasNext()) {
-                TreeViewItem item = iterator.next();
-                iterator.remove();
-                onRemove.forEach(bc -> bc.accept(this, item));
-            }
+            internalClear();
         } else if (status == resolved || status == rejected || status == pending) {
             reset();
         }
@@ -648,6 +639,16 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 }
             }
             indeterminate(item.parent);
+        }
+    }
+
+    private void internalClear() {
+        removeChildrenFrom(element());
+        Iterator<TreeViewItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            TreeViewItem item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
     }
 

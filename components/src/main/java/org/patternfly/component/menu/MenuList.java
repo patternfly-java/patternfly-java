@@ -21,26 +21,43 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AsyncItems;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.Roles;
-
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
+import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
+import static org.patternfly.component.menu.MenuItem.menuItem;
+import static org.patternfly.component.spinner.Spinner.spinner;
+import static org.patternfly.core.AsyncStatus.pending;
+import static org.patternfly.core.AsyncStatus.rejected;
+import static org.patternfly.core.AsyncStatus.resolved;
+import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
+import static org.patternfly.icon.IconSets.fas.exclamationCircle;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
+import static org.patternfly.style.Size.md;
 
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
         HasItems<HTMLUListElement, MenuList, MenuItem>,
@@ -58,15 +75,26 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "ml";
+    private static final Logger logger = Logger.getLogger(MenuList.class.getName());
+    private static final Supplier<MenuItem> loading = () -> menuItem(
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "loading"), "Loading")
+            .icon(spinner(md, "Loading").element());
+    private static final Supplier<MenuItem> error = () -> menuItem(
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "error"), "Error")
+            .icon(exclamationCircle());
+
     final Map<String, MenuItem> items;
     private final List<BiConsumer<MenuList, MenuItem>> onAdd;
     private final List<BiConsumer<MenuList, MenuItem>> onRemove;
+    private AsyncStatus status;
+    private AsyncItems<MenuList, MenuItem> asyncItems;
 
     MenuList() {
         super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
         this.onAdd = new ArrayList<>();
         this.onRemove = new ArrayList<>();
+        this.status = static_;
         storeSubComponent();
         Attachable.register(this, this);
     }
@@ -96,8 +124,18 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     public MenuList add(MenuItem item) {
         items.put(item.identifier(), item);
         MenuList result = add(item.element());
-        onAdd.forEach(listbcner -> listbcner.accept(this, item));
+        onAdd.forEach(bc -> bc.accept(this, item));
         return result;
+    }
+
+    public MenuList addItems(AsyncItems<MenuList, MenuItem> items) {
+        return add(items);
+    }
+
+    public MenuList add(AsyncItems<MenuList, MenuItem> items) {
+        status = pending;
+        asyncItems = items;
+        return this;
     }
 
     public MenuList addDivider() {
@@ -126,6 +164,56 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     // ------------------------------------------------------ api
+
+    public Promise<Iterable<MenuItem>> load() {
+        if (status == pending && asyncItems != null) {
+            // show loading indicator after a given timeout
+            MenuItem[] loadingItem = new MenuItem[1];
+            double handle = setTimeout(__ -> {
+                loadingItem[0] = loading.get();
+                addItem(loadingItem[0]);
+            }, LOADING_TIMEOUT);
+
+            // load items
+            return asyncItems.apply(this)
+                    .then(items -> {
+                        status = resolved;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        for (MenuItem item : items) {
+                            addItem(item);
+                        }
+                        return Promise.resolve(items);
+                    })
+                    .catch_(error -> {
+                        status = rejected;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        logger.error("Unable to load items for %o: %s", element(), error);
+                        MenuItem errorItem = MenuList.error.get();
+                        addItem(errorItem);
+                        return Promise.reject(error);
+                    });
+        } else {
+            return Promise.resolve(emptyList());
+        }
+    }
+
+    public void reset() {
+        if (status == resolved || status == rejected) {
+            status = pending;
+            internalClear();
+        }
+    }
+
+    public Promise<Iterable<MenuItem>> reload() {
+        reset();
+        return load().then(Promise::resolve);
+    }
+
+    public AsyncStatus status() {
+        return status;
+    }
 
     @Override
     public Iterator<MenuItem> iterator() {
@@ -163,12 +251,10 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public void clear() {
-        Iterator<MenuItem> iterator = items.values().iterator();
-        while (iterator.hasNext()) {
-            MenuItem item = iterator.next();
-            failSafeRemoveFromParent(item);
-            iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+        if (status == static_) {
+            internalClear();
+        } else if (status == resolved || status == rejected || status == pending) {
+            reset();
         }
     }
 
@@ -177,5 +263,16 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     void removeItem(MenuItem item) {
         items.remove(item.identifier());
         failSafeRemoveFromParent(item);
+        onRemove.forEach(bc -> bc.accept(this, item));
+    }
+
+    private void internalClear() {
+        Iterator<MenuItem> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            MenuItem item = iterator.next();
+            failSafeRemoveFromParent(item);
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
     }
 }

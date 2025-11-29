@@ -15,18 +15,29 @@
  */
 package org.patternfly.showcase.component;
 
+import java.util.Random;
+
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.AsyncItems;
 import org.patternfly.component.Severity;
 import org.patternfly.component.help.HelperText;
+import org.patternfly.component.menu.MenuItem;
+import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
+import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers;
+import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
@@ -160,8 +171,8 @@ public class SelectComponent extends SnippetPage {
                                                     .addItem(menuItem("danger", "Danger").store("status", danger))))))
                     .add(helperText)
                     .element();
+            // @code-end:select-validation
         }));
-        // @code-end:select-validation
 
         addSnippet(new Snippet("multi-select", "Checkbox select",
                 code("multi-select"), () ->
@@ -194,11 +205,33 @@ public class SelectComponent extends SnippetPage {
                                                         .addItem(menuItem("new-jersey", "New Jersey"))
                                                         .addItem(menuItem("new-mexico", "New Mexico"))
                                                         .addItem(menuItem("new-york", "New York"))
-                                                        .addItem(menuItem("north-carolina", "North Carolina"))
-                                                ))))
+                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
                         .element()
                 // @code-end:typeahead
         ));
+
+        addSnippet(new Snippet("typeahead-async", "Typeahead (async)",
+                code("typeahead-async"), () -> {
+            // @code-start:typeahead-async
+            AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
+                    setTimeout(__ -> res.onInvoke(stream(LoremIpsum.words(100).split(" "))
+                                    .distinct()
+                                    .sorted()
+                                    .map(word -> menuItem(Id.build("item-", word), word))
+                                    .collect(toList())),
+                            1234 + new Random().nextInt(3456)));
+
+
+            return div()
+                    .add(singleTypeahead("Select a state")
+                            .applyTo(Modifiers.FullWidth::fullWidth)
+                            .addMenu(singleTypeaheadMenu().scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(asyncItems)))))
+                    .element();
+            // @code-end:typeahead-async
+        }));
 
         addSnippet(new Snippet("typeahead-create", "Typeahead with create option",
                 code("typeahead-create"), () ->

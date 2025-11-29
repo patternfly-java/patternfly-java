@@ -83,8 +83,9 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
                     si.input().element().focus();
                 })
                 .onKeyup((event, si, value) -> {
+                    // TODO Handle keys like up/down arrow, space, return, escape, ...
                     search(value);
-                    expand();
+                    // expand();
                 })
                 .onChange((event, si, value) -> {
                     if (value.isEmpty()) {

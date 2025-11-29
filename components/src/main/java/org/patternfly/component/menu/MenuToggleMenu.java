@@ -58,7 +58,7 @@ import static org.patternfly.popper.Placement.bottomStart;
 
 /**
  * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link Dropdown},
- * {@link SingleSelect} or {@link MultiSelect}.
+ * {@link SingleSelect}, {@link SingleTypeahead}, or {@link MultiSelect}.
  * <p>
  * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed by a {@link Popper} instance.
  */
@@ -231,6 +231,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             Expandable.expand(element(), element(), null);
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
+            }
+            if (menu.hasAsyncItems()) {
+                menu.loadAll().then(__ -> {
+                    // TODO manage/track async status
+                    return null;
+                });
             }
         });
     }

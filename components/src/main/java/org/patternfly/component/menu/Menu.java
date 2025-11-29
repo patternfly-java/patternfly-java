@@ -28,11 +28,11 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
+import org.patternfly.core.AsyncStatus;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.core.JsArray;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -42,6 +42,7 @@ import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 import elemental2.dom.NodeList;
+import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
@@ -62,6 +63,7 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
+import static org.patternfly.core.AsyncStatus.pending;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.divider;
@@ -377,6 +379,36 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
                 menuItem.markSelected(false);
             }
         }
+    }
+
+    boolean hasAsyncItems() {
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    if (group.list.status() == pending) {
+                        return true;
+                    }
+                }
+            }
+            return content.list != null && content.list.status() == pending;
+        }
+        return false;
+    }
+
+    Promise<Void> loadAll() {
+        if (content != null) {
+            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
+            for (MenuGroup group : content.groups) {
+                if (group.list != null && group.list.status() == pending) {
+                    promises.add(group.list.load());
+                }
+            }
+            if (content.list != null && content.list.status() == pending) {
+                promises.add(content.list.load());
+            }
+            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
+        }
+        return Promise.resolve((Void) null);
     }
 
     // ------------------------------------------------------ keyboard navigation
