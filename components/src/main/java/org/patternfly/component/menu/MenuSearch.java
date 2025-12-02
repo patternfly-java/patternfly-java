@@ -15,12 +15,10 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementContainerDelegate;
-import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.style.Classes;
@@ -29,9 +27,6 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.setVisible;
-import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.input;
 import static org.patternfly.style.Classes.search;
@@ -53,14 +48,14 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
 
     private final HTMLElement inputContainer;
     private SearchInput searchInput;
-    private MenuItem noResultsItem;
-    private BiPredicate<MenuItem, String> searchFilter;
+    private SearchFilter searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
     MenuSearch() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.menu, search)).element());
+        this.searchFilter = SearchFilter.contains();
+        this.noResultsProvider = SearchFilter.noResults();
         element().appendChild(inputContainer = div().css(component(Classes.menu, search, input)).element());
-        this.noResultsProvider = value -> menuItem(Id.unique("no-results"), "No results found").disabled();
         Attachable.register(this, this);
     }
 
@@ -81,34 +76,13 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
                 logger.warn("Menu %o has a search filter, but no search input was added.", menu);
             } else {
                 searchInput
-                        .onKeyup((event, tig, value) -> search(menu, value))
-                        .onClear((event, tig) -> clearSearch(menu));
+                        .onKeyup((event, si, value) -> menu.search(searchFilter, noResultsProvider, value))
+                        .onClear((event, si) -> menu.clearSearch());
             }
         }
     }
 
     // ------------------------------------------------------ builder
-
-    /**
-     * Configures the search behavior for the search input you have added with {@link #addSearchInput(SearchInput)}.
-     *
-     * <p>
-     * {@snippet class = MenuDemo region = search}
-     *
-     * @param searchFilter a {@link BiPredicate} that defines the search logic. The first parameter is a {@link MenuItem}
-     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
-     *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link MenuSearch} instance for method chaining.
-     */
-    public MenuSearch onSearch(BiPredicate<MenuItem, String> searchFilter) {
-        this.searchFilter = searchFilter;
-        return this;
-    }
-
-    public MenuSearch onNoResults(Function<String, MenuItem> noResults) {
-        this.noResultsProvider = noResults;
-        return this;
-    }
 
     @Override
     public MenuSearch that() {
@@ -122,35 +96,35 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
         return add(searchInput);
     }
 
-    // ------------------------------------------------------ internal
+    // ------------------------------------------------------ events
 
-    private void search(Menu menu, String value) {
-        int visibleItems = 0;
-        for (MenuItem menuItem : menu.items()) {
-            boolean visible = searchFilter.test(menuItem, value);
-            setVisible(menuItem, visible);
-            if (visible) {
-                visibleItems++;
-            }
-        }
-        failSafeRemoveFromParent(noResultsItem);
-        if (visibleItems == 0) {
-            if (menu.content != null && menu.content.list != null) {
-                noResultsItem = noResultsProvider.apply(value);
-                // Don't use content.list.addItem(noResultsItem) here
-                // The no-result item should not be part of the item map
-                menu.content.list.add(noResultsItem.element());
-            }
-        } else {
-            menu.allowTabFirstItem();
-        }
+    /**
+     * Configures the search behavior for the search input you have added with {@link #addSearchInput(SearchInput)}.
+     * <p>
+     * By default, the search filter will match items that contain the search query in their text.
+     *
+     * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
+     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
+     *                     The predicate should return {@code true} for items matching the search.
+     * @return the {@link MenuSearch} instance for method chaining.
+     */
+    public MenuSearch onSearch(SearchFilter searchFilter) {
+        this.searchFilter = searchFilter;
+        return this;
     }
 
-    private void clearSearch(Menu menu) {
-        failSafeRemoveFromParent(noResultsItem);
-        for (MenuItem menuItem : menu.items()) {
-            setVisible(menuItem, true);
-        }
-        menu.allowTabFirstItem();
+    /**
+     * Defines the behavior when no results are found during a search in the menu. This method allows setting a {@link Function}
+     * that takes a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
+     * <p>
+     * By default, a "No results found" message is displayed.
+     *
+     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
+     *                  {@link MenuItem} to display for no results.
+     * @return the {@link MenuSearch} instance for method chaining.
+     */
+    public MenuSearch onNoResults(Function<String, MenuItem> noResults) {
+        this.noResultsProvider = noResults;
+        return this;
     }
 }

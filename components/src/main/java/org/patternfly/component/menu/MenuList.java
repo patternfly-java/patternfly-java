@@ -36,8 +36,6 @@ import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
 import elemental2.promise.Promise;
 
-import static elemental2.dom.DomGlobal.clearTimeout;
-import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
@@ -46,18 +44,15 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.AsyncStatus.pending;
 import static org.patternfly.core.AsyncStatus.rejected;
 import static org.patternfly.core.AsyncStatus.resolved;
 import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.icon.IconSets.fas.exclamationCircle;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
-import static org.patternfly.style.Size.md;
 
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
         HasItems<HTMLUListElement, MenuList, MenuItem>,
@@ -76,9 +71,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     public static final String SUB_COMPONENT_NAME = "ml";
     private static final Logger logger = Logger.getLogger(MenuList.class.getName());
-    private static final Supplier<MenuItem> loading = () -> menuItem(
-            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "loading"), "Loading")
-            .icon(spinner(md, "Loading").element());
+    private static final Supplier<MenuItem> loading = () -> MenuItem.skeletonMenuItem("Loading items...");
     private static final Supplier<MenuItem> error = () -> menuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "error"), "Error")
             .icon(exclamationCircle());
@@ -167,19 +160,17 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     public Promise<Iterable<MenuItem>> load() {
         if (status == pending && asyncItems != null) {
-            // show loading indicator after a given timeout
-            MenuItem[] loadingItem = new MenuItem[1];
-            double handle = setTimeout(__ -> {
-                loadingItem[0] = loading.get();
-                addItem(loadingItem[0]);
-            }, LOADING_TIMEOUT);
+            // Show the loading indicator immediately, not like in the tree view component after Timeouts.LOADING_TIMEOUT
+            // The reason is that the menu is empty at first, then the loading indicator appears, and finally the items
+            // are added, leading to a visual glitch. To prevent this, we show the loading indicator immediately.
+            MenuItem loadingItem = loading.get();
+            addItem(loadingItem);
 
             // load items
             return asyncItems.apply(this)
                     .then(items -> {
                         status = resolved;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
+                        failSafeRemoveFromParent(loadingItem);
                         for (MenuItem item : items) {
                             addItem(item);
                         }
@@ -187,8 +178,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                     })
                     .catch_(error -> {
                         status = rejected;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
+                        failSafeRemoveFromParent(loadingItem);
                         logger.error("Unable to load items for %o: %s", element(), error);
                         MenuItem errorItem = MenuList.error.get();
                         addItem(errorItem);

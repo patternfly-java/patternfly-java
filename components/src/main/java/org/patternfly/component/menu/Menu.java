@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -28,7 +29,6 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -48,7 +48,9 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.isVisible;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowLeft;
@@ -106,6 +108,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     MenuContent content;
     private final List<SelectHandler<MenuItem>> selectHandler;
     private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
+    private MenuItem noResultsItem;
     private HandlerRegistration keyHandler;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
@@ -300,6 +303,41 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
             }
         }
         return menuItem;
+    }
+
+    void search(SearchFilter searchFilter, Function<String, MenuItem> noResultsProvider, String value) {
+        // no search if one of the menu lists is pending
+        if (hasAsyncItems()) {
+            return;
+        }
+
+        int visibleItems = 0;
+        for (MenuItem menuItem : items()) {
+            boolean visible = searchFilter.test(menuItem, value);
+            setVisible(menuItem, visible);
+            if (visible) {
+                visibleItems++;
+            }
+        }
+        failSafeRemoveFromParent(noResultsItem);
+        if (visibleItems == 0) {
+            if (content != null && content.list != null) {
+                noResultsItem = noResultsProvider.apply(value);
+                // Don't use content.list.addItem(noResultsItem) here
+                // The no-result item should not be part of the item map
+                content.list.add(noResultsItem.element());
+            }
+        } else {
+            allowTabFirstItem();
+        }
+    }
+
+    void clearSearch() {
+        failSafeRemoveFromParent(noResultsItem);
+        for (MenuItem menuItem : items()) {
+            setVisible(menuItem, true);
+        }
+        allowTabFirstItem();
     }
 
     List<MenuItem> items() {

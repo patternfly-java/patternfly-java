@@ -223,7 +223,7 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(singleTypeahead("Select a state")
+                    .add(singleTypeahead("Lorem ipsum")
                             .applyTo(Modifiers.FullWidth::fullWidth)
                             .addMenu(singleTypeaheadMenu().scrollable()
                                     .addContent(menuContent()

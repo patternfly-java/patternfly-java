@@ -31,6 +31,7 @@ import org.patternfly.component.ComponentDelegate;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.core.Aria;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Placement;
@@ -76,6 +77,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     Menu menu;
     private final Set<TriggerAction> triggerActions;
     private final List<ToggleHandler<B>> toggleHandler;
+    private final List<ComponentHandler<B>> loadedHandler;
     private int zIndex;
     private boolean flip;
     private boolean disabled;
@@ -88,6 +90,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         super(componentType);
         this.menuToggle = menuToggle;
         this.toggleHandler = new ArrayList<>();
+        this.loadedHandler = new ArrayList<>();
         this.triggerActions = EnumSet.of(triggerAction);
         this.flip = true;
         this.placement = bottomStart;
@@ -207,6 +210,11 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     // ------------------------------------------------------ events
 
+    public B onLoaded(ComponentHandler<B> loadedHandler) {
+        this.loadedHandler.add(loadedHandler);
+        return that();
+    }
+
     public B onToggle(ToggleHandler<B> toggleHandler) {
         this.toggleHandler.add(toggleHandler);
         return that();
@@ -234,7 +242,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             }
             if (menu.hasAsyncItems()) {
                 menu.loadAll().then(__ -> {
-                    // TODO manage/track async status
+                    loadedHandler.forEach(th -> th.handle(new Event(""), that()));
                     return null;
                 });
             }

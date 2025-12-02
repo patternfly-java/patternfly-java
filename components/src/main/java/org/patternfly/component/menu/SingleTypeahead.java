@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 import org.jboss.elemento.Id;
@@ -25,11 +24,8 @@ import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 import elemental2.dom.Node;
 
-import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.SelectionMode.single;
-import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.Attributes.role;
@@ -66,33 +62,13 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     // ------------------------------------------------------ instance
 
-    private MenuItem noResultsItem;
-    private BiPredicate<MenuItem, String> searchFilter;
+    private SearchFilter searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
     SingleTypeahead(MenuToggle menuToggle) {
         super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
-        this.searchFilter = (menuItem, value) -> menuItem.text().toLowerCase().contains(value.toLowerCase());
-        this.noResultsProvider = value -> menuItem(Id.unique("no-results"),
-                "No results found for \"" + value + "\"").disabled();
-
-        menuToggle.searchInput()
-                .onClear((e, si) -> {
-                    clearSearch();
-                    menu().unselectAllItems();
-                    si.input().element().focus();
-                })
-                .onKeyup((event, si, value) -> {
-                    // TODO Handle keys like up/down arrow, space, return, escape, ...
-                    search(value);
-                    // expand();
-                })
-                .onChange((event, si, value) -> {
-                    if (value.isEmpty()) {
-                        clearSearch();
-                        menu().unselectAllItems();
-                    }
-                });
+        this.searchFilter = SearchFilter.contains();
+        this.noResultsProvider = SearchFilter.noResults();
 
         menuToggle.searchInput().input()
                 .attr(role, combobox)
@@ -100,8 +76,30 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
                 .autocomplete("off")
                 .on(click, event -> toggle());
 
-        onToggle((e, c, expanded) ->
-                menuToggle.searchInput().input().aria(Aria.expanded, expanded));
+        menuToggle.searchInput()
+                .onClear((e, si) -> {
+                    menu.clearSearch();
+                    menu.unselectAllItems();
+                    si.input().element().focus();
+                })
+                .onKeyup((event, si, value) -> {
+                    // TODO Handle keys like up/down arrow, space, return, escape, ...
+                    menu.search(searchFilter, noResultsProvider, value);
+                    // expand();
+                })
+                .onChange((event, si, value) -> {
+                    if (value.isEmpty()) {
+                        menu.clearSearch();
+                        menu.unselectAllItems();
+                    }
+                });
+
+        onLoaded((e, c) -> {
+            if (!menuToggle.searchInput().value().isEmpty()) {
+                menu.search(searchFilter, noResultsProvider, menuToggle.searchInput().value());
+            }
+        });
+        onToggle((e, c, expanded) -> menuToggle.searchInput().input().aria(Aria.expanded, expanded));
         stayOpen(event -> menuToggle.searchInput().utilities() != null && menuToggle.searchInput()
                 .utilities()
                 .element()
@@ -120,18 +118,40 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
 
     // ------------------------------------------------------ builder
 
-    public SingleTypeahead onSearch(BiPredicate<MenuItem, String> searchFilter) {
+    @Override
+    public SingleTypeahead that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ events
+
+    /**
+     * Configures the search behavior for this typeahead.
+     * <p>
+     * By default, the search filter will match items that contain the search query in their text.
+     *
+     * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
+     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
+     *                     The predicate should return {@code true} for items matching the search.
+     * @return the {@link SingleTypeahead} instance for method chaining.
+     */
+    public SingleTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
+    /**
+     * Defines the behavior when no results are found during a search. This method allows setting a {@link Function} that takes
+     * a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
+     * <p>
+     * By default, a "No results found" message is displayed.
+     *
+     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
+     *                  {@link MenuItem} to display for no results.
+     * @return the {@link SingleTypeahead} instance for method chaining.
+     */
     public SingleTypeahead onNoResults(Function<String, MenuItem> noResults) {
         this.noResultsProvider = noResults;
-        return this;
-    }
-
-    @Override
-    public SingleTypeahead that() {
         return this;
     }
 
@@ -154,37 +174,5 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
             menu.select(item, true, fireEvent);
             menuToggle.text(item.text());
         }
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void search(String value) {
-        int visibleItems = 0;
-        for (MenuItem menuItem : menu.items()) {
-            boolean visible = searchFilter.test(menuItem, value);
-            setVisible(menuItem, visible);
-            if (visible) {
-                visibleItems++;
-            }
-        }
-        failSafeRemoveFromParent(noResultsItem);
-        if (visibleItems == 0) {
-            if (menu.content != null && menu.content.list != null) {
-                noResultsItem = noResultsProvider.apply(value);
-                // Don't use content.list.addItem(noResultsItem) here
-                // The no-result item should not be part of the item map
-                menu.content.list.add(noResultsItem.element());
-            }
-        } else {
-            menu.allowTabFirstItem();
-        }
-    }
-
-    private void clearSearch() {
-        failSafeRemoveFromParent(noResultsItem);
-        for (MenuItem menuItem : menu.items()) {
-            setVisible(menuItem, true);
-        }
-        menu.allowTabFirstItem();
     }
 }

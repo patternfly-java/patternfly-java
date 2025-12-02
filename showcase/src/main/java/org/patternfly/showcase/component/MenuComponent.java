@@ -15,12 +15,10 @@
  */
 package org.patternfly.showcase.component;
 
-import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
 
-import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.AsyncItems;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuActionHandler;
 import org.patternfly.component.menu.MenuContent;
@@ -329,13 +327,7 @@ public class MenuComponent extends SnippetPage {
                 div()
                         .add(menu(menu, click)
                                 .addSearch(menuSearch()
-                                        .addSearchInput(searchInput("menu-filter-0").icon(search()))
-                                        .onSearch((menuItem, value) ->
-                                                menuItem.text().toLowerCase().contains(value.toLowerCase()))
-                                        .onNoResults(value ->
-                                                menuItem(Id.unique("no-results"),
-                                                        "No results found for '" + value + "'")
-                                                        .disabled()))
+                                        .addSearchInput(searchInput("menu-filter-0").icon(search())))
                                 .addDivider()
                                 .addContent(menuContent()
                                         .addList(menuList()
@@ -421,14 +413,14 @@ public class MenuComponent extends SnippetPage {
         addSnippet(new Snippet("menu-async", "With view more",
                 code("menu-async"), () -> {
             // @code-start:menu-async
-            Function<MenuList, Promise<List<MenuItem>>> finalNetworkCall = ml -> new Promise<>((res, rej) ->
+            AsyncItems<MenuList, MenuItem> finalNetworkCall = ml -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(asList(
                                     menuItem("item-20", "Action 4"),
                                     menuItem("item-21", "Action 5"),
                                     menuItem("item-22", "Final action"))),
                             1234 + new Random().nextInt(3456)));
 
-            Function<MenuList, Promise<List<MenuItem>>> firstNetworkCall = ml -> new Promise<>((res, rej) ->
+            AsyncItems<MenuList, MenuItem> firstNetworkCall = ml -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(asList(
                                     menuItem("item-10", "Action 2"),
                                     menuItem("item-11", "Action 3"),

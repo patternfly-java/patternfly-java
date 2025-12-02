@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
@@ -28,6 +27,7 @@ import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AsyncItems;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasIdentifier;
@@ -40,13 +40,11 @@ import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
-import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -67,6 +65,7 @@ import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.component.menu.MenuItemType.async;
 import static org.patternfly.component.menu.MenuItemType.checkbox;
 import static org.patternfly.component.menu.MenuItemType.link;
+import static org.patternfly.component.skeleton.Skeleton.skeleton;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
@@ -91,6 +90,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.select;
+import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size.lg;
 
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
@@ -125,9 +125,14 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return new MenuItem(identifier, text, checkbox, null);
     }
 
-    public static MenuItem asyncMenuItem(String identifier, String text,
-            Function<MenuList, Promise<List<MenuItem>>> loadItems) {
-        return new MenuItem(identifier, text, async, loadItems);
+    public static MenuItem asyncMenuItem(String identifier, String text, AsyncItems<MenuList, MenuItem> loadItems) {
+        return new MenuItem(identifier, text, async, loadItems).css(modifier(load));
+    }
+
+    public static MenuItem skeletonMenuItem(String loading) {
+        MenuItem menuItem = new MenuItem(Id.unique("skeleton-menu-item"), null, async, null);
+        menuItem.textElement.replaceWith(skeleton().screenReaderText(loading).css(util("w-100")).element());
+        return menuItem;
     }
 
     // ------------------------------------------------------ instance
@@ -141,7 +146,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private final HTMLElement itemElement;
     private final HTMLElement mainElement;
     private final HTMLElement textElement;
-    private final List<ComponentHandler<MenuItem>> handler;
+    private final List<ComponentHandler<MenuItem>> onClickHandler;
+    private final List<ComponentHandler<MenuItem>> loadedHandler;
     MenuItem sourceItem;
     MenuItem favoriteItem;
     MenuItemAction markAsFavorite;
@@ -154,7 +160,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private HTMLElement descriptionElement;
     private HTMLElement selectIcon;
 
-    MenuItem(String identifier, String text, MenuItemType itemType, Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+    MenuItem(String identifier, String text, MenuItemType itemType, AsyncItems<MenuList, MenuItem> loadItems) {
         super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
                 .attr(role, none)
                 .data(Dataset.identifier, identifier)
@@ -162,7 +168,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.identifier = identifier;
         this.itemType = itemType;
         this.data = new HashMap<>();
-        this.handler = new ArrayList<>();
+        this.onClickHandler = new ArrayList<>();
+        this.loadedHandler = new ArrayList<>();
 
         HTMLContainerBuilder<? extends HTMLElement> itemBuilder;
         if (itemType == MenuItemType.action || itemType == link || itemType == async) {
@@ -202,7 +209,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         add(itemElement = itemBuilder.css(component(Classes.menu, item))
                 .on(click, e -> {
                     if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
-                        handler.forEach(h -> h.handle(e, this));
+                        onClickHandler.forEach(h -> h.handle(e, this));
                     }
                 })
                 .element());
@@ -210,13 +217,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             textElement.textContent = text;
         }
 
-        if (itemType == async) {
-            css(modifier(load));
-            if (loadItems == null) {
-                logger.error("No load items promise for menu item %o defined!", element());
-            } else {
-                loadItems(loadItems);
-            }
+        if (itemType == async && loadItems != null) {
+            loadItems(loadItems);
         } else if (loadItems != null) {
             logger.warn("Ignore load items promise for menu item %o with type '%s'", element(), itemType.name());
         }
@@ -231,8 +233,10 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.itemType = sourceItem.itemType;
         this.data = new HashMap<>();
         this.data.putAll(sourceItem.data);
-        this.handler = new ArrayList<>();
-        this.handler.addAll(sourceItem.handler);
+        this.onClickHandler = new ArrayList<>();
+        this.onClickHandler.addAll(sourceItem.onClickHandler);
+        this.loadedHandler = new ArrayList<>();
+        this.loadedHandler.addAll(sourceItem.loadedHandler);
         this.initialSelection = false;
         this.sourceItem = sourceItem;
         this.favoriteItem = null;
@@ -241,7 +245,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         this.itemElement = querySelector(By.classname(component(Classes.menu, item)));
         this.itemElement.addEventListener(click.name, e -> {
             if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
-                handler.forEach(h -> h.handle(e, sourceItem));
+                onClickHandler.forEach(h -> h.handle(e, sourceItem));
             }
         });
         this.mainElement = querySelector(By.classname(component(Classes.menu, item, main)));
@@ -479,7 +483,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
      * @return the current {@code MenuItem} instance, allowing for method chaining.
      */
     public MenuItem onClick(ComponentHandler<MenuItem> handler) {
-        this.handler.add(handler);
+        this.onClickHandler.add(handler);
         return this;
     }
 
@@ -546,7 +550,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return Boolean.parseBoolean(element.getAttribute(Aria.disabled));
     }
 
-    private void loadItems(Function<MenuList, Promise<List<MenuItem>>> loadItems) {
+    private void loadItems(AsyncItems<MenuList, MenuItem> loadItems) {
         itemElement.addEventListener(click.name, e -> {
             clearTimeout(loadingTimeout);
             MenuList menuList = lookupSubComponent(MenuList.SUB_COMPONENT_NAME);
@@ -557,6 +561,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
                         for (MenuItem item : loadedItems) {
                             menuList.addItem(item);
                         }
+                        loadedHandler.forEach(h -> h.handle(e, this));
                         return null;
                     })
                     .catch_(error -> {
