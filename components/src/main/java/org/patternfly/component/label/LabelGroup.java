@@ -56,6 +56,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.label.Label.label;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -337,7 +338,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         if (items.size() > numLabels && overflowItem == null && overflowLabel == null) {
             String identifier = Id.unique(componentType().id, "overflow");
             overflowItem = li().css(component(chipGroup, list, item))
-                    .add(overflowLabel = new Label(Elements.button(ButtonType.button), identifier, "", Color.grey)
+                    .add(overflowLabel = label(Elements.button(ButtonType.button), identifier, "", Color.grey)
                             .css(modifier(overflow))
                             .on(click, event -> toggle()))
                     .element();

@@ -8,8 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Select component (#68)
 - Add `HasItems.onAdd(BiConsumer<B, S> onAdd)`
 - Add `HasItems.onRemove(BiConsumer<B, S> onRemove)`
+
+### Fixed
+
+- ARIA attributes in switch component
+- Warning in theme selector
 
 ## [0.3.1] - 2025-11-20
 

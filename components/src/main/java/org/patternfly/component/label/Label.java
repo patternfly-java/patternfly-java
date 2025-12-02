@@ -124,6 +124,10 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         return new Label(span(), identifier, text, color);
     }
 
+    public static <E extends HTMLElement> Label label(HTMLContainerBuilder<E> builder, String identifier, String text, Color color) {
+        return new Label(builder, identifier, text, color);
+    }
+
     // ------------------------------------------------------ instance
 
     final HTMLElement textElement;

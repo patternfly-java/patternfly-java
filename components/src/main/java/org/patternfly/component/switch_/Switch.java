@@ -141,6 +141,7 @@ public class Switch extends BaseComponent<HTMLLabelElement, Switch> implements
         if (labelElement == null) {
             String labelId = Id.build(inputElement.id, "label");
             element().appendChild(labelElement = span().css(component(Classes.switch_, Classes.label))
+                    .id(labelId)
                     .aria(hidden, true)
                     .element());
             inputElement().aria(labelledBy, labelId);

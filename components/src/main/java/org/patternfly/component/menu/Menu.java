@@ -285,9 +285,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    // ------------------------------------------------------ internal
-
-    MenuItem findItem(String id) {
+    public MenuItem findItem(String id) {
         MenuItem menuItem = null;
         if (content != null) {
             for (Iterator<MenuGroup> iterator = content.groups.iterator(); iterator.hasNext() && menuItem == null; ) {
@@ -304,6 +302,8 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
         return menuItem;
     }
+
+    // ------------------------------------------------------ internal
 
     void search(SearchFilter searchFilter, Function<String, MenuItem> noResultsProvider, String value) {
         // no search if one of the menu lists is pending
