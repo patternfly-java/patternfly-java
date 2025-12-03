@@ -28,7 +28,7 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.form.Checkbox;
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -103,7 +103,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return menuToggle(MenuToggleType.plain).icon(icon).ariaLabel(label);
     }
 
-    public static MenuToggle menuToggle(SearchInput searchInput) {
+    public static <T extends BaseSearchInput<T>> MenuToggle menuToggle(BaseSearchInput<T> searchInput) {
         return menuToggle(MenuToggleType.typeahead).add(searchInput);
     }
 
@@ -132,7 +132,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private Badge badge;
     private MenuToggleAction action;
     private Checkbox checkbox;
-    private SearchInput searchInput;
+    private BaseSearchInput<?> searchInput;
     private Severity severity;
     private Element icon;
     private HTMLElement textElement;
@@ -227,12 +227,12 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
-    public MenuToggle addSearchInput(SearchInput searchInput) {
+    public MenuToggle addSearchInput(BaseSearchInput<?> searchInput) {
         return add(searchInput);
     }
 
     // override to ensure internal wiring
-    public MenuToggle add(SearchInput searchInput) {
+    public MenuToggle add(BaseSearchInput<?> searchInput) {
         this.searchInput = searchInput;
         insertFirst(element(), searchInput.element());
         return this;
@@ -372,7 +372,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return null;
     }
 
-    public SearchInput searchInput() {
+    public BaseSearchInput<?> searchInput() {
         return searchInput;
     }
 

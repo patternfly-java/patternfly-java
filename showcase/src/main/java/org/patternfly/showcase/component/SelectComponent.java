@@ -195,7 +195,7 @@ public class SelectComponent extends SnippetPage {
                 code("typeahead"), () ->
                 // @code-start:typeahead
                 div()
-                        .add(singleTypeahead("Select a state")
+                        .add(singleTypeahead("typeahead-0", "Select a state")
                                 .applyTo(Modifiers.FullWidth::fullWidth)
                                 .addMenu(singleTypeaheadMenu()
                                         .addContent(menuContent()
@@ -223,7 +223,7 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(singleTypeahead("Lorem ipsum")
+                    .add(singleTypeahead("typeahead-async-0", "Lorem ipsum")
                             .applyTo(Modifiers.FullWidth::fullWidth)
                             .addMenu(singleTypeaheadMenu().scrollable()
                                     .addContent(menuContent()

@@ -129,8 +129,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return new MenuItem(identifier, text, async, loadItems).css(modifier(load));
     }
 
-    public static MenuItem skeletonMenuItem(String loading) {
-        MenuItem menuItem = new MenuItem(Id.unique("skeleton-menu-item"), null, async, null);
+    public static MenuItem skeletonMenuItem(String identifier, String loading) {
+        MenuItem menuItem = new MenuItem(identifier, null, async, null);
         menuItem.textElement.replaceWith(skeleton().screenReaderText(loading).css(util("w-100")).element());
         return menuItem;
     }

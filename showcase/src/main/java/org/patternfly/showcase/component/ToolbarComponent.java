@@ -25,7 +25,7 @@ import org.patternfly.component.toolbar.RowWrap;
 import org.patternfly.component.toolbar.Toolbar;
 import org.patternfly.component.toolbar.ToolbarColor;
 import org.patternfly.component.toolbar.ToolbarContent;
-import org.patternfly.component.toolbar.ToolbarFilterChipGroup;
+import org.patternfly.component.toolbar.ToolbarFilterLabelGroup;
 import org.patternfly.component.toolbar.ToolbarFilterContent;
 import org.patternfly.component.toolbar.ToolbarGroup;
 import org.patternfly.component.toolbar.ToolbarGroupType;
@@ -307,7 +307,7 @@ public class ToolbarComponent extends SnippetPage {
         addApiDoc(Toolbar.class, component);
         addApiDoc(ToolbarColor.class, other);
         addApiDoc(ToolbarContent.class, subcomponent);
-        addApiDoc(ToolbarFilterChipGroup.class, subcomponent);
+        addApiDoc(ToolbarFilterLabelGroup.class, subcomponent);
         addApiDoc(ToolbarFilterContent.class, subcomponent);
         addApiDoc(ToolbarGroup.class, subcomponent);
         addApiDoc(ToolbarGroupType.class, other);

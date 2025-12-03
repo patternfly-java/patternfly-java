@@ -30,7 +30,7 @@ public enum ToolbarItemType implements TypedModifier {
 
     label("label"),
 
-    chipGroup("chip-group"),
+    labelGroup("label-group"),
 
     expandAll("expand-all");
 

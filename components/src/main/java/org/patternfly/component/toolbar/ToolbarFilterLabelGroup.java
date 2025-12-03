@@ -22,7 +22,6 @@ import java.util.function.Function;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
 import org.patternfly.filter.Filter;
-
 import elemental2.dom.HTMLDivElement;
 
 import static java.util.Collections.emptyList;
@@ -31,12 +30,12 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.component.label.LabelGroup.labelGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 
-public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterChipGroup<T>> {
+public class ToolbarFilterLabelGroup<T> extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterLabelGroup<T>> {
 
     // ------------------------------------------------------ factory
 
-    public static <T> ToolbarFilterChipGroup<T> toolbarFilterChipGroup(Filter<T> filter, String text) {
-        return new ToolbarFilterChipGroup<>(filter, text);
+    public static <T> ToolbarFilterLabelGroup<T> toolbarFilterLabelGroup(Filter<T> filter, String text) {
+        return new ToolbarFilterLabelGroup<>(filter, text);
     }
 
     // ------------------------------------------------------ instance
@@ -48,7 +47,7 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
     private LabelGroup labelGroup;
     private Function<Filter<T>, List<Label>> labelsFn;
 
-    ToolbarFilterChipGroup(Filter<T> filter, String text) {
+    ToolbarFilterLabelGroup(Filter<T> filter, String text) {
         super(SUB_COMPONENT_NAME, toolbarItem().element());
         this.filter = filter;
         this.text = text;
@@ -74,19 +73,19 @@ public class ToolbarFilterChipGroup<T> extends ToolbarSubComponent<HTMLDivElemen
 
     // ------------------------------------------------------ builder
 
-    public ToolbarFilterChipGroup<T> filterAttributes(String firstAttribute, String... moreAttributes) {
+    public ToolbarFilterLabelGroup<T> filterAttributes(String firstAttribute, String... moreAttributes) {
         filterAttributes.add(firstAttribute);
         filterAttributes.addAll(List.of(moreAttributes));
         return this;
     }
 
-    public ToolbarFilterChipGroup<T> filterToChips(Function<Filter<T>, List<Label>> labelsFn) {
+    public ToolbarFilterLabelGroup<T> filterToLabels(Function<Filter<T>, List<Label>> labelsFn) {
         this.labelsFn = labelsFn;
         return this;
     }
 
     @Override
-    public ToolbarFilterChipGroup<T> that() {
+    public ToolbarFilterLabelGroup<T> that() {
         return this;
     }
 

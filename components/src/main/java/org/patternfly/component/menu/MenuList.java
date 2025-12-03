@@ -44,6 +44,7 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
+import static org.patternfly.component.menu.MenuItem.skeletonMenuItem;
 import static org.patternfly.core.AsyncStatus.pending;
 import static org.patternfly.core.AsyncStatus.rejected;
 import static org.patternfly.core.AsyncStatus.resolved;
@@ -71,7 +72,12 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     public static final String SUB_COMPONENT_NAME = "ml";
     private static final Logger logger = Logger.getLogger(MenuList.class.getName());
-    private static final Supplier<MenuItem> loading = () -> MenuItem.skeletonMenuItem("Loading items...");
+    // TODO Customize loading, no items and error handling
+    private static final Supplier<MenuItem> loading = () -> skeletonMenuItem(
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "loading"), "Loading items...");
+    private static final Supplier<MenuItem> noItems = () -> menuItem(
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "no-items"), "No items found")
+            .disabled();
     private static final Supplier<MenuItem> error = () -> menuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "error"), "Error")
             .icon(exclamationCircle());
@@ -80,6 +86,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     private final List<BiConsumer<MenuList, MenuItem>> onAdd;
     private final List<BiConsumer<MenuList, MenuItem>> onRemove;
     private AsyncStatus status;
+    private MenuItem loadingItem;
+    private MenuItem noItemsItem;
+    private MenuItem errorItem;
     private AsyncItems<MenuList, MenuItem> asyncItems;
 
     MenuList() {
@@ -163,7 +172,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
             // Show the loading indicator immediately, not like in the tree view component after Timeouts.LOADING_TIMEOUT
             // The reason is that the menu is empty at first, then the loading indicator appears, and finally the items
             // are added, leading to a visual glitch. To prevent this, we show the loading indicator immediately.
-            MenuItem loadingItem = loading.get();
+            loadingItem = loading.get();
             addItem(loadingItem);
 
             // load items
@@ -171,8 +180,14 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                     .then(items -> {
                         status = resolved;
                         failSafeRemoveFromParent(loadingItem);
+                        int count = 0;
                         for (MenuItem item : items) {
                             addItem(item);
+                            count++;
+                        }
+                        if (count == 0) {
+                            noItemsItem = noItems.get();
+                            addItem(noItemsItem);
                         }
                         return Promise.resolve(items);
                     })
@@ -180,7 +195,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                         status = rejected;
                         failSafeRemoveFromParent(loadingItem);
                         logger.error("Unable to load items for %o: %s", element(), error);
-                        MenuItem errorItem = MenuList.error.get();
+                        errorItem = MenuList.error.get();
                         addItem(errorItem);
                         return Promise.reject(error);
                     });
@@ -257,6 +272,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     private void internalClear() {
+        failSafeRemoveFromParent(loadingItem);
+        failSafeRemoveFromParent(noItemsItem);
+        failSafeRemoveFromParent(errorItem);
         Iterator<MenuItem> iterator = items.values().iterator();
         while (iterator.hasNext()) {
             MenuItem item = iterator.next();

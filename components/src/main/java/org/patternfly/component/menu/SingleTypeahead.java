@@ -17,7 +17,6 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
-import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
@@ -45,8 +44,8 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
      * Creates a new {@link SingleTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
      * {@link SearchInput}.
      */
-    public static SingleTypeahead singleTypeahead(String placeholder) {
-        return new SingleTypeahead(MenuToggle.menuToggle(searchInput(Id.unique(ComponentType.SingleSelect.id, "si"))
+    public static SingleTypeahead singleTypeahead(String id, String placeholder) {
+        return new SingleTypeahead(MenuToggle.menuToggle(searchInput(id)
                 .plain()
                 .placeholder(placeholder)));
     }
@@ -56,8 +55,8 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
      * <strong>must</strong> be of type {@link MenuToggleType#typeahead} and <strong>must</strong> contain a
      * {@link SearchInput}.
      */
-    public static SingleSelect singleTypeahead(MenuToggle menuToggle) {
-        return new SingleSelect(menuToggle);
+    public static SingleTypeahead singleTypeahead(MenuToggle menuToggle) {
+        return new SingleTypeahead(menuToggle);
     }
 
     // ------------------------------------------------------ instance

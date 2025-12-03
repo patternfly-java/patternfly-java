@@ -239,6 +239,41 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
+    /**
+     * Checks if the menu contains any asynchronous items that are currently in a pending status. This method inspects the
+     * {@linkplain MenuList menu lists} to determine if any {@linkplain MenuList#status() status} is
+     * {@linkplain org.patternfly.core.AsyncStatus#pending pending}.
+     *
+     * @return {@code true} if any {@link MenuList} has a {@linkplain MenuList#status() status} of
+     * {@linkplain org.patternfly.core.AsyncStatus#pending pending}, otherwise {@code false}.
+     */
+    public boolean hasAsyncItems() {
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    if (group.list.status() == pending) {
+                        return true;
+                    }
+                }
+            }
+            return content.list != null && content.list.status() == pending;
+        }
+        return false;
+    }
+
+    public void reload() {
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    group.list.reload();
+                }
+            }
+            if (content.list != null) {
+                content.list.reload();
+            }
+        }
+    }
+
     public void select(String itemId) {
         select(findItem(itemId), true, true);
     }
@@ -417,20 +452,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
                 menuItem.markSelected(false);
             }
         }
-    }
-
-    boolean hasAsyncItems() {
-        if (content != null) {
-            for (MenuGroup group : content.groups) {
-                if (group.list != null) {
-                    if (group.list.status() == pending) {
-                        return true;
-                    }
-                }
-            }
-            return content.list != null && content.list.status() == pending;
-        }
-        return false;
     }
 
     Promise<Void> loadAll() {
