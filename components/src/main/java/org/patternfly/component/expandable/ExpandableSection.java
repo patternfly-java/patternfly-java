@@ -226,6 +226,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         if (content != null) {
             content.element().hidden = true;
         } else if (detached) {
+            // Two different expandable sections! The call above is for the one containing the trigger.
             contentEsElement.classList.remove(modifier(expanded));
         }
         if (fireEvent) {
@@ -242,6 +243,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         if (content != null) {
             content.element().hidden = false;
         } else if (detached) {
+            // Two different expandable sections! The call above is for the one containing the trigger.
             contentEsElement.classList.add(modifier(expanded));
         }
         if (fireEvent) {
@@ -262,7 +264,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         // and gives up after a certain number of attempts.
         final int[] count = {0};
         final double[] handle = {0};
-        SetIntervalCallbackFn code = __ -> {
+        SetIntervalCallbackFn wireFn = __ -> {
             if (!wired && count[0] < WIRE_ATTEMPTS) {
                 wire();
                 count[0]++;
@@ -270,8 +272,8 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
                 clearInterval(handle[0]);
                 if (wired) {
                     afterWire();
-                    if (logger.isEnabled(Level.DEBUG)) {
-                        logger.debug("Expandable section finished wiring: %o", element());
+                    if (detached && logger.isEnabled(Level.DEBUG)) {
+                        logger.debug("Detached expandable section finished wiring: %o", element());
                         logger.debug("Toggle: %o", toggleButton);
                         logger.debug("Content: %o", contentElement);
                         logger.debug("Content: %o", contentElement);
@@ -282,7 +284,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             }
         };
         beforeWire();
-        handle[0] = setInterval(code, WIRE_INTERVAL);
+        handle[0] = setInterval(wireFn, WIRE_INTERVAL);
     }
 
     private void beforeWire() {
@@ -335,14 +337,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         if (order == Node.DOCUMENT_POSITION_PRECEDING) {
             // content before toggle => direction = up
             directionUp = true;
-            css(modifier(expanded));
         } else if (order == Node.DOCUMENT_POSITION_FOLLOWING) {
             // content after toggle => direction = down
             directionUp = false;
         }
-
-        if (content != null && directionUp) {
-            content.css(modifier(expandTop));
+        if (directionUp) {
+            contentEsElement.classList.add(modifier(expandTop));
         }
         if (truncate > 0) {
             if (toggle != null) {
@@ -352,6 +352,5 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
                 componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content).set(truncate);
             }
         }
-        collapse(false);
     }
 }
