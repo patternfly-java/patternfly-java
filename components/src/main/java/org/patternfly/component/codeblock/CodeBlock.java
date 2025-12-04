@@ -22,7 +22,6 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.expandable.ExpandableSection;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -172,13 +171,12 @@ public class CodeBlock extends BaseComponent<HTMLDivElement, CodeBlock> implemen
         String moreCode = String.join("\n", copyOfRange(lines(), truncate, lines().length));
 
         if (esCode == null && esTrigger == null) {
-            String codeId = Id.unique(componentType().id, "es-code");
-            String triggerId = Id.unique(componentType().id, "es-trigger");
-            esCode = expandableSection(codeId)
-                    .detachedFrom(triggerId)
+            String esId = Id.unique(componentType().id, "es-code");
+            esCode = expandableSection(esId)
+                    .detached()
                     .addContent(expandableSectionContent().text(moreCode));
-            esTrigger = expandableSection(triggerId)
-                    .detachedFrom(codeId)
+            esTrigger = expandableSection(esId)
+                    .detached()
                     .addToggle(expandableSectionToggle("Show more", "Show less"));
 
             removeChildrenFrom(codeElement);

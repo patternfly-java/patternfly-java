@@ -16,10 +16,7 @@
 package org.patternfly.component.expandable;
 
 import org.jboss.elemento.ElementContainerDelegate;
-import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -31,6 +28,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.expandTop;
 import static org.patternfly.style.Classes.expandableSection;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.inline;
@@ -58,22 +56,19 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     public static final String SUB_COMPONENT_NAME = "est";
 
-    final String id;
-    private final Button button;
+    final Button button;
+    final HTMLElement iconContainer;
     private final String moreText;
     private final String lessText;
-    private final HTMLElement iconContainer;
 
     ExpandableSectionToggle(String moreText, String lessText) {
         super(SUB_COMPONENT_NAME, div().css(component(expandableSection, toggle)).element());
-        this.id = Id.unique(ComponentType.ExpandableSection.id, "tgl");
         this.moreText = moreText;
         this.lessText = lessText;
         this.iconContainer = span().css(component(expandableSection, toggle, icon))
                 .add(angleRight())
                 .element();
         this.button = button().css(component(expandableSection, toggle))
-                .id(id)
                 .link()
                 .aria(expanded, false)
                 .iconAndText(iconContainer, moreText, start)
@@ -92,12 +87,6 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     // ------------------------------------------------------ builder
 
-    /** Changes the toggle icon to point upwards. */
-    public ExpandableSectionToggle up() {
-        iconContainer.classList.add(modifier(expanded));
-        return this;
-    }
-
     @Override
     public ExpandableSectionToggle that() {
         return this;
@@ -105,15 +94,21 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     // ------------------------------------------------------ internal
 
-    void collapse() {
+    void collapse(boolean directionUp) {
         button.aria(expanded, false);
+        if (directionUp) {
+            iconContainer.classList.remove(modifier(expandTop));
+        }
         if (moreText != null) {
             button.text(moreText);
         }
     }
 
-    void expand() {
+    void expand(boolean directionUp) {
         button.aria(expanded, true);
+        if (directionUp) {
+            iconContainer.classList.add(modifier(expandTop));
+        }
         if (lessText != null) {
             button.text(lessText);
         }

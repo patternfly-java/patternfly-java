@@ -15,8 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fix CSS classes in `ToolbarFilterLabelGroup`
 - ARIA attributes in the switch component
+- CSS classes in `ToolbarFilterLabelGroup`
+- Detached expandable section
 - Warning in theme selector
 
 ## [0.3.1] - 2025-11-20

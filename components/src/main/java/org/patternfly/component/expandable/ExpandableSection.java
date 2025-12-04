@@ -21,28 +21,29 @@ import java.util.List;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.HTMLElementBuilder;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.logger.Level;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
-
+import elemental2.dom.DomGlobal.SetIntervalCallbackFn;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
+import elemental2.dom.Node;
 
+import static elemental2.dom.DomGlobal.clearInterval;
 import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.setInterval;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.core.Aria.controls;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.core.Dataset.expandableSectionId;
-import static org.patternfly.core.Dataset.expandableSectionTarget;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.detached;
+import static org.patternfly.style.Classes.expandTop;
 import static org.patternfly.style.Classes.expandableSection;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.limitWidth;
@@ -59,9 +60,8 @@ import static org.patternfly.style.Variables.LineClamp;
  * @see <a href=
  * "https://www.patternfly.org/components/expandable-section">https://www.patternfly.org/components/expandable-section</a>
  */
-public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection> implements
-        Attachable,
-        Expandable<HTMLDivElement, ExpandableSection> {
+public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableSection>
+        implements Attachable, Expandable<HTMLDivElement, ExpandableSection> {
 
     // ------------------------------------------------------ factory
 
@@ -69,25 +69,49 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return new ExpandableSection(Id.unique(ComponentType.ExpandableSection.id));
     }
 
+    /**
+     * Creates and returns a new instance of {@link ExpandableSection} with the specified ID.
+     * <p>
+     * If you want to create a detached expandable section, you must use the same ID for the two expandable sections, one
+     * containing the {@link ExpandableSectionToggle} and one containing the {@link ExpandableSectionContent}.
+     * <p>
+     * {@snippet class = ExpandableSectionDemo region = detached}
+     *
+     * @param id the unique identifier for the expandable section
+     * @return a new instance of {@link ExpandableSection} initialized with the provided ID
+     */
     public static ExpandableSection expandableSection(String id) {
         return new ExpandableSection(id);
     }
 
     // ------------------------------------------------------ instance
 
+    private static final int WIRE_ATTEMPTS = 10;
+    private static final int WIRE_INTERVAL = 100;
     public static final int DEFAULT_TRUNCATE = 3;
+    private static final Logger logger = Logger.getLogger(ExpandableSection.class.getName());
 
-    private final String id;
-    private int truncate = 0;
-    private String detachedFromId;
+    private final String contentId;
+    private final String toggleId;
+    private final List<ToggleHandler<ExpandableSection>> toggleHandler;
+
+    private int truncate;
+    private boolean wired;
+    private boolean detached;
+    private boolean directionUp;
     private ExpandableSectionToggle toggle;
     private ExpandableSectionContent content;
-    private HTMLElement detachedContentElement;
-    private final List<ToggleHandler<ExpandableSection>> toggleHandler;
+    private HTMLElement contentEsElement; // parent of contentElement
+    private HTMLElement contentElement;
+    private HTMLElement toggleButton;
 
     ExpandableSection(String id) {
         super(ComponentType.ExpandableSection, div().css(component(expandableSection)).element());
-        this.id = id;
+        this.truncate = 0;
+        this.wired = false;
+        this.directionUp = false;
+        this.toggleId = Id.build(id, "toggle");
+        this.contentId = Id.build(id, "content");
         this.toggleHandler = new ArrayList<>();
         storeComponent();
         Attachable.register(this, this);
@@ -95,36 +119,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (toggle != null && content != null) {
-            toggle.aria(controls, content.id);
-            content.aria(labelledBy, toggle.id);
-        }
-        if (truncate > 0) {
-            if (toggle != null) {
-                toggle.truncate();
-            }
-            if (truncate != DEFAULT_TRUNCATE && content != null) {
-                componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content).set(truncate);
-            }
-        }
-        if (detachedFromId != null) {
-            HTMLElement detachedElement = Elements.querySelector(document.body, By.data(expandableSectionId, detachedFromId));
-
-            if (detachedElement != null) {
-                HTMLElementBuilder<HTMLElement> detached = wrapHtmlElement(detachedElement);
-                HTMLElement detachedToggleElement = detached.querySelector(
-                        By.classname(component(expandableSection, Classes.toggle)));
-                detachedContentElement = detached.querySelector(By.classname(component(expandableSection, Classes.content)));
-
-                if (toggle != null && detachedContentElement != null && detachedContentElement.id != null) {
-                    toggle.aria(controls, detachedContentElement.id);
-                    wrapHtmlElement(detachedContentElement).aria(labelledBy, toggle.id);
-                } else if (content != null && detachedToggleElement != null && detachedToggleElement.id != null) {
-                    wrapHtmlElement(detachedToggleElement).aria(controls, content.id);
-                    content.aria(labelledBy, detachedToggleElement.id);
-                }
-            }
-        }
+        startWire();
     }
 
     // ------------------------------------------------------ add
@@ -152,6 +147,17 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Make this expandable section detached from another one. Must be called on both the expandable section containing the
+     * {@link ExpandableSectionToggle} and the expandable section containing the {@link ExpandableSectionContent}.
+     * <p>
+     * {@snippet class = ExpandableSectionDemo region = detached}
+     */
+    public ExpandableSection detached() {
+        this.detached = true;
+        return this;
+    }
 
     /** Same as {@linkplain #indented(boolean) indented(true)} */
     public ExpandableSection indented() {
@@ -197,14 +203,6 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
         return this;
     }
 
-    public ExpandableSection detachedFrom(String detachedFromId) {
-        this.detachedFromId = detachedFromId;
-        css(modifier(detached));
-        data(expandableSectionId, id);
-        data(expandableSectionTarget, detachedFromId);
-        return this;
-    }
-
     @Override
     public ExpandableSection that() {
         return this;
@@ -223,12 +221,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     public void collapse(boolean fireEvent) {
         element().classList.remove(modifier(expanded));
         if (toggle != null) {
-            toggle.collapse();
+            toggle.collapse(directionUp);
         }
         if (content != null) {
             content.element().hidden = true;
-        } else if (detachedContentElement != null) {
-            detachedContentElement.hidden = true;
+        } else if (detached) {
+            contentEsElement.classList.remove(modifier(expanded));
         }
         if (fireEvent) {
             toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
@@ -239,12 +237,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     public void expand(boolean fireEvent) {
         element().classList.add(modifier(expanded));
         if (toggle != null) {
-            toggle.expand();
+            toggle.expand(directionUp);
         }
         if (content != null) {
             content.element().hidden = false;
-        } else if (detachedContentElement != null) {
-            detachedContentElement.hidden = false;
+        } else if (detached) {
+            contentEsElement.classList.add(modifier(expanded));
         }
         if (fireEvent) {
             toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));
@@ -253,5 +251,107 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     public ExpandableSectionContent content() {
         return content;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void startWire() {
+        // Detached expandable sections might live in completely different areas of the DOM tree.
+        // Wiring in the attach() method is not enough to make sure the toggle and content elements are available.
+        // Instead, we use an approach that checks for the availability of the toggle and content elements periodically
+        // and gives up after a certain number of attempts.
+        final int[] count = {0};
+        final double[] handle = {0};
+        SetIntervalCallbackFn code = __ -> {
+            if (!wired && count[0] < WIRE_ATTEMPTS) {
+                wire();
+                count[0]++;
+            } else {
+                clearInterval(handle[0]);
+                if (wired) {
+                    afterWire();
+                    if (logger.isEnabled(Level.DEBUG)) {
+                        logger.debug("Expandable section finished wiring: %o", element());
+                        logger.debug("Toggle: %o", toggleButton);
+                        logger.debug("Content: %o", contentElement);
+                        logger.debug("Content: %o", contentElement);
+                    }
+                } else {
+                    logger.error("Expandable section %o failed to wire toggle and content!", element());
+                }
+            }
+        };
+        beforeWire();
+        handle[0] = setInterval(code, WIRE_INTERVAL);
+    }
+
+    private void beforeWire() {
+        if (detached) {
+            if (toggle != null) {
+                // I'm a detached expandable section containing the toggle
+                toggle.button.id(toggleId);
+                toggle.button.aria(controls, contentId);
+                toggleButton = toggle.button.element();
+            } else if (content != null) {
+                // I'm a detached expandable section containing the content
+                css(modifier(Classes.detached));
+                content.id(contentId);
+                content.aria(labelledBy, toggleId);
+                contentEsElement = element();
+                contentElement = content.element();
+            }
+        } else {
+            // I'm a normal expandable section containing both the toggle and content
+            if (toggle != null && content != null) {
+                toggle.button.id(toggleId);
+                toggle.button.aria(controls, contentId);
+                toggleButton = toggle.button.element();
+                content.id(contentId);
+                content.aria(labelledBy, toggleId);
+                contentEsElement = element();
+                contentElement = content.element();
+            } else {
+                logger.error("The expandable section %o must have a toggle and a content element", element());
+            }
+        }
+    }
+
+    private void wire() {
+        if (detached) {
+            if (toggle != null) {
+                // I'm a detached expandable section containing the toggle
+                contentElement = Elements.querySelector(document, By.id(contentId));
+                contentEsElement = (HTMLElement) contentElement.closest("." + component(expandableSection));
+            } else if (content != null) {
+                // I'm a detached expandable section containing the content
+                toggleButton = Elements.querySelector(document, By.id(toggleId));
+            }
+        }
+        wired = toggleButton != null && contentEsElement != null && contentElement != null;
+    }
+
+    private void afterWire() {
+        int order = toggleButton.compareDocumentPosition(contentElement);
+        if (order == Node.DOCUMENT_POSITION_PRECEDING) {
+            // content before toggle => direction = up
+            directionUp = true;
+            css(modifier(expanded));
+        } else if (order == Node.DOCUMENT_POSITION_FOLLOWING) {
+            // content after toggle => direction = down
+            directionUp = false;
+        }
+
+        if (content != null && directionUp) {
+            content.css(modifier(expandTop));
+        }
+        if (truncate > 0) {
+            if (toggle != null) {
+                toggle.truncate();
+            }
+            if (truncate != DEFAULT_TRUNCATE && content != null) {
+                componentVar(component(expandableSection), "m-truncate__content", LineClamp).applyTo(content).set(truncate);
+            }
+        }
+        collapse(false);
     }
 }

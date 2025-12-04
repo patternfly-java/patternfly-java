@@ -16,13 +16,9 @@
 package org.patternfly.component.expandable;
 
 import org.jboss.elemento.ElementTextMethods;
-import org.jboss.elemento.Id;
-import org.patternfly.component.ComponentType;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.region;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
@@ -41,15 +37,11 @@ public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTML
 
     public static final String SUB_COMPONENT_NAME = "esc";
 
-    final String id;
-
     ExpandableSectionContent() {
         super(SUB_COMPONENT_NAME, div().css(component(expandableSection, content))
                 .apply(e -> e.hidden = true)
-                .attr(role, region)
+                .role(region)
                 .element());
-
-        id(this.id = Id.unique(ComponentType.ExpandableSection.id, "cnt"));
     }
 
     // ------------------------------------------------------ builder
