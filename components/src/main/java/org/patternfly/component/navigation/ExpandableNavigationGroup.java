@@ -33,7 +33,6 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.divider.Divider;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;

@@ -26,6 +26,7 @@ import org.patternfly.component.HasValue;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 

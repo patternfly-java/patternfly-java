@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 

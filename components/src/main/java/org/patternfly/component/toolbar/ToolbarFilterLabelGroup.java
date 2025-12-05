@@ -22,6 +22,7 @@ import java.util.function.Function;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
 import org.patternfly.filter.Filter;
+
 import elemental2.dom.HTMLDivElement;
 
 import static java.util.Collections.emptyList;

@@ -17,6 +17,7 @@ package org.patternfly.component.expandable;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.button.Button;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 

@@ -30,7 +30,6 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.divider.Divider;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Dataset;
 import org.patternfly.core.Roles;
 

@@ -25,7 +25,6 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;

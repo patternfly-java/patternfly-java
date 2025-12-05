@@ -27,7 +27,6 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;

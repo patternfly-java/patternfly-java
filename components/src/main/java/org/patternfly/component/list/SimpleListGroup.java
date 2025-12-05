@@ -27,7 +27,6 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;

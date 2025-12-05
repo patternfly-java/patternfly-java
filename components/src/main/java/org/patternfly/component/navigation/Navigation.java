@@ -33,7 +33,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.ScrollButtons;
 import org.patternfly.component.divider.Divider;
-import org.patternfly.component.label.Label;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;

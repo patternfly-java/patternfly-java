@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Elements;
@@ -35,7 +34,6 @@ import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
 
 import elemental2.dom.Element;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 

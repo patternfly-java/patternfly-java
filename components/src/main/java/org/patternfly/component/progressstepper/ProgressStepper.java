@@ -28,7 +28,6 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Compact;

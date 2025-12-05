@@ -25,7 +25,6 @@ import java.util.function.BiConsumer;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;

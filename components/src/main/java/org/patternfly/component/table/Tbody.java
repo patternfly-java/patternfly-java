@@ -27,7 +27,6 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.emptystate.EmptyState;
-import org.patternfly.component.label.Label;
 
 import elemental2.dom.HTMLTableSectionElement;
 

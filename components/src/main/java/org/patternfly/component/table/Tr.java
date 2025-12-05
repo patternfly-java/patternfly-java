@@ -34,7 +34,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.component.tree.TreeViewItem;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;

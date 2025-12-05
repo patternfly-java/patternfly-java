@@ -37,6 +37,7 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.NotificationStatus;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 

@@ -33,7 +33,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.label.Label;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;

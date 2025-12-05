@@ -16,6 +16,7 @@
 package org.patternfly.component.expandable;
 
 import org.jboss.elemento.ElementTextMethods;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;

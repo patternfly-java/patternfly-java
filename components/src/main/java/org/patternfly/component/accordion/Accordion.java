@@ -28,7 +28,6 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.label.Label;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;

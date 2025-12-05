@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.filter.Filter;
 
 import elemental2.dom.HTMLDivElement;

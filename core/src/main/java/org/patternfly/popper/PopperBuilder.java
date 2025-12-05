@@ -24,6 +24,7 @@ import java.util.function.Predicate;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.logger.Logger;
+
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.Event;

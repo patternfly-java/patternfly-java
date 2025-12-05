@@ -27,7 +27,6 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.component.label.Label;
 import org.patternfly.style.Modifiers.Horizontal;
 
 import elemental2.dom.HTMLFormElement;
