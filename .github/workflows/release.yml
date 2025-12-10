@@ -84,7 +84,7 @@ jobs:
           $MVN -P snippets javadoc:aggregate
           $MVN -P snippets javadoc:javadoc
           $MVN -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
-      - uses: JamesIves/github-pages-deploy-action@v4.7.4
+      - uses: JamesIves/github-pages-deploy-action@v4.7.6
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/apidocs
@@ -108,7 +108,7 @@ jobs:
           distribution: temurin
           cache: maven
       - run: $MVN --projects org.patternfly:patternfly-java-showcase --also-make -P showcase,prod package
-      - uses: JamesIves/github-pages-deploy-action@v4.7.4
+      - uses: JamesIves/github-pages-deploy-action@v4.7.6
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/patternfly-java.github.io
