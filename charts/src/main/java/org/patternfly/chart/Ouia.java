@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.chart;
 
 import org.jboss.elemento.Id;
 
@@ -32,17 +32,17 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
-    public static void component(HTMLElement element, ComponentType componentType) {
-        if (element != null && componentType.componentName != null && isSupported()) {
-            component(element, componentType.componentName, Id.unique("ouia", componentType.id));
+    public static void component(HTMLElement element, ChartType chartType) {
+        if (element != null && chartType.chartName != null && isSupported()) {
+            component(element, chartType.chartName, Id.unique("ouia", chartType.id));
         }
     }
 
     public static void component(HTMLElement element, String name, String id) {
         if (element != null && name != null && isSupported()) {
-            element.dataset.set("ouiaComponentType", name);
-            element.dataset.set("ouiaComponentId", id);
-            element.dataset.set("ouiaComponentSafe", "true");
+            element.dataset.set("ouiaChartType", name);
+            element.dataset.set("ouiaChartId", id);
+            element.dataset.set("ouiaChartSafe", "true");
         }
     }
 

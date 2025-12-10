@@ -13,14 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import "@patternfly/patternfly/patternfly.css";
-import "@patternfly/patternfly/patternfly-addons.css";
-import "@patternfly-java/charts/dist/charts";
-import "./pforg/*.css";
-import "./showcase.css";
+package org.patternfly.chart;
 
-import "@github/relative-time-element";
-import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/github.css";
+public interface Chart {
 
-window["hljs"] = hljs; // 'export' hljs for J2CL
+    ChartType chartType();
+}

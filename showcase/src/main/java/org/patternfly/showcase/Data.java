@@ -18,6 +18,7 @@ package org.patternfly.showcase;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
 
@@ -30,10 +31,12 @@ public final class Data {
 
     public static JsPropertyMap<Component> components;
     public static JsPropertyMap<Layout> layouts;
+    public static JsPropertyMap<Chart> charts;
 
     static {
         components = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.components().getText()));
         layouts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.layouts().getText()));
+        charts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.charts().getText()));
     }
 
     public static List<Component> components() {
@@ -75,6 +78,17 @@ public final class Data {
             Layout layout = layouts.get(key);
             if (layout.implemented()) {
                 result.add(layout);
+            }
+        });
+        return result;
+    }
+
+    public static List<Chart> charts() {
+        List<Chart> result = new ArrayList<>();
+        charts.forEach(key -> {
+            Chart chart = charts.get(key);
+            if (chart.implemented()) {
+                result.add(chart);
             }
         });
         return result;

@@ -112,6 +112,7 @@
 
     <modules>
         <module>build-config</module>
+        <module>charts</module>
         <module>code-parent</module>
         <module>components</module>
         <module>core</module>
@@ -216,7 +217,6 @@
                                     <exclude>**/node/**</exclude>
                                     <exclude>**/node_modules/**</exclude>
                                     <exclude>**/src/demo/java/**</exclude>
-                                    <exclude>**/src/main/resources/META-INF/externs/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSpecs.java</exclude>
@@ -224,6 +224,7 @@
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/token/Token.java</exclude>
+                                    <exclude>**/src/main/resources/META-INF/externs/**</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>

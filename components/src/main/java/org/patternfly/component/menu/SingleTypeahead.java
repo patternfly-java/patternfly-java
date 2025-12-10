@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import java.util.function.Function;
 
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasValue;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
@@ -37,7 +38,7 @@ import static org.patternfly.core.Roles.combobox;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
+public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements HasValue<String> {
 
     // ------------------------------------------------------ factory
 
@@ -174,5 +175,14 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> {
             menu.select(item, true, fireEvent);
             menuToggle.text(item.text());
         }
+    }
+
+    @Override
+    public String value() {
+        String value = null;
+        if (menuToggle != null) {
+            value = menuToggle.text();
+        }
+        return value == null ? "" : value;
     }
 }

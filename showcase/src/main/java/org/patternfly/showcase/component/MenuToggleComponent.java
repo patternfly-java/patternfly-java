@@ -23,9 +23,9 @@ import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.component.Severity.danger;
-import static org.patternfly.component.Severity.success;
-import static org.patternfly.component.Severity.warning;
+import static org.patternfly.component.ValidationStatus.error;
+import static org.patternfly.component.ValidationStatus.success;
+import static org.patternfly.component.ValidationStatus.warning;
 import static org.patternfly.component.avatar.Avatar.avatar;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.form.Checkbox.checkbox;
@@ -251,11 +251,11 @@ public class MenuToggleComponent extends SnippetPage {
                 code("menu-toggle-status"), () ->
                 // @code-start:menu-toggle-status
                 div()
-                        .add(menuToggle("Success").status(success))
+                        .add(menuToggle("Success").validated(success))
                         .add(" ")
-                        .add(menuToggle("Warning").status(warning))
+                        .add(menuToggle("Warning").validated(warning))
                         .add(" ")
-                        .add(menuToggle("Danger").status(danger))
+                        .add(menuToggle("Danger").validated(error))
                         .element()
                 // @code-end:menu-toggle-status
         ));

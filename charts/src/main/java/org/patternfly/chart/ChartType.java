@@ -13,14 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import "@patternfly/patternfly/patternfly.css";
-import "@patternfly/patternfly/patternfly-addons.css";
-import "@patternfly-java/charts/dist/charts";
-import "./pforg/*.css";
-import "./showcase.css";
+package org.patternfly.chart;
 
-import "@github/relative-time-element";
-import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/github.css";
+public enum ChartType {
 
-window["hljs"] = hljs; // 'export' hljs for J2CL
+    Donut("dnt", "PF6/Donut"),
+    ;
+
+    public final String id;
+    public final String chartName;
+
+    ChartType(String id, String chartName) {
+        this.id = id;
+        this.chartName = chartName;
+    }
+}

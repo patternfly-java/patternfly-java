@@ -20,7 +20,7 @@ import java.util.Random;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.AsyncItems;
-import org.patternfly.component.Severity;
+import org.patternfly.component.ValidationStatus;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
@@ -42,9 +42,9 @@ import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
-import static org.patternfly.component.Severity.danger;
-import static org.patternfly.component.Severity.success;
-import static org.patternfly.component.Severity.warning;
+import static org.patternfly.component.ValidationStatus.error;
+import static org.patternfly.component.ValidationStatus.success;
+import static org.patternfly.component.ValidationStatus.warning;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.help.HelperText.helperText;
@@ -155,13 +155,13 @@ public class SelectComponent extends SnippetPage {
                             .style("width", "200px")
                             .addMenu(singleSelectMenu()
                                     .onSingleSelect((event, menuItem, selected) -> {
-                                        Severity severity = menuItem.get("status");
-                                        menuToggle.status(severity);
-                                        setVisible(helperText, severity == warning || severity == danger);
-                                        helperText.firstItem().status(severity.asValidationStatus());
-                                        if (severity == warning) {
+                                        ValidationStatus validationStatus = menuItem.get("status");
+                                        menuToggle.validated(validationStatus);
+                                        setVisible(helperText, validationStatus == warning || validationStatus == error);
+                                        helperText.firstItem().status(validationStatus);
+                                        if (validationStatus == warning) {
                                             helperText.firstItem().text("Danger text that explains the issue.");
-                                        } else if (severity == danger) {
+                                        } else if (validationStatus == error) {
                                             helperText.firstItem().text("Warning text that explains the issue.");
                                         }
                                     })
@@ -169,7 +169,7 @@ public class SelectComponent extends SnippetPage {
                                             .addList(menuList()
                                                     .addItem(menuItem("success", "Success").store("status", success))
                                                     .addItem(menuItem("warning", "Warning").store("status", warning))
-                                                    .addItem(menuItem("danger", "Danger").store("status", danger))))))
+                                                    .addItem(menuItem("danger", "Danger").store("status", error))))))
                     .add(helperText)
                     .element();
             // @code-end:select-validation

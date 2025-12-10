@@ -1,0 +1,56 @@
+{
+  "name": "@patternfly-java/charts",
+  "private": false,
+  "version": "0.0.2",
+  "description": "Web Components wrapper around PatternFly React Charts",
+  "homepage": "https://patternfly-java.github.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly/patternfly-java.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-java/issues"
+  },
+  "license": "Apache-2.0",
+  "keywords": ["java", "gwt", "j2cl", "patternfly", "elemento"],
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
+  "type": "module",
+  "source": "src/charts.js",
+  "scripts": {
+    "build": "parcel build src/charts.js --no-cache --no-optimize",
+    "dev": "parcel serve demo.html --port 5173 --no-cache",
+    "clean": "rimraf .parcel-cache dist"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3",
+    "rimraf": "^6.1.2"
+  },
+  "dependencies": {
+    "lit": "^3.3.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "hoist-non-react-statics": "^3.3.2",
+    "@patternfly/react-charts": "^8.4.0",
+    "@patternfly/react-styles": "^6.4.0",
+    "@patternfly/react-tokens": "^6.4.0",
+    "lodash": "^4.17.21",
+    "tslib": "^2.8.1",
+    "victory-area": "^37.3.6",
+    "victory-axis": "^37.3.6",
+    "victory-bar": "^37.3.6",
+    "victory-box-plot": "^37.3.6",
+    "victory-chart": "^37.3.6",
+    "victory-core": "^37.3.6",
+    "victory-create-container": "^37.3.6",
+    "victory-cursor-container": "^37.3.6",
+    "victory-group": "^37.3.6",
+    "victory-legend": "^37.3.6",
+    "victory-line": "^37.3.6",
+    "victory-pie": "^37.3.6",
+    "victory-scatter": "^37.3.6",
+    "victory-stack": "^37.3.6",
+    "victory-tooltip": "^37.3.6",
+    "victory-voronoi-container": "^37.3.6",
+    "victory-zoom-container": "^37.3.6"
+  }
+}

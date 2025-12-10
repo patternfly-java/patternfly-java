@@ -31,6 +31,9 @@ public interface Resources extends ClientBundle {
     @Source("avatar.svg")
     TextResource avatar();
 
+    @Source("charts.json")
+    TextResource charts();
+
     @Source("components.json")
     TextResource components();
 

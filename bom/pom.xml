@@ -95,6 +95,17 @@
             <!-- Order a-z -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>patternfly-java-charts</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>patternfly-java-charts</artifactId>
+                <version>${project.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-codeeditor</artifactId>
                 <version>${project.version}</version>
             </dependency>

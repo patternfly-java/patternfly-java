@@ -23,15 +23,15 @@ import org.patternfly.style.Status;
 
 public enum Severity {
 
-    custom(IconSets.fas::bell, Status.custom),
+    custom(Status.custom, IconSets.fas::bell),
 
-    info(IconSets.fas::infoCircle, Status.info),
+    info(Status.info, IconSets.fas::infoCircle),
 
-    success(IconSets.fas::checkCircle, Status.success),
+    success(Status.success, IconSets.fas::checkCircle),
 
-    warning(IconSets.fas::exclamationTriangle, Status.warning),
+    warning(Status.warning, IconSets.fas::exclamationTriangle),
 
-    danger(IconSets.fas::exclamationCircle, Status.danger);
+    danger(Status.danger, IconSets.fas::exclamationCircle);
 
     public static Severity of(String severity) {
         return of(Status.of(severity));
@@ -47,10 +47,10 @@ public enum Severity {
         };
     }
 
-    public final Supplier<PredefinedIcon> icon;
     public final Status status;
+    public final Supplier<PredefinedIcon> icon;
 
-    Severity(Supplier<PredefinedIcon> icon, Status status) {
+    Severity(Status status, Supplier<PredefinedIcon> icon) {
         this.icon = icon;
         this.status = status;
     }

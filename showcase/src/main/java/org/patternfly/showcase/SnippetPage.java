@@ -30,6 +30,7 @@ import org.jboss.elemento.router.Place;
 import org.patternfly.component.content.Content;
 import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
+import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
 
@@ -101,6 +102,10 @@ public class SnippetPage implements Page {
 
     public SnippetPage(Layout layout) {
         this(layout.title, layout.summary(), layout.apiDoc(), layout.designGuidelines());
+    }
+
+    public SnippetPage(Chart chart) {
+        this(chart.title, chart.summary(), chart.apiDoc(), chart.designGuidelines());
     }
 
     SnippetPage(String title, SafeHtml summary, String apiDoc, String designGuidelines) {

@@ -65,3 +65,24 @@ Layout.prototype.clazz
 
 /** @type {string} */
 Layout.prototype.summary
+
+// ------------------------------------------------------ chart
+
+/** @constructor */
+function Chart() {
+}
+
+/** @type {string} */
+Chart.prototype.name
+
+/** @type {string} */
+Chart.prototype.title
+
+/** @type {string} */
+Chart.prototype.route
+
+/** @type {string} */
+Chart.prototype.clazz
+
+/** @type {string} */
+Chart.prototype.summary

@@ -24,7 +24,7 @@ import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.IconPosition;
-import org.patternfly.component.Severity;
+import org.patternfly.component.ValidationStatus;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.form.Checkbox;
@@ -48,12 +48,12 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.fas.caretDown;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.controls;
 import static org.patternfly.style.Classes.count;
+import static org.patternfly.style.Classes.danger;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.menuToggle;
 import static org.patternfly.style.Classes.modifier;
@@ -134,7 +134,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private MenuToggleAction action;
     private Checkbox checkbox;
     private BaseSearchInput<?> searchInput;
-    private Severity severity;
+    private ValidationStatus status;
     private Element icon;
     private HTMLElement textElement;
     private HTMLElement iconContainer;
@@ -162,11 +162,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             add(toggleElement = button(ButtonType.button).css(component(menuToggle, button))
                     .aria(expanded, false)
                     .apply(b -> b.tabIndex = -1)
-                    .add(span().css(component(menuToggle, controls))
+                    .add(controlElement = span().css(component(menuToggle, controls))
                             .add(span().css(component(menuToggle, toggle, Classes.icon))
-                                    .add(caretDown())))
+                                    .add(caretDown()))
+                            .element())
                     .element());
-            controlElement = toggleElement;
         } else {
             toggleElement = div().element();
             controlElement = div().element();
@@ -285,23 +285,6 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
-    public MenuToggle status(Severity severity) {
-        if (severity != null) {
-            if (verifyEnum(element(), "status", severity, Severity.success, Severity.danger, Severity.warning)) {
-                clearStatus();
-                css(severity.status.modifier());
-                insertFirst(controlElement, this.statusIconContainer = span()
-                        .css(component(menuToggle, Classes.status, Classes.icon))
-                        .add(severity.icon.get())
-                        .element());
-                this.severity = severity;
-            }
-        } else {
-            clearStatus();
-        }
-        return this;
-    }
-
     @Override
     public MenuToggle text(String text) {
         if (type == MenuToggleType.default_ || type == MenuToggleType.plainText) {
@@ -334,6 +317,30 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return css(modifier(small));
     }
 
+    public MenuToggle validated(ValidationStatus status) {
+        if (status != this.status) {
+            if (this.status != null) {
+                resetValidation();
+            }
+            this.status = status;
+            if (status != null) {
+                if (status.modifier != null) {
+                    // Input fields and the menu toggle share the same ValidationStatus enum.
+                    // But the input fields use 'pf-m-danger', the menu toggle uses 'pf-m-error' 😩
+                    String modifier = status == ValidationStatus.error ? Classes.modifier(danger) : status.modifier;
+                    css(modifier);
+                }
+                if (status.icon != null) {
+                    insertFirst(controlElement, this.statusIconContainer = span()
+                            .css(component(menuToggle, Classes.status, Classes.icon))
+                            .add(status.icon.get())
+                            .element());
+                }
+            }
+        }
+        return this;
+    }
+
     @Override
     public MenuToggle that() {
         return this;
@@ -348,13 +355,13 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
 
     // ------------------------------------------------------ api
 
-    public void clearStatus() {
-        if (severity != null) {
-            classList().remove(severity.status.modifier());
+    public void resetValidation() {
+        if (status != null) {
+            element().classList.remove(this.status.modifier);
+            failSafeRemoveFromParent(statusIconContainer);
+            statusIconContainer = null;
+            status = null;
         }
-        failSafeRemoveFromParent(statusIconContainer);
-        severity = null;
-        statusIconContainer = null;
     }
 
     @Override
@@ -368,6 +375,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                 checkbox.text();
             } else if (action != null) {
                 action.text();
+            }
+        } else if (type == MenuToggleType.typeahead) {
+            if (searchInput != null) {
+                return searchInput.value();
             }
         }
         return null;

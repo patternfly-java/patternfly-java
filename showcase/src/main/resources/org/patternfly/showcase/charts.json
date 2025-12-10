@@ -1,0 +1,9 @@
+{
+  "donut": {
+    "name": "donut",
+    "title": "Donut",
+    "route": "/charts/donut",
+    "clazz": "org.patternfly.chart.donut.Donut",
+    "summary": "A donut chart represents relative amounts that must add up to 100%."
+  }
+}

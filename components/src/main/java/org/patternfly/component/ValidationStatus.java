@@ -20,44 +20,29 @@ import java.util.function.Supplier;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Status;
 
 import static org.patternfly.style.Classes.modifier;
 
 public enum ValidationStatus {
 
-    default_(null, IconSets.fas::minus),
+    default_(Status.info, null, IconSets.fas::minus),
 
-    indeterminate(modifier(Classes.indeterminate), IconSets.fas::minus),
+    indeterminate(Status.info, modifier(Classes.indeterminate), IconSets.fas::minus),
 
-    warning(modifier(Classes.warning), IconSets.fas::exclamationTriangle),
+    success(Status.success, Status.success.modifier(), IconSets.fas::checkCircle),
 
-    success(modifier(Classes.success), IconSets.fas::checkCircle),
+    warning(Status.warning, Status.warning.modifier(), IconSets.fas::exclamationTriangle),
 
-    error(modifier(Classes.error), IconSets.fas::exclamationCircle),
+    error(Status.danger, modifier(Classes.error), IconSets.fas::exclamationCircle);
 
-    ;
-
+    public final Status status;
     public final String modifier;
     public final Supplier<PredefinedIcon> icon;
 
-    ValidationStatus(String modifier, Supplier<PredefinedIcon> icon) {
+    ValidationStatus(Status status, String modifier, Supplier<PredefinedIcon> icon) {
+        this.status = status;
         this.modifier = modifier;
         this.icon = icon;
-    }
-
-    public Severity asSeverity() {
-        //noinspection EnhancedSwitchMigration
-        switch (this) {
-            case indeterminate:
-            case default_:
-                return Severity.info;
-            case warning:
-                return Severity.warning;
-            case success:
-                return Severity.success;
-            case error:
-                return Severity.danger;
-        }
-        return Severity.info;
     }
 }

@@ -13,14 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import "@patternfly/patternfly/patternfly.css";
-import "@patternfly/patternfly/patternfly-addons.css";
-import "@patternfly-java/charts/dist/charts";
-import "./pforg/*.css";
-import "./showcase.css";
+import './components/pf-chart-donut.js';
+import './components/pf-chart-donut-utilization.js';
+import './components/pf-chart-bullet.js';
 
-import "@github/relative-time-element";
-import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/github.css";
-
-window["hljs"] = hljs; // 'export' hljs for J2CL
+export { PfChartDonut } from './components/pf-chart-donut.js';
+export { PfChartDonutUtilization } from './components/pf-chart-donut-utilization.js';
+export { PfChartBullet } from './components/pf-chart-bullet.js';

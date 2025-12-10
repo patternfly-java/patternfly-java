@@ -65,6 +65,10 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>patternfly-java-charts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-codeeditor</artifactId>
         </dependency>
         <dependency>
@@ -210,7 +214,7 @@
             <properties>
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
                 <j2cl.incremental>false</j2cl.incremental>
-                <j2cl.sourcemaps>false</j2cl.sourcemaps>
+                <j2cl.sourcemaps>true</j2cl.sourcemaps>
             </properties>
             <build>
                 <plugins>
