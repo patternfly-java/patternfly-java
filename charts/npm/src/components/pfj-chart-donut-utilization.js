@@ -17,39 +17,20 @@ import {parseAttrValue, ReactWrapperElement} from '../react-wrapper.js';
 import {ChartDonutUtilization} from '@patternfly/react-charts/victory';
 
 export class ChartDonutUtilizationWebComponent extends ReactWrapperElement {
+
     constructor() {
         super();
-        this._data = undefined;
-        this._title = undefined;
-        this._subTitle = undefined;
         this._thresholds = undefined;
     }
 
-    get data() {
-        return this._data;
-    }
-
-    set data(value) {
-        this._data = value;
-        this._notifyChange();
-    }
-
-    get title() {
-        return this._title;
-    }
-
-    set title(value) {
-        this._title = value;
-        this._notifyChange();
-    }
-
-    get subTitle() {
-        return this._subTitle;
-    }
-
-    set subTitle(value) {
-        this._subTitle = value;
-        this._notifyChange();
+    getReactComponent() {
+        const extraProps = {};
+        if (this._thresholds && typeof this._thresholds !== 'string') {
+            extraProps.thresholds = this._thresholds;
+        } else if (this.getAttribute('thresholds')) {
+            extraProps.thresholds = parseAttrValue('thresholds', this.getAttribute('thresholds'));
+        }
+        return [ChartDonutUtilization, extraProps];
     }
 
     get thresholds() {
@@ -59,36 +40,6 @@ export class ChartDonutUtilizationWebComponent extends ReactWrapperElement {
     set thresholds(value) {
         this._thresholds = value;
         this._notifyChange();
-    }
-
-    getReactComponent() {
-        const extraProps = {};
-        if (!this.width) extraProps.width = 230;
-        if (!this.height) extraProps.height = 230;
-
-        // Handle data property
-        if (this._data && typeof this._data !== 'string') {
-            extraProps.data = this._data;
-        } else if (this.getAttribute('data')) {
-            extraProps.data = parseAttrValue('data', this.getAttribute('data'));
-        }
-
-        // Handle title property
-        if (this._title !== undefined) {
-            extraProps.title = this._title;
-        }
-
-        // Handle subTitle property
-        if (this._subTitle !== undefined) {
-            extraProps.subTitle = this._subTitle;
-        }
-
-        // Handle thresholds property
-        if (this._thresholds !== undefined) {
-            extraProps.thresholds = this._thresholds;
-        }
-
-        return [ChartDonutUtilization, extraProps];
     }
 }
 

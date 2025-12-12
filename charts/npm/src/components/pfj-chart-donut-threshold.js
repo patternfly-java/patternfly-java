@@ -13,21 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {parseAttrValue, ReactWrapperElement} from '../react-wrapper.js';
+import {ReactWrapperElement} from '../react-wrapper.js';
 import {ChartDonutThreshold} from '@patternfly/react-charts/victory';
 
 export class ChartDonutThresholdWebComponent extends ReactWrapperElement {
-    getReactComponent() {
-        const extraProps = {};
-        if (!this.width) extraProps.width = 230;
-        if (!this.height) extraProps.height = 230;
 
-        if (this.data && typeof this.data !== 'string') {
-            extraProps.data = this.data;
-        } else if (this.getAttribute('data')) {
-            extraProps.data = parseAttrValue('data', this.getAttribute('data'));
-        }
-        return [ChartDonutThreshold, extraProps];
+    getReactComponent() {
+        return [ChartDonutThreshold, {}];
     }
 }
 

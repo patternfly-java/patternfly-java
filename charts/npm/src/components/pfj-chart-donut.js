@@ -13,56 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {parseAttrValue, ReactWrapperElement} from '../react-wrapper.js';
+import {ReactWrapperElement} from '../react-wrapper.js';
 import {ChartDonut} from '@patternfly/react-charts/victory';
 
 export class ChartDonutWebComponent extends ReactWrapperElement {
-    constructor() {
-        super();
-        this._labels = undefined;
-        this._legendData = undefined;
-        this._padding = undefined;
-    }
-
-    get labels() {
-        return this._labels;
-    }
-
-    set labels(value) {
-        this._labels = value;
-        this._renderReact();
-    }
-
-    get legendData() {
-        return this._legendData;
-    }
-
-    set legendData(value) {
-        this._legendData = value;
-        this._renderReact();
-    }
-
-    get padding() {
-        return this._padding;
-    }
-
-    set padding(value) {
-        this._padding = value;
-        this._renderReact();
-    }
 
     getReactComponent() {
-        const extraProps = {
-            labels: this._labels,
-            legendData: this._legendData,
-            padding: this._padding
-        };
-        if (this.data && typeof this.data !== 'string') {
-            extraProps.data = this.data;
-        } else if (this.getAttribute('data')) {
-            extraProps.data = parseAttrValue('data', this.getAttribute('data'));
-        }
-        return [ChartDonut, extraProps];
+        return [ChartDonut, {}];
     }
 }
 
