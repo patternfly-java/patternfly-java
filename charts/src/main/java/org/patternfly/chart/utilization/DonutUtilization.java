@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart.donut;
+package org.patternfly.chart.utilization;
 
 import java.util.function.Function;
 
@@ -25,28 +25,29 @@ import org.patternfly.chart.LegendData;
 import org.patternfly.chart.LegendOrientation;
 import org.patternfly.chart.Padding;
 import org.patternfly.chart.SubTitlePosition;
+
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 
 import static org.jboss.elemento.Elements.createHtmlElement;
 
-public class Donut extends BaseChart<DonutElement, Donut> {
+public class DonutUtilization extends BaseChart<DonutUtilizationElement, DonutUtilization> {
 
     // ------------------------------------------------------ factory
 
-    public static Donut donut() {
-        return new Donut();
+    public static DonutUtilization donut() {
+        return new DonutUtilization();
     }
 
     // ------------------------------------------------------ instance
 
-    Donut() {
-        super(ChartType.Donut, createHtmlElement("pfj-chart-donut", DonutElement.class));
+    DonutUtilization() {
+        super(ChartType.Donut, createHtmlElement("pfj-chart-donut", DonutUtilizationElement.class));
     }
 
     // ------------------------------------------------------ builder
 
-    public Donut data(Data data, Data... moreData) {
+    public DonutUtilization data(Data data, Data... moreData) {
         JsArray<Data> array = new JsArray<>();
         array.push(data);
         array.push(moreData);
@@ -54,18 +55,18 @@ public class Donut extends BaseChart<DonutElement, Donut> {
         return this;
     }
 
-    public Donut height(int height) {
+    public DonutUtilization height(int height) {
         element().setAttribute("height", height);
         return this;
     }
 
-    public Donut labels(Function<Data, String> labels) {
+    public DonutUtilization labels(Function<Data, String> labels) {
         // There's a lot more in 'data', but we just want the 'datum' property
         element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
         return this;
     }
 
-    public Donut legend(String legend, String... moreLegends) {
+    public DonutUtilization legend(String legend, String... moreLegends) {
         JsArray<LegendData> array = new JsArray<>();
         LegendData ld = new LegendData();
         ld.name = legend;
@@ -81,17 +82,17 @@ public class Donut extends BaseChart<DonutElement, Donut> {
         return this;
     }
 
-    public Donut legendOrientation(LegendOrientation orientation) {
+    public DonutUtilization legendOrientation(LegendOrientation orientation) {
         element().setAttribute("legend-orientation", orientation.name().toLowerCase());
         return this;
     }
 
-    public Donut legendPosition(SubTitlePosition position) {
+    public DonutUtilization legendPosition(SubTitlePosition position) {
         element().setAttribute("legend-position", position.name().toLowerCase());
         return this;
     }
 
-    public Donut padding(int top, int right, int bottom, int left) {
+    public DonutUtilization padding(int top, int right, int bottom, int left) {
         Padding padding = new Padding();
         padding.top = top;
         padding.right = right;
@@ -101,44 +102,44 @@ public class Donut extends BaseChart<DonutElement, Donut> {
         return this;
     }
 
-    public Donut subTitle(String subTitle) {
+    public DonutUtilization subTitle(String subTitle) {
         element().setAttribute("sub-title", subTitle);
         return this;
     }
 
-    public Donut subTitlePosition(SubTitlePosition position) {
+    public DonutUtilization subTitlePosition(SubTitlePosition position) {
         element().setAttribute("sub-title-position", position.name().toLowerCase());
         return this;
     }
 
-    public Donut themeColor(ChartThemeColor themeColor) {
+    public DonutUtilization themeColor(ChartThemeColor themeColor) {
         element().setAttribute("theme-color", themeColor.color);
         return this;
     }
 
-    public Donut title(String title) {
+    public DonutUtilization title(String title) {
         element().setAttribute("title", title);
         return this;
     }
 
-    public Donut width(int width) {
+    public DonutUtilization width(int width) {
         element().setAttribute("width", width);
         return this;
     }
 
     @Override
-    public Donut that() {
+    public DonutUtilization that() {
         return this;
     }
 
     // ------------------------------------------------------ aria
 
-    public Donut ariaTitle(String ariaTitle) {
+    public DonutUtilization ariaTitle(String ariaTitle) {
         element().setAttribute("aria-title", ariaTitle);
         return this;
     }
 
-    public Donut ariaDesc(String ariaDesc) {
+    public DonutUtilization ariaDesc(String ariaDesc) {
         element().setAttribute("aria-desc", ariaDesc);
         return this;
     }

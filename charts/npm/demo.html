@@ -17,72 +17,121 @@
 -->
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>PatternFly Charts Web Components Demo</title>
     <!-- PatternFly stylesheet -->
-    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css"/>
     <style>
-      body { padding: 16px; }
-      section { margin-bottom: 32px; }
-      h2 { margin-top: 24px; }
-      .card { border: 1px solid #d2d2d2; border-radius: 3px; padding: 16px; }
+        body {
+            padding: 16px;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            margin-top: 24px;
+        }
+
+        .card {
+            border: 1px solid #d2d2d2;
+            border-radius: 3px;
+            padding: 16px;
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1 class="pf-v5-c-title pf-m-xl">PatternFly Charts Web Components</h1>
-      <p>Demo of <code>pf-chart-donut</code>, <code>pf-chart-donut-utilization</code>, and <code>pf-chart-bullet</code>.</p>
-    </header>
+</head>
+<body>
+<header>
+    <h1 class="pf-v5-c-title pf-m-xl">PatternFly Charts Web Components</h1>
+    <p>Demo of <code>pfj-chart-donut</code>, <code>pfj-chart-donut-utilization</code>, <code>pfj-chart-donut-threshold</code>,
+        and <code>pfj-chart-bullet</code>.</p>
+</header>
 
-    <section class="card">
-      <h2 class="pf-v5-c-title pf-m-lg">Donut</h2>
-      <pf-chart-donut
-        id="donut-prop-fn"
-        width="350"
-        height="350"
-        title="Pets"
-        sub-title="Count"
-        legend-position="bottom"
-        data='[{"x":"Cats","y":35},{"x":"Dogs","y":55},{"x":"Birds","y":10}]'
-      ></pf-chart-donut>
-    </section>
+<section class="card">
+    <h2 class="pf-v5-c-title pf-m-lg">Donut</h2>
+    <pfj-chart-donut
+            id="donut-chart-0"
+            width="350"
+            height="350"
+            title="Pets"
+            sub-title="Count"
+            legend-position="bottom"
+    ></pfj-chart-donut>
+</section>
 
-    <section class="card">
-      <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization</h2>
-      <pf-chart-donut-utilization
-        width="300"
-        height="300"
-        title="60%"
-        sub-title="Utilization"
-        data='{"x":"Storage","y":60}'
-      ></pf-chart-donut-utilization>
-    </section>
+<section class="card">
+    <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization</h2>
+    <pfj-chart-donut-utilization
+            width="300"
+            height="300"
+            title="60%"
+            sub-title="Utilization"
+            data='{"x":"Storage","y":60}'
+    ></pfj-chart-donut-utilization>
+</section>
 
-    <section class="card">
-      <h2 class="pf-v5-c-title pf-m-lg">Bullet</h2>
-      <pf-chart-bullet
-        width="600"
-        height="150"
-        aria-title="Bullet Chart"
-        primary-segmented-measure-data='[{"name":"Measure","y":100},{"name":"Measure","y":60}]'
-        primary-dot-measure-data='[{"name":"Measure","y":75}]'
-        comparative-warning-measure-data='[{"name":"Warning","y":88}]'
-        comparative-error-measure-data='[{"name":"Error","y":95}]'
-        qualitative-range-data='[{"name":"Range","y":50},{"name":"Range","y":75},{"name":"Range","y":100}]'
-      ></pf-chart-bullet>
-    </section>
+<section class="card">
+    <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization with Threshold (Nested)</h2>
+    <pfj-chart-donut-threshold
+            aria-desc="Storage capacity"
+            aria-title="Donut utilization chart with static threshold example"
+            constrain-to-visible-area
+            data='[{"x":"Warning at 60%","y":60},{"x":"Danger at 90%","y":90}]'
+            name="chart10"
+            width="300"
+            height="300"
+    >
+        <pfj-chart-donut-utilization
+                id="utilization-threshold-chart-0"
+                sub-title="of 100 GBps"
+                title="75%"
+                thresholds='[{"value": 60}, {"value": 90}]'
+        ></pfj-chart-donut-utilization>
+    </pfj-chart-donut-threshold>
+</section>
 
-    <!-- During development, load from source; Parcel will handle module graph. For production, use ../../target/charts/charts.js -->
-    <script type="module">
-        import './src/charts.js';
-        (async () => {
-            await customElements.whenDefined('pf-chart-donut');
-            const el = document.getElementById('donut-prop-fn');
-            if (el?.updateComplete) await el.updateComplete;
-            el.labels = ({ datum }) => `${datum.x}: ${datum.y}%`;
-        })();
-    </script>
-  </body>
-  </html>
+<section class="card">
+    <h2 class="pf-v5-c-title pf-m-lg">Bullet</h2>
+    <pfj-chart-bullet
+            width="600"
+            height="150"
+            aria-title="Bullet Chart"
+            primary-segmented-measure-data='[{"name":"Measure","y":100},{"name":"Measure","y":60}]'
+            primary-dot-measure-data='[{"name":"Measure","y":75}]'
+            comparative-warning-measure-data='[{"name":"Warning","y":88}]'
+            comparative-error-measure-data='[{"name":"Error","y":95}]'
+            qualitative-range-data='[{"name":"Range","y":50},{"name":"Range","y":75},{"name":"Range","y":100}]'
+    ></pfj-chart-bullet>
+</section>
+
+<script type="module">
+    import './src/charts.js';
+
+    (async () => {
+        await customElements.whenDefined('pfj-chart-donut');
+        const dc = document.getElementById('donut-chart-0');
+        if (dc?.updateComplete) await dc.updateComplete;
+        dc.data = [
+            {x: 'Cats', y: 25},
+            {x: 'Dogs', y: 55},
+            {x: 'Birds', y: 20}
+        ];
+        dc.labels = ({datum}) => `${datum.x}: ${datum.y}%`;
+
+        const utc = document.getElementById('utilization-threshold-chart-0');
+        if (utc?.updateComplete) await utc.updateComplete;
+        utc.data = {x: 'Storage capacity', y: 0};
+        setInterval(() => {
+            let previous = utc.data.y;
+            let current = (previous + 10) % 100;
+            utc.data = {x: 'Storage capacity', y: current};
+            utc.title = `${current}%`;
+            utc.subTitle = `${current} of 100 GBps`;
+        }, 1000);
+    })();
+</script>
+</body>
+</html>

@@ -13,10 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import './components/pf-chart-donut.js';
-import './components/pf-chart-donut-utilization.js';
-import './components/pf-chart-bullet.js';
+import './components/pfj-chart-donut.js';
+import './components/pfj-chart-donut-utilization.js';
+import './components/pfj-chart-donut-threshold.js';
+import './components/pfj-chart-bullet.js';
 
-export { PfChartDonut } from './components/pf-chart-donut.js';
-export { PfChartDonutUtilization } from './components/pf-chart-donut-utilization.js';
-export { PfChartBullet } from './components/pf-chart-bullet.js';
+export {ChartDonutWebComponent} from './components/pfj-chart-donut.js';
+export {ChartDonutUtilizationWebComponent} from './components/pfj-chart-donut-utilization.js';
+export {ChartDonutThresholdWebComponent} from './components/pfj-chart-donut-threshold.js';
+export {ChartBulletWebComponent} from './components/pfj-chart-bullet.js';

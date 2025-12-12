@@ -16,11 +16,21 @@
 package org.patternfly.showcase.chart;
 
 import org.jboss.elemento.router.Route;
+import org.patternfly.chart.donut.Donut;
+import org.patternfly.chart.donut.DonutElement;
+import org.patternfly.component.avatar.Avatar;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.chart.ChartThemeColor.multiOrdered;
+import static org.patternfly.chart.Data.data;
+import static org.patternfly.chart.LegendOrientation.vertical;
+import static org.patternfly.chart.SubTitlePosition.bottom;
+import static org.patternfly.chart.SubTitlePosition.right;
 import static org.patternfly.chart.donut.Donut.donut;
+import static org.patternfly.showcase.ApiDoc.Type.chart;
+import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.charts;
 
@@ -34,10 +44,161 @@ public class DonutChart extends SnippetPage {
         addSnippet(new Snippet("donut-basic", "Basic",
                 code("donut-basic"), () ->
                 // @code-start:donut-basic
-                div()
-                        .add(donut())
+                div().style("height: 230px; width: 230px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%"))
                         .element()
                 // @code-end:donut-basic
         ));
+
+        addSnippet(new Snippet("donut-ral", "Right aligned legend",
+                code("donut-ral"), () ->
+                // @code-start:donut-ral
+                div().style("height: 230px; width: 350px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendOrientation(vertical)
+                                .legendPosition(right)
+                                .padding(20, 140, 20, 20)
+                                .width(350))
+                        .element()
+                // @code-end:donut-ral
+        ));
+
+        addSnippet(new Snippet("donut-mc", "Multi-color (ordered) with right aligned legend",
+                code("donut-mc"), () ->
+                // @code-start:donut-mc
+                div().style("height: 230px; width: 350px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendOrientation(vertical)
+                                .legendPosition(right)
+                                .padding(20, 140, 20, 20)
+                                .themeColor(multiOrdered)
+                                .width(350))
+                        .element()
+                // @code-end:donut-mc
+        ));
+
+        addSnippet(new Snippet("donut-bal", "Bight aligned legend",
+                code("donut-bal"), () ->
+                // @code-start:donut-bal
+                div().style("height: 275px; width: 300px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendPosition(bottom)
+                                .padding(20, 20, 65, 20)
+                                .height(275)
+                                .width(300))
+                        .element()
+                // @code-end:donut-bal
+        ));
+
+        addSnippet(new Snippet("donut-small", "Small",
+                code("donut-small"), () ->
+                // @code-start:donut-small
+                div().style("height: 150px; width: 150px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .height(150)
+                                .width(150))
+                        .element()
+                // @code-end:donut-small
+        ));
+
+        addSnippet(new Snippet("donut-small-ral", "Small with right aligned legend",
+                code("donut-small-ral"), () ->
+                // @code-start:donut-small-ral
+                div().style("height: 150px; width: 275px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendOrientation(vertical)
+                                .legendPosition(right)
+                                .padding(20, 145, 20, 20)
+                                .height(150)
+                                .width(275))
+                        .element()
+                // @code-end:donut-small-ral
+        ));
+
+        addSnippet(new Snippet("donut-small-bast", "Small with bottom aligned subtitle",
+                code("donut-small-bast"), () ->
+                // @code-start:donut-small-bast
+                div().style("height: 165px; width: 275px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .subTitlePosition(bottom)
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendOrientation(vertical)
+                                .legendPosition(right)
+                                .padding(20, 145, 25, 20)
+                                .height(165)
+                                .width(275))
+                        .element()
+                // @code-end:donut-small-bast
+        ));
+
+        addSnippet(new Snippet("donut-small-rast", "Small with right aligned subtitle",
+                code("donut-small-rast"), () ->
+                // @code-start:donut-small-rast
+                div().style("height: 200px; width: 300px;")
+                        .add(donut()
+                                .title("100")
+                                .subTitle("Pets")
+                                .subTitlePosition(right)
+                                .ariaTitle("Donut chart example")
+                                .ariaDesc("Average number of pets")
+                                .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
+                                .labels(data -> data.x + ": " + data.y + "%")
+                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendPosition(bottom)
+                                .padding(20, 50, 70, 20)
+                                .height(200)
+                                .width(300))
+                        .element()
+                // @code-end:donut-small-rast
+        ));
+
+        startApiDocs(Donut.class);
+        addApiDoc(Donut.class, chart);
     }
 }

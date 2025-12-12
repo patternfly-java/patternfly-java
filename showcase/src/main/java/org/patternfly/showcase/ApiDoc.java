@@ -18,6 +18,7 @@ package org.patternfly.showcase;
 import org.patternfly.style.Color;
 
 import static org.patternfly.style.Color.blue;
+import static org.patternfly.style.Color.green;
 import static org.patternfly.style.Color.grey;
 import static org.patternfly.style.Color.orange;
 import static org.patternfly.style.Color.purple;
@@ -30,6 +31,8 @@ public interface ApiDoc {
     String API_DOC_TARGET = "api-doc";
 
     enum Type {
+
+        chart("Chart", green),
 
         component("Component", blue),
 
