@@ -13,6 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
+// Base class for J2CL JsInterop base class
+class ChartElement extends HTMLElement {
+}
+window.ChartElement = ChartElement;
+
 import './components/pfj-chart-donut.js';
 import './components/pfj-chart-donut-utilization.js';
 import './components/pfj-chart-donut-threshold.js';

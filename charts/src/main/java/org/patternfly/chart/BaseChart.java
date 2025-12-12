@@ -15,6 +15,8 @@
  */
 package org.patternfly.chart;
 
+import java.util.function.Function;
+
 import org.jboss.elemento.ElementAttributeMethods;
 import org.jboss.elemento.ElementClassListMethods;
 import org.jboss.elemento.ElementConsumerMethods;
@@ -27,12 +29,12 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
-
-import elemental2.dom.HTMLElement;
+import elemental2.core.JsArray;
+import jsinterop.base.Js;
 
 import static java.util.Objects.requireNonNull;
 
-public abstract class BaseChart<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
+public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E, B>> implements
         Chart,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
@@ -46,12 +48,14 @@ public abstract class BaseChart<E extends HTMLElement, B extends TypedBuilder<E,
         HTMLElementStyleMethods<E, B>,
         HTMLElementVisibilityMethods<E, B> {
 
+    // ------------------------------------------------------ instance
+
     private final ChartType chartType;
     private final E element;
 
     protected BaseChart(ChartType chartType, E element) {
         this.chartType = requireNonNull(chartType, "chart type required");
-        this.element = requireNonNull(element, "element required");
+        this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
         Ouia.component(element, chartType);
     }
 
@@ -63,5 +67,94 @@ public abstract class BaseChart<E extends HTMLElement, B extends TypedBuilder<E,
     @Override
     public E element() {
         return element;
+    }
+
+    // ------------------------------------------------------ builder
+
+    public B height(int height) {
+        element().height = height;
+        return that();
+    }
+
+    public B labels(Function<Data, String> labels) {
+        // There's a lot more in 'data', but we just want the 'datum' property
+        element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
+        return that();
+    }
+
+    public B legend(String legend, String... moreLegends) {
+        JsArray<LegendData> array = new JsArray<>();
+        LegendData ld = new LegendData();
+        ld.name = legend;
+        array.push(ld);
+        if (moreLegends != null) {
+            for (String l : moreLegends) {
+                ld = new LegendData();
+                ld.name = l;
+                array.push(ld);
+            }
+        }
+        element().legendData = array;
+        return that();
+    }
+
+    public B legend(LegendData legend, LegendData... moreLegends) {
+        JsArray<LegendData> array = new JsArray<>();
+        array.push(legend);
+        array.push(moreLegends);
+        element().legendData = array;
+        return that();
+    }
+
+    public B legendOrientation(LegendOrientation orientation) {
+        element().legendOrientation = orientation.name().toLowerCase();
+        return that();
+    }
+
+    public B legendPosition(LegendPosition position) {
+        element().legendPosition = position.name().toLowerCase();
+        return that();
+    }
+
+    public B padding(Padding padding) {
+        element().padding = padding;
+        return that();
+    }
+
+    public B subTitle(String subTitle) {
+        element().subtitle = subTitle;
+        return that();
+    }
+
+    public B subTitlePosition(SubTitlePosition position) {
+        element().subTitlePosition = position.name().toLowerCase();
+        return that();
+    }
+
+    public B themeColor(ChartThemeColor themeColor) {
+        element().themeColor = themeColor.color;
+        return that();
+    }
+
+    public B title(String title) {
+        element().title = title;
+        return that();
+    }
+
+    public B width(int width) {
+        element().width = width;
+        return that();
+    }
+
+    // ------------------------------------------------------ aria
+
+    public B ariaTitle(String ariaTitle) {
+        element().setAttribute("aria-title", ariaTitle);
+        return that();
+    }
+
+    public B ariaDesc(String ariaDesc) {
+        element().setAttribute("aria-desc", ariaDesc);
+        return that();
     }
 }

@@ -16,9 +16,9 @@
 package org.patternfly.showcase.chart;
 
 import org.jboss.elemento.router.Route;
+import org.patternfly.chart.LegendPosition;
+import org.patternfly.chart.SubTitlePosition;
 import org.patternfly.chart.donut.Donut;
-import org.patternfly.chart.donut.DonutElement;
-import org.patternfly.component.avatar.Avatar;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -26,11 +26,11 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.chart.ChartThemeColor.multiOrdered;
 import static org.patternfly.chart.Data.data;
 import static org.patternfly.chart.LegendOrientation.vertical;
-import static org.patternfly.chart.SubTitlePosition.bottom;
-import static org.patternfly.chart.SubTitlePosition.right;
+import static org.patternfly.chart.LegendPosition.bottom;
+import static org.patternfly.chart.LegendPosition.right;
+import static org.patternfly.chart.Padding.padding;
 import static org.patternfly.chart.donut.Donut.donut;
 import static org.patternfly.showcase.ApiDoc.Type.chart;
-import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.charts;
 
@@ -70,7 +70,7 @@ public class DonutChart extends SnippetPage {
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
-                                .padding(20, 140, 20, 20)
+                                .padding(padding(20, 140, 20, 20))
                                 .width(350))
                         .element()
                 // @code-end:donut-ral
@@ -90,14 +90,14 @@ public class DonutChart extends SnippetPage {
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
-                                .padding(20, 140, 20, 20)
+                                .padding(padding(20, 140, 20, 20))
                                 .themeColor(multiOrdered)
                                 .width(350))
                         .element()
                 // @code-end:donut-mc
         ));
 
-        addSnippet(new Snippet("donut-bal", "Bight aligned legend",
+        addSnippet(new Snippet("donut-bal", "Bottom aligned legend",
                 code("donut-bal"), () ->
                 // @code-start:donut-bal
                 div().style("height: 275px; width: 300px;")
@@ -110,7 +110,7 @@ public class DonutChart extends SnippetPage {
                                 .labels(data -> data.x + ": " + data.y + "%")
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendPosition(bottom)
-                                .padding(20, 20, 65, 20)
+                                .padding(padding(20, 20, 65, 20))
                                 .height(275)
                                 .width(300))
                         .element()
@@ -148,7 +148,7 @@ public class DonutChart extends SnippetPage {
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
-                                .padding(20, 145, 20, 20)
+                                .padding(padding(20, 145, 20, 20))
                                 .height(150)
                                 .width(275))
                         .element()
@@ -162,7 +162,7 @@ public class DonutChart extends SnippetPage {
                         .add(donut()
                                 .title("100")
                                 .subTitle("Pets")
-                                .subTitlePosition(bottom)
+                                .subTitlePosition(SubTitlePosition.bottom)
                                 .ariaTitle("Donut chart example")
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
@@ -170,7 +170,7 @@ public class DonutChart extends SnippetPage {
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
-                                .padding(20, 145, 25, 20)
+                                .padding(padding(20, 145, 25, 20))
                                 .height(165)
                                 .width(275))
                         .element()
@@ -184,14 +184,14 @@ public class DonutChart extends SnippetPage {
                         .add(donut()
                                 .title("100")
                                 .subTitle("Pets")
-                                .subTitlePosition(right)
+                                .subTitlePosition(SubTitlePosition.right)
                                 .ariaTitle("Donut chart example")
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
                                 .legend("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendPosition(bottom)
-                                .padding(20, 50, 70, 20)
+                                .padding(padding(20, 50, 70, 20))
                                 .height(200)
                                 .width(300))
                         .element()

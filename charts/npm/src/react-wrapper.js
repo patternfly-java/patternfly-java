@@ -95,10 +95,10 @@ export class ReactWrapperElement extends LitElement {
         this._height = undefined; // number
         this._labels = undefined; // (data: any) => string
         this._legendAllowWrap = undefined; // boolean
-        this._legendData = undefined; // string[]
+        this._legendData = undefined; // { name?: string; symbol?: { fill?: string; type?: string; }; }[]
         this._legendOrientation = undefined; // string
         this._legendPosition = undefined; // string
-        this._padding = undefined; // { top?: number, bottom?: number, left?: number, right?: number }
+        this._padding = undefined; // { top?: number; bottom?: number; left?: number; right?: number }
         this._subTitle = undefined; // string
         this._subTitlePosition = undefined; // string
         this._themeColor = undefined; // string

@@ -5,5 +5,12 @@
     "route": "/charts/donut",
     "clazz": "org.patternfly.chart.donut.Donut",
     "summary": "A donut chart represents relative amounts that must add up to 100%."
+  },
+  "donut-utilization": {
+    "name": "donut-utilization",
+    "title": "Donut utilization",
+    "route": "/charts/donut-utilization",
+    "clazz": "org.patternfly.chart.utilization.DonutUtilization",
+    "summary": "A donut utilization chart is a donut chart used specifically to show utilization metrics."
   }
 }

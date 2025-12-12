@@ -18,6 +18,10 @@ package org.patternfly.chart;
 public enum ChartType {
 
     Donut("dnt", "PF6/Donut"),
+
+    DonutUtilization("dntu", "PF6/DonutUtilization"),
+
+    DonutThreshold("dntt", "PF6/DonutThreshold"),
     ;
 
     public final String id;

@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart.donut;
+package org.patternfly.chart.utilization;
 
 import org.patternfly.chart.BaseChart;
 import org.patternfly.chart.ChartType;
@@ -23,23 +23,29 @@ import jsinterop.base.Js;
 
 import static org.jboss.elemento.Elements.createHtmlElement;
 
-public class Donut extends BaseChart<DonutElement, Donut> {
+public class DonutThreshold extends BaseChart<DonutThresholdElement, DonutThreshold> {
 
     // ------------------------------------------------------ factory
 
-    public static Donut donut() {
-        return new Donut();
+    public static DonutThreshold donut() {
+        return new DonutThreshold();
     }
 
     // ------------------------------------------------------ instance
 
-    Donut() {
-        super(ChartType.Donut, Js.uncheckedCast(createHtmlElement("pfj-chart-donut", DonutElement.class)));
+    DonutThreshold() {
+        super(ChartType.Donut, Js.uncheckedCast(createHtmlElement("pfj-chart-threshold", DonutThresholdElement.class)));
+    }
+
+    // ------------------------------------------------------ add
+
+    public DonutThreshold addUtilization(DonutUtilization utilization) {
+        return add(utilization);
     }
 
     // ------------------------------------------------------ builder
 
-    public Donut data(Data data, Data... moreData) {
+    public DonutThreshold data(Data data, Data... moreData) {
         JsArray<Data> array = new JsArray<>();
         array.push(data);
         array.push(moreData);
@@ -48,7 +54,7 @@ public class Donut extends BaseChart<DonutElement, Donut> {
     }
 
     @Override
-    public Donut that() {
+    public DonutThreshold that() {
         return this;
     }
 }
