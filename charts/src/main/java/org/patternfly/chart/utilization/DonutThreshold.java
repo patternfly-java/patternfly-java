@@ -27,14 +27,14 @@ public class DonutThreshold extends BaseChart<DonutThresholdElement, DonutThresh
 
     // ------------------------------------------------------ factory
 
-    public static DonutThreshold donut() {
+    public static DonutThreshold donutThreshold() {
         return new DonutThreshold();
     }
 
     // ------------------------------------------------------ instance
 
     DonutThreshold() {
-        super(ChartType.Donut, Js.uncheckedCast(createHtmlElement("pfj-chart-threshold", DonutThresholdElement.class)));
+        super(ChartType.Donut, Js.uncheckedCast(createHtmlElement("pfj-chart-donut-threshold", DonutThresholdElement.class)));
     }
 
     // ------------------------------------------------------ add
@@ -43,18 +43,34 @@ public class DonutThreshold extends BaseChart<DonutThresholdElement, DonutThresh
         return add(utilization);
     }
 
+    public DonutThreshold add(DonutUtilization utilization) {
+        return add(utilization.element());
+    }
+
     // ------------------------------------------------------ builder
 
-    public DonutThreshold data(Data data, Data... moreData) {
-        JsArray<Data> array = new JsArray<>();
-        array.push(data);
-        array.push(moreData);
-        element().data = array;
+    public DonutThreshold data(Data... data) {
+        if (data != null) {
+            JsArray<Data> array = new JsArray<>();
+            array.push(data);
+            element().data = array;
+        }
+        return this;
+    }
+
+    public DonutThreshold invert() {
+        element().setAttribute("invert", true);
         return this;
     }
 
     @Override
     public DonutThreshold that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public JsArray<Data> data() {
+        return element().data;
     }
 }

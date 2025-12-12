@@ -37,7 +37,7 @@ public class DonutUtilization extends BaseChart<DonutUtilizationElement, DonutUt
 
     DonutUtilization() {
         super(ChartType.DonutUtilization,
-                Js.uncheckedCast(createHtmlElement("pfj-chart-utilization", DonutUtilizationElement.class)));
+                Js.uncheckedCast(createHtmlElement("pfj-chart-donut-utilization", DonutUtilizationElement.class)));
     }
 
     // ------------------------------------------------------ builder
@@ -47,28 +47,43 @@ public class DonutUtilization extends BaseChart<DonutUtilizationElement, DonutUt
         return this;
     }
 
-    public DonutUtilization thresholds(double threshold, double... moreThresholds) {
-        JsArray<Threshold> array = new JsArray<>();
-        array.push(threshold(threshold));
-        if (moreThresholds != null) {
-            for (double t : moreThresholds) {
-                array.push(threshold(t));
-            }
-        }
-        element().thresholds = array;
+    public DonutUtilization invert() {
+        element().setAttribute("invert", true);
         return this;
     }
 
-    public DonutUtilization thresholds(Threshold threshold, Threshold... moreThresholds) {
-        JsArray<Threshold> array = new JsArray<>();
-        array.push(threshold);
-        array.push(moreThresholds);
-        element().thresholds = array;
+    public DonutUtilization thresholds(double... threshold) {
+        if (threshold != null) {
+            JsArray<Threshold> array = new JsArray<>();
+            for (double t : threshold) {
+                array.push(threshold(t));
+            }
+            element().thresholds = array;
+        }
+        return this;
+    }
+
+    public DonutUtilization thresholds(Threshold... threshold) {
+        if (threshold != null) {
+            JsArray<Threshold> array = new JsArray<>();
+            array.push(threshold);
+            element().thresholds = array;
+        }
         return this;
     }
 
     @Override
     public DonutUtilization that() {
         return this;
+    }
+
+    // ------------------------------------------------------ api
+
+    public Data data() {
+        return element().data;
+    }
+
+    public JsArray<Threshold> thresholds() {
+        return element().thresholds;
     }
 }

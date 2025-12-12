@@ -16,7 +16,6 @@
 package org.patternfly.showcase.chart;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.chart.LegendPosition;
 import org.patternfly.chart.SubTitlePosition;
 import org.patternfly.chart.donut.Donut;
 import org.patternfly.showcase.Snippet;
@@ -67,7 +66,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
                                 .padding(padding(20, 140, 20, 20))
@@ -87,7 +86,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
                                 .padding(padding(20, 140, 20, 20))
@@ -108,7 +107,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendPosition(bottom)
                                 .padding(padding(20, 20, 65, 20))
                                 .height(275)
@@ -145,7 +144,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
                                 .padding(padding(20, 145, 20, 20))
@@ -167,7 +166,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendOrientation(vertical)
                                 .legendPosition(right)
                                 .padding(padding(20, 145, 25, 20))
@@ -189,7 +188,7 @@ public class DonutChart extends SnippetPage {
                                 .ariaDesc("Average number of pets")
                                 .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
                                 .labels(data -> data.x + ": " + data.y + "%")
-                                .legend("Cats: 35", "Dogs: 55", "Birds: 10")
+                                .legendData("Cats: 35", "Dogs: 55", "Birds: 10")
                                 .legendPosition(bottom)
                                 .padding(padding(20, 50, 70, 20))
                                 .height(200)

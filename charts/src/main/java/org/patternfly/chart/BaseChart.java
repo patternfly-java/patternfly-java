@@ -82,27 +82,26 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
         return that();
     }
 
-    public B legend(String legend, String... moreLegends) {
-        JsArray<LegendData> array = new JsArray<>();
-        LegendData ld = new LegendData();
-        ld.name = legend;
-        array.push(ld);
-        if (moreLegends != null) {
-            for (String l : moreLegends) {
+    public B legendData(String... legend) {
+        if (legend != null) {
+            JsArray<LegendData> array = new JsArray<>();
+            for (String l : legend) {
+                LegendData ld = new LegendData();
                 ld = new LegendData();
                 ld.name = l;
                 array.push(ld);
             }
+            element().legendData = array;
         }
-        element().legendData = array;
         return that();
     }
 
-    public B legend(LegendData legend, LegendData... moreLegends) {
-        JsArray<LegendData> array = new JsArray<>();
-        array.push(legend);
-        array.push(moreLegends);
-        element().legendData = array;
+    public B legendData(LegendData... legend) {
+        if (legend != null) {
+            JsArray<LegendData> array = new JsArray<>();
+            array.push(legend);
+            element().legendData = array;
+        }
         return that();
     }
 
@@ -122,7 +121,7 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     }
 
     public B subTitle(String subTitle) {
-        element().subtitle = subTitle;
+        element().subTitle = subTitle;
         return that();
     }
 

@@ -16,7 +16,7 @@ public class ChartElement extends HTMLElement {
     public String legendOrientation;
     public String legendPosition;
     public Padding padding;
-    public String subtitle;
+    public String subTitle;
     public String subTitlePosition;
     public String themeColor;
     public String title;
