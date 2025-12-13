@@ -29,6 +29,7 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
+
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 

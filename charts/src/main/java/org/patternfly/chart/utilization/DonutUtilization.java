@@ -19,6 +19,7 @@ import org.patternfly.chart.BaseChart;
 import org.patternfly.chart.ChartType;
 import org.patternfly.chart.Data;
 import org.patternfly.chart.Threshold;
+
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 

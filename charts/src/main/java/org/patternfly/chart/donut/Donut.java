@@ -18,6 +18,7 @@ package org.patternfly.chart.donut;
 import org.patternfly.chart.BaseChart;
 import org.patternfly.chart.ChartType;
 import org.patternfly.chart.Data;
+
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 
