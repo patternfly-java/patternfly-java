@@ -1,4 +1,4 @@
-# PatternFly Charts
+# PatternFly Java Charts
 
 This package contains a subset of the [PatternFly React Charts](https://www.patternfly.org/charts/about-charts) wrapped as web components.
 
@@ -6,7 +6,7 @@ The package is a prerequisite if you want to use charts in [PatternFly Java](htt
 
 ## Available charts
 
-The following charts are available:
+The following web components are available:
 
 - `<pfj-chart-donut>` → [`ChartDonut`](https://www.patternfly.org/charts/donut-chart)
 - `<pfj-chart-donut-threshold>` → [`ChartDonutThreshold`](https://www.patternfly.org/charts/donut-utilization-chart#donut-utilization-threshold-examples)
