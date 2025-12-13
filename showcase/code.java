@@ -37,7 +37,8 @@ static final String END_COMMENT = "// @code-end:";
 
 static final List<SourceSpec> SOURCES = Arrays.asList(
         new SourceSpec("*Component.java", Paths.get("src/main/java/org/patternfly/showcase/component")),
-        new SourceSpec("*Layout.java", Paths.get("src/main/java/org/patternfly/showcase/layout"))
+        new SourceSpec("*Layout.java", Paths.get("src/main/java/org/patternfly/showcase/layout")),
+        new SourceSpec("*Chart.java", Paths.get("src/main/java/org/patternfly/showcase/chart"))
 );
 
 void main(String... args) throws IOException {
