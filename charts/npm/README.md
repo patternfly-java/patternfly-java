@@ -13,6 +13,20 @@ The following web components are available:
 - `<pfj-chart-donut-utilization>` → [`ChartDonutUtilization`](https://www.patternfly.org/charts/donut-utilization-chart#donut-utilization-examples)
 - `<pfj-chart-bullet>` → [`ChartBullet`](https://www.patternfly.org/charts/bullet-chart)
 
+## Installation
+
+Install the package using npm:
+
+```
+npm install @patternfly-java/charts
+```
+
+Import it in your JavaScript file:
+
+```js
+import "@patternfly-java/charts/dist/charts";
+```
+
 ## Usage
 
 ```html

@@ -8,7 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Select component (#68)
+- The first charts are here! 🎉
+  - Donut chart (#110)
+  - Donut utilization chart (#111)
+- Add typeahead support for single select component
 - Add support for async item to the menu / menu list component
 - Add `HasItems.onAdd(BiConsumer<B, S> onAdd)`
 - Add `HasItems.onRemove(BiConsumer<B, S> onRemove)`
