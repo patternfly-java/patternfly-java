@@ -1,7 +1,7 @@
 {
   "name": "@patternfly-java/charts",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Web Components wrapper around PatternFly React Charts",
   "homepage": "https://patternfly-java.github.io/",
   "repository": {
@@ -17,8 +17,8 @@
   "type": "module",
   "source": "src/charts.js",
   "scripts": {
-    "build": "parcel build src/charts.js --no-cache",
     "dev": "parcel serve demo.html --port 5173 --no-cache",
+    "build": "parcel build src/charts.js --no-cache",
     "clean": "rimraf .parcel-cache dist"
   },
   "devDependencies": {

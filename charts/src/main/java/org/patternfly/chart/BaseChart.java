@@ -88,7 +88,6 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
             JsArray<LegendData> array = new JsArray<>();
             for (String l : legend) {
                 LegendData ld = new LegendData();
-                ld = new LegendData();
                 ld.name = l;
                 array.push(ld);
             }

@@ -20,7 +20,6 @@ import com.google.gwt.core.client.ScriptInjector;
 
 public class PatternFly implements EntryPoint {
 
-    @SuppressWarnings("SpellCheckingInspection")
     // Code from https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js
     // with special GWT export code at the end of the IIFE
     private static final String POPPER_JS = "/**\n" +

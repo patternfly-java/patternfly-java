@@ -17,10 +17,103 @@
  */
 
 /**
- * @fileoverview Declaration of the custom carts HTML element.
+ * @fileoverview Declaration for the custom chart element.
+ * ChartElement and the referenced types are the connections / glue code
+ * between J2CL and the React wrapper. We need to preserve their names!
+ *
  * @externs
  */
 
 /** @constructor */
 function ChartElement() {
 }
+
+/** @type {!Array<string>} */
+ChartElement.prototype.categories;
+
+/** @type {number} */
+ChartElement.prototype.height;
+
+/** @type {!LabelsFn} */
+ChartElement.prototype.labels;
+
+/** @type {boolean} */
+ChartElement.prototype.legendAllowWrap;
+
+/** @type {!Array<!LegendData>} */
+ChartElement.prototype.legendData;
+
+/** @type {string} */
+ChartElement.prototype.legendOrientation;
+
+/** @type {string} */
+ChartElement.prototype.legendPosition;
+
+/** @type {!Padding} */
+ChartElement.prototype.padding;
+
+/** @type {string} */
+ChartElement.prototype.subTitle;
+
+/** @type {string} */
+ChartElement.prototype.subTitlePosition;
+
+/** @type {string} */
+ChartElement.prototype.themeColor;
+
+/** @type {string} */
+ChartElement.prototype.title;
+
+/** @type {number} */
+ChartElement.prototype.width;
+
+/**
+ * @typedef {function(*): string}
+ */
+var LabelsFn;
+
+/** @constructor */
+function LegendData() {
+}
+
+/** @type {string} */
+LegendData.prototype.name;
+
+/** @type {!LegendDataSymbol} */
+LegendData.prototype.symbol;
+
+/** @constructor */
+function LegendDataSymbol() {
+}
+
+/** @type {string} */
+LegendDataSymbol.prototype.fill;
+
+/** @type {string} */
+LegendDataSymbol.prototype.type;
+
+/** @constructor */
+function Padding() {
+}
+
+/** @type {number} */
+Padding.prototype.top;
+
+/** @type {number} */
+Padding.prototype.right;
+
+/** @type {number} */
+Padding.prototype.bottom;
+
+/** @type {number} */
+Padding.prototype.left;
+
+/** @constructor */
+function Threshold() {
+}
+
+/** @type {number} */
+Threshold.prototype.value;
+
+/** @type {string} */
+Threshold.prototype.color;

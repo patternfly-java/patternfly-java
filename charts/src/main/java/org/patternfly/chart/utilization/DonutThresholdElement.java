@@ -21,11 +21,14 @@ import org.patternfly.chart.Threshold;
 
 import elemental2.core.JsArray;
 import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
 public class DonutThresholdElement extends ChartElement {
 
+    @JsProperty
     public JsArray<Data> data;
+    @JsProperty
     public JsArray<Threshold> thresholds;
 }
