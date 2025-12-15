@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.4.1] - 2025-12-15
+
 ### Fixed
 
 - Add missing externs for the custom chart element.
@@ -556,7 +558,8 @@ Stay tuned for more to come...
 -->
 
 [Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...v0.3.0
