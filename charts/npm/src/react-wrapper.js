@@ -312,7 +312,6 @@ export class ReactWrapperElement extends LitElement {
 
     set subTitle(value) {
         this._subTitle = value;
-        console.log("### react-wrapper.js:    Setting subTitle to %s", this._subTitle);
         this._notifyChange();
     }
 
