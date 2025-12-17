@@ -23,9 +23,9 @@ import jsinterop.annotations.JsType;
 public class BulletData {
 
     @JsOverlay
-    public static BulletData bulletData(String x, double y) {
+    public static BulletData bulletData(String name, double y) {
         BulletData data = new BulletData();
-        data.name = x;
+        data.name = name;
         data.y = y;
         return data;
     }
