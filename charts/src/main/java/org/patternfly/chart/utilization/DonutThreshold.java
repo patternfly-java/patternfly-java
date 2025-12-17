@@ -15,6 +15,8 @@
  */
 package org.patternfly.chart.utilization;
 
+import java.util.function.Function;
+
 import org.patternfly.chart.BaseChart;
 import org.patternfly.chart.ChartType;
 import org.patternfly.chart.Data;
@@ -57,6 +59,12 @@ public class DonutThreshold extends BaseChart<DonutThresholdElement, DonutThresh
 
     public DonutThreshold invert() {
         element().setAttribute("invert", true);
+        return this;
+    }
+
+    public DonutThreshold labels(Function<Data, String> labels) {
+        // There's a lot more in 'data', but we just want the 'datum' property
+        element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
         return this;
     }
 

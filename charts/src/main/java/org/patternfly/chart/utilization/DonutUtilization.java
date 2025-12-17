@@ -15,6 +15,8 @@
  */
 package org.patternfly.chart.utilization;
 
+import java.util.function.Function;
+
 import org.patternfly.chart.BaseChart;
 import org.patternfly.chart.ChartType;
 import org.patternfly.chart.Data;
@@ -45,6 +47,12 @@ public class DonutUtilization extends BaseChart<DonutUtilizationElement, DonutUt
 
     public DonutUtilization data(Data data) {
         element().data = data;
+        return this;
+    }
+
+    public DonutUtilization labels(Function<Data, String> labels) {
+        // There's a lot more in 'data', but we just want the 'datum' property
+        element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
         return this;
     }
 

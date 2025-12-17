@@ -117,7 +117,7 @@ public class Bullet extends BaseChart<BulletElement, Bullet> {
         return that();
     }
 
-    public Bullet bulletLabels(Function<BulletData, String> labels) {
+    public Bullet labels(Function<BulletData, String> labels) {
         // There's a lot more in 'data', but we just want the 'datum' property
         element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
         return that();

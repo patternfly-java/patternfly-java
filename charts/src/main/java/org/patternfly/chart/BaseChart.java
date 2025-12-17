@@ -15,8 +15,6 @@
  */
 package org.patternfly.chart;
 
-import java.util.function.Function;
-
 import org.jboss.elemento.ElementAttributeMethods;
 import org.jboss.elemento.ElementClassListMethods;
 import org.jboss.elemento.ElementConsumerMethods;
@@ -74,12 +72,6 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
 
     public B height(int height) {
         element().height = height;
-        return that();
-    }
-
-    public B labels(Function<Data, String> labels) {
-        // There's a lot more in 'data', but we just want the 'datum' property
-        element().labels = (data -> labels.apply(Js.cast(data.asPropertyMap().get("datum"))));
         return that();
     }
 

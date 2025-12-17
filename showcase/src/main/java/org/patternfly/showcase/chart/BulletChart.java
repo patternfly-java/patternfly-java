@@ -44,11 +44,10 @@ public class BulletChart extends SnippetPage {
                                 .comparativeWarningMeasureData(bulletData("Warning", 88))
                                 .primarySegmentedMeasureData(bulletData("Measure", 60))
                                 .qualitativeRangeData(bulletData("Range", 50), bulletData("Range", 75))
-                                .bulletLabels(data -> data.name + ": " + data.y)
+                                .labels(data -> data.name + ": " + data.y)
                                 .maxDomain(100)
                                 .height(150)
-                                .width(600)
-                        )
+                                .width(600))
                         .element()
                 // @code-end:bullet-basic
         ));
@@ -66,11 +65,10 @@ public class BulletChart extends SnippetPage {
                                 .primarySegmentedMeasureLegendData("Measure 1", "Measure 2")
                                 .qualitativeRangeData(bulletData("Range", 50), bulletData("Range", 75))
                                 .qualitativeRangeLegendData("Range 1", "Range 2")
-                                .bulletLabels(data -> data.name + ": " + data.y)
+                                .labels(data -> data.name + ": " + data.y)
                                 .maxDomain(100)
                                 .height(200)
-                                .width(600)
-                        )
+                                .width(600))
                         .element()
                 // @code-end:bullet-spm
         ));
