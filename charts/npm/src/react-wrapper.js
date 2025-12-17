@@ -94,7 +94,6 @@ export class ReactWrapperElement extends LitElement {
         this._data = undefined; // any | any[]
         this._height = undefined; // number
         this._labels = undefined; // (data: any) => string
-        this._legendAllowWrap = undefined; // boolean
         this._legendData = undefined; // { name?: string; symbol?: { fill?: string; type?: string; }; }[]
         this._legendOrientation = undefined; // string
         this._legendPosition = undefined; // string
@@ -261,15 +260,6 @@ export class ReactWrapperElement extends LitElement {
         this._notifyChange();
     }
 
-    get legendAllowWrap() {
-        return this._legendAllowWrap;
-    }
-
-    set legendAllowWrap(value) {
-        this._legendAllowWrap = value;
-        this._notifyChange();
-    }
-
     get legendData() {
         return this._legendData;
     }
@@ -368,9 +358,6 @@ export class ReactWrapperElement extends LitElement {
         }
         if (this._labels !== undefined) {
             commonProps.labels = this._labels;
-        }
-        if (this._legendAllowWrap !== undefined) {
-            commonProps.legendAllowWrap = this._legendAllowWrap;
         }
         if (this._legendData && typeof this._legendData !== 'string') {
             commonProps.legendData = this._legendData;

@@ -26,7 +26,6 @@ public class ChartElement extends HTMLElement {
     public JsArray<String> categories;
     public double height;
     public LabelsFn labels;
-    public boolean legendAllowWrap;
     public JsArray<LegendData> legendData;
     public String legendOrientation;
     public String legendPosition;

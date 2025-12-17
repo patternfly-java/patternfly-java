@@ -27,6 +27,5 @@ import jsinterop.annotations.JsType;
 public class DonutUtilizationElement extends ChartElement {
 
     public Data data;
-    public boolean invert;
     public JsArray<Threshold> thresholds;
 }

@@ -55,6 +55,9 @@ export class ChartBulletWebComponent extends ReactWrapperElement {
         } else if (this.getAttribute('comparative-warning-measure-legend-data')) {
             extraProps.comparativeWarningMeasureLegendData = parseAttrValue('comparative-warning-measure-legend-data', this.getAttribute('comparative-warning-measure-legend-data'));
         }
+        if (this._maxDomain !== undefined) {
+            extraProps.maxDomain = Number(this._maxDomain);
+        }
         if (this._primaryDotMeasureData && typeof this._primaryDotMeasureData !== 'string') {
             extraProps.primaryDotMeasureData = this._primaryDotMeasureData;
         } else if (this.getAttribute('primary-dot-measure-data')) {

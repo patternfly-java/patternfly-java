@@ -24,7 +24,41 @@
  * @externs
  */
 
-// ------------------------------------------------------ element
+// ------------------------------------------------------ elements (a-z)
+
+/** @constructor */
+function BulletElement() {
+}
+
+/** @type {!Array<!BulletData>} */
+BulletElement.prototype.comparativeErrorMeasureData;
+
+/** @type {!Array<!LegendData>} */
+BulletElement.prototype.comparativeErrorMeasureLegendData;
+
+/** @type {!Array<!BulletData>} */
+BulletElement.prototype.comparativeWarningMeasureData;
+
+/** @type {!Array<!LegendData>} */
+BulletElement.prototype.comparativeWarningMeasureLegendData;
+
+/** @type {!Array<!BulletData>} */
+BulletElement.prototype.primaryDotMeasureData;
+
+/** @type {!Array<!LegendData>} */
+BulletElement.prototype.primaryDotMeasureLegendData;
+
+/** @type {!Array<!BulletData>} */
+BulletElement.prototype.primarySegmentedMeasureData;
+
+/** @type {!Array<!LegendData>} */
+BulletElement.prototype.primarySegmentedMeasureLegendData;
+
+/** @type {!Array<!BulletData>} */
+BulletElement.prototype.qualitativeRangeData;
+
+/** @type {!Array<!LegendData>} */
+BulletElement.prototype.qualitativeRangeLegendData;
 
 /** @constructor */
 function ChartElement() {
@@ -38,9 +72,6 @@ ChartElement.prototype.height;
 
 /** @type {!LabelsFn} */
 ChartElement.prototype.labels;
-
-/** @type {boolean} */
-ChartElement.prototype.legendAllowWrap;
 
 /** @type {!Array<!LegendData>} */
 ChartElement.prototype.legendData;
@@ -68,6 +99,33 @@ ChartElement.prototype.title;
 
 /** @type {number} */
 ChartElement.prototype.width;
+
+/** @constructor */
+function DonutElement() {
+}
+
+/** @type {!Array<!Data>} */
+DonutElement.prototype.data;
+
+/** @constructor */
+function DonutThresholdElement() {
+}
+
+/** @type {!Array<!Data>} */
+DonutThresholdElement.prototype.data;
+
+/** @type {!Array<!Threshold>} */
+DonutThresholdElement.prototype.thresholds;
+
+/** @constructor */
+function DonutUtilizationElement() {
+}
+
+/** @type {!Data} */
+DonutUtilizationElement.prototype.data;
+
+/** @type {!Array<!Threshold>} */
+DonutUtilizationElement.prototype.thresholds;
 
 
 // ------------------------------------------------------ data classes (a-z)
