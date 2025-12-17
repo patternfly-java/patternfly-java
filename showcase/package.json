@@ -19,7 +19,7 @@
   "dependencies": {
     "@github/relative-time-element": "^4.4.8",
     "@patternfly/patternfly": "^6.4.0",
-    "@patternfly-java/charts": "^0.0.8",
+    "@patternfly-java/charts": "^0.0.9",
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {
