@@ -96,14 +96,16 @@
 <section class="card">
     <h2 class="pf-v5-c-title pf-m-lg">Bullet</h2>
     <pfj-chart-bullet
+            id="bullet-chart-0"
             width="600"
-            height="150"
+            height="120"
             aria-title="Bullet Chart"
-            primary-segmented-measure-data='[{"name":"Measure","y":100},{"name":"Measure","y":60}]'
-            primary-dot-measure-data='[{"name":"Measure","y":75}]'
             comparative-warning-measure-data='[{"name":"Warning","y":88}]'
-            comparative-error-measure-data='[{"name":"Error","y":95}]'
+            primary-segmented-measure-data='[{"name":"Measure","y":23},{"name":"Measure","y":60}]'
+            max-domain='{"y":132}'
             qualitative-range-data='[{"name":"Range","y":50},{"name":"Range","y":75},{"name":"Range","y":100}]'
+            padding='{"top": 0, "right": 20, "bottom": 10, "left": 80}'
+            title="Threads"
     ></pfj-chart-bullet>
 </section>
 
@@ -131,6 +133,11 @@
             utc.title = `${current}%`;
             utc.subTitle = `${current} of 100 GBps`;
         }, 1000);
+
+        await customElements.whenDefined('pfj-chart-bullet');
+        const bc = document.getElementById('bullet-chart-0');
+        if (bc?.updateComplete) await bc.updateComplete;
+        bc.labels = ({datum}) => `${datum.name}: ${datum.y}`;
     })();
 </script>
 </body>

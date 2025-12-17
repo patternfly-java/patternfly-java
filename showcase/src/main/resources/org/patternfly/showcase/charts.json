@@ -1,4 +1,11 @@
 {
+  "bullet": {
+    "name": "bullet",
+    "title": "Bullet",
+    "route": "/charts/bullet",
+    "clazz": "org.patternfly.chart.bullet.Bullet",
+    "summary": "A bullet chart can be thought of as an extension to a bar chart that measures a dynamic value with thresholds and target values. "
+  },
   "donut": {
     "name": "donut",
     "title": "Donut",

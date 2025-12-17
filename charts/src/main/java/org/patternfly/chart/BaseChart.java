@@ -84,24 +84,12 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     }
 
     public B legendData(String... legend) {
-        if (legend != null) {
-            JsArray<LegendData> array = new JsArray<>();
-            for (String l : legend) {
-                LegendData ld = new LegendData();
-                ld.name = l;
-                array.push(ld);
-            }
-            element().legendData = array;
-        }
+        element().legendData = legendDataArray(legend);
         return that();
     }
 
     public B legendData(LegendData... legend) {
-        if (legend != null) {
-            JsArray<LegendData> array = new JsArray<>();
-            array.push(legend);
-            element().legendData = array;
-        }
+        element().legendData = legendDataArray(legend);
         return that();
     }
 
@@ -155,5 +143,35 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     public B ariaDesc(String ariaDesc) {
         element().setAttribute("aria-desc", ariaDesc);
         return that();
+    }
+
+    // ------------------------------------------------------ internal
+
+    protected JsArray<Data> dataArray(Data... data) {
+        JsArray<Data> array = new JsArray<>();
+        if (data != null) {
+            array.push(data);
+        }
+        return array;
+    }
+
+    protected JsArray<LegendData> legendDataArray(String... legend) {
+        JsArray<LegendData> array = new JsArray<>();
+        if (legend != null) {
+            for (String l : legend) {
+                LegendData ld = new LegendData();
+                ld.name = l;
+                array.push(ld);
+            }
+        }
+        return array;
+    }
+
+    protected JsArray<LegendData> legendDataArray(LegendData... legend) {
+        JsArray<LegendData> array = new JsArray<>();
+        if (legend != null) {
+            array.push(legend);
+        }
+        return array;
     }
 }

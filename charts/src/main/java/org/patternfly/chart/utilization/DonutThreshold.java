@@ -51,12 +51,8 @@ public class DonutThreshold extends BaseChart<DonutThresholdElement, DonutThresh
     // ------------------------------------------------------ builder
 
     public DonutThreshold data(Data... data) {
-        if (data != null) {
-            JsArray<Data> array = new JsArray<>();
-            array.push(data);
-            element().data = array;
-        }
-        return this;
+        element().data = dataArray(data);
+        return that();
     }
 
     public DonutThreshold invert() {

@@ -24,6 +24,8 @@
  * @externs
  */
 
+// ------------------------------------------------------ element
+
 /** @constructor */
 function ChartElement() {
 }
@@ -67,10 +69,28 @@ ChartElement.prototype.title;
 /** @type {number} */
 ChartElement.prototype.width;
 
-/**
- * @typedef {function(*): string}
- */
-var LabelsFn;
+
+// ------------------------------------------------------ data classes (a-z)
+
+/** @constructor */
+function BulletData() {
+}
+
+/** @type {string} */
+BulletData.prototype.name;
+
+/** @type {number} */
+BulletData.prototype.y;
+
+/** @constructor */
+function Data() {
+}
+
+/** @type {string} */
+Data.prototype.x;
+
+/** @type {number} */
+Data.prototype.y;
 
 /** @constructor */
 function LegendData() {
@@ -117,3 +137,10 @@ Threshold.prototype.value;
 
 /** @type {string} */
 Threshold.prototype.color;
+
+// ------------------------------------------------------ callbacks
+
+/**
+ * @typedef {function(*): string}
+ */
+var LabelsFn;

@@ -13,20 +13,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart.utilization;
+package org.patternfly.chart.bullet;
 
 import org.patternfly.chart.ChartElement;
-import org.patternfly.chart.Data;
-import org.patternfly.chart.Threshold;
+import org.patternfly.chart.LegendData;
 
 import elemental2.core.JsArray;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
-public class DonutUtilizationElement extends ChartElement {
+public class BulletElement extends ChartElement {
 
-    public Data data;
-    public boolean invert;
-    public JsArray<Threshold> thresholds;
+    public JsArray<BulletData> comparativeErrorMeasureData;
+    public JsArray<LegendData> comparativeErrorMeasureLegendData;
+    public JsArray<BulletData> comparativeWarningMeasureData;
+    public JsArray<LegendData> comparativeWarningMeasureLegendData;
+    public JsArray<BulletData> primaryDotMeasureData;
+    public JsArray<LegendData> primaryDotMeasureLegendData;
+    public JsArray<BulletData> primarySegmentedMeasureData;
+    public JsArray<LegendData> primarySegmentedMeasureLegendData;
+    public JsArray<BulletData> qualitativeRangeData;
+    public JsArray<LegendData> qualitativeRangeLegendData;
 }

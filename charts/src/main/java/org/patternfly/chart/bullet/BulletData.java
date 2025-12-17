@@ -13,24 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart;
+package org.patternfly.chart.bullet;
 
-public enum ChartType {
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-    Bullet("blt", "PF6/Bullet"),
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class BulletData {
 
-    Donut("dnt", "PF6/Donut"),
-
-    DonutUtilization("dntu", "PF6/DonutUtilization"),
-
-    DonutThreshold("dntt", "PF6/DonutThreshold"),
-    ;
-
-    public final String id;
-    public final String chartName;
-
-    ChartType(String id, String chartName) {
-        this.id = id;
-        this.chartName = chartName;
+    @JsOverlay
+    public static BulletData bulletData(String x, double y) {
+        BulletData data = new BulletData();
+        data.name = x;
+        data.y = y;
+        return data;
     }
+
+    public String name;
+    public double y;
 }

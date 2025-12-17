@@ -41,12 +41,8 @@ public class Donut extends BaseChart<DonutElement, Donut> {
     // ------------------------------------------------------ builder
 
     public Donut data(Data... data) {
-        if (data != null) {
-            JsArray<Data> array = new JsArray<>();
-            array.push(data);
-            element().data = array;
-        }
-        return this;
+        element().data = dataArray(data);
+        return that();
     }
 
     @Override
