@@ -20,6 +20,7 @@ import java.util.function.Function;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.core.Tuple;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.Modifiers.Gutter;
 
@@ -53,7 +54,7 @@ public class Gallery extends BaseLayout<HTMLElement, Gallery> implements Gutter<
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Gallery(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery)).element());
+        super(LayoutType.Gallery, builder.css(layout(gallery)).element());
     }
 
     // ------------------------------------------------------ add

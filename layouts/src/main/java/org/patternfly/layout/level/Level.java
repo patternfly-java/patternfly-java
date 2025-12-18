@@ -17,6 +17,7 @@ package org.patternfly.layout.level;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
 import org.patternfly.style.Modifiers.Gutter;
 
 import elemental2.dom.HTMLElement;
@@ -45,7 +46,7 @@ public class Level extends BaseLayout<HTMLElement, Level> implements Gutter<HTML
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Level(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(level)).element());
+        super(LayoutType.Level, builder.css(layout(level)).element());
     }
 
     // ------------------------------------------------------ add

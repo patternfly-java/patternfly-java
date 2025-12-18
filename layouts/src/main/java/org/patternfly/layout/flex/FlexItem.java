@@ -19,6 +19,8 @@ import java.util.EnumSet;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.BreakpointCollector;
 import org.patternfly.style.Breakpoints;
@@ -35,7 +37,7 @@ import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Order;
 
-public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
+public class FlexItem extends SubLayout<HTMLElement, FlexItem> {
 
     // ------------------------------------------------------ factory
 
@@ -49,8 +51,10 @@ public class FlexItem extends BaseLayout<HTMLElement, FlexItem> {
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "fxi";
+
     <E extends HTMLElement> FlexItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(flex, item)).element());
+        super(LayoutType.Flex, SUB_LAYOUT_NAME, builder.css(layout(flex, item)).element());
     }
 
     // ------------------------------------------------------ builder

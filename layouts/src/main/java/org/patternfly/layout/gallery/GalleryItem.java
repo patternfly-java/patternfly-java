@@ -16,8 +16,8 @@
 package org.patternfly.layout.gallery;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.layout.BaseLayout;
-
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +25,7 @@ import static org.patternfly.style.Classes.gallery;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
-public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
+public class GalleryItem extends SubLayout<HTMLElement, GalleryItem> {
 
     // ------------------------------------------------------ factory
 
@@ -39,8 +39,10 @@ public class GalleryItem extends BaseLayout<HTMLElement, GalleryItem> {
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "gyi";
+
     <E extends HTMLElement> GalleryItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(gallery, item)).element());
+        super(LayoutType.Gallery, SUB_LAYOUT_NAME, builder.css(layout(gallery, item)).element());
     }
 
     // ------------------------------------------------------ builder

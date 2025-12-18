@@ -19,6 +19,7 @@ import java.util.EnumSet;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
 import org.patternfly.style.Breakpoint;
 import org.patternfly.style.BreakpointCollector;
 import org.patternfly.style.Breakpoints;
@@ -57,7 +58,7 @@ public class Flex extends BaseLayout<HTMLElement, Flex> {
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Flex(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(flex)).element());
+        super(LayoutType.Flex, builder.css(layout(flex)).element());
     }
 
     // ------------------------------------------------------ add

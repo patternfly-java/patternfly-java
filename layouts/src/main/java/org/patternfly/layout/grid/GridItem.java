@@ -17,6 +17,8 @@ package org.patternfly.layout.grid;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import org.patternfly.style.Breakpoints;
 
 import elemental2.dom.HTMLElement;
@@ -32,7 +34,7 @@ import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Order;
 
-public class GridItem extends BaseLayout<HTMLElement, GridItem> {
+public class GridItem extends SubLayout<HTMLElement, GridItem> {
 
     // ------------------------------------------------------ factory
 
@@ -46,8 +48,10 @@ public class GridItem extends BaseLayout<HTMLElement, GridItem> {
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "gri";
+
     <E extends HTMLElement> GridItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(grid, item)).element());
+        super(LayoutType.Grid, SUB_LAYOUT_NAME, builder.css(layout(grid, item)).element());
     }
 
     // ------------------------------------------------------ builder

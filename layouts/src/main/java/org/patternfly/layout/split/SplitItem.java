@@ -17,6 +17,8 @@ package org.patternfly.layout.split;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.HTMLElement;
@@ -26,7 +28,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.split;
 
-public class SplitItem extends BaseLayout<HTMLElement, SplitItem> implements Fill<HTMLElement, SplitItem> {
+public class SplitItem extends SubLayout<HTMLElement, SplitItem> implements Fill<HTMLElement, SplitItem> {
 
     // ------------------------------------------------------ factory
 
@@ -40,8 +42,10 @@ public class SplitItem extends BaseLayout<HTMLElement, SplitItem> implements Fil
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "spi";
+
     <E extends HTMLElement> SplitItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(split, item)).element());
+        super(LayoutType.Split, SUB_LAYOUT_NAME, builder.css(layout(split, item)).element());
     }
 
     // ------------------------------------------------------ builder

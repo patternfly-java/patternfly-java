@@ -27,11 +27,11 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 
 import static java.util.Objects.requireNonNull;
+import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E, B>> implements
         Chart,
@@ -55,7 +55,7 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     protected BaseChart(ChartType chartType, E element) {
         this.chartType = requireNonNull(chartType, "chart type required");
         this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
-        Ouia.component(element, chartType);
+        ouia(element, chartType.id, chartType.chartName);
     }
 
     @Override

@@ -17,6 +17,7 @@ package org.patternfly.layout.split;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Gutter;
 
@@ -48,7 +49,7 @@ public class Split extends BaseLayout<HTMLElement, Split> implements Gutter<HTML
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Split(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(split)).element());
+        super(LayoutType.Split, builder.css(layout(split)).element());
     }
 
     // ------------------------------------------------------ add

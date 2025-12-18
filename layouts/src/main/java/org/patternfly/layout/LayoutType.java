@@ -15,7 +15,28 @@
  */
 package org.patternfly.layout;
 
-public interface Layout {
+public enum LayoutType {
 
-    LayoutType layoutType();
+    Bullseye("be", "PF6/Layout/Bullseye"),
+
+    Flex("fx", "PF6/Layout/Flex"),
+
+    Gallery("gy", "PF6/Layout/Gallery"),
+
+    Grid("gr", "PF6/Layout/Grid"),
+
+    Level("lv", "PF6/Layout/Level"),
+
+    Split("sp", "PF6/Layout/Split"),
+
+    Stack("st", "PF6/Layout/Stack"),
+    ;
+
+    public final String id;
+    public final String layoutName;
+
+    LayoutType(String id, String layoutName) {
+        this.id = id;
+        this.layoutName = layoutName;
+    }
 }

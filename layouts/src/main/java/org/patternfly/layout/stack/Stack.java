@@ -17,8 +17,8 @@ package org.patternfly.layout.stack;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
 import org.patternfly.style.Modifiers.Gutter;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -45,7 +45,7 @@ public class Stack extends BaseLayout<HTMLElement, Stack> implements Gutter<HTML
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Stack(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(stack)).element());
+        super(LayoutType.Split, builder.css(layout(stack)).element());
     }
 
     // ------------------------------------------------------ add

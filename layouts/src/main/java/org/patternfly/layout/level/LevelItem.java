@@ -16,9 +16,9 @@
 package org.patternfly.layout.level;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import org.patternfly.style.Modifiers.Fill;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -26,7 +26,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.level;
 
-public class LevelItem extends BaseLayout<HTMLElement, LevelItem> implements Fill<HTMLElement, LevelItem> {
+public class LevelItem extends SubLayout<HTMLElement, LevelItem> implements Fill<HTMLElement, LevelItem> {
 
     // ------------------------------------------------------ factory
 
@@ -40,8 +40,10 @@ public class LevelItem extends BaseLayout<HTMLElement, LevelItem> implements Fil
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "lvi";
+
     <E extends HTMLElement> LevelItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(level, item)).element());
+        super(LayoutType.Level, SUB_LAYOUT_NAME, builder.css(layout(level, item)).element());
     }
 
     // ------------------------------------------------------ builder

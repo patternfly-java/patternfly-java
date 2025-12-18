@@ -28,6 +28,7 @@ import org.jboss.elemento.svg.SVGElementDataMethods;
 import org.jboss.elemento.svg.SVGElementStyleMethods;
 
 import static java.util.Objects.requireNonNull;
+import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuilder<E, B>> implements
         Component,
@@ -47,6 +48,7 @@ public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuil
     protected BaseComponentSVG(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
         this.element = requireNonNull(element, "element required");
+        ouia(element, componentType.id, componentType.componentName);
     }
 
     @Override

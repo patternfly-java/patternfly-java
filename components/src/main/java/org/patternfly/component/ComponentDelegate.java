@@ -28,10 +28,10 @@ import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
+import static org.patternfly.core.Ouia.ouia;
 
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
@@ -57,7 +57,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
 
     protected void delegateTo(E delegate) {
         this.delegate = delegate;
-        Ouia.component(delegate, componentType);
+        ouia(delegate, componentType.id, componentType.componentName);
     }
 
     @Override

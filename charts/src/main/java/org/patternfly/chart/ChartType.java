@@ -17,13 +17,13 @@ package org.patternfly.chart;
 
 public enum ChartType {
 
-    Bullet("blt", "PF6/Bullet"),
+    Bullet("blt", "PF6/Chart/Bullet"),
 
-    Donut("dnt", "PF6/Donut"),
+    Donut("dnt", "PF6/Chart/Donut"),
 
-    DonutUtilization("dntu", "PF6/DonutUtilization"),
+    DonutUtilization("dntu", "PF6/Chart/DonutUtilization"),
 
-    DonutThreshold("dntt", "PF6/DonutThreshold"),
+    DonutThreshold("dntt", "PF6/Chart/DonutThreshold"),
     ;
 
     public final String id;

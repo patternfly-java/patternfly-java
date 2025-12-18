@@ -17,7 +17,7 @@ package org.patternfly.layout.bullseye;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.layout.BaseLayout;
-
+import org.patternfly.layout.LayoutType;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -44,7 +44,7 @@ public class Bullseye extends BaseLayout<HTMLElement, Bullseye> {
     // ------------------------------------------------------ instance
 
     <E extends HTMLElement> Bullseye(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(bullseye)).element());
+        super(LayoutType.Bullseye, builder.css(layout(bullseye)).element());
     }
 
     // ------------------------------------------------------ add

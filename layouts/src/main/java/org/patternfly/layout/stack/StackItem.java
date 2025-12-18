@@ -16,9 +16,9 @@
 package org.patternfly.layout.stack;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.layout.BaseLayout;
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import org.patternfly.style.Modifiers.Fill;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -26,7 +26,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.stack;
 
-public class StackItem extends BaseLayout<HTMLElement, StackItem> implements Fill<HTMLElement, StackItem> {
+public class StackItem extends SubLayout<HTMLElement, StackItem> implements Fill<HTMLElement, StackItem> {
 
     // ------------------------------------------------------ factory
 
@@ -40,8 +40,10 @@ public class StackItem extends BaseLayout<HTMLElement, StackItem> implements Fil
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "sti";
+
     <E extends HTMLElement> StackItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(stack, item)).element());
+        super(LayoutType.Stack, SUB_LAYOUT_NAME, builder.css(layout(stack, item)).element());
     }
 
     // ------------------------------------------------------ builder

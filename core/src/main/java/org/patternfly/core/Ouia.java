@@ -13,10 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart;
+package org.patternfly.core;
 
-import org.jboss.elemento.Id;
-
+import org.jboss.elemento.svg.SVGElement;
 import elemental2.dom.HTMLElement;
 import elemental2.webstorage.Storage;
 import elemental2.webstorage.WebStorageWindow;
@@ -32,17 +31,19 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
-    public static void component(HTMLElement element, ChartType chartType) {
-        if (element != null && chartType.chartName != null && isSupported()) {
-            component(element, chartType.chartName, Id.unique("ouia", chartType.id));
+    public static void ouia(HTMLElement element, String id, String name) {
+        if (element != null && name != null && isSupported()) {
+            element.dataset.set("ouiaId", id);
+            element.dataset.set("ouiaType", name);
+            element.dataset.set("ouiaSafe", "true");
         }
     }
 
-    public static void component(HTMLElement element, String name, String id) {
+    public static void ouia(SVGElement element, String id, String name) {
         if (element != null && name != null && isSupported()) {
-            element.dataset.set("ouiaChartType", name);
-            element.dataset.set("ouiaChartId", id);
-            element.dataset.set("ouiaChartSafe", "true");
+            element.dataset.set("ouiaId", id);
+            element.dataset.set("ouiaType", name);
+            element.dataset.set("ouiaSafe", "true");
         }
     }
 

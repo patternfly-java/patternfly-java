@@ -16,8 +16,8 @@
 package org.patternfly.layout.bullseye;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.layout.BaseLayout;
-
+import org.patternfly.layout.LayoutType;
+import org.patternfly.layout.SubLayout;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -25,7 +25,7 @@ import static org.patternfly.style.Classes.bullseye;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
-public class BullseyeItem extends BaseLayout<HTMLElement, BullseyeItem> {
+public class BullseyeItem extends SubLayout<HTMLElement, BullseyeItem> {
 
     // ------------------------------------------------------ factory
 
@@ -39,8 +39,10 @@ public class BullseyeItem extends BaseLayout<HTMLElement, BullseyeItem> {
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_LAYOUT_NAME = "bei";
+
     <E extends HTMLElement> BullseyeItem(HTMLContainerBuilder<E> builder) {
-        super(builder.css(layout(bullseye, item)).element());
+        super(LayoutType.Bullseye, SUB_LAYOUT_NAME, builder.css(layout(bullseye, item)).element());
     }
 
     // ------------------------------------------------------ builder
