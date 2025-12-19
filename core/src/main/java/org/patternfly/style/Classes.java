@@ -152,6 +152,7 @@ public interface Classes {
     String info = "info";
     String inline = "inline";
     String inlineGrid = "inline-grid";
+    String innerWrap = "inner-wrap";
     String inProgress = "in-progress";
     String input = "input";
     String inputGroup = "input-group";
@@ -192,6 +193,7 @@ public interface Classes {
     String on = "on";
     String open = "open";
     String option = "option";
+    String outerWrap = "outer-wrap";
     String outline = "outline";
     String overflow = "overflow";
     String overflowContainer = "overflow-container";

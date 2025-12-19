@@ -15,15 +15,40 @@
  */
 package org.patternfly.component.wizard;
 
-import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentType;
-import org.patternfly.core.Aria;
-import org.patternfly.handler.ComponentHandler;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.function.BiConsumer;
 
+import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.BaseComponent;
+import org.patternfly.component.Closeable;
+import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasItems;
+import org.patternfly.core.Attributes;
+import org.patternfly.handler.CloseHandler;
+import org.patternfly.handler.ComponentHandler;
+import org.patternfly.style.Classes;
+import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
+import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.patternfly.core.Aria.expanded;
+import static org.patternfly.core.Aria.label;
+import static org.patternfly.handler.CloseHandler.fireEvent;
+import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.main;
+import static org.patternfly.style.Classes.outerWrap;
+import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.Classes.wizard;
 
 /**
  * A wizard provides a guided workflow that offers a path to complete a task, create an object or objects, or finish a series of
@@ -32,7 +57,9 @@ import static org.jboss.elemento.EventType.click;
  *
  * @see <a href= "https://www.patternfly.org/components/wizard">https://www.patternfly.org/components/wizard</a>
  */
-public class Wizard extends BaseComponent<HTMLElement, Wizard> {
+public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
+        Closeable<HTMLElement, Wizard>,
+        HasItems<HTMLElement, Wizard, WizardStep> {
 
     // ------------------------------------------------------ factory
 
@@ -42,24 +69,90 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> {
 
     // ------------------------------------------------------ instance
 
+    private final LinkedHashMap<String, WizardStep> items;
+    private final List<CloseHandler<Wizard>> closeHandler;
+    private final List<BiConsumer<Wizard, WizardStep>> onAdd;
+    private final List<BiConsumer<Wizard, WizardStep>> onRemove;
+    private final List<BiConsumer<Wizard, WizardStep>> onSelect;
+    private final List<ComponentHandler<Wizard>> backHandler;
+    private final List<ComponentHandler<Wizard>> nextHandler;
+    private final List<ComponentHandler<Wizard>> cancelHandler;
+    private final HTMLContainerBuilder<HTMLDivElement> innerWrap;
+    private boolean progressive;
+    private boolean visitRequired;
+    private WizardHeader header; // optional
+    private HTMLContainerBuilder<HTMLButtonElement> toggleButton;
+    final WizardNav nav;
+    final WizardFooter footer;
+
     Wizard() {
-        super((ComponentType) null, div().element());
+        super(ComponentType.Wizard, div().element());
+        this.items = new LinkedHashMap<>();
+        this.closeHandler = new ArrayList<>();
+        this.onAdd = new ArrayList<>();
+        this.onSelect = new ArrayList<>();
+        this.onRemove = new ArrayList<>();
+        this.backHandler = new ArrayList<>();
+        this.nextHandler = new ArrayList<>();
+        this.cancelHandler = new ArrayList<>();
+
+        add(toggleButton = button().css(component(wizard, toggle))
+                .aria(label, "Wizard toggle")
+                .aria(expanded, false)); // TODO Add support for toggle on small screens
+        add(div().css(component(wizard, outerWrap))
+                .add(innerWrap = div().css(component(wizard, Classes.innerWrap))
+                        .add(nav = new WizardNav()))
+                .add(footer = new WizardFooter()));
+
+        // all wizard subcomponents need to know about their wizard!
+        storeComponent();
     }
 
     // ------------------------------------------------------ add
 
-    public Wizard addFoo(/* Foo foo */) {
+    @Override
+    public Wizard add(WizardStep item) {
+        internalAddStep(item);
+        onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
+    public Wizard addHeader(WizardHeader header) {
+        return add(header);
+    }
+
     // override to ensure internal wiring
-    public Wizard add(/* Foo foo */) {
+    public Wizard add(WizardHeader header) {
+        insertFirst(element(), header.element());
+        this.header = header;
         return this;
     }
 
     // ------------------------------------------------------ builder
 
-    public Wizard methodsReturningAReferenceToItself() {
+    /** Same as {@linkplain #progressive(boolean) progressive(true)} */
+    public Wizard progressive() {
+        return progressive(true);
+    }
+
+    /**
+     * Progressively shows steps, where all steps following the active step are hidden. Defaults to false.
+     */
+    public Wizard progressive(boolean progressive) {
+        this.progressive = progressive;
+        return this;
+    }
+
+    /** Same as {@linkplain #visitRequired(boolean) visitRequired(true)} */
+    public Wizard visitRequired() {
+        return visitRequired(true);
+    }
+
+    /**
+     * Disables steps that haven't been visited. Defaults to false.
+     */
+    public Wizard visitRequired(boolean visitRequired) {
+        this.visitRequired = visitRequired;
         return this;
     }
 
@@ -68,31 +161,191 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> {
         return this;
     }
 
-    // ------------------------------------------------------ aria
-
-    public Wizard ariaLabel(String label) {
-        return aria(Aria.label, label);
-    }
-
     // ------------------------------------------------------ events
 
-    public Wizard onFoo(ComponentHandler<Wizard> handler) {
-        return on(click, e -> handler.handle(e, this));
+    @Override
+    public Wizard onAdd(BiConsumer<Wizard, WizardStep> onAdd) {
+        this.onAdd.add(onAdd);
+        return this;
+    }
+
+    @Override
+    public Wizard onClose(CloseHandler<Wizard> closeHandler) {
+        this.closeHandler.add(closeHandler);
+        return this;
+    }
+
+    public Wizard onSelect(BiConsumer<Wizard, WizardStep> onSelect) {
+        this.onSelect.add(onSelect);
+        return this;
+    }
+
+    @Override
+    public Wizard onRemove(BiConsumer<Wizard, WizardStep> onRemove) {
+        this.onRemove.add(onRemove);
+        return this;
+    }
+
+    public Wizard onBack(ComponentHandler<Wizard> backHandler) {
+        this.backHandler.add(backHandler);
+        return this;
+    }
+
+    public Wizard onNext(ComponentHandler<Wizard> nextHandler) {
+        this.nextHandler.add(nextHandler);
+        return this;
+    }
+
+    public Wizard onCancel(ComponentHandler<Wizard> cancelHandler) {
+        this.cancelHandler.add(cancelHandler);
+        return this;
     }
 
     // ------------------------------------------------------ api
 
-    public void doSomething() {
-
+    @Override
+    public void close(Event event, boolean fireEvent) {
+        if (shouldClose(this, closeHandler, event, fireEvent)) {
+            // Nothing to do here. If the wizard is wrapped in a modal,
+            // the modal must close the wizard.
+            fireEvent(this, closeHandler, event, fireEvent);
+        }
     }
 
-    public String getter() {
-        return "some piece of information";
+    @Override
+    public Iterator<WizardStep> iterator() {
+        return items.values().iterator();
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(String identifier) {
+        return items.containsKey(identifier);
+    }
+
+    @Override
+    public WizardStep item(String identifier) {
+        return items.get(identifier);
+    }
+
+    @Override
+    public void removeItem(String identifier) {
+        WizardStep item = items.get(identifier);
+        if (item != null) {
+            internalRemoveStep(item, true);
+            onRemove.forEach(bc -> bc.accept(this, item));
+        }
+    }
+
+    @Override
+    public void clear() {
+        for (WizardStep step : this) {
+            internalRemoveStep(step, false);
+            onRemove.forEach(bc -> bc.accept(this, step));
+        }
+        updateState();
+    }
+
+    public WizardHeader header() {
+        return header;
+    }
+
+    public WizardNav nav() {
+        return nav;
+    }
+
+    public WizardFooter footer() {
+        return footer;
+    }
+
+    // ------------------------------------------------------ state api
+
+    public void back(Event e) {
+        for (ComponentHandler<Wizard> handler : backHandler) {
+            handler.handle(e, this);
+        }
+        updateState();
+    }
+
+    public void next(Event e) {
+        for (ComponentHandler<Wizard> handler : nextHandler) {
+            handler.handle(e, this);
+        }
+        updateState();
+    }
+
+    public void cancel(Event e) {
+        for (ComponentHandler<Wizard> handler : cancelHandler) {
+            handler.handle(e, this);
+        }
+        updateState();
+    }
+
+    public void select(String identifier) {
+        internalSelectStep(item(identifier));
+        for (BiConsumer<Wizard, WizardStep> onSelect : onSelect) {
+            WizardStep step = item(identifier);
+            if (step != null) {
+                onSelect.accept(this, step);
+                updateState();
+            }
+        }
     }
 
     // ------------------------------------------------------ internal
 
-    private void foo() {
-        // internal stuff happens here
+    private void internalAddStep(WizardStep step) {
+        // This is the only place where a new nav item may be created!
+        // We need to make sure that the same identifiers are used!
+        WizardNavItem navItem = new WizardNavItem(step.identifier(), step.title);
+
+        boolean firstStep = isEmpty();
+        items.put(step.identifier(), step);
+        innerWrap.add(step);
+        if (visitRequired && !firstStep) {
+            navItem.disabled(true);
+        }
+        nav.add(navItem);
+        if (firstStep) {
+            internalSelectStep(step);
+            // updateState() is called by internalSelectStep()
+        } else {
+            updateState();
+        }
+    }
+
+    private void internalSelectStep(WizardStep step) {
+        nav.select(step.identifier());
+        for (WizardStep ws : this) {
+            boolean equals = step.identifier().equals(ws.identifier());
+            setVisible(ws.element(), equals);
+            ws.classList().toggle(component(wizard, main), equals);
+            if (equals) {
+                ws.element().tabIndex = -1;
+            } else {
+                ws.element().removeAttribute(Attributes.tabindex);
+            }
+        }
+        updateState();
+    }
+
+    private void internalRemoveStep(WizardStep step, boolean updateState) {
+        failSafeRemoveFromParent(step);
+        if (updateState) {
+            updateState();
+        }
+    }
+
+    private void updateState() {
+
     }
 }

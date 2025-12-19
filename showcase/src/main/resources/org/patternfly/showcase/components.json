@@ -676,6 +676,7 @@
     "name": "wizard",
     "title": "Wizard",
     "route": "/components/wizard",
+    "clazz": "org.patternfly.component.wizard.Wizard",
     "illustration": "wizard.png",
     "summary": "A <b>wizard</b> is a guided workflow that helps users complete complex tasks, create objects, or follow a series of steps."
   }
