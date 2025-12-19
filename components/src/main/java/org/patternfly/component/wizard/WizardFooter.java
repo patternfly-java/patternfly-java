@@ -20,9 +20,8 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "wzf";
-    final Button backButton;
-    final Button nextButton;
-    final Button cancelButton;
+    private final Button backButton;
+    private final Button nextButton;
 
     WizardFooter() {
         super(SUB_COMPONENT_NAME, footer().css(component(wizard, footer)).element());
@@ -42,7 +41,7 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
                                         }))))
                 .addItem(actionListGroup()
                         .addItem(actionListItem()
-                                .add(cancelButton = button().link().text("Cancel")
+                                .add(button().link().text("Cancel")
                                         .onClick((e, c) -> {
                                             Wizard wizard = lookupComponent();
                                             wizard.cancel(e);
@@ -54,5 +53,22 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
     @Override
     public WizardFooter that() {
         return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    void firstStep() {
+        backButton.disabled(true);
+        nextButton.text("Next");
+    }
+
+    void middleStep() {
+        backButton.disabled(false);
+        nextButton.text("Next");
+    }
+
+    void reviewStep() {
+        backButton.disabled(false);
+        nextButton.text("Review");
     }
 }

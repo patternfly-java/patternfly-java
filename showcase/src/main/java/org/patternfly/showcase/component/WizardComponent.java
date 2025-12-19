@@ -18,11 +18,15 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.wizard.Wizard;
 import org.patternfly.component.wizard.WizardStep;
+import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.p;
 import static org.patternfly.component.wizard.Wizard.wizard;
+import static org.patternfly.component.wizard.WizardStep.wizardStep;
+import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
@@ -39,7 +43,16 @@ public class WizardComponent extends SnippetPage {
                 code("wizard-basic"), () ->
                 // @code-start:wizard-basic
                 div()
-                        .add(wizard())
+                        .add(wizard().height(400)
+                                .addItem(wizardStep("wizard-basic-step-0", "Step 1")
+                                        .add(p().text(LoremIpsum.words(60)))
+                                        .add(p().text(LoremIpsum.words(40)))
+                                        .add(p().text(LoremIpsum.words(30)))
+                                        .add(p().text(LoremIpsum.words(50))))
+                                .addItem(wizardStep("wizard-basic-step-1", "Step 2")
+                                        .add(p().text("Step 2 content")))
+                                .addItem(wizardStep("wizard-basic-step-2", "Review", review)
+                                        .add(p().text("Review content"))))
                         .element()
                 // @code-end:wizard-basic
         ));

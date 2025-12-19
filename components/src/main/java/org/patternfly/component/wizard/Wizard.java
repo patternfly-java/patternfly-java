@@ -26,7 +26,6 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.core.Attributes;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
@@ -39,13 +38,12 @@ import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.Elements.setVisible;
+import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.outerWrap;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.wizard;
@@ -77,16 +75,18 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     private final List<ComponentHandler<Wizard>> backHandler;
     private final List<ComponentHandler<Wizard>> nextHandler;
     private final List<ComponentHandler<Wizard>> cancelHandler;
+    private final List<ComponentHandler<Wizard>> finishHandler;
     private final HTMLContainerBuilder<HTMLDivElement> innerWrap;
     private boolean progressive;
     private boolean visitRequired;
+    private WizardStep currentStep;
     private WizardHeader header; // optional
     private HTMLContainerBuilder<HTMLButtonElement> toggleButton;
     final WizardNav nav;
     final WizardFooter footer;
 
     Wizard() {
-        super(ComponentType.Wizard, div().element());
+        super(ComponentType.Wizard, div().css(component(wizard)).element());
         this.items = new LinkedHashMap<>();
         this.closeHandler = new ArrayList<>();
         this.onAdd = new ArrayList<>();
@@ -95,6 +95,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         this.backHandler = new ArrayList<>();
         this.nextHandler = new ArrayList<>();
         this.cancelHandler = new ArrayList<>();
+        this.finishHandler = new ArrayList<>();
 
         add(toggleButton = button().css(component(wizard, toggle))
                 .aria(label, "Wizard toggle")
@@ -129,6 +130,10 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     // ------------------------------------------------------ builder
+
+    public Wizard height(int height) {
+        return style("--pf-v6-c-wizard--Height", height + "px");
+    }
 
     /** Same as {@linkplain #progressive(boolean) progressive(true)} */
     public Wizard progressive() {
@@ -201,6 +206,11 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return this;
     }
 
+    public Wizard onFinish(ComponentHandler<Wizard> finishHandler) {
+        this.finishHandler.add(finishHandler);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -267,6 +277,10 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return footer;
     }
 
+    public WizardStep currentStep() {
+        return currentStep;
+    }
+
     // ------------------------------------------------------ state api
 
     public void back(Event e) {
@@ -301,6 +315,13 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         }
     }
 
+    public void finish(Event e) {
+        for (ComponentHandler<Wizard> handler : finishHandler) {
+            handler.handle(e, this);
+        }
+        updateState();
+    }
+
     // ------------------------------------------------------ internal
 
     private void internalAddStep(WizardStep step) {
@@ -317,28 +338,22 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         nav.add(navItem);
         if (firstStep) {
             internalSelectStep(step);
-            // updateState() is called by internalSelectStep()
         } else {
-            updateState();
+            step.select(false);
         }
     }
 
     private void internalSelectStep(WizardStep step) {
         nav.select(step.identifier());
-        for (WizardStep ws : this) {
-            boolean equals = step.identifier().equals(ws.identifier());
-            setVisible(ws.element(), equals);
-            ws.classList().toggle(component(wizard, main), equals);
-            if (equals) {
-                ws.element().tabIndex = -1;
-            } else {
-                ws.element().removeAttribute(Attributes.tabindex);
-            }
+        for (WizardStep currentStep : this) {
+            currentStep.select(step.identifier().equals(currentStep.identifier()));
         }
+        this.currentStep = step;
         updateState();
     }
 
     private void internalRemoveStep(WizardStep step, boolean updateState) {
+        // TODO Handle current step removal
         failSafeRemoveFromParent(step);
         if (updateState) {
             updateState();
@@ -346,6 +361,32 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     private void updateState() {
+        // no steps -> no update!
+        if (currentStep != null && !isEmpty()) {
+            boolean isFirstStep = items.firstEntry().getValue().identifier().equals(currentStep.identifier());
+            if (isFirstStep) {
+                footer.firstStep();
+            } else {
+                WizardStep reviewStep = typeStep(review);
+                boolean isReviewStep = reviewStep != null && reviewStep.identifier().equals(currentStep.identifier());
+            }
+        }
+    }
+
+    private WizardStep firstStep() {
+        if (isEmpty()) {
+            return null;
+        }
+        return items.firstEntry().getValue();
+    }
+
+    private WizardStep typeStep(WizardStepType type) {
+        for (WizardStep step : this) {
+            if (step.type == type) {
+                return step;
+            }
+        }
+        return null;
 
     }
 }

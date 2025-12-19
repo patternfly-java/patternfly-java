@@ -7,11 +7,13 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.ValidationStatus;
+import org.patternfly.core.Attributes;
 import org.patternfly.core.ComponentContext;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
@@ -130,5 +132,18 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
 
     public ValidationStatus status() {
         return status;
+    }
+
+    // ------------------------------------------------------ internal
+
+    void select(boolean selected) {
+        setVisible(element(), selected);
+        classList().toggle(component(wizard, main), selected);
+        if (selected) {
+            element().tabIndex = -1;
+        } else {
+            element().removeAttribute(Attributes.tabindex);
+        }
+
     }
 }
