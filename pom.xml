@@ -91,7 +91,7 @@
         <version.central.publishing.plugin>0.9.0</version.central.publishing.plugin>
         <version.degraph.plugin>4.0.3</version.degraph.plugin>
         <version.editorconfig.plugin>0.2.0</version.editorconfig.plugin>
-        <version.frontend.plugin>1.15.4</version.frontend.plugin>
+        <version.frontend.plugin>2.0.0</version.frontend.plugin>
         <version.gwt.plugin>1.2.0</version.gwt.plugin>
         <version.j2cl.plugin>0.23.6</version.j2cl.plugin>
         <version.impsort.plugin>1.12.0</version.impsort.plugin>
