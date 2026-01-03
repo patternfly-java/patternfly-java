@@ -11,6 +11,7 @@ import org.patternfly.core.Attributes;
 import org.patternfly.core.ComponentContext;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
+import elemental2.promise.Promise;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
@@ -48,8 +49,13 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     private final Map<String, Object> data;
     private final HTMLElement bodyElement;
     private ValidationStatus status;
+    private WizardPreviousCallback previousCallback;
+    private WizardNextCallback nextCallback;
+    private Promise<WizardStep> previousPromise;
+    private Promise<WizardStep> nextPromise;
     final String title;
     final WizardStepType type;
+    boolean visited;
 
     WizardStep(String identifier, String title, WizardStepType type) {
         super(SUB_COMPONENT_NAME, div().css(component(wizard, main)).element());
@@ -57,6 +63,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
         this.title = title;
         this.type = type;
         this.data = new HashMap<>();
+        this.visited = false;
         element().appendChild(bodyElement = div().css(component(wizard, main, body)).element());
     }
 
@@ -66,6 +73,26 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     }
 
     // ------------------------------------------------------ builder
+
+    public WizardStep onPrevious(WizardPreviousCallback previousCallback) {
+        this.previousCallback = previousCallback;
+        return this;
+    }
+
+    public WizardStep onPrevious(Promise<WizardStep> previousPromise) {
+        this.previousPromise = previousPromise;
+        return this;
+    }
+
+    public WizardStep onNext(WizardNextCallback nextCallback) {
+        this.nextCallback = nextCallback;
+        return this;
+    }
+
+    public WizardStep onNext(Promise<WizardStep> nextPromise) {
+        this.nextPromise = nextPromise;
+        return this;
+    }
 
     @Override
     public <T> WizardStep store(String key, T value) {
@@ -144,6 +171,5 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
         } else {
             element().removeAttribute(Attributes.tabindex);
         }
-
     }
 }

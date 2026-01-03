@@ -67,6 +67,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     // ------------------------------------------------------ instance
 
+    private final WizardContext context;
     private final LinkedHashMap<String, WizardStep> items;
     private final List<CloseHandler<Wizard>> closeHandler;
     private final List<BiConsumer<Wizard, WizardStep>> onAdd;
@@ -87,6 +88,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     Wizard() {
         super(ComponentType.Wizard, div().css(component(wizard)).element());
+        this.context = new WizardContext(this);
         this.items = new LinkedHashMap<>();
         this.closeHandler = new ArrayList<>();
         this.onAdd = new ArrayList<>();
@@ -265,6 +267,10 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         updateState();
     }
 
+    public WizardContext context() {
+        return context;
+    }
+
     public WizardHeader header() {
         return header;
     }
@@ -277,8 +283,23 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return footer;
     }
 
+    public WizardStep firstStep() {
+        if (isEmpty()) {
+            return null;
+        }
+        return items.firstEntry().getValue();
+    }
+
     public WizardStep currentStep() {
         return currentStep;
+    }
+
+    public WizardStep previousStep() {
+        return null;
+    }
+
+    public WizardStep nextStep() {
+        return null;
     }
 
     // ------------------------------------------------------ state api
@@ -345,8 +366,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     private void internalSelectStep(WizardStep step) {
         nav.select(step.identifier());
-        for (WizardStep currentStep : this) {
-            currentStep.select(step.identifier().equals(currentStep.identifier()));
+        for (WizardStep ws : this) {
+            ws.select(step.identifier().equals(ws.identifier()));
         }
         this.currentStep = step;
         updateState();
@@ -367,26 +388,18 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             if (isFirstStep) {
                 footer.firstStep();
             } else {
-                WizardStep reviewStep = typeStep(review);
+                WizardStep reviewStep = stepOfType(review);
                 boolean isReviewStep = reviewStep != null && reviewStep.identifier().equals(currentStep.identifier());
             }
         }
     }
 
-    private WizardStep firstStep() {
-        if (isEmpty()) {
-            return null;
-        }
-        return items.firstEntry().getValue();
-    }
-
-    private WizardStep typeStep(WizardStepType type) {
+    private WizardStep stepOfType(WizardStepType type) {
         for (WizardStep step : this) {
             if (step.type == type) {
                 return step;
             }
         }
         return null;
-
     }
 }

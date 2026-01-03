@@ -17,7 +17,17 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.wizard.Wizard;
+import org.patternfly.component.wizard.WizardContext;
+import org.patternfly.component.wizard.WizardFooter;
+import org.patternfly.component.wizard.WizardHeader;
+import org.patternfly.component.wizard.WizardHeaderDescription;
+import org.patternfly.component.wizard.WizardHeaderTitle;
+import org.patternfly.component.wizard.WizardNav;
+import org.patternfly.component.wizard.WizardNavItem;
+import org.patternfly.component.wizard.WizardNextCallback;
+import org.patternfly.component.wizard.WizardPreviousCallback;
 import org.patternfly.component.wizard.WizardStep;
+import org.patternfly.component.wizard.WizardStepType;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -28,6 +38,7 @@ import static org.patternfly.component.wizard.Wizard.wizard;
 import static org.patternfly.component.wizard.WizardStep.wizardStep;
 import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.showcase.ApiDoc.Type.component;
+import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -59,6 +70,16 @@ public class WizardComponent extends SnippetPage {
 
         startApiDocs(Wizard.class);
         addApiDoc(Wizard.class, component);
+        addApiDoc(WizardContext.class, other);
+        addApiDoc(WizardFooter.class, subcomponent);
+        addApiDoc(WizardHeader.class, subcomponent);
+        addApiDoc(WizardHeaderDescription.class, subcomponent);
+        addApiDoc(WizardHeaderTitle.class, subcomponent);
+        addApiDoc(WizardNav.class, subcomponent);
+        addApiDoc(WizardNavItem.class, subcomponent);
+        addApiDoc(WizardNextCallback.class, other);
+        addApiDoc(WizardPreviousCallback.class, other);
         addApiDoc(WizardStep.class, subcomponent);
+        addApiDoc(WizardStepType.class, other);
     }
 }
