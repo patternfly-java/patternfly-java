@@ -89,21 +89,18 @@ public class TextAreaComponent extends SnippetPage {
                                 ta.validated(warning);
                                 helperText.firstItem()
                                         .status(warning)
-                                        .text("You must have something to say")
-                                        .defaultIcon();
+                                        .text("You must have something to say");
                             } else {
                                 if (value.length() < 10) {
                                     ta.validated(error);
                                     helperText.firstItem()
                                             .status(error)
-                                            .text("You're being too brief, please enter at least 10 characters.")
-                                            .defaultIcon();
+                                            .text("You're being too brief, please enter at least 10 characters.");
                                 } else {
                                     ta.validated(success);
                                     helperText.firstItem()
                                             .status(success)
-                                            .text("Thanks for your comments!")
-                                            .defaultIcon();
+                                            .text("Thanks for your comments!");
                                 }
                             }
                         }, 1234);

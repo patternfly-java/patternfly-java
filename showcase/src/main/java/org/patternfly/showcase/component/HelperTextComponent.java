@@ -60,24 +60,6 @@ public class HelperTextComponent extends SnippetPage {
                 // @code-end:helper-text-static
         ));
 
-        addSnippet(new Snippet("helper-text-static-icon", "Static with default icons",
-                code("helper-text-static-icon"), () ->
-                // @code-start:helper-text-static-icon
-                div()
-                        .add(helperText()
-                                .addItem(helperTextItem("This is default helper text").defaultIcon()))
-                        .add(helperText()
-                                .addItem(helperTextItem("This is indeterminate helper text", indeterminate).defaultIcon()))
-                        .add(helperText()
-                                .addItem(helperTextItem("This is warning helper text", warning).defaultIcon()))
-                        .add(helperText()
-                                .addItem(helperTextItem("This is success helper text", success).defaultIcon()))
-                        .add(helperText()
-                                .addItem(helperTextItem("This is error helper text", error).defaultIcon()))
-                        .element()
-                // @code-end:helper-text-static-icon
-        ));
-
         addSnippet(new Snippet("helper-text-static-custom-icon", "Static with custom icons",
                 code("helper-text-static-custom-icon"), () ->
                 // @code-start:helper-text-static-custom-icon
@@ -119,24 +101,19 @@ public class HelperTextComponent extends SnippetPage {
                 div()
                         .add(helperText()
                                 .addItem(helperTextItem("This is default helper text")
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .add(helperText()
                                 .addItem(helperTextItem("This is indeterminate helper text", indeterminate)
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .add(helperText()
                                 .addItem(helperTextItem("This is warning helper text", warning)
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .add(helperText()
                                 .addItem(helperTextItem("This is success helper text", success)
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .add(helperText()
                                 .addItem(helperTextItem("This is error helper text", error)
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .add(helperText()
                                 .addItem(helperTextItem("This is error helper text with a custom icon", error)
                                         .dynamic()
@@ -154,16 +131,13 @@ public class HelperTextComponent extends SnippetPage {
                 div()
                         .add(helperText(ul()).liveRegion()
                                 .addItem(helperTextItem(li(), "Must be at least 14 characters", success)
-                                        .dynamic()
-                                        .defaultIcon())
+                                        .dynamic())
                                 .addItem(helperTextItem(li(), "Cannot contain any variation of the word 'redhat'", error)
-                                        .dynamic()
-                                        .defaultIcon())
+                                        .dynamic())
                                 .addItem(helperTextItem(
                                         "Must include at least 3 of the following: lowercase letter, uppercase letters, numbers, symbols",
                                         success)
-                                        .dynamic()
-                                        .defaultIcon()))
+                                        .dynamic()))
                         .element()
                 // @code-end:helper-text-dynamic-list
         ));

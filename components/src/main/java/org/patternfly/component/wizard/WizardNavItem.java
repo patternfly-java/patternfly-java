@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.component.wizard;
 
 import java.util.HashMap;
@@ -11,6 +26,8 @@ import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Disabled;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -36,7 +53,7 @@ import static org.patternfly.style.Classes.wizard;
 public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem> implements
         ComponentContext<HTMLElement, WizardNavItem>,
         ComponentIcon<HTMLElement, WizardNavItem>,
-        Modifiers.Disabled<HTMLElement, WizardNavItem>,
+        Disabled<HTMLElement, WizardNavItem>,
         HasIdentifier<HTMLElement, WizardNavItem>,
         ElementTextDelegate<HTMLElement, WizardNavItem> {
 
@@ -79,7 +96,7 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
     @Override
     public WizardNavItem disabled(boolean disabled) {
         button.element().disabled = disabled;
-        button.css(modifier(Classes.disabled));
+        button.toggle(modifier(Classes.disabled), disabled);
         return this;
     }
 
@@ -144,7 +161,9 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
             screenReaderElement = null;
             iconContainer = null;
         } else {
-            icon(status.icon.get());
+            if (status.icon != null) {
+                icon(status.icon.get());
+            }
             insertFirst(button.element(), screenReaderElement = span().css(screenReader)
                     .text(status.status.value())
                     .element());

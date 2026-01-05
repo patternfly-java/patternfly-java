@@ -19,15 +19,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -38,12 +39,18 @@ import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.patternfly.component.wizard.WizardStepType.progress;
 import static org.patternfly.component.wizard.WizardStepType.review;
+import static org.patternfly.component.wizard.WizardStepType.step;
+import static org.patternfly.component.wizard.WizardStepType.summary;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.finished;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.outerWrap;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.wizard;
@@ -67,22 +74,21 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(Wizard.class.getName());
+
     private final WizardContext context;
-    private final LinkedHashMap<String, WizardStep> items;
+    private final Map<String, WizardStep> items;
     private final List<CloseHandler<Wizard>> closeHandler;
     private final List<BiConsumer<Wizard, WizardStep>> onAdd;
     private final List<BiConsumer<Wizard, WizardStep>> onRemove;
-    private final List<BiConsumer<Wizard, WizardStep>> onSelect;
-    private final List<ComponentHandler<Wizard>> backHandler;
-    private final List<ComponentHandler<Wizard>> nextHandler;
-    private final List<ComponentHandler<Wizard>> cancelHandler;
-    private final List<ComponentHandler<Wizard>> finishHandler;
     private final HTMLContainerBuilder<HTMLDivElement> innerWrap;
+    private final HTMLContainerBuilder<HTMLButtonElement> toggleButton;
     private boolean progressive;
     private boolean visitRequired;
-    private WizardStep currentStep;
+    private WizardStep head;
+    private WizardStep current;
+    private WizardStep tail;
     private WizardHeader header; // optional
-    private HTMLContainerBuilder<HTMLButtonElement> toggleButton;
     final WizardNav nav;
     final WizardFooter footer;
 
@@ -92,12 +98,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         this.items = new LinkedHashMap<>();
         this.closeHandler = new ArrayList<>();
         this.onAdd = new ArrayList<>();
-        this.onSelect = new ArrayList<>();
         this.onRemove = new ArrayList<>();
-        this.backHandler = new ArrayList<>();
-        this.nextHandler = new ArrayList<>();
-        this.cancelHandler = new ArrayList<>();
-        this.finishHandler = new ArrayList<>();
 
         add(toggleButton = button().css(component(wizard, toggle))
                 .aria(label, "Wizard toggle")
@@ -115,8 +116,38 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     @Override
     public Wizard add(WizardStep item) {
-        internalAddStep(item);
-        onAdd.forEach(bc -> bc.accept(this, item));
+        if (items.containsKey(item.identifier())) {
+            logger.warn("Wizard '%o' already contains step with identifier '%s'.", element(), item.identifier());
+        } else {
+            WizardNavItem navItem = null;
+            if (item.type == step || item.type == review) {
+                // This is the only place where a new nav item may be created!
+                // We need to make sure that the same identifiers are used!
+                navItem = new WizardNavItem(item.identifier(), item.title);
+                if (item.disabled) {
+                    navItem.disabled(true);
+                }
+                nav.add(navItem);
+            }
+            items.put(item.identifier(), item);
+            innerWrap.add(item);
+            if (tail == null) {
+                head = tail = item;
+            } else {
+                tail.next = item;
+                item.prev = tail;
+                tail = item;
+            }
+            if (current == null) {
+                select(item);
+            } else {
+                item.select(false);
+                if (visitRequired && navItem != null) {
+                    navItem.disabled(true);
+                }
+            }
+            onAdd.forEach(bc -> bc.accept(this, item));
+        }
         return this;
     }
 
@@ -182,34 +213,9 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return this;
     }
 
-    public Wizard onSelect(BiConsumer<Wizard, WizardStep> onSelect) {
-        this.onSelect.add(onSelect);
-        return this;
-    }
-
     @Override
     public Wizard onRemove(BiConsumer<Wizard, WizardStep> onRemove) {
         this.onRemove.add(onRemove);
-        return this;
-    }
-
-    public Wizard onBack(ComponentHandler<Wizard> backHandler) {
-        this.backHandler.add(backHandler);
-        return this;
-    }
-
-    public Wizard onNext(ComponentHandler<Wizard> nextHandler) {
-        this.nextHandler.add(nextHandler);
-        return this;
-    }
-
-    public Wizard onCancel(ComponentHandler<Wizard> cancelHandler) {
-        this.cancelHandler.add(cancelHandler);
-        return this;
-    }
-
-    public Wizard onFinish(ComponentHandler<Wizard> finishHandler) {
-        this.finishHandler.add(finishHandler);
         return this;
     }
 
@@ -251,20 +257,40 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     @Override
     public void removeItem(String identifier) {
-        WizardStep item = items.get(identifier);
+        nav.removeItem(identifier);
+        WizardStep item = items.remove(identifier);
         if (item != null) {
-            internalRemoveStep(item, true);
+            failSafeRemoveFromParent(item);
+            if (item.prev != null) {
+                item.prev.next = item.next;
+            } else {
+                head = item.next;
+            }
+            if (item.next != null) {
+                item.next.prev = item.prev;
+            } else {
+                tail = item.prev;
+            }
+            if (current == item) {
+                current = item.next != null ? item.next : item.prev;
+                select(current);
+            }
             onRemove.forEach(bc -> bc.accept(this, item));
         }
     }
 
     @Override
     public void clear() {
-        for (WizardStep step : this) {
-            internalRemoveStep(step, false);
-            onRemove.forEach(bc -> bc.accept(this, step));
+        nav.clear();
+        removeChildrenFrom(innerWrap);
+        head = tail = current = null;
+        Iterator<WizardStep> iterator = items.values().iterator();
+        while (iterator.hasNext()) {
+            WizardStep item = iterator.next();
+            iterator.remove();
+            onRemove.forEach(bc -> bc.accept(this, item));
         }
-        updateState();
+        footer.disabled();
     }
 
     public WizardContext context() {
@@ -284,122 +310,115 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     public WizardStep firstStep() {
-        if (isEmpty()) {
-            return null;
-        }
-        return items.firstEntry().getValue();
+        return head;
+    }
+
+    public WizardStep lastStep() {
+        return tail;
     }
 
     public WizardStep currentStep() {
-        return currentStep;
+        return current;
     }
 
-    public WizardStep previousStep() {
-        return null;
-    }
+    // ------------------------------------------------------ navigation
 
-    public WizardStep nextStep() {
-        return null;
-    }
-
-    // ------------------------------------------------------ state api
-
-    public void back(Event e) {
-        for (ComponentHandler<Wizard> handler : backHandler) {
-            handler.handle(e, this);
-        }
-        updateState();
-    }
-
-    public void next(Event e) {
-        for (ComponentHandler<Wizard> handler : nextHandler) {
-            handler.handle(e, this);
-        }
-        updateState();
-    }
-
-    public void cancel(Event e) {
-        for (ComponentHandler<Wizard> handler : cancelHandler) {
-            handler.handle(e, this);
-        }
-        updateState();
-    }
-
-    public void select(String identifier) {
-        internalSelectStep(item(identifier));
-        for (BiConsumer<Wizard, WizardStep> onSelect : onSelect) {
-            WizardStep step = item(identifier);
-            if (step != null) {
-                onSelect.accept(this, step);
-                updateState();
+    public void previous() {
+        if (current != null) {
+            WizardStep previousStep = previousEnabledStep(current.prev);
+            if (previousStep != null) {
+                if (previousStep.previousHandler != null) {
+                    if (previousStep.previousHandler.onPrevious(this, current, previousStep)) {
+                        select(previousStep);
+                    }
+                } else if (previousStep.previousPromise != null) {
+                    footer.disabled();
+                    previousStep.previousPromise.onPrevious(this, current, previousStep)
+                            .then(p0 -> {
+                                select(previousStep);
+                                return null;
+                            })
+                            .catch_(error -> null)
+                            .finally_(footer::restore);
+                } else {
+                    select(previousStep);
+                }
             }
         }
     }
 
-    public void finish(Event e) {
-        for (ComponentHandler<Wizard> handler : finishHandler) {
-            handler.handle(e, this);
+    public void next() {
+        if (current != null) {
+            WizardStep nextStep = nextEnabledStep(current.next);
+            if (nextStep != null) {
+                if (nextStep.nextHandler != null) {
+                    if (nextStep.nextHandler.onNext(this, current, nextStep)) {
+                        select(nextStep);
+                    }
+                } else if (nextStep.nextPromise != null) {
+                    footer.disabled();
+                    nextStep.nextPromise.onNext(this, current, nextStep)
+                            .then(p0 -> {
+                                select(nextStep);
+                                return null;
+                            })
+                            .catch_(error -> null)
+                            .finally_(footer::restore);
+                } else {
+                    select(nextStep);
+                }
+            }
         }
-        updateState();
+    }
+
+    public void select(String identifier) {
+        select(item(identifier));
+    }
+
+    public void select(WizardStep step) {
+        if (step != null && !step.disabled) {
+            if (current != null && current.leaveHandler != null) {
+                current.leaveHandler.onLeave(this, current);
+            }
+            current = step;
+            current.visited = true;
+            toggle(modifier(finished), step.type == progress || step.type == summary);
+            for (WizardStep ws : this) {
+                ws.select(current.identifier().equals(ws.identifier()));
+            }
+            nav.select(current.identifier());
+            if (current == head) {
+                footer.firstStep();
+            } else if (current == tail || current.type == review) {
+                footer.reviewStep();
+            } else if (size() > 1) {
+                footer.middleStep();
+            }
+            if (current.enterHandler != null) {
+                current.enterHandler.onEnter(this, current);
+            }
+        }
+    }
+
+    public void cancel() {
+        close();
     }
 
     // ------------------------------------------------------ internal
 
-    private void internalAddStep(WizardStep step) {
-        // This is the only place where a new nav item may be created!
-        // We need to make sure that the same identifiers are used!
-        WizardNavItem navItem = new WizardNavItem(step.identifier(), step.title);
-
-        boolean firstStep = isEmpty();
-        items.put(step.identifier(), step);
-        innerWrap.add(step);
-        if (visitRequired && !firstStep) {
-            navItem.disabled(true);
+    private WizardStep previousEnabledStep(WizardStep from) {
+        WizardStep step = from;
+        while (step != null && step.disabled) {
+            step = step.prev;
         }
-        nav.add(navItem);
-        if (firstStep) {
-            internalSelectStep(step);
-        } else {
-            step.select(false);
-        }
+        return step;
     }
 
-    private void internalSelectStep(WizardStep step) {
-        nav.select(step.identifier());
-        for (WizardStep ws : this) {
-            ws.select(step.identifier().equals(ws.identifier()));
+    private WizardStep nextEnabledStep(WizardStep from) {
+        WizardStep step = from;
+        while (step != null && step.disabled) {
+            step = step.next;
         }
-        this.currentStep = step;
-        updateState();
-    }
-
-    private void internalRemoveStep(WizardStep step, boolean updateState) {
-        // TODO Handle current step removal
-        failSafeRemoveFromParent(step);
-        if (updateState) {
-            updateState();
-        }
-    }
-
-    private void updateState() {
-        // no steps -> no update!
-        if (currentStep != null && !isEmpty()) {
-            boolean isFirstStep = items.firstEntry().getValue().identifier().equals(currentStep.identifier());
-            if (isFirstStep) {
-                footer.firstStep();
-            } else {
-                WizardStep reviewStep = stepOfType(review);
-                boolean isReviewStep = reviewStep != null && reviewStep.identifier().equals(currentStep.identifier());
-            }
-        }
-    }
-
-    private WizardStep stepOfType(WizardStepType type) {
-        for (WizardStep step : this) {
-            if (step.type == type) {
-                return step;
-            }
-        }
-        return null;
+        return step;
     }
 }

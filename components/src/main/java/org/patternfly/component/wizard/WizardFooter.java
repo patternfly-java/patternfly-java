@@ -1,6 +1,22 @@
+/*
+ *  Copyright 2023 Red Hat
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package org.patternfly.component.wizard;
 
 import org.patternfly.component.button.Button;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.footer;
@@ -22,6 +38,10 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
     public static final String SUB_COMPONENT_NAME = "wzf";
     private final Button backButton;
     private final Button nextButton;
+    private final Button cancelButton;
+    boolean backButtonDisabled;
+    boolean nextButtonDisabled;
+    boolean cancelButtonDisabled;
 
     WizardFooter() {
         super(SUB_COMPONENT_NAME, footer().css(component(wizard, footer)).element());
@@ -31,20 +51,20 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
                                 .add(backButton = button().secondary().text("Back")
                                         .onClick((e, c) -> {
                                             Wizard wizard = lookupComponent();
-                                            wizard.back(e);
+                                            wizard.previous();
                                         })))
                         .addItem(actionListItem()
                                 .add(nextButton = button().primary().text("Next").attr("type", "submit")
                                         .onClick((e, c) -> {
                                             Wizard wizard = lookupComponent();
-                                            wizard.next(e);
+                                            wizard.next();
                                         }))))
                 .addItem(actionListGroup()
                         .addItem(actionListItem()
-                                .add(button().link().text("Cancel")
+                                .add(cancelButton = button().link().text("Cancel")
                                         .onClick((e, c) -> {
                                             Wizard wizard = lookupComponent();
-                                            wizard.cancel(e);
+                                            wizard.cancel();
                                         })))));
     }
 
@@ -55,20 +75,55 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
         return this;
     }
 
+    // ------------------------------------------------------ api
+
+    public Button backButton() {
+        return backButton;
+    }
+
+    public Button nextButton() {
+        return nextButton;
+    }
+
+    public Button cancelButton() {
+        return cancelButton;
+    }
+
     // ------------------------------------------------------ internal
 
     void firstStep() {
         backButton.disabled(true);
+        nextButton.disabled(false);
+        cancelButton.disabled(false);
         nextButton.text("Next");
     }
 
     void middleStep() {
         backButton.disabled(false);
+        nextButton.disabled(false);
+        cancelButton.disabled(false);
         nextButton.text("Next");
     }
 
     void reviewStep() {
         backButton.disabled(false);
-        nextButton.text("Review");
+        nextButton.disabled(false);
+        cancelButton.disabled(false);
+        nextButton.text("Finish");
+    }
+
+    void disabled() {
+        backButtonDisabled = backButton.isDisabled();
+        nextButtonDisabled = nextButton.isDisabled();
+        cancelButtonDisabled = cancelButton.isDisabled();
+        backButton.disabled(true);
+        nextButton.disabled(true);
+        cancelButton.disabled(true);
+    }
+
+    void restore() {
+        backButton.disabled(backButtonDisabled);
+        nextButton.disabled(nextButtonDisabled);
+        cancelButton.disabled(cancelButtonDisabled);
     }
 }

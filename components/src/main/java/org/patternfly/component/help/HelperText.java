@@ -20,7 +20,6 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.ValidationStatus;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -57,7 +56,7 @@ public class HelperText extends BaseComponent<HTMLElement, HelperText> {
      * Shortcut for a helper text with one item {@code helperText().addItem(helperTextItem(text, status))}
      */
     public static HelperText helperText(String text, ValidationStatus status) {
-        return helperText().addItem(helperTextItem(text, status).defaultIcon());
+        return helperText().addItem(helperTextItem(text, status));
     }
 
     // ------------------------------------------------------ instance

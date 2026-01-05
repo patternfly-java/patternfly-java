@@ -28,6 +28,7 @@ import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
+
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;

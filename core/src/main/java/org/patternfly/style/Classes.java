@@ -113,6 +113,7 @@ public interface Classes {
     String fill = "fill";
     String filled = "filled";
     String fillColumns = "fill-columns";
+    String finished = "finished";
     String fitContent = "fit-content";
     String fixed = "fixed";
     String flat = "flat";

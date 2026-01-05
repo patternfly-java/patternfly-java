@@ -84,8 +84,7 @@ public class FormSelectComponent extends SnippetPage {
                                 fs.validated(warning);
                                 helperText.firstItem()
                                         .status(warning)
-                                        .text("You must have select a value")
-                                        .defaultIcon();
+                                        .text("You must have select a value");
                             } else if (number == 3) {
                                 fs.validated(success);
                                 helperText.firstItem()
@@ -95,8 +94,7 @@ public class FormSelectComponent extends SnippetPage {
                                 fs.validated(error);
                                 helperText.firstItem()
                                         .status(error)
-                                        .text("You must chose Three (thought that was obvious)")
-                                        .defaultIcon();
+                                        .text("You must chose Three (thought that was obvious)");
                             }
                         }, 1234);
                     });

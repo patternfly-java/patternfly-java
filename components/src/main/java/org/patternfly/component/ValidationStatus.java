@@ -26,7 +26,7 @@ import static org.patternfly.style.Classes.modifier;
 
 public enum ValidationStatus {
 
-    default_(Status.info, null, IconSets.fas::minus),
+    default_(Status.info, null, null),
 
     indeterminate(Status.info, modifier(Classes.indeterminate), IconSets.fas::minus),
 

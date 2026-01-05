@@ -26,7 +26,6 @@ import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -53,28 +52,28 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     // ------------------------------------------------------ factory
 
     public static HelperTextItem helperTextItem() {
-        return new HelperTextItem(div(), default_);
+        return new HelperTextItem(div()).status(default_);
     }
 
     public static HelperTextItem helperTextItem(String text) {
-        return new HelperTextItem(div(), default_).text(text);
+        return new HelperTextItem(div()).text(text).status(default_);
     }
 
     public static HelperTextItem helperTextItem(String text, ValidationStatus status) {
-        return new HelperTextItem(div(), status).text(text);
+        return new HelperTextItem(div()).text(text).status(status);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder) {
-        return new HelperTextItem(builder, default_);
+        return new HelperTextItem(builder).status(default_);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder, String text) {
-        return new HelperTextItem(builder, default_).text(text);
+        return new HelperTextItem(builder).text(text).status(default_);
     }
 
     public static <E extends HTMLElement> HelperTextItem helperTextItem(HTMLContainerBuilder<E> builder, String text,
             ValidationStatus status) {
-        return new HelperTextItem(builder, status).text(text);
+        return new HelperTextItem(builder).text(text).status(status);
     }
 
     // ------------------------------------------------------ instance
@@ -82,20 +81,14 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     public static final String SUB_COMPONENT_NAME = "hti";
 
     private final HTMLElement textElement;
-    private boolean defaultIcon;
     private boolean customScreenReaderText;
     private ValidationStatus status;
     private HTMLElement screenReaderElement;
     private HTMLElement iconContainer;
 
-    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder, ValidationStatus status) {
+    <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder) {
         super(SUB_COMPONENT_NAME, builder.css(component(helperText, item)).element());
-        this.status = status;
-        this.defaultIcon = false;
         this.customScreenReaderText = false;
-        if (status != default_) {
-            css(status.modifier);
-        }
         element().appendChild(textElement = span().css(component(helperText, item, Classes.text)).element());
     }
 
@@ -106,12 +99,6 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
             defaultScreenReaderText();
         }
         return css(modifier(dynamic));
-    }
-
-    public HelperTextItem defaultIcon() {
-        defaultIcon = true;
-        icon(status.icon.get().element());
-        return this;
     }
 
     @Override
@@ -138,7 +125,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     }
 
     public HelperTextItem status(ValidationStatus status) {
-        return status(status, defaultIcon ? status.icon.get().element() : null);
+        return status(status, status.icon != null ? status.icon.get().element() : null);
     }
 
     public HelperTextItem status(ValidationStatus status, PredefinedIcon icon) {
@@ -146,13 +133,15 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     }
 
     public HelperTextItem status(ValidationStatus status, Element icon) {
-        if (this.status != default_) {
+        if (this.status != null && this.status != default_) {
             element().classList.remove(this.status.modifier);
         }
         this.status = status;
         css(status.modifier);
         if (icon != null) {
             icon(icon);
+        } else {
+            removeIcon();
         }
         if (!customScreenReaderText) {
             defaultScreenReaderText();

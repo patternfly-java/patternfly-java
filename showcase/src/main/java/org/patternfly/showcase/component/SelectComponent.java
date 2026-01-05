@@ -148,7 +148,7 @@ public class SelectComponent extends SnippetPage {
                 code("select-validation"), () -> {
             // @code-start:select-validation
             MenuToggle menuToggle = menuToggle("Select a value");
-            HelperText helperText = helperText().liveRegion().addItem(helperTextItem().defaultIcon());
+            HelperText helperText = helperText().liveRegion().addItem(helperTextItem());
             setVisible(helperText, false);
             return div()
                     .add(singleSelect(menuToggle)
