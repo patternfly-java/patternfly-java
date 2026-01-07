@@ -16,21 +16,20 @@
 package org.patternfly.component.wizard;
 
 /**
- * Functional interface for handling callbacks when navigating to the next step in a wizard workflow. Implementations of this
- * interface can define custom behavior for the transition between steps and control whether the transition is allowed.
+ * Functional interface for handling callbacks when navigating to the previous step in a wizard workflow. Implementations of
+ * this interface can define custom behavior for the transition between steps and control whether the transition is allowed.
  */
 @FunctionalInterface
-public interface WizardPreviousHandler {
+public interface WizardStepPreviousHandler {
 
     /**
-     * Called when transitioning to the next step in a wizard workflow. This method is designed to handle the logic associated
-     * with moving from one step to another.
+     * Called when transitioning to the previous step in a wizard workflow.
      *
      * @param wizard   The wizard instance managing the workflow.
      * @param current  The current wizard step before transitioning.
      * @param previous The previous wizard step from which the transition occurred.
-     * @return A boolean indicating whether transitioning to the next step is allowed. Returns {@code true} if the transition is
-     * permitted; otherwise, {@code false}.
+     * @return A boolean indicating whether transitioning to the previous step is allowed. Returns {@code true} if the
+     * transition is permitted; otherwise, {@code false}.
      */
     boolean onPrevious(Wizard wizard, WizardStep current, WizardStep previous);
 }

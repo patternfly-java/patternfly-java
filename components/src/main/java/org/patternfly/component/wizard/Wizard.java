@@ -120,9 +120,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             logger.warn("Wizard '%o' already contains step with identifier '%s'.", element(), item.identifier());
         } else {
             WizardNavItem navItem = null;
-            if (item.type == step || item.type == review) {
-                // This is the only place where a new nav item may be created!
-                // We need to make sure that the same identifiers are used!
+            if ((progressive && current == null) || (!progressive && (item.type == step || item.type == review))) {
                 navItem = new WizardNavItem(item.identifier(), item.title);
                 if (item.disabled) {
                     navItem.disabled(true);
@@ -135,7 +133,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                 head = tail = item;
             } else {
                 tail.next = item;
-                item.prev = tail;
+                item.previous = tail;
                 tail = item;
             }
             if (current == null) {
@@ -174,7 +172,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     /**
-     * Progressively shows steps, where all steps following the active step are hidden. Defaults to false.
+     * Progressively shows steps, where all steps following the active step are hidden. Defaults to false. Must be called
+     * <em>before</em> adding steps.
      */
     public Wizard progressive(boolean progressive) {
         this.progressive = progressive;
@@ -187,7 +186,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     /**
-     * Disables steps that haven't been visited. Defaults to false.
+     * Disables steps that haven't been visited. Defaults to false. Must be called <em>before</em> adding steps.
      */
     public Wizard visitRequired(boolean visitRequired) {
         this.visitRequired = visitRequired;
@@ -261,18 +260,18 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         WizardStep item = items.remove(identifier);
         if (item != null) {
             failSafeRemoveFromParent(item);
-            if (item.prev != null) {
-                item.prev.next = item.next;
+            if (item.previous != null) {
+                item.previous.next = item.next;
             } else {
                 head = item.next;
             }
             if (item.next != null) {
-                item.next.prev = item.prev;
+                item.next.previous = item.previous;
             } else {
-                tail = item.prev;
+                tail = item.previous;
             }
             if (current == item) {
-                current = item.next != null ? item.next : item.prev;
+                current = item.next != null ? item.next : item.previous;
                 select(current);
             }
             onRemove.forEach(bc -> bc.accept(this, item));
@@ -325,7 +324,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     public void previous() {
         if (current != null) {
-            WizardStep previousStep = previousEnabledStep(current.prev);
+            WizardStep previousStep = previousEnabledStep(current.previous);
             if (previousStep != null) {
                 if (previousStep.previousHandler != null) {
                     if (previousStep.previousHandler.onPrevious(this, current, previousStep)) {
@@ -334,8 +333,10 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                 } else if (previousStep.previousPromise != null) {
                     footer.disabled();
                     previousStep.previousPromise.onPrevious(this, current, previousStep)
-                            .then(p0 -> {
-                                select(previousStep);
+                            .then(proceed -> {
+                                if (proceed) {
+                                    select(previousStep);
+                                }
                                 return null;
                             })
                             .catch_(error -> null)
@@ -358,8 +359,10 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                 } else if (nextStep.nextPromise != null) {
                     footer.disabled();
                     nextStep.nextPromise.onNext(this, current, nextStep)
-                            .then(p0 -> {
-                                select(nextStep);
+                            .then(proceed -> {
+                                if (proceed) {
+                                    select(nextStep);
+                                }
                                 return null;
                             })
                             .catch_(error -> null)
@@ -377,6 +380,22 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     public void select(WizardStep step) {
         if (step != null && !step.disabled) {
+            if (progressive && current != null) {
+                if (isBefore(step, current)) {
+                    // Remove all previous nav items
+                    for (WizardStep remove = step.next; remove != null; remove = remove.next) {
+                        nav.removeItem(remove.identifier());
+                    }
+                } else if (isAfter(step, current)) {
+                    // Add all remaining nav items
+                    for (WizardStep add = current.next; add != null; add = add.next) {
+                        nav.add(new WizardNavItem(add.identifier(), add.title));
+                        if (add == step) {
+                            break;
+                        }
+                    }
+                }
+            }
             if (current != null && current.leaveHandler != null) {
                 current.leaveHandler.onLeave(this, current);
             }
@@ -384,7 +403,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             current.visited = true;
             toggle(modifier(finished), step.type == progress || step.type == summary);
             for (WizardStep ws : this) {
-                ws.select(current.identifier().equals(ws.identifier()));
+                ws.select(current == ws);
             }
             nav.select(current.identifier());
             if (current == head) {
@@ -409,7 +428,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     private WizardStep previousEnabledStep(WizardStep from) {
         WizardStep step = from;
         while (step != null && step.disabled) {
-            step = step.prev;
+            step = step.previous;
         }
         return step;
     }
@@ -420,5 +439,33 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             step = step.next;
         }
         return step;
+    }
+
+    private boolean isBefore(WizardStep start, WizardStep end) {
+        if (start == null || end == null) {
+            return false;
+        }
+        WizardStep current = start;
+        while (current != null) {
+            if (current == end) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    private boolean isAfter(WizardStep start, WizardStep end) {
+        if (start == null || end == null) {
+            return false;
+        }
+        WizardStep current = start;
+        while (current != null) {
+            if (current == end) {
+                return true;
+            }
+            current = current.previous;
+        }
+        return false;
     }
 }

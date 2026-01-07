@@ -31,8 +31,8 @@ import org.patternfly.component.wizard.WizardHeaderDescription;
 import org.patternfly.component.wizard.WizardHeaderTitle;
 import org.patternfly.component.wizard.WizardNav;
 import org.patternfly.component.wizard.WizardNavItem;
-import org.patternfly.component.wizard.WizardNextHandler;
-import org.patternfly.component.wizard.WizardPreviousHandler;
+import org.patternfly.component.wizard.WizardStepNextHandler;
+import org.patternfly.component.wizard.WizardStepPreviousHandler;
 import org.patternfly.component.wizard.WizardStep;
 import org.patternfly.component.wizard.WizardStepType;
 import org.patternfly.showcase.LoremIpsum;
@@ -283,8 +283,8 @@ public class WizardComponent extends SnippetPage {
         addApiDoc(WizardHeaderTitle.class, subcomponent);
         addApiDoc(WizardNav.class, subcomponent);
         addApiDoc(WizardNavItem.class, subcomponent);
-        addApiDoc(WizardNextHandler.class, other);
-        addApiDoc(WizardPreviousHandler.class, other);
+        addApiDoc(WizardStepNextHandler.class, other);
+        addApiDoc(WizardStepPreviousHandler.class, other);
         addApiDoc(WizardStep.class, subcomponent);
         addApiDoc(WizardStepType.class, other);
     }

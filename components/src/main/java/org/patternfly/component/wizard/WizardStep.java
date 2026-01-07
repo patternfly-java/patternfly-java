@@ -70,12 +70,12 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     final WizardStepType type;
     boolean disabled;
     boolean visited;
+    WizardStep previous;
     WizardStep next;
-    WizardStep prev;
-    WizardPreviousHandler previousHandler;
-    WizardPreviousPromise previousPromise;
-    WizardNextHandler nextHandler;
-    WizardNextPromise nextPromise;
+    WizardStepPreviousHandler previousHandler;
+    WizardStepPreviousPromise previousPromise;
+    WizardStepNextHandler nextHandler;
+    WizardStepNextPromise nextPromise;
     WizardStepEnterHandler enterHandler;
     WizardStepLeaveHandler leaveHandler;
 
@@ -125,7 +125,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
      * @param handler the callback to be invoked during the transition to a previous step
      * @return the current instance of {@code WizardStep}, enabling method chaining
      */
-    public WizardStep onPrevious(WizardPreviousHandler handler) {
+    public WizardStep onPrevious(WizardStepPreviousHandler handler) {
         if (previousPromise != null) {
             logger.warn("Previous promise already set for step '{}'. Overwriting with callback.", identifier);
             previousPromise = null;
@@ -143,7 +143,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
      * @param promise the {@code WizardPreviousPromise} to be executed during the transition to a previous step
      * @return the current {@code WizardStep} instance, allowing method chaining
      */
-    public WizardStep onPrevious(WizardPreviousPromise promise) {
+    public WizardStep onPrevious(WizardStepPreviousPromise promise) {
         if (previousHandler != null) {
             logger.warn("Previous callback already set for step '{}'. Overwriting with promise.", identifier);
             previousHandler = null;
@@ -161,7 +161,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
      * @param handler the callback to be executed during the transition to the next step
      * @return the current instance of {@code WizardStep} to allow method chaining
      */
-    public WizardStep onNext(WizardNextHandler handler) {
+    public WizardStep onNext(WizardStepNextHandler handler) {
         if (nextPromise != null) {
             logger.warn("Next promise already set for step '%s'. Overwriting with callback.", identifier);
             nextPromise = null;
@@ -179,7 +179,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
      * @param promise the {@code WizardNextPromise} to be executed during the transition to the next step
      * @return the current {@code WizardStep} instance, allowing method chaining
      */
-    public WizardStep onNext(WizardNextPromise promise) {
+    public WizardStep onNext(WizardStepNextPromise promise) {
         if (nextHandler != null) {
             logger.warn("Next callback already set for step '%s'. Overwriting with promise.", identifier);
             nextHandler = null;
@@ -223,7 +223,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     }
 
     public WizardStep previous() {
-        return prev;
+        return previous;
     }
 
     public ValidationStatus status() {

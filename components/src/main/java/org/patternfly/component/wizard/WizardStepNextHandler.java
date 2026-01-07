@@ -22,7 +22,7 @@ package org.patternfly.component.wizard;
  * sequence. It provides a mechanism to control whether the transition should proceed or be prevented based on custom logic.
  */
 @FunctionalInterface
-public interface WizardNextHandler {
+public interface WizardStepNextHandler {
 
     /**
      * Invoked when advancing from the current wizard step to the next step.
