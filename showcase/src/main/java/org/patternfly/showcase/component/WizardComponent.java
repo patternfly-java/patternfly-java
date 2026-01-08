@@ -17,12 +17,19 @@ package org.patternfly.showcase.component;
 
 import java.util.function.BiConsumer;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.Severity;
+import org.patternfly.component.emptystate.EmptyState;
+import org.patternfly.component.emptystate.EmptyStateBody;
+import org.patternfly.component.form.Form;
+import org.patternfly.component.form.FormAlert;
 import org.patternfly.component.form.TextInput;
+import org.patternfly.component.help.HelperText;
 import org.patternfly.component.help.HelperTextItem;
 import org.patternfly.component.progress.Progress;
+import org.patternfly.component.switch_.Switch;
 import org.patternfly.component.wizard.Wizard;
 import org.patternfly.component.wizard.WizardContext;
 import org.patternfly.component.wizard.WizardFooter;
@@ -31,51 +38,77 @@ import org.patternfly.component.wizard.WizardHeaderDescription;
 import org.patternfly.component.wizard.WizardHeaderTitle;
 import org.patternfly.component.wizard.WizardNav;
 import org.patternfly.component.wizard.WizardNavItem;
-import org.patternfly.component.wizard.WizardStepNextHandler;
-import org.patternfly.component.wizard.WizardStepPreviousHandler;
 import org.patternfly.component.wizard.WizardStep;
+import org.patternfly.component.wizard.WizardStepEnterHandler;
+import org.patternfly.component.wizard.WizardStepNextHandler;
+import org.patternfly.component.wizard.WizardStepNextPromise;
+import org.patternfly.component.wizard.WizardStepPreviousHandler;
 import org.patternfly.component.wizard.WizardStepType;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.style.Size;
 import elemental2.core.JsRegExp;
 import elemental2.dom.HTMLElement;
+import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.clearInterval;
+import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setInterval;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.component.Severity.danger;
 import static org.patternfly.component.ValidationStatus.default_;
 import static org.patternfly.component.ValidationStatus.error;
+import static org.patternfly.component.ValidationStatus.success;
+import static org.patternfly.component.alert.Alert.alert;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.emptystate.EmptyState.emptyState;
 import static org.patternfly.component.emptystate.EmptyStateActions.emptyStateActions;
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
 import static org.patternfly.component.form.Form.form;
+import static org.patternfly.component.form.FormAlert.formAlert;
 import static org.patternfly.component.form.FormGroup.formGroup;
 import static org.patternfly.component.form.FormGroupControl.formGroupControl;
 import static org.patternfly.component.form.FormGroupLabel.formGroupLabel;
+import static org.patternfly.component.form.Radio.radio;
 import static org.patternfly.component.form.TextInput.textInput;
+import static org.patternfly.component.form.TextInputType.number;
 import static org.patternfly.component.help.HelperText.helperText;
 import static org.patternfly.component.help.HelperTextItem.helperTextItem;
+import static org.patternfly.component.modal.Modal.modal;
 import static org.patternfly.component.progress.MeasureLocation.outside;
 import static org.patternfly.component.progress.Progress.progress;
+import static org.patternfly.component.switch_.Switch.switch_;
 import static org.patternfly.component.wizard.Wizard.wizard;
+import static org.patternfly.component.wizard.WizardHeader.wizardHeader;
+import static org.patternfly.component.wizard.WizardHeaderDescription.wizardHeaderDescription;
+import static org.patternfly.component.wizard.WizardHeaderTitle.wizardHeaderTitle;
 import static org.patternfly.component.wizard.WizardStep.wizardStep;
 import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.component.wizard.WizardStepType.summary;
+import static org.patternfly.icon.IconSets.fas.birthdayCake;
 import static org.patternfly.icon.IconSets.fas.cogs;
+import static org.patternfly.icon.IconSets.fas.utensils;
 import static org.patternfly.layout.bullseye.Bullseye.bullseye;
 import static org.patternfly.layout.bullseye.BullseyeItem.bullseyeItem;
+import static org.patternfly.layout.flex.AlignSelf.center;
+import static org.patternfly.layout.flex.Direction.column;
+import static org.patternfly.layout.flex.Flex.flex;
+import static org.patternfly.layout.flex.FlexItem.flexItem;
+import static org.patternfly.layout.flex.Gap.md;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 import static org.patternfly.style.Size.lg;
+import static org.patternfly.style.Size.xs;
 
 @Route(value = "/components/wizard", title = "Wizard")
 public class WizardComponent extends SnippetPage {
@@ -102,13 +135,6 @@ public class WizardComponent extends SnippetPage {
                 // @code-end:wizard-basic
         ));
 
-        addSnippet(new Snippet("wizard-focus", "Focus content on next/back",
-                code("wizard-focus"), () ->
-                // @code-start:wizard-focus
-                div().add(nyi()).element()
-                // @code-end:wizard-focus
-        ));
-
         addSnippet(new Snippet("wizard-basic-disabled", "Basic with disabled steps",
                 code("wizard-basic-disabled"), () ->
                 // @code-start:wizard-basic-disabled
@@ -128,13 +154,6 @@ public class WizardComponent extends SnippetPage {
                 // @code-end:wizard-basic-disabled
         ));
 
-        addSnippet(new Snippet("wizard-anchors", "Anchors for nav items",
-                code("wizard-anchors"), () ->
-                // @code-start:wizard-anchors
-                div().add(nyi()).element()
-                // @code-end:wizard-anchors
-        ));
-
         addSnippet(new Snippet("wizard-visit-required", "Incrementally enabled steps",
                 code("wizard-visit-required"), () ->
                 // @code-start:wizard-visit-required
@@ -152,13 +171,6 @@ public class WizardComponent extends SnippetPage {
                                         .add(p().text("Review content"))))
                         .element()
                 // @code-end:wizard-visit-required
-        ));
-
-        addSnippet(new Snippet("wizard-expandable", "Expandable steps",
-                code("wizard-expandable"), () ->
-                // @code-start:wizard-expandable
-                div().add(nyi()).element()
-                // @code-end:wizard-expandable
         ));
 
         addSnippet(new Snippet("wizard-progress", "Progress after submission",
@@ -273,6 +285,233 @@ public class WizardComponent extends SnippetPage {
                         .element()
                 // @code-end:wizard-progressive
         ));
+
+        addSnippet(new Snippet("wizard-modal", "Within modal",
+                code("wizard-modal"), () ->
+                // @code-start:wizard-modal
+                div().add(button("Show modal").primary().onClick((e, c) -> modal().size(Size.md)
+                                .add(wizard().height(400)
+                                        .addHeader(wizardHeader()
+                                                .addTitle(wizardHeaderTitle("Wizard in modal"))
+                                                .addDescription(wizardHeaderDescription("Simple wizard description")))
+                                        .addItem(wizardStep("wizard-modal-step-0", "Step 1")
+                                                .add(p().text("Step 1 content")))
+                                        .addItem(wizardStep("wizard-modal-step-1", "Step 2")
+                                                .add(p().text("Step 2 content")))
+                                        .addItem(wizardStep("wizard-modal-step-4", "Review", review)
+                                                .add(p().text("Review content"))))
+                                .appendToBody()
+                                .open()))
+                        .element()
+                // @code-end:wizard-modal
+        ));
+
+        addSnippet(new Snippet("wizard-step-status", "Step status",
+                code("wizard-step-status"), () -> {
+            // @code-start:wizard-step-status
+            Wizard wizard = wizard();
+            return div()
+                    .add(wizard.height(400)
+                            .addItem(wizardStep("wizard-step-status-step-0", "Step 1")
+                                    .add(p().text("Step 1 content")))
+                            .addItem(wizardStep("wizard-step-status-step-1", "Status step")
+                                    .add(radio("wizard-step-status-radio-error", "wizard-step-status-radio",
+                                            "Give step 1 an error status")
+                                            .onChange((e, c, value) -> {
+                                                if (value) {
+                                                    wizard.item("wizard-step-status-step-0").status(error);
+                                                }
+                                            }))
+                                    .add(radio("wizard-step-status-radio-success", "wizard-step-status-radio",
+                                            "Give step 1 a success status")
+                                            .onChange((e, c, value) -> {
+                                                if (value) {
+                                                    wizard.item("wizard-step-status-step-0").status(success);
+                                                }
+                                            }))
+                            )
+                            .addItem(wizardStep("wizard-step-status-step-4", "Review", review)
+                                    .add(p().text("Review content"))))
+                    .element();
+            // @code-end:wizard-step-status
+        }));
+
+        addSnippet(new Snippet("wizard-hap", "Handlers and promises",
+                "This wizard demonstrates how to use various handlers and promises to control the wizard flow.",
+                code("wizard-hap"), () -> {
+            // @code-start:wizard-hap
+            Wizard wizard = wizard();
+
+            // ------------------------------------------------------ (n)ext (h)andler
+            String nhId = "wizard-hap-nh";
+            TextInput nhInput = textInput(number, nhId).value("2");
+            HelperText nhHelper = helperText("Enter an even number");
+            FormAlert nhAlert = formAlert().addAlert(alert(danger, "Invalid number")
+                    .addDescription("Please enter an even number"));
+            Form nhForm = form()
+                    .addGroup(formGroup(nhId)
+                            .addLabel(formGroupLabel("Number"))
+                            .addControl(formGroupControl()
+                                    .add(nhInput)
+                                    .add(nhHelper)));
+            WizardStepNextHandler nh = (wzd, current, next) -> {
+                boolean even = !nhInput.value().isEmpty() && Integer.parseInt(nhInput.value()) % 2 == 0;
+                if (even) {
+                    nhForm.clearAlerts();
+                    nhInput.resetValidation();
+                    nhHelper.firstItem().status(default_);
+                } else {
+                    if (!isAttached(nhAlert)) {
+                        nhForm.addAlert(nhAlert);
+                    }
+                    nhInput.validated(error);
+                    nhHelper.firstItem().status(error);
+                }
+                return even;
+            };
+
+            // ------------------------------------------------------ (p)revious (h)andler
+            String phId = "wizard-hap-ph";
+            TextInput phInput = textInput(number, phId).value("3");
+            HelperText phHelper = helperText("Enter an odd number");
+            FormAlert phAlert = formAlert().addAlert(alert(danger, "Invalid number")
+                    .addDescription("Please enter an odd number"));
+            Form phForm = form()
+                    .addGroup(formGroup(phId)
+                            .addLabel(formGroupLabel("Number"))
+                            .addControl(formGroupControl()
+                                    .add(phInput)
+                                    .add(phHelper)));
+            WizardStepPreviousHandler ph = (wzd, current, next) -> {
+                boolean odd = !phInput.value().isEmpty() && Integer.parseInt(phInput.value()) % 2 != 0;
+                if (odd) {
+                    phForm.clearAlerts();
+                    phInput.resetValidation();
+                    phHelper.firstItem().status(default_);
+                } else {
+                    if (!isAttached(phAlert)) {
+                        phForm.addAlert(phAlert);
+                    }
+                    phInput.validated(error);
+                    phHelper.firstItem().status(error);
+                }
+                return odd;
+            };
+
+            String[] steps = new String[]{
+                    "Chopping the ingredients 🔪",
+                    "Heating up the pan 🔥",
+                    "Throwing everything together 🍳",
+                    "Letting it simmer for a bit ⏳",
+                    "Tasting and adjusting the seasoning 😋",
+                    "Plating it nicely 🍽️",
+                    "Dinner is served ✅"
+            };
+
+            // ------------------------------------------------------ (n)ext (p)romise
+            double[] npHandle = new double[1];
+            int[] npIndex = new int[1];
+            Switch npSwitch = switch_("wizard-hap-np", "wizard-hap-np", true)
+                    .label("Be a good chef.");
+            EmptyStateBody npBody = emptyStateBody();
+            EmptyState npEmptyState = emptyState().size(xs).addBody(npBody);
+            WizardStepEnterHandler npEnter = (wzd, step) -> {
+                npEmptyState.clearStatus().icon(utensils()).text("I'm hungry.");
+                npBody.text("Think of your favorite meal and press 'Next'.");
+            };
+            WizardStepNextPromise np = (wzd, current, next) -> {
+                npIndex[0] = 0;
+                boolean success = npSwitch.value();
+                int end = success ? steps.length : 3 + (int) (Math.random() * (steps.length - 3));
+                npEmptyState.clearStatus().spinner().text("I'm hungry.");
+                return new Promise<>((resolve, reject) -> {
+                    npHandle[0] = setInterval((__) -> {
+                        npBody.text(steps[npIndex[0]++]);
+                        if (npIndex[0] > end) {
+                            clearInterval(npHandle[0]);
+                            if (!success) {
+                                npEmptyState.status(danger).text("The chef failed");
+                                npBody.text("Try again later.");
+                            }
+                            resolve.onInvoke(success);
+                        }
+                    }, 1000);
+                });
+            };
+
+            return div()
+                    .add(wizard.height(450)
+                            .onStepChange((wzd, previous, current) -> {
+                                if (previous == null) {
+                                    console.log("Step changed to '%s'", current.identifier());
+                                } else {
+                                    console.log("Step changed from '%s' to '%s'",
+                                            previous.identifier(), current.identifier());
+                                }
+                            })
+                            .addItem(wizardStep("wizard-hap-step-0", "Next handler")
+                                    .add(content(p).editorial()
+                                            .add("This step has a ")
+                                            .add(Elements.code("WizardStepNextHandler"))
+                                            .add(" that returns ")
+                                            .add(Elements.code("true"))
+                                            .add(" if the number is even."))
+                                    .add(content(p).editorial()
+                                            .add("This prevents going to any next steps until the number is even."))
+                                    .add(nhForm)
+                                    .nextIf(nh))
+                            .addItem(wizardStep("wizard-hap-step-1", "Previous handler")
+                                    .add(content(p).editorial()
+                                            .add("This step has a ")
+                                            .add(Elements.code("WizardStepPreviousHandler"))
+                                            .add(" that returns ")
+                                            .add(Elements.code("true"))
+                                            .add(" if the number is odd."))
+                                    .add(content(p).editorial()
+                                            .add("This prevents going to any previous steps until the number is odd."))
+                                    .add(phForm)
+                                    .previousIf(ph))
+                            .addItem(wizardStep("wizard-hap-step-2", "Next promise")
+                                    .add(flex().direction(column).gap(md)
+                                            .addItem(flexItem()
+                                                    .add(content(p).editorial()
+                                                            .add("This step has a ")
+                                                            .add(Elements.code("WizardStepNextPromise"))
+                                                            .add(" that simulates cooking a meal and you can decide whether you get something to eat or not."))
+                                                    .add(npSwitch))
+                                            .addItem(flexItem().alignSelf(center)
+                                                    .add(npEmptyState)))
+                                    .onEnter(npEnter)
+                                    .nextIfPromised(np))
+                            .addItem(wizardStep("wizard-hap-step-3", "Previous promise")
+                                    .add(content(p).editorial()
+                                            .add("This step has a ")
+                                            .add(Elements.code("WizardStepPreviousPromise"))
+                                            .add(" that simulates cooking a meal and you can decide whether it fails or not."))
+                                    .add(content(p).editorial()
+                                            .add("This prevents going to any previous steps until dinner is served.")))
+                            .addItem(wizardStep("wizard-hap-step-4", "Enter handler")
+                                    .add(content(p).editorial()
+                                            .add("This step has a ")
+                                            .add(Elements.code("WizardStepEnterPromise"))
+                                            .add(" that logs to the console when the step is entered."))
+                                    .onEnter((wzd, step) -> console.log("Entered step '%s'", step.identifier())))
+                            .addItem(wizardStep("wizard-hap-step-5", "Leave handler")
+                                    .add(content(p).editorial()
+                                            .add("This step has a ")
+                                            .add(Elements.code("WizardStepLeavePromise"))
+                                            .add(" that logs to the console when the step is left."))
+                                    .onLeave((wzd, step) -> console.log("Left step '%s'", step.identifier())))
+                            .addItem(wizardStep("wizard-hap-step-6", "Review", review)
+                                    .add(bullseye().addItem(bullseyeItem().add(emptyState().size(xs)
+                                            .icon(birthdayCake())
+                                            .text("Congratulations!")
+                                            .addBody(emptyStateBody()
+                                                    .add(content(p).editorial()
+                                                            .text("You have successfully completed all steps."))))))))
+                    .element();
+            // @code-end:wizard-hap
+        }));
 
         startApiDocs(Wizard.class);
         addApiDoc(Wizard.class, component);

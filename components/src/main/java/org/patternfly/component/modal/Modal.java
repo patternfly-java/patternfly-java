@@ -27,11 +27,11 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentDelegate;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.backdrop.Backdrop;
+import org.patternfly.component.wizard.Wizard;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -41,7 +41,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertBefore;
-import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
@@ -130,7 +129,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     @Override
     public void attach(MutationRecord mutationRecord) {
         if (hideClose) {
-            setVisible(closeContainer, false);
+            failSafeRemoveFromParent(closeContainer);
         }
         if (!element().hasAttribute(labelledBy)) {
             if (header != null && header.title != null) {
@@ -222,6 +221,17 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
         } else {
             insertAfter(footer, closeContainer);
         }
+        return this;
+    }
+
+    public Modal addWizard(Wizard wizard) {
+        return add(wizard);
+    }
+
+    public Modal add(Wizard wizard) {
+        element().appendChild(wizard.element());
+        hideClose = true;
+        wizard.onClose((e, c) -> close());
         return this;
     }
 

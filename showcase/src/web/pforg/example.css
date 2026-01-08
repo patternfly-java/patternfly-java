@@ -32,6 +32,12 @@
     --pf-v6-c-button--after--BorderWidth: 0;
 }
 
+.ws-example-page-wrapper {
+    min-width: 825px;
+    max-width: 1200px;
+    flex-grow: 1;
+}
+
 .ws-preview__thumbnail-link {
     position: relative;
     line-height: 0;

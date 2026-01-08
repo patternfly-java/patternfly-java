@@ -66,6 +66,7 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;
+    private ValidationStatus status;
     private HTMLElement screenReaderElement;
     private HTMLElement iconContainer;
     final HTMLContainerBuilder<HTMLButtonElement> button;
@@ -155,18 +156,27 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
     // ------------------------------------------------------ internal
 
     void status(ValidationStatus status) {
+        if (this.status != null) {
+            button.classList().remove(this.status.status.modifier());
+        }
         if (status == null) {
             removeIcon();
             failSafeRemoveFromParent(screenReaderElement);
             screenReaderElement = null;
             iconContainer = null;
         } else {
+            button.css(status.status.modifier());
             if (status.icon != null) {
                 icon(status.icon.get());
             }
-            insertFirst(button.element(), screenReaderElement = span().css(screenReader)
-                    .text(status.status.value())
-                    .element());
+            if (screenReaderElement != null) {
+                screenReaderElement.textContent = status.status.value();
+            } else {
+                insertFirst(button.element(), screenReaderElement = span().css(screenReader)
+                        .text(status.status.value())
+                        .element());
+            }
         }
+        this.status = status;
     }
 }

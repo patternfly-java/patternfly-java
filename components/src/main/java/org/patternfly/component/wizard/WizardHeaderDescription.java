@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.wizard;
 
+import org.jboss.elemento.ElementTextMethods;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.p;
@@ -22,12 +23,17 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.wizard;
 
-public class WizardHeaderDescription extends WizardSubComponent<HTMLElement, WizardHeaderDescription> {
+public class WizardHeaderDescription extends WizardSubComponent<HTMLElement, WizardHeaderDescription> implements
+        ElementTextMethods<HTMLElement, WizardHeaderDescription> {
 
     // ------------------------------------------------------ factory
 
     public static WizardHeaderDescription wizardHeaderDescription() {
         return new WizardHeaderDescription();
+    }
+
+    public static WizardHeaderDescription wizardHeaderDescription(String text) {
+        return new WizardHeaderDescription().text(text);
     }
 
     // ------------------------------------------------------ instance

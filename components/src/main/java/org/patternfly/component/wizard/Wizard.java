@@ -81,6 +81,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     private final List<CloseHandler<Wizard>> closeHandler;
     private final List<BiConsumer<Wizard, WizardStep>> onAdd;
     private final List<BiConsumer<Wizard, WizardStep>> onRemove;
+    private final List<WizardStepChangeHandler> stepChangeHandlers;
     private final HTMLContainerBuilder<HTMLDivElement> innerWrap;
     private final HTMLContainerBuilder<HTMLButtonElement> toggleButton;
     private boolean progressive;
@@ -99,6 +100,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         this.closeHandler = new ArrayList<>();
         this.onAdd = new ArrayList<>();
         this.onRemove = new ArrayList<>();
+        this.stepChangeHandlers = new ArrayList<>();
 
         add(toggleButton = button().css(component(wizard, toggle))
                 .aria(label, "Wizard toggle")
@@ -218,6 +220,11 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return this;
     }
 
+    public Wizard onStepChange(WizardStepChangeHandler stepChangeHandler) {
+        this.stepChangeHandlers.add(stepChangeHandler);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -326,24 +333,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         if (current != null) {
             WizardStep previousStep = previousEnabledStep(current.previous);
             if (previousStep != null) {
-                if (previousStep.previousHandler != null) {
-                    if (previousStep.previousHandler.onPrevious(this, current, previousStep)) {
-                        select(previousStep);
-                    }
-                } else if (previousStep.previousPromise != null) {
-                    footer.disabled();
-                    previousStep.previousPromise.onPrevious(this, current, previousStep)
-                            .then(proceed -> {
-                                if (proceed) {
-                                    select(previousStep);
-                                }
-                                return null;
-                            })
-                            .catch_(error -> null)
-                            .finally_(footer::restore);
-                } else {
-                    select(previousStep);
-                }
+                navigateBack(previousStep);
             }
         }
     }
@@ -352,24 +342,9 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         if (current != null) {
             WizardStep nextStep = nextEnabledStep(current.next);
             if (nextStep != null) {
-                if (nextStep.nextHandler != null) {
-                    if (nextStep.nextHandler.onNext(this, current, nextStep)) {
-                        select(nextStep);
-                    }
-                } else if (nextStep.nextPromise != null) {
-                    footer.disabled();
-                    nextStep.nextPromise.onNext(this, current, nextStep)
-                            .then(proceed -> {
-                                if (proceed) {
-                                    select(nextStep);
-                                }
-                                return null;
-                            })
-                            .catch_(error -> null)
-                            .finally_(footer::restore);
-                } else {
-                    select(nextStep);
-                }
+                navigateForward(nextStep);
+            } else if (current.type == review) {
+                close();
             }
         }
     }
@@ -379,7 +354,70 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     public void select(WizardStep step) {
-        if (step != null && !step.disabled) {
+        if (step != null && step != current && !step.disabled) {
+            if (current != null) {
+                if (isBefore(step, current)) {
+                    navigateBack(step);
+                } else if (isAfter(step, current)) {
+                    navigateForward(step);
+                }
+            } else {
+                navigateTo(step);
+            }
+        }
+    }
+
+    public void cancel() {
+        close();
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void navigateBack(WizardStep step) {
+        if (current.previousHandler != null) {
+            if (current.previousHandler.onPrevious(this, current, step)) {
+                navigateTo(step);
+            }
+        } else if (current.previousPromise != null) {
+            footer.disabled();
+            current.previousPromise.onPrevious(this, current, step)
+                    .then(proceed -> {
+                        if (proceed) {
+                            navigateTo(step);
+                        }
+                        return null;
+                    })
+                    .catch_(error -> null)
+                    .finally_(footer::restore);
+        } else {
+            navigateTo(step);
+        }
+    }
+
+    private void navigateForward(WizardStep step) {
+        if (current.nextHandler != null) {
+            if (current.nextHandler.onNext(this, current, step)) {
+                navigateTo(step);
+            }
+        } else if (current.nextPromise != null) {
+            footer.disabled();
+            current.nextPromise.onNext(this, current, step)
+                    .then(proceed -> {
+                        if (proceed) {
+                            navigateTo(step);
+                        }
+                        return null;
+                    })
+                    .catch_(error -> null)
+                    .finally_(footer::restore);
+        } else {
+            navigateTo(step);
+        }
+    }
+
+    private void navigateTo(WizardStep step) {
+        if (step != null && step != current && !step.disabled) {
+            WizardStep currentBackup = current;
             if (progressive && current != null) {
                 if (isBefore(step, current)) {
                     // Remove all previous nav items
@@ -416,14 +454,11 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             if (current.enterHandler != null) {
                 current.enterHandler.onEnter(this, current);
             }
+            for (WizardStepChangeHandler handler : stepChangeHandlers) {
+                handler.onStepChange(this, currentBackup, current);
+            }
         }
     }
-
-    public void cancel() {
-        close();
-    }
-
-    // ------------------------------------------------------ internal
 
     private WizardStep previousEnabledStep(WizardStep from) {
         WizardStep step = from;
