@@ -148,7 +148,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
 
     public EmptyState spinner(String label) {
         removeIcon();
-        iconContainer.appendChild(Spinner.spinner(Size.xl, label).element());
+        iconContainer.appendChild(Spinner.spinner(label).element());
         return this;
     }
 
