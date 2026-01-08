@@ -32,6 +32,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;

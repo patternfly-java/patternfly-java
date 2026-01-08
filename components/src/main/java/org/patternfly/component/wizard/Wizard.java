@@ -30,6 +30,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;

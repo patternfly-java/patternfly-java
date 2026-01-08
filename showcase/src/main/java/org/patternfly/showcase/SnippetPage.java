@@ -30,10 +30,10 @@ import org.jboss.elemento.router.Place;
 import org.patternfly.component.content.Content;
 import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
-import org.patternfly.layout.flex.Direction;
 import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.layout.Layout;
+
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
@@ -66,7 +66,6 @@ import static org.patternfly.icon.IconSets.fas.link;
 import static org.patternfly.icon.IconSets.fas.swatchbook;
 import static org.patternfly.icon.IconSets.patternfly.catalog;
 import static org.patternfly.layout.flex.AlignItems.center;
-import static org.patternfly.layout.flex.Direction.column;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.SpaceItems.sm;
 import static org.patternfly.layout.stack.Stack.stack;

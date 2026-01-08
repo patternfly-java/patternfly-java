@@ -54,6 +54,7 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Size;
+
 import elemental2.core.JsDate;
 import elemental2.core.JsRegExp;
 import elemental2.dom.HTMLElement;

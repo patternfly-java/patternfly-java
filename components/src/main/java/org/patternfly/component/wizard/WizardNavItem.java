@@ -25,7 +25,6 @@ import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
