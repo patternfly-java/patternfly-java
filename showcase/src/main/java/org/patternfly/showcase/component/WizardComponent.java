@@ -19,6 +19,8 @@ import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.intl.DateTimeFormat;
+import org.jboss.elemento.intl.DateTimeFormatOptions;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.Severity;
 import org.patternfly.component.emptystate.EmptyState;
@@ -29,6 +31,7 @@ import org.patternfly.component.form.TextInput;
 import org.patternfly.component.help.HelperText;
 import org.patternfly.component.help.HelperTextItem;
 import org.patternfly.component.progress.Progress;
+import org.patternfly.component.slider.Slider;
 import org.patternfly.component.switch_.Switch;
 import org.patternfly.component.wizard.Wizard;
 import org.patternfly.component.wizard.WizardContext;
@@ -39,26 +42,35 @@ import org.patternfly.component.wizard.WizardHeaderTitle;
 import org.patternfly.component.wizard.WizardNav;
 import org.patternfly.component.wizard.WizardNavItem;
 import org.patternfly.component.wizard.WizardStep;
+import org.patternfly.component.wizard.WizardStepChangeHandler;
 import org.patternfly.component.wizard.WizardStepEnterHandler;
+import org.patternfly.component.wizard.WizardStepLeaveHandler;
 import org.patternfly.component.wizard.WizardStepNextHandler;
 import org.patternfly.component.wizard.WizardStepNextPromise;
 import org.patternfly.component.wizard.WizardStepPreviousHandler;
+import org.patternfly.component.wizard.WizardStepPreviousPromise;
 import org.patternfly.component.wizard.WizardStepType;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Size;
+import elemental2.core.JsDate;
 import elemental2.core.JsRegExp;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
+import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.clearInterval;
 import static elemental2.dom.DomGlobal.console;
+import static elemental2.dom.DomGlobal.navigator;
 import static elemental2.dom.DomGlobal.setInterval;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.Elements.strong;
+import static org.jboss.elemento.intl.Format.medium;
 import static org.patternfly.component.Severity.danger;
 import static org.patternfly.component.ValidationStatus.default_;
 import static org.patternfly.component.ValidationStatus.error;
@@ -84,6 +96,7 @@ import static org.patternfly.component.help.HelperTextItem.helperTextItem;
 import static org.patternfly.component.modal.Modal.modal;
 import static org.patternfly.component.progress.MeasureLocation.outside;
 import static org.patternfly.component.progress.Progress.progress;
+import static org.patternfly.component.slider.Slider.slider;
 import static org.patternfly.component.switch_.Switch.switch_;
 import static org.patternfly.component.wizard.Wizard.wizard;
 import static org.patternfly.component.wizard.WizardHeader.wizardHeader;
@@ -97,11 +110,14 @@ import static org.patternfly.icon.IconSets.fas.cogs;
 import static org.patternfly.icon.IconSets.fas.utensils;
 import static org.patternfly.layout.bullseye.Bullseye.bullseye;
 import static org.patternfly.layout.bullseye.BullseyeItem.bullseyeItem;
-import static org.patternfly.layout.flex.AlignSelf.center;
+import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Direction.column;
+import static org.patternfly.layout.flex.Direction.row;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.FlexItem.flexItem;
+import static org.patternfly.layout.flex.FlexShorthand._1;
 import static org.patternfly.layout.flex.Gap.md;
+import static org.patternfly.layout.flex.Gap.sm;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
@@ -340,8 +356,6 @@ public class WizardComponent extends SnippetPage {
                 "This wizard demonstrates how to use various handlers and promises to control the wizard flow.",
                 code("wizard-hap"), () -> {
             // @code-start:wizard-hap
-            Wizard wizard = wizard();
-
             // ------------------------------------------------------ (n)ext (h)andler
             String nhId = "wizard-hap-nh";
             TextInput nhInput = textInput(number, nhId).value("2");
@@ -404,19 +418,30 @@ public class WizardComponent extends SnippetPage {
                     "Throwing everything together 🍳",
                     "Letting it simmer for a bit ⏳",
                     "Tasting and adjusting the seasoning 😋",
-                    "Plating it nicely 🍽️",
+                    "Plating it nicely 🍽",
                     "Dinner is served ✅"
             };
 
             // ------------------------------------------------------ (n)ext (p)romise
-            double[] npHandle = new double[1];
             int[] npIndex = new int[1];
+            double[] npHandle = new double[1];
+            double[] npInterval = new double[]{1200};
             Switch npSwitch = switch_("wizard-hap-np", "wizard-hap-np", true)
                     .label("Be a good chef.");
+            HTMLContainerBuilder<HTMLElement> npMs = span();
+            Slider npSpeed = slider()
+                    .value(npInterval[0])
+                    .range(200, 2000, 200)
+                    .showTicks(false)
+                    .showBoundaries(false)
+                    .onChange((e, c, value) -> {
+                        npInterval[0] = value;
+                        npMs.text(value + " ms");
+                    });
             EmptyStateBody npBody = emptyStateBody();
             EmptyState npEmptyState = emptyState().size(xs).addBody(npBody);
             WizardStepEnterHandler npEnter = (wzd, step) -> {
-                npEmptyState.clearStatus().icon(utensils()).text("I'm hungry.");
+                npEmptyState.clearStatus().icon(utensils()).text("I'm hungry");
                 npBody.text("Think of your favorite meal and press 'Next'.");
             };
             WizardStepNextPromise np = (wzd, current, next) -> {
@@ -435,12 +460,61 @@ public class WizardComponent extends SnippetPage {
                             }
                             resolve.onInvoke(success);
                         }
-                    }, 1000);
+                    }, npInterval[0]);
                 });
             };
 
+            // ------------------------------------------------------ (p)ext (p)romise
+            int[] ppIndex = new int[1];
+            double[] ppHandle = new double[1];
+            double[] ppInterval = new double[]{1200};
+            Switch ppSwitch = switch_("wizard-hap-pp", "wizard-hap-pp", true)
+                    .label("Be a good chef.");
+            HTMLContainerBuilder<HTMLElement> ppMs = span();
+            Slider ppSpeed = slider()
+                    .value(npInterval[0])
+                    .range(200, 2000, 200)
+                    .showTicks(false)
+                    .showBoundaries(false)
+                    .onChange((e, c, value) -> {
+                        ppInterval[0] = value;
+                        ppMs.text(value + " ms");
+                    });
+            EmptyStateBody ppBody = emptyStateBody();
+            EmptyState ppEmptyState = emptyState().size(xs).addBody(ppBody);
+            WizardStepEnterHandler ppEnter = (wzd, step) -> {
+                ppEmptyState.clearStatus().icon(utensils()).text("I'm hungry");
+                ppBody.text("Think of your favorite meal and press 'Back'.");
+            };
+            WizardStepPreviousPromise pp = (wzd, current, next) -> {
+                ppIndex[0] = 0;
+                boolean success = ppSwitch.value();
+                int end = success ? steps.length : 3 + (int) (Math.random() * (steps.length - 3));
+                ppEmptyState.clearStatus().spinner().text("I'm hungry.");
+                return new Promise<>((resolve, reject) -> {
+                    ppHandle[0] = setInterval((__) -> {
+                        ppBody.text(steps[ppIndex[0]++]);
+                        if (ppIndex[0] > end) {
+                            clearInterval(ppHandle[0]);
+                            if (!success) {
+                                ppEmptyState.status(danger).text("The chef failed");
+                                ppBody.text("Try again later.");
+                            }
+                            resolve.onInvoke(success);
+                        }
+                    }, ppInterval[0]);
+                });
+            };
+
+            // ------------------------------------------------------ enter and leave handlers
+            DateTimeFormat format = new DateTimeFormat(navigator.language, DateTimeFormatOptions.create().timeStyle(medium));
+            HTMLContainerBuilder<HTMLElement> ehTime = strong("n/a");
+            WizardStepEnterHandler eh = (wzd, step) -> ehTime.text(format.format(new JsDate()));
+            HTMLContainerBuilder<HTMLElement> lhTime = strong("n/a");
+            WizardStepLeaveHandler lh = (wzd, step) -> lhTime.text(format.format(new JsDate()));
+
             return div()
-                    .add(wizard.height(450)
+                    .add(wizard().height(450)
                             .onStepChange((wzd, previous, current) -> {
                                 if (previous == null) {
                                     console.log("Step changed to '%s'", current.identifier());
@@ -449,7 +523,7 @@ public class WizardComponent extends SnippetPage {
                                             previous.identifier(), current.identifier());
                                 }
                             })
-                            .addItem(wizardStep("wizard-hap-step-0", "Next handler")
+                            .addItem(wizardStep("wizard-hap-step-nh", "Next handler")
                                     .add(content(p).editorial()
                                             .add("This step has a ")
                                             .add(Elements.code("WizardStepNextHandler"))
@@ -457,10 +531,28 @@ public class WizardComponent extends SnippetPage {
                                             .add(Elements.code("true"))
                                             .add(" if the number is even."))
                                     .add(content(p).editorial()
-                                            .add("This prevents going to any next steps until the number is even."))
+                                            .add("This prevents a next step from being executed as long as the number is not even."))
                                     .add(nhForm)
                                     .nextIf(nh))
-                            .addItem(wizardStep("wizard-hap-step-1", "Previous handler")
+                            .addItem(wizardStep("wizard-hap-step-np", "Next promise")
+                                    .add(flex().direction(column).gap(md)
+                                            .addItem(flexItem()
+                                                    .add(content(p).editorial()
+                                                            .add("This step has a ")
+                                                            .add(Elements.code("WizardStepNextPromise"))
+                                                            .add(" that simulates cooking a meal and you can decide whether you get something to eat or not."))
+                                                    .add(flex().direction(row).gap(md).alignItems(center)
+                                                            .addItem(flexItem().add(npSwitch))
+                                                            .addItem(flexItem().flex(_1)
+                                                                    .add(flex().direction(row).gap(sm).alignItems(center)
+                                                                            .addItem(flexItem().add("Cooking speed: "))
+                                                                            .addItem(flexItem().flex(_1).add(npSpeed))
+                                                                            .addItem(flexItem().add(npMs))))))
+                                            .addItem(flexItem()
+                                                    .add(npEmptyState)))
+                                    .onEnter(npEnter)
+                                    .nextIfPromised(np))
+                            .addItem(wizardStep("wizard-hap-step-ph", "Previous handler")
                                     .add(content(p).editorial()
                                             .add("This step has a ")
                                             .add(Elements.code("WizardStepPreviousHandler"))
@@ -468,41 +560,46 @@ public class WizardComponent extends SnippetPage {
                                             .add(Elements.code("true"))
                                             .add(" if the number is odd."))
                                     .add(content(p).editorial()
-                                            .add("This prevents going to any previous steps until the number is odd."))
+                                            .add("This prevents a previous step from being executed as long as the number is not odd."))
                                     .add(phForm)
                                     .previousIf(ph))
-                            .addItem(wizardStep("wizard-hap-step-2", "Next promise")
+                            .addItem(wizardStep("wizard-hap-step-pp", "Previous promise")
                                     .add(flex().direction(column).gap(md)
                                             .addItem(flexItem()
                                                     .add(content(p).editorial()
                                                             .add("This step has a ")
-                                                            .add(Elements.code("WizardStepNextPromise"))
+                                                            .add(Elements.code("WizardStepPreviousPromise"))
                                                             .add(" that simulates cooking a meal and you can decide whether you get something to eat or not."))
-                                                    .add(npSwitch))
-                                            .addItem(flexItem().alignSelf(center)
-                                                    .add(npEmptyState)))
-                                    .onEnter(npEnter)
-                                    .nextIfPromised(np))
-                            .addItem(wizardStep("wizard-hap-step-3", "Previous promise")
-                                    .add(content(p).editorial()
-                                            .add("This step has a ")
-                                            .add(Elements.code("WizardStepPreviousPromise"))
-                                            .add(" that simulates cooking a meal and you can decide whether it fails or not."))
-                                    .add(content(p).editorial()
-                                            .add("This prevents going to any previous steps until dinner is served.")))
-                            .addItem(wizardStep("wizard-hap-step-4", "Enter handler")
+                                                    .add(flex().direction(row).gap(md).alignItems(center)
+                                                            .addItem(flexItem().add(ppSwitch))
+                                                            .addItem(flexItem().flex(_1)
+                                                                    .add(flex().direction(row).gap(sm).alignItems(center)
+                                                                            .addItem(flexItem().add("Cooking speed: "))
+                                                                            .addItem(flexItem().flex(_1).add(ppSpeed))
+                                                                            .addItem(flexItem().add(ppMs))))))
+                                            .addItem(flexItem()
+                                                    .add(ppEmptyState)))
+                                    .onEnter(ppEnter)
+                                    .previousIfPromised(pp))
+                            .addItem(wizardStep("wizard-hap-step-eh", "Enter handler")
                                     .add(content(p).editorial()
                                             .add("This step has a ")
                                             .add(Elements.code("WizardStepEnterPromise"))
-                                            .add(" that logs to the console when the step is entered."))
-                                    .onEnter((wzd, step) -> console.log("Entered step '%s'", step.identifier())))
-                            .addItem(wizardStep("wizard-hap-step-5", "Leave handler")
+                                            .add(" that logs when you've entered this step."))
+                                    .add(content(p).editorial()
+                                            .add("Step entered at ")
+                                            .add(ehTime))
+                                    .onEnter(eh))
+                            .addItem(wizardStep("wizard-hap-step-lh", "Leave handler")
                                     .add(content(p).editorial()
                                             .add("This step has a ")
                                             .add(Elements.code("WizardStepLeavePromise"))
-                                            .add(" that logs to the console when the step is left."))
-                                    .onLeave((wzd, step) -> console.log("Left step '%s'", step.identifier())))
-                            .addItem(wizardStep("wizard-hap-step-6", "Review", review)
+                                            .add(" that logs when you've left this step."))
+                                    .add(content(p).editorial()
+                                            .add("Step left at ")
+                                            .add(lhTime))
+                                    .onLeave(lh))
+                            .addItem(wizardStep("wizard-hap-step-rvw", "Review", review)
                                     .add(bullseye().addItem(bullseyeItem().add(emptyState().size(xs)
                                             .icon(birthdayCake())
                                             .text("Congratulations!")
@@ -522,9 +619,14 @@ public class WizardComponent extends SnippetPage {
         addApiDoc(WizardHeaderTitle.class, subcomponent);
         addApiDoc(WizardNav.class, subcomponent);
         addApiDoc(WizardNavItem.class, subcomponent);
-        addApiDoc(WizardStepNextHandler.class, other);
-        addApiDoc(WizardStepPreviousHandler.class, other);
         addApiDoc(WizardStep.class, subcomponent);
+        addApiDoc(WizardStepChangeHandler.class, other);
+        addApiDoc(WizardStepEnterHandler.class, other);
+        addApiDoc(WizardStepLeaveHandler.class, other);
+        addApiDoc(WizardStepNextHandler.class, other);
+        addApiDoc(WizardStepNextPromise.class, other);
+        addApiDoc(WizardStepPreviousHandler.class, other);
+        addApiDoc(WizardStepPreviousPromise.class, other);
         addApiDoc(WizardStepType.class, other);
     }
 }
