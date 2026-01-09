@@ -197,7 +197,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
         return add(head);
     }
 
-    public DrawerPanel addBody(DrawerPanelBody body) {
+    public DrawerPanel addBody(DrawerBody body) {
         return add(body);
     }
 

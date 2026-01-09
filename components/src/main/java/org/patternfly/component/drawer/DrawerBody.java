@@ -16,8 +16,8 @@
 package org.patternfly.component.drawer;
 
 import org.jboss.elemento.ElementTextMethods;
+import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Modifiers.Padding;
-
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -28,28 +28,29 @@ import static org.patternfly.style.Classes.drawer;
 /**
  * Subcomponent for elements in a {@link DrawerContent}.
  */
-public class DrawerContentBody extends DrawerSubComponent<HTMLDivElement, DrawerContentBody> implements
-        ElementTextMethods<HTMLDivElement, DrawerContentBody>,
-        Padding<HTMLDivElement, DrawerContentBody> {
+public class DrawerBody extends DrawerSubComponent<HTMLDivElement, DrawerBody> implements
+        ElementTextMethods<HTMLDivElement, DrawerBody>,
+        Padding<HTMLDivElement, DrawerBody>,
+        NoPadding<HTMLDivElement, DrawerBody> {
 
     // ------------------------------------------------------ factory
 
-    public static DrawerContentBody drawerContentBody() {
-        return new DrawerContentBody();
+    public static DrawerBody drawerBody() {
+        return new DrawerBody();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dcb";
+    public static final String SUB_COMPONENT_NAME = "db";
 
-    DrawerContentBody() {
+    DrawerBody() {
         super(SUB_COMPONENT_NAME, div().css(component(drawer, body)).element());
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public DrawerContentBody that() {
+    public DrawerBody that() {
         return this;
     }
 }

@@ -17,12 +17,11 @@ package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.drawer.Drawer;
+import org.patternfly.component.drawer.DrawerBody;
 import org.patternfly.component.drawer.DrawerCloseButton;
 import org.patternfly.component.drawer.DrawerColor;
 import org.patternfly.component.drawer.DrawerContent;
-import org.patternfly.component.drawer.DrawerContentBody;
 import org.patternfly.component.drawer.DrawerPanel;
-import org.patternfly.component.drawer.DrawerPanelBody;
 import org.patternfly.component.drawer.DrawerPanelHead;
 import org.patternfly.component.drawer.DrawerSection;
 import org.patternfly.component.drawer.Position;
@@ -34,11 +33,10 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.drawer.Drawer.drawer;
+import static org.patternfly.component.drawer.DrawerBody.drawerBody;
 import static org.patternfly.component.drawer.DrawerCloseButton.drawerCloseButton;
 import static org.patternfly.component.drawer.DrawerContent.drawerContent;
-import static org.patternfly.component.drawer.DrawerContentBody.drawerContentBody;
 import static org.patternfly.component.drawer.DrawerPanel.drawerPanel;
-import static org.patternfly.component.drawer.DrawerPanelBody.drawerPanelBody;
 import static org.patternfly.component.drawer.DrawerPanelHead.drawerPanelHead;
 import static org.patternfly.component.drawer.DrawerSection.drawerSection;
 import static org.patternfly.component.drawer.Position.bottom;
@@ -73,7 +71,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -93,7 +91,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.position(end)
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -113,7 +111,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.position(start)
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -134,7 +132,7 @@ public class DrawerComponent extends SnippetPage {
                     .add(div().style("height", "400px")
                             .add(drawer.position(bottom)
                                     .addContent(drawerContent()
-                                            .addBody(drawerContentBody()
+                                            .addBody(drawerBody()
                                                     .text(LoremIpsum.paragraphs(20))))
                                     .addPanel(drawerPanel()
                                             .addHead(drawerPanelHead()
@@ -154,7 +152,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.inline()
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -174,7 +172,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.inline().position(end)
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -194,7 +192,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.inline().position(start)
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -214,20 +212,20 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text("content-body"))
-                                    .addBody(drawerContentBody().padding()
+                                    .addBody(drawerBody().padding()
                                             .text("content-body with padding"))
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text("content-body")))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
                                             .add(title(3, _2xl, "drawer title"))
                                             .addCloseButton(drawerCloseButton())
                                             .add("drawer-panel"))
-                                    .addBody(drawerPanelBody().noPadding()
+                                    .addBody(drawerBody().noPadding()
                                             .text("drawer-panel with no padding"))
-                                    .addBody(drawerPanelBody()
+                                    .addBody(drawerBody()
                                             .text("drawer-panel"))))
                     .element();
             // @code-end:drawer-stacked
@@ -243,7 +241,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody().padding()
+                                    .addBody(drawerBody().padding()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -263,7 +261,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead().noPadding()
@@ -284,7 +282,7 @@ public class DrawerComponent extends SnippetPage {
                     .add(drawer
                             .addSection(drawerSection().text("drawer-section above"))
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -305,7 +303,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.static_()
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .addHead(drawerPanelHead()
@@ -325,7 +323,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .widths(breakpoints(default_, width33))
@@ -346,7 +344,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .resizable()
@@ -368,7 +366,7 @@ public class DrawerComponent extends SnippetPage {
                             .onClick((event, btn) -> drawer.toggle()))
                     .add(drawer.position(start)
                             .addContent(drawerContent()
-                                    .addBody(drawerContentBody()
+                                    .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
                                     .resizable().increment(50)
@@ -391,7 +389,7 @@ public class DrawerComponent extends SnippetPage {
                     .add(div().style("height", "400px")
                             .add(drawer.position(bottom)
                                     .addContent(drawerContent()
-                                            .addBody(drawerContentBody()
+                                            .addBody(drawerBody()
                                                     .text(LoremIpsum.paragraphs(20))))
                                     .addPanel(drawerPanel()
                                             .resizable()
@@ -405,12 +403,11 @@ public class DrawerComponent extends SnippetPage {
 
         startApiDocs(Drawer.class);
         addApiDoc(Drawer.class, component);
+        addApiDoc(DrawerBody.class, subcomponent);
         addApiDoc(DrawerCloseButton.class, subcomponent);
         addApiDoc(DrawerColor.class, modifier);
         addApiDoc(DrawerContent.class, subcomponent);
-        addApiDoc(DrawerContentBody.class, subcomponent);
         addApiDoc(DrawerPanel.class, subcomponent);
-        addApiDoc(DrawerPanelBody.class, subcomponent);
         addApiDoc(DrawerPanelHead.class, subcomponent);
         addApiDoc(DrawerSection.class, subcomponent);
         addApiDoc(Position.class, modifier);

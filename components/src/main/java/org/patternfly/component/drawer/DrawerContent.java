@@ -44,7 +44,7 @@ public class DrawerContent extends DrawerSubComponent<HTMLDivElement, DrawerCont
 
     // ------------------------------------------------------ add
 
-    public DrawerContent addBody(DrawerContentBody body) {
+    public DrawerContent addBody(DrawerBody body) {
         return add(body);
     }
 
