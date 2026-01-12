@@ -29,7 +29,7 @@
 
     <artifactId>patternfly-java-apidoc</artifactId>
     <packaging>jar</packaging>
-    <name>PatternFly Java API</name>
+    <name>PatternFly Java</name>
     <description>Artificial module containing all sources to build the aggregate PatternFly Java API documentation.
     </description>
 

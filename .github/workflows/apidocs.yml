@@ -24,10 +24,10 @@ jobs:
       - run: $MVN install
         working-directory: bom
       - run: |
-          $MVN -Dquickly clean install
-          $MVN -P snippets javadoc:aggregate
-          $MVN -P snippets javadoc:javadoc
-          $MVN -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
+          mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
+          mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
+          mvn javadoc:javadoc
+        working-directory: apidoc
       - uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}

@@ -94,7 +94,7 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-cd apidocs
+cd apidoc
 mvn clean
 mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
 mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
@@ -102,4 +102,4 @@ mvn javadoc:javadoc
 
 cd $script_dir
 msg ""
-msg "API documentation generated in ${CYAN}apidocs/target/reports/apidocs${NOFORMAT}"
+msg "API documentation generated in ${CYAN}apidoc/target/reports/apidocs${NOFORMAT}"

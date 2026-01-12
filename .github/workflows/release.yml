@@ -85,16 +85,16 @@ jobs:
       - run: $MVN install
         working-directory: bom
       - run: |
-          $MVN -Dquickly clean install
-          $MVN -P snippets javadoc:aggregate
-          $MVN -P snippets javadoc:javadoc
-          $MVN -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
+          $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
+          $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
+          $MVN javadoc:javadoc
+        working-directory: apidoc
       - uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/apidocs
           branch: gh-pages
-          folder: ./target/site/apidocs
+          folder: ./apidoc/target/site/apidocs
           clean: true
           force: true
           single-commit: true
