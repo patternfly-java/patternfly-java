@@ -39,7 +39,7 @@ import static org.patternfly.style.Classes.modifier;
  * </p>
  *
  * <p>
- * {@snippet class = BreakpointsDemo region = collector}
+ * {@snippet class=BreakpointsDemo region=collector}
  * </p>
  *
  * @param <V> the type of the values to be collected

@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Fix drawer body components
+- Fix API documentation
 
 ## [0.4.4] - 2026-01-08
 

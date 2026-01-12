@@ -77,11 +77,11 @@ import static org.patternfly.style.Classes.subnav;
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
  * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
- * {@snippet class = NavigationDemo region = horizontal}
+ * {@snippet class=NavigationDemo region=horizontal}
  * <p>
- * {@snippet class = NavigationDemo region = grouped}
+ * {@snippet class=NavigationDemo region=grouped}
  * <p>
- * {@snippet class = NavigationDemo region = expandable}
+ * {@snippet class=NavigationDemo region=expandable}
  *
  * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */

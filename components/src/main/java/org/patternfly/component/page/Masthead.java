@@ -38,7 +38,7 @@ import static org.patternfly.style.Classes.masthead;
  * <p>
  * All pages should share a common masthead. Use {@link Page#masthead()} to get the masthead.
  * <p>
- * {@snippet class = PageDemo region = masthead}
+ * {@snippet class=PageDemo region=masthead}
  *
  * @see <a href= "https://www.patternfly.org/components/masthead">https://www.patternfly.org/components/masthead</a>
  */

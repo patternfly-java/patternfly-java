@@ -284,24 +284,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <configuration>
-                        <additionalOptions>--snippet-path ${project.basedir}/src/demo/java</additionalOptions>
-                        <detectLinks>true</detectLinks>
-                        <doclint>none</doclint>
-                        <failOnError>false</failOnError>
-                        <links>
-                            <link>https://hal.github.io/elemento/apidocs/</link>
-                            <link>https://www.gwtproject.org/javadoc/latest/</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}/</link>
-                            <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-promise/${version.elemental2}/</link>
-                            <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/
-                            </link>
-                        </links>
-                        <show>public</show>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -330,7 +312,6 @@
                 <groupId>com.github.ferstl</groupId>
                 <artifactId>depgraph-maven-plugin</artifactId>
                 <configuration>
-
                     <classpathScope>compile</classpathScope>
                     <createImage>true</createImage>
                     <customStyleConfiguration>degraph-style.json</customStyleConfiguration>
@@ -441,6 +422,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalOptions>--snippet-path=${project.basedir}/src/demo/java</additionalOptions>
+                    <debug>true</debug>
+                    <detectLinks>true</detectLinks>
+                    <doclint>none</doclint>
+                    <failOnError>false</failOnError>
+                    <links>
+                        <link>https://hal.github.io/elemento/apidocs/</link>
+                        <link>https://www.gwtproject.org/javadoc/latest/</link>
+                        <link>https://javadoc.io/doc/org.gwtproject.event/gwt-event/${version.gwt.event}/</link>
+                        <link>https://javadoc.io/doc/org.gwtproject.safehtml/gwt-safehtml/${version.gwt.safehtml}/</link>
+                        <link>https://javadoc.io/doc/com.google.elemental2/elemental2-core/${version.elemental2}/</link>
+                        <link>https://javadoc.io/doc/com.google.elemental2/elemental2-dom/${version.elemental2}/</link>
+                        <link>https://javadoc.io/doc/com.google.elemental2/elemental2-promise/${version.elemental2}/</link>
+                        <link>https://javadoc.io/doc/com.google.elemental2/elemental2-webstorage/${version.elemental2}/
+                        </link>
+                    </links>
+                    <show>public</show>
+                    <sourcepath>${project.basedir}/src/main/java:${project.basedir}/src/demo/java</sourcepath>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -542,70 +547,6 @@
             <modules>
                 <module>showcase</module>
             </modules>
-        </profile>
-        <profile>
-            <id>snippets</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>copy-apidocs</id>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <mkdir dir="target/reports/apidocs/org/patternfly"/>
-                                        <copy todir="target/reports/apidocs/org/patternfly" overwrite="true"
-                                              failonerror="false">
-                                            <fileset dir="components/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="core/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="extensions/codeeditor/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="extensions/finder/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="gwt/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="icons/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="j2cl/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="layouts/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                            <fileset dir="tokens/target/reports/apidocs/org/patternfly">
-                                                <exclude name="**/class-use/**"/>
-                                                <exclude name="package-*.html"/>
-                                            </fileset>
-                                        </copy>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 

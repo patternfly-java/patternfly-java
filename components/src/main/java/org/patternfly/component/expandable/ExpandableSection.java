@@ -76,7 +76,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
      * If you want to create a detached expandable section, you must use the same ID for the two expandable sections, one
      * containing the {@link ExpandableSectionToggle} and one containing the {@link ExpandableSectionContent}.
      * <p>
-     * {@snippet class = ExpandableSectionDemo region = detached}
+     * {@snippet class=ExpandableSectionDemo region=detached}
      *
      * @param id the unique identifier for the expandable section
      * @return a new instance of {@link ExpandableSection} initialized with the provided ID
@@ -153,7 +153,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
      * Make this expandable section detached from another one. Must be called on both the expandable section containing the
      * {@link ExpandableSectionToggle} and the expandable section containing the {@link ExpandableSectionContent}.
      * <p>
-     * {@snippet class = ExpandableSectionDemo region = detached}
+     * {@snippet class=ExpandableSectionDemo region=detached}
      */
     public ExpandableSection detached() {
         this.detached = true;

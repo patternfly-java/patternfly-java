@@ -55,7 +55,7 @@ import static org.patternfly.style.Classes.page;
 /**
  * The page component is used to define the basic layout of a page with either vertical or horizontal navigation.
  * <p>
- * {@snippet class = PageDemo region = page}
+ * {@snippet class=PageDemo region=page}
  *
  * @see <a href="https://www.patternfly.org/components/page">https://www.patternfly.org/components/page</a>
  */

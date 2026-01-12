@@ -44,7 +44,7 @@ import static org.patternfly.style.TypedModifier.swap;
  * An icon component is a container that allows for icons of varying dimensions, as well as spinners, to seamlessly replace each
  * other without shifting surrounding content.
  * <p>
- * {@snippet class = IconDemo region = icon}
+ * {@snippet class=IconDemo region=icon}
  *
  * @see <a href="https://www.patternfly.org/components/icon">https://www.patternfly.org/components/icon</a>
  */

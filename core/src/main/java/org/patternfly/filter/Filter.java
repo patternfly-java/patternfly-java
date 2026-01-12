@@ -36,7 +36,7 @@ import static org.patternfly.filter.FilterOperator.AND;
  * The filter class supports change notifications whenever the filter state changes via the
  * {@link #onChange(FilterChangeHandler)} method and can be persisted using {@link #save()} and {@link #load(String)} methods.
  * <p>
- * {@snippet class = FilterDemo region = filter}
+ * {@snippet class=FilterDemo region=filter}
  *
  * @param <T> The type of object that this filter will be applied to.
  */

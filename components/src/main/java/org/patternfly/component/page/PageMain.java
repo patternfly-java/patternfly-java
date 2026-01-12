@@ -42,7 +42,7 @@ import static org.patternfly.style.Classes.page;
  * Container for the main page area. The page main container typically contains multiple {@link PageGroup}s and/or
  * {@link PageSection}s.
  * <p>
- * {@snippet class = PageDemo region = pageMain}
+ * {@snippet class=PageDemo region=pageMain}
  */
 public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
         ElementContainerDelegate<HTMLElement, PageMain>,

@@ -81,7 +81,7 @@ import static org.patternfly.style.Variables.FlexBasis;
 
 /**
  * The sliding panel in a {@link Drawer} component. Elements should not be added directly to this subcomponent, but instead
- * nested inside a {@link DrawerPanelBody} or {@link DrawerPanelHead}.
+ * nested inside a {@link DrawerBody} or {@link DrawerPanelHead}.
  */
 public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel> implements Attachable {
 

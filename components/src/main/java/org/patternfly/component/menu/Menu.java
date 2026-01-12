@@ -83,7 +83,7 @@ import static org.patternfly.style.Variables.MaxHeight;
  * needs to choose between multiple values, options, or actions. A menu is most often paired with a {@link MenuToggle} as its
  * trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close.
  * <p>
- * {@snippet class = MenuDemo region = menu}
+ * {@snippet class=MenuDemo region=menu}
  *
  * @see <a href="https://www.patternfly.org/components/menu">https://www.patternfly.org/components/menu</a>
  */

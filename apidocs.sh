@@ -94,7 +94,12 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-./mvnw -Dquickly clean install
-./mvnw -P snippets javadoc:aggregate
-./mvnw -P snippets javadoc:javadoc
-./mvnw -P snippets org.apache.maven.plugins:maven-antrun-plugin:run@copy-apidocs
+cd apidocs
+mvn clean
+mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
+mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
+mvn javadoc:javadoc
+
+cd $script_dir
+msg ""
+msg "API documentation generated in ${CYAN}apidocs/target/reports/apidocs${NOFORMAT}"

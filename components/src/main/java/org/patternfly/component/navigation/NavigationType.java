@@ -24,14 +24,14 @@ public interface NavigationType {
         /**
          * No groups, only one level of {@link NavigationItem}s allowed.
          * <p>
-         * {@snippet class = NavigationDemo region = flat}
+         * {@snippet class=NavigationDemo region=flat}
          */
         flat,
 
         /**
          * Only {@link NavigationGroup}s with one level of {@link NavigationItem}s allowed. No mixed content.
          * <p>
-         * {@snippet class = NavigationDemo region = grouped}
+         * {@snippet class=NavigationDemo region=grouped}
          */
         grouped,
 
@@ -39,7 +39,7 @@ public interface NavigationType {
          * Mixed content of {@link NavigationGroup}s and {@link NavigationItem}s allowed. More than one level of nesting
          * possible.
          * <p>
-         * {@snippet class = NavigationDemo region = expandable}
+         * {@snippet class=NavigationDemo region=expandable}
          */
         expandable,
 
@@ -53,7 +53,7 @@ public interface NavigationType {
     /**
      * No groups, only one level of {@link NavigationItem}s allowed.
      * <p>
-     * {@snippet class = NavigationDemo region = horizontal}
+     * {@snippet class=NavigationDemo region=horizontal}
      */
     enum Horizontal implements NavigationType {
         primary,

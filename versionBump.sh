@@ -106,5 +106,9 @@ mvn --quiet versions:set -DnewVersion="${NEW_VERSION}" &> /dev/null
 msg "Install BOM ${CYAN}${NEW_VERSION}${NOFORMAT}"
 mvn --quiet install  &> /dev/null
 cd "${script_dir}"
+cd apidoc
+msg "Update API documentation version to ${CYAN}${NEW_VERSION}${NOFORMAT}"
+mvn --quiet versions:set -DnewVersion="${NEW_VERSION}" &> /dev/null
+cd "${script_dir}"
 msg "Update version to ${CYAN}${NEW_VERSION}${NOFORMAT}"
 mvn --quiet versions:set -DnewVersion="${NEW_VERSION}" &> /dev/null

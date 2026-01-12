@@ -64,15 +64,15 @@ import static org.patternfly.style.Breakpoint.xl;
  * Breakpoints can be created using either factory methods or a fluent API:
  * </p>
  * <p>
- * {@snippet class = BreakpointsDemo region = factoryAndFluent}
+ * {@snippet class=BreakpointsDemo region=factoryAndFluent}
  * </p>
  *
  * <p>
  * To get the CSS modifiers classes, use the {@code modifiers()} and {@code verticalModifiers()} methods. Depending on the
- * signature they return a list of CSS modifier classes, a single CSS modifier class or an empty string.
+ *  signature, they return a list of CSS modifier classes, a single CSS modifier class or an empty string.
  * </p>
  * <p>
- * {@snippet class = BreakpointsDemo region = modifiers}
+ * {@snippet class=BreakpointsDemo region=modifiers}
  * </p>
  *
  * @param <V> the type of values associated with each breakpoint

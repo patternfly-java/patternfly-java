@@ -24,7 +24,7 @@ import static org.patternfly.style.Classes.drawer;
 
 /**
  * The main content in a {@link Drawer} component. Elements should not be added directly to this subcomponent, but instead
- * nested inside a {@link DrawerContentBody}.
+ * nested inside a {@link DrawerBody}.
  */
 public class DrawerContent extends DrawerSubComponent<HTMLDivElement, DrawerContent> {
 
