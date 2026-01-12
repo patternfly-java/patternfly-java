@@ -84,6 +84,7 @@ jobs:
           cache: maven
       - run: $MVN install
         working-directory: bom
+      - run: $MVN install
       - run: |
           $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
           $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
@@ -94,7 +95,7 @@ jobs:
           token: ${{ secrets.PUBLISH_CONTENT }}
           repository-name: patternfly-java/apidocs
           branch: gh-pages
-          folder: ./apidoc/target/site/apidocs
+          folder: ./apidoc/target/reports/apidocs
           clean: true
           force: true
           single-commit: true
