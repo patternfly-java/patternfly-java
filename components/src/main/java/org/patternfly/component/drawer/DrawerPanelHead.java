@@ -16,6 +16,7 @@
 package org.patternfly.component.drawer;
 
 import org.patternfly.style.Modifiers.NoPadding;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
