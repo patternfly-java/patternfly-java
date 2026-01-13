@@ -14,11 +14,10 @@
  *  limitations under the License.
  */
 
-import org.patternfly.component.page.MastheadLogo;
-
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
 import static org.patternfly.component.page.MastheadContent.mastheadContent;
+import static org.patternfly.component.page.MastheadLogo.mastheadLogo;
 import static org.patternfly.component.page.MastheadMain.mastheadMain;
 import static org.patternfly.component.page.MastheadToggle.mastheadToggle;
 import static org.patternfly.component.page.Page.page;
@@ -30,6 +29,7 @@ import static org.patternfly.component.page.PageSidebar.pageSidebar;
 import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
 import static org.patternfly.component.toolbar.Toolbar.toolbar;
 
+@SuppressWarnings("unused")
 public class PageDemo {
 
     public void pageDemo() {
@@ -67,7 +67,7 @@ public class PageDemo {
                 .addMain(mastheadMain()
                         .addToggle(mastheadToggle())
                         .addBrand(mastheadBrand()
-                                .addLogo(MastheadLogo.mastheadLogo("/"))))
+                                .addLogo(mastheadLogo("/"))))
                 .addContent(mastheadContent()
                         .addToolbar(toolbar()));
         // @end region = masthead
