@@ -413,6 +413,7 @@
     "name": "number-input",
     "title": "Number input",
     "route": "/components/number-input",
+    "clazz": "org.patternfly.component.notification.NumberInput",
     "illustration": "number-input.png",
     "summary": "A <b>number input</b> combines a text input field with buttons to provide users with a quick and effective way to enter and modify a numeric value."
   },
