@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Upgrades
+
+- Bump Elemento to 2.4.4
+
 ## [0.4.6] - 2026-01-13
 
 ### Fixed

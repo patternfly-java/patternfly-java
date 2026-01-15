@@ -20,7 +20,6 @@ import java.util.function.BiConsumer;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.intl.DateTimeFormat;
-import org.jboss.elemento.intl.DateTimeFormatOptions;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.Severity;
 import org.patternfly.component.emptystate.EmptyState;
@@ -69,6 +68,8 @@ import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.p;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.strong;
+import static org.jboss.elemento.intl.DateTimeFormat.dateTimeFormat;
+import static org.jboss.elemento.intl.DateTimeFormatOptions.dateTimeFormatOptions;
 import static org.jboss.elemento.intl.Format.medium;
 import static org.patternfly.component.Severity.danger;
 import static org.patternfly.component.ValidationStatus.default_;
@@ -513,7 +514,7 @@ public class WizardComponent extends SnippetPage {
 
             // ------------------------------------------------------ enter and leave handlers
 
-            DateTimeFormat dtf = new DateTimeFormat(navigator.language, DateTimeFormatOptions.create().timeStyle(medium));
+            DateTimeFormat dtf = dateTimeFormat(navigator.language, dateTimeFormatOptions().timeStyle(medium));
             HTMLContainerBuilder<HTMLElement> ehTime = strong("n/a");
             WizardStepEnterHandler eh = (wzd, step) -> ehTime.text(dtf.format(new JsDate()));
             HTMLContainerBuilder<HTMLElement> lhTime = strong("n/a");

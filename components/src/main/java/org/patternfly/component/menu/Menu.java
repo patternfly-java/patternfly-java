@@ -455,6 +455,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
+    @SuppressWarnings({"unchecked", "RedundantSuppression"})
     Promise<Void> loadAll() {
         if (content != null) {
             List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();

@@ -23,7 +23,7 @@ jobs:
           cache: maven
       - run: $MVN install
         working-directory: bom
-      - run: $MVN install
+      - run: $MVN install -Dquickly
       - run: |
           mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
           mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos

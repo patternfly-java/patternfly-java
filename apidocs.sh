@@ -95,10 +95,10 @@ parse_params "$@"
 setup_colors
 
 cd apidoc
-mvn clean
-mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
-mvn org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
-mvn javadoc:javadoc
+./mvnw clean
+./mvnw org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
+./mvnw org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
+./mvnw javadoc:javadoc
 
 cd $script_dir
 msg ""
