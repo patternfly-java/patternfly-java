@@ -105,6 +105,8 @@ public enum ComponentType {
 
     NotificationDrawer("nd", "PF6/Component/NotificationDrawer"),
 
+    NumberInput("ni", "PF6/Component/NumberInput"),
+
     Page("pg", "PF6/Component/Page"),
 
     Panel("pnl", "PF6/Component/Panel"),

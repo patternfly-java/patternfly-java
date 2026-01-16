@@ -190,6 +190,7 @@ public interface Classes {
     String noSidebar = "no-sidebar";
     String notificationDrawer = "notification-drawer";
     String notify = "notify";
+    String numberInput = "number-input";
     String off = "off";
     String on = "on";
     String open = "open";
@@ -306,6 +307,7 @@ public interface Classes {
     String treeView = "tree-view";
     String truncate = "truncate";
     String typeahead = "typeahead";
+    String unit = "unit";
     String unread = "unread";
     String utilities = "utilities";
     String value = "value";
