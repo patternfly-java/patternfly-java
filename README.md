@@ -106,18 +106,19 @@ import "@patternfly-java/charts/dist/charts";
 
 PatternFly Java consists of these Maven modules (a-z):
 
-| Module                     | Description                      |
-|----------------------------|----------------------------------|
-| patternfly-java-bom        | Bill of materials                |
-| patternfly-java-charts     | PatternFly charts                |
-| patternfly-java-codeeditor | PatternFly code editor           |
-| patternfly-java-components | PatternFly components            |
-| patternfly-java-core       | Core PatternFly Java classes     |
-| patternfly-java-finder     | PatternFly Java Finder extension |
-| patternfly-java-gwt        | PatternFly Java for GWT          |
-| patternfly-java-icons      | PatternFly Java icons            |
-| patternfly-java-j2cl       | PatternFly Java for J2CL         |
-| patternfly-java-layouts    | PatternFly Java layouts          |
+| Module                     | Description           |
+|----------------------------|-----------------------|
+| patternfly-java-bom        | Bill of materials     |
+| patternfly-java-charts     | Charts                |
+| patternfly-java-codeeditor | Code editor extension |
+| patternfly-java-components | Components            |
+| patternfly-java-core       | Core classes          |
+| patternfly-java-finder     | Finder extension      |
+| patternfly-java-gwt        | GWT support           |
+| patternfly-java-icons      | Icons                 |
+| patternfly-java-j2cl       | J2CL support          |
+| patternfly-java-layouts    | Layouts               |
+| patternfly-java-tokens     | Tokens                |
 
 Here’s the dependency graph of these maven modules and their external dependencies:
 
