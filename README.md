@@ -109,6 +109,7 @@ PatternFly Java consists of these Maven modules (a-z):
 | Module                     | Description                      |
 |----------------------------|----------------------------------|
 | patternfly-java-bom        | Bill of materials                |
+| patternfly-java-charts     | PatternFly charts                |
 | patternfly-java-codeeditor | PatternFly code editor           |
 | patternfly-java-components | PatternFly components            |
 | patternfly-java-core       | Core PatternFly Java classes     |

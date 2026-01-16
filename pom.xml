@@ -318,6 +318,7 @@
                     <createImage>true</createImage>
                     <customStyleConfiguration>degraph-style.json</customStyleConfiguration>
                     <includes>
+                        <include>${project.groupId}:patternfly-java-charts</include>
                         <include>${project.groupId}:patternfly-java-codeeditor</include>
                         <include>${project.groupId}:patternfly-java-components</include>
                         <include>${project.groupId}:patternfly-java-core</include>
