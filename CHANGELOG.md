@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Number input component (#73) thanks @mskacelik
+
 ### Upgrades
 
 - Bump Elemento to 2.4.4
