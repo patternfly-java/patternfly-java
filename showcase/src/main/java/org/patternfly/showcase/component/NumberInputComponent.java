@@ -24,15 +24,15 @@ import org.patternfly.showcase.SnippetPage;
 import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.ValidationStatus.error;
+import static org.patternfly.component.ValidationStatus.success;
+import static org.patternfly.component.ValidationStatus.warning;
 import static org.patternfly.component.numberinput.NumberInput.numberInput;
 import static org.patternfly.component.numberinput.UnitPosition.before;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.component.ValidationStatus.error;
-import static org.patternfly.component.ValidationStatus.success;
-import static org.patternfly.component.ValidationStatus.warning;
 
 @Route(value = "/components/number-input", title = "Number input")
 public class NumberInputComponent extends SnippetPage {
