@@ -24,7 +24,6 @@ import java.util.function.Predicate;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.logger.Logger;
-
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.Event;
@@ -126,16 +125,23 @@ public class PopperBuilder {
         if (triggerActions.contains(TriggerAction.click) || triggerActions.contains(TriggerAction.stayOpen)) {
             handlerRegistrations.add(bind(document, EventType.click, true, e -> {
                 if (isVisible(popperElement)) {
-                    if (stayOpen != null) {
-                        if (!stayOpen.test(e)) {
-                            hide.accept(e);
-                        }
-                    } else {
-                        if (triggerActions.contains(TriggerAction.stayOpen)) {
-                            if (!popperElement.contains((Node) e.target)) {
+                    if (triggerActions.contains(TriggerAction.stayOpen)) {
+                        boolean clickedInside = popperElement.contains((Node) e.target);
+                        if (stayOpen != null) {
+                            if (!clickedInside && !stayOpen.test(e)) {
                                 hide.accept(e);
                             }
-                        } else if (triggerActions.contains(TriggerAction.click)) {
+                        } else {
+                            if (!clickedInside) {
+                                hide.accept(e);
+                            }
+                        }
+                    } else if (triggerActions.contains(TriggerAction.click)) {
+                        if (stayOpen != null) {
+                            if (!stayOpen.test(e)) {
+                                hide.accept(e);
+                            }
+                        } else {
                             hide.accept(e);
                         }
                     }
@@ -162,6 +168,13 @@ public class PopperBuilder {
         return this;
     }
 
+    /**
+     * Configures the predicate to determine if the popper should stay open in response to specific events.
+     *
+     * @param stayOpen a predicate that evaluates an {@link Event} and returns {@code true} if the popper should remain open, or
+     *                 {@code false} otherwise.
+     * @return the {@link PopperBuilder} instance for method chaining.
+     */
     public PopperBuilder stayOpen(Predicate<Event> stayOpen) {
         this.stayOpen = stayOpen;
         return this;

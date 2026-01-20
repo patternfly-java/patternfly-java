@@ -33,7 +33,6 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers;
-
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -58,16 +57,16 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
+import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
+import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
-import static org.patternfly.component.menu.SingleTypeaheadMenu.singleTypeaheadMenu;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.Showcase.placeManager;
-import static org.patternfly.showcase.component.NotYetImplemented.nyi;
 
 @Route(value = "/components/menus/select", title = "Select")
 public class SelectComponent extends SnippetPage {
@@ -192,13 +191,13 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:multi-select
         ));
 
-        addSnippet(new Snippet("typeahead", "Typeahead",
-                code("typeahead"), () ->
-                // @code-start:typeahead
+        addSnippet(new Snippet("single-typeahead", "Typeahead",
+                code("single-typeahead"), () ->
+                // @code-start:single-typeahead
                 div()
-                        .add(singleTypeahead("typeahead-0", "Select a state")
+                        .add(singleTypeahead("single-typeahead-0", "Select a state")
                                 .applyTo(Modifiers.FullWidth::fullWidth)
-                                .addMenu(singleTypeaheadMenu()
+                                .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
                                                         .addItem(menuItem("alabama", "Alabama"))
@@ -208,12 +207,12 @@ public class SelectComponent extends SnippetPage {
                                                         .addItem(menuItem("new-york", "New York"))
                                                         .addItem(menuItem("north-carolina", "North Carolina"))))))
                         .element()
-                // @code-end:typeahead
+                // @code-end:single-typeahead
         ));
 
-        addSnippet(new Snippet("typeahead-async", "Typeahead (async)",
-                code("typeahead-async"), () -> {
-            // @code-start:typeahead-async
+        addSnippet(new Snippet("single-typeahead-async", "Typeahead (async)",
+                code("single-typeahead-async"), () -> {
+            // @code-start:single-typeahead-async
             AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
                     setTimeout(__ -> res.onInvoke(stream(LoremIpsum.words(100).split(" "))
                                     .distinct()
@@ -224,68 +223,33 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(singleTypeahead("typeahead-async-0", "Lorem ipsum")
+                    .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
                             .applyTo(Modifiers.FullWidth::fullWidth)
-                            .addMenu(singleTypeaheadMenu().scrollable()
+                            .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
                                                     .addItems(asyncItems)))))
                     .element();
-            // @code-end:typeahead-async
+            // @code-end:single-typeahead-async
         }));
 
-        addSnippet(new Snippet("typeahead-create", "Typeahead with create option",
-                code("typeahead-create"), () ->
-                // @code-start:typeahead-create
+        addSnippet(new Snippet("multi-typeahead", "Multiple typeahead with labels",
+                code("multi-typeahead"), () ->
+                // @code-start:multi-typeahead
                 div()
-                        .add(nyi())
+                        .add(multiTypeahead("multi-typeahead-0", "Select a state")
+                                .applyTo(Modifiers.FullWidth::fullWidth)
+                                .addMenu(multiSelectMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(menuItem("alabama", "Alabama"))
+                                                        .addItem(menuItem("florida", "Florida"))
+                                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                                        .addItem(menuItem("new-york", "New York"))
+                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
                         .element()
-                // @code-end:typeahead-create
-        ));
-
-        addSnippet(new Snippet("typeahead-chips", "Multiple typeahead with chips",
-                code("typeahead-chips"), () ->
-                // @code-start:typeahead-chips
-                div()
-                        .add(nyi())
-                        .element()
-                // @code-end:typeahead-chips
-        ));
-
-        addSnippet(new Snippet("typeahead-create-multiple", "Multiple typeahead with create option",
-                code("typeahead-create-multiple"), () ->
-                // @code-start:typeahead-create-multiple
-                div()
-                        .add(nyi())
-                        .element()
-                // @code-end:typeahead-create-multiple
-        ));
-
-        addSnippet(new Snippet("typeahead-checkboxes", "Multiple typeahead with checkboxes",
-                code("typeahead-checkboxes"), () ->
-                // @code-start:typeahead-checkboxes
-                div()
-                        .add(nyi())
-                        .element()
-                // @code-end:typeahead-checkboxes
-        ));
-
-        addSnippet(new Snippet("select-view-more", "With view more",
-                code("select-view-more"), () ->
-                // @code-start:select-view-more
-                div()
-                        .add(nyi())
-                        .element()
-                // @code-end:select-view-more
-        ));
-
-        addSnippet(new Snippet("select-footer", "With a footer",
-                code("select-footer"), () ->
-                // @code-start:select-footer
-                div()
-                        .add(nyi())
-                        .element()
-                // @code-end:select-footer
+                // @code-end:multi-typeahead
         ));
 
         startApiDocs(MultiSelect.class);

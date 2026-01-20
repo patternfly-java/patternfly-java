@@ -24,7 +24,9 @@ import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
 import org.jboss.elemento.EventType;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentDelegate;
@@ -38,6 +40,7 @@ import org.patternfly.popper.Placement;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
+import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.core.JsArray;
@@ -57,6 +60,8 @@ import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottomStart;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.list;
 
 /**
  * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link Dropdown},
@@ -193,6 +198,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         return that();
     }
 
+    /**
+     * Specifies a condition that determines whether the menu should remain open when an event occurs.
+     *
+     * @param stayOpen a {@link Predicate} that evaluates an {@link Event} to determine if the menu remains open.
+     * @return the current instance with the condition applied, enabling method chaining.
+     */
     public B stayOpen(Predicate<Event> stayOpen) {
         this.stayOpen = stayOpen;
         return that();
@@ -259,6 +270,19 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     // ------------------------------------------------------ internal
+
+    void searchInputControlsMenuList() {
+        if (menu != null && menuToggle != null && menuToggle.searchInput() != null) {
+            HTMLElement menuListElement = menu.querySelector(By.classname(component(Classes.menu, list)));
+            if (menuListElement != null) {
+                String id = menuListElement.getAttribute("id");
+                if (id == null || id.isEmpty()) {
+                    id = Id.unique(ComponentType.Menu.id, "list");
+                }
+                menuToggle.searchInput().input().aria(Aria.controls, id);
+            }
+        }
+    }
 
     private void keyHandler(KeyboardEvent event) {
         if (expanded() && (menuToggle.element().contains((Node) event.target) ||

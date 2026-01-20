@@ -15,27 +15,23 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.List;
 import java.util.function.Function;
 
-import org.jboss.elemento.By;
-import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValue;
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.label.LabelGroup;
+import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
-import org.patternfly.style.Classes;
-import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.SelectionMode.single;
+import static org.patternfly.component.SelectionMode.multi;
+import static org.patternfly.component.label.Label.label;
 import static org.patternfly.component.menu.MenuType.select;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
+import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.list;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -43,27 +39,27 @@ import static org.patternfly.style.Classes.list;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements HasValue<String> {
+public class MultiTypeahead extends MenuToggleMenu<MultiTypeahead> {
 
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link SingleTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
-     * {@link SearchInput}.
+     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
+     * {@link FilterInput}.
      */
-    public static SingleTypeahead singleTypeahead(String id, String placeholder) {
-        return new SingleTypeahead(MenuToggle.menuToggle(searchInput(id)
+    public static MultiTypeahead multiTypeahead(String id, String placeholder) {
+        return new MultiTypeahead(MenuToggle.menuToggle(filterInput(id)
                 .plain()
                 .placeholder(placeholder)));
     }
 
     /**
-     * Creates a new {@link SingleTypeahead} component with the given {@link MenuToggle}. The {@link MenuToggle}
+     * Creates a new {@link MultiTypeahead} component with the given {@link MenuToggle}. The {@link MenuToggle}
      * <strong>must</strong> be of type {@link MenuToggleType#typeahead} and <strong>must</strong> contain a
-     * {@link SearchInput}.
+     * {@link FilterInput}.
      */
-    public static SingleTypeahead singleTypeahead(MenuToggle menuToggle) {
-        return new SingleTypeahead(menuToggle);
+    public static MultiTypeahead multiTypeahead(MenuToggle menuToggle) {
+        return new MultiTypeahead(menuToggle);
     }
 
     // ------------------------------------------------------ instance
@@ -71,8 +67,8 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
     private SearchFilter searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
-    SingleTypeahead(MenuToggle menuToggle) {
-        super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
+    MultiTypeahead(MenuToggle menuToggle) {
+        super(ComponentType.MultiSelect, menuToggle, TriggerAction.stayOpen);
         this.searchFilter = SearchFilter.contains();
         this.noResultsProvider = SearchFilter.noResults();
 
@@ -106,18 +102,21 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
             }
         });
         onToggle((e, c, expanded) -> menuToggle.searchInput().input().aria(Aria.expanded, expanded));
-        stayOpen(event -> menuToggle.searchInput().utilities() != null && menuToggle.searchInput()
-                .utilities()
-                .element()
-                .contains((Node) event.target));
+        stayOpen(event -> {
+            boolean labelGroupClick = menuToggle.searchInput().labelGroup() != null &&
+                    menuToggle.searchInput().labelGroup().element().contains((Node) event.target);
+            boolean utilitiesClick = menuToggle.searchInput().utilities() != null &&
+                    menuToggle.searchInput().utilities().element().contains((Node) event.target);
+            return labelGroupClick || utilitiesClick;
+        });
     }
 
     // ------------------------------------------------------ add
 
     @Override
-    public SingleTypeahead add(Menu menu) {
-        if (menu.menuType == select && menu.selectionMode == single) {
-            menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
+    public MultiTypeahead add(Menu menu) {
+        if (menu.menuType == select && menu.selectionMode == multi) {
+            menu.onMultiSelect((e, m, items) -> updateLabelGroup(items));
         }
         searchInputControlsMenuList();
         return super.add(menu);
@@ -126,7 +125,7 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
     // ------------------------------------------------------ builder
 
     @Override
-    public SingleTypeahead that() {
+    public MultiTypeahead that() {
         return this;
     }
 
@@ -140,9 +139,9 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
      * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
      *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
      *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link SingleTypeahead} instance for method chaining.
+     * @return the {@link MultiTypeahead} instance for method chaining.
      */
-    public SingleTypeahead onSearch(SearchFilter searchFilter) {
+    public MultiTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
@@ -155,9 +154,9 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
      *
      * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
      *                  {@link MenuItem} to display for no results.
-     * @return the {@link SingleTypeahead} instance for method chaining.
+     * @return the {@link MultiTypeahead} instance for method chaining.
      */
-    public SingleTypeahead onNoResults(Function<String, MenuItem> noResults) {
+    public MultiTypeahead onNoResults(Function<String, MenuItem> noResults) {
         this.noResultsProvider = noResults;
         return this;
     }
@@ -183,12 +182,17 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
         }
     }
 
-    @Override
-    public String value() {
-        String value = null;
-        if (menuToggle != null) {
-            value = menuToggle.text();
+    // ------------------------------------------------------ internal
+
+    private void updateLabelGroup(List<MenuItem> items) {
+        LabelGroup labelGroup = menuToggle().searchInput().labelGroup();
+        if (labelGroup != null && items != null) {
+            labelGroup.clear();
+            for (MenuItem item : items) {
+                labelGroup.addItem(label(item.identifier(), item.text())
+                        .outline()
+                        .closable((e, c) -> menu.select(item, false, false)));
+            }
         }
-        return value == null ? "" : value;
     }
 }
