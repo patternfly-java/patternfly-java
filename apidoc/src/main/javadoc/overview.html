@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PatternFly Java Overview</title>
+</head>
+<body>
+<h1>PatternFly Java</h1>
+
+PatternFly Java is a 💯 Java implementation of <a href="https://www.patternfly.org/" target="_blank">PatternFly</a>
+without any JavaScript dependencies (except for charts).
+
+<p>PatternFly Java's Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with
+    PatternFly in Java. PatternFly Java integrates with and builds
+    upon Elemento's <a href="https://hal-console.gitbook.io/elemento/builder-api" target="_blank">builder API</a>. It
+    works with both GWT and J2CL.
+</p>
+
+<h2>API Design</h2>
+
+<p>
+    PatternFly Java integrates with and builds upon Elemento's
+    <a href="https://hal-console.gitbook.io/elemento/builder-api" target="_blank">builder API</a>. Static factory
+    methods are used to create the components, and public instance methods add child elements and modify the component.
+</p>
+
+<h3>Static Factory Methods</h3>
+
+<p>
+    These methods are used to create a component. They are usually named after the component, are overloaded to accept
+    required and optional arguments, and return an instance of the newly created component:
+</p>
+
+<pre><code>Button button1 = button("Click me!");
+Button button2 = button("PatternFly", "https://www.patternfly.org");</code></pre>
+
+<h3>Add Methods</h3>
+
+<p>
+    These methods add subcomponents to a main component. They are usually called <code>add&lt;SubComponent&gt;()</code>
+    and return the main component so that the method call can be chained with other methods:
+</p>
+
+<pre><code>Dropdown dropdown = dropdown()
+        .addToggle(menuToggle("Dropdown"))
+        .addMenu(menu()
+                .addContent(menuContent()
+                        .addList(menuList()
+                                .addItem(actionMenuItem("item-0", "Action")))));</code></pre>
+
+<h3>Builder / Modifier Methods</h3>
+
+<p>
+    These methods modify the current component. They return the current component so that the method call can be chained
+    with other methods:
+</p>
+
+<pre><code>Card card = card()
+        .flat()
+        .rounded()
+        .large();</code></pre>
+
+<h3>ARIA-Related Methods</h3>
+
+<p>
+    These methods set ARIA-related attributes in the component. They're usually named <code>aria&lt;Attribute&gt;()</code>
+    and return the component so that the method call can be chained with other methods:
+</p>
+
+<pre><code>Navigation navigation = navigation(flat)
+        .ariaScrollBackLabel("� back")
+        .ariaScrollForwardLabel("� forward");</code></pre>
+
+<h3>Event Handlers</h3>
+
+<p>
+    These methods add event handlers for various events to the component. They are usually named
+    <code>on&lt;Event&gt;()</code>, accept an event handler, and return the component so that the method call can be
+    chained with other methods. PatternFly Java defines some
+    {@linkplain org.patternfly.handler common event handlers} that are reused in all components.
+</p>
+
+<pre><code>Drawer drawer = drawer().id("drw")
+        .onToggle((e, c, expanded) -&gt; console.log("Drawer expanded: " + expanded));</code></pre>
+
+<h3>Common Interfaces</h3>
+
+<p>
+    Common behavior across all components is implemented by base classes and interfaces. All components extend from
+    either {@link org.patternfly.component.BaseComponent} or {@link org.patternfly.component.BaseComponentSVG}. These
+    base classes implement <a href="https://hal-console.gitbook.io/elemento/builder-api#classes-and-interfaces"
+                              target="_blank">interfaces from Elemento</a> to manipulate the component element.
+</p>
+
+<p>In addition, components implement these interfaces to provide a common API:</p>
+
+<ul>
+    <li>
+        {@link org.patternfly.style.Modifiers} The sub-interfaces defined in this 'umbrella' interface are used to
+        toggle one specific flag of a component. For example, <code>card().plain()</code> toggles the
+        <code>plain</code> flag of the card component and is defined in the {@link org.patternfly.style.Modifiers.Plain}
+        interface.
+    </li>
+    <li>
+        {@link org.patternfly.component.Closeable} Implemented by components that provide some kind of popup that can
+        be closed.
+    </li>
+    <li>
+        {@link org.patternfly.core.ComponentContext}, {@link org.patternfly.component.HasIdentifier}, and
+        {@link org.patternfly.component.HasItems} These interfaces are often implemented by components that have a
+        parent-child relationship.
+    </li>
+    <li>
+        {@link org.patternfly.component.ComponentIcon} and {@link org.patternfly.component.ComponentIconAndText} 
+        These interfaces are implemented by components that provide text resp. an icon and a text.
+    </li>
+    <li>
+        {@link org.patternfly.component.ComponentProgress} Implemented by components that provide some kind of
+        progress.
+    </li>
+    <li>
+        {@link org.patternfly.component.Expandable} Implemented by components that provide some kind of expandable
+        content.
+    </li>
+    <li>
+        {@link org.patternfly.component.HasValue} and {@link org.patternfly.component.HasObservableValue} These
+        interfaces are implemented by components that provide a value or an observable value.
+    </li>
+</ul>
+
+<h2>Modules</h2>
+
+<p>PatternFly Java consists of these Maven modules (a-z):</p>
+
+<p><img src="doc-files/dependency-graph.png" alt="PatternFly Java Module Dependencies"/></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Module</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>patternfly-java-bom</td>
+        <td>Bill of materials</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-codeeditor</td>
+        <td>PatternFly codeeditor</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-components</td>
+        <td>PatternFly components</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-core</td>
+        <td>Core PatternFly Java classes</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-finder</td>
+        <td>PatternFly Java Finder extension</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-gwt</td>
+        <td>PatternFly Java for GWT</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-icons</td>
+        <td>PatternFly Java icons</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-j2cl</td>
+        <td>PatternFly Java for J2CL</td>
+    </tr>
+    <tr>
+        <td>patternfly-java-layouts</td>
+        <td>PatternFly Java layouts</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
