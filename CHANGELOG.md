@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.4.8] - 2026-01-19
-
 ### Added
 
 - Number input component (#73) thanks @mskacelik
@@ -15,6 +13,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Upgrades
 
 - Bump Elemento to 2.4.4
+
+## [0.4.8] - 2026-01-19
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.4.7] - 2026-01-19
 
