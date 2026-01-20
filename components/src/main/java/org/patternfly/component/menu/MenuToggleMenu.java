@@ -51,9 +51,9 @@ import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
-import static java.util.stream.Collectors.toList;
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
+import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.keydown;

@@ -22,6 +22,7 @@ import org.patternfly.component.HasValue;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
+
 import elemental2.dom.Node;
 
 import static org.jboss.elemento.EventType.click;

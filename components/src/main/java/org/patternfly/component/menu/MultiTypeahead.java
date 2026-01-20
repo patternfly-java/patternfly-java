@@ -23,6 +23,7 @@ import org.patternfly.component.label.LabelGroup;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
+
 import elemental2.dom.Node;
 
 import static java.util.Collections.emptyList;
