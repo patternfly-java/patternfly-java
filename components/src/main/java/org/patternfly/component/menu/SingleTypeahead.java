@@ -17,15 +17,11 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
-import org.jboss.elemento.By;
-import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
-import org.patternfly.style.Classes;
-import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 
 import static org.jboss.elemento.EventType.click;
@@ -34,8 +30,6 @@ import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.list;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
