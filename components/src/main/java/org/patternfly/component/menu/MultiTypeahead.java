@@ -25,6 +25,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 import elemental2.dom.Node;
 
+import static java.util.Collections.emptyList;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.label.Label.label;
@@ -163,25 +164,61 @@ public class MultiTypeahead extends MenuToggleMenu<MultiTypeahead> {
 
     // ------------------------------------------------------ api
 
-    public void select(String itemId) {
-        select(menu.findItem(itemId), true);
+    public void clear() {
+        clear(true);
     }
 
-    public void select(String itemId, boolean fireEvent) {
-        select(menu.findItem(itemId), fireEvent);
-    }
-
-    public void select(MenuItem item) {
-        select(item, true);
-    }
-
-    public void select(MenuItem item, boolean fireEvent) {
-        if (menu != null && menuToggle != null && item != null) {
-            menu.select(item, true, fireEvent);
-            menuToggle.text(item.text());
+    public void clear(boolean fireEvent) {
+        menu.unselectAllItems();
+        updateLabelGroup(emptyList());
+        if (fireEvent) {
+            menu.fireMultiSelection();
         }
     }
 
+    public void selectIdentifiers(List<String> identifiers) {
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, true, true);
+        updateLabelGroup(items);
+    }
+
+    public void selectIdentifiers(List<String> identifiers, boolean fireEvent) {
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, true, fireEvent);
+        updateLabelGroup(items);
+    }
+
+    public void selectItems(List<MenuItem> items) {
+        makeSelection(items, true, true);
+        updateLabelGroup(items);
+    }
+
+    public void selectItems(List<MenuItem> items, boolean fireEvent) {
+        makeSelection(items, true, fireEvent);
+        updateLabelGroup(items);
+    }
+
+    public void unselectIdentifiers(List<String> identifiers) {
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, false, true);
+        updateLabelGroup(items);
+    }
+
+    public void unselectIdentifiers(List<String> identifiers, boolean fireEvent) {
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, false, fireEvent);
+        updateLabelGroup(items);
+    }
+
+    public void unselectItems(List<MenuItem> items) {
+        makeSelection(items, false, true);
+        updateLabelGroup(items);
+    }
+
+    public void unselectItems(List<MenuItem> items, boolean fireEvent) {
+        makeSelection(items, false, fireEvent);
+        updateLabelGroup(items);
+    }
     // ------------------------------------------------------ internal
 
     private void updateLabelGroup(List<MenuItem> items) {

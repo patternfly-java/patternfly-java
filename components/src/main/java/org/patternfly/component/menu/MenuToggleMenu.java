@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -50,6 +51,7 @@ import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
+import static java.util.stream.Collectors.toList;
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -270,6 +272,24 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     // ------------------------------------------------------ internal
+
+    List<MenuItem> itemsFromIds(List<String> identifiers) {
+        return identifiers.stream()
+                .map(menu::findItem)
+                .filter(Objects::nonNull)
+                .collect(toList());
+    }
+
+    void makeSelection(List<MenuItem> items, boolean selected, boolean fireEvent) {
+        if (menu != null && menuToggle != null && !items.isEmpty()) {
+            for (MenuItem item : items) {
+                menu.select(item, selected, false);
+            }
+            if (fireEvent) {
+                menu.fireMultiSelection();
+            }
+        }
+    }
 
     void searchInputControlsMenuList() {
         if (menu != null && menuToggle != null && menuToggle.searchInput() != null) {

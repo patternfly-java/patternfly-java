@@ -252,6 +252,29 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:multi-typeahead
         ));
 
+        addSnippet(new Snippet("multi-typeahead-async", "Multiple typeahead (async)",
+                code("multi-typeahead-async"), () -> {
+            // @code-start:multi-typeahead-async
+            AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
+                    setTimeout(__ -> res.onInvoke(stream(LoremIpsum.words(100).split(" "))
+                                    .distinct()
+                                    .sorted()
+                                    .map(word -> menuItem(Id.build("item-", word), word))
+                                    .collect(toList())),
+                            1234 + new Random().nextInt(3456)));
+
+
+            return div()
+                    .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
+                            .applyTo(Modifiers.FullWidth::fullWidth)
+                            .addMenu(multiSelectMenu().scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(asyncItems)))))
+                    .element();
+            // @code-end:multi-typeahead-async
+        }));
+
         startApiDocs(MultiSelect.class);
         addApiDoc(MultiSelect.class, component);
         addApiDoc(MultiSelectMenu.class, component);

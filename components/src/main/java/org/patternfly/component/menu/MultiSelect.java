@@ -16,13 +16,12 @@
 package org.patternfly.component.menu;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.popper.TriggerAction;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.Collections.emptyList;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.menu.MenuType.checkbox;
@@ -78,68 +77,57 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
 
     public void clear(boolean fireEvent) {
         menu.unselectAllItems();
-        Badge badge = menuToggle.badge();
-        if (badge != null) {
-            badge.count(0);
-            badge.style("visibility", "hidden", true);
-        }
+        updateBadge(emptyList());
         if (fireEvent) {
             menu.fireMultiSelection();
         }
     }
 
     public void selectIdentifiers(List<String> identifiers) {
-        makeSelection(itemsFromIds(identifiers), true, true);
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, true, true);
+        updateBadge(items);
     }
 
     public void selectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        makeSelection(itemsFromIds(identifiers), true, fireEvent);
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, true, fireEvent);
+        updateBadge(items);
     }
 
     public void selectItems(List<MenuItem> items) {
         makeSelection(items, true, true);
+        updateBadge(items);
     }
 
     public void selectItems(List<MenuItem> items, boolean fireEvent) {
         makeSelection(items, true, fireEvent);
+        updateBadge(items);
     }
 
     public void unselectIdentifiers(List<String> identifiers) {
-        makeSelection(itemsFromIds(identifiers), false, true);
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, false, true);
+        updateBadge(items);
     }
 
     public void unselectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        makeSelection(itemsFromIds(identifiers), false, fireEvent);
+        List<MenuItem> items = itemsFromIds(identifiers);
+        makeSelection(items, false, fireEvent);
+        updateBadge(items);
     }
 
     public void unselectItems(List<MenuItem> items) {
         makeSelection(items, false, true);
+        updateBadge(items);
     }
 
     public void unselectItems(List<MenuItem> items, boolean fireEvent) {
         makeSelection(items, false, fireEvent);
+        updateBadge(items);
     }
 
     // ------------------------------------------------------ internal
-
-    private List<MenuItem> itemsFromIds(List<String> identifiers) {
-        return identifiers.stream()
-                .map(menu::findItem)
-                .filter(Objects::nonNull)
-                .collect(toList());
-    }
-
-    private void makeSelection(List<MenuItem> items, boolean selected, boolean fireEvent) {
-        if (menu != null && menuToggle != null && !items.isEmpty()) {
-            for (MenuItem item : items) {
-                menu.select(item, selected, false);
-            }
-            updateBadge(items);
-            if (fireEvent) {
-                menu.fireMultiSelection();
-            }
-        }
-    }
 
     private void updateBadge(List<MenuItem> items) {
         Badge badge = menuToggle.badge();
