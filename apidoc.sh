@@ -94,12 +94,14 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
+./mvnw depgraph:aggregate
 cd apidoc
 ./mvnw clean
+./mvnw org.apache.maven.plugins:maven-antrun-plugin:run@copy-doc-files
 ./mvnw org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
 ./mvnw org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
 ./mvnw javadoc:javadoc
-
 cd $script_dir
+
 msg ""
 msg "API documentation generated in ${CYAN}apidoc/target/reports/apidocs${NOFORMAT}"

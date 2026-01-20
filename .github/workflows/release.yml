@@ -85,7 +85,9 @@ jobs:
       - run: $MVN install
         working-directory: bom
       - run: $MVN install -Dquickly
+      - run: $MVN depgraph:aggregate
       - run: |
+          $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-doc-files
           $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-sources
           $MVN org.apache.maven.plugins:maven-antrun-plugin:run@copy-demos
           $MVN javadoc:javadoc

@@ -52,7 +52,8 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src</directory>
+                            <directory>src/demo</directory>
+                            <directory>src/main/java</directory>
                         </fileset>
                     </filesets>
                 </configuration>
@@ -62,6 +63,19 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <inherited>false</inherited>
                 <executions>
+                    <execution>
+                        <id>copy-doc-files</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="src/main/javadoc/doc-files" overwrite="true" failonerror="false">
+                                    <file file="../dependency-graph.png"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>copy-sources</id>
                         <goals>
@@ -126,9 +140,7 @@
                     <debug>true</debug>
                     <detectLinks>true</detectLinks>
                     <doclint>none</doclint>
-                    <sourceFileExcludes>
-                        <exclude>**/*Demo.java</exclude>
-                    </sourceFileExcludes>
+                    <docfilessubdirs>true</docfilessubdirs>
                     <failOnError>false</failOnError>
                     <links>
                         <link>https://hal.github.io/elemento/apidocs/</link>
@@ -142,6 +154,9 @@
                         </link>
                     </links>
                     <show>public</show>
+                    <sourceFileExcludes>
+                        <exclude>**/*Demo.java</exclude>
+                    </sourceFileExcludes>
                 </configuration>
             </plugin>
         </plugins>
