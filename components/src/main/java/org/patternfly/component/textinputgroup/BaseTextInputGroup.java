@@ -27,7 +27,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.component.Validatable;
 import org.patternfly.component.ValidationStatus;
-import org.patternfly.component.label.LabelGroup;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -56,7 +55,6 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textInput;
 import static org.patternfly.style.Classes.textInputGroup;
 
-// TODO Implement typeahead and make sure it works also for all sub classes such as search and filter input
 public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extends BaseComponent<HTMLElement, T> implements
         ComponentIcon<HTMLElement, T>,
         Disabled<HTMLElement, T>,
@@ -72,7 +70,6 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
     protected final List<ChangeHandler<T, String>> keyupChangeHandlers;
     protected final List<ChangeHandler<T, String>> valueChangeHandlers;
     protected ValidationStatus status;
-    protected LabelGroup labelGroup;
     protected HTMLElement iconContainer;
     protected HTMLElement statusContainer;
     protected TextInputGroupUtilities utilities;
@@ -99,17 +96,6 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
     }
 
     // ------------------------------------------------------ add
-
-    public T addLabelGroup(LabelGroup labelGroup) {
-        return add(labelGroup);
-    }
-
-    // override to ensure internal wiring
-    public T add(LabelGroup labelGroup) {
-        this.labelGroup = labelGroup;
-        insertFirst(mainContainer, labelGroup);
-        return that();
-    }
 
     public T addUtilities(TextInputGroupUtilities utilities) {
         return add(utilities);
@@ -215,10 +201,6 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
     /** Returns the underlying input element */
     public HTMLInputElementBuilder<HTMLInputElement> input() {
         return wrapInputElement(inputElement);
-    }
-
-    public LabelGroup labelGroup() {
-        return labelGroup;
     }
 
     public TextInputGroupUtilities utilities() {

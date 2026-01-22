@@ -15,26 +15,22 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.label.Label;
-import org.patternfly.component.label.LabelGroup;
-
-import static org.jboss.elemento.Elements.setVisible;
-import static org.jboss.elemento.Key.Enter;
-import static org.patternfly.component.label.Label.label;
+import org.patternfly.handler.ComponentHandler;
 
 /**
  * A filter input is a special {@linkplain SearchInput search input} that adds a
  * {@linkplain org.patternfly.component.label.LabelGroup label group}.
+ * <p>
+ * Use {@link #noDefaultOnEnter()} to disable the default enter behavior. You can add additional enter handlers using
+ * {@link #onEnter(ComponentHandler)}. To control the utilities visibility use {@link #showUtilitiesIf(BiFunction)}.
  *
  * @see <a href=
  * "https://www.patternfly.org/components/text-input-group#with-filters">https://www.patternfly.org/components/text-input-group#with-filters</a>
  */
-public class FilterInput extends BaseSearchInput<FilterInput> {
+public class FilterInput extends BaseFilterInput<FilterInput> {
 
     // ------------------------------------------------------ factory
 
@@ -48,55 +44,14 @@ public class FilterInput extends BaseSearchInput<FilterInput> {
 
     // ------------------------------------------------------ instance
 
-    private final List<BiConsumer<FilterInput, Label>> onAdd;
-    private final List<BiConsumer<FilterInput, Label>> onRemove;
-
     FilterInput(String id) {
         super(ComponentType.FilterInput, id);
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
-        this.defaultOnClear = (event, fi) -> {
-            fi.value("");
-            labelGroup.clear();
-        };
-        this.visibility = (si, value) -> !value.isEmpty() || !labelGroup.isEmpty();
-
-        addLabelGroup(LabelGroup.labelGroup()
-                .onAdd((__, label) -> {
-                    hideOrShowClear(value());
-                    setVisible(labelGroup, true);
-                    onAdd.forEach(h -> h.accept(this, label));
-                })
-                .onRemove((__, label) -> {
-                    hideOrShowClear(value());
-                    setVisible(labelGroup, !labelGroup.isEmpty());
-                    onRemove.forEach(h -> h.accept(this, label));
-                }));
-        setVisible(labelGroup, false);
-        onKeyup((e, tig, value) -> {
-            if (Enter.match(e) && !value.isEmpty()) {
-                labelGroup.addItem(label(value).outline().closable());
-                value("");
-            }
-        });
     }
 
     // ------------------------------------------------------ builder
 
     @Override
     public FilterInput that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ events
-
-    public FilterInput onAdd(BiConsumer<FilterInput, Label> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
-    }
-
-    public FilterInput onRemove(BiConsumer<FilterInput, Label> onRemove) {
-        this.onRemove.add(onRemove);
         return this;
     }
 }

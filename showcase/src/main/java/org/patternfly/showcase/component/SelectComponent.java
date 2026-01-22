@@ -32,7 +32,7 @@ import org.patternfly.component.menu.SingleSelectMenu;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.FullWidth;
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -196,7 +196,7 @@ public class SelectComponent extends SnippetPage {
                 // @code-start:single-typeahead
                 div()
                         .add(singleTypeahead("single-typeahead-0", "Select a state")
-                                .applyTo(Modifiers.FullWidth::fullWidth)
+                                .applyTo(FullWidth::fullWidth)
                                 .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -224,7 +224,7 @@ public class SelectComponent extends SnippetPage {
 
             return div()
                     .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
-                            .applyTo(Modifiers.FullWidth::fullWidth)
+                            .applyTo(FullWidth::fullWidth)
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
@@ -238,7 +238,7 @@ public class SelectComponent extends SnippetPage {
                 // @code-start:multi-typeahead
                 div()
                         .add(multiTypeahead("multi-typeahead-0", "Select a state")
-                                .applyTo(Modifiers.FullWidth::fullWidth)
+                                .applyTo(FullWidth::fullWidth)
                                 .addMenu(multiSelectMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -266,7 +266,7 @@ public class SelectComponent extends SnippetPage {
 
             return div()
                     .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
-                            .applyTo(Modifiers.FullWidth::fullWidth)
+                            .applyTo(FullWidth::fullWidth)
                             .addMenu(multiSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()

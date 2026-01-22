@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.textinputgroup;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -32,17 +33,17 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
     protected final List<ComponentHandler<T>> onClear;
     protected ComponentHandler<T> defaultOnClear;
-    protected BiFunction<T, String, Boolean> visibility;
+    protected BiFunction<T, String, Boolean> utilitiesVisibility;
 
     protected BaseSearchInput(ComponentType componentType, String id) {
         super(componentType, id);
-        this.onClear = new java.util.ArrayList<>();
+        this.onClear = new ArrayList<>();
         this.defaultOnClear = (e, si) -> si.value("");
-        this.visibility = (si, value) -> !value.isEmpty();
+        this.utilitiesVisibility = (si, value) -> !value.isEmpty();
 
-        hideOrShowClear(value());
-        onKeyup((e, si, value) -> hideOrShowClear(value));
-        onChange((e, si, value) -> hideOrShowClear(value));
+        toggleUtilities(value());
+        onKeyup((e, si, value) -> toggleUtilities(value));
+        onChange((e, si, value) -> toggleUtilities(value));
     }
 
     // ------------------------------------------------------ builder
@@ -64,9 +65,9 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
      * @param visibility a {@link BiFunction} that takes the {@code SearchInput} instance and a {@link String} value as
      *                   arguments and returns a {@link Boolean} indicating whether the utility should be visible.
      */
-    public T showClearWhen(BiFunction<T, String, Boolean> visibility) {
-        this.visibility = visibility;
-        hideOrShowClear(value());
+    public T showUtilitiesIf(BiFunction<T, String, Boolean> visibility) {
+        this.utilitiesVisibility = visibility;
+        toggleUtilities(value());
         return that();
     }
 
@@ -92,14 +93,23 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     @Override
     public T value(String value, boolean fireEvent) {
         super.value(value, fireEvent);
-        hideOrShowClear(value);
+        toggleUtilities(value);
         return that();
     }
 
     // ------------------------------------------------------ internal
 
-    protected void hideOrShowClear(String value) {
-        if (visibility.apply(that(), value)) {
+    /**
+     * Toggles the utilities for the current input field based on the provided value. If the condition defined by
+     * {@link #showUtilitiesIf(BiFunction)} evaluates to {@code true}, a clear button utility is added. If the condition
+     * evaluates to {@code false}, the utility is removed from the DOM.
+     * <p>
+     * This method can be overridden by subclasses to customize the behavior of utility toggling.
+     *
+     * @param value the input value used to evaluate the visibility condition for the utility button
+     */
+    protected void toggleUtilities(String value) {
+        if (utilitiesVisibility.apply(that(), value)) {
             if (utilities == null) {
                 addUtilities(textInputGroupUtilities()
                         .add(button().icon(times()).plain().onClick((e, b) -> {

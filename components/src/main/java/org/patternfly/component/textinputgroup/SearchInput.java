@@ -26,7 +26,7 @@ import org.patternfly.handler.ComponentHandler;
  * event).
  * <p>
  * Use {@link #noDefaultOnClear()} to disable the default clear behavior. You can add additional clear handlers using
- * {@link #onClear(ComponentHandler)}. Use {@link #showClearWhen(BiFunction)} to control when the clear button is visible.
+ * {@link #onClear(ComponentHandler)}. To control the utilities visibility use {@link #showUtilitiesIf(BiFunction)}.
  *
  * @see <a href= "https://www.patternfly.org/components/search-input/">https://www.patternfly.org/components/search-input/</a>
  */

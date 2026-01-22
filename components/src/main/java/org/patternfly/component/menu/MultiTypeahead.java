@@ -19,21 +19,17 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
+import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.FilterInput;
-import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.Node;
 
-import static java.util.Collections.emptyList;
-import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.label.Label.label;
-import static org.patternfly.component.menu.MenuType.select;
+import static org.patternfly.component.menu.TypeaheadDefaults.typeaheadDefaults;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
-import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Roles.combobox;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -41,7 +37,7 @@ import static org.patternfly.core.Roles.combobox;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class MultiTypeahead extends MenuToggleMenu<MultiTypeahead> {
+public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implements Typeahead<MultiTypeahead> {
 
     // ------------------------------------------------------ factory
 
@@ -50,78 +46,76 @@ public class MultiTypeahead extends MenuToggleMenu<MultiTypeahead> {
      * {@link FilterInput}.
      */
     public static MultiTypeahead multiTypeahead(String id, String placeholder) {
-        return new MultiTypeahead(MenuToggle.menuToggle(filterInput(id)
-                .plain()
-                .placeholder(placeholder)));
+        return new MultiTypeahead(filterInput(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link MultiTypeahead} component with the given {@link MenuToggle}. The {@link MenuToggle}
-     * <strong>must</strong> be of type {@link MenuToggleType#typeahead} and <strong>must</strong> contain a
-     * {@link FilterInput}.
+     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and the
+     * specified {@link BaseFilterInput}.
+     *
+     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component with filtering and
+     *                    search capabilities
+     * @return a new {@link MultiTypeahead} instance configured with the given filter input
      */
-    public static MultiTypeahead multiTypeahead(MenuToggle menuToggle) {
-        return new MultiTypeahead(menuToggle);
+    public static MultiTypeahead multiTypeahead(BaseFilterInput<?> filterInput) {
+        return new MultiTypeahead(filterInput);
     }
 
     // ------------------------------------------------------ instance
 
+    private final BaseFilterInput<?> filterInput;
     private SearchFilter searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
-    MultiTypeahead(MenuToggle menuToggle) {
-        super(ComponentType.MultiSelect, menuToggle, TriggerAction.stayOpen);
+    MultiTypeahead(BaseFilterInput<?> filterInput) {
+        super(ComponentType.MultiSelect, MenuToggle.menuToggle(filterInput), TriggerAction.stayOpen);
+        this.filterInput = filterInput;
         this.searchFilter = SearchFilter.contains();
         this.noResultsProvider = SearchFilter.noResults();
 
-        menuToggle.searchInput().input()
-                .attr(role, combobox)
-                .aria(Aria.expanded, false)
-                .autocomplete("off")
-                .on(click, event -> toggle());
-
-        menuToggle.searchInput()
-                .onClear((e, si) -> {
-                    menu.clearSearch();
-                    menu.unselectAllItems();
-                    si.input().element().focus();
-                })
-                .onKeyup((event, si, value) -> {
-                    // TODO Handle keys like up/down arrow, space, return, escape, ...
-                    menu.search(searchFilter, noResultsProvider, value);
-                    // expand();
-                })
-                .onChange((event, si, value) -> {
-                    if (value.isEmpty()) {
-                        menu.clearSearch();
-                        menu.unselectAllItems();
+        typeaheadDefaults(this, searchFilter, noResultsProvider);
+        filterInput.noDefaultOnEnter()
+                .onEnter((e, fi) -> {
+                    Label label = filterInput.textToLabel().apply(fi.value());
+                    MenuItem menuItem = menu.findItem(label.identifier());
+                    if (menuItem != null) {
+                        if (!filterInput.labelGroup().contains(label.identifier())) {
+                            filterInput.labelGroup().addItem(label);
+                        }
                     }
+                })
+                .onAdd((fi, filter) -> {
+                    // TODO Add filter to menu if create option is true and not already present
                 });
-
-        onLoaded((e, c) -> {
-            if (!menuToggle.searchInput().value().isEmpty()) {
-                menu.search(searchFilter, noResultsProvider, menuToggle.searchInput().value());
-            }
-        });
-        onToggle((e, c, expanded) -> menuToggle.searchInput().input().aria(Aria.expanded, expanded));
         stayOpen(event -> {
-            boolean labelGroupClick = menuToggle.searchInput().labelGroup() != null &&
-                    menuToggle.searchInput().labelGroup().element().contains((Node) event.target);
+            boolean labelGroupClick = filterInput.labelGroup() != null &&
+                    filterInput.labelGroup().element().contains((Node) event.target);
             boolean utilitiesClick = menuToggle.searchInput().utilities() != null &&
                     menuToggle.searchInput().utilities().element().contains((Node) event.target);
             return labelGroupClick || utilitiesClick;
         });
     }
 
+    @Override
+    void updateMenuToggle(List<MenuItem> items) {
+        LabelGroup labelGroup = filterInput.labelGroup();
+        if (labelGroup != null && items != null) {
+            labelGroup.clear();
+            for (MenuItem item : items) {
+                labelGroup.addItem(label(item.identifier(), item.text())
+                        .outline()
+                        .closable((e, c) -> menu.select(item, false, false)));
+            }
+        }
+    }
+
     // ------------------------------------------------------ add
 
     @Override
     public MultiTypeahead add(Menu menu) {
-        if (menu.menuType == select && menu.selectionMode == multi) {
-            menu.onMultiSelect((e, m, items) -> updateLabelGroup(items));
-        }
+        super.add(menu);
         searchInputControlsMenuList();
-        return super.add(menu);
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -134,103 +128,24 @@ public class MultiTypeahead extends MenuToggleMenu<MultiTypeahead> {
     // ------------------------------------------------------ events
 
     /**
-     * Configures the search behavior for this typeahead.
+     * {@inheritDoc}
      * <p>
      * By default, the search filter will match items that contain the search query in their text.
-     *
-     * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
-     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
-     *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link MultiTypeahead} instance for method chaining.
      */
+    @Override
     public MultiTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
     /**
-     * Defines the behavior when no results are found during a search. This method allows setting a {@link Function} that takes
-     * a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
+     * {@inheritDoc}
      * <p>
      * By default, a "No results found" message is displayed.
-     *
-     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
-     *                  {@link MenuItem} to display for no results.
-     * @return the {@link MultiTypeahead} instance for method chaining.
      */
+    @Override
     public MultiTypeahead onNoResults(Function<String, MenuItem> noResults) {
         this.noResultsProvider = noResults;
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public void clear() {
-        clear(true);
-    }
-
-    public void clear(boolean fireEvent) {
-        menu.unselectAllItems();
-        updateLabelGroup(emptyList());
-        if (fireEvent) {
-            menu.fireMultiSelection();
-        }
-    }
-
-    public void selectIdentifiers(List<String> identifiers) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, true, true);
-        updateLabelGroup(items);
-    }
-
-    public void selectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, true, fireEvent);
-        updateLabelGroup(items);
-    }
-
-    public void selectItems(List<MenuItem> items) {
-        makeSelection(items, true, true);
-        updateLabelGroup(items);
-    }
-
-    public void selectItems(List<MenuItem> items, boolean fireEvent) {
-        makeSelection(items, true, fireEvent);
-        updateLabelGroup(items);
-    }
-
-    public void unselectIdentifiers(List<String> identifiers) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, false, true);
-        updateLabelGroup(items);
-    }
-
-    public void unselectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, false, fireEvent);
-        updateLabelGroup(items);
-    }
-
-    public void unselectItems(List<MenuItem> items) {
-        makeSelection(items, false, true);
-        updateLabelGroup(items);
-    }
-
-    public void unselectItems(List<MenuItem> items, boolean fireEvent) {
-        makeSelection(items, false, fireEvent);
-        updateLabelGroup(items);
-    }
-    // ------------------------------------------------------ internal
-
-    private void updateLabelGroup(List<MenuItem> items) {
-        LabelGroup labelGroup = menuToggle().searchInput().labelGroup();
-        if (labelGroup != null && items != null) {
-            labelGroup.clear();
-            for (MenuItem item : items) {
-                labelGroup.addItem(label(item.identifier(), item.text())
-                        .outline()
-                        .closable((e, c) -> menu.select(item, false, false)));
-            }
-        }
     }
 }
