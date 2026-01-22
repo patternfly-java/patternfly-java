@@ -3,6 +3,7 @@
 .classpath
 .DS_Store
 .idea
+.jbang
 .parcel-cache
 .project
 .settings
