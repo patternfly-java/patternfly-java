@@ -33,6 +33,7 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers.FullWidth;
+
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
