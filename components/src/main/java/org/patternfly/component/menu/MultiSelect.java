@@ -21,24 +21,34 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.popper.TriggerAction;
 
-import static java.util.Collections.emptyList;
-import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.badge.Badge.badge;
-import static org.patternfly.component.menu.MenuType.checkbox;
 
 /**
- * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
+ * A select component to select multiple items from a list.
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class MultiSelect extends MenuToggleMenu<MultiSelect> {
+public class MultiSelect extends MultiMenuToggleMenu<MultiSelect> {
 
     // ------------------------------------------------------ factory
 
+    /**
+     * Creates a new instance of MultiSelect with a toggle menu initialized using the provided text. The toggle menu includes a
+     * badge initialized with a count of zero in the read state.
+     *
+     * @param text the text to be displayed on the toggle menu
+     * @return a new instance of MultiSelect initialized with the specified text
+     */
     public static MultiSelect multiSelect(String text) {
         return new MultiSelect(MenuToggle.menuToggle(text).addBadge(badge(0).read()));
     }
 
+    /**
+     * Creates a new instance of {@code MultiSelect} initialized with the specified {@code MenuToggle}.
+     *
+     * @param menuToggle the {@code MenuToggle} to initialize the {@code MultiSelect} with
+     * @return a new instance of {@code MultiSelect} initialized with the provided {@code MenuToggle}
+     */
     public static MultiSelect multiSelect(MenuToggle menuToggle) {
         return new MultiSelect(menuToggle);
     }
@@ -52,84 +62,8 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
         }
     }
 
-    // ------------------------------------------------------ add
-
     @Override
-    public MultiSelect add(Menu menu) {
-        if (menu.menuType == checkbox && menu.selectionMode == multi) {
-            menu.onMultiSelect((e, m, items) -> updateBadge(items));
-        }
-        return super.add(menu);
-    }
-
-    // ------------------------------------------------------ builder
-
-    @Override
-    public MultiSelect that() {
-        return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public void clear() {
-        clear(true);
-    }
-
-    public void clear(boolean fireEvent) {
-        menu.unselectAllItems();
-        updateBadge(emptyList());
-        if (fireEvent) {
-            menu.fireMultiSelection();
-        }
-    }
-
-    public void selectIdentifiers(List<String> identifiers) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, true, true);
-        updateBadge(items);
-    }
-
-    public void selectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, true, fireEvent);
-        updateBadge(items);
-    }
-
-    public void selectItems(List<MenuItem> items) {
-        makeSelection(items, true, true);
-        updateBadge(items);
-    }
-
-    public void selectItems(List<MenuItem> items, boolean fireEvent) {
-        makeSelection(items, true, fireEvent);
-        updateBadge(items);
-    }
-
-    public void unselectIdentifiers(List<String> identifiers) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, false, true);
-        updateBadge(items);
-    }
-
-    public void unselectIdentifiers(List<String> identifiers, boolean fireEvent) {
-        List<MenuItem> items = itemsFromIds(identifiers);
-        makeSelection(items, false, fireEvent);
-        updateBadge(items);
-    }
-
-    public void unselectItems(List<MenuItem> items) {
-        makeSelection(items, false, true);
-        updateBadge(items);
-    }
-
-    public void unselectItems(List<MenuItem> items, boolean fireEvent) {
-        makeSelection(items, false, fireEvent);
-        updateBadge(items);
-    }
-
-    // ------------------------------------------------------ internal
-
-    private void updateBadge(List<MenuItem> items) {
+    void updateMenuToggle(List<MenuItem> items) {
         Badge badge = menuToggle.badge();
         if (badge != null) {
             int size = items.size();
@@ -140,5 +74,12 @@ public class MultiSelect extends MenuToggleMenu<MultiSelect> {
                 badge.style("visibility", "unset");
             }
         }
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MultiSelect that() {
+        return this;
     }
 }

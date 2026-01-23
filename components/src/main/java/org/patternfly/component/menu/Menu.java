@@ -23,7 +23,6 @@ import java.util.function.Function;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
-import org.jboss.elemento.EventType;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
@@ -52,6 +51,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowLeft;
@@ -130,7 +130,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     @Override
     public void attach(MutationRecord mutationRecord) {
         allowTabFirstItem();
-        keyHandler = EventType.bind(window, keydown, this::keyHandler);
+        keyHandler = bind(window, keydown, this::keyHandler);
     }
 
     @Override
@@ -240,6 +240,24 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
+    public MenuItem findItem(String identifier) {
+        MenuItem menuItem = null;
+        if (content != null) {
+            for (Iterator<MenuGroup> iterator = content.groups.iterator(); iterator.hasNext() && menuItem == null; ) {
+                MenuGroup group = iterator.next();
+                if (group.list != null) {
+                    menuItem = group.list.items.get(identifier);
+                }
+            }
+            if (menuItem == null) {
+                if (content.list != null) {
+                    menuItem = content.list.items.get(identifier);
+                }
+            }
+        }
+        return menuItem;
+    }
+
     /**
      * Checks if the menu contains any asynchronous items that are currently in a pending status. This method inspects the
      * {@linkplain MenuList menu lists} to determine if any {@linkplain MenuList#status() status} is
@@ -262,6 +280,21 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return false;
     }
 
+    public List<MenuItem> items() {
+        List<MenuItem> items = new ArrayList<>();
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    items.addAll(group.list.items.values());
+                }
+            }
+            if (content.list != null) {
+                items.addAll(content.list.items.values());
+            }
+        }
+        return items;
+    }
+
     public void reload() {
         if (content != null) {
             for (MenuGroup group : content.groups) {
@@ -275,16 +308,16 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    public void select(String itemId) {
-        select(findItem(itemId), true, true);
+    public void select(String identifier) {
+        select(findItem(identifier), true, true);
     }
 
-    public void select(String itemId, boolean selected) {
-        select(findItem(itemId), selected, true);
+    public void select(String identifier, boolean selected) {
+        select(findItem(identifier), selected, true);
     }
 
-    public void select(String itemId, boolean selected, boolean fireEvent) {
-        select(findItem(itemId), selected, fireEvent);
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(findItem(identifier), selected, fireEvent);
     }
 
     public void select(MenuItem item) {
@@ -313,7 +346,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
                     break;
             }
             if (fireEvent) {
-                selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
+                fireSingleSelection(item, selected);
                 if (!multiSelectHandler.isEmpty()) {
                     fireMultiSelection();
                 }
@@ -321,22 +354,14 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    public MenuItem findItem(String id) {
-        MenuItem menuItem = null;
-        if (content != null) {
-            for (Iterator<MenuGroup> iterator = content.groups.iterator(); iterator.hasNext() && menuItem == null; ) {
-                MenuGroup group = iterator.next();
-                if (group.list != null) {
-                    menuItem = group.list.items.get(id);
-                }
-            }
-            if (menuItem == null) {
-                if (content.list != null) {
-                    menuItem = content.list.items.get(id);
-                }
+    public List<MenuItem> selectedItems() {
+        List<MenuItem> selectedItems = new ArrayList<>();
+        for (MenuItem menuItem : items()) {
+            if (menuItem.isSelected()) {
+                selectedItems.add(menuItem);
             }
         }
-        return menuItem;
+        return selectedItems;
     }
 
     // ------------------------------------------------------ internal
@@ -376,21 +401,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         allowTabFirstItem();
     }
 
-    List<MenuItem> items() {
-        List<MenuItem> items = new ArrayList<>();
-        if (content != null) {
-            for (MenuGroup group : content.groups) {
-                if (group.list != null) {
-                    items.addAll(group.list.items.values());
-                }
-            }
-            if (content.list != null) {
-                items.addAll(content.list.items.values());
-            }
-        }
-        return items;
-    }
-
     // called by regular menu items
     void toggleFavorite(MenuItem item) {
         if (content != null && item.markAsFavorite != null) {
@@ -416,6 +426,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
             sourceItem.markAsFavorite.element().classList.remove(modifier(favorited));
             sourceItem.favoriteItem = null;
         }
+    }
+
+    void fireSingleSelection(MenuItem item, boolean selected) {
+        selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
     }
 
     void fireMultiSelection() {

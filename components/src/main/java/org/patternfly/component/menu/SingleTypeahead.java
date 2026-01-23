@@ -18,19 +18,14 @@ package org.patternfly.component.menu;
 import java.util.function.Function;
 
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValue;
+import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
-import org.patternfly.core.Aria;
 import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.Node;
 
-import static org.jboss.elemento.EventType.click;
-import static org.patternfly.component.SelectionMode.single;
-import static org.patternfly.component.menu.MenuType.select;
+import static org.patternfly.component.menu.TypeaheadDefaults.typeaheadDefaults;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
-import static org.patternfly.core.Attributes.role;
-import static org.patternfly.core.Roles.combobox;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -38,7 +33,7 @@ import static org.patternfly.core.Roles.combobox;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements HasValue<String> {
+public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> implements Typeahead<SingleTypeahead> {
 
     // ------------------------------------------------------ factory
 
@@ -47,18 +42,19 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
      * {@link SearchInput}.
      */
     public static SingleTypeahead singleTypeahead(String id, String placeholder) {
-        return new SingleTypeahead(MenuToggle.menuToggle(searchInput(id)
-                .plain()
-                .placeholder(placeholder)));
+        return new SingleTypeahead(searchInput(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link SingleTypeahead} component with the given {@link MenuToggle}. The {@link MenuToggle}
-     * <strong>must</strong> be of type {@link MenuToggleType#typeahead} and <strong>must</strong> contain a
-     * {@link SearchInput}.
+     * Creates a new {@link SingleTypeahead} instance using the provided {@link BaseSearchInput}.
+     *
+     * @param searchInput the {@link BaseSearchInput} used to configure the typeahead component. This input determines the
+     *                    search behavior and the interaction model of the typeahead.
+     * @return a new {@link SingleTypeahead} instance initialized with a {@link MenuToggle} of type
+     * {@link MenuToggleType#typeahead}.
      */
-    public static SingleTypeahead singleTypeahead(MenuToggle menuToggle) {
-        return new SingleTypeahead(menuToggle);
+    public static SingleTypeahead singleTypeahead(BaseSearchInput<?> searchInput) {
+        return new SingleTypeahead(searchInput);
     }
 
     // ------------------------------------------------------ instance
@@ -66,56 +62,28 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
     private SearchFilter searchFilter;
     private Function<String, MenuItem> noResultsProvider;
 
-    SingleTypeahead(MenuToggle menuToggle) {
-        super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
+    SingleTypeahead(BaseSearchInput<?> searchInput) {
+        super(ComponentType.SingleSelect, MenuToggle.menuToggle(searchInput), TriggerAction.click);
         this.searchFilter = SearchFilter.contains();
         this.noResultsProvider = SearchFilter.noResults();
 
-        menuToggle.searchInput().input()
-                .attr(role, combobox)
-                .aria(Aria.expanded, false)
-                .autocomplete("off")
-                .on(click, event -> toggle());
-
-        menuToggle.searchInput()
-                .onClear((e, si) -> {
-                    menu.clearSearch();
-                    menu.unselectAllItems();
-                    si.input().element().focus();
-                })
-                .onKeyup((event, si, value) -> {
-                    // TODO Handle keys like up/down arrow, space, return, escape, ...
-                    menu.search(searchFilter, noResultsProvider, value);
-                    // expand();
-                })
-                .onChange((event, si, value) -> {
-                    if (value.isEmpty()) {
-                        menu.clearSearch();
-                        menu.unselectAllItems();
-                    }
-                });
-
-        onLoaded((e, c) -> {
-            if (!menuToggle.searchInput().value().isEmpty()) {
-                menu.search(searchFilter, noResultsProvider, menuToggle.searchInput().value());
-            }
-        });
-        onToggle((e, c, expanded) -> menuToggle.searchInput().input().aria(Aria.expanded, expanded));
-        stayOpen(event -> menuToggle.searchInput().utilities() != null && menuToggle.searchInput()
-                .utilities()
-                .element()
+        typeaheadDefaults(this, searchFilter, noResultsProvider);
+        stayOpen(event -> searchInput.utilities() != null && searchInput.utilities().element()
                 .contains((Node) event.target));
+    }
+
+    @Override
+    void updateMenuToggle(MenuItem item) {
+        menuToggle.text(item.text());
     }
 
     // ------------------------------------------------------ add
 
     @Override
     public SingleTypeahead add(Menu menu) {
-        if (menu.menuType == select && menu.selectionMode == single) {
-            menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
-        }
+        super.add(menu);
         searchInputControlsMenuList();
-        return super.add(menu);
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -128,62 +96,24 @@ public class SingleTypeahead extends MenuToggleMenu<SingleTypeahead> implements 
     // ------------------------------------------------------ events
 
     /**
-     * Configures the search behavior for this typeahead.
+     * {@inheritDoc}
      * <p>
      * By default, the search filter will match items that contain the search query in their text.
-     *
-     * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
-     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
-     *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link SingleTypeahead} instance for method chaining.
      */
+    @Override
     public SingleTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
     /**
-     * Defines the behavior when no results are found during a search. This method allows setting a {@link Function} that takes
-     * a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
+     * {@inheritDoc}
      * <p>
      * By default, a "No results found" message is displayed.
-     *
-     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
-     *                  {@link MenuItem} to display for no results.
-     * @return the {@link SingleTypeahead} instance for method chaining.
      */
+    @Override
     public SingleTypeahead onNoResults(Function<String, MenuItem> noResults) {
         this.noResultsProvider = noResults;
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public void select(String itemId) {
-        select(menu.findItem(itemId), true);
-    }
-
-    public void select(String itemId, boolean fireEvent) {
-        select(menu.findItem(itemId), fireEvent);
-    }
-
-    public void select(MenuItem item) {
-        select(item, true);
-    }
-
-    public void select(MenuItem item, boolean fireEvent) {
-        if (menu != null && menuToggle != null && item != null) {
-            menu.select(item, true, fireEvent);
-            menuToggle.text(item.text());
-        }
-    }
-
-    @Override
-    public String value() {
-        String value = null;
-        if (menuToggle != null) {
-            value = menuToggle.text();
-        }
-        return value == null ? "" : value;
     }
 }
