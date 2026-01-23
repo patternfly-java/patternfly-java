@@ -36,16 +36,23 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
 
     // ------------------------------------------------------ instance
 
+    public static final Function<String, String> DEFAULT_TEXT_TO_IDENTIFIER = Id::build;
+    public static final Function<String, Label> DEFAULT_TEXT_TO_LABEL = text ->
+            label(DEFAULT_TEXT_TO_IDENTIFIER.apply(text), text).outline().closable();
+
     protected final List<ComponentHandler<T>> onEnter;
     protected final List<BiConsumer<T, Label>> onAdd;
     protected final List<BiConsumer<T, Label>> onRemove;
+    protected boolean allowDuplicates;
+    protected Function<String, String> textToIdentifier;
     protected Function<String, Label> textToLabel;
-    protected ComponentHandler<T> defaultOnEnter;
+    protected ComponentHandler<T> addOnEnter;
     protected BiFunction<T, String, Boolean> labelGroupVisibility;
     protected LabelGroup labelGroup;
 
     protected BaseFilterInput(ComponentType componentType, String id) {
         super(componentType, id);
+        this.allowDuplicates = true;
         this.onEnter = new ArrayList<>();
         this.onAdd = new ArrayList<>();
         this.onRemove = new ArrayList<>();
@@ -53,8 +60,9 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
             fi.value("");
             labelGroup.clear();
         };
-        this.textToLabel = text -> label(Id.build(text), text).outline().closable();
-        this.defaultOnEnter = (e, fi) -> {
+        this.textToIdentifier = DEFAULT_TEXT_TO_IDENTIFIER;
+        this.textToLabel = DEFAULT_TEXT_TO_LABEL;
+        this.addOnEnter = (e, fi) -> {
             labelGroup.addItem(textToLabel.apply(fi.value()));
             value("");
         };
@@ -75,8 +83,15 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
         toggleLabelGroup(value());
         onKeyup((e, tig, value) -> {
             if (Enter.match(e) && !value.isEmpty()) {
-                if (defaultOnEnter != null) {
-                    defaultOnEnter.handle(e, that());
+                if (addOnEnter != null) {
+                    if (allowDuplicates) {
+                        addOnEnter.handle(e, that());
+                    } else {
+                        String identifier = textToIdentifier.apply(value);
+                        if (!labelGroup.contains(identifier)) {
+                            addOnEnter.handle(e, that());
+                        }
+                    }
                 }
                 onEnter.forEach(h -> h.handle(e, that()));
             }
@@ -99,12 +114,47 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
     // ------------------------------------------------------ builder
 
     /**
-     * Disables the default behavior of adding an item to the label group when the Enter key is pressed.
+     * Allows duplicate entries to be added to the filter input. This method enables duplicates by delegating to the
+     * {@link #allowDuplicates(boolean)} method with a default value of {@code true}.
+     * <p>
+     * The flag only applies if the default add-on-enter has not been disabled using {@link #noAddOnEnter()}.
+     *
+     * @return This instance with duplicate entries enabled, allowing method chaining.
+     */
+    public T allowDuplicates() {
+        return allowDuplicates(true);
+    }
+
+    /**
+     * Allows or disallows duplicate entries in the filter input.
+     * <p>
+     * The flag only applies if the default add-on-enter has not been disabled using {@link #noAddOnEnter()}.
+     *
+     * @param allowDuplicates A boolean flag indicating whether duplicate entries should be allowed. If {@code true}, duplicates
+     *                        are permitted; otherwise, they are rejected.
+     * @return This instance with the duplicate entry behavior updated, allowing method chaining.
+     */
+    public T allowDuplicates(boolean allowDuplicates) {
+        this.allowDuplicates = allowDuplicates;
+        return that();
+    }
+
+    /**
+     * Disables the default behavior of adding an item to the label group when the Enter key is pressed. You can add a custom
+     * enter-handler using {@link #onEnter(ComponentHandler)}.
+     * <p>
+     * The default behavior is to turn the entered text into a label and add it to the label group using the
+     * {@link #textToIdentifier()} and {@link #textToLabel()} functions.
      *
      * @return This instance with the "add on Enter" functionality disabled, allowing method chaining.
      */
-    public T noDefaultOnEnter() {
-        this.defaultOnEnter = null;
+    public T noAddOnEnter() {
+        this.addOnEnter = null;
+        return that();
+    }
+
+    public T textToIdentifier(Function<String, String> textToIdentifier) {
+        this.textToIdentifier = textToIdentifier;
         return that();
     }
 
@@ -140,6 +190,10 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
 
     public LabelGroup labelGroup() {
         return labelGroup;
+    }
+
+    public Function<String, String> textToIdentifier() {
+        return textToIdentifier;
     }
 
     public Function<String, Label> textToLabel() {

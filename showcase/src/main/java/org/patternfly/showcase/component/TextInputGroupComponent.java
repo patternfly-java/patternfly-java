@@ -15,7 +15,6 @@
  */
 package org.patternfly.showcase.component;
 
-import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.component.textinputgroup.SearchInput;
@@ -32,6 +31,7 @@ import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
 import static org.patternfly.component.label.Label.label;
+import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TEXT_TO_IDENTIFIER;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
@@ -102,11 +102,11 @@ public class TextInputGroupComponent extends SnippetPage {
                 // @code-end:tig-validation
         ));
 
-        addSnippet(new Snippet("tig-filter-input", "Filters",
-                code("tig-filter-input"), () ->
-        {
+        addSnippet(new Snippet("tig-filter-input", "Filters (no duplicates)",
+                code("tig-filter-input"), () -> {
             // @code-start:tig-filter-input
             FilterInput filterInput = filterInput("tig-filter-input-0").icon(search())
+                    .allowDuplicates(false)
                     .onAdd((fi, filter) -> {
                         fi.removeIcon();
                         console.log("Filter added: %s", filter.text());
@@ -118,8 +118,8 @@ public class TextInputGroupComponent extends SnippetPage {
                         console.log("Filter removed: %s", filter.text());
                     });
             filterInput.labelGroup().addItems(range(1, 12).boxed().collect(toList()), index ->
-                    label(Id.build("tig-filter-input-label", String.valueOf(index)),
-                            "Label " + index).closable());
+                    label(DEFAULT_TEXT_TO_IDENTIFIER.apply("Label " + index), "Label " + index)
+                            .outline().closable());
             return div().add(filterInput).element();
             // @code-end:tig-filter-input
         }));

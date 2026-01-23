@@ -24,7 +24,7 @@ import org.patternfly.handler.ComponentHandler;
  * A filter input is a special {@linkplain SearchInput search input} that adds a
  * {@linkplain org.patternfly.component.label.LabelGroup label group}.
  * <p>
- * Use {@link #noDefaultOnEnter()} to disable the default enter behavior. You can add additional enter handlers using
+ * Use {@link #noAddOnEnter()} to disable the default enter behavior. You can add additional enter handlers using
  * {@link #onEnter(ComponentHandler)}. To control the utilities visibility use {@link #showUtilitiesIf(BiFunction)}.
  *
  * @see <a href=

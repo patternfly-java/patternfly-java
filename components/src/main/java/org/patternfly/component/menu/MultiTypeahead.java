@@ -74,13 +74,15 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
         this.noResultsProvider = SearchFilter.noResults();
 
         typeaheadDefaults(this, searchFilter, noResultsProvider);
-        filterInput.noDefaultOnEnter()
+        filterInput.noAddOnEnter()
                 .onEnter((e, fi) -> {
-                    Label label = filterInput.textToLabel().apply(fi.value());
-                    MenuItem menuItem = menu.findItem(label.identifier());
+                    String identifier = filterInput.textToIdentifier().apply(fi.value());
+                    MenuItem menuItem = menu.findItem(identifier);
                     if (menuItem != null) {
-                        if (!filterInput.labelGroup().contains(label.identifier())) {
+                        if (!filterInput.labelGroup().contains(identifier)) {
+                            Label label = filterInput.textToLabel().apply(menuItem.text());
                             filterInput.labelGroup().addItem(label);
+                            menu.select(menuItem, true, false);
                         }
                     }
                 })
