@@ -18,7 +18,6 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -53,8 +52,8 @@ import elemental2.dom.Node;
 
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
-import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
@@ -71,7 +70,7 @@ import static org.patternfly.style.Classes.list;
  * <p>
  * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed by a {@link Popper} instance.
  */
-abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B> implements
+public abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B> implements
         Disabled<HTMLElement, B>,
         Expandable<HTMLElement, B>,
         Attachable {
@@ -273,24 +272,6 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     // ------------------------------------------------------ internal
 
-    List<MenuItem> itemsFromIds(List<String> identifiers) {
-        return identifiers.stream()
-                .map(menu::findItem)
-                .filter(Objects::nonNull)
-                .collect(toList());
-    }
-
-    void makeSelection(List<MenuItem> items, boolean selected, boolean fireEvent) {
-        if (menu != null && menuToggle != null && !items.isEmpty()) {
-            for (MenuItem item : items) {
-                menu.select(item, selected, false);
-            }
-            if (fireEvent) {
-                menu.fireMultiSelection();
-            }
-        }
-    }
-
     void searchInputControlsMenuList() {
         if (menu != null && menuToggle != null && menuToggle.searchInput() != null) {
             HTMLElement menuListElement = menu.querySelector(By.classname(component(Classes.menu, list)));
@@ -320,6 +301,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                 HTMLElement focusableElement;
                 JsArray<HTMLElement> listItems = JsArray.from(menu.element().querySelectorAll("li").values());
                 JsArray<HTMLElement> focusableElements = listItems
+                        .filter((li, __) -> isVisible(li))
                         .map((li, __) -> ((HTMLElement) li.querySelector(
                                 "button:not(:disabled),input:not(:disabled),a:not([aria-disabled=\"true\"])")))
                         .filter((li, __) -> li != null);

@@ -18,77 +18,50 @@ package org.patternfly.component.menu;
 import org.patternfly.component.ComponentType;
 import org.patternfly.popper.TriggerAction;
 
-import static org.patternfly.component.SelectionMode.single;
-import static org.patternfly.component.menu.MenuType.select;
-
 /**
- * A select list enables users to select one or more items from a list. Use a select list when options are dynamic or variable.
+ * A select component to select exactly one item from a list.
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class SingleSelect extends MenuToggleMenu<SingleSelect> {
+public class SingleSelect extends SingleMenuToggleMenu<SingleSelect> {
 
     // ------------------------------------------------------ factory
 
+    /**
+     * Creates a new SingleSelect component with the specified text.
+     *
+     * @param text the text to display on the SingleSelect toggle
+     * @return a new instance of SingleSelect
+     */
     public static SingleSelect singleSelect(String text) {
         return new SingleSelect(MenuToggle.menuToggle(text));
     }
 
+    /**
+     * Creates a new SingleSelect component using the specified MenuToggle.
+     *
+     * @param menuToggle the MenuToggle instance to be used for creating the SingleSelect component
+     * @return a new instance of SingleSelect
+     */
     public static SingleSelect singleSelect(MenuToggle menuToggle) {
         return new SingleSelect(menuToggle);
     }
 
     // ------------------------------------------------------ instance
 
-    private boolean defaultSelectHandler;
-
     SingleSelect(MenuToggle menuToggle) {
         super(ComponentType.SingleSelect, menuToggle, TriggerAction.click);
-        this.defaultSelectHandler = true;
     }
 
-    // ------------------------------------------------------ add
-
     @Override
-    public SingleSelect add(Menu menu) {
-        if (menu.menuType == select && menu.selectionMode == single && defaultSelectHandler) {
-            menu.onSingleSelect((e, menuItem, s) -> menuToggle.text(menuItem.text()));
-        }
-        return super.add(menu);
+    void updateMenuToggle(MenuItem item) {
+        menuToggle.text(item.text());
     }
 
     // ------------------------------------------------------ builder
 
-    public SingleSelect noDefaultSelectHandler() {
-        this.defaultSelectHandler = false;
-        return this;
-    }
-
     @Override
     public SingleSelect that() {
         return this;
-    }
-
-    // ------------------------------------------------------ api
-
-    public void select(String itemId) {
-        select(menu.findItem(itemId), true);
-    }
-
-    public void select(String itemId, boolean fireEvent) {
-        select(menu.findItem(itemId), fireEvent);
-    }
-
-    public void select(MenuItem item) {
-        select(item, true);
-    }
-
-    public void select(MenuItem item, boolean fireEvent) {
-        if (menu != null && menuToggle != null && item != null) {
-            menu.select(item, true, fireEvent);
-            if (defaultSelectHandler) {
-                menuToggle.text(item.text());
-            }
-        }
     }
 }

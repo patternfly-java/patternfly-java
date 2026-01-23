@@ -28,6 +28,7 @@ import org.patternfly.component.ValidationStatus;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.form.Checkbox;
+import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
@@ -105,7 +106,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     }
 
     public static <T extends BaseSearchInput<T>> MenuToggle menuToggle(BaseSearchInput<T> searchInput) {
-        return menuToggle(MenuToggleType.typeahead).add(searchInput);
+        return menuToggle(MenuToggleType.typeahead).addSearchInput(searchInput);
+    }
+
+    public static <T extends BaseFilterInput<T>> MenuToggle menuToggle(BaseFilterInput<T> filterInput) {
+        return menuToggle(MenuToggleType.typeahead).addFilterInput(filterInput);
     }
 
     public static MenuToggle menuToggle(MenuToggleType type) {
@@ -134,6 +139,7 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private MenuToggleAction action;
     private Checkbox checkbox;
     private BaseSearchInput<?> searchInput;
+    private BaseFilterInput<?> filterInput;
     private ValidationStatus status;
     private Element icon;
     private HTMLElement textElement;
@@ -236,6 +242,18 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     public MenuToggle add(BaseSearchInput<?> searchInput) {
         this.searchInput = searchInput;
         insertFirst(element(), searchInput.element());
+        return this;
+    }
+
+    public MenuToggle addFilterInput(BaseFilterInput<?> filterInput) {
+        return add(filterInput);
+    }
+
+    // override to ensure internal wiring
+    public MenuToggle add(BaseFilterInput<?> filterInput) {
+        this.searchInput = filterInput; // every filter input is also a search input!
+        this.filterInput = filterInput;
+        insertFirst(element(), filterInput.element());
         return this;
     }
 
@@ -386,6 +404,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
 
     public BaseSearchInput<?> searchInput() {
         return searchInput;
+    }
+
+    public BaseFilterInput<?> filterInput() {
+        return filterInput;
     }
 
     public Badge badge() {

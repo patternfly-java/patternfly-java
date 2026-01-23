@@ -18,7 +18,7 @@ package org.patternfly.component.menu;
 import org.patternfly.component.SelectionMode;
 
 /**
- * Menu used for {@link MultiSelect} components.
+ * Menu used for {@link MultiSelect} and {@link MultiTypeahead} components.
  */
 public class MultiSelectMenu extends Menu {
 

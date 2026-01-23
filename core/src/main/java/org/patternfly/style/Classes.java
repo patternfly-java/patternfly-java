@@ -113,6 +113,7 @@ public interface Classes {
     String fill = "fill";
     String filled = "filled";
     String fillColumns = "fill-columns";
+    String filtered = "filtered"; // special PatternFly Java modifier
     String finished = "finished";
     String fitContent = "fit-content";
     String fixed = "fixed";
