@@ -42,6 +42,7 @@ import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
+
 import elemental2.core.JsArray;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;

@@ -24,6 +24,7 @@ import org.patternfly.component.label.LabelGroup;
 import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.popper.TriggerAction;
+
 import elemental2.dom.Node;
 import elemental2.promise.Promise;
 

@@ -31,6 +31,7 @@ import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
+
 import elemental2.core.JsArray;
 import elemental2.dom.Element;
 import elemental2.dom.Event;

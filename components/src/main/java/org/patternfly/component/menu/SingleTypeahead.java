@@ -21,6 +21,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.popper.TriggerAction;
+
 import elemental2.dom.Node;
 import elemental2.promise.Promise;
 

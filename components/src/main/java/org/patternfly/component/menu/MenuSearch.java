@@ -20,6 +20,7 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;

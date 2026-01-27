@@ -18,6 +18,7 @@ package org.patternfly.component.menu;
 import java.util.function.Function;
 
 import org.patternfly.core.Aria;
+
 import elemental2.dom.Event;
 import elemental2.promise.Promise;
 
