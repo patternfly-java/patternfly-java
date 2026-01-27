@@ -18,13 +18,13 @@ package org.patternfly.component.menu;
 import java.util.List;
 import java.util.function.Function;
 
+import org.jboss.elemento.Key;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
 import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.popper.TriggerAction;
-
 import elemental2.dom.Node;
 
 import static org.patternfly.component.label.Label.label;
@@ -65,16 +65,23 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
 
     private final BaseFilterInput<?> filterInput;
     private SearchFilter searchFilter;
-    private Function<String, MenuItem> noResultsProvider;
+    private NoResults noResults;
 
     MultiTypeahead(BaseFilterInput<?> filterInput) {
         super(ComponentType.MultiSelect, MenuToggle.menuToggle(filterInput), TriggerAction.stayOpen);
         this.filterInput = filterInput;
         this.searchFilter = SearchFilter.contains();
-        this.noResultsProvider = SearchFilter.noResults();
+        this.noResults = NoResults.noResults();
 
-        typeaheadDefaults(this, searchFilter, noResultsProvider);
-        filterInput.noAddOnEnter()
+        typeaheadDefaults(this);
+        filterInput
+                .onKeyup((e, c, value) -> {
+                    if (!Key.Escape.match(e) && !expanded()) {
+                        expand();
+                    }
+                    menu.search(searchFilter, noResults, value);
+                })
+                .noAddOnEnter()
                 .onEnter((e, fi) -> {
                     String identifier = filterInput.textToIdentifier().apply(fi.value());
                     MenuItem menuItem = menu.findItem(identifier);
@@ -85,9 +92,6 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                             menu.select(menuItem, true, false);
                         }
                     }
-                })
-                .onAdd((fi, filter) -> {
-                    // TODO Add filter to menu if create option is true and not already present
                 });
         stayOpen(event -> {
             boolean labelGroupClick = filterInput.labelGroup() != null &&
@@ -146,8 +150,8 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
      * By default, a "No results found" message is displayed.
      */
     @Override
-    public MultiTypeahead onNoResults(Function<String, MenuItem> noResults) {
-        this.noResultsProvider = noResults;
+    public MultiTypeahead onNoResults(NoResults noResults) {
+        this.noResults = noResults;
         return this;
     }
 }

@@ -15,46 +15,53 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.Function;
-
 import org.patternfly.core.Aria;
+import elemental2.dom.Event;
 
+import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.Key.Enter;
+import static org.jboss.elemento.Key.Escape;
+import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
 
 class TypeaheadDefaults {
 
-    static void typeaheadDefaults(MenuToggleMenu<?> mtm,
-            SearchFilter searchFilter,
-            Function<String, MenuItem> noResultsProvider) {
+    static void typeaheadDefaults(MenuToggleMenu<?> mtm) {
         mtm.menuToggle.searchInput().input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
                 .autocomplete("off")
-                .on(click, event -> mtm.toggle());
+                .on(click, event -> {
+                    boolean expanded = mtm.expanded();
+                    console.log("clicked on search input. going to %s", expanded ? "collapse" : "expand");
+                    mtm.toggle();
+                });
 
+        mtm.onToggle((e, c, expanded) -> {
+            if (expanded) {
+                // show all menu items when expanded
+                mtm.menu.clearSearch();
+            }
+        });
         mtm.menuToggle.searchInput()
                 .onClear((e, si) -> {
                     mtm.menu.clearSearch();
                     mtm.menu.unselectAllItems();
                     si.input().element().focus();
                 })
-                .onKeyup((event, si, value) -> {
-                    // TODO Handle keys like up/down arrow, space, return, escape, ...
-                    mtm.menu.search(searchFilter, noResultsProvider, value);
-                    // expand();
-                })
-                .onChange((event, si, value) -> {
+                .onChange((e, c, value) -> {
                     if (value.isEmpty()) {
                         mtm.menu.clearSearch();
                     }
                 });
+    }
 
-        mtm.onLoaded((e, c) -> {
-            if (!mtm.menuToggle.searchInput().value().isEmpty()) {
-                mtm.menu.search(searchFilter, noResultsProvider, mtm.menuToggle.searchInput().value());
-            }
-        });
+    static boolean shouldExpandOnKeyup(MenuToggleMenu<?> mtm, Event event) {
+        if (Enter.match(event) || Escape.match(event) || Tab.match(event)) {
+            return false;
+        }
+        return !mtm.expanded();
     }
 }

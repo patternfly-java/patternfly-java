@@ -21,9 +21,11 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.popper.TriggerAction;
-
 import elemental2.dom.Node;
+import elemental2.promise.Promise;
 
+import static org.patternfly.component.menu.MenuItem.createNewMenuItem;
+import static org.patternfly.component.menu.TypeaheadDefaults.shouldExpandOnKeyup;
 import static org.patternfly.component.menu.TypeaheadDefaults.typeaheadDefaults;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 
@@ -60,16 +62,25 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     // ------------------------------------------------------ instance
 
     private SearchFilter searchFilter;
-    private Function<String, MenuItem> noResultsProvider;
+    private NoResults noResults;
 
     SingleTypeahead(BaseSearchInput<?> searchInput) {
         super(ComponentType.SingleSelect, MenuToggle.menuToggle(searchInput), TriggerAction.click);
         this.searchFilter = SearchFilter.contains();
-        this.noResultsProvider = SearchFilter.noResults();
+        this.noResults = NoResults.noResults();
 
-        typeaheadDefaults(this, searchFilter, noResultsProvider);
-        stayOpen(event -> searchInput.utilities() != null && searchInput.utilities().element()
-                .contains((Node) event.target));
+        typeaheadDefaults(this);
+        menuToggle.searchInput().onKeyup((e, c, value) -> {
+            if (shouldExpandOnKeyup(this, e)) {
+                expand(false);
+            }
+            menu.search(searchFilter, noResults, value);
+        });
+        stayOpen(event -> {
+            Node target = (Node) event.target;
+            return searchInput.input().element() == target ||
+                    (searchInput.utilities() != null && searchInput.utilities().element().contains(target));
+        });
     }
 
     @Override
@@ -87,6 +98,21 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     }
 
     // ------------------------------------------------------ builder
+
+    public SingleTypeahead allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
+        this.noResults = (menuList, text) -> createNewMenuItem(prompt.apply(text))
+                .onClick((e, c) -> createItem.apply(text)
+                        .then(menuItem -> {
+                            menuList.add(menuItem);
+                            menu.select(menuItem, true, true);
+                            return null;
+                        }).finally_(() -> {
+                            menu.clearSearch();
+                            menuToggle.text(text);
+                            menuToggle.searchInput().input().element().focus();
+                        }));
+        return this;
+    }
 
     @Override
     public SingleTypeahead that() {
@@ -112,8 +138,8 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
      * By default, a "No results found" message is displayed.
      */
     @Override
-    public SingleTypeahead onNoResults(Function<String, MenuItem> noResults) {
-        this.noResultsProvider = noResults;
+    public SingleTypeahead onNoResults(NoResults noResults) {
+        this.noResults = noResults;
         return this;
     }
 }

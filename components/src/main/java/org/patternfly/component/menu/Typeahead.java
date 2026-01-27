@@ -30,12 +30,12 @@ public interface Typeahead<M extends MenuToggleMenu<M>> {
     M onSearch(SearchFilter searchFilter);
 
     /**
-     * Defines the behavior when no results are found during a search. This method allows setting a {@link Function} that takes
-     * a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
+     * Configures the behavior for generating a "no results" menu item when no matching items are found
+     * in the menu list for the given input text.
      *
-     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
-     *                  {@link MenuItem} to display for no results.
-     * @return the {@link SingleTypeahead} instance for method chaining.
+     * @param noResults a {@link NoResults} implementation responsible for defining how the "no results"
+     *                  menu item is created and displayed when no matches are found.
+     * @return the instance of the current type enabling method chaining.
      */
-    M onNoResults(Function<String, MenuItem> noResults);
+    M onNoResults(NoResults noResults);
 }

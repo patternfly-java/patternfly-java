@@ -18,7 +18,6 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -32,7 +31,6 @@ import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.core.JsArray;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -83,7 +81,7 @@ import static org.patternfly.style.Variables.MaxHeight;
  * needs to choose between multiple values, options, or actions. A menu is most often paired with a {@link MenuToggle} as its
  * trigger, but can also be used inline or can be attached to other interactable elements to toggle it open and close.
  * <p>
- * {@snippet class=MenuDemo region=menu}
+ * {@snippet class = MenuDemo region = menu}
  *
  * @see <a href="https://www.patternfly.org/components/menu">https://www.patternfly.org/components/menu</a>
  */
@@ -366,7 +364,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     // ------------------------------------------------------ internal
 
-    void search(SearchFilter searchFilter, Function<String, MenuItem> noResultsProvider, String value) {
+    void search(SearchFilter searchFilter, NoResults noResults, String value) {
         // no search if one of the menu lists is pending
         if (hasAsyncItems()) {
             return;
@@ -383,7 +381,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         failSafeRemoveFromParent(noResultsItem);
         if (visibleItems == 0) {
             if (content != null && content.list != null) {
-                noResultsItem = noResultsProvider.apply(value);
+                noResultsItem = noResults.noResults(content.list, value);
                 // Don't use content.list.addItem(noResultsItem) here
                 // The no-result item should not be part of the item map
                 content.list.add(noResultsItem.element());

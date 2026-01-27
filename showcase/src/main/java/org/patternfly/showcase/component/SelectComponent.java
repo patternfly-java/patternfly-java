@@ -27,13 +27,14 @@ import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
+import org.patternfly.component.menu.MultiTypeahead;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
+import org.patternfly.component.menu.SingleTypeahead;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers.FullWidth;
-
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -211,6 +212,29 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:single-typeahead
         ));
 
+        addSnippet(new Snippet("single-typeahead-create", "Typeahead with create option",
+                code("single-typeahead-create"), () -> {
+            // @code-start:single-typeahead-create
+            SingleTypeahead typeahead = singleTypeahead("single-typeahead-create-0", "Select a state");
+            MenuList menuList = menuList();
+            return div()
+                    .add(typeahead
+                            .applyTo(FullWidth::fullWidth)
+                            .allowNewItems(value -> "Create new item \"" + value + "\"",
+                                    value -> Promise.resolve(menuItem(Id.build(value), value)))
+                            .addMenu(singleSelectMenu()
+                                    .addContent(menuContent()
+                                            .addList(menuList
+                                                    .addItem(menuItem("alabama", "Alabama"))
+                                                    .addItem(menuItem("florida", "Florida"))
+                                                    .addItem(menuItem("new-jersey", "New Jersey"))
+                                                    .addItem(menuItem("new-mexico", "New Mexico"))
+                                                    .addItem(menuItem("new-york", "New York"))
+                                                    .addItem(menuItem("north-carolina", "North Carolina"))))))
+                    .element();
+            // @code-end:single-typeahead-create
+        }));
+
         addSnippet(new Snippet("single-typeahead-async", "Typeahead (async)",
                 code("single-typeahead-async"), () -> {
             // @code-start:single-typeahead-async
@@ -252,6 +276,27 @@ public class SelectComponent extends SnippetPage {
                         .element()
                 // @code-end:multi-typeahead
         ));
+
+        addSnippet(new Snippet("multi-typeahead-create", "Multiple typeahead with create option",
+                code("multi-typeahead-create"), () -> {
+            // @code-start:multi-typeahead-create
+            MultiTypeahead typeahead = multiTypeahead("multi-typeahead-create-0", "Select a state");
+            MenuList menuList = menuList();
+            return div()
+                    .add(typeahead
+                            .applyTo(FullWidth::fullWidth)
+                            .addMenu(multiSelectMenu()
+                                    .addContent(menuContent()
+                                            .addList(menuList
+                                                    .addItem(menuItem("alabama", "Alabama"))
+                                                    .addItem(menuItem("florida", "Florida"))
+                                                    .addItem(menuItem("new-jersey", "New Jersey"))
+                                                    .addItem(menuItem("new-mexico", "New Mexico"))
+                                                    .addItem(menuItem("new-york", "New York"))
+                                                    .addItem(menuItem("north-carolina", "North Carolina"))))))
+                    .element();
+            // @code-end:multi-typeahead-create
+        }));
 
         addSnippet(new Snippet("multi-typeahead-async", "Multiple typeahead (async)",
                 code("multi-typeahead-async"), () -> {

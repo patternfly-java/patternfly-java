@@ -40,7 +40,6 @@ import org.patternfly.core.Dataset;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
@@ -136,9 +135,15 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         return menuItem;
     }
 
+    // Special menu item used internally in the typeahead components
+    static MenuItem createNewMenuItem(String text) {
+        return menuItem(Id.unique("create-new"), text).data(CREATE_NEW_MARKER, "");
+    }
+
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(MenuItem.class.getName());
+    private static final String CREATE_NEW_MARKER = "createNew";
     public static final String SUB_COMPONENT_NAME = "mi";
 
     final MenuItemType itemType;
@@ -298,7 +303,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private void attachSelectionMode(Menu menu, MenuItem menuItem) {
         if (menu.selectionMode == single || menu.selectionMode == SelectionMode.click) {
             itemElement.addEventListener(click.name, e -> {
-                if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                if (!element().dataset.has(CREATE_NEW_MARKER) && !isAriaDisabled(((HTMLElement) e.currentTarget))) {
                     menu.select(menuItem, true, true);
                 }
             });

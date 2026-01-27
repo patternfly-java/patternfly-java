@@ -15,14 +15,11 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.Function;
-
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -50,12 +47,12 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     private final HTMLElement inputContainer;
     private SearchInput searchInput;
     private SearchFilter searchFilter;
-    private Function<String, MenuItem> noResultsProvider;
+    private NoResults noResults;
 
     MenuSearch() {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.menu, search)).element());
         this.searchFilter = SearchFilter.contains();
-        this.noResultsProvider = SearchFilter.noResults();
+        this.noResults = NoResults.noResults();
         element().appendChild(inputContainer = div().css(component(Classes.menu, search, input)).element());
         Attachable.register(this, this);
     }
@@ -77,7 +74,7 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
                 logger.warn("Menu %o has a search filter, but no search input was added.", menu);
             } else {
                 searchInput
-                        .onKeyup((event, si, value) -> menu.search(searchFilter, noResultsProvider, value))
+                        .onKeyup((event, si, value) -> menu.search(searchFilter, noResults, value))
                         .onClear((event, si) -> menu.clearSearch());
             }
         }
@@ -115,17 +112,14 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     }
 
     /**
-     * Defines the behavior when no results are found during a search in the menu. This method allows setting a {@link Function}
-     * that takes a search query as input and provides a {@link MenuItem} to be displayed when no matching results are found.
-     * <p>
-     * By default, a "No results found" message is displayed.
+     * Configures the behavior for handling the event when no results are found in the menu list for a given input.
      *
-     * @param noResults a {@link Function} that accepts a {@link String} parameter representing the search query, and returns a
-     *                  {@link MenuItem} to display for no results.
+     * @param noResults a {@link NoResults} functional interface instance that defines the logic to generate a menu item when no
+     *                  results are found for the search query.
      * @return the {@link MenuSearch} instance for method chaining.
      */
-    public MenuSearch onNoResults(Function<String, MenuItem> noResults) {
-        this.noResultsProvider = noResults;
+    public MenuSearch onNoResults(NoResults noResults) {
+        this.noResults = noResults;
         return this;
     }
 }
