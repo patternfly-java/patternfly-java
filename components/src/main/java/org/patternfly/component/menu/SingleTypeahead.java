@@ -24,9 +24,8 @@ import org.patternfly.popper.TriggerAction;
 import elemental2.dom.Node;
 import elemental2.promise.Promise;
 
-import static org.patternfly.component.menu.MenuItem.createNewMenuItem;
-import static org.patternfly.component.menu.TypeaheadDefaults.shouldExpandOnKeyup;
-import static org.patternfly.component.menu.TypeaheadDefaults.typeaheadDefaults;
+import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
+import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 
 /**
@@ -99,18 +98,9 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
 
     // ------------------------------------------------------ builder
 
+    @Override
     public SingleTypeahead allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
-        this.noResults = (menuList, text) -> createNewMenuItem(prompt.apply(text))
-                .onClick((e, c) -> createItem.apply(text)
-                        .then(menuItem -> {
-                            menuList.add(menuItem);
-                            menu.select(menuItem, true, true);
-                            return null;
-                        }).finally_(() -> {
-                            menu.clearSearch();
-                            menuToggle.text(text);
-                            menuToggle.searchInput().input().element().focus();
-                        }));
+        TypeaheadSupport.allowNewItems(this, this, prompt, createItem);
         return this;
     }
 
@@ -121,22 +111,12 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
 
     // ------------------------------------------------------ events
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * By default, the search filter will match items that contain the search query in their text.
-     */
     @Override
     public SingleTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * By default, a "No results found" message is displayed.
-     */
     @Override
     public SingleTypeahead onNoResults(NoResults noResults) {
         this.noResults = noResults;

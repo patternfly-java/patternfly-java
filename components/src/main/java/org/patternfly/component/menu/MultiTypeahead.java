@@ -18,7 +18,6 @@ package org.patternfly.component.menu;
 import java.util.List;
 import java.util.function.Function;
 
-import org.jboss.elemento.Key;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
@@ -26,9 +25,10 @@ import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.popper.TriggerAction;
 import elemental2.dom.Node;
+import elemental2.promise.Promise;
 
-import static org.patternfly.component.label.Label.label;
-import static org.patternfly.component.menu.TypeaheadDefaults.typeaheadDefaults;
+import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
+import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 
 /**
@@ -76,8 +76,8 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
         typeaheadDefaults(this);
         filterInput
                 .onKeyup((e, c, value) -> {
-                    if (!Key.Escape.match(e) && !expanded()) {
-                        expand();
+                    if (shouldExpandOnKeyup(this, e)) {
+                        expand(false);
                     }
                     menu.search(searchFilter, noResults, value);
                 })
@@ -94,11 +94,13 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                     }
                 });
         stayOpen(event -> {
+            Node target = (Node) event.target;
+            boolean inputClick = filterInput.input().element() == target;
             boolean labelGroupClick = filterInput.labelGroup() != null &&
                     filterInput.labelGroup().element().contains((Node) event.target);
             boolean utilitiesClick = menuToggle.searchInput().utilities() != null &&
                     menuToggle.searchInput().utilities().element().contains((Node) event.target);
-            return labelGroupClick || utilitiesClick;
+            return inputClick || labelGroupClick || utilitiesClick;
         });
     }
 
@@ -108,9 +110,9 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
         if (labelGroup != null && items != null) {
             labelGroup.clear();
             for (MenuItem item : items) {
-                labelGroup.addItem(label(item.identifier(), item.text())
-                        .outline()
-                        .closable((e, c) -> menu.select(item, false, false)));
+                Label label = filterInput.textToLabel().apply(item.text())
+                        .onClose((e, c) -> menu.select(item, false, false));
+                labelGroup.addItem(label);
             }
         }
     }
@@ -127,28 +129,24 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ builder
 
     @Override
+    public MultiTypeahead allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
+        TypeaheadSupport.allowNewItems(this, this, prompt, createItem);
+        return this;
+    }
+
+    @Override
     public MultiTypeahead that() {
         return this;
     }
 
     // ------------------------------------------------------ events
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * By default, the search filter will match items that contain the search query in their text.
-     */
     @Override
     public MultiTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * By default, a "No results found" message is displayed.
-     */
     @Override
     public MultiTypeahead onNoResults(NoResults noResults) {
         this.noResults = noResults;

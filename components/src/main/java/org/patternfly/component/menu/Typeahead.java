@@ -17,7 +17,34 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
+import elemental2.promise.Promise;
+
 public interface Typeahead<M extends MenuToggleMenu<M>> {
+
+    /**
+     * Allows the creation of new menu items based on user input. This method enables the typeahead component to dynamically add
+     * custom items when the provided input does not match any existing items. A default prompt is used to guide the user with a
+     * message like "Create new item '<input>'".
+     *
+     * @param createItem a {@link Function} that takes a {@code String} input representing the user's data and returns a
+     *                   {@link Promise} of a {@link MenuItem}, which corresponds to the newly created item.
+     * @return an instance of the enclosing type, enabling method chaining for further configuration.
+     */
+    default M allowNewItems(Function<String, Promise<MenuItem>> createItem) {
+        return allowNewItems(value -> "Create new item \"" + value + "\"", createItem);
+    }
+
+    /**
+     * Allows the creation of new menu items based on user input. This method enables a typeahead component to provide
+     * functionality for dynamically adding custom items when the user-provided input does not match any existing items.
+     *
+     * @param prompt     a {@link Function} that takes a {@code String} input representing the user's data and returns a
+     *                   {@code String} response, typically used to prompt the user or display a message.
+     * @param createItem a {@link Function} that takes a {@code String} input representing the user's data and returns a
+     *                   {@link Promise} of a {@link MenuItem}, representing the newly created item.
+     * @return an instance of the enclosing type, enabling method chaining for further configuration.
+     */
+    M allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem);
 
     /**
      * Configures the search behavior for this typeahead.
@@ -30,11 +57,11 @@ public interface Typeahead<M extends MenuToggleMenu<M>> {
     M onSearch(SearchFilter searchFilter);
 
     /**
-     * Configures the behavior for generating a "no results" menu item when no matching items are found
-     * in the menu list for the given input text.
+     * Configures the behavior for generating a "no results" menu item when no matching items are found in the menu list for the
+     * given input text.
      *
-     * @param noResults a {@link NoResults} implementation responsible for defining how the "no results"
-     *                  menu item is created and displayed when no matches are found.
+     * @param noResults a {@link NoResults} implementation responsible for defining how the "no results" menu item is created
+     *                  and displayed when no matches are found.
      * @return the instance of the current type enabling method chaining.
      */
     M onNoResults(NoResults noResults);

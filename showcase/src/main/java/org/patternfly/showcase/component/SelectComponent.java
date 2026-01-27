@@ -27,10 +27,8 @@ import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
-import org.patternfly.component.menu.MultiTypeahead;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
-import org.patternfly.component.menu.SingleTypeahead;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -213,27 +211,25 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("single-typeahead-create", "Typeahead with create option",
-                code("single-typeahead-create"), () -> {
-            // @code-start:single-typeahead-create
-            SingleTypeahead typeahead = singleTypeahead("single-typeahead-create-0", "Select a state");
-            MenuList menuList = menuList();
-            return div()
-                    .add(typeahead
-                            .applyTo(FullWidth::fullWidth)
-                            .allowNewItems(value -> "Create new item \"" + value + "\"",
-                                    value -> Promise.resolve(menuItem(Id.build(value), value)))
-                            .addMenu(singleSelectMenu()
-                                    .addContent(menuContent()
-                                            .addList(menuList
-                                                    .addItem(menuItem("alabama", "Alabama"))
-                                                    .addItem(menuItem("florida", "Florida"))
-                                                    .addItem(menuItem("new-jersey", "New Jersey"))
-                                                    .addItem(menuItem("new-mexico", "New Mexico"))
-                                                    .addItem(menuItem("new-york", "New York"))
-                                                    .addItem(menuItem("north-carolina", "North Carolina"))))))
-                    .element();
-            // @code-end:single-typeahead-create
-        }));
+                code("single-typeahead-create"), () ->
+                // @code-start:single-typeahead-create
+                div()
+                        .add(singleTypeahead("single-typeahead-create-0", "Select a state")
+                                .applyTo(FullWidth::fullWidth)
+                                .allowNewItems(value -> "Create new item \"" + value + "\"",
+                                        value -> Promise.resolve(menuItem(Id.build(value), value)))
+                                .addMenu(singleSelectMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(menuItem("alabama", "Alabama"))
+                                                        .addItem(menuItem("florida", "Florida"))
+                                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                                        .addItem(menuItem("new-york", "New York"))
+                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                        .element()
+                // @code-end:single-typeahead-create
+        ));
 
         addSnippet(new Snippet("single-typeahead-async", "Typeahead (async)",
                 code("single-typeahead-async"), () -> {
@@ -278,25 +274,25 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("multi-typeahead-create", "Multiple typeahead with create option",
-                code("multi-typeahead-create"), () -> {
-            // @code-start:multi-typeahead-create
-            MultiTypeahead typeahead = multiTypeahead("multi-typeahead-create-0", "Select a state");
-            MenuList menuList = menuList();
-            return div()
-                    .add(typeahead
-                            .applyTo(FullWidth::fullWidth)
-                            .addMenu(multiSelectMenu()
-                                    .addContent(menuContent()
-                                            .addList(menuList
-                                                    .addItem(menuItem("alabama", "Alabama"))
-                                                    .addItem(menuItem("florida", "Florida"))
-                                                    .addItem(menuItem("new-jersey", "New Jersey"))
-                                                    .addItem(menuItem("new-mexico", "New Mexico"))
-                                                    .addItem(menuItem("new-york", "New York"))
-                                                    .addItem(menuItem("north-carolina", "North Carolina"))))))
-                    .element();
-            // @code-end:multi-typeahead-create
-        }));
+                code("multi-typeahead-create"), () ->
+                // @code-start:multi-typeahead-create
+                div()
+                        .add(multiTypeahead("multi-typeahead-create-0", "Select a state")
+                                .applyTo(FullWidth::fullWidth)
+                                .allowNewItems(value -> "Create new item \"" + value + "\"",
+                                        value -> Promise.resolve(menuItem(Id.build(value), value)))
+                                .addMenu(multiSelectMenu()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItem(menuItem("alabama", "Alabama"))
+                                                        .addItem(menuItem("florida", "Florida"))
+                                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                                        .addItem(menuItem("new-york", "New York"))
+                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                        .element()
+                // @code-end:multi-typeahead-create
+        ));
 
         addSnippet(new Snippet("multi-typeahead-async", "Multiple typeahead (async)",
                 code("multi-typeahead-async"), () -> {

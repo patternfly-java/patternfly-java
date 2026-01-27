@@ -15,29 +15,28 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.function.Function;
+
 import org.patternfly.core.Aria;
 import elemental2.dom.Event;
+import elemental2.promise.Promise;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.Key.Enter;
 import static org.jboss.elemento.Key.Escape;
 import static org.jboss.elemento.Key.Tab;
+import static org.patternfly.component.menu.MenuItem.createNewMenuItem;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
 
-class TypeaheadDefaults {
+class TypeaheadSupport {
 
     static void typeaheadDefaults(MenuToggleMenu<?> mtm) {
         mtm.menuToggle.searchInput().input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
                 .autocomplete("off")
-                .on(click, event -> {
-                    boolean expanded = mtm.expanded();
-                    console.log("clicked on search input. going to %s", expanded ? "collapse" : "expand");
-                    mtm.toggle();
-                });
+                .on(click, event -> mtm.toggle());
 
         mtm.onToggle((e, c, expanded) -> {
             if (expanded) {
@@ -63,5 +62,21 @@ class TypeaheadDefaults {
             return false;
         }
         return !mtm.expanded();
+    }
+
+    static void allowNewItems(MenuToggleMenu<?> mtm, Typeahead<?> typeahead,
+            Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
+        typeahead.onNoResults((menuList, text) -> createNewMenuItem(prompt.apply(text))
+                .onClick((e, c) -> createItem.apply(text)
+                        .then(menuItem -> {
+                            mtm.menu.clearSearch();
+                            menuList.add(menuItem);
+                            mtm.menu.select(menuItem, true, true);
+                            return null;
+                        }).finally_(() -> {
+                            mtm.menuToggle.text(text);
+                            mtm.menuToggle.searchInput().input().element().focus();
+                            mtm.collapse(false);
+                        })));
     }
 }

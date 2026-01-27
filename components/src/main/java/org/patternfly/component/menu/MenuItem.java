@@ -309,7 +309,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
             });
         } else if (menu.selectionMode == group || menu.selectionMode == multi) {
             itemElement.addEventListener(click.name, e -> {
-                if (!isAriaDisabled(((HTMLElement) e.currentTarget))) {
+                if (!element().dataset.has(CREATE_NEW_MARKER) && !isAriaDisabled(((HTMLElement) e.currentTarget))) {
                     if (itemType == checkbox) {
                         if (((HTMLElement) e.target).id.equals(checkboxComponent.inputElement().element().id)) {
                             menu.select(menuItem, isSelected(), true);
