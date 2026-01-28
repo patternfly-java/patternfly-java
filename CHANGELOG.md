@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.4.11] - 2026-01-28
+
 ### Changed
 
 - Add an option to create items in single and multi-typeahead components.
@@ -623,7 +625,8 @@ Stay tuned for more to come...
 -->
 
 [Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.10...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.11...HEAD
+[0.4.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.10...v0.4.11
 [0.4.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.9...v0.4.10
 [0.4.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.8...v0.4.9
 [0.4.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.7...v0.4.8
