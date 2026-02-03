@@ -17,22 +17,22 @@
     "http-server": "http-server target/showcase --ssl --cert cert.pem"
   },
   "dependencies": {
-    "@github/relative-time-element": "^4.4.8",
+    "@github/relative-time-element": "^5.0.0",
     "@patternfly/patternfly": "^6.4.0",
-    "@patternfly-java/charts": "^0.0.10",
+    "@patternfly-java/charts": "^0.0.11",
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {
-    "@parcel/core": "^2.16.0",
-    "@parcel/reporter-cli": "^2.16.0",
-    "@parcel/resolver-glob": "^2.16.0",
+    "@parcel/core": "^2.16.4",
+    "@parcel/reporter-cli": "^2.16.4",
+    "@parcel/resolver-glob": "^2.16.4",
     "concurrently": "^9.2.1",
-    "express": "^5.2.0",
+    "express": "^5.2.1",
     "http-proxy-middleware": "^3.0.5",
     "http-server": "^14.1.1",
-    "open": "^10.2.0",
-    "parcel": "^2.16.0",
+    "open": "^11.0.0",
+    "parcel": "^2.16.4",
     "parcel-resolver-ignore": "^2.2.1",
-    "wait-on": "^9.0.1"
+    "wait-on": "^9.0.3"
   }
 }
