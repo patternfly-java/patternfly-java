@@ -19,5 +19,12 @@
     "route": "/charts/donut-utilization",
     "clazz": "org.patternfly.chart.utilization.DonutUtilization",
     "summary": "A donut utilization chart is a donut chart used specifically to show utilization metrics."
+  },
+  "pie": {
+    "name": "pie",
+    "title": "Pie",
+    "route": "/charts/pie",
+    "clazz": "org.patternfly.chart.pie.Pie",
+    "summary": "A pie chart is commonly used to show percentages or proportional data."
   }
 }
