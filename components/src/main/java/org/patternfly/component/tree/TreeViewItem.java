@@ -644,13 +644,13 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     private void internalClear() {
-        removeChildrenFrom(element());
         Iterator<TreeViewItem> iterator = items.values().iterator();
         while (iterator.hasNext()) {
             TreeViewItem item = iterator.next();
             iterator.remove();
             onRemove.forEach(bc -> bc.accept(this, item));
         }
+        removeChildrenFrom(childrenElement);
     }
 
     private HTMLElement failSafeIconContainer() {

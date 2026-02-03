@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `TreeViewItem.reload()`
+
+### Upgrades
+
+- Bump Elemento to 2.4.7
+
 ## [0.4.11] - 2026-01-28
 
 ### Changed
