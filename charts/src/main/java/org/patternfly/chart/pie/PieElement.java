@@ -13,26 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.chart;
+package org.patternfly.chart.pie;
 
-public enum ChartType {
+import org.patternfly.chart.ChartElement;
+import org.patternfly.chart.Data;
 
-    Bullet("blt", "PF6/Chart/Bullet"),
+import elemental2.core.JsArray;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-    Donut("dnt", "PF6/Chart/Donut"),
-
-    DonutUtilization("dntu", "PF6/Chart/DonutUtilization"),
-
-    DonutThreshold("dntt", "PF6/Chart/DonutThreshold"),
-
-    Pie("pie", "PF6/Chart/Pie")
-    ;
-
-    public final String id;
-    public final String chartName;
-
-    ChartType(String id, String chartName) {
-        this.id = id;
-        this.chartName = chartName;
-    }
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
+public class PieElement extends ChartElement {
+    public JsArray<Data> data;
+    public JsArray<String> colorScale;
 }
