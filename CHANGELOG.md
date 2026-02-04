@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Keep selection after call to `MenuList.reload()`
+- Fix the disabled state of the wizard footer buttons
 
 ## [0.4.12] - 2026-02-03
 
