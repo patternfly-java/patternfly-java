@@ -213,8 +213,22 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     public Promise<Iterable<MenuItem>> reload() {
+        List<String> selected = new ArrayList<>();
+        for (MenuItem menuItem : this) {
+            if (menuItem.isSelected()) {
+                selected.add(menuItem.identifier());
+            }
+        }
         reset();
-        return load().then(Promise::resolve);
+        return load().then(value -> {
+            Menu menu = lookupComponent(true);
+            if (menu != null) {
+                for (String identifier : selected) {
+                    menu.select(identifier, true, false);
+                }
+            }
+            return Promise.resolve(value);
+        });
     }
 
     public AsyncStatus status() {
