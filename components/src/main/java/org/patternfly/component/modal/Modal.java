@@ -32,7 +32,6 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
@@ -232,7 +231,8 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
     public Modal add(Wizard wizard) {
         element().appendChild(wizard.element());
         hideClose = true;
-        wizard.onClose((e, c) -> close());
+        wizard.onCancel((e, c) -> close());
+        wizard.onFinish((e, c) -> close());
         return this;
     }
 

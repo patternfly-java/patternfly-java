@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
+import org.jboss.elemento.Callback;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
-import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
-import org.patternfly.handler.CloseHandler;
+import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Event;
@@ -47,8 +47,6 @@ import static org.patternfly.component.wizard.WizardStepType.step;
 import static org.patternfly.component.wizard.WizardStepType.summary;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.handler.CloseHandler.fireEvent;
-import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.finished;
 import static org.patternfly.style.Classes.modifier;
@@ -63,9 +61,7 @@ import static org.patternfly.style.Classes.wizard;
  *
  * @see <a href= "https://www.patternfly.org/components/wizard">https://www.patternfly.org/components/wizard</a>
  */
-public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
-        Closeable<HTMLElement, Wizard>,
-        HasItems<HTMLElement, Wizard, WizardStep> {
+public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasItems<HTMLElement, Wizard, WizardStep> {
 
     // ------------------------------------------------------ factory
 
@@ -79,7 +75,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
 
     private final WizardContext context;
     private final Map<String, WizardStep> items;
-    private final List<CloseHandler<Wizard>> closeHandler;
+    private final List<ComponentHandler<Wizard>> cancelHandler;
+    private final List<ComponentHandler<Wizard>> finishHandler;
     private final List<BiConsumer<Wizard, WizardStep>> onAdd;
     private final List<BiConsumer<Wizard, WizardStep>> onRemove;
     private final List<WizardStepChangeHandler> stepChangeHandlers;
@@ -98,7 +95,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         super(ComponentType.Wizard, div().css(component(wizard)).element());
         this.context = new WizardContext(this);
         this.items = new LinkedHashMap<>();
-        this.closeHandler = new ArrayList<>();
+        this.cancelHandler = new ArrayList<>();
+        this.finishHandler = new ArrayList<>();
         this.onAdd = new ArrayList<>();
         this.onRemove = new ArrayList<>();
         this.stepChangeHandlers = new ArrayList<>();
@@ -209,9 +207,13 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return this;
     }
 
-    @Override
-    public Wizard onClose(CloseHandler<Wizard> closeHandler) {
-        this.closeHandler.add(closeHandler);
+    public Wizard onCancel(ComponentHandler<Wizard> handler) {
+        this.cancelHandler.add(handler);
+        return this;
+    }
+
+    public Wizard onFinish(ComponentHandler<Wizard> handler) {
+        this.finishHandler.add(handler);
         return this;
     }
 
@@ -227,15 +229,6 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     // ------------------------------------------------------ api
-
-    @Override
-    public void close(Event event, boolean fireEvent) {
-        if (shouldClose(this, closeHandler, event, fireEvent)) {
-            // Nothing to do here. If the wizard is wrapped in a modal,
-            // the modal must close the wizard.
-            fireEvent(this, closeHandler, event, fireEvent);
-        }
-    }
 
     @Override
     public Iterator<WizardStep> iterator() {
@@ -297,7 +290,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             iterator.remove();
             onRemove.forEach(bc -> bc.accept(this, item));
         }
-        footer.disabled();
+        footer.disableButtons();
     }
 
     public WizardContext context() {
@@ -344,8 +337,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
             WizardStep nextStep = nextEnabledStep(current.next);
             if (nextStep != null) {
                 navigateForward(nextStep);
-            } else if (current.type == review) {
-                close();
+            } else if (current == tail || current.type == review) {
+                finish();
             }
         }
     }
@@ -369,7 +362,9 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
     }
 
     public void cancel() {
-        close();
+        for (ComponentHandler<Wizard> handler : cancelHandler) {
+            handler.handle(new Event(""), this);
+        }
     }
 
     // ------------------------------------------------------ internal
@@ -380,7 +375,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                 navigateTo(step);
             }
         } else if (current.previousPromise != null) {
-            footer.disabled();
+            footer.disableButtons();
             current.previousPromise.onPrevious(this, current, step)
                     .then(proceed -> {
                         if (proceed) {
@@ -389,30 +384,42 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                         return null;
                     })
                     .catch_(error -> null)
-                    .finally_(footer::restore);
+                    .finally_(() -> footer.updateButtons(size(), head, current, tail));
         } else {
             navigateTo(step);
         }
     }
 
     private void navigateForward(WizardStep step) {
+        forwardThen(() -> navigateTo(step));
+    }
+
+    private void finish() {
+        forwardThen(() -> {
+            for (ComponentHandler<Wizard> handler : finishHandler) {
+                handler.handle(new Event(""), this);
+            }
+        });
+    }
+
+    private void forwardThen(Callback callback) {
         if (current.nextHandler != null) {
-            if (current.nextHandler.onNext(this, current, step)) {
-                navigateTo(step);
+            if (current.nextHandler.onNext(this, current, null)) {
+                callback.call();
             }
         } else if (current.nextPromise != null) {
-            footer.disabled();
-            current.nextPromise.onNext(this, current, step)
+            footer.disableButtons();
+            current.nextPromise.onNext(this, current, null)
                     .then(proceed -> {
                         if (proceed) {
-                            navigateTo(step);
+                            callback.call();
                         }
                         return null;
                     })
                     .catch_(error -> null)
-                    .finally_(footer::restore);
+                    .finally_(() -> footer.updateButtons(size(), head, current, tail));
         } else {
-            navigateTo(step);
+            callback.call();
         }
     }
 
@@ -445,13 +452,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
                 ws.select(current == ws);
             }
             nav.select(current.identifier());
-            if (current == head) {
-                footer.firstStep();
-            } else if (current == tail || current.type == review) {
-                footer.reviewStep();
-            } else if (size() > 1) {
-                footer.middleStep();
-            }
+            footer.updateButtons(size(), head, current, tail);
             if (current.enterHandler != null) {
                 current.enterHandler.onEnter(this, current);
             }

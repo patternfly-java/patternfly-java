@@ -306,7 +306,7 @@ public class WizardComponent extends SnippetPage {
                 code("wizard-modal"), () ->
                 // @code-start:wizard-modal
                 div().add(button("Show modal").primary().onClick((e, c) -> modal().size(Size.md)
-                                .add(wizard().height(400)
+                                .addWizard(wizard().height(400)
                                         .addHeader(wizardHeader()
                                                 .addTitle(wizardHeaderTitle("Wizard in modal"))
                                                 .addDescription(wizardHeaderDescription("Simple wizard description")))

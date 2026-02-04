@@ -24,6 +24,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.list.ActionList.actionList;
 import static org.patternfly.component.list.ActionListGroup.actionListGroup;
 import static org.patternfly.component.list.ActionListItem.actionListItem;
+import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.wizard;
@@ -39,9 +40,6 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
     private final Button backButton;
     private final Button nextButton;
     private final Button cancelButton;
-    boolean backButtonDisabled;
-    boolean nextButtonDisabled;
-    boolean cancelButtonDisabled;
 
     WizardFooter() {
         super(SUB_COMPONENT_NAME, footer().css(component(wizard, footer)).element());
@@ -91,6 +89,22 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
 
     // ------------------------------------------------------ internal
 
+    void disableButtons() {
+        backButton.disabled(true);
+        nextButton.disabled(true);
+        cancelButton.disabled(true);
+    }
+
+    void updateButtons(int steps, WizardStep head, WizardStep current, WizardStep tail) {
+        if (current == head) {
+            firstStep();
+        } else if (current == tail || current.type == review) {
+            reviewStep();
+        } else if (steps > 1) {
+            middleStep();
+        }
+    }
+
     void firstStep() {
         backButton.disabled(true);
         nextButton.disabled(false);
@@ -110,20 +124,5 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
         nextButton.disabled(false);
         cancelButton.disabled(false);
         nextButton.text("Finish");
-    }
-
-    void disabled() {
-        backButtonDisabled = backButton.isDisabled();
-        nextButtonDisabled = nextButton.isDisabled();
-        cancelButtonDisabled = cancelButton.isDisabled();
-        backButton.disabled(true);
-        nextButton.disabled(true);
-        cancelButton.disabled(true);
-    }
-
-    void restore() {
-        backButton.disabled(backButtonDisabled);
-        nextButton.disabled(nextButtonDisabled);
-        cancelButton.disabled(cancelButtonDisabled);
     }
 }

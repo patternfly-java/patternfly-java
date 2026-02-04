@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- `Wizard` no longer implements `Closeable`
+- Add `Wizard.onCancel(ComponentHandler<Wizard> handler)` and `Wizard.onFinish(ComponentHandler<Wizard> handler)`
+
+### Fixed
+
+- Keep selection after call to `MenuList.reload()`
+
 ## [0.4.12] - 2026-02-03
 
 ### Added

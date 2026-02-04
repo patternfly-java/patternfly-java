@@ -44,7 +44,7 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
         add(closeContainer = div().css(component(wizard, close))
                 .add(button().plain().icon(times()).onClick((e, c) -> {
                     Wizard wizard = lookupComponent();
-                    wizard.close();
+                    wizard.cancel();
                 }))
                 .element());
     }
