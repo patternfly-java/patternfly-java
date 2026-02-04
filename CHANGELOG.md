@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.4.13] - 2026-02-04
+
 ### Changed
 
 - `Wizard` no longer implements `Closeable`
@@ -649,7 +651,8 @@ Stay tuned for more to come...
 -->
 
 [Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.12...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.13...HEAD
+[0.4.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.12...v0.4.13
 [0.4.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.11...v0.4.12
 [0.4.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.10...v0.4.11
 [0.4.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.9...v0.4.10
