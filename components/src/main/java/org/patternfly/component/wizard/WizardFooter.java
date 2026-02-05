@@ -24,6 +24,9 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.list.ActionList.actionList;
 import static org.patternfly.component.list.ActionListGroup.actionListGroup;
 import static org.patternfly.component.list.ActionListItem.actionListItem;
+import static org.patternfly.component.wizard.WizardFooterButtons.back;
+import static org.patternfly.component.wizard.WizardFooterButtons.cancel;
+import static org.patternfly.component.wizard.WizardFooterButtons.next;
 import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
@@ -96,33 +99,29 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
     }
 
     void updateButtons(int steps, WizardStep head, WizardStep current, WizardStep tail) {
-        if (current == head) {
-            firstStep();
-        } else if (current == tail || current.type == review) {
-            reviewStep();
-        } else if (steps > 1) {
-            middleStep();
+        if (current.customButtonNames.containsKey(back)) {
+            backButton.text(current.customButtonNames.get(back));
         }
-    }
+        if (current.customButtonNames.containsKey(cancel)) {
+            cancelButton.text(current.customButtonNames.get(cancel));
+        }
+        if (current == head) {
+            backButton.disabled(true);
+            nextButton.disabled(false);
+            cancelButton.disabled(false);
+            nextButton.text(current.customButtonNames.getOrDefault(next, "Next"));
 
-    void firstStep() {
-        backButton.disabled(true);
-        nextButton.disabled(false);
-        cancelButton.disabled(false);
-        nextButton.text("Next");
-    }
+        } else if (current == tail || current.type == review) {
+            backButton.disabled(false);
+            nextButton.disabled(false);
+            cancelButton.disabled(false);
+            nextButton.text(current.customButtonNames.getOrDefault(next, "Finish"));
 
-    void middleStep() {
-        backButton.disabled(false);
-        nextButton.disabled(false);
-        cancelButton.disabled(false);
-        nextButton.text("Next");
-    }
-
-    void reviewStep() {
-        backButton.disabled(false);
-        nextButton.disabled(false);
-        cancelButton.disabled(false);
-        nextButton.text("Finish");
+        } else if (steps > 1) {
+            backButton.disabled(false);
+            nextButton.disabled(false);
+            cancelButton.disabled(false);
+            nextButton.text(current.customButtonNames.getOrDefault(next, "Next"));
+        }
     }
 }

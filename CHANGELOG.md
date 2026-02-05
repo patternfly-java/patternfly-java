@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `WizardStep.customButtonName(WizardFooterButtons, String)` to define custom button names per step.
+
 ## [0.4.15] - 2026-02-05
 
 ### Upgrades

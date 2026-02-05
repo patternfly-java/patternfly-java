@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.wizard;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -25,7 +26,6 @@ import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -64,11 +64,12 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     private static final Logger logger = Logger.getLogger(WizardStep.class.getName());
 
     private final String identifier;
-    private final Map<String, Object> data;
     private final HTMLElement bodyElement;
+    private final Map<String, Object> data;
     private ValidationStatus status;
     final String title;
     final WizardStepType type;
+    final EnumMap<WizardFooterButtons, String> customButtonNames;
     boolean disabled;
     boolean visited;
     WizardStep previous;
@@ -85,8 +86,9 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
         this.identifier = identifier;
         this.title = title;
         this.type = type;
-        this.data = new HashMap<>();
         this.visited = false;
+        this.data = new HashMap<>();
+        this.customButtonNames = new EnumMap<>(WizardFooterButtons.class);
         element().appendChild(bodyElement = div().css(component(wizard, main, body)).element());
     }
 
@@ -96,6 +98,19 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Assigns a custom name to a specific button in the wizard's footer. This method allows for customizing the label of the
+     * wizard's footer buttons.
+     *
+     * @param button the {@code WizardFooterButtons} enum representing the button to be renamed
+     * @param name   the custom label to assign to the specified button
+     * @return the current {@code WizardStep} instance, allowing method chaining
+     */
+    public WizardStep customButtonName(WizardFooterButtons button, String name) {
+        customButtonNames.put(button, name);
+        return this;
+    }
 
     @Override
     public WizardStep disabled(boolean disabled) {
