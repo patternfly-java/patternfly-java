@@ -12,6 +12,7 @@ The following web components are available:
 - `<pfj-chart-donut-threshold>` → [`ChartDonutThreshold`](https://www.patternfly.org/charts/donut-utilization-chart#donut-utilization-threshold-examples)
 - `<pfj-chart-donut-utilization>` → [`ChartDonutUtilization`](https://www.patternfly.org/charts/donut-utilization-chart#donut-utilization-examples)
 - `<pfj-chart-bullet>` → [`ChartBullet`](https://www.patternfly.org/charts/bullet-chart)
+- `<pfj-chart-pie>` → [`ChartPie`](https://www.patternfly.org/charts/pie-chart)
 
 ## Installation
 
