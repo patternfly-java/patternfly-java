@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.4.15] - 2026-02-05
+
 ### Upgrades
 
 - Bump Elemento to 2.4.8
@@ -660,7 +662,8 @@ Stay tuned for more to come...
 -->
 
 [Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.14...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.15...HEAD
+[0.4.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.14...v0.4.15
 [0.4.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.13...v0.4.14
 [0.4.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.12...v0.4.13
 [0.4.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.11...v0.4.12
