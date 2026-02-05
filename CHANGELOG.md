@@ -6,11 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.4.14] - 2026-02-05
-
 ### Upgrades
 
 - Bump Elemento to 2.4.8
+
+## [0.4.14] - 2026-02-05
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.4.13] - 2026-02-04
 
