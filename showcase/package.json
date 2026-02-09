@@ -14,7 +14,9 @@
     "open:browser": "wait-on http://localhost:1234 && open http://localhost:1234",
     "watch": "concurrently \"npm run start:parcel\" \"npm run start:server\" \"npm run open:browser\"",
     "prod": "parcel build src/web/index.html --dist-dir target/showcase",
-    "http-server": "http-server target/showcase --ssl --cert cert.pem"
+    "http-server": "http-server target/showcase --ssl --cert cert.pem",
+    "images:clean": "rm -rf src/web/images/*",
+    "images:download": "node images.js"
   },
   "dependencies": {
     "@github/relative-time-element": "^5.0.0",
@@ -33,6 +35,7 @@
     "open": "^11.0.0",
     "parcel": "^2.16.4",
     "parcel-resolver-ignore": "^2.2.1",
+    "puppeteer": "^24.37.2",
     "wait-on": "^9.0.3"
   }
 }
