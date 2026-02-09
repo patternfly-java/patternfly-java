@@ -56,6 +56,6 @@ public class Component {
 
     @JsOverlay
     public final String illustration() {
-        return "https://raw.githubusercontent.com/patternfly/patternfly-org/main/packages/documentation-site/patternfly-docs/images/component-illustrations/" + illustration;
+        return "https://raw.githubusercontent.com/patternfly-java/patternfly-java/refs/heads/main/showcase/src/web/images/" + illustration;
     }
 }
