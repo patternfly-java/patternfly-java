@@ -16,6 +16,7 @@
 package org.patternfly.component.list;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.function.BiConsumer;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
@@ -59,7 +61,8 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class DataList extends BaseComponent<HTMLUListElement, DataList> implements
         Compact<HTMLUListElement, DataList>,
-        HasItems<HTMLUListElement, DataList, DataListItem> {
+        HasItems<HTMLUListElement, DataList, DataListItem>,
+        Ordered<HTMLUListElement, DataList, DataListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -72,6 +75,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     private final Map<String, DataListItem> items;
     private final List<BiConsumer<DataList, DataListItem>> onAdd;
     private final List<BiConsumer<DataList, DataListItem>> onRemove;
+    private Comparator<DataListItem> comparator;
 
     DataList() {
         super(ComponentType.DataList, ul().css(component(dataList))
@@ -87,10 +91,14 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
 
     @Override
     public DataList add(DataListItem item) {
+        if (comparator != null) {
+            addOrdered(this, this, item, comparator);
+        } else {
+            add(item.element());
+        }
         items.put(item.identifier(), item);
-        DataList result = add(item.element());
         onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -100,6 +108,12 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
         if (verifyEnum(element(), "gridBreakpoint", breakpoint, none, always, gridSm, gridMd, gridLg, gridXl, gird2xl)) {
             swap(this, element(), breakpoint, GridBreakpoint.values());
         }
+        return this;
+    }
+
+    @Override
+    public DataList ordered(Comparator<DataListItem> comparator) {
+        this.comparator = comparator;
         return this;
     }
 

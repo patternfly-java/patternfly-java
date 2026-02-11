@@ -15,16 +15,17 @@
  */
 package org.patternfly.component.list;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -53,6 +54,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
         Bordered<HTMLElement, List>,
         HasItems<HTMLElement, List, ListItem>,
         Inline<HTMLElement, List>,
+        Ordered<HTMLElement, List, ListItem>,
         Plain<HTMLElement, List> {
 
     // ------------------------------------------------------ factory
@@ -71,6 +73,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
     private final Map<String, ListItem> items;
     private final java.util.List<BiConsumer<List, ListItem>> onAdd;
     private final java.util.List<BiConsumer<List, ListItem>> onRemove;
+    private Comparator<ListItem> comparator;
 
     <E extends HTMLElement> List(HTMLContainerBuilder<E> builder) {
         super(ComponentType.List, builder.css(Classes.component(list))
@@ -83,22 +86,14 @@ public class List extends BaseComponent<HTMLElement, List> implements
 
     // ------------------------------------------------------ add
 
-    public <T> List addItems(Iterable<T> items, Function<T, ListItem> display) {
-        for (T item : items) {
-            ListItem li = display.apply(item);
-            addItem(li);
-        }
-        return this;
-    }
-
-    public List addItem(ListItem item) {
-        return add(item);
-    }
-
     @Override
     public List add(ListItem item) {
+        if (comparator != null) {
+            addOrdered(this, this, item, comparator);
+        } else {
+            add(item.element());
+        }
         items.put(item.identifier(), item);
-        add(item.element());
         onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
@@ -107,10 +102,16 @@ public class List extends BaseComponent<HTMLElement, List> implements
         return add(divider(li));
     }
 
-
     // ------------------------------------------------------ builder
+
     public List largeIcons() {
         return css(modifier(icon, lg));
+    }
+
+    @Override
+    public List ordered(Comparator<ListItem> comparator) {
+        this.comparator = comparator;
+        return this;
     }
 
     @Override

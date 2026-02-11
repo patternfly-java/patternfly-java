@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add [`Ordered`](https://patternfly-java.github.io/patternfly-java/org/patternfly/component/Ordered.html) interface and implementations for `List`, and `DataList`.
+
 ## [0.4.16] - 2026-02-05
 
 ### Added
