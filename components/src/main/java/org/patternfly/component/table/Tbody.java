@@ -26,7 +26,6 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.HasItems;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.emptystate.EmptyState;
 import elemental2.dom.HTMLTableSectionElement;
@@ -43,8 +42,7 @@ import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
 
 public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
-        Ordered<HTMLTableSectionElement, Tbody, Tr>,
-        HasItems<HTMLTableSectionElement, Tbody, Tr> {
+        Ordered<HTMLTableSectionElement, Tbody, Tr> {
 
     // ------------------------------------------------------ factory
 
@@ -86,11 +84,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     public Tbody add(Tr row) {
-        if (comparator != null) {
-            addOrdered(this, this, row, comparator);
-        } else {
-            add(row.element());
-        }
+        addOrdered(this, row);
         row.tbody = this;
         items.put(row.identifier(), row);
         onAdd.forEach(bc -> bc.accept(this, row));
@@ -125,6 +119,11 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<Tr> comparator() {
+        return comparator;
+    }
 
     public Tbody empty(int colSpan, EmptyState emptyState) {
         failSafeRemoveFromParent(emptyRow);

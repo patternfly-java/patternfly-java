@@ -16,6 +16,7 @@
 package org.patternfly.component.list;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,14 +25,13 @@ import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Horizontal;
 import org.patternfly.style.Orientation;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.dl;
@@ -61,7 +61,7 @@ import static org.patternfly.style.Variables.GridTemplateColumns;
 public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList> implements
         Compact<HTMLElement, DescriptionList>,
         Horizontal<HTMLElement, DescriptionList>,
-        HasItems<HTMLElement, DescriptionList, DescriptionListGroup> {
+        Ordered<HTMLElement, DescriptionList, DescriptionListGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -74,6 +74,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     private final Map<String, DescriptionListGroup> items;
     private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onAdd;
     private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onRemove;
+    private Comparator<DescriptionListGroup> comparator;
 
     DescriptionList() {
         super(ComponentType.DescriptionList, dl().css(component(descriptionList)).element());
@@ -86,10 +87,10 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
 
     @Override
     public DescriptionList add(DescriptionListGroup item) {
+        addOrdered(this, item);
         items.put(item.identifier(), item);
-        DescriptionList result = add(item.element());
         onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        return this;
     }
 
     // ------------------------------------------------------ builder
@@ -109,7 +110,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         return autoFit(true);
     }
 
-    /** Sets the description list to auto fit. */
+    /** Sets the description list to auto-fit. */
     public DescriptionList autoFit(boolean autoFit) {
         return toggleModifier(that(), element(), Classes.autoFit, autoFit);
     }
@@ -210,6 +211,12 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         return toggleModifier(that(), element(), Classes.inlineGrid, inlineGrid);
     }
 
+    @Override
+    public DescriptionList ordered(Comparator<DescriptionListGroup> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
+
     /**
      * Same as {@code orientation(breakpoints(default_, orientation))}
      */
@@ -247,6 +254,11 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<DescriptionListGroup> comparator() {
+        return comparator;
+    }
 
     @Override
     public Iterator<DescriptionListGroup> iterator() {

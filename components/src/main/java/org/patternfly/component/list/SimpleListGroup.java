@@ -16,21 +16,21 @@
 package org.patternfly.component.list;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
@@ -50,7 +50,7 @@ import static org.patternfly.style.Classes.title;
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
         ElementContainerDelegate<HTMLElement, SimpleListGroup>,
         ElementTextDelegate<HTMLElement, SimpleListGroup>,
-        HasItems<HTMLElement, SimpleListGroup, SimpleListItem> {
+        Ordered<HTMLElement, SimpleListGroup, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -63,9 +63,10 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public static final String SUB_COMPONENT_NAME = "slg";
     final Map<String, SimpleListItem> items;
     private final HTMLElement headerElement;
-    private final HTMLUListElement ulElement;
+    private final HTMLContainerBuilder<HTMLUListElement> ul;
     private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onAdd;
     private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onRemove;
+    private Comparator<SimpleListItem> comparator;
 
     SimpleListGroup() {
         super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
@@ -77,10 +78,10 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
                 .id(headerId)
                 .aria(Aria.hidden, true)
                 .element());
-        element().appendChild(ulElement = ul().css(component(simpleList, list))
+        ul = ul().css(component(simpleList, list))
                 .attr(role, Roles.list)
-                .aria(labelledBy, headerId)
-                .element());
+                .aria(labelledBy, headerId);
+        element().appendChild(ul.element());
     }
 
     @Override
@@ -95,27 +96,21 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     // ------------------------------------------------------ add
 
-    public <T> SimpleListGroup addItems(Iterable<T> items, Function<T, SimpleListItem> display) {
-        for (T item : items) {
-            SimpleListItem sli = display.apply(item);
-            addItem(sli);
-        }
-        return this;
-    }
-
-    public SimpleListGroup addItem(SimpleListItem item) {
-        return add(item);
-    }
-
     @Override
     public SimpleListGroup add(SimpleListItem item) {
+        addOrdered(ul, item);
         items.put(item.identifier(), item);
-        ulElement.appendChild(item.element());
         onAdd.forEach(bc -> bc.accept(this, item));
         return this;
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public SimpleListGroup ordered(Comparator<SimpleListItem> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
 
     @Override
     public SimpleListGroup that() {
@@ -137,6 +132,11 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<SimpleListItem> comparator() {
+        return comparator;
+    }
 
     @Override
     public Iterator<SimpleListItem> iterator() {
@@ -174,7 +174,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     @Override
     public void clear() {
-        removeChildrenFrom(ulElement);
+        removeChildrenFrom(ul);
         Iterator<SimpleListItem> iterator = items.values().iterator();
         while (iterator.hasNext()) {
             SimpleListItem item = iterator.next();

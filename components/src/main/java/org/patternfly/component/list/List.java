@@ -88,11 +88,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
 
     @Override
     public List add(ListItem item) {
-        if (comparator != null) {
-            addOrdered(this, this, item, comparator);
-        } else {
-            add(item.element());
-        }
+        addOrdered(this, item);
         items.put(item.identifier(), item);
         onAdd.forEach(bc -> bc.accept(this, item));
         return this;
@@ -134,6 +130,11 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<ListItem> comparator() {
+        return comparator;
+    }
 
     @Override
     public Iterator<ListItem> iterator() {

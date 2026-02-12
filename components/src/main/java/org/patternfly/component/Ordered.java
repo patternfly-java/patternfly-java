@@ -28,42 +28,43 @@ import static java.util.Comparator.comparing;
 import static org.jboss.elemento.Elements.insertBefore;
 
 /**
- * The Ordered interface can be implemented by components that maintain its elements in a specific order. Typically, the
- * components also implements {@link HasItems}. By default, the order is determined by the {@link #defaultOrder()} method which
- * in turn determines the order based on the elements data {@value #DATA_ORDER} attribute. The order is maintained as elements
- * are added to the component.
+ * The Ordered interface can be implemented by components that maintain its elements in a specific order. It extends the
+ * {@link HasItems} interface. By default, the order is determined by the {@link #defaultOrder()} method which in turn
+ * determines the order based on the elements data {@value #DATA_ORDER} attribute. The order is maintained as elements are
+ * {@linkplain HasItems#add(Object) added} to the component.
  *
  * @param <E> the type of the main element
  * @param <B> the type of the builder for chaining methods
- * @param <T> the type of components being ordered
+ * @param <S> the type of components being ordered
  */
-public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, T extends IsElement<? extends HTMLElement>>
-        extends TypedBuilder<E, B>, IsElement<E> {
+public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, S extends IsElement<? extends HTMLElement>>
+        extends HasItems<E, B, S> {
 
     String DATA_ORDER = "order";
 
     /**
-     * Adds an item to a container in a specific order determined by the provided comparator. The item's position is calculated
-     * relative to the existing items in the container.
+     * Adds an item to the specified container in a predefined order. If a comparator is provided, the order is determined based
+     * on the comparator; otherwise, the item is added directly to the container.
      *
-     * @param hasItems   the source of the current items to determine the insertion position
-     * @param container  the container to which the item will be added
-     * @param item       the item to be added to the container
-     * @param comparator the comparator used to determine the order of the items
+     * @param container the container to which the item should be added
+     * @param item      the item to be added to the container
      */
-    default void addOrdered(HasItems<E, B, T> hasItems, ElementContainerMethods<E, B> container, T item,
-            Comparator<T> comparator) {
-        HTMLElement elementBefore = null;
-        TreeSet<T> orderedItems = new TreeSet<>(comparator);
-        orderedItems.addAll(hasItems.items());
-        for (T existing : orderedItems) {
-            if (comparator.compare(item, existing) < 0) {
-                elementBefore = existing.element();
-                break;
+    default void addOrdered(ElementContainerMethods<?, ?> container, S item) {
+        if (comparator() != null) {
+            HTMLElement elementBefore = null;
+            TreeSet<S> orderedItems = new TreeSet<>(comparator());
+            orderedItems.addAll(items());
+            for (S existing : orderedItems) {
+                if (comparator().compare(item, existing) < 0) {
+                    elementBefore = existing.element();
+                    break;
+                }
             }
-        }
-        if (elementBefore != null) {
-            insertBefore(item.element(), elementBefore);
+            if (elementBefore != null) {
+                insertBefore(item.element(), elementBefore);
+            } else {
+                container.add(item.element());
+            }
         } else {
             container.add(item.element());
         }
@@ -74,7 +75,7 @@ public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, T exte
      *
      * @return a comparator that compares elements using the {@value #DATA_ORDER} attribute from their dataset
      */
-    default Comparator<T> defaultOrder() {
+    default Comparator<S> defaultOrder() {
         return comparing(o -> o.element().dataset.get(DATA_ORDER));
     }
 
@@ -95,5 +96,12 @@ public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, T exte
      * @param comparator the comparator used to define the ordering of the elements
      * @return the builder instance with the elements ordered
      */
-    B ordered(Comparator<T> comparator);
+    B ordered(Comparator<S> comparator);
+
+    /**
+     * Retrieves the comparator used for ordering elements in a component.
+     *
+     * @return the comparator that determines the order of elements
+     */
+    Comparator<S> comparator();
 }

@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,11 +29,10 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.AsyncItems;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.Roles;
-
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
 import elemental2.promise.Promise;
@@ -57,7 +57,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
 
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
-        HasItems<HTMLUListElement, MenuList, MenuItem>,
+        Ordered<HTMLUListElement, MenuList, MenuItem>,
         Attachable {
 
     // ------------------------------------------------------ factory
@@ -91,6 +91,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     private MenuItem noItemsItem;
     private MenuItem errorItem;
     private AsyncItems<MenuList, MenuItem> asyncItems;
+    private Comparator<MenuItem> comparator;
 
     MenuList() {
         super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
@@ -125,10 +126,10 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public MenuList add(MenuItem item) {
+        addOrdered(this, item);
         items.put(item.identifier(), item);
-        MenuList result = add(item.element());
         onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        return this;
     }
 
     public MenuList addItems(AsyncItems<MenuList, MenuItem> items) {
@@ -146,6 +147,12 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public MenuList ordered(Comparator<MenuItem> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
 
     @Override
     public MenuList that() {
@@ -167,6 +174,11 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<MenuItem> comparator() {
+        return comparator;
+    }
 
     public Promise<Iterable<MenuItem>> load() {
         if (status == pending && asyncItems != null) {

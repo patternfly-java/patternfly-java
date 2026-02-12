@@ -16,6 +16,7 @@
 package org.patternfly.component.list;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
@@ -55,7 +57,7 @@ import static org.patternfly.style.Classes.simpleList;
  * @see <a href= "https://www.patternfly.org/components/simple-list">https://www.patternfly.org/components/simple-list</a>
  */
 public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implements
-        HasItems<HTMLElement, SimpleList, SimpleListItem> {
+        Ordered<HTMLElement, SimpleList, SimpleListItem> {
 
     // ------------------------------------------------------ factory
 
@@ -71,10 +73,12 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     private final List<SimpleListGroup> groups;
     private final Map<String, SimpleListItem> items;
     private final List<SelectHandler<SimpleListItem>> selectHandler;
-    private SimpleListType type;
-    private HTMLUListElement ulElement;
     private final List<BiConsumer<SimpleList, SimpleListItem>> onAdd;
     private final List<BiConsumer<SimpleList, SimpleListItem>> onRemove;
+    private SimpleListType type;
+    private HTMLUListElement ulElement;
+    private Comparator<SimpleListItem> comparator;
+
 
     SimpleList() {
         super(ComponentType.SimpleList, div().css(component(simpleList)).element());
@@ -121,6 +125,12 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     // ------------------------------------------------------ builder
 
     @Override
+    public SimpleList ordered(Comparator<SimpleListItem> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
+
+    @Override
     public SimpleList that() {
         return this;
     }
@@ -154,6 +164,11 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<SimpleListItem> comparator() {
+        return comparator;
+    }
 
     public void select(String identifier) {
         select(findItem(identifier), true, true);

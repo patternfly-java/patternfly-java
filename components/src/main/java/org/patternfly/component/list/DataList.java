@@ -25,12 +25,10 @@ import java.util.function.BiConsumer;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
-
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -61,7 +59,6 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class DataList extends BaseComponent<HTMLUListElement, DataList> implements
         Compact<HTMLUListElement, DataList>,
-        HasItems<HTMLUListElement, DataList, DataListItem>,
         Ordered<HTMLUListElement, DataList, DataListItem> {
 
     // ------------------------------------------------------ factory
@@ -91,11 +88,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
 
     @Override
     public DataList add(DataListItem item) {
-        if (comparator != null) {
-            addOrdered(this, this, item, comparator);
-        } else {
-            add(item.element());
-        }
+        addOrdered(this, item);
         items.put(item.identifier(), item);
         onAdd.forEach(bc -> bc.accept(this, item));
         return this;
@@ -145,6 +138,11 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<DataListItem> comparator() {
+        return comparator;
+    }
 
     @Override
     public Iterator<DataListItem> iterator() {
