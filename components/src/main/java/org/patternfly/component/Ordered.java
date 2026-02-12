@@ -21,7 +21,6 @@ import java.util.TreeSet;
 import org.jboss.elemento.ElementContainerMethods;
 import org.jboss.elemento.IsElement;
 import org.jboss.elemento.TypedBuilder;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -29,10 +28,14 @@ import static java.util.Comparator.comparing;
 import static org.jboss.elemento.Elements.insertBefore;
 
 /**
- * The Ordered interface can be implemented by components that maintain its elements in a specific order. It extends the
- * {@link HasItems} interface. By default, the order is determined by the {@link #defaultOrder()} method which in turn
- * determines the order based on the elements data {@value #DATA_ORDER} attribute. The order is maintained as elements are
- * {@linkplain HasItems#add(Object) added} to the component.
+ * The Ordered interface maintains its elements in a specific order. It extends the {@link HasItems} interface. By default, the
+ * order is determined by the {@link #defaultOrder()} method which in turn determines the order based on the elements data
+ * {@value #DATA_ORDER} attribute. The order is maintained as elements are {@linkplain HasItems#add(Object) added} to the
+ * component.
+ * <p>
+ * If you want to use this feature, call {@link #ordered()} resp. {@link #ordered(Comparator)} on the builder. It is useful when
+ * items are added asynchronously, and you want to visually maintain an order of items as they're added. If you know all items
+ * in advance, it might be more performant if you sort them beforehand.
  *
  * @param <E> the type of the main element
  * @param <B> the type of the builder for chaining methods
