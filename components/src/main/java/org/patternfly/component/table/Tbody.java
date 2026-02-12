@@ -16,6 +16,7 @@
 package org.patternfly.component.table;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -26,8 +27,8 @@ import java.util.function.Function;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.component.emptystate.EmptyState;
-
 import elemental2.dom.HTMLTableSectionElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -42,6 +43,7 @@ import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
 
 public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
+        Ordered<HTMLTableSectionElement, Tbody, Tr>,
         HasItems<HTMLTableSectionElement, Tbody, Tr> {
 
     // ------------------------------------------------------ factory
@@ -57,9 +59,10 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     public static final String SUB_COMPONENT_NAME = "tbd";
     final Map<String, Tr> items;
-    private Tr emptyRow;
     private final List<BiConsumer<Tbody, Tr>> onAdd;
     private final List<BiConsumer<Tbody, Tr>> onRemove;
+    private Tr emptyRow;
+    private Comparator<Tr> comparator;
 
     Tbody() {
         super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
@@ -83,14 +86,24 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     public Tbody add(Tr row) {
-        items.put(row.identifier(), row);
+        if (comparator != null) {
+            addOrdered(this, this, row, comparator);
+        } else {
+            add(row.element());
+        }
         row.tbody = this;
-        add(row.element());
+        items.put(row.identifier(), row);
         onAdd.forEach(bc -> bc.accept(this, row));
         return this;
     }
 
     // ------------------------------------------------------ builder
+
+    @Override
+    public Tbody ordered(Comparator<Tr> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
 
     @Override
     public Tbody that() {

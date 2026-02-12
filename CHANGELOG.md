@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add [`Ordered`](https://patternfly-java.github.io/patternfly-java/org/patternfly/component/Ordered.html) interface and implementations for `List`, and `DataList`.
+- Add [`Ordered`](https://patternfly-java.github.io/patternfly-java/org/patternfly/component/Ordered.html) interface and implementations for `List`, `DataList`, and `Tbody`.
 
 ## [0.4.16] - 2026-02-05
 
