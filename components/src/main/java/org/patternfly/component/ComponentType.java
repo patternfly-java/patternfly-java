@@ -109,6 +109,8 @@ public enum ComponentType {
 
     Page("pg", "PF6/Component/Page"),
 
+    PageHeader("ph", "PF6/Component/PageHeader"),
+
     Panel("pnl", "PF6/Component/Panel"),
 
     Popover("pvr", "PF6/Component/Popover"),
@@ -120,6 +122,8 @@ public enum ComponentType {
     Radio("rd", "PF6/Component/Radio"),
 
     SearchInput("si", "PF6/Component/SearchInput"),
+
+    ServiceCard("sc", "PF6/Component/ServiceCard"),
 
     Sidebar("sb", "PF6/Component/Sidebar"),
 
