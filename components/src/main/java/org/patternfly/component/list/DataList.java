@@ -29,6 +29,7 @@ import org.patternfly.component.Ordered;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
+
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
