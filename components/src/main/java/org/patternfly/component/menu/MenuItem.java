@@ -108,6 +108,13 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     /**
      * Create a new menu item with type {@link MenuItemType#action}.
      */
+    public static MenuItem menuItem(String identifier) {
+        return new MenuItem(identifier, null, MenuItemType.action, null);
+    }
+
+    /**
+     * Create a new menu item with type {@link MenuItemType#action}.
+     */
     public static MenuItem menuItem(String identifier, String text) {
         return new MenuItem(identifier, text, MenuItemType.action, null);
     }
