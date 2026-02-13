@@ -103,7 +103,7 @@
         <encoding>UTF-8</encoding>
         <github.org>patternfly-java</github.org>
         <github.name>patternfly-java</github.name>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven.min.version>3.9.9</maven.min.version>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
