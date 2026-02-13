@@ -106,39 +106,43 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
 
     // ------------------------------------------------------ api
 
+    public void clear() {
+        removeChildrenFrom(mc);
+    }
+
     public void replace(IsElement<?> element) {
-        removeChildrenFrom(element());
+        clear();
         add(element.element());
     }
 
     public void replace(Element element) {
-        removeChildrenFrom(element());
+        clear();
         add(element);
     }
 
     public void replace(Element... elements) {
-        removeChildrenFrom(element());
+        clear();
         for (Element element : elements) {
             add(element);
         }
     }
 
     public void replace(HTMLElement... elements) {
-        removeChildrenFrom(element());
+        clear();
         for (HTMLElement element : elements) {
             add(element);
         }
     }
 
     public void replace(IsElement<?>... elements) {
-        removeChildrenFrom(element());
+        clear();
         for (IsElement<?> element : elements) {
             add(element.element());
         }
     }
 
     public void replace(Iterable<?> elements) {
-        removeChildrenFrom(element());
+        clear();
         for (Object element : elements) {
             if (element instanceof HTMLElement) {
                 add(((HTMLElement) element));
