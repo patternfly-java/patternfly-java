@@ -20,10 +20,13 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Dataset;
 
+import static org.patternfly.component.form.Checkbox.checkbox;
+import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.cell;
 import static org.patternfly.style.Classes.action;
+import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.table;
@@ -34,26 +37,30 @@ public class Td extends Cell<Td> {
     // ------------------------------------------------------ factory
 
     public static Td td() {
-        return new Td(Id.unique(ComponentType.Table.id, "td"), null);
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME), null);
     }
 
     public static Td td(String column) {
-        return new Td(Id.unique(ComponentType.Table.id, "td"), column);
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME), column);
     }
 
     public static Td td(String identifier, String column) {
         return new Td(identifier, column);
     }
 
+    public static Td checkboxTd() {
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox"), null).addCheckbox();
+    }
+
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "td";
+    static final String CHECKBOX_DATA_MARKER = "rowCheckbox";
 
     Td(String identifier, String column) {
         super(SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))
                 .attr(tabindex, -1)
                 .attr(role, cell)
-                .data(Dataset.identifier, identifier)
                 .element());
         if (column != null) {
             data(Dataset.label, column);
@@ -74,6 +81,27 @@ public class Td extends Cell<Td> {
 
     @Override
     public Td that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private Td addCheckbox() {
+        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox");
+        css(component(table, check));
+        aria(label, "Check row");
+        add(checkbox(id, id)
+                .standalone()
+                .applyTo(input -> {
+                    input.aria(label, "Select row");
+                    input.data(CHECKBOX_DATA_MARKER, "");
+                })
+                .onChange((e, c, value) -> {
+                    Table table = lookupComponent();
+                    Tr tr = lookupSubComponent(Tr.SUB_COMPONENT_NAME);
+                    table.select(tr, value);
+                })
+        );
         return this;
     }
 }

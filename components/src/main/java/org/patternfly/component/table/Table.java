@@ -23,12 +23,13 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.SelectionMode;
 import org.patternfly.core.Aria;
+import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
@@ -37,6 +38,9 @@ import elemental2.dom.HTMLTableElement;
 import elemental2.dom.HTMLTableRowElement;
 import elemental2.dom.MutationRecord;
 
+import static java.util.Collections.emptyList;
+import static org.patternfly.component.SelectionMode.multi;
+import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.gridcell;
 import static org.patternfly.core.Validation.verifyEnum;
@@ -71,6 +75,8 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
 
     private final TableType type;
     private final List<SelectHandler<Tr>> selectHandler;
+    private final List<MultiSelectHandler<Table, Tr>> multiSelectHandler;
+    private SelectionMode selectionMode;
     private Thead thead;
     private Tbody tbody;
 
@@ -80,6 +86,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
                 .element());
         this.type = type;
         this.selectHandler = new ArrayList<>();
+        this.multiSelectHandler = new ArrayList<>();
         if (type == TableType.table) {
             gridBreakpoint(GridBreakpoint.gridMd);
         } else if (type == TableType.treeTable) {
@@ -151,6 +158,25 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
         return this;
     }
 
+    /**
+     * Sets the selection mode for the table. If not set, the table does not support selection.
+     *
+     * @param selectionMode the {@link SelectionMode} that specifies how rows are selected in the table. Supported modes
+     *                      include:
+     *                      <ul>
+     *                      <li>{@code single} - Only a single item can be selected at any time.</li>
+     *                      <li>{@code multi} - Multiple items can be selected simultaneously.</li>
+     *                      </ul>
+     *                      If an unsupported mode is provided, the method will not update the current selection mode.
+     * @return the current {@code Table} instance to allow for method chaining.
+     */
+    public Table selectionMode(SelectionMode selectionMode) {
+        if (verifyEnum(element(), "selectionMode", selectionMode, single, multi)) {
+            this.selectionMode = selectionMode;
+        }
+        return this;
+    }
+
     public Table treeViewGridBreakpoint(TreeViewGridBreakpoint breakpoint) {
         if (verifyEnum(element(), "treeViewGridBreakpoint", breakpoint,
                 TreeViewGridBreakpoint.gridMd,
@@ -175,8 +201,13 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
 
     // ------------------------------------------------------ events
 
-    public Table onSelect(SelectHandler<Tr> handler) {
-        this.selectHandler.add(handler);
+    public Table onSingleSelect(SelectHandler<Tr> selectHandler) {
+        this.selectHandler.add(selectHandler);
+        return this;
+    }
+
+    public Table onMultiSelect(MultiSelectHandler<Table, Tr> selectHandler) {
+        this.multiSelectHandler.add(selectHandler);
         return this;
     }
 
@@ -190,27 +221,93 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
         }
     }
 
-    public void select(String key) {
+    public void select(String identifier) {
+        select(findItem(identifier), true, true);
+    }
+
+    public void select(String identifier, boolean selected) {
+        select(findItem(identifier), selected, true);
+    }
+
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(findItem(identifier), selected, fireEvent);
+    }
+
+    public void select(Tr item) {
+        select(item, true, true);
+    }
+
+    public void select(Tr item, boolean selected) {
+        select(item, selected, true);
+    }
+
+    public void select(Tr item, boolean selected, boolean fireEvent) {
+        if (tbody != null && selectionMode != null && item != null) {
+            if (selectionMode == single) {
+                if (selected) {
+                    unselectAll();
+                }
+                item.markSelected(selected);
+                if (fireEvent) {
+                    fireSingleSelection(item, selected);
+                }
+            } else if (selectionMode == multi) {
+                item.markSelected(selected);
+                if (fireEvent) {
+                    fireMultiSelection();
+                }
+            }
+        }
+    }
+
+    public void selectAll() {
+        selectAll(true);
+    }
+
+    public void selectAll(boolean fireEvent) {
+        if (tbody != null && selectionMode == multi) {
+            for (Tr item : tbody.items()) {
+                item.markSelected(true);
+                if (fireEvent) {
+                    fireMultiSelection();
+                }
+            }
+        }
+    }
+
+    public void clearSelection() {
+        clearSelection(true);
+    }
+
+    public void clearSelection(boolean fireEvent) {
+        if (tbody != null && selectionMode != null) {
+            if (selectionMode == single) {
+                List<Tr> selectedItems = fireEvent ? selectedItems() : emptyList();
+                unselectAll();
+                if (fireEvent) {
+                    if (!selectedItems.isEmpty()) {
+                        fireSingleSelection(selectedItems.get(0), false);
+                    }
+                }
+            } else if (selectionMode == multi) {
+                unselectAll();
+                if (fireEvent) {
+                    fireMultiSelection();
+                }
+            }
+        }
+    }
+
+    public List<Tr> selectedItems() {
+        List<Tr> selectedItems = new ArrayList<>();
         if (tbody != null) {
-            Tr row = tbody.items.get(key);
-            if (row != null) {
-                select(row);
+            for (Tr tr : tbody.items()) {
+                if (tr.isSelected()) {
+                    selectedItems.add(tr);
+                }
             }
         }
-    }
-
-    public void select(Tr row) {
-        select(row, true);
-    }
-
-    public void select(Tr row, boolean fireEvent) {
-        unselectAll();
-        if (row != null) {
-            row.markSelected();
-            if (fireEvent) {
-                selectHandler.forEach(sh -> sh.onSelect(new Event(""), row, true));
-            }
-        }
+        return selectedItems;
     }
 
     public Thead thead() {
@@ -235,10 +332,22 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
         return columns;
     }
 
+    private Tr findItem(String identifier) {
+        return tbody != null ? tbody.items.get(identifier) : null;
+    }
+
+    private void fireSingleSelection(Tr item, boolean selected) {
+        selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, selected));
+    }
+
+    private void fireMultiSelection() {
+        multiSelectHandler.forEach(msh -> msh.onSelect(new Event(""), this, selectedItems()));
+    }
+
     private void unselectAll() {
         if (tbody != null) {
             for (Tr row : tbody.items.values()) {
-                row.clearSelection();
+                row.markSelected(false);
             }
         }
     }

@@ -18,6 +18,7 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.form.Checkbox;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.menu.DropdownMenu;
 import org.patternfly.showcase.Snippet;
@@ -30,6 +31,7 @@ import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.form.Checkbox.checkbox;
+import static org.patternfly.component.form.Checkbox.checkboxWrapped;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -216,7 +218,7 @@ public class DropdownComponent extends SnippetPage {
                 // @code-start:dropdown-split-check
                 div()
                         .add(dropdown(menuToggle(split)
-                                .addCheckbox(checkbox(Id.unique(), "dropdown-split-check")))
+                                .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check")))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -232,7 +234,7 @@ public class DropdownComponent extends SnippetPage {
                         .add(br())
                         .add(br())
                         .add(dropdown(menuToggle(split)
-                                .addCheckbox(checkbox(Id.unique(), "dropdown-split-check"))
+                                .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check"))
                                 .text("10 selected"))
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()

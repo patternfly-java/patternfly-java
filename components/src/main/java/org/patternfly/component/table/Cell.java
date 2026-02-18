@@ -22,6 +22,7 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
 
@@ -42,6 +43,7 @@ public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> exte
         super(name, element);
         this.identifier = identifier;
         this.data = new HashMap<>();
+        element.dataset.set(Dataset.identifier, identifier);
     }
 
     public B addText(TableText text) {

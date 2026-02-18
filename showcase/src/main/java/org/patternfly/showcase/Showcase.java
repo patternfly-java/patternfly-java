@@ -30,6 +30,7 @@ import static elemental2.dom.DomGlobal.location;
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.body;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
@@ -50,6 +51,7 @@ import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
 import static org.patternfly.component.toolbar.ToolbarGroup.toolbarGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.componentgroup.theme.ThemeSelector.themeSelector;
+import static org.patternfly.icon.IconSets.fab.github;
 import static org.patternfly.showcase.Data.charts;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
@@ -125,6 +127,9 @@ public final class Showcase {
                                 .addToolbar(toolbar().css(modifier(fullHeight), modifier(static_))
                                         .addContent(toolbarContent()
                                                 .addGroup(toolbarGroup().css(modifier("align-end"))
+                                                        .addItem(toolbarItem()
+                                                                .add(button(github(), "https://github.com/patternfly-java")
+                                                                        .plain()))
                                                         .addItem(toolbarItem().add(themeSelector("pfj")
                                                                 .withContrast())))))))
                 .addSidebar(pageSidebar()

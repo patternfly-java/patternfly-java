@@ -30,7 +30,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -52,7 +51,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.input;
 import static org.patternfly.style.Classes.label;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.standalone;
 
 /**
  * A checkbox is used to select a single item or multiple items, typically to choose elements to perform an action or to reflect
@@ -177,9 +175,9 @@ public class Checkbox extends BaseComponent<HTMLElement, Checkbox> implements
         return standalone(true);
     }
 
-    public Checkbox standalone(boolean removeLabel) {
-        css(modifier(standalone));
-        if (removeLabel) {
+    public Checkbox standalone(boolean standalone) {
+        toggle(modifier(Classes.standalone), standalone);
+        if (standalone) {
             failSafeRemoveFromParent(labelElement);
         }
         return this;

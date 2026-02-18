@@ -27,6 +27,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
@@ -41,9 +42,9 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLTableRowElement;
 import elemental2.promise.Promise;
 
@@ -141,6 +142,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         this.toggleHandler = new ArrayList<>();
         this.children = new LinkedList<>();
         this.status = static_;
+        storeSubComponent();
     }
 
     // ------------------------------------------------------ add
@@ -426,14 +428,28 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
 
     // ------------------------------------------------------ internal
 
-    void markSelected() {
-        classList().add(modifier(selected));
-        aria(Aria.label, "Row selected");
+    void markSelected(boolean selected) {
+        HTMLInputElement checkbox = querySelector(By.data(Td.CHECKBOX_DATA_MARKER));
+        if (checkbox != null) {
+            checkbox.checked = selected;
+        } else {
+            classList().toggle(modifier(Classes.selected), selected);
+        }
+        if (selected) {
+            aria(Aria.label, "Row selected");
+        } else {
+            element().removeAttribute(Aria.label);
+        }
     }
 
-    void clearSelection() {
-        classList().remove(modifier(selected));
-        element().removeAttribute(Aria.label);
+    boolean isSelected() {
+        HTMLInputElement checkbox = querySelector(By.data(Td.CHECKBOX_DATA_MARKER));
+        if (checkbox != null) {
+            return checkbox.checked;
+        } else {
+            return element().classList.contains(modifier(selected));
+
+        }
     }
 
     void finishChildren() {

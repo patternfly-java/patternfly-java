@@ -38,7 +38,6 @@ import org.patternfly.style.Modifiers.FullHeight;
 import org.patternfly.style.Modifiers.FullWidth;
 import org.patternfly.style.Modifiers.Primary;
 import org.patternfly.style.Modifiers.Secondary;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -223,10 +222,24 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
+    /**
+     * Adds a checkbox to the menu toggle and ensures the necessary internal wiring. Please make sure that the checkbox is a
+     * wrapped checkbox created with {@link Checkbox#checkboxWrapped(String, String)}.
+     *
+     * @param checkbox the {@code Checkbox} component to be added to the menu toggle
+     * @return the updated {@code MenuToggle} instance with the checkbox added
+     */
     public MenuToggle addCheckbox(Checkbox checkbox) {
         return add(checkbox);
     }
 
+    /**
+     * Adds a checkbox to the menu toggle and ensures the necessary internal wiring. Please make sure that the checkbox is a *
+     * wrapped checkbox created with {@link Checkbox#checkboxWrapped(String, String)}.
+     *
+     * @param checkbox the {@code Checkbox} component to be added to the menu toggle
+     * @return the updated {@code MenuToggle} instance
+     */
     // override to ensure internal wiring
     public MenuToggle add(Checkbox checkbox) {
         this.checkbox = checkbox;
@@ -313,7 +326,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
             textElement.textContent = text;
         } else if (type == MenuToggleType.split) {
             if (checkbox != null) {
-                checkbox.text(text);
+                String failSafeText = text == null ? "" : text;
+                checkbox.standalone(failSafeText.isEmpty());
+                if (!failSafeText.isEmpty()) {
+                    checkbox.text(failSafeText);
+                }
             } else if (action != null) {
                 action.text(text);
             }
@@ -412,5 +429,9 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
 
     public Badge badge() {
         return badge;
+    }
+
+    public Checkbox checkbox() {
+        return checkbox;
     }
 }

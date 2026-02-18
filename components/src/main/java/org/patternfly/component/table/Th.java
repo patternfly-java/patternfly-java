@@ -24,9 +24,12 @@ import org.patternfly.component.tooltip.TooltipToggle;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.component.form.Checkbox.checkbox;
+import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.columnheader;
+import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.table;
@@ -40,11 +43,15 @@ public class Th extends Cell<Th> implements Attachable {
      * Factory method to create a new instance of this component.
      */
     public static Th th() {
-        return new Th(Id.unique(ComponentType.Table.id, "th"));
+        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME));
     }
 
     public static Th th(String identifier) {
         return new Th(identifier);
+    }
+
+    public static Th checkboxTh() {
+        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox")).addCheckbox();
     }
 
     // ------------------------------------------------------ instance
@@ -80,6 +87,27 @@ public class Th extends Cell<Th> implements Attachable {
 
     @Override
     public Th that() {
+        return this;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private Th addCheckbox() {
+        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox");
+        css(component(table, check));
+        aria(label, "Row selector");
+        add(checkbox(id, id)
+                .standalone()
+                .applyTo(input -> input.aria(label, "Select all rows"))
+                .onChange((e, c, value) -> {
+                    Table table = lookupComponent();
+                    if (value) {
+                        table.selectAll();
+                    } else {
+                        table.clearSelection();
+                    }
+                })
+        );
         return this;
     }
 }

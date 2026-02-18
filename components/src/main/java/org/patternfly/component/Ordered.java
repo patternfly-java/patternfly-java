@@ -25,7 +25,6 @@ import org.jboss.elemento.TypedBuilder;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static java.util.Comparator.comparing;
 import static org.jboss.elemento.Elements.insertBefore;
 
 /**
@@ -81,7 +80,15 @@ public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, S exte
      * @return a comparator that compares elements using the {@value #DATA_ORDER} attribute from their dataset
      */
     default Comparator<S> defaultOrder() {
-        return comparing(o -> o.element().dataset.get(DATA_ORDER));
+        return (s1, s2) -> {
+            if (s1.element().dataset.has(DATA_ORDER) && s2.element().dataset.has(DATA_ORDER)) {
+                return s1.element().dataset.get(DATA_ORDER).compareTo(s2.element().dataset.get(DATA_ORDER));
+            } else if (s1.element().dataset.has(DATA_ORDER)) {
+                return -1;
+            } else {
+                return 0;
+            }
+        };
     }
 
     /**

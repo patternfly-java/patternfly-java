@@ -36,7 +36,6 @@ import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Repository;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 
@@ -44,6 +43,7 @@ import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.htmlElement;
+import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.emptystate.EmptyState.emptyState;
@@ -60,7 +60,9 @@ import static org.patternfly.component.table.TableCaption.tableCaption;
 import static org.patternfly.component.table.TableText.tableText;
 import static org.patternfly.component.table.TableType.treeTable;
 import static org.patternfly.component.table.Tbody.tbody;
+import static org.patternfly.component.table.Td.checkboxTd;
 import static org.patternfly.component.table.Td.td;
+import static org.patternfly.component.table.Th.checkboxTh;
 import static org.patternfly.component.table.Th.th;
 import static org.patternfly.component.table.Thead.thead;
 import static org.patternfly.component.table.TitleCell.titleCell;
@@ -155,11 +157,29 @@ public class TableComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("table-sel-check", "Selectable with checkbox",
-                code("table-sel-check"), () ->
-                // @code-start:table-sel-check
-                nyi().element()
-                // @code-end:table-sel-check
-        ));
+                code("table-sel-check"), () -> {
+            // @code-start:table-sel-check
+            List<Repository> repositories = repositories(8);
+            return table()
+                    .selectionMode(multi)
+                    .addHead(thead()
+                            .addRow(tr("table-basic-head")
+                                    .addItem(checkboxTh())
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
+                    .addBody(tbody()
+                            .addRows(repositories, repository -> tr("table-basic-" + repository.id)
+                                    .addItem(checkboxTd())
+                                    .addItem(td(columns.get(0).value).text(repository.name))
+                                    .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                    .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                    .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
+                                    .addItem(td(columns.get(4).value)
+                                            .add(htmlElement("relative-time", HTMLElement.class)
+                                                    .attr("datetime", repository.lastCommit.toISOString())
+                                                    .text(repository.lastCommit.toISOString())))))
+                    .element();
+            // @code-end:table-sel-check
+        }));
 
         addSnippet(new Snippet("table-sel-radio", "Selectable radio input",
                 code("table-sel-radio"), () ->

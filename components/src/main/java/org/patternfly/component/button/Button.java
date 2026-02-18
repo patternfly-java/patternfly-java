@@ -120,6 +120,20 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return button(Elements.a()).text(text).href(href).target(target);
     }
 
+    /**
+     * Creates a button with an {@code <a/>} tag.
+     */
+    public static Button button(PredefinedIcon icon, String href) {
+        return button(Elements.a()).icon(icon).href(href);
+    }
+
+    /**
+     * Creates a button with an {@code <a/>} tag.
+     */
+    public static Button button(PredefinedIcon icon, String href, String target) {
+        return button(Elements.a()).icon(icon).href(href).target(target);
+    }
+
     public static <E extends HTMLElement> Button button(HTMLContainerBuilder<E> builder) {
         return new Button(builder);
     }

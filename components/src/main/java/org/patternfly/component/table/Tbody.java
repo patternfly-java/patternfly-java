@@ -128,11 +128,14 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     public Tbody empty(int colSpan, EmptyState emptyState) {
         failSafeRemoveFromParent(emptyRow);
-        emptyRow = tr(Id.unique("table-empty-row"));
-        return addItem(emptyRow
+        emptyRow = tr(Id.unique("table-empty-row"))
                 .addItem(td().colSpan(colSpan)
                         .add(bullseye()
-                                .add(emptyState))));
+                                .add(emptyState)));
+        // Don't use `addItem(emptyRow)`, the empty row should not be part of the item map
+        emptyRow.tbody = this;
+        add(emptyRow.element());
+        return this;
     }
 
     public void clearEmpty() {
