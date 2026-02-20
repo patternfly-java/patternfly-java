@@ -30,6 +30,7 @@ import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
