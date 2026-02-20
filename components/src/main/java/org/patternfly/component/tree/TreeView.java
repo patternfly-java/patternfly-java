@@ -20,16 +20,19 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
@@ -91,11 +94,10 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     final TreeViewType type;
     private final LinkedHashMap<String, TreeViewItem> items;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private final AurHandler<TreeView, TreeViewItem> aur;
     private final List<ToggleHandler<TreeViewItem>> toggleHandler;
     private final List<SelectHandler<TreeViewItem>> selectHandler;
     private final List<MultiSelectHandler<TreeView, TreeViewItem>> multiSelectHandler;
-    private final List<BiConsumer<TreeView, TreeViewItem>> onAdd;
-    private final List<BiConsumer<TreeView, TreeViewItem>> onRemove;
     Supplier<Element> icon;
     Supplier<Element> expandedIcon;
     private HandlerRegistration keyHandler;
@@ -104,13 +106,12 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         super(ComponentType.TreeView, div().css(component(treeView)).element());
         this.type = type;
         this.items = new LinkedHashMap<>();
+        this.aur = new AurHandler<>(this);
         this.toggleHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
         this.icon = null;
         this.expandedIcon = null;
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
 
         add(ul = ul().css(component(treeView, list)).attr(role, tree));
         Attachable.register(this, this);
@@ -152,8 +153,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         items.put(item.identifier(), item);
         item.finishDOM(this);
         ul.add(item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -192,15 +192,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     // ------------------------------------------------------ events
 
     @Override
-    public TreeView onAdd(BiConsumer<TreeView, TreeViewItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public TreeView onAdd(AddItemHandler<TreeView, TreeViewItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public TreeView onRemove(BiConsumer<TreeView, TreeViewItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public TreeView onUpdate(UpdateItemHandler<TreeView, TreeViewItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public TreeView onRemove(RemoveItemHandler<TreeView, TreeViewItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public TreeView onMultiSelect(MultiSelectHandler<TreeView, TreeViewItem> selectHandler) {
@@ -342,12 +345,18 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
     }
 
     @Override
+    public void updateItem(TreeViewItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         TreeViewItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -357,7 +366,7 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
         while (iterator.hasNext()) {
             TreeViewItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

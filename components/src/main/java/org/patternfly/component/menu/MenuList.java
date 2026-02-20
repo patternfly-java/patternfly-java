@@ -21,15 +21,18 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AsyncItems;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.Roles;
@@ -85,8 +88,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
             .icon(exclamationCircle());
 
     final Map<String, MenuItem> items;
-    private final List<BiConsumer<MenuList, MenuItem>> onAdd;
-    private final List<BiConsumer<MenuList, MenuItem>> onRemove;
+    private final AurHandler<MenuList, MenuItem> aur;
     private AsyncStatus status;
     private MenuItem loadingItem;
     private MenuItem noItemsItem;
@@ -97,8 +99,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     MenuList() {
         super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         this.status = static_;
         storeSubComponent();
         Attachable.register(this, this);
@@ -129,8 +130,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     public MenuList add(MenuItem item) {
         addOrdered(this, item);
         items.put(item.identifier(), item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     public MenuList addItems(AsyncItems<MenuList, MenuItem> items) {
@@ -163,15 +163,18 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     // ------------------------------------------------------ events
 
     @Override
-    public MenuList onAdd(BiConsumer<MenuList, MenuItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public MenuList onAdd(AddItemHandler<MenuList, MenuItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public MenuList onRemove(BiConsumer<MenuList, MenuItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public MenuList onUpdate(UpdateItemHandler<MenuList, MenuItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public MenuList onRemove(RemoveItemHandler<MenuList, MenuItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -274,12 +277,18 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     @Override
+    public void updateItem(MenuItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         MenuItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -296,7 +305,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     void removeItem(MenuItem item) {
         items.remove(item.identifier());
         failSafeRemoveFromParent(item);
-        onRemove.forEach(bc -> bc.accept(this, item));
+        aur.removed(item);
     }
 
     private void internalClear() {
@@ -308,7 +317,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
             MenuItem item = iterator.next();
             failSafeRemoveFromParent(item);
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

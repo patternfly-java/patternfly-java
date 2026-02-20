@@ -20,14 +20,17 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Callback;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -77,8 +80,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
     private final Map<String, WizardStep> items;
     private final List<ComponentHandler<Wizard>> cancelHandler;
     private final List<ComponentHandler<Wizard>> finishHandler;
-    private final List<BiConsumer<Wizard, WizardStep>> onAdd;
-    private final List<BiConsumer<Wizard, WizardStep>> onRemove;
+    private final AurHandler<Wizard, WizardStep> aur;
     private final List<WizardStepChangeHandler> stepChangeHandlers;
     private final HTMLContainerBuilder<HTMLDivElement> innerWrap;
     private final HTMLContainerBuilder<HTMLButtonElement> toggleButton;
@@ -97,8 +99,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
         this.items = new LinkedHashMap<>();
         this.cancelHandler = new ArrayList<>();
         this.finishHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         this.stepChangeHandlers = new ArrayList<>();
 
         add(toggleButton = button().css(component(wizard, toggle))
@@ -145,7 +146,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
                     navItem.disabled(true);
                 }
             }
-            onAdd.forEach(bc -> bc.accept(this, item));
+            aur.added(item);
         }
         return this;
     }
@@ -202,9 +203,8 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
     // ------------------------------------------------------ events
 
     @Override
-    public Wizard onAdd(BiConsumer<Wizard, WizardStep> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Wizard onAdd(AddItemHandler<Wizard, WizardStep> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     public Wizard onCancel(ComponentHandler<Wizard> handler) {
@@ -218,9 +218,13 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
     }
 
     @Override
-    public Wizard onRemove(BiConsumer<Wizard, WizardStep> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Wizard onUpdate(UpdateItemHandler<Wizard, WizardStep> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Wizard onRemove(RemoveItemHandler<Wizard, WizardStep> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Wizard onStepChange(WizardStepChangeHandler stepChangeHandler) {
@@ -256,6 +260,14 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
     }
 
     @Override
+    public void updateItem(WizardStep item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         nav.removeItem(identifier);
         WizardStep item = items.remove(identifier);
@@ -275,7 +287,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
                 current = item.next != null ? item.next : item.previous;
                 select(current);
             }
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 
@@ -288,7 +300,7 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasIte
         while (iterator.hasNext()) {
             WizardStep item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
         footer.disableButtons();
     }

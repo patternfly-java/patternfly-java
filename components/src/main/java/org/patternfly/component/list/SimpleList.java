@@ -21,13 +21,16 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.SelectHandler;
@@ -71,9 +74,8 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
 
     private final List<SimpleListGroup> groups;
     private final Map<String, SimpleListItem> items;
+    private final AurHandler<SimpleList, SimpleListItem> aur;
     private final List<SelectHandler<SimpleListItem>> selectHandler;
-    private final List<BiConsumer<SimpleList, SimpleListItem>> onAdd;
-    private final List<BiConsumer<SimpleList, SimpleListItem>> onRemove;
     private SimpleListType type;
     private HTMLUListElement ulElement;
     private Comparator<SimpleListItem> comparator;
@@ -83,10 +85,9 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         super(ComponentType.SimpleList, div().css(component(simpleList)).element());
         this.type = SimpleListType.undefined;
         this.items = new LinkedHashMap<>();
+        this.aur = new AurHandler<>(this);
         this.selectHandler = new ArrayList<>();
         this.groups = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
         storeComponent();
     }
 
@@ -117,8 +118,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         type = SimpleListType.items;
         items.put(item.identifier(), item);
         failSafeUlElement().appendChild(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -146,15 +146,18 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     // ------------------------------------------------------ events
 
     @Override
-    public SimpleList onAdd(BiConsumer<SimpleList, SimpleListItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public SimpleList onAdd(AddItemHandler<SimpleList, SimpleListItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public SimpleList onRemove(BiConsumer<SimpleList, SimpleListItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public SimpleList onUpdate(UpdateItemHandler<SimpleList, SimpleListItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public SimpleList onRemove(RemoveItemHandler<SimpleList, SimpleListItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public SimpleList onSelect(SelectHandler<SimpleListItem> selectHandler) {
@@ -225,12 +228,18 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
     }
 
     @Override
+    public void updateItem(SimpleListItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         SimpleListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -240,7 +249,7 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
         while (iterator.hasNext()) {
             SimpleListItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

@@ -27,8 +27,6 @@ public enum Width implements TypedModifier {
 
     width30("width-30"),
 
-    width33("width-33"),
-
     width35("width-35"),
 
     width40("width-40"),
@@ -39,11 +37,7 @@ public enum Width implements TypedModifier {
 
     width60("width-60"),
 
-    width66("width-66"),
-
     width70("width-70"),
-
-    width75("width-75"),
 
     width80("width-80"),
 

@@ -15,15 +15,16 @@
  */
 package org.patternfly.component.notification;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -48,16 +49,14 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     public static final String SUB_COMPONENT_NAME = "ndl";
     final Map<String, NotificationDrawerItem> items;
-    private final List<BiConsumer<NotificationDrawerList, NotificationDrawerItem>> onAdd;
-    private final List<BiConsumer<NotificationDrawerList, NotificationDrawerItem>> onRemove;
+    private final AurHandler<NotificationDrawerList, NotificationDrawerItem> aur;
 
     NotificationDrawerList() {
         super(SUB_COMPONENT_NAME, ul().css(component(notificationDrawer, Classes.list))
                 .role(list)
                 .element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -69,8 +68,7 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
     public NotificationDrawerList add(NotificationDrawerItem item) {
         items.put(item.identifier(), item);
         insertFirst(element(), item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     public NotificationDrawerList insertAfter(NotificationDrawerItem newItem, NotificationDrawerItem afterItem) {
@@ -80,8 +78,7 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
         } else {
             Elements.insertAfter(newItem.element(), afterItem.element());
         }
-        onAdd.forEach(bc -> bc.accept(this, newItem));
-        return this;
+        return aur.added(newItem);
     }
 
     // ------------------------------------------------------ builder
@@ -94,15 +91,18 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
     // ------------------------------------------------------ events
 
     @Override
-    public NotificationDrawerList onAdd(BiConsumer<NotificationDrawerList, NotificationDrawerItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public NotificationDrawerList onAdd(AddItemHandler<NotificationDrawerList, NotificationDrawerItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public NotificationDrawerList onRemove(BiConsumer<NotificationDrawerList, NotificationDrawerItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public NotificationDrawerList onUpdate(UpdateItemHandler<NotificationDrawerList, NotificationDrawerItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public NotificationDrawerList onRemove(RemoveItemHandler<NotificationDrawerList, NotificationDrawerItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -133,12 +133,18 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
     }
 
     @Override
+    public void updateItem(NotificationDrawerItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         NotificationDrawerItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -148,7 +154,7 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
             NotificationDrawerItem item = iterator.next();
             failSafeRemoveFromParent(item);
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

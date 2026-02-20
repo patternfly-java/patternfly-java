@@ -20,13 +20,15 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -64,16 +66,14 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     private final HTMLContainerBuilder<HTMLOListElement> ol;
     private final Map<String, BreadcrumbItem> items;
     private final List<SelectHandler<BreadcrumbItem>> selectHandler;
-    private final List<BiConsumer<Breadcrumb, BreadcrumbItem>> onAdd;
-    private final List<BiConsumer<Breadcrumb, BreadcrumbItem>> onRemove;
+    private final AurHandler<Breadcrumb, BreadcrumbItem> aur;
 
     Breadcrumb() {
         super(ComponentType.Breadcrumb, nav().css(component(breadcrumb)).element());
         this.items = new LinkedHashMap<>();
         this.ol = ol().css(component(breadcrumb, Classes.list)).attr(role, list);
         this.selectHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         storeComponent();
         element().appendChild(ol.element());
     }
@@ -84,8 +84,7 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     public Breadcrumb add(BreadcrumbItem item) {
         items.put(item.identifier(), item);
         ol.add(item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -104,15 +103,18 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     // ------------------------------------------------------ events
 
     @Override
-    public Breadcrumb onAdd(BiConsumer<Breadcrumb, BreadcrumbItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Breadcrumb onAdd(AddItemHandler<Breadcrumb, BreadcrumbItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public Breadcrumb onRemove(BiConsumer<Breadcrumb, BreadcrumbItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Breadcrumb onUpdate(UpdateItemHandler<Breadcrumb, BreadcrumbItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Breadcrumb onRemove(RemoveItemHandler<Breadcrumb, BreadcrumbItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Breadcrumb onSelect(SelectHandler<BreadcrumbItem> selectHandler) {
@@ -121,11 +123,6 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     }
 
     // ------------------------------------------------------ api
-
-    public <T> void updateItems(Iterable<T> items, Function<T, BreadcrumbItem> display) {
-        removeChildrenFrom(ol);
-        addItems(items, display);
-    }
 
     @Override
     public Iterator<BreadcrumbItem> iterator() {
@@ -153,12 +150,18 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
     }
 
     @Override
+    public void updateItem(BreadcrumbItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         BreadcrumbItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -168,7 +171,7 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
         while (iterator.hasNext()) {
             BreadcrumbItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

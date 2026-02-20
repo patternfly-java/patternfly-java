@@ -20,14 +20,17 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.IconPosition;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -71,13 +74,10 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     }
 
     public static Accordion accordion(AccordionType type) {
-        switch (type) {
-            case dl:
-                return new Accordion(dl());
-            case div:
-                return new Accordion(div());
-        }
-        return new Accordion(dl()); // fallback
+        return switch (type) {
+            case dl -> new Accordion(dl());
+            case div -> new Accordion(div());
+        };
     }
 
     // ------------------------------------------------------ instance
@@ -89,8 +89,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     IconPosition iconPosition;
     private final Map<String, AccordionItem> items;
     private final List<ToggleHandler<AccordionItem>> toggleHandler;
-    private final List<BiConsumer<Accordion, AccordionItem>> onAdd;
-    private final List<BiConsumer<Accordion, AccordionItem>> onRemove;
+    private final AurHandler<Accordion, AccordionItem> aur;
 
     <E extends HTMLElement> Accordion(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Accordion, builder.css(component(accordion)).element());
@@ -100,8 +99,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         this.iconPosition = end;
         this.items = new LinkedHashMap<>();
         this.toggleHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         Attachable.register(this, this);
     }
 
@@ -120,8 +118,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         if (isAttached(this)) {
             item.appendTo(this);
         }
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -181,15 +178,18 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Accordion onAdd(BiConsumer<Accordion, AccordionItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Accordion onAdd(AddItemHandler<Accordion, AccordionItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public Accordion onRemove(BiConsumer<Accordion, AccordionItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Accordion onUpdate(UpdateItemHandler<Accordion, AccordionItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Accordion onRemove(RemoveItemHandler<Accordion, AccordionItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Accordion onToggle(ToggleHandler<AccordionItem> toggleHandler) {
@@ -247,12 +247,18 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
     }
 
     @Override
+    public void updateItem(AccordionItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         AccordionItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -262,7 +268,7 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         while (iterator.hasNext()) {
             AccordionItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

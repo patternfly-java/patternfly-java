@@ -15,14 +15,15 @@
  */
 package org.patternfly.component.toolbar;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -53,14 +54,12 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     public static final String SUB_COMPONENT_NAME = "tg";
     private final Map<String, ToolbarItem> items;
-    private final List<BiConsumer<ToolbarGroup, ToolbarItem>> onAdd;
-    private final List<BiConsumer<ToolbarGroup, ToolbarItem>> onRemove;
+    private final AurHandler<ToolbarGroup, ToolbarItem> aur;
 
     ToolbarGroup(ToolbarGroupType type) {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, group)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         if (type != null) {
             css(type.modifier());
         }
@@ -72,8 +71,7 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     public ToolbarGroup add(ToolbarItem item) {
         items.put(item.identifier(), item);
         ToolbarGroup result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -86,15 +84,18 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     // ------------------------------------------------------ events
 
     @Override
-    public ToolbarGroup onAdd(BiConsumer<ToolbarGroup, ToolbarItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ToolbarGroup onAdd(AddItemHandler<ToolbarGroup, ToolbarItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public ToolbarGroup onRemove(BiConsumer<ToolbarGroup, ToolbarItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ToolbarGroup onUpdate(UpdateItemHandler<ToolbarGroup, ToolbarItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ToolbarGroup onRemove(RemoveItemHandler<ToolbarGroup, ToolbarItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -125,12 +126,18 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
     }
 
     @Override
+    public void updateItem(ToolbarItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ToolbarItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -140,7 +147,7 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
         while (iterator.hasNext()) {
             ToolbarItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

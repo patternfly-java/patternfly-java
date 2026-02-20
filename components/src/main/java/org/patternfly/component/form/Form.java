@@ -20,13 +20,16 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.style.Modifiers.Horizontal;
 
 import elemental2.dom.HTMLFormElement;
@@ -59,15 +62,13 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     private final Map<String, FormGroup> items;
     private final List<FormAlert> alerts;
-    private final List<BiConsumer<Form, FormGroup>> onAdd;
-    private final List<BiConsumer<Form, FormGroup>> onRemove;
+    private final AurHandler<Form, FormGroup> aur;
 
     Form() {
         super(ComponentType.Form, Elements.form().css(component(form)).apply(f -> f.noValidate = true).element());
         this.items = new LinkedHashMap<>();
         this.alerts = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         storeComponent();
     }
 
@@ -92,9 +93,8 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     @Override
     public Form add(FormGroup item) {
         items.put(item.identifier(), item);
-        Form result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        add(item.element());
+        return aur.added(item);
     }
 
     public Form addAlert(FormAlert alert) {
@@ -133,15 +133,18 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Form onAdd(BiConsumer<Form, FormGroup> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Form onAdd(AddItemHandler<Form, FormGroup> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public Form onRemove(BiConsumer<Form, FormGroup> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Form onUpdate(UpdateItemHandler<Form, FormGroup> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Form onRemove(RemoveItemHandler<Form, FormGroup> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -172,12 +175,18 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
     }
 
     @Override
+    public void updateItem(FormGroup item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         FormGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -187,7 +196,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
             FormGroup item = iterator.next();
             failSafeRemoveFromParent(item);
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

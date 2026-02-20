@@ -23,13 +23,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.SelectionMode;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
@@ -76,8 +79,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     private final Map<String, Boolean> disabledSnapshot;
     private final List<SelectHandler<ToggleGroupItem>> selectHandler;
     private final List<MultiSelectHandler<ToggleGroup, ToggleGroupItem>> multiSelectHandler;
-    private final List<BiConsumer<ToggleGroup, ToggleGroupItem>> onAdd;
-    private final List<BiConsumer<ToggleGroup, ToggleGroupItem>> onRemove;
+    private final AurHandler<ToggleGroup, ToggleGroupItem> aur;
     private boolean disabled;
 
     ToggleGroup(SelectionMode selectionMode) {
@@ -86,8 +88,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         this.disabledSnapshot = new HashMap<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
 
         if (!SUPPORTED_SELECTION_MODES.contains(selectionMode)) {
             logger.warn("Selection mode %s is not supported for %o. Supported modes are %s. Fall back to %s",
@@ -106,8 +107,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     public ToggleGroup add(ToggleGroupItem item) {
         items.put(item.identifier(), item);
         add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -148,9 +148,8 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     // ------------------------------------------------------ events
 
     @Override
-    public ToggleGroup onAdd(BiConsumer<ToggleGroup, ToggleGroupItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ToggleGroup onAdd(AddItemHandler<ToggleGroup, ToggleGroupItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     public ToggleGroup onMultiSelect(MultiSelectHandler<ToggleGroup, ToggleGroupItem> selectHandler) {
@@ -159,9 +158,13 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     @Override
-    public ToggleGroup onRemove(BiConsumer<ToggleGroup, ToggleGroupItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ToggleGroup onUpdate(UpdateItemHandler<ToggleGroup, ToggleGroupItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ToggleGroup onRemove(RemoveItemHandler<ToggleGroup, ToggleGroupItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public ToggleGroup onSingleSelect(SelectHandler<ToggleGroupItem> selectHandler) {
@@ -241,12 +244,18 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
     }
 
     @Override
+    public void updateItem(ToggleGroupItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ToggleGroupItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -256,7 +265,7 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
         while (iterator.hasNext()) {
             ToggleGroupItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

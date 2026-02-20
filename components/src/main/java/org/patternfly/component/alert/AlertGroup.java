@@ -15,16 +15,17 @@
  */
 package org.patternfly.component.alert;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Timeouts;
 import org.patternfly.style.Classes;
 
@@ -54,7 +55,7 @@ import static org.patternfly.style.Classes.modifier;
  * surface.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/alert#alert-group-examples">https://www.patternfly.org/components/alert#alert-group-examples</a>
+ * "https://www.patternfly.org/components/alert#alert-group-examples">https://www.patternfly.org/components/alert#alert-group-examples</a>
  */
 public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> implements
         HasItems<HTMLUListElement, AlertGroup, Alert> {
@@ -100,8 +101,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     private final AlertGroupType type;
     private final Map<String, Alert> items;
     private final int timeout;
-    private final List<BiConsumer<AlertGroup, Alert>> onAdd;
-    private final List<BiConsumer<AlertGroup, Alert>> onRemove;
+    private final AurHandler<AlertGroup, Alert> aur;
 
     AlertGroup(AlertGroupType type, int timeout) {
         super(ComponentType.AlertGroup, ul().css(component(alertGroup))
@@ -110,8 +110,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         this.type = type;
         this.timeout = timeout;
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         storeComponent();
 
         if (type == AlertGroupType.dynamic || type == AlertGroupType.toast) {
@@ -144,8 +143,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
             }
             add(li().add(alert));
         }
-        onAdd.forEach(listener -> listener.accept(this, alert));
-        return this;
+        return aur.added(alert);
     }
 
     // ------------------------------------------------------ builder
@@ -158,15 +156,18 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     // ------------------------------------------------------ events
 
     @Override
-    public AlertGroup onAdd(BiConsumer<AlertGroup, Alert> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public AlertGroup onAdd(AddItemHandler<AlertGroup, Alert> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public AlertGroup onRemove(BiConsumer<AlertGroup, Alert> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public AlertGroup onUpdate(UpdateItemHandler<AlertGroup, Alert> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public AlertGroup onRemove(RemoveItemHandler<AlertGroup, Alert> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -197,12 +198,18 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
     }
 
     @Override
+    public void updateItem(Alert item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         Alert item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(listener -> listener.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -212,7 +219,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
         while (iterator.hasNext()) {
             Alert item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

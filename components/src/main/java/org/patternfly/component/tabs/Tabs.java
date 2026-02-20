@@ -22,18 +22,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.ScrollButtons;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
@@ -133,12 +136,11 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     private TabsToggle tabsToggle;
     private Button addButton;
 
-    private Function<Tabs, Tab> addHandler;
+    private final AurHandler<Tabs, Tab> aur;
     private final List<ToggleHandler<Tabs>> toggleHandler;
-    private final List<BiConsumer<Tabs, Tab>> onAdd;
-    private final List<BiConsumer<Tabs, Tab>> onRemove;
     private final List<CloseHandler<Tab>> closeHandler;
     private final List<SelectHandler<Tab>> selectHandler;
+    private Function<Tabs, Tab> addFunction;
     private HandlerRegistration resizeHandler;
     private HandlerRegistration transitionEndHandler;
 
@@ -148,8 +150,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         this.toggleHandler = new ArrayList<>();
         this.closeHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         // TODO Support modifier(animateCurrent) and
         //   --pf-v6-c-tabs--link-accent--length: ??px;
         //   --pf-v6-c-tabs--link-accent--start: ??px;
@@ -179,8 +180,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
                 logger.warn("Expandable is not supported for horizontal tabs %o", element());
             }
             if (overflowHorizontal) {
-                if (addHandler != null) {
-                    logger.warn("Overflow tabs %o should not have an onAdd() handler.", element());
+                if (addFunction != null) {
+                    logger.warn("Overflow tabs %o should not have an onAdd() function.", element());
                 }
                 attachOverflow();
             } else {
@@ -272,7 +273,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             if (attached) {
                 addTabToDOM(tab);
             }
-            onAdd.forEach(bc -> bc.accept(this, tab));
+            aur.added(tab);
         }
         if (attached) {
             updateState();
@@ -287,8 +288,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             addTabToDOM(tab);
             updateState();
         }
-        onAdd.forEach(bc -> bc.accept(this, tab));
-        return this;
+        return aur.added(tab);
     }
 
     // ------------------------------------------------------ builder
@@ -506,23 +506,22 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Tabs onAdd(BiConsumer<Tabs, Tab> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Tabs onAdd(AddItemHandler<Tabs, Tab> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     /**
      * Callback for the 'add' button. Passing this property inserts the 'add' button.
      */
-    public Tabs onAdd(Function<Tabs, Tab> addHandler) {
+    public Tabs onAdd(Function<Tabs, Tab> addFunction) {
         if (addButton == null) {
             insertAfter(span().css(component(Classes.tabs, Classes.add))
                     .add(addButton = Button.button().plain().icon(plus())
                             .aria(label, "Add new tab")
-                            .on(click, e -> addItem(addHandler.apply(this))))
+                            .on(click, e -> addItem(addFunction.apply(this))))
                     .element(), tabsContainer.element());
         }
-        this.addHandler = addHandler;
+        this.addFunction = addFunction;
         return this;
     }
 
@@ -532,9 +531,13 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     @Override
-    public Tabs onRemove(BiConsumer<Tabs, Tab> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Tabs onUpdate(UpdateItemHandler<Tabs, Tab> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Tabs onRemove(RemoveItemHandler<Tabs, Tab> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Tabs onSelect(SelectHandler<Tab> selectHandler) {
@@ -662,11 +665,17 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     @Override
+    public void updateItem(Tab item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         Tab item = items.remove(identifier);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
         internalClose(item);
         updateState();
 
@@ -679,7 +688,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             Tab item = iterator.next();
             internalClose(item);
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
         updateState();
     }

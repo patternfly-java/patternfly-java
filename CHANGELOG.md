@@ -8,10 +8,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add `HasItems.updateItem(T item, Function<T,S> display)`, `HasItems.updateItem(S subComponent)`, and
+  `HasItems.onUpdate(UpdateItemHandler<C, S> onUpdate)`
+- Add `AddItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
+- Add `UpdateItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
+- Add `RemoveItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
 - Add single and multi-selection handlers to the table component.
 - Add `MenuItem.menuItem(String identifier)` factory method.
 - Add `Button.button(PredefinedIcon icon, String href)`
 - Add `Button.button(PredefinedIcon icon, String href, String target)`
+
+### Changed
+
+- Change the type parameter `B` representing the builder in `HasItems<E, B ,S>` to `C extends HasItems<E, C, S>`.
+- Change the type parameter `S` representing the subcomponent in `HasItems<E, B ,S>` to
+  `S extends HasIdentifier<? extends HTMLElement, ?>`.
+- Changed `HasItems.onAdd(BiConsumer<B, S>)` to `HasItems.onAdd(AddItemHandler<C, S>)`.
+- Changed `HasItems.onRemove(BiConsumer<B, S>)` to `HasItems.onRemove(RemoveItemHandler<C, S>)`.
 
 ### Fixed
 

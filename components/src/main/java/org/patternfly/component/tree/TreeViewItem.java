@@ -21,19 +21,22 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AsyncItems;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -157,8 +160,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private HTMLInputElement checkboxElement;
     private final List<ToggleHandler<TreeViewItem>> toggleHandler;
     private AsyncItems<TreeViewItem, TreeViewItem> asyncItems;
-    private final List<BiConsumer<TreeViewItem, TreeViewItem>> onAdd;
-    private final List<BiConsumer<TreeViewItem, TreeViewItem>> onRemove;
+    private final AurHandler<TreeViewItem, TreeViewItem> aur;
 
     TreeViewItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(treeView, list, item))
@@ -175,8 +177,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         this.buttonElements = new ArrayList<>();
         this.inputElements = new ArrayList<>();
         this.toggleHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
 
         add(contentElement = div().css(component(treeView, content)).element());
         containerElement = span().css(component(treeView, node, container)).element();
@@ -191,8 +192,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         items.put(item.identifier, item);
         childrenElement.appendChild(item.element());
         item.finishDOM(tv);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     public TreeViewItem addItems(AsyncItems<TreeViewItem, TreeViewItem> items) {
@@ -274,15 +274,18 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     // ------------------------------------------------------ events
 
     @Override
-    public TreeViewItem onAdd(BiConsumer<TreeViewItem, TreeViewItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public TreeViewItem onAdd(AddItemHandler<TreeViewItem, TreeViewItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public TreeViewItem onRemove(BiConsumer<TreeViewItem, TreeViewItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public TreeViewItem onUpdate(UpdateItemHandler<TreeViewItem, TreeViewItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public TreeViewItem onRemove(RemoveItemHandler<TreeViewItem, TreeViewItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public TreeViewItem onToggle(ToggleHandler<TreeViewItem> toggleHandler) {
@@ -445,12 +448,18 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     @Override
+    public void updateItem(TreeViewItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         TreeViewItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -648,7 +657,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         while (iterator.hasNext()) {
             TreeViewItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
         removeChildrenFrom(childrenElement);
     }

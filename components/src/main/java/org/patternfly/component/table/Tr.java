@@ -22,7 +22,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -31,10 +30,14 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.tree.TreeViewItem;
 import org.patternfly.core.Aria;
 import org.patternfly.core.AsyncStatus;
@@ -42,6 +45,7 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -126,8 +130,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
     private Function<Tr, Promise<Iterable<Tr>>> asyncChildren;
-    private final List<BiConsumer<Tr, Cell<?>>> onAdd;
-    private final List<BiConsumer<Tr, Cell<?>>> onRemove;
+    private final AurHandler<Tr, Cell<?>> aur;
 
     Tr(String identifier) {
         super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
@@ -136,8 +139,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
                 .element());
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         this.data = new HashMap<>();
         this.toggleHandler = new ArrayList<>();
         this.children = new LinkedList<>();
@@ -150,9 +152,8 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     @Override
     public Tr add(Cell<?> item) {
         items.put(item.identifier(), item);
-        Tr result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        add(item.element());
+        return aur.added(item);
     }
 
     public Tr addTitleCell(TitleCell titleCell) {
@@ -248,15 +249,18 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Tr onAdd(BiConsumer<Tr, Cell<?>> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Tr onAdd(AddItemHandler<Tr, Cell<?>> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public Tr onRemove(BiConsumer<Tr, Cell<?>> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Tr onUpdate(UpdateItemHandler<Tr, Cell<?>> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Tr onRemove(RemoveItemHandler<Tr, Cell<?>> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Tr onToggle(ToggleHandler<Tr> toggleHandler) {
@@ -389,12 +393,18 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     }
 
     @Override
+    public void updateItem(Cell<?> item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         Cell<?> item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -404,7 +414,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         while (iterator.hasNext()) {
             Cell<?> item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

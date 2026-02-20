@@ -20,16 +20,19 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.core.Aria;
@@ -97,6 +100,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
 
     private final HTMLElement listElement;
     private final Map<String, Label> items;
+    private final AurHandler<LabelGroup, Label> aur;
     private final List<CloseHandler<LabelGroup>> closeHandler;
     private boolean expanded;
     private int numLabels;
@@ -104,8 +108,6 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     private String expandedText;
     private Label overflowLabel;
     private Button closeButton;
-    private final List<BiConsumer<LabelGroup, Label>> onAdd;
-    private final List<BiConsumer<LabelGroup, Label>> onRemove;
     private HTMLElement categoryElement;
     private HTMLElement overflowItem;
     private TooltipToggle tooltipToggle;
@@ -113,9 +115,8 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     LabelGroup(String category) {
         super(ComponentType.LabelGroup, div().css(component(labelGroup)).element());
         this.items = new LinkedHashMap<>();
+        this.aur = new AurHandler<>(this);
         this.closeHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
         this.expanded = false;
         this.numLabels = DEFAULT_NUM_CHIPS;
         this.collapsedText = REMAINING_PLACEHOLDER + " more";
@@ -164,8 +165,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         }
 
         overflow();
-        onAdd.forEach(bc -> bc.accept(this, label));
-        return this;
+        return aur.added(label);
     }
 
     // ------------------------------------------------------ builder
@@ -244,9 +244,8 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     // ------------------------------------------------------ events
 
     @Override
-    public LabelGroup onAdd(BiConsumer<LabelGroup, Label> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public LabelGroup onAdd(AddItemHandler<LabelGroup, Label> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
@@ -258,9 +257,13 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     @Override
-    public LabelGroup onRemove(BiConsumer<LabelGroup, Label> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public LabelGroup onUpdate(UpdateItemHandler<LabelGroup, Label> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public LabelGroup onRemove(RemoveItemHandler<LabelGroup, Label> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -299,12 +302,18 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
     }
 
     @Override
+    public void updateItem(Label item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         Label item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -314,7 +323,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         while (iterator.hasNext()) {
             Label item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
         overflowItem = null;
         overflowLabel = null;
@@ -331,7 +340,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
             failSafeRemoveFromParent(label);
         }
         overflow();
-        onRemove.forEach(bc -> bc.accept(this, label));
+        aur.removed(label);
     }
 
     private void overflow() {

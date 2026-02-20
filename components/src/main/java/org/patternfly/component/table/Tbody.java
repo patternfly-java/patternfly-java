@@ -15,18 +15,20 @@
  */
 package org.patternfly.component.table;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
+import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.emptystate.EmptyState;
 
 import elemental2.dom.HTMLTableSectionElement;
@@ -58,8 +60,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     public static final String SUB_COMPONENT_NAME = "tbd";
     final Map<String, Tr> items;
-    private final List<BiConsumer<Tbody, Tr>> onAdd;
-    private final List<BiConsumer<Tbody, Tr>> onRemove;
+    private final AurHandler<Tbody, Tr> aur;
     private Tr emptyRow;
     private Comparator<Tr> comparator;
 
@@ -68,8 +69,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
                 .attr(role, rowgroup)
                 .element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -79,7 +79,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
         return addItems(items, display);
     }
 
-    /** Same as {@link #addItem(Object)} */
+    /** Same as {@link #addItem(HasIdentifier)} */
     public Tbody addRow(Tr row) {
         return addItem(row);
     }
@@ -88,8 +88,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
         addOrdered(this, row);
         row.tbody = this;
         items.put(row.identifier(), row);
-        onAdd.forEach(bc -> bc.accept(this, row));
-        return this;
+        return aur.added(row);
     }
 
     // ------------------------------------------------------ builder
@@ -108,15 +107,18 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     // ------------------------------------------------------ events
 
     @Override
-    public Tbody onAdd(BiConsumer<Tbody, Tr> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Tbody onAdd(AddItemHandler<Tbody, Tr> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public Tbody onRemove(BiConsumer<Tbody, Tr> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Tbody onUpdate(UpdateItemHandler<Tbody, Tr> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public Tbody onRemove(RemoveItemHandler<Tbody, Tr> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -168,12 +170,18 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     @Override
+    public void updateItem(Tr item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         Tr item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -183,7 +191,7 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
         while (iterator.hasNext()) {
             Tr item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

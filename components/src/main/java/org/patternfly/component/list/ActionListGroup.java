@@ -15,18 +15,19 @@
  */
 package org.patternfly.component.list;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.Id;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLDivElement;
@@ -61,16 +62,23 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;
-    private final List<BiConsumer<ActionListGroup, ActionListItem>> onAdd;
-    private final List<BiConsumer<ActionListGroup, ActionListItem>> onRemove;
+    private final AurHandler<ActionListGroup, ActionListItem> aur;
 
     ActionListGroup(String identifier) {
         super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
+    }
+
+    // ------------------------------------------------------ add
+
+    @Override
+    public ActionListGroup add(ActionListItem item) {
+        items.put(item.identifier(), item);
+        add(item.element());
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -90,28 +98,21 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
         return this;
     }
 
-    // ------------------------------------------------------ add
-
-    @Override
-    public ActionListGroup add(ActionListItem item) {
-        items.put(item.identifier(), item);
-        ActionListGroup result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
-    }
-
     // ------------------------------------------------------ events
 
     @Override
-    public ActionListGroup onAdd(BiConsumer<ActionListGroup, ActionListItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ActionListGroup onAdd(AddItemHandler<ActionListGroup, ActionListItem> onAdd) {
+        return this.aur.onAdd(onAdd);
     }
 
     @Override
-    public ActionListGroup onRemove(BiConsumer<ActionListGroup, ActionListItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ActionListGroup onUpdate(UpdateItemHandler<ActionListGroup, ActionListItem> onUpdate) {
+        return this.aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ActionListGroup onRemove(RemoveItemHandler<ActionListGroup, ActionListItem> onRemove) {
+        return this.aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -161,12 +162,18 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     }
 
     @Override
+    public void updateItem(ActionListItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ActionListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -176,7 +183,7 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
         while (iterator.hasNext()) {
             ActionListItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

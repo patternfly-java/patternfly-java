@@ -15,15 +15,16 @@
  */
 package org.patternfly.component.wizard;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
@@ -51,8 +52,7 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
 
     public static final String SUB_COMPONENT_NAME = "wzn";
     private final Map<String, WizardNavItem> items;
-    private final List<BiConsumer<WizardNav, WizardNavItem>> onAdd;
-    private final List<BiConsumer<WizardNav, WizardNavItem>> onRemove;
+    private final AurHandler<WizardNav, WizardNavItem> aur;
     private final HTMLContainerBuilder<HTMLOListElement> ol;
 
     WizardNav() {
@@ -60,8 +60,7 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
                 .aria(label, "Wizard steps")
                 .element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
 
         add(ol = ol().css(component(wizard, nav, Classes.list)).role(Roles.list));
     }
@@ -77,8 +76,7 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
     public WizardNav add(WizardNavItem item) {
         items.put(item.identifier(), item);
         ol.add(item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -91,15 +89,18 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
     // ------------------------------------------------------ events
 
     @Override
-    public WizardNav onAdd(BiConsumer<WizardNav, WizardNavItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public WizardNav onAdd(AddItemHandler<WizardNav, WizardNavItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public WizardNav onRemove(BiConsumer<WizardNav, WizardNavItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public WizardNav onUpdate(UpdateItemHandler<WizardNav, WizardNavItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public WizardNav onRemove(RemoveItemHandler<WizardNav, WizardNavItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -130,12 +131,18 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
     }
 
     @Override
+    public void updateItem(WizardNavItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         WizardNavItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -145,7 +152,7 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
         while (iterator.hasNext()) {
             WizardNavItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

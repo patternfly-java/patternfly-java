@@ -25,9 +25,13 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Modifiers.Compact;
@@ -74,10 +78,9 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
 
     private static final Logger logger = Logger.getLogger(ProgressStepper.class.getName());
 
-    private final Map<String, ProgressStep> progressStepperMap;
+    private final Map<String, ProgressStep> items;
     private final List<ProgressStep> steps;
-    private final List<BiConsumer<ProgressStepper, ProgressStep>> onAdd;
-    private final List<BiConsumer<ProgressStepper, ProgressStep>> onRemove;
+    private final AurHandler<ProgressStepper, ProgressStep> aur;
 
     private int currentIndex = -1; // [-1, steps.size()]
 
@@ -85,10 +88,9 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         super(ComponentType.ProgressStepper, ol().css(component(progressStepper))
                 .attr(role, list)
                 .element());
-        this.progressStepperMap = new LinkedHashMap<>();
+        this.items = new LinkedHashMap<>();
         this.steps = new ArrayList<>(); // needs to be synced with Map#values()
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -97,8 +99,7 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     public ProgressStepper add(ProgressStep item) {
         addToCollections(item);
         element().appendChild(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -306,15 +307,18 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     // ------------------------------------------------------ events
 
     @Override
-    public ProgressStepper onAdd(BiConsumer<ProgressStepper, ProgressStep> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ProgressStepper onAdd(AddItemHandler<ProgressStepper, ProgressStep> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public ProgressStepper onRemove(BiConsumer<ProgressStepper, ProgressStep> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ProgressStepper onUpdate(UpdateItemHandler<ProgressStepper, ProgressStep> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ProgressStepper onRemove(RemoveItemHandler<ProgressStepper, ProgressStep> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -336,12 +340,12 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
 
     @Override
     public boolean contains(String identifier) {
-        return progressStepperMap.containsKey(identifier);
+        return items.containsKey(identifier);
     }
 
     @Override
     public ProgressStep item(String identifier) {
-        return progressStepperMap.get(identifier);
+        return items.get(identifier);
     }
 
     /**
@@ -366,12 +370,20 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     @Override
+    public void updateItem(ProgressStep item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
-        ProgressStep item = progressStepperMap.remove(identifier);
+        ProgressStep item = items.remove(identifier);
         failSafeRemoveFromParent(item);
         if (item != null) {
             steps.remove(item);
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 
@@ -382,8 +394,8 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         while (iterator.hasNext()) {
             ProgressStep item = iterator.next();
             iterator.remove();
-            progressStepperMap.remove(item.identifier());
-            onRemove.forEach(bc -> bc.accept(this, item));
+            items.remove(item.identifier());
+            aur.removed(item);
         }
         currentIndex = -1;
     }
@@ -395,12 +407,12 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
     }
 
     private void clearCollections() {
-        progressStepperMap.clear();
+        items.clear();
         steps.clear();
     }
 
     private void addToCollections(ProgressStep progressStep) {
-        this.progressStepperMap.put(progressStep.identifier(), progressStep);
+        this.items.put(progressStep.identifier(), progressStep);
         this.steps.add(progressStep);
     }
 }

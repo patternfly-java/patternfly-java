@@ -33,6 +33,7 @@ import org.patternfly.style.Modifiers.Compact;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableElement;
 import elemental2.dom.HTMLTableRowElement;
@@ -253,6 +254,21 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
                 }
             } else if (selectionMode == multi) {
                 item.markSelected(selected);
+                if (tbody != null) {
+                    HTMLInputElement checkbox = querySelector(By.data(Th.CHECKBOX_DATA_MARKER));
+                    if (checkbox != null) {
+                        if (selectedItems().isEmpty()) {
+                            checkbox.checked = false;
+                            checkbox.indeterminate = false;
+                        } else if (selectedItems().size() == tbody.items().size()) {
+                            checkbox.checked = true;
+                            checkbox.indeterminate = false;
+                        } else {
+                            checkbox.checked = false;
+                            checkbox.indeterminate = true;
+                        }
+                    }
+                }
                 if (fireEvent) {
                     fireMultiSelection();
                 }
@@ -275,11 +291,11 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
         }
     }
 
-    public void clearSelection() {
-        clearSelection(true);
+    public void selectNone() {
+        selectNone(true);
     }
 
-    public void clearSelection(boolean fireEvent) {
+    public void selectNone(boolean fireEvent) {
         if (tbody != null && selectionMode != null) {
             if (selectionMode == single) {
                 List<Tr> selectedItems = fireEvent ? selectedItems() : emptyList();

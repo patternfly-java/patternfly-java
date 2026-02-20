@@ -19,13 +19,15 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
@@ -52,7 +54,6 @@ import static org.patternfly.style.Size.lg;
  */
 public class List extends BaseComponent<HTMLElement, List> implements
         Bordered<HTMLElement, List>,
-        HasItems<HTMLElement, List, ListItem>,
         Inline<HTMLElement, List>,
         Ordered<HTMLElement, List, ListItem>,
         Plain<HTMLElement, List> {
@@ -71,8 +72,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
     // ------------------------------------------------------ instance
 
     private final Map<String, ListItem> items;
-    private final java.util.List<BiConsumer<List, ListItem>> onAdd;
-    private final java.util.List<BiConsumer<List, ListItem>> onRemove;
+    private final AurHandler<List, ListItem> aur;
     private Comparator<ListItem> comparator;
 
     <E extends HTMLElement> List(HTMLContainerBuilder<E> builder) {
@@ -80,8 +80,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
                 .attr(role, Roles.list)
                 .element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new java.util.ArrayList<>();
-        this.onRemove = new java.util.ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -90,8 +89,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
     public List add(ListItem item) {
         addOrdered(this, item);
         items.put(item.identifier(), item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     public List addDivider() {
@@ -118,15 +116,18 @@ public class List extends BaseComponent<HTMLElement, List> implements
     // ------------------------------------------------------ events
 
     @Override
-    public List onAdd(BiConsumer<List, ListItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public List onAdd(AddItemHandler<List, ListItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public List onRemove(BiConsumer<List, ListItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public List onUpdate(UpdateItemHandler<List, ListItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public List onRemove(RemoveItemHandler<List, ListItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -162,12 +163,18 @@ public class List extends BaseComponent<HTMLElement, List> implements
     }
 
     @Override
+    public void updateItem(ListItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -177,7 +184,7 @@ public class List extends BaseComponent<HTMLElement, List> implements
         while (iterator.hasNext()) {
             ListItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

@@ -94,7 +94,7 @@ public class Td extends Cell<Td> {
                 .standalone()
                 .applyTo(input -> {
                     input.aria(label, "Select row");
-                    input.data(CHECKBOX_DATA_MARKER, "");
+                    input.data(CHECKBOX_DATA_MARKER);
                 })
                 .onChange((e, c, value) -> {
                     Table table = lookupComponent();

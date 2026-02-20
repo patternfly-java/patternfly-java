@@ -57,6 +57,7 @@ public class Th extends Cell<Th> implements Attachable {
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "th";
+    static final String CHECKBOX_DATA_MARKER = "tableCheckbox";
     private final TooltipToggle tooltipToggle;
 
     Th(String identifier) {
@@ -98,13 +99,16 @@ public class Th extends Cell<Th> implements Attachable {
         aria(label, "Row selector");
         add(checkbox(id, id)
                 .standalone()
-                .applyTo(input -> input.aria(label, "Select all rows"))
+                .applyTo(input -> {
+                    input.aria(label, "Select all rows");
+                    input.data(CHECKBOX_DATA_MARKER);
+                })
                 .onChange((e, c, value) -> {
                     Table table = lookupComponent();
                     if (value) {
                         table.selectAll();
                     } else {
-                        table.clearSelection();
+                        table.selectNone();
                     }
                 })
         );

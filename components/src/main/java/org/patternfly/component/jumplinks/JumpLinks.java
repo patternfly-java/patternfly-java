@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import org.jboss.elemento.Attachable;
@@ -28,10 +27,14 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
@@ -103,10 +106,9 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     private static final By JUMP_LINKS_ITEMS = By.classname(component(jumpLinks, item));
 
     private final Map<String, JumpLinksItem> items;
+    private final AurHandler<JumpLinks, JumpLinksItem> aur;
     private final List<ToggleHandler<JumpLinks>> toggleHandler;
     private final List<SelectHandler<JumpLinksItem>> selectHandler;
-    private final List<BiConsumer<JumpLinks, JumpLinksItem>> onAdd;
-    private final List<BiConsumer<JumpLinks, JumpLinksItem>> onRemove;
     private final HTMLContainerBuilder<HTMLDivElement> headerElement;
     private final HTMLContainerBuilder<HTMLDivElement> labelElement;
     private final HTMLContainerBuilder<HTMLUListElement> ulElement;
@@ -119,10 +121,9 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     JumpLinks(String label) {
         super(ComponentType.JumpLinks, nav().css(component(jumpLinks)).element());
         this.items = new HashMap<>();
+        this.aur = new AurHandler<>(this);
         this.toggleHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
 
         element().appendChild(div().css(component(jumpLinks, main))
                 .add(headerElement = div().css(component(jumpLinks, header))
@@ -154,8 +155,7 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     public JumpLinks add(JumpLinksItem item) {
         items.put(item.identifier(), item);
         ulElement.add(item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -228,15 +228,18 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     // ------------------------------------------------------ events
 
     @Override
-    public JumpLinks onAdd(BiConsumer<JumpLinks, JumpLinksItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public JumpLinks onAdd(AddItemHandler<JumpLinks, JumpLinksItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public JumpLinks onRemove(BiConsumer<JumpLinks, JumpLinksItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public JumpLinks onUpdate(UpdateItemHandler<JumpLinks, JumpLinksItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public JumpLinks onRemove(RemoveItemHandler<JumpLinks, JumpLinksItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public JumpLinks onSelect(SelectHandler<JumpLinksItem> selectHandler) {
@@ -323,12 +326,20 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
     }
 
     @Override
+    public void updateItem(JumpLinksItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         JumpLinksItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
         if (item != null) {
             item.list.clear();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 
@@ -342,7 +353,7 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
                 item.list.clear();
             }
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 

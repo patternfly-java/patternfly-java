@@ -65,7 +65,7 @@ public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, 
 
     public FormSelectOption placeholder(boolean placeholder, boolean selectable) {
         if (placeholder) {
-            data(Dataset.placeholder, "");
+            data(Dataset.placeholder);
         }
         if (!selectable) {
             disabled(placeholder);

@@ -19,8 +19,6 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 import org.jboss.elemento.ElementContainerMethods;
-import org.jboss.elemento.IsElement;
-import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -38,12 +36,17 @@ import static org.jboss.elemento.Elements.insertBefore;
  * in advance, it might be more performant if you sort them beforehand.
  *
  * @param <E> the type of the main element
- * @param <B> the type of the builder for chaining methods
+ * @param <C> the type of the main component
  * @param <S> the type of components being ordered
  */
-public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, S extends IsElement<? extends HTMLElement>>
-        extends HasItems<E, B, S> {
+public interface Ordered<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>
+        extends HasItems<E, C, S> {
 
+    /**
+     * A constant representing the key used to define the dataset attribute for ordering elements. It is commonly used in
+     * methods that deal with arranging or sorting elements based on a predefined structure or comparator. The
+     * {@code DATA_ORDER} value, when used as an attribute key, indicates the sequence or arrangement of the associated data.
+     */
     String DATA_ORDER = "order";
 
     /**
@@ -97,7 +100,7 @@ public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, S exte
      *
      * @return the builder instance with the elements ordered
      */
-    default B ordered() {
+    default C ordered() {
         return ordered(defaultOrder());
     }
 
@@ -108,7 +111,7 @@ public interface Ordered<E extends Element, B extends TypedBuilder<E, B>, S exte
      * @param comparator the comparator used to define the ordering of the elements
      * @return the builder instance with the elements ordered
      */
-    B ordered(Comparator<S> comparator);
+    C ordered(Comparator<S> comparator);
 
     /**
      * Retrieves the comparator used for ordering elements in a component.

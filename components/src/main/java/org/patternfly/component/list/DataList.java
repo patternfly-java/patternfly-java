@@ -15,17 +15,18 @@
  */
 package org.patternfly.component.list;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
@@ -71,8 +72,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     // ------------------------------------------------------ instance
 
     private final Map<String, DataListItem> items;
-    private final List<BiConsumer<DataList, DataListItem>> onAdd;
-    private final List<BiConsumer<DataList, DataListItem>> onRemove;
+    private final AurHandler<DataList, DataListItem> aur;
     private Comparator<DataListItem> comparator;
 
     DataList() {
@@ -80,8 +80,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
                 .attr(role, list)
                 .element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         gridBreakpoint(gridMd);
     }
 
@@ -91,8 +90,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     public DataList add(DataListItem item) {
         addOrdered(this, item);
         items.put(item.identifier(), item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -127,15 +125,18 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     // ------------------------------------------------------ events
 
     @Override
-    public DataList onAdd(BiConsumer<DataList, DataListItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public DataList onAdd(AddItemHandler<DataList, DataListItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public DataList onRemove(BiConsumer<DataList, DataListItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public DataList onUpdate(UpdateItemHandler<DataList, DataListItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public DataList onRemove(RemoveItemHandler<DataList, DataListItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -171,12 +172,18 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
     }
 
     @Override
+    public void updateItem(DataListItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         DataListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -186,7 +193,7 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
         while (iterator.hasNext()) {
             DataListItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

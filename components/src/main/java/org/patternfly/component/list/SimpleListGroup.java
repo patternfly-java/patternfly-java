@@ -15,19 +15,20 @@
  */
 package org.patternfly.component.list;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
@@ -65,15 +66,13 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     final Map<String, SimpleListItem> items;
     private final HTMLElement headerElement;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
-    private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onAdd;
-    private final List<BiConsumer<SimpleListGroup, SimpleListItem>> onRemove;
+    private final AurHandler<SimpleListGroup, SimpleListItem> aur;
     private Comparator<SimpleListItem> comparator;
 
     SimpleListGroup() {
         super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         String headerId = Id.unique(SUB_COMPONENT_NAME);
         element().appendChild(headerElement = h(2).css(component(simpleList, title))
                 .id(headerId)
@@ -101,8 +100,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     public SimpleListGroup add(SimpleListItem item) {
         addOrdered(ul, item);
         items.put(item.identifier(), item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -121,15 +119,18 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     // ------------------------------------------------------ events
 
     @Override
-    public SimpleListGroup onAdd(BiConsumer<SimpleListGroup, SimpleListItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public SimpleListGroup onAdd(AddItemHandler<SimpleListGroup, SimpleListItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public SimpleListGroup onRemove(BiConsumer<SimpleListGroup, SimpleListItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public SimpleListGroup onUpdate(UpdateItemHandler<SimpleListGroup, SimpleListItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public SimpleListGroup onRemove(RemoveItemHandler<SimpleListGroup, SimpleListItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -165,12 +166,18 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     }
 
     @Override
+    public void updateItem(SimpleListItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         SimpleListItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -180,7 +187,7 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
         while (iterator.hasNext()) {
             SimpleListItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

@@ -15,17 +15,18 @@
  */
 package org.patternfly.component.list;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Ordered;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
@@ -73,15 +74,13 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     // ------------------------------------------------------ instance
 
     private final Map<String, DescriptionListGroup> items;
-    private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onAdd;
-    private final List<BiConsumer<DescriptionList, DescriptionListGroup>> onRemove;
+    private final AurHandler<DescriptionList, DescriptionListGroup> aur;
     private Comparator<DescriptionListGroup> comparator;
 
     DescriptionList() {
         super(ComponentType.DescriptionList, dl().css(component(descriptionList)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -90,8 +89,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     public DescriptionList add(DescriptionListGroup item) {
         addOrdered(this, item);
         items.put(item.identifier(), item);
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -243,15 +241,18 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     // ------------------------------------------------------ events
 
     @Override
-    public DescriptionList onAdd(BiConsumer<DescriptionList, DescriptionListGroup> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public DescriptionList onAdd(AddItemHandler<DescriptionList, DescriptionListGroup> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public DescriptionList onRemove(BiConsumer<DescriptionList, DescriptionListGroup> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public DescriptionList onUpdate(UpdateItemHandler<DescriptionList, DescriptionListGroup> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public DescriptionList onRemove(RemoveItemHandler<DescriptionList, DescriptionListGroup> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -287,12 +288,18 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
     }
 
     @Override
+    public void updateItem(DescriptionListGroup item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         DescriptionListGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -302,7 +309,7 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
         while (iterator.hasNext()) {
             DescriptionListGroup item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

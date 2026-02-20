@@ -15,15 +15,16 @@
  */
 package org.patternfly.component.toolbar;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import org.jboss.elemento.ElementContainerDelegate;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 
@@ -66,14 +67,12 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public static final String SUB_COMPONENT_NAME = "tc";
     private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
-    private final List<BiConsumer<ToolbarContent, ToolbarItem>> onAdd;
-    private final List<BiConsumer<ToolbarContent, ToolbarItem>> onRemove;
+    private final AurHandler<ToolbarContent, ToolbarItem> aur;
 
     ToolbarContent() {
         super(SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
         element().appendChild(contentSection = div().css(component(toolbar, content, section)).element());
     }
 
@@ -88,8 +87,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     public ToolbarContent add(ToolbarItem item) {
         items.put(item.identifier(), item);
         contentSection.appendChild(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return this;
+        return aur.added(item);
     }
 
     public ToolbarContent addDivider() {
@@ -146,15 +144,18 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     // ------------------------------------------------------ events
 
     @Override
-    public ToolbarContent onAdd(BiConsumer<ToolbarContent, ToolbarItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ToolbarContent onAdd(AddItemHandler<ToolbarContent, ToolbarItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public ToolbarContent onRemove(BiConsumer<ToolbarContent, ToolbarItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ToolbarContent onUpdate(UpdateItemHandler<ToolbarContent, ToolbarItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ToolbarContent onRemove(RemoveItemHandler<ToolbarContent, ToolbarItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -185,12 +186,18 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
     }
 
     @Override
+    public void updateItem(ToolbarItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ToolbarItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -200,7 +207,7 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
         while (iterator.hasNext()) {
             ToolbarItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

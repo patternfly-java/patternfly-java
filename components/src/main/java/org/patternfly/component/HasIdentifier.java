@@ -36,5 +36,10 @@ import elemental2.dom.Element;
 public interface HasIdentifier<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
         IsElement<E> {
 
+    /**
+     * Retrieves the identifier associated with this component.
+     *
+     * @return the identifier of the component
+     */
     String identifier();
 }

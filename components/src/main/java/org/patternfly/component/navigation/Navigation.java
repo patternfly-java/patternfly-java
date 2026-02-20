@@ -20,7 +20,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -28,10 +27,14 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.ScrollButtons;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.divider.Divider;
 import org.patternfly.component.navigation.NavigationType.Horizontal;
 import org.patternfly.core.Aria;
@@ -77,11 +80,11 @@ import static org.patternfly.style.Classes.subnav;
  * A navigation organizes an application's structure and content, making it easy to find information and accomplish tasks.
  * Navigation communicates relationships, context, and actions a user can take within an application.
  * <p>
- * {@snippet class=NavigationDemo region=horizontal}
+ * {@snippet class = NavigationDemo region = horizontal}
  * <p>
- * {@snippet class=NavigationDemo region=grouped}
+ * {@snippet class = NavigationDemo region = grouped}
  * <p>
- * {@snippet class=NavigationDemo region=expandable}
+ * {@snippet class = NavigationDemo region = expandable}
  *
  * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
@@ -112,8 +115,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private final List<SelectHandler<NavigationItem>> selectHandler;
     private final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
-    private final List<BiConsumer<Navigation, NavigationItem>> onAdd;
-    private final List<BiConsumer<Navigation, NavigationItem>> onRemove;
+    private final AurHandler<Navigation, NavigationItem> aur;
 
     Navigation(NavigationType type) {
         super(ComponentType.Navigation, nav().css(component(nav)).element());
@@ -123,8 +125,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         this.expandableGroups = new LinkedHashMap<>();
         this.selectHandler = new ArrayList<>();
         this.toggleHandler = new ArrayList<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
 
         if (type == secondary) {
             aria(label, "Local");
@@ -333,9 +334,13 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     // ------------------------------------------------------ events
 
     @Override
-    public Navigation onAdd(BiConsumer<Navigation, NavigationItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public Navigation onAdd(AddItemHandler<Navigation, NavigationItem> onAdd) {
+        return aur.onAdd(onAdd);
+    }
+
+    @Override
+    public Navigation onRemove(RemoveItemHandler<Navigation, NavigationItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     public Navigation onSelect(SelectHandler<NavigationItem> selectHandler) {
@@ -344,9 +349,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     @Override
-    public Navigation onRemove(BiConsumer<Navigation, NavigationItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public Navigation onUpdate(UpdateItemHandler<Navigation, NavigationItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
     }
 
     public Navigation onToggle(ToggleHandler<ExpandableNavigationGroup> toggleHandler) {
@@ -412,12 +416,18 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     @Override
+    public void updateItem(NavigationItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         NavigationItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -427,7 +437,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         while (iterator.hasNext()) {
             NavigationItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 
@@ -439,7 +449,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
         if (scrollButtons != null && isAttached(element())) {
             scrollButtons.updateScrollState();
         }
-        onAdd.forEach(bc -> bc.accept(this, item));
+        aur.added(item);
     }
 
     private void internalAddGroup(NavigationGroup group, Consumer<NavigationGroup> dom) {

@@ -15,16 +15,17 @@
  */
 package org.patternfly.component.list;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 
 import elemental2.dom.HTMLElement;
 
@@ -53,14 +54,12 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     // ------------------------------------------------------ instance
 
     private final Map<String, ActionListGroup> items;
-    private final List<BiConsumer<ActionList, ActionListGroup>> onAdd;
-    private final List<BiConsumer<ActionList, ActionListGroup>> onRemove;
+    private final AurHandler<ActionList, ActionListGroup> aur;
 
     ActionList() {
         super(ComponentType.ActionList, div().css(component(actionList)).element());
         this.items = new LinkedHashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -68,9 +67,8 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     @Override
     public ActionList add(ActionListGroup item) {
         items.put(item.identifier(), item);
-        ActionList result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        add(item.element());
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -87,15 +85,18 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     // ------------------------------------------------------ events
 
     @Override
-    public ActionList onAdd(BiConsumer<ActionList, ActionListGroup> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public ActionList onAdd(AddItemHandler<ActionList, ActionListGroup> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public ActionList onRemove(BiConsumer<ActionList, ActionListGroup> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public ActionList onUpdate(UpdateItemHandler<ActionList, ActionListGroup> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ActionList onRemove(RemoveItemHandler<ActionList, ActionListGroup> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -126,12 +127,18 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
     }
 
     @Override
+    public void updateItem(ActionListGroup item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         ActionListGroup item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -141,7 +148,7 @@ public class ActionList extends BaseComponent<HTMLElement, ActionList> implement
         while (iterator.hasNext()) {
             ActionListGroup item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }

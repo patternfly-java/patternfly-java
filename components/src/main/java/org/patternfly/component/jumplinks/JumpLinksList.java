@@ -15,14 +15,15 @@
  */
 package org.patternfly.component.jumplinks;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
+import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasItems;
+import org.patternfly.component.RemoveItemHandler;
+import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
@@ -48,16 +49,14 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     public static final String SUB_COMPONENT_NAME = "jll";
     final Map<String, JumpLinksItem> items;
-    private final List<BiConsumer<JumpLinksList, JumpLinksItem>> onAdd;
-    private final List<BiConsumer<JumpLinksList, JumpLinksItem>> onRemove;
+    private final AurHandler<JumpLinksList, JumpLinksItem> aur;
 
     JumpLinksList() {
         super(SUB_COMPONENT_NAME, ul().css(component(jumpLinks, Classes.list))
                 .attr(role, Roles.list)
                 .element());
         this.items = new HashMap<>();
-        this.onAdd = new ArrayList<>();
-        this.onRemove = new ArrayList<>();
+        this.aur = new AurHandler<>(this);
     }
 
     // ------------------------------------------------------ add
@@ -65,9 +64,8 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     @Override
     public JumpLinksList add(JumpLinksItem item) {
         items.put(item.identifier(), item);
-        JumpLinksList result = add(item.element());
-        onAdd.forEach(bc -> bc.accept(this, item));
-        return result;
+        add(item.element());
+        return aur.added(item);
     }
 
     // ------------------------------------------------------ builder
@@ -80,15 +78,18 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     // ------------------------------------------------------ events
 
     @Override
-    public JumpLinksList onAdd(BiConsumer<JumpLinksList, JumpLinksItem> onAdd) {
-        this.onAdd.add(onAdd);
-        return this;
+    public JumpLinksList onAdd(AddItemHandler<JumpLinksList, JumpLinksItem> onAdd) {
+        return aur.onAdd(onAdd);
     }
 
     @Override
-    public JumpLinksList onRemove(BiConsumer<JumpLinksList, JumpLinksItem> onRemove) {
-        this.onRemove.add(onRemove);
-        return this;
+    public JumpLinksList onUpdate(UpdateItemHandler<JumpLinksList, JumpLinksItem> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public JumpLinksList onRemove(RemoveItemHandler<JumpLinksList, JumpLinksItem> onRemove) {
+        return aur.onRemove(onRemove);
     }
 
     // ------------------------------------------------------ api
@@ -119,12 +120,18 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
     }
 
     @Override
+    public void updateItem(JumpLinksItem item) {
+        replaceItemElement(item, (oldItem, newItem) -> {
+            items.put(newItem.identifier(), newItem);
+            aur.updated(oldItem, newItem);
+        });
+    }
+
+    @Override
     public void removeItem(String identifier) {
         JumpLinksItem item = items.remove(identifier);
         failSafeRemoveFromParent(item);
-        if (item != null) {
-            onRemove.forEach(bc -> bc.accept(this, item));
-        }
+        aur.removed(item);
     }
 
     @Override
@@ -134,7 +141,7 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
         while (iterator.hasNext()) {
             JumpLinksItem item = iterator.next();
             iterator.remove();
-            onRemove.forEach(bc -> bc.accept(this, item));
+            aur.removed(item);
         }
     }
 }
