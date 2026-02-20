@@ -8,12 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add single and multi-selection handlers to the table component.
 - Add `HasItems.updateItem(T item, Function<T,S> display)`, `HasItems.updateItem(S subComponent)`, and
   `HasItems.onUpdate(UpdateItemHandler<C, S> onUpdate)`
 - Add `AddItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
 - Add `UpdateItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
 - Add `RemoveItemHandler<C extends HasItems<?, ?, ?>, S extends HasIdentifier<?, ?>>`
-- Add single and multi-selection handlers to the table component.
 - Add `MenuItem.menuItem(String identifier)` factory method.
 - Add `Button.button(PredefinedIcon icon, String href)`
 - Add `Button.button(PredefinedIcon icon, String href, String target)`
@@ -26,6 +26,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Changed `HasItems.onAdd(BiConsumer<B, S>)` to `HasItems.onAdd(AddItemHandler<C, S>)`.
 - Changed `HasItems.onRemove(BiConsumer<B, S>)` to `HasItems.onRemove(RemoveItemHandler<C, S>)`.
 
+### Removed
+
+- Remove unsupported constants from `org.patternfly.style.Width`
+
 ### Fixed
 
 - Fix `Checkbox.standalone(boolean)`
@@ -36,6 +40,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Upgrades
 
 - Bump JBoss Parent to 52
+- Bump to Elemento 2.4.9
 
 ## [0.4.17] - 2026-02-12
 
