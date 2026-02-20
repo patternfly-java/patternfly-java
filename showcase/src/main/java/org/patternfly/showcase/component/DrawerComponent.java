@@ -52,7 +52,7 @@ import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size._2xl;
-import static org.patternfly.style.Width.width33;
+import static org.patternfly.style.Width.width30;
 
 @Route(value = "/components/drawer", title = "Drawer")
 public class DrawerComponent extends SnippetPage {
@@ -326,7 +326,7 @@ public class DrawerComponent extends SnippetPage {
                                     .addBody(drawerBody()
                                             .text(LoremIpsum.paragraphs(20))))
                             .addPanel(drawerPanel()
-                                    .widths(breakpoints(default_, width33))
+                                    .widths(breakpoints(default_, width30))
                                     .addHead(drawerPanelHead()
                                             .add(span().text("drawer-panel"))
                                             .addCloseButton(drawerCloseButton()))))
