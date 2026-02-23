@@ -1,0 +1,8 @@
+ignoredBuiltDependencies:
+  - '@swc/core'
+  - lmdb
+  - msgpackr-extract
+  - puppeteer
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
