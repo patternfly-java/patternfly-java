@@ -12,7 +12,13 @@
     "url": "https://github.com/patternfly/patternfly-java/issues"
   },
   "license": "Apache-2.0",
-  "keywords": ["java", "gwt", "j2cl", "patternfly", "elemento"],
+  "keywords": [
+    "java",
+    "gwt",
+    "j2cl",
+    "patternfly",
+    "elemento"
+  ],
   "author": "Harald Pehl <harald.pehl@gmail.com>",
   "type": "module",
   "source": "src/charts.js",
@@ -52,5 +58,6 @@
     "victory-tooltip": "^37.3.6",
     "victory-voronoi-container": "^37.3.6",
     "victory-zoom-container": "^37.3.6"
-  }
+  },
+  "packageManager": "pnpm@11.0.0-dev.1005+sha512.91f84a392eea348ea4852a182912d2520273a4336f933b78cc44bc931eb999923c097e9433a9b355adc1f725725ea99082fc9f032a559df832632e764c92c798"
 }
