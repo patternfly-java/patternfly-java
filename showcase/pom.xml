@@ -167,33 +167,30 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>install-node-and-npm</id>
+                        <id>install-node-and-corepack</id>
                         <phase>prepare-package</phase>
                         <goals>
-                            <goal>install-node-and-npm</goal>
+                            <goal>install-node-and-corepack</goal>
                         </goals>
-                        <configuration>
-                            <nodeVersion>${version.node}</nodeVersion>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>npm-install</id>
                         <phase>prepare-package</phase>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>corepack</goal>
                         </goals>
                         <configuration>
-                            <arguments>install</arguments>
+                            <arguments>pnpm install</arguments>
                         </configuration>
                     </execution>
                     <execution>
                         <id>http-server</id>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>corepack</goal>
                         </goals>
                         <phase>none</phase>
                         <configuration>
-                            <arguments>run http-server</arguments>
+                            <arguments>pnpm run http-server</arguments>
                         </configuration>
                     </execution>
                 </executions>

@@ -60,33 +60,30 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>install-node-and-yarn</id>
+                        <id>install-node-and-corepack</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>install-node-and-npm</goal>
+                            <goal>install-node-and-corepack</goal>
                         </goals>
-                        <configuration>
-                            <nodeVersion>${version.node}</nodeVersion>
-                        </configuration>
                     </execution>
                     <execution>
-                        <id>yarn-install</id>
+                        <id>pnpm-install</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>corepack</goal>
                         </goals>
                         <configuration>
-                            <arguments>install</arguments>
+                            <arguments>pnpm install</arguments>
                         </configuration>
                     </execution>
                     <execution>
                         <id>generate-icon-specs</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>corepack</goal>
                         </goals>
                         <configuration>
-                            <arguments>run generate</arguments>
+                            <arguments>pnpm run generate</arguments>
                         </configuration>
                     </execution>
                 </executions>

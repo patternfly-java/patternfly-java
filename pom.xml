@@ -78,6 +78,7 @@
     <properties>
         <!-- Dependency versions -->
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
+        <version.corepack>v0.34.6</version.corepack>
         <version.elemento>2.4.9</version.elemento>
         <version.gwt>2.13.0</version.gwt>
         <version.elemental2>1.3.2</version.elemental2> <!-- Only used to link the API doc -->
@@ -153,6 +154,10 @@
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${version.frontend.plugin}</version>
+                    <configuration>
+                        <nodeVersion>${version.node}</nodeVersion>
+                        <corepackVersion>${version.corepack}</corepackVersion>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>net.ltgt.gwt.maven</groupId>
@@ -205,19 +210,24 @@
                             <licenseSet>
                                 <header>build-config/src/main/resources/etc/license.txt</header>
                                 <excludes>
-                                    <exclude>degraph-style.json</exclude>
-                                    <exclude>dependency-graph.dot</exclude>
-                                    <exclude>LICENSE</exclude>
-                                    <exclude>README.md</exclude>
-                                    <exclude>**/.npmignore</exclude>
-                                    <exclude>**/package-lock.json</exclude>
                                     <exclude>**/*.ftl</exclude>
                                     <exclude>**/*.js.map</exclude>
+                                    <exclude>**/*.mp4</exclude>
                                     <exclude>**/*.pem</exclude>
+                                    <exclude>**/*.png</exclude>
                                     <exclude>**/*license*.txt</exclude>
+                                    <exclude>**/.dockerignore</exclude>
+                                    <exclude>**/.npmignore</exclude>
                                     <exclude>**/.parcel-cache/**</exclude>
+                                    <exclude>**/Dockerfile*</exclude>
+                                    <exclude>**/banner.txt</exclude>
+                                    <exclude>**/cert.pem</exclude>
+                                    <exclude>**/js-cookie.js</exclude>
+                                    <exclude>**/key.pem</exclude>
                                     <exclude>**/node/**</exclude>
                                     <exclude>**/node_modules/**</exclude>
+                                    <exclude>**/package-lock.json</exclude>
+                                    <exclude>**/pnpm-lock.yaml</exclude>
                                     <exclude>**/src/demo/java/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
@@ -227,6 +237,10 @@
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/token/Token.java</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
+                                    <exclude>LICENSE</exclude>
+                                    <exclude>README.md</exclude>
+                                    <exclude>degraph-style.json</exclude>
+                                    <exclude>dependency-graph.dot</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
