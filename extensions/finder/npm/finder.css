@@ -1,0 +1,373 @@
+/* PatternFly 6 Finder Extension Component */
+/* A macOS Finder-style column browser for hierarchical navigation */
+
+/* ===================================================================
+   Custom properties
+   =================================================================== */
+
+.pf-v6-c-finder {
+    --pf-v6-c-finder--BackgroundColor: var(--pf-t--global--background--color--primary--default);
+    --pf-v6-c-finder--BorderColor: var(--pf-t--global--border--color--default);
+    --pf-v6-c-finder--BorderWidth: var(--pf-t--global--border--width--100);
+    --pf-v6-c-finder--BorderRadius: var(--pf-t--global--border--radius--100);
+    --pf-v6-c-finder--FontSize: var(--pf-t--global--font--size--200);
+    --pf-v6-c-finder--Color: var(--pf-t--global--text--color--regular);
+    --pf-v6-c-finder-MaxColumns: 4;
+
+    /* Column */
+    --pf-v6-c-finder__column--Width: 18rem;
+    --pf-v6-c-finder__column--BorderRightColor: var(--pf-t--global--border--color--default);
+    --pf-v6-c-finder__column--BorderRightWidth: var(--pf-t--global--border--width--100);
+
+    /* Column header */
+    --pf-v6-c-finder__column-header--PaddingBlockStart: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-header--PaddingBlockEnd: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-header--PaddingInlineStart: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__column-header--PaddingInlineEnd: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-header--BorderBottomColor: var(--pf-t--global--border--color--default);
+    --pf-v6-c-finder__column-header--BorderBottomWidth: var(--pf-t--global--border--width--100);
+    --pf-v6-c-finder__column-header-text--FontWeight: var(--pf-t--global--font--weight--200);
+    --pf-v6-c-finder__column-header-text--FontSize: var(--pf-t--global--font--size--200);
+
+    /* Column search */
+    --pf-v6-c-finder__column-search--PaddingBlock: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-search--PaddingInline: var(--pf-t--global--spacer--200);
+
+    /* Column item */
+    --pf-v6-c-finder__column-item--PaddingBlockStart: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-item--PaddingBlockEnd: var(--pf-t--global--spacer--200);
+    --pf-v6-c-finder__column-item--PaddingInlineStart: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__column-item--PaddingInlineEnd: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__column-item--BackgroundColor: transparent;
+    --pf-v6-c-finder__column-item--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+    --pf-v6-c-finder__column-item--m-selected--BackgroundColor: var(--pf-t--global--color--brand--default);
+    --pf-v6-c-finder__column-item--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
+    --pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+    --pf-v6-c-finder__column-item--m-selected--inactive--Color: var(--pf-t--global--text--color--regular);
+    --pf-v6-c-finder__column-item--Gap: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__column-item-row--MinHeight: 3.125rem;
+
+    /* Column item focus */
+    --pf-v6-c-finder__column-item--focus--OutlineColor: var(--pf-t--global--color--brand--default);
+    --pf-v6-c-finder__column-item--focus--OutlineWidth: var(--pf-t--global--border--width--200);
+    --pf-v6-c-finder__column-item--focus--OutlineOffset: calc(-1 * var(--pf-t--global--border--width--200));
+
+    /* Column item icon */
+    --pf-v6-c-finder__column-item-icon--Width: var(--pf-t--global--icon--size--200);
+
+    /* Column item text */
+    --pf-v6-c-finder__column-item-text--FontSize: var(--pf-t--global--font--size--200);
+
+    /* Column item description */
+    --pf-v6-c-finder__column-item-description--FontSize: var(--pf-t--global--font--size--xs);
+    --pf-v6-c-finder__column-item-description--Color: var(--pf-t--global--text--color--subtle);
+
+    /* Column item actions */
+    --pf-v6-c-finder__column-item-actions--MarginInlineStart: auto;
+
+    /* Column item pin icon */
+    --pf-v6-c-finder__column-item-pin--Color: var(--pf-t--global--text--color--subtle);
+    --pf-v6-c-finder__column-item-pin--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
+
+    /* Column item folder icon */
+    --pf-v6-c-finder__column-item-folder-icon--Width: var(--pf-t--global--icon--size--200);
+    --pf-v6-c-finder__column-item-folder-icon--Color: var(--pf-t--global--text--color--subtle);
+    --pf-v6-c-finder__column-item-folder-icon--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
+
+    /* Preview */
+    --pf-v6-c-finder__preview--MinWidth: 24rem;
+    --pf-v6-c-finder__preview--BackgroundColor: var(--pf-t--global--background--color--secondary--default);
+    --pf-v6-c-finder__preview-header--PaddingBlock: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__preview-header--PaddingInline: var(--pf-t--global--spacer--400);
+    --pf-v6-c-finder__preview-header--BorderBottomColor: var(--pf-t--global--border--color--default);
+    --pf-v6-c-finder__preview-header--BorderBottomWidth: var(--pf-t--global--border--width--100);
+    --pf-v6-c-finder__preview-header--FontSize: var(--pf-t--global--font--size--400);
+    --pf-v6-c-finder__preview-header--FontWeight: var(--pf-t--global--font--weight--200);
+    --pf-v6-c-finder__preview-body--PaddingBlock: var(--pf-t--global--spacer--300);
+    --pf-v6-c-finder__preview-body--PaddingInline: var(--pf-t--global--spacer--400);
+}
+
+/* ===================================================================
+   Root container
+   =================================================================== */
+
+.pf-v6-c-finder {
+    display: flex;
+    background-color: var(--pf-v6-c-finder--BackgroundColor);
+    border: var(--pf-v6-c-finder--BorderWidth) solid var(--pf-v6-c-finder--BorderColor);
+    border-radius: var(--pf-v6-c-finder--BorderRadius);
+    font-size: var(--pf-v6-c-finder--FontSize);
+    color: var(--pf-v6-c-finder--Color);
+}
+
+/* ===================================================================
+   Columns container (scrollable)
+   =================================================================== */
+
+.pf-v6-c-finder__columns {
+    display: flex;
+    overflow-x: auto;
+    max-width: calc(var(--pf-v6-c-finder-MaxColumns) * var(--pf-v6-c-finder__column--Width) + var(--pf-v6-c-finder-MaxColumns) * var(--pf-v6-c-finder__column--BorderRightWidth));
+}
+
+/* ===================================================================
+   Column
+   =================================================================== */
+
+.pf-v6-c-finder__column {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: var(--pf-v6-c-finder__column--Width);
+    border-right: var(--pf-v6-c-finder__column--BorderRightWidth) solid var(--pf-v6-c-finder__column--BorderRightColor);
+}
+
+/* ===================================================================
+   Column header
+   =================================================================== */
+
+.pf-v6-c-finder__column-header {
+    display: flex;
+    align-items: center;
+    gap: var(--pf-t--global--spacer--200);
+    padding-block-start: var(--pf-v6-c-finder__column-header--PaddingBlockStart);
+    padding-block-end: var(--pf-v6-c-finder__column-header--PaddingBlockEnd);
+    padding-inline-start: var(--pf-v6-c-finder__column-header--PaddingInlineStart);
+    padding-inline-end: var(--pf-v6-c-finder__column-header--PaddingInlineEnd);
+    border-bottom: var(--pf-v6-c-finder__column-header--BorderBottomWidth) solid var(--pf-v6-c-finder__column-header--BorderBottomColor);
+}
+
+.pf-v6-c-finder__column-header-text {
+    font-weight: var(--pf-v6-c-finder__column-header-text--FontWeight);
+    font-size: var(--pf-v6-c-finder__column-header-text--FontSize);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-header-text {
+    text-decoration: underline;
+}
+
+.pf-v6-c-finder__column-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--pf-t--global--spacer--100);
+    margin-inline-start: auto;
+    flex-shrink: 0;
+}
+
+/* ===================================================================
+   Column search
+   =================================================================== */
+
+.pf-v6-c-finder__column-search {
+    padding-block: var(--pf-v6-c-finder__column-search--PaddingBlock);
+    padding-inline: var(--pf-v6-c-finder__column-search--PaddingInline);
+}
+
+/* ===================================================================
+   Column items (list)
+   =================================================================== */
+
+.pf-v6-c-finder__column-items {
+    flex: 1;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===================================================================
+   Column item
+   =================================================================== */
+
+.pf-v6-c-finder__column-item {
+    cursor: pointer;
+    background-color: var(--pf-v6-c-finder__column-item--BackgroundColor);
+    color: var(--pf-v6-c-finder--Color);
+}
+
+.pf-v6-c-finder__column-item:hover {
+    background-color: var(--pf-v6-c-finder__column-item--hover--BackgroundColor);
+}
+
+.pf-v6-c-finder__column-item:focus-visible {
+    outline: var(--pf-v6-c-finder__column-item--focus--OutlineWidth) solid var(--pf-v6-c-finder__column-item--focus--OutlineColor);
+    outline-offset: var(--pf-v6-c-finder__column-item--focus--OutlineOffset);
+}
+
+/* ===================================================================
+   Item row
+   =================================================================== */
+
+.pf-v6-c-finder__column-item-row {
+    display: flex;
+    align-items: center;
+    min-height: var(--pf-v6-c-finder__column-item-row--MinHeight);
+    gap: var(--pf-v6-c-finder__column-item--Gap);
+    padding-block-start: var(--pf-v6-c-finder__column-item--PaddingBlockStart);
+    padding-block-end: var(--pf-v6-c-finder__column-item--PaddingBlockEnd);
+    padding-inline-start: var(--pf-v6-c-finder__column-item--PaddingInlineStart);
+    padding-inline-end: var(--pf-v6-c-finder__column-item--PaddingInlineEnd);
+}
+
+/* ===================================================================
+   Item sub-elements
+   =================================================================== */
+
+.pf-v6-c-finder__column-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--pf-v6-c-finder__column-item-icon--Width);
+}
+
+.pf-v6-c-finder__column-item-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pf-v6-c-finder__column-item-text {
+    font-size: var(--pf-v6-c-finder__column-item-text--FontSize);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-v6-c-finder__column-item-description {
+    font-size: var(--pf-v6-c-finder__column-item-description--FontSize);
+    color: var(--pf-v6-c-finder__column-item-description--Color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-description {
+    color: var(--pf-v6-c-finder__column-item--m-selected--Color);
+}
+
+.pf-v6-c-finder__column-item-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--pf-t--global--spacer--100);
+    margin-inline-start: var(--pf-v6-c-finder__column-item-actions--MarginInlineStart);
+    flex-shrink: 0;
+    opacity: 0;
+}
+
+.pf-v6-c-finder__column-item:hover .pf-v6-c-finder__column-item-actions,
+.pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-actions {
+    opacity: 1;
+}
+
+.pf-v6-c-finder__column-item-pin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--pf-v6-c-finder__column-item-pin--Color);
+    opacity: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    margin-inline-start: auto;
+}
+
+.pf-v6-c-finder__column-item-actions + .pf-v6-c-finder__column-item-pin {
+    margin-inline-start: 0;
+}
+
+.pf-v6-c-finder__column-item:hover .pf-v6-c-finder__column-item-pin,
+.pf-v6-c-finder__column-item.pf-m-pinned .pf-v6-c-finder__column-item-pin {
+    opacity: 1;
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-pin {
+    color: var(--pf-v6-c-finder__column-item-pin--m-selected--Color);
+}
+
+/* Pin icon swap: show thumbtack by default, times when pinned */
+.pf-v6-c-finder__column-item-pin .pf-v6-c-finder__column-item-pin-icon--pinned {
+    display: none;
+}
+
+.pf-v6-c-finder__column-item.pf-m-pinned .pf-v6-c-finder__column-item-pin .pf-v6-c-finder__column-item-pin-icon--default {
+    display: none;
+}
+
+.pf-v6-c-finder__column-item.pf-m-pinned .pf-v6-c-finder__column-item-pin .pf-v6-c-finder__column-item-pin-icon--pinned {
+    display: inline;
+}
+
+.pf-v6-c-finder__column-item-folder-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--pf-v6-c-finder__column-item-folder-icon--Width);
+    color: var(--pf-v6-c-finder__column-item-folder-icon--Color);
+}
+
+.pf-v6-c-finder__column-item.pf-m-folder .pf-v6-c-finder__column-item-folder-icon {
+    display: inline-flex;
+}
+
+/* ===================================================================
+   Item modifiers
+   =================================================================== */
+
+/* Selected item in inactive columns */
+.pf-v6-c-finder__column-item.pf-m-selected {
+    background-color: var(--pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor);
+    color: var(--pf-v6-c-finder__column-item--m-selected--inactive--Color);
+}
+
+.pf-v6-c-finder__column-item.pf-m-selected:hover {
+    background-color: var(--pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor);
+}
+
+/* Selected item in active column */
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected {
+    background-color: var(--pf-v6-c-finder__column-item--m-selected--BackgroundColor);
+    color: var(--pf-v6-c-finder__column-item--m-selected--Color);
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected:hover {
+    background-color: var(--pf-v6-c-finder__column-item--m-selected--BackgroundColor);
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-folder-icon {
+    color: var(--pf-v6-c-finder__column-item-folder-icon--m-selected--Color);
+}
+
+/* ===================================================================
+   Preview pane
+   =================================================================== */
+
+.pf-v6-c-finder__preview {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: var(--pf-v6-c-finder__preview--MinWidth);
+    background-color: var(--pf-v6-c-finder__preview--BackgroundColor);
+}
+
+.pf-v6-c-finder__preview-header {
+    padding-block: var(--pf-v6-c-finder__preview-header--PaddingBlock);
+    padding-inline: var(--pf-v6-c-finder__preview-header--PaddingInline);
+    border-bottom: var(--pf-v6-c-finder__preview-header--BorderBottomWidth) solid var(--pf-v6-c-finder__preview-header--BorderBottomColor);
+    font-size: var(--pf-v6-c-finder__preview-header--FontSize);
+    font-weight: var(--pf-v6-c-finder__preview-header--FontWeight);
+}
+
+.pf-v6-c-finder__preview-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-block: var(--pf-v6-c-finder__preview-body--PaddingBlock);
+    padding-inline: var(--pf-v6-c-finder__preview-body--PaddingInline);
+}

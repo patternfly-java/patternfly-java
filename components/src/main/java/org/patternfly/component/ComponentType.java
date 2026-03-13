@@ -69,6 +69,8 @@ public enum ComponentType {
 
     Finder("fnd", "PF6/Component/Finder"),
 
+    FinderColumn("fc", "PF6/Component/FinderColumn"),
+
     Form("frm", "PF6/Component/Form"),
 
     FormSelect("frs", "PF6/Component/FormSelect"),
