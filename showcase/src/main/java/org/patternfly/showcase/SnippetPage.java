@@ -32,8 +32,8 @@ import org.patternfly.component.jumplinks.JumpLinks;
 import org.patternfly.component.table.Tbody;
 import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
+import org.patternfly.showcase.extension.Extension;
 import org.patternfly.showcase.layout.Layout;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;
@@ -96,16 +96,20 @@ public class SnippetPage implements Page {
     private boolean tocReady;
     private Tbody tbody;
 
+    public SnippetPage(Chart chart) {
+        this(chart.title, chart.summary(), chart.apiDoc(), chart.designGuidelines());
+    }
+
     public SnippetPage(Component component) {
         this(component.title, component.summary(), component.apiDoc(), component.designGuidelines());
     }
 
-    public SnippetPage(Layout layout) {
-        this(layout.title, layout.summary(), layout.apiDoc(), layout.designGuidelines());
+    public SnippetPage(Extension extension) {
+        this(extension.title, extension.summary(), extension.apiDoc(), null);
     }
 
-    public SnippetPage(Chart chart) {
-        this(chart.title, chart.summary(), chart.apiDoc(), chart.designGuidelines());
+    public SnippetPage(Layout layout) {
+        this(layout.title, layout.summary(), layout.apiDoc(), layout.designGuidelines());
     }
 
     SnippetPage(String title, SafeHtml summary, String apiDoc, String designGuidelines) {
@@ -115,15 +119,19 @@ public class SnippetPage implements Page {
                 pageGroup()
                         .addSection(pageSection()
                                 .limitWidth()
-                                .add(div().css(util(floatInlineEnd))
-                                        .add(button(a())
-                                                .id("design-guidelines")
-                                                .plain()
-                                                .href(designGuidelines)
-                                                .target("patternfly")
-                                                .icon(swatchbook()))
-                                        .add(tooltip(By.id("design-guidelines"), "Design guidelines")
-                                                .placement(auto)))
+                                .run(section -> {
+                                    if (designGuidelines != null) {
+                                        section.add(div().css(util(floatInlineEnd))
+                                                .add(button(a())
+                                                        .id("design-guidelines")
+                                                        .plain()
+                                                        .href(designGuidelines)
+                                                        .target("patternfly")
+                                                        .icon(swatchbook()))
+                                                .add(tooltip(By.id("design-guidelines"), "Design guidelines")
+                                                        .placement(auto)));
+                                    }
+                                })
                                 .add(div().css(util(floatInlineEnd))
                                         .add(button(a())
                                                 .id("api-doc")

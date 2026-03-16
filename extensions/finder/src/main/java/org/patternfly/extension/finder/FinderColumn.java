@@ -1,6 +1,7 @@
 package org.patternfly.extension.finder;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -8,35 +9,35 @@ import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.jboss.elemento.Role;
 import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AurHandler;
-import org.patternfly.component.BaseComponent;
-import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.HasItems;
+import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.handler.SelectHandler;
+import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertBefore;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.Role.tree;
 import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderClasses.finder;
-import static org.patternfly.extension.finder.FinderClasses.items;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
-public class FinderColumn extends BaseComponent<HTMLElement, FinderColumn> implements
+public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> implements
         ComponentContext<HTMLElement, FinderColumn>,
         HasIdentifier<HTMLElement, FinderColumn>,
-        HasItems<HTMLElement, FinderColumn, FinderItem> {
+        Ordered<HTMLElement, FinderColumn, FinderItem> {
 
     // ------------------------------------------------------ factory
 
@@ -46,15 +47,17 @@ public class FinderColumn extends BaseComponent<HTMLElement, FinderColumn> imple
 
     // ------------------------------------------------------ instance
 
+    public static final String SUB_COMPONENT_NAME = "fc";
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, FinderItem> items;
     private final AurHandler<FinderColumn, FinderItem> aur;
     private final List<SelectHandler<FinderItem>> selectHandler;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private Comparator<FinderItem> comparator;
 
     FinderColumn(String identifier) {
-        super(ComponentType.FinderColumn, div().css(component(finder, column)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(finder, column)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
@@ -63,15 +66,24 @@ public class FinderColumn extends BaseComponent<HTMLElement, FinderColumn> imple
 
         add(ul = ul().css(component(finder, column, FinderClasses.items))
                 .role(tree));
-        storeComponent();
+        storeSubComponent();
     }
 
     // ------------------------------------------------------ add
 
+    public FinderColumn addHeader(FinderColumnHeader header) {
+        return add(header);
+    }
+
+    public FinderColumn add(FinderColumnHeader header) {
+        insertFirst(element(), header);
+        return this;
+    }
+
     @Override
     public FinderColumn add(FinderItem item) {
+        addOrdered(ul, item);
         items.put(item.identifier(), item);
-        ul.add(item.element());
         return aur.added(item);
     }
 
@@ -79,7 +91,28 @@ public class FinderColumn extends BaseComponent<HTMLElement, FinderColumn> imple
         return add(search);
     }
 
+    public FinderColumn add(FinderColumnSearch search) {
+        insertBefore(search, ul.element());
+        return this;
+    }
+
     // ------------------------------------------------------ builder
+
+    /** Same as {@linkplain #active(boolean) active(true)} */
+    public FinderColumn active() {
+        return active(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(active)} */
+    public FinderColumn active(boolean active) {
+        return toggleModifier(this, element(), Classes.active, active);
+    }
+
+    @Override
+    public FinderColumn ordered(Comparator<FinderItem> comparator) {
+        this.comparator = comparator;
+        return this;
+    }
 
     @Override
     public <T> FinderColumn store(String key, T value) {
@@ -115,6 +148,11 @@ public class FinderColumn extends BaseComponent<HTMLElement, FinderColumn> imple
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public Comparator<FinderItem> comparator() {
+        return comparator;
+    }
 
     public void select(String identifier) {
         select(findItem(identifier), true, true);

@@ -45,12 +45,12 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
         String id = Id.build(SUB_COMPONENT_NAME, ComponentType.SearchInput.id);
         return addSearchInput(searchInput(id).placeholder(placeholder)
                 .onClear((e, si) -> {
-                    FinderColumn fc = lookupComponent(true);
+                    FinderColumn fc = lookupSubComponent(FinderColumn.SUB_COMPONENT_NAME, true);
                     if (fc != null) {
                     }
                 })
                 .onKeyup((e, si, filter) -> {
-                    FinderColumn fc = lookupComponent(true);
+                    FinderColumn fc = lookupSubComponent(FinderColumn.SUB_COMPONENT_NAME, true);
                     if (fc != null) {
                     }
                 }));

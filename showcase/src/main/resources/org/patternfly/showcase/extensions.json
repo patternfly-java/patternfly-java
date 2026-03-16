@@ -1,0 +1,9 @@
+{
+  "finder": {
+    "name": "finder",
+    "title": "Finder",
+    "route": "/extensions/finder",
+    "clazz": "org.patternfly.extension.finder.Finder",
+    "summary": "A macOS Finder-style column browser for hierarchical navigation"
+  }
+}

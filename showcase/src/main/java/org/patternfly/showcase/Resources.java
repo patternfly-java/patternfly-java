@@ -37,6 +37,9 @@ public interface Resources extends ClientBundle {
     @Source("components.json")
     TextResource components();
 
+    @Source("extensions.json")
+    TextResource extensions();
+
     @Source("layouts.json")
     TextResource layouts();
 

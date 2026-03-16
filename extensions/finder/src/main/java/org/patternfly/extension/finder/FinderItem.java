@@ -25,6 +25,7 @@ import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
+import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.Role.treeitem;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.selected;
@@ -32,6 +33,9 @@ import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.extension.finder.FinderClasses.folder;
 import static org.patternfly.extension.finder.FinderClasses.pin;
 import static org.patternfly.extension.finder.FinderItemDescription.finderItemDescription;
+import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.fas.thumbtack;
+import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.icon;
@@ -52,6 +56,10 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         return new FinderItem(identifier);
     }
 
+    public static FinderItem finderItem(String identifier, String text) {
+        return new FinderItem(identifier).text(text);
+    }
+
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "fi";
@@ -61,6 +69,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     private final HTMLContainerBuilder<HTMLElement> ic; // icon container
     private final HTMLContainerBuilder<HTMLElement> cc; // content container
     private final HTMLContainerBuilder<HTMLElement> tc; // text container
+    private FinderColumn column;
 
     FinderItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(finder, item))
@@ -73,12 +82,17 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         this.data = new HashMap<>();
         this.toggleHandler = new ArrayList<>();
 
+        on(click, e -> handleClick());
         add(div().css(component(finder, item, Classes.row))
                 .add(ic = span().css(component(finder, item, icon)))
                 .add(cc = span().css(component(finder, item, content))
                         .add(tc = span().css(component(finder, item, Classes.text))))
-                .add(button().css(component(finder, item, pin)))
-                .add(span().css(component(finder, item, folder, icon))));
+                .add(button().css(component(finder, item, pin))
+                        .on(click, e -> togglePin())
+                        .add(thumbtack().css(component(finder, item, pin, icon) + "--default"))
+                        .add(times().css(component(finder, item, pin, icon) + "--pinned")))
+                .add(span().css(component(finder, item, folder, icon))
+                        .add(angleRight())));
     }
 
     @Override
@@ -108,6 +122,11 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     public FinderItem add(FinderItemActions actions) {
         insertAfter(actions.element(), cc.element());
+        return this;
+    }
+
+    public FinderItem addColumn(FinderColumn column) {
+        this.column = column;
         return this;
     }
 
@@ -197,8 +216,19 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     // ------------------------------------------------------ internal
 
+    void handleClick() {
+        Finder finder = lookupComponent();
+        FinderColumn column = lookupSubComponent(FinderColumn.SUB_COMPONENT_NAME);
+        finder.markActive(column);
+        column.select(this);
+        // TODO If folder show/load next column
+    }
+
     void markSelected(boolean selected) {
         aria(Aria.selected, selected);
         classList().toggle(modifier(Classes.selected), selected);
+    }
+
+    void togglePin() {
     }
 }

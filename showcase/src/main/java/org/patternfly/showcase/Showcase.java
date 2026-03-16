@@ -53,6 +53,7 @@ import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.componentgroup.theme.ThemeSelector.themeSelector;
 import static org.patternfly.icon.IconSets.fab.github;
 import static org.patternfly.showcase.Data.charts;
+import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
@@ -100,6 +101,10 @@ public final class Showcase {
                                         .addItems(groupComponents("menus"), sc ->
                                                 navigationItem(sc.route, sc.title, sc.route)),
                                 "/components/masthead"))
+                .addGroup(expandableNavigationGroup("extensions", "Extensions")
+                        .addItem(ni(placeManager.place("/extensions/about-extensions"), "About extensions"))
+                        .addItems(extensions(), extension ->
+                                navigationItem(extension.route, extension.title, extension.route)))
                 .addGroup(expandableNavigationGroup("charts", "Charts")
                         .addItem(ni(placeManager.place("/charts/about-charts"), "About charts"))
                         .addItems(charts(), chart ->

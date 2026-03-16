@@ -64,7 +64,7 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         this.aur = new AurHandler<>(this);
 
         add(cc = div().css(component(finder, columns)));
-
+        storeComponent();
     }
 
     // ------------------------------------------------------ add
@@ -185,6 +185,14 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
             FinderColumn item = iterator.next();
             iterator.remove();
             aur.removed(item);
+        }
+    }
+
+    // ------------------------------------------------------ internal
+
+    void markActive(FinderColumn column) {
+        for (FinderColumn value : items.values()) {
+            value.active(column.identifier().equals(value.identifier()));
         }
     }
 }

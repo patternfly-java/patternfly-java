@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
+import org.patternfly.showcase.extension.Extension;
 import org.patternfly.showcase.layout.Layout;
-
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
@@ -29,14 +29,27 @@ import static elemental2.core.Global.JSON;
 
 public final class Data {
 
-    public static JsPropertyMap<Component> components;
-    public static JsPropertyMap<Layout> layouts;
     public static JsPropertyMap<Chart> charts;
+    public static JsPropertyMap<Component> components;
+    public static JsPropertyMap<Extension> extensions;
+    public static JsPropertyMap<Layout> layouts;
 
     static {
-        components = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.components().getText()));
-        layouts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.layouts().getText()));
         charts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.charts().getText()));
+        components = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.components().getText()));
+        extensions = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.extensions().getText()));
+        layouts = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.layouts().getText()));
+    }
+
+    public static List<Chart> charts() {
+        List<Chart> result = new ArrayList<>();
+        charts.forEach(key -> {
+            Chart chart = charts.get(key);
+            if (chart.implemented()) {
+                result.add(chart);
+            }
+        });
+        return result;
     }
 
     public static List<Component> components() {
@@ -72,23 +85,23 @@ public final class Data {
         return result;
     }
 
+    public static List<Extension> extensions() {
+        List<Extension> result = new ArrayList<>();
+        extensions.forEach(key -> {
+            Extension extension = extensions.get(key);
+            if (extension.implemented()) {
+                result.add(extension);
+            }
+        });
+        return result;
+    }
+
     public static List<Layout> layouts() {
         List<Layout> result = new ArrayList<>();
         layouts.forEach(key -> {
             Layout layout = layouts.get(key);
             if (layout.implemented()) {
                 result.add(layout);
-            }
-        });
-        return result;
-    }
-
-    public static List<Chart> charts() {
-        List<Chart> result = new ArrayList<>();
-        charts.forEach(key -> {
-            Chart chart = charts.get(key);
-            if (chart.implemented()) {
-                result.add(chart);
             }
         });
         return result;
