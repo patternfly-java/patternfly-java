@@ -19,6 +19,7 @@ import "@patternfly/patternfly/patternfly-charts.css";
 import "@patternfly-java/charts/dist/charts";
 import "./pforg/*.css";
 import "./finder.css";
+import "./core.css";
 import "./showcase.css";
 
 import "@github/relative-time-element";

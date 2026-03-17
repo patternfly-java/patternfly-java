@@ -33,6 +33,7 @@ import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
@@ -45,7 +46,6 @@ import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -110,6 +110,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         Disabled<HTMLLIElement, TreeViewItem>,
         ElementTextMethods<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
+        HasAsyncItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
         HasIdentifier<HTMLLIElement, TreeViewItem>,
         HasItems<HTMLLIElement, TreeViewItem, TreeViewItem> {
 
@@ -195,10 +196,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         return aur.added(item);
     }
 
-    public TreeViewItem addItems(AsyncItems<TreeViewItem, TreeViewItem> items) {
-        return add(items);
-    }
-
+    @Override
     public TreeViewItem add(AsyncItems<TreeViewItem, TreeViewItem> items) {
         status = pending;
         asyncItems = items;
@@ -343,9 +341,10 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
+    @Override
     public Promise<Iterable<TreeViewItem>> load() {
         if (status == pending && asyncItems != null) {
-            // show loading indicator after a given timeout
+            // show a loading indicator after a given timeout
             TreeViewItem[] loadingItem = new TreeViewItem[1];
             double handle = setTimeout(__ -> {
                 loadingItem[0] = loading.get();
@@ -383,17 +382,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         }
     }
 
-    public void reset() {
-        if (status == resolved || status == rejected) {
-            status = pending;
-            internalClear();
-            collapse(false);
-            if (domFinished && !containerElement.contains(toggleElement)) {
-                insertFirst(containerElement, toggleElement);
-            }
-        }
-    }
-
+    @Override
     public Promise<Iterable<TreeViewItem>> reload() {
         boolean expanded = expanded();
         reset();
@@ -405,6 +394,19 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         });
     }
 
+    @Override
+    public void reset() {
+        if (status == resolved || status == rejected) {
+            status = pending;
+            internalClear();
+            collapse(false);
+            if (domFinished && !containerElement.contains(toggleElement)) {
+                insertFirst(containerElement, toggleElement);
+            }
+        }
+    }
+
+    @Override
     public AsyncStatus status() {
         return status;
     }

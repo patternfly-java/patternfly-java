@@ -15,9 +15,7 @@
  */
 package org.patternfly.component.form;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -27,12 +25,12 @@ import org.jboss.elemento.InputType;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
+import org.patternfly.component.KicHandler;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -42,10 +40,7 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.jboss.elemento.EventType.change;
-import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
-import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
 import static org.patternfly.style.Classes.icon;
@@ -99,8 +94,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     }
 
     private final HTMLInputElement inputElement;
-    private final List<ChangeHandler<TextInput, String>> keyupChangeHandlers;
-    private final List<ChangeHandler<TextInput, String>> valueChangeHandlers;
+    private final KicHandler<TextInput> kicHandler;
     private HTMLElement iconContainer;
 
     TextInput(TextInputType type, String id, String value) {
@@ -111,14 +105,8 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
                                 .aria(invalid, false))
                         .element(),
                 ComponentType.TextInput);
-        this.keyupChangeHandlers = new ArrayList<>();
-        this.valueChangeHandlers = new ArrayList<>();
-
         inputElement = (HTMLInputElement) element().firstElementChild;
-        inputElement.addEventListener(keyup.name,
-                e -> keyupChangeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
-        inputElement.addEventListener(change.name,
-                e -> valueChangeHandlers.forEach(ch -> ch.onChange(e, this, inputElement.value)));
+        kicHandler = new KicHandler<>(this, inputElement);
         if (value != null) {
             value(value);
         }
@@ -199,7 +187,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     public TextInput value(String value, boolean fireEvent) {
         inputElement.value = value;
         if (fireEvent) {
-            fireIfChanged(this, inputElement.value, value, valueChangeHandlers);
+            kicHandler.fireIfChanged(value);
         }
         return this;
     }
@@ -212,21 +200,31 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     // ------------------------------------------------------ events
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
-     * adding an event listener for the {@link org.jboss.elemento.EventType#keyup} event to the text input element.
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keydown} events.
      */
-    public TextInput onKeyup(ChangeHandler<TextInput, String> changeHandler) {
-        keyupChangeHandlers.add(changeHandler);
-        return this;
+    public TextInput onKeydown(ChangeHandler<TextInput, String> changeHandler) {
+        return kicHandler.onKeydown(changeHandler);
     }
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
-     * adding an event listener for the {@link org.jboss.elemento.EventType#change} event to the text input element.
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keyup} events.
+     */
+    public TextInput onKeyup(ChangeHandler<TextInput, String> changeHandler) {
+        return kicHandler.onKeyup(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#input} events.
+     */
+    public TextInput onInput(ChangeHandler<TextInput, String> changeHandler) {
+        return kicHandler.onInput(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#change} events.
      */
     public TextInput onChange(ChangeHandler<TextInput, String> changeHandler) {
-        valueChangeHandlers.add(changeHandler);
-        return this;
+        return kicHandler.onChange(changeHandler);
     }
 
     // ------------------------------------------------------ api

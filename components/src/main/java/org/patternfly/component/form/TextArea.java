@@ -15,19 +15,17 @@
  */
 package org.patternfly.component.form;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLTextAreaElementBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
+import org.patternfly.component.KicHandler;
 import org.patternfly.core.Attributes;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Modifiers.Readonly;
-
 import elemental2.dom.CSSStyleDeclaration;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTextAreaElement;
@@ -36,11 +34,8 @@ import elemental2.dom.MutationRecord;
 import static org.jboss.elemento.DomGlobal.window;
 import static org.jboss.elemento.Elements.textarea;
 import static org.jboss.elemento.Elements.wrapTextAreaElement;
-import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
-import static org.jboss.elemento.EventType.keyup;
 import static org.patternfly.core.Aria.invalid;
-import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textarea;
 
@@ -69,8 +64,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ instance
 
     private final HTMLTextAreaElement textAreaElement;
-    private final List<ChangeHandler<TextArea, String>> keyupChangeHandlers;
-    private final List<ChangeHandler<TextArea, String>> valueChangeHandlers;
+    private final KicHandler<TextArea> kicHandler;
     private boolean autoResize;
     private TextAreaResize resize;
 
@@ -86,14 +80,8 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
                                 .aria(invalid, false))
                         .element(),
                 ComponentType.TextInput);
-        this.keyupChangeHandlers = new ArrayList<>();
-        this.valueChangeHandlers = new ArrayList<>();
-
         textAreaElement = (HTMLTextAreaElement) element().firstElementChild;
-        textAreaElement.addEventListener(keyup.name,
-                e -> keyupChangeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
-        textAreaElement.addEventListener(change.name,
-                e -> valueChangeHandlers.forEach(ch -> ch.onChange(e, this, textAreaElement.value)));
+        kicHandler = new KicHandler<>(this, textAreaElement);
         if (value != null) {
             value(value);
         }
@@ -167,7 +155,7 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     public TextArea value(String value, boolean fireEvent) {
         textAreaElement.value = value;
         if (fireEvent) {
-            fireIfChanged(this, textAreaElement.value, value, valueChangeHandlers);
+            kicHandler.fireIfChanged(value);
         }
         return this;
     }
@@ -180,21 +168,31 @@ public class TextArea extends FormControl<HTMLElement, TextArea> implements
     // ------------------------------------------------------ events
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
-     * adding an event listener for the {@link org.jboss.elemento.EventType#keyup} event to the text area element.
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keydown} events.
      */
-    public TextArea onKeyup(ChangeHandler<TextArea, String> changeHandler) {
-        keyupChangeHandlers.add(changeHandler);
-        return this;
+    public TextArea onKeydown(ChangeHandler<TextArea, String> changeHandler) {
+        return kicHandler.onKeydown(changeHandler);
     }
 
     /**
-     * Defines a change handler that is called when the {@link #value()} of this text area changes. Changes are detected by
-     * adding an event listener for the {@link org.jboss.elemento.EventType#change} event to the text area element.
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keyup} events.
+     */
+    public TextArea onKeyup(ChangeHandler<TextArea, String> changeHandler) {
+        return kicHandler.onKeyup(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#input} events.
+     */
+    public TextArea onInput(ChangeHandler<TextArea, String> changeHandler) {
+        return kicHandler.onInput(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#change} events.
      */
     public TextArea onChange(ChangeHandler<TextArea, String> changeHandler) {
-        valueChangeHandlers.add(changeHandler);
-        return this;
+        return kicHandler.onChange(changeHandler);
     }
 
     // ------------------------------------------------------ api

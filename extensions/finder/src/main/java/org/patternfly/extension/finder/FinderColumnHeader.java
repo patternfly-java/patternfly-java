@@ -14,6 +14,7 @@ import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 
+// TODO Refactor elements to match the empty state header, title and title text
 public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderColumnHeader> implements
         ElementTextDelegate<HTMLElement, FinderColumnHeader> {
 

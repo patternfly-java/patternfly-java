@@ -43,6 +43,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
         toggleUtilities(value());
         onKeyup((e, si, value) -> toggleUtilities(value));
+        onInput((e, si, value) -> toggleUtilities(value));
         onChange((e, si, value) -> toggleUtilities(value));
     }
 

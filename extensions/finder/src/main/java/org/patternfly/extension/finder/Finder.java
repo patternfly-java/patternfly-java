@@ -20,7 +20,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.gwtproject.event.shared.HandlerRegistration;
+import org.jboss.elemento.Attachable;
+import org.jboss.elemento.By;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.Key;
 import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
@@ -29,18 +35,28 @@ import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.Dataset;
+import org.patternfly.style.Classes;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.KeyboardEvent;
+import elemental2.dom.MutationRecord;
 
+import static elemental2.dom.DomGlobal.requestAnimationFrame;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.EventType.bind;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.extension.finder.FinderClasses.columns;
 import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.item;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.selected;
 
 public class Finder extends BaseComponent<HTMLElement, Finder> implements
+        Attachable,
         HasItems<HTMLElement, Finder, FinderColumn> {
 
     // ------------------------------------------------------ factory
@@ -51,10 +67,11 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     // ------------------------------------------------------ instance
 
+    FinderPreview preview;
     private final Map<String, FinderColumn> items;
     private final AurHandler<Finder, FinderColumn> aur;
     private final HTMLContainerBuilder<HTMLDivElement> cc; // columns container
-    private FinderPreview preview;
+    private HandlerRegistration keydownHandler;
 
     Finder() {
         super(ComponentType.Finder, div().css(component(finder))
@@ -64,7 +81,19 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         this.aur = new AurHandler<>(this);
 
         add(cc = div().css(component(finder, columns)));
-        storeComponent();
+        Attachable.register(this, this);
+    }
+
+    @Override
+    public void attach(MutationRecord mutationRecord) {
+        keydownHandler = bind(this, EventType.keydown, this::handleKeydown);
+    }
+
+    @Override
+    public void detach(MutationRecord mutationRecord) {
+        if (keydownHandler != null) {
+            keydownHandler.removeHandler();
+        }
     }
 
     // ------------------------------------------------------ add
@@ -81,8 +110,9 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     @Override
     public Finder add(FinderColumn item) {
-        items.put(item.identifier(), item);
+        item.finder = this;
         cc.add(item.element());
+        items.put(item.identifier(), item);
         return aur.added(item);
     }
 
@@ -190,9 +220,132 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     // ------------------------------------------------------ internal
 
-    void markActive(FinderColumn column) {
-        for (FinderColumn value : items.values()) {
-            value.active(column.identifier().equals(value.identifier()));
+    void select(FinderColumn column) {
+        markActive(column);
+
+        // Remove all columns after the selected one
+        boolean found = false;
+        Iterator<Map.Entry<String, FinderColumn>> iterator = items.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, FinderColumn> entry = iterator.next();
+            if (found) {
+                FinderColumn removeColumn = entry.getValue();
+                for (FinderItem item : removeColumn.items()) {
+                    item.markSelected(false);
+                }
+                failSafeRemoveFromParent(removeColumn);
+                iterator.remove();
+                aur.removed(removeColumn);
+            } else if (entry.getKey().equals(column.identifier())) {
+                found = true;
+            }
         }
+    }
+
+    void markActive(FinderColumn column) {
+        for (FinderColumn c : items.values()) {
+            c.active(false);
+        }
+        column.active(true);
+    }
+
+    private void handleKeydown(KeyboardEvent event) {
+        HTMLElement target = (HTMLElement) event.target;
+        HTMLElement itemElement = Elements.closest(target, By.classname(component(finder, item)));
+        if (itemElement == null) {
+            return;
+        }
+        FinderItem item = findItem(itemElement.dataset.get(Dataset.identifier));
+        if (item == null || item.column == null) {
+            return;
+        }
+        FinderColumn column = item.column;
+
+        if (Key.ArrowDown.match(event)) {
+            event.preventDefault();
+            FinderItem nextItem = column.nextItem(item);
+            if (nextItem != null) {
+                nextItem.handleClick(this, column, nextItem);
+                nextItem.element().focus();
+            }
+
+        } else if (Key.ArrowUp.match(event)) {
+            event.preventDefault();
+            FinderItem previousItem = column.previousItem(item);
+            if (previousItem != null) {
+                previousItem.handleClick(this, column, previousItem);
+                previousItem.element().focus();
+            }
+
+        } else if (Key.ArrowLeft.match(event)) {
+            event.preventDefault();
+            FinderColumn previousColumn = previousColumn(column);
+            if (previousColumn != null) {
+                HTMLElement targetItem = previousColumn.querySelector(By.classname(component(finder, Classes.item))
+                        .and(By.classname(modifier(selected))));
+                if (targetItem != null) {
+                    markActive(previousColumn);
+                    targetItem.focus();
+                    scrollIntoView(previousColumn);
+                }
+            }
+
+        } else if (Key.ArrowRight.match(event)) {
+            event.preventDefault();
+            if (item.hasNext()) {
+                FinderColumn nextColumn = item.nextColumn();
+                if (nextColumn != null) {
+                    FinderItem targetItem = null;
+                    if (!nextColumn.visibleItems().isEmpty()) {
+                        targetItem = nextColumn.visibleItems().get(0);
+                    }
+                    if (targetItem != null) {
+                        targetItem.handleClick(this, nextColumn, targetItem);
+                        targetItem.element().focus();
+                        scrollIntoView(nextColumn);
+                    }
+                }
+            }
+        }
+    }
+
+    private FinderColumn previousColumn(FinderColumn column) {
+        FinderColumn previous = null;
+        for (FinderColumn c : items.values()) {
+            if (c.identifier().equals(column.identifier())) {
+                return previous;
+            }
+            previous = c;
+        }
+        return null;
+    }
+
+    private void scrollIntoView(FinderColumn column) {
+        requestAnimationFrame(__ -> {
+            HTMLElement container = cc.element();
+            HTMLElement columnElement = column.element();
+            var colLeft = columnElement.offsetLeft;
+            var colRight = colLeft + columnElement.offsetWidth;
+            var scrollLeft = container.scrollLeft;
+            var viewWidth = container.clientWidth;
+
+            if (colLeft < scrollLeft) {
+                container.scrollLeft = colLeft;
+            } else if (colRight > scrollLeft + viewWidth) {
+                container.scrollLeft = colRight - viewWidth;
+            }
+        });
+    }
+
+    private FinderItem findItem(String identifier) {
+        if (identifier != null) {
+            for (FinderColumn column : items.values()) {
+                FinderItem item = column.findItem(identifier);
+                if (item != null) {
+                    return item;
+                }
+            }
+        }
+        return null;
     }
 }

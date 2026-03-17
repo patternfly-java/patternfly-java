@@ -9,19 +9,29 @@ import java.util.List;
 import java.util.Map;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.AddItemHandler;
+import org.patternfly.component.AsyncItems;
 import org.patternfly.component.AurHandler;
+import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
+import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
@@ -29,14 +39,23 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.Role.tree;
+import static org.patternfly.core.AsyncStatus.pending;
+import static org.patternfly.core.AsyncStatus.rejected;
+import static org.patternfly.core.AsyncStatus.resolved;
+import static org.patternfly.core.AsyncStatus.static_;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.extension.finder.FinderClasses.column;
-import static org.patternfly.extension.finder.FinderClasses.finder;
+import static org.patternfly.extension.finder.FinderItem.errorItem;
+import static org.patternfly.extension.finder.FinderItem.loadingItem;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.filtered;
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> implements
         ComponentContext<HTMLElement, FinderColumn>,
         HasIdentifier<HTMLElement, FinderColumn>,
+        HasAsyncItems<HTMLElement, FinderColumn, FinderItem>,
         Ordered<HTMLElement, FinderColumn, FinderItem> {
 
     // ------------------------------------------------------ factory
@@ -48,23 +67,35 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "fc";
+    private static final Logger logger = Logger.getLogger(FinderColumn.class.getName());
+
+    // Use a direct reference to the finder instead of relying on storeComponent() / lookupComponent()
+    // The component store relies on attach() / detach() and does not work when adding / removing existing references.
+    // See: https://hal-console.gitbook.io/elemento/attach-detach
+    Finder finder;
+
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, FinderItem> items;
     private final AurHandler<FinderColumn, FinderItem> aur;
     private final List<SelectHandler<FinderItem>> selectHandler;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private AsyncStatus status;
     private Comparator<FinderItem> comparator;
+    private AsyncItems<FinderColumn, FinderItem> asyncItems;
 
     FinderColumn(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(finder, column)).element());
+        super(SUB_COMPONENT_NAME, div().css(component(FinderClasses.finder, column))
+                .data(Dataset.identifier, identifier)
+                .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         this.selectHandler = new ArrayList<>();
+        this.status = static_;
 
-        add(ul = ul().css(component(finder, column, FinderClasses.items))
+        add(ul = ul().css(component(FinderClasses.finder, column, FinderClasses.items))
                 .role(tree));
         storeSubComponent();
     }
@@ -80,19 +111,30 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         return this;
     }
 
-    @Override
-    public FinderColumn add(FinderItem item) {
-        addOrdered(ul, item);
-        items.put(item.identifier(), item);
-        return aur.added(item);
-    }
-
     public FinderColumn addSearch(FinderColumnSearch search) {
         return add(search);
     }
 
     public FinderColumn add(FinderColumnSearch search) {
         insertBefore(search, ul.element());
+        return this;
+    }
+
+    @Override
+    public FinderColumn add(FinderItem item) {
+        item.column = this;
+        addOrdered(ul, item);
+        items.put(item.identifier(), item);
+        return aur.added(item);
+    }
+
+    public FinderColumn addItems(AsyncItems<FinderColumn, FinderItem> items) {
+        return add(items);
+    }
+
+    public FinderColumn add(AsyncItems<FinderColumn, FinderItem> items) {
+        status = pending;
+        asyncItems = items;
         return this;
     }
 
@@ -154,34 +196,60 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         return comparator;
     }
 
-    public void select(String identifier) {
-        select(findItem(identifier), true, true);
-    }
+    @Override
+    public Promise<Iterable<FinderItem>> load() {
+        if (status == pending && asyncItems != null) {
+            // show a loading indicator after a given timeout
+            FinderItem[] loadingItem = new FinderItem[1];
+            double handle = setTimeout(__ -> {
+                loadingItem[0] = loadingItem();
+                loadingItem[0].column = this;
+                ul.add(loadingItem[0].element());
+            }, LOADING_TIMEOUT);
 
-    public void select(String identifier, boolean selected) {
-        select(findItem(identifier), selected, true);
-    }
-
-    public void select(String identifier, boolean selected, boolean fireEvent) {
-        select(findItem(identifier), selected, fireEvent);
-    }
-
-    public void select(FinderItem item) {
-        select(item, true, true);
-    }
-
-    public void select(FinderItem item, boolean selected) {
-        select(item, selected, true);
-    }
-
-    public void select(FinderItem item, boolean selected, boolean fireEvent) {
-        if (item != null) {
-            unselectAllItems();
-            item.markSelected(selected);
-            if (fireEvent) {
-                selectHandler.forEach(selectHandler -> selectHandler.onSelect(new Event(""), item, selected));
-            }
+            // load items
+            return asyncItems.apply(this)
+                    .then(items -> {
+                        status = resolved;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        for (FinderItem child : items) {
+                            addItem(child);
+                        }
+                        return Promise.resolve(items);
+                    })
+                    .catch_(error -> {
+                        status = rejected;
+                        clearTimeout(handle);
+                        failSafeRemoveFromParent(loadingItem[0]);
+                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
+                        FinderItem errorItem = errorItem();
+                        errorItem.column = this;
+                        ul.add(errorItem);
+                        return Promise.reject(error);
+                    });
+        } else {
+            return Promise.resolve(emptyList());
         }
+    }
+
+    @Override
+    public Promise<Iterable<FinderItem>> reload() {
+        reset();
+        return load().then(Promise::resolve);
+    }
+
+    @Override
+    public void reset() {
+        if (status == resolved || status == rejected) {
+            status = pending;
+            internalClear();
+        }
+    }
+
+    @Override
+    public AsyncStatus status() {
+        return status;
     }
 
     @Override
@@ -244,6 +312,74 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     @Override
     public void clear() {
+        if (status == static_) {
+            internalClear();
+        } else if (status == resolved || status == rejected || status == pending) {
+            reset();
+        }
+    }
+
+    public void select(String identifier) {
+        select(findItem(identifier), true, true);
+    }
+
+    public void select(String identifier, boolean selected) {
+        select(findItem(identifier), selected, true);
+    }
+
+    public void select(String identifier, boolean selected, boolean fireEvent) {
+        select(findItem(identifier), selected, fireEvent);
+    }
+
+    public void select(FinderItem item) {
+        select(item, true, true);
+    }
+
+    public void select(FinderItem item, boolean selected) {
+        select(item, selected, true);
+    }
+
+    public void select(FinderItem item, boolean selected, boolean fireEvent) {
+        if (item != null) {
+            unselectAllItems();
+            item.markSelected(selected);
+            if (fireEvent) {
+                selectHandler.forEach(selectHandler -> selectHandler.onSelect(new Event(""), item, selected));
+            }
+        }
+    }
+
+    // ------------------------------------------------------ internal
+
+    FinderItem findItem(String identifier) {
+        return items.get(identifier);
+    }
+
+    FinderItem previousItem(FinderItem item) {
+        List<FinderItem> visible = visibleItems();
+        int index = visible.indexOf(item);
+        if (index > 0) {
+            return visible.get(index - 1);
+        }
+        return null;
+    }
+
+    FinderItem nextItem(FinderItem item) {
+        List<FinderItem> visible = visibleItems();
+        int index = visible.indexOf(item);
+        if (index != -1 && index < visible.size() - 1) {
+            return visible.get(index + 1);
+        }
+        return null;
+    }
+
+    List<FinderItem> visibleItems() {
+        return items.values().stream()
+                .filter(item -> !item.classList().contains(modifier(filtered)))
+                .collect(toList());
+    }
+
+    private void internalClear() {
         removeChildrenFrom(ul);
         Iterator<FinderItem> iterator = items.values().iterator();
         while (iterator.hasNext()) {
@@ -251,12 +387,6 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
             iterator.remove();
             aur.removed(item);
         }
-    }
-
-    // ------------------------------------------------------ internal
-
-    private FinderItem findItem(String identifier) {
-        return items.get(identifier);
     }
 
     private void unselectAllItems() {

@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.form.Form;
-import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.modal.Modal;
 import org.patternfly.component.modal.ModalBody;
 import org.patternfly.component.modal.ModalFooter;
@@ -46,12 +45,6 @@ import static org.patternfly.component.form.FormGroupControl.formGroupControl;
 import static org.patternfly.component.form.FormGroupLabel.formGroupLabel;
 import static org.patternfly.component.form.TextInput.textInput;
 import static org.patternfly.component.form.TextInputType.email;
-import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.linkMenuItem;
-import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.modal.Modal.modal;
 import static org.patternfly.component.modal.ModalBody.modalBody;
 import static org.patternfly.component.modal.ModalFooter.modalFooter;
@@ -69,6 +62,7 @@ import static org.patternfly.icon.IconSets.fas.bullhorn;
 import static org.patternfly.icon.IconSets.patternfly.warningTriangle;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
+import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.component.NotYetImplemented.nyi;
@@ -341,25 +335,13 @@ public class ModalComponent extends SnippetPage {
         addSnippet(new Snippet("modal-dropdown", "With dropdown",
                 code("modal-dropdown"), () -> {
             // @code-start:modal-dropdown
-            Supplier<Dropdown> dropdown = () -> dropdown("Dropdown")
-                    .addMenu(dropdownMenu()
-                            .addContent(menuContent()
-                                    .addList(menuList()
-                                            .addItem(menuItem("item-0", "Action"))
-                                            .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(menuItem("item-2", "Disabled action")
-                                                    .disabled())
-                                            .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                    .disabled()))));
-
             Supplier<Modal> modal = () -> modal()
                     .size(sm)
                     .addHeader("Dropdown modal")
                     .addBody(modalBody()
                             .add(div().text(LoremIpsum.paragraphs(10)))
                             .add(br())
-                            .add(div()
-                                    .add(dropdown.get())))
+                            .add(div().add(mixedKebab("modal-dropdown"))))
                     .addFooter(modalFooter()
                             .addButton(button("Confirm").primary())
                             .addButton(button("Cancel").link()))

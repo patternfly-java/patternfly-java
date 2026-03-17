@@ -21,7 +21,10 @@ import java.util.Objects;
 import elemental2.dom.Event;
 
 /**
- * Functional interface for handling change events.
+ * Functional interface for handling changes in a component. This is not related to the native
+ * {@link org.jboss.elemento.EventType#change} event. Instead, it is used for any kind of change in a component. For instance,
+ * the text components support adding change handlers for native {@link org.jboss.elemento.EventType#keyup},
+ * {@link org.jboss.elemento.EventType#input}, or {@link org.jboss.elemento.EventType#change} events.
  *
  * @param <C> The type of the component.
  * @param <T> The type of the value.
@@ -29,7 +32,7 @@ import elemental2.dom.Event;
 @FunctionalInterface
 public interface ChangeHandler<C, T> {
 
-    static <C, T> void fireIfChanged(C component, T oldValue, T value,  List<ChangeHandler<C, T>> changeHandlers) {
+    static <C, T> void fireIfChanged(C component, T oldValue, T value, List<ChangeHandler<C, T>> changeHandlers) {
         boolean changed = !Objects.equals(oldValue, value);
         if (changed && !changeHandlers.isEmpty()) {
             changeHandlers.forEach(ch -> ch.onChange(new Event(""), component, value));
