@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add [finder extension](https://patternfly-java.github.io/extensions/finder) (#371)
+- Add
+  `HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>` that defines a common interface for components that can display items asynchronously. These components implement it:
+    - `FinderColumn`
+    - `MenuList`
+    - `TreeViewItem`
+
+### Changed
+
+- Switch to corepack and pnpm
+
 ## [0.5.0] - 2026-02-20
 
 ### Added

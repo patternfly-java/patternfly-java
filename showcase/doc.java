@@ -16,11 +16,13 @@
 /// usr/bin/env jbang "$0" "$@" ; exit $?
 //JAVA 25
 //DEPS com.vladsch.flexmark:flexmark-all:0.64.8
+//DEPS com.vladsch.flexmark:flexmark-ext-tables:0.64.8
 
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.util.data.MutableDataSet;
+import com.vladsch.flexmark.ext.tables.TablesExtension;
 
 static final String PACKAGE_NAME = "org.patternfly.showcase";
 static final String CLASS_NAME = "Documentation";
@@ -102,7 +104,8 @@ String markdownToHtm(String markdown) {
     if (markdown == null) {
         return "";
     }
-    MutableDataSet options = new MutableDataSet();
+    MutableDataSet options = new MutableDataSet()
+            .set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
     Parser parser = Parser.builder(options).build();
     HtmlRenderer renderer = HtmlRenderer.builder(options).build();
     Node document = parser.parse(markdown);

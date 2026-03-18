@@ -68,6 +68,62 @@ jobs:
           CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
+  publish-npm:
+    name: Publish NPM Packages
+    runs-on: ubuntu-latest
+    needs: deploy-patternfly
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 25
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - name: Publish @patternfly-java/core
+        working-directory: core/npm
+        run: pnpm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish @patternfly-java/finder
+        working-directory: extensions/finder/npm
+        run: pnpm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish @patternfly-java/charts
+        working-directory: charts/npm
+        run: |
+          pnpm install
+          pnpm run build
+          pnpm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-showcase:
+    name: Publish Showcase
+    runs-on: ubuntu-latest
+    needs: publish-npm
+    env:
+      MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+          cache: maven
+      - run: $MVN --projects org.patternfly:patternfly-java-showcase --also-make -P showcase,prod package
+      - uses: JamesIves/github-pages-deploy-action@v4.8.0
+        with:
+          token: ${{ secrets.PUBLISH_CONTENT }}
+          repository-name: patternfly-java/patternfly-java.github.io
+          branch: gh-pages
+          folder: ./showcase/target/showcase
+          clean: true
+          force: true
+          single-commit: true
+
   publish-apidocs:
     name: Publish API Documentation
     runs-on: ubuntu-latest
@@ -99,32 +155,6 @@ jobs:
           repository-name: patternfly-java/apidocs
           branch: gh-pages
           folder: ./apidoc/target/reports/apidocs
-          clean: true
-          force: true
-          single-commit: true
-
-  publish-showcase:
-    name: Publish Showcase
-    runs-on: ubuntu-latest
-    needs: deploy-patternfly
-    env:
-      MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-      - uses: actions/setup-java@v5
-        with:
-          java-version: 25
-          distribution: temurin
-          cache: maven
-      - run: $MVN --projects org.patternfly:patternfly-java-showcase --also-make -P showcase,prod package
-      - uses: JamesIves/github-pages-deploy-action@v4.8.0
-        with:
-          token: ${{ secrets.PUBLISH_CONTENT }}
-          repository-name: patternfly-java/patternfly-java.github.io
-          branch: gh-pages
-          folder: ./showcase/target/showcase
           clean: true
           force: true
           single-commit: true

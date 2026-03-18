@@ -22,6 +22,8 @@
     "@github/relative-time-element": "^5.0.0",
     "@patternfly/patternfly": "^6.4.0",
     "@patternfly-java/charts": "^0.0.13",
+    "@patternfly-java/core": "link:../core/npm",
+    "@patternfly-java/finder": "link:../extensions/finder/npm",
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {

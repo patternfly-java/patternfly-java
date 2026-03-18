@@ -14,6 +14,12 @@ importers:
       '@patternfly-java/charts':
         specifier: ^0.0.13
         version: 0.0.13
+      '@patternfly-java/core':
+        specifier: link:../core/npm
+        version: link:../core/npm
+      '@patternfly-java/finder':
+        specifier: link:../extensions/finder/npm
+        version: link:../extensions/finder/npm
       '@patternfly/patternfly':
         specifier: ^6.4.0
         version: 6.4.0

@@ -19,6 +19,19 @@ import java.util.function.Function;
 
 import elemental2.promise.Promise;
 
+/**
+ * A functional interface that represents an asynchronous computation yielding an iterable result.
+ * It extends the {@code Function} interface, allowing it to accept an input of type {@code T} and
+ * return a {@code Promise} that resolves to an {@code Iterable} of type {@code R}.
+ * <p>
+ * The purpose of {@code AsyncItems} is to define a contract for handling operations where a computation
+ * produces multiple results asynchronously, encapsulated in a {@code Promise}.
+ *
+ * @param <T> the input type accepted by the function
+ * @param <R> the type of elements contained in the resulting iterable
+ *
+ * @see HasAsyncItems
+ */
 @FunctionalInterface
 public interface AsyncItems<T, R> extends Function<T, Promise<Iterable<R>>> {
 }

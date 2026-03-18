@@ -108,3 +108,17 @@ mvn --quiet install  &> /dev/null
 cd "${script_dir}"
 msg "Update version to ${CYAN}${NEW_VERSION}${NOFORMAT}"
 mvn --quiet versions:set -DnewVersion="${NEW_VERSION}" -P apidoc &> /dev/null
+msg "  ${GREEN}✔${NOFORMAT} POMs"
+sed -i '' -E "s/<version>[0-9]+\.[0-9]+\.[0-9]+.*<\/version>/<version>$NEW_VERSION<\/version>/" showcase/src/doc/*.md
+msg "  ${GREEN}✔${NOFORMAT} documentation"
+msg "Update NPM versions to ${CYAN}${NEW_VERSION}${NOFORMAT}"
+cd "${script_dir}/core/npm"
+npm version "${NEW_VERSION}" --no-git-tag-version &> /dev/null
+msg "  ${GREEN}✔${NOFORMAT} core"
+cd "${script_dir}/charts/npm"
+npm version "${NEW_VERSION}" --no-git-tag-version &> /dev/null
+msg "  ${GREEN}✔${NOFORMAT} charts"
+cd "${script_dir}/extensions/finder/npm"
+npm version "${NEW_VERSION}" --no-git-tag-version &> /dev/null
+msg "  ${GREEN}✔${NOFORMAT} extensions/finder"
+cd "${script_dir}"

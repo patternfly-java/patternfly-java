@@ -21,6 +21,13 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 
+/**
+ * Represents a component or entity that can asynchronously manage items and their associated operations.
+ *
+ * @param <E> the type of the element associated with the items
+ * @param <C> the type of the component extending {@code HasItems}, used for method chaining
+ * @param <S> the type of the items, which must implement {@code HasIdentifier}
+ */
 public interface HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>> {
 
     default C addItems(AsyncItems<C, S> items) {

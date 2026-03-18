@@ -1,6 +1,7 @@
 *.bak
 *.iml
 .classpath
+.claude
 .DS_Store
 .idea
 .jbang

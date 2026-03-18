@@ -17,6 +17,7 @@ package org.patternfly.showcase.extension;
 
 import java.util.function.Function;
 
+import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.extension.finder.Finder;
@@ -33,6 +34,7 @@ import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.File;
 import org.patternfly.showcase.model.Files;
 
+import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.content.Content.content;
@@ -71,7 +73,15 @@ public class FinderExtension extends SnippetPage {
     public FinderExtension() {
         super(extensions.get("finder"));
 
-        startExamples();
+        startExamples(content(p).editorial()
+                .add("Some of the examples below rely on JSON data. Please see ")
+                .add(a("https://github.com/patternfly-java/patternfly-java/blob/main/showcase/src/main/resources/org/patternfly/showcase/files.json",
+                        "_blank").add(Elements.code("files.json")))
+                .add(" and ")
+                .add(a("https://github.com/patternfly-java/patternfly-java/blob/main/showcase/src/main/resources/org/patternfly/showcase/rhcp.json",
+                        "_blank").add(Elements.code("rhcp.json")))
+                .add(" for more information.")
+        );
         addSnippet(new Snippet("finder-basic", "Basic",
                 code("finder-basic"), () -> {
             // @code-start:finder-basic
@@ -154,8 +164,7 @@ public class FinderExtension extends SnippetPage {
                                         preview.add(descriptionList().run(dl -> file.meta.forEach(key ->
                                                 dl.addItem(descriptionListGroup(Id.unique("finder-preview", key))
                                                         .addTerm(descriptionListTerm(key))
-                                                        .addDescription(
-                                                                descriptionListDescription(file.meta.get(key)))))));
+                                                        .addDescription(descriptionListDescription(file.meta.get(key)))))));
                                     }
                                 }))
                         .addPreview(finderPreview().css(util("p-md"))
