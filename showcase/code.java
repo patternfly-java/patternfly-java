@@ -60,7 +60,7 @@ void main(String... args) throws IOException {
     endClass(out);
     Files.write(javaSource.toPath(), out.toString().getBytes(StandardCharsets.UTF_8));
 
-    println("Processed " + counter + " code snippets");
+    IO.println("Processed " + counter + " code snippets");
 }
 
 void startClass(StringBuilder out) {

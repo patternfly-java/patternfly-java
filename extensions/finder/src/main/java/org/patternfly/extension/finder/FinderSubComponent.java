@@ -18,6 +18,7 @@ package org.patternfly.extension.finder;
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SubComponent;
+
 import elemental2.dom.HTMLElement;
 
 abstract class FinderSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {

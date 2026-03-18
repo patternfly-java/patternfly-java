@@ -46,7 +46,7 @@ void main(String... args) throws IOException {
     endClass(out);
     Files.write(javaSource.toPath(), out.toString().getBytes(StandardCharsets.UTF_8));
 
-    println("Processed " + counter + " documents");
+    IO.println("Processed " + counter + " documents");
 }
 
 void startClass(StringBuilder out) {
@@ -84,7 +84,7 @@ int processDocuments(Path base, StringBuilder out) throws IOException {
                 .append("\", \"")
                 .append(escapeJava(stripBody(html)))
                 .append("\");");
-        println("Processed " + name);
+        IO.println("Processed " + name);
         counter++;
     }
     return counter;

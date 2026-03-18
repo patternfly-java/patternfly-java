@@ -18,8 +18,8 @@
 
 void main(String... args) throws IOException {
     if (args.length != 3) {
-        println("Wrong number of arguments: Provided " + args.length + ", required 3");
-        println("Use version.java <basedir> <patternfly.java.version> <patternfly-version>");
+        IO.println("Wrong number of arguments: Provided " + args.length + ", required 3");
+        IO.println("Use version.java <basedir> <patternfly.java.version> <patternfly-version>");
         System.exit(1);
     }
 
@@ -55,5 +55,5 @@ void main(String... args) throws IOException {
             "");
 
     Files.writeString(javaSource, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-    println("Generated Version.java using " + patternFlyJavaVersion + ", " + patternFlyVersion + ", " + patternFlyMajor);
+    IO.println("Generated Version.java using " + patternFlyJavaVersion + ", " + patternFlyVersion + ", " + patternFlyMajor);
 }

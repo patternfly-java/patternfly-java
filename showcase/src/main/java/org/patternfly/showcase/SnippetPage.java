@@ -34,6 +34,7 @@ import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.extension.Extension;
 import org.patternfly.showcase.layout.Layout;
+
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.singletonList;

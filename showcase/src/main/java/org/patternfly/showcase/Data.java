@@ -22,6 +22,7 @@ import org.patternfly.showcase.chart.Chart;
 import org.patternfly.showcase.component.Component;
 import org.patternfly.showcase.extension.Extension;
 import org.patternfly.showcase.layout.Layout;
+
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 

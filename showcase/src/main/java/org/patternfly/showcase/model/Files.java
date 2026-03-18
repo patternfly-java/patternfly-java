@@ -16,6 +16,7 @@
 package org.patternfly.showcase.model;
 
 import org.patternfly.showcase.ResourcesImpl;
+
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 

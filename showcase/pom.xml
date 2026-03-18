@@ -178,7 +178,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>npm-install</id>
+                        <id>install-packages</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>corepack</goal>
@@ -235,13 +235,13 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>npm-parcel</id>
+                                <id>run-prod</id>
                                 <phase>prepare-package</phase>
                                 <goals>
-                                    <goal>npm</goal>
+                                    <goal>corepack</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>run prod</arguments>
+                                    <arguments>pnpm run prod</arguments>
                                 </configuration>
                             </execution>
                         </executions>
