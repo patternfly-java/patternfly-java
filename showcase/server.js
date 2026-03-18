@@ -38,7 +38,6 @@ app.use(
 // 2. Serve static files
 app.use(express.static(path.join(__dirname, 'target', 'showcase')));
 
-
 // 3. J2CL routes
 app.get(/.*showcase\.js$/, (req, res) => {
     res.sendFile(path.resolve(__dirname, 'target', 'showcase', 'showcase.js'));

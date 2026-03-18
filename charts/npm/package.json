@@ -6,10 +6,10 @@
   "homepage": "https://patternfly-java.github.io/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patternfly/patternfly-java.git"
+    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
   },
   "bugs": {
-    "url": "https://github.com/patternfly/patternfly-java/issues"
+    "url": "https://github.com/patternfly-java/patternfly-java/issues"
   },
   "license": "Apache-2.0",
   "keywords": [

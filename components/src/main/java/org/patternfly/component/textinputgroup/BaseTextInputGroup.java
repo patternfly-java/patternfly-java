@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.textinputgroup;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 import org.jboss.elemento.Elements;
@@ -25,6 +23,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
+import org.patternfly.component.KicHandler;
 import org.patternfly.component.Validatable;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.handler.ChangeHandler;
@@ -43,11 +42,8 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.Elements.wrapInputElement;
-import static org.jboss.elemento.EventType.change;
-import static org.jboss.elemento.EventType.keyup;
 import static org.jboss.elemento.InputType.text;
 import static org.patternfly.component.ValidationStatus.default_;
-import static org.patternfly.handler.ChangeHandler.fireIfChanged;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.main;
@@ -67,8 +63,7 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
     protected final HTMLElement mainContainer;
     protected final HTMLInputElement inputElement;
     protected final HTMLElement textContainer;
-    protected final List<ChangeHandler<T, String>> keyupChangeHandlers;
-    protected final List<ChangeHandler<T, String>> valueChangeHandlers;
+    protected final KicHandler<T> kicHandler;
     protected ValidationStatus status;
     protected HTMLElement iconContainer;
     protected HTMLElement statusContainer;
@@ -76,8 +71,6 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
 
     protected BaseTextInputGroup(ComponentType componentType, String id) {
         super(componentType, div().css(component(textInputGroup)).element());
-        this.keyupChangeHandlers = new ArrayList<>();
-        this.valueChangeHandlers = new ArrayList<>();
         this.status = null;
 
         add(mainContainer = div().css(component(textInputGroup, main))
@@ -88,11 +81,7 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
                                 .element())
                         .element())
                 .element());
-
-        inputElement.addEventListener(keyup.name, e ->
-                keyupChangeHandlers.forEach(h -> h.onChange(e, that(), inputElement.value)));
-        inputElement.addEventListener(change.name, e ->
-                valueChangeHandlers.forEach(h -> h.onChange(e, that(), inputElement.value)));
+        kicHandler = new KicHandler<T>(that(), inputElement);
     }
 
     // ------------------------------------------------------ add
@@ -179,21 +168,39 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
     public T value(String value, boolean fireEvent) {
         inputElement.value = value;
         if (fireEvent) {
-            fireIfChanged(that(), inputElement.value, value, valueChangeHandlers);
+            kicHandler.fireIfChanged(value);
         }
         return that();
     }
 
     // ------------------------------------------------------ events
 
-    public T onKeyup(ChangeHandler<T, String> changeHandler) {
-        keyupChangeHandlers.add(changeHandler);
-        return that();
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keydown} events.
+     */
+    public T onKeydown(ChangeHandler<T, String> changeHandler) {
+        return kicHandler.onKeydown(changeHandler);
     }
 
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#keyup} events.
+     */
+    public T onKeyup(ChangeHandler<T, String> changeHandler) {
+        return kicHandler.onKeyup(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#input} events.
+     */
+    public T onInput(ChangeHandler<T, String> changeHandler) {
+        return kicHandler.onInput(changeHandler);
+    }
+
+    /**
+     * Defines a change handler that listens for {@link org.jboss.elemento.EventType#change} events.
+     */
     public T onChange(ChangeHandler<T, String> changeHandler) {
-        valueChangeHandlers.add(changeHandler);
-        return that();
+        return kicHandler.onChange(changeHandler);
     }
 
     // ------------------------------------------------------ api

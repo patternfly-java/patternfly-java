@@ -1,0 +1,37 @@
+{
+  "name": "@patternfly-java/finder",
+  "private": false,
+  "version": "0.0.1",
+  "description": "CSS for the PatternFly Java finder extension.",
+  "homepage": "https://patternfly-java.github.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternfly-java/patternfly-java/issues"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "css",
+    "java",
+    "gwt",
+    "j2cl",
+    "patternfly",
+    "elemento",
+    "finder"
+  ],
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
+  "style": "finder.css",
+  "main": "finder.css",
+  "exports": {
+    ".": "./finder.css"
+  },
+  "files": [
+    "finder.css"
+  ],
+  "peerDependencies": {
+    "@patternfly/patternfly": "^6.4.0"
+  },
+  "packageManager": "pnpm@11.0.0-dev.1005+sha512.91f84a392eea348ea4852a182912d2520273a4336f933b78cc44bc931eb999923c097e9433a9b355adc1f725725ea99082fc9f032a559df832632e764c92c798"
+}

@@ -14,9 +14,7 @@
  *  limitations under the License.
  */
 /// usr/bin/env jbang "$0" "$@" ; exit $?
-//JAVA 24
-//JAVAC_OPTIONS --enable-preview -source 24
-//JAVA_OPTIONS --enable-preview
+//JAVA 25
 //DEPS com.vladsch.flexmark:flexmark-all:0.64.8
 
 import com.vladsch.flexmark.html.HtmlRenderer;
@@ -48,7 +46,7 @@ void main(String... args) throws IOException {
     endClass(out);
     Files.write(javaSource.toPath(), out.toString().getBytes(StandardCharsets.UTF_8));
 
-    println("Processed " + counter + " documents");
+    IO.println("Processed " + counter + " documents");
 }
 
 void startClass(StringBuilder out) {
@@ -86,7 +84,7 @@ int processDocuments(Path base, StringBuilder out) throws IOException {
                 .append("\", \"")
                 .append(escapeJava(stripBody(html)))
                 .append("\");");
-        println("Processed " + name);
+        IO.println("Processed " + name);
         counter++;
     }
     return counter;

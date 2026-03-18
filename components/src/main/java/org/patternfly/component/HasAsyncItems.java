@@ -13,17 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import "@patternfly/patternfly/patternfly.css";
-import "@patternfly/patternfly/patternfly-addons.css";
-import "@patternfly/patternfly/patternfly-charts.css";
-import "@patternfly-java/charts/dist/charts";
-import "./pforg/*.css";
-import "./finder.css";
-import "./core.css";
-import "./showcase.css";
+package org.patternfly.component;
 
-import "@github/relative-time-element";
-import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/github.css";
+import org.patternfly.core.AsyncStatus;
 
-window["hljs"] = hljs; // 'export' hljs for J2CL
+import elemental2.dom.Element;
+import elemental2.dom.HTMLElement;
+import elemental2.promise.Promise;
+
+public interface HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>> {
+
+    default C addItems(AsyncItems<C, S> items) {
+        return add(items);
+    }
+
+    C add(AsyncItems<C, S> items);
+
+    Promise<Iterable<S>> load();
+
+    Promise<Iterable<S>> reload();
+
+    void reset();
+
+    AsyncStatus status();
+}

@@ -21,6 +21,27 @@
  * @externs
  */
 
+// ------------------------------------------------------ chart
+
+/** @constructor */
+function Chart() {
+}
+
+/** @type {string} */
+Chart.prototype.name
+
+/** @type {string} */
+Chart.prototype.title
+
+/** @type {string} */
+Chart.prototype.route
+
+/** @type {string} */
+Chart.prototype.clazz
+
+/** @type {string} */
+Chart.prototype.summary
+
 // ------------------------------------------------------ component
 
 /** @constructor */
@@ -45,6 +66,27 @@ Component.prototype.illustration
 /** @type {string} */
 Component.prototype.summary
 
+// ------------------------------------------------------ extension
+
+/** @constructor */
+function Extension() {
+}
+
+/** @type {string} */
+Extension.prototype.name
+
+/** @type {string} */
+Extension.prototype.title
+
+/** @type {string} */
+Extension.prototype.route
+
+/** @type {string} */
+Extension.prototype.clazz
+
+/** @type {string} */
+Extension.prototype.summary
+
 // ------------------------------------------------------ layout
 
 /** @constructor */
@@ -65,24 +107,3 @@ Layout.prototype.clazz
 
 /** @type {string} */
 Layout.prototype.summary
-
-// ------------------------------------------------------ chart
-
-/** @constructor */
-function Chart() {
-}
-
-/** @type {string} */
-Chart.prototype.name
-
-/** @type {string} */
-Chart.prototype.title
-
-/** @type {string} */
-Chart.prototype.route
-
-/** @type {string} */
-Chart.prototype.clazz
-
-/** @type {string} */
-Chart.prototype.summary

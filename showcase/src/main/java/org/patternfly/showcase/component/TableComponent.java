@@ -18,10 +18,8 @@ package org.patternfly.showcase.component;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.table.Table;
 import org.patternfly.component.table.TableCaption;
 import org.patternfly.component.table.TableText;
@@ -50,12 +48,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.emptystate.EmptyState.emptyState;
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
-import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.linkMenuItem;
-import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.table.Table.table;
 import static org.patternfly.component.table.TableCaption.tableCaption;
 import static org.patternfly.component.table.TableText.tableText;
@@ -72,13 +64,13 @@ import static org.patternfly.component.table.Wrap.fitContent;
 import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
 import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupItem;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.icon.IconSets.fas.folder;
 import static org.patternfly.icon.IconSets.fas.folderOpen;
 import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
+import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.showcase.component.NotYetImplemented.nyi;
@@ -215,19 +207,6 @@ public class TableComponent extends SnippetPage {
                 code("table-actions"), () -> {
             // @code-start:table-actions
             List<Repository> repositories = repositories(5);
-            Supplier<Dropdown> dropdown = () -> dropdown(ellipsisV(), "kebab dropdown toggle")
-                    .addMenu(dropdownMenu()
-                            .addContent(menuContent()
-                                    .addList(menuList()
-                                            .addItem(menuItem("item-0", "Action"))
-                                            .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                            .addItem(menuItem("item-2", "Disabled action")
-                                                    .disabled())
-                                            .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                    .disabled())
-                                            .addDivider()
-                                            .addItem(menuItem("item-4", "Separated action"))
-                                            .addItem(linkMenuItem("item-5", "Separated link", "#item-5")))));
             return table()
                     .addHead(thead()
                             .addRow(tr("table-actions-head")
@@ -251,7 +230,8 @@ public class TableComponent extends SnippetPage {
                                             tr.addItem(td("Primary action").action().wrap(fitContent)
                                                     .add(tableText()
                                                             .add(button().secondary().text("Start"))));
-                                            tr.addItem(td().actions().add(dropdown.get().disabled(secondaryAction)));
+                                            tr.addItem(td().actions().add(mixedKebab("table-actions")
+                                                    .disabled(secondaryAction)));
                                         } else {
                                             tr.addItem(td());
                                             tr.addItem(td());

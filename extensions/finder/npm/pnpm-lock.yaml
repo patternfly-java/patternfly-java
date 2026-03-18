@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@patternfly/patternfly':
+        specifier: ^6.4.0
+        version: 6.4.0
+
+packages:
+
+  '@patternfly/patternfly@6.4.0':
+    resolution: {integrity: sha512-4drFhg74sEc/fftark5wZevODIog17qR4pwLCdB3j5iK3Uu5oMA2SdLhsEeEQggalfnFzve/Km87MdVR0ghhvQ==}
+
+snapshots:
+
+  '@patternfly/patternfly@6.4.0': {}

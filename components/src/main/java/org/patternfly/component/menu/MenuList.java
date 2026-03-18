@@ -30,6 +30,7 @@ import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AsyncItems;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
@@ -61,6 +62,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
 
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
+        HasAsyncItems<HTMLUListElement, MenuList, MenuItem>,
         Ordered<HTMLUListElement, MenuList, MenuItem>,
         Attachable {
 
@@ -133,10 +135,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         return aur.added(item);
     }
 
-    public MenuList addItems(AsyncItems<MenuList, MenuItem> items) {
-        return add(items);
-    }
-
+    @Override
     public MenuList add(AsyncItems<MenuList, MenuItem> items) {
         status = pending;
         asyncItems = items;
@@ -184,6 +183,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         return comparator;
     }
 
+    @Override
     public Promise<Iterable<MenuItem>> load() {
         if (status == pending && asyncItems != null) {
             // Show the loading indicator immediately, not like in the tree view component after Timeouts.LOADING_TIMEOUT
@@ -221,13 +221,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         }
     }
 
-    public void reset() {
-        if (status == resolved || status == rejected) {
-            status = pending;
-            internalClear();
-        }
-    }
-
+    @Override
     public Promise<Iterable<MenuItem>> reload() {
         List<String> selected = new ArrayList<>();
         for (MenuItem menuItem : this) {
@@ -247,6 +241,15 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         });
     }
 
+    @Override
+    public void reset() {
+        if (status == resolved || status == rejected) {
+            status = pending;
+            internalClear();
+        }
+    }
+
+    @Override
     public AsyncStatus status() {
         return status;
     }

@@ -28,7 +28,7 @@ import static org.jboss.elemento.Elements.insertBefore;
 /**
  * The Ordered interface maintains its elements in a specific order. It extends the {@link HasItems} interface. By default, the
  * order is determined by the {@link #defaultOrder()} method which in turn determines the order based on the elements data
- * {@value #DATA_ORDER} attribute. The order is maintained as elements are {@linkplain HasItems#add(Object) added} to the
+ * {@value #DATA_ORDER} attribute. The order is maintained as elements are {@linkplain HasItems#add(HasIdentifier) added} to the
  * component.
  * <p>
  * If you want to use this feature, call {@link #ordered()} resp. {@link #ordered(Comparator)} on the builder. It is useful when
