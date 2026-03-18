@@ -130,6 +130,9 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     /**
      * Adds the specified {@link FinderPreview} instance to the finder. This method ensures that any previously added preview is
      * safely removed before adding the new one.
+     * <p>
+     * Preview can be managed on a column basis by using {@link FinderColumn#onPreview(PreviewHandler)} or on an item basis by
+     * using {@link FinderItem#onPreview(PreviewHandler)}.
      *
      * @param preview the {@link FinderPreview} instance to add. Represents the preview component to be added to the finder.
      * @return the current {@link Finder} instance, allowing for method chaining.
@@ -293,7 +296,12 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         } else if (Key.ArrowRight.match(event)) {
             event.preventDefault();
             if (item.hasNext()) {
-                FinderColumn nextColumn = item.nextColumn();
+                // Don't use item.nextColumn() here!
+                // If FinderItem.nextColumnSupplier is not null, it would return a
+                // new column not in the Finder.items map and not attached to the DOM!
+                // It is safe to assume that the next column is in the items map because
+                // it has been selected. FinderItem.handleClick() takes care about this.
+                FinderColumn nextColumn = nextColumn(column);
                 if (nextColumn != null) {
                     FinderItem targetItem = null;
                     if (!nextColumn.visibleItems().isEmpty()) {
@@ -316,6 +324,19 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                 return previous;
             }
             previous = c;
+        }
+        return null;
+    }
+
+    private FinderColumn nextColumn(FinderColumn column) {
+        boolean found = false;
+        for (FinderColumn c : items.values()) {
+            if (found) {
+                return c;
+            }
+            if (c.identifier().equals(column.identifier())) {
+                found = true;
+            }
         }
         return null;
     }

@@ -54,8 +54,8 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 
 public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> implements
         ComponentContext<HTMLElement, FinderColumn>,
-        HasIdentifier<HTMLElement, FinderColumn>,
         HasAsyncItems<HTMLElement, FinderColumn, FinderItem>,
+        HasIdentifier<HTMLElement, FinderColumn>,
         Ordered<HTMLElement, FinderColumn, FinderItem> {
 
     // ------------------------------------------------------ factory
@@ -73,6 +73,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     // The component store relies on attach() / detach() and does not work when adding / removing existing references.
     // See: https://hal-console.gitbook.io/elemento/attach-detach
     Finder finder;
+    final List<PreviewHandler> previewHandlers;
 
     private final String identifier;
     private final Map<String, Object> data;
@@ -92,6 +93,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
+        this.previewHandlers = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.status = static_;
 
@@ -126,10 +128,6 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         addOrdered(ul, item);
         items.put(item.identifier(), item);
         return aur.added(item);
-    }
-
-    public FinderColumn addItems(AsyncItems<FinderColumn, FinderItem> items) {
-        return add(items);
     }
 
     public FinderColumn add(AsyncItems<FinderColumn, FinderItem> items) {
@@ -186,6 +184,11 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     public FinderColumn onSelect(SelectHandler<FinderItem> selectHandler) {
         this.selectHandler.add(selectHandler);
+        return this;
+    }
+
+    public FinderColumn onPreview(PreviewHandler previewHandler) {
+        this.previewHandlers.add(previewHandler);
         return this;
     }
 

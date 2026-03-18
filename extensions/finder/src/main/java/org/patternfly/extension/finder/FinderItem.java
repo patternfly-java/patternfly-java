@@ -22,6 +22,7 @@ import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
+import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
@@ -273,6 +274,10 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     // ------------------------------------------------------ internal
 
     void handleClick(Finder finder, FinderColumn column, FinderItem item) {
+        if (parseBoolean((element().getAttribute(Aria.selected))) && classList().contains(modifier(Classes.selected))) {
+            return;
+        }
+
         finder.select(column);
         column.select(item);
         if (hasNext()) {
@@ -280,6 +285,9 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         }
         if (finder.preview != null) {
             for (PreviewHandler previewHandler : previewHandlers) {
+                previewHandler.onPreview(item, finder.preview);
+            }
+            for (PreviewHandler previewHandler : column.previewHandlers) {
                 previewHandler.onPreview(item, finder.preview);
             }
         }

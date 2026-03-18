@@ -76,7 +76,7 @@ public final class PredefinedIcon implements
             case "far" -> IconSpecs.far.valueOf(iconName).iconSpec;
             case "fas" -> IconSpecs.fas.valueOf(iconName).iconSpec;
             case "patternfly" -> IconSpecs.patternfly.valueOf(iconName).iconSpec;
-            default -> throw new IllegalArgumentException("Unknown icon group/name: '" + name + "'");
+            default -> throw new IllegalArgumentException("Unknown icon: '" + name + "'");
         };
         return new PredefinedIcon(iconSpec);
     }

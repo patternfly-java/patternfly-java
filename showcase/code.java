@@ -14,9 +14,7 @@
  *  limitations under the License.
  */
 /// usr/bin/env jbang "$0" "$@" ; exit $?
-//JAVA 24
-//JAVAC_OPTIONS --enable-preview -source 24
-//JAVA_OPTIONS --enable-preview
+//JAVA 25
 
 static class SourceSpec {
 
@@ -37,6 +35,7 @@ static final String END_COMMENT = "// @code-end:";
 
 static final List<SourceSpec> SOURCES = Arrays.asList(
         new SourceSpec("*Component.java", Paths.get("src/main/java/org/patternfly/showcase/component")),
+        new SourceSpec("*Extension.java", Paths.get("src/main/java/org/patternfly/showcase/extension")),
         new SourceSpec("*Layout.java", Paths.get("src/main/java/org/patternfly/showcase/layout")),
         new SourceSpec("*Chart.java", Paths.get("src/main/java/org/patternfly/showcase/chart"))
 );

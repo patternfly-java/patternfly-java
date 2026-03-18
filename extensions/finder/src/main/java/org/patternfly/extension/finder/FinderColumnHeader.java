@@ -13,6 +13,7 @@ import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
+import static org.patternfly.style.Classes.title;
 
 // TODO Refactor elements to match the empty state header, title and title text
 public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderColumnHeader> implements
@@ -21,7 +22,7 @@ public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderCo
     // ------------------------------------------------------ factory
 
     public static FinderColumnHeader finderColumnHeader(String text) {
-        return new FinderColumnHeader(2).text(text);
+        return new FinderColumnHeader(4).text(text);
     }
 
     public static FinderColumnHeader finderColumnHeader(int level, String text) {
@@ -35,7 +36,7 @@ public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderCo
 
     FinderColumnHeader(int level) {
         super(SUB_COMPONENT_NAME, header().css(component(finder, column, header)).element());
-        add(h = h(level).css(component(finder, column, header, Classes.text)));
+        add(h = h(level).css(component(finder, column, title, Classes.text)));
     }
 
     @Override
@@ -45,7 +46,7 @@ public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderCo
 
     // ------------------------------------------------------ add
 
-    public FinderColumnHeader addActions(FinderColumnHeaderActions actions) {
+    public FinderColumnHeader addActions(FinderColumnActions actions) {
         return add(actions);
     }
 

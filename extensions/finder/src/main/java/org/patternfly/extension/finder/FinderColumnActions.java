@@ -9,38 +9,37 @@ import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.header;
 
-public class FinderColumnHeaderActions extends FinderSubComponent<HTMLElement, FinderColumnHeaderActions> {
+public class FinderColumnActions extends FinderSubComponent<HTMLElement, FinderColumnActions> {
 
     // ------------------------------------------------------ factory
 
-    public static FinderColumnHeaderActions finderColumnHeaderActions() {
-        return new FinderColumnHeaderActions();
+    public static FinderColumnActions finderColumnActions() {
+        return new FinderColumnActions();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fcha";
+    public static final String SUB_COMPONENT_NAME = "fca";
 
-    FinderColumnHeaderActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(finder, column, header, actions)).element());
+    FinderColumnActions() {
+        super(SUB_COMPONENT_NAME, div().css(component(finder, column, actions)).element());
     }
 
     // ------------------------------------------------------ add
 
-    public FinderColumnHeaderActions addButton(Button button) {
+    public FinderColumnActions addButton(Button button) {
         return add(button);
     }
 
-    public FinderColumnHeaderActions addDropdown(Dropdown dropdown) {
+    public FinderColumnActions addDropdown(Dropdown dropdown) {
         return add(dropdown);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public FinderColumnHeaderActions that() {
+    public FinderColumnActions that() {
         return this;
     }
 }

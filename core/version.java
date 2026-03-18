@@ -14,9 +14,7 @@
  *  limitations under the License.
  */
 ///usr/bin/env jbang "$0" "$@" ; exit $?
-//JAVA 24
-//JAVAC_OPTIONS --enable-preview -source 24
-//JAVA_OPTIONS --enable-preview
+//JAVA 25
 
 void main(String... args) throws IOException {
     if (args.length != 3) {
