@@ -1,7 +1,7 @@
 {
   "name": "@patternfly-java/finder",
   "private": false,
-  "version": "0.6.0",
+  "version": "0.6.1-SNAPSHOT",
   "description": "CSS for the PatternFly Java finder extension.",
   "homepage": "https://patternfly-java.github.io/",
   "repository": {
