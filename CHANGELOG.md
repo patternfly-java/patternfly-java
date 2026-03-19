@@ -6,13 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.6.0] - 2026-03-18
-
 ### Added
 
 - Add [finder extension](https://patternfly-java.github.io/extensions/finder) (#371)
-- Add
-  `HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>` that defines a common interface for components that can display items asynchronously. These components implement it:
+- Add `HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>` that defines a common interface for components that can display items asynchronously. These components implement it:
     - `FinderColumn`
     - `MenuList`
     - `TreeViewItem`
@@ -20,6 +17,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Switch to corepack and pnpm
+
+## [0.6.0] - 2026-03-18
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.5.0] - 2026-02-20
 
@@ -726,7 +728,6 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Removed]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...vRemoved
 [Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.0...HEAD
 [0.6.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.17...v0.5.0
