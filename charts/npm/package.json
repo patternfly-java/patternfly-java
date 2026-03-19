@@ -1,7 +1,7 @@
 {
   "name": "@patternfly-java/charts",
   "private": false,
-  "version": "0.6.2",
+  "version": "0.6.3-SNAPSHOT",
   "description": "Web Components wrapper around PatternFly React Charts",
   "homepage": "https://patternfly-java.github.io/",
   "repository": {
