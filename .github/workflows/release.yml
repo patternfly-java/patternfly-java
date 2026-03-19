@@ -183,4 +183,3 @@ jobs:
           body: ${{ steps.read-changelog.outputs.changes }}
           draft: false
           prerelease: false
-          discussion_category_name: announcements
