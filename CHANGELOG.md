@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-03-19
+
 ### Added
 
 - Add [finder extension](https://patternfly-java.github.io/extensions/finder) (#371)
@@ -728,7 +730,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.17...v0.5.0
 [0.4.17]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.16...v0.4.17
