@@ -114,7 +114,9 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         item.finder = this;
         cc.add(item.element());
         items.put(item.identifier(), item);
-        return aur.added(item);
+        aur.added(item);
+        item.load();
+        return this;
     }
 
     /**

@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add support for async items to the finder component
+
+### Fixed
+
+- Fix finder column header heights
+
 ## [0.6.1] - 2026-03-19
 
 ### Added

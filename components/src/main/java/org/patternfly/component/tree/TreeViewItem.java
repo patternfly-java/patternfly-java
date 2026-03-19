@@ -385,14 +385,18 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public Promise<Iterable<TreeViewItem>> reload() {
-        boolean expanded = expanded();
-        reset();
-        return load().then(items -> {
-            if (expanded) {
-                expand(false);
-            }
-            return Promise.resolve(items);
-        });
+        if (status != pending) {
+            boolean expanded = expanded();
+            reset();
+            return load().then(items -> {
+                if (expanded) {
+                    expand(false);
+                }
+                return Promise.resolve(items);
+            });
+        } else {
+            return Promise.resolve(emptyList());
+        }
     }
 
     @Override

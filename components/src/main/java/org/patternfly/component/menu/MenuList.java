@@ -223,22 +223,26 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public Promise<Iterable<MenuItem>> reload() {
-        List<String> selected = new ArrayList<>();
-        for (MenuItem menuItem : this) {
-            if (menuItem.isSelected()) {
-                selected.add(menuItem.identifier());
-            }
-        }
-        reset();
-        return load().then(value -> {
-            Menu menu = lookupComponent(true);
-            if (menu != null) {
-                for (String identifier : selected) {
-                    menu.select(identifier, true, false);
+        if (status != pending) {
+            List<String> selected = new ArrayList<>();
+            for (MenuItem menuItem : this) {
+                if (menuItem.isSelected()) {
+                    selected.add(menuItem.identifier());
                 }
             }
-            return Promise.resolve(value);
-        });
+            reset();
+            return load().then(value -> {
+                Menu menu = lookupComponent(true);
+                if (menu != null) {
+                    for (String identifier : selected) {
+                        menu.select(identifier, true, false);
+                    }
+                }
+                return Promise.resolve(value);
+            });
+        } else {
+            return Promise.resolve(emptyList());
+        }
     }
 
     @Override

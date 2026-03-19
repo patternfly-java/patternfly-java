@@ -18,6 +18,8 @@ package org.patternfly.component.list;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
@@ -34,6 +36,10 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
         HasIdentifier<HTMLDivElement, DescriptionListGroup> {
 
     // ------------------------------------------------------ factory
+
+    public static DescriptionListGroup descriptionListGroup() {
+        return new DescriptionListGroup(Id.unique(ComponentType.DescriptionList.id, SUB_COMPONENT_NAME));
+    }
 
     public static DescriptionListGroup descriptionListGroup(String identifier) {
         return new DescriptionListGroup(identifier);

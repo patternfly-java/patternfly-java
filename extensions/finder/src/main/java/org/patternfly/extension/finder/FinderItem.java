@@ -33,7 +33,6 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -61,7 +60,6 @@ import static org.patternfly.extension.finder.FinderClasses.folder;
 import static org.patternfly.extension.finder.FinderClasses.pin;
 import static org.patternfly.extension.finder.FinderItemDescription.finderItemDescription;
 import static org.patternfly.icon.IconSets.fas.angleRight;
-import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.icon.IconSets.fas.thumbtack;
 import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.component;
@@ -92,16 +90,6 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     public static FinderItem finderItem(String identifier, String text, String description) {
         return new FinderItem(identifier).text(text).addDescription(description);
-    }
-
-    public static FinderItem emptyItem() {
-        return emptyItem("No items found", "No items match the filter criteria.");
-    }
-
-    public static FinderItem emptyItem(String text, String description) {
-        return emptyItem(emptyState().size(xs).text(text)
-                .icon(search())
-                .addBody(emptyStateBody().text(description)));
     }
 
     public static FinderItem emptyItem(EmptyState emptyState) {
@@ -300,6 +288,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
             finder.addItem(nextColumn());
         }
         if (finder.preview != null) {
+            removeChildrenFrom(finder.preview);
             for (PreviewHandler previewHandler : previewHandlers) {
                 previewHandler.onPreview(item, finder.preview);
             }

@@ -41,6 +41,7 @@
     --pf-v6-c-finder__column-header--PaddingInlineEnd: var(--pf-t--global--spacer--200);
     --pf-v6-c-finder__column-header--BorderBottomColor: var(--pf-t--global--border--color--default);
     --pf-v6-c-finder__column-header--BorderBottomWidth: var(--pf-t--global--border--width--100);
+    --pf-v6-c-finder__column-header--Height: var(--pf-t--global--spacer--2xl);
     --pf-v6-c-finder__column-title-text--FontWeight: var(--pf-t--global--font--weight--heading--default);
     --pf-v6-c-finder__column-title-text--FontSize: var(--pf-t--global--font--size--md);
 
@@ -142,6 +143,7 @@
     padding-inline-start: var(--pf-v6-c-finder__column-header--PaddingInlineStart);
     padding-inline-end: var(--pf-v6-c-finder__column-header--PaddingInlineEnd);
     border-bottom: var(--pf-v6-c-finder__column-header--BorderBottomWidth) solid var(--pf-v6-c-finder__column-header--BorderBottomColor);
+    height: var(--pf-v6-c-finder__column-header--Height);
 }
 
 .pf-v6-c-finder__column-title-text {
@@ -350,6 +352,27 @@
 
 .pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-folder-icon {
     color: var(--pf-v6-c-finder__item-folder-icon--m-selected--Color);
+}
+
+/* ===================================================================
+   Status items
+   =================================================================== */
+
+.pf-v6-c-finder__item.pf-m-status {
+    cursor: default;
+    background-color: transparent;
+}
+
+.pf-v6-c-finder__item.pf-m-status:hover {
+    background-color: transparent;
+}
+
+.pf-v6-c-finder__item.pf-m-status .pf-v6-c-finder__item-pin {
+    display: none;
+}
+
+.pf-v6-c-finder__item.pf-m-status .pf-v6-c-finder__item-folder-icon {
+    display: none;
 }
 
 /* ===================================================================

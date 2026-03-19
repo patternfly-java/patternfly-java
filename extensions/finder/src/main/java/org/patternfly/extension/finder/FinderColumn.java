@@ -254,8 +254,11 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     @Override
     public Promise<Iterable<FinderItem>> reload() {
-        reset();
-        return load().then(Promise::resolve);
+        if (status != pending) {
+            reset();
+            return load().then(Promise::resolve);
+        }
+        return Promise.resolve(emptyList());
     }
 
     @Override
