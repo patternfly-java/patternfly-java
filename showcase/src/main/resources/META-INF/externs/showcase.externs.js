@@ -111,29 +111,29 @@ Extension.prototype.clazz
 /** @type {string} */
 Extension.prototype.summary
 
-// ------------------------------------------------------ file
+// ------------------------------------------------------ file data
 
 /** @constructor */
-function File() {
+function FileData() {
 }
 
 /** @type {string} */
-File.prototype.id
+FileData.prototype.id
 
 /** @type {string} */
-File.prototype.name
+FileData.prototype.name
 
 /** @type {string} */
-File.prototype.description
+FileData.prototype.description
 
 /** @type {string} */
-File.prototype.icon
+FileData.prototype.icon
 
 /** @type {!Object<string, string>} */
-File.prototype.meta
+FileData.prototype.meta
 
-/** @type {!Array<!File>} */
-File.prototype.children
+/** @type {!Array<!FileData>} */
+FileData.prototype.children
 
 // ------------------------------------------------------ layout
 
@@ -156,29 +156,29 @@ Layout.prototype.clazz
 /** @type {string} */
 Layout.prototype.summary
 
-// ------------------------------------------------------ location
+// ------------------------------------------------------ location data
 
 /** @constructor */
-function Location() {
+function LocationData() {
 }
 
 /** @type {!Street} */
-Location.prototype.street
+LocationData.prototype.street
 
 /** @type {string} */
-Location.prototype.city
+LocationData.prototype.city
 
 /** @type {string} */
-Location.prototype.state
+LocationData.prototype.state
 
 /** @type {string} */
-Location.prototype.postcode
+LocationData.prototype.postcode
 
 /** @type {!Coordinates} */
-Location.prototype.coordinates
+LocationData.prototype.coordinates
 
 /** @type {!Timezone} */
-Location.prototype.timezone
+LocationData.prototype.timezone
 
 // ------------------------------------------------------ login
 
@@ -339,7 +339,7 @@ User.prototype.gender
 /** @type {!Name} */
 User.prototype.name
 
-/** @type {!Location} */
+/** @type {!LocationData} */
 User.prototype.location
 
 /** @type {string} */
