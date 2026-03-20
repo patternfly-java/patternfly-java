@@ -266,7 +266,7 @@ public class FinderExtension extends SnippetPage {
                                     .addButton(button(redo()).plain()
                                             .onClick((e, b) -> column.reload())))))
                     .addItems(item -> new Promise<>((resolve, reject) -> {
-                        boolean boom = Math.random() < 0.25;
+                        boolean boom = Math.random() < 0.25; // simulate error
                         int delay = new Random().nextInt(2000); // simulate remote call
                         setTimeout(__ -> {
                             if (boom) {
@@ -281,7 +281,7 @@ public class FinderExtension extends SnippetPage {
                                             .size(xs)
                                             .text("No records")
                                             .icon(ban())
-                                            .addBody(emptyStateBody().text("No records have been released in this decade")))));
+                                            .addBody(emptyStateBody().text("No records have been released in this decade.")))));
                                 } else {
                                     resolve.onInvoke(items);
                                 }
