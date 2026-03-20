@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add missing J2CL externs for the showcase
+
+### Fixed
+
+- Fix NPM publishing
+
 ## [0.6.2] - 2026-03-19
 
 ### Added
