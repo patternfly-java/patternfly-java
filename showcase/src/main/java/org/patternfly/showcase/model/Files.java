@@ -24,7 +24,7 @@ import static elemental2.core.Global.JSON;
 
 public class Files {
 
-    public static JsArray<File> data;
+    public static JsArray<FileData> data;
 
     static {
         data = Js.cast(JSON.parse(ResourcesImpl.INSTANCE.files().getText()));

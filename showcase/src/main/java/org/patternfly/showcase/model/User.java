@@ -50,7 +50,7 @@ public class User {
 
     public String gender;
     public Name name;
-    public Location location;
+    public LocationData location;
     public String email;
     public Login login;
     public DateOfBirth dob;

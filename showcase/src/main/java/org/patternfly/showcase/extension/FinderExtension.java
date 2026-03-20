@@ -34,10 +34,11 @@ import org.patternfly.extension.finder.FinderPreview;
 import org.patternfly.extension.finder.PreviewHandler;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-import org.patternfly.showcase.model.File;
+import org.patternfly.showcase.model.FileData;
 import org.patternfly.showcase.model.Files;
 import org.patternfly.showcase.model.Record;
 import org.patternfly.showcase.model.Track;
+
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -106,8 +107,8 @@ public class FinderExtension extends SnippetPage {
                 code("finder-basic"), () -> {
             // @code-start:finder-basic
             // Declare the functions as final arrays here so that they can call each other
-            final Function<File, FinderItem>[] fileItem = new Function[1];
-            final Function<File, FinderColumn>[] fileColumn = new Function[1];
+            final Function<FileData, FinderItem>[] fileItem = new Function[1];
+            final Function<FileData, FinderColumn>[] fileColumn = new Function[1];
 
             Function<String, FinderColumnHeader> demoHeader = text -> finderColumnHeader(text)
                     .addActions(finderColumnActions()
@@ -172,7 +173,7 @@ public class FinderExtension extends SnippetPage {
                                             }
                                         }))
                                 .onPreview((item, preview) -> {
-                                    File file = item.get("file");
+                                    FileData file = item.get("file");
                                     preview.add(content(h1)
                                             .add(icon(predefinedIcon(file.icon)).inline())
                                             .add(" " + file.name));
