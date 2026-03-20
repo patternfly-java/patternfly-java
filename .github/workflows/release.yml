@@ -79,24 +79,22 @@ jobs:
           node-version: 25
           registry-url: https://registry.npmjs.org
       - run: corepack enable
+      - name: Configure NPM Authentication
+        run: echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish @patternfly-java/core
         working-directory: core/npm
         run: pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish @patternfly-java/finder
         working-directory: extensions/finder/npm
         run: pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish @patternfly-java/charts
         working-directory: charts/npm
         run: |
           pnpm install
           pnpm run build
           pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-showcase:
     name: Publish Showcase
