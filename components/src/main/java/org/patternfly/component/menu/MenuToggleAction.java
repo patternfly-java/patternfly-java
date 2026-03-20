@@ -35,6 +35,10 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
 
     // ------------------------------------------------------ factory
 
+    public static MenuToggleAction menuToggleAction() {
+        return new MenuToggleAction();
+    }
+
     public static MenuToggleAction menuToggleAction(String text) {
         return new MenuToggleAction().text(text);
     }

@@ -15,9 +15,11 @@
  */
 package org.patternfly.extension.finder;
 
+import org.jboss.elemento.EventType;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.menu.Dropdown;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.span;
@@ -30,7 +32,7 @@ public class FinderItemActions extends FinderSubComponent<HTMLElement, FinderIte
 
     // ------------------------------------------------------ factory
 
-    public static FinderItemActions finderColumnHeaderActions() {
+    public static FinderItemActions finderItemActions() {
         return new FinderItemActions();
     }
 
@@ -40,6 +42,7 @@ public class FinderItemActions extends FinderSubComponent<HTMLElement, FinderIte
 
     FinderItemActions() {
         super(SUB_COMPONENT_NAME, span().css(component(finder, item, actions)).element());
+        on(EventType.click, Event::stopPropagation); // don't select the item when clicking on an action
     }
 
     // ------------------------------------------------------ add

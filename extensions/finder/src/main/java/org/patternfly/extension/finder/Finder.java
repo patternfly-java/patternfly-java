@@ -37,6 +37,7 @@ import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Dataset;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Bordered;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -58,6 +59,7 @@ import static org.patternfly.style.Classes.selected;
 
 public class Finder extends BaseComponent<HTMLElement, Finder> implements
         Attachable,
+        Bordered<HTMLElement, Finder>,
         HasItems<HTMLElement, Finder, FinderColumn> {
 
     // ------------------------------------------------------ factory
@@ -293,6 +295,10 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                     markActive(previousColumn);
                     targetItem.focus();
                     scrollIntoView(previousColumn);
+                    FinderItem previousItem = previousColumn.item(targetItem.dataset.get(Dataset.identifier));
+                    if (previousItem != null) {
+                        previousItem.previewItem(this, previousColumn, previousItem);
+                    }
                 }
             }
 

@@ -13,16 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.extension.finder;
+package org.patternfly.showcase.demo;
 
-interface FinderClasses {
-
-    String column = "column";
-    String columns = "columns";
-    String finder = "finder";
-    String folder = "folder";
-    String items = "items";
-    String pin = "pin";
-    String pinnable = "pinnable";
-    String preview = "preview";
+public class FinderRhcpDemo {
 }

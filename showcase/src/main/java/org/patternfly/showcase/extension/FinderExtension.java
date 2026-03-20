@@ -130,12 +130,16 @@ public class FinderExtension extends SnippetPage {
                         if (file.description != null) {
                             item.addDescription(file.description);
                         }
+                        if (file.actions != null) {
+                            item.addActions(file.itemActions());
+                        }
                         if (file.children != null) {
                             item.nextColumn(() -> fileColumn[0].apply(file));
                         }
                     });
 
-            return finder().addItem(finderColumn("root").run(column -> column
+            return finder().bordered()
+                    .addItem(finderColumn("root").run(column -> column
                             .addHeader(demoHeader.apply("Root"))
                             .addSearch(finderColumnSearch()
                                     .addSearchInput(searchInput(Id.unique("finder-basic"))
@@ -161,7 +165,7 @@ public class FinderExtension extends SnippetPage {
         addSnippet(new Snippet("finder-preview", "With preview",
                 code("finder-preview"), () ->
                 // @code-start:finder-preview
-                finder()
+                finder().bordered()
                         .addItem(finderColumn("root")
                                 .addHeader(finderColumnHeader("Root"))
                                 .addItems(Files.data.asList(), file -> finderItem(file.id, file.name)
@@ -286,7 +290,7 @@ public class FinderExtension extends SnippetPage {
                     }))
                     .onPreview(recordPreview);
 
-            return finder().style("height: 450px;")
+            return finder().bordered().style("height: 500px;")
                     .addItem(finderColumn("Decades")
                             .addHeader(finderColumnHeader("Decades"))
                             .addItems(asList(decades),

@@ -4,7 +4,6 @@
     "name": "Applications",
     "description": "Installed applications",
     "icon": "fab.appStore",
-    "actions": true,
     "meta": { "Kind": "Folder", "Created": "2024-01-15" },
     "children": [
       {
@@ -12,7 +11,7 @@
         "name": "Web Browser",
         "description": "Browse the internet",
         "icon": "fas.globe",
-        "actions": true,
+        "actions": ["far.playCircle"],
         "meta": { "Kind": "Application", "Version": "120.0", "Size": "245 MB" }
       },
       {
@@ -20,39 +19,41 @@
         "name": "Code Editor",
         "description": "Write and edit code",
         "icon": "fas.code",
-        "actions": true,
+        "actions": ["far.playCircle"],
         "meta": { "Kind": "Application", "Version": "1.85.0", "Size": "380 MB" }
       },
       {
         "id": "terminal",
         "name": "Terminal",
         "icon": "fas.terminal",
-        "actions": true,
+        "actions": ["far.playCircle"],
         "meta": { "Kind": "Application", "Version": "2.12", "Size": "12 MB" }
       },
       {
         "id": "utilities",
         "name": "Utilities",
         "icon": "fas.wrench",
-        "actions": true,
         "meta": { "Kind": "Folder", "Created": "2024-02-10" },
         "children": [
           {
             "id": "calculator",
             "name": "Calculator",
             "icon": "fas.calculator",
+            "actions": ["far.playCircle"],
             "meta": { "Kind": "Application", "Size": "5 MB" }
           },
           {
             "id": "screenshot",
             "name": "Screenshot",
             "icon": "fas.camera",
+            "actions": ["far.playCircle"],
             "meta": { "Kind": "Application", "Size": "8 MB" }
           },
           {
             "id": "disk-utility",
             "name": "Disk Utility",
             "icon": "fas.hdd",
+            "actions": ["far.playCircle"],
             "meta": { "Kind": "Application", "Size": "22 MB" }
           }
         ]
@@ -64,71 +65,72 @@
     "name": "Documents",
     "description": "Personal documents and projects",
     "icon": "fas.folder",
-    "actions": true,
     "meta": { "Kind": "Folder", "Created": "2023-06-20" },
     "children": [
       {
         "id": "projects",
         "name": "Projects",
         "icon": "fas.folder",
-        "actions": true,
         "meta": { "Kind": "Folder", "Created": "2023-09-01" },
         "children": [
           {
             "id": "webapp",
             "name": "Web App",
             "icon": "fas.folder",
-            "actions": true,
             "meta": { "Kind": "Folder", "Files": "42" },
             "children": [
               {
                 "id": "index-html",
                 "name": "index.html",
                 "icon": "fas.fileCode",
+                "actions": ["fas.edit", "Preview", "Delete"],
                 "meta": { "Kind": "HTML Document", "Size": "4.2 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "styles-css",
                 "name": "styles.css",
                 "icon": "fas.fileCode",
+                "actions": ["fas.edit", "fas.trash"],
                 "meta": { "Kind": "CSS Stylesheet", "Size": "12.8 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "app-js",
                 "name": "app.js",
                 "icon": "fas.fileCode",
+                "actions": ["fas.edit", "fas.trash"],
                 "meta": { "Kind": "JavaScript", "Size": "28.5 KB", "Modified": "2024-02-28" }
               },
               {
                 "id": "src",
                 "name": "src",
                 "icon": "fas.folder",
-                "actions": true,
                 "meta": { "Kind": "Folder", "Files": "12" },
                 "children": [
                   {
                     "id": "components",
                     "name": "components",
                     "icon": "fas.folder",
-                    "actions": true,
                     "meta": { "Kind": "Folder", "Files": "8" },
                     "children": [
                       {
                         "id": "header-jsx",
                         "name": "Header.jsx",
                         "icon": "fas.fileCode",
+                        "actions": ["fas.edit", "Compile", "Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "3.1 KB", "Modified": "2024-02-25" }
                       },
                       {
                         "id": "footer-jsx",
                         "name": "Footer.jsx",
                         "icon": "fas.fileCode",
+                        "actions": ["fas.edit", "Compile", "Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "1.8 KB", "Modified": "2024-02-20" }
                       },
                       {
                         "id": "sidebar-jsx",
                         "name": "Sidebar.jsx",
                         "icon": "fas.fileCode",
+                        "actions": ["fas.edit", "Compile", "Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "4.5 KB", "Modified": "2024-03-01" }
                       }
                     ]
@@ -137,6 +139,7 @@
                     "id": "utils-js",
                     "name": "utils.js",
                     "icon": "fas.fileCode",
+                    "actions": ["fas.edit", "fas.trash"],
                     "meta": { "Kind": "JavaScript", "Size": "2.4 KB", "Modified": "2024-01-15" }
                   }
                 ]
@@ -154,6 +157,7 @@
                 "id": "main-dart",
                 "name": "main.dart",
                 "icon": "fas.fileCode",
+                "actions": ["fas.edit", "Compile", "Delete"],
                 "meta": { "Kind": "Dart Source", "Size": "6.1 KB" }
               }
             ]
@@ -164,12 +168,14 @@
         "id": "notes-txt",
         "name": "notes.txt",
         "icon": "fas.file",
+        "actions": ["fas.edit", "Copy", "Print", "Delete"],
         "meta": { "Kind": "Plain Text", "Size": "2.1 KB", "Modified": "2024-02-15" }
       },
       {
         "id": "report-pdf",
         "name": "report.pdf",
         "icon": "fas.filePdf",
+        "actions": ["fas.edit", "Copy", "Print", "Delete"],
         "meta": { "Kind": "PDF Document", "Size": "1.4 MB", "Modified": "2024-01-20" }
       }
     ]
@@ -179,25 +185,27 @@
     "name": "Downloads",
     "description": "Downloaded files",
     "icon": "fas.download",
-    "actions": true,
     "meta": { "Kind": "Folder", "Created": "2023-06-20" },
     "children": [
       {
         "id": "archive-zip",
         "name": "archive.zip",
         "icon": "fas.archive",
+        "actions": ["fas.boxOpen"],
         "meta": { "Kind": "ZIP Archive", "Size": "45.2 MB", "Modified": "2024-03-05" }
       },
       {
         "id": "photo-jpg",
         "name": "vacation-photo.jpg",
         "icon": "fas.fileImage",
+        "actions": ["fas.palette"],
         "meta": { "Kind": "JPEG Image", "Size": "3.8 MB", "Dimensions": "4032 x 3024" }
       },
       {
         "id": "presentation",
         "name": "presentation.pptx",
         "icon": "fas.filePowerpoint",
+        "actions": ["fas.tv"],
         "meta": { "Kind": "PowerPoint", "Size": "12.5 MB", "Modified": "2024-02-20" }
       }
     ]

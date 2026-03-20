@@ -16,7 +16,8 @@
 .ws-toc {
     align-self: flex-start;
     position: sticky;
-    width: calc(100% + var(--pf-v6-c-page__main-section--PaddingInlineStart) + var(--pf-v6-c-page__main-section--PaddingInlineEnd));
+    width: calc(50% + var(--pf-v6-c-page__main-section--PaddingInlineStart) + var(--pf-v6-c-page__main-section--PaddingInlineEnd));
+    min-width: 250px;
     background-color: var(--pf-t--global--background--color--secondary--default);
     z-index: 201;
     margin-block-start: calc(var(--pf-v6-c-page__main-section--PaddingBlockStart) * -1);

@@ -163,10 +163,6 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
                 .add(ic = span().css(component(finder, item, icon)))
                 .add(cc = span().css(component(finder, item, content))
                         .add(tc = span().css(component(finder, item, Classes.text))))
-                .add(button().css(component(finder, item, pin))
-                        .on(click, this::togglePin)
-                        .add(thumbtack().css(component(finder, item, pin, icon) + "--default"))
-                        .add(times().css(component(finder, item, pin, icon) + "--pinned")))
                 .add(span().css(component(finder, item, folder, icon))
                         .add(angleRight())));
     }
@@ -288,15 +284,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         if (hasNext()) {
             finder.addItem(nextColumn());
         }
-        if (finder.preview != null) {
-            removeChildrenFrom(finder.preview);
-            for (PreviewHandler previewHandler : previewHandlers) {
-                previewHandler.onPreview(item, finder.preview);
-            }
-            for (PreviewHandler previewHandler : column.previewHandlers) {
-                previewHandler.onPreview(item, finder.preview);
-            }
-        }
+        previewItem(finder, column, item);
     }
 
     void markSelected(boolean selected) {
@@ -312,7 +300,27 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         return nextColumn != null ? nextColumn : nextColumnSupplier != null ? nextColumnSupplier.get() : null;
     }
 
+    void makePinnable() {
+        insertAfter(button().css(component(finder, item, pin))
+                .on(click, this::togglePin)
+                .add(thumbtack().css(component(finder, item, pin, icon) + "--default"))
+                .add(times().css(component(finder, item, pin, icon) + "--pinned"))
+                .element(), cc.element());
+    }
+
     void togglePin(Event event) {
         event.stopPropagation();
+    }
+
+    void previewItem(Finder finder, FinderColumn column, FinderItem item) {
+        if (finder.preview != null) {
+            removeChildrenFrom(finder.preview);
+            for (PreviewHandler previewHandler : previewHandlers) {
+                previewHandler.onPreview(item, finder.preview);
+            }
+            for (PreviewHandler previewHandler : column.previewHandlers) {
+                previewHandler.onPreview(item, finder.preview);
+            }
+        }
     }
 }

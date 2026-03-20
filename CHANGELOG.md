@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add support for finder item actions
+- Add `Finder.bordered(boolean)`
+- Add `Finder.pinnable(boolean)`
+
 ## [0.6.5] - 2026-03-20
 
 ### Fixed

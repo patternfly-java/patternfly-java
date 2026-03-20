@@ -129,6 +129,9 @@ FileData.prototype.description
 /** @type {string} */
 FileData.prototype.icon
 
+/** @type {!Array<string>} */
+FileData.prototype.actions
+
 /** @type {!Object<string, string>} */
 FileData.prototype.meta
 

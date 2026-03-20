@@ -97,6 +97,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     private final AurHandler<FinderColumn, FinderItem> aur;
     private final List<SelectHandler<FinderItem>> selectHandler;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
+    private boolean pinnable;
     private AsyncStatus status;
     private Comparator<FinderItem> comparator;
     private AsyncItems<FinderColumn, FinderItem> asyncItems;
@@ -141,6 +142,9 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     @Override
     public FinderColumn add(FinderItem item) {
         item.column = this;
+        if (pinnable) {
+            item.makePinnable();
+        }
         addOrdered(ul, item);
         items.put(item.identifier(), item);
         return aur.added(item);
@@ -168,6 +172,17 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     public FinderColumn ordered(Comparator<FinderItem> comparator) {
         this.comparator = comparator;
         return this;
+    }
+
+    /** Same as {@linkplain #pinnable(boolean) pinnable(true)} */
+    public FinderColumn pinnable() {
+        return pinnable(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(pinnable)} */
+    public FinderColumn pinnable(boolean pinnable) {
+        this.pinnable = pinnable;
+        return toggleModifier(this, element(), FinderClasses.pinnable, pinnable);
     }
 
     @Override
