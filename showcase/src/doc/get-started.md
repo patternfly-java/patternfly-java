@@ -8,7 +8,7 @@ PatternFly Java is available on [Maven Central](https://central.sonatype.com/sea
         <dependency>
             <groupId>org.patternfly</groupId>
             <artifactId>patternfly-java-bom</artifactId>
-            <version>0.6.6</version>
+            <version>0.6.7-SNAPSHOT</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
