@@ -150,7 +150,6 @@
             "id": "mobile-app",
             "name": "Mobile App",
             "icon": "fas.folder",
-            "actions": true,
             "meta": { "Kind": "Folder", "Files": "18" },
             "children": [
               {
