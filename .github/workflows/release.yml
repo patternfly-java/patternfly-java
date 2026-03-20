@@ -77,7 +77,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 25
-          registry-url: https://registry.npmjs.org
       - run: corepack enable
       - name: Configure NPM Authentication
         run: echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
