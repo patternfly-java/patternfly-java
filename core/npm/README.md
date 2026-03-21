@@ -1,4 +1,4 @@
-# PatternFly Java Finder
+# PatternFly Java Core
 
 CSS styles for [PatternFly Java](https://patternfly-java.github.io/).
 
@@ -22,7 +22,8 @@ Import the CSS in your stylesheet or JavaScript entry point:
 
 ## Requirements
 
-This package requires [PatternFly 6](https://www.patternfly.org/) CSS (`@patternfly/patternfly`) to be present, as it references PatternFly design tokens for colors, spacing, borders, and typography.
+This package requires [PatternFly 6](https://www.patternfly.org/) CSS ([
+`@patternfly/patternfly`](https://www.npmjs.com/package/@patternfly/patternfly)) to be present, as it references PatternFly design tokens for colors, spacing, borders, and typography.
 
 ## License
 
