@@ -47,6 +47,11 @@ public class FinderItemActions extends FinderSubComponent<HTMLElement, FinderIte
 
     // ------------------------------------------------------ add
 
+    /**
+     * Adds a button to the finder item actions. The button should be small. Use button types {@code control}, {@code plain},
+     * {@code link}, or {@code inline-link}. Avoid {@code primary}, {@code secondary}, or {@code tertiary} button types. Icons
+     * are ok.
+     */
     public FinderItemActions addButton(Button button) {
         return add(button);
     }

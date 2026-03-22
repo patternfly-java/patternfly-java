@@ -355,12 +355,27 @@
 }
 
 .pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions .pf-v6-c-button {
-    --pf-v6-c-button--Color: var(--pf-v6-c-finder__item--m-selected--Color);
     --pf-v6-c-button__icon--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-button--m-link--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-button--m-plain--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-button--m-plain--hover--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-button--m-plain--m-clicked--Color: var(--pf-v6-c-finder__item--m-selected--Color);
 }
 
-.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions .pf-v6-c-menu-toggle {
-    --pf-v6-c-menu-toggle--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions .pf-v6-c-button.pf-m-link {
+    --pf-v6-c-button--hover--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-button--m-clicked--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions .pf-v6-c-menu-toggle.pf-m-plain {
+    --pf-v6-c-menu-toggle--m-plain--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-menu-toggle--hover--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+    --pf-v6-c-menu-toggle--expanded--Color: var(--pf-v6-c-finder__item--m-selected--Color);
+}
+
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions .pf-v6-c-menu-toggle.pf-m-split {
+    --pf-v6-c-menu-toggle--hover--Color: var(--pf-v6-c-menu-toggle--m-primary--hover--Color);
+    --pf-v6-c-menu-toggle--expanded--Color: var(--pf-v6-c-menu-toggle--m-primary--expanded--Color);
 }
 
 .pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-folder-icon {

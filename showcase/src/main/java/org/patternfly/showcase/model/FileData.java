@@ -16,21 +16,27 @@
 package org.patternfly.showcase.model;
 
 import org.jboss.elemento.Id;
-import org.patternfly.component.button.Button;
+import org.jboss.elemento.IsElement;
 import org.patternfly.extension.finder.FinderItemActions;
 
 import elemental2.core.JsArray;
+import elemental2.dom.HTMLElement;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.JsPropertyMap;
 
+import static java.util.Arrays.asList;
+import static java.util.Arrays.copyOfRange;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuToggle.menuToggle;
+import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
+import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.extension.finder.FinderItemActions.finderItemActions;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.icon.PredefinedIcon.predefinedIcon;
@@ -50,19 +56,10 @@ public class FileData {
     public final FinderItemActions itemActions() {
         if (actions != null && actions.length > 0) {
             FinderItemActions fia = finderItemActions();
-            fia.addButton(iconOrText(actions.getAt(0)));
-            if (actions.length > 2) { // all actions should be text only
-                fia.addDropdown(dropdown(ellipsisV(), "kebab dropdown toggle")
-                        .addMenu(dropdownMenu()
-                                .addContent(menuContent()
-                                        .addList(menuList().run(ml -> {
-                                            for (int i = 1; i < actions.length; i++) {
-                                                ml.addItem(menuItem(Id.build(actions.getAt(i)), actions.getAt(i)));
-                                            }
-                                        })))));
-            } else {
-                for (int i = 1; i < actions.length; i++) {
-                    fia.addButton(iconOrText(actions.getAt(i)));
+            for (String action : actions.asList()) {
+                var actionElement = action(action);
+                if (actionElement != null) {
+                    fia.add(actionElement);
                 }
             }
             return fia;
@@ -71,11 +68,41 @@ public class FileData {
     }
 
     @JsOverlay
-    final Button iconOrText(String value) {
-        if (value.startsWith("fa") && value.contains(".")) {
-            return button(predefinedIcon(value)).plain();
-        } else {
-            return button(value).plain();
+    final IsElement<? extends HTMLElement> action(String value) {
+        if (value.contains(":")) {
+            String prefix = value.substring(0, value.indexOf(":"));
+            String suffix = value.substring(value.indexOf(":") + 1);
+            switch (prefix) {
+                case "control":
+                    return button(suffix).control().small();
+                case "icon":
+                    return button(predefinedIcon(suffix)).plain().small();
+                case "link":
+                    return button(suffix).link().small();
+                case "link-inline":
+                    return button(suffix).link().inline().small();
+                case "plain":
+                    return button(suffix).plain().small();
+                case "kebab":
+                    return dropdown(menuToggle(ellipsisV()).small())
+                            .addMenu(dropdownMenu()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(asList(suffix.split("\\|")), text ->
+                                                            menuItem(Id.build(text), text)))));
+                case "split":
+                    String[] actions = suffix.split("\\|");
+                    String first = actions[0];
+                    String[] rest = copyOfRange(actions, 1, actions.length);
+                    return dropdown(menuToggle(split).small()
+                            .addAction(menuToggleAction(first)))
+                            .addMenu(dropdownMenu()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(asList(rest), text ->
+                                                            menuItem(Id.build(text), text)))));
+            }
         }
+        return null;
     }
 }

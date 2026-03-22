@@ -11,7 +11,7 @@
         "name": "Web Browser",
         "description": "Browse the internet",
         "icon": "fas.globe",
-        "actions": ["far.playCircle"],
+        "actions": ["icon:fas.play"],
         "meta": { "Kind": "Application", "Version": "120.0", "Size": "245 MB" }
       },
       {
@@ -19,14 +19,14 @@
         "name": "Code Editor",
         "description": "Write and edit code",
         "icon": "fas.code",
-        "actions": ["far.playCircle"],
+        "actions": ["icon:fas.play"],
         "meta": { "Kind": "Application", "Version": "1.85.0", "Size": "380 MB" }
       },
       {
         "id": "terminal",
         "name": "Terminal",
         "icon": "fas.terminal",
-        "actions": ["far.playCircle"],
+        "actions": ["icon:fas.play"],
         "meta": { "Kind": "Application", "Version": "2.12", "Size": "12 MB" }
       },
       {
@@ -39,21 +39,21 @@
             "id": "calculator",
             "name": "Calculator",
             "icon": "fas.calculator",
-            "actions": ["far.playCircle"],
+            "actions": ["icon:fas.play"],
             "meta": { "Kind": "Application", "Size": "5 MB" }
           },
           {
             "id": "screenshot",
             "name": "Screenshot",
             "icon": "fas.camera",
-            "actions": ["far.playCircle"],
+            "actions": ["icon:fas.play"],
             "meta": { "Kind": "Application", "Size": "8 MB" }
           },
           {
             "id": "disk-utility",
             "name": "Disk Utility",
             "icon": "fas.hdd",
-            "actions": ["far.playCircle"],
+            "actions": ["icon:fas.play"],
             "meta": { "Kind": "Application", "Size": "22 MB" }
           }
         ]
@@ -83,21 +83,21 @@
                 "id": "index-html",
                 "name": "index.html",
                 "icon": "fas.fileCode",
-                "actions": ["fas.edit", "Preview", "Delete"],
+                "actions": ["icon:fas.edit", "kebab:Preview|Delete"],
                 "meta": { "Kind": "HTML Document", "Size": "4.2 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "styles-css",
                 "name": "styles.css",
                 "icon": "fas.fileCode",
-                "actions": ["fas.edit", "fas.trash"],
+                "actions": ["icon:fas.edit", "icon:fas.trash"],
                 "meta": { "Kind": "CSS Stylesheet", "Size": "12.8 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "app-js",
                 "name": "app.js",
                 "icon": "fas.fileCode",
-                "actions": ["fas.edit", "fas.trash"],
+                "actions": ["icon:fas.edit", "icon:fas.trash"],
                 "meta": { "Kind": "JavaScript", "Size": "28.5 KB", "Modified": "2024-02-28" }
               },
               {
@@ -116,21 +116,21 @@
                         "id": "header-jsx",
                         "name": "Header.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["fas.edit", "Compile", "Delete"],
+                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "3.1 KB", "Modified": "2024-02-25" }
                       },
                       {
                         "id": "footer-jsx",
                         "name": "Footer.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["fas.edit", "Compile", "Delete"],
+                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "1.8 KB", "Modified": "2024-02-20" }
                       },
                       {
                         "id": "sidebar-jsx",
                         "name": "Sidebar.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["fas.edit", "Compile", "Delete"],
+                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "4.5 KB", "Modified": "2024-03-01" }
                       }
                     ]
@@ -139,7 +139,7 @@
                     "id": "utils-js",
                     "name": "utils.js",
                     "icon": "fas.fileCode",
-                    "actions": ["fas.edit", "fas.trash"],
+                    "actions": ["icon:fas.edit", "icon:fas.trash"],
                     "meta": { "Kind": "JavaScript", "Size": "2.4 KB", "Modified": "2024-01-15" }
                   }
                 ]
@@ -156,7 +156,7 @@
                 "id": "main-dart",
                 "name": "main.dart",
                 "icon": "fas.fileCode",
-                "actions": ["fas.edit", "Compile", "Delete"],
+                "actions": ["icons:fas.edit", "kebab:Compile|Delete"],
                 "meta": { "Kind": "Dart Source", "Size": "6.1 KB" }
               }
             ]
@@ -167,14 +167,14 @@
         "id": "notes-txt",
         "name": "notes.txt",
         "icon": "fas.file",
-        "actions": ["fas.edit", "Copy", "Print", "Delete"],
+        "actions": ["split:Edit|Copy|Print|Delete"],
         "meta": { "Kind": "Plain Text", "Size": "2.1 KB", "Modified": "2024-02-15" }
       },
       {
         "id": "report-pdf",
         "name": "report.pdf",
         "icon": "fas.filePdf",
-        "actions": ["fas.edit", "Copy", "Print", "Delete"],
+        "actions": ["split:Edit|Copy|Print|Delete"],
         "meta": { "Kind": "PDF Document", "Size": "1.4 MB", "Modified": "2024-01-20" }
       }
     ]
@@ -190,21 +190,21 @@
         "id": "archive-zip",
         "name": "archive.zip",
         "icon": "fas.archive",
-        "actions": ["fas.boxOpen"],
+        "actions": ["link:Extract"],
         "meta": { "Kind": "ZIP Archive", "Size": "45.2 MB", "Modified": "2024-03-05" }
       },
       {
         "id": "photo-jpg",
         "name": "vacation-photo.jpg",
         "icon": "fas.fileImage",
-        "actions": ["fas.palette"],
+        "actions": ["link-inline:Edit"],
         "meta": { "Kind": "JPEG Image", "Size": "3.8 MB", "Dimensions": "4032 x 3024" }
       },
       {
         "id": "presentation",
         "name": "presentation.pptx",
         "icon": "fas.filePowerpoint",
-        "actions": ["fas.tv"],
+        "actions": ["control:Present"],
         "meta": { "Kind": "PowerPoint", "Size": "12.5 MB", "Modified": "2024-02-20" }
       }
     ]
@@ -226,12 +226,14 @@
             "id": "song-1",
             "name": "Summer Breeze.mp3",
             "icon": "fas.fileAudio",
+            "actions": ["icon:fas.play", "icon:fas.pause"],
             "meta": { "Kind": "MP3 Audio", "Size": "8.2 MB", "Duration": "3:42" }
           },
           {
             "id": "song-2",
             "name": "Night Drive.mp3",
             "icon": "fas.fileAudio",
+            "actions": ["icon:fas.play", "icon:fas.pause"],
             "meta": { "Kind": "MP3 Audio", "Size": "9.1 MB", "Duration": "4:15" }
           }
         ]
@@ -255,12 +257,14 @@
             "id": "mountain-jpg",
             "name": "mountain.jpg",
             "icon": "fas.fileImage",
+            "actions": ["link:View", "kebab:Copy|Move|Delete"],
             "meta": { "Kind": "JPEG Image", "Size": "5.2 MB", "Dimensions": "5120 x 2880" }
           },
           {
             "id": "ocean-jpg",
             "name": "ocean.jpg",
             "icon": "fas.fileImage",
+            "actions": ["plain:View", "kebab:Copy|Move|Delete"],
             "meta": { "Kind": "JPEG Image", "Size": "4.8 MB", "Dimensions": "5120 x 2880" }
           }
         ]
@@ -275,6 +279,7 @@
             "id": "screenshot-1",
             "name": "Screen Shot 2024-03-01.png",
             "icon": "fas.fileImage",
+            "actions": ["control:View", "kebab:Copy|Move|Delete"],
             "meta": { "Kind": "PNG Image", "Size": "1.2 MB" }
           }
         ]

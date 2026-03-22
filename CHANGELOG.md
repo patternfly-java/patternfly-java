@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add support for `BiPredicate<FinderItem, String>` in `FinderColumnSearch`
+
+### Fixed
+
+- Fix finder item icons
+- Fix colors for finder item actions
+- Fix finder preview handlers
+
 ## [0.6.6] - 2026-03-20
 
 ### Added

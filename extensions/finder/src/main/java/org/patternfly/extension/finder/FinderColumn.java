@@ -89,7 +89,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     // The component store relies on attach() / detach() and does not work when adding / removing existing references.
     // See: https://hal-console.gitbook.io/elemento/attach-detach
     Finder finder;
-    final List<PreviewHandler> previewHandlers;
+    PreviewHandler previewHandler;
 
     private final String identifier;
     private final Map<String, Object> data;
@@ -110,7 +110,6 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
-        this.previewHandlers = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.status = static_;
 
@@ -219,7 +218,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     }
 
     public FinderColumn onPreview(PreviewHandler previewHandler) {
-        this.previewHandlers.add(previewHandler);
+        this.previewHandler = previewHandler;
         return this;
     }
 

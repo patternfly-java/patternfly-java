@@ -15,9 +15,7 @@
  */
 package org.patternfly.extension.finder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -36,12 +34,15 @@ import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
 import static java.lang.Boolean.parseBoolean;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
@@ -102,7 +103,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     static FinderItem loadingItem() {
         FinderItem loading = statusItem(Id.unique(ComponentType.Finder.id, SUB_COMPONENT_NAME, "loading"));
-        loading.ic.element().replaceWith(spinner(lg, "sm").element());
+        insertFirst(loading.element(), spinner(lg, "sm").element());
         return loading.text("Loading...");
     }
 
@@ -120,7 +121,6 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         item.element().removeAttribute(role);
         item.element().removeAttribute(selected);
         item.element().removeAttribute(tabindex);
-        item.element().dataset.delete(Dataset.identifier);
         return item;
     }
 
@@ -136,11 +136,12 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     private final String identifier;
     private final Map<String, Object> data;
     private final HandlerRegistration clickHandler;
-    private final List<PreviewHandler> previewHandlers;
-    private final HTMLContainerBuilder<HTMLElement> ic; // icon container
+    private final HTMLContainerBuilder<HTMLDivElement> rc; // row container
     private final HTMLContainerBuilder<HTMLElement> cc; // content container
     private final HTMLContainerBuilder<HTMLElement> tc; // text container
+    private HTMLElement ic;
     private FinderColumn nextColumn;
+    private PreviewHandler previewHandler;
     private Supplier<FinderColumn> nextColumnSupplier;
 
     FinderItem(String identifier) {
@@ -152,15 +153,13 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
                 .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
-        this.previewHandlers = new ArrayList<>();
         this.clickHandler = bind(element(), click, e -> {
             if (column != null && column.finder != null) {
                 handleClick(column.finder, column, this);
             }
         });
 
-        add(div().css(component(finder, item, Classes.row))
-                .add(ic = span().css(component(finder, item, icon)))
+        add(rc = div().css(component(finder, item, Classes.row))
                 .add(cc = span().css(component(finder, item, content))
                         .add(tc = span().css(component(finder, item, Classes.text))))
                 .add(span().css(component(finder, item, folder, icon))
@@ -212,8 +211,8 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     @Override
     public FinderItem icon(Element icon) {
-        removeIcon();
-        ic.add(icon);
+        removeChildrenFrom(ic);
+        failSafeIconContainer().appendChild(icon);
         return this;
     }
 
@@ -229,7 +228,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     @Override
     public FinderItem removeIcon() {
-        removeChildrenFrom(ic);
+        failSafeRemoveFromParent(ic);
         return this;
     }
 
@@ -248,7 +247,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     // ------------------------------------------------------ events
 
     public FinderItem onPreview(PreviewHandler previewHandler) {
-        this.previewHandlers.add(previewHandler);
+        this.previewHandler = previewHandler;
         return this;
     }
 
@@ -315,12 +314,18 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     void previewItem(Finder finder, FinderColumn column, FinderItem item) {
         if (finder.preview != null) {
             removeChildrenFrom(finder.preview);
-            for (PreviewHandler previewHandler : previewHandlers) {
+            if (previewHandler != null) {
                 previewHandler.onPreview(item, finder.preview);
-            }
-            for (PreviewHandler previewHandler : column.previewHandlers) {
-                previewHandler.onPreview(item, finder.preview);
+            } else if (column.previewHandler != null) {
+                column.previewHandler.onPreview(item, finder.preview);
             }
         }
+    }
+
+    private HTMLElement failSafeIconContainer() {
+        if (ic == null) {
+            insertFirst(rc.element(), ic = span().css(component(finder, item, icon)).element());
+        }
+        return ic;
     }
 }

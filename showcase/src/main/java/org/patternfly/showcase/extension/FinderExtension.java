@@ -64,6 +64,7 @@ import static org.patternfly.extension.finder.Finder.finder;
 import static org.patternfly.extension.finder.FinderColumn.finderColumn;
 import static org.patternfly.extension.finder.FinderColumnActions.finderColumnActions;
 import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
+import static org.patternfly.extension.finder.FinderColumnSearch.ITEM_TEXT_CONTAINS_FILTER;
 import static org.patternfly.extension.finder.FinderColumnSearch.finderColumnSearch;
 import static org.patternfly.extension.finder.FinderItem.emptyItem;
 import static org.patternfly.extension.finder.FinderItem.finderItem;
@@ -82,8 +83,6 @@ import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.model.Discography.records;
-import static org.patternfly.style.Classes.filtered;
-import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size.xs;
 
@@ -141,22 +140,8 @@ public class FinderExtension extends SnippetPage {
             return finder().bordered()
                     .addItem(finderColumn("root").run(column -> column
                             .addHeader(demoHeader.apply("Root"))
-                            .addSearch(finderColumnSearch()
-                                    .addSearchInput(searchInput(Id.unique("finder-basic"))
-                                            .icon(search())
-                                            .placeholder("Filter by name")
-                                            .onInput((e, si, value) -> {
-                                                String lcv = value.toLowerCase();
-                                                for (FinderItem item : column.items()) {
-                                                    item.classList().toggle(modifier(filtered),
-                                                            !value.isEmpty() && !item.text()
-                                                                    .toLowerCase()
-                                                                    .contains(lcv));
-                                                }
-                                            })
-                                            .onClear((e, si) ->
-                                                    column.items().forEach(item ->
-                                                            item.classList().remove(modifier(filtered))))))
+                            .addSearch(finderColumnSearch().addSearchInput(searchInput(Id.unique("finder-basic"))
+                                    .icon(search()).placeholder("Filter by name"), ITEM_TEXT_CONTAINS_FILTER))
                             .addItems(Files.data.asList(), fileItem[0])))
                     .element();
             // @code-end:finder-basic
