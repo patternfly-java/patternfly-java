@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.7] - 2026-03-22
+
 ### Added
 
 - Add support for `BiPredicate<FinderItem, String>` in `FinderColumnSearch`
@@ -780,7 +782,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.6...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...HEAD
+[0.6.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.6...v0.6.7
 [0.6.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.5...v0.6.6
 [0.6.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.4...v0.6.5
 [0.6.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.3...v0.6.4
