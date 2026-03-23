@@ -224,6 +224,10 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     // ------------------------------------------------------ api
 
+    public Finder finder() {
+        return finder;
+    }
+
     @Override
     public Comparator<FinderItem> comparator() {
         return comparator;
@@ -407,6 +411,13 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
             return visible.get(index + 1);
         }
         return null;
+    }
+
+    FinderItem selectedItem() {
+        return items.values().stream()
+                .filter(FinderItem::isSelected)
+                .findFirst()
+                .orElse(null);
     }
 
     List<FinderItem> visibleItems() {
