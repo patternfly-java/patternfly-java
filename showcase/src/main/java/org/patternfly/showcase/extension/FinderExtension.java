@@ -235,7 +235,7 @@ public class FinderExtension extends SnippetPage {
                     .addDescription(String.valueOf(record.year))
                     .icon(recordVinyl())
                     .store("record", record)
-                    .nextColumn(finderColumn(Id.build(record.title))
+                    .nextColumn(() -> finderColumn(Id.build(record.title))
                             .addHeader(finderColumnHeader(record.title))
                             .addItems(record.tracks.asList(), track ->
                                     finderItem(Id.build(record.title, String.valueOf(track.track)))
@@ -282,7 +282,7 @@ public class FinderExtension extends SnippetPage {
                                     decade -> finderItem(Id.build(String.valueOf(decade[0]), String.valueOf(decade[1])))
                                             .text(decade[0] + " - " + decade[1])
                                             .icon(folder())
-                                            .nextColumn(decadeColumn.apply(decade))))
+                                            .nextColumn(() -> decadeColumn.apply(decade))))
                     .addPreview(finderPreview().css(util("p-md")))
                     .element();
             // @code-end:finder-async

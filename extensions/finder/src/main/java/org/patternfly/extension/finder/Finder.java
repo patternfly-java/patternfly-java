@@ -321,10 +321,10 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
             event.preventDefault();
             if (item.hasNext()) {
                 // Don't use item.nextColumn() here!
-                // If FinderItem.nextColumnSupplier is not null, it would return a
+                // If FinderItem.nextColumn is not null, it would return a
                 // new column not in the Finder.items map and not attached to the DOM!
-                // It is safe to assume that the next column is in the items map because
-                // it has been selected. FinderItem.handleClick() takes care about this.
+                // It is safe to assume that the next column is in the item map because
+                // it has been selected. FinderItem.handleClick() took care about this.
                 FinderColumn nextColumn = nextColumn(column);
                 if (nextColumn != null) {
                     FinderItem targetItem = null;

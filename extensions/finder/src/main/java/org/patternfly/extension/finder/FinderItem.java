@@ -140,9 +140,8 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     private final HTMLContainerBuilder<HTMLElement> cc; // content container
     private final HTMLContainerBuilder<HTMLElement> tc; // text container
     private HTMLElement ic;
-    private FinderColumn nextColumn;
     private PreviewHandler previewHandler;
-    private Supplier<FinderColumn> nextColumnSupplier;
+    private Supplier<FinderColumn> nextColumn;
 
     FinderItem(String identifier) {
         super(SUB_COMPONENT_NAME, li().css(component(finder, item))
@@ -216,13 +215,8 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         return this;
     }
 
-    public FinderItem nextColumn(FinderColumn column) {
-        this.nextColumn = column;
-        return folder(true);
-    }
-
     public FinderItem nextColumn(Supplier<FinderColumn> column) {
-        this.nextColumnSupplier = column;
+        this.nextColumn = column;
         return folder(true);
     }
 
@@ -291,7 +285,10 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         finder.select(column);
         column.select(item);
         if (hasNext()) {
-            finder.addItem(nextColumn());
+            FinderColumn nextColumnInstance = nextColumn.get();
+            if (nextColumnInstance != null) {
+                finder.addItem(nextColumnInstance);
+            }
         }
         previewItem(finder, column, item);
     }
@@ -306,11 +303,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     }
 
     boolean hasNext() {
-        return nextColumn != null || nextColumnSupplier != null;
-    }
-
-    FinderColumn nextColumn() {
-        return nextColumn != null ? nextColumn : nextColumnSupplier != null ? nextColumnSupplier.get() : null;
+        return nextColumn != null;
     }
 
     void makePinnable() {
