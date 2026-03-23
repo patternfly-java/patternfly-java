@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `FinderColumn.defaultSearch(String)`
 - Add `FinderColumn.toggleSearch(Predicate<FinderColumn>)`
 
+### Fixed
+
+- Hide item actions in inactive columns
+
 ### Removed
 
 - Remove `FinderItem.nextColumn(FinderColumn column)`. Next columns can only be added lazily using `FinderItem.nextColumn(Supplier<FinderColumn> column)` (otherwise the component lookup of finder columns won't work).

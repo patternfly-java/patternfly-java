@@ -218,6 +218,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     public FinderColumn toggleSearch(Predicate<FinderColumn> predicate) {
         if (search != null) {
+            setVisible(search, predicate.test(this));
             aur.onAdd((c, i) -> setVisible(search, predicate.test(c)));
             aur.onRemove((c, i) -> setVisible(search, predicate.test(c)));
         }

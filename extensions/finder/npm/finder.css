@@ -272,7 +272,7 @@
     flex-shrink: 0;
 }
 
-.pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions {
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__item.pf-m-selected .pf-v6-c-finder__item-actions {
     display: inline-flex;
 }
 
