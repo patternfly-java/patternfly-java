@@ -253,6 +253,14 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     // ------------------------------------------------------ api
 
+    public FinderColumn column() {
+        return column;
+    }
+
+    public Finder finder() {
+        return column.finder();
+    }
+
     @Override
     public String identifier() {
         return identifier;
@@ -274,7 +282,9 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     // ------------------------------------------------------ internal
 
     void handleClick(Finder finder, FinderColumn column, FinderItem item) {
-        if (parseBoolean((element().getAttribute(Aria.selected))) && classList().contains(modifier(Classes.selected))) {
+        if (isSelected()) {
+            finder.markActive(column);
+            previewItem(finder, column, item);
             return;
         }
 
@@ -289,6 +299,10 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     void markSelected(boolean selected) {
         aria(Aria.selected, selected);
         classList().toggle(modifier(Classes.selected), selected);
+    }
+
+    boolean isSelected() {
+        return parseBoolean((element().getAttribute(Aria.selected))) && classList().contains(modifier(Classes.selected));
     }
 
     boolean hasNext() {

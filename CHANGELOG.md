@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `FinderPath` and `FinderSegment` with `FinderPath` implementing `Iterable<FinderSegment>`
+- Add `FinderPath Finder.path()`
+- Add getters for the finder and finder column:
+  - `FinderColumn FinderItem.column()`
+  - `Finder FinderItem.finder()`
+  - `Finder FinderColumn.finder()`
+
+### Fixed
+
+- Fix selection of already selected finder items
+
 ## [0.6.7] - 2026-03-22
 
 ### Added

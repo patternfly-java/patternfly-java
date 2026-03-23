@@ -17,6 +17,8 @@ package org.patternfly.extension.finder;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -174,6 +176,19 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     }
 
     // ------------------------------------------------------ api
+
+    public FinderPath path() {
+        List<FinderSegment> segments = new LinkedList<>();
+        for (FinderColumn column : items.values()) {
+            FinderItem selectedItem = column.selectedItem();
+            if (selectedItem != null) {
+                segments.add(new FinderSegment(column, selectedItem));
+            } else {
+                break;
+            }
+        }
+        return new FinderPath(segments);
+    }
 
     @Override
     public Iterator<FinderColumn> iterator() {
