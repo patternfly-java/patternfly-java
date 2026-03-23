@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.8] - 2026-03-23
+
 ### Added
 
 - Add `FinderPath` and `FinderSegment` with `FinderPath` implementing `Iterable<FinderSegment>`
@@ -795,7 +797,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.8...HEAD
+[0.6.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...v0.6.8
 [0.6.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.6...v0.6.7
 [0.6.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.5...v0.6.6
 [0.6.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.4...v0.6.5
