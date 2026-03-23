@@ -61,6 +61,7 @@ import static org.patternfly.core.AsyncStatus.resolved;
 import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.extension.finder.FinderClasses.column;
+import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
 import static org.patternfly.extension.finder.FinderItem.errorItem;
 import static org.patternfly.extension.finder.FinderItem.loadingItem;
 import static org.patternfly.style.Classes.component;
@@ -78,6 +79,11 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     public static FinderColumn finderColumn(String identifier) {
         return new FinderColumn(identifier);
+    }
+
+    public static FinderColumn finderColumn(String identifier, String header) {
+        return new FinderColumn(identifier)
+                .addHeader(finderColumnHeader(header));
     }
 
     // ------------------------------------------------------ instance
