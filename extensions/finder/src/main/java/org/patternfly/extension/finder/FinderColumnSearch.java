@@ -18,7 +18,6 @@ package org.patternfly.extension.finder;
 import java.util.function.BiPredicate;
 
 import org.patternfly.component.textinputgroup.SearchInput;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
@@ -40,20 +39,6 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "fcs";
-
-    /**
-     * A {@link BiPredicate} implementation used to filter {@link FinderItem} instances based on their text content. This filter
-     * checks if the given {@link FinderItem}'s text does not contain the specified search value (case-insensitive).
-     * <p>
-     * The predicate evaluates to {@code true} if: - The search value is non-empty. - The lower-cased text of the
-     * {@link FinderItem} does not contain the lower-cased search value.
-     * <p>
-     * This can be used to exclude items whose text does not match the specified search criteria.
-     */
-    public static final BiPredicate<FinderItem, String> ITEM_TEXT_CONTAINS_FILTER = (item, value) -> {
-        String lcv = value.toLowerCase();
-        return !value.isEmpty() && !item.text().toLowerCase().contains(lcv);
-    };
 
     FinderColumnSearch() {
         super(SUB_COMPONENT_NAME, div().css(component(finder, column, search)).element());

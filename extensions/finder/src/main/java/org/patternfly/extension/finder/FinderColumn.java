@@ -22,8 +22,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import org.jboss.elemento.HTMLContainerBuilder;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AsyncItems;
@@ -38,7 +40,6 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
@@ -53,8 +54,10 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.Role.tree;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.AsyncStatus.pending;
 import static org.patternfly.core.AsyncStatus.rejected;
 import static org.patternfly.core.AsyncStatus.resolved;
@@ -62,8 +65,10 @@ import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
+import static org.patternfly.extension.finder.FinderColumnSearch.finderColumnSearch;
 import static org.patternfly.extension.finder.FinderItem.errorItem;
 import static org.patternfly.extension.finder.FinderItem.loadingItem;
+import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.filtered;
 import static org.patternfly.style.Classes.modifier;
@@ -105,6 +110,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     private final HTMLContainerBuilder<HTMLUListElement> ul;
     private boolean pinnable;
     private AsyncStatus status;
+    private FinderColumnSearch search;
     private Comparator<FinderItem> comparator;
     private AsyncItems<FinderColumn, FinderItem> asyncItems;
 
@@ -140,6 +146,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     }
 
     public FinderColumn add(FinderColumnSearch search) {
+        this.search = search;
         insertBefore(search, ul.element());
         return this;
     }
@@ -173,6 +180,19 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         return toggleModifier(this, element(), Classes.active, active);
     }
 
+    public FinderColumn defaultSearch() {
+        return defaultSearch("Filter by name");
+    }
+
+    public FinderColumn defaultSearch(String placeholder) {
+        return addSearch(finderColumnSearch()
+                .addSearchInput(searchInput(Id.unique(SUB_COMPONENT_NAME)).icon(search()).placeholder(placeholder),
+                        (item, value) -> {
+                            String lcv = value.toLowerCase();
+                            return !value.isEmpty() && !item.text().toLowerCase().contains(lcv);
+                        }));
+    }
+
     @Override
     public FinderColumn ordered(Comparator<FinderItem> comparator) {
         this.comparator = comparator;
@@ -193,6 +213,14 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     @Override
     public <T> FinderColumn store(String key, T value) {
         data.put(key, value);
+        return this;
+    }
+
+    public FinderColumn toggleSearch(Predicate<FinderColumn> predicate) {
+        if (search != null) {
+            aur.onAdd((c, i) -> setVisible(search, predicate.test(c)));
+            aur.onRemove((c, i) -> setVisible(search, predicate.test(c)));
+        }
         return this;
     }
 

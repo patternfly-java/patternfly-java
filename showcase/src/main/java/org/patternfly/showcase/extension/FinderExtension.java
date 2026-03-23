@@ -38,7 +38,6 @@ import org.patternfly.showcase.model.FileData;
 import org.patternfly.showcase.model.Files;
 import org.patternfly.showcase.model.Record;
 import org.patternfly.showcase.model.Track;
-
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -59,13 +58,10 @@ import static org.patternfly.component.list.DescriptionList.descriptionList;
 import static org.patternfly.component.list.DescriptionListDescription.descriptionListDescription;
 import static org.patternfly.component.list.DescriptionListGroup.descriptionListGroup;
 import static org.patternfly.component.list.DescriptionListTerm.descriptionListTerm;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.extension.finder.Finder.finder;
 import static org.patternfly.extension.finder.FinderColumn.finderColumn;
 import static org.patternfly.extension.finder.FinderColumnActions.finderColumnActions;
 import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
-import static org.patternfly.extension.finder.FinderColumnSearch.ITEM_TEXT_CONTAINS_FILTER;
-import static org.patternfly.extension.finder.FinderColumnSearch.finderColumnSearch;
 import static org.patternfly.extension.finder.FinderItem.emptyItem;
 import static org.patternfly.extension.finder.FinderItem.finderItem;
 import static org.patternfly.extension.finder.FinderPreview.finderPreview;
@@ -75,7 +71,6 @@ import static org.patternfly.icon.IconSets.fas.music;
 import static org.patternfly.icon.IconSets.fas.plus;
 import static org.patternfly.icon.IconSets.fas.recordVinyl;
 import static org.patternfly.icon.IconSets.fas.redo;
-import static org.patternfly.icon.IconSets.fas.search;
 import static org.patternfly.icon.PredefinedIcon.predefinedIcon;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
@@ -140,8 +135,7 @@ public class FinderExtension extends SnippetPage {
             return finder().bordered()
                     .addItem(finderColumn("root").run(column -> column
                             .addHeader(demoHeader.apply("Root"))
-                            .addSearch(finderColumnSearch().addSearchInput(searchInput(Id.unique("finder-basic"))
-                                    .icon(search()).placeholder("Filter by name"), ITEM_TEXT_CONTAINS_FILTER))
+                            .defaultSearch()
                             .addItems(Files.data.asList(), fileItem[0])))
                     .element();
             // @code-end:finder-basic

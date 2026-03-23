@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add `FinderColumn.finderColumn(String identifier, String header)`
+- Add `FinderColumn.defaultSearch(String)`
+- Add `FinderColumn.toggleSearch(Predicate<FinderColumn>)`
 
 ### Removed
 
