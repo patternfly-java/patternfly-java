@@ -18,6 +18,7 @@ package org.patternfly.extension.finder;
 import java.util.function.BiPredicate;
 
 import org.patternfly.component.textinputgroup.SearchInput;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;

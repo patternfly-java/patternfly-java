@@ -40,6 +40,7 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLUListElement;
