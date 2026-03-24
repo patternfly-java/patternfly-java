@@ -420,8 +420,8 @@
     overflow-y: auto;
     border-left: var(--pf-v6-c-finder__column--BorderRightWidth) solid var(--pf-v6-c-finder__column--BorderRightColor);
     margin-left: calc(var(--pf-v6-c-finder__column--BorderRightWidth) * -1);
-    padding-block-start: var(--pf-v6-c-finder__column-header--PaddingBlockStart);
-    padding-block-end: var(--pf-v6-c-finder__column-header--PaddingBlockEnd);
-    padding-inline-start: var(--pf-v6-c-finder__column-header--PaddingInlineStart);
-    padding-inline-end: var(--pf-v6-c-finder__column-header--PaddingInlineEnd);
+    padding-block-start: var(--pf-v6-c-finder__preview--PaddingBlockStart);
+    padding-block-end: var(--pf-v6-c-finder__preview--PaddingBlockEnd);
+    padding-inline-start: var(--pf-v6-c-finder__preview--PaddingInlineStart);
+    padding-inline-end: var(--pf-v6-c-finder__preview--PaddingInlineEnd);
 }
