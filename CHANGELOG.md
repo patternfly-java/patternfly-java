@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.11] - 2026-03-24
+
 ### Added
 
 - Add `FinderColumn.showSearchThreshold(int)`
@@ -826,7 +828,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.10...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.11...HEAD
+[0.6.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.10...v0.6.11
 [0.6.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.9...v0.6.10
 [0.6.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.8...v0.6.9
 [0.6.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...v0.6.8
