@@ -562,7 +562,7 @@
                             <publishingServerId>central</publishingServerId>
                             <autoPublish>true</autoPublish>
                             <waitMaxTime>86400</waitMaxTime>
-                            <waitUntil>validated</waitUntil>
+                            <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.6.9] - 2026-03-23
-
 ### Added
 
 - Add `FinderColumn.finderColumn(String identifier, String header)`
@@ -21,6 +19,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - Remove `FinderItem.nextColumn(FinderColumn column)`. Next columns can only be added lazily using `FinderItem.nextColumn(Supplier<FinderColumn> column)` (otherwise the component lookup of finder columns won't work).
+
+## [0.6.9] - 2026-03-23
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.6.8] - 2026-03-23
 
