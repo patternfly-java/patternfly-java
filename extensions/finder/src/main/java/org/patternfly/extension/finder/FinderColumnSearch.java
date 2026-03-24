@@ -28,6 +28,15 @@ import static org.patternfly.style.Classes.filtered;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.search;
 
+/**
+ * The {@code FinderColumnSearch} class is a subcomponent designed to handle search functionality within a finder column. It
+ * extends the {@link FinderSubComponent} class to provide a specialized interface for managing search inputs. The class allows
+ * adding {@link SearchInput} instances with or without filtering predicates and defines the behavior for filtering
+ * {@link FinderItem}s based on user-provided search values.
+ * <p>
+ * The filtering predicate determines how {@link FinderItem}s are flagged as filtered depending on their text content and the
+ * specified search value. When no predicate is provided, the {@link FinderItem}s are not programmatically filtered on input.
+ */
 public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderColumnSearch> {
 
     // ------------------------------------------------------ factory

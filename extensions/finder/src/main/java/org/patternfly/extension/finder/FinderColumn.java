@@ -180,10 +180,23 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         return toggleModifier(this, element(), Classes.active, active);
     }
 
+    /**
+     * Same as {@linkplain #defaultSearch(String) defaultSearch("Filter by name")}
+     *
+     * @return the current {@code FinderColumn} instance with the default search functionality added
+     */
     public FinderColumn defaultSearch() {
         return defaultSearch("Filter by name");
     }
 
+    /**
+     * Configures the current {@code FinderColumn} instance with a default search functionality. The search functionality allows
+     * filtering of items in the column based on the content of a search input field. The provided placeholder text for the
+     * search input is used to indicate the purpose of the search field to the user.
+     *
+     * @param placeholder the placeholder text to display in the search input field
+     * @return the current {@code FinderColumn} instance with the configured default search functionality
+     */
     public FinderColumn defaultSearch(String placeholder) {
         return addSearch(finderColumnSearch()
                 .addSearchInput(searchInput(Id.unique(SUB_COMPONENT_NAME)).icon(search()).placeholder(placeholder),
@@ -216,6 +229,31 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         return this;
     }
 
+    /**
+     * Configures the current {@code FinderColumn} instance to show the search component when the size of the items in the
+     * column is greater than or equal to the specified value. The visibility condition is evaluated based on the number of
+     * items in the column.
+     * <p>
+     * If no search component is present in the column, this method does nothing.
+     *
+     * @param size the minimum number of items required in the column to show the search component
+     * @return the current {@code FinderColumn} instance with updated search visibility configuration
+     */
+    public FinderColumn showSearchThreshold(int size) {
+        return toggleSearch(c -> c.size() >= size);
+    }
+
+    /**
+     * Toggles the visibility of the search component in the column based on the provided predicate. The predicate is evaluated
+     * against the current column and determines whether the search component should be visible. Additionally, the visibility of
+     * the search component reacts to items being added to or removed from the column.
+     * <p>
+     * If no search component is present in the column, this method does nothing.
+     *
+     * @param predicate a {@code Predicate} that evaluates the visibility condition for the search component based on the
+     *                  current {@code FinderColumn}
+     * @return the current {@code FinderColumn} instance with updated search visibility
+     */
     public FinderColumn toggleSearch(Predicate<FinderColumn> predicate) {
         if (search != null) {
             setVisible(search, predicate.test(this));

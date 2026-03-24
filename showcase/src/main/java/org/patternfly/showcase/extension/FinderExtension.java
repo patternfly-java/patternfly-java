@@ -170,7 +170,7 @@ public class FinderExtension extends SnippetPage {
                                                         .addDescription(descriptionListDescription(file.meta.get(key)))))));
                                     }
                                 }))
-                        .addPreview(finderPreview().css(util("p-md"))
+                        .addPreview(finderPreview()
                                 .add(content(h1).text("Preview"))
                                 .add(content(p).editorial().text("Please select an item to see the preview.")))
                         .element()
@@ -277,7 +277,7 @@ public class FinderExtension extends SnippetPage {
                                             .text(decade[0] + " - " + decade[1])
                                             .icon(folder())
                                             .nextColumn(() -> decadeColumn.apply(decade))))
-                    .addPreview(finderPreview().css(util("p-md")))
+                    .addPreview(finderPreview())
                     .element();
             // @code-end:finder-async
         }));
