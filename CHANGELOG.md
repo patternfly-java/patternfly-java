@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.6.13] - 2026-03-24
-
 ### Added
 
 - Add `FinderColumn.showSearchThreshold(int)`
@@ -15,6 +13,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Add padding to the finder preview matching the padding of the finder columns and items
+
+## [0.6.13] - 2026-03-24
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.6.12] - 2026-03-24
 
