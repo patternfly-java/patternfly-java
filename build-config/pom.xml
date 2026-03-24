@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.patternfly</groupId>
         <artifactId>patternfly-java-parent</artifactId>
-        <version>0.6.13-SNAPSHOT</version>
+        <version>0.6.13</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
