@@ -103,7 +103,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     static FinderItem loadingItem() {
         FinderItem loading = statusItem(Id.unique(ComponentType.Finder.id, SUB_COMPONENT_NAME, "loading"));
-        insertFirst(loading.element(), spinner(lg, "sm").element());
+        insertFirst(loading.rc.element(), spinner(lg, "sm").element());
         return loading.text("Loading...");
     }
 
