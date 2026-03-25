@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.15] - 2026-03-25
+
 ### Added
 
 - Make finder column and preview responsive using container queries
@@ -847,7 +849,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...HEAD
+[0.6.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...v0.6.15
 [0.6.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.13...v0.6.14
 [0.6.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.12...v0.6.13
 [0.6.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.11...v0.6.12
