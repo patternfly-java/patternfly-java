@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Make finder column and preview responsive using container queries
+
 ## [0.6.14] - 2026-03-24
 
 ### Added
