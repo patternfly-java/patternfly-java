@@ -30,7 +30,7 @@
     --pf-v6-c-finder-MaxColumns: 4;
 
     /* Column */
-    --pf-v6-c-finder__column--Width: 18rem;
+    --pf-v6-c-finder__column--Width: clamp(14rem, 25cqi, 20rem);
     --pf-v6-c-finder__column--BorderRightColor: var(--pf-t--global--border--color--default);
     --pf-v6-c-finder__column--BorderRightWidth: var(--pf-t--global--border--width--100);
 
@@ -95,7 +95,7 @@
     --pf-v6-c-finder__preview--PaddingBlockEnd: var(--pf-t--global--spacer--200);
     --pf-v6-c-finder__preview--PaddingInlineStart: var(--pf-t--global--spacer--300);
     --pf-v6-c-finder__preview--PaddingInlineEnd: var(--pf-t--global--spacer--200);
-    --pf-v6-c-finder__preview--MinWidth: 24rem;
+    --pf-v6-c-finder__preview--MinWidth: clamp(16rem, 30cqi, 28rem);
     --pf-v6-c-finder__preview--BackgroundColor: var(--pf-t--global--background--color--primary--default);
     --pf-v6-c-finder__preview--BorderLeftColor: var(--pf-t--global--border--color--default);
     --pf-v6-c-finder__preview--BorderLeftWidth: var(--pf-t--global--border--width--100);
@@ -106,6 +106,8 @@
    =================================================================== */
 
 .pf-v6-c-finder {
+    container-type: inline-size;
+    container-name: finder;
     display: flex;
     background-color: var(--pf-v6-c-finder--BackgroundColor);
     font-size: var(--pf-v6-c-finder--FontSize);
@@ -424,4 +426,26 @@
     padding-block-end: var(--pf-v6-c-finder__preview--PaddingBlockEnd);
     padding-inline-start: var(--pf-v6-c-finder__preview--PaddingInlineStart);
     padding-inline-end: var(--pf-v6-c-finder__preview--PaddingInlineEnd);
+}
+
+/* ===================================================================
+   Responsive container queries
+   =================================================================== */
+
+@container finder (max-width: 40rem) {
+    .pf-v6-c-finder {
+        --pf-v6-c-finder-MaxColumns: 1;
+    }
+}
+
+@container finder (min-width: 40rem) and (max-width: 60rem) {
+    .pf-v6-c-finder {
+        --pf-v6-c-finder-MaxColumns: 2;
+    }
+}
+
+@container finder (min-width: 60rem) and (max-width: 80rem) {
+    .pf-v6-c-finder {
+        --pf-v6-c-finder-MaxColumns: 3;
+    }
 }
