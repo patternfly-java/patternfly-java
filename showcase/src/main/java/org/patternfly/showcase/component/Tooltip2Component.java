@@ -109,7 +109,7 @@ public class Tooltip2Component extends SnippetPage {
                                     .add(button.css("pfj-tooltip-button").primary()
                                             .id("tooltip2-auto-button"))
                                     .add(tooltip2(By.id("tooltip2-auto-button"), LoremIpsum.words())
-                                            .placement(top)))
+                                            .placement(auto)))
                             .element();
                     // @code-end:tooltip2-auto
                 }));

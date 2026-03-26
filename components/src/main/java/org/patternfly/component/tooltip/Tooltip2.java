@@ -33,6 +33,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Placement;
+import elemental2.dom.DOMRect;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -42,6 +43,7 @@ import elemental2.dom.MutationRecord;
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.setTimeout;
+import static elemental2.dom.DomGlobal.window;
 import static org.gwtproject.event.shared.HandlerRegistrations.compose;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.bind;
@@ -55,6 +57,10 @@ import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.popper.Placement.auto;
+import static org.patternfly.popper.Placement.bottom;
+import static org.patternfly.popper.Placement.left;
+import static org.patternfly.popper.Placement.right;
 import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.component;
@@ -301,7 +307,15 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
 
     public void show(Event event) {
         if (!visible) {
-            element().showPopover();
+            if (placement == auto && trigger != null) {
+                // Show invisibly to get measurable dimensions, calculate placement, then reveal
+                element().style.setProperty("visibility", "hidden");
+                element().showPopover();
+                applyPlacement(bestPlacement());
+                element().style.removeProperty("visibility");
+            } else {
+                element().showPopover();
+            }
             visible = true;
             if (aria != none && trigger != null) {
                 trigger.setAttribute(aria.attribute, id);
@@ -346,15 +360,55 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     }
 
     private void applyPlacement() {
-        // remove old placement modifier
+        if (placement == auto) {
+            applyPlacement(top); // default for auto, recalculated on show()
+        } else {
+            applyPlacement(placement);
+        }
+    }
+
+    private void applyPlacement(Placement p) {
         for (String mod : Placement.modifiers) {
             classList().remove(mod);
         }
-
-        // apply placement modifier CSS class
-        // controls both arrow direction (PF CSS) and position-area (core.css)
-        if (placement.modifier != null && !placement.modifier.isEmpty()) {
-            classList().add(placement.modifier);
+        if (p.modifier != null && !p.modifier.isEmpty()) {
+            classList().add(p.modifier);
         }
+    }
+
+    private Placement bestPlacement() {
+        DOMRect triggerRect = trigger.getBoundingClientRect();
+        DOMRect tooltipRect = element().getBoundingClientRect();
+        double above = triggerRect.top;
+        double below = window.innerHeight - triggerRect.bottom;
+        double toLeft = triggerRect.left;
+        double toRight = window.innerWidth - triggerRect.right;
+
+        // Check which directions have enough space for the tooltip
+        boolean topFits = above >= tooltipRect.height + distance;
+        boolean bottomFits = below >= tooltipRect.height + distance;
+        boolean leftFits = toLeft >= tooltipRect.width / 3 + distance;
+        boolean rightFits = toRight >= tooltipRect.width / 3 + distance;
+
+        // Prefer top, but only if the trigger is not near a horizontal edge
+        if (topFits && leftFits && rightFits) {
+            return top;
+        }
+        // Prefer horizontal when the trigger is near a horizontal edge
+        if (rightFits && !leftFits) {
+            return right;
+        }
+        if (leftFits && !rightFits) {
+            return left;
+        }
+        // Top still wins over bottom when both horizontal directions fit
+        if (topFits) {
+            return top;
+        }
+        if (bottomFits) {
+            return bottom;
+        }
+        // Last resort: pick the side with the most space
+        return toRight >= toLeft ? right : left;
     }
 }
