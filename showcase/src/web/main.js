@@ -27,3 +27,67 @@ import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
 
 window["hljs"] = hljs; // 'export' hljs for J2CL
+
+// Unless https://github.com/parcel-bundler/lightningcss/issues/1176 is fixed,
+// we have to inject the anchored container queries manually 😩
+const HEAD = document.querySelector('head')
+
+const insertStyles = styles => {
+    const STYLE = document.createElement('style')
+    STYLE.setAttribute('type', 'text/css')
+    STYLE.innerHTML = styles
+    HEAD.appendChild(STYLE)
+}
+
+// language=css
+const STYLES_TO_INSERT = `
+    /* Was top, flipped to bottom */
+    @container anchored(fallback: flip-block flip-inline) {
+        .pf-v6-c-tooltip[popover].pf-m-top .pf-v6-c-tooltip__arrow {
+            --pf-v6-c-tooltip__arrow--InsetBlockEnd: auto;
+            --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-bottom--InsetBlockStart, 0);
+            --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-bottom--InsetInlineStart, 50%);
+            --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-bottom--TranslateX);
+            --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-bottom--TranslateY);
+            --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-bottom--Rotate);
+        }
+    }
+
+    /* Was bottom, flipped to top */
+    @container anchored(fallback: flip-block flip-inline) {
+        .pf-v6-c-tooltip[popover].pf-m-bottom .pf-v6-c-tooltip__arrow {
+            --pf-v6-c-tooltip__arrow--InsetBlockStart: auto;
+            --pf-v6-c-tooltip__arrow--InsetBlockEnd: var(--pf-v6-c-tooltip--m-top--InsetBlockEnd, 0);
+            --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-top--InsetInlineStart, 50%);
+            --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-top--TranslateX);
+            --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-top--TranslateY);
+            --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-top--Rotate);
+        }
+    }
+
+    /* Was left, flipped to right */
+    @container anchored(fallback: flip-block flip-inline) {
+        .pf-v6-c-tooltip[popover].pf-m-left .pf-v6-c-tooltip__arrow {
+            --pf-v6-c-tooltip__arrow--InsetInlineEnd: auto;
+            --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-right--InsetBlockStart, 50%);
+            --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-right--InsetInlineStart, 0);
+            --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-right--TranslateX);
+            --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-right--TranslateY);
+            --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-right--Rotate);
+        }
+    }
+
+    /* Was right, flipped to left */
+    @container anchored(fallback: flip-block flip-inline) {
+        .pf-v6-c-tooltip[popover].pf-m-right .pf-v6-c-tooltip__arrow {
+            --pf-v6-c-tooltip__arrow--InsetInlineStart: auto;
+            --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-left--InsetBlockStart, 50%);
+            --pf-v6-c-tooltip__arrow--InsetInlineEnd: var(--pf-v6-c-tooltip--m-left--InsetInlineEnd, 0);
+            --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-left--TranslateX);
+            --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-left--TranslateY);
+            --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-left--Rotate);
+        }
+    }
+`
+
+insertStyles(STYLES_TO_INSERT);

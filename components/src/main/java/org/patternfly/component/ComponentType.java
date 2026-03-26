@@ -161,6 +161,8 @@ public enum ComponentType {
 
     Tooltip("tt", "PF6/Component/Tooltip"),
 
+    Tooltip2("tt2", "PF6/Component/Tooltip2"),
+
     TreeView("tv", "PF6/Component/TreeView"),
 
     Truncate("tr", "PF6/Component/Truncate"),
