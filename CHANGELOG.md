@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.6.16] - 2026-03-26
+
 ### Added
 
 - Add native popover and tooltip components based on the [popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning).
@@ -857,7 +859,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.16...HEAD
+[0.6.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...v0.6.16
 [0.6.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...v0.6.15
 [0.6.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.13...v0.6.14
 [0.6.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.12...v0.6.13
