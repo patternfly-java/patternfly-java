@@ -77,49 +77,49 @@ import static org.patternfly.style.Classes.tooltip;
  * This implementation uses the Popover API and CSS anchor positioning instead of Popper.js. The tooltip uses the browser's
  * top-layer rendering for correct stacking, eliminating z-index issues.
  */
-public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
+public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> implements
         Attachable,
-        Closeable<HTMLDivElement, Tooltip2>,
-        ElementContainerDelegate<HTMLDivElement, Tooltip2>,
-        ElementTextDelegate<HTMLDivElement, Tooltip2> {
+        Closeable<HTMLDivElement, NativeTooltip>,
+        ElementContainerDelegate<HTMLDivElement, NativeTooltip>,
+        ElementTextDelegate<HTMLDivElement, NativeTooltip> {
 
     // ------------------------------------------------------ factory
 
-    public static Tooltip2 tooltip2() {
-        return new Tooltip2(null, null);
+    public static NativeTooltip nativeTooltip() {
+        return new NativeTooltip(null, null);
     }
 
-    public static Tooltip2 tooltip2(String text) {
-        return new Tooltip2(null, text);
+    public static NativeTooltip nativeTooltip(String text) {
+        return new NativeTooltip(null, text);
     }
 
-    public static Tooltip2 tooltip2(By trigger) {
-        return new Tooltip2(() -> Elements.querySelector(document.body, trigger), null);
+    public static NativeTooltip nativeTooltip(By trigger) {
+        return new NativeTooltip(() -> Elements.querySelector(document.body, trigger), null);
     }
 
-    public static Tooltip2 tooltip2(By trigger, String text) {
-        return new Tooltip2(() -> Elements.querySelector(document.body, trigger), text);
+    public static NativeTooltip nativeTooltip(By trigger, String text) {
+        return new NativeTooltip(() -> Elements.querySelector(document.body, trigger), text);
     }
 
-    public static Tooltip2 tooltip2(HTMLElement trigger) {
-        return new Tooltip2(() -> trigger, null);
+    public static NativeTooltip nativeTooltip(HTMLElement trigger) {
+        return new NativeTooltip(() -> trigger, null);
     }
 
-    public static Tooltip2 tooltip2(HTMLElement trigger, String text) {
-        return new Tooltip2(() -> trigger, text);
+    public static NativeTooltip nativeTooltip(HTMLElement trigger, String text) {
+        return new NativeTooltip(() -> trigger, text);
     }
 
-    public static Tooltip2 tooltip2(Supplier<HTMLElement> trigger) {
-        return new Tooltip2(trigger, null);
+    public static NativeTooltip nativeTooltip(Supplier<HTMLElement> trigger) {
+        return new NativeTooltip(trigger, null);
     }
 
-    public static Tooltip2 tooltip2(Supplier<HTMLElement> trigger, String text) {
-        return new Tooltip2(trigger, text);
+    public static NativeTooltip nativeTooltip(Supplier<HTMLElement> trigger, String text) {
+        return new NativeTooltip(trigger, text);
     }
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(Tooltip2.class.getName());
+    private static final Logger logger = Logger.getLogger(NativeTooltip.class.getName());
 
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
@@ -127,7 +127,7 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
 
     private final String id;
     private final HTMLElement contentElement;
-    private final List<CloseHandler<Tooltip2>> closeHandler;
+    private final List<CloseHandler<NativeTooltip>> closeHandler;
     private Supplier<HTMLElement> triggerSupplier;
     private HTMLElement trigger;
     private boolean visible;
@@ -142,8 +142,8 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     private HandlerRegistration anchorHandlers;
     private HandlerRegistration scrollHandler;
 
-    Tooltip2(Supplier<HTMLElement> trigger, String text) {
-        super(ComponentType.Tooltip2, div().css(component(tooltip))
+    NativeTooltip(Supplier<HTMLElement> trigger, String text) {
+        super(ComponentType.NativeTooltip, div().css(component(tooltip))
                 .attr(role, Roles.tooltip)
                 .aria(live, "polite")
                 .attr("popover", "manual")
@@ -243,59 +243,59 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
 
     // ------------------------------------------------------ builder
 
-    public Tooltip2 entryDelay(int delay) {
+    public NativeTooltip entryDelay(int delay) {
         this.entryDelay = delay;
         return this;
     }
 
-    public Tooltip2 exitDelay(int delay) {
+    public NativeTooltip exitDelay(int delay) {
         this.exitDelay = delay;
         return this;
     }
 
-    public Tooltip2 distance(int distance) {
+    public NativeTooltip distance(int distance) {
         this.distance = distance;
         return this;
     }
 
-    public Tooltip2 leftAligned() {
+    public NativeTooltip leftAligned() {
         contentElement.classList.add(modifier(textAlignLeft));
         return this;
     }
 
-    public Tooltip2 placement(Placement placement) {
+    public NativeTooltip placement(Placement placement) {
         this.placement = placement;
         return this;
     }
 
-    public Tooltip2 trigger(String trigger) {
+    public NativeTooltip trigger(String trigger) {
         this.triggerSupplier = () -> Elements.querySelector(document.body, By.selector(trigger));
         return this;
     }
 
-    public Tooltip2 trigger(By trigger) {
+    public NativeTooltip trigger(By trigger) {
         this.triggerSupplier = () -> Elements.querySelector(document.body, trigger);
         return this;
     }
 
-    public Tooltip2 trigger(HTMLElement trigger) {
+    public NativeTooltip trigger(HTMLElement trigger) {
         this.triggerSupplier = () -> trigger;
         return this;
     }
 
-    public Tooltip2 trigger(Supplier<HTMLElement> trigger) {
+    public NativeTooltip trigger(Supplier<HTMLElement> trigger) {
         this.triggerSupplier = trigger;
         return this;
     }
 
     @Override
-    public Tooltip2 that() {
+    public NativeTooltip that() {
         return this;
     }
 
     // ------------------------------------------------------ aria
 
-    public Tooltip2 aria(TriggerAria aria) {
+    public NativeTooltip aria(TriggerAria aria) {
         this.aria = aria;
         return this;
     }
@@ -303,7 +303,7 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Tooltip2 onClose(CloseHandler<Tooltip2> closeHandler) {
+    public NativeTooltip onClose(CloseHandler<NativeTooltip> closeHandler) {
         if (closeHandler != null) {
             this.closeHandler.add(closeHandler);
         }

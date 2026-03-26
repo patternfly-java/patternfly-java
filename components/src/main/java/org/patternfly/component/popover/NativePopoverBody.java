@@ -26,30 +26,30 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.popover;
 
-public class Popover2Body extends Popover2SubComponent<HTMLDivElement, Popover2Body> implements
-        ElementTextMethods<HTMLDivElement, Popover2Body> {
+public class NativePopoverBody extends NativePopoverSubComponent<HTMLDivElement, NativePopoverBody> implements
+        ElementTextMethods<HTMLDivElement, NativePopoverBody> {
 
     // ------------------------------------------------------ factory
 
-    public static Popover2Body popover2Body() {
-        return new Popover2Body();
+    public static NativePopoverBody popoverBody() {
+        return new NativePopoverBody();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "p2b";
+    public static final String SUB_COMPONENT_NAME = "npb";
 
     final String id;
 
-    Popover2Body() {
+    NativePopoverBody() {
         super(SUB_COMPONENT_NAME, div().css(component(popover, body)).element());
-        id(id = Id.unique(ComponentType.Popover2.id, "body"));
+        id(id = Id.unique(ComponentType.NativePopover.id, "body"));
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public Popover2Body that() {
+    public NativePopoverBody that() {
         return this;
     }
 }

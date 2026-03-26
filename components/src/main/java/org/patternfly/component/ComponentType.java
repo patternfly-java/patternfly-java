@@ -99,6 +99,10 @@ public enum ComponentType {
 
     MultiSelect("ms", "PF6/Component/MultiSelect"),
 
+    NativePopover("npvr", "PF6/Component/NativePopover"),
+
+    NativeTooltip("ntt", "PF6/Component/NativeTooltip"),
+
     Navigation("nav", "PF6/Component/Nav"),
 
     NotificationBadge("nb", "PF6/Component/NotificationBadge"),
@@ -114,8 +118,6 @@ public enum ComponentType {
     Panel("pnl", "PF6/Component/Panel"),
 
     Popover("pvr", "PF6/Component/Popover"),
-
-    Popover2("pvr2", "PF6/Component/Popover2"),
 
     Progress("prg", "PF6/Component/Progress"),
 
@@ -162,8 +164,6 @@ public enum ComponentType {
     Toolbar("tb", "PF6/Component/Toolbar"),
 
     Tooltip("tt", "PF6/Component/Tooltip"),
-
-    Tooltip2("tt2", "PF6/Component/Tooltip2"),
 
     TreeView("tv", "PF6/Component/TreeView"),
 

@@ -21,6 +21,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.IsElement;
 import org.patternfly.component.content.Content;
+import org.patternfly.component.tooltip.NativeTooltip;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
@@ -36,7 +37,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.h3;
 import static org.patternfly.component.content.ContentType.p;
-import static org.patternfly.component.tooltip.Tooltip2.tooltip2;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.extension.codeeditor.CodeEditor.codeEditor;
@@ -114,7 +114,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                                                             By.classname(component(Classes.codeEditor, main)));
                                                             setVisible(mainElement, !isVisible(mainElement));
                                                         }))
-                                                .add(tooltip2(By.id(codeId), "Toggle Java code"))
+                                                .add(NativeTooltip.nativeTooltip(By.id(codeId), "Toggle Java code"))
                                                 .addAction(
                                                         codeEditorCopyToClipboardAction("Copy code to clipboard", "Code copied")
                                                                 .css("ws-code-editor-control"))
@@ -122,7 +122,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                                         .id(undoId)
                                                         .css("ws-code-editor-control")
                                                         .onClick((event, codeEditorAction) -> undo()))
-                                                .add(tooltip2(By.id(undoId), "Undo"))))
+                                                .add(NativeTooltip.nativeTooltip(By.id(undoId), "Undo"))))
                                 .code(code)))
                 .element();
 

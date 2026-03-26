@@ -35,6 +35,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Placement;
 import org.patternfly.style.Modifiers.NoPadding;
+
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -48,7 +49,7 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.popover.Popover2Header.popover2Header;
+import static org.patternfly.component.popover.NativePopoverHeader.popoverHeader;
 import static org.patternfly.core.Aria.describedBy;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
@@ -78,39 +79,39 @@ import static org.patternfly.style.Classes.widthAuto;
  * This implementation uses the Popover API and CSS anchor positioning instead of Popper.js. The popover uses the browser's
  * top-layer rendering for correct stacking, eliminating z-index issues.
  */
-public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
+public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> implements
         Attachable,
-        Closeable<HTMLDivElement, Popover2>,
-        ComponentIcon<HTMLDivElement, Popover2>,
-        NoPadding<HTMLDivElement, Popover2> {
+        Closeable<HTMLDivElement, NativePopover>,
+        ComponentIcon<HTMLDivElement, NativePopover>,
+        NoPadding<HTMLDivElement, NativePopover> {
 
     // ------------------------------------------------------ factory
 
-    public static Popover2 popover2() {
-        return new Popover2(null);
+    public static NativePopover nativePopover() {
+        return new NativePopover(null);
     }
 
-    public static Popover2 popover2(By trigger) {
-        return new Popover2(() -> Elements.querySelector(document.body, trigger));
+    public static NativePopover nativePopover(By trigger) {
+        return new NativePopover(() -> Elements.querySelector(document.body, trigger));
     }
 
-    public static Popover2 popover2(HTMLElement trigger) {
-        return new Popover2(() -> trigger);
+    public static NativePopover nativePopover(HTMLElement trigger) {
+        return new NativePopover(() -> trigger);
     }
 
-    public static Popover2 popover2(Supplier<HTMLElement> trigger) {
-        return new Popover2(trigger);
+    public static NativePopover nativePopover(Supplier<HTMLElement> trigger) {
+        return new NativePopover(trigger);
     }
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(Popover2.class.getName());
+    private static final Logger logger = Logger.getLogger(NativePopover.class.getName());
 
     public static final int DISTANCE = 20;
 
     private final String id;
     private final HTMLElement contentElement;
-    private final List<CloseHandler<Popover2>> closeHandler;
+    private final List<CloseHandler<NativePopover>> closeHandler;
     private Supplier<HTMLElement> triggerSupplier;
     private HTMLElement trigger;
     private boolean visible;
@@ -119,12 +120,12 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
     // private Placement placement;
     private Severity severity;
     private Button closeButton;
-    private Popover2Header header;
+    private NativePopoverHeader header;
     private HandlerRegistration triggerHandlers;
     private HandlerRegistration outsideClickHandler;
 
-    Popover2(Supplier<HTMLElement> trigger) {
-        super(ComponentType.Popover2, div().css(component(popover), top.modifier)
+    NativePopover(Supplier<HTMLElement> trigger) {
+        super(ComponentType.NativePopover, div().css(component(popover), top.modifier)
                 .attr(role, dialog)
                 .aria(modal, true)
                 .attr("popover", "manual")
@@ -196,66 +197,66 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
 
     // ------------------------------------------------------ add
 
-    public Popover2 addHeader(String header) {
+    public NativePopover addHeader(String header) {
         if (this.header != null) {
             this.header.text(header);
             return this;
         } else {
-            return add(popover2Header().text(header));
+            return add(popoverHeader().text(header));
         }
     }
 
-    public Popover2 addHeader(Popover2Header header) {
+    public NativePopover addHeader(NativePopoverHeader header) {
         return add(header);
     }
 
     // override to append to the right container!
-    public Popover2 add(Popover2Header header) {
+    public NativePopover add(NativePopoverHeader header) {
         this.header = header;
         contentElement.appendChild(header.element());
         aria(labelledBy, header.headerId);
         return this;
     }
 
-    public Popover2 addBody(String body) {
-        return add(Popover2Body.popover2Body().text(body));
+    public NativePopover addBody(String body) {
+        return add(NativePopoverBody.popoverBody().text(body));
     }
 
-    public Popover2 addBody(Popover2Body body) {
+    public NativePopover addBody(NativePopoverBody body) {
         return add(body);
     }
 
     // override to append to the right container!
-    public Popover2 add(Popover2Body body) {
+    public NativePopover add(NativePopoverBody body) {
         contentElement.appendChild(body.element());
         return this;
     }
 
-    public Popover2 addFooter(String footer) {
-        return add(Popover2Footer.popover2Footer().text(footer));
+    public NativePopover addFooter(String footer) {
+        return add(NativePopoverFooter.popoverFooter().text(footer));
     }
 
-    public Popover2 addFooter(Popover2Footer footer) {
+    public NativePopover addFooter(NativePopoverFooter footer) {
         return add(footer);
     }
 
     // override to append to the right container!
-    public Popover2 add(Popover2Footer footer) {
+    public NativePopover add(NativePopoverFooter footer) {
         contentElement.appendChild(footer.element());
         return this;
     }
 
     // ------------------------------------------------------ builder
 
-    public Popover2 autoWidth() {
+    public NativePopover autoWidth() {
         return css(modifier(widthAuto));
     }
 
-    public Popover2 closable() {
+    public NativePopover closable() {
         return closable(null);
     }
 
-    public Popover2 closable(CloseHandler<Popover2> closeHandler) {
+    public NativePopover closable(CloseHandler<NativePopover> closeHandler) {
         if (closeButton == null) {
             insertFirst(contentElement, div().css(component(popover, close))
                     .add(closeButton = button()
@@ -268,32 +269,32 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
         return onClose(closeHandler);
     }
 
-    public Popover2 distance(int distance) {
+    public NativePopover distance(int distance) {
         this.distance = distance;
         return this;
     }
 
     @Override
-    public Popover2 icon(Element icon) {
+    public NativePopover icon(Element icon) {
         failSafeHeader().removeIcon();
         failSafeHeader().icon(icon);
         return this;
     }
 
     @Override
-    public Popover2 removeIcon() {
+    public NativePopover removeIcon() {
         if (header != null) {
             header.removeIcon();
         }
         return this;
     }
 
-    public Popover2 noClose() {
+    public NativePopover noClose() {
         this.showClose = false;
         return this;
     }
 
-    public Popover2 placement(Placement placement) {
+    public NativePopover placement(Placement placement) {
         if (verifyEnum(element(), "placement", placement, top, right, bottom, left)) {
             for (String mod : Placement.modifiers) {
                 classList().remove(mod);
@@ -303,11 +304,11 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
         return this;
     }
 
-    public Popover2 status(Severity severity) {
+    public NativePopover status(Severity severity) {
         return status(severity, severity.name() + " popover");
     }
 
-    public Popover2 status(Severity severity, String screenReaderText) {
+    public NativePopover status(Severity severity, String screenReaderText) {
         if (this.severity != null) {
             element().classList.remove(this.severity.status.modifier());
         }
@@ -317,28 +318,28 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
         return this;
     }
 
-    public Popover2 trigger(String trigger) {
+    public NativePopover trigger(String trigger) {
         this.triggerSupplier = () -> Elements.querySelector(document.body, By.selector(trigger));
         return this;
     }
 
-    public Popover2 trigger(By trigger) {
+    public NativePopover trigger(By trigger) {
         this.triggerSupplier = () -> Elements.querySelector(document.body, trigger);
         return this;
     }
 
-    public Popover2 trigger(HTMLElement trigger) {
+    public NativePopover trigger(HTMLElement trigger) {
         this.triggerSupplier = () -> trigger;
         return this;
     }
 
-    public Popover2 trigger(Supplier<HTMLElement> trigger) {
+    public NativePopover trigger(Supplier<HTMLElement> trigger) {
         this.triggerSupplier = trigger;
         return this;
     }
 
     @Override
-    public Popover2 that() {
+    public NativePopover that() {
         return this;
     }
 
@@ -347,14 +348,14 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
     /**
      * Accessible label for the popover, required when header is not present.
      */
-    public Popover2 ariaLabel(String label) {
+    public NativePopover ariaLabel(String label) {
         return aria(Aria.label, label);
     }
 
     /**
      * Accessible label for the close button.
      */
-    public Popover2 ariaCloseLabel(String label) {
+    public NativePopover ariaCloseLabel(String label) {
         if (closeButton != null) {
             closeButton.aria(Aria.label, label);
         }
@@ -364,7 +365,7 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
     // ------------------------------------------------------ events
 
     @Override
-    public Popover2 onClose(CloseHandler<Popover2> closeHandler) {
+    public NativePopover onClose(CloseHandler<NativePopover> closeHandler) {
         if (closeHandler != null) {
             this.closeHandler.add(closeHandler);
         }
@@ -415,9 +416,9 @@ public class Popover2 extends BaseComponent<HTMLDivElement, Popover2> implements
         }
     }
 
-    private Popover2Header failSafeHeader() {
+    private NativePopoverHeader failSafeHeader() {
         if (header == null) {
-            add(popover2Header());
+            add(popoverHeader());
         }
         return header;
     }

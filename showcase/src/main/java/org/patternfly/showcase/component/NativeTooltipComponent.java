@@ -18,7 +18,7 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.By;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.tooltip.Tooltip2;
+import org.patternfly.component.tooltip.NativeTooltip;
 import org.patternfly.component.tooltip.TriggerAria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -29,7 +29,6 @@ import elemental2.dom.ScrollIntoViewOptions;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.onAttach;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.tooltip.Tooltip2.tooltip2;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottom;
 import static org.patternfly.popper.Placement.left;
@@ -39,65 +38,65 @@ import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 
-@Route(value = "/components/tooltip2", title = "Tooltip2")
-public class Tooltip2Component extends SnippetPage {
+@Route(value = "/components/native-tooltip", title = "Native Tooltip")
+public class NativeTooltipComponent extends SnippetPage {
 
-    public Tooltip2Component() {
-        super(components.get("tooltip2"));
+    public NativeTooltipComponent() {
+        super(components.get("native-tooltip"));
 
         startExamples();
-        addSnippet(new Snippet("tooltip2-basic", "Basic",
-                code("tooltip2-basic"), () ->
-                // @code-start:tooltip2-basic
+        addSnippet(new Snippet("nt-basic", "Basic",
+                code("nt-basic"), () ->
+                // @code-start:nt-basic
                 div().style("margin", "100px")
                         .add(button("I have a tooltip").primary()
-                                .id("tooltip2-basic-button"))
-                        .add(tooltip2(By.id("tooltip2-basic-button"), LoremIpsum.words()))
+                                .id("nt-basic-button"))
+                        .add(NativeTooltip.nativeTooltip(By.id("nt-basic-button"), LoremIpsum.words()))
                         .element()
-                // @code-end:tooltip2-basic
+                // @code-end:nt-basic
         ));
 
-        addSnippet(new Snippet("tooltip2-dynamic", "Dynamic content",
-                code("tooltip2-dynamic"),
+        addSnippet(new Snippet("nt-dynamic", "Dynamic content",
+                code("nt-dynamic"),
                 () -> {
-                    // @code-start:tooltip2-dynamic
-                    Tooltip2 tooltip = tooltip2(By.id("tooltip2-dynamic-button"), "Copy to clipboard")
+                    // @code-start:nt-dynamic
+                    NativeTooltip tooltip = NativeTooltip.nativeTooltip(By.id("nt-dynamic-button"), "Copy to clipboard")
                             .onClose((e, t) -> t.text("Copy to clipboard"));
                     return div().style("margin", "100px")
                             .add(button("Copy to clipboard").primary()
-                                    .id("tooltip2-dynamic-button")
+                                    .id("nt-dynamic-button")
                                     .onClick((e, b) -> tooltip.text("Successfully copied to clipboard!")))
                             .add(tooltip)
                             .element();
-                    // @code-end:tooltip2-dynamic
+                    // @code-end:nt-dynamic
                 }));
 
-        addSnippet(new Snippet("tooltip2-placements", "Placements",
-                code("tooltip2-placements"),
+        addSnippet(new Snippet("nt-placements", "Placements",
+                code("nt-placements"),
                 () ->
-                        // @code-start:tooltip2-placements
+                        // @code-start:nt-placements
                         div().style("display: flex; gap: 16px")
                                 .add(button("Bottom").secondary()
-                                        .id("tooltip2-bottom-button"))
-                                .add(tooltip2(By.id("tooltip2-bottom-button"), "Bottom tooltip")
+                                        .id("nt-placements-bottom-button"))
+                                .add(NativeTooltip.nativeTooltip(By.id("nt-placements-bottom-button"), "Bottom tooltip")
                                         .placement(bottom))
                                 .add(button("Left").secondary()
-                                        .id("tooltip2-left-button"))
-                                .add(tooltip2(By.id("tooltip2-left-button"), "Left tooltip")
+                                        .id("nt-placements-left-button"))
+                                .add(NativeTooltip.nativeTooltip(By.id("nt-placements-left-button"), "Left tooltip")
                                         .placement(left))
                                 .add(button("Right").secondary()
-                                        .id("tooltip2-right-button"))
-                                .add(tooltip2(By.id("tooltip2-right-button"), "Right tooltip")
+                                        .id("nt-placements-right-button"))
+                                .add(NativeTooltip.nativeTooltip(By.id("nt-placements-right-button"), "Right tooltip")
                                         .placement(right))
                                 .element()
-                // @code-end:tooltip2-placements
+                // @code-end:nt-placements
         ));
 
-        addSnippet(new Snippet("tooltip2-auto", "Auto placement",
+        addSnippet(new Snippet("nt-auto", "Auto placement",
                 "You might need to resize the browser window to a minimum to see the auto placement in action.",
-                code("tooltip2-auto"),
+                code("nt-auto"),
                 () -> {
-                    // @code-start:tooltip2-auto
+                    // @code-start:nt-auto
                     Button button = button("Tooltip");
                     onAttach(button, mr -> {
                         ScrollIntoViewOptions options = ScrollIntoViewOptions.create();
@@ -108,15 +107,15 @@ public class Tooltip2Component extends SnippetPage {
                     return div().style("width", "720px")
                             .add(div().css("pfj-tooltip-box")
                                     .add(button.css("pfj-tooltip-button").primary()
-                                            .id("tooltip2-auto-button"))
-                                    .add(tooltip2(By.id("tooltip2-auto-button"), LoremIpsum.words())
+                                            .id("nt-auto-button"))
+                                    .add(NativeTooltip.nativeTooltip(By.id("nt-auto-button"), LoremIpsum.words())
                                             .placement(auto)))
                             .element();
-                    // @code-end:tooltip2-auto
+                    // @code-end:nt-auto
                 }));
 
-        startApiDocs(Tooltip2.class);
-        addApiDoc(Tooltip2.class, component);
+        startApiDocs(NativeTooltip.class);
+        addApiDoc(NativeTooltip.class, component);
         addApiDoc(TriggerAria.class, other);
     }
 }

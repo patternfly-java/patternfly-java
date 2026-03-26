@@ -37,27 +37,27 @@ import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
-public class Popover2Header extends Popover2SubComponent<HTMLElement, Popover2Header> implements
-        ElementContainerDelegate<HTMLElement, Popover2Header>,
-        ElementTextDelegate<HTMLElement, Popover2Header> {
+public class NativePopoverHeader extends NativePopoverSubComponent<HTMLElement, NativePopoverHeader> implements
+        ElementContainerDelegate<HTMLElement, NativePopoverHeader>,
+        ElementTextDelegate<HTMLElement, NativePopoverHeader> {
 
     // ------------------------------------------------------ factory
 
-    public static Popover2Header popover2Header() {
-        return new Popover2Header();
+    public static NativePopoverHeader popoverHeader() {
+        return new NativePopoverHeader();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "p2h";
+    public static final String SUB_COMPONENT_NAME = "nph";
 
     final String headerId;
     final HTMLHeadingElement headerElement;
     private HTMLElement iconContainer;
 
-    Popover2Header() {
+    NativePopoverHeader() {
         super(SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
-        headerId = Id.unique(ComponentType.Popover2.id, "header");
+        headerId = Id.unique(ComponentType.NativePopover.id, "header");
         element().appendChild(div().css(component(popover, title))
                 .id(headerId)
                 .add(headerElement = h(6).css(component(popover, title, text))
@@ -78,7 +78,7 @@ public class Popover2Header extends Popover2SubComponent<HTMLElement, Popover2He
     // ------------------------------------------------------ builder
 
     @Override
-    public Popover2Header that() {
+    public NativePopoverHeader that() {
         return this;
     }
 
