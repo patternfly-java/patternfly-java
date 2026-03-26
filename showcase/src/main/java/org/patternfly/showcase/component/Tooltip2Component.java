@@ -23,6 +23,7 @@ import org.patternfly.component.tooltip.TriggerAria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+
 import elemental2.dom.ScrollIntoViewOptions;
 
 import static org.jboss.elemento.Elements.div;
@@ -92,8 +93,8 @@ public class Tooltip2Component extends SnippetPage {
                 // @code-end:tooltip2-placements
         ));
 
-        addSnippet(new Snippet("tooltip2-auto", "Placement auto",
-                "Resize the browser window to a minimum to see the auto placement in action.",
+        addSnippet(new Snippet("tooltip2-auto", "Auto placement",
+                "You might need to resize the browser window to a minimum to see the auto placement in action.",
                 code("tooltip2-auto"),
                 () -> {
                     // @code-start:tooltip2-auto

@@ -61,24 +61,85 @@
     padding: 0;
     background: none;
     overflow: visible;
+    inset: auto;
     width: max-content;
     max-width: var(--pf-v6-c-popover--MaxWidth);
     position: fixed;
+    container-type: anchored;
 }
 
 /* CSS anchor positioning for popovers using the popover API */
 .pf-v6-c-popover[popover].pf-m-top {
     position-area: block-start;
+    position-try-fallbacks: flip-block;
 }
 
 .pf-v6-c-popover[popover].pf-m-bottom {
     position-area: block-end;
+    position-try-fallbacks: flip-block;
 }
 
 .pf-v6-c-popover[popover].pf-m-left {
     position-area: inline-start;
+    position-try-fallbacks: flip-inline;
 }
 
 .pf-v6-c-popover[popover].pf-m-right {
     position-area: inline-end;
+    position-try-fallbacks: flip-inline;
 }
+
+/*
+Uncomment as soon as https://github.com/parcel-bundler/lightningcss/issues/1176 is fixed
+Then remove the hack in showcase/src/web/main.js
+*/
+
+/*
+!* Was top, flipped to bottom *!
+@container anchored(fallback: flip-block) {
+    .pf-v6-c-popover[popover].pf-m-top .pf-v6-c-popover__arrow {
+        --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-bottom--InsetBlockStart, 0);
+        --pf-v6-c-popover__arrow--InsetBlockEnd: auto;
+        --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-bottom--InsetInlineStart, 50%);
+        --pf-v6-c-popover__arrow--TranslateX: var(--pf-v6-c-popover__arrow--m-bottom--TranslateX);
+        --pf-v6-c-popover__arrow--TranslateY: var(--pf-v6-c-popover__arrow--m-bottom--TranslateY);
+        --pf-v6-c-popover__arrow--Rotate: var(--pf-v6-c-popover__arrow--m-bottom--Rotate);
+    }
+}
+
+!* Was bottom, flipped to top *!
+@container anchored(fallback: flip-block) {
+    .pf-v6-c-popover[popover].pf-m-bottom .pf-v6-c-popover__arrow {
+        --pf-v6-c-popover__arrow--InsetBlockStart: auto;
+        --pf-v6-c-popover__arrow--InsetBlockEnd: var(--pf-v6-c-popover--m-top--InsetBlockEnd, 0);
+        --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-top--InsetInlineStart, 50%);
+        --pf-v6-c-popover__arrow--TranslateX: var(--pf-v6-c-popover__arrow--m-top--TranslateX);
+        --pf-v6-c-popover__arrow--TranslateY: var(--pf-v6-c-popover__arrow--m-top--TranslateY);
+        --pf-v6-c-popover__arrow--Rotate: var(--pf-v6-c-popover__arrow--m-top--Rotate);
+    }
+}
+
+!* Was left, flipped to right *!
+@container anchored(fallback: flip-inline) {
+    .pf-v6-c-popover[popover].pf-m-left .pf-v6-c-popover__arrow {
+        --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-right--InsetBlockStart, 50%);
+        --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-right--InsetInlineStart, 0);
+        --pf-v6-c-popover__arrow--InsetInlineEnd: auto;
+        --pf-v6-c-popover__arrow--TranslateX: var(--pf-v6-c-popover__arrow--m-right--TranslateX);
+        --pf-v6-c-popover__arrow--TranslateY: var(--pf-v6-c-popover__arrow--m-right--TranslateY);
+        --pf-v6-c-popover__arrow--Rotate: var(--pf-v6-c-popover__arrow--m-right--Rotate);
+    }
+}
+
+!* Was right, flipped to left *!
+@container anchored(fallback: flip-inline) {
+    .pf-v6-c-popover[popover].pf-m-right .pf-v6-c-popover__arrow {
+        --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-left--InsetBlockStart, 50%);
+        --pf-v6-c-popover__arrow--InsetInlineStart: auto;
+        --pf-v6-c-popover__arrow--InsetInlineEnd: var(--pf-v6-c-popover--m-left--InsetInlineEnd, 0);
+        --pf-v6-c-popover__arrow--TranslateX: var(--pf-v6-c-popover__arrow--m-left--TranslateX);
+        --pf-v6-c-popover__arrow--TranslateY: var(--pf-v6-c-popover__arrow--m-left--TranslateY);
+        --pf-v6-c-popover__arrow--Rotate: var(--pf-v6-c-popover__arrow--m-left--Rotate);
+    }
+}
+*/

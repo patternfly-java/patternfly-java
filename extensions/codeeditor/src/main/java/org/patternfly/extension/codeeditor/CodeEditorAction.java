@@ -24,6 +24,7 @@ import org.patternfly.component.tooltip.Tooltip2;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
+
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 

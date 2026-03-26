@@ -33,6 +33,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Placement;
+
 import elemental2.dom.DOMRect;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
