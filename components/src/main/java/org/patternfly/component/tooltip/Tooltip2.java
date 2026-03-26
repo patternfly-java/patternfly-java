@@ -153,7 +153,7 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
         this.distance = DISTANCE;
         this.entryDelay = ENTRY_DELAY;
         this.exitDelay = EXIT_DELAY;
-        this.placement = top;
+        this.placement = auto;
         this.aria = describedBy;
         this.showTimeout = 0;
         this.hideTimeout = 0;
@@ -188,7 +188,9 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
                 trigger.style.setProperty("anchor-name", anchorName);
                 style("position-anchor", anchorName);
                 style("margin", distance + "px");
-                applyPlacement();
+
+                // top is the default for auto and recalculated on show()
+                applyPlacement(placement == auto ? top : placement);
 
                 // event listeners on trigger
                 triggerHandlers = compose(
@@ -306,10 +308,10 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     }
 
     public void show(Event event) {
-        if (!visible) {
-            if (placement == auto && trigger != null) {
+        if (!visible && trigger != null) {
+            if (placement == auto) {
                 // Show invisibly to get measurable dimensions, calculate placement, then reveal
-                element().style.setProperty("visibility", "hidden");
+                style("visibility", "hidden");
                 element().showPopover();
                 applyPlacement(bestPlacement());
                 element().style.removeProperty("visibility");
@@ -357,14 +359,6 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     private void cancelTimers(Event event) {
         clearTimeout(showTimeout);
         clearTimeout(hideTimeout);
-    }
-
-    private void applyPlacement() {
-        if (placement == auto) {
-            applyPlacement(top); // default for auto, recalculated on show()
-        } else {
-            applyPlacement(placement);
-        }
     }
 
     private void applyPlacement(Placement p) {
