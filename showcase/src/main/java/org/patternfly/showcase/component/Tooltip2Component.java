@@ -33,7 +33,6 @@ import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.bottom;
 import static org.patternfly.popper.Placement.left;
 import static org.patternfly.popper.Placement.right;
-import static org.patternfly.popper.Placement.top;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
@@ -75,25 +74,26 @@ public class Tooltip2Component extends SnippetPage {
         addSnippet(new Snippet("tooltip2-placements", "Placements",
                 code("tooltip2-placements"),
                 () ->
-                // @code-start:tooltip2-placements
-                div().style("display: flex; gap: 16px")
-                        .add(button("Bottom").secondary()
-                                .id("tooltip2-bottom-button"))
-                        .add(tooltip2(By.id("tooltip2-bottom-button"), "Bottom tooltip")
-                                .placement(bottom))
-                        .add(button("Left").secondary()
-                                .id("tooltip2-left-button"))
-                        .add(tooltip2(By.id("tooltip2-left-button"), "Left tooltip")
-                                .placement(left))
-                        .add(button("Right").secondary()
-                                .id("tooltip2-right-button"))
-                        .add(tooltip2(By.id("tooltip2-right-button"), "Right tooltip")
-                                .placement(right))
-                        .element()
+                        // @code-start:tooltip2-placements
+                        div().style("display: flex; gap: 16px")
+                                .add(button("Bottom").secondary()
+                                        .id("tooltip2-bottom-button"))
+                                .add(tooltip2(By.id("tooltip2-bottom-button"), "Bottom tooltip")
+                                        .placement(bottom))
+                                .add(button("Left").secondary()
+                                        .id("tooltip2-left-button"))
+                                .add(tooltip2(By.id("tooltip2-left-button"), "Left tooltip")
+                                        .placement(left))
+                                .add(button("Right").secondary()
+                                        .id("tooltip2-right-button"))
+                                .add(tooltip2(By.id("tooltip2-right-button"), "Right tooltip")
+                                        .placement(right))
+                                .element()
                 // @code-end:tooltip2-placements
         ));
 
         addSnippet(new Snippet("tooltip2-auto", "Placement auto",
+                "Resize the browser window to a minimum to see the auto placement in action.",
                 code("tooltip2-auto"),
                 () -> {
                     // @code-start:tooltip2-auto

@@ -20,18 +20,18 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.tooltip.Tooltip;
+import org.patternfly.component.tooltip.Tooltip2;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static elemental2.dom.DomGlobal.navigator;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.tooltip.Tooltip.tooltip;
+import static org.patternfly.component.tooltip.Tooltip2.tooltip2;
 import static org.patternfly.icon.IconSets.fas.copy;
 
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction>
@@ -61,16 +61,15 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
 
     public static CodeEditorAction codeEditorCopyToClipboardAction(String copyText, String copiedText) {
         String copyId = Id.unique(ComponentType.CodeEditor.id, "copy");
-        Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
-                .onClose((e, t) -> t.text(copyText)) // restore text
-                .appendToBody();
-        return new CodeEditorAction(button().icon(copy()).plain())
-                .id(copyId)
+        Tooltip2 copyTooltip = tooltip2(By.id(copyId), copyText)
+                .onClose((e, t) -> t.text(copyText)); // restore text
+        return new CodeEditorAction(button().id(copyId).icon(copy()).plain())
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {
                     copyTooltip.text(copiedText);
                     navigator.clipboard.writeText(codeBlock.code());
-                });
+                })
+                .add(copyTooltip);
     }
 
     // ------------------------------------------------------ instance
@@ -81,8 +80,9 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
     private ComponentHandler<CodeEditorAction> handler;
 
     CodeEditorAction(Button button) {
-        super(SUB_COMPONENT_NAME, button.element());
+        super(SUB_COMPONENT_NAME, div().element());
         this.button = button;
+        add(button);
     }
 
     // ------------------------------------------------------ builder
