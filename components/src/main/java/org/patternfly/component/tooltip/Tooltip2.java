@@ -51,6 +51,7 @@ import static org.jboss.elemento.EventType.focusin;
 import static org.jboss.elemento.EventType.focusout;
 import static org.jboss.elemento.EventType.mouseenter;
 import static org.jboss.elemento.EventType.mouseleave;
+import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.tooltip.TriggerAria.describedBy;
 import static org.patternfly.component.tooltip.TriggerAria.none;
 import static org.patternfly.core.Aria.live;
@@ -138,6 +139,7 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     private TriggerAria aria;
     private HandlerRegistration triggerHandlers;
     private HandlerRegistration anchorHandlers;
+    private HandlerRegistration scrollHandler;
 
     Tooltip2(Supplier<HTMLElement> trigger, String text) {
         super(ComponentType.Tooltip2, div().css(component(tooltip))
@@ -205,6 +207,9 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
                 anchorHandlers = compose(
                         bind(element(), mouseenter, this::cancelTimers),
                         bind(element(), mouseleave, this::scheduleHide));
+
+                // hide tooltip immediately on scroll to prevent jump artifacts
+                scrollHandler = bind(window, scroll.name, this::hideOnScroll);
             } else {
                 logger.error("Unable to find trigger element for tooltip %o", element());
             }
@@ -219,6 +224,9 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
         if (visible) {
             element().hidePopover();
             visible = false;
+        }
+        if (scrollHandler != null) {
+            scrollHandler.removeHandler();
         }
         if (anchorHandlers != null) {
             anchorHandlers.removeHandler();
@@ -350,6 +358,13 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
     private void scheduleHide(Event event) {
         cancelTimers(event);
         hideTimeout = setTimeout(e -> close(new Event(""), true), exitDelay);
+    }
+
+    private void hideOnScroll(Event event) {
+        cancelTimers(event);
+        if (visible) {
+            close(event, true);
+        }
     }
 
     private void cancelTimers(Event event) {
