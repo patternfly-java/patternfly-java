@@ -309,15 +309,11 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
 
     public void show(Event event) {
         if (!visible && trigger != null) {
-            if (placement == auto) {
-                // Show invisibly to get measurable dimensions, calculate placement, then reveal
-                style("visibility", "hidden");
-                element().showPopover();
-                applyPlacement(bestPlacement());
-                element().style.removeProperty("visibility");
-            } else {
-                element().showPopover();
-            }
+            // Show invisibly to get measurable dimensions, calculate placement, then reveal
+            style("visibility", "hidden");
+            element().showPopover();
+            applyPlacement(bestPlacement(placement));
+            element().style.removeProperty("visibility");
             visible = true;
             if (aria != none && trigger != null) {
                 trigger.setAttribute(aria.attribute, id);
@@ -370,7 +366,7 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
         }
     }
 
-    private Placement bestPlacement() {
+    private Placement bestPlacement(Placement preferred) {
         DOMRect triggerRect = trigger.getBoundingClientRect();
         DOMRect tooltipRect = element().getBoundingClientRect();
         double above = triggerRect.top;
@@ -384,25 +380,24 @@ public class Tooltip2 extends BaseComponent<HTMLDivElement, Tooltip2> implements
         boolean leftFits = toLeft >= tooltipRect.width / 3 + distance;
         boolean rightFits = toRight >= tooltipRect.width / 3 + distance;
 
-        // Prefer top, but only if the trigger is not near a horizontal edge
-        if (topFits && leftFits && rightFits) {
-            return top;
+        // Honor explicit preference if it fits
+        if (preferred != auto) {
+            if (preferred == top && topFits) {return top;}
+            if (preferred == bottom && bottomFits) {return bottom;}
+            if (preferred == left && leftFits) {return left;}
+            if (preferred == right && rightFits) {return right;}
         }
-        // Prefer horizontal when the trigger is near a horizontal edge
-        if (rightFits && !leftFits) {
-            return right;
-        }
-        if (leftFits && !rightFits) {
-            return left;
-        }
-        // Top still wins over bottom when both horizontal directions fit
-        if (topFits) {
-            return top;
-        }
-        if (bottomFits) {
-            return bottom;
-        }
-        // Last resort: pick the side with the most space
+
+        // Otherwise apply these rules:
+        // - prefer top, but only if the trigger is not near a horizontal edge
+        // - prefer horizontal when the trigger is near a horizontal edge
+        // - top wins over bottom when both horizontal directions fit
+        // - last resort: pick the side with the most space
+        if (topFits && leftFits && rightFits) {return top;}
+        if (rightFits && !leftFits) {return right;}
+        if (leftFits && !rightFits) {return left;}
+        if (topFits) {return top;}
+        if (bottomFits) {return bottom;}
         return toRight >= toLeft ? right : left;
     }
 }
