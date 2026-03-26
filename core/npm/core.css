@@ -51,3 +51,34 @@
 .pf-v6-c-tooltip[popover].pf-m-right {
     position-area: inline-end;
 }
+
+/* ===================================================================
+   Popover using the popover API
+   =================================================================== */
+/* Reset [popover] UA styles for popovers using the popover API */
+.pf-v6-c-popover[popover] {
+    border: none;
+    padding: 0;
+    background: none;
+    overflow: visible;
+    width: max-content;
+    max-width: var(--pf-v6-c-popover--MaxWidth);
+    position: fixed;
+}
+
+/* CSS anchor positioning for popovers using the popover API */
+.pf-v6-c-popover[popover].pf-m-top {
+    position-area: block-start;
+}
+
+.pf-v6-c-popover[popover].pf-m-bottom {
+    position-area: block-end;
+}
+
+.pf-v6-c-popover[popover].pf-m-left {
+    position-area: inline-start;
+}
+
+.pf-v6-c-popover[popover].pf-m-right {
+    position-area: inline-end;
+}

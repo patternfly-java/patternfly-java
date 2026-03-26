@@ -469,6 +469,14 @@
     "illustration": "popover.png",
     "summary": "A <b>popover</b> is a small overlay window that provides additional information about an on-screen element."
   },
+  "popover2": {
+    "name": "popover2",
+    "title": "Popover2",
+    "route": "/components/popover2",
+    "clazz": "org.patternfly.component.popover.Popover2",
+    "illustration": "popover.png",
+    "summary": "A <b>popover</b> using the Popover API and CSS anchor positioning instead of Popper.js."
+  },
   "progress-stepper": {
     "name": "progress-stepper",
     "title": "Progress stepper",

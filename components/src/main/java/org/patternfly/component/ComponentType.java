@@ -115,6 +115,8 @@ public enum ComponentType {
 
     Popover("pvr", "PF6/Component/Popover"),
 
+    Popover2("pvr2", "PF6/Component/Popover2"),
+
     Progress("prg", "PF6/Component/Progress"),
 
     ProgressStepper("ps", "PF6/Component/ProgressStepper"),
