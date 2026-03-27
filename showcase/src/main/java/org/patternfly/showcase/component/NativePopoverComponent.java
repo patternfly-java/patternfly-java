@@ -59,7 +59,7 @@ import static org.patternfly.showcase.Data.components;
 public class NativePopoverComponent extends SnippetPage {
 
     public NativePopoverComponent() {
-        super(components.get("native-tooltip"));
+        super(components.get("native-popover"));
 
         startExamples();
         addSnippet(new Snippet("np-basic", "Basic",

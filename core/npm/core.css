@@ -22,70 +22,66 @@
 }
 
 /* ===================================================================
-   Tooltip using the popover API
+   Shared styles for components using the popover API
    =================================================================== */
-/* Reset [popover] UA styles for tooltips using the popover API */
-.pf-v6-c-tooltip[popover] {
-    border: none;
-    padding: 0;
-    background: none;
-    overflow: visible;
-    width: max-content;
-    max-width: var(--pf-v6-c-tooltip--MaxWidth);
-    position: fixed;
-}
 
-/* CSS anchor positioning for tooltips using the popover API */
-.pf-v6-c-tooltip[popover].pf-m-top {
-    position-area: block-start;
-}
-
-.pf-v6-c-tooltip[popover].pf-m-bottom {
-    position-area: block-end;
-}
-
-.pf-v6-c-tooltip[popover].pf-m-left {
-    position-area: inline-start;
-}
-
-.pf-v6-c-tooltip[popover].pf-m-right {
-    position-area: inline-end;
-}
-
-/* ===================================================================
-   Popover using the popover API
-   =================================================================== */
-/* Reset [popover] UA styles for popovers using the popover API */
+/* Reset [popover] UA styles */
+.pf-v6-c-tooltip[popover],
 .pf-v6-c-popover[popover] {
     border: none;
     padding: 0;
     background: none;
     overflow: visible;
-    inset: auto;
     width: max-content;
-    max-width: var(--pf-v6-c-popover--MaxWidth);
     position: fixed;
+}
+
+/* CSS anchor positioning */
+.pf-v6-c-tooltip[popover].pf-m-top,
+.pf-v6-c-popover[popover].pf-m-top {
+    position-area: block-start;
+}
+
+.pf-v6-c-tooltip[popover].pf-m-bottom,
+.pf-v6-c-popover[popover].pf-m-bottom {
+    position-area: block-end;
+}
+
+.pf-v6-c-tooltip[popover].pf-m-left,
+.pf-v6-c-popover[popover].pf-m-left {
+    position-area: inline-start;
+}
+
+.pf-v6-c-tooltip[popover].pf-m-right,
+.pf-v6-c-popover[popover].pf-m-right {
+    position-area: inline-end;
+}
+
+/* ===================================================================
+   Tooltip-specific styles
+   =================================================================== */
+
+.pf-v6-c-tooltip[popover] {
+    max-width: var(--pf-v6-c-tooltip--MaxWidth);
+}
+
+/* ===================================================================
+   Popover-specific styles
+   =================================================================== */
+
+.pf-v6-c-popover[popover] {
+    inset: auto;
+    max-width: var(--pf-v6-c-popover--MaxWidth);
     container-type: anchored;
 }
 
-/* CSS anchor positioning for popovers using the popover API */
-.pf-v6-c-popover[popover].pf-m-top {
-    position-area: block-start;
-    position-try-fallbacks: flip-block;
-}
-
+.pf-v6-c-popover[popover].pf-m-top,
 .pf-v6-c-popover[popover].pf-m-bottom {
-    position-area: block-end;
     position-try-fallbacks: flip-block;
 }
 
-.pf-v6-c-popover[popover].pf-m-left {
-    position-area: inline-start;
-    position-try-fallbacks: flip-inline;
-}
-
+.pf-v6-c-popover[popover].pf-m-left,
 .pf-v6-c-popover[popover].pf-m-right {
-    position-area: inline-end;
     position-try-fallbacks: flip-inline;
 }
 

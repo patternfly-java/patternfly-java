@@ -33,6 +33,7 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popover.NativeAnchor;
 import org.patternfly.popper.Placement;
 import org.patternfly.style.Modifiers.NoPadding;
 
@@ -109,15 +110,11 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     public static final int DISTANCE = 20;
 
-    private final String id;
+    private final NativeAnchor anchor;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativePopover>> closeHandler;
-    private Supplier<HTMLElement> triggerSupplier;
-    private HTMLElement trigger;
     private boolean visible;
     private boolean showClose;
-    private int distance;
-    // private Placement placement;
     private Severity severity;
     private Button closeButton;
     private NativePopoverHeader header;
@@ -131,13 +128,11 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
                 .attr("popover", "manual")
                 .element());
 
-        this.id = Id.unique(componentType().id);
-        this.triggerSupplier = trigger;
+        String id = Id.unique(componentType().id);
+        this.anchor = new NativeAnchor(id, DISTANCE, element(), trigger);
         this.closeHandler = new ArrayList<>();
         this.visible = false;
         this.showClose = true;
-        this.distance = DISTANCE;
-        // this.placement = top;
 
         String bodyId = Id.unique(componentType().id, "body");
         element().appendChild(div().css(component(popover, arrow)).element());
@@ -155,23 +150,12 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
             failSafeRemoveFromParent(closeButton);
         }
 
-        if (triggerSupplier != null) {
-            trigger = triggerSupplier.get();
-            if (trigger != null) {
-                // CSS anchor positioning
-                String anchorName = "--" + id;
-                trigger.style.setProperty("anchor-name", anchorName);
-                style("position-anchor", anchorName);
-                style("margin", distance + "px");
-
-                // placement
-                // applyPlacement(placement);
-
-                // click trigger: toggle on click
-                triggerHandlers = bind(trigger, click, this::togglePopover);
-            } else {
-                logger.error("Unable to find trigger element for popover %o", element());
-            }
+        HTMLElement trigger = anchor.attach();
+        if (trigger != null) {
+            // click trigger: toggle on click
+            triggerHandlers = bind(trigger, click, this::togglePopover);
+        } else if (anchor.hasTriggerSupplier()) {
+            logger.error("Unable to find trigger element for popover %o", element());
         } else {
             logger.error("No trigger element defined for popover %o", element());
         }
@@ -189,10 +173,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
         if (triggerHandlers != null) {
             triggerHandlers.removeHandler();
         }
-        if (trigger != null) {
-            trigger.style.removeProperty("anchor-name");
-            trigger = null;
-        }
+        anchor.detach();
     }
 
     // ------------------------------------------------------ add
@@ -270,7 +251,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover distance(int distance) {
-        this.distance = distance;
+        anchor.distance(distance);
         return this;
     }
 
@@ -296,10 +277,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     public NativePopover placement(Placement placement) {
         if (verifyEnum(element(), "placement", placement, top, right, bottom, left)) {
-            for (String mod : Placement.modifiers) {
-                classList().remove(mod);
-            }
-            classList().add(placement.modifier);
+            anchor.applyPlacement(placement);
         }
         return this;
     }
@@ -319,22 +297,22 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover trigger(String trigger) {
-        this.triggerSupplier = () -> Elements.querySelector(document.body, By.selector(trigger));
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(By trigger) {
-        this.triggerSupplier = () -> Elements.querySelector(document.body, trigger);
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(HTMLElement trigger) {
-        this.triggerSupplier = () -> trigger;
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(Supplier<HTMLElement> trigger) {
-        this.triggerSupplier = trigger;
+        anchor.trigger(trigger);
         return this;
     }
 
@@ -375,7 +353,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     // ------------------------------------------------------ api
 
     public void show() {
-        if (!visible && trigger != null) {
+        if (!visible && anchor.trigger() != null) {
             element().showPopover();
             visible = true;
             outsideClickHandler = bind(document, click.name, this::onOutsideClick);
@@ -408,6 +386,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     private void onOutsideClick(Event event) {
+        HTMLElement trigger = anchor.trigger();
         if (visible && trigger != null) {
             Element target = (Element) event.target;
             if (!element().contains(target) && !trigger.contains(target)) {

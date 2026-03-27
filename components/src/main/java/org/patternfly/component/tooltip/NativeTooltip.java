@@ -32,6 +32,7 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popover.NativeAnchor;
 import org.patternfly.popper.Placement;
 
 import elemental2.dom.DOMRect;
@@ -126,12 +127,10 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     public static final int DISTANCE = 15;
 
     private final String id;
+    private final NativeAnchor anchor;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativeTooltip>> closeHandler;
-    private Supplier<HTMLElement> triggerSupplier;
-    private HTMLElement trigger;
     private boolean visible;
-    private int distance;
     private int entryDelay;
     private int exitDelay;
     private double showTimeout;
@@ -150,10 +149,9 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
                 .element());
 
         this.id = Id.unique(componentType().id);
-        this.triggerSupplier = trigger;
+        this.anchor = new NativeAnchor(id, DISTANCE, element(), trigger);
         this.closeHandler = new ArrayList<>();
         this.visible = false;
-        this.distance = DISTANCE;
         this.entryDelay = ENTRY_DELAY;
         this.exitDelay = EXIT_DELAY;
         this.placement = auto;
@@ -183,37 +181,29 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        if (triggerSupplier != null) {
-            trigger = triggerSupplier.get();
-            if (trigger != null) {
-                // CSS anchor positioning
-                String anchorName = "--" + id;
-                trigger.style.setProperty("anchor-name", anchorName);
-                style("position-anchor", anchorName);
-                style("margin", distance + "px");
+        HTMLElement trigger = anchor.attach();
+        if (trigger != null) {
+            // top is the default for auto and recalculated on show()
+            anchor.applyPlacement(placement == auto ? top : placement);
 
-                // top is the default for auto and recalculated on show()
-                applyPlacement(placement == auto ? top : placement);
+            // event listeners on trigger
+            triggerHandlers = compose(
+                    bind(trigger, mouseenter, this::scheduleShow),
+                    bind(trigger, mouseleave, this::scheduleHide),
+                    bind(trigger, focusin, this::scheduleShow),
+                    bind(trigger, focusout, this::scheduleHide));
 
-                // event listeners on trigger
-                triggerHandlers = compose(
-                        bind(trigger, mouseenter, this::scheduleShow),
-                        bind(trigger, mouseleave, this::scheduleHide),
-                        bind(trigger, focusin, this::scheduleShow),
-                        bind(trigger, focusout, this::scheduleHide));
+            // event listeners on tooltip itself:
+            // hovering into the tooltip cancels the hide timer,
+            // hovering out of the tooltip schedules hide
+            anchorHandlers = compose(
+                    bind(element(), mouseenter, this::cancelTimers),
+                    bind(element(), mouseleave, this::scheduleHide));
 
-                // event listeners on tooltip itself:
-                // hovering into the tooltip cancels the hide timer,
-                // hovering out of the tooltip schedules hide
-                anchorHandlers = compose(
-                        bind(element(), mouseenter, this::cancelTimers),
-                        bind(element(), mouseleave, this::scheduleHide));
-
-                // hide tooltip immediately on scroll to prevent jump artifacts
-                scrollHandler = bind(window, scroll.name, this::hideOnScroll);
-            } else {
-                logger.error("Unable to find trigger element for tooltip %o", element());
-            }
+            // hide tooltip immediately on scroll to prevent jump artifacts
+            scrollHandler = bind(window, scroll.name, this::hideOnScroll);
+        } else if (anchor.hasTriggerSupplier()) {
+            logger.error("Unable to find trigger element for tooltip %o", element());
         } else {
             logger.error("No trigger element defined for tooltip %o", element());
         }
@@ -235,10 +225,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         if (triggerHandlers != null) {
             triggerHandlers.removeHandler();
         }
-        if (trigger != null) {
-            trigger.style.removeProperty("anchor-name");
-            trigger = null;
-        }
+        anchor.detach();
     }
 
     // ------------------------------------------------------ builder
@@ -254,7 +241,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     }
 
     public NativeTooltip distance(int distance) {
-        this.distance = distance;
+        anchor.distance(distance);
         return this;
     }
 
@@ -269,22 +256,22 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     }
 
     public NativeTooltip trigger(String trigger) {
-        this.triggerSupplier = () -> Elements.querySelector(document.body, By.selector(trigger));
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(By trigger) {
-        this.triggerSupplier = () -> Elements.querySelector(document.body, trigger);
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(HTMLElement trigger) {
-        this.triggerSupplier = () -> trigger;
+        anchor.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(Supplier<HTMLElement> trigger) {
-        this.triggerSupplier = trigger;
+        anchor.trigger(trigger);
         return this;
     }
 
@@ -317,14 +304,15 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     }
 
     public void show(Event event) {
+        HTMLElement trigger = anchor.trigger();
         if (!visible && trigger != null) {
             // Show invisibly to get measurable dimensions, calculate placement, then reveal
             style("visibility", "hidden");
             element().showPopover();
-            applyPlacement(bestPlacement(placement));
+            anchor.applyPlacement(bestPlacement(placement));
             element().style.removeProperty("visibility");
             visible = true;
-            if (aria != none && trigger != null) {
+            if (aria != none) {
                 trigger.setAttribute(aria.attribute, id);
             }
         }
@@ -336,6 +324,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
             if (visible) {
                 element().hidePopover();
                 visible = false;
+                HTMLElement trigger = anchor.trigger();
                 if (aria != none && trigger != null) {
                     trigger.removeAttribute(aria.attribute);
                 }
@@ -373,17 +362,8 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         clearTimeout(hideTimeout);
     }
 
-    private void applyPlacement(Placement p) {
-        for (String mod : Placement.modifiers) {
-            classList().remove(mod);
-        }
-        if (p.modifier != null && !p.modifier.isEmpty()) {
-            classList().add(p.modifier);
-        }
-    }
-
     private Placement bestPlacement(Placement preferred) {
-        DOMRect triggerRect = trigger.getBoundingClientRect();
+        DOMRect triggerRect = anchor.trigger().getBoundingClientRect();
         DOMRect tooltipRect = element().getBoundingClientRect();
         double above = triggerRect.top;
         double below = window.innerHeight - triggerRect.bottom;
@@ -391,10 +371,11 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         double toRight = window.innerWidth - triggerRect.right;
 
         // Check which directions have enough space for the tooltip
-        boolean topFits = above >= tooltipRect.height + distance;
-        boolean bottomFits = below >= tooltipRect.height + distance;
-        boolean leftFits = toLeft >= tooltipRect.width / 3 + distance;
-        boolean rightFits = toRight >= tooltipRect.width / 3 + distance;
+        int d = anchor.distance();
+        boolean topFits = above >= tooltipRect.height + d;
+        boolean bottomFits = below >= tooltipRect.height + d;
+        boolean leftFits = toLeft >= tooltipRect.width / 3 + d;
+        boolean rightFits = toRight >= tooltipRect.width / 3 + d;
 
         // Honor explicit preference if it fits
         if (preferred != auto) {

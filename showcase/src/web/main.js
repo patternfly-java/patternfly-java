@@ -16,9 +16,9 @@
 import "@patternfly/patternfly/patternfly.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/patternfly-charts.css";
-import "@patternfly-java/charts/dist/charts";
 import "@patternfly-java/core";
 import "@patternfly-java/finder";
+import "@patternfly-java/charts/dist/charts";
 import "./pforg/*.css";
 import "./showcase.css";
 
