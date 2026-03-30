@@ -36,6 +36,8 @@ import org.patternfly.core.Attributes;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.position.AnchorPositioning;
 import org.patternfly.popper.Placement;
+import org.patternfly.position.CssPositioning;
+import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -63,12 +65,12 @@ import static org.patternfly.core.Aria.describedBy;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Aria.modal;
+import static org.patternfly.core.Attributes.popover;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
-import static org.patternfly.position.CssPositioning.popoverEnabled;
 import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.arrow;
@@ -76,7 +78,6 @@ import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.widthAuto;
 
 /**
@@ -118,7 +119,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
 
-    private final AnchorPositioning anchorPositioning;
+    private final AnchorPositioning ap;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativePopover>> closeHandler;
 
@@ -139,29 +140,28 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     private HandlerRegistration scrollHandler;
 
     NativePopover(Supplier<HTMLElement> trigger) {
-        super(ComponentType.NativePopover, div().css(component(popover), top.modifier())
+        super(ComponentType.NativePopover, div().css(component(Classes.popover), top.modifier())
                 .attr(role, dialog)
                 .aria(modal, true)
                 .attr(Attributes.popover, "manual")
                 .element());
 
         String id = Id.unique(componentType().id);
-        this.anchorPositioning = new AnchorPositioning(id, element(), trigger, DISTANCE, popoverEnabled());
+        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.popoverEnabled());
         this.closeHandler = new ArrayList<>();
         this.visible = false;
         this.showClose = true;
         this.hoverable = false;
-        this.entryDelay = ENTRY_DELAY;
-        this.exitDelay = EXIT_DELAY;
         this.showTimeout = 0;
         this.hideTimeout = 0;
+        this.entryDelay = ENTRY_DELAY;
+        this.exitDelay = EXIT_DELAY;
         this.placement = auto;
 
         String bodyId = Id.unique(componentType().id, "body");
-        element().appendChild(div().css(component(popover, arrow)).element());
-        element().appendChild(contentElement = div().css(component(popover, content)).element());
+        element().appendChild(div().css(component(Classes.popover, arrow)).element());
+        element().appendChild(contentElement = div().css(component(Classes.popover, content)).element());
         aria(describedBy, bodyId);
-
         Attachable.register(this, this);
     }
 
@@ -173,10 +173,10 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
             failSafeRemoveFromParent(closeButton);
         }
 
-        HTMLElement trigger = anchorPositioning.attach();
+        HTMLElement trigger = ap.attach();
         if (trigger != null) {
             // top is the default for auto and recalculated on show()
-            anchorPositioning.applyPlacement(placement == auto ? top : placement);
+            ap.applyPlacement(placement == auto ? top : placement);
 
             if (hoverable) {
                 triggerHandlers = compose(
@@ -187,18 +187,16 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
                 anchorHandlers = compose(
                         bind(element(), mouseenter, e -> cancelTimers()),
                         bind(element(), mouseleave, e -> scheduleHide()));
-                if (!anchorPositioning.cssPositioning()) {
-                    scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
-                }
 
             } else {
                 triggerHandlers = bind(trigger, click, this::togglePopover);
-                if (!anchorPositioning.cssPositioning()) {
-                    scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
-                }
             }
 
-        } else if (anchorPositioning.hasTriggerSupplier()) {
+            if (!ap.cssPositioning()) {
+                scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
+            }
+
+        } else if (ap.hasTriggerSupplier()) {
             logger.error("Unable to find trigger element for popover %o", element());
         } else {
             logger.error("No trigger element defined for popover %o", element());
@@ -224,9 +222,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
         if (triggerHandlers != null) {
             triggerHandlers.removeHandler();
         }
-        if (anchorPositioning != null) {
-            anchorPositioning.detach();
-        }
+        ap.detach();
     }
 
     // ------------------------------------------------------ add
@@ -292,7 +288,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     public NativePopover closable(CloseHandler<NativePopover> closeHandler) {
         if (closeButton == null) {
-            insertFirst(contentElement, div().css(component(popover, close))
+            insertFirst(contentElement, div().css(component(Classes.popover, close))
                     .add(closeButton = button()
                             .plain()
                             .icon(times())
@@ -304,7 +300,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover distance(int distance) {
-        anchorPositioning.distance(distance);
+        ap.distance(distance);
         return this;
     }
 
@@ -367,22 +363,22 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover trigger(String trigger) {
-        anchorPositioning.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(By trigger) {
-        anchorPositioning.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(HTMLElement trigger) {
-        anchorPositioning.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(Supplier<HTMLElement> trigger) {
-        anchorPositioning.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
@@ -423,16 +419,16 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     // ------------------------------------------------------ api
 
     public void show() {
-        if (!visible && anchorPositioning.trigger() != null) {
-            if (anchorPositioning.cssPositioning()) {
+        if (!visible && ap.trigger() != null) {
+            if (ap.cssPositioning()) {
                 // CSS handles position-try-fallbacks; just apply preferred placement and show
-                anchorPositioning.applyPlacement(placement == auto ? top : placement);
+                ap.applyPlacement(placement == auto ? top : placement);
                 element().showPopover();
             } else {
                 // JS calculates best placement via viewport measurements
                 style("visibility", "hidden");
                 element().showPopover();
-                anchorPositioning.applyBestPlacement(placement);
+                ap.applyBestPlacement(placement);
                 element().style.removeProperty("visibility");
             }
             visible = true;
@@ -471,7 +467,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     private void recalculatePlacement() {
         if (visible) {
-            anchorPositioning.applyBestPlacement(placement);
+            ap.applyBestPlacement(placement);
         }
     }
 
@@ -489,7 +485,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     private void onOutsideClick(Event event) {
-        HTMLElement trigger = anchorPositioning.trigger();
+        HTMLElement trigger = ap.trigger();
         if (visible && trigger != null) {
             Element target = (Element) event.target;
             if (!element().contains(target) && !trigger.contains(target)) {

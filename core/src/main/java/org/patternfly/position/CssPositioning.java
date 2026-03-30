@@ -22,7 +22,7 @@ import static org.jboss.elemento.DomGlobal.window;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.cssPositioning;
 import static org.patternfly.style.Classes.popover;
-import static org.patternfly.style.Classes.toolbar;
+import static org.patternfly.style.Classes.tooltip;
 import static org.patternfly.style.Variable.componentVar;
 
 /**
@@ -44,7 +44,7 @@ public class CssPositioning {
 
     public static boolean tooltipEnabled() {
         if (tooltipEnabled == null) {
-            tooltipEnabled = readProperty(componentVar(component(toolbar), cssPositioning));
+            tooltipEnabled = readProperty(componentVar(component(tooltip), cssPositioning));
         }
         return tooltipEnabled;
     }

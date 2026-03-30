@@ -30,12 +30,12 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.core.Attributes;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.popper.Placement;
 import org.patternfly.position.AnchorPositioning;
 import org.patternfly.position.CssPositioning;
-import org.patternfly.popper.Placement;
+import org.patternfly.style.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -45,7 +45,6 @@ import elemental2.dom.MutationRecord;
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static elemental2.dom.DomGlobal.window;
 import static org.gwtproject.event.shared.HandlerRegistrations.compose;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.bind;
@@ -57,6 +56,7 @@ import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.tooltip.TriggerAria.describedBy;
 import static org.patternfly.component.tooltip.TriggerAria.none;
 import static org.patternfly.core.Aria.live;
+import static org.patternfly.core.Attributes.popover;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -119,14 +119,15 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     private static final Logger logger = Logger.getLogger(NativeTooltip.class.getName());
 
+    public static final int DISTANCE = 15;
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
-    public static final int DISTANCE = 15;
 
     private final String id;
-    private final AnchorPositioning anchor;
+    private final AnchorPositioning ap;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativeTooltip>> closeHandler;
+
     private boolean visible;
     private int entryDelay;
     private int exitDelay;
@@ -139,22 +140,22 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     private HandlerRegistration scrollHandler;
 
     NativeTooltip(Supplier<HTMLElement> trigger, String text) {
-        super(ComponentType.NativeTooltip, div().css(component(tooltip))
+        super(ComponentType.NativeTooltip, div().css(component(Classes.tooltip))
                 .attr(role, Roles.tooltip)
                 .aria(live, "polite")
-                .attr(Attributes.popover, "manual")
+                .attr(popover, "manual")
                 .element());
 
         this.id = Id.unique(componentType().id);
-        this.anchor = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.tooltipEnabled());
+        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.tooltipEnabled());
         this.closeHandler = new ArrayList<>();
         this.visible = false;
+        this.showTimeout = 0;
+        this.hideTimeout = 0;
         this.entryDelay = ENTRY_DELAY;
         this.exitDelay = EXIT_DELAY;
         this.placement = auto;
         this.aria = describedBy;
-        this.showTimeout = 0;
-        this.hideTimeout = 0;
 
         id(id);
         element().appendChild(div().css(component(tooltip, arrow)).element());
@@ -162,7 +163,6 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         if (text != null) {
             contentElement.textContent = text;
         }
-
         Attachable.register(this, this);
     }
 
@@ -178,28 +178,25 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        HTMLElement trigger = anchor.attach();
+        HTMLElement trigger = ap.attach();
         if (trigger != null) {
             // top is the default for auto and recalculated on show()
-            anchor.applyPlacement(placement == auto ? top : placement);
+            ap.applyPlacement(placement == auto ? top : placement);
 
-            // event listeners on trigger
             triggerHandlers = compose(
-                    bind(trigger, mouseenter, this::scheduleShow),
-                    bind(trigger, mouseleave, this::scheduleHide),
-                    bind(trigger, focusin, this::scheduleShow),
-                    bind(trigger, focusout, this::scheduleHide));
-
-            // event listeners on tooltip itself:
-            // hovering into the tooltip cancels the hide timer,
-            // hovering out of the tooltip schedules hide
+                    bind(trigger, mouseenter, e -> scheduleShow()),
+                    bind(trigger, mouseleave, e -> scheduleHide()),
+                    bind(trigger, focusin, e -> scheduleShow()),
+                    bind(trigger, focusout, e -> scheduleHide()));
             anchorHandlers = compose(
-                    bind(element(), mouseenter, this::cancelTimers),
-                    bind(element(), mouseleave, this::scheduleHide));
+                    bind(element(), mouseenter, e -> cancelTimers()),
+                    bind(element(), mouseleave, e -> scheduleHide()));
 
-            // hide tooltip immediately on scroll to prevent jump artifacts
-            scrollHandler = bind(window, scroll.name, this::hideOnScroll);
-        } else if (anchor.hasTriggerSupplier()) {
+            if (!ap.cssPositioning()) {
+                scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
+            }
+
+        } else if (ap.hasTriggerSupplier()) {
             logger.error("Unable to find trigger element for tooltip %o", element());
         } else {
             logger.error("No trigger element defined for tooltip %o", element());
@@ -208,7 +205,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     @Override
     public void detach(MutationRecord mutationRecord) {
-        cancelTimers(new Event(""));
+        cancelTimers();
         if (visible) {
             element().hidePopover();
             visible = false;
@@ -222,10 +219,15 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         if (triggerHandlers != null) {
             triggerHandlers.removeHandler();
         }
-        anchor.detach();
+        ap.detach();
     }
 
     // ------------------------------------------------------ builder
+
+    public NativeTooltip distance(int distance) {
+        ap.distance(distance);
+        return this;
+    }
 
     public NativeTooltip entryDelay(int delay) {
         this.entryDelay = delay;
@@ -234,11 +236,6 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     public NativeTooltip exitDelay(int delay) {
         this.exitDelay = delay;
-        return this;
-    }
-
-    public NativeTooltip distance(int distance) {
-        anchor.distance(distance);
         return this;
     }
 
@@ -253,22 +250,22 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     }
 
     public NativeTooltip trigger(String trigger) {
-        anchor.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(By trigger) {
-        anchor.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(HTMLElement trigger) {
-        anchor.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
     public NativeTooltip trigger(Supplier<HTMLElement> trigger) {
-        anchor.trigger(trigger);
+        ap.trigger(trigger);
         return this;
     }
 
@@ -297,17 +294,17 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     // ------------------------------------------------------ api
 
     public void show() {
-        HTMLElement trigger = anchor.trigger();
+        HTMLElement trigger = ap.trigger();
         if (!visible && trigger != null) {
-            if (anchor.cssPositioning()) {
+            if (ap.cssPositioning()) {
                 // CSS handles position-try-fallbacks; just apply preferred placement and show
-                anchor.applyPlacement(placement == auto ? top : placement);
+                ap.applyPlacement(placement == auto ? top : placement);
                 element().showPopover();
             } else {
                 // JS calculates best placement via viewport measurements
                 style("visibility", "hidden");
                 element().showPopover();
-                anchor.applyBestPlacement(placement);
+                ap.applyBestPlacement(placement);
                 element().style.removeProperty("visibility");
             }
             visible = true;
@@ -323,7 +320,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
             if (visible) {
                 element().hidePopover();
                 visible = false;
-                HTMLElement trigger = anchor.trigger();
+                HTMLElement trigger = ap.trigger();
                 if (aria != none && trigger != null) {
                     trigger.removeAttribute(aria.attribute);
                 }
@@ -339,25 +336,25 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     // ------------------------------------------------------ internal
 
-    private void scheduleShow(Event event) {
-        cancelTimers(event);
+    private void scheduleShow() {
+        cancelTimers();
         showTimeout = setTimeout(e -> show(), entryDelay);
     }
 
-    private void scheduleHide(Event event) {
-        cancelTimers(event);
+    private void scheduleHide() {
+        cancelTimers();
         hideTimeout = setTimeout(e -> close(new Event(""), true), exitDelay);
     }
 
-    private void hideOnScroll(Event event) {
-        cancelTimers(event);
+    private void recalculatePlacement() {
         if (visible) {
-            close(event, true);
+            ap.applyBestPlacement(placement);
         }
     }
 
-    private void cancelTimers(Event event) {
+    private void cancelTimers() {
         clearTimeout(showTimeout);
         clearTimeout(hideTimeout);
     }
+
 }

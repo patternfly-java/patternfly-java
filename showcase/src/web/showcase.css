@@ -14,8 +14,8 @@
  *  limitations under the License.
  */
 :root {
-    /*--pf-v6-c-tooltip--css-positioning: 1;*/
-    --pf-v6-c-popover--css-positioning: 1;
+    --pf-v6-c-tooltip--css-positioning: 0;
+    --pf-v6-c-popover--css-positioning: 0;
 }
 
 .pf-m-redhat-font .pf-c-content {
