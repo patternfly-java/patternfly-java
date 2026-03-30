@@ -9,7 +9,7 @@
     "src/web/index.html"
   ],
   "scripts": {
-    "start:parcel": "parcel watch src/web/dev.html --dist-dir target/showcase --port 1235",
+    "start:parcel": "parcel watch src/web/dev.html --dist-dir target/showcase --port 1235 --watch-dir ..",
     "start:server": "node server.js 1234 1235",
     "open:browser": "wait-on http://localhost:1234 && open http://localhost:1234",
     "watch": "concurrently \"pnpm run start:parcel\" \"pnpm run start:server\" \"pnpm run open:browser\"",

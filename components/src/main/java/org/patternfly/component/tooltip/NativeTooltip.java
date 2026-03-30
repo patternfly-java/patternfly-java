@@ -30,12 +30,12 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
+import org.patternfly.core.Attributes;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.popover.NativeAnchor;
+import org.patternfly.position.AnchorPositioning;
+import org.patternfly.position.CssPositioning;
 import org.patternfly.popper.Placement;
-
-import elemental2.dom.DOMRect;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -61,9 +61,6 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.popper.Placement.auto;
-import static org.patternfly.popper.Placement.bottom;
-import static org.patternfly.popper.Placement.left;
-import static org.patternfly.popper.Placement.right;
 import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.component;
@@ -127,7 +124,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     public static final int DISTANCE = 15;
 
     private final String id;
-    private final NativeAnchor anchor;
+    private final AnchorPositioning anchor;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativeTooltip>> closeHandler;
     private boolean visible;
@@ -145,11 +142,11 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
         super(ComponentType.NativeTooltip, div().css(component(tooltip))
                 .attr(role, Roles.tooltip)
                 .aria(live, "polite")
-                .attr("popover", "manual")
+                .attr(Attributes.popover, "manual")
                 .element());
 
         this.id = Id.unique(componentType().id);
-        this.anchor = new NativeAnchor(id, DISTANCE, element(), trigger);
+        this.anchor = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.tooltipEnabled());
         this.closeHandler = new ArrayList<>();
         this.visible = false;
         this.entryDelay = ENTRY_DELAY;
@@ -300,17 +297,19 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     // ------------------------------------------------------ api
 
     public void show() {
-        show(new Event(""));
-    }
-
-    public void show(Event event) {
         HTMLElement trigger = anchor.trigger();
         if (!visible && trigger != null) {
-            // Show invisibly to get measurable dimensions, calculate placement, then reveal
-            style("visibility", "hidden");
-            element().showPopover();
-            anchor.applyPlacement(bestPlacement(placement));
-            element().style.removeProperty("visibility");
+            if (anchor.cssPositioning()) {
+                // CSS handles position-try-fallbacks; just apply preferred placement and show
+                anchor.applyPlacement(placement == auto ? top : placement);
+                element().showPopover();
+            } else {
+                // JS calculates best placement via viewport measurements
+                style("visibility", "hidden");
+                element().showPopover();
+                anchor.applyBestPlacement(placement);
+                element().style.removeProperty("visibility");
+            }
             visible = true;
             if (aria != none) {
                 trigger.setAttribute(aria.attribute, id);
@@ -360,41 +359,5 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     private void cancelTimers(Event event) {
         clearTimeout(showTimeout);
         clearTimeout(hideTimeout);
-    }
-
-    private Placement bestPlacement(Placement preferred) {
-        DOMRect triggerRect = anchor.trigger().getBoundingClientRect();
-        DOMRect tooltipRect = element().getBoundingClientRect();
-        double above = triggerRect.top;
-        double below = window.innerHeight - triggerRect.bottom;
-        double toLeft = triggerRect.left;
-        double toRight = window.innerWidth - triggerRect.right;
-
-        // Check which directions have enough space for the tooltip
-        int d = anchor.distance();
-        boolean topFits = above >= tooltipRect.height + d;
-        boolean bottomFits = below >= tooltipRect.height + d;
-        boolean leftFits = toLeft >= tooltipRect.width / 3 + d;
-        boolean rightFits = toRight >= tooltipRect.width / 3 + d;
-
-        // Honor explicit preference if it fits
-        if (preferred != auto) {
-            if (preferred == top && topFits) {return top;}
-            if (preferred == bottom && bottomFits) {return bottom;}
-            if (preferred == left && leftFits) {return left;}
-            if (preferred == right && rightFits) {return right;}
-        }
-
-        // Otherwise apply these rules:
-        // - prefer top, but only if the trigger is not near a horizontal edge
-        // - prefer horizontal when the trigger is near a horizontal edge
-        // - top wins over bottom when both horizontal directions fit
-        // - last resort: pick the side with the most space
-        if (topFits && leftFits && rightFits) {return top;}
-        if (rightFits && !leftFits) {return right;}
-        if (leftFits && !rightFits) {return left;}
-        if (topFits) {return top;}
-        if (bottomFits) {return bottom;}
-        return toRight >= toLeft ? right : left;
     }
 }

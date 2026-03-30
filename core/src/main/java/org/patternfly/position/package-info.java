@@ -16,10 +16,10 @@
 /**
  * Shared infrastructure for components based on the native popover API and CSS anchor positioning.
  *
- * <p>This package provides helpers that eliminate duplication between native popover-based components such as
+ * <p>This package provides helpers that remove duplication between native popover-based components such as
  * {@code NativePopover} and {@code NativeTooltip}. It handles trigger resolution, CSS anchor positioning setup/teardown,
  * and placement CSS class toggling.
  *
- * @see org.patternfly.popover.NativeAnchor
+ * @see org.patternfly.position.AnchorPositioning
  */
-package org.patternfly.popover;
+package org.patternfly.position;

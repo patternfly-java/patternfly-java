@@ -187,7 +187,7 @@ public class PopperBuilder {
             return new PopperError(componentName);
         } else {
             Options options = new Options();
-            options.placement = placement.value;
+            options.placement = placement.value();
             options.modifiers = modifiers;
             PopperJs popper = PopperJs.createPopper(triggerElement, popperElement, options);
             logger.debug("Create popper %o for trigger element %o", popperElement, triggerElement);

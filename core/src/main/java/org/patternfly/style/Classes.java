@@ -82,6 +82,7 @@ public interface Classes {
     String control = "control";
     String controls = "controls";
     String count = "count";
+    String cssPositioning = "css-positioning";
     String current = "current";
     String danger = "danger";
     String dataList = "data-list";

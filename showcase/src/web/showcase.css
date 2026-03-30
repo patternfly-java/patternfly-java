@@ -13,6 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+:root {
+    /*--pf-v6-c-tooltip--css-positioning: 1;*/
+    --pf-v6-c-popover--css-positioning: 1;
+}
+
 .pf-m-redhat-font .pf-c-content {
     --pf-v6-c-content--FontSize: var(--pf-t--global--font--size--lg);
 }
@@ -27,6 +32,7 @@
     border: 2px dashed #ff6b81;
 
 }
+
 .pfj-popover-box::before,
 .pfj-popover-box::after,
 .pfj-tooltip-box::before,
@@ -36,6 +42,7 @@
     width: 1500px;
     height: 600px;
 }
+
 .pfj-popover-button, .pfj-tooltip-button {
     position: absolute;
     left: 600px;

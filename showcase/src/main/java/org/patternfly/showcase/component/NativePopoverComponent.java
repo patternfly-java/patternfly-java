@@ -28,7 +28,6 @@ import org.patternfly.component.togglegroup.ToggleGroup;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-
 import elemental2.dom.ScrollIntoViewOptions;
 
 import static org.jboss.elemento.Elements.div;
@@ -75,6 +74,22 @@ public class NativePopoverComponent extends SnippetPage {
                                 .addFooter("Popover footer"))
                         .element()
                 // @code-end:np-basic
+        ));
+
+        addSnippet(new Snippet("np-hoverable", "Hoverable",
+                code("np-hoverable"), () ->
+                // @code-start:np-hoverable
+                div().style("margin", "50px")
+                        .add(button("Hover to trigger popover").primary()
+                                .id("np-hoverable-button"))
+                        .add(nativePopover(By.id("np-hoverable-button"))
+                                .hoverable()
+                                .ariaLabel("Hoverable popover")
+                                .addHeader("Popover header")
+                                .addBody("This popover opens on hover.")
+                                .addFooter("Popover footer"))
+                        .element()
+                // @code-end:np-hoverable
         ));
 
         addSnippet(new Snippet("np-placements", "Placements",

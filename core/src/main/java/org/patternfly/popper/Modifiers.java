@@ -40,11 +40,11 @@ public interface Modifiers {
         modifier.phase = ModifierPhase.main.name();
         modifier.fn = (args) -> {
             if (args.state != null && args.state.elements != null) {
-                Placement placement = Placement.fromValue(args.state.placement);
+                Placement placement = Placement.of(args.state.placement);
                 HTMLElement popper = args.state.elements.popper;
                 if (placement != null && popper != null) {
                     popper.classList.remove(Placement.modifiers);
-                    popper.classList.add(placement.modifier);
+                    popper.classList.add(placement.modifier());
                 }
             }
         };

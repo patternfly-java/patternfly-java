@@ -18,43 +18,42 @@ package org.patternfly.popper;
 import java.util.Arrays;
 
 import org.patternfly.style.Classes;
+import org.patternfly.style.TypedModifier;
 
-import static org.patternfly.style.Classes.modifier;
-
-public enum Placement {
+public enum Placement implements TypedModifier {
 
     auto("auto", ""),
 
-    top("top", modifier(Classes.top)),
+    top("top", Classes.modifier(Classes.top)),
 
-    topStart("top-start", modifier(Classes.top) + "-left"),
+    topStart("top-start", Classes.modifier(Classes.top) + "-left"),
 
-    topEnd("top-end", modifier(Classes.top) + "-right"),
+    topEnd("top-end", Classes.modifier(Classes.top) + "-right"),
 
-    bottom("bottom", modifier(Classes.bottom)),
+    bottom("bottom", Classes.modifier(Classes.bottom)),
 
-    bottomStart("bottom-start", modifier(Classes.bottom) + "-left"),
+    bottomStart("bottom-start", Classes.modifier(Classes.bottom) + "-left"),
 
-    bottomEnd("bottom-end", modifier(Classes.bottom) + "-right"),
+    bottomEnd("bottom-end", Classes.modifier(Classes.bottom) + "-right"),
 
-    left("left", modifier(Classes.left)),
+    left("left", Classes.modifier(Classes.left)),
 
-    leftStart("left-start", modifier(Classes.left) + "-top"),
+    leftStart("left-start", Classes.modifier(Classes.left) + "-top"),
 
-    leftEnd("left-end", modifier(Classes.left) + "-bottom"),
+    leftEnd("left-end", Classes.modifier(Classes.left) + "-bottom"),
 
-    right("right", modifier(Classes.right)),
+    right("right", Classes.modifier(Classes.right)),
 
-    rightStart("right-start", modifier(Classes.right) + "-bottom"),
+    rightStart("right-start", Classes.modifier(Classes.right) + "-bottom"),
 
-    rightEnd("right-end", modifier(Classes.right) + "-bottom");
+    rightEnd("right-end", Classes.modifier(Classes.right) + "-bottom");
 
     public static final String[] modifiers = Arrays.stream(values())
             .filter(p -> p != auto)
             .map(p -> p.modifier)
             .toArray(String[]::new);
 
-    public static Placement fromValue(String value) {
+    public static Placement of(String value) {
         for (Placement placement : values()) {
             if (placement.value.equals(value)) {
                 return placement;
@@ -63,11 +62,21 @@ public enum Placement {
         return null;
     }
 
-    public final String value;
-    public final String modifier;
+    private final String value;
+    private final String modifier;
 
     Placement(String value, String modifier) {
         this.value = value;
         this.modifier = modifier;
+    }
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String modifier() {
+        return modifier;
     }
 }

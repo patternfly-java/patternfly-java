@@ -58,6 +58,36 @@
 }
 
 /* ===================================================================
+   CSS-native positioning (opt-in)
+
+   Activated by the pf-m-css-positioning modifier, which is added
+   by NativeAnchor.attach() when the corresponding CSS custom property is set:
+     --pf-v6-c-tooltip--css-positioning: 1;
+     --pf-v6-c-popover--css-positioning: 1;
+   =================================================================== */
+
+/* container-type for @container anchored() queries */
+.pf-v6-c-tooltip[popover].pf-m-css-positioning,
+.pf-v6-c-popover[popover].pf-m-css-positioning {
+    container-type: anchored;
+}
+
+/* position-try-fallbacks for tooltip and popover */
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-top,
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-bottom,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-top,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-bottom {
+    position-try-fallbacks: flip-block;
+}
+
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-left,
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-right,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-left,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-right {
+    position-try-fallbacks: flip-inline;
+}
+
+/* ===================================================================
    Tooltip-specific styles
    =================================================================== */
 
@@ -72,28 +102,61 @@
 .pf-v6-c-popover[popover] {
     inset: auto;
     max-width: var(--pf-v6-c-popover--MaxWidth);
-    container-type: anchored;
-}
-
-.pf-v6-c-popover[popover].pf-m-top,
-.pf-v6-c-popover[popover].pf-m-bottom {
-    position-try-fallbacks: flip-block;
-}
-
-.pf-v6-c-popover[popover].pf-m-left,
-.pf-v6-c-popover[popover].pf-m-right {
-    position-try-fallbacks: flip-inline;
 }
 
 /*
-Uncomment as soon as https://github.com/parcel-bundler/lightningcss/issues/1176 is fixed
-Then remove the hack in showcase/src/web/main.js
-*/
+Arrow correction after CSS flip (requires @container anchored() support).
+LightningCSS can't parse these yet (parcel-bundler/lightningcss#1176) — the
+packager/optimizer also fails, not just the transformer. So these rules must be
+injected at runtime via adoptedStyleSheets (see showcase/src/web/main.js).
+Uncomment once lightningcss supports @container anchored().
 
-/*
-!* Was top, flipped to bottom *!
 @container anchored(fallback: flip-block) {
-    .pf-v6-c-popover[popover].pf-m-top .pf-v6-c-popover__arrow {
+    .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-top .pf-v6-c-tooltip__arrow {
+        --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-bottom--InsetBlockStart, 0);
+        --pf-v6-c-tooltip__arrow--InsetBlockEnd: auto;
+        --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-bottom--InsetInlineStart, 50%);
+        --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-bottom--TranslateX);
+        --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-bottom--TranslateY);
+        --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-bottom--Rotate);
+    }
+}
+
+@container anchored(fallback: flip-block) {
+    .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-bottom .pf-v6-c-tooltip__arrow {
+        --pf-v6-c-tooltip__arrow--InsetBlockStart: auto;
+        --pf-v6-c-tooltip__arrow--InsetBlockEnd: var(--pf-v6-c-tooltip--m-top--InsetBlockEnd, 0);
+        --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-top--InsetInlineStart, 50%);
+        --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-top--TranslateX);
+        --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-top--TranslateY);
+        --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-top--Rotate);
+    }
+}
+
+@container anchored(fallback: flip-inline) {
+    .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-left .pf-v6-c-tooltip__arrow {
+        --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-right--InsetBlockStart, 50%);
+        --pf-v6-c-tooltip__arrow--InsetInlineStart: var(--pf-v6-c-tooltip--m-right--InsetInlineStart, 0);
+        --pf-v6-c-tooltip__arrow--InsetInlineEnd: auto;
+        --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-right--TranslateX);
+        --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-right--TranslateY);
+        --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-right--Rotate);
+    }
+}
+
+@container anchored(fallback: flip-inline) {
+    .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-right .pf-v6-c-tooltip__arrow {
+        --pf-v6-c-tooltip__arrow--InsetBlockStart: var(--pf-v6-c-tooltip--m-left--InsetBlockStart, 50%);
+        --pf-v6-c-tooltip__arrow--InsetInlineStart: auto;
+        --pf-v6-c-tooltip__arrow--InsetInlineEnd: var(--pf-v6-c-tooltip--m-left--InsetInlineEnd, 0);
+        --pf-v6-c-tooltip__arrow--TranslateX: var(--pf-v6-c-tooltip__arrow--m-left--TranslateX);
+        --pf-v6-c-tooltip__arrow--TranslateY: var(--pf-v6-c-tooltip__arrow--m-left--TranslateY);
+        --pf-v6-c-tooltip__arrow--Rotate: var(--pf-v6-c-tooltip__arrow--m-left--Rotate);
+    }
+}
+
+@container anchored(fallback: flip-block) {
+    .pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-top .pf-v6-c-popover__arrow {
         --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-bottom--InsetBlockStart, 0);
         --pf-v6-c-popover__arrow--InsetBlockEnd: auto;
         --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-bottom--InsetInlineStart, 50%);
@@ -103,9 +166,8 @@ Then remove the hack in showcase/src/web/main.js
     }
 }
 
-!* Was bottom, flipped to top *!
 @container anchored(fallback: flip-block) {
-    .pf-v6-c-popover[popover].pf-m-bottom .pf-v6-c-popover__arrow {
+    .pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-bottom .pf-v6-c-popover__arrow {
         --pf-v6-c-popover__arrow--InsetBlockStart: auto;
         --pf-v6-c-popover__arrow--InsetBlockEnd: var(--pf-v6-c-popover--m-top--InsetBlockEnd, 0);
         --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-top--InsetInlineStart, 50%);
@@ -115,9 +177,8 @@ Then remove the hack in showcase/src/web/main.js
     }
 }
 
-!* Was left, flipped to right *!
 @container anchored(fallback: flip-inline) {
-    .pf-v6-c-popover[popover].pf-m-left .pf-v6-c-popover__arrow {
+    .pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-left .pf-v6-c-popover__arrow {
         --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-right--InsetBlockStart, 50%);
         --pf-v6-c-popover__arrow--InsetInlineStart: var(--pf-v6-c-popover--m-right--InsetInlineStart, 0);
         --pf-v6-c-popover__arrow--InsetInlineEnd: auto;
@@ -127,9 +188,8 @@ Then remove the hack in showcase/src/web/main.js
     }
 }
 
-!* Was right, flipped to left *!
 @container anchored(fallback: flip-inline) {
-    .pf-v6-c-popover[popover].pf-m-right .pf-v6-c-popover__arrow {
+    .pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-right .pf-v6-c-popover__arrow {
         --pf-v6-c-popover__arrow--InsetBlockStart: var(--pf-v6-c-popover--m-left--InsetBlockStart, 50%);
         --pf-v6-c-popover__arrow--InsetInlineStart: auto;
         --pf-v6-c-popover__arrow--InsetInlineEnd: var(--pf-v6-c-popover--m-left--InsetInlineEnd, 0);

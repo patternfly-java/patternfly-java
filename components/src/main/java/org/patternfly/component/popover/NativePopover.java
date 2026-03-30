@@ -32,23 +32,31 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Attributes;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.popover.NativeAnchor;
+import org.patternfly.position.AnchorPositioning;
 import org.patternfly.popper.Placement;
 import org.patternfly.style.Modifiers.NoPadding;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static org.gwtproject.event.shared.HandlerRegistrations.compose;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.EventType.focusin;
+import static org.jboss.elemento.EventType.focusout;
+import static org.jboss.elemento.EventType.mouseenter;
+import static org.jboss.elemento.EventType.mouseleave;
+import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.popover.NativePopoverHeader.popoverHeader;
 import static org.patternfly.core.Aria.describedBy;
@@ -57,13 +65,11 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Aria.modal;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.dialog;
-import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
-import static org.patternfly.popper.Placement.bottom;
-import static org.patternfly.popper.Placement.left;
-import static org.patternfly.popper.Placement.right;
+import static org.patternfly.position.CssPositioning.popoverEnabled;
+import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
@@ -109,30 +115,47 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     private static final Logger logger = Logger.getLogger(NativePopover.class.getName());
 
     public static final int DISTANCE = 20;
+    public static final int ENTRY_DELAY = 300;
+    public static final int EXIT_DELAY = 300;
 
-    private final NativeAnchor anchor;
+    private final AnchorPositioning anchorPositioning;
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativePopover>> closeHandler;
+
     private boolean visible;
     private boolean showClose;
+    private boolean hoverable;
+    private int entryDelay;
+    private int exitDelay;
+    private double showTimeout;
+    private double hideTimeout;
+    private Placement placement;
     private Severity severity;
     private Button closeButton;
     private NativePopoverHeader header;
     private HandlerRegistration triggerHandlers;
+    private HandlerRegistration anchorHandlers;
     private HandlerRegistration outsideClickHandler;
+    private HandlerRegistration scrollHandler;
 
     NativePopover(Supplier<HTMLElement> trigger) {
-        super(ComponentType.NativePopover, div().css(component(popover), top.modifier)
+        super(ComponentType.NativePopover, div().css(component(popover), top.modifier())
                 .attr(role, dialog)
                 .aria(modal, true)
-                .attr("popover", "manual")
+                .attr(Attributes.popover, "manual")
                 .element());
 
         String id = Id.unique(componentType().id);
-        this.anchor = new NativeAnchor(id, DISTANCE, element(), trigger);
+        this.anchorPositioning = new AnchorPositioning(id, element(), trigger, DISTANCE, popoverEnabled());
         this.closeHandler = new ArrayList<>();
         this.visible = false;
         this.showClose = true;
+        this.hoverable = false;
+        this.entryDelay = ENTRY_DELAY;
+        this.exitDelay = EXIT_DELAY;
+        this.showTimeout = 0;
+        this.hideTimeout = 0;
+        this.placement = auto;
 
         String bodyId = Id.unique(componentType().id, "body");
         element().appendChild(div().css(component(popover, arrow)).element());
@@ -150,11 +173,32 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
             failSafeRemoveFromParent(closeButton);
         }
 
-        HTMLElement trigger = anchor.attach();
+        HTMLElement trigger = anchorPositioning.attach();
         if (trigger != null) {
-            // click trigger: toggle on click
-            triggerHandlers = bind(trigger, click, this::togglePopover);
-        } else if (anchor.hasTriggerSupplier()) {
+            // top is the default for auto and recalculated on show()
+            anchorPositioning.applyPlacement(placement == auto ? top : placement);
+
+            if (hoverable) {
+                triggerHandlers = compose(
+                        bind(trigger, mouseenter, e -> scheduleShow()),
+                        bind(trigger, mouseleave, e -> scheduleHide()),
+                        bind(trigger, focusin, e -> scheduleShow()),
+                        bind(trigger, focusout, e -> scheduleHide()));
+                anchorHandlers = compose(
+                        bind(element(), mouseenter, e -> cancelTimers()),
+                        bind(element(), mouseleave, e -> scheduleHide()));
+                if (!anchorPositioning.cssPositioning()) {
+                    scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
+                }
+
+            } else {
+                triggerHandlers = bind(trigger, click, this::togglePopover);
+                if (!anchorPositioning.cssPositioning()) {
+                    scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
+                }
+            }
+
+        } else if (anchorPositioning.hasTriggerSupplier()) {
             logger.error("Unable to find trigger element for popover %o", element());
         } else {
             logger.error("No trigger element defined for popover %o", element());
@@ -163,9 +207,16 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     @Override
     public void detach(MutationRecord mutationRecord) {
+        cancelTimers();
         if (visible) {
             element().hidePopover();
             visible = false;
+        }
+        if (scrollHandler != null) {
+            scrollHandler.removeHandler();
+        }
+        if (anchorHandlers != null) {
+            anchorHandlers.removeHandler();
         }
         if (outsideClickHandler != null) {
             outsideClickHandler.removeHandler();
@@ -173,7 +224,9 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
         if (triggerHandlers != null) {
             triggerHandlers.removeHandler();
         }
-        anchor.detach();
+        if (anchorPositioning != null) {
+            anchorPositioning.detach();
+        }
     }
 
     // ------------------------------------------------------ add
@@ -251,7 +304,26 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover distance(int distance) {
-        anchor.distance(distance);
+        anchorPositioning.distance(distance);
+        return this;
+    }
+
+    public NativePopover entryDelay(int delay) {
+        this.entryDelay = delay;
+        return this;
+    }
+
+    public NativePopover exitDelay(int delay) {
+        this.exitDelay = delay;
+        return this;
+    }
+
+    public NativePopover hoverable() {
+        return hoverable(true);
+    }
+
+    public NativePopover hoverable(boolean hoverable) {
+        this.hoverable = hoverable;
         return this;
     }
 
@@ -276,9 +348,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover placement(Placement placement) {
-        if (verifyEnum(element(), "placement", placement, top, right, bottom, left)) {
-            anchor.applyPlacement(placement);
-        }
+        this.placement = placement;
         return this;
     }
 
@@ -297,22 +367,22 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     public NativePopover trigger(String trigger) {
-        anchor.trigger(trigger);
+        anchorPositioning.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(By trigger) {
-        anchor.trigger(trigger);
+        anchorPositioning.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(HTMLElement trigger) {
-        anchor.trigger(trigger);
+        anchorPositioning.trigger(trigger);
         return this;
     }
 
     public NativePopover trigger(Supplier<HTMLElement> trigger) {
-        anchor.trigger(trigger);
+        anchorPositioning.trigger(trigger);
         return this;
     }
 
@@ -324,7 +394,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     // ------------------------------------------------------ aria
 
     /**
-     * Accessible label for the popover, required when header is not present.
+     * Accessible label for the popover, required when a header is not present.
      */
     public NativePopover ariaLabel(String label) {
         return aria(Aria.label, label);
@@ -353,10 +423,22 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     // ------------------------------------------------------ api
 
     public void show() {
-        if (!visible && anchor.trigger() != null) {
-            element().showPopover();
+        if (!visible && anchorPositioning.trigger() != null) {
+            if (anchorPositioning.cssPositioning()) {
+                // CSS handles position-try-fallbacks; just apply preferred placement and show
+                anchorPositioning.applyPlacement(placement == auto ? top : placement);
+                element().showPopover();
+            } else {
+                // JS calculates best placement via viewport measurements
+                style("visibility", "hidden");
+                element().showPopover();
+                anchorPositioning.applyBestPlacement(placement);
+                element().style.removeProperty("visibility");
+            }
             visible = true;
-            outsideClickHandler = bind(document, click.name, this::onOutsideClick);
+            if (!hoverable) {
+                outsideClickHandler = bind(document, click.name, this::onOutsideClick);
+            }
         }
     }
 
@@ -377,6 +459,27 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     // ------------------------------------------------------ internal
 
+    private void scheduleShow() {
+        cancelTimers();
+        showTimeout = setTimeout(e -> show(), entryDelay);
+    }
+
+    private void scheduleHide() {
+        cancelTimers();
+        hideTimeout = setTimeout(e -> close(new Event(""), true), exitDelay);
+    }
+
+    private void recalculatePlacement() {
+        if (visible) {
+            anchorPositioning.applyBestPlacement(placement);
+        }
+    }
+
+    private void cancelTimers() {
+        clearTimeout(showTimeout);
+        clearTimeout(hideTimeout);
+    }
+
     private void togglePopover(Event event) {
         if (visible) {
             close(event, true);
@@ -386,7 +489,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     private void onOutsideClick(Event event) {
-        HTMLElement trigger = anchor.trigger();
+        HTMLElement trigger = anchorPositioning.trigger();
         if (visible && trigger != null) {
             Element target = (Element) event.target;
             if (!element().contains(target) && !trigger.contains(target)) {

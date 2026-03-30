@@ -19,6 +19,7 @@ public interface Attributes {
 
     String hidden = "hidden";
     String tabindex = "tabindex";
+    String popover = "popover";
     String role = "role";
     String required = "required";
     String scope = "scope";
