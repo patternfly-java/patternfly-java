@@ -58,6 +58,32 @@ class TypeaheadSupport {
                 });
     }
 
+    static void typeaheadDefaults(NativeMenuToggleMenu<?> mtm) {
+        mtm.menuToggle.searchInput().input()
+                .attr(role, combobox)
+                .aria(Aria.expanded, false)
+                .autocomplete("off")
+                .on(click, event -> mtm.toggle());
+
+        mtm.onToggle((e, c, expanded) -> {
+            if (expanded) {
+                // show all menu items when expanded
+                mtm.menu.clearSearch();
+            }
+        });
+        mtm.menuToggle.searchInput()
+                .onClear((e, si) -> {
+                    mtm.menu.clearSearch();
+                    mtm.menu.unselectAllItems();
+                    si.input().element().focus();
+                })
+                .onChange((e, c, value) -> {
+                    if (value.isEmpty()) {
+                        mtm.menu.clearSearch();
+                    }
+                });
+    }
+
     static boolean shouldExpandOnKeyup(MenuToggleMenu<?> mtm, Event event) {
         if (Enter.match(event) || Escape.match(event) || Tab.match(event)) {
             return false;
@@ -65,7 +91,30 @@ class TypeaheadSupport {
         return !mtm.expanded();
     }
 
+    static boolean shouldExpandOnKeyup(NativeMenuToggleMenu<?> mtm, Event event) {
+        if (Enter.match(event) || Escape.match(event) || Tab.match(event)) {
+            return false;
+        }
+        return !mtm.expanded();
+    }
+
     static void allowNewItems(MenuToggleMenu<?> mtm, Typeahead<?> typeahead,
+            Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
+        typeahead.onNoResults((menuList, text) -> createNewMenuItem(prompt.apply(text))
+                .onClick((e, c) -> createItem.apply(text)
+                        .then(menuItem -> {
+                            mtm.menu.clearSearch();
+                            menuList.add(menuItem);
+                            mtm.menu.select(menuItem, true, true);
+                            return null;
+                        }).finally_(() -> {
+                            mtm.menuToggle.text(text);
+                            mtm.menuToggle.searchInput().input().element().focus();
+                            mtm.collapse(false);
+                        })));
+    }
+
+    static void allowNewItems(NativeMenuToggleMenu<?> mtm, NativeTypeahead<?> typeahead,
             Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
         typeahead.onNoResults((menuList, text) -> createNewMenuItem(prompt.apply(text))
                 .onClick((e, c) -> createItem.apply(text)

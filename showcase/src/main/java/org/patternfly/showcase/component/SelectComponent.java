@@ -55,13 +55,13 @@ import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
-import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
-import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
+import static org.patternfly.component.menu.NativeMultiSelect.nativeMultiSelect;
+import static org.patternfly.component.menu.NativeMultiTypeahead.nativeMultiTypeahead;
 import static org.patternfly.component.menu.NativeSingleSelect.nativeSingleSelect;
+import static org.patternfly.component.menu.NativeSingleTypeahead.nativeSingleTypeahead;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
-import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -174,7 +174,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-select"), () ->
                 // @code-start:multi-select
                 div()
-                        .add(multiSelect("Filter by status")
+                        .add(nativeMultiSelect("Filter by status")
                                 .addMenu(multiSelectCheckboxMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -191,17 +191,15 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead"), () ->
                 // @code-start:single-typeahead
                 div()
-                        .add(singleTypeahead("single-typeahead-0", "Select a state")
-                                .applyTo(FullWidth::fullWidth)
-                                .addMenu(singleSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("alabama", "Alabama"))
-                                                        .addItem(menuItem("florida", "Florida"))
-                                                        .addItem(menuItem("new-jersey", "New Jersey"))
-                                                        .addItem(menuItem("new-mexico", "New Mexico"))
-                                                        .addItem(menuItem("new-york", "New York"))
-                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                        .add(nativeSingleTypeahead("single-typeahead-0", "Select a state")
+                                .applyToMenuToggle(FullWidth::fullWidth)
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("alabama", "Alabama"))
+                                        .addItem(menuItem("florida", "Florida"))
+                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                        .addItem(menuItem("new-york", "New York"))
+                                        .addItem(menuItem("north-carolina", "North Carolina"))))
                         .element()
                 // @code-end:single-typeahead
         ));
@@ -210,19 +208,17 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead-create"), () ->
                 // @code-start:single-typeahead-create
                 div()
-                        .add(singleTypeahead("single-typeahead-create-0", "Select a state")
-                                .applyTo(FullWidth::fullWidth)
+                        .add(nativeSingleTypeahead("single-typeahead-create-0", "Select a state")
+                                .applyToMenuToggle(FullWidth::fullWidth)
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("alabama", "Alabama"))
+                                        .addItem(menuItem("florida", "Florida"))
+                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                        .addItem(menuItem("new-york", "New York"))
+                                        .addItem(menuItem("north-carolina", "North Carolina")))
                                 .allowNewItems(value -> "Create new item \"" + value + "\"",
-                                        value -> Promise.resolve(menuItem(Id.build(value), value)))
-                                .addMenu(singleSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("alabama", "Alabama"))
-                                                        .addItem(menuItem("florida", "Florida"))
-                                                        .addItem(menuItem("new-jersey", "New Jersey"))
-                                                        .addItem(menuItem("new-mexico", "New Mexico"))
-                                                        .addItem(menuItem("new-york", "New York"))
-                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                                        value -> Promise.resolve(menuItem(Id.build(value), value))))
                         .element()
                 // @code-end:single-typeahead-create
         ));
@@ -240,8 +236,8 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
-                            .applyTo(FullWidth::fullWidth)
+                    .add(nativeSingleTypeahead("single-typeahead-async-0", "Lorem ipsum")
+                            .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
@@ -254,17 +250,15 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead"), () ->
                 // @code-start:multi-typeahead
                 div()
-                        .add(multiTypeahead("multi-typeahead-0", "Select a state")
-                                .applyTo(FullWidth::fullWidth)
-                                .addMenu(multiSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("alabama", "Alabama"))
-                                                        .addItem(menuItem("florida", "Florida"))
-                                                        .addItem(menuItem("new-jersey", "New Jersey"))
-                                                        .addItem(menuItem("new-mexico", "New Mexico"))
-                                                        .addItem(menuItem("new-york", "New York"))
-                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                        .add(nativeMultiTypeahead("multi-typeahead-0", "Select a state")
+                                .applyToMenuToggle(FullWidth::fullWidth)
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("alabama", "Alabama"))
+                                        .addItem(menuItem("florida", "Florida"))
+                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                        .addItem(menuItem("new-york", "New York"))
+                                        .addItem(menuItem("north-carolina", "North Carolina"))))
                         .element()
                 // @code-end:multi-typeahead
         ));
@@ -273,19 +267,17 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead-create"), () ->
                 // @code-start:multi-typeahead-create
                 div()
-                        .add(multiTypeahead("multi-typeahead-create-0", "Select a state")
-                                .applyTo(FullWidth::fullWidth)
+                        .add(nativeMultiTypeahead("multi-typeahead-create-0", "Select a state")
+                                .applyToMenuToggle(FullWidth::fullWidth)
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("alabama", "Alabama"))
+                                        .addItem(menuItem("florida", "Florida"))
+                                        .addItem(menuItem("new-jersey", "New Jersey"))
+                                        .addItem(menuItem("new-mexico", "New Mexico"))
+                                        .addItem(menuItem("new-york", "New York"))
+                                        .addItem(menuItem("north-carolina", "North Carolina")))
                                 .allowNewItems(value -> "Create new item \"" + value + "\"",
-                                        value -> Promise.resolve(menuItem(Id.build(value), value)))
-                                .addMenu(multiSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("alabama", "Alabama"))
-                                                        .addItem(menuItem("florida", "Florida"))
-                                                        .addItem(menuItem("new-jersey", "New Jersey"))
-                                                        .addItem(menuItem("new-mexico", "New Mexico"))
-                                                        .addItem(menuItem("new-york", "New York"))
-                                                        .addItem(menuItem("north-carolina", "North Carolina"))))))
+                                        value -> Promise.resolve(menuItem(Id.build(value), value))))
                         .element()
                 // @code-end:multi-typeahead-create
         ));
@@ -303,8 +295,8 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
-                            .applyTo(FullWidth::fullWidth)
+                    .add(nativeMultiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
+                            .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(multiSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()

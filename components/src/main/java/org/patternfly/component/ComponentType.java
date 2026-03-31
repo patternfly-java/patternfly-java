@@ -101,7 +101,13 @@ public enum ComponentType {
 
     NativeDropdown("ndd", "PF6/Component/NativeDropdown"),
 
+    NativeMultiSelect("nms", "PF6/Component/NativeMultiSelect"),
+
+    NativeMultiTypeahead("nmt", "PF6/Component/NativeMultiTypeahead"),
+
     NativeSingleSelect("nss", "PF6/Component/NativeSingleSelect"),
+
+    NativeSingleTypeahead("nst", "PF6/Component/NativeSingleTypeahead"),
 
     NativePopover("npvr", "PF6/Component/NativePopover"),
 

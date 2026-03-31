@@ -78,8 +78,10 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
         });
         stayOpen(event -> {
             Node target = (Node) event.target;
-            return searchInput.input().element() == target ||
-                    (searchInput.utilities() != null && searchInput.utilities().element().contains(target));
+            boolean inputClick = searchInput.input().element() == target;
+            boolean utilitiesClick = searchInput.utilities() != null &&
+                    searchInput.utilities().element().contains(target);
+            return inputClick || utilitiesClick;
         });
     }
 

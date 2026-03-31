@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.patternfly.component.ComponentType;
@@ -65,23 +64,11 @@ public class NativeDropdown extends NativeMenuToggleMenu<NativeDropdown> {
 
     /**
      * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link NativeDropdown}. If the menu,
-     * menu content, or menu list is not yet initialized, they will be created as part of this method. This allows for
-     * modification or customization of the menu list using the specified consumer.
+     * menu content, or menu list is not yet initialized, they will be created as part of this method.
      * <p>
-     * This method simplifies the process of adding menu items to the dropdown menu. It is a shortcut for creating and adding a
-     * {@link DropdownMenu}, {@link MenuContent}, and {@link MenuList} in a single step.
-     * <p>
-     * The two dropdowns below are exactly the same. Use the explicit approach if you need to customize the menu, content or
-     * list or if you want to add {@link MenuGroup}s.
-     * {@snippet :
-     *  NativeDropdown implicit = nativeDropdown("Dropdown")
-     *     .applyToMenuList((menu, list) -> list.addItem(menuItem("item-0", "Action")));
-     *
-     * NativeDropdown explicit = nativeDropdown("Dropdown")
-     *     .addContent(menuContent()
-     *         .addList(menuList()
-     *             .addItem(menuItem("item-0", "Action"))));
-     *}
+     * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
+     * {@link DropdownMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need to us
+     * another menu type, want to customize the menu, content or list or if you want to use {@link MenuGroup}s.
      *
      * @param consumer a {@link Consumer} that accepts a {@link MenuList} for customization or modification
      * @return the current {@link NativeDropdown} instance for method chaining

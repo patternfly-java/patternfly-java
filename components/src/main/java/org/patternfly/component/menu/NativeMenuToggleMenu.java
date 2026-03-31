@@ -36,7 +36,6 @@ import org.patternfly.popper.Placement;
 import org.patternfly.position.AnchorPositioning;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-
 import elemental2.core.JsArray;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -88,7 +87,7 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
     private final List<ComponentHandler<B>> loadedHandler;
     private boolean disabled;
     private Placement placement;
-    private Predicate<Event> stayOpen;
+    private StayOpenPredicate stayOpen;
     private HandlerRegistration menuToggleClickHandler;
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
@@ -120,7 +119,7 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
             insertAfter(menuPopover, menuToggle.element());
             ap.attach();
             ap.applyPlacement(placement == auto ? bottomStart : placement);
-            menuToggleClickHandler = bind(menuToggle.toggleElement, click, e -> toggle());
+            menuToggleClickHandler = bind(menuToggle.toggleElement, click, this::onMenuToggleClick);
             menuClickHandler = bind(menu, click, this::onMenuClick);
             keyHandler = bind(window, keydown, this::keyHandler);
 
@@ -193,17 +192,13 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
         return that();
     }
 
-    public B stayOpen() {
-        return stayOpen(event -> true);
-    }
-
     /**
-     * Specifies a condition that determines whether the menu should remain open when an event occurs.
+     * Specifies a condition that determines whether the menu should remain open when the menu-toggle or the menu is clicked.
      *
      * @param stayOpen a {@link Predicate} that evaluates an {@link Event} to determine if the menu remains open.
      * @return the current instance with the condition applied, enabling method chaining.
      */
-    public B stayOpen(Predicate<Event> stayOpen) {
+    public B stayOpen(StayOpenPredicate stayOpen) {
         this.stayOpen = stayOpen;
         return that();
     }
@@ -286,6 +281,8 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
         }
     }
 
+    // ------------------------------------------------------ internal event handlers
+
     private void keyHandler(KeyboardEvent event) {
         if (expanded()) {
             if (Escape.match(event)) {
@@ -322,9 +319,20 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
         }
     }
 
+    private void onMenuToggleClick(Event event) {
+        if (expanded()) {
+            if (stayOpen != null && stayOpen.test(event, menuToggle, menu)) {
+                return;
+            }
+            collapse();
+        } else {
+            expand();
+        }
+    }
+
     private void onMenuClick(Event event) {
         if (expanded()) {
-            if (stayOpen != null && stayOpen.test(event)) {
+            if (stayOpen != null && stayOpen.test(event, menuToggle, menu)) {
                 return;
             }
             collapse();
@@ -337,7 +345,7 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
             boolean insideMenu = menu.element().contains(target);
             boolean insideToggle = menuToggle.element().contains(target);
             if (!insideMenu && !insideToggle) {
-                if (stayOpen != null && stayOpen.test(event)) {
+                if (stayOpen != null && stayOpen.test(event, menuToggle, menu)) {
                     return;
                 }
                 collapse();

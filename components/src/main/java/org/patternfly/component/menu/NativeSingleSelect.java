@@ -73,11 +73,11 @@ public class NativeSingleSelect extends NativeMenuToggleMenu<NativeSingleSelect>
 
     /**
      * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link NativeSingleSelect}. If the
-     * menu, menu content, or menu list is not yet initialized, they will be created as part of this method. This allows for
-     * modification or customization of the menu list using the specified consumer.
+     * menu, menu content, or menu list is not yet initialized, they will be created as part of this method.
      * <p>
-     * This method simplifies the process of adding menu items to the select menu. It is a shortcut for creating and adding a
-     * {@link SingleSelectMenu}, {@link MenuContent}, and {@link MenuList} in a single step.
+     * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
+     * {@link SingleSelectMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need
+     * to us another menu type, want to customize the menu, content or list or if you want to use {@link MenuGroup}s.
      *
      * @param consumer a {@link Consumer} that accepts a {@link MenuList} for customization or modification
      * @return the current {@link NativeSingleSelect} instance for method chaining
