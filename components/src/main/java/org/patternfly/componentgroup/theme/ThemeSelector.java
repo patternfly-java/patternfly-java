@@ -21,9 +21,9 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.menu.MenuContent;
 import org.patternfly.component.menu.MenuToggle;
-import org.patternfly.component.menu.SingleSelect;
+import org.patternfly.component.menu.NativeSingleSelect;
 import org.patternfly.component.togglegroup.ToggleGroup;
-
+import org.patternfly.popper.Placement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
@@ -35,7 +35,7 @@ import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
-import static org.patternfly.component.menu.SingleSelect.singleSelect;
+import static org.patternfly.component.menu.NativeSingleSelect.nativeSingleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
 import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupItem;
@@ -62,6 +62,7 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
     private static final String CONTRAST_KEY = "contrast";
     private final ThemeManager<Color> colorManager;
     private final ThemeManager<Contrast> contrastManager;
+    private final NativeSingleSelect singleSelect;
     private final MenuContent menuContent;
     private boolean hasContrast;
 
@@ -91,7 +92,7 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
                                                 .description(color.description)
                                                 .store(COLOR_KEY, color))));
         MenuToggle menuToggle = menuToggle().icon(colorManager.value.icon());
-        SingleSelect singleSelect = singleSelect(menuToggle)
+        singleSelect = nativeSingleSelect(menuToggle)
                 .noDefaultSelectHandler()
                 .addMenu(singleSelectMenu()
                         .onSingleSelect((e, menuItem, selected) -> {
@@ -118,6 +119,11 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
     }
 
     // ------------------------------------------------------ builder
+
+    public ThemeSelector placement(Placement placement) {
+        singleSelect.placement(placement);
+        return this;
+    }
 
     public ThemeSelector withContrast() {
         if (!hasContrast) {

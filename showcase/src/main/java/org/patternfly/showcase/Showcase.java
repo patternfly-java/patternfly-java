@@ -52,6 +52,7 @@ import static org.patternfly.component.toolbar.ToolbarGroup.toolbarGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.componentgroup.theme.ThemeSelector.themeSelector;
 import static org.patternfly.icon.IconSets.fab.github;
+import static org.patternfly.popper.Placement.bottomEnd;
 import static org.patternfly.showcase.Data.charts;
 import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
@@ -136,6 +137,7 @@ public final class Showcase {
                                                                 .add(button(github(), "https://github.com/patternfly-java")
                                                                         .plain()))
                                                         .addItem(toolbarItem().add(themeSelector("pfj")
+                                                                .placement(bottomEnd)
                                                                 .withContrast())))))))
                 .addSidebar(pageSidebar()
                         .addBody(pageSidebarBody()
