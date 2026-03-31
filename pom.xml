@@ -80,7 +80,7 @@
         <version.checkstyle.config>1.0.8.Final</version.checkstyle.config>
         <version.corepack>v0.34.6</version.corepack>
         <version.elemental2>1.3.2</version.elemental2> <!-- Only used to link the API doc -->
-        <version.elemento>2.4.10</version.elemento>
+        <version.elemento>2.4.11</version.elemento>
         <version.gwt>2.13.0</version.gwt>
         <version.gwt.event>1.0.0-RC1</version.gwt.event> <!-- Only used to link the API doc -->
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml> <!-- Only used to link the API doc -->

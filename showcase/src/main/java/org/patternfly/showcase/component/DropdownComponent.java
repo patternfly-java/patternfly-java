@@ -20,6 +20,7 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.menu.DropdownMenu;
+import org.patternfly.component.menu.NativeDropdown;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -30,7 +31,6 @@ import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.form.Checkbox.checkboxWrapped;
-import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
@@ -40,6 +40,7 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
+import static org.patternfly.component.menu.NativeDropdown.nativeDropdown;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -61,19 +62,15 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-basic"), () ->
                 // @code-start:dropdown-basic
                 div()
-                        .add(dropdown("Dropdown")
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                        .add(nativeDropdown("Dropdown")
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-basic
         ));
@@ -82,19 +79,15 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-kebab"), () ->
                 // @code-start:dropdown-kebab
                 div()
-                        .add(dropdown(ellipsisV(), "kebab dropdown toggle")
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                        .add(nativeDropdown(ellipsisV(), "kebab dropdown toggle")
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-kebab
         ));
@@ -103,7 +96,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-groups"), () ->
                 // @code-start:dropdown-groups
                 div()
-                        .add(dropdown("Dropdown")
+                        .add(nativeDropdown("Dropdown")
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addGroup(menuGroup()
@@ -129,21 +122,18 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-description"), () ->
                 // @code-start:dropdown-description
                 div()
-                        .add(dropdown(menuToggle("Dropdown").fullWidth())
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action")
-                                                                .description("This is a description"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1")
-                                                                .description(
-                                                                        "This is a very long description that describes the menu item"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled()
-                                                                .description("Disabled action description"))
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled()
-                                                                .description("Disabled link description"))))))
+                        .add(nativeDropdown(menuToggle("Dropdown").fullWidth())
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action")
+                                                .description("This is a description"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1")
+                                                .description("This is a very long description that describes the menu item"))
+                                        .addItem(menuItem("item-2", "Disabled action")
+                                                .disabled()
+                                                .description("Disabled action description"))
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
+                                                .disabled()
+                                                .description("Disabled link description"))))
                         .element()
                 // @code-end:dropdown-description
         ));
@@ -152,19 +142,15 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-badge"), () ->
                 // @code-start:dropdown-badge
                 div()
-                        .add(dropdown(menuToggle("Count").addBadge(badge(4).unread()))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                        .add(nativeDropdown(menuToggle("Count").addBadge(badge(4).unread()))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-badge
         ));
@@ -173,19 +159,15 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-icon"), () ->
                 // @code-start:dropdown-icon
                 div()
-                        .add(dropdown(menuToggle("Icon").icon(cog()))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                        .add(nativeDropdown(menuToggle("Icon").icon(cog()))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-icon
         ));
@@ -194,19 +176,15 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-avatar"), () ->
                 // @code-start:dropdown-avatar
                 div()
-                        .add(dropdown(menuToggle("John Doe").addAvatar(avatar(avatarData(), "avatar")))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                        .add(nativeDropdown(menuToggle("John Doe").addAvatar(avatar(avatarData(), "avatar")))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-avatar
         ));
@@ -215,37 +193,29 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-check"), () ->
                 // @code-start:dropdown-split-check
                 div()
-                        .add(dropdown(menuToggle(split)
+                        .add(nativeDropdown(menuToggle(split)
                                 .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check")))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .add(br())
                         .add(br())
-                        .add(dropdown(menuToggle(split)
+                        .add(nativeDropdown(menuToggle(split)
                                 .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check"))
                                 .text("10 selected"))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-split-check
         ));
@@ -254,26 +224,23 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-action"), () ->
                 // @code-start:dropdown-split-action
                 div()
-                        .add(dropdown(menuToggle(split)
+                        .add(nativeDropdown(menuToggle(split)
                                 .addAction(menuToggleAction("Action")))
-                                .addMenu(dropdownMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("item-0", "Action"))
-                                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
-                                                        .addItem(menuItem("item-2", "Disabled action")
-                                                                .disabled())
-                                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3")
-                                                                .disabled())
-                                                        .addDivider()
-                                                        .addItem(menuItem("item-4", "Separated action"))
-                                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))))
+                                .applyToMenuList(ml -> ml
+                                        .addItem(menuItem("item-0", "Action"))
+                                        .addItem(linkMenuItem("item-1", "Link", "#item-1"))
+                                        .addItem(menuItem("item-2", "Disabled action").disabled())
+                                        .addItem(linkMenuItem("item-3", "Disabled link", "#item-3").disabled())
+                                        .addDivider()
+                                        .addItem(menuItem("item-4", "Separated action"))
+                                        .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .element()
                 // @code-end:dropdown-split-action
         ));
 
         startApiDocs(Dropdown.class);
         addApiDoc(Dropdown.class, component);
+        addApiDoc(NativeDropdown.class, component);
         addApiDoc(DropdownMenu.class, component);
     }
 }

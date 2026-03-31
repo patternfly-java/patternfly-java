@@ -30,7 +30,6 @@
     overscroll-behavior: contain;
     margin: 0 auto;
     border: 2px dashed #ff6b81;
-
 }
 
 .pfj-popover-box::before,

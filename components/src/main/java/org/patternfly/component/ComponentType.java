@@ -99,6 +99,8 @@ public enum ComponentType {
 
     MultiSelect("ms", "PF6/Component/MultiSelect"),
 
+    NativeDropdown("ndd", "PF6/Component/NativeDropdown"),
+
     NativePopover("npvr", "PF6/Component/NativePopover"),
 
     NativeTooltip("ntt", "PF6/Component/NativeTooltip"),

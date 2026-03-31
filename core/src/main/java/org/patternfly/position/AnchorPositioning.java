@@ -186,19 +186,23 @@ public class AnchorPositioning {
         return cssPositioning;
     }
 
-    public HTMLElement trigger() {
-        return trigger;
-    }
-
-    public boolean hasTriggerSupplier() {
-        return triggerSupplier != null;
-    }
-
     public int distance() {
         return distance;
     }
 
     public void distance(int distance) {
         this.distance = distance;
+    }
+
+    public boolean hasTriggerSupplier() {
+        return triggerSupplier != null;
+    }
+
+    public HTMLElement popover() {
+        return popover;
+    }
+
+    public HTMLElement trigger() {
+        return trigger;
     }
 }

@@ -27,7 +27,8 @@
 
 /* Reset [popover] UA styles */
 .pf-v6-c-tooltip[popover],
-.pf-v6-c-popover[popover] {
+.pf-v6-c-popover[popover],
+.pf-v6-c-menu__popover {
     border: none;
     padding: 0;
     background: none;
@@ -102,6 +103,66 @@
 .pf-v6-c-popover[popover] {
     inset: auto;
     max-width: var(--pf-v6-c-popover--MaxWidth);
+}
+
+/* ===================================================================
+   Dropdown menu (NativeDropdown) styles
+
+   Unlike tooltip/popover which are centered on the anchor, dropdown
+   menus are edge-aligned. Uses anchor() functions for edge-aligned
+   placements and position-area for centered placements.
+   No arrow, so no container queries needed.
+   =================================================================== */
+
+.pf-v6-c-menu__popover {
+    inset: auto;
+}
+
+/* Bottom placements */
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom {
+    position-area: block-end;
+    position-try-fallbacks: flip-block;
+}
+
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom-left {
+    top: anchor(bottom);
+    left: anchor(left);
+    position-try-fallbacks: flip-block;
+}
+
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom-right {
+    top: anchor(bottom);
+    right: anchor(right);
+    position-try-fallbacks: flip-block;
+}
+
+/* Top placements */
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top {
+    position-area: block-start;
+    position-try-fallbacks: flip-block;
+}
+
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top-left {
+    bottom: anchor(top);
+    left: anchor(left);
+    position-try-fallbacks: flip-block;
+}
+
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top-right {
+    bottom: anchor(top);
+    right: anchor(right);
+    position-try-fallbacks: flip-block;
+}
+
+/* Left/right placements */
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-left {
+    position-area: inline-start;
+    position-try-fallbacks: flip-inline;
+}
+
+.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-right {
+    position-area: inline-end;
+    position-try-fallbacks: flip-inline;
 }
 
 /*
