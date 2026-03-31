@@ -123,7 +123,6 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativePopover>> closeHandler;
 
-    private boolean visible;
     private boolean showClose;
     private boolean hoverable;
     private int entryDelay;
@@ -147,9 +146,8 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
                 .element());
 
         String id = Id.unique(componentType().id);
-        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.popoverEnabled());
+        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.popoverEnabled(), false);
         this.closeHandler = new ArrayList<>();
-        this.visible = false;
         this.showClose = true;
         this.hoverable = false;
         this.showTimeout = 0;
@@ -206,9 +204,8 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     @Override
     public void detach(MutationRecord mutationRecord) {
         cancelTimers();
-        if (visible) {
-            element().hidePopover();
-            visible = false;
+        if (ap.visible()) {
+            ap.hide();
         }
         if (scrollHandler != null) {
             scrollHandler.removeHandler();
@@ -419,19 +416,19 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     // ------------------------------------------------------ api
 
     public void show() {
-        if (!visible && ap.trigger() != null) {
+        if (!ap.visible() && ap.trigger() != null) {
             if (ap.cssPositioning()) {
                 // CSS handles position-try-fallbacks; just apply preferred placement and show
                 ap.applyPlacement(placement == auto ? top : placement);
-                element().showPopover();
+                ap.show();
             } else {
-                // JS calculates best placement via viewport measurements
+                // JS calculates the best placement via viewport measurements.
+                // For the calculation to work, the tooltip must be at least hidden
                 style("visibility", "hidden");
-                element().showPopover();
+                ap.show();
                 ap.applyBestPlacement(placement);
                 element().style.removeProperty("visibility");
             }
-            visible = true;
             if (!hoverable) {
                 outsideClickHandler = bind(document, click.name, this::onOutsideClick);
             }
@@ -441,9 +438,8 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
-            if (visible) {
-                element().hidePopover();
-                visible = false;
+            if (ap.visible()) {
+                ap.hide();
                 if (outsideClickHandler != null) {
                     outsideClickHandler.removeHandler();
                     outsideClickHandler = null;
@@ -466,7 +462,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     private void recalculatePlacement() {
-        if (visible) {
+        if (ap.visible()) {
             ap.applyBestPlacement(placement);
         }
     }
@@ -477,7 +473,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
     }
 
     private void togglePopover(Event event) {
-        if (visible) {
+        if (ap.visible()) {
             close(event, true);
         } else {
             show();
@@ -486,7 +482,7 @@ public class NativePopover extends BaseComponent<HTMLDivElement, NativePopover> 
 
     private void onOutsideClick(Event event) {
         HTMLElement trigger = ap.trigger();
-        if (visible && trigger != null) {
+        if (ap.visible() && trigger != null) {
             Element target = (Element) event.target;
             if (!element().contains(target) && !trigger.contains(target)) {
                 close(event, true);

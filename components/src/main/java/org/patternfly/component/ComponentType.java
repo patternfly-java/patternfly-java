@@ -101,6 +101,8 @@ public enum ComponentType {
 
     NativeDropdown("ndd", "PF6/Component/NativeDropdown"),
 
+    NativeSingleSelect("nss", "PF6/Component/NativeSingleSelect"),
+
     NativePopover("npvr", "PF6/Component/NativePopover"),
 
     NativeTooltip("ntt", "PF6/Component/NativeTooltip"),

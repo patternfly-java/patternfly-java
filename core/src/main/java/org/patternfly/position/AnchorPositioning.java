@@ -50,17 +50,20 @@ public class AnchorPositioning {
     private final String id;
     private final HTMLElement popover;
     private final boolean cssPositioning;
+    private final boolean matchTriggerWidth;
     private Supplier<HTMLElement> triggerSupplier;
     private HTMLElement trigger;
+    private boolean visible;
     private int distance;
 
     public AnchorPositioning(String id, HTMLElement popover, Supplier<HTMLElement> triggerSupplier, int distance,
-            boolean cssPositioning) {
+            boolean cssPositioning, boolean matchTriggerWidth) {
         this.id = id;
         this.popover = popover;
         this.triggerSupplier = triggerSupplier;
         this.distance = distance;
         this.cssPositioning = cssPositioning;
+        this.matchTriggerWidth = matchTriggerWidth;
     }
 
     // ------------------------------------------------------ trigger
@@ -180,6 +183,31 @@ public class AnchorPositioning {
         return placement;
     }
 
+    // ------------------------------------------------------ show / hide
+
+    /** Calls {@link #beforeShow()}, then shows the popover via the Popover API. */
+    public void show() {
+        beforeShow();
+        popover.showPopover();
+        visible = true;
+    }
+
+    /** Hides the popover via the Popover API. */
+    public void hide() {
+        popover.hidePopover();
+        visible = false;
+    }
+
+    /** Returns whether the popover is currently visible. */
+    public boolean visible() {
+        return visible;
+    }
+
+    /** Prepares the popover before it is shown. */
+    public void beforeShow() {
+        applyMinWidth();
+    }
+
     // ------------------------------------------------------ access
 
     public boolean cssPositioning() {
@@ -204,5 +232,13 @@ public class AnchorPositioning {
 
     public HTMLElement trigger() {
         return trigger;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private void applyMinWidth() {
+        if (matchTriggerWidth && trigger != null) {
+            popover.style.setProperty("min-width", trigger.offsetWidth + "px");
+        }
     }
 }

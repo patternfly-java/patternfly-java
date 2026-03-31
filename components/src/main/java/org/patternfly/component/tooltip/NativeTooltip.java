@@ -128,7 +128,6 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     private final HTMLElement contentElement;
     private final List<CloseHandler<NativeTooltip>> closeHandler;
 
-    private boolean visible;
     private int entryDelay;
     private int exitDelay;
     private double showTimeout;
@@ -147,9 +146,8 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
                 .element());
 
         this.id = Id.unique(componentType().id);
-        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.tooltipEnabled());
+        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.tooltipEnabled(), false);
         this.closeHandler = new ArrayList<>();
-        this.visible = false;
         this.showTimeout = 0;
         this.hideTimeout = 0;
         this.entryDelay = ENTRY_DELAY;
@@ -206,9 +204,8 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     @Override
     public void detach(MutationRecord mutationRecord) {
         cancelTimers();
-        if (visible) {
-            element().hidePopover();
-            visible = false;
+        if (ap.visible()) {
+            ap.hide();
         }
         if (scrollHandler != null) {
             scrollHandler.removeHandler();
@@ -295,19 +292,19 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
 
     public void show() {
         HTMLElement trigger = ap.trigger();
-        if (!visible && trigger != null) {
+        if (!ap.visible() && trigger != null) {
             if (ap.cssPositioning()) {
                 // CSS handles position-try-fallbacks; just apply preferred placement and show
                 ap.applyPlacement(placement == auto ? top : placement);
-                element().showPopover();
+                ap.show();
             } else {
-                // JS calculates best placement via viewport measurements
+                // JS calculates the best placement via viewport measurements.
+                // For the calculation to work, the tooltip must be at least hidden
                 style("visibility", "hidden");
-                element().showPopover();
+                ap.show();
                 ap.applyBestPlacement(placement);
                 element().style.removeProperty("visibility");
             }
-            visible = true;
             if (aria != none) {
                 trigger.setAttribute(aria.attribute, id);
             }
@@ -317,9 +314,8 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
-            if (visible) {
-                element().hidePopover();
-                visible = false;
+            if (ap.visible()) {
+                ap.hide();
                 HTMLElement trigger = ap.trigger();
                 if (aria != none && trigger != null) {
                     trigger.removeAttribute(aria.attribute);
@@ -347,7 +343,7 @@ public class NativeTooltip extends BaseComponent<HTMLDivElement, NativeTooltip> 
     }
 
     private void recalculatePlacement() {
-        if (visible) {
+        if (ap.visible()) {
             ap.applyBestPlacement(placement);
         }
     }

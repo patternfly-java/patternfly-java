@@ -33,7 +33,6 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers.FullWidth;
-
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -60,7 +59,7 @@ import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
 import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
-import static org.patternfly.component.menu.SingleSelect.singleSelect;
+import static org.patternfly.component.menu.NativeSingleSelect.nativeSingleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
 import static org.patternfly.icon.IconSets.fas.bell;
@@ -84,14 +83,12 @@ public class SelectComponent extends SnippetPage {
                 code("single-select"), () ->
                 // @code-start:single-select
                 div()
-                        .add(singleSelect("Select a value")
+                        .add(nativeSingleSelect("Select a value")
                                 .style("width", "200px")
-                                .addMenu(singleSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("option-0", "Option 1"))
-                                                        .addItem(menuItem("option-1", "Option 2"))
-                                                        .addItem(menuItem("option-2", "Option 3"))))))
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("option-0", "Option 1"))
+                                        .addItem(menuItem("option-1", "Option 2"))
+                                        .addItem(menuItem("option-2", "Option 3"))))
                         .element()
                 // @code-end:single-select
         ));
@@ -100,23 +97,21 @@ public class SelectComponent extends SnippetPage {
                 code("select-option-variants"), () ->
                 // @code-start:select-option-variants
                 div()
-                        .add(singleSelect("Select a value")
+                        .add(nativeSingleSelect("Select a value")
                                 .style("width", "200px")
-                                .addMenu(singleSelectMenu()
-                                        .addContent(menuContent()
-                                                .addList(menuList()
-                                                        .addItem(menuItem("option-0", "Basic option"))
-                                                        .addItem(menuItem("option-1", "Option with description")
-                                                                .description("This is a description"))
-                                                        .addItem(linkMenuItem("option-3", "Option with link",
-                                                                placeManager().href("/components/menus/select"))
-                                                                .external())
-                                                        .addItem(menuItem("option-4", "Option with icon")
-                                                                .icon(bell()))
-                                                        .addItem(menuItem("option-5", "Disabled options")
-                                                                .disabled())
-                                                        .addItem(menuItem("option-6",
-                                                                "See menu for additional variants"))))))
+                                .applyToMenuList(list -> list
+                                        .addItem(menuItem("option-0", "Basic option"))
+                                        .addItem(menuItem("option-1", "Option with description")
+                                                .description("This is a description"))
+                                        .addItem(linkMenuItem("option-3", "Option with link",
+                                                placeManager().href("/components/menus/select"))
+                                                .external())
+                                        .addItem(menuItem("option-4", "Option with icon")
+                                                .icon(bell()))
+                                        .addItem(menuItem("option-5", "Disabled options")
+                                                .disabled())
+                                        .addItem(menuItem("option-6",
+                                                "See menu for additional variants"))))
                         .element()
                 // @code-end:select-option-variants
         ));
@@ -125,7 +120,7 @@ public class SelectComponent extends SnippetPage {
                 code("select-groups"), () ->
                 // @code-start:select-groups
                 div()
-                        .add(singleSelect("Select a value")
+                        .add(nativeSingleSelect("Select a value")
                                 .style("width", "200px")
                                 .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
@@ -151,7 +146,7 @@ public class SelectComponent extends SnippetPage {
             HelperText helperText = helperText().liveRegion().addItem(helperTextItem());
             setVisible(helperText, false);
             return div()
-                    .add(singleSelect(menuToggle)
+                    .add(nativeSingleSelect(menuToggle)
                             .style("width", "200px")
                             .addMenu(singleSelectMenu()
                                     .onSingleSelect((event, menuItem, selected) -> {
@@ -160,9 +155,9 @@ public class SelectComponent extends SnippetPage {
                                         setVisible(helperText, validationStatus == warning || validationStatus == error);
                                         helperText.firstItem().status(validationStatus);
                                         if (validationStatus == warning) {
-                                            helperText.firstItem().text("Danger text that explains the issue.");
-                                        } else if (validationStatus == error) {
                                             helperText.firstItem().text("Warning text that explains the issue.");
+                                        } else if (validationStatus == error) {
+                                            helperText.firstItem().text("Error text that explains the issue.");
                                         }
                                     })
                                     .addContent(menuContent()
