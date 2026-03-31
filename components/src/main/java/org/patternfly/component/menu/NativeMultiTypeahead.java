@@ -38,11 +38,12 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
 import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
 import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
+import static org.patternfly.component.menu.TypeaheadSupport.utilitiesClick;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.labelGroup;
-import static org.patternfly.style.Classes.textInputGroup;
-import static org.patternfly.style.Classes.utilities;
+import static org.patternfly.style.Classes.list;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -117,14 +118,9 @@ public class NativeMultiTypeahead extends NativeMenuToggleMenu<NativeMultiTypeah
                     }
                 });
         stayOpen((event, mt, m) -> {
-            Element target = (Element) event.target;
-            boolean itemClick = menu.element().contains(target);
-            boolean inputClick = filterInput.input().element() == target;
-            // The labels and utilities may no longer be available in the DOM. That's why we don't use
-            // element.contains(target), but closest() - bottom up instead of top down!
-            boolean labelGroupClick = Elements.closest(target, By.classname(component(labelGroup))) != null;
-            boolean utilitiesClick = Elements.closest(target, By.classname(component(textInputGroup, utilities))) != null;
-            return itemClick || inputClick || labelGroupClick || utilitiesClick;
+            boolean labelGroupListItemClick = Elements.closest((Element) event.target,
+                    By.classname(component(labelGroup, list, item))) != null;
+            return menuItemClick(event) || utilitiesClick(event) || labelGroupListItemClick;
         });
     }
 

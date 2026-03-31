@@ -157,11 +157,13 @@ public class AnchorPositioning {
         Placement placement;
         // Honor explicit preference if it fits
         if (preferred != auto) {
-            if (preferred == top && topFits) {placement = top;} else if (preferred == bottom && bottomFits) {
-                placement = bottom;
-            } else if (preferred == left && leftFits) {placement = left;} else if (preferred == right && rightFits) {
-                placement = right;
-            } else {placement = null;}
+            // @formatter:off
+            if      (preferred == top && topFits)       { placement = top; }
+            else if (preferred == bottom && bottomFits) { placement = bottom; }
+            else if (preferred == left && leftFits)     { placement = left;}
+            else if (preferred == right && rightFits)   { placement = right; }
+            else                                        { placement = null; }
+            // @formatter:on
         } else {
             placement = null;
         }
@@ -172,11 +174,14 @@ public class AnchorPositioning {
             // - prefer horizontal when the trigger is near a horizontal edge
             // - top wins over bottom when both horizontal directions fit
             // - last resort: pick the side with the most space
-            if (topFits && leftFits && rightFits) {placement = top;} else if (rightFits && !leftFits) {
-                placement = right;
-            } else if (leftFits && !rightFits) {placement = left;} else if (topFits) {placement = top;} else if (bottomFits) {
-                placement = bottom;
-            } else {placement = toRight >= toLeft ? right : left;}
+            // @formatter:off
+            if      (topFits && leftFits && rightFits) { placement = top; }
+            else if (rightFits && !leftFits)           { placement = right; }
+            else if (leftFits && !rightFits)           { placement = left; }
+            else if (topFits)                          { placement = top; }
+            else if (bottomFits)                       { placement = bottom; }
+            else                                       { placement = toRight >= toLeft ? right : left; }
+            // @formatter:on
         }
 
         logger.debug("Best placement for %s: preferred=%s, calculated=%s", id, preferred.name(), placement.name());

@@ -19,13 +19,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
-import elemental2.dom.Element;
 import elemental2.promise.Promise;
 
 import static org.patternfly.component.menu.MenuContent.menuContent;
@@ -33,10 +30,8 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
 import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
+import static org.patternfly.component.menu.TypeaheadSupport.utilitiesClick;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.textInputGroup;
-import static org.patternfly.style.Classes.utilities;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
@@ -98,14 +93,7 @@ public class NativeSingleTypeahead extends NativeMenuToggleMenu<NativeSingleType
                     expand(false);
                     menu.search(searchFilter, noResults, value);
                 });
-        stayOpen((e, mt, m) -> {
-            Element target = (Element) e.target;
-            boolean inputClick = searchInput.input().element() == target;
-            // The utilities may no longer be available in the DOM. That's why we don't use
-            // element.contains(target), but closest() - bottom up instead of top down!
-            boolean utilitiesClick = Elements.closest(target, By.classname(component(textInputGroup, utilities))) != null;
-            return inputClick || utilitiesClick;
-        });
+        stayOpen((e, mt, m) -> utilitiesClick(e));
     }
 
     // ------------------------------------------------------ add

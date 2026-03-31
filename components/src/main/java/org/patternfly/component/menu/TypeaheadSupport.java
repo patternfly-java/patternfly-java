@@ -17,11 +17,14 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
+import org.jboss.elemento.By;
 import org.patternfly.core.Aria;
 
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.promise.Promise;
 
+import static org.jboss.elemento.Elements.closest;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.Key.Enter;
 import static org.jboss.elemento.Key.Escape;
@@ -29,6 +32,9 @@ import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.component.menu.MenuItem.createNewMenuItem;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.combobox;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.textInputGroup;
+import static org.patternfly.style.Classes.utilities;
 
 class TypeaheadSupport {
 
@@ -96,6 +102,10 @@ class TypeaheadSupport {
             return false;
         }
         return !mtm.expanded();
+    }
+
+    static boolean utilitiesClick(Event event) {
+        return closest(((Element) event.target), By.classname(component(textInputGroup, utilities))) != null;
     }
 
     static void allowNewItems(MenuToggleMenu<?> mtm, Typeahead<?> typeahead,

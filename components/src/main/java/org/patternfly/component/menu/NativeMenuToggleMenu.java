@@ -281,6 +281,10 @@ abstract class NativeMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
         }
     }
 
+    boolean menuItemClick(Event event) {
+        return menu.element().contains((Node) event.target);
+    }
+
     // ------------------------------------------------------ internal event handlers
 
     private void keyHandler(KeyboardEvent event) {

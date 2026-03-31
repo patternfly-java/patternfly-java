@@ -63,7 +63,7 @@ public class NativeMultiSelect extends NativeMenuToggleMenu<NativeMultiSelect> {
         if (menuToggle.badge() != null) {
             menuToggle.badge().style("visibility", "hidden", true);
         }
-        stayOpen((e, mt, m) -> menu != null && menu.element().contains(((Node) e.target)));
+        stayOpen((e, mt, m) -> menuItemClick(e));
     }
 
     // ------------------------------------------------------ add
