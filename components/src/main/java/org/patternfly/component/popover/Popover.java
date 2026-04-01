@@ -19,12 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentIcon;
@@ -34,8 +32,8 @@ import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Attributes;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.position.AnchorPositioning;
-import org.patternfly.position.CssPositioning;
+import org.patternfly.overlay.CssPositioning;
+import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Placement;
@@ -46,20 +44,11 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
-import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.document;
-import static elemental2.dom.DomGlobal.setTimeout;
-import static org.gwtproject.event.shared.HandlerRegistrations.compose;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
-import static org.jboss.elemento.EventType.focusin;
-import static org.jboss.elemento.EventType.focusout;
-import static org.jboss.elemento.EventType.mouseenter;
-import static org.jboss.elemento.EventType.mouseleave;
-import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.popover.PopoverHeader.popoverHeader;
 import static org.patternfly.core.Aria.describedBy;
@@ -71,13 +60,14 @@ import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.overlay.Overlay.overlay;
+import static org.patternfly.overlay.TriggerMode.hover;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.widthAuto;
-import static org.patternfly.style.Placement.auto;
 import static org.patternfly.style.Placement.top;
 
 /**
@@ -115,30 +105,19 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
 
     // ------------------------------------------------------ instance
 
-    private static final Logger logger = Logger.getLogger(Popover.class.getName());
-
     public static final int DISTANCE = 20;
     public static final int ENTRY_DELAY = 300;
     public static final int EXIT_DELAY = 300;
 
-    private final AnchorPositioning ap;
+    private final Overlay overlay;
     private final HTMLElement contentElement;
     private final List<CloseHandler<Popover>> closeHandler;
 
     private boolean showClose;
     private boolean hoverable;
-    private int entryDelay;
-    private int exitDelay;
-    private double showTimeout;
-    private double hideTimeout;
-    private Placement placement;
     private Severity severity;
     private Button closeButton;
     private PopoverHeader header;
-    private HandlerRegistration triggerHandlers;
-    private HandlerRegistration anchorHandlers;
-    private HandlerRegistration outsideClickHandler;
-    private HandlerRegistration scrollHandler;
 
     Popover(Supplier<HTMLElement> trigger) {
         super(ComponentType.Popover, div().css(component(Classes.popover), top.modifier())
@@ -147,16 +126,15 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
                 .attr(Attributes.popover, "manual")
                 .element());
 
-        String id = Id.unique(componentType().id);
-        this.ap = new AnchorPositioning(id, element(), trigger, DISTANCE, CssPositioning.popoverEnabled(), false);
+        this.overlay = overlay(element())
+                .trigger(trigger)
+                .distance(DISTANCE)
+                .entryDelay(ENTRY_DELAY)
+                .exitDelay(EXIT_DELAY)
+                .cssPositioning(CssPositioning.popoverEnabled());
         this.closeHandler = new ArrayList<>();
         this.showClose = true;
         this.hoverable = false;
-        this.showTimeout = 0;
-        this.hideTimeout = 0;
-        this.entryDelay = ENTRY_DELAY;
-        this.exitDelay = EXIT_DELAY;
-        this.placement = auto;
 
         String bodyId = Id.unique(componentType().id, "body");
         element().appendChild(div().css(component(Classes.popover, arrow)).element());
@@ -173,55 +151,18 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             failSafeRemoveFromParent(closeButton);
         }
 
-        HTMLElement trigger = ap.attach();
-        if (trigger != null) {
-            // top is the default for auto and recalculated on show()
-            ap.applyPlacement(placement == auto ? top : placement);
-
-            if (hoverable) {
-                triggerHandlers = compose(
-                        bind(trigger, mouseenter, e -> scheduleShow()),
-                        bind(trigger, mouseleave, e -> scheduleHide()),
-                        bind(trigger, focusin, e -> scheduleShow()),
-                        bind(trigger, focusout, e -> scheduleHide()));
-                anchorHandlers = compose(
-                        bind(element(), mouseenter, e -> cancelTimers()),
-                        bind(element(), mouseleave, e -> scheduleHide()));
-
-            } else {
-                triggerHandlers = bind(trigger, click, this::togglePopover);
+        overlay.triggerMode(hoverable ? hover : org.patternfly.overlay.TriggerMode.click);
+        overlay.onToggle((event, open) -> {
+            if (!open) {
+                fireEvent(this, closeHandler, event, true);
             }
-
-            if (!ap.cssPositioning()) {
-                scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
-            }
-
-        } else if (ap.hasTriggerSupplier()) {
-            logger.error("Unable to find trigger element for popover %o", element());
-        } else {
-            logger.error("No trigger element defined for popover %o", element());
-        }
+        });
+        overlay.attach();
     }
 
     @Override
     public void detach(MutationRecord mutationRecord) {
-        cancelTimers();
-        if (ap.visible()) {
-            ap.hide();
-        }
-        if (scrollHandler != null) {
-            scrollHandler.removeHandler();
-        }
-        if (anchorHandlers != null) {
-            anchorHandlers.removeHandler();
-        }
-        if (outsideClickHandler != null) {
-            outsideClickHandler.removeHandler();
-        }
-        if (triggerHandlers != null) {
-            triggerHandlers.removeHandler();
-        }
-        ap.detach();
+        overlay.detach();
     }
 
     // ------------------------------------------------------ add
@@ -299,17 +240,17 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover distance(int distance) {
-        ap.distance(distance);
+        overlay.distance(distance);
         return this;
     }
 
     public Popover entryDelay(int delay) {
-        this.entryDelay = delay;
+        overlay.entryDelay(delay);
         return this;
     }
 
     public Popover exitDelay(int delay) {
-        this.exitDelay = delay;
+        overlay.exitDelay(delay);
         return this;
     }
 
@@ -343,7 +284,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover placement(Placement placement) {
-        this.placement = placement;
+        overlay.placement(placement);
         return this;
     }
 
@@ -362,22 +303,22 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     }
 
     public Popover trigger(String trigger) {
-        ap.trigger(trigger);
+        overlay.trigger(trigger);
         return this;
     }
 
     public Popover trigger(By trigger) {
-        ap.trigger(trigger);
+        overlay.trigger(trigger);
         return this;
     }
 
     public Popover trigger(HTMLElement trigger) {
-        ap.trigger(trigger);
+        overlay.trigger(trigger);
         return this;
     }
 
     public Popover trigger(Supplier<HTMLElement> trigger) {
-        ap.trigger(trigger);
+        overlay.trigger(trigger);
         return this;
     }
 
@@ -418,79 +359,17 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
     // ------------------------------------------------------ api
 
     public void show() {
-        if (!ap.visible() && ap.trigger() != null) {
-            if (ap.cssPositioning()) {
-                // CSS handles position-try-fallbacks; just apply preferred placement and show
-                ap.applyPlacement(placement == auto ? top : placement);
-                ap.show();
-            } else {
-                // JS calculates the best placement via viewport measurements.
-                // For the calculation to work, the tooltip must be at least hidden
-                style("visibility", "hidden");
-                ap.show();
-                ap.applyBestPlacement(placement);
-                element().style.removeProperty("visibility");
-            }
-            if (!hoverable) {
-                outsideClickHandler = bind(document, click.name, this::onOutsideClick);
-            }
-        }
+        overlay.show();
     }
 
     @Override
     public void close(Event event, boolean fireEvent) {
         if (shouldClose(this, closeHandler, event, fireEvent)) {
-            if (ap.visible()) {
-                ap.hide();
-                if (outsideClickHandler != null) {
-                    outsideClickHandler.removeHandler();
-                    outsideClickHandler = null;
-                }
-                fireEvent(this, closeHandler, event, fireEvent);
-            }
+            overlay.hide(event);
         }
     }
 
     // ------------------------------------------------------ internal
-
-    private void scheduleShow() {
-        cancelTimers();
-        showTimeout = setTimeout(e -> show(), entryDelay);
-    }
-
-    private void scheduleHide() {
-        cancelTimers();
-        hideTimeout = setTimeout(e -> close(new Event(""), true), exitDelay);
-    }
-
-    private void recalculatePlacement() {
-        if (ap.visible()) {
-            ap.applyBestPlacement(placement);
-        }
-    }
-
-    private void cancelTimers() {
-        clearTimeout(showTimeout);
-        clearTimeout(hideTimeout);
-    }
-
-    private void togglePopover(Event event) {
-        if (ap.visible()) {
-            close(event, true);
-        } else {
-            show();
-        }
-    }
-
-    private void onOutsideClick(Event event) {
-        HTMLElement trigger = ap.trigger();
-        if (ap.visible() && trigger != null) {
-            Element target = (Element) event.target;
-            if (!element().contains(target) && !trigger.contains(target)) {
-                close(event, true);
-            }
-        }
-    }
 
     private PopoverHeader failSafeHeader() {
         if (header == null) {

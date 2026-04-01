@@ -323,11 +323,6 @@ public class Overlay {
         }
     }
 
-    /** Returns whether the overlay is currently visible. */
-    public boolean visible() {
-        return visible;
-    }
-
     // ------------------------------------------------------ placement
 
     /** Removes all placement modifier CSS classes and applies the given placement. */
@@ -359,6 +354,11 @@ public class Overlay {
 
     public int distance() {
         return distance;
+    }
+
+    /** Returns whether the overlay is currently visible. */
+    public boolean visible() {
+        return visible;
     }
 
     // ------------------------------------------------------ internal

@@ -13,8 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.position;
+package org.patternfly.overlay;
 
+import org.patternfly.style.Placement;
 import org.patternfly.style.Variable;
 
 import static elemental2.dom.DomGlobal.document;
@@ -27,7 +28,7 @@ import static org.patternfly.style.Variable.componentVar;
 
 /**
  * Reads and caches the CSS custom properties that control whether tooltip and popover components use native CSS positioning
- * ({@code position-try-fallbacks}) or JavaScript-based positioning ({@code NativeAnchor.bestPlacement()}).
+ * ({@code position-try-fallbacks}) or JavaScript-based positioning ({@link Overlay#applyBestPlacement(Placement)}).
  * <p>
  * To enable CSS positioning, set the corresponding custom property on {@code :root}:
  * <pre>
