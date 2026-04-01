@@ -73,9 +73,8 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
     private static final String STEP_MAIN = "step-main";
     private static final String STEP_TITLE = "step-title";
     private static final String STEP_DESCRIPTION = "step-description";
-    private static final String LISTITEM = "listitem";
+    private static final String LIST_ITEM = "list-item";
 
-    private final HTMLContainerBuilder<HTMLDivElement> stepConnector;
     private final HTMLElement stepIcon;
     private final HTMLContainerBuilder<HTMLDivElement> stepMain;
     private HTMLContainerBuilder<HTMLDivElement> stepDescription;
@@ -93,7 +92,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         super(ComponentType.ProgressStepper, SUB_COMPONENT_NAME, li().element());
 
         this.identifier = identifier;
-        this.stepConnector = div().css(component(progressStepper, STEP_CONNECTOR));
+        HTMLContainerBuilder<HTMLDivElement> stepConnector = div().css(component(progressStepper, STEP_CONNECTOR));
         this.stepIcon = span().css(component(progressStepper, STEP_ICON)).element();
         this.stepMain = div().css(component(progressStepper, STEP_MAIN));
 
@@ -102,7 +101,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         element().appendChild(stepMain.add(div().css(component(progressStepper, STEP_TITLE))).element());
 
         css(component(progressStepper, step));
-        element().setAttribute(role, LISTITEM);
+        element().setAttribute(role, LIST_ITEM);
     }
 
     @Override
@@ -231,13 +230,12 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
                 .element();
 
         stepMain.add(textButton);
+        stepMain.add(popover.trigger(textButton));
 
         // Re-add description if it existed
         if (stepDescription != null) {
             stepMain.add(stepDescription);
         }
-
-        popover.trigger(textButton).appendToBody();
         return this;
     }
 
@@ -260,6 +258,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
     }
 
     // ------------------------------------------ package-private
+
     ProgressStep current(boolean isCurrent) {
         if (this.isCurrent == isCurrent) {
             return this;

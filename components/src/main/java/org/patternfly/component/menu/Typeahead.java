@@ -20,12 +20,11 @@ import java.util.function.Function;
 import elemental2.promise.Promise;
 
 /**
- * A generic interface representing a typeahead component, which allows for dynamic filtering, searching,
- * and optionally creating new menu items based on user-provided input. This component offers flexible
- * configuration for handling search queries, displaying "no results" messages, and managing custom
- * item creation.
+ * Represents a typeahead component interface that allows users to search, filter, and optionally create new items dynamically
+ * based on input. A typeahead component is typically used in dropdowns or menus to enable efficient selection of items
+ * from a potentially large set.
  *
- * @param <M> A type that extends {@link MenuToggleMenu}, representing the specific implementation of the typeahead.
+ * @param <M> the type of the implementing class, allowing method chaining for configuration
  */
 public interface Typeahead<M extends MenuToggleMenu<M>> {
 
@@ -60,7 +59,7 @@ public interface Typeahead<M extends MenuToggleMenu<M>> {
      * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
      *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
      *                     The predicate should return {@code true} for items matching the search.
-     * @return the {@link SingleTypeahead} instance for method chaining.
+     * @return the instance for method chaining.
      */
     M onSearch(SearchFilter searchFilter);
 

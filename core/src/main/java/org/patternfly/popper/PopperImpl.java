@@ -31,6 +31,7 @@ import static elemental2.dom.DomGlobal.setTimeout;
 /**
  * Wrapper around {@link PopperJs}
  */
+@Deprecated
 public class PopperImpl implements Popper {
 
     private final PopperJs popper;

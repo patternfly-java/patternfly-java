@@ -52,7 +52,6 @@ import static org.patternfly.component.toolbar.ToolbarGroup.toolbarGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 import static org.patternfly.componentgroup.theme.ThemeSelector.themeSelector;
 import static org.patternfly.icon.IconSets.fab.github;
-import static org.patternfly.popper.Placement.bottomEnd;
 import static org.patternfly.showcase.Data.charts;
 import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
@@ -62,6 +61,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fullHeight;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.static_;
+import static org.patternfly.style.Placement.bottomEnd;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 

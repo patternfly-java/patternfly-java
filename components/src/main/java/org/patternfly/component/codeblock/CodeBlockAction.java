@@ -59,24 +59,21 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
     public static CodeBlockAction codeBlockCopyToClipboardAction(String copyText, String copiedText) {
         String copyId = Id.unique(ComponentType.CodeBlock.id, "copy");
         Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
-                .onClose((e, t) -> t.text(copyText)) // restore text
-                .appendToBody();
+                .onClose((e, t) -> t.text(copyText)); // restore text
         return new CodeBlockAction(copy().element())
                 .id(copyId)
                 .ariaLabel(copyText)
                 .onClick((event, codeBlock) -> {
                     copyTooltip.text(copiedText);
                     navigator.clipboard.writeText(codeBlock.code());
-                });
+                })
+                .add(copyTooltip);
     }
 
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_NAME = "cba";
-
     private final Button button;
-    private ComponentHandler<CodeBlockAction> handler;
-    private CodeBlock codeBlock;
 
     CodeBlockAction(Element icon) {
         super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, actions, item)).element());

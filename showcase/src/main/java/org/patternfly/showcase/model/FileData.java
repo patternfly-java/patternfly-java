@@ -30,10 +30,7 @@ import static java.util.Arrays.asList;
 import static java.util.Arrays.copyOfRange;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
@@ -85,22 +82,18 @@ public class FileData {
                     return button(suffix).plain().small();
                 case "kebab":
                     return dropdown(menuToggle(ellipsisV()).small())
-                            .addMenu(dropdownMenu()
-                                    .addContent(menuContent()
-                                            .addList(menuList()
-                                                    .addItems(asList(suffix.split("\\|")), text ->
-                                                            menuItem(Id.build(text), text)))));
+                            .applyToMenuList(list -> list
+                                    .addItems(asList(suffix.split("\\|")), text ->
+                                            menuItem(Id.build(text), text)));
                 case "split":
                     String[] actions = suffix.split("\\|");
                     String first = actions[0];
                     String[] rest = copyOfRange(actions, 1, actions.length);
                     return dropdown(menuToggle(split).small()
                             .addAction(menuToggleAction(first)))
-                            .addMenu(dropdownMenu()
-                                    .addContent(menuContent()
-                                            .addList(menuList()
-                                                    .addItems(asList(rest), text ->
-                                                            menuItem(Id.build(text), text)))));
+                            .applyToMenuList(list -> list
+                                    .addItems(asList(rest), text ->
+                                            menuItem(Id.build(text), text)));
             }
         }
         return null;

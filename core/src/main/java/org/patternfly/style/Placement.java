@@ -13,12 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.popper;
+package org.patternfly.style;
 
 import java.util.Arrays;
-
-import org.patternfly.style.Classes;
-import org.patternfly.style.TypedModifier;
 
 public enum Placement implements TypedModifier {
 

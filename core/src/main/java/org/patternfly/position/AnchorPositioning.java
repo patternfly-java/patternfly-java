@@ -20,24 +20,28 @@ import java.util.function.Supplier;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.popper.Placement;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Placement;
+
 import elemental2.dom.DOMRect;
 import elemental2.dom.HTMLElement;
 
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
-import static org.patternfly.popper.Placement.auto;
-import static org.patternfly.popper.Placement.bottom;
-import static org.patternfly.popper.Placement.left;
-import static org.patternfly.popper.Placement.right;
-import static org.patternfly.popper.Placement.top;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Placement.auto;
+import static org.patternfly.style.Placement.bottom;
+import static org.patternfly.style.Placement.left;
+import static org.patternfly.style.Placement.right;
+import static org.patternfly.style.Placement.top;
 import static org.patternfly.style.TypedModifier.swap;
 
 /**
  * Shared anchor positioning logic for components based on the native popover API and CSS anchor positioning. Manages trigger
  * resolution, CSS anchor setup/teardown, and placement CSS class toggling.
+ * <p>
+ * This class has a {@link #show()} and {@link #hide()} method that delegates to the Popover API, but it does not register any
+ * event listeners. That is left to the component that uses this class.
  *
  * @see <a
  * href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API">https://developer.mozilla.org/en-US/docs/Web/API/Popover_API</a>

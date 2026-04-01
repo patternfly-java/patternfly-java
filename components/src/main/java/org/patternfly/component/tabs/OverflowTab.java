@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.tabs;
 
-import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,18 +28,18 @@ import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.core.Aria;
+import org.patternfly.core.Attributes;
 import org.patternfly.core.Roles;
-import org.patternfly.popper.Popper;
-import org.patternfly.popper.PopperBuilder;
-import org.patternfly.popper.TriggerAction;
+import org.patternfly.overlay.Overlay;
+import org.patternfly.overlay.TriggerMode;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.button;
+import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.span;
@@ -54,12 +53,7 @@ import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.presentation;
 import static org.patternfly.icon.IconSets.fas.angleRight;
-import static org.patternfly.popper.Modifiers.eventListeners;
-import static org.patternfly.popper.Modifiers.flip;
-import static org.patternfly.popper.Modifiers.hide;
-import static org.patternfly.popper.Modifiers.noOverflow;
-import static org.patternfly.popper.Modifiers.placement;
-import static org.patternfly.popper.Placement.bottomStart;
+import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.hasPopup;
@@ -69,6 +63,7 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
 import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.Placement.bottomStart;
 
 // internal subcomponent!
 class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements Modifiers.Disabled<HTMLElement, OverflowTab> {
@@ -88,10 +83,10 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     private final HTMLElement textElement;
     private final Menu menu;
     private final MenuList menuList;
+    private final Overlay overlay;
     private int count;
     private String text;
     private boolean showCount;
-    private final Popper popper;
     private MenuItem selectedMenuItem;
 
     OverflowTab() {
@@ -108,30 +103,34 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
                         .add(angleRight())));
-        add(menu = menu(select, single)
-                .onSingleSelect((event, menuItem, selected) -> select(menuItem))
-                .addContent(menuContent()
-                        .addList(menuList = menuList()
-                                .addItems(tabs.values(), tab -> menuItem(tab.identifier(), tab.text())))));
-        setVisible(menu, false);
 
-        popper = new PopperBuilder(ComponentType.Tabs.componentName, button.element(), menu.element())
-                .zIndex(9999)
+        HTMLElement menuPopover;
+        add(menuPopover = div().css(component(Classes.menu, Classes.popover))
+                .attr(Attributes.popover, "manual")
+                .add(menu = menu(select, single)
+                        .onSingleSelect((event, menuItem, selected) -> select(menuItem))
+                        .addContent(menuContent()
+                                .addList(menuList = menuList()
+                                        .addItems(tabs.values(), tab -> menuItem(tab.identifier(), tab.text())))))
+                .element());
+
+        overlay = overlay(menuPopover)
+                .trigger(button::element)
+                .triggerMode(TriggerMode.click)
                 .placement(bottomStart)
-                .addModifier(noOverflow(),
-                        hide(),
-                        flip(true),
-                        placement(),
-                        eventListeners(false))
-                .registerHandler(button.element(), EnumSet.of(TriggerAction.click), this::show, this::close)
-                .build();
+                .cssPositioning(true)
+                .onToggle((event, open) -> {
+                    if (open) {
+                        Expandable.expand(button.element(), button.element(), null);
+                    } else {
+                        Expandable.collapse(button.element(), button.element(), null);
+                    }
+                });
+        overlay.attach();
     }
 
-    // not a real detach, but called from tabs component
     void detach() {
-        if (popper != null) {
-            popper.cleanup();
-        }
+        overlay.detach();
     }
 
     // ------------------------------------------------------ builder
@@ -180,6 +179,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     }
 
     private void select(MenuItem menuItem) {
+        overlay.hide();
         selectedMenuItem = menuItem;
         Tab tab = tabs.get(menuItem.identifier());
         if (tab != null) {
@@ -195,13 +195,5 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
         if (showCount && count > 0) {
             textElement.textContent += " (" + count + ")";
         }
-    }
-
-    private void show(Event event) {
-        popper.show(() -> Expandable.expand(button.element(), button.element(), null));
-    }
-
-    private void close(Event event) {
-        popper.hide(() -> Expandable.collapse(button.element(), button.element(), null));
     }
 }

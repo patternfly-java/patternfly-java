@@ -15,9 +15,12 @@
  */
 package org.patternfly.popper;
 
+import org.patternfly.style.Placement;
+
 import elemental2.dom.CSSProperties.MinWidthUnionType;
 import elemental2.dom.HTMLElement;
 
+@Deprecated
 public interface Modifiers {
 
     static Modifier widths() {

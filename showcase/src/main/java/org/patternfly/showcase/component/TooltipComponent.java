@@ -19,7 +19,6 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.Tooltip;
-import org.patternfly.component.tooltip.TooltipToggle;
 import org.patternfly.component.tooltip.TriggerAria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -31,13 +30,14 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.onAttach;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
-import static org.patternfly.core.Aria.label;
-import static org.patternfly.icon.IconSets.fas.copy;
-import static org.patternfly.popper.Placement.auto;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.style.Placement.auto;
+import static org.patternfly.style.Placement.bottom;
+import static org.patternfly.style.Placement.left;
+import static org.patternfly.style.Placement.right;
 
 @Route(value = "/components/tooltip", title = "Tooltip")
 public class TooltipComponent extends SnippetPage {
@@ -62,18 +62,39 @@ public class TooltipComponent extends SnippetPage {
                 () -> {
                     // @code-start:tooltip-dynamic
                     Tooltip tooltip = tooltip(By.id("tooltip-dynamic-button"), "Copy to clipboard")
-                            .onClose((e, t) -> t.text("Copy to clipboard"))
-                            .appendToBody();
+                            .onClose((e, t) -> t.text("Copy to clipboard"));
                     return div().style("margin", "100px")
-                            .add(button().icon(copy()).plain()
-                                    .aria(label, "Copy")
+                            .add(button("Copy to clipboard").primary()
                                     .id("tooltip-dynamic-button")
                                     .onClick((e, b) -> tooltip.text("Successfully copied to clipboard!")))
+                            .add(tooltip)
                             .element();
                     // @code-end:tooltip-dynamic
                 }));
 
-        addSnippet(new Snippet("tooltip-auto", "Placement auto",
+        addSnippet(new Snippet("tooltip-placements", "Placements",
+                code("tooltip-placements"),
+                () ->
+                        // @code-start:tooltip-placements
+                        div().style("display: flex; gap: 16px")
+                                .add(button("Bottom").secondary()
+                                        .id("tooltip-placements-bottom-button"))
+                                .add(tooltip(By.id("tooltip-placements-bottom-button"), "Bottom tooltip")
+                                        .placement(bottom))
+                                .add(button("Left").secondary()
+                                        .id("tooltip-placements-left-button"))
+                                .add(tooltip(By.id("tooltip-placements-left-button"), "Left tooltip")
+                                        .placement(left))
+                                .add(button("Right").secondary()
+                                        .id("tooltip-placements-right-button"))
+                                .add(tooltip(By.id("tooltip-placements-right-button"), "Right tooltip")
+                                        .placement(right))
+                                .element()
+                // @code-end:tooltip-placements
+        ));
+
+        addSnippet(new Snippet("tooltip-auto", "Auto placement",
+                "You might need to resize the browser window to a minimum to see the auto placement in action.",
                 code("tooltip-auto"),
                 () -> {
                     // @code-start:tooltip-auto
@@ -87,8 +108,8 @@ public class TooltipComponent extends SnippetPage {
                     return div().style("width", "720px")
                             .add(div().css("pfj-tooltip-box")
                                     .add(button.css("pfj-tooltip-button").primary()
-                                            .id("tooltip-options-button"))
-                                    .add(tooltip(By.id("tooltip-options-button"), LoremIpsum.words())
+                                            .id("tooltip-auto-button"))
+                                    .add(tooltip(By.id("tooltip-auto-button"), LoremIpsum.words())
                                             .placement(auto)))
                             .element();
                     // @code-end:tooltip-auto
@@ -96,7 +117,6 @@ public class TooltipComponent extends SnippetPage {
 
         startApiDocs(Tooltip.class);
         addApiDoc(Tooltip.class, component);
-        addApiDoc(TooltipToggle.class, other);
         addApiDoc(TriggerAria.class, other);
     }
 }

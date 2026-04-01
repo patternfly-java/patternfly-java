@@ -130,9 +130,10 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
                         .aria(Aria.label, ariaLabel)
                         .add(span().css(component(button, icon))
                                 .add(questionCircle())))
+                .add(popover)
                 .element();
+        popover.trigger(helpContainer);
         add(helpContainer);
-        popover.trigger(helpContainer).appendToBody();
         return this;
     }
 

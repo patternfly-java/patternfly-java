@@ -15,7 +15,6 @@
  */
 package org.patternfly.component.modal;
 
-import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.popover.Popover;
@@ -23,7 +22,6 @@ import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.header;
@@ -37,7 +35,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modalBox;
 import static org.patternfly.style.Classes.modifier;
 
-public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> implements Attachable {
+public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -50,20 +48,10 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
     private static final Logger logger = Logger.getLogger(ModalHeader.class.getName());
     public static final String SUB_COMPONENT_NAME = "mh";
     ModalHeaderTitle title;
-    private Popover popover;
-    private HTMLElement help;
     private HTMLElement mainContainer;
 
     ModalHeader() {
         super(SUB_COMPONENT_NAME, header().css(component(modalBox, header)).element());
-        Attachable.register(this, this);
-    }
-
-    @Override
-    public void attach(MutationRecord mutationRecord) {
-        if (popover != null && help != null) {
-            popover.trigger(help).appendToBody();
-        }
     }
 
     // ------------------------------------------------------ add
@@ -115,8 +103,6 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
 
     public ModalHeader help(Popover popover, HTMLElement help) {
         if (mainContainer == null) {
-            this.popover = popover;
-            this.help = help;
             element().classList.add(modifier(Classes.help));
 
             // move elements
@@ -127,6 +113,7 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> imp
             add(mainContainer);
             add(div().css(component(modalBox, header, Classes.help))
                     .add(help)
+                    .add(popover.trigger(help))
                     .element());
         } else {
             logger.warn("Help popover already defined for modal header %o", element());

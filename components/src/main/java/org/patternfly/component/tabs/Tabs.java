@@ -142,7 +142,6 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     private final List<SelectHandler<Tab>> selectHandler;
     private Function<Tabs, Tab> addFunction;
     private HandlerRegistration resizeHandler;
-    private HandlerRegistration transitionEndHandler;
 
     <E extends HTMLElement> Tabs(HTMLContainerBuilder<E> builder) {
         super(ComponentType.Tabs, div().element());
@@ -249,16 +248,8 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         if (resizeHandler != null) {
             resizeHandler.removeHandler();
         }
-        if (transitionEndHandler != null) {
-            transitionEndHandler.removeHandler();
-        }
         if (overflowTab != null) {
             overflowTab.detach();
-        }
-        for (Tab tab : items.values()) {
-            // help and tooltip are appended to the body!
-            failSafeRemoveFromParent(tab.help);
-            failSafeRemoveFromParent(tab.tooltip);
         }
     }
 
@@ -363,7 +354,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     /**
-     * Flag which places overflowing tabs into a menu triggered by the last tab. Unlike other flags, this can only be turned on,
+     * Flag that places overflowing tabs into a menu triggered by the last tab. Unlike other flags, this can only be turned on,
      * but not off.
      */
     public Tabs overflowHorizontal() {
@@ -371,7 +362,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     /**
-     * Flag which places overflowing tabs into a menu triggered by the last tab. Unlike other flags, this can only be turned on,
+     * Flag that places overflowing tabs into a menu triggered by the last tab. Unlike other flags, this can only be turned on,
      * but not off.
      */
     public Tabs overflowHorizontal(String overflowText) {
@@ -381,7 +372,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         return this;
     }
 
-    /** By default, the first tab is selected initially. Call this method to disable thi default behaviour. */
+    /** By default, the first tab is selected initially. Call this method to disable the default behaviour. */
     public Tabs noInitialSelection() {
         this.noInitialSelection = true;
         return this;
@@ -409,7 +400,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         return showTabCount(true);
     }
 
-    /** Flag which shows the count of overflowing tabs when enabled */
+    /** Flag that shows the count of overflowing tabs when enabled */
     public Tabs showTabCount(boolean showTabCount) {
         failSafeOverflowTab().showCount(showTabCount);
         return this;
@@ -448,7 +439,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     /**
      * Provides an accessible label for the tabs. Labels should be unique for each set of tabs that are present on a page. When
-     * component is set to nav, this prop should be defined to differentiate the tabs from other navigation regions on the
+     * a component is set to nav, this prop should be defined to differentiate the tabs from other navigation regions on the
      * page.
      */
     public Tabs ariaLabel(String label) {
@@ -456,7 +447,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     /**
-     * Aria-label for the add button.
+     * Aria-label for the Add button.
      */
     public Tabs ariaAddLabel(String label) {
         if (addButton != null) {
@@ -703,14 +694,6 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     }
 
     private void addTabHandle(Tab tab) {
-        if (tab.tooltip != null) {
-            tab.tooltip.trigger(tab.button.element());
-            tab.tooltip.appendToBody();
-        }
-        if (tab.help != null) {
-            tab.help.trigger(tab.helpButton.element());
-            tab.help.appendToBody();
-        }
         if (this.closeable) {
             tab.closeable();
             tab.closeHandler.addAll(this.closeHandler);
@@ -734,8 +717,6 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     private void internalClose(Tab tab) {
         items.remove(tab.identifier());
-        failSafeRemoveFromParent(tab.help);
-        failSafeRemoveFromParent(tab.tooltip);
         failSafeRemoveFromParent(tab.content);
         failSafeRemoveFromParent(tab);
     }
@@ -756,7 +737,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         int count = 0;
         List<Tab> overflowingTabs = new ArrayList<>();
         for (Tab tab : items.values()) {
-            // to calculate the visibility, temporarily make all, but the overflow tab visible
+            // to calculate the visibility, temporarily make all but the overflow tab visible
             setVisible(tab, true);
             if (!isElementInView(tabsContainer, tab, false)) {
                 count++;

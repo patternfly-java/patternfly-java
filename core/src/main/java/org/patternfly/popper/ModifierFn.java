@@ -17,6 +17,7 @@ package org.patternfly.popper;
 
 import jsinterop.annotations.JsFunction;
 
+@Deprecated
 @JsFunction
 @FunctionalInterface
 public interface ModifierFn {

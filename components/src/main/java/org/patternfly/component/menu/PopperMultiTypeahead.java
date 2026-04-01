@@ -18,57 +18,50 @@ package org.patternfly.component.menu;
 import java.util.List;
 import java.util.function.Function;
 
-import org.jboss.elemento.By;
-import org.jboss.elemento.Elements;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
 import org.patternfly.component.textinputgroup.BaseFilterInput;
 import org.patternfly.component.textinputgroup.FilterInput;
+import org.patternfly.popper.TriggerAction;
 
-import elemental2.dom.Element;
+import elemental2.dom.Node;
 import elemental2.promise.Promise;
 
 import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
 import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
-import static org.patternfly.component.menu.TypeaheadSupport.utilitiesClick;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.item;
-import static org.patternfly.style.Classes.labelGroup;
-import static org.patternfly.style.Classes.list;
 
 /**
  * A typeahead is a select variant that replaces the typical button toggle for opening the select menu with a text input and
  * button toggle combo. As a user enters characters into the text input, the menu options will be filtered to match.
- * <p>
- * This implementation uses the Popover API and CSS anchor positioning instead of Popper.js. The typeahead uses the browser's
- * top-layer rendering for correct stacking, eliminating z-index issues. CSS {@code position-try-fallbacks} handles menu
- * flipping when there is not enough space.
  *
- * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
+ * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link MultiTypeahead} instead.
  */
-public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implements Typeahead<MultiTypeahead> {
+@Deprecated
+public class PopperMultiTypeahead
+        extends PopperMultiMenuToggleMenu<PopperMultiTypeahead> implements PopperTypeahead<PopperMultiTypeahead> {
 
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
-     * and a {@link FilterInput}.
+     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
+     * {@link FilterInput}.
      */
-    public static MultiTypeahead multiTypeahead(String id, String placeholder) {
-        return new MultiTypeahead(filterInput(id).plain().placeholder(placeholder));
+    public static PopperMultiTypeahead multiTypeahead(String id, String placeholder) {
+        return new PopperMultiTypeahead(filterInput(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
-     * and the specified {@link BaseFilterInput}.
+     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and the
+     * specified {@link BaseFilterInput}.
      *
-     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component
-     * @return a new {@link MultiTypeahead} instance configured with the given filter input
+     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component with filtering and
+     *                    search capabilities
+     * @return a new {@link PopperMultiTypeahead} instance configured with the given filter input
      */
-    public static MultiTypeahead multiTypeahead(BaseFilterInput<?> filterInput) {
-        return new MultiTypeahead(filterInput);
+    public static PopperMultiTypeahead multiTypeahead(BaseFilterInput<?> filterInput) {
+        return new PopperMultiTypeahead(filterInput);
     }
 
     // ------------------------------------------------------ instance
@@ -77,8 +70,8 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     private SearchFilter searchFilter;
     private NoResults noResults;
 
-    MultiTypeahead(BaseFilterInput<?> filterInput) {
-        super(ComponentType.MultiTypeahead, MenuToggle.menuToggle(filterInput));
+    PopperMultiTypeahead(BaseFilterInput<?> filterInput) {
+        super(ComponentType.PopperMultiTypeahead, MenuToggle.menuToggle(filterInput), TriggerAction.stayOpen);
         this.filterInput = filterInput;
         this.searchFilter = SearchFilter.contains();
         this.noResults = NoResults.noResults();
@@ -89,10 +82,6 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    menu.search(searchFilter, noResults, value);
-                })
-                .onInput((e, c, value) -> {
-                    expand(false);
                     menu.search(searchFilter, noResults, value);
                 })
                 .noAddOnEnter()
@@ -107,10 +96,14 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                         }
                     }
                 });
-        stayOpen((event, mt, m) -> {
-            boolean labelGroupListItemClick = Elements.closest((Element) event.target,
-                    By.classname(component(labelGroup, list, item))) != null;
-            return menuItemClick(event) || utilitiesClick(event) || labelGroupListItemClick;
+        stayOpen(event -> {
+            Node target = (Node) event.target;
+            boolean inputClick = filterInput.input().element() == target;
+            boolean labelGroupClick = filterInput.labelGroup() != null &&
+                    filterInput.labelGroup().element().contains((Node) event.target);
+            boolean utilitiesClick = menuToggle.searchInput().utilities() != null &&
+                    menuToggle.searchInput().utilities().element().contains((Node) event.target);
+            return inputClick || labelGroupClick || utilitiesClick;
         });
     }
 
@@ -130,7 +123,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ add
 
     @Override
-    public MultiTypeahead add(Menu menu) {
+    public PopperMultiTypeahead add(Menu menu) {
         super.add(menu);
         searchInputControlsMenuList();
         return this;
@@ -139,27 +132,26 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ builder
 
     @Override
-    public MultiTypeahead allowNewItems(Function<String, String> prompt,
-            Function<String, Promise<MenuItem>> createItem) {
+    public PopperMultiTypeahead allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
         TypeaheadSupport.allowNewItems(this, this, prompt, createItem);
         return this;
     }
 
     @Override
-    public MultiTypeahead that() {
+    public PopperMultiTypeahead that() {
         return this;
     }
 
     // ------------------------------------------------------ events
 
     @Override
-    public MultiTypeahead onSearch(SearchFilter searchFilter) {
+    public PopperMultiTypeahead onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return this;
     }
 
     @Override
-    public MultiTypeahead onNoResults(NoResults noResults) {
+    public PopperMultiTypeahead onNoResults(NoResults noResults) {
         this.noResults = noResults;
         return this;
     }

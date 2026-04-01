@@ -17,19 +17,16 @@ package org.patternfly.component.menu;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SelectionMode;
+import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.HTMLElement;
 
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
+import static org.patternfly.component.SelectionMode.multi;
 
 /**
  * Represents an abstract implementation of a menu-based toggle component that supports multi-selection. This class serves as a
@@ -38,15 +35,13 @@ import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
  *
  * @param <B> the type of the builder for this component
  */
-abstract class MultiMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends MenuToggleMenu<B> {
+@Deprecated
+abstract class PopperMultiMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends PopperMenuToggleMenu<B> {
 
     // ------------------------------------------------------ instance
 
-    private MenuContent menuContent;
-    private MenuList menuList;
-
-    MultiMenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
-        super(componentType, menuToggle);
+    PopperMultiMenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, TriggerAction triggerAction) {
+        super(componentType, menuToggle, triggerAction);
     }
 
     abstract void updateMenuToggle(List<MenuItem> items);
@@ -56,41 +51,13 @@ abstract class MultiMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exten
     @Override
     public B add(Menu menu) {
         super.add(menu);
-        if (menu.selectionMode == SelectionMode.multi) {
+        if (menu.selectionMode == multi) {
             menu.onMultiSelect((e, m, items) -> updateMenuToggle(items));
         }
         return that();
     }
 
     // ------------------------------------------------------ api
-
-    /**
-     * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link MultiSelect}. If the
-     * menu, menu content, or menu list is not yet initialized, they will be created as part of this method.
-     * <p>
-     * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
-     * {@link MultiSelectMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need to
-     * us another menu type, want to customize the menu, content or list or if you want to use {@link MenuGroup}s.
-     *
-     * @param consumer a {@link Consumer} that accepts a {@link MenuList} for customization or modification
-     * @return the current {@link MultiSelect} instance for method chaining
-     */
-    public B applyToMenuList(Consumer<MenuList> consumer) {
-        if (menu == null) {
-            add(multiSelectMenu());
-        }
-        if (menuContent == null) {
-            menuContent = menuContent();
-            menu.addContent(menuContent);
-        }
-        if (menuList == null) {
-            menuList = menuList();
-            menuContent.addList(menuList);
-        }
-
-        consumer.accept(menuList);
-        return that();
-    }
 
     public void clear() {
         clear(true);

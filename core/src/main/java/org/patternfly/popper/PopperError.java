@@ -20,6 +20,7 @@ import org.jboss.elemento.logger.Logger;
 
 import elemental2.promise.Promise;
 
+@Deprecated
 public class PopperError implements Popper {
 
     private static final Logger logger = Logger.getLogger(PopperError.class.getName());

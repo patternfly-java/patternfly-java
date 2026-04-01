@@ -19,6 +19,7 @@ import org.jboss.elemento.Callback;
 
 import elemental2.promise.Promise;
 
+@Deprecated
 public interface Popper {
 
     int UNDEFINED = -1;

@@ -21,9 +21,10 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
-abstract class NativePopoverSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
+@Deprecated
+abstract class PopperPopoverSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    NativePopoverSubComponent(String name, E element) {
-        super(ComponentType.NativePopover, name, element);
+    PopperPopoverSubComponent(String name, E element) {
+        super(ComponentType.PopperPopover, name, element);
     }
 }

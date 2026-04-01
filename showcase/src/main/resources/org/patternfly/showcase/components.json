@@ -385,22 +385,6 @@
     "illustration": "modal.png",
     "summary": "A <b>modal</b> is a window that overlays a page to display important information, without requiring users to navigate to a new page."
   },
-  "native-popover": {
-    "name": "native-popover",
-    "title": "Native Popover",
-    "route": "/components/native-popover",
-    "clazz": "org.patternfly.component.popover.NativePopover",
-    "illustration": "popover.png",
-    "summary": "A <b>popover</b> using the Popover API and CSS anchor positioning instead of Popper.js."
-  },
-  "native-tooltip": {
-    "name": "native-tooltip",
-    "title": "Native Tooltip",
-    "route": "/components/native-tooltip",
-    "clazz": "org.patternfly.component.tooltip.NativeTooltip",
-    "illustration": "tooltip.png",
-    "summary": "A <b>tooltip</b> using the Popover API and CSS anchor positioning instead of Popper.js."
-  },
   "navigation": {
     "name": "navigation",
     "title": "Navigation",

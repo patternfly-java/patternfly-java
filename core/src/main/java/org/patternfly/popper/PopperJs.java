@@ -27,6 +27,7 @@ import static jsinterop.annotations.JsPackage.GLOBAL;
  *
  * @see <a href="https://popper.js.org/docs/v2/">https://popper.js.org/docs/v2/</a>
  */
+@Deprecated
 @JsType(isNative = true, name = "Popper", namespace = GLOBAL)
 class PopperJs {
 

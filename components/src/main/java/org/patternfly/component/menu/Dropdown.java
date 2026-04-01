@@ -15,14 +15,22 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.function.Consumer;
+
 import org.patternfly.component.ComponentType;
 import org.patternfly.icon.PredefinedIcon;
-import org.patternfly.popper.TriggerAction;
+
+import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
+import static org.patternfly.component.menu.MenuContent.menuContent;
+import static org.patternfly.component.menu.MenuList.menuList;
 
 /**
  * A dropdown presents a menu of actions or links in a constrained space that will trigger a process or navigate to a new
- * location. See select component guidelines for more information about making one or more selections from a list of items in a
- * value list.
+ * location.
+ * <p>
+ * This implementation uses the Popover API and CSS anchor positioning instead of Popper.js. The dropdown uses the browser's
+ * top-layer rendering for correct stacking, eliminating z-index issues. CSS {@code position-try-fallbacks} handles menu
+ * flipping when there is not enough space.
  *
  * @see <a href=
  * "https://www.patternfly.org/components/menus/dropdown/">https://www.patternfly.org/components/menus/dropdown/</a>
@@ -45,11 +53,42 @@ public class Dropdown extends MenuToggleMenu<Dropdown> {
 
     // ------------------------------------------------------ instance
 
+    private MenuContent menuContent;
+    private MenuList menuList;
+
     Dropdown(MenuToggle menuToggle) {
-        super(ComponentType.Dropdown, menuToggle, TriggerAction.click);
+        super(ComponentType.Dropdown, menuToggle);
     }
 
     // ------------------------------------------------------ builder
+
+    /**
+     * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link Dropdown}. If the menu, menu
+     * content, or menu list is not yet initialized, they will be created as part of this method.
+     * <p>
+     * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
+     * {@link DropdownMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need to us
+     * another menu type, want to customize the menu, content or list or if you want to use {@link MenuGroup}s.
+     *
+     * @param consumer a {@link Consumer} that accepts a {@link MenuList} for customization or modification
+     * @return the current {@link Dropdown} instance for method chaining
+     */
+    public Dropdown applyToMenuList(Consumer<MenuList> consumer) {
+        if (menu == null) {
+            add(dropdownMenu());
+        }
+        if (menuContent == null) {
+            menuContent = menuContent();
+            menu.addContent(menuContent);
+        }
+        if (menuList == null) {
+            menuList = menuList();
+            menuContent.addList(menuList);
+        }
+
+        consumer.accept(menuList);
+        return this;
+    }
 
     @Override
     public Dropdown that() {

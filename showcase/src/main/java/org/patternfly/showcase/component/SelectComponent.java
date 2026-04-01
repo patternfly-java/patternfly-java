@@ -33,6 +33,7 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.style.Modifiers.FullWidth;
+
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -55,13 +56,13 @@ import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
+import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
-import static org.patternfly.component.menu.NativeMultiSelect.nativeMultiSelect;
-import static org.patternfly.component.menu.NativeMultiTypeahead.nativeMultiTypeahead;
-import static org.patternfly.component.menu.NativeSingleSelect.nativeSingleSelect;
-import static org.patternfly.component.menu.NativeSingleTypeahead.nativeSingleTypeahead;
+import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
+import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
+import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -83,7 +84,7 @@ public class SelectComponent extends SnippetPage {
                 code("single-select"), () ->
                 // @code-start:single-select
                 div()
-                        .add(nativeSingleSelect("Select a value")
+                        .add(singleSelect("Select a value")
                                 .style("width", "200px")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("option-0", "Option 1"))
@@ -97,7 +98,7 @@ public class SelectComponent extends SnippetPage {
                 code("select-option-variants"), () ->
                 // @code-start:select-option-variants
                 div()
-                        .add(nativeSingleSelect("Select a value")
+                        .add(singleSelect("Select a value")
                                 .style("width", "200px")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("option-0", "Basic option"))
@@ -120,7 +121,7 @@ public class SelectComponent extends SnippetPage {
                 code("select-groups"), () ->
                 // @code-start:select-groups
                 div()
-                        .add(nativeSingleSelect("Select a value")
+                        .add(singleSelect("Select a value")
                                 .style("width", "200px")
                                 .addMenu(singleSelectMenu()
                                         .addContent(menuContent()
@@ -146,7 +147,7 @@ public class SelectComponent extends SnippetPage {
             HelperText helperText = helperText().liveRegion().addItem(helperTextItem());
             setVisible(helperText, false);
             return div()
-                    .add(nativeSingleSelect(menuToggle)
+                    .add(singleSelect(menuToggle)
                             .style("width", "200px")
                             .addMenu(singleSelectMenu()
                                     .onSingleSelect((event, menuItem, selected) -> {
@@ -174,7 +175,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-select"), () ->
                 // @code-start:multi-select
                 div()
-                        .add(nativeMultiSelect("Filter by status")
+                        .add(multiSelect("Filter by status")
                                 .addMenu(multiSelectCheckboxMenu()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -191,7 +192,7 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead"), () ->
                 // @code-start:single-typeahead
                 div()
-                        .add(nativeSingleTypeahead("single-typeahead-0", "Select a state")
+                        .add(singleTypeahead("single-typeahead-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -208,7 +209,7 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead-create"), () ->
                 // @code-start:single-typeahead-create
                 div()
-                        .add(nativeSingleTypeahead("single-typeahead-create-0", "Select a state")
+                        .add(singleTypeahead("single-typeahead-create-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -236,7 +237,7 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(nativeSingleTypeahead("single-typeahead-async-0", "Lorem ipsum")
+                    .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
                             .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
@@ -250,7 +251,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead"), () ->
                 // @code-start:multi-typeahead
                 div()
-                        .add(nativeMultiTypeahead("multi-typeahead-0", "Select a state")
+                        .add(multiTypeahead("multi-typeahead-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -267,7 +268,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead-create"), () ->
                 // @code-start:multi-typeahead-create
                 div()
-                        .add(nativeMultiTypeahead("multi-typeahead-create-0", "Select a state")
+                        .add(multiTypeahead("multi-typeahead-create-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -295,7 +296,7 @@ public class SelectComponent extends SnippetPage {
 
 
             return div()
-                    .add(nativeMultiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
+                    .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
                             .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(multiSelectMenu().scrollable()
                                     .addContent(menuContent()

@@ -103,6 +103,8 @@
 .pf-v6-c-popover[popover] {
     inset: auto;
     max-width: var(--pf-v6-c-popover--MaxWidth);
+    /* Reset font-weight for popovers nested inside bold containers (e.g. description list terms) */
+    font-weight: var(--pf-t--global--font--weight--body--default, 400);
 }
 
 /* ===================================================================

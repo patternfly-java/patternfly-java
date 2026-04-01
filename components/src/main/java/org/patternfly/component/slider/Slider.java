@@ -54,7 +54,6 @@ import static elemental2.dom.DomGlobal.document;
 import static java.lang.Double.parseDouble;
 import static org.jboss.elemento.Elements.children;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
@@ -77,7 +76,6 @@ import static org.jboss.elemento.Key.ArrowRight;
 import static org.patternfly.component.slider.SliderInputPosition.aboveThumb;
 import static org.patternfly.component.slider.SliderInputPosition.end;
 import static org.patternfly.component.slider.SliderStep.sliderStep;
-import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.valueMax;
 import static org.patternfly.core.Aria.valueMin;
@@ -224,9 +222,9 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
         }
 
         if (tooltipOnThumb) {
-            tooltip = tooltip(thumb.element())
-                    .entryDelay(0)
-                    .appendToBody();
+            tooltip = Tooltip.tooltip(thumb.element())
+                    .entryDelay(0);
+            add(tooltip);
         }
 
         if (disabled) {
@@ -240,7 +238,6 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
 
     @Override
     public void detach(MutationRecord mutationRecord) {
-        failSafeRemoveFromParent(tooltip);
         if (mouseMoveHandler != null) {
             mouseMoveHandler.removeHandler();
         }

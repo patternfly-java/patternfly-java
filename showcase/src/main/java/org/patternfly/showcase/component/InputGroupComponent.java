@@ -34,20 +34,17 @@ import static org.patternfly.component.inputgroup.InputGroup.inputGroup;
 import static org.patternfly.component.inputgroup.InputGroupItem.inputGroupItem;
 import static org.patternfly.component.inputgroup.InputGroupText.inputGroupText;
 import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.popover.Popover.popover;
 import static org.patternfly.icon.IconSets.fas.at;
 import static org.patternfly.icon.IconSets.fas.dollarSign;
 import static org.patternfly.icon.IconSets.fas.questionCircle;
-import static org.patternfly.popper.Placement.top;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import static org.patternfly.style.Placement.top;
 
 @Route(value = "/components/input-group", title = "Input group")
 public class InputGroupComponent extends SnippetPage {
@@ -100,12 +97,10 @@ public class InputGroupComponent extends SnippetPage {
                         .add(inputGroup()
                                 .addItem(inputGroupItem()
                                         .addDropdown(dropdown(menuToggle("Dropdown"))
-                                                .addMenu(dropdownMenu()
-                                                        .addContent(menuContent()
-                                                                .addList(menuList()
-                                                                        .addItem(menuItem("option-0", "Option 1"))
-                                                                        .addItem(menuItem("option-1", "Option 2"))
-                                                                        .addItem(menuItem("option-2", "Option 3")))))))
+                                                .applyToMenuList(list -> list
+                                                        .addItem(menuItem("option-0", "Option 1"))
+                                                        .addItem(menuItem("option-1", "Option 2"))
+                                                        .addItem(menuItem("option-2", "Option 3")))))
                                 .addItem(inputGroupItem().fill()
                                         .addControl(textInput("input-group-dropdown-0")))
                                 .addItem(inputGroupItem()

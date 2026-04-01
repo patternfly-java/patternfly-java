@@ -114,9 +114,6 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     final String contentId;
     final HTMLContainerBuilder<? extends HTMLElement> button;
     final List<CloseHandler<Tab>> closeHandler;
-    Popover help;
-    Tooltip tooltip;
-    Button helpButton;
     TabContent content;
     Function<Tabs, Promise<TabContent>> asyncContent;
 
@@ -125,6 +122,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     private final HTMLElement textElement;
     private final boolean anchorElement;
     private double loadingTimeout;
+    private Button helpButton;
     private Button closeButton;
     private HTMLElement iconContainer;
     private HTMLElement loadingContainer;
@@ -273,14 +271,15 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                             .aria(Aria.label, "More info for " + text())
                             .add(span().css(component(tabs, item, action, icon))
                                     .add(patternfly.help())))
+                    .add(help)
                     .element();
+            help.trigger(helpButton.element());
             if (closeButton == null) {
                 add(helpContainer);
             } else {
                 insertBefore(helpContainer, closeButton.element());
             }
         }
-        this.help = help;
         return this;
     }
 
@@ -289,10 +288,8 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     }
 
     public Tab tooltip(Tooltip tooltip) {
-        // Override to add the tooltip to the tabs element in Tabs.attach()
-        // If added to this element, the tooltip won't show,
-        // because this element is inside a scrolling container (<ul/>)
-        this.tooltip = tooltip;
+        button.add(tooltip);
+        tooltip.trigger(button.element());
         return this;
     }
 

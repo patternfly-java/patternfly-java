@@ -33,16 +33,9 @@ import static org.patternfly.component.hint.HintActions.hintActions;
 import static org.patternfly.component.hint.HintBody.hintBody;
 import static org.patternfly.component.hint.HintFooter.hintFooter;
 import static org.patternfly.component.hint.HintTitle.hintTitle;
-import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.linkMenuItem;
-import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.component.menu.MenuToggle.menuToggle;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
+import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.util;
@@ -59,25 +52,7 @@ public class HintComponent extends SnippetPage {
                 // @code-start:hint-basic
                 div()
                         .add(hint()
-                                .addActions(hintActions()
-                                        .add(dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                                                .addMenu(dropdownMenu()
-                                                        .addContent(menuContent()
-                                                                .addList(menuList()
-                                                                        .addItem(menuItem("hint-basic-item-0", "Action"))
-                                                                        .addItem(linkMenuItem("hint-basic-item-1", "Link",
-                                                                                "#item-1"))
-                                                                        .addItem(menuItem("hint-basic-item-2",
-                                                                                "Disabled action")
-                                                                                .disabled())
-                                                                        .addItem(linkMenuItem("hint-basic-item-3",
-                                                                                "Disabled link", "#item-3")
-                                                                                .disabled())
-                                                                        .addDivider()
-                                                                        .addItem(menuItem("hint-basic-item-4",
-                                                                                "Separated action"))
-                                                                        .addItem(linkMenuItem("hint-basic-item-5",
-                                                                                "Separated link", "#item-5")))))))
+                                .addActions(hintActions().add(mixedKebab("hint-basic")))
                                 .addTitle(hintTitle().text("Do more with Find it Fix it capabilities"))
                                 .addBody(hintBody().text(
                                         "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
@@ -99,27 +74,7 @@ public class HintComponent extends SnippetPage {
                                                 .text("Learn more about the improved features."))))
                         .add(br())
                         .add(hint()
-                                .addActions(hintActions()
-                                        .add(dropdown(menuToggle(ellipsisV(), "kebab dropdown toggle"))
-                                                .addMenu(dropdownMenu()
-                                                        .addContent(menuContent()
-                                                                .addList(menuList()
-                                                                        .addItem(menuItem("hint-basic-no-title-item-0",
-                                                                                "Action"))
-                                                                        .addItem(linkMenuItem("hint-basic-no-title-item-1",
-                                                                                "Link",
-                                                                                "#item-1"))
-                                                                        .addItem(menuItem("hint-basic-no-title-item-2",
-                                                                                "Disabled action")
-                                                                                .disabled())
-                                                                        .addItem(linkMenuItem("hint-basic-no-title-item-3",
-                                                                                "Disabled link", "#item-3")
-                                                                                .disabled())
-                                                                        .addDivider()
-                                                                        .addItem(menuItem("hint-basic-no-title-item-4",
-                                                                                "Separated action"))
-                                                                        .addItem(linkMenuItem("hint-basic-no-title-item-5",
-                                                                                "Separated link", "#item-5")))))))
+                                .addActions(hintActions().add(mixedKebab("hint-basic-no-title")))
                                 .addBody(hintBody().text(
                                         "Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies."))
                                 .addFooter(hintFooter()

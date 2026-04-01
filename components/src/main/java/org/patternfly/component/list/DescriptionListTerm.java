@@ -20,7 +20,6 @@ import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
@@ -98,7 +97,8 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
         textElement.setAttribute(role, button);
         textElement.setAttribute("type", "button");
         textElement.tabIndex = 0;
-        popover.trigger(textElement).appendToBody();
+        popover.trigger(textElement);
+        element().appendChild(popover.element());
         return this;
     }
 

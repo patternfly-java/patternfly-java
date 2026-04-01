@@ -20,7 +20,6 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.component.menu.DropdownMenu;
-import org.patternfly.component.menu.NativeDropdown;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -31,6 +30,7 @@ import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.p;
 import static org.patternfly.component.form.Checkbox.checkboxWrapped;
+import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
@@ -40,7 +40,6 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
-import static org.patternfly.component.menu.NativeDropdown.nativeDropdown;
 import static org.patternfly.icon.IconSets.fas.cog;
 import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -62,7 +61,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-basic"), () ->
                 // @code-start:dropdown-basic
                 div()
-                        .add(nativeDropdown("Dropdown")
+                        .add(Dropdown.dropdown("Dropdown")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -79,7 +78,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-kebab"), () ->
                 // @code-start:dropdown-kebab
                 div()
-                        .add(nativeDropdown(ellipsisV(), "kebab dropdown toggle")
+                        .add(Dropdown.dropdown(ellipsisV(), "kebab dropdown toggle")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -96,7 +95,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-groups"), () ->
                 // @code-start:dropdown-groups
                 div()
-                        .add(nativeDropdown("Dropdown")
+                        .add(Dropdown.dropdown("Dropdown")
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addGroup(menuGroup()
@@ -122,7 +121,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-description"), () ->
                 // @code-start:dropdown-description
                 div()
-                        .add(nativeDropdown(menuToggle("Dropdown").fullWidth())
+                        .add(dropdown(menuToggle("Dropdown").fullWidth())
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action")
                                                 .description("This is a description"))
@@ -142,7 +141,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-badge"), () ->
                 // @code-start:dropdown-badge
                 div()
-                        .add(nativeDropdown(menuToggle("Count").addBadge(badge(4).unread()))
+                        .add(dropdown(menuToggle("Count").addBadge(badge(4).unread()))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -159,7 +158,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-icon"), () ->
                 // @code-start:dropdown-icon
                 div()
-                        .add(nativeDropdown(menuToggle("Icon").icon(cog()))
+                        .add(dropdown(menuToggle("Icon").icon(cog()))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -176,7 +175,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-avatar"), () ->
                 // @code-start:dropdown-avatar
                 div()
-                        .add(nativeDropdown(menuToggle("John Doe").addAvatar(avatar(avatarData(), "avatar")))
+                        .add(dropdown(menuToggle("John Doe").addAvatar(avatar(avatarData(), "avatar")))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -193,7 +192,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-check"), () ->
                 // @code-start:dropdown-split-check
                 div()
-                        .add(nativeDropdown(menuToggle(split)
+                        .add(dropdown(menuToggle(split)
                                 .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check")))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
@@ -205,7 +204,7 @@ public class DropdownComponent extends SnippetPage {
                                         .addItem(linkMenuItem("item-5", "Separated link", "#item-5"))))
                         .add(br())
                         .add(br())
-                        .add(nativeDropdown(menuToggle(split)
+                        .add(dropdown(menuToggle(split)
                                 .addCheckbox(checkboxWrapped(Id.unique(), "dropdown-split-check"))
                                 .text("10 selected"))
                                 .applyToMenuList(list -> list
@@ -224,7 +223,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-split-action"), () ->
                 // @code-start:dropdown-split-action
                 div()
-                        .add(nativeDropdown(menuToggle(split)
+                        .add(dropdown(menuToggle(split)
                                 .addAction(menuToggleAction("Action")))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
@@ -240,7 +239,7 @@ public class DropdownComponent extends SnippetPage {
 
         startApiDocs(Dropdown.class);
         addApiDoc(Dropdown.class, component);
-        addApiDoc(NativeDropdown.class, component);
+        addApiDoc(Dropdown.class, component);
         addApiDoc(DropdownMenu.class, component);
     }
 }

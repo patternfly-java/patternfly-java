@@ -19,19 +19,17 @@ import java.util.List;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.badge.Badge;
+import org.patternfly.popper.TriggerAction;
 
 import static org.patternfly.component.badge.Badge.badge;
 
 /**
  * A select component to select multiple items from a list.
- * <p>
- * This implementation uses the Popover API and CSS anchor positioning instead of Popper.js. The select uses the browser's
- * top-layer rendering for correct stacking, eliminating z-index issues. CSS {@code position-try-fallbacks} handles menu
- * flipping when there is not enough space.
  *
- * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
+ * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link MultiSelect} instead.
  */
-public class MultiSelect extends MultiMenuToggleMenu<MultiSelect> {
+@Deprecated
+public class PopperMultiSelect extends PopperMultiMenuToggleMenu<PopperMultiSelect> {
 
     // ------------------------------------------------------ factory
 
@@ -42,8 +40,8 @@ public class MultiSelect extends MultiMenuToggleMenu<MultiSelect> {
      * @param text the text to be displayed on the toggle menu
      * @return a new instance of MultiSelect initialized with the specified text
      */
-    public static MultiSelect multiSelect(String text) {
-        return new MultiSelect(MenuToggle.menuToggle(text).addBadge(badge(0).read()));
+    public static PopperMultiSelect multiSelect(String text) {
+        return new PopperMultiSelect(MenuToggle.menuToggle(text).addBadge(badge(0).read()));
     }
 
     /**
@@ -52,18 +50,17 @@ public class MultiSelect extends MultiMenuToggleMenu<MultiSelect> {
      * @param menuToggle the {@code MenuToggle} to initialize the {@code MultiSelect} with
      * @return a new instance of {@code MultiSelect} initialized with the provided {@code MenuToggle}
      */
-    public static MultiSelect multiSelect(MenuToggle menuToggle) {
-        return new MultiSelect(menuToggle);
+    public static PopperMultiSelect multiSelect(MenuToggle menuToggle) {
+        return new PopperMultiSelect(menuToggle);
     }
 
     // ------------------------------------------------------ instance
 
-    MultiSelect(MenuToggle menuToggle) {
-        super(ComponentType.MultiSelect, menuToggle);
+    PopperMultiSelect(MenuToggle menuToggle) {
+        super(ComponentType.PopperMultiSelect, menuToggle, TriggerAction.stayOpen);
         if (menuToggle.badge() != null) {
             menuToggle.badge().style("visibility", "hidden", true);
         }
-        stayOpen((e, mt, m) -> menuItemClick(e));
     }
 
     @Override
@@ -83,7 +80,7 @@ public class MultiSelect extends MultiMenuToggleMenu<MultiSelect> {
     // ------------------------------------------------------ builder
 
     @Override
-    public MultiSelect that() {
+    public PopperMultiSelect that() {
         return this;
     }
 }

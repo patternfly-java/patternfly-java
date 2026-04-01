@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add native alternatives for dropdown, single and multi-select, and single and multi-type-ahead components
+- Deprecate components based on Popper.js
+
 ## [0.6.16] - 2026-03-26
 
 ### Added
@@ -61,7 +66,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
-- Remove `FinderItem.nextColumn(FinderColumn column)`. Next columns can only be added lazily using `FinderItem.nextColumn(Supplier<FinderColumn> column)` (otherwise the component lookup of finder columns won't work).
+- Remove `FinderItem.nextColumn(FinderColumn column)`. Next columns can only be added lazily using
+  `FinderItem.nextColumn(Supplier<FinderColumn> column)` (otherwise the component lookup of finder columns won't work).
 
 ## [0.6.9] - 2026-03-23
 
@@ -75,9 +81,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `FinderPath` and `FinderSegment` with `FinderPath` implementing `Iterable<FinderSegment>`
 - Add `FinderPath Finder.path()`
 - Add getters for the finder and finder column:
-  - `FinderColumn FinderItem.column()`
-  - `Finder FinderItem.finder()`
-  - `Finder FinderColumn.finder()`
+    - `FinderColumn FinderItem.column()`
+    - `Finder FinderItem.finder()`
+    - `Finder FinderColumn.finder()`
 
 ### Fixed
 
@@ -140,7 +146,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add [finder extension](https://patternfly-java.github.io/extensions/finder) (#371)
-- Add `HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>` that defines a common interface for components that can display items asynchronously. These components implement it:
+- Add
+  `HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>>` that defines a common interface for components that can display items asynchronously. These components implement it:
     - `FinderColumn`
     - `MenuList`
     - `TreeViewItem`
@@ -319,8 +326,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - The first charts are here! 🎉
-  - Donut chart (#110)
-  - Donut utilization chart (#111)
+    - Donut chart (#110)
+    - Donut utilization chart (#111)
 - Add typeahead support for single select component
 - Add support for async item to the menu / menu list component
 - Add `HasItems.onAdd(BiConsumer<B, S> onAdd)`
@@ -368,7 +375,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Notification badge component (#71) (thanks @mskacelik)
 - Timestamp component (#95) (thanks @mskacelik)
-- Add new enum `org.patternfly.token.Token` that contains all [PatternFly token](https://www.patternfly.org/tokens/all-patternfly-tokens) as enum constants.
+- Add new enum
+  `org.patternfly.token.Token` that contains all [PatternFly token](https://www.patternfly.org/tokens/all-patternfly-tokens) as enum constants.
 
 ### Changed
 
@@ -457,25 +465,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `Label.disabled()`
 - Add `TreeView.select(String id)`
 - Add `HasItems` → `WithIdentifier` and `ComponentContext` interfaces (if missing). Implemented by
-  - `Accordion` → `AccordionItem`
-  - `ActionList`, `ActionListGroup` → `ActionListItem`
-  - `AlterGroup` → `Alert`
-  - `Breadcrumb` → `BreadcrumbItem`
-  - `ChipGroup` → `Chip`
-  - `DataList` → `DataListItem`
-  - `DescriptionList` → `DescriptionListGroup`
-  - `JumpLinks`, `JumpLinksList` → `JumpLinksItem`
-  - `LabelGroup` → `Label`
-  - `List` → `ListItem`
-  - `MenuList` → `MenuItem`
-  - `Navigation`, `NavigationGroup`, `ExpandableNavigationGroup` → `NavigationItem`
-  - `SimpleList`, `SimpleListGroup` → `SimpleListItem`
-  - `Tabs` → `Tab`
-  - `TBody` → `Tr`
-  - `ToggleGroup` → `ToggleGroupItem`
-  - `ToolbarContent`, `ToolbarGroup` → `ToolbarItem`
-  - `Tr` → `Cell` (`Th` | `Td`)
-  - `TreeView`, `TreeViewItem` → `TreeViewItem`
+    - `Accordion` → `AccordionItem`
+    - `ActionList`, `ActionListGroup` → `ActionListItem`
+    - `AlterGroup` → `Alert`
+    - `Breadcrumb` → `BreadcrumbItem`
+    - `ChipGroup` → `Chip`
+    - `DataList` → `DataListItem`
+    - `DescriptionList` → `DescriptionListGroup`
+    - `JumpLinks`, `JumpLinksList` → `JumpLinksItem`
+    - `LabelGroup` → `Label`
+    - `List` → `ListItem`
+    - `MenuList` → `MenuItem`
+    - `Navigation`, `NavigationGroup`, `ExpandableNavigationGroup` → `NavigationItem`
+    - `SimpleList`, `SimpleListGroup` → `SimpleListItem`
+    - `Tabs` → `Tab`
+    - `TBody` → `Tr`
+    - `ToggleGroup` → `ToggleGroupItem`
+    - `ToolbarContent`, `ToolbarGroup` → `ToolbarItem`
+    - `Tr` → `Cell` (`Th` | `Td`)
+    - `TreeView`, `TreeViewItem` → `TreeViewItem`
 
 ### Changed
 
@@ -500,25 +508,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Data list component (#34) (not yet fully implemented)
 - Tree view component (#100) (not yet fully implemented)
 - Add `ComponentContext` interface to store and retrieve arbitrary values associated with keys in a component. Implemented by
-  - `AccordionItem`
-  - `ActionListItem`
-  - `BreadcrumbItem`
-  - `DataListItem`
-  - `JumpLinksItem`
-  - `ListItem`
-  - `MenuItem`
-  - `NavigationItem`
-  - `SimpleListItem`
-  - `TabContent`
-  - `Td`, `Th`, `Tr`
-  - `ToggleGroupItem`
-  - `ToolbarItem`
-  - `TreeViewItem`
+    - `AccordionItem`
+    - `ActionListItem`
+    - `BreadcrumbItem`
+    - `DataListItem`
+    - `JumpLinksItem`
+    - `ListItem`
+    - `MenuItem`
+    - `NavigationItem`
+    - `SimpleListItem`
+    - `TabContent`
+    - `Td`, `Th`, `Tr`
+    - `ToggleGroupItem`
+    - `ToolbarItem`
+    - `TreeViewItem`
 - Add `FlexWrap.noWrap` modifier
 - Add methods to swap typed modifiers:
-  - `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
-    T value, T[] values)`:<br/>Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as `values` and then setting the new modifier given as `value`.
-  - `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
+    - `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
+    T value, T[] values)`:<br/>Swaps a typed modifier on an element builder. Swapping is done by removing all modifiers given as
+      `values` and then setting the new modifier given as `value`.
+    - `static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B TypedModifier.swap(B builder, E element,
     T current, T previous, Runnable assignment)`:<br/>Swaps a typed modifier on an element builder. Swapping is done by removing the previous modifier, applying the current modifier, and optionally performing an assignment.
 
 ### Changed
@@ -675,7 +684,8 @@ Split PatternFly Java into multiple modules:
 
 #### API
 
-- [`Breakpoint`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoint.html) and [`Breakpoints`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoints.html) classes to manage responsive CSS modifiers.
+- [`Breakpoint`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoint.html) and [
+  `Breakpoints`](https://patternfly-java.github.io/patternfly-java/org/patternfly/style/Breakpoints.html) classes to manage responsive CSS modifiers.
 
 ### Fixed
 
@@ -692,9 +702,9 @@ Split PatternFly Java into multiple modules:
 - Text area component (#53)
 - Add support for responsive layout in various components
 - Add the following interfaces to unify icon and text handling across components:
-  - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>`
-  - `WithText<E extends Element, B extends TypedBuilder<E, B>>`
-  - `WithIconAndText<E extends Element, B extends TypedBuilder<E, B>>`
+    - `WithIcon<E extends Element, B extends TypedBuilder<E, B>>`
+    - `WithText<E extends Element, B extends TypedBuilder<E, B>>`
+    - `WithIconAndText<E extends Element, B extends TypedBuilder<E, B>>`
 
 ### Changed
 
@@ -860,66 +870,129 @@ Stay tuned for more to come...
 -->
 
 [Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.16...HEAD
+
 [0.6.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...v0.6.16
+
 [0.6.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...v0.6.15
+
 [0.6.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.13...v0.6.14
+
 [0.6.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.12...v0.6.13
+
 [0.6.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.11...v0.6.12
+
 [0.6.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.10...v0.6.11
+
 [0.6.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.9...v0.6.10
+
 [0.6.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.8...v0.6.9
+
 [0.6.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...v0.6.8
+
 [0.6.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.6...v0.6.7
+
 [0.6.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.5...v0.6.6
+
 [0.6.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.4...v0.6.5
+
 [0.6.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.3...v0.6.4
+
 [0.6.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.2...v0.6.3
+
 [0.6.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.1...v0.6.2
+
 [0.6.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.0...v0.6.1
+
 [0.6.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.5.0...v0.6.0
+
 [0.5.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.17...v0.5.0
+
 [0.4.17]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.16...v0.4.17
+
 [0.4.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.15...v0.4.16
+
 [0.4.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.14...v0.4.15
+
 [0.4.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.13...v0.4.14
+
 [0.4.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.12...v0.4.13
+
 [0.4.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.11...v0.4.12
+
 [0.4.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.10...v0.4.11
+
 [0.4.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.9...v0.4.10
+
 [0.4.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.8...v0.4.9
+
 [0.4.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.7...v0.4.8
+
 [0.4.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.6...v0.4.7
+
 [0.4.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.5...v0.4.6
+
 [0.4.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.4...v0.4.5
+
 [0.4.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.3...v0.4.4
+
 [0.4.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.2...v0.4.3
+
 [0.4.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.1...v0.4.2
+
 [0.4.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.0...v0.4.1
+
 [0.4.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.1...v0.4.0
+
 [0.3.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...v0.3.1
+
 [0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...v0.3.0
+
 [0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.10...v0.2.11
+
 [0.2.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.9...v0.2.10
+
 [0.2.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.8...v0.2.9
+
 [0.2.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.7...v0.2.8
+
 [0.2.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.6...v0.2.7
+
 [0.2.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.5...v0.2.6
+
 [0.2.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.4...v0.2.5
+
 [0.2.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.3...v0.2.4
+
 [0.2.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.2...v0.2.3
+
 [0.2.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.1...v0.2.2
+
 [0.2.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...v0.2.1
+
 [0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
+
 [0.1.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.4...v0.1.5
+
 [0.1.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.3...v0.1.4
+
 [0.1.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.2...v0.1.3
+
 [0.1.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.1...v0.1.2
+
 [0.1.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.0...v0.1.1
+
 [0.1.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.7...v0.1.0
+
 [0.0.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.6...v0.0.7
+
 [0.0.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.5...v0.0.6
+
 [0.0.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.4...v0.0.5
+
 [0.0.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.3...v0.0.4
+
 [0.0.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.2...v0.0.3
+
 [0.0.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.1...v0.0.2
+
 [0.0.1]: https://github.com/patternfly-java/patternfly-java/compare/vTemplate...v0.0.1

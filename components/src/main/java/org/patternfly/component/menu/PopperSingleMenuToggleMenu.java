@@ -16,17 +16,15 @@
 package org.patternfly.component.menu;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.SelectionMode;
+import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.HTMLElement;
 
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
+import static org.patternfly.component.SelectionMode.single;
+import static org.patternfly.component.menu.MenuType.select;
 
 /**
  * Represents an abstract implementation of a menu-based toggle component that supports single-selection. This class serves as a
@@ -35,16 +33,15 @@ import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
  *
  * @param <B> the type of the builder for this component
  */
-abstract class SingleMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends MenuToggleMenu<B> {
+@Deprecated
+abstract class PopperSingleMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends PopperMenuToggleMenu<B> {
 
     // ------------------------------------------------------ instance
 
     boolean defaultSelectHandler;
-    private MenuContent menuContent;
-    private MenuList menuList;
 
-    SingleMenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
-        super(componentType, menuToggle);
+    PopperSingleMenuToggleMenu(ComponentType componentType, MenuToggle menuToggle, TriggerAction triggerAction) {
+        super(componentType, menuToggle, triggerAction);
         this.defaultSelectHandler = true;
     }
 
@@ -55,41 +52,13 @@ abstract class SingleMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
     @Override
     public B add(Menu menu) {
         super.add(menu);
-        if (menu.menuType == MenuType.select && menu.selectionMode == SelectionMode.single && defaultSelectHandler) {
+        if (menu.menuType == select && menu.selectionMode == single && defaultSelectHandler) {
             menu.onSingleSelect((e, menuItem, s) -> updateMenuToggle(menuItem));
         }
         return that();
     }
 
     // ------------------------------------------------------ builder
-
-    /**
-     * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link SingleSelect}. If the
-     * menu, menu content, or menu list is not yet initialized, they will be created as part of this method.
-     * <p>
-     * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
-     * {@link SingleSelectMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need
-     * to us another menu type, want to customize the menu, content or list or if you want to use {@link MenuGroup}s.
-     *
-     * @param consumer a {@link Consumer} that accepts a {@link MenuList} for customization or modification
-     * @return the current {@link SingleSelect} instance for method chaining
-     */
-    public B applyToMenuList(Consumer<MenuList> consumer) {
-        if (menu == null) {
-            add(singleSelectMenu());
-        }
-        if (menuContent == null) {
-            menuContent = menuContent();
-            menu.addContent(menuContent);
-        }
-        if (menuList == null) {
-            menuList = menuList();
-            menuContent.addList(menuList);
-        }
-
-        consumer.accept(menuList);
-        return that();
-    }
 
     public B noDefaultSelectHandler() {
         this.defaultSelectHandler = false;

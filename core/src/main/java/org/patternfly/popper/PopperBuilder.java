@@ -24,6 +24,7 @@ import java.util.function.Predicate;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.style.Placement;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
@@ -41,8 +42,9 @@ import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.Key.Escape;
-import static org.patternfly.popper.Placement.auto;
+import static org.patternfly.style.Placement.auto;
 
+@Deprecated
 public class PopperBuilder {
 
     private static final Logger logger = Logger.getLogger(PopperBuilder.class.getName());

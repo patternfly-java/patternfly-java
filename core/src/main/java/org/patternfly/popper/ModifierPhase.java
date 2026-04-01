@@ -15,6 +15,7 @@
  */
 package org.patternfly.popper;
 
+@Deprecated
 public enum ModifierPhase {
 
     beforeRead,

@@ -129,7 +129,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
 
             String id = element().id;
             if (id == null || id.isEmpty()) {
-                id = Id.unique(ComponentType.Dropdown.id, "panel");
+                id = Id.unique(ComponentType.Drawer.id, "panel");
                 id(id);
             }
 

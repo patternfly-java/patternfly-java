@@ -24,27 +24,28 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.popover;
 
-public class NativePopoverFooter extends NativePopoverSubComponent<HTMLDivElement, NativePopoverFooter> implements
-        ElementTextMethods<HTMLDivElement, NativePopoverFooter> {
+@Deprecated
+public class PopperPopoverFooter extends PopperPopoverSubComponent<HTMLDivElement, PopperPopoverFooter> implements
+        ElementTextMethods<HTMLDivElement, PopperPopoverFooter> {
 
     // ------------------------------------------------------ factory
 
-    public static NativePopoverFooter popoverFooter() {
-        return new NativePopoverFooter();
+    public static PopperPopoverFooter popoverFooter() {
+        return new PopperPopoverFooter();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "npf";
+    public static final String SUB_COMPONENT_NAME = "pf";
 
-    NativePopoverFooter() {
+    PopperPopoverFooter() {
         super(SUB_COMPONENT_NAME, div().css(component(popover, footer)).element());
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public NativePopoverFooter that() {
+    public PopperPopoverFooter that() {
         return this;
     }
 }

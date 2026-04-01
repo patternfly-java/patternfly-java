@@ -40,13 +40,13 @@ import static org.patternfly.component.progressstepper.ProgressStepper.progressS
 import static org.patternfly.icon.IconSets.fas.checkDouble;
 import static org.patternfly.icon.IconSets.fas.clock;
 import static org.patternfly.icon.IconSets.patternfly.pending;
-import static org.patternfly.popper.Placement.right;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.label;
+import static org.patternfly.style.Placement.right;
 
 @Route(value = "/components/progress-stepper", title = "Progress stepper")
 public class ProgressStepperComponent extends SnippetPage {

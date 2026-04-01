@@ -97,21 +97,9 @@ public enum ComponentType {
 
     Modal("mo", "PF6/Component/Modal"),
 
-    MultiSelect("ms", "PF6/Component/MultiSelect"),
+    MultiSelect("msl", "PF6/Component/MultiSelect"),
 
-    NativeDropdown("ndd", "PF6/Component/NativeDropdown"),
-
-    NativeMultiSelect("nms", "PF6/Component/NativeMultiSelect"),
-
-    NativeMultiTypeahead("nmt", "PF6/Component/NativeMultiTypeahead"),
-
-    NativeSingleSelect("nss", "PF6/Component/NativeSingleSelect"),
-
-    NativeSingleTypeahead("nst", "PF6/Component/NativeSingleTypeahead"),
-
-    NativePopover("npvr", "PF6/Component/NativePopover"),
-
-    NativeTooltip("ntt", "PF6/Component/NativeTooltip"),
+    MultiTypeahead("mty", "PF6/Component/MultiTypeahead"),
 
     Navigation("nav", "PF6/Component/Nav"),
 
@@ -126,6 +114,27 @@ public enum ComponentType {
     PageHeader("ph", "PF6/Component/PageHeader"),
 
     Panel("pnl", "PF6/Component/Panel"),
+
+    @Deprecated
+    PopperDropdown("pdd", "PF6/Component/PopperDropdown"),
+
+    @Deprecated
+    PopperMultiSelect("pmsl", "PF6/Component/PopperMultiSelect"),
+
+    @Deprecated
+    PopperMultiTypeahead("pmty", "PF6/Component/PopperMultiTypeahead"),
+
+    @Deprecated
+    PopperPopover("ppvr", "PF6/Component/PopperPopover"),
+
+    @Deprecated
+    PopperSingleSelect("pssl", "PF6/Component/PopperSingleSelect"),
+
+    @Deprecated
+    PopperSingleTypeahead("psty", "PF6/Component/PopperSingleTypeahead"),
+
+    @Deprecated
+    PopperTooltip("ptt", "PF6/Component/PopperTooltip"),
 
     Popover("pvr", "PF6/Component/Popover"),
 
@@ -143,7 +152,9 @@ public enum ComponentType {
 
     SimpleList("sl", "PF6/Component/SimpleList"),
 
-    SingleSelect("ss", "PF6/Component/SingleSelect"),
+    SingleSelect("ssl", "PF6/Component/SingleSelect"),
+
+    SingleTypeahead("sty", "PF6/Component/SingleTypeahead"),
 
     Skeleton("sk", "PF6/Component/Skeleton"),
 

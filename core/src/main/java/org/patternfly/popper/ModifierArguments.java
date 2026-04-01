@@ -19,6 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+@Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class ModifierArguments {
 

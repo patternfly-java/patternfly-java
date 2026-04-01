@@ -20,7 +20,7 @@ import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.button.Button;
-import org.patternfly.component.tooltip.NativeTooltip;
+import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
@@ -32,7 +32,7 @@ import static elemental2.dom.DomGlobal.navigator;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.component.tooltip.NativeTooltip.nativeTooltip;
+import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.icon.IconSets.fas.copy;
 
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction>
@@ -62,7 +62,7 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
 
     public static CodeEditorAction codeEditorCopyToClipboardAction(String copyText, String copiedText) {
         String copyId = Id.unique(ComponentType.CodeEditor.id, "copy");
-        NativeTooltip copyTooltip = nativeTooltip(By.id(copyId), copyText)
+        Tooltip copyTooltip = tooltip(By.id(copyId), copyText)
                 .onClose((e, t) -> t.text(copyText)); // restore text
         return new CodeEditorAction(button().id(copyId).icon(copy()).plain())
                 .ariaLabel(copyText)

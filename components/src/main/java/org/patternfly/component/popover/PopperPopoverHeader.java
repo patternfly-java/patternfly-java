@@ -37,27 +37,28 @@ import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
-public class NativePopoverHeader extends NativePopoverSubComponent<HTMLElement, NativePopoverHeader> implements
-        ElementContainerDelegate<HTMLElement, NativePopoverHeader>,
-        ElementTextDelegate<HTMLElement, NativePopoverHeader> {
+@Deprecated
+public class PopperPopoverHeader extends PopperPopoverSubComponent<HTMLElement, PopperPopoverHeader> implements
+        ElementContainerDelegate<HTMLElement, PopperPopoverHeader>,
+        ElementTextDelegate<HTMLElement, PopperPopoverHeader> {
 
     // ------------------------------------------------------ factory
 
-    public static NativePopoverHeader popoverHeader() {
-        return new NativePopoverHeader();
+    public static PopperPopoverHeader popoverHeader() {
+        return new PopperPopoverHeader();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "nph";
+    public static final String SUB_COMPONENT_NAME = "ph";
 
     final String headerId;
     final HTMLHeadingElement headerElement;
     private HTMLElement iconContainer;
 
-    NativePopoverHeader() {
+    PopperPopoverHeader() {
         super(SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
-        headerId = Id.unique(ComponentType.NativePopover.id, "header");
+        headerId = Id.unique(ComponentType.PopperPopover.id, "header");
         element().appendChild(div().css(component(popover, title))
                 .id(headerId)
                 .add(headerElement = h(6).css(component(popover, title, text))
@@ -78,7 +79,7 @@ public class NativePopoverHeader extends NativePopoverSubComponent<HTMLElement, 
     // ------------------------------------------------------ builder
 
     @Override
-    public NativePopoverHeader that() {
+    public PopperPopoverHeader that() {
         return this;
     }
 

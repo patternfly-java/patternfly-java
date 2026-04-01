@@ -15,16 +15,12 @@
  */
 package org.patternfly.showcase.component;
 
-import java.util.function.Function;
-
-import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.list.DataList;
 import org.patternfly.component.list.DataListAction;
 import org.patternfly.component.list.DataListCell;
 import org.patternfly.component.list.DataListExpandableContent;
 import org.patternfly.component.list.DataListItem;
-import org.patternfly.component.menu.Dropdown;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -36,16 +32,10 @@ import static org.patternfly.component.list.DataListAction.dataListAction;
 import static org.patternfly.component.list.DataListCell.dataListCell;
 import static org.patternfly.component.list.DataListExpandableContent.dataListExpandableContent;
 import static org.patternfly.component.list.DataListItem.dataListItem;
-import static org.patternfly.component.menu.Dropdown.dropdown;
-import static org.patternfly.component.menu.DropdownMenu.dropdownMenu;
-import static org.patternfly.component.menu.MenuContent.menuContent;
-import static org.patternfly.component.menu.MenuItem.linkMenuItem;
-import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
+import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
 import static org.patternfly.style.Classes.alignRight;
@@ -106,17 +96,6 @@ public class DataListComponent extends SnippetPage {
         addSnippet(new Snippet("data-list-expandable", "Expandable",
                 code("data-list-expandable"), () -> {
             // @code-start:data-list-expandable
-            Function<String, Dropdown> dropdown = id -> dropdown(ellipsisV(), "kebab dropdown toggle")
-                    .addMenu(dropdownMenu()
-                            .addContent(menuContent()
-                                    .addList(menuList()
-                                            .addItem(menuItem(Id.build(id, "item-0"), "Action"))
-                                            .addItem(linkMenuItem(Id.build(id, "item-1"), "Link", "#item-1"))
-                                            .addItem(menuItem(Id.build(id, "item-2"), "Disabled action")
-                                                    .disabled())
-                                            .addItem(linkMenuItem(Id.build(id, "item-3"), "Disabled link", "#item-3")
-                                                    .disabled()))));
-
             DataListItem item0 = dataListItem("data-list-expandable-0");
             DataListItem item2 = dataListItem("data-list-expandable-2");
             DataList dataList = dataList()
@@ -130,7 +109,7 @@ public class DataListComponent extends SnippetPage {
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addAction(dataListAction(true)
-                                    .add(dropdown.apply("data-list-expandable-0")))
+                                    .add(mixedKebab("data-list-expandable-0")))
                             .addExpandableContent(dataListExpandableContent()
                                     .text(LoremIpsum.paragraphs(5))))
                     .addItem(dataListItem("data-list-expandable-1")
@@ -143,7 +122,7 @@ public class DataListComponent extends SnippetPage {
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addAction(dataListAction(true)
-                                    .add(dropdown.apply("data-list-expandable-1")))
+                                    .add(mixedKebab("data-list-expandable-1")))
                             .addExpandableContent(dataListExpandableContent()
                                     .text(LoremIpsum.paragraphs(5))))
                     .addItem(item2
@@ -156,7 +135,7 @@ public class DataListComponent extends SnippetPage {
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addCell(dataListCell().text(LoremIpsum.paragraph()))
                             .addAction(dataListAction(true)
-                                    .add(dropdown.apply("data-list-expandable-2")))
+                                    .add(mixedKebab("data-list-expandable-2")))
                             .addExpandableContent(dataListExpandableContent().noPadding()
                                     .text("This expandable section has no padding. ")));
             item0.expand();

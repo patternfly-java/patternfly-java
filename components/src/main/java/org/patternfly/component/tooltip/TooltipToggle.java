@@ -21,6 +21,7 @@ import org.jboss.elemento.logger.Logger;
 
 import elemental2.dom.HTMLElement;
 
+import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
@@ -49,7 +50,8 @@ public class TooltipToggle {
                 if (tooltip == null) {
                     // no tooltip -> create
                     logger.debug("Tooltip toggle enabled for %o", textElement);
-                    tooltip = tooltip(textElement, textElement.textContent).appendToBody();
+                    tooltip = tooltip(textElement, textElement.textContent);
+                    document.body.appendChild(tooltip.element());
                 } else {
                     // just update text
                     tooltip.text(textElement.textContent);
