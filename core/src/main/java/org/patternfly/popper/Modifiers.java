@@ -15,7 +15,7 @@
  */
 package org.patternfly.popper;
 
-import org.patternfly.style.Placement;
+import static org.patternfly.popper.PopperPlacement.auto;
 
 import elemental2.dom.CSSProperties.MinWidthUnionType;
 import elemental2.dom.HTMLElement;
@@ -43,10 +43,10 @@ public interface Modifiers {
         modifier.phase = ModifierPhase.main.name();
         modifier.fn = (args) -> {
             if (args.state != null && args.state.elements != null) {
-                Placement placement = Placement.of(args.state.placement);
+                PopperPlacement placement = PopperPlacement.of(args.state.placement);
                 HTMLElement popper = args.state.elements.popper;
-                if (placement != null && popper != null) {
-                    popper.classList.remove(Placement.modifiers);
+                if (placement != null && placement != auto && popper != null) {
+                    popper.classList.remove(PopperPlacement.modifiers);
                     popper.classList.add(placement.modifier());
                 }
             }

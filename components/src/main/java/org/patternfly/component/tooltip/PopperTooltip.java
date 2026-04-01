@@ -36,7 +36,7 @@ import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
-import org.patternfly.style.Placement;
+import org.patternfly.popper.PopperPlacement;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -63,8 +63,8 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textAlignLeft;
 import static org.patternfly.style.Classes.tooltip;
-import static org.patternfly.style.Placement.auto;
-import static org.patternfly.style.Placement.top;
+import static org.patternfly.popper.PopperPlacement.auto;
+import static org.patternfly.popper.PopperPlacement.top;
 
 /**
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.
@@ -134,7 +134,7 @@ public class PopperTooltip extends BaseComponent<HTMLDivElement, PopperTooltip> 
     private int zIndex;
     private Popper popper;
     private TriggerAria aria;
-    private Placement placement;
+    private PopperPlacement placement;
 
     PopperTooltip(Supplier<HTMLElement> trigger, String text) {
         super(ComponentType.PopperTooltip, div().css(component(tooltip))
@@ -242,7 +242,7 @@ public class PopperTooltip extends BaseComponent<HTMLDivElement, PopperTooltip> 
         return this;
     }
 
-    public PopperTooltip placement(Placement placement) {
+    public PopperTooltip placement(PopperPlacement placement) {
         if (placement == auto) {
             flip = true;
         }

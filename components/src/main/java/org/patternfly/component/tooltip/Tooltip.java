@@ -46,7 +46,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.tooltip.TriggerAria.describedBy;
 import static org.patternfly.component.tooltip.TriggerAria.none;
 import static org.patternfly.core.Aria.live;
-import static org.patternfly.core.Attributes.popover;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
@@ -58,6 +57,7 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textAlignLeft;
 import static org.patternfly.style.Classes.tooltip;
+import static org.patternfly.style.Placement.top;
 
 /**
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.
@@ -123,11 +123,10 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
         super(ComponentType.Tooltip, div().css(component(Classes.tooltip))
                 .attr(role, Roles.tooltip)
                 .aria(live, "polite")
-                .attr(popover, "manual")
                 .element());
 
         this.id = Id.unique(componentType().id);
-        this.overlay = overlay(element())
+        this.overlay = overlay(element(), top)
                 .triggerMode(hover)
                 .trigger(trigger)
                 .distance(DISTANCE)

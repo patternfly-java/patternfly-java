@@ -15,6 +15,8 @@
  */
 package org.patternfly.style;
 
+import java.util.Objects;
+
 import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.Element;
@@ -48,6 +50,10 @@ public interface TypedModifier {
      */
     static <T extends TypedModifier, E extends Element, B extends TypedBuilder<E, B>> B swap(B builder, Element element,
             T current, T previous, Runnable assignment) {
+        if (Objects.equals(previous, current)) {
+            return builder;
+        }
+
         if (previous != null && !previous.modifier().isEmpty()) {
             element.classList.remove(previous.modifier());
         }

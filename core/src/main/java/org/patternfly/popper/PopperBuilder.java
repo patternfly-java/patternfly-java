@@ -24,7 +24,7 @@ import java.util.function.Predicate;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.style.Placement;
+import org.patternfly.popper.PopperPlacement;
 
 import elemental2.core.JsArray;
 import elemental2.dom.CSSProperties;
@@ -42,7 +42,7 @@ import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.onDetach;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.Key.Escape;
-import static org.patternfly.style.Placement.auto;
+import static org.patternfly.popper.PopperPlacement.auto;
 
 @Deprecated
 public class PopperBuilder {
@@ -58,7 +58,7 @@ public class PopperBuilder {
     private int animationDuration;
     private int entryDelay;
     private int exitDelay;
-    private Placement placement;
+    private PopperPlacement placement;
 
     public PopperBuilder(String componentName, HTMLElement triggerElement, HTMLElement popperElement) {
         this.componentName = componentName;
@@ -98,7 +98,7 @@ public class PopperBuilder {
         return this;
     }
 
-    public PopperBuilder placement(Placement placement) {
+    public PopperBuilder placement(PopperPlacement placement) {
         this.placement = placement;
         return this;
     }

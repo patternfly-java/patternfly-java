@@ -15,11 +15,7 @@
  */
 package org.patternfly.style;
 
-import java.util.Arrays;
-
 public enum Placement implements TypedModifier {
-
-    auto("auto", ""),
 
     top("top", Classes.modifier(Classes.top)),
 
@@ -44,20 +40,6 @@ public enum Placement implements TypedModifier {
     rightStart("right-start", Classes.modifier(Classes.right) + "-bottom"),
 
     rightEnd("right-end", Classes.modifier(Classes.right) + "-bottom");
-
-    public static final String[] modifiers = Arrays.stream(values())
-            .filter(p -> p != auto)
-            .map(p -> p.modifier)
-            .toArray(String[]::new);
-
-    public static Placement of(String value) {
-        for (Placement placement : values()) {
-            if (placement.value.equals(value)) {
-                return placement;
-            }
-        }
-        return null;
-    }
 
     private final String value;
     private final String modifier;

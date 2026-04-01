@@ -17,7 +17,6 @@ package org.patternfly.overlay;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -48,7 +47,6 @@ import static org.jboss.elemento.EventType.mouseleave;
 import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.overlay.TriggerMode.manual;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Placement.auto;
 import static org.patternfly.style.Placement.bottom;
 import static org.patternfly.style.Placement.left;
 import static org.patternfly.style.Placement.right;
@@ -69,8 +67,8 @@ public class Overlay {
 
     // ------------------------------------------------------ factory
 
-    public static Overlay overlay(HTMLElement overlayElement) {
-        return new Overlay(overlayElement);
+    public static Overlay overlay(HTMLElement overlayElement, Placement placement) {
+        return new Overlay(overlayElement, placement);
     }
 
     // ------------------------------------------------------ instance
@@ -107,25 +105,20 @@ public class Overlay {
     private HandlerRegistration outsideClickHandler;
     private HandlerRegistration scrollHandler;
 
-    // callbacks
-    private Predicate<Event> shouldShow;
-    private Predicate<Event> shouldHide;
-    private Predicate<Event> stayOpen;
-
-    Overlay(HTMLElement overlayElement) {
+    Overlay(HTMLElement overlayElement, Placement placement) {
         this.id = Id.unique("overlay");
         this.overlayElement = overlayElement;
         this.toggleHandlers = new ArrayList<>();
+        this.triggerMode = manual;
+        this.visible = false;
         this.cssPositioning = false;
         this.matchTriggerWidth = false;
         this.distance = 0;
-        this.placement = auto;
-        this.triggerMode = manual;
         this.entryDelay = 0;
         this.exitDelay = 0;
         this.showTimeout = 0;
         this.hideTimeout = 0;
-        this.visible = false;
+        placement(placement);
     }
 
     // ------------------------------------------------------ builder
@@ -156,7 +149,7 @@ public class Overlay {
     }
 
     public Overlay placement(Placement placement) {
-        this.placement = placement;
+        swap(null, overlayElement, placement, this.placement, () -> this.placement = placement);
         return this;
     }
 
@@ -185,21 +178,6 @@ public class Overlay {
         return this;
     }
 
-    public Overlay shouldShow(Predicate<Event> predicate) {
-        this.shouldShow = predicate;
-        return this;
-    }
-
-    public Overlay shouldHide(Predicate<Event> predicate) {
-        this.shouldHide = predicate;
-        return this;
-    }
-
-    public Overlay stayOpen(Predicate<Event> predicate) {
-        this.stayOpen = predicate;
-        return this;
-    }
-
     // ------------------------------------------------------ events
 
     /** Register a handler called after show/hide transitions. */
@@ -217,14 +195,11 @@ public class Overlay {
      * {@link TriggerMode}. Returns the resolved trigger element or {@code null}.
      */
     public HTMLElement attach() {
+        overlayElement.setAttribute("popover", "manual");
         if (triggerSupplier != null) {
             trigger = triggerSupplier.get();
             if (trigger != null) {
                 setupAnchor();
-
-                // top is the default for auto and recalculated on show()
-                applyPlacement(placement == auto ? top : placement);
-
                 switch (triggerMode) {
                     case hover:
                         registerHoverListeners();
@@ -249,12 +224,13 @@ public class Overlay {
     }
 
     /**
-     * Removes all event listeners, cancels pending timers, hides the overlay if visible, and tears down CSS anchor positioning.
+     * Removes all event listeners, cancels pending timers, hides the overlay if visible, and tears down CSS anchor
+     * positioning.
      */
     public void detach() {
         cancelTimers();
         if (visible) {
-            doHide(new Event(""));
+            internalHide(new Event(""));
         }
         if (scrollHandler != null) {
             scrollHandler.removeHandler();
@@ -287,10 +263,7 @@ public class Overlay {
         if (visible || trigger == null) {
             return;
         }
-        if (shouldShow != null && !shouldShow.test(event)) {
-            return;
-        }
-        doShow(event);
+        internalShow(event);
     }
 
     /** Hides the overlay. Respects the {@code shouldHide} predicate. */
@@ -303,10 +276,7 @@ public class Overlay {
         if (!visible) {
             return;
         }
-        if (shouldHide != null && !shouldHide.test(event)) {
-            return;
-        }
-        doHide(event);
+        internalHide(event);
     }
 
     /** Toggles the overlay between shown and hidden states. */
@@ -321,21 +291,6 @@ public class Overlay {
         } else {
             show(event);
         }
-    }
-
-    // ------------------------------------------------------ placement
-
-    /** Removes all placement modifier CSS classes and applies the given placement. */
-    public void applyPlacement(Placement placement) {
-        swap(null, overlayElement, placement, Placement.values());
-    }
-
-    /**
-     * Applies the best placement for the overlay element based on the provided preferred placement and available space around
-     * the trigger element.
-     */
-    public void applyBestPlacement(Placement preferred) {
-        applyPlacement(bestPlacement(preferred));
     }
 
     // ------------------------------------------------------ access
@@ -408,9 +363,6 @@ public class Overlay {
         if (visible && trigger != null) {
             Element target = (Element) event.target;
             if (!overlayElement.contains(target) && !trigger.contains(target)) {
-                if (stayOpen != null && stayOpen.test(event)) {
-                    return;
-                }
                 hide(event);
             }
         }
@@ -431,15 +383,14 @@ public class Overlay {
         clearTimeout(hideTimeout);
     }
 
-    private void doShow(Event event) {
+    private void internalShow(Event event) {
         applyMinWidth();
         if (cssPositioning) {
-            applyPlacement(placement == auto ? top : placement);
             overlayElement.showPopover();
         } else {
             overlayElement.style.setProperty("visibility", "hidden");
             overlayElement.showPopover();
-            applyBestPlacement(placement);
+            placement(bestPlacement());
             overlayElement.style.removeProperty("visibility");
         }
         visible = true;
@@ -451,7 +402,7 @@ public class Overlay {
         }
     }
 
-    private void doHide(Event event) {
+    private void internalHide(Event event) {
         overlayElement.hidePopover();
         visible = false;
         if (outsideClickHandler != null) {
@@ -465,11 +416,11 @@ public class Overlay {
 
     private void recalculatePlacement() {
         if (visible) {
-            applyBestPlacement(placement);
+            placement(bestPlacement());
         }
     }
 
-    private Placement bestPlacement(Placement preferred) {
+    private Placement bestPlacement() {
         DOMRect triggerRect = trigger.getBoundingClientRect();
         DOMRect overlayRect = overlayElement.getBoundingClientRect();
         double above = triggerRect.top;
@@ -483,30 +434,26 @@ public class Overlay {
         boolean rightFits = toRight >= overlayRect.width / 3 + distance;
 
         Placement result;
-        if (preferred != auto) {
-            // @formatter:off
-            if      (preferred == top && topFits)       { result = top; }
-            else if (preferred == bottom && bottomFits) { result = bottom; }
-            else if (preferred == left && leftFits)     { result = left; }
-            else if (preferred == right && rightFits)   { result = right; }
-            else                                        { result = null; }
-            // @formatter:on
-        } else {
-            result = null;
-        }
+        // @formatter:off
+        if      (placement == top    && topFits)    { result = top; }
+        else if (placement == bottom && bottomFits) { result = bottom; }
+        else if (placement == left   && leftFits)   { result = left; }
+        else if (placement == right  && rightFits)  { result = right; }
+        else                                        { result = null; }
+        // @formatter:on
 
         if (result == null) {
             // @formatter:off
-            if      (topFits && leftFits && rightFits) { result = top; }
-            else if (rightFits && !leftFits)           { result = right; }
-            else if (leftFits && !rightFits)           { result = left; }
-            else if (topFits)                          { result = top; }
-            else if (bottomFits)                       { result = bottom; }
-            else                                       { result = toRight >= toLeft ? right : left; }
+            if      (topFits   && leftFits && rightFits) { result = top; }
+            else if (rightFits && !leftFits)             { result = right; }
+            else if (leftFits  && !rightFits)            { result = left; }
+            else if (topFits)                            { result = top; }
+            else if (bottomFits)                         { result = bottom; }
+            else                                         { result = toRight >= toLeft ? right : left; }
             // @formatter:on
         }
 
-        logger.debug("Best placement for %s: preferred=%s, calculated=%s", id, preferred.name(), result.name());
+        logger.debug("Best placement for %s: %s → %s", id, placement.name(), result.name());
         return result;
     }
 

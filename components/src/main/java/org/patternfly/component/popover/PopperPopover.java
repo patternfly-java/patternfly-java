@@ -39,7 +39,7 @@ import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Modifiers.NoPadding;
-import org.patternfly.style.Placement;
+import org.patternfly.popper.PopperPlacement;
 
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -74,8 +74,8 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.widthAuto;
-import static org.patternfly.style.Placement.auto;
-import static org.patternfly.style.Placement.top;
+import static org.patternfly.popper.PopperPlacement.auto;
+import static org.patternfly.popper.PopperPlacement.top;
 
 /**
  * A popover is in-app messaging that provides more information on specific product areas. Popovers display content in a new
@@ -126,7 +126,7 @@ public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> 
     private int animationDuration;
     private int zIndex;
     private Popper popper;
-    private Placement placement;
+    private PopperPlacement placement;
     private Button closeButton;
     private Severity severity;
     private PopperPopoverHeader header;
@@ -316,7 +316,7 @@ public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> 
         return this;
     }
 
-    public PopperPopover placement(Placement placement) {
+    public PopperPopover placement(PopperPlacement placement) {
         if (placement == auto) {
             flip = true;
         }

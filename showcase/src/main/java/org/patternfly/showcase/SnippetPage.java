@@ -81,7 +81,7 @@ import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.ExpandableModifier.expandable;
 import static org.patternfly.style.ExpandableModifier.nonExpandable;
 import static org.patternfly.style.GridBreakpoint.gridMd;
-import static org.patternfly.style.Placement.auto;
+import static org.patternfly.style.Placement.top;
 import static org.patternfly.style.Size._4xl;
 import static org.patternfly.style.Width.width20;
 import static org.patternfly.style.Width.width30;
@@ -130,7 +130,7 @@ public class SnippetPage implements Page {
                                                         .target("patternfly")
                                                         .icon(swatchbook()))
                                                 .add(tooltip(By.id("design-guidelines"), "Design guidelines")
-                                                        .placement(auto)));
+                                                        .placement(top)));
                                     }
                                 })
                                 .add(div().css(util(floatInlineEnd))
@@ -141,7 +141,7 @@ public class SnippetPage implements Page {
                                                 .target(ApiDoc.API_DOC_TARGET)
                                                 .icon(catalog()))
                                         .add(tooltip(By.id("api-doc"), "API documentation")
-                                                .placement(auto)))
+                                                .placement(top)))
                                 .add(content().editorial()
                                         .add(flex().alignItems(center).add(title(1, _4xl, title)))
                                         .add(p().html(summary))))

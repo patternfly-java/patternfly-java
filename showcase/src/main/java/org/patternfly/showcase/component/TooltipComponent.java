@@ -34,10 +34,10 @@ import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.style.Placement.auto;
 import static org.patternfly.style.Placement.bottom;
 import static org.patternfly.style.Placement.left;
 import static org.patternfly.style.Placement.right;
+import static org.patternfly.style.Placement.top;
 
 @Route(value = "/components/tooltip", title = "Tooltip")
 public class TooltipComponent extends SnippetPage {
@@ -110,7 +110,7 @@ public class TooltipComponent extends SnippetPage {
                                     .add(button.css("pfj-tooltip-button").primary()
                                             .id("tooltip-auto-button"))
                                     .add(tooltip(By.id("tooltip-auto-button"), LoremIpsum.words())
-                                            .placement(auto)))
+                                            .placement(top)))
                             .element();
                     // @code-end:tooltip-auto
                 }));

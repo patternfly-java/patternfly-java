@@ -28,7 +28,6 @@ import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Attributes;
 import org.patternfly.core.Roles;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.overlay.TriggerMode;
@@ -106,7 +105,6 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
 
         HTMLElement menuPopover;
         add(menuPopover = div().css(component(Classes.menu, Classes.popover))
-                .attr(Attributes.popover, "manual")
                 .add(menu = menu(select, single)
                         .onSingleSelect((event, menuItem, selected) -> select(menuItem))
                         .addContent(menuContent()
@@ -114,10 +112,9 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                                         .addItems(tabs.values(), tab -> menuItem(tab.identifier(), tab.text())))))
                 .element());
 
-        overlay = overlay(menuPopover)
+        overlay = overlay(menuPopover, bottomStart)
                 .trigger(button::element)
                 .triggerMode(TriggerMode.click)
-                .placement(bottomStart)
                 .cssPositioning(true)
                 .onToggle((event, open) -> {
                     if (open) {

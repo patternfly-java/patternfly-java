@@ -32,7 +32,7 @@ import org.patternfly.component.Expandable;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.position.AnchorPositioning;
+import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Placement;
@@ -56,10 +56,9 @@ import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Escape;
 import static org.jboss.elemento.Key.Tab;
-import static org.patternfly.core.Attributes.popover;
+import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
-import static org.patternfly.style.Placement.auto;
 import static org.patternfly.style.Placement.bottomStart;
 
 /**
@@ -67,7 +66,7 @@ import static org.patternfly.style.Placement.bottomStart;
  * {@link SingleSelect}, {@link SingleTypeahead}, or {@link MultiSelect}.
  * <p>
  * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed using the native Popover API and CSS
- * anchor positioning via {@link AnchorPositioning}.
+ * anchor positioning via {@link Overlay}.
  */
 abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B>
         implements
@@ -78,10 +77,9 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(MenuToggleMenu.class.getName());
-    private static final int DISTANCE = 0;
 
     final MenuToggle menuToggle;
-    final AnchorPositioning ap;
+    final Overlay overlay;
     Menu menu;
     private final HTMLElement menuPopover;
     private final List<ToggleHandler<B>> toggleHandler;
@@ -99,13 +97,13 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         this.menuToggle = menuToggle;
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
-        this.placement = auto;
+        this.placement = bottomStart;
 
-        String id = Id.unique(componentType().id);
-        menuPopover = div().css(component(Classes.menu, Classes.popover))
-                .attr(popover, "manual")
-                .element();
-        ap = new AnchorPositioning(id, menuPopover, menuToggle::element, DISTANCE, true, true);
+        menuPopover = div().css(component(Classes.menu, Classes.popover)).element();
+        overlay = overlay(menuPopover, bottomStart)
+                .trigger(menuToggle::element)
+                .cssPositioning(true)
+                .matchTriggerWidth(true);
 
         delegateTo(menuToggle.element());
         Attachable.register(menuToggle.element(), this);
@@ -118,8 +116,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                 menuToggle.disabled(true);
             }
             insertAfter(menuPopover, menuToggle.element());
-            ap.attach();
-            ap.applyPlacement(placement == auto ? bottomStart : placement);
+            overlay.attach();
             menuToggleClickHandler = bind(menuToggle.toggleElement, click, this::onMenuToggleClick);
             menuClickHandler = bind(menu, click, this::onMenuClick);
             keyHandler = bind(window, keydown, this::keyHandler);
@@ -132,7 +129,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     @Override
     public void detach(MutationRecord mutationRecord) {
         if (expanded()) {
-            ap.hide();
+            overlay.hide();
         }
         if (outsideClickHandler != null) {
             outsideClickHandler.removeHandler();
@@ -146,9 +143,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         if (menuToggleClickHandler != null) {
             menuToggleClickHandler.removeHandler();
         }
-        if (ap != null) {
-            ap.detach();
-        }
+        overlay.detach();
     }
 
     // ------------------------------------------------------ add
@@ -190,6 +185,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
 
     public B placement(Placement placement) {
         this.placement = placement;
+        overlay.placement(placement);
         return that();
     }
 
@@ -227,7 +223,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     @Override
     public void collapse(boolean fireEvent) {
         if (expanded()) {
-            ap.hide();
+            overlay.hide();
             Expandable.collapse(element(), element(), null);
             if (outsideClickHandler != null) {
                 outsideClickHandler.removeHandler();
@@ -243,8 +239,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     @Override
     public void expand(boolean fireEvent) {
         if (!expanded() && !isDisabled()) {
-            ap.applyPlacement(placement == auto ? bottomStart : placement);
-            ap.show();
+            overlay.show();
             Expandable.expand(element(), element(), null);
             outsideClickHandler = bind(document, click, this::onOutsideClick);
             if (fireEvent) {

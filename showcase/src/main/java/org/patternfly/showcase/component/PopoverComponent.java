@@ -49,7 +49,6 @@ import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import static org.patternfly.style.Placement.auto;
 import static org.patternfly.style.Placement.bottom;
 import static org.patternfly.style.Placement.left;
 import static org.patternfly.style.Placement.right;
@@ -209,7 +208,7 @@ public class PopoverComponent extends SnippetPage {
                                             .add(button.css("pfj-popover-button").primary()
                                                     .id("popover-auto-placement-button"))
                                             .add(popover
-                                                    .placement(auto)
+                                                    .placement(top)
                                                     .ariaLabel("Advanced popover")
                                                     .addHeader("Popover header")
                                                     .addBody(LoremIpsum.words(20))

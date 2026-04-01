@@ -41,7 +41,7 @@ import org.patternfly.popper.PopperBuilder;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-import org.patternfly.style.Placement;
+import org.patternfly.popper.PopperPlacement;
 
 import elemental2.core.JsArray;
 import elemental2.dom.Event;
@@ -61,8 +61,8 @@ import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
-import static org.patternfly.style.Placement.auto;
-import static org.patternfly.style.Placement.bottomStart;
+import static org.patternfly.popper.PopperPlacement.auto;
+import static org.patternfly.popper.PopperPlacement.bottomStart;
 
 /**
  * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link PopperDropdown},
@@ -89,7 +89,7 @@ abstract class PopperMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
     private int zIndex;
     private boolean flip;
     private boolean disabled;
-    private Placement placement;
+    private PopperPlacement placement;
     private Popper popper;
     private HandlerRegistration keyHandler;
     private Predicate<Event> stayOpen;
@@ -186,7 +186,7 @@ abstract class PopperMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
         return that();
     }
 
-    public B placement(Placement placement) {
+    public B placement(PopperPlacement placement) {
         if (placement == auto) {
             flip = true;
         }

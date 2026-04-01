@@ -30,14 +30,13 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
-import org.patternfly.core.Attributes;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.overlay.CssPositioning;
 import org.patternfly.overlay.Overlay;
+import org.patternfly.overlay.TriggerMode;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Placement;
-
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -61,7 +60,6 @@ import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.overlay.Overlay.overlay;
-import static org.patternfly.overlay.TriggerMode.hover;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
@@ -123,10 +121,9 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
         super(ComponentType.Popover, div().css(component(Classes.popover), top.modifier())
                 .attr(role, dialog)
                 .aria(modal, true)
-                .attr(Attributes.popover, "manual")
                 .element());
 
-        this.overlay = overlay(element())
+        this.overlay = overlay(element(), top)
                 .trigger(trigger)
                 .distance(DISTANCE)
                 .entryDelay(ENTRY_DELAY)
@@ -151,7 +148,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
             failSafeRemoveFromParent(closeButton);
         }
 
-        overlay.triggerMode(hoverable ? hover : org.patternfly.overlay.TriggerMode.click);
+        overlay.triggerMode(hoverable ? TriggerMode.hover : TriggerMode.click);
         overlay.onToggle((event, open) -> {
             if (!open) {
                 fireEvent(this, closeHandler, event, true);
