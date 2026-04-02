@@ -15,10 +15,10 @@
  */
 package org.patternfly.popper;
 
-import static org.patternfly.popper.PopperPlacement.auto;
-
 import elemental2.dom.CSSProperties.MinWidthUnionType;
 import elemental2.dom.HTMLElement;
+
+import static org.patternfly.popper.PopperPlacement.auto;
 
 @Deprecated
 public interface Modifiers {

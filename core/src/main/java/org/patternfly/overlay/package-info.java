@@ -29,8 +29,8 @@
  *         listener registration, entry/exit delay timers, and show/hide lifecycle management</li>
  *     <li>{@link org.patternfly.overlay.TriggerMode} - Defines how an overlay responds to user interaction: hover,
  *         click, or manual control</li>
- *     <li>{@link org.patternfly.overlay.CssPositioning} - Reads CSS custom properties to determine whether to use
- *         native CSS positioning or JavaScript-based positioning</li>
+ *     <li>{@link org.patternfly.overlay.CssPositioning} - Detects browser support for CSS Anchor Positioning to
+ *         determine whether to use native CSS positioning or JavaScript-based positioning</li>
  * </ul>
  *
  * <h2>Usage</h2>
@@ -49,18 +49,11 @@
  *
  * <h2>Positioning</h2>
  *
- * <p>The overlay supports two positioning strategies. When CSS anchor positioning is enabled via custom properties,
+ * <p>The overlay supports two positioning strategies. When the browser supports
+ * <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS Anchor Positioning</a>,
  * the browser handles positioning natively using {@code position-try-fallbacks}. Otherwise, the overlay falls back to
- * JavaScript-based positioning that calculates the best placement relative to the trigger element.
- *
- * <p>To enable CSS positioning, set the corresponding custom property on {@code :root}:
- *
- * <pre>
- * :root {
- *     --pf-v6-c-tooltip--css-positioning: 1;
- *     --pf-v6-c-popover--css-positioning: 1;
- * }
- * </pre>
+ * JavaScript-based positioning that calculates the best placement relative to the trigger element. Detection is
+ * automatic via {@link org.patternfly.overlay.CssPositioning#anchorNameSupported()}.
  *
  * @see org.patternfly.overlay.Overlay
  * @see org.patternfly.overlay.TriggerMode

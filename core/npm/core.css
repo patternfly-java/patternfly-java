@@ -28,7 +28,7 @@
 /* Reset [popover] UA styles */
 .pf-v6-c-tooltip[popover],
 .pf-v6-c-popover[popover],
-.pf-v6-c-menu__popover {
+.pf-v6-c-overlay {
     border: none;
     padding: 0;
     background: none;
@@ -37,34 +37,67 @@
     position: fixed;
 }
 
-/* CSS anchor positioning */
+/* ===================================================================
+   CSS anchor positioning rules in clockwise order
+
+      top-left   top   top-right
+              \   |   /
+               \  |  /
+          left-- ( ) --right
+               /  |  \
+              /   |   \
+   bottom-left bottom  bottom-right
+   =================================================================== */
+
 .pf-v6-c-tooltip[popover].pf-m-top,
-.pf-v6-c-popover[popover].pf-m-top {
+.pf-v6-c-popover[popover].pf-m-top,
+.pf-v6-c-overlay.pf-m-top {
     position-area: block-start;
 }
 
-.pf-v6-c-tooltip[popover].pf-m-bottom,
-.pf-v6-c-popover[popover].pf-m-bottom {
-    position-area: block-end;
-}
-
-.pf-v6-c-tooltip[popover].pf-m-left,
-.pf-v6-c-popover[popover].pf-m-left {
-    position-area: inline-start;
+.pf-v6-c-overlay.pf-m-top-right {
+    bottom: anchor(top);
+    right: anchor(right);
 }
 
 .pf-v6-c-tooltip[popover].pf-m-right,
-.pf-v6-c-popover[popover].pf-m-right {
+.pf-v6-c-popover[popover].pf-m-right,
+.pf-v6-c-overlay.pf-m-right {
     position-area: inline-end;
 }
 
+.pf-v6-c-overlay.pf-m-bottom-right {
+    top: anchor(bottom);
+    right: anchor(right);
+}
+
+.pf-v6-c-tooltip[popover].pf-m-bottom,
+.pf-v6-c-popover[popover].pf-m-bottom,
+.pf-v6-c-overlay.pf-m-bottom {
+    position-area: block-end;
+}
+
+.pf-v6-c-overlay.pf-m-bottom-left {
+    top: anchor(bottom);
+    left: anchor(left);
+}
+
+.pf-v6-c-tooltip[popover].pf-m-left,
+.pf-v6-c-popover[popover].pf-m-left,
+.pf-v6-c-overlay.pf-m-left {
+    position-area: inline-start;
+}
+
+.pf-v6-c-overlay.pf-m-top-left {
+    bottom: anchor(top);
+    left: anchor(left);
+}
+
 /* ===================================================================
-   CSS-native positioning (opt-in)
+   CSS-native positioning
 
    Activated by the pf-m-css-positioning modifier, which is added
-   by NativeAnchor.attach() when the corresponding CSS custom property is set:
-     --pf-v6-c-tooltip--css-positioning: 1;
-     --pf-v6-c-popover--css-positioning: 1;
+   by Overlay.attach() when the browser supports CSS Anchor Positioning.
    =================================================================== */
 
 /* container-type for @container anchored() queries */
@@ -74,17 +107,25 @@
 }
 
 /* position-try-fallbacks for tooltip and popover */
-.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-top,
-.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-bottom,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-bottom,
 .pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-top,
-.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-bottom {
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-bottom,
+.pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-top,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-bottom,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-bottom-left,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-bottom-right,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-top,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-top-left,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-top-right {
     position-try-fallbacks: flip-block;
 }
 
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-left,
+.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-right,
 .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-left,
 .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-right,
-.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-left,
-.pf-v6-c-popover[popover].pf-m-css-positioning.pf-m-right {
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-left,
+.pf-v6-c-overlay.pf-m-css-positioning.pf-m-right {
     position-try-fallbacks: flip-inline;
 }
 
@@ -108,63 +149,11 @@
 }
 
 /* ===================================================================
-   Dropdown menu (NativeDropdown) styles
-
-   Unlike tooltip/popover which are centered on the anchor, dropdown
-   menus are edge-aligned. Uses anchor() functions for edge-aligned
-   placements and position-area for centered placements.
-   No arrow, so no container queries needed.
+   Overlay-specific styles
    =================================================================== */
 
-.pf-v6-c-menu__popover {
+.pf-v6-c-overlay {
     inset: auto;
-}
-
-/* Bottom placements */
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom {
-    position-area: block-end;
-    position-try-fallbacks: flip-block;
-}
-
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom-left {
-    top: anchor(bottom);
-    left: anchor(left);
-    position-try-fallbacks: flip-block;
-}
-
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-bottom-right {
-    top: anchor(bottom);
-    right: anchor(right);
-    position-try-fallbacks: flip-block;
-}
-
-/* Top placements */
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top {
-    position-area: block-start;
-    position-try-fallbacks: flip-block;
-}
-
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top-left {
-    bottom: anchor(top);
-    left: anchor(left);
-    position-try-fallbacks: flip-block;
-}
-
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-top-right {
-    bottom: anchor(top);
-    right: anchor(right);
-    position-try-fallbacks: flip-block;
-}
-
-/* Left/right placements */
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-left {
-    position-area: inline-start;
-    position-try-fallbacks: flip-inline;
-}
-
-.pf-v6-c-menu__popover.pf-m-css-positioning.pf-m-right {
-    position-area: inline-end;
-    position-try-fallbacks: flip-inline;
 }
 
 /*

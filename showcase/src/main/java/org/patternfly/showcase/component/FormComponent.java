@@ -257,7 +257,7 @@ public class FormComponent extends SnippetPage {
                 // @code-start:form-invalid
                 div()
                         .add(form()
-                                .addGroup(formGroup()
+                                .addGroup(formGroup("form-invalid-age")
                                         .addLabel(formGroupLabel("Age"))
                                         .addControl(formGroupControl()
                                                 .addControl(textInput("form-invalid-age", "Five")

@@ -15,50 +15,42 @@
  */
 package org.patternfly.overlay;
 
-import org.patternfly.style.Placement;
-import org.patternfly.style.Variable;
-
-import static elemental2.dom.DomGlobal.document;
-import static org.jboss.elemento.DomGlobal.window;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.cssPositioning;
-import static org.patternfly.style.Classes.popover;
-import static org.patternfly.style.Classes.tooltip;
-import static org.patternfly.style.Variable.componentVar;
+import static elemental2.dom.DomGlobal.CSS;
 
 /**
- * Reads and caches the CSS custom properties that control whether tooltip and popover components use native CSS positioning
- * ({@code position-try-fallbacks}) or JavaScript-based positioning ({@link Overlay#applyBestPlacement(Placement)}).
+ * Detects whether the browser supports CSS anchor positioning features, which enable native CSS-based overlay placement instead
+ * of JavaScript-based positioning.
  * <p>
- * To enable CSS positioning, set the corresponding custom property on {@code :root}:
- * <pre>
- * :root {
- *     --pf-v6-c-tooltip--css-positioning: 1;
- *     --pf-v6-c-popover--css-positioning: 1;
- * }
- * </pre>
+ * Two levels of support are detected:
+ * <ul>
+ *     <li>{@link #anchorNameSupported()} — basic CSS anchor positioning ({@code anchor-name})</li>
+ *     <li>{@link #containerTypeAnchoredSupported()} — anchored container queries ({@code container-type: anchored}),
+ *         required by tooltip and popover for arrow positioning</li>
+ * </ul>
+ *
+ * @see <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning">CSS anchor positioning</a>
  */
 public class CssPositioning {
 
-    private static Boolean tooltipEnabled;
-    private static Boolean popoverEnabled;
+    private static Boolean supported;
+    private static Boolean anchoredContainerSupported;
 
-    public static boolean tooltipEnabled() {
-        if (tooltipEnabled == null) {
-            tooltipEnabled = readProperty(componentVar(component(tooltip), cssPositioning));
+    /** Returns {@code true} if the browser supports CSS anchor positioning. */
+    public static boolean anchorNameSupported() {
+        if (supported == null) {
+            supported = CSS.supports("anchor-name: --test");
         }
-        return tooltipEnabled;
+        return supported;
     }
 
-    public static boolean popoverEnabled() {
-        if (popoverEnabled == null) {
-            popoverEnabled = readProperty(componentVar(component(popover), cssPositioning));
+    /**
+     * Returns {@code true} if the browser supports CSS anchor positioning and anchored container queries
+     * ({@code container-type: anchored}).
+     */
+    public static boolean containerTypeAnchoredSupported() {
+        if (anchoredContainerSupported == null) {
+            anchoredContainerSupported = anchorNameSupported() && CSS.supports("container-type: anchored");
         }
-        return popoverEnabled;
-    }
-
-    private static boolean readProperty(Variable property) {
-        String value = window.getComputedStyle(document.documentElement).getPropertyValue(property.name).trim();
-        return "1".equals(value) || "true".equals(value);
+        return anchoredContainerSupported;
     }
 }

@@ -35,8 +35,8 @@ import org.patternfly.handler.CloseHandler;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
-import org.patternfly.popper.TriggerAction;
 import org.patternfly.popper.PopperPlacement;
+import org.patternfly.popper.TriggerAction;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -55,6 +55,8 @@ import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.popper.PopperPlacement.auto;
+import static org.patternfly.popper.PopperPlacement.top;
 import static org.patternfly.popper.TriggerAction.focus;
 import static org.patternfly.popper.TriggerAction.mouseenter;
 import static org.patternfly.style.Classes.arrow;
@@ -63,8 +65,6 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textAlignLeft;
 import static org.patternfly.style.Classes.tooltip;
-import static org.patternfly.popper.PopperPlacement.auto;
-import static org.patternfly.popper.PopperPlacement.top;
 
 /**
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.

@@ -16,7 +16,7 @@
 import "@patternfly/patternfly/patternfly.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/patternfly-charts.css";
-import "@patternfly-java/charts/dist/charts";
+import "../../../charts/npm/src/charts.js";
 import "../../../core/npm/core.css";
 import "../../../extensions/finder/npm/finder.css";
 import "./pforg/*.css";

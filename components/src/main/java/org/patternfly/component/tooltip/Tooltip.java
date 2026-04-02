@@ -31,7 +31,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.overlay.Overlay;
-import org.patternfly.overlay.CssPositioning;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Placement;
 
@@ -49,6 +48,7 @@ import static org.patternfly.core.Aria.live;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
+import static org.patternfly.overlay.CssPositioning.containerTypeAnchoredSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.overlay.TriggerMode.hover;
 import static org.patternfly.style.Classes.arrow;
@@ -132,7 +132,7 @@ public class Tooltip extends BaseComponent<HTMLDivElement, Tooltip> implements
                 .distance(DISTANCE)
                 .entryDelay(ENTRY_DELAY)
                 .exitDelay(EXIT_DELAY)
-                .cssPositioning(CssPositioning.tooltipEnabled());
+                .cssPositioning(containerTypeAnchoredSupported());
         this.closeHandler = new ArrayList<>();
         this.aria = describedBy;
 

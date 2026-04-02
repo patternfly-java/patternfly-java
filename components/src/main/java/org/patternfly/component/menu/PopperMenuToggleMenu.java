@@ -38,10 +38,10 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
+import org.patternfly.popper.PopperPlacement;
 import org.patternfly.popper.TriggerAction;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
-import org.patternfly.popper.PopperPlacement;
 
 import elemental2.core.JsArray;
 import elemental2.dom.Event;
@@ -59,10 +59,10 @@ import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Tab;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.list;
 import static org.patternfly.popper.PopperPlacement.auto;
 import static org.patternfly.popper.PopperPlacement.bottomStart;
+import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.list;
 
 /**
  * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link PopperDropdown},

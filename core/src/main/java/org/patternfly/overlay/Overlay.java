@@ -27,7 +27,6 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.handler.OverlayHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Placement;
-
 import elemental2.dom.DOMRect;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -110,9 +109,9 @@ public class Overlay {
         this.overlayElement = overlayElement;
         this.toggleHandlers = new ArrayList<>();
         this.triggerMode = manual;
-        this.visible = false;
         this.cssPositioning = false;
         this.matchTriggerWidth = false;
+        this.visible = false;
         this.distance = 0;
         this.entryDelay = 0;
         this.exitDelay = 0;
@@ -149,7 +148,8 @@ public class Overlay {
     }
 
     public Overlay placement(Placement placement) {
-        swap(null, overlayElement, placement, this.placement, () -> this.placement = placement);
+        // The placement is assigned here but not mapped to CSS modifiers yet. That won't happen until attach()
+        this.placement = placement;
         return this;
     }
 
@@ -195,11 +195,10 @@ public class Overlay {
      * {@link TriggerMode}. Returns the resolved trigger element or {@code null}.
      */
     public HTMLElement attach() {
-        overlayElement.setAttribute("popover", "manual");
         if (triggerSupplier != null) {
             trigger = triggerSupplier.get();
             if (trigger != null) {
-                setupAnchor();
+                setupOverlayAndTrigger();
                 switch (triggerMode) {
                     case hover:
                         registerHoverListeners();
@@ -209,10 +208,6 @@ public class Overlay {
                         break;
                     case manual:
                         break;
-                }
-
-                if (!cssPositioning) {
-                    scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
                 }
             } else {
                 logger.error("Unable to find trigger element for overlay %o", overlayElement);
@@ -248,17 +243,17 @@ public class Overlay {
             triggerHandlers.removeHandler();
             triggerHandlers = null;
         }
-        teardownAnchor();
+        teardownOverlayAndTrigger();
     }
 
     // ------------------------------------------------------ show / hide
 
-    /** Shows the overlay. Respects the {@code shouldShow} predicate. */
+    /** Shows the overlay. */
     public void show() {
         show(new Event(""));
     }
 
-    /** Shows the overlay. Respects the {@code shouldShow} predicate. */
+    /** Shows the overlay. */
     public void show(Event event) {
         if (visible || trigger == null) {
             return;
@@ -266,12 +261,12 @@ public class Overlay {
         internalShow(event);
     }
 
-    /** Hides the overlay. Respects the {@code shouldHide} predicate. */
+    /** Hides the overlay. */
     public void hide() {
         hide(new Event(""));
     }
 
-    /** Hides the overlay. Respects the {@code shouldHide} predicate. */
+    /** Hides the overlay. */
     public void hide(Event event) {
         if (!visible) {
             return;
@@ -316,25 +311,41 @@ public class Overlay {
         return visible;
     }
 
-    // ------------------------------------------------------ internal
+    // ------------------------------------------------------ internal setup / teardown
 
-    private void setupAnchor() {
+    private void setupOverlayAndTrigger() {
+        overlayElement.setAttribute("popover", "manual");
         String anchorName = "--" + id;
         trigger.style.setProperty("anchor-name", anchorName);
         overlayElement.style.setProperty("position-anchor", anchorName);
         overlayElement.style.setProperty("margin", distance + "px");
+        overlayElement.classList.add(placement.modifier());
         if (cssPositioning) {
             overlayElement.classList.add(modifier(Classes.cssPositioning));
         }
     }
 
-    private void teardownAnchor() {
-        if (trigger != null) {
-            trigger.style.removeProperty("anchor-name");
-            overlayElement.classList.remove(modifier(Classes.cssPositioning));
-            trigger = null;
+    private void applyMinWidth() {
+        if (matchTriggerWidth && trigger != null) {
+            overlayElement.style.setProperty("min-width", trigger.offsetWidth + "px");
         }
     }
+
+    private void teardownOverlayAndTrigger() {
+        overlayElement.classList.remove(modifier(Classes.cssPositioning));
+        for (Placement p : Placement.values()) {
+            overlayElement.classList.remove(p.modifier());
+        }
+        overlayElement.style.removeProperty("margin");
+        overlayElement.style.removeProperty("position-anchor");
+        if (trigger != null) {
+            trigger.style.removeProperty("anchor-name");
+            trigger = null;
+        }
+        overlayElement.removeAttribute("popover");
+    }
+
+    // ------------------------------------------------------ internal listeners
 
     private void registerHoverListeners() {
         triggerHandlers = compose(
@@ -368,6 +379,8 @@ public class Overlay {
         }
     }
 
+    // ------------------------------------------------------ internal show / hide
+
     private void scheduleShow() {
         cancelTimers();
         showTimeout = setTimeout(e -> show(), entryDelay);
@@ -390,8 +403,9 @@ public class Overlay {
         } else {
             overlayElement.style.setProperty("visibility", "hidden");
             overlayElement.showPopover();
-            placement(bestPlacement());
+            recalculatePlacement();
             overlayElement.style.removeProperty("visibility");
+            scrollHandler = bind(document, scroll, true, e -> recalculatePlacement());
         }
         visible = true;
         if (triggerMode == TriggerMode.click) {
@@ -405,6 +419,10 @@ public class Overlay {
     private void internalHide(Event event) {
         overlayElement.hidePopover();
         visible = false;
+        if (scrollHandler != null) {
+            scrollHandler.removeHandler();
+            scrollHandler = null;
+        }
         if (outsideClickHandler != null) {
             outsideClickHandler.removeHandler();
             outsideClickHandler = null;
@@ -414,9 +432,13 @@ public class Overlay {
         }
     }
 
+    // ------------------------------------------------------ placement calculation (cssPositioning == false)
+
     private void recalculatePlacement() {
-        if (visible) {
-            placement(bestPlacement());
+        Placement best = bestPlacement();
+        if (!overlayElement.classList.contains(best.modifier())) {
+            logger.debug("Best placement for %s is now %s", id, best.name());
+            swap(null, overlayElement, best, Placement.values());
         }
     }
 
@@ -434,32 +456,38 @@ public class Overlay {
         boolean rightFits = toRight >= overlayRect.width / 3 + distance;
 
         Placement result;
-        // @formatter:off
-        if      (placement == top    && topFits)    { result = top; }
-        else if (placement == bottom && bottomFits) { result = bottom; }
-        else if (placement == left   && leftFits)   { result = left; }
-        else if (placement == right  && rightFits)  { result = right; }
-        else                                        { result = null; }
-        // @formatter:on
 
-        if (result == null) {
+        // If the initial placement fits, keep the exact preferred placement (including start/end alignment)
+        if (directionFits(placement.base(), topFits, bottomFits, leftFits, rightFits)) {
+            result = placement;
+        } else {
+            // Find the best fallback direction
+            Placement fallbackBase;
             // @formatter:off
-            if      (topFits   && leftFits && rightFits) { result = top; }
-            else if (rightFits && !leftFits)             { result = right; }
-            else if (leftFits  && !rightFits)            { result = left; }
-            else if (topFits)                            { result = top; }
-            else if (bottomFits)                         { result = bottom; }
-            else                                         { result = toRight >= toLeft ? right : left; }
+            if      (topFits   && leftFits && rightFits) { fallbackBase = top; }
+            else if (rightFits && !leftFits)             { fallbackBase = right; }
+            else if (leftFits  && !rightFits)            { fallbackBase = left; }
+            else if (topFits)                            { fallbackBase = top; }
+            else if (bottomFits)                         { fallbackBase = bottom; }
+            else                                         { fallbackBase = toRight >= toLeft ? right : left; }
             // @formatter:on
+
+            // Preserve start/end alignment from the initial placement
+            result = placement.withBase(fallbackBase);
         }
 
-        logger.debug("Best placement for %s: %s → %s", id, placement.name(), result.name());
         return result;
     }
 
-    private void applyMinWidth() {
-        if (matchTriggerWidth && trigger != null) {
-            overlayElement.style.setProperty("min-width", trigger.offsetWidth + "px");
-        }
+    private boolean directionFits(Placement base,
+            boolean topFits, boolean bottomFits,
+            boolean leftFits, boolean rightFits) {
+        return switch (base) {
+            case top -> topFits;
+            case bottom -> bottomFits;
+            case left -> leftFits;
+            case right -> rightFits;
+            default -> false;
+        };
     }
 }

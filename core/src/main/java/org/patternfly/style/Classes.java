@@ -200,6 +200,7 @@ public interface Classes {
     String outerWrap = "outer-wrap";
     String outline = "outline";
     String overflow = "overflow";
+    String overlay = "overlay";
     String overflowContainer = "overflow-container";
     String overflowScroll = "overflow-scroll";
     String padding = "padding";

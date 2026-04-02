@@ -61,7 +61,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-basic"), () ->
                 // @code-start:dropdown-basic
                 div()
-                        .add(Dropdown.dropdown("Dropdown")
+                        .add(dropdown("Dropdown")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -78,7 +78,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-kebab"), () ->
                 // @code-start:dropdown-kebab
                 div()
-                        .add(Dropdown.dropdown(ellipsisV(), "kebab dropdown toggle")
+                        .add(dropdown(ellipsisV(), "kebab dropdown toggle")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -95,7 +95,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-groups"), () ->
                 // @code-start:dropdown-groups
                 div()
-                        .add(Dropdown.dropdown("Dropdown")
+                        .add(dropdown("Dropdown")
                                 .addMenu(dropdownMenu()
                                         .addContent(menuContent()
                                                 .addGroup(menuGroup()

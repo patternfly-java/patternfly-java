@@ -6,10 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+> [!IMPORTANT]
+> This release deprecates components based on PopperJS and adds alternatives using the [popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). This might break existing code!
+
+- `org.patternfly.component.popover.PopperPopover` → `org.patternfly.component.popover.Popover`
+- `org.patternfly.component.tooltip.PopperTooltip` → `org.patternfly.component.tooltip.Tooltip`
+- `org.patternfly.component.menu.PopperDropdown` → `org.patternfly.component.menu.Dropdown`
+- `org.patternfly.component.menu.PopperMultiSelect` → `org.patternfly.component.menu.MultiSelect`
+- `org.patternfly.component.menu.PopperMultiTypeahead` → `org.patternfly.component.menu.MultiTypeahead`
+- `org.patternfly.component.menu.PopperSingleSelect` → `org.patternfly.component.menu.SingleSelect`
+- `org.patternfly.component.menu.PopperSingleTypeahead` → `org.patternfly.component.menu.SingleTypeahead`
+
 ### Added
 
 - Add native alternatives for dropdown, single and multi-select, and single and multi-type-ahead components
-- Deprecate components based on Popper.js
+- Deprecate components based on PopperJS
+- Add new `Overlay` class replacing the deprecated `PopperBuilder`
 
 ## [0.6.16] - 2026-03-26
 
@@ -575,7 +587,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fix missing JS file for PatternFly Java J2CL
+- Fix the missing JS file for PatternFly Java J2CL
 
 ### Removed
 
@@ -625,7 +637,7 @@ Split PatternFly Java into multiple modules:
 
 ### Changed
 
-- Add showcase to the PatternFly Java codebase.
+- Add a showcase to the PatternFly Java codebase.
 
 ### Upgrades
 

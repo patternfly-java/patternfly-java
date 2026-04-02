@@ -52,6 +52,7 @@ import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.presentation;
 import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.current;
@@ -103,8 +104,8 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
                         .add(angleRight())));
 
-        HTMLElement menuPopover;
-        add(menuPopover = div().css(component(Classes.menu, Classes.popover))
+        HTMLElement overlayElement;
+        add(overlayElement = div().css(component(Classes.overlay))
                 .add(menu = menu(select, single)
                         .onSingleSelect((event, menuItem, selected) -> select(menuItem))
                         .addContent(menuContent()
@@ -112,10 +113,10 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                                         .addItems(tabs.values(), tab -> menuItem(tab.identifier(), tab.text())))))
                 .element());
 
-        overlay = overlay(menuPopover, bottomStart)
+        this.overlay = overlay(overlayElement, bottomStart)
                 .trigger(button::element)
                 .triggerMode(TriggerMode.click)
-                .cssPositioning(true)
+                .cssPositioning(anchorNameSupported())
                 .onToggle((event, open) -> {
                     if (open) {
                         Expandable.expand(button.element(), button.element(), null);
@@ -123,7 +124,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                         Expandable.collapse(button.element(), button.element(), null);
                     }
                 });
-        overlay.attach();
+        this.overlay.attach();
     }
 
     void detach() {

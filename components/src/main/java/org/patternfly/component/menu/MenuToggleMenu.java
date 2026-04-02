@@ -56,6 +56,7 @@ import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Escape;
 import static org.jboss.elemento.Key.Tab;
+import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
@@ -85,7 +86,6 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     private final List<ToggleHandler<B>> toggleHandler;
     private final List<ComponentHandler<B>> loadedHandler;
     private boolean disabled;
-    private Placement placement;
     private StayOpenPredicate stayOpen;
     private HandlerRegistration menuToggleClickHandler;
     private HandlerRegistration menuClickHandler;
@@ -97,12 +97,11 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         this.menuToggle = menuToggle;
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
-        this.placement = bottomStart;
 
-        menuPopover = div().css(component(Classes.menu, Classes.popover)).element();
+        menuPopover = div().css(component(Classes.overlay)).element();
         overlay = overlay(menuPopover, bottomStart)
                 .trigger(menuToggle::element)
-                .cssPositioning(true)
+                .cssPositioning(anchorNameSupported())
                 .matchTriggerWidth(true);
 
         delegateTo(menuToggle.element());
@@ -184,7 +183,6 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     }
 
     public B placement(Placement placement) {
-        this.placement = placement;
         overlay.placement(placement);
         return that();
     }

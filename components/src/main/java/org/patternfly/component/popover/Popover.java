@@ -31,12 +31,12 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
-import org.patternfly.overlay.CssPositioning;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.overlay.TriggerMode;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.NoPadding;
 import org.patternfly.style.Placement;
+
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
@@ -59,6 +59,7 @@ import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
 import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.overlay.CssPositioning.containerTypeAnchoredSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.arrow;
 import static org.patternfly.style.Classes.close;
@@ -128,7 +129,7 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
                 .distance(DISTANCE)
                 .entryDelay(ENTRY_DELAY)
                 .exitDelay(EXIT_DELAY)
-                .cssPositioning(CssPositioning.popoverEnabled());
+                .cssPositioning(containerTypeAnchoredSupported());
         this.closeHandler = new ArrayList<>();
         this.showClose = true;
         this.hoverable = false;
