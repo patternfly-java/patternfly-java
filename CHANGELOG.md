@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 > [!IMPORTANT]
-> This release deprecates components based on PopperJS and adds alternatives using the [popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). This might break existing code!
+> This release deprecates components based on PopperJS and adds alternatives using the [popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). The PopperJS based components have been renamed to `PopperJS<ComponentName>` and reimplemented `<ComponentName>` components are the replacements. This might break existing code!
 
 - `org.patternfly.component.popover.PopperPopover` → `org.patternfly.component.popover.Popover`
 - `org.patternfly.component.tooltip.PopperTooltip` → `org.patternfly.component.tooltip.Tooltip`
@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `org.patternfly.component.menu.PopperMultiTypeahead` → `org.patternfly.component.menu.MultiTypeahead`
 - `org.patternfly.component.menu.PopperSingleSelect` → `org.patternfly.component.menu.SingleSelect`
 - `org.patternfly.component.menu.PopperSingleTypeahead` → `org.patternfly.component.menu.SingleTypeahead`
+
+If the browser does not support [CSS anchor positioning](https://caniuse.com/css-anchor-positioning) or [anchor-based container queries](https://caniuse.com/wf-container-anchor-position-queries), the placement of the popover is calculated using the new `Overlay` class. The only requirement is that the browser supports the [popover API](https://caniuse.com/wf-popover), which is available now in all major browsers.
 
 ### Added
 
