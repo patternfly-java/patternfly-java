@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-04-02
+
 ### Fixed
 
 - Fix vulnerabilities in the NPM dependencies of the charts module.
@@ -952,7 +954,8 @@ Stay tuned for more to come...
 
 
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.1...HEAD
+[0.7.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.16...v0.7.0
 [0.6.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...v0.6.16
 [0.6.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...v0.6.15
