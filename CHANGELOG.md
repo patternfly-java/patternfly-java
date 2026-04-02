@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-04-02
+
 > [!IMPORTANT]
 > This release deprecates components based on PopperJS and adds alternatives using the [popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). The PopperJS based components have been renamed to `PopperJS<ComponentName>` and reimplemented `<ComponentName>` components are the replacements. This might break existing code!
 
@@ -883,130 +885,131 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.16...HEAD
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.16...v0.7.0
 [0.6.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.15...v0.6.16
-
 [0.6.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.14...v0.6.15
-
 [0.6.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.13...v0.6.14
-
 [0.6.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.12...v0.6.13
-
 [0.6.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.11...v0.6.12
-
 [0.6.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.10...v0.6.11
-
 [0.6.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.9...v0.6.10
-
 [0.6.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.8...v0.6.9
-
 [0.6.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.7...v0.6.8
-
 [0.6.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.6...v0.6.7
-
 [0.6.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.5...v0.6.6
-
 [0.6.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.4...v0.6.5
-
 [0.6.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.3...v0.6.4
-
 [0.6.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.2...v0.6.3
-
 [0.6.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.1...v0.6.2
-
 [0.6.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.6.0...v0.6.1
-
 [0.6.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.5.0...v0.6.0
-
 [0.5.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.17...v0.5.0
-
 [0.4.17]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.16...v0.4.17
-
 [0.4.16]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.15...v0.4.16
-
 [0.4.15]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.14...v0.4.15
-
 [0.4.14]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.13...v0.4.14
-
 [0.4.13]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.12...v0.4.13
-
 [0.4.12]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.11...v0.4.12
-
 [0.4.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.10...v0.4.11
-
 [0.4.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.9...v0.4.10
-
 [0.4.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.8...v0.4.9
-
 [0.4.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.7...v0.4.8
-
 [0.4.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.6...v0.4.7
-
 [0.4.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.5...v0.4.6
-
 [0.4.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.4...v0.4.5
-
 [0.4.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.3...v0.4.4
-
 [0.4.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.2...v0.4.3
-
 [0.4.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.1...v0.4.2
-
 [0.4.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.4.0...v0.4.1
-
 [0.4.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.1...v0.4.0
-
 [0.3.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.3.0...v0.3.1
-
 [0.3.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.11...v0.3.0
-
 [0.2.11]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.10...v0.2.11
-
 [0.2.10]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.9...v0.2.10
-
 [0.2.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.8...v0.2.9
-
 [0.2.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.7...v0.2.8
-
 [0.2.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.6...v0.2.7
-
 [0.2.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.5...v0.2.6
-
 [0.2.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.4...v0.2.5
-
 [0.2.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.3...v0.2.4
-
 [0.2.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.2...v0.2.3
-
 [0.2.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.1...v0.2.2
-
 [0.2.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.2.0...v0.2.1
-
 [0.2.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.5...v0.2.0
-
 [0.1.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.4...v0.1.5
-
 [0.1.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.3...v0.1.4
-
 [0.1.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.2...v0.1.3
-
 [0.1.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.1...v0.1.2
-
 [0.1.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.1.0...v0.1.1
-
 [0.1.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.7...v0.1.0
-
 [0.0.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.6...v0.0.7
-
 [0.0.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.5...v0.0.6
-
 [0.0.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.4...v0.0.5
-
 [0.0.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.3...v0.0.4
-
 [0.0.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.2...v0.0.3
-
 [0.0.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.0.1...v0.0.2
-
 [0.0.1]: https://github.com/patternfly-java/patternfly-java/compare/vTemplate...v0.0.1
