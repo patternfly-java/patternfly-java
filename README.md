@@ -82,7 +82,7 @@ depending on your stack. If you're using GWT, inherit from `org.patternfly.Patte
 
 ## JavaScript Dependencies
 
-PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. The only exception is the charts package, which wraps PatternFly React Chart components as web components so they can be used from Java.
+PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. The only exception is the chart package, which wraps PatternFly React Chart components as web components so they can be used from Java.
 
 ```
 npm install @patternfly-java/charts
@@ -123,6 +123,57 @@ npm install @patternfly-java/finder
 ```js
 import "@patternfly-java/finder";
 ```
+
+# Differences to PatternFly
+
+PatternFly Java provides the same look and feel as [PatternFly](https://www.patternfly.org/) but replaces React's declarative component model with Java's fluent builder API. Here are the key differences:
+
+## API Style
+
+Where PatternFly React uses JSX with props:
+
+```jsx
+<Card isFlat isRounded isLarge>
+  <CardHeader><CardTitle>Title</CardTitle></CardHeader>
+  <CardBody>Body</CardBody>
+  <CardFooter>Footer</CardFooter>
+</Card>
+```
+
+PatternFly Java uses static factory methods, fluent chaining, and explicit `add` methods:
+
+```java
+card().flat().rounded().large()
+    .addHeader(cardHeader().addTitle(cardTitle("Title")))
+    .addBody(cardBody().textContent("Body"))
+    .addFooter(cardFooter().textContent("Footer"));
+```
+
+## Event Handling
+
+React uses callback props (`onChange`, `onSelect`). PatternFly Java uses type-safe functional interfaces with an `on<Event>()` naming convention. Handlers receive both the event and the component:
+
+```java
+button("Click me").onClick((event, button) -> { /* ... */ });
+```
+
+## CSS and Styling
+
+PatternFly Java does **not** bundle PatternFly stylesheets — you must provide them yourself. CSS classes are applied programmatically via helper methods rather than `className` props. Design tokens are available as type-safe enum constants (see [Tokens](#tokens)).
+
+## Popups and Overlays
+
+PatternFly React uses [PopperJS](https://popper.js.org/docs/v2/) for positioning dropdowns, tooltips, and popovers. PatternFly Java uses the native [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) with [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) instead, eliminating the need for any JavaScript positioning library.
+
+## Charts
+
+Charts are the one exception to the "no JavaScript" rule. PatternFly Java wraps PatternFly React chart components as web components, providing a Java API on top. This requires the `@patternfly-java/charts` NPM package.
+
+## Extensions
+
+PatternFly Java includes extensions that have no equivalent in PatternFly React:
+
+- **Finder**: A multi-column navigation component for browsing hierarchical data, with its own CSS styles.
 
 # Modules
 
