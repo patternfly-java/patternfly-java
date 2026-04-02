@@ -1,7 +1,7 @@
 {
   "name": "@patternfly-java/core",
   "private": false,
-  "version": "0.7.0",
+  "version": "0.7.1-SNAPSHOT",
   "description": "CSS for PatternFly Java.",
   "homepage": "https://patternfly-java.github.io/",
   "repository": {
