@@ -30,6 +30,7 @@
  *     <li>{@link org.patternfly.handler.ToggleHandler} - Handler for expand/collapse toggle events</li>
  *     <li>{@link org.patternfly.handler.CloseHandler} - Handler for close/dismiss events</li>
  *     <li>{@link org.patternfly.handler.ResizeHandler} - Handler for resize events with dimensions</li>
+ *     <li>{@link org.patternfly.handler.OverlayHandler} - Handler for overlay visibility changes</li>
  * </ul>
  *
  * <h2>Usage Examples</h2>

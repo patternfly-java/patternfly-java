@@ -22,7 +22,8 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 
 ## Module Structure
 
-- **bom** - Bill of Materials for dependency version management
+- **build-config** - Build configuration (checkstyle, license headers)
+- **code-parent** - Parent POM for code modules
 - **core** - Core classes, handlers, styles, utilities (`org.patternfly.core`, `org.patternfly.style`, `org.patternfly.handler`)
 - **components** - All UI components (`org.patternfly.component.*`) — 50+ component packages
 - **layouts** - Page layouts (Page, Sidebar, etc.)
@@ -31,7 +32,7 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 - **charts** - Chart web components wrapper (NPM package)
 - **extensions/codeeditor**, **extensions/finder** - Extensions
 - **gwt**, **j2cl** - Compilation target support
-- **showcase** - Interactive demo website
+- **showcase** - Interactive demo website (activated via `-P showcase` profile)
 
 ## Architecture & Patterns
 
@@ -91,7 +92,7 @@ element().css(modifier("danger"));
 
 ## Key Dependencies
 
-- **Elemento** (2.4.9) - Base builder API and DOM utilities
+- **Elemento** (2.4.11) - Base builder API and DOM utilities
 - **Elemental2** (1.3.2) - Typed DOM API bindings
 - **GWT** (2.13.0) - GWT compilation support
 - **JUnit Jupiter** (6.0.3) - Test framework
