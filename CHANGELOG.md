@@ -8,11 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.7.3] - 2026-04-02
 
-## [0.7.2] - 2026-04-02
-
 ### Removed
 
 - Remove the `@Deprecated` annotation from the `org.patternfly.popper` package (J2CL doesn't like annotations on a package).
+
+## [0.7.2] - 2026-04-02
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.7.1] - 2026-04-02
 
