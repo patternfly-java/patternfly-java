@@ -22,5 +22,4 @@
  *
  * @deprecated Use {@link org.patternfly.overlay} instead.
  */
-@Deprecated
 package org.patternfly.popper;
