@@ -29,7 +29,7 @@
     "@parcel/reporter-cli": "^2.16.4",
     "@parcel/resolver-glob": "^2.16.4",
     "@parcel/transformer-css": "^2.16.4",
-    "basic-ftp": "^5.2.0",
+    "basic-ftp": "^5.2.2",
     "concurrently": "^9.2.1",
     "express": "^5.2.1",
     "http-proxy-middleware": "^3.0.5",
@@ -38,7 +38,7 @@
     "parcel": "^2.16.4",
     "parcel-resolver-ignore": "^2.2.1",
     "puppeteer": "^24.40.0",
-    "wait-on": "^9.0.4"
+    "wait-on": "^9.0.5"
   },
   "packageManager": "pnpm@11.0.0-dev.1005+sha512.91f84a392eea348ea4852a182912d2520273a4336f933b78cc44bc931eb999923c097e9433a9b355adc1f725725ea99082fc9f032a559df832632e764c92c798"
 }
