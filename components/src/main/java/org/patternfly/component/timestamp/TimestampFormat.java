@@ -17,17 +17,14 @@ package org.patternfly.component.timestamp;
 
 /**
  * Enum representing various timestamp formats–for {@code dateStyle} and
- * {@code timeStyle}–based on the <a href=
- * "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">Intl.DateTimeFormat</a>
+ * {@code timeStyle}–based on the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">Intl.DateTimeFormat</a>
  * API.
- *
  * <p>
  * The formats correspond to the standard JavaScript Intl.DateTimeFormat
  * options:
  * </p>
  * <ul>
- * <li>{@code full}</strong> - Tuesday, August 9, 2022 | 11:25:00 AM Eastern
- * Daylight Time</li>
+ * <li>{@code full} - Tuesday, August 9, 2022 | 11:25:00 AM Eastern Daylight Time</li>
  * <li>{@code long} - August 9, 2022 | 11:25:00 AM EDT</li>
  * <li>{@code medium} - Aug 9, 2022 | 11:25:00 AM</li>
  * <li>{@code short} - 8/9/22 | 11:25 AM</li>
