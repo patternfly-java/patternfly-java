@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `Menu.load()` method to load async menu items
+
+### Changed
+
+- Change `Menu.reload()` return type from `void` to `Promise<Void>` for async support
+- Bump `j2cl-maven-plugin` from 0.23.6 to 0.23.7
+- Bump `jackson-databind` from 2.21.2 to 2.21.3
+- Bump `jboss-parent` from 52 to 53
+
+### Fixed
+
+- Fix NPM vulnerabilities
+- Fix Javadoc format issues
+- Fix showcase CI jobs
+
 ## [0.7.3] - 2026-04-02
 
 ### Removed

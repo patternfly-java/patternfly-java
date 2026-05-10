@@ -255,7 +255,7 @@ abstract class PopperMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
             if (menu.hasAsyncItems()) {
-                menu.loadAll().then(__ -> {
+                menu.load().then(__ -> {
                     loadedHandler.forEach(th -> th.handle(new Event(""), that()));
                     return null;
                 });

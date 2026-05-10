@@ -294,17 +294,37 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return items;
     }
 
-    public void reload() {
+    @SuppressWarnings({"unchecked", "RedundantSuppression"})
+    public Promise<Void> load() {
         if (content != null) {
+            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
             for (MenuGroup group : content.groups) {
                 if (group.list != null) {
-                    group.list.reload();
+                    promises.add(group.list.load());
                 }
             }
             if (content.list != null) {
-                content.list.reload();
+                promises.add(content.list.load());
             }
+            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
         }
+        return Promise.resolve((Void) null);
+    }
+
+    public Promise<Void> reload() {
+        if (content != null) {
+            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    promises.add(group.list.reload());
+                }
+            }
+            if (content.list != null) {
+                promises.add(content.list.reload());
+            }
+            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
+        }
+        return Promise.resolve((Void) null);
     }
 
     public void select(String identifier) {
@@ -466,23 +486,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
                 menuItem.markSelected(false);
             }
         }
-    }
-
-    @SuppressWarnings({"unchecked", "RedundantSuppression"})
-    Promise<Void> loadAll() {
-        if (content != null) {
-            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
-            for (MenuGroup group : content.groups) {
-                if (group.list != null && group.list.status() == pending) {
-                    promises.add(group.list.load());
-                }
-            }
-            if (content.list != null && content.list.status() == pending) {
-                promises.add(content.list.load());
-            }
-            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
-        }
-        return Promise.resolve((Void) null);
     }
 
     // ------------------------------------------------------ keyboard navigation
