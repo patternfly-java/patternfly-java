@@ -40,8 +40,8 @@ public final class Validation {
             E... otherAllowedValues) {
         EnumSet<E> allowed = EnumSet.of(firstAllowedValue, otherAllowedValues);
         if (!allowed.contains(value)) {
-            logger.warn("Unsupported value for '%s' in element %o. Given: %s, allowed $s.",
-                    property, element, value.name(), allowed.stream().map(Enum::name).collect(joining()));
+            logger.warn("Unsupported value for '%s' in element %o. Given: %s, allowed %s.",
+                    property, element, value.name(), allowed.stream().map(Enum::name).collect(joining(", ")));
             return false;
         }
         return true;

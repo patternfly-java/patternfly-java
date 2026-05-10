@@ -62,7 +62,7 @@ public class VariableAssignments {
                 for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
                     String property = breakpoint.key == default_ ? variable.name : variable.name + "-on-" + breakpoint.key.value;
                     String value = stringValue.apply(breakpoint.value);
-                    element.style.setProperty(variable.name, value);
+                    element.style.setProperty(property, value);
                 }
             }
         }

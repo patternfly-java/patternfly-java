@@ -436,6 +436,9 @@ public class Overlay {
     // ------------------------------------------------------ placement calculation (cssPositioning == false)
 
     private void recalculatePlacement() {
+        if (trigger == null) {
+            return;
+        }
         Placement best = bestPlacement();
         if (!overlayElement.classList.contains(best.modifier())) {
             logger.debug("Best placement for %s is now %s", id, best.name());
