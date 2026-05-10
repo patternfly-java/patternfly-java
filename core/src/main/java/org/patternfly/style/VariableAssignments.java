@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import org.jboss.elemento.HTMLElementStyleMethods;
@@ -26,6 +27,30 @@ import org.patternfly.core.Tuple;
 import static org.patternfly.style.Breakpoint.default_;
 
 public class VariableAssignments {
+
+    static String propertyName(Variable variable, Breakpoint breakpoint) {
+        return breakpoint == default_ ? variable.name : variable.name + "-on-" + breakpoint.value;
+    }
+
+    static <V> Function<V, String> resolveStringValue(Breakpoints<V> breakpoints, Function<V, String> explicit) {
+        if (explicit != null) {
+            return explicit;
+        }
+        if (breakpoints.typedModifier()) {
+            return v -> ((TypedModifier) v).value();
+        }
+        return String::valueOf;
+    }
+
+    static <V> void applyBreakpoints(Variable variable, Breakpoints<V> breakpoints,
+            Function<V, String> stringValue, BiConsumer<String, String> applier) {
+        if (variable.valid && breakpoints != null && !breakpoints.isEmpty()) {
+            Function<V, String> fn = resolveStringValue(breakpoints, stringValue);
+            for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
+                applier.accept(propertyName(variable, breakpoint.key), fn.apply(breakpoint.value));
+            }
+        }
+    }
 
     public static class HTMLElement {
 
@@ -50,21 +75,11 @@ public class VariableAssignments {
         }
 
         public <V> void set(Breakpoints<V> breakpoints) {
-            if (breakpoints.typedModifier()) {
-                set(breakpoints, v -> ((TypedModifier) v).value());
-            } else {
-                set(breakpoints, String::valueOf);
-            }
+            set(breakpoints, null);
         }
 
         public <V> void set(Breakpoints<V> breakpoints, Function<V, String> stringValue) {
-            if (variable.valid && breakpoints != null && !breakpoints.isEmpty()) {
-                for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
-                    String property = breakpoint.key == default_ ? variable.name : variable.name + "-on-" + breakpoint.key.value;
-                    String value = stringValue.apply(breakpoint.value);
-                    element.style.setProperty(property, value);
-                }
-            }
+            applyBreakpoints(variable, breakpoints, stringValue, element.style::setProperty);
         }
     }
 
@@ -93,21 +108,11 @@ public class VariableAssignments {
         }
 
         public <V> B set(Breakpoints<V> breakpoints) {
-            if (breakpoints.typedModifier()) {
-                return set(breakpoints, v -> ((TypedModifier) v).value());
-            } else {
-                return set(breakpoints, String::valueOf);
-            }
+            return set(breakpoints, null);
         }
 
         public <V> B set(Breakpoints<V> breakpoints, Function<V, String> stringValue) {
-            if (variable.valid && breakpoints != null && !breakpoints.isEmpty()) {
-                for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
-                    String property = breakpoint.key == default_ ? variable.name : variable.name + "-on-" + breakpoint.key.value;
-                    String value = stringValue.apply(breakpoint.value);
-                    element.style(property, value);
-                }
-            }
+            applyBreakpoints(variable, breakpoints, stringValue, element::style);
             return element.that();
         }
     }
@@ -137,21 +142,11 @@ public class VariableAssignments {
         }
 
         public <V> B set(Breakpoints<V> breakpoints) {
-            if (breakpoints.typedModifier()) {
-                return set(breakpoints, v -> ((TypedModifier) v).value());
-            } else {
-                return set(breakpoints, String::valueOf);
-            }
+            return set(breakpoints, null);
         }
 
         public <V> B set(Breakpoints<V> breakpoints, Function<V, String> stringValue) {
-            if (variable.valid && breakpoints != null && !breakpoints.isEmpty()) {
-                for (Tuple<Breakpoint, V> breakpoint : breakpoints) {
-                    String property = breakpoint.key == default_ ? variable.name : variable.name + "-on-" + breakpoint.key.value;
-                    String value = stringValue.apply(breakpoint.value);
-                    element.style(property, value);
-                }
-            }
+            applyBreakpoints(variable, breakpoints, stringValue, element::style);
             return element.that();
         }
     }

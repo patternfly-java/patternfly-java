@@ -15,7 +15,6 @@
  */
 package org.patternfly.style;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -91,11 +90,8 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
     /**
      * Creates a new instance of {@link Breakpoints} with a single tuple containing the given breakpoint and value.
      */
-    public static <V> Breakpoints<V> breakpoints(
-            Breakpoint breakpoint, V value) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint, value));
-        return new Breakpoints<>(tuples);
+    public static <V> Breakpoints<V> breakpoints(Breakpoint breakpoint, V value) {
+        return new Breakpoints<>(List.of(tuple(breakpoint, value)));
     }
 
     /**
@@ -104,10 +100,7 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
     public static <V> Breakpoints<V> breakpoints(
             Breakpoint breakpoint1, V value1,
             Breakpoint breakpoint2, V value2) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint1, value1));
-        tuples.add(tuple(breakpoint2, value2));
-        return new Breakpoints<>(tuples);
+        return new Breakpoints<>(List.of(tuple(breakpoint1, value1), tuple(breakpoint2, value2)));
     }
 
     /**
@@ -117,11 +110,8 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
             Breakpoint breakpoint1, V value1,
             Breakpoint breakpoint2, V value2,
             Breakpoint breakpoint3, V value3) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint1, value1));
-        tuples.add(tuple(breakpoint2, value2));
-        tuples.add(tuple(breakpoint3, value3));
-        return new Breakpoints<>(tuples);
+        return new Breakpoints<>(List.of(tuple(breakpoint1, value1), tuple(breakpoint2, value2),
+                tuple(breakpoint3, value3)));
     }
 
     /**
@@ -132,12 +122,8 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
             Breakpoint breakpoint2, V value2,
             Breakpoint breakpoint3, V value3,
             Breakpoint breakpoint4, V value4) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint1, value1));
-        tuples.add(tuple(breakpoint2, value2));
-        tuples.add(tuple(breakpoint3, value3));
-        tuples.add(tuple(breakpoint4, value4));
-        return new Breakpoints<>(tuples);
+        return new Breakpoints<>(List.of(tuple(breakpoint1, value1), tuple(breakpoint2, value2),
+                tuple(breakpoint3, value3), tuple(breakpoint4, value4)));
     }
 
     /**
@@ -149,13 +135,8 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
             Breakpoint breakpoint3, V value3,
             Breakpoint breakpoint4, V value4,
             Breakpoint breakpoint5, V value5) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint1, value1));
-        tuples.add(tuple(breakpoint2, value2));
-        tuples.add(tuple(breakpoint3, value3));
-        tuples.add(tuple(breakpoint4, value4));
-        tuples.add(tuple(breakpoint5, value5));
-        return new Breakpoints<>(tuples);
+        return new Breakpoints<>(List.of(tuple(breakpoint1, value1), tuple(breakpoint2, value2),
+                tuple(breakpoint3, value3), tuple(breakpoint4, value4), tuple(breakpoint5, value5)));
     }
 
     /**
@@ -168,14 +149,9 @@ public class Breakpoints<V> extends Tuples<Breakpoint, V> {
             Breakpoint breakpoint4, V value4,
             Breakpoint breakpoint5, V value5,
             Breakpoint breakpoint6, V value6) {
-        List<Tuple<Breakpoint, V>> tuples = new ArrayList<>();
-        tuples.add(tuple(breakpoint1, value1));
-        tuples.add(tuple(breakpoint2, value2));
-        tuples.add(tuple(breakpoint3, value3));
-        tuples.add(tuple(breakpoint4, value4));
-        tuples.add(tuple(breakpoint5, value5));
-        tuples.add(tuple(breakpoint6, value6));
-        return new Breakpoints<>(tuples);
+        return new Breakpoints<>(List.of(tuple(breakpoint1, value1), tuple(breakpoint2, value2),
+                tuple(breakpoint3, value3), tuple(breakpoint4, value4), tuple(breakpoint5, value5),
+                tuple(breakpoint6, value6)));
     }
 
     /**

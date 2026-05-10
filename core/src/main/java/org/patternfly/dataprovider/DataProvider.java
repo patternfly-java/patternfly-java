@@ -32,6 +32,7 @@ import elemental2.dom.Event;
 
 import static java.lang.Math.min;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableCollection;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
@@ -112,15 +113,15 @@ public class DataProvider<T> {
     }
 
     public Iterable<T> getAllItems() {
-        return allItems.values();
+        return unmodifiableCollection(allItems.values());
     }
 
     public Iterable<T> getFilteredItems() {
-        return filteredItems.values();
+        return unmodifiableCollection(filteredItems.values());
     }
 
     public Iterable<T> getVisibleItems() {
-        return visibleItems.values();
+        return unmodifiableCollection(visibleItems.values());
     }
 
     // ------------------------------------------------------ selection

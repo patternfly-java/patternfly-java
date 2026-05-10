@@ -165,7 +165,9 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
     }
 
     /**
-     * Retrieves the filter attribute associated with the given name.
+     * Retrieves the filter attribute associated with the given name. The caller must ensure that {@code V} matches the type used
+     * when the attribute was {@linkplain #add(FilterAttribute) added}; a mismatch will cause a {@link ClassCastException} at the
+     * call site.
      *
      * @param name the name of the filter attribute to retrieve
      * @param <V>  the type of the value for the filter attribute
