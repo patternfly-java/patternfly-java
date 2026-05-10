@@ -27,7 +27,7 @@ import org.patternfly.style.TypedModifier;
  * @deprecated Use {@link org.patternfly.style.Placement} instead. This class exists only to support the deprecated Popper.js
  * based components.
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public enum PopperPlacement implements TypedModifier {
 
     auto("auto", ""),

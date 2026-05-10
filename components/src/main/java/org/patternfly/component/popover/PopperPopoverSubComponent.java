@@ -21,7 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 abstract class PopperPopoverSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     PopperPopoverSubComponent(String name, E element) {

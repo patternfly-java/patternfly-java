@@ -35,7 +35,7 @@ import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link SingleTypeahead} instead.
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public class PopperSingleTypeahead
         extends PopperSingleMenuToggleMenu<PopperSingleTypeahead> implements PopperTypeahead<PopperSingleTypeahead> {
 

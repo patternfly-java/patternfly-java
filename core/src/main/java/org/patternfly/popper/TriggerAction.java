@@ -15,7 +15,7 @@
  */
 package org.patternfly.popper;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public enum TriggerAction {
 
     mouseenter,

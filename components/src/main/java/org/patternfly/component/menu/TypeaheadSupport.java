@@ -93,7 +93,7 @@ class TypeaheadSupport {
 
     // ------------------------------------------------------ deprecated
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     static void typeaheadDefaults(PopperMenuToggleMenu<?> mtm) {
         mtm.menuToggle.searchInput().input()
                 .attr(role, combobox)
@@ -120,7 +120,7 @@ class TypeaheadSupport {
                 });
     }
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     static void allowNewItems(PopperMenuToggleMenu<?> mtm, PopperTypeahead<?> typeahead,
             Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
         typeahead.onNoResults((menuList, text) -> createNewMenuItem(prompt.apply(text))
@@ -137,7 +137,7 @@ class TypeaheadSupport {
                         })));
     }
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     static boolean shouldExpandOnKeyup(PopperMenuToggleMenu<?> mtm, Event event) {
         if (Enter.match(event) || Escape.match(event) || Tab.match(event)) {
             return false;

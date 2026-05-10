@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Add `since` and `forRemoval` attributes to all `@Deprecated` annotations on Popper.js-based classes and components
+- Improve null safety, reduce code duplication, and address code review findings in core module
+
+### Fixed
+
+- Fix format string bug, variable assignment bug, and null guard in core module
+
 ## [0.7.4] - 2026-05-10
 
 ### Added

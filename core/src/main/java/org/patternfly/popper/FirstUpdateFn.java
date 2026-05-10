@@ -17,7 +17,7 @@ package org.patternfly.popper;
 
 import jsinterop.annotations.JsFunction;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 @JsFunction
 @FunctionalInterface
 public interface FirstUpdateFn {

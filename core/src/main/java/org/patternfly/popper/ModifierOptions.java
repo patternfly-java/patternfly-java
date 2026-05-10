@@ -19,7 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class ModifierOptions {
 

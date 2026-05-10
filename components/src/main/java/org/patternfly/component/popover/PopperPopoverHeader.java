@@ -37,7 +37,7 @@ import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public class PopperPopoverHeader extends PopperPopoverSubComponent<HTMLElement, PopperPopoverHeader> implements
         ElementContainerDelegate<HTMLElement, PopperPopoverHeader>,
         ElementTextDelegate<HTMLElement, PopperPopoverHeader> {

@@ -26,7 +26,7 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.popover;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public class PopperPopoverBody extends PopperPopoverSubComponent<HTMLDivElement, PopperPopoverBody> implements
         ElementTextMethods<HTMLDivElement, PopperPopoverBody> {
 

@@ -115,25 +115,25 @@ public enum ComponentType {
 
     Panel("pnl", "PF6/Component/Panel"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperDropdown("pdd", "PF6/Component/PopperDropdown"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperMultiSelect("pmsl", "PF6/Component/PopperMultiSelect"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperMultiTypeahead("pmty", "PF6/Component/PopperMultiTypeahead"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperPopover("ppvr", "PF6/Component/PopperPopover"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperSingleSelect("pssl", "PF6/Component/PopperSingleSelect"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperSingleTypeahead("psty", "PF6/Component/PopperSingleTypeahead"),
 
-    @Deprecated
+    @Deprecated(since = "0.7.0", forRemoval = true)
     PopperTooltip("ptt", "PF6/Component/PopperTooltip"),
 
     Popover("pvr", "PF6/Component/Popover"),

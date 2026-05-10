@@ -38,7 +38,7 @@ import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link MultiTypeahead} instead.
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public class PopperMultiTypeahead
         extends PopperMultiMenuToggleMenu<PopperMultiTypeahead> implements PopperTypeahead<PopperMultiTypeahead> {
 

@@ -19,7 +19,7 @@ import org.jboss.elemento.Callback;
 
 import elemental2.promise.Promise;
 
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public interface Popper {
 
     int UNDEFINED = -1;

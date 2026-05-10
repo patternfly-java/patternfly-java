@@ -83,7 +83,7 @@ import static org.patternfly.style.Classes.widthAuto;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link Popover} instead.
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> implements
         Closeable<HTMLDivElement, PopperPopover>,
         NoPadding<HTMLDivElement, PopperPopover>,

@@ -70,7 +70,7 @@ import static org.patternfly.style.Classes.list;
  * <p>
  * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed by a {@link Popper} instance.
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 abstract class PopperMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends ComponentDelegate<HTMLElement, B> implements
         Disabled<HTMLElement, B>,
         Expandable<HTMLElement, B>,

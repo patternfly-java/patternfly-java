@@ -33,7 +33,7 @@ import static org.patternfly.component.menu.MenuType.select;
  *
  * @param <B> the type of the builder for this component
  */
-@Deprecated
+@Deprecated(since = "0.7.0", forRemoval = true)
 abstract class PopperSingleMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends PopperMenuToggleMenu<B> {
 
     // ------------------------------------------------------ instance
