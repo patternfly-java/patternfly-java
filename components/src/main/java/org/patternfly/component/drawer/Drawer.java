@@ -29,6 +29,7 @@ import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.core.Ouia.ouiaTransition;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.drawer;
 import static org.patternfly.style.Classes.expanded;
@@ -132,6 +133,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
 
     @Override
     public void collapse(boolean fireEvent) {
+        ouiaTransition(element());
         element().classList.remove(modifier(expanded));
         if (panel != null) {
             panel.element().hidden = true;
@@ -143,6 +145,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
 
     @Override
     public void expand(boolean fireEvent) {
+        ouiaTransition(element());
         element().classList.add(modifier(expanded));
         if (panel != null) {
             panel.element().hidden = false;

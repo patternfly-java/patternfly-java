@@ -23,6 +23,7 @@ import org.patternfly.style.Classes;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
+import static org.patternfly.core.Ouia.ouiaTransition;
 import static org.patternfly.style.Classes.modifier;
 
 /**
@@ -39,6 +40,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
 
     static void collapse(HTMLElement root, HTMLElement toggle, HTMLElement menu, boolean force) {
         if (force || expanded(root)) {
+            ouiaTransition(root);
             root.classList.remove(modifier(Classes.expanded));
             if (toggle != null) {
                 toggle.setAttribute(Aria.expanded, false);
@@ -55,6 +57,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
 
     static void expand(HTMLElement root, HTMLElement toggle, HTMLElement menu, boolean force) {
         if (force || !expanded(root)) {
+            ouiaTransition(root);
             root.classList.add(modifier(Classes.expanded));
             if (toggle != null) {
                 toggle.setAttribute(Aria.expanded, true);

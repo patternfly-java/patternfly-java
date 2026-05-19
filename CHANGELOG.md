@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `ouiaSafe(HTMLElement, boolean)`, `ouiaSafe(SVGElement, boolean)`, and `ouiaTransition(HTMLElement)` methods to `Ouia` for dynamic `data-ouia-safe` state tracking
+
+### Changed
+
+- Change `Spinner` and `Skeleton` to always set `data-ouia-safe="false"` (loading/placeholder components are never safe)
+- Change `Button` and `Icon` to toggle `data-ouia-safe` based on progress state
+- Change `Expandable` static helpers and self-managed expandable components (`Drawer`, `ExpandableSection`, `PageSidebar`) to set `data-ouia-safe="false"` during transitions and restore it via `transitionend` with a 300ms fallback timeout
+
 ## [0.7.5] - 2026-05-19
 
 ### Added

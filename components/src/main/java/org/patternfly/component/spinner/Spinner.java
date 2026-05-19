@@ -22,6 +22,8 @@ import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Size;
 
+import static org.patternfly.core.Ouia.ouiaSafe;
+
 import static org.jboss.elemento.svg.SVG.circle;
 import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.core.Attributes.role;
@@ -71,6 +73,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
                         .attr("r", 45)
                         .attr("fill", "none"))
                 .element());
+        ouiaSafe(element(), false);
         if (size != null) {
             css(size.modifier());
         }

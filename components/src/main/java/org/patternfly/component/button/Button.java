@@ -53,6 +53,7 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
+import static org.patternfly.core.Ouia.ouiaSafe;
 import static org.patternfly.style.Classes.block;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
@@ -308,6 +309,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         } else {
             element().classList.remove(modifier(Classes.inProgress));
         }
+        ouiaSafe(element(), !inProgress);
         return this;
     }
 

@@ -17,10 +17,14 @@ package org.patternfly.core;
 
 import org.jboss.elemento.svg.SVGElement;
 
+import elemental2.dom.Event;
+import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import elemental2.webstorage.Storage;
 import elemental2.webstorage.WebStorageWindow;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static elemental2.dom.DomGlobal.window;
 
 /**
@@ -63,6 +67,38 @@ public final class Ouia {
             }
             element.dataset.set("ouiaComponentType", componentType);
             element.dataset.set("ouiaSafe", "true");
+        }
+    }
+
+    public static void ouiaSafe(HTMLElement element, boolean safe) {
+        if (element != null && isSupported()) {
+            element.dataset.set("ouiaSafe", String.valueOf(safe));
+        }
+    }
+
+    public static void ouiaSafe(SVGElement element, boolean safe) {
+        if (element != null && isSupported()) {
+            element.dataset.set("ouiaSafe", String.valueOf(safe));
+        }
+    }
+
+    /**
+     * Marks the element as unsafe ({@code data-ouia-safe="false"}) and restores it to safe after the CSS transition ends. A
+     * fallback timeout ensures the element is marked safe even if no CSS transition is defined.
+     */
+    public static void ouiaTransition(HTMLElement element) {
+        if (element != null && isSupported()) {
+            ouiaSafe(element, false);
+            double[] guard = {0};
+            guard[0] = setTimeout(e -> ouiaSafe(element, true), 300);
+            element.addEventListener("transitionend", new EventListener() {
+                @Override
+                public void handleEvent(Event evt) {
+                    clearTimeout(guard[0]);
+                    ouiaSafe(element, true);
+                    element.removeEventListener("transitionend", this);
+                }
+            });
         }
     }
 
