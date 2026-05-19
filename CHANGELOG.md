@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.7.6] - 2026-05-19
+
 ### Added
 
 - Add `ouiaSafe(HTMLElement, boolean)`, `ouiaSafe(SVGElement, boolean)`, and `ouiaTransition(HTMLElement)` methods to `Ouia` for dynamic `data-ouia-safe` state tracking
@@ -1011,7 +1013,8 @@ Stay tuned for more to come...
 
 
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.5...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.6...HEAD
+[0.7.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.5...v0.7.6
 [0.7.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.2...v0.7.3
