@@ -22,8 +22,8 @@ import org.patternfly.style.Size;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.core.Ouia.ouiaSafe;
 import static org.jboss.elemento.Elements.span;
+import static org.patternfly.core.Ouia.ouiaSafe;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;

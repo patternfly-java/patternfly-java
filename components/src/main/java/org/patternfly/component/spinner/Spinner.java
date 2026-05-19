@@ -22,11 +22,10 @@ import org.patternfly.core.Aria;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Size;
 
-import static org.patternfly.core.Ouia.ouiaSafe;
-
 import static org.jboss.elemento.svg.SVG.circle;
 import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.core.Attributes.role;
+import static org.patternfly.core.Ouia.ouiaSafe;
 import static org.patternfly.core.Roles.progressbar;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.path;
