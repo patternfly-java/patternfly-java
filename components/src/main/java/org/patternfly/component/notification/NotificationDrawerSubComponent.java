@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class NotificationDrawerSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    NotificationDrawerSubComponent(String name, E element) {
-        super(ComponentType.NotificationDrawer, name, element);
+    NotificationDrawerSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.NotificationDrawer, subComponentId, subComponentName, element);
     }
 }

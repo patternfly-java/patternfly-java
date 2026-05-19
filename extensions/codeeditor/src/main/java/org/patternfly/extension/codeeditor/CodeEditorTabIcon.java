@@ -44,10 +44,11 @@ public class CodeEditorTabIcon extends CodeEditorSubComponent<HTMLElement, CodeE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ceti";
+    public static final String SUB_COMPONENT_ID = "ceti";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorTabIcon";
 
     CodeEditorTabIcon(Element icon) {
-        super(SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.icon)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.icon)).element());
         if (icon != null) {
             add(icon);
         }

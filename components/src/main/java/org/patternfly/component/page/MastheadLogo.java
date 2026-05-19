@@ -38,10 +38,11 @@ public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mhl";
+    public static final String SUB_COMPONENT_ID = "mhl";
+    public static final String SUB_COMPONENT_NAME = "MastheadLogo";
 
     MastheadLogo(String href) {
-        super(SUB_COMPONENT_NAME, a(href).css(component(masthead, logo)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, a(href).css(component(masthead, logo)).element());
     }
 
     // ------------------------------------------------------ builder

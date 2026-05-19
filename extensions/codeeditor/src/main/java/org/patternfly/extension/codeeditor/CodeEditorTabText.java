@@ -40,10 +40,11 @@ public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cett";
+    public static final String SUB_COMPONENT_ID = "cett";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorTabText";
 
     CodeEditorTabText() {
-        super(SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.text)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(codeEditor, tab, Classes.text)).element());
     }
 
     // ------------------------------------------------------ builder

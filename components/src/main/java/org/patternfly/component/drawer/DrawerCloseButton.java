@@ -37,10 +37,11 @@ public class DrawerCloseButton extends DrawerSubComponent<HTMLDivElement, Drawer
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dcbtn";
+    public static final String SUB_COMPONENT_ID = "dcbtn";
+    public static final String SUB_COMPONENT_NAME = "DrawerCloseButton";
 
     DrawerCloseButton() {
-        super(SUB_COMPONENT_NAME, div().css(component(drawer, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(drawer, actions)).element());
         add(div().css(component(drawer, close))
                 .add(button().plain().icon(times())
                         .aria(label, "Close drawer panel")

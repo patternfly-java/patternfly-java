@@ -36,10 +36,11 @@ public class FinderItemDescription extends FinderSubComponent<HTMLElement, Finde
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fid";
+    public static final String SUB_COMPONENT_ID = "fid";
+    public static final String SUB_COMPONENT_NAME = "FinderItemDescription";
 
     FinderItemDescription() {
-        super(SUB_COMPONENT_NAME, span().css(component(finder, item, description)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(finder, item, description)).element());
     }
 
     // ------------------------------------------------------ builder

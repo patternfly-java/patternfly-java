@@ -36,10 +36,11 @@ public class Thead extends TableSubComponent<HTMLTableSectionElement, Thead> {
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "thd";
+    public static final String SUB_COMPONENT_ID = "thd";
+    public static final String SUB_COMPONENT_NAME = "Thead";
 
     Thead() {
-        super(SUB_COMPONENT_NAME, Elements.thead().css(component(table, thead)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.thead().css(component(table, thead)).element());
     }
 
     // ------------------------------------------------------ add

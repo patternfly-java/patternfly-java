@@ -34,10 +34,11 @@ public class CodeEditorLinks extends CodeEditorSubComponent<HTMLDivElement, Code
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cels";
+    public static final String SUB_COMPONENT_ID = "cels";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorLinks";
 
     CodeEditorLinks() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, keyboard, shortcuts)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.codeEditor, keyboard, shortcuts)).element());
     }
 
     // ------------------------------------------------------ add

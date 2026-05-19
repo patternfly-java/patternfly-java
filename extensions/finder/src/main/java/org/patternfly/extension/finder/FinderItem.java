@@ -95,20 +95,20 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     }
 
     public static FinderItem emptyItem(EmptyState emptyState) {
-        FinderItem error = statusItem(Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "empty"));
+        FinderItem error = statusItem(Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_ID, "empty"));
         removeChildrenFrom(error.element());
         error.add(emptyState);
         return error;
     }
 
     static FinderItem loadingItem() {
-        FinderItem loading = statusItem(Id.unique(ComponentType.Finder.id, SUB_COMPONENT_NAME, "loading"));
+        FinderItem loading = statusItem(Id.unique(ComponentType.Finder.id, SUB_COMPONENT_ID, "loading"));
         insertFirst(loading.rc.element(), spinner(lg, "sm").element());
         return loading.text("Loading...");
     }
 
     static FinderItem errorItem() {
-        FinderItem error = statusItem(Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "error"));
+        FinderItem error = statusItem(Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_ID, "error"));
         removeChildrenFrom(error.element());
         error.add(emptyState().size(xs).status(danger).text("Error")
                 .addBody(emptyStateBody().text("An error occurred while loading the data.")));
@@ -126,7 +126,8 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fi";
+    public static final String SUB_COMPONENT_ID = "fi";
+    public static final String SUB_COMPONENT_NAME = "FinderItem";
 
     // Use a direct reference to the parent column instead of relying on storeComponent() / lookupComponent()
     // The component store relies on attach() / detach() and does not work when adding / removing existing references.
@@ -144,7 +145,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
     private Supplier<FinderColumn> nextColumn;
 
     FinderItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(finder, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(finder, item))
                 .apply(li -> li.tabIndex = 0)
                 .aria(selected, false)
                 .data(Dataset.identifier, identifier)

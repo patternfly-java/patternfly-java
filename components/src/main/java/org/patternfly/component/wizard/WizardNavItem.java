@@ -61,7 +61,8 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzni";
+    public static final String SUB_COMPONENT_ID = "wzni";
+    public static final String SUB_COMPONENT_NAME = "WizardNavItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;
@@ -71,7 +72,7 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
     final HTMLContainerBuilder<HTMLButtonElement> button;
 
     WizardNavItem(String identifier, String title) {
-        super(SUB_COMPONENT_NAME, li().css(component(wizard, nav, item)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(wizard, nav, item)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
 

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class AccordionSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    AccordionSubComponent(String name, E element) {
-        super(ComponentType.Accordion, name, element);
+    AccordionSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Accordion, subComponentId, subComponentName, element);
     }
 }

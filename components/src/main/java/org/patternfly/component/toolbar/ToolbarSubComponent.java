@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class ToolbarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    ToolbarSubComponent(String name, E element) {
-        super(ComponentType.Toolbar, name, element);
+    ToolbarSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Toolbar, subComponentId, subComponentName, element);
     }
 }

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class ModalSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    ModalSubComponent(String name, E element) {
-        super(ComponentType.Modal, name, element);
+    ModalSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Modal, subComponentId, subComponentName, element);
     }
 }

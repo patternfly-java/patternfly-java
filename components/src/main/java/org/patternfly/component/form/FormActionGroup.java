@@ -36,12 +36,13 @@ public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGro
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fag";
+    public static final String SUB_COMPONENT_ID = "fag";
+    public static final String SUB_COMPONENT_NAME = "FormActionGroup";
 
     private final HTMLElement actionsContainer;
 
     FormActionGroup() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group), modifier(action)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.form, group), modifier(action)).element());
         add(div().css(component(Classes.form, group, Classes.control)) // no need for a real FormGroupControl subcomponent
                 .add(actionsContainer = div().css(component(Classes.form, Classes.actions)).element()));
     }

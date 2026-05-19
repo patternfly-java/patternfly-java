@@ -39,10 +39,11 @@ public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fso";
+    public static final String SUB_COMPONENT_ID = "fso";
+    public static final String SUB_COMPONENT_NAME = "FormSelectOption";
 
     public FormSelectOption(String label, String value) {
-        super(SUB_COMPONENT_NAME, option().apply(o -> {
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, option().apply(o -> {
             o.label = label;
             o.value = value;
         }).element());

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class CardSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    CardSubComponent(String name, E element) {
-        super(ComponentType.Card, name, element);
+    CardSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Card, subComponentId, subComponentName, element);
     }
 }

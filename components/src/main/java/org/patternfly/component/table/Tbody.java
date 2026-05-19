@@ -58,14 +58,15 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tbd";
+    public static final String SUB_COMPONENT_ID = "tbd";
+    public static final String SUB_COMPONENT_NAME = "Tbody";
     final Map<String, Tr> items;
     private final AurHandler<Tbody, Tr> aur;
     private Tr emptyRow;
     private Comparator<Tr> comparator;
 
     Tbody() {
-        super(SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
                 .attr(role, rowgroup)
                 .element());
         this.items = new LinkedHashMap<>();

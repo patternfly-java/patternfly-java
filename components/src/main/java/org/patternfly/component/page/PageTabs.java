@@ -41,10 +41,11 @@ public class PageTabs extends PageSectionBuilder<HTMLElement, PageTabs> {
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pt";
+    public static final String SUB_COMPONENT_ID = "pt";
+    public static final String SUB_COMPONENT_NAME = "PageTabs";
 
     PageTabs() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, tabs)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(page, main, tabs)).element());
     }
 
     // ------------------------------------------------------ add

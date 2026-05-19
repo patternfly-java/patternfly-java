@@ -73,7 +73,8 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ng";
+    public static final String SUB_COMPONENT_ID = "ng";
+    public static final String SUB_COMPONENT_NAME = "NavigationGroup";
 
     private final String identifier;
     private final Map<String, NavigationItem> items;
@@ -82,7 +83,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     private final AurHandler<NavigationGroup, NavigationItem> aur;
 
     NavigationGroup(String identifier) {
-        super(SUB_COMPONENT_NAME, section().css(component(nav, section))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(nav, section))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

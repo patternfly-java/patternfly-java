@@ -35,10 +35,11 @@ public class HintBody extends HintSubComponent<HTMLDivElement, HintBody> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "hb";
+    public static final String SUB_COMPONENT_ID = "hb";
+    public static final String SUB_COMPONENT_NAME = "HintBody";
 
     HintBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(hint, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(hint, body)).element());
     }
 
     // ------------------------------------------------------ builder

@@ -39,10 +39,11 @@ public class RadioDescription extends RadioSubComponent<HTMLElement, RadioDescri
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "rd";
+    public static final String SUB_COMPONENT_ID = "rd";
+    public static final String SUB_COMPONENT_NAME = "RadioDescription";
 
     RadioDescription(String description) {
-        super(SUB_COMPONENT_NAME, span().css(component(radio, Classes.description)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(radio, Classes.description)).element());
         if (description != null) {
             element().textContent = description;
         }

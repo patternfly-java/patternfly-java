@@ -37,10 +37,11 @@ public class CodeEditorHeaderMain extends
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cehm";
+    public static final String SUB_COMPONENT_ID = "cehm";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorHeaderMain";
 
     CodeEditorHeaderMain() {
-        super(SUB_COMPONENT_NAME, div().css(component(codeEditor, header, main)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(codeEditor, header, main)).element());
     }
 
     // ------------------------------------------------------ builder

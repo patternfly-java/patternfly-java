@@ -48,11 +48,12 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tt";
+    public static final String SUB_COMPONENT_ID = "tt";
+    public static final String SUB_COMPONENT_NAME = "TabsToggle";
     private final Button button;
 
     TabsToggle() {
-        super(SUB_COMPONENT_NAME, div().css(component(tabs, toggle)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(tabs, toggle)).element());
         String toggleButtonId = Id.unique(ComponentType.Tabs.id, "toggle", "button");
         String toggleTextId = Id.unique(ComponentType.Tabs.id, "toggle", "text");
         add(div().css(component(tabs, toggle, Classes.button))

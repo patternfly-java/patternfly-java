@@ -96,7 +96,8 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "eng";
+    public static final String SUB_COMPONENT_ID = "eng";
+    public static final String SUB_COMPONENT_NAME = "ExpandableNavigationGroup";
 
     final List<ToggleHandler<ExpandableNavigationGroup>> toggleHandler;
     private final String identifier;
@@ -108,7 +109,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final AurHandler<ExpandableNavigationGroup, NavigationItem> aur;
 
     ExpandableNavigationGroup(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(nav, item), modifier(expandable))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

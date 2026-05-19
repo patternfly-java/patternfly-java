@@ -50,13 +50,14 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzn";
+    public static final String SUB_COMPONENT_ID = "wzn";
+    public static final String SUB_COMPONENT_NAME = "WizardNav";
     private final Map<String, WizardNavItem> items;
     private final AurHandler<WizardNav, WizardNavItem> aur;
     private final HTMLContainerBuilder<HTMLOListElement> ol;
 
     WizardNav() {
-        super(SUB_COMPONENT_NAME, nav().css(component(wizard, nav))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, nav().css(component(wizard, nav))
                 .aria(label, "Wizard steps")
                 .element());
         this.items = new LinkedHashMap<>();

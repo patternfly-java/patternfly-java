@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class FormSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    FormSubComponent(String name, E element) {
-        super(ComponentType.Form, name, element);
+    FormSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Form, subComponentId, subComponentName, element);
     }
 }

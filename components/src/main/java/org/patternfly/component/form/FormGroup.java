@@ -39,7 +39,7 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
     // ------------------------------------------------------ factory
 
     public static FormGroup formGroup() {
-        return new FormGroup(Id.unique(ComponentType.Form.id, SUB_COMPONENT_NAME));
+        return new FormGroup(Id.unique(ComponentType.Form.id, SUB_COMPONENT_ID));
     }
 
     public static FormGroup formGroup(String identifier) {
@@ -48,7 +48,8 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fg";
+    public static final String SUB_COMPONENT_ID = "fg";
+    public static final String SUB_COMPONENT_NAME = "FormGroup";
 
     boolean required;
     FormGroupRole role;
@@ -56,7 +57,7 @@ public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implemen
     private final Map<String, Object> data;
 
     FormGroup(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.form, group))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.form, group))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

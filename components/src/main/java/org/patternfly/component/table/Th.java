@@ -43,7 +43,7 @@ public class Th extends Cell<Th> implements Attachable {
      * Factory method to create a new instance of this component.
      */
     public static Th th() {
-        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME));
+        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID));
     }
 
     public static Th th(String identifier) {
@@ -51,17 +51,18 @@ public class Th extends Cell<Th> implements Attachable {
     }
 
     public static Th checkboxTh() {
-        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox")).addCheckbox();
+        return new Th(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox")).addCheckbox();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "th";
+    public static final String SUB_COMPONENT_ID = "th";
+    public static final String SUB_COMPONENT_NAME = "Th";
     static final String CHECKBOX_DATA_MARKER = "tableCheckbox";
     private final TooltipToggle tooltipToggle;
 
     Th(String identifier) {
-        super(SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, th))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, th))
                 .apply(th -> th.scope = "col")
                 .attr(tabindex, -1)
                 .attr(role, columnheader)
@@ -94,7 +95,7 @@ public class Th extends Cell<Th> implements Attachable {
     // ------------------------------------------------------ internal
 
     private Th addCheckbox() {
-        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox");
+        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox");
         css(component(table, check));
         aria(label, "Row selector");
         add(checkbox(id, id)

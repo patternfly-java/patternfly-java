@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class PageSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    PageSubComponent(String name, E element) {
-        super(ComponentType.Page, name, element);
+    PageSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Page, subComponentId, subComponentName, element);
     }
 }

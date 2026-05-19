@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class JumpLinksSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    JumpLinksSubComponent(String name, E element) {
-        super(ComponentType.JumpLinks, name, element);
+    JumpLinksSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.JumpLinks, subComponentId, subComponentName, element);
     }
 }

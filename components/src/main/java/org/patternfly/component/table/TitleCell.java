@@ -60,7 +60,7 @@ public class TitleCell extends Cell<TitleCell> implements
      * Factory method to create a new instance of this component.
      */
     public static TitleCell titleCell() {
-        return new TitleCell(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME));
+        return new TitleCell(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID));
     }
 
     public static TitleCell titleCell(String identifier) {
@@ -69,7 +69,8 @@ public class TitleCell extends Cell<TitleCell> implements
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_ID = "tc";
+    public static final String SUB_COMPONENT_NAME = "TitleCell";
     Tr tr;
     private final HTMLElement mainContainer;
     private final HTMLElement textContainer;
@@ -81,7 +82,7 @@ public class TitleCell extends Cell<TitleCell> implements
     private Element expandedIcon;
 
     TitleCell(String identifier) {
-        super(SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, treeView, titleCell), component(table, th))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, treeView, titleCell), component(table, th))
                 .element());
         element().appendChild(mainContainer = div().css(component(table, treeView, Classes.main))
                 .add(textContainer = span().css(component(table, treeView, text))

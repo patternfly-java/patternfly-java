@@ -66,7 +66,8 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(FormFieldGroup.class.getName());
-    public static final String SUB_COMPONENT_NAME = "ffg";
+    public static final String SUB_COMPONENT_ID = "ffg";
+    public static final String SUB_COMPONENT_NAME = "FormFieldGroup";
 
     private final String titleId;
     private boolean expandable;
@@ -76,10 +77,10 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     private ToggleHandler<FormFieldGroup> toggleHandler;
 
     FormFieldGroup(boolean expandable) {
-        super(SUB_COMPONENT_NAME, div().css(component(form, fieldGroup))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(form, fieldGroup))
                 .attr(role, group)
                 .element());
-        this.titleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_NAME, "title");
+        this.titleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_ID, "title");
         this.expandable = false;
         storeSubComponent();
         Attachable.register(this, this);
@@ -129,7 +130,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
 
     public FormFieldGroup expandable(ToggleHandler<FormFieldGroup> toggleHandler) {
         if (!expandable) {
-            String toggleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_NAME, "toggle");
+            String toggleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_ID, "toggle");
             insertFirst(element(), div().css(component(form, fieldGroup, toggle))
                     .add(div().css(component(form, fieldGroup, toggle, Classes.button))
                             .add(toggleButton = button().plain()

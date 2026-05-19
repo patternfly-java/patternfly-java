@@ -99,10 +99,11 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tr";
+    public static final String SUB_COMPONENT_ID = "tr";
+    public static final String SUB_COMPONENT_NAME = "Tr";
     private static final Logger logger = Logger.getLogger(Tr.class.getName());
     private static final BiFunction<Integer, Integer, Tr> loading = (colspan, level) -> tr(
-            Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "loading"))
+            Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "loading"))
             .aria(Aria.level, level)
             .aria(Aria.setsize, 1)
             .aria(Aria.posinset, 1)
@@ -110,7 +111,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
                     .icon(spinner(md, "Loading").element())
                     .text("Loading"));
     private static final BiFunction<Integer, Integer, Tr> error = (colspan, level) -> tr(
-            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "error"))
+            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_ID, "error"))
             .aria(Aria.level, level)
             .aria(Aria.setsize, 1)
             .aria(Aria.posinset, 1)
@@ -133,7 +134,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private final AurHandler<Tr, Cell<?>> aur;
 
     Tr(String identifier) {
-        super(SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
                 .attr(role, row)
                 .data(Dataset.identifier, identifier)
                 .element());

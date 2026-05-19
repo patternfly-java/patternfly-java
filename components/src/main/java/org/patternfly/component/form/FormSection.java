@@ -52,11 +52,12 @@ public class FormSection extends FormSubComponent<HTMLElement, FormSection> impl
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fs";
+    public static final String SUB_COMPONENT_ID = "fs";
+    public static final String SUB_COMPONENT_NAME = "FormSection";
     private final HTMLContainerBuilder<? extends HTMLElement> titleElement;
 
     <E extends HTMLElement> FormSection(HTMLContainerBuilder<E> titleElement) {
-        super(SUB_COMPONENT_NAME, div().css(component(form, section))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(form, section))
                 .attr(role, group)
                 .element());
         this.titleElement = titleElement == null ? div() : titleElement;

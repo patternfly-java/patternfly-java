@@ -38,7 +38,7 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
     // ------------------------------------------------------ factory
 
     public static DescriptionListGroup descriptionListGroup() {
-        return new DescriptionListGroup(Id.unique(ComponentType.DescriptionList.id, SUB_COMPONENT_NAME));
+        return new DescriptionListGroup(Id.unique(ComponentType.DescriptionList.id, SUB_COMPONENT_ID));
     }
 
     public static DescriptionListGroup descriptionListGroup(String identifier) {
@@ -47,12 +47,13 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dlg";
+    public static final String SUB_COMPONENT_ID = "dlg";
+    public static final String SUB_COMPONENT_NAME = "DescriptionListGroup";
     private final String identifier;
     private final Map<String, Object> data;
 
     DescriptionListGroup(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(descriptionList, group))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(descriptionList, group))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

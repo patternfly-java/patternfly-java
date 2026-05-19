@@ -36,10 +36,11 @@ public class TableText extends TableSubComponent<HTMLElement, TableText> {
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tt";
+    public static final String SUB_COMPONENT_ID = "tt";
+    public static final String SUB_COMPONENT_NAME = "TableText";
 
     TableText() {
-        super(SUB_COMPONENT_NAME, span().css(component(table, text)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(table, text)).element());
     }
 
     // ------------------------------------------------------ builder

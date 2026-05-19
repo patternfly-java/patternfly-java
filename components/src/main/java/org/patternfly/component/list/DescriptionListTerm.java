@@ -55,12 +55,13 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dlg";
+    public static final String SUB_COMPONENT_ID = "dlg";
+    public static final String SUB_COMPONENT_NAME = "DescriptionListTerm";
     private final HTMLElement textElement;
     private HTMLElement iconContainer;
 
     DescriptionListTerm(String text) {
-        super(SUB_COMPONENT_NAME, dt().css(component(descriptionList, term)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, dt().css(component(descriptionList, term)).element());
         element().appendChild(textElement = span().css(component(descriptionList, Classes.text)).element());
         if (text != null) {
             text(text);

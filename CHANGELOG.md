@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add OUIA support to all sub-components: every sub-component now renders `data-ouia-component-type` (e.g., `PF6/Component/Card/CardHeader`) and `data-ouia-safe="true"`, with an `ouiaId(String)` method for setting `data-ouia-component-id`
+
 ## [0.7.7] - 2026-05-19
 
 ### Changed

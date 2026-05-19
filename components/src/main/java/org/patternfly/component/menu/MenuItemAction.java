@@ -61,7 +61,8 @@ public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mia";
+    public static final String SUB_COMPONENT_ID = "mia";
+    public static final String SUB_COMPONENT_NAME = "MenuItemAction";
 
     private final String identifier;
     private final List<ComponentHandler<MenuItemAction>> handler;
@@ -69,7 +70,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction
     public MenuItem menuItem;
 
     MenuItemAction(String identifier, Element icon, boolean favorite) {
-        super(SUB_COMPONENT_NAME, div().css(component(menu, item, Classes.action))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(menu, item, Classes.action))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;
@@ -87,7 +88,7 @@ public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction
 
     // constructor must only be used to clone an item action of a favorite item!
     MenuItemAction(MenuItem sourceItem, MenuItemAction sourceItemAction, HTMLElement rootElement) {
-        super(SUB_COMPONENT_NAME, rootElement);
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, rootElement);
         this.identifier = Id.build(sourceItemAction.identifier, "favorite");
         this.handler = new ArrayList<>();
         this.handler.addAll(sourceItemAction.handler);

@@ -49,12 +49,13 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mht";
+    public static final String SUB_COMPONENT_ID = "mht";
+    public static final String SUB_COMPONENT_NAME = "MastheadToggle";
 
     private final Button toggleButton;
 
     MastheadToggle() {
-        super(SUB_COMPONENT_NAME, div().css(component(masthead, toggle)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(masthead, toggle)).element());
         add(toggleButton = button()
                 .plain()
                 .icon(bars())

@@ -52,12 +52,13 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tg";
+    public static final String SUB_COMPONENT_ID = "tg";
+    public static final String SUB_COMPONENT_NAME = "ToolbarGroup";
     private final Map<String, ToolbarItem> items;
     private final AurHandler<ToolbarGroup, ToolbarItem> aur;
 
     ToolbarGroup(ToolbarGroupType type) {
-        super(SUB_COMPONENT_NAME, div().css(component(toolbar, group)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toolbar, group)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         if (type != null) {

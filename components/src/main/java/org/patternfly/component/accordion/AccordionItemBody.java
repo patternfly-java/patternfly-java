@@ -36,10 +36,11 @@ public class AccordionItemBody extends AccordionSubComponent<HTMLDivElement, Acc
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "acicb";
+    public static final String SUB_COMPONENT_ID = "acicb";
+    public static final String SUB_COMPONENT_NAME = "AccordionItemBody";
 
     AccordionItemBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(accordion, expandableContent, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(accordion, expandableContent, body)).element());
     }
 
     // ------------------------------------------------------ builder

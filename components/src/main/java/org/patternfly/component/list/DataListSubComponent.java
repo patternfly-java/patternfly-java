@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class DataListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    DataListSubComponent(String name, E element) {
-        super(ComponentType.DataList, name, element);
+    DataListSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.DataList, subComponentId, subComponentName, element);
     }
 }

@@ -38,10 +38,11 @@ public class TableCaption extends TableSubComponent<HTMLElement, TableCaption> i
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_ID = "tc";
+    public static final String SUB_COMPONENT_NAME = "TableCaption";
 
     TableCaption() {
-        super(SUB_COMPONENT_NAME, caption().css(component(table, caption)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, caption().css(component(table, caption)).element());
     }
 
     // ------------------------------------------------------ builder

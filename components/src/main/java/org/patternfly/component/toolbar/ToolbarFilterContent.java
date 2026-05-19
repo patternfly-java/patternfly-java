@@ -51,12 +51,13 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tfc";
+    public static final String SUB_COMPONENT_ID = "tfc";
+    public static final String SUB_COMPONENT_NAME = "ToolbarFilterContent";
     private final Map<String, ToolbarItem> items;
     private final AurHandler<ToolbarFilterContent, ToolbarItem> aur;
 
     ToolbarFilterContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(toolbar, content), modifier(chipContainer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toolbar, content), modifier(chipContainer)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         setVisible(this, false);

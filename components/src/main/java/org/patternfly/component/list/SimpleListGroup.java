@@ -62,7 +62,8 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "slg";
+    public static final String SUB_COMPONENT_ID = "slg";
+    public static final String SUB_COMPONENT_NAME = "SimpleListGroup";
     final Map<String, SimpleListItem> items;
     private final HTMLElement headerElement;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
@@ -70,10 +71,10 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
     private Comparator<SimpleListItem> comparator;
 
     SimpleListGroup() {
-        super(SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(simpleList, Classes.section)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
-        String headerId = Id.unique(SUB_COMPONENT_NAME);
+        String headerId = Id.unique(SUB_COMPONENT_ID);
         element().appendChild(headerElement = h(2).css(component(simpleList, title))
                 .id(headerId)
                 .aria(Aria.hidden, true)

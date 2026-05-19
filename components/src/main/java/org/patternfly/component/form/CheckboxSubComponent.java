@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class CheckboxSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    CheckboxSubComponent(String name, E element) {
-        super(ComponentType.Checkbox, name, element);
+    CheckboxSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Checkbox, subComponentId, subComponentName, element);
     }
 }

@@ -47,11 +47,12 @@ public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderCo
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fch";
+    public static final String SUB_COMPONENT_ID = "fch";
+    public static final String SUB_COMPONENT_NAME = "FinderColumnHeader";
     private final HTMLContainerBuilder<HTMLHeadingElement> h;
 
     FinderColumnHeader(int level) {
-        super(SUB_COMPONENT_NAME, header().css(component(finder, column, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, header().css(component(finder, column, header)).element());
         add(h = h(level).css(component(finder, column, title, Classes.text)));
     }
 

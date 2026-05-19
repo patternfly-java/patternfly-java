@@ -76,7 +76,8 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ot";
+    public static final String SUB_COMPONENT_ID = "ot";
+    public static final String SUB_COMPONENT_NAME = "OverflowTab";
 
     private final Map<String, Tab> tabs;
     private final HTMLContainerBuilder<HTMLButtonElement> button;
@@ -90,7 +91,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
     private MenuItem selectedMenuItem;
 
     OverflowTab() {
-        super(SUB_COMPONENT_NAME, li().css(component(Classes.tabs, item), modifier(overflow))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(Classes.tabs, item), modifier(overflow))
                 .id(Id.unique(ComponentType.Tabs.id, "overflow"))
                 .attr(role, presentation)
                 .element());

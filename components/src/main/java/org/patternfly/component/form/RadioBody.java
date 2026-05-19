@@ -38,10 +38,11 @@ public class RadioBody extends RadioSubComponent<HTMLElement, RadioBody> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "rb";
+    public static final String SUB_COMPONENT_ID = "rb";
+    public static final String SUB_COMPONENT_NAME = "RadioBody";
 
     RadioBody(String text) {
-        super(SUB_COMPONENT_NAME, span().css(component(radio, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(radio, body)).element());
         if (text != null) {
             element().textContent = text;
         }

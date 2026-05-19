@@ -33,10 +33,11 @@ public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tigu";
+    public static final String SUB_COMPONENT_ID = "tigu";
+    public static final String SUB_COMPONENT_NAME = "TextInputGroupUtilities";
 
     TextInputGroupUtilities() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.textInputGroup, utilities)).element());
     }
 
     // ------------------------------------------------------ builder

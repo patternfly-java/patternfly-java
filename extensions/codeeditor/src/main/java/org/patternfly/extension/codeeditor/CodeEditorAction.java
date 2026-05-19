@@ -75,13 +75,14 @@ public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEd
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cea";
+    public static final String SUB_COMPONENT_ID = "cea";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorAction";
 
     private final Button button;
     private ComponentHandler<CodeEditorAction> handler;
 
     CodeEditorAction(Button button) {
-        super(SUB_COMPONENT_NAME, div().element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().element());
         this.button = button;
         add(button);
     }

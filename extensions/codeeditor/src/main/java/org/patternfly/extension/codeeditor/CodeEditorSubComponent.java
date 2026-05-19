@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class CodeEditorSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    CodeEditorSubComponent(String name, E element) {
-        super(ComponentType.CodeEditor, name, element);
+    CodeEditorSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.CodeEditor, subComponentId, subComponentName, element);
     }
 }

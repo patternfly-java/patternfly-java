@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class NavigationSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    NavigationSubComponent(String name, E element) {
-        super(ComponentType.Navigation, name, element);
+    NavigationSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Navigation, subComponentId, subComponentName, element);
     }
 }

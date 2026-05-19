@@ -55,7 +55,8 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ch";
+    public static final String SUB_COMPONENT_ID = "ch";
+    public static final String SUB_COMPONENT_NAME = "CardHeader";
 
     Button toggleButton;
     CardActions actions;
@@ -63,7 +64,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
     private CardTitle title;
 
     CardHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.card, header)).element());
         element().appendChild(mainElement = div().css(component(Classes.card, header, main)).element());
         Attachable.register(this, this);
     }

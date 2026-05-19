@@ -52,11 +52,12 @@ public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dlc";
+    public static final String SUB_COMPONENT_ID = "dlc";
+    public static final String SUB_COMPONENT_NAME = "DataListCell";
     private Element icon;
 
     DataListCell() {
-        super(SUB_COMPONENT_NAME, div().css(component(dataList, cell)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(dataList, cell)).element());
     }
 
     // ------------------------------------------------------ builder

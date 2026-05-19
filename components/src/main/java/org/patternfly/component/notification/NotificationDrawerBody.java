@@ -35,12 +35,13 @@ public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ndb";
+    public static final String SUB_COMPONENT_ID = "ndb";
+    public static final String SUB_COMPONENT_NAME = "NotificationDrawerBody";
     private NotificationDrawerList list;
     private EmptyState emptyState;
 
     NotificationDrawerBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(notificationDrawer, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(notificationDrawer, body)).element());
     }
 
     // ------------------------------------------------------ add

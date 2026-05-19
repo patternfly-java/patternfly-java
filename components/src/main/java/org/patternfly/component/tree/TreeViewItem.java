@@ -127,14 +127,15 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tvi";
+    public static final String SUB_COMPONENT_ID = "tvi";
+    public static final String SUB_COMPONENT_NAME = "TreeViewItem";
     private static final Logger logger = Logger.getLogger(TreeViewItem.class.getName());
     private static final Supplier<TreeViewItem> loading = () -> treeViewItem(
-            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "loading"))
+            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_ID, "loading"))
             .text("Loading")
             .icon(spinner(md, "Loading").element());
     private static final Supplier<TreeViewItem> error = () -> treeViewItem(
-            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_NAME, "error"))
+            Id.unique(ComponentType.TreeView.id, SUB_COMPONENT_ID, "error"))
             .text("Error")
             .icon(exclamationCircle());
 
@@ -165,7 +166,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private final AurHandler<TreeViewItem, TreeViewItem> aur;
 
     TreeViewItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(treeView, list, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(treeView, list, item))
                 .aria(expanded, false)
                 .attr(role, treeItem)
                 .attr(tabindex, -1)

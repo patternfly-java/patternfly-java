@@ -42,14 +42,15 @@ public class FormFieldGroupHeader extends FormSubComponent<HTMLElement, FormFiel
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ffgh";
+    public static final String SUB_COMPONENT_ID = "ffgh";
+    public static final String SUB_COMPONENT_NAME = "FormFieldGroupHeader";
     private final HTMLElement mainContainer;
     private HTMLElement actionContainer;
     HTMLElement titleElement;
     private HTMLElement descriptionElement;
 
     FormFieldGroupHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(form, fieldGroup, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(form, fieldGroup, header)).element());
         add(mainContainer = div().css(component(form, fieldGroup, header, main)).element());
     }
 

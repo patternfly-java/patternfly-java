@@ -39,10 +39,11 @@ public class CheckboxDescription extends CheckboxSubComponent<HTMLElement, Check
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cbd";
+    public static final String SUB_COMPONENT_ID = "cbd";
+    public static final String SUB_COMPONENT_NAME = "CheckboxDescription";
 
     CheckboxDescription(String description) {
-        super(SUB_COMPONENT_NAME, span().css(component(check, Classes.description)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(check, Classes.description)).element());
         if (description != null) {
             element().textContent = description;
         }

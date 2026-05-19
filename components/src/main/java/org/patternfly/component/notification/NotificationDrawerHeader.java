@@ -47,13 +47,14 @@ public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTM
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ndh";
+    public static final String SUB_COMPONENT_ID = "ndh";
+    public static final String SUB_COMPONENT_NAME = "NotificationDrawerHeader";
     private final HTMLElement textElement;
     private final HTMLElement statusElement;
     private final HTMLElement closeElement;
 
     NotificationDrawerHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(notificationDrawer, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(notificationDrawer, header)).element());
         add(textElement = h(1, "Notifications").css(component(notificationDrawer, header, title)).element());
         add(statusElement = span().css(component(notificationDrawer, header, status)).element());
         add(div().css(component(notificationDrawer, header, action))

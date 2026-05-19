@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class InputGroupSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    InputGroupSubComponent(String name, E element) {
-        super(ComponentType.InputGroup, name, element);
+    InputGroupSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.InputGroup, subComponentId, subComponentName, element);
     }
 }

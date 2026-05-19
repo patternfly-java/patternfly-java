@@ -44,11 +44,12 @@ public class DataListExpandableContent extends DataListSubComponent<HTMLElement,
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dlc";
+    public static final String SUB_COMPONENT_ID = "dlc";
+    public static final String SUB_COMPONENT_NAME = "DataListExpandableContent";
     private final HTMLElement body;
 
     DataListExpandableContent() {
-        super(SUB_COMPONENT_NAME, section().css(component(dataList, expandable, content))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(dataList, expandable, content))
                 .element());
         element().appendChild(body = div().css(component(dataList, expandable, content, Classes.body)).element());
     }

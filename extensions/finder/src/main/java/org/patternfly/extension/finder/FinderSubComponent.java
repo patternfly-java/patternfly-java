@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class FinderSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    FinderSubComponent(String name, E element) {
-        super(ComponentType.Finder, name, element);
+    FinderSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Finder, subComponentId, subComponentName, element);
     }
 }

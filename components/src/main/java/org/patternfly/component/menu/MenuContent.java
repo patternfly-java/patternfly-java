@@ -55,7 +55,8 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mc";
+    public static final String SUB_COMPONENT_ID = "mc";
+    public static final String SUB_COMPONENT_NAME = "MenuContent";
 
     MenuList list;
     final List<MenuGroup> groups;
@@ -64,7 +65,7 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
     private Divider favoritesDivider;
 
     MenuContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.menu, content)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.menu, content)).element());
         this.groups = new ArrayList<>();
         Attachable.register(this, this);
     }

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class SliderSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    SliderSubComponent(String name, E element) {
-        super(ComponentType.Slider, name, element);
+    SliderSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Slider, subComponentId, subComponentName, element);
     }
 }

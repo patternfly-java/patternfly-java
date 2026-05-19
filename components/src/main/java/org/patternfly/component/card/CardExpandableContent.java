@@ -35,10 +35,11 @@ public class CardExpandableContent extends CardSubComponent<HTMLDivElement, Card
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cec";
+    public static final String SUB_COMPONENT_ID = "cec";
+    public static final String SUB_COMPONENT_NAME = "CardExpandableContent";
 
     CardExpandableContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(card, expandableContent))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(card, expandableContent))
                 .apply(e -> e.hidden = true)
                 .element());
     }

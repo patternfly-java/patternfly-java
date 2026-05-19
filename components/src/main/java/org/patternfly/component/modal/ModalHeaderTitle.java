@@ -47,13 +47,14 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mht";
+    public static final String SUB_COMPONENT_ID = "mht";
+    public static final String SUB_COMPONENT_NAME = "ModalHeaderTitle";
     private final HTMLElement textElement;
     Severity severity;
     private HTMLElement failSafeIconElement;
 
     ModalHeaderTitle() {
-        super(SUB_COMPONENT_NAME, h(1).css(component(modalBox, title))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, h(1).css(component(modalBox, title))
                 .element());
         add(textElement = span().css(component(modalBox, title, Classes.text)).element());
     }

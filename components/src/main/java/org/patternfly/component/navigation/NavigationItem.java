@@ -71,7 +71,8 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ni";
+    public static final String SUB_COMPONENT_ID = "ni";
+    public static final String SUB_COMPONENT_NAME = "NavigationItem";
 
     final HTMLAnchorElement anchorElement;
     private final String identifier;
@@ -80,7 +81,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     private HTMLElement iconContainer;
 
     NavigationItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(nav, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(nav, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

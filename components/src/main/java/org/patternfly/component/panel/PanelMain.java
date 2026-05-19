@@ -40,11 +40,12 @@ public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pm";
+    public static final String SUB_COMPONENT_ID = "pm";
+    public static final String SUB_COMPONENT_NAME = "PanelMain";
     private final HTMLDivElement bodyElement;
 
     PanelMain() {
-        super(SUB_COMPONENT_NAME, div().css(component(panel, main)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(panel, main)).element());
         element().appendChild(bodyElement = div().css(component(panel, main, body))
                 .element());
     }

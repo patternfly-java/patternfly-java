@@ -38,7 +38,7 @@ public class ActionListItem extends ActionListSubComponent<HTMLDivElement, Actio
     // ------------------------------------------------------ factory
 
     public static ActionListItem actionListItem() {
-        return new ActionListItem(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_NAME));
+        return new ActionListItem(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_ID));
     }
 
     public static ActionListItem actionListItem(String identifier) {
@@ -47,12 +47,13 @@ public class ActionListItem extends ActionListSubComponent<HTMLDivElement, Actio
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ali";
+    public static final String SUB_COMPONENT_ID = "ali";
+    public static final String SUB_COMPONENT_NAME = "ActionListItem";
     private final String identifier;
     private final Map<String, Object> data;
 
     ActionListItem(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(actionList, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(actionList, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

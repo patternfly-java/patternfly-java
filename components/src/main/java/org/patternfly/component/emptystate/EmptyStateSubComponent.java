@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class EmptyStateSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    EmptyStateSubComponent(String name, E element) {
-        super(ComponentType.EmptyState, name, element);
+    EmptyStateSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.EmptyState, subComponentId, subComponentName, element);
     }
 }

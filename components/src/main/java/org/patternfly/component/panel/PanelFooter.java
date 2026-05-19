@@ -35,10 +35,11 @@ public class PanelFooter extends PanelSubComponent<HTMLDivElement, PanelFooter> 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pf";
+    public static final String SUB_COMPONENT_ID = "pf";
+    public static final String SUB_COMPONENT_NAME = "PanelFooter";
 
     PanelFooter() {
-        super(SUB_COMPONENT_NAME, div().css(component(panel, footer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(panel, footer)).element());
     }
 
     // ------------------------------------------------------ builder

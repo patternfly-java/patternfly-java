@@ -74,7 +74,8 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "sli";
+    public static final String SUB_COMPONENT_ID = "sli";
+    public static final String SUB_COMPONENT_NAME = "SimpleListItem";
     private static final Logger logger = Logger.getLogger(SimpleListItem.class.getName());
 
     private final String identifier;
@@ -83,7 +84,7 @@ public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, Simple
     private final HTMLAnchorElement anchorElement;
 
     <E extends HTMLElement> SimpleListItem(String identifier, HTMLContainerBuilder<E> builder) {
-        super(SUB_COMPONENT_NAME, li().css(component(simpleList, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(simpleList, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

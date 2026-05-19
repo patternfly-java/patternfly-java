@@ -49,7 +49,7 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
     // ------------------------------------------------------ factory
 
     public static ActionListGroup actionListGroup() {
-        return new ActionListGroup(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_NAME));
+        return new ActionListGroup(Id.unique(ComponentType.ActionList.id, SUB_COMPONENT_ID));
     }
 
     public static ActionListGroup actionListGroup(String identifier) {
@@ -58,14 +58,15 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "alg";
+    public static final String SUB_COMPONENT_ID = "alg";
+    public static final String SUB_COMPONENT_NAME = "ActionListGroup";
     private final String identifier;
     private final Map<String, Object> data;
     private final Map<String, ActionListItem> items;
     private final AurHandler<ActionListGroup, ActionListItem> aur;
 
     ActionListGroup(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(actionList, group)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();

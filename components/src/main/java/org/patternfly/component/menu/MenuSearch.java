@@ -43,7 +43,8 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(MenuSearch.class.getName());
-    public static final String SUB_COMPONENT_NAME = "ms";
+    public static final String SUB_COMPONENT_ID = "ms";
+    public static final String SUB_COMPONENT_NAME = "MenuSearch";
 
     private final HTMLElement inputContainer;
     private SearchInput searchInput;
@@ -51,7 +52,7 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     private NoResults noResults;
 
     MenuSearch() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.menu, search)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.menu, search)).element());
         this.searchFilter = SearchFilter.contains();
         this.noResults = NoResults.noResults();
         element().appendChild(inputContainer = div().css(component(Classes.menu, search, input)).element());

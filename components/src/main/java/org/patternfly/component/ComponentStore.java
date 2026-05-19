@@ -76,10 +76,10 @@ final class ComponentStore {
     static <E extends HTMLElement, B extends TypedBuilder<E, B>> void storeSubComponent(SubComponent<E, B> subComponent) {
         String uuid = uuid();
         subComponents.put(uuid, subComponent);
-        subComponent.element().dataset.set(key(subComponent.componentType, subComponent.name), uuid);
+        subComponent.element().dataset.set(key(subComponent.componentType, subComponent.subComponentId), uuid);
         onDetach(subComponent.element(), mr -> remove(uuid, "sub component", subComponents::remove));
         if (logger.isEnabled(DEBUG)) {
-            logger.debug("Store subcomponent %s/%s as %s on %o%s", subComponent.componentType.componentName, subComponent.name,
+            logger.debug("Store subcomponent %s/%s as %s on %o%s", subComponent.componentType.componentName, subComponent.subComponentId,
                     uuid, subComponent.element(), count());
         }
     }

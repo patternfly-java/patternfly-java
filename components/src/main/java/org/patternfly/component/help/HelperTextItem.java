@@ -79,7 +79,8 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "hti";
+    public static final String SUB_COMPONENT_ID = "hti";
+    public static final String SUB_COMPONENT_NAME = "HelperTextItem";
 
     private final HTMLElement textElement;
     private boolean customScreenReaderText;
@@ -88,7 +89,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     private HTMLElement iconContainer;
 
     <E extends HTMLElement> HelperTextItem(HTMLContainerBuilder<E> builder) {
-        super(SUB_COMPONENT_NAME, builder.css(component(helperText, item)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, builder.css(component(helperText, item)).element());
         this.customScreenReaderText = false;
         element().appendChild(textElement = span().css(component(helperText, item, Classes.text)).element());
     }

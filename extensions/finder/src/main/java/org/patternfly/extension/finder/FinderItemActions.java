@@ -38,10 +38,11 @@ public class FinderItemActions extends FinderSubComponent<HTMLElement, FinderIte
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fia";
+    public static final String SUB_COMPONENT_ID = "fia";
+    public static final String SUB_COMPONENT_NAME = "FinderItemActions";
 
     FinderItemActions() {
-        super(SUB_COMPONENT_NAME, span().css(component(finder, item, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(finder, item, actions)).element());
         on(EventType.click, Event::stopPropagation); // don't select the item when clicking on an action
     }
 

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class HelperTextSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    HelperTextSubComponent(String name, E element) {
-        super(ComponentType.HelperText, name, element);
+    HelperTextSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.HelperText, subComponentId, subComponentName, element);
     }
 }

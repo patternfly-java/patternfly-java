@@ -37,11 +37,11 @@ public class Td extends Cell<Td> {
     // ------------------------------------------------------ factory
 
     public static Td td() {
-        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME), null);
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID), null);
     }
 
     public static Td td(String column) {
-        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME), column);
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID), column);
     }
 
     public static Td td(String identifier, String column) {
@@ -49,16 +49,17 @@ public class Td extends Cell<Td> {
     }
 
     public static Td checkboxTd() {
-        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox"), null).addCheckbox();
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox"), null).addCheckbox();
     }
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "td";
+    public static final String SUB_COMPONENT_ID = "td";
+    public static final String SUB_COMPONENT_NAME = "Td";
     static final String CHECKBOX_DATA_MARKER = "rowCheckbox";
 
     Td(String identifier, String column) {
-        super(SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, identifier, Elements.td().css(component(table, td))
                 .attr(tabindex, -1)
                 .attr(role, cell)
                 .element());
@@ -87,7 +88,7 @@ public class Td extends Cell<Td> {
     // ------------------------------------------------------ internal
 
     private Td addCheckbox() {
-        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_NAME, "checkbox");
+        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox");
         css(component(table, check));
         aria(label, "Check row");
         add(checkbox(id, id)
@@ -98,7 +99,7 @@ public class Td extends Cell<Td> {
                 })
                 .onChange((e, c, value) -> {
                     Table table = lookupComponent();
-                    Tr tr = lookupSubComponent(Tr.SUB_COMPONENT_NAME);
+                    Tr tr = lookupSubComponent(Tr.SUB_COMPONENT_ID);
                     table.select(tr, value);
                 })
         );

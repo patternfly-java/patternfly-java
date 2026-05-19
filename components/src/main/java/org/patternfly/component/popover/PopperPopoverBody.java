@@ -38,12 +38,13 @@ public class PopperPopoverBody extends PopperPopoverSubComponent<HTMLDivElement,
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pb";
+    public static final String SUB_COMPONENT_ID = "pb";
+    public static final String SUB_COMPONENT_NAME = "PopperPopoverBody";
 
     final String id;
 
     PopperPopoverBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(popover, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(popover, body)).element());
         id(id = Id.unique(ComponentType.PopperPopover.id, "body"));
     }
 

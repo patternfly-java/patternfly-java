@@ -50,11 +50,12 @@ public class WizardHeaderTitle extends WizardSubComponent<HTMLElement, WizardHea
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzht";
+    public static final String SUB_COMPONENT_ID = "wzht";
+    public static final String SUB_COMPONENT_NAME = "WizardHeaderTitle";
     private final HTMLElement textElement;
 
     WizardHeaderTitle(int headerLevel) {
-        super(SUB_COMPONENT_NAME, div().css(component(wizard, title)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(wizard, title)).element());
         add(textElement = h(headerLevel).css(component(wizard, title, text)).element());
     }
 

@@ -66,7 +66,8 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ndi";
+    public static final String SUB_COMPONENT_ID = "ndi";
+    public static final String SUB_COMPONENT_NAME = "NotificationDrawerItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement screenReaderElement;
@@ -76,7 +77,7 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
     private HTMLElement timestampElement;
 
     NotificationDrawerItem(Severity severity, String identifier, String title) {
-        super(SUB_COMPONENT_NAME, li().css(component(notificationDrawer, list, item), severity.status.modifier())
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(notificationDrawer, list, item), severity.status.modifier())
                 .attr(tabindex, 0)
                 .data(Dataset.identifier, identifier)
                 .element());

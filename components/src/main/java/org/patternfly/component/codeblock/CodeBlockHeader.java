@@ -33,12 +33,13 @@ public class CodeBlockHeader extends CodeBlockSubComponent<HTMLDivElement, CodeB
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cbh";
+    public static final String SUB_COMPONENT_ID = "cbh";
+    public static final String SUB_COMPONENT_NAME = "CodeBlockHeader";
 
     CodeBlockActions actions;
 
     CodeBlockHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, header)).element());
     }
 
     // ------------------------------------------------------ add

@@ -54,10 +54,11 @@ public class PageGroup extends SubComponent<HTMLDivElement, PageGroup> {
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pg";
+    public static final String SUB_COMPONENT_ID = "pg";
+    public static final String SUB_COMPONENT_NAME = "PageGroup";
 
     PageGroup() {
-        super(ComponentType.Page, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());
+        super(ComponentType.Page, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());
     }
 
     // ------------------------------------------------------ add

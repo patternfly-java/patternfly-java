@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class WizardSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    WizardSubComponent(String name, E element) {
-        super(ComponentType.Wizard, name, element);
+    WizardSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Wizard, subComponentId, subComponentName, element);
     }
 }

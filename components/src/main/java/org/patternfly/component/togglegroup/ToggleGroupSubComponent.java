@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class ToggleGroupSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    ToggleGroupSubComponent(String name, E element) {
-        super(ComponentType.ToggleGroup, name, element);
+    ToggleGroupSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.ToggleGroup, subComponentId, subComponentName, element);
     }
 }

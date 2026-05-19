@@ -39,13 +39,14 @@ public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzf";
+    public static final String SUB_COMPONENT_ID = "wzf";
+    public static final String SUB_COMPONENT_NAME = "WizardFooter";
     private final Button backButton;
     private final Button nextButton;
     private final Button cancelButton;
 
     WizardFooter() {
-        super(SUB_COMPONENT_NAME, footer().css(component(wizard, footer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, footer().css(component(wizard, footer)).element());
         add(actionList()
                 .addItem(actionListGroup()
                         .addItem(actionListItem()

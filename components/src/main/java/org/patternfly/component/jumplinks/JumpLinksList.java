@@ -47,12 +47,13 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "jll";
+    public static final String SUB_COMPONENT_ID = "jll";
+    public static final String SUB_COMPONENT_NAME = "JumpLinksList";
     final Map<String, JumpLinksItem> items;
     private final AurHandler<JumpLinksList, JumpLinksItem> aur;
 
     JumpLinksList() {
-        super(SUB_COMPONENT_NAME, ul().css(component(jumpLinks, Classes.list))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ul().css(component(jumpLinks, Classes.list))
                 .attr(role, Roles.list)
                 .element());
         this.items = new HashMap<>();

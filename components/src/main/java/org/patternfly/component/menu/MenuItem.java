@@ -152,7 +152,8 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     private static final Logger logger = Logger.getLogger(MenuItem.class.getName());
     private static final String CREATE_NEW_MARKER = "createNew";
-    public static final String SUB_COMPONENT_NAME = "mi";
+    public static final String SUB_COMPONENT_ID = "mi";
+    public static final String SUB_COMPONENT_NAME = "MenuItem";
 
     final MenuItemType itemType;
     private final String identifier;
@@ -175,7 +176,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private HTMLElement selectIcon;
 
     MenuItem(String identifier, String text, MenuItemType itemType, AsyncItems<MenuList, MenuItem> loadItems) {
-        super(SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(Classes.menu, list, item))
                 .attr(role, none)
                 .data(Dataset.identifier, identifier)
                 .element());
@@ -242,7 +243,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
 
     // constructor must only be used to clone an item as a favorite item!
     MenuItem(Menu menu, MenuItem sourceItem) {
-        super(SUB_COMPONENT_NAME, ((HTMLElement) sourceItem.element().cloneNode(true)));
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ((HTMLElement) sourceItem.element().cloneNode(true)));
         this.identifier = Id.build(sourceItem.identifier, "favorite");
         this.itemType = sourceItem.itemType;
         this.data = new HashMap<>();
@@ -567,7 +568,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
     private void loadItems(AsyncItems<MenuList, MenuItem> loadItems) {
         itemElement.addEventListener(click.name, e -> {
             clearTimeout(loadingTimeout);
-            MenuList menuList = lookupSubComponent(MenuList.SUB_COMPONENT_NAME);
+            MenuList menuList = lookupSubComponent(MenuList.SUB_COMPONENT_ID);
             loadingTimeout = setTimeout(__ -> startLoading(), LOADING_TIMEOUT);
             loadItems.apply(menuList).then(loadedItems -> {
                         stopLoading();

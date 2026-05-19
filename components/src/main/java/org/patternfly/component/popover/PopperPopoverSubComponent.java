@@ -24,7 +24,7 @@ import elemental2.dom.HTMLElement;
 @Deprecated
 abstract class PopperPopoverSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    PopperPopoverSubComponent(String name, E element) {
-        super(ComponentType.PopperPopover, name, element);
+    PopperPopoverSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.PopperPopover, subComponentId, subComponentName, element);
     }
 }

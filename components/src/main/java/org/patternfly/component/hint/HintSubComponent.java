@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class HintSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    HintSubComponent(String name, E element) {
-        super(ComponentType.Hint, name, element);
+    HintSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Hint, subComponentId, subComponentName, element);
     }
 }

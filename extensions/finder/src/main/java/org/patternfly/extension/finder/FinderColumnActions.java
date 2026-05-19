@@ -36,10 +36,11 @@ public class FinderColumnActions extends FinderSubComponent<HTMLElement, FinderC
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fca";
+    public static final String SUB_COMPONENT_ID = "fca";
+    public static final String SUB_COMPONENT_NAME = "FinderColumnActions";
 
     FinderColumnActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(finder, column, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(finder, column, actions)).element());
     }
 
     // ------------------------------------------------------ add

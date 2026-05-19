@@ -61,7 +61,8 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzs";
+    public static final String SUB_COMPONENT_ID = "wzs";
+    public static final String SUB_COMPONENT_NAME = "WizardStep";
     private static final Logger logger = Logger.getLogger(WizardStep.class.getName());
 
     private final String identifier;
@@ -83,7 +84,7 @@ public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> impl
     WizardStepLeaveHandler leaveHandler;
 
     WizardStep(String identifier, String title, WizardStepType type) {
-        super(SUB_COMPONENT_NAME, div().css(component(wizard, main)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(wizard, main)).element());
         this.identifier = identifier;
         this.title = title;
         this.type = type;

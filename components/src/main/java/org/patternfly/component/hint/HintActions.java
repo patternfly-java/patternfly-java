@@ -35,10 +35,11 @@ public class HintActions extends HintSubComponent<HTMLDivElement, HintActions>
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ha";
+    public static final String SUB_COMPONENT_ID = "ha";
+    public static final String SUB_COMPONENT_NAME = "HintActions";
 
     HintActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(hint, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(hint, actions)).element());
     }
 
     // ------------------------------------------------------ builder

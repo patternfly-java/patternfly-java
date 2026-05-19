@@ -48,7 +48,7 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
     // ------------------------------------------------------ factory
 
     public static ListItem listItem() {
-        return new ListItem(Id.unique(ComponentType.List.id, SUB_COMPONENT_NAME));
+        return new ListItem(Id.unique(ComponentType.List.id, SUB_COMPONENT_ID));
     }
 
     public static ListItem listItem(String identifier) {
@@ -57,13 +57,14 @@ public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implemen
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "li";
+    public static final String SUB_COMPONENT_ID = "li";
+    public static final String SUB_COMPONENT_NAME = "ListItem";
     private final String identifier;
     private final Map<String, Object> data;
     private HTMLElement iconContainer;
 
     ListItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().data(Dataset.identifier, identifier).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().data(Dataset.identifier, identifier).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
     }

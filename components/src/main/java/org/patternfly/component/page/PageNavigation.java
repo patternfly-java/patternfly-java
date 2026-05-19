@@ -41,10 +41,11 @@ public class PageNavigation extends PageSectionBuilder<HTMLElement, PageNavigati
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pn";
+    public static final String SUB_COMPONENT_ID = "pn";
+    public static final String SUB_COMPONENT_NAME = "PageNavigation";
 
     PageNavigation() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, nav)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(page, main, nav)).element());
     }
 
     // ------------------------------------------------------ add

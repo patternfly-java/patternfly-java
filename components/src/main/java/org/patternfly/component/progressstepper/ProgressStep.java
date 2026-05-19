@@ -65,7 +65,8 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
 
     // ------------------------------------------------------- instance
 
-    public static final String SUB_COMPONENT_NAME = "pss"; // progress stepper step
+    public static final String SUB_COMPONENT_ID = "pss"; // progress stepper step
+    public static final String SUB_COMPONENT_NAME = "ProgressStep";
     private static final Logger logger = Logger.getLogger(ProgressStep.class.getName());
     private static final String STEP = "step";
     private static final String STEP_CONNECTOR = "step-connector";
@@ -89,7 +90,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
     private Popover popover;
 
     ProgressStep(String identifier) {
-        super(ComponentType.ProgressStepper, SUB_COMPONENT_NAME, li().element());
+        super(ComponentType.ProgressStepper, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().element());
 
         this.identifier = identifier;
         HTMLContainerBuilder<HTMLDivElement> stepConnector = div().css(component(progressStepper, STEP_CONNECTOR));

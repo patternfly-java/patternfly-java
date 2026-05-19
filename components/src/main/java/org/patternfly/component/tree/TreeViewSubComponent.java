@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class TreeViewSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    TreeViewSubComponent(String name, E element) {
-        super(ComponentType.TreeView, name, element);
+    TreeViewSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.TreeView, subComponentId, subComponentName, element);
     }
 }

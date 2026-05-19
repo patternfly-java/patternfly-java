@@ -39,10 +39,11 @@ public class AlertDescription extends AlertSubComponent<HTMLDivElement, AlertDes
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ad";
+    public static final String SUB_COMPONENT_ID = "ad";
+    public static final String SUB_COMPONENT_NAME = "AlertDescription";
 
     AlertDescription() {
-        super(SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(alert, description)).element());
     }
 
     // ------------------------------------------------------ builder

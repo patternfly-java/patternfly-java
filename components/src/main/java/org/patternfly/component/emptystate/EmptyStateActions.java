@@ -32,10 +32,11 @@ public class EmptyStateActions extends EmptyStateSubComponent<HTMLDivElement, Em
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "esa";
+    public static final String SUB_COMPONENT_ID = "esa";
+    public static final String SUB_COMPONENT_NAME = "EmptyStateActions";
 
     EmptyStateActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(emptyState, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(emptyState, actions)).element());
     }
 
     // ------------------------------------------------------ builder

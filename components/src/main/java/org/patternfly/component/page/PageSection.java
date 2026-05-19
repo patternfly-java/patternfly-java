@@ -49,11 +49,12 @@ public class PageSection extends PageSectionBuilder<HTMLElement, PageSection> im
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ps";
+    public static final String SUB_COMPONENT_ID = "ps";
+    public static final String SUB_COMPONENT_NAME = "PageSection";
     private final HTMLElement container;
 
     PageSection() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, section)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(page, main, section)).element());
         element().appendChild(container = div().css(component(page, main, body)).element());
     }
 

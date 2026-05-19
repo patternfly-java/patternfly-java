@@ -81,7 +81,8 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "aci";
+    public static final String SUB_COMPONENT_ID = "aci";
+    public static final String SUB_COMPONENT_NAME = "AccordionItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;
@@ -92,7 +93,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
     private HTMLElement contentElement;
 
     AccordionItem(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(accordion, item)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(accordion, item)).element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.expanded = false;

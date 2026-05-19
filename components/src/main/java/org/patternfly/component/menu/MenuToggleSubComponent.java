@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class MenuToggleSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    MenuToggleSubComponent(String name, E element) {
-        super(ComponentType.MenuToggle, name, element);
+    MenuToggleSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.MenuToggle, subComponentId, subComponentName, element);
     }
 }

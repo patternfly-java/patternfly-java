@@ -55,7 +55,8 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "est";
+    public static final String SUB_COMPONENT_ID = "est";
+    public static final String SUB_COMPONENT_NAME = "ExpandableSectionToggle";
 
     final Button button;
     final HTMLElement iconContainer;
@@ -63,7 +64,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
     private final String lessText;
 
     ExpandableSectionToggle(String moreText, String lessText) {
-        super(SUB_COMPONENT_NAME, div().css(component(expandableSection, toggle)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(expandableSection, toggle)).element());
         this.moreText = moreText;
         this.lessText = lessText;
         this.iconContainer = span().css(component(expandableSection, toggle, icon))

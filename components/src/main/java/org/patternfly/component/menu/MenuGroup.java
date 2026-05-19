@@ -43,13 +43,14 @@ public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implemen
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mg";
+    public static final String SUB_COMPONENT_ID = "mg";
+    public static final String SUB_COMPONENT_NAME = "MenuGroup";
 
     MenuList list;
     private final HTMLElement textElement;
 
     MenuGroup() {
-        super(SUB_COMPONENT_NAME, section().css(component(Classes.menu, group)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(Classes.menu, group)).element());
         this.textElement = h(3).css(component(Classes.menu, group, title)).element();
     }
 

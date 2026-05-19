@@ -37,10 +37,11 @@ public class TabContentBody extends TabSubComponent<HTMLElement, TabContentBody>
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tcb";
+    public static final String SUB_COMPONENT_ID = "tcb";
+    public static final String SUB_COMPONENT_NAME = "TabContentBody";
 
     TabContentBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(tabContent, body))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(tabContent, body))
                 .element());
     }
 

@@ -51,11 +51,12 @@ public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGro
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "igt";
+    public static final String SUB_COMPONENT_ID = "igt";
+    public static final String SUB_COMPONENT_NAME = "InputGroupText";
     private final HTMLElement textElement;
 
     InputGroupText(String text) {
-        super(SUB_COMPONENT_NAME, div().css(component(inputGroup, item), modifier(box)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(inputGroup, item), modifier(box)).element());
         element().appendChild(this.textElement = span().css(component(inputGroup, Classes.text)).element());
         if (text != null) {
             text(text);

@@ -42,10 +42,11 @@ public class DrawerBody extends DrawerSubComponent<HTMLDivElement, DrawerBody> i
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "db";
+    public static final String SUB_COMPONENT_ID = "db";
+    public static final String SUB_COMPONENT_NAME = "DrawerBody";
 
     DrawerBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(drawer, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(drawer, body)).element());
     }
 
     // ------------------------------------------------------ builder

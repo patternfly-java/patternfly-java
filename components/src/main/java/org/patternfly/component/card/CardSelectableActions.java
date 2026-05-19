@@ -50,13 +50,14 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(CardSelectableActions.class.getName());
-    public static final String SUB_COMPONENT_NAME = "csa";
+    public static final String SUB_COMPONENT_ID = "csa";
+    public static final String SUB_COMPONENT_NAME = "CardSelectableActions";
 
     Checkbox checkbox;
     Radio radio;
 
     CardSelectableActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, selectable, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.card, selectable, actions)).element());
         Attachable.register(this, this);
     }
 

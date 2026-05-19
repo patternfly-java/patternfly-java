@@ -94,7 +94,8 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fc";
+    public static final String SUB_COMPONENT_ID = "fc";
+    public static final String SUB_COMPONENT_NAME = "FinderColumn";
     private static final Logger logger = Logger.getLogger(FinderColumn.class.getName());
 
     // Use a direct reference to the finder instead of relying on storeComponent() / lookupComponent()
@@ -116,7 +117,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     private AsyncItems<FinderColumn, FinderItem> asyncItems;
 
     FinderColumn(String identifier) {
-        super(SUB_COMPONENT_NAME, div().css(component(FinderClasses.finder, column))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(FinderClasses.finder, column))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;
@@ -200,7 +201,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
      */
     public FinderColumn defaultSearch(String placeholder) {
         return addSearch(finderColumnSearch()
-                .addSearchInput(searchInput(Id.unique(SUB_COMPONENT_NAME)).icon(search()).placeholder(placeholder),
+                .addSearchInput(searchInput(Id.unique(SUB_COMPONENT_ID)).icon(search()).placeholder(placeholder),
                         (item, value) -> {
                             String lcv = value.toLowerCase();
                             return !value.isEmpty() && !item.text().toLowerCase().contains(lcv);

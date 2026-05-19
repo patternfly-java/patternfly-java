@@ -35,10 +35,11 @@ public class PopoverFooter extends PopoverSubComponent<HTMLDivElement, PopoverFo
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "npf";
+    public static final String SUB_COMPONENT_ID = "npf";
+    public static final String SUB_COMPONENT_NAME = "PopoverFooter";
 
     PopoverFooter() {
-        super(SUB_COMPONENT_NAME, div().css(component(popover, footer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(popover, footer)).element());
     }
 
     // ------------------------------------------------------ builder

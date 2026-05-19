@@ -59,11 +59,12 @@ public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pm";
+    public static final String SUB_COMPONENT_ID = "pm";
+    public static final String SUB_COMPONENT_NAME = "PageMain";
     private final HTMLContainerBuilder<HTMLElement> mc;
 
     PageMain(String id) {
-        super(SUB_COMPONENT_NAME, div().css(component(page, main, container)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(page, main, container)).element());
         this.mc = main().css(component(page, main))
                 .id(id)
                 .attr(role, Roles.main)

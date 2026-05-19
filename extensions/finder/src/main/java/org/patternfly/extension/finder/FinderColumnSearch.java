@@ -48,10 +48,11 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fcs";
+    public static final String SUB_COMPONENT_ID = "fcs";
+    public static final String SUB_COMPONENT_NAME = "FinderColumnSearch";
 
     FinderColumnSearch() {
-        super(SUB_COMPONENT_NAME, div().css(component(finder, column, search)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(finder, column, search)).element());
     }
 
     // ------------------------------------------------------ add
@@ -104,7 +105,7 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
         add(input.element());
         if (predicate != null) {
             input.onInput((e, si, value) -> {
-                FinderColumn column = lookupSubComponent(FinderColumn.SUB_COMPONENT_NAME, true);
+                FinderColumn column = lookupSubComponent(FinderColumn.SUB_COMPONENT_ID, true);
                 if (column != null) {
                     for (FinderItem item : column.items()) {
                         item.classList().toggle(modifier(filtered), predicate.test(item, value));
@@ -112,7 +113,7 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
                 }
             });
             input.onClear((e, si) -> {
-                FinderColumn column = lookupSubComponent(FinderColumn.SUB_COMPONENT_NAME, true);
+                FinderColumn column = lookupSubComponent(FinderColumn.SUB_COMPONENT_ID, true);
                 if (column != null) {
                     column.items().forEach(item -> item.classList().remove(modifier(filtered)));
                 }

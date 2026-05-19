@@ -77,7 +77,8 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tgi";
+    public static final String SUB_COMPONENT_ID = "tgi";
+    public static final String SUB_COMPONENT_NAME = "ToggleGroupItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLContainerBuilder<HTMLButtonElement> button;
@@ -85,7 +86,7 @@ public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, Tog
     private HTMLElement iconContainer;
 
     ToggleGroupItem(String identifier, String text) {
-        super(SUB_COMPONENT_NAME, div().css(component(toggleGroup, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toggleGroup, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

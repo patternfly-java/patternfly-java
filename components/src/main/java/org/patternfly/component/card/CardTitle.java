@@ -53,12 +53,13 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ct";
+    public static final String SUB_COMPONENT_ID = "ct";
+    public static final String SUB_COMPONENT_NAME = "CardTitle";
 
     private final HTMLElement titleText;
 
     CardTitle(String text, int level) {
-        super(SUB_COMPONENT_NAME, div().css(component(card, title)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(card, title)).element());
         if (level > 0) {
             element().appendChild(titleText = h(level).css(component(card, title, Classes.text)).element());
         } else {

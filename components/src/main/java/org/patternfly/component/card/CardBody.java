@@ -37,10 +37,11 @@ public class CardBody extends CardSubComponent<HTMLDivElement, CardBody> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cb";
+    public static final String SUB_COMPONENT_ID = "cb";
+    public static final String SUB_COMPONENT_NAME = "CardBody";
 
     CardBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(card, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(card, body)).element());
     }
 
     // ------------------------------------------------------ builder

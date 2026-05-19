@@ -67,7 +67,8 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dli";
+    public static final String SUB_COMPONENT_ID = "dli";
+    public static final String SUB_COMPONENT_NAME = "DataListItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement rowElement;
@@ -79,7 +80,7 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     private ToggleHandler<DataListItem> toggleHandler;
 
     DataListItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(dataList, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(dataList, item))
                 .aria(labelledBy, identifier)
                 .data(Dataset.identifier, identifier)
                 .element());

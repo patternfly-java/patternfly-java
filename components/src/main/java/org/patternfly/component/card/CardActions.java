@@ -37,13 +37,14 @@ public class CardActions extends CardSubComponent<HTMLDivElement, CardActions>
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ca";
+    public static final String SUB_COMPONENT_ID = "ca";
+    public static final String SUB_COMPONENT_NAME = "CardActions";
 
     CardSelectableActions selectableActions;
     private Card card;
 
     CardActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.card, actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.card, actions)).element());
     }
 
     // ------------------------------------------------------ add

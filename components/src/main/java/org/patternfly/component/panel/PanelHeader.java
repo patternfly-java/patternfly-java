@@ -37,12 +37,13 @@ public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ph";
+    public static final String SUB_COMPONENT_ID = "ph";
+    public static final String SUB_COMPONENT_NAME = "PanelHeader";
 
     final String headerId;
 
     PanelHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(panel, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(panel, header)).element());
         headerId = Id.unique(ComponentType.Panel.id, "header");
         element().id = headerId;
     }

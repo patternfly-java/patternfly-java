@@ -47,12 +47,13 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ndl";
+    public static final String SUB_COMPONENT_ID = "ndl";
+    public static final String SUB_COMPONENT_NAME = "NotificationDrawerList";
     final Map<String, NotificationDrawerItem> items;
     private final AurHandler<NotificationDrawerList, NotificationDrawerItem> aur;
 
     NotificationDrawerList() {
-        super(SUB_COMPONENT_NAME, ul().css(component(notificationDrawer, Classes.list))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ul().css(component(notificationDrawer, Classes.list))
                 .role(list)
                 .element());
         this.items = new LinkedHashMap<>();

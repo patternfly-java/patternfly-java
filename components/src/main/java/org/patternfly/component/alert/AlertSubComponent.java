@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class AlertSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    AlertSubComponent(String name, E element) {
-        super(ComponentType.Alert, name, element);
+    AlertSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Alert, subComponentId, subComponentName, element);
     }
 }

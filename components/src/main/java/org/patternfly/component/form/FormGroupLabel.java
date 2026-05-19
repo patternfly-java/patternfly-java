@@ -64,13 +64,14 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fgl";
+    public static final String SUB_COMPONENT_ID = "fgl";
+    public static final String SUB_COMPONENT_NAME = "FormGroupLabel";
 
     private final HTMLElement textElement;
     private HTMLElement labelElement;
 
     FormGroupLabel(String label) {
-        super(SUB_COMPONENT_NAME, div().css(component(form, group, Classes.label)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(form, group, Classes.label)).element());
         add(labelElement = Elements.label().css(component(form, Classes.label))
                 .add(textElement = span().css(component(form, Classes.label, text))
                         .text(label)
@@ -81,7 +82,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
+        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_ID);
 
         if (formGroup.role != null) {
             HTMLElement pseudoLabelElement = span().css(component(form, Classes.label)).element();

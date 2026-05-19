@@ -36,11 +36,12 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzh";
+    public static final String SUB_COMPONENT_ID = "wzh";
+    public static final String SUB_COMPONENT_NAME = "WizardHeader";
     private final HTMLElement closeContainer;
 
     WizardHeader() {
-        super(SUB_COMPONENT_NAME, div().css(component(wizard, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(wizard, header)).element());
         add(closeContainer = div().css(component(wizard, close))
                 .add(button().plain().icon(times()).onClick((e, c) -> {
                     Wizard wizard = lookupComponent();

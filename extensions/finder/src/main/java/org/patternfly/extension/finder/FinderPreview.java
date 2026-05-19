@@ -32,10 +32,11 @@ public class FinderPreview extends FinderSubComponent<HTMLElement, FinderPreview
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "fp";
+    public static final String SUB_COMPONENT_ID = "fp";
+    public static final String SUB_COMPONENT_NAME = "FinderPreview";
 
     FinderPreview() {
-        super(SUB_COMPONENT_NAME, div().css(component(finder, preview)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(finder, preview)).element());
     }
 
     // ------------------------------------------------------ builder

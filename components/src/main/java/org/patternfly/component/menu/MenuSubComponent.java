@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class MenuSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    MenuSubComponent(String name, E element) {
-        super(ComponentType.Menu, name, element);
+    MenuSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Menu, subComponentId, subComponentName, element);
     }
 }

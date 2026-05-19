@@ -39,10 +39,11 @@ public class CheckboxBody extends CheckboxSubComponent<HTMLElement, CheckboxBody
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cbb";
+    public static final String SUB_COMPONENT_ID = "cbb";
+    public static final String SUB_COMPONENT_NAME = "CheckboxBody";
 
     CheckboxBody(String text) {
-        super(SUB_COMPONENT_NAME, span().css(component(check, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, span().css(component(check, body)).element());
         if (text != null) {
             element().textContent = text;
         }

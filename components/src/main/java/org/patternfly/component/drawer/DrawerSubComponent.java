@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class DrawerSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    DrawerSubComponent(String name, E element) {
-        super(ComponentType.Drawer, name, element);
+    DrawerSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Drawer, subComponentId, subComponentName, element);
     }
 }

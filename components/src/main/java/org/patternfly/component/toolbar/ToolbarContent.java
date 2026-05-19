@@ -64,13 +64,14 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_ID = "tc";
+    public static final String SUB_COMPONENT_NAME = "ToolbarContent";
     private final Map<String, ToolbarItem> items;
     private final HTMLElement contentSection;
     private final AurHandler<ToolbarContent, ToolbarItem> aur;
 
     ToolbarContent() {
-        super(SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toolbar, content)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         element().appendChild(contentSection = div().css(component(toolbar, content, section)).element());

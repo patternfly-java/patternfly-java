@@ -65,7 +65,8 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "jli";
+    public static final String SUB_COMPONENT_ID = "jli";
+    public static final String SUB_COMPONENT_NAME = "JumpLinksItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final Button button;
@@ -73,7 +74,7 @@ public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLink
     JumpLinksList list;
 
     JumpLinksItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(jumpLinks, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(jumpLinks, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

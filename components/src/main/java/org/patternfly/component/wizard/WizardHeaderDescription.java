@@ -39,10 +39,11 @@ public class WizardHeaderDescription extends WizardSubComponent<HTMLElement, Wiz
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "wzhd";
+    public static final String SUB_COMPONENT_ID = "wzhd";
+    public static final String SUB_COMPONENT_NAME = "WizardHeaderDescription";
 
     WizardHeaderDescription() {
-        super(SUB_COMPONENT_NAME, p().css(component(wizard, description)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, p().css(component(wizard, description)).element());
     }
 
     // ------------------------------------------------------ builder

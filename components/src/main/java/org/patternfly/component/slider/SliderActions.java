@@ -37,11 +37,12 @@ public class SliderActions extends SliderSubComponent<HTMLDivElement, SliderActi
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "sa";
+    public static final String SUB_COMPONENT_ID = "sa";
+    public static final String SUB_COMPONENT_NAME = "SliderActions";
     private final List<Button> actions;
 
     SliderActions() {
-        super(SUB_COMPONENT_NAME, div().css(component(slider, Classes.actions)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(slider, Classes.actions)).element());
         this.actions = new ArrayList<>();
 
     }

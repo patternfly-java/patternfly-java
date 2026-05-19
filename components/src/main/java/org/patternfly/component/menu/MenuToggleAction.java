@@ -45,10 +45,11 @@ public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mta";
+    public static final String SUB_COMPONENT_ID = "mta";
+    public static final String SUB_COMPONENT_NAME = "MenuToggleAction";
 
     MenuToggleAction() {
-        super(SUB_COMPONENT_NAME, button(ButtonType.button).css(component(menuToggle, button)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, button(ButtonType.button).css(component(menuToggle, button)).element());
     }
 
     // ------------------------------------------------------ builder

@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class PanelSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    PanelSubComponent(String name, E element) {
-        super(ComponentType.Panel, name, element);
+    PanelSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Panel, subComponentId, subComponentName, element);
     }
 }

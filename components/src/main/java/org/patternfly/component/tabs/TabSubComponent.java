@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class TabSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    TabSubComponent(String name, E element) {
-        super(ComponentType.Tabs, name, element);
+    TabSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Tabs, subComponentId, subComponentName, element);
     }
 }

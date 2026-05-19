@@ -39,8 +39,8 @@ public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> exte
     private final String identifier;
     private final Map<String, Object> data;
 
-    Cell(String name, String identifier, HTMLTableCellElement element) {
-        super(name, element);
+    Cell(String subComponentId, String subComponentName, String identifier, HTMLTableCellElement element) {
+        super(subComponentId, subComponentName, element);
         this.identifier = identifier;
         this.data = new HashMap<>();
         element.dataset.set(Dataset.identifier, identifier);

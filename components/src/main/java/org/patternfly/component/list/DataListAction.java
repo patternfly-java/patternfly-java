@@ -47,12 +47,13 @@ public class DataListAction extends DataListSubComponent<HTMLElement, DataListAc
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dla";
+    public static final String SUB_COMPONENT_ID = "dla";
+    public static final String SUB_COMPONENT_NAME = "DataListAction";
     private final boolean plainButtonAction;
     private final HTMLElement delegate;
 
     DataListAction(boolean plainButtonAction) {
-        super(SUB_COMPONENT_NAME, div().css(component(dataList, item, action))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(dataList, item, action))
                 .element());
         this.plainButtonAction = plainButtonAction;
         if (plainButtonAction) {

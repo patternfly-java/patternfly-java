@@ -43,12 +43,13 @@ public class CodeEditorLink extends CodeEditorSubComponent<HTMLElement, CodeEdit
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cel";
+    public static final String SUB_COMPONENT_ID = "cel";
+    public static final String SUB_COMPONENT_NAME = "CodeEditorLink";
 
     private final HTMLElement buttonElement;
 
     CodeEditorLink(Button button) {
-        super(SUB_COMPONENT_NAME, button.element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, button.element());
         buttonElement = element();
     }
 

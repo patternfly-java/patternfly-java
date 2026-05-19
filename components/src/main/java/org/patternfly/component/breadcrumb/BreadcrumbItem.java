@@ -64,14 +64,15 @@ public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, Breadc
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "bci";
+    public static final String SUB_COMPONENT_ID = "bci";
+    public static final String SUB_COMPONENT_NAME = "BreadcrumbItem";
     private final String identifier;
     private final Map<String, Object> data;
     private final HTMLElement textElement;
     private HTMLAnchorElement anchorElement;
 
     <E extends HTMLElement> BreadcrumbItem(String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(breadcrumb, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(breadcrumb, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

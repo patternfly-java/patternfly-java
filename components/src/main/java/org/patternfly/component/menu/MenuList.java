@@ -77,16 +77,17 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ml";
+    public static final String SUB_COMPONENT_ID = "ml";
+    public static final String SUB_COMPONENT_NAME = "MenuList";
     private static final Logger logger = Logger.getLogger(MenuList.class.getName());
     // TODO Customize loading, no items and error handling
     private static final Supplier<MenuItem> loading = () -> skeletonMenuItem(
-            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "loading"), "Loading items...");
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "loading"), "Loading items...");
     private static final Supplier<MenuItem> noItems = () -> menuItem(
-            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "no-items"), "No items found")
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "no-items"), "No items found")
             .disabled();
     private static final Supplier<MenuItem> error = () -> menuItem(
-            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_NAME, "error"), "Error")
+            Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "error"), "Error")
             .icon(exclamationCircle());
 
     final Map<String, MenuItem> items;
@@ -99,7 +100,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     private Comparator<MenuItem> comparator;
 
     MenuList() {
-        super(SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         this.status = static_;

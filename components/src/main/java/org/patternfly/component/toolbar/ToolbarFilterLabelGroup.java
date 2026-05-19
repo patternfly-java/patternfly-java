@@ -41,7 +41,8 @@ public class ToolbarFilterLabelGroup<T> extends ToolbarSubComponent<HTMLDivEleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tfcg";
+    public static final String SUB_COMPONENT_ID = "tfcg";
+    public static final String SUB_COMPONENT_NAME = "ToolbarFilterLabelGroup";
     private final Filter<T> filter;
     private final String text;
     private final List<String> filterAttributes;
@@ -49,7 +50,7 @@ public class ToolbarFilterLabelGroup<T> extends ToolbarSubComponent<HTMLDivEleme
     private Function<Filter<T>, List<Label>> labelsFn;
 
     ToolbarFilterLabelGroup(Filter<T> filter, String text) {
-        super(SUB_COMPONENT_NAME, toolbarItem().element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, toolbarItem().element());
         this.filter = filter;
         this.text = text;
         this.filterAttributes = new ArrayList<>();

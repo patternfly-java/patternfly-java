@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class ExpandableSectionSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    ExpandableSectionSubComponent(String name, E element) {
-        super(ComponentType.ExpandableSection, name, element);
+    ExpandableSectionSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.ExpandableSection, subComponentId, subComponentName, element);
     }
 }

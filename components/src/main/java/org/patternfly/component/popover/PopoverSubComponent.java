@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class PopoverSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    PopoverSubComponent(String name, E element) {
-        super(ComponentType.Popover, name, element);
+    PopoverSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Popover, subComponentId, subComponentName, element);
     }
 }

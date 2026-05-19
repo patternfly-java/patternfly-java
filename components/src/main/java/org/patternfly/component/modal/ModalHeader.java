@@ -46,12 +46,13 @@ public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> {
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(ModalHeader.class.getName());
-    public static final String SUB_COMPONENT_NAME = "mh";
+    public static final String SUB_COMPONENT_ID = "mh";
+    public static final String SUB_COMPONENT_NAME = "ModalHeader";
     ModalHeaderTitle title;
     private HTMLElement mainContainer;
 
     ModalHeader() {
-        super(SUB_COMPONENT_NAME, header().css(component(modalBox, header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, header().css(component(modalBox, header)).element());
     }
 
     // ------------------------------------------------------ add

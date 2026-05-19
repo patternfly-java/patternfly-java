@@ -93,7 +93,8 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dp";
+    public static final String SUB_COMPONENT_ID = "dp";
+    public static final String SUB_COMPONENT_NAME = "DrawerPanel";
     private int increment;
     private boolean resizable;
     private boolean isResizing;
@@ -112,7 +113,7 @@ public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel>
     private final List<ResizeHandler<DrawerPanel>> resizeHandler;
 
     DrawerPanel() {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.drawer, panel)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.drawer, panel)).element());
         this.increment = 5;
         this.resizable = false;
         this.isResizing = false;

@@ -60,12 +60,13 @@ public class ToolbarItem extends ToolbarSubComponent<HTMLDivElement, ToolbarItem
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ti";
+    public static final String SUB_COMPONENT_ID = "ti";
+    public static final String SUB_COMPONENT_NAME = "ToolbarItem";
     private final String identifier;
     private final Map<String, Object> data;
 
     ToolbarItem(String identifier, ToolbarItemType type) {
-        super(SUB_COMPONENT_NAME, div().css(component(toolbar, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toolbar, item))
                 .data(Dataset.identifier, identifier)
                 .element());
         this.identifier = identifier;

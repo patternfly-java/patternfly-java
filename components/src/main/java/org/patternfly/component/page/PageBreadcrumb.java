@@ -42,10 +42,11 @@ public class PageBreadcrumb extends PageSectionBuilder<HTMLElement, PageBreadcru
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pb";
+    public static final String SUB_COMPONENT_ID = "pb";
+    public static final String SUB_COMPONENT_NAME = "PageBreadcrumb";
 
     PageBreadcrumb() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, breadcrumb)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(page, main, breadcrumb)).element());
     }
 
     // ------------------------------------------------------ add

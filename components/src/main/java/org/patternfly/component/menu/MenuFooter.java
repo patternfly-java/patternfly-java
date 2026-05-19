@@ -41,10 +41,11 @@ public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mf";
+    public static final String SUB_COMPONENT_ID = "mf";
+    public static final String SUB_COMPONENT_NAME = "MenuFooter";
 
     MenuFooter() {
-        super(ComponentType.Menu, SUB_COMPONENT_NAME, div().css(component(menu, footer)).element());
+        super(ComponentType.Menu, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(menu, footer)).element());
     }
 
     // ------------------------------------------------------ builder

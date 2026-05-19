@@ -35,10 +35,11 @@ public class HintTitle extends HintSubComponent<HTMLDivElement, HintTitle> imple
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ht";
+    public static final String SUB_COMPONENT_ID = "ht";
+    public static final String SUB_COMPONENT_NAME = "HintTitle";
 
     HintTitle() {
-        super(SUB_COMPONENT_NAME, div().css(component(hint, title)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(hint, title)).element());
     }
 
     // ------------------------------------------------------ builder

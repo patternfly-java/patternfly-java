@@ -50,13 +50,14 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "psb";
+    public static final String SUB_COMPONENT_ID = "psb";
+    public static final String SUB_COMPONENT_NAME = "PageSidebar";
 
     private boolean keepExpanded;
     private final List<ToggleHandler<PageSidebar>> toggleHandler;
 
     PageSidebar() {
-        super(SUB_COMPONENT_NAME, aside().css(component(page, sidebar), modifier(expanded))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, aside().css(component(page, sidebar), modifier(expanded))
                 .aria(hidden, false)
                 .element());
         this.keepExpanded = false;

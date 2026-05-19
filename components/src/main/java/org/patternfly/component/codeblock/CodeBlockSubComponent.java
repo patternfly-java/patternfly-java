@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class CodeBlockSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    CodeBlockSubComponent(String name, E element) {
-        super(ComponentType.CodeBlock, name, element);
+    CodeBlockSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.CodeBlock, subComponentId, subComponentName, element);
     }
 }

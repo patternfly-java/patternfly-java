@@ -72,11 +72,12 @@ public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeB
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cba";
+    public static final String SUB_COMPONENT_ID = "cba";
+    public static final String SUB_COMPONENT_NAME = "CodeBlockAction";
     private final Button button;
 
     CodeBlockAction(Element icon) {
-        super(SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, actions, item)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.codeBlock, actions, item)).element());
         add(button = button().plain().icon(icon));
     }
 

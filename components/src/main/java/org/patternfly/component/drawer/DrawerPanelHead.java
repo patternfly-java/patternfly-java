@@ -38,10 +38,11 @@ public class DrawerPanelHead extends DrawerSubComponent<HTMLDivElement, DrawerPa
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "dph";
+    public static final String SUB_COMPONENT_ID = "dph";
+    public static final String SUB_COMPONENT_NAME = "DrawerPanelHead";
 
     DrawerPanelHead() {
-        super(SUB_COMPONENT_NAME, div().css(component(drawer, head)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(drawer, head)).element());
     }
 
     // ------------------------------------------------------ add

@@ -35,10 +35,11 @@ public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> imp
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "cf";
+    public static final String SUB_COMPONENT_ID = "cf";
+    public static final String SUB_COMPONENT_NAME = "CardFooter";
 
     CardFooter() {
-        super(SUB_COMPONENT_NAME, div().css(component(card, footer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(card, footer)).element());
     }
 
     // ------------------------------------------------------ builder

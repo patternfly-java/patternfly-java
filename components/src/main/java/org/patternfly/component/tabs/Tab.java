@@ -108,7 +108,8 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(Tab.class.getName());
-    public static final String SUB_COMPONENT_NAME = "tab";
+    public static final String SUB_COMPONENT_ID = "tab";
+    public static final String SUB_COMPONENT_NAME = "Tab";
 
     final String buttonId;
     final String contentId;
@@ -128,7 +129,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     private HTMLElement loadingContainer;
 
     <E extends HTMLElement> Tab(HTMLContainerBuilder<E> builder, String identifier) {
-        super(SUB_COMPONENT_NAME, li().css(component(tabs, item))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, li().css(component(tabs, item))
                 .attr(role, presentation)
                 .data(Dataset.identifier, identifier)
                 .element());

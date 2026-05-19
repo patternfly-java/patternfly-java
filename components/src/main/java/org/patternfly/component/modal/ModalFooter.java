@@ -40,11 +40,12 @@ public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> imp
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mf";
+    public static final String SUB_COMPONENT_ID = "mf";
+    public static final String SUB_COMPONENT_NAME = "ModalFooter";
     private final List<ButtonHandler> buttons;
 
     ModalFooter() {
-        super(SUB_COMPONENT_NAME, footer().css(component(modalBox, footer)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, footer().css(component(modalBox, footer)).element());
         this.buttons = new ArrayList<>();
         Attachable.register(this, this);
     }

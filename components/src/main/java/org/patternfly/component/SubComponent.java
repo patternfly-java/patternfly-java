@@ -33,6 +33,7 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 import static org.patternfly.component.ComponentRegistry.componentRegistry;
+import static org.patternfly.core.Ouia.ouia;
 
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         ElementAttributeMethods<E, B>,
@@ -48,17 +49,25 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         HTMLElementVisibilityMethods<E, B> {
 
     final ComponentType componentType;
-    final String name;
+    final String subComponentId;
+    final String subComponentName;
     private final E element;
 
-    protected SubComponent(ComponentType componentType, String name, E element) {
+    protected SubComponent(ComponentType componentType, String subComponentId, String subComponentName, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
-        this.name = requireNonNull(name, "name required");
+        this.subComponentId = requireNonNull(subComponentId, "sub-component ID required");
+        this.subComponentName = requireNonNull(subComponentName, "sub-component name required");
         this.element = requireNonNull(element, "element required");
+        ouia(element, componentType.componentName + "/" + subComponentName);
+    }
+
+    public B ouiaId(String id) {
+        ouia(element(), id, componentType.componentName + "/" + subComponentName);
+        return that();
     }
 
     protected String subComponentId() {
-        return Id.build(componentType.id, name);
+        return Id.build(componentType.id, subComponentId);
     }
 
     @Override
@@ -67,7 +76,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
     }
 
     public B registerSubComponent() {
-        componentRegistry().registerSubComponent(componentType, name, this);
+        componentRegistry().registerSubComponent(componentType, subComponentId, this);
         return that();
     }
 

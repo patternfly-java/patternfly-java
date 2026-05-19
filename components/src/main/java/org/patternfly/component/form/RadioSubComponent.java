@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class RadioSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    RadioSubComponent(String name, E element) {
-        super(ComponentType.Radio, name, element);
+    RadioSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Radio, subComponentId, subComponentName, element);
     }
 }

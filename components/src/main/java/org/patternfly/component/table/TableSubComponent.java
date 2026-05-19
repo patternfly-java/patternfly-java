@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class TableSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    TableSubComponent(String name, E element) {
-        super(ComponentType.Table, name, element);
+    TableSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Table, subComponentId, subComponentName, element);
     }
 }

@@ -40,14 +40,15 @@ public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, Input
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "igi";
+    public static final String SUB_COMPONENT_ID = "igi";
+    public static final String SUB_COMPONENT_NAME = "InputGroupItem";
     private Disabled<?, ?> componentImplementingDisabled;
     private FormControl<?, ?> formControl;
     private Dropdown dropdown;
     private Button button;
 
     InputGroupItem() {
-        super(SUB_COMPONENT_NAME, div().css(component(inputGroup, item)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(inputGroup, item)).element());
     }
 
     // ------------------------------------------------------ add

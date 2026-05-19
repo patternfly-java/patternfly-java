@@ -50,14 +50,15 @@ public class PopperPopoverHeader extends PopperPopoverSubComponent<HTMLElement, 
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "ph";
+    public static final String SUB_COMPONENT_ID = "ph";
+    public static final String SUB_COMPONENT_NAME = "PopperPopoverHeader";
 
     final String headerId;
     final HTMLHeadingElement headerElement;
     private HTMLElement iconContainer;
 
     PopperPopoverHeader() {
-        super(SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, header().css(component(popover, Classes.header)).element());
         headerId = Id.unique(ComponentType.PopperPopover.id, "header");
         element().appendChild(div().css(component(popover, title))
                 .id(headerId)

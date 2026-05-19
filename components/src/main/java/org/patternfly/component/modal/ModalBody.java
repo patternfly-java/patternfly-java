@@ -35,10 +35,11 @@ public class ModalBody extends ModalSubComponent<HTMLElement, ModalBody> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "mb";
+    public static final String SUB_COMPONENT_ID = "mb";
+    public static final String SUB_COMPONENT_NAME = "ModalBody";
 
     ModalBody() {
-        super(SUB_COMPONENT_NAME, div().css(component(modalBox, body)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(modalBox, body)).element());
     }
 
     // ------------------------------------------------------ builder

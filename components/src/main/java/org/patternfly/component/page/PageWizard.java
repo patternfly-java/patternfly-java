@@ -38,10 +38,11 @@ public class PageWizard extends PageSectionBuilder<HTMLElement, PageWizard> {
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "pw";
+    public static final String SUB_COMPONENT_ID = "pw";
+    public static final String SUB_COMPONENT_NAME = "PageWizard";
 
     PageWizard() {
-        super(SUB_COMPONENT_NAME, section().css(component(page, main, wizard)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(page, main, wizard)).element());
     }
 
     // ------------------------------------------------------ add

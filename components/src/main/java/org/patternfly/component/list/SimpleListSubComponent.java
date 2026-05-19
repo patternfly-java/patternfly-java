@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class SimpleListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    SimpleListSubComponent(String name, E element) {
-        super(ComponentType.SimpleList, name, element);
+    SimpleListSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.SimpleList, subComponentId, subComponentName, element);
     }
 }

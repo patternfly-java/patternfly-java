@@ -23,7 +23,7 @@ import elemental2.dom.HTMLElement;
 
 abstract class MastheadSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
-    MastheadSubComponent(String name, E element) {
-        super(ComponentType.Masthead, name, element);
+    MastheadSubComponent(String subComponentId, String subComponentName, E element) {
+        super(ComponentType.Masthead, subComponentId, subComponentName, element);
     }
 }

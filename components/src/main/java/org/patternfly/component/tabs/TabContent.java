@@ -42,11 +42,12 @@ public class TabContent extends TabSubComponent<HTMLElement, TabContent> impleme
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_NAME = "tc";
+    public static final String SUB_COMPONENT_ID = "tc";
+    public static final String SUB_COMPONENT_NAME = "TabContent";
     private final Map<String, Object> data;
 
     TabContent() {
-        super(SUB_COMPONENT_NAME, section().css(component(tabContent))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, section().css(component(tabContent))
                 .apply(s -> s.tabIndex = 0)
                 .attr(role, tabpanel)
                 .element());

@@ -51,14 +51,15 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(FormGroupControl.class.getName());
-    public static final String SUB_COMPONENT_NAME = "fgc";
+    public static final String SUB_COMPONENT_ID = "fgc";
+    public static final String SUB_COMPONENT_NAME = "FormGroupControl";
 
     private FormControl<?, ?> control;
     private final List<Checkbox> checkboxes;
     private final List<Radio> radios;
 
     FormGroupControl() {
-        super(ComponentType.Form, SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.control)).element());
+        super(ComponentType.Form, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.control)).element());
         this.checkboxes = new ArrayList<>();
         this.radios = new ArrayList<>();
         Attachable.register(this, this);
@@ -66,7 +67,7 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_NAME);
+        FormGroup formGroup = lookupSubComponent(FormGroup.SUB_COMPONENT_ID);
 
         if (control != null && !formGroup.identifier().equals(control.id)) {
             logger.error("The identifier of the form group %o is different to the id of its control %o: '%s' != '%s'",

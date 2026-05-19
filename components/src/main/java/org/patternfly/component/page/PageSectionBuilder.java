@@ -36,8 +36,8 @@ import static org.patternfly.style.Classes.shadowTop;
 public abstract class PageSectionBuilder<E extends HTMLElement, P extends PageSectionBuilder<E, P>>
         extends PageSubComponent<E, P> implements PageSectionLike<E, P> {
 
-    PageSectionBuilder(String name, E element) {
-        super(name, element);
+    PageSectionBuilder(String subComponentId, String subComponentName, E element) {
+        super(subComponentId, subComponentName, element);
     }
 
     // ------------------------------------------------------ builder
