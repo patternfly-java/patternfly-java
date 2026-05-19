@@ -28,7 +28,7 @@ import static org.patternfly.component.badge.Badge.badge;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link MultiSelect} instead.
  */
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public class PopperMultiSelect extends PopperMultiMenuToggleMenu<PopperMultiSelect> {
 
     // ------------------------------------------------------ factory

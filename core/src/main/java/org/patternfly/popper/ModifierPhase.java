@@ -15,7 +15,7 @@
  */
 package org.patternfly.popper;
 
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public enum ModifierPhase {
 
     beforeRead,

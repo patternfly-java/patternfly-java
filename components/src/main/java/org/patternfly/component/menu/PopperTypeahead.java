@@ -27,7 +27,7 @@ import elemental2.promise.Promise;
  *
  * @param <M> A type that extends {@link PopperMenuToggleMenu}, representing the specific implementation of the typeahead.
  */
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public interface PopperTypeahead<M extends PopperMenuToggleMenu<M>> {
 
     /**

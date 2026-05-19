@@ -71,7 +71,7 @@ import static org.patternfly.style.Classes.tooltip;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link Tooltip} instead.
  */
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public class PopperTooltip extends BaseComponent<HTMLDivElement, PopperTooltip> implements
         Attachable,
         Closeable<HTMLDivElement, PopperTooltip>,

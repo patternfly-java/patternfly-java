@@ -19,7 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class StateRects {
 

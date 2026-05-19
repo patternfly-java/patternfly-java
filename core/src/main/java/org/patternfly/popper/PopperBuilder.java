@@ -43,7 +43,7 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.Key.Escape;
 import static org.patternfly.popper.PopperPlacement.auto;
 
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public class PopperBuilder {
 
     private static final Logger logger = Logger.getLogger(PopperBuilder.class.getName());

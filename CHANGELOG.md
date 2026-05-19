@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Remove `since` and `forRemoval` attributes from `@Deprecated` annotations on Popper.js-based classes and components for J2CL compatibility (deprecation info remains in Javadoc `@deprecated` tags)
+
 ## [0.7.6] - 2026-05-19
 
 ### Added

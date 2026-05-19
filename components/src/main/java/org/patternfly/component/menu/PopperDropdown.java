@@ -26,7 +26,7 @@ import org.patternfly.popper.TriggerAction;
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link Dropdown} instead.
  */
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public class PopperDropdown extends PopperMenuToggleMenu<PopperDropdown> {
 
     // ------------------------------------------------------ factory

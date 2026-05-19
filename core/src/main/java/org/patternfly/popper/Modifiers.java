@@ -20,7 +20,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.patternfly.popper.PopperPlacement.auto;
 
-@Deprecated(since = "0.7.0", forRemoval = true)
+@Deprecated
 public interface Modifiers {
 
     static Modifier widths() {
