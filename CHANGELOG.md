@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.7.7] - 2026-05-19
+
 ### Changed
 
 - Remove `since` and `forRemoval` attributes from `@Deprecated` annotations on Popper.js-based classes and components for J2CL compatibility (deprecation info remains in Javadoc `@deprecated` tags)
@@ -1017,7 +1019,8 @@ Stay tuned for more to come...
 
 
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.6...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.7...HEAD
+[0.7.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.6...v0.7.7
 [0.7.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.5...v0.7.6
 [0.7.5]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.3...v0.7.4
