@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `ouiaId(String)` method to `BaseComponent`, `BaseComponentSVG`, and `ComponentDelegate` for setting stable, deterministic OUIA component IDs
+
 ### Changed
 
 - Add `since` and `forRemoval` attributes to all `@Deprecated` annotations on Popper.js-based classes and components
@@ -13,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Fix OUIA attribute names to match the spec (`data-ouia-component-type` and `data-ouia-component-id` instead of `data-ouia-type` and `data-ouia-id`)
+- Fix OUIA component ID no longer set to the shared `ComponentType.id` — `data-ouia-component-id` is now only set when explicitly provided via `ouiaId(String)`
 - Fix format string bug, variable assignment bug, and null guard in core module
 
 ## [0.7.4] - 2026-05-10

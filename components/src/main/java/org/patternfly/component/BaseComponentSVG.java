@@ -48,7 +48,12 @@ public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuil
     protected BaseComponentSVG(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
         this.element = requireNonNull(element, "element required");
-        ouia(element, componentType.id, componentType.componentName);
+        ouia(element, componentType.componentName);
+    }
+
+    public B ouiaId(String id) {
+        ouia(element(), id, componentType().componentName);
+        return that();
     }
 
     @Override

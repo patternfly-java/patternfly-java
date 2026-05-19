@@ -58,7 +58,12 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
 
     protected void delegateTo(E delegate) {
         this.delegate = delegate;
-        ouia(delegate, componentType.id, componentType.componentName);
+        ouia(delegate, componentType.componentName);
+    }
+
+    public B ouiaId(String id) {
+        ouia(element(), id, componentType().componentName);
+        return that();
     }
 
     @Override

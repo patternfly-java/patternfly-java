@@ -32,18 +32,36 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
-    public static void ouia(HTMLElement element, String id, String name) {
-        if (element != null && name != null && isSupported()) {
-            element.dataset.set("ouiaId", id);
-            element.dataset.set("ouiaType", name);
+    public static void ouia(HTMLElement element, String componentType) {
+        if (element != null && componentType != null && isSupported()) {
+            element.dataset.set("ouiaComponentType", componentType);
             element.dataset.set("ouiaSafe", "true");
         }
     }
 
-    public static void ouia(SVGElement element, String id, String name) {
-        if (element != null && name != null && isSupported()) {
-            element.dataset.set("ouiaId", id);
-            element.dataset.set("ouiaType", name);
+    public static void ouia(HTMLElement element, String componentId, String componentType) {
+        if (element != null && componentType != null && isSupported()) {
+            if (componentId != null) {
+                element.dataset.set("ouiaComponentId", componentId);
+            }
+            element.dataset.set("ouiaComponentType", componentType);
+            element.dataset.set("ouiaSafe", "true");
+        }
+    }
+
+    public static void ouia(SVGElement element, String componentType) {
+        if (element != null && componentType != null && isSupported()) {
+            element.dataset.set("ouiaComponentType", componentType);
+            element.dataset.set("ouiaSafe", "true");
+        }
+    }
+
+    public static void ouia(SVGElement element, String componentId, String componentType) {
+        if (element != null && componentType != null && isSupported()) {
+            if (componentId != null) {
+                element.dataset.set("ouiaComponentId", componentId);
+            }
+            element.dataset.set("ouiaComponentType", componentType);
             element.dataset.set("ouiaSafe", "true");
         }
     }
