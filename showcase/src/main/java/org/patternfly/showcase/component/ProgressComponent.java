@@ -40,6 +40,7 @@ import static org.patternfly.component.progress.MeasureLocation.inside;
 import static org.patternfly.component.progress.MeasureLocation.none;
 import static org.patternfly.component.progress.MeasureLocation.outside;
 import static org.patternfly.component.progress.Progress.progress;
+import static org.patternfly.core.Tuple.tuple;
 import static org.patternfly.core.Tuples.tuples;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
@@ -224,13 +225,13 @@ public class ProgressComponent extends SnippetPage {
         addSnippet(new Snippet("progress-step-instruction", "Progress with step instructions",
                 code("progress-step-instruction"), () -> {
             // @code-start:progress-step-instruction
-            Tuples<Integer, String> instructions = tuples(
-                    0, "Preparing",
-                    1, "Collecting files",
-                    2, "Copying files",
-                    3, "Verifying files",
-                    4, "Restarting server",
-                    5, "Cleanup");
+            Tuples<Integer, String> instructions = Tuples.<Integer, String>tuples(
+                    tuple(0, "Preparing"),
+                    tuple(1, "Collecting files"),
+                    tuple(2, "Copying files"),
+                    tuple(3, "Verifying files"),
+                    tuple(4, "Restarting server"),
+                    tuple(5, "Cleanup"));
             return div()
                     .add(progress()
                             .label((min, max, step, value) -> "Step " + value + ": " + instructions.value(value))
@@ -274,10 +275,10 @@ public class ProgressComponent extends SnippetPage {
                 code("progress-helper-text"), () -> {
             // @code-start:progress-helper-text
             Tuples<Status, String> status = tuples(
-                    info, "Default variant",
-                    success, "Success variant",
-                    warning, "Warning variant",
-                    danger, "Danger variant"
+                    tuple(info, "Default variant"),
+                    tuple(success, "Success variant"),
+                    tuple(warning, "Warning variant"),
+                    tuple(danger, "Danger variant")
             );
             Progress progress = progress();
             HelperText helperText = helperText("Default variant is being displayed");

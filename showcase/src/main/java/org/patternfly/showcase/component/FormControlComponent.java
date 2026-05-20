@@ -39,6 +39,7 @@ import static org.patternfly.component.form.TextAreaResize.both;
 import static org.patternfly.component.form.TextAreaResize.horizontal;
 import static org.patternfly.component.form.TextAreaResize.vertical;
 import static org.patternfly.component.form.TextInput.textInput;
+import static org.patternfly.core.Tuple.tuple;
 import static org.patternfly.core.Tuples.tuples;
 import static org.patternfly.icon.IconSets.fas.calendar;
 import static org.patternfly.icon.IconSets.fas.clock;
@@ -93,16 +94,16 @@ public class FormControlComponent extends SnippetPage {
             String[] values0 = {"Mr", "Miss", "Mrs", "Ms", "Dr", "Other"};
 
             Tuples<String, Tuples<String, Boolean>> groups0 = tuples(
-                    "Group 1", tuples(
-                            "The first option", false,
-                            "Option groups (second option selected)", false),
-                    "Group 2", tuples(
-                            "The third option", false,
-                            "The fourth option", true));
+                    tuple("Group 1", tuples(
+                            tuple("The first option", false),
+                            tuple("Option groups (second option selected)", false))),
+                    tuple("Group 2", tuples(
+                            tuple("The third option", false),
+                            tuple("The fourth option", true))));
 
             Tuples<String, List<String>> groups1 = tuples(
-                    "Group 1", asList("The first option", "The second option"),
-                    "Group 2", asList("The third option", "The fourth option"));
+                    tuple("Group 1", asList("The first option", "The second option")),
+                    tuple("Group 2", asList("The third option", "The fourth option")));
 
             return div()
                     .add(formSelect("form-select-0")
