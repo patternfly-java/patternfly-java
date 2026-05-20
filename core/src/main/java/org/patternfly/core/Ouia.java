@@ -36,6 +36,7 @@ import static elemental2.dom.DomGlobal.window;
  */
 public final class Ouia {
 
+    /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given HTML element. */
     public static void ouia(HTMLElement element, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             element.dataset.set("ouiaComponentType", componentType);
@@ -43,6 +44,7 @@ public final class Ouia {
         }
     }
 
+    /** Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given HTML element. */
     public static void ouia(HTMLElement element, String componentId, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             if (componentId != null) {
@@ -53,6 +55,7 @@ public final class Ouia {
         }
     }
 
+    /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given SVG element. */
     public static void ouia(SVGElement element, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             element.dataset.set("ouiaComponentType", componentType);
@@ -60,6 +63,7 @@ public final class Ouia {
         }
     }
 
+    /** Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given SVG element. */
     public static void ouia(SVGElement element, String componentId, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             if (componentId != null) {
@@ -70,12 +74,14 @@ public final class Ouia {
         }
     }
 
+    /** Sets {@code data-ouia-safe} to the given value on the given HTML element. */
     public static void ouiaSafe(HTMLElement element, boolean safe) {
         if (element != null && isSupported()) {
             element.dataset.set("ouiaSafe", String.valueOf(safe));
         }
     }
 
+    /** Sets {@code data-ouia-safe} to the given value on the given SVG element. */
     public static void ouiaSafe(SVGElement element, boolean safe) {
         if (element != null && isSupported()) {
             element.dataset.set("ouiaSafe", String.valueOf(safe));
