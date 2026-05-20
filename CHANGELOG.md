@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Use OIDC to publish NPM packages in release workflow
+
 ## [0.8.0] - 2026-05-20
 
 ### Added
