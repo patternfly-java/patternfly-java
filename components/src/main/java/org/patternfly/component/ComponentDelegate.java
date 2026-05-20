@@ -28,6 +28,7 @@ import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.core.OuiaSupport;
 
 import elemental2.dom.HTMLElement;
 
@@ -36,6 +37,7 @@ import static org.patternfly.core.Ouia.ouia;
 
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
+        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
         ElementContainerMethods<E, B>,
@@ -61,9 +63,9 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
         ouia(delegate, componentType.componentName);
     }
 
-    public B ouiaId(String id) {
-        ouia(element(), id, componentType().componentName);
-        return that();
+    @Override
+    public String ouiaComponentType() {
+        return componentType.componentName;
     }
 
     @Override

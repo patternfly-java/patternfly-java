@@ -28,6 +28,7 @@ import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.OuiaSupport;
 
 import elemental2.dom.HTMLElement;
 
@@ -36,6 +37,7 @@ import static org.patternfly.component.ComponentRegistry.componentRegistry;
 import static org.patternfly.core.Ouia.ouia;
 
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
+        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
         ElementContainerMethods<E, B>,
@@ -61,9 +63,9 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         ouia(element, componentType.componentName + "/" + subComponentName);
     }
 
-    public B ouiaId(String id) {
-        ouia(element(), id, componentType.componentName + "/" + subComponentName);
-        return that();
+    @Override
+    public String ouiaComponentType() {
+        return componentType.componentName + "/" + subComponentName;
     }
 
     protected String subComponentId() {

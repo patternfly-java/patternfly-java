@@ -27,6 +27,7 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.OuiaSupport;
 
 import elemental2.dom.HTMLElement;
 
@@ -36,6 +37,7 @@ import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
+        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
         ElementConsumerMethods<E, B>,
@@ -57,9 +59,9 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
         ouia(element, componentType.componentName);
     }
 
-    public B ouiaId(String id) {
-        ouia(element(), id, componentType().componentName);
-        return that();
+    @Override
+    public String ouiaComponentType() {
+        return componentType.componentName;
     }
 
     @Override
