@@ -26,7 +26,6 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
 import static org.patternfly.core.Aria.hidden;
-import static org.patternfly.core.Ouia.ouiaTransition;
 import static org.patternfly.style.Classes.collapsed;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expanded;
@@ -97,7 +96,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
     @Override
     public void collapse(boolean fireEvent) {
         if (!keepExpanded) {
-            ouiaTransition(element());
+            ouiaTransition();
             element().classList.remove(modifier(expanded));
             element().classList.add(modifier(collapsed));
             aria(hidden, true);
@@ -109,7 +108,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     @Override
     public void expand(boolean fireEvent) {
-        ouiaTransition(element());
+        ouiaTransition();
         element().classList.remove(modifier(collapsed));
         element().classList.add(modifier(expanded));
         aria(hidden, false);

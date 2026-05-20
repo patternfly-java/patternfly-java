@@ -27,7 +27,8 @@
  *     <li>{@link org.patternfly.core.Attributes} - Common HTML attribute constants</li>
  *     <li>{@link org.patternfly.core.Dataset} - Constants for data-* attribute names used in PatternFly components</li>
  *     <li>{@link org.patternfly.core.Roles} - Constants for ARIA role attribute values</li>
- *     <li>{@link org.patternfly.core.Ouia} - Open UI Automation (OUIA) data attribute constants for testing</li>
+ *     <li>{@link org.patternfly.core.Ouia} - Open UI Automation (OUIA) data attribute utilities for testing</li>
+ *     <li>{@link org.patternfly.core.OuiaSupport} - Mixin interface for custom components to participate in OUIA</li>
  * </ul>
  *
  * <h3>Component Infrastructure</h3>

@@ -28,15 +28,16 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.OuiaSupport;
 
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
 import static java.util.Objects.requireNonNull;
-import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseLayout<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Layout,
+        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
         ElementContainerMethods<E, B>,
@@ -56,7 +57,12 @@ public abstract class BaseLayout<E extends HTMLElement, B extends TypedBuilder<E
     protected BaseLayout(LayoutType layoutType, E element) {
         this.layoutType = requireNonNull(layoutType, "layout type required");
         this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
-        ouia(element, layoutType.id, layoutType.layoutName);
+        initOuia(layoutType.id);
+    }
+
+    @Override
+    public String ouiaComponentType() {
+        return layoutType.layoutName;
     }
 
     @Override

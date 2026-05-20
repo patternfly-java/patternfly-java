@@ -31,6 +31,10 @@ import elemental2.dom.HTMLElement;
  * <pre>
  * public class MyWidget implements IsElement&lt;HTMLElement&gt;, OuiaSupport&lt;HTMLElement, MyWidget&gt; {
  *
+ *     public MyWidget() {
+ *         initOuia();
+ *     }
+ *
  *     &#64;Override
  *     public String ouiaComponentType() {
  *         return "MyApp/MyWidget";
@@ -45,9 +49,29 @@ public interface OuiaSupport<E extends HTMLElement, B extends TypedBuilder<E, B>
     /** Returns the OUIA component type identifier (e.g. {@code "PF6/Component/Button"} or {@code "MyApp/MyWidget"}). */
     String ouiaComponentType();
 
+    /** Initializes OUIA attributes ({@code data-ouia-component-type} and {@code data-ouia-safe}) on this component's element. */
+    default void initOuia() {
+        Ouia.ouia(element(), ouiaComponentType());
+    }
+
+    /** Initializes OUIA attributes with a component ID on this component's element. */
+    default void initOuia(String id) {
+        Ouia.ouia(element(), id, ouiaComponentType());
+    }
+
     /** Sets the {@code data-ouia-component-id} attribute on this component's element. */
     default B ouiaId(String id) {
         Ouia.ouia(element(), id, ouiaComponentType());
         return that();
+    }
+
+    /** Sets the {@code data-ouia-safe} attribute on this component's element. */
+    default void ouiaSafe(boolean safe) {
+        Ouia.ouiaSafe(element(), safe);
+    }
+
+    /** Marks the element as unsafe during a CSS transition and restores it to safe afterward. */
+    default void ouiaTransition() {
+        Ouia.ouiaTransition(element());
     }
 }

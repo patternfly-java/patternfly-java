@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `OuiaSupport` interface in `core` module for custom components to participate in OUIA without extending PatternFly Java base classes; `BaseComponent`, `SubComponent`, and `ComponentDelegate` now implement this interface
+- Add `OuiaSupport` interface in `core` module for custom components to participate in OUIA without extending PatternFly Java base classes; `BaseComponent`, `SubComponent`, `ComponentDelegate`, `BaseLayout`, and `BaseChart` now implement this interface
+- Replace direct `Ouia` static method calls with `OuiaSupport` default methods in `Button`, `Icon`, `Skeleton`, `Drawer`, `PageSidebar`, and `ExpandableSection`
 
 ## [0.7.8] - 2026-05-19
 

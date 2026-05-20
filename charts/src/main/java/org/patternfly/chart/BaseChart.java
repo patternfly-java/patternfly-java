@@ -27,15 +27,16 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
+import org.patternfly.core.OuiaSupport;
 
 import elemental2.core.JsArray;
 import jsinterop.base.Js;
 
 import static java.util.Objects.requireNonNull;
-import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E, B>> implements
         Chart,
+        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
         ElementConsumerMethods<E, B>,
@@ -56,7 +57,12 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     protected BaseChart(ChartType chartType, E element) {
         this.chartType = requireNonNull(chartType, "chart type required");
         this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
-        ouia(element, chartType.id, chartType.chartName);
+        initOuia(chartType.id);
+    }
+
+    @Override
+    public String ouiaComponentType() {
+        return chartType.chartName;
     }
 
     @Override

@@ -43,7 +43,6 @@ import static elemental2.dom.DomGlobal.setInterval;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Aria.controls;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.core.Ouia.ouiaTransition;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandTop;
 import static org.patternfly.style.Classes.expandableSection;
@@ -221,7 +220,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     @Override
     public void collapse(boolean fireEvent) {
-        ouiaTransition(element());
+        ouiaTransition();
         element().classList.remove(modifier(expanded));
         if (toggle != null) {
             toggle.collapse(directionUp);
@@ -239,7 +238,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
 
     @Override
     public void expand(boolean fireEvent) {
-        ouiaTransition(element());
+        ouiaTransition();
         element().classList.add(modifier(expanded));
         if (toggle != null) {
             toggle.expand(directionUp);

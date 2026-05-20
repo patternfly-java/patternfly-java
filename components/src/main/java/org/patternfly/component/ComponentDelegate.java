@@ -33,7 +33,6 @@ import org.patternfly.core.OuiaSupport;
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
-import static org.patternfly.core.Ouia.ouia;
 
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
@@ -60,7 +59,7 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
 
     protected void delegateTo(E delegate) {
         this.delegate = delegate;
-        ouia(delegate, componentType.componentName);
+        initOuia();
     }
 
     @Override

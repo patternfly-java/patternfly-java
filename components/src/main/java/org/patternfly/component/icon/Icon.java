@@ -33,7 +33,6 @@ import elemental2.dom.HTMLElement;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.spinner.Spinner.spinner;
-import static org.patternfly.core.Ouia.ouiaSafe;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
@@ -138,7 +137,7 @@ public class Icon extends BaseComponent<HTMLElement, Icon> implements
         } else {
             element().classList.remove(modifier(Classes.inProgress));
         }
-        ouiaSafe(element(), !inProgress);
+        ouiaSafe(!inProgress);
         return this;
     }
 

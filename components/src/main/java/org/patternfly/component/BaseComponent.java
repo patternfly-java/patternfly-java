@@ -33,7 +33,6 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 import static org.patternfly.component.ComponentRegistry.componentRegistry;
-import static org.patternfly.core.Ouia.ouia;
 
 public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,
@@ -56,7 +55,7 @@ public abstract class BaseComponent<E extends HTMLElement, B extends TypedBuilde
     protected BaseComponent(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
         this.element = requireNonNull(element, "element required");
-        ouia(element, componentType.componentName);
+        initOuia();
     }
 
     @Override

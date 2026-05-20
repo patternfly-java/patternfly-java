@@ -34,7 +34,6 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 import static org.patternfly.component.ComponentRegistry.componentRegistry;
-import static org.patternfly.core.Ouia.ouia;
 
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         OuiaSupport<E, B>,
@@ -60,7 +59,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
         this.subComponentId = requireNonNull(subComponentId, "sub-component ID required");
         this.subComponentName = requireNonNull(subComponentName, "sub-component name required");
         this.element = requireNonNull(element, "element required");
-        ouia(element, componentType.componentName + "/" + subComponentName);
+        initOuia();
     }
 
     @Override
