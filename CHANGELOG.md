@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-05-20
+
 ### Changed
 
 - Use OIDC to publish NPM packages in release workflow
@@ -1037,7 +1039,8 @@ Stay tuned for more to come...
 
 
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.8...v0.8.0
 [0.7.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.7...v0.7.8
 [0.7.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.6...v0.7.7
