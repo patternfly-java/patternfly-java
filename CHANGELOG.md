@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-05-20
+
 ### Added
 
 - Add `OuiaSupport` interface in `core` module for custom components to participate in OUIA without extending PatternFly Java base classes; `BaseComponent`, `SubComponent`, `ComponentDelegate`, `BaseLayout`, and `BaseChart` now implement this interface
@@ -1031,7 +1033,8 @@ Stay tuned for more to come...
 
 
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.8...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.8...v0.8.0
 [0.7.8]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.7...v0.7.8
 [0.7.7]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.6...v0.7.7
 [0.7.6]: https://github.com/patternfly-java/patternfly-java/compare/v0.7.5...v0.7.6
