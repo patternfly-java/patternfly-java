@@ -78,7 +78,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 25
-          registry-url: 'https://registry.npmjs.org'
       - run: npm install -g npm@latest
       - run: corepack enable
       - name: Publish @patternfly-java/core
