@@ -77,7 +77,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 25
+          node-version: 24
       - run: npm install -g npm@latest
       - run: corepack enable
       - name: Publish @patternfly-java/core
@@ -105,7 +105,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
-          node-version: 25
+          node-version: 24
       - run: corepack enable
       - run: pnpm install
         working-directory: charts/npm
