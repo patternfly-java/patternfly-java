@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Replace FontAwesome icons with Red Hat brand icons across all components (close, carets, status icons, utility icons)
+- Migrate showcase icon references from FontAwesome 5 to Red Hat brand icon sets (rhUi)
 - Update `Severity` and `ValidationStatus` enums to use rhUi status icons
 - Update `@patternfly/react-icons` from 6.2.2 to 6.5.1 and `@patternfly/patternfly` from 6.2.3 to 6.5.2
 - Update `@patternfly/react-tokens` from 6.2.2 to 6.5.1 adding 58 new design tokens (1,014 → 1,072)
