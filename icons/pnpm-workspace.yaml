@@ -14,6 +14,11 @@
 #  limitations under the License.
 #
 
+allowBuilds:
+  '@fortawesome/fontawesome-common-types': set this to true or false
+  '@fortawesome/free-brands-svg-icons': set this to true or false
+  '@fortawesome/free-regular-svg-icons': set this to true or false
+  '@fortawesome/free-solid-svg-icons': set this to true or false
 onlyBuiltDependencies:
   - '@fortawesome/fontawesome-common-types'
   - '@fortawesome/free-brands-svg-icons'

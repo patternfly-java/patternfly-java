@@ -69,7 +69,7 @@ import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHea
 import static org.patternfly.extension.finder.FinderColumnSearch.finderColumnSearch;
 import static org.patternfly.extension.finder.FinderItem.errorItem;
 import static org.patternfly.extension.finder.FinderItem.loadingItem;
-import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.filtered;
 import static org.patternfly.style.Classes.modifier;

@@ -37,6 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Update `@patternfly/react-icons` from 6.2.2 to 6.5.1 and `@patternfly/patternfly` from 6.2.3 to 6.5.2
 - Update `@patternfly/react-tokens` from 6.2.2 to 6.5.1 adding 58 new design tokens (1,014 → 1,072)
 - Update PatternFly CSS version from 6.4.0 to 6.5.2 in pom.xml
+- Upgrade FontAwesome icons from 5.x to 7.2.0, adding 533 new icons (2,888 → 3,421 total)
 - Update showcase dev dependencies (basic-ftp, puppeteer, wait-on, pnpm)
 - Refactor `ThemeManager` to support multi-class value mapping via `Function<E, String>`
 - Rebuild `ThemeSelector` with three toggle groups (Theme, Color scheme, Contrast mode) matching PatternFly website

@@ -21,8 +21,8 @@ import org.patternfly.component.icon.IconSize;
 
 import static org.patternfly.component.icon.Icon.icon;
 import static org.patternfly.icon.IconSets.fas.check;
-import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
 import static org.patternfly.icon.IconSets.fas.filter;
+import static org.patternfly.icon.IconSets.fas.triangleExclamation;
 import static org.patternfly.style.Status.warning;
 
 public class IconDemo {
@@ -32,7 +32,7 @@ public class IconDemo {
         icon(check());
         icon(filter())
                 .size(IconSize.lg);
-        icon(exclamationTriangle())
+        icon(triangleExclamation())
                 .inline()
                 .status(warning);
         // @end region = icon

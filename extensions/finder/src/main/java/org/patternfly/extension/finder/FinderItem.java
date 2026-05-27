@@ -63,7 +63,7 @@ import static org.patternfly.extension.finder.FinderClasses.pin;
 import static org.patternfly.extension.finder.FinderItemDescription.finderItemDescription;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.thumbtack;
-import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.icon.IconSets.rhMicrons.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.icon;
@@ -311,7 +311,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         insertAfter(button().css(component(finder, item, pin))
                 .on(click, this::togglePin)
                 .add(thumbtack().css(component(finder, item, pin, icon) + "--default"))
-                .add(times().css(component(finder, item, pin, icon) + "--pinned"))
+                .add(close().css(component(finder, item, pin, icon) + "--pinned"))
                 .element(), cc.element());
     }
 
