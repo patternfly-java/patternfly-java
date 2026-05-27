@@ -26,6 +26,7 @@ import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasValue;
 import org.patternfly.handler.ChangeHandler;
+import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Required;
@@ -125,6 +126,12 @@ public class Radio extends BaseComponent<HTMLElement, Radio> implements
                 labelElement.classList.remove(modifier(Classes.disabled));
             }
         }
+        return this;
+    }
+
+    /** Sets the {@code aria-describedby} attribute on the input element. */
+    public Radio ariaDescribedBy(String describedBy) {
+        inputElement.setAttribute(Aria.describedBy, describedBy);
         return this;
     }
 

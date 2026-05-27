@@ -27,6 +27,8 @@ import org.patternfly.core.LanguageDirection;
 import org.patternfly.handler.ResizeHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Glass;
+import org.patternfly.style.Modifiers.NoPlainOnGlass;
 import org.patternfly.style.Width;
 
 import elemental2.dom.AddEventListenerOptions;
@@ -83,7 +85,10 @@ import static org.patternfly.style.Variables.FlexBasis;
  * The sliding panel in a {@link Drawer} component. Elements should not be added directly to this subcomponent, but instead
  * nested inside a {@link DrawerBody} or {@link DrawerPanelHead}.
  */
-public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel> implements Attachable {
+public class DrawerPanel extends DrawerSubComponent<HTMLDivElement, DrawerPanel> implements
+        Attachable,
+        Glass<HTMLDivElement, DrawerPanel>,
+        NoPlainOnGlass<HTMLDivElement, DrawerPanel> {
 
     // ------------------------------------------------------ factory
 

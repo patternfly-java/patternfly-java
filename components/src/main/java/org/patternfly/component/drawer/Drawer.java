@@ -23,6 +23,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Modifiers.Inline;
+import org.patternfly.style.Modifiers.Pill;
 import org.patternfly.style.Modifiers.Static;
 
 import elemental2.dom.Event;
@@ -46,6 +47,7 @@ import static org.patternfly.style.TypedModifier.swap;
 public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         Expandable<HTMLElement, Drawer>,
         Inline<HTMLElement, Drawer>,
+        Pill<HTMLElement, Drawer>,
         Static<HTMLElement, Drawer> {
 
     // ------------------------------------------------------ factory

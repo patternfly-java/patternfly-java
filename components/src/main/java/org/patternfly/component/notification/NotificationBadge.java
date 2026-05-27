@@ -36,6 +36,7 @@ import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
+import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.NotificationStatus;
 
 import elemental2.dom.Event;
@@ -59,7 +60,8 @@ import static org.patternfly.style.NotificationStatus.unread;
 public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBadge> implements
         Expandable<HTMLElement, NotificationBadge>,
         HasObservableValue<HTMLElement, NotificationBadge, Integer>,
-        HasValue<Integer> {
+        HasValue<Integer>,
+        Plain<HTMLElement, NotificationBadge> {
 
     // ------------------------------------------------------ factory
 

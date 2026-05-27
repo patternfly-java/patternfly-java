@@ -20,6 +20,7 @@ import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Color;
+import org.patternfly.style.Modifiers.Pill;
 import org.patternfly.style.Modifiers.Static;
 import org.patternfly.style.Status;
 
@@ -42,6 +43,7 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class Banner extends BaseComponent<HTMLDivElement, Banner> implements
         ElementTextMethods<HTMLDivElement, Banner>,
+        Pill<HTMLDivElement, Banner>,
         Static<HTMLDivElement, Banner> {
 
     // ------------------------------------------------------ factory

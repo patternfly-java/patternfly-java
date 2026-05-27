@@ -27,6 +27,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.core.Aria;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -97,6 +98,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
     private final List<ToggleHandler<ExpandableSection>> toggleHandler;
 
     private int truncate;
+    private String ariaLabel;
     private boolean wired;
     private boolean detached;
     private boolean directionUp;
@@ -157,6 +159,12 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
      */
     public ExpandableSection detached() {
         this.detached = true;
+        return this;
+    }
+
+    /** Sets the {@code aria-label} attribute on the toggle button. */
+    public ExpandableSection ariaLabel(String ariaLabel) {
+        this.ariaLabel = ariaLabel;
         return this;
     }
 
@@ -296,6 +304,9 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
                 // I'm a detached expandable section containing the toggle
                 toggle.button.id(toggleId);
                 toggle.button.aria(controls, contentId);
+                if (ariaLabel != null) {
+                    toggle.button.aria(Aria.label, ariaLabel);
+                }
                 toggleButton = toggle.button.element();
             } else if (content != null) {
                 // I'm a detached expandable section containing the content
@@ -310,6 +321,9 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             if (toggle != null && content != null) {
                 toggle.button.id(toggleId);
                 toggle.button.aria(controls, contentId);
+                if (ariaLabel != null) {
+                    toggle.button.aria(Aria.label, ariaLabel);
+                }
                 toggleButton = toggle.button.element();
                 content.id(contentId);
                 content.aria(labelledBy, toggleId);

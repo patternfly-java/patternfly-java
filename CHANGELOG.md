@@ -15,6 +15,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add Glass contrast mode with `Contrast.GLASS` mapping to `pf-v6-theme-glass`
 - Add `Glass` and `NoPlainOnGlass` modifier interfaces to `Modifiers`
 - Add `glass` and `noPlainOnGlass` CSS constants to `Classes`
+- Add `Circle` and `Pill` modifier interfaces to `Modifiers` with `circle` and `pill` CSS constants
+- Add `Circle` modifier to Button
+- Add `Vertical` modifier to ActionList
+- Add `Plain` modifier to Table, DataList, DrawerSection, Wizard
+- Add `NoPlainOnGlass` modifier to DataList
+- Add `Pill` modifier to Drawer, Banner
+- Add `Glass` and `NoPlainOnGlass` modifiers to DrawerPanel
+- Add `Plain` and `NoPlainOnGlass` modifiers to Accordion
+- Add `FullWidth` modifier to ToggleGroup
+- Add `Glass` modifier to Card
+- Add `Plain` modifier to NotificationBadge
+- Add `ariaDescribedBy(String)` to Radio and Checkbox
+- Add `hideStatusIcon()` to Progress
+- Add `ariaLabel(String)` to ExpandableSection
 
 ### Changed
 

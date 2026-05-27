@@ -26,6 +26,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.style.Modifiers.Vertical;
 
 import elemental2.dom.HTMLElement;
 
@@ -43,7 +44,8 @@ import static org.patternfly.style.Classes.modifier;
  * @see <a href="https://www.patternfly.org/components/action-list">https://www.patternfly.org/components/action-list</a>
  */
 public class ActionList extends BaseComponent<HTMLElement, ActionList> implements
-        HasItems<HTMLElement, ActionList, ActionListGroup> {
+        HasItems<HTMLElement, ActionList, ActionListGroup>,
+        Vertical<HTMLElement, ActionList> {
 
     // ------------------------------------------------------ factory
 

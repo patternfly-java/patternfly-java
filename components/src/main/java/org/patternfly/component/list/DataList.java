@@ -30,6 +30,8 @@ import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.table.Wrap;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.NoPlainOnGlass;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.HTMLUListElement;
 
@@ -61,7 +63,9 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class DataList extends BaseComponent<HTMLUListElement, DataList> implements
         Compact<HTMLUListElement, DataList>,
-        Ordered<HTMLUListElement, DataList, DataListItem> {
+        NoPlainOnGlass<HTMLUListElement, DataList>,
+        Ordered<HTMLUListElement, DataList, DataListItem>,
+        Plain<HTMLUListElement, DataList> {
 
     // ------------------------------------------------------ factory
 

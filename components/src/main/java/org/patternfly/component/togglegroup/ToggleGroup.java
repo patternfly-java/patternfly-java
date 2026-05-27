@@ -38,6 +38,7 @@ import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
+import org.patternfly.style.Modifiers.FullWidth;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
@@ -62,6 +63,7 @@ import static org.patternfly.style.Classes.toggleGroup;
 public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> implements
         Compact<HTMLElement, ToggleGroup>,
         Disabled<HTMLElement, ToggleGroup>,
+        FullWidth<HTMLElement, ToggleGroup>,
         HasItems<HTMLElement, ToggleGroup, ToggleGroupItem> {
 
     // ------------------------------------------------------ factory

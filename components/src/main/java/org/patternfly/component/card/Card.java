@@ -31,6 +31,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.FullHeight;
+import org.patternfly.style.Modifiers.Glass;
 import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
@@ -64,6 +65,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         Disabled<HTMLDivElement, Card>,
         Expandable<HTMLDivElement, Card>,
         FullHeight<HTMLDivElement, Card>,
+        Glass<HTMLDivElement, Card>,
         Plain<HTMLDivElement, Card> {
 
     // ------------------------------------------------------ factory

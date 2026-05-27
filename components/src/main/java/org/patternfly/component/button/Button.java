@@ -35,6 +35,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Circle;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.NoPadding;
@@ -80,6 +81,7 @@ import static org.patternfly.style.Size.md;
  * @see <a href= "https://www.patternfly.org/components/button">https://www.patternfly.org/components/button</a>
  */
 public class Button extends BaseComponent<HTMLElement, Button> implements
+        Circle<HTMLElement, Button>,
         ComponentIcon<HTMLElement, Button>,
         ComponentIconAndText<HTMLElement, Button>,
         ComponentProgress<HTMLElement, Button>,

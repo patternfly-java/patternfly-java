@@ -101,6 +101,7 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
     private int min;
     private int max;
     private int step;
+    private boolean hideStatusIcon;
     private Status status;
     private ProgressLabel label;
     private HelperText helperText;
@@ -210,6 +211,12 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
         return this;
     }
 
+    /** Hides the status icon when a status is applied. */
+    public Progress hideStatusIcon() {
+        this.hideStatusIcon = true;
+        return this;
+    }
+
     public Progress status(Status status) {
         if (verifyEnum(element(), "status", status, info, danger, success, warning)) {
             if (this.status != null) {
@@ -219,28 +226,37 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
                 css(status.modifier());
             }
             removeChildrenFrom(iconContainer);
-            switch (status) {
-                case danger:
-                    failSafeIconContainer().appendChild(closeCircle().element());
-                    if (helperText != null) {
+            if (!hideStatusIcon) {
+                switch (status) {
+                    case danger:
+                        failSafeIconContainer().appendChild(closeCircle().element());
+                        break;
+                    case warning:
+                        failSafeIconContainer().appendChild(warningFill().element());
+                        break;
+                    case success:
+                        failSafeIconContainer().appendChild(checkCircleFill().element());
+                        break;
+                    case info:
+                    case custom:
+                        break;
+                }
+            }
+            if (helperText != null) {
+                switch (status) {
+                    case danger:
                         helperText.firstItem().status(ValidationStatus.error);
-                    }
-                    break;
-                case warning:
-                    failSafeIconContainer().appendChild(warningFill().element());
-                    if (helperText != null) {
+                        break;
+                    case warning:
                         helperText.firstItem().status(ValidationStatus.warning);
-                    }
-                    break;
-                case success:
-                    failSafeIconContainer().appendChild(checkCircleFill().element());
-                    if (helperText != null) {
+                        break;
+                    case success:
                         helperText.firstItem().status(ValidationStatus.success);
-                    }
-                    break;
-                case info:
-                case custom:
-                    break;
+                        break;
+                    case info:
+                    case custom:
+                        break;
+                }
             }
             this.status = status;
         }

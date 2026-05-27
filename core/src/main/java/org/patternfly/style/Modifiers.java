@@ -65,6 +65,19 @@ public interface Modifiers {
         }
     }
 
+    interface Circle<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #circle(boolean) circle(true)} */
+        default B circle() {
+            return circle(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(circle)} */
+        default B circle(boolean circle) {
+            return toggleModifier(that(), element(), Classes.circle, circle);
+        }
+    }
+
     interface Compact<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #compact(boolean) compact(true)} */
@@ -275,6 +288,19 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(pageInsets)} */
         default B pageInsets(boolean pageInsets) {
             return toggleModifier(that(), element(), Classes.pageInsets, pageInsets);
+        }
+    }
+
+    interface Pill<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #pill(boolean) pill(true)} */
+        default B pill() {
+            return pill(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(pill)} */
+        default B pill(boolean pill) {
+            return toggleModifier(that(), element(), Classes.pill, pill);
         }
     }
 

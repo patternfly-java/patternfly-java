@@ -33,6 +33,7 @@ import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLButtonElement;
@@ -64,7 +65,9 @@ import static org.patternfly.style.Classes.wizard;
  *
  * @see <a href= "https://www.patternfly.org/components/wizard">https://www.patternfly.org/components/wizard</a>
  */
-public class Wizard extends BaseComponent<HTMLElement, Wizard> implements HasItems<HTMLElement, Wizard, WizardStep> {
+public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
+        HasItems<HTMLElement, Wizard, WizardStep>,
+        Plain<HTMLElement, Wizard> {
 
     // ------------------------------------------------------ factory
 

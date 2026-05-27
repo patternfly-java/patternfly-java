@@ -67,6 +67,7 @@ public interface Classes {
     String chip = "chip";
     String chipContainer = "chip-container";
     String chipGroup = "chip-group";
+    String circle = "circle";
     String clickable = "clickable";
     String clicked = "clicked";
     String close = "close";
@@ -212,6 +213,7 @@ public interface Classes {
     String path = "path";
     String pending = "pending";
     String picture = "picture";
+    String pill = "pill";
     String placeholder = "placeholder";
     String plain = "plain";
     String plainList = "plainList";

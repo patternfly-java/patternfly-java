@@ -33,21 +33,21 @@ These are cross-cutting concerns that affect many components.
 ## 3 — New Variants & Modifiers on Existing Components
 
 ### Button
-- [ ] 🔧 **Circle variant** — New `.pf-m-circle` modifier (#7922, #12092). Add `circle()` method or variant enum value.
-- [ ] 🔧 **Plain variant** — New `.pf-m-plain` on button (#8305). Button may already support `plain()` via `Modifiers.Plain` — verify it applies correctly with new styling.
+- [x] 🔧 **Circle variant** — New `.pf-m-circle` modifier (#7922, #12092). Button now implements `Circle` modifier interface.
+- [x] 🔧 **Plain variant** — New `.pf-m-plain` on button (#8305). Button already implements `Modifiers.Plain` — verified it applies correctly.
 
 ### ActionList
-- [ ] 🔧 **Vertical variant** — New `.pf-m-vertical` modifier (#7920, #12090). Add `vertical()` or `isVertical()` method. `Modifiers.Vertical` interface exists — implement it on ActionList.
+- [x] 🔧 **Vertical variant** — New `.pf-m-vertical` modifier (#7920, #12090). ActionList now implements `Vertical` modifier interface.
 
 ### Table
-- [ ] 🔧 **Plain variant** — New `isPlain` prop (#7925, #12112). Add `plain()` support via `Modifiers.Plain`.
-- [ ] 🔧 **Container queries support** — (#8054). CSS-only, verify markup compatibility.
+- [x] 🔧 **Plain variant** — New `isPlain` prop (#7925, #12112). Table now implements `Plain` modifier interface.
+- [x] 🔧 **Container queries support** — (#8054). CSS-only, no markup changes needed.
 - [ ] 🔧 **Dynamic sticky styling** — (#8321, #12348). New sticky behavior for table headers. Evaluate if Java API changes needed.
 - [ ] 🔧 **Indeterminate checkbox for select-all header** — (#12411). Add support for indeterminate state on select-all checkbox.
 
 ### DataList
-- [ ] 🔧 **Plain variant** — New `isPlain` prop (#7929, #12112). Add `plain()` support.
-- [ ] 🔧 **`isNoPlainOnGlass` prop** — (#12292). Add glass-related modifier.
+- [x] 🔧 **Plain variant** — New `isPlain` prop (#7929, #12112). DataList now implements `Plain` modifier interface.
+- [x] 🔧 **`isNoPlainOnGlass` prop** — (#12292). DataList now implements `NoPlainOnGlass` modifier interface.
 
 ### Tabs
 - [ ] 🔧 **Nav variant** — New `.pf-m-nav` modifier (#7924, #12111). Add nav variant support.
@@ -55,33 +55,33 @@ These are cross-cutting concerns that affect many components.
 - [ ] 🔧 **Updated `aria-selected` and label attributes** — (#7975). Verify current implementation matches new behavior.
 
 ### Drawer
-- [ ] 🔧 **Pill variant** — New `.pf-m-pill` modifier (#7945, #12091). Add `pill()` method.
-- [ ] 🔧 **Glass panel support** — `noGlass` / glass props (#7963, #12125, #12305). Add glass-related methods.
-- [ ] 🔧 **Plain variant on DrawerSection** — (#8318). Add `plain()` to drawer section.
+- [x] 🔧 **Pill variant** — New `.pf-m-pill` modifier (#7945, #12091). Drawer now implements `Pill` modifier interface.
+- [x] 🔧 **Glass panel support** — `noGlass` / glass props (#7963, #12125, #12305). DrawerPanel now implements `Glass` and `NoPlainOnGlass` modifier interfaces.
+- [x] 🔧 **Plain variant on DrawerSection** — (#8318). DrawerSection now implements `Plain` modifier interface.
 - [ ] 🔧 **`inert` attribute when closed** — (#12027). Add `inert` attribute to DrawerPanelContent when drawer is closed.
-- [ ] 🔧 **Splitter restyled** — (#8198). CSS-only, verify compatibility.
+- [x] 🔧 **Splitter restyled** — (#8198). CSS-only, no markup changes needed.
 
 ### Wizard
 - [ ] ⚠️ **Warning step status** — (#12041). `ValidationStatus.warning` already exists in PatternFly Java — verify the wizard step properly supports it with correct icon.
-- [ ] 🔧 **Plain styling** — (#8215, #12289). Add `plain()` support to Wizard.
+- [x] 🔧 **Plain styling** — (#8215, #12289). Wizard now implements `Plain` modifier interface.
 
 ### Progress
-- [ ] 🔧 **`hideStatusIcon` flag** — (#12038). Add method to hide the status icon.
+- [x] 🔧 **`hideStatusIcon` flag** — (#12038). Added `hideStatusIcon()` builder method that suppresses status icons.
 - [ ] 🔧 **Fixed danger icon** — (#7900, #12073). Verify PatternFly Java uses `fa-exclamation-circle` for danger status.
 
 ### ExpandableSection
-- [ ] 🔧 **Aria labeling props** — (#12071). Add aria label support.
+- [x] 🔧 **Aria labeling props** — (#12071). Added `ariaLabel(String)` method that applies aria-label to the toggle button.
 - [ ] 🔧 **Functional `toggleContent`** — (#12063). Allow function-based toggle content.
 - [ ] 🔧 **More control over toggle icon** — (#12051). Add icon customization to toggle.
 
 ### Banner
-- [ ] 🔧 **Pill variant** — New `.pf-m-pill` modifier (#8353). Add `pill()` method.
+- [x] 🔧 **Pill variant** — New `.pf-m-pill` modifier (#8353). Banner now implements `Pill` modifier interface.
 
 ### Accordion
-- [ ] 🔧 **`isPlain` and `isNoPlainOnGlass` props** — (#12288). Add `plain()` and glass-related modifier.
+- [x] 🔧 **`isPlain` and `isNoPlainOnGlass` props** — (#12288). Accordion now implements `Plain` and `NoPlainOnGlass` modifier interfaces.
 
 ### ToggleGroup
-- [ ] 🔧 **Full width variant** — `.pf-m-full-width` (#8326, #12374). `Modifiers.FullWidth` already exists — implement it on ToggleGroup.
+- [x] 🔧 **Full width variant** — `.pf-m-full-width` (#8326, #12374). ToggleGroup now implements `FullWidth` modifier interface.
 
 ### Pagination
 - [ ] 🔧 **Dynamic sticky style** — (#8320, #12388). New sticky behavior.
@@ -92,9 +92,9 @@ These are cross-cutting concerns that affect many components.
 - [ ] 🔧 **Responsive height via breakpoints** — (#8295, #12347). Add breakpoint-based height.
 
 ### Card
-- [ ] 🔧 **`isGlass` prop** — (#12290). Add `glass()` method.
+- [x] 🔧 **`isGlass` prop** — (#12290). Card now implements `Glass` modifier interface.
 - [ ] ⚠️ **Card header wrap** — Card header wrap examples now require `.pf-v6-c-card__header-main` wrapper (#7897). Verify card header structure.
-- [ ] 🔧 **Clickable/selectable plain card border update** — (#8301). CSS-only, verify compatibility.
+- [x] 🔧 **Clickable/selectable plain card border update** — (#8301). CSS-only, no markup changes needed.
 
 ### Panel
 - [ ] 🔧 **Updated for Compass usage** — (#8303, #12372). Panel gained compass-related features. Evaluate impact.
@@ -105,7 +105,7 @@ These are cross-cutting concerns that affect many components.
 - [ ] 🔧 **Responsive docked nav support** — (#12327). Add support for docked navigation in page layout.
 
 ### NotificationBadge
-- [ ] 🔧 **Plain variant** — (#12139). Add `plain()` support.
+- [x] 🔧 **Plain variant** — (#12139). NotificationBadge now implements `Plain` modifier interface.
 
 ### TreeView
 - [ ] 🔧 **Disabled visual appearance** — (#8030, #12140). Already implemented in Java (`TreeViewItem.disabled()`), but verify the CSS class `.pf-m-disabled` on `<li>` matches new PatternFly behavior.
@@ -127,7 +127,7 @@ These are cross-cutting concerns that affect many components.
 - [ ] 🔧 **`default` as `validated` option** — (#12349). Add `default` to validation status options.
 
 ### Radio / Checkbox
-- [ ] 🔧 **`aria-describedBy` support** — (#12042). Add `ariaDescribedBy()` method.
+- [x] 🔧 **`aria-describedBy` support** — (#12042). Added `ariaDescribedBy(String)` method to both Radio and Checkbox.
 
 ### Dropdown
 - [ ] 🔧 **Optional container with `ouiaId`** — (#12022). Add OUIA ID support for dropdown container.

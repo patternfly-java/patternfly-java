@@ -30,6 +30,7 @@ import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.GridBreakpoint;
 import org.patternfly.style.Modifiers.Compact;
+import org.patternfly.style.Modifiers.Plain;
 
 import elemental2.dom.Event;
 import elemental2.dom.HTMLCollection;
@@ -61,6 +62,7 @@ import static org.patternfly.style.TypedModifier.swap;
  */
 public class Table extends BaseComponent<HTMLTableElement, Table> implements
         Compact<HTMLTableElement, Table>,
+        Plain<HTMLTableElement, Table>,
         Attachable {
 
     // ------------------------------------------------------ factory

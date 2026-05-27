@@ -34,6 +34,8 @@ import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
+import org.patternfly.style.Modifiers.NoPlainOnGlass;
+import org.patternfly.style.Modifiers.Plain;
 import org.patternfly.style.Size;
 
 import elemental2.dom.Event;
@@ -62,7 +64,9 @@ import static org.patternfly.style.Size.lg;
 public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
         Attachable,
         Bordered<HTMLElement, Accordion>,
-        HasItems<HTMLElement, Accordion, AccordionItem> {
+        HasItems<HTMLElement, Accordion, AccordionItem>,
+        NoPlainOnGlass<HTMLElement, Accordion>,
+        Plain<HTMLElement, Accordion> {
 
     // ------------------------------------------------------ factory
 
