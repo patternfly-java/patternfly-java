@@ -48,13 +48,13 @@ import static org.patternfly.component.icon.IconSize.xl;
 import static org.patternfly.icon.IconSets.fas.angleDown;
 import static org.patternfly.icon.IconSets.fas.angleRight;
 import static org.patternfly.icon.IconSets.fas.check;
-import static org.patternfly.icon.IconSets.fas.checkCircle;
-import static org.patternfly.icon.IconSets.fas.cog;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
-import static org.patternfly.icon.IconSets.fas.infoCircle;
-import static org.patternfly.icon.IconSets.fas.longArrowAltDown;
-import static org.patternfly.icon.IconSets.fas.plusCircle;
+import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
+import static org.patternfly.icon.IconSets.rhUi.settings;
+import static org.patternfly.icon.IconSets.rhUi.error;
+import static org.patternfly.icon.IconSets.rhUi.warning;
+import static org.patternfly.icon.IconSets.rhUi.information;
+import static org.patternfly.icon.IconSets.rhUi.longArrowDown;
+import static org.patternfly.icon.IconSets.rhUi.addCircle;
 import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
@@ -78,13 +78,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-basic"), () ->
                 // @code-start:icon-basic
                 div()
-                        .add(icon(longArrowAltDown()))
+                        .add(icon(longArrowDown()))
                         .add(" ")
                         .add(icon(angleRight()))
                         .add(" ")
                         .add(icon(angleDown()))
                         .add(" ")
-                        .add(icon(cog()))
+                        .add(icon(settings()))
                         .element()
                 // @code-end:icon-basic
         ));
@@ -94,17 +94,17 @@ public class IconComponent extends SnippetPage {
                 code("icon-sizes"), () ->
                 // @code-start:icon-sizes
                 div()
-                        .add(icon(plusCircle()).size(sm))
+                        .add(icon(addCircle()).size(sm))
                         .add(" ")
-                        .add(icon(plusCircle()).size(md))
+                        .add(icon(addCircle()).size(md))
                         .add(" ")
-                        .add(icon(plusCircle()).size(lg))
+                        .add(icon(addCircle()).size(lg))
                         .add(" ")
-                        .add(icon(plusCircle()).size(xl))
+                        .add(icon(addCircle()).size(xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(_2xl))
+                        .add(icon(addCircle()).size(_2xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(_3xl))
+                        .add(icon(addCircle()).size(_3xl))
                         .element()
                 // @code-end:icon-sizes
         ));
@@ -114,11 +114,11 @@ public class IconComponent extends SnippetPage {
                 code("body-sizes"), () ->
                 // @code-start:body-sizes
                 div()
-                        .add(icon(plusCircle()).size(bodySm))
+                        .add(icon(addCircle()).size(bodySm))
                         .add(" ")
-                        .add(icon(plusCircle()).size(bodyDefault))
+                        .add(icon(addCircle()).size(bodyDefault))
                         .add(" ")
-                        .add(icon(plusCircle()).size(bodyLg))
+                        .add(icon(addCircle()).size(bodyLg))
                         .element()
                 // @code-end:body-sizes
         ));
@@ -128,17 +128,17 @@ public class IconComponent extends SnippetPage {
                 code("heading-sizes"), () ->
                 // @code-start:heading-sizes
                 div()
-                        .add(icon(plusCircle()).size(headingSm))
+                        .add(icon(addCircle()).size(headingSm))
                         .add(" ")
-                        .add(icon(plusCircle()).size(headingMd))
+                        .add(icon(addCircle()).size(headingMd))
                         .add(" ")
-                        .add(icon(plusCircle()).size(headingLg))
+                        .add(icon(addCircle()).size(headingLg))
                         .add(" ")
-                        .add(icon(plusCircle()).size(headingXl))
+                        .add(icon(addCircle()).size(headingXl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(heading2xl))
+                        .add(icon(addCircle()).size(heading2xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(heading3xl))
+                        .add(icon(addCircle()).size(heading3xl))
                         .element()
                 // @code-end:heading-sizes
         ));
@@ -148,13 +148,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-status-colors"), () ->
                 // @code-start:icon-status-colors
                 div()
-                        .add(icon(exclamationCircle()).status(danger))
+                        .add(icon(error()).status(danger))
                         .add(" ")
-                        .add(icon(exclamationTriangle()).status(warning))
+                        .add(icon(warning()).status(warning))
                         .add(" ")
                         .add(icon(check()).status(success))
                         .add(" ")
-                        .add(icon(infoCircle()).status(info))
+                        .add(icon(information()).status(info))
                         .add(" ")
                         .add(icon(bell()).status(custom))
                         .element()
@@ -166,13 +166,13 @@ public class IconComponent extends SnippetPage {
                 code("icon-container"), () ->
                 // @code-start:icon-container
                 div()
-                        .add(icon(plusCircle()).size(_3xl).iconSize(lg))
+                        .add(icon(addCircle()).size(_3xl).iconSize(lg))
                         .add(" ")
-                        .add(icon(plusCircle()).size(_3xl).iconSize(xl))
+                        .add(icon(addCircle()).size(_3xl).iconSize(xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(_3xl).iconSize(_2xl))
+                        .add(icon(addCircle()).size(_3xl).iconSize(_2xl))
                         .add(" ")
-                        .add(icon(plusCircle()).size(_3xl))
+                        .add(icon(addCircle()).size(_3xl))
                         .element()
                 // @code-end:icon-container
         ));
@@ -184,31 +184,31 @@ public class IconComponent extends SnippetPage {
                         .add(content()
                                 .add(h(1)
                                         .add("Heading ")
-                                        .add(icon(plusCircle()).inline()))
+                                        .add(icon(addCircle()).inline()))
                                 .add(p().text(LoremIpsum.paragraph()))
                                 .add(h(2)
                                         .add("Second level ")
-                                        .add(icon(plusCircle()).inline()))
+                                        .add(icon(addCircle()).inline()))
                                 .add(p()
-                                        .add(icon(plusCircle()).inline())
+                                        .add(icon(addCircle()).inline())
                                         .add(" " + LoremIpsum.paragraphs(2) + " ")
                                         .add(strong()
                                                 .add(LoremIpsum.words(2) + " ")
-                                                .add(icon(plusCircle()).inline()))
+                                                .add(icon(addCircle()).inline()))
                                         .add(" " + LoremIpsum.words(5))
                                         .add(LoremIpsum.paragraphs(2)))
                                 .add(small()
                                         .add("Sometimes you need small text ")
-                                        .add(icon(plusCircle()).inline()))
+                                        .add(icon(addCircle()).inline()))
                                 .add(div()
                                         .add("Inline with size specified: ")
-                                        .add(icon(plusCircle()).size(sm).inline())
+                                        .add(icon(addCircle()).size(sm).inline())
                                         .add(" small, ")
-                                        .add(icon(plusCircle()).size(md).inline())
+                                        .add(icon(addCircle()).size(md).inline())
                                         .add(" medium, ")
-                                        .add(icon(plusCircle()).size(lg).inline())
+                                        .add(icon(addCircle()).size(lg).inline())
                                         .add(" large, ")
-                                        .add(icon(plusCircle()).size(xl).inline())
+                                        .add(icon(addCircle()).size(xl).inline())
                                         .add(" extra large")))
                         .element()
                 // @code-end:icon-inline
@@ -217,7 +217,7 @@ public class IconComponent extends SnippetPage {
         addSnippet(new Snippet("icon-in-progress", "In progress",
                 code("icon-in-progress"), () -> {
             // @code-start:icon-in-progress
-            Icon icon = icon(checkCircle());
+            Icon icon = icon(checkCircleFill());
             return div()
                     .add(div().css(util("mb-md"))
                             .add(checkbox("in-progress-cb", "in-progress-cb", "Toggle in progress state")
@@ -230,7 +230,7 @@ public class IconComponent extends SnippetPage {
         addSnippet(new Snippet("icon-in-progress-custom", "Custom in progress icon",
                 code("icon-in-progress-custom"), () -> {
             // @code-start:icon-in-progress-custom
-            Icon icon = icon(checkCircle());
+            Icon icon = icon(checkCircleFill());
             return div()
                     .add(div().css(util("mb-md"))
                             .add(checkbox("in-progress-custom-cb", "in-progress-custom-cb", "Toggle in progress state")

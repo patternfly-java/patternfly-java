@@ -71,7 +71,7 @@ import static org.patternfly.icon.IconSets.fas.folder;
 import static org.patternfly.icon.IconSets.fas.music;
 import static org.patternfly.icon.IconSets.fas.plus;
 import static org.patternfly.icon.IconSets.fas.recordVinyl;
-import static org.patternfly.icon.IconSets.fas.redo;
+import static org.patternfly.icon.IconSets.rhUi.redo;
 import static org.patternfly.icon.PredefinedIcon.predefinedIcon;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;

@@ -105,8 +105,8 @@ import static org.patternfly.component.wizard.WizardHeaderTitle.wizardHeaderTitl
 import static org.patternfly.component.wizard.WizardStep.wizardStep;
 import static org.patternfly.component.wizard.WizardStepType.review;
 import static org.patternfly.component.wizard.WizardStepType.summary;
-import static org.patternfly.icon.IconSets.fas.birthdayCake;
-import static org.patternfly.icon.IconSets.fas.cogs;
+import static org.patternfly.icon.IconSets.fas.cakeCandles;
+import static org.patternfly.icon.IconSets.rhUi.gearGroup;
 import static org.patternfly.icon.IconSets.fas.utensils;
 import static org.patternfly.layout.bullseye.Bullseye.bullseye;
 import static org.patternfly.layout.bullseye.BullseyeItem.bullseyeItem;
@@ -209,7 +209,7 @@ public class WizardComponent extends SnippetPage {
                                     .add(bullseye().addItem(bullseyeItem()
                                             .add(emptyState().size(lg)
                                                     .text("Validating credentials")
-                                                    .icon(cogs())
+                                                    .icon(gearGroup())
                                                     .addBody(emptyStateBody().add(progress))
                                                     .addBody(emptyStateBody().text(LoremIpsum.words(20))))))
                                     .onEnter((wzd, step) -> {
@@ -608,7 +608,7 @@ public class WizardComponent extends SnippetPage {
                                     .onLeave(lh))
                             .addItem(wizardStep("wizard-hap-step-rvw", "Review", review)
                                     .add(bullseye().addItem(bullseyeItem().add(emptyState().size(xs)
-                                            .icon(birthdayCake())
+                                            .icon(cakeCandles())
                                             .text("Congratulations!")
                                             .addBody(emptyStateBody().add(content(p).editorial()
                                                     .text("You have successfully completed all steps."))))))))

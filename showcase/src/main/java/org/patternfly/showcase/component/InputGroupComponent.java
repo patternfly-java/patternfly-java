@@ -39,7 +39,7 @@ import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.popover.Popover.popover;
 import static org.patternfly.icon.IconSets.fas.at;
 import static org.patternfly.icon.IconSets.fas.dollarSign;
-import static org.patternfly.icon.IconSets.fas.questionCircle;
+import static org.patternfly.icon.IconSets.rhUi.questionMarkCircle;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
@@ -117,7 +117,7 @@ public class InputGroupComponent extends SnippetPage {
                                 .addItem(inputGroupItem().fill()
                                         .addControl(textInput("input-group-popover-0")))
                                 .addItem(inputGroupItem().id("input-group-popover-icon-0")
-                                        .addButton(button(questionCircle()).control()))
+                                        .addButton(button(questionMarkCircle()).control()))
                                 .add(popover(By.id("input-group-popover-icon-0"))
                                         .placement(top)
                                         .addBody("This field is an example of an input group with a popover.")))
@@ -126,7 +126,7 @@ public class InputGroupComponent extends SnippetPage {
                                 .addItem(inputGroupItem().fill()
                                         .addControl(textInput("input-group-popover-1")))
                                 .addItem(inputGroupItem().id("input-group-popover-icon-1")
-                                        .addButton(button(questionCircle()).plain()))
+                                        .addButton(button(questionMarkCircle()).plain()))
                                 .add(popover(By.id("input-group-popover-icon-1"))
                                         .placement(top)
                                         .addBody("This field is an example of an input group with a popover.")))

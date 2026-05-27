@@ -118,7 +118,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                                 .addAction(
                                                         codeEditorCopyToClipboardAction("Copy code to clipboard", "Code copied")
                                                                 .css("ws-code-editor-control"))
-                                                .addAction(codeEditorAction(IconSets.fas.undo())
+                                                .addAction(codeEditorAction(IconSets.rhUi.undo())
                                                         .id(undoId)
                                                         .css("ws-code-editor-control")
                                                         .onClick((event, codeEditorAction) -> undo()))

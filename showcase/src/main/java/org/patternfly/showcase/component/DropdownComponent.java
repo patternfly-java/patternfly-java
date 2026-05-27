@@ -40,8 +40,8 @@ import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
-import static org.patternfly.icon.IconSets.fas.cog;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
+import static org.patternfly.icon.IconSets.rhUi.settings;
+import static org.patternfly.icon.IconSets.rhUi.ellipsisVertical;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
@@ -78,7 +78,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-kebab"), () ->
                 // @code-start:dropdown-kebab
                 div()
-                        .add(dropdown(ellipsisV(), "kebab dropdown toggle")
+                        .add(dropdown(ellipsisVertical(), "kebab dropdown toggle")
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))
@@ -158,7 +158,7 @@ public class DropdownComponent extends SnippetPage {
                 code("dropdown-icon"), () ->
                 // @code-start:dropdown-icon
                 div()
-                        .add(dropdown(menuToggle("Icon").icon(cog()))
+                        .add(dropdown(menuToggle("Icon").icon(settings()))
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("item-0", "Action"))
                                         .addItem(linkMenuItem("item-1", "Link", "#item-1"))

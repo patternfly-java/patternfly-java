@@ -34,8 +34,8 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
 import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupItem;
 import static org.patternfly.icon.IconSets.fas.copy;
-import static org.patternfly.icon.IconSets.fas.shareSquare;
-import static org.patternfly.icon.IconSets.fas.undo;
+import static org.patternfly.icon.IconSets.rhUi.share;
+import static org.patternfly.icon.IconSets.rhUi.undo;
 import static org.patternfly.layout.stack.Stack.stack;
 import static org.patternfly.layout.stack.StackItem.stackItem;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -91,7 +91,7 @@ public class ToggleGroupComponent extends SnippetPage {
                         .add(toggleGroup(multi)
                                 .addItem(toggleGroupItem("toggle-group-icon-0").icon(copy()))
                                 .addItem(toggleGroupItem("toggle-group-icon-1").icon(undo()))
-                                .addItem(toggleGroupItem("toggle-group-icon-2").icon(shareSquare())))
+                                .addItem(toggleGroupItem("toggle-group-icon-2").icon(share())))
                         .element()
                 // @code-end:toggle-group-icon
         ));
@@ -103,12 +103,12 @@ public class ToggleGroupComponent extends SnippetPage {
                         .add(toggleGroup(multi)
                                 .addItem(toggleGroupItem("toggle-group-text-icon-0").iconAndText(copy(), "Copy"))
                                 .addItem(toggleGroupItem("toggle-group-text-icon-1").iconAndText(undo(), "Undo"))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(shareSquare(), "Share")))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(share(), "Share")))
                         .add(br())
                         .add(toggleGroup(multi)
                                 .addItem(toggleGroupItem("toggle-group-text-icon-0").iconAndText(copy(), "Copy", end))
                                 .addItem(toggleGroupItem("toggle-group-text-icon-1").iconAndText(undo(), "Undo", end))
-                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(shareSquare(), "Share", end)))
+                                .addItem(toggleGroupItem("toggle-group-text-icon-2").iconAndText(share(), "Share", end)))
                         .element()
                 // @code-end:toggle-group-text-icon
         ));

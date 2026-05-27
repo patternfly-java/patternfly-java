@@ -35,7 +35,7 @@ import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.extension.finder.FinderItemActions.finderItemActions;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
+import static org.patternfly.icon.IconSets.rhUi.ellipsisVertical;
 import static org.patternfly.icon.PredefinedIcon.predefinedIcon;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
@@ -81,7 +81,7 @@ public class FileData {
                 case "plain":
                     return button(suffix).plain().small();
                 case "kebab":
-                    return dropdown(menuToggle(ellipsisV()).small())
+                    return dropdown(menuToggle(ellipsisVertical()).small())
                             .applyToMenuList(list -> list
                                     .addItems(asList(suffix.split("\\|")), text ->
                                             menuItem(Id.build(text), text)));

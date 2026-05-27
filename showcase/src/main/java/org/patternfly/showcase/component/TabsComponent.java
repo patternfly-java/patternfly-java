@@ -52,7 +52,7 @@ import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.icon.IconSets.fas.box;
 import static org.patternfly.icon.IconSets.fas.database;
 import static org.patternfly.icon.IconSets.fas.laptop;
-import static org.patternfly.icon.IconSets.fas.projectDiagram;
+import static org.patternfly.icon.IconSets.rhUi.topology;
 import static org.patternfly.icon.IconSets.fas.server;
 import static org.patternfly.icon.IconSets.fas.users;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -293,7 +293,7 @@ public class TabsComponent extends SnippetPage {
                                         .icon(laptop())
                                         .addContent(tabContent().text("System")))
                                 .addItem(tab("tabs-icon-text-network", "Network")
-                                        .icon(projectDiagram())
+                                        .icon(topology())
                                         .addContent(tabContent().text("Network"))))
                         .element()
                 // @code-end:tabs-icon-text

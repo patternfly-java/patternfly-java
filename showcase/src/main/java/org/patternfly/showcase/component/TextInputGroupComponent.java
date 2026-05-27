@@ -35,7 +35,7 @@ import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TE
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
-import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.layout.flex.Direction.column;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.FlexItem.flexItem;

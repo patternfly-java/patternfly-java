@@ -66,7 +66,7 @@ import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.cube;
 import static org.patternfly.icon.IconSets.fas.layerGroup;
-import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.icon.IconSets.fas.table;
 import static org.patternfly.icon.IconSets.patternfly.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;

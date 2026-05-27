@@ -35,8 +35,8 @@ import static org.patternfly.component.menu.MenuToggleType.plainText;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
-import static org.patternfly.icon.IconSets.fas.cog;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
+import static org.patternfly.icon.IconSets.rhUi.settings;
+import static org.patternfly.icon.IconSets.rhUi.ellipsisVertical;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
@@ -98,19 +98,19 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-start:menu-toggle-icons
                 div()
                         .add(menuToggle()
-                                .icon(cog())
+                                .icon(settings())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().primary()
-                                .icon(cog())
+                                .icon(settings())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().secondary()
-                                .icon(cog())
+                                .icon(settings())
                                 .text("Icon"))
                         .add(" ")
                         .add(menuToggle().disabled()
-                                .iconAndText(cog(), "Icon")) // same as above
+                                .iconAndText(settings(), "Icon")) // same as above
                         .element()
                 // @code-end:menu-toggle-icons
         ));
@@ -142,9 +142,9 @@ public class MenuToggleComponent extends SnippetPage {
                 code("menu-toggle-plain-icon"), () ->
                 // @code-start:menu-toggle-plain-icon
                 div()
-                        .add(menuToggle(ellipsisV(), "plain kebab"))
+                        .add(menuToggle(ellipsisVertical(), "plain kebab"))
                         .add(" ")
-                        .add(menuToggle(ellipsisV(), "disabled kebab")
+                        .add(menuToggle(ellipsisVertical(), "disabled kebab")
                                 .disabled())
                         .element()
                 // @code-end:menu-toggle-plain-icon

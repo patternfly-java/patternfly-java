@@ -35,7 +35,7 @@ import static org.jboss.elemento.Elements.strong;
 import static org.patternfly.component.label.Label.label;
 import static org.patternfly.component.label.LabelGroup.labelGroup;
 import static org.patternfly.icon.IconSets.fas.cube;
-import static org.patternfly.icon.IconSets.fas.infoCircle;
+import static org.patternfly.icon.IconSets.rhUi.information;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.handler;
 import static org.patternfly.showcase.Code.code;
@@ -204,9 +204,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-basic
                 div()
                         .add(labelGroup()
-                                .addItem(label("Label 1").icon(infoCircle()))
-                                .addItem(label("Label 2", blue).icon(infoCircle()))
-                                .addItem(label("Label 3", green).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(information()))
+                                .addItem(label("Label 2", blue).icon(information()))
+                                .addItem(label("Label 3", green).icon(information())))
                         .element()
                 // @code-end:label-group-basic
         ));
@@ -216,12 +216,12 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-overflow
                 div()
                         .add(labelGroup()
-                                .addItem(label("Label 1").icon(infoCircle()))
-                                .addItem(label("Label 2", blue).icon(infoCircle()))
-                                .addItem(label("Label 3", green).icon(infoCircle()))
-                                .addItem(label("Label 4", orange).icon(infoCircle()))
-                                .addItem(label("Label 5", red).icon(infoCircle()))
-                                .addItem(label("Label 6", purple).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(information()))
+                                .addItem(label("Label 2", blue).icon(information()))
+                                .addItem(label("Label 3", green).icon(information()))
+                                .addItem(label("Label 4", orange).icon(information()))
+                                .addItem(label("Label 5", red).icon(information()))
+                                .addItem(label("Label 6", purple).icon(information())))
                         .element()
                 // @code-end:label-group-overflow
         ));
@@ -231,9 +231,9 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category
                 div()
                         .add(labelGroup("Group label")
-                                .addItem(label("Label 1").icon(infoCircle()))
-                                .addItem(label("Label 2", blue).icon(infoCircle()))
-                                .addItem(label("Label 3", green).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(information()))
+                                .addItem(label("Label 2", blue).icon(information()))
+                                .addItem(label("Label 3", green).icon(information())))
                         .element()
                 // @code-end:label-group-category
         ));
@@ -243,11 +243,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-category-removable
                 div()
                         .add(labelGroup("Group label").closable()
-                                .addItem(label("Label 1").icon(infoCircle()))
-                                .addItem(label("Label 2", blue).icon(infoCircle()))
-                                .addItem(label("Label 3", green).icon(infoCircle()))
-                                .addItem(label("Label 4", orange).icon(infoCircle()))
-                                .addItem(label("Label 5", red).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(information()))
+                                .addItem(label("Label 2", blue).icon(information()))
+                                .addItem(label("Label 3", green).icon(information()))
+                                .addItem(label("Label 4", orange).icon(information()))
+                                .addItem(label("Label 5", red).icon(information())))
                         .element()
                 // @code-end:label-group-category-removable
         ));
@@ -257,11 +257,11 @@ public class LabelComponent extends SnippetPage {
                 // @code-start:label-group-vertical
                 div()
                         .add(labelGroup("Group label with a very long name").vertical().closable()
-                                .addItem(label("Label 1").icon(infoCircle()))
-                                .addItem(label("Label 2", blue).icon(infoCircle()))
-                                .addItem(label("Label 3", green).icon(infoCircle()))
-                                .addItem(label("Label 4", orange).icon(infoCircle()))
-                                .addItem(label("Label 5", red).icon(infoCircle())))
+                                .addItem(label("Label 1").icon(information()))
+                                .addItem(label("Label 2", blue).icon(information()))
+                                .addItem(label("Label 3", green).icon(information()))
+                                .addItem(label("Label 4", orange).icon(information()))
+                                .addItem(label("Label 5", red).icon(information())))
                         .element()
                 // @code-end:label-group-vertical
         ));

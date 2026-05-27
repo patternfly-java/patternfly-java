@@ -21,12 +21,12 @@ import org.patternfly.component.menu.Dropdown;
 import static org.patternfly.component.menu.Dropdown.dropdown;
 import static org.patternfly.component.menu.MenuItem.linkMenuItem;
 import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.icon.IconSets.fas.ellipsisV;
+import static org.patternfly.icon.IconSets.rhUi.ellipsisVertical;
 
 public class BuildingBlocks {
 
     public static Dropdown mixedKebab(String baseId) {
-        return dropdown(ellipsisV(), "Column actions").applyToMenuList(list -> list
+        return dropdown(ellipsisVertical(), "Column actions").applyToMenuList(list -> list
                 .addItem(menuItem(Id.build(baseId, "item-0"), "Action"))
                 .addItem(linkMenuItem(Id.build(baseId, "item-1"), "Link", "#" + Id.build(baseId, "item-1")))
                 .addItem(menuItem(Id.build(baseId, "item-2"), "Disabled action").disabled())

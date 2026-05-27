@@ -43,11 +43,11 @@ import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.icon.IconSets.fas.box;
 import static org.patternfly.icon.IconSets.fas.boxOpen;
-import static org.patternfly.icon.IconSets.fas.cog;
+import static org.patternfly.icon.IconSets.rhUi.settings;
 import static org.patternfly.icon.IconSets.fas.folder;
 import static org.patternfly.icon.IconSets.fas.folderOpen;
 import static org.patternfly.icon.IconSets.fas.music;
-import static org.patternfly.icon.IconSets.fas.pencilAlt;
+import static org.patternfly.icon.IconSets.rhUi.edit;
 import static org.patternfly.icon.IconSets.fas.recordVinyl;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
@@ -156,23 +156,23 @@ public class TreeViewComponent extends SnippetPage {
                         .expandedIcon(() -> folderOpen().element())
                         .addItem(treeViewItem("tv-icons-app-launcher", "Application launcher")
                                 .addItem(treeViewItem("tv-icons-app-1", "Application 1")
-                                        .addItem(treeViewItem("tv-icons-settings-1", "Settings").icon(cog()))
+                                        .addItem(treeViewItem("tv-icons-settings-1", "Settings").icon(settings()))
                                         .addItem(treeViewItem("tv-icons-current-1", "Current")))
                                 .addItem(treeViewItem("tv-icons-app-2", "Application 2")
-                                        .addItem(treeViewItem("tv-icons-settings-2", "Settings").icon(cog()))
+                                        .addItem(treeViewItem("tv-icons-settings-2", "Settings").icon(settings()))
                                         .addItem(treeViewItem("tv-icons-loader", "Loader")
                                                 .addItem(treeViewItem("tv-icons-loading-1", "Loading App 1"))
                                                 .addItem(treeViewItem("tv-icons-loading-2", "Loading App 2"))
                                                 .addItem(treeViewItem("tv-icons-loading-3", "Loading App 3")))))
                         .addItem(treeViewItem("tv-icons-cost", "Cost management")
                                 .addItem(treeViewItem("tv-icons-app-3", "Application 3")
-                                        .addItem(treeViewItem("tv-icons-settings-3", "Settings").icon(cog()))
+                                        .addItem(treeViewItem("tv-icons-settings-3", "Settings").icon(settings()))
                                         .addItem(treeViewItem("tv-icons-current-2", "Current"))))
                         .addItem(treeViewItem("tv-icons-sources", "Sources")
                                 .icon(box())
                                 .expandedIcon(boxOpen())
                                 .addItem(treeViewItem("tv-icons-app-4", "Application 4")
-                                        .addItem(treeViewItem("tv-icons-settings-4", "Settings").icon(cog()))))
+                                        .addItem(treeViewItem("tv-icons-settings-4", "Settings").icon(settings()))))
                         .addItem(treeViewItem("tv-icons-long",
                                 "Really really really long folder name that overflows the container it is in")
                                 .addItem(treeViewItem("tv-icons-app-5", "Application 5")))
@@ -238,7 +238,7 @@ public class TreeViewComponent extends SnippetPage {
                                     .addItems(track.writer(), writer ->
                                             treeViewItem(Id.build(record.title, String.valueOf(track.track), writer))
                                                     .text(writer)
-                                                    .icon(pencilAlt())));
+                                                    .icon(edit())));
 
             TreeView treeView = treeView(selectableItems);
             return div()

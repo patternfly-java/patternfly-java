@@ -34,7 +34,7 @@ import static org.patternfly.icon.IconSets.fas.check;
 import static org.patternfly.icon.IconSets.fas.exclamation;
 import static org.patternfly.icon.IconSets.fas.info;
 import static org.patternfly.icon.IconSets.fas.question;
-import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.icon.IconSets.rhUi.close;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;
@@ -78,7 +78,7 @@ public class HelperTextComponent extends SnippetPage {
                                         .icon(check())))
                         .add(helperText()
                                 .addItem(helperTextItem("This is error helper text", error)
-                                        .icon(times())))
+                                        .icon(close())))
                         .element()
                 // @code-end:helper-text-static-custom-icon
         ));
@@ -117,7 +117,7 @@ public class HelperTextComponent extends SnippetPage {
                         .add(helperText()
                                 .addItem(helperTextItem("This is error helper text with a custom icon", error)
                                         .dynamic()
-                                        .icon(times())))
+                                        .icon(close())))
                         .add(helperText()
                                 .addItem(helperTextItem("This is error helper text with no icon", error)
                                         .dynamic()))

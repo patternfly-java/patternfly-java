@@ -66,7 +66,7 @@ import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupIt
 import static org.patternfly.icon.IconSets.fas.codeBranch;
 import static org.patternfly.icon.IconSets.fas.folder;
 import static org.patternfly.icon.IconSets.fas.folderOpen;
-import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.modifier;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;

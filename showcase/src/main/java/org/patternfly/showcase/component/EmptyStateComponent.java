@@ -36,7 +36,7 @@ import static org.patternfly.component.emptystate.EmptyStateActions.emptyStateAc
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
 import static org.patternfly.icon.IconSets.fas.cubes;
-import static org.patternfly.icon.IconSets.fas.search;
+import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.Code.code;

@@ -34,7 +34,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.img;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.icon.IconSets.fas.mapMarkedAlt;
+import static org.patternfly.icon.IconSets.rhUi.location;
 import static org.patternfly.style.Classes.util;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
@@ -83,7 +83,7 @@ public class User {
                 .add(location.postcode + " " + location.city)
                 .add(br())
                 .add(location.state + ", " + nat)
-                .add(a(googleMaps()).attr("target", "map").css(util("ml-sm")).add(mapMarkedAlt()))
+                .add(a(googleMaps()).attr("target", "map").css(util("ml-sm")).add(location()))
                 .element();
     }
 
@@ -100,7 +100,7 @@ public class User {
                                 .add(phone)))
                 .add(li()
                         .add(a("tel:" + cell)
-                                .add(fas.mobileAlt().css(util("mr-sm")))
+                                .add(fas.mobileScreenButton().css(util("mr-sm")))
                                 .add(cell))).element();
     }
 

@@ -29,9 +29,9 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.icon.IconSets.fas.arrowRight;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.icon.IconSets.fas.copy;
-import static org.patternfly.icon.IconSets.fas.externalLinkSquareAlt;
-import static org.patternfly.icon.IconSets.fas.plusCircle;
-import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.icon.IconSets.rhUi.externalLink;
+import static org.patternfly.icon.IconSets.rhUi.addCircle;
+import static org.patternfly.icon.IconSets.rhUi.close;
 import static org.patternfly.icon.IconSets.fas.upload;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.Gap.sm;
@@ -57,18 +57,18 @@ public class ButtonComponent extends SnippetPage {
                 div()
                         .add(flex().columnGap(sm)
                                 .add(button("Primary").primary())
-                                .add(button().primary().iconAndText(externalLinkSquareAlt(), "Primary with icon", start))
+                                .add(button().primary().iconAndText(externalLink(), "Primary with icon", start))
                                 .add(button("Secondary").secondary())
                                 .add(button("Danger secondary").secondary().danger())
                                 .add(button("Tertiary").tertiary())
                                 .add(button("Danger").danger())
                                 .add(button("Warning").warning()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
-                                .add(button().iconAndText(plusCircle(), "Link").link())
-                                .add(button().iconAndText(externalLinkSquareAlt(), "Link", end).link())
+                                .add(button().iconAndText(addCircle(), "Link").link())
+                                .add(button().iconAndText(externalLink(), "Link", end).link())
                                 .add(button("Inline link").inline().link())
                                 .add(button("Danger link").link().danger())
-                                .add(button().icon(times()).plain()))
+                                .add(button().icon(close()).plain()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control").control())
                                 .add(button().icon(copy()).control()))
@@ -92,10 +92,10 @@ public class ButtonComponent extends SnippetPage {
                                 .add(button("Danger disabled").danger().disabled())
                                 .add(button("Warning disabled").warning().disabled()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
-                                .add(button().iconAndText(plusCircle(), "Link disabled").link().disabled())
+                                .add(button().iconAndText(addCircle(), "Link disabled").link().disabled())
                                 .add(button("Inline link disabled").inline().link().disabled())
                                 .add(button("Danger link disabled").link().danger().disabled())
-                                .add(button().icon(times()).plain().disabled()))
+                                .add(button().icon(close()).plain().disabled()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control disabled").control().disabled())
                                 .add(button().icon(copy()).control().disabled()))

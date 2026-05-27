@@ -30,7 +30,7 @@ import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.expandable.ExpandableSection.expandableSection;
 import static org.patternfly.component.expandable.ExpandableSectionContent.expandableSectionContent;
 import static org.patternfly.component.expandable.ExpandableSectionToggle.expandableSectionToggle;
-import static org.patternfly.icon.IconSets.fas.checkCircle;
+import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
 import static org.patternfly.layout.stack.Stack.stack;
 import static org.patternfly.layout.stack.StackItem.stackItem;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -141,7 +141,7 @@ public class ExpandableSectionComponent extends SnippetPage {
                             .addToggle(expandableSectionToggle()
                                     .add(div()
                                             .add(span().text("You can also use icons "))
-                                            .add(checkCircle())
+                                            .add(checkCircleFill())
                                             .add(span().text(" or badges "))
                                             .add(badge)
                                             .add(span().text(" !"))))

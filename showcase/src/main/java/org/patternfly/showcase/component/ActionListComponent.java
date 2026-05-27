@@ -29,7 +29,7 @@ import static org.patternfly.component.list.ActionList.actionList;
 import static org.patternfly.component.list.ActionListGroup.actionListGroup;
 import static org.patternfly.component.list.ActionListItem.actionListItem;
 import static org.patternfly.icon.IconSets.fas.check;
-import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.icon.IconSets.rhUi.close;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
 import static org.patternfly.showcase.BuildingBlocks.mixedKebab;
@@ -74,7 +74,7 @@ public class ActionListComponent extends SnippetPage {
                         .add(actionList().icons()
                                 .addItem(actionListGroup()
                                         .addItem(actionListItem()
-                                                .add(button().icon(times()).plain()))
+                                                .add(button().icon(close()).plain()))
                                         .addItem(actionListItem()
                                                 .add(button().icon(check()).plain()))))
                         .add(br())
@@ -82,12 +82,12 @@ public class ActionListComponent extends SnippetPage {
                         .add(actionList()
                                 .addItem(actionListGroup().icons()
                                         .addItem(actionListItem()
-                                                .add(button().icon(times()).plain()))
+                                                .add(button().icon(close()).plain()))
                                         .addItem(actionListItem()
                                                 .add(button().icon(check()).plain())))
                                 .addItem(actionListGroup().icons()
                                         .addItem(actionListItem()
-                                                .add(button().icon(times()).plain()))
+                                                .add(button().icon(close()).plain()))
                                         .addItem(actionListItem()
                                                 .add(button().icon(check()).plain()))))
                         .element()
