@@ -6,7 +6,7 @@
     "generate": "node src/scripts/generate.mjs"
   },
   "devDependencies": {
-    "@patternfly/react-tokens": "^6.2.2",
+    "@patternfly/react-tokens": "^6.5.1",
     "@types/node": "^22.15.3",
     "camelcase": "^8.0.0"
   },

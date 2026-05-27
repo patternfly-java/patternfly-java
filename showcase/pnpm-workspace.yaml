@@ -14,11 +14,22 @@
 #  limitations under the License.
 #
 
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': false
+  lmdb: false
+  msgpackr-extract: false
+  puppeteer: false
+
 ignoredBuiltDependencies:
   - '@swc/core'
   - lmdb
   - msgpackr-extract
   - puppeteer
+
+minimumReleaseAgeExclude:
+  - ws@8.20.1
+  - qs@6.15.2
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
