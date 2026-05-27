@@ -51,7 +51,7 @@ import static org.patternfly.component.menu.MenuType.select;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.presentation;
-import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
@@ -103,7 +103,7 @@ class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements M
                 .aria(hasPopup, "menu")
                 .add(textElement = span().css(component(Classes.tabs, item, Classes.text)).element())
                 .add(span().css(component(Classes.tabs, link, toggle, icon))
-                        .add(angleRight())));
+                        .add(caretRight())));
 
         HTMLElement overlayElement;
         add(overlayElement = div().css(component(Classes.overlay))

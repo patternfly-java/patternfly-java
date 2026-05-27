@@ -27,7 +27,7 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 - **core** - Core classes, handlers, styles, utilities (`org.patternfly.core`, `org.patternfly.style`, `org.patternfly.handler`)
 - **components** - All UI components (`org.patternfly.component.*`) — 50+ component packages
 - **layouts** - Page layouts (Page, Sidebar, etc.)
-- **icons** - IconSets (FontAwesome, PatternFly icons)
+- **icons** - IconSets (FontAwesome, PatternFly, Red Hat icons)
 - **tokens** - PatternFly design tokens as enum constants
 - **charts** - Chart web components wrapper (NPM package)
 - **extensions/codeeditor**, **extensions/finder** - Extensions

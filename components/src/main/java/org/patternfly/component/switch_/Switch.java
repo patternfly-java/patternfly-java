@@ -48,7 +48,7 @@ import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.icon.IconSets.fas.check;
+import static org.patternfly.icon.IconSets.rhUi.check;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.toggle;

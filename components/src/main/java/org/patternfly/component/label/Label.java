@@ -48,6 +48,7 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Color;
 import org.patternfly.style.Modifiers.Compact;
@@ -76,7 +77,6 @@ import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.clickable;
 import static org.patternfly.style.Classes.component;
@@ -235,7 +235,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         onClose(closeHandler);
         insertAfter(actionsElement = span().css(component(Classes.label, actions))
                 .add(closeButton = Button.button()
-                        .icon(times())
+                        .icon(IconSets.rhUi.close())
                         .plain()
                         .noPadding()
                         .aria(Aria.label, "Close " + textElement.textContent)

@@ -15,12 +15,13 @@
  */
 package org.patternfly.component.wizard;
 
+import org.patternfly.icon.IconSets;
+
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
@@ -43,7 +44,7 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
     WizardHeader() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(wizard, header)).element());
         add(closeContainer = div().css(component(wizard, close))
-                .add(button().plain().icon(times()).onClick((e, c) -> {
+                .add(button().plain().icon(IconSets.rhUi.close()).onClick((e, c) -> {
                     Wizard wizard = lookupComponent();
                     wizard.cancel();
                 }))

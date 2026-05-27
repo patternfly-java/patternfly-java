@@ -30,6 +30,7 @@ import org.patternfly.component.backdrop.Backdrop;
 import org.patternfly.component.wizard.Wizard;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
 
@@ -57,7 +58,6 @@ import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.layout.bullseye.Bullseye.bullseye;
 import static org.patternfly.style.Classes.alignTop;
 import static org.patternfly.style.Classes.close;
@@ -118,7 +118,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
                                 .add(closeContainer = div().css(component(modalBox, close))
                                         .add(button()
                                                 .plain()
-                                                .icon(times())
+                                                .icon(IconSets.rhUi.close())
                                                 .aria(label, "Close")
                                                 .on(click, e -> close(e, true)))
                                         .element())

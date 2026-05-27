@@ -17,10 +17,11 @@ import camelCase from "camelcase";
 import {mkdir, writeFile} from "node:fs/promises";
 import {fab, far, fas} from "./faIcons.mjs";
 import {patternfly} from "./pfIcons.mjs";
+import {rhMicrons, rhStandard, rhUi} from "./rhIcons.mjs";
 
 // ------------------------------------------------------ constants
 
-const keywords = ["clone", "import", "package", "private"];
+const keywords = ["clone", "default", "import", "new", "package", "private"];
 const root = "../main/java";
 const path = "org/patternfly/icon";
 const package_ = path.replaceAll('/', '.');
@@ -32,7 +33,7 @@ const generateIconSpecs = (iconSets) => `package ${package_};
 import javax.annotation.processing.Generated;
 
 /**
- * This interface contains the specifications for all icons in PatternFly Java. The icons are grouped in four enums:
+ * This interface contains the specifications for all icons in PatternFly Java. The icons are grouped in enums:
  * <dl>
  *     <dt>{@link fab}</dt>
  *     <dd><a href="https://fontawesome.com/search?o=r&m=free&f=brands">Fontawesome brand icons</a></dd>
@@ -42,6 +43,12 @@ import javax.annotation.processing.Generated;
  *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=solid">Fontawesome solid icons</a></dd>
  *     <dt>{@link patternfly}</dt>
  *     <dd><a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a></dd>
+ *     <dt>{@link rhMicrons}</dt>
+ *     <dd>Red Hat microns icons</dd>
+ *     <dt>{@link rhStandard}</dt>
+ *     <dd>Red Hat standard icons</dd>
+ *     <dt>{@link rhUi}</dt>
+ *     <dd>Red Hat UI icons</dd>
  * </dl>
  * <p>You probably won't need to use these classes directly, but instead work with {@link IconSets}.</p>
  * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
@@ -79,7 +86,7 @@ const generateIconSets = (iconSets) => `package ${package_};
 import javax.annotation.processing.Generated;
 
 /**
- * This interface provides methods for accessing all icons in PatternFly Java. The icons are grouped in four interfaces:
+ * This interface provides methods for accessing all icons in PatternFly Java. The icons are grouped in interfaces:
  * <dl>
  *     <dt>{@link fab}</dt>
  *     <dd><a href="https://fontawesome.com/search?o=r&m=free&f=brands">Fontawesome brand icons</a></dd>
@@ -89,6 +96,12 @@ import javax.annotation.processing.Generated;
  *     <dd><a href="https://fontawesome.com/search?o=r&m=free&s=solid">Fontawesome solid icons</a></dd>
  *     <dt>{@link patternfly}</dt>
  *     <dd><a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a></dd>
+ *     <dt>{@link rhMicrons}</dt>
+ *     <dd>Red Hat microns icons</dd>
+ *     <dt>{@link rhStandard}</dt>
+ *     <dd>Red Hat standard icons</dd>
+ *     <dt>{@link rhUi}</dt>
+ *     <dd>Red Hat UI icons</dd>
  * </dl>
  * <p>The icons are returned as {@link PredefinedIcon}s and can be adjusted if necessary.</p>
  * @see <a href="https://www.patternfly.org/design-foundations/icons/">https://www.patternfly.org/design-foundations/icons/</a>
@@ -114,11 +127,15 @@ const generateIconSet = (set, icons) =>
 
 // ------------------------------------------------------ helpers
 
-const failSafeName = (name) => keywords.includes(name) ? name + "_" : name
+const failSafeName = (name) => {
+    if (keywords.includes(name)) return name + "_";
+    if (/^\d/.test(name)) return "_" + name;
+    return name;
+}
 
 // ------------------------------------------------------ main
 
-const iconSets = [fab, far, fas, patternfly];
+const iconSets = [fab, far, fas, patternfly, rhMicrons, rhStandard, rhUi];
 const iconCount = iconSets
     .map(iconSet => Object.keys(iconSet.icons).length)
     .reduce((acc, cur) => acc + cur, 0);

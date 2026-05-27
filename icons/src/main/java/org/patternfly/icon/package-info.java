@@ -23,6 +23,9 @@
  *   <li><a href="https://fontawesome.com/search?o=r&m=free&s=regular">FontAwesome regular (far)</a></li>
  *   <li><a href="https://fontawesome.com/search?o=r&m=free&s=solid">FontAwesome solid (fas)</a></li>
  *   <li><a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a></li>
+ *   <li>Red Hat microns icons (rhMicrons)</li>
+ *   <li>Red Hat standard icons (rhStandard)</li>
+ *   <li>Red Hat UI icons (rhUi)</li>
  * </ul>
  *
  * <h2>Usage</h2>

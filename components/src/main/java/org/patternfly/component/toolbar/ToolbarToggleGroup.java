@@ -35,7 +35,7 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.core.Aria.hasPopup;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.icon.IconSets.fas.filter;
+import static org.patternfly.icon.IconSets.rhUi.filter;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.modifier;

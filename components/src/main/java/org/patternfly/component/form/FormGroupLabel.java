@@ -39,7 +39,7 @@ import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Attributes.type;
-import static org.patternfly.icon.IconSets.fas.questionCircle;
+import static org.patternfly.icon.IconSets.rhUi.questionMarkCircleFill;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
@@ -130,7 +130,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
                         .attr(tabindex, 0)
                         .aria(Aria.label, ariaLabel)
                         .add(span().css(component(button, icon))
-                                .add(questionCircle())))
+                                .add(questionMarkCircleFill())))
                 .add(popover)
                 .element();
         popover.trigger(helpContainer);

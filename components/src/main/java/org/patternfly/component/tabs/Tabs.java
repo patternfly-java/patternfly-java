@@ -42,6 +42,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.handler.ToggleHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Classes;
 import org.patternfly.style.ExpandableModifier;
@@ -80,7 +81,6 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.region;
 import static org.patternfly.core.Roles.tablist;
-import static org.patternfly.icon.IconSets.fas.plus;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
@@ -507,7 +507,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
     public Tabs onAdd(Function<Tabs, Tab> addFunction) {
         if (addButton == null) {
             insertAfter(span().css(component(Classes.tabs, Classes.add))
-                    .add(addButton = Button.button().plain().icon(plus())
+                    .add(addButton = Button.button().plain().icon(IconSets.rhUi.add())
                             .aria(label, "Add new tab")
                             .on(click, e -> addItem(addFunction.apply(this))))
                     .element(), tabsContainer.element());

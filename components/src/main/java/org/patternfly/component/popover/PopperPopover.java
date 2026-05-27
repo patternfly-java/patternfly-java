@@ -34,6 +34,7 @@ import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.popper.Modifiers;
 import org.patternfly.popper.Popper;
 import org.patternfly.popper.PopperBuilder;
@@ -66,7 +67,6 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.dialog;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.popper.PopperPlacement.auto;
 import static org.patternfly.popper.PopperPlacement.top;
 import static org.patternfly.style.Classes.arrow;
@@ -278,7 +278,7 @@ public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> 
             insertFirst(contentElement, div().css(component(popover, close))
                     .add(closeButton = button()
                             .plain()
-                            .icon(times())
+                            .icon(IconSets.rhUi.close())
                             .aria(label, "Close")
                             .on(click, event -> close(event, true)))
                     .element());

@@ -40,7 +40,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.IconPosition.end;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.icon.IconSets.fas.angleUp;
+import static org.patternfly.icon.IconSets.rhUi.caretUp;
 import static org.patternfly.style.Classes.backToTop;
 import static org.patternfly.style.Classes.hidden;
 import static org.patternfly.style.Classes.modifier;
@@ -82,7 +82,7 @@ public class BackToTop extends BaseComponent<HTMLElement, BackToTop>
         scrollToOptions.setBehavior("smooth");
         button = button(a())
                 .primary()
-                .iconAndText(angleUp(), text, end)
+                .iconAndText(caretUp(), text, end)
                 .href("#")
                 .on(click, e -> {
                     e.preventDefault();

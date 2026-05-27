@@ -45,7 +45,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
@@ -184,13 +184,13 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
                             if (accordion.iconPosition == start) {
                                 toggleButton
                                         .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                                                .add(angleRight().element()))
+                                                .add(caretRight().element()))
                                         .add(textElement);
                             } else {
                                 toggleButton
                                         .add(textElement)
                                         .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                                                .add(angleRight().element()));
+                                                .add(caretRight().element()));
                             }
                         })
                         .element());

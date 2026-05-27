@@ -21,11 +21,11 @@ import java.util.function.BiFunction;
 
 import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ComponentHandler;
+import org.patternfly.icon.IconSets;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
-import static org.patternfly.icon.IconSets.fas.times;
 
 public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends BaseTextInputGroup<T> {
 
@@ -113,7 +113,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         if (utilitiesVisibility.apply(that(), value)) {
             if (utilities == null) {
                 addUtilities(textInputGroupUtilities()
-                        .add(button().icon(times()).plain().onClick((e, b) -> {
+                        .add(button().icon(IconSets.rhUi.close()).plain().onClick((e, b) -> {
                             if (defaultOnClear != null) {
                                 defaultOnClear.handle(e, that());
                             }

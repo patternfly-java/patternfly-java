@@ -73,7 +73,7 @@ import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.row;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
+import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.selected;
@@ -116,7 +116,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
             .aria(Aria.setsize, 1)
             .aria(Aria.posinset, 1)
             .addTitleCell(titleCell().colSpan(colspan)
-                    .icon(exclamationCircle())
+                    .icon(errorFill())
                     .text("Error"));
 
     Tbody tbody;

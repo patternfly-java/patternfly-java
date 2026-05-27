@@ -37,6 +37,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.icon.IconSets.patternfly;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -70,7 +71,6 @@ import static org.patternfly.core.Roles.tab;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.ariaDisabled;
 import static org.patternfly.style.Classes.component;
@@ -194,7 +194,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                             .aria(Aria.label, "Close " + text())
                             .on(click, e -> close(e, true))
                             .add(span().css(component(tabs, item, action, icon))
-                                    .add(times()))));
+                                    .add(IconSets.rhUi.close()))));
         }
         return onClose(closeHandler);
     }

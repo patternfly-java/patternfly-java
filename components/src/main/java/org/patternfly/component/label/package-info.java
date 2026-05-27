@@ -38,14 +38,14 @@
  * {@snippet :
  * import static org.patternfly.component.label.Label.label;
  * import static org.patternfly.component.label.LabelGroup.labelGroup;
- * import static org.patternfly.icon.IconSets.fas.infoCircle;
+ * import static org.patternfly.icon.IconSets.rhUi.informationFill;
  * import static org.patternfly.style.Color.blue;
  * import static org.patternfly.style.Color.green;
  * import static org.patternfly.style.Color.red;
  *
  * // Filled labels with different colors
  * Label blueLabel = label("Blue", blue).filled();
- * Label greenLabel = label("Green", green).filled().icon(infoCircle());
+ * Label greenLabel = label("Green", green).filled().icon(informationFill());
  * Label removable = label("Removable", red).filled().closable();
  *
  * // Outline labels

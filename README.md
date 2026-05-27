@@ -288,8 +288,11 @@ PatternFly Java comes with predefined icons for
 
 - FontAwesome brand ([fab](https://fontawesome.com/search?o=r&m=free&f=brands))
 - FontAwesome regular ([far](https://fontawesome.com/search?o=r&m=free&s=regular))
-- FontAwesome solid ([fas](https://fontawesome.com/search?o=r&m=free&s=solid)) and
+- FontAwesome solid ([fas](https://fontawesome.com/search?o=r&m=free&s=solid))
 - PatternFly icons ([patternfly](https://www.patternfly.org/design-foundations/icons/#patternfly-icons))
+- Red Hat microns icons (rhMicrons)
+- Red Hat standard icons (rhStandard)
+- Red Hat UI icons (rhUi)
 
 There are static factory methods in [`IconsSets`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/IconSets.html) to easily use these icons. The icons are returned as instances of the [`PredefinedIcon`](https://patternfly-java.github.io/apidocs/org/patternfly/icon/PredefinedIcon.html) class, which is essentially an instance of an SVG builder and allows easy customization of the returned icon.
 

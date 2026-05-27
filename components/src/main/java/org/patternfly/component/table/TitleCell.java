@@ -36,8 +36,8 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.icon.IconSets.fas.angleDown;
-import static org.patternfly.icon.IconSets.fas.ellipsisH;
+import static org.patternfly.icon.IconSets.rhUi.caretDown;
+import static org.patternfly.icon.IconSets.rhUi.ellipsisHorizontal;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.details;
 import static org.patternfly.style.Classes.expanded;
@@ -93,7 +93,7 @@ public class TitleCell extends Cell<TitleCell> implements
                                 .aria(Aria.label, "Show row details")
                                 .aria(Aria.expanded, false)
                                 .add(span().css(component(table, treeView, details, toggle, Classes.icon))
-                                        .add(ellipsisH()))))
+                                        .add(ellipsisHorizontal()))))
                 .element());
     }
 
@@ -177,7 +177,7 @@ public class TitleCell extends Cell<TitleCell> implements
                                 }
                             })
                             .add(div().css(component(table, toggle, Classes.icon))
-                                    .add(angleDown())))
+                                    .add(caretDown())))
                     .element());
         }
     }

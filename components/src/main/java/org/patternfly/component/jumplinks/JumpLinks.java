@@ -63,7 +63,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.style.Breakpoint.default_;
 import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
@@ -387,7 +387,7 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
                             .aria(Aria.label, "Toggle jump links")
                             .on(click, e -> toggle())
                             .add(span().css(component(jumpLinks, toggle, icon))
-                                    .add(angleRight()))
+                                    .add(caretRight()))
                             .add(toggleTextElement = span().css(component(jumpLinks, toggle, text))
                                     .text(labelElement.element().textContent))));
         }

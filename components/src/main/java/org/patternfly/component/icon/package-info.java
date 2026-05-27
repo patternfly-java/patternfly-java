@@ -37,9 +37,9 @@
  * import static org.patternfly.component.icon.IconSize.lg;
  * import static org.patternfly.component.icon.IconSize.sm;
  * import static org.patternfly.component.icon.IconSize.xl;
- * import static org.patternfly.icon.IconSets.fas.checkCircle;
+ * import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
  * import static org.patternfly.icon.IconSets.fas.cog;
- * import static org.patternfly.icon.IconSets.fas.exclamationCircle;
+ * import static org.patternfly.icon.IconSets.rhUi.errorFill;
  * import static org.patternfly.style.Status.danger;
  * import static org.patternfly.style.Status.success;
  *
@@ -47,13 +47,13 @@
  * Icon settingsIcon = icon(cog());
  *
  * // Icons with sizes
- * Icon smallIcon = icon(checkCircle()).size(sm);
- * Icon largeIcon = icon(checkCircle()).size(lg);
- * Icon extraLargeIcon = icon(checkCircle()).size(xl);
+ * Icon smallIcon = icon(checkCircleFill()).size(sm);
+ * Icon largeIcon = icon(checkCircleFill()).size(lg);
+ * Icon extraLargeIcon = icon(checkCircleFill()).size(xl);
  *
  * // Icons with status colors
- * Icon successIcon = icon(checkCircle()).status(success);
- * Icon dangerIcon = icon(exclamationCircle()).status(danger);
+ * Icon successIcon = icon(checkCircleFill()).status(success);
+ * Icon dangerIcon = icon(errorFill()).status(danger);
  * }
  *
  * @see <a href="https://www.patternfly.org/components/icon">PatternFly Icon</a>

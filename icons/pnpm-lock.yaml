@@ -18,11 +18,11 @@ importers:
         specifier: ^5
         version: 5.15.4
       '@patternfly/patternfly':
-        specifier: ^6.2.3
-        version: 6.4.0
+        specifier: ^6.5.2
+        version: 6.5.2
       '@patternfly/react-icons':
-        specifier: ^6.2.2
-        version: 6.4.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^6.5.1
+        version: 6.5.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/node':
         specifier: ^22.15.3
         version: 22.19.13
@@ -48,11 +48,11 @@ packages:
     resolution: {integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==}
     engines: {node: '>=6'}
 
-  '@patternfly/patternfly@6.4.0':
-    resolution: {integrity: sha512-4drFhg74sEc/fftark5wZevODIog17qR4pwLCdB3j5iK3Uu5oMA2SdLhsEeEQggalfnFzve/Km87MdVR0ghhvQ==}
+  '@patternfly/patternfly@6.5.2':
+    resolution: {integrity: sha512-yZ71+1gt1VGzUN5amjDNd9NvttTnSOm9M0JeBL0YX1KaWXW1bmDPzTWEM+vQXuC4LVK0msHmR5hKB7KVpamAkA==}
 
-  '@patternfly/react-icons@6.4.0':
-    resolution: {integrity: sha512-SPjzatm73NUYv/BL6A/cjRA5sFQ15NkiyPAcT8gmklI7HY+ptd6/eg49uBDFmxTQcSwbb5ISW/R6wwCQBY2M+Q==}
+  '@patternfly/react-icons@6.5.1':
+    resolution: {integrity: sha512-CnuPvTTs4MMWx8CAUkmnY690ouN1bbHjunsyXu3QxvGOmzbztP+wS4BdiLS8TIXOIH80Yb7KPhnF8VkA+CduOA==}
     peerDependencies:
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
@@ -95,9 +95,9 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 0.2.36
 
-  '@patternfly/patternfly@6.4.0': {}
+  '@patternfly/patternfly@6.5.2': {}
 
-  '@patternfly/react-icons@6.4.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@patternfly/react-icons@6.5.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)

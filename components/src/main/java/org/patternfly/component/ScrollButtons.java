@@ -39,8 +39,8 @@ import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.LanguageDirection.languageDirection;
 import static org.patternfly.core.ObservableValue.ov;
-import static org.patternfly.icon.IconSets.fas.angleLeft;
-import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.rhUi.caretLeft;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.scrollable;
 
@@ -79,14 +79,14 @@ public class ScrollButtons {
         this.disableForwardScrollButton = ov(false);
 
         scrollBackContainer = div().css(css)
-                .add(scrollBack = button().icon(angleLeft())
+                .add(scrollBack = button().icon(caretLeft())
                         .plain()
                         .disabled()
                         .aria(hidden, true)
                         .aria(label, "Scroll back"))
                 .element();
         scrollForwardContainer = div().css(css)
-                .add(scrollForward = button().icon(angleRight())
+                .add(scrollForward = button().icon(caretRight())
                         .plain()
                         .disabled()
                         .aria(hidden, true)

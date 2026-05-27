@@ -55,9 +55,9 @@ import static org.patternfly.core.Numbers.percentage;
 import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.core.Roles.progressbar;
 import static org.patternfly.core.Validation.verifyEnum;
-import static org.patternfly.icon.IconSets.fas.checkCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
-import static org.patternfly.icon.IconSets.fas.timesCircle;
+import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
+import static org.patternfly.icon.IconSets.rhUi.closeCircle;
+import static org.patternfly.icon.IconSets.rhUi.warningFill;
 import static org.patternfly.style.Classes.bar;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
@@ -221,19 +221,19 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
             removeChildrenFrom(iconContainer);
             switch (status) {
                 case danger:
-                    failSafeIconContainer().appendChild(timesCircle().element());
+                    failSafeIconContainer().appendChild(closeCircle().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.error);
                     }
                     break;
                 case warning:
-                    failSafeIconContainer().appendChild(exclamationTriangle().element());
+                    failSafeIconContainer().appendChild(warningFill().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.warning);
                     }
                     break;
                 case success:
-                    failSafeIconContainer().appendChild(checkCircle().element());
+                    failSafeIconContainer().appendChild(checkCircleFill().element());
                     if (helperText != null) {
                         helperText.firstItem().status(ValidationStatus.success);
                     }

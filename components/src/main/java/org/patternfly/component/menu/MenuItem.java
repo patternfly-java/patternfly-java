@@ -74,8 +74,8 @@ import static org.patternfly.core.Roles.menuitem;
 import static org.patternfly.core.Roles.none;
 import static org.patternfly.core.Roles.option;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
-import static org.patternfly.icon.IconSets.fas.check;
-import static org.patternfly.icon.IconSets.fas.externalLinkAlt;
+import static org.patternfly.icon.IconSets.rhUi.check;
+import static org.patternfly.icon.IconSets.rhUi.externalLinkFill;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.danger;
 import static org.patternfly.style.Classes.description;
@@ -420,7 +420,7 @@ public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         if (itemType == link) {
             ((HTMLAnchorElement) itemElement).target = "_blank";
             mainElement.appendChild(span().css(component(Classes.menu, item, externalIcon))
-                    .add(externalLinkAlt())
+                    .add(externalLinkFill())
                     .element());
             mainElement.appendChild(span().css(screenReader)
                     .text("(opens a new window)")

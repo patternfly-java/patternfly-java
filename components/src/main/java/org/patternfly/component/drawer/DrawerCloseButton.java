@@ -15,13 +15,14 @@
  */
 package org.patternfly.component.drawer;
 
+import org.patternfly.icon.IconSets;
+
 import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
@@ -43,7 +44,7 @@ public class DrawerCloseButton extends DrawerSubComponent<HTMLDivElement, Drawer
     DrawerCloseButton() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(drawer, actions)).element());
         add(div().css(component(drawer, close))
-                .add(button().plain().icon(times())
+                .add(button().plain().icon(IconSets.rhUi.close())
                         .aria(label, "Close drawer panel")
                         .on(click, e -> close())));
     }

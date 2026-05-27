@@ -47,7 +47,7 @@
  * import static org.patternfly.component.SelectionMode.multi;
  * import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
  * import static org.patternfly.component.togglegroup.ToggleGroupItem.toggleGroupItem;
- * import static org.patternfly.icon.IconSets.fas.copy;
+ * import static org.patternfly.icon.IconSets.rhUi.copy;
  * import static org.patternfly.icon.IconSets.fas.undo;
  *
  * ToggleGroup iconGroup = toggleGroup(multi)

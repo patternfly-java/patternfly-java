@@ -34,7 +34,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
-import static org.patternfly.icon.IconSets.fas.copy;
+import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;

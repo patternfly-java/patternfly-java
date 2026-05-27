@@ -49,7 +49,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
-import static org.patternfly.icon.IconSets.fas.caretDown;
+import static org.patternfly.icon.IconSets.rhUi.caretDown;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.controls;

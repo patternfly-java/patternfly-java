@@ -36,7 +36,7 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
 import static org.patternfly.component.menu.MenuList.menuList;
-import static org.patternfly.icon.IconSets.fas.star;
+import static org.patternfly.icon.IconSets.rhUi.starFill;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.favorite;
@@ -98,7 +98,7 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
                     continue;
                 }
                 String actionId = Id.build(item.identifier(), "mark-as-favorite");
-                item.markAsFavorite = new MenuItemAction(actionId, star().element(), true)
+                item.markAsFavorite = new MenuItemAction(actionId, starFill().element(), true)
                         .css(modifier(favorite))
                         .aria(Aria.label, "not starred")
                         .on(click, e -> menu.toggleFavorite(item));

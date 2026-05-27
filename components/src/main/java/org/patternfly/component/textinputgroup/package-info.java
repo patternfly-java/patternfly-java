@@ -36,7 +36,7 @@
  * {@snippet :
  * import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
  * import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
- * import static org.patternfly.icon.IconSets.fas.search;
+ * import static org.patternfly.icon.IconSets.rhUi.search;
  *
  * // Basic text input group
  * TextInputGroup basic = textInputGroup("my-input");
@@ -52,7 +52,7 @@
  *
  * {@snippet :
  * import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
- * import static org.patternfly.icon.IconSets.fas.search;
+ * import static org.patternfly.icon.IconSets.rhUi.search;
  *
  * FilterInput filterInput = filterInput("filter-0").icon(search())
  *         .allowDuplicates(false)

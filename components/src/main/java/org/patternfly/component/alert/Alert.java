@@ -36,6 +36,7 @@ import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
+import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Plain;
@@ -68,8 +69,7 @@ import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.fas.angleRight;
-import static org.patternfly.icon.IconSets.fas.times;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
@@ -199,7 +199,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button().icon(times().element()).plain()
+                .add(closeButton = button().icon(IconSets.rhUi.close().element()).plain()
                         .aria(label, "Close " + severity.name() + " alert: " + title)
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);
@@ -231,7 +231,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                         .aria(expanded, false)
                         .aria(label, severity.name() + " alert: " + title + " details")
                         .add(span().css(component(alert, toggle, icon))
-                                .add(angleRight().element())))
+                                .add(caretRight().element())))
                 .element());
         this.expandable = true;
         this.toggleHandler = toggleHandler;

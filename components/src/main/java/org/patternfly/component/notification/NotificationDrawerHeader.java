@@ -17,6 +17,7 @@ package org.patternfly.component.notification;
 
 import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.menu.Dropdown;
+import org.patternfly.icon.IconSets;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -27,7 +28,6 @@ import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.icon.IconSets.fas.times;
 import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
@@ -59,7 +59,7 @@ public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTM
         add(statusElement = span().css(component(notificationDrawer, header, status)).element());
         add(div().css(component(notificationDrawer, header, action))
                 .add(closeElement = div().css(component(notificationDrawer, header, action, close))
-                        .add(button(times()).plain()
+                        .add(button(IconSets.rhUi.close()).plain()
                                 .aria(label, "Close")
                                 .onClick((event, component) -> {
                                     NotificationDrawer drawer = lookupComponent();

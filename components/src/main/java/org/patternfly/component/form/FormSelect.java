@@ -42,7 +42,7 @@ import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.input;
 import static org.patternfly.core.Aria.invalid;
 import static org.patternfly.handler.ChangeHandler.fireIfChanged;
-import static org.patternfly.icon.IconSets.fas.caretDown;
+import static org.patternfly.icon.IconSets.rhUi.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.formControl;
 import static org.patternfly.style.Classes.icon;

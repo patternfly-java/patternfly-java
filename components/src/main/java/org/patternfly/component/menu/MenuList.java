@@ -56,7 +56,7 @@ import static org.patternfly.core.AsyncStatus.rejected;
 import static org.patternfly.core.AsyncStatus.resolved;
 import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
+import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
@@ -88,7 +88,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
             .disabled();
     private static final Supplier<MenuItem> error = () -> menuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "error"), "Error")
-            .icon(exclamationCircle());
+            .icon(errorFill());
 
     final Map<String, MenuItem> items;
     private final AurHandler<MenuList, MenuItem> aur;

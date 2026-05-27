@@ -28,13 +28,13 @@ public enum ValidationStatus {
 
     default_(Status.info, null, null),
 
-    indeterminate(Status.info, modifier(Classes.indeterminate), IconSets.fas::minus),
+    indeterminate(Status.info, modifier(Classes.indeterminate), IconSets.rhUi::minus),
 
-    success(Status.success, Status.success.modifier(), IconSets.fas::checkCircle),
+    success(Status.success, Status.success.modifier(), IconSets.rhUi::checkCircleFill),
 
-    warning(Status.warning, Status.warning.modifier(), IconSets.fas::exclamationTriangle),
+    warning(Status.warning, Status.warning.modifier(), IconSets.rhUi::warningFill),
 
-    error(Status.danger, modifier(Classes.error), IconSets.fas::exclamationCircle);
+    error(Status.danger, modifier(Classes.error), IconSets.rhUi::errorFill);
 
     public final Status status;
     public final String modifier;

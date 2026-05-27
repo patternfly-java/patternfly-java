@@ -21,10 +21,10 @@ import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
 
-import static org.patternfly.icon.IconSets.fas.checkCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationCircle;
-import static org.patternfly.icon.IconSets.fas.exclamationTriangle;
 import static org.patternfly.icon.IconSets.patternfly.resourcesFull;
+import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
+import static org.patternfly.icon.IconSets.rhUi.errorFill;
+import static org.patternfly.icon.IconSets.rhUi.warningFill;
 import static org.patternfly.style.Classes.modifier;
 
 /**
@@ -33,11 +33,11 @@ import static org.patternfly.style.Classes.modifier;
  */
 public enum ProgressStepVariant {
     default_(null, null),
-    success(() -> checkCircle().element(), modifier(Classes.success)),
+    success(() -> checkCircleFill().element(), modifier(Classes.success)),
     info(() -> resourcesFull().element(), modifier(Classes.info)),
     pending(null, modifier(Classes.pending)),
-    warning(() -> exclamationTriangle().element(), modifier(Classes.warning)),
-    danger(() -> exclamationCircle().element(), modifier(Classes.danger));
+    warning(() -> warningFill().element(), modifier(Classes.warning)),
+    danger(() -> errorFill().element(), modifier(Classes.danger));
 
     public final Supplier<Element> iconSupplier;
     public final String style;

@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add Red Hat brand icon sets (rhUi, rhMicrons, rhStandard) with 1,136 new icons alongside existing FontAwesome icons
+- Add `rhIcons.mjs` adapter script for RH icon generation with multi-path SVG flattening
+- Add dynamic lookup support for `rhUi`, `rhMicrons`, and `rhStandard` prefixes in `PredefinedIcon.predefinedIcon(String)`
+
+### Changed
+
+- Replace FontAwesome icons with Red Hat brand icons across all components (close, carets, status icons, utility icons)
+- Update `Severity` and `ValidationStatus` enums to use rhUi status icons
+- Update `@patternfly/react-icons` from 6.2.2 to 6.5.1 and `@patternfly/patternfly` from 6.2.3 to 6.5.2
+
 ## [0.8.3] - 2026-05-20
 
 ### Fixed

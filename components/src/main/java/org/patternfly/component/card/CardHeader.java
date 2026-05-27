@@ -34,7 +34,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
-import static org.patternfly.icon.IconSets.fas.angleRight;
+import static org.patternfly.icon.IconSets.rhUi.caretRight;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.icon;
@@ -99,7 +99,7 @@ public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> imp
                             })
                             .on(click, e -> card.toggle())
                             .add(span().css(component(Classes.card, header, toggle, icon))
-                                    .add(angleRight().element())))
+                                    .add(caretRight().element())))
                     .element();
             if (card.toggleRightAligned) {
                 css(modifier(toggleRight));
