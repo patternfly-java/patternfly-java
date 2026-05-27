@@ -15,25 +15,14 @@
  */
 package org.patternfly.componentgroup.theme;
 
-enum Contrast implements SystemValue {
+enum Theme implements SystemValue {
 
-    SYSTEM("contrast-system", "System") {
-        @Override
-        public boolean systemValue() {
-            return true;
-        }
-    },
-    DEFAULT("contrast-default", "Default"),
-    HIGH_CONTRAST("contrast-high", "High contrast"),
-    GLASS("contrast-glass", "Glass");
+    DEFAULT("default", "Default"),
+    FELT("felt", "Project Felt");
 
-    static Contrast fromIdentifier(String identifier) {
-        if (SYSTEM.identifier.equals(identifier)) {
-            return SYSTEM;
-        } else if (HIGH_CONTRAST.identifier.equals(identifier)) {
-            return HIGH_CONTRAST;
-        } else if (GLASS.identifier.equals(identifier)) {
-            return GLASS;
+    static Theme fromIdentifier(String identifier) {
+        if (FELT.identifier.equals(identifier)) {
+            return FELT;
         } else {
             return DEFAULT;
         }
@@ -42,7 +31,7 @@ enum Contrast implements SystemValue {
     final String identifier;
     final String text;
 
-    Contrast(String identifier, String text) {
+    Theme(String identifier, String text) {
         this.identifier = identifier;
         this.text = text;
     }

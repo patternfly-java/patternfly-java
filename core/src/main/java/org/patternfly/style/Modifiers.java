@@ -134,6 +134,19 @@ public interface Modifiers {
         }
     }
 
+    interface Glass<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
+
+        /** Same as {@linkplain #glass(boolean) glass(true)} */
+        default B glass() {
+            return glass(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(glass)} */
+        default B glass(boolean glass) {
+            return toggleModifier(that(), element(), Classes.glass, glass);
+        }
+    }
+
     interface Gutter<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>, IsElement<E> {
 
         /** Same as {@linkplain #gutter(boolean) gutter(true)} */
@@ -222,6 +235,20 @@ public interface Modifiers {
         /** Adds/removes {@linkplain Classes#modifier(String) modifier(noOffset)} */
         default B noOffset(boolean noOffset) {
             return toggleModifier(that(), element(), Classes.noOffset, noOffset);
+        }
+    }
+
+    interface NoPlainOnGlass<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B>,
+            IsElement<E> {
+
+        /** Same as {@linkplain #noPlainOnGlass(boolean) noPlainOnGlass(true)} */
+        default B noPlainOnGlass() {
+            return noPlainOnGlass(true);
+        }
+
+        /** Adds/removes {@linkplain Classes#modifier(String) modifier(noPlainOnGlass)} */
+        default B noPlainOnGlass(boolean noPlainOnGlass) {
+            return toggleModifier(that(), element(), Classes.noPlainOnGlass, noPlainOnGlass);
         }
     }
 

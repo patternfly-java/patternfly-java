@@ -15,6 +15,8 @@
  */
 package org.patternfly.componentgroup.theme;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.gwtproject.event.shared.HandlerRegistration;
@@ -34,33 +36,40 @@ class ThemeManager<E extends Enum<E> & SystemValue> {
     private static final Logger logger = Logger.getLogger(ThemeManager.class.getName());
 
     private final String storageKey;
-    private final String css;
-    private final E addClassValue;
+    private final Set<String> managedClasses;
+    private final Function<E, String> cssMapping;
     private final MediaQueryList mediaQuery;
+    private final E mediaQueryValue;
     private final Function<E, String> save;
     private final HandlerRegistration handlerRegistration;
     E value;
 
-    ThemeManager(String storageKey, String css, String mediaQuery, E defaultValue, E addClassValue, E mediaQueryValue,
-            Function<String, E> load, Function<E, String> save) {
+    ThemeManager(String storageKey, Function<E, String> cssMapping, String mediaQuery,
+            E defaultValue, E mediaQueryValue,
+            Function<String, E> load, Function<E, String> save,
+            E[] allValues) {
         this.storageKey = storageKey;
-        this.css = css;
-        this.addClassValue = addClassValue;
+        this.cssMapping = cssMapping;
+        this.mediaQueryValue = mediaQueryValue;
         this.save = save;
 
-        // listen for OS/browser changes
+        this.managedClasses = new LinkedHashSet<>();
+        for (E val : allValues) {
+            String css = cssMapping.apply(val);
+            if (css != null) {
+                managedClasses.add(css);
+            }
+        }
+
         this.mediaQuery = window.matchMedia(mediaQuery);
         EventListener eventListener = event -> {
-            if (((MediaQueryListEvent) event).matches) {
-                apply(mediaQueryValue);
-            } else {
-                apply(defaultValue);
+            if (value != null && value.systemValue()) {
+                applySystemPreference(((MediaQueryListEvent) event).matches);
             }
         };
         this.mediaQuery.addEventListener(change.name, eventListener);
         this.handlerRegistration = () -> this.mediaQuery.removeEventListener(change.name, eventListener);
 
-        // load from local storage
         String item = WebStorageWindow.of(window).localStorage.getItem(storageKey);
         if (item != null) {
             apply(load.apply(item));
@@ -83,18 +92,30 @@ class ThemeManager<E extends Enum<E> & SystemValue> {
                 WebStorageWindow.of(window).localStorage.setItem(storageKey, item);
             }
             if (this.value.systemValue()) {
-                if (mediaQuery.matches) {
-                    document.querySelector("html").classList.add(css);
-                } else {
-                    document.querySelector("html").classList.remove(css);
-                }
+                applySystemPreference(mediaQuery.matches);
             } else {
-                if (this.value == addClassValue) {
+                removeAllManagedClasses();
+                String css = cssMapping.apply(this.value);
+                if (css != null) {
                     document.querySelector("html").classList.add(css);
-                } else {
-                    document.querySelector("html").classList.remove(css);
                 }
             }
+        }
+    }
+
+    private void applySystemPreference(boolean matches) {
+        removeAllManagedClasses();
+        if (matches) {
+            String css = cssMapping.apply(mediaQueryValue);
+            if (css != null) {
+                document.querySelector("html").classList.add(css);
+            }
+        }
+    }
+
+    private void removeAllManagedClasses() {
+        for (String css : managedClasses) {
+            document.querySelector("html").classList.remove(css);
         }
     }
 }

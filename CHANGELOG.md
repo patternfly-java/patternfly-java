@@ -11,12 +11,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add Red Hat brand icon sets (rhUi, rhMicrons, rhStandard) with 1,136 new icons alongside existing FontAwesome icons
 - Add `rhIcons.mjs` adapter script for RH icon generation with multi-path SVG flattening
 - Add dynamic lookup support for `rhUi`, `rhMicrons`, and `rhStandard` prefixes in `PredefinedIcon.predefinedIcon(String)`
+- Add Project Felt theme support with `Theme` enum and `ThemeManager<Theme>`
+- Add Glass contrast mode with `Contrast.GLASS` mapping to `pf-v6-theme-glass`
+- Add `Glass` and `NoPlainOnGlass` modifier interfaces to `Modifiers`
+- Add `glass` and `noPlainOnGlass` CSS constants to `Classes`
 
 ### Changed
 
 - Replace FontAwesome icons with Red Hat brand icons across all components (close, carets, status icons, utility icons)
 - Update `Severity` and `ValidationStatus` enums to use rhUi status icons
 - Update `@patternfly/react-icons` from 6.2.2 to 6.5.1 and `@patternfly/patternfly` from 6.2.3 to 6.5.2
+- Update `@patternfly/react-tokens` from 6.2.2 to 6.5.1 adding 58 new design tokens (1,014 → 1,072)
+- Refactor `ThemeManager` to support multi-class value mapping via `Function<E, String>`
+- Rebuild `ThemeSelector` with three toggle groups (Theme, Color scheme, Contrast mode) matching PatternFly website
+- Expand `Contrast` enum from 3 values (System/On/Off) to 4 values (System/Default/High contrast/Glass)
+- Graduate high contrast mode from beta to full release
 
 ## [0.8.3] - 2026-05-20
 

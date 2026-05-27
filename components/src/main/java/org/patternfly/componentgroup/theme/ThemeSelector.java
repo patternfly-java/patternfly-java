@@ -19,7 +19,6 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.menu.MenuContent;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.togglegroup.ToggleGroup;
@@ -33,8 +32,6 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuGroup.menuGroup;
-import static org.patternfly.component.menu.MenuItem.menuItem;
-import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
@@ -59,52 +56,108 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
 
     // ------------------------------------------------------ instance
 
+    private static final String THEME_KEY = "theme";
     private static final String COLOR_KEY = "color";
     private static final String CONTRAST_KEY = "contrast";
+    private final ThemeManager<Theme> themeManager;
     private final ThemeManager<Color> colorManager;
     private final ThemeManager<Contrast> contrastManager;
     private final SingleSelect singleSelect;
-    private final MenuContent menuContent;
-    private boolean hasContrast;
 
     ThemeSelector(String storagePrefix) {
         super(ComponentType.ThemeSelector, div().css(component(themeSelector)).element());
-        this.hasContrast = false;
 
+        String themeKey = storagePrefix == null
+                ? "theme-variant-preference"
+                : Id.build(storagePrefix, "theme-variant-preference");
         String colorKey = storagePrefix == null
                 ? "theme-preference"
                 : Id.build(storagePrefix, "theme-preference");
         String contrastKey = storagePrefix == null
-                ? "high-contrast-preference"
-                : Id.build(storagePrefix, "high-contrast-preference");
-        colorManager = new ThemeManager<>(colorKey, "pf-v6-theme-dark", "(prefers-color-scheme: dark)",
-                Color.SYSTEM, Color.DARK, Color.DARK,
-                Color::fromIdentifier, Color::identifier);
-        contrastManager = new ThemeManager<>(contrastKey, "pf-v6-theme-high-contrast", "(prefers-contrast: more)",
-                Contrast.SYSTEM, Contrast.ON, Contrast.ON,
-                Contrast::fromIdentifier, Contrast::identifier);
+                ? "contrast-preference"
+                : Id.build(storagePrefix, "contrast-preference");
 
-        menuContent = menuContent()
-                .addGroup(menuGroup("Color scheme")
-                        .addList(menuList()
-                                .addItems(asList(Color.values()), color ->
-                                        menuItem(color.identifier, color.text)
-                                                .icon(color.icon())
-                                                .description(color.description)
-                                                .store(COLOR_KEY, color))));
+        themeManager = new ThemeManager<>(themeKey,
+                t -> t == Theme.FELT ? "pf-v6-theme-felt" : null,
+                "(prefers-color-scheme: dark)", // not used for theme, but required by ThemeManager
+                Theme.DEFAULT, Theme.DEFAULT,
+                Theme::fromIdentifier, Theme::identifier,
+                Theme.values());
+        colorManager = new ThemeManager<>(colorKey,
+                c -> c == Color.DARK ? "pf-v6-theme-dark" : null,
+                "(prefers-color-scheme: dark)",
+                Color.SYSTEM, Color.DARK,
+                Color::fromIdentifier, Color::identifier,
+                Color.values());
+        contrastManager = new ThemeManager<>(contrastKey,
+                c -> {
+                    if (c == Contrast.HIGH_CONTRAST) {
+                        return "pf-v6-theme-high-contrast";
+                    } else if (c == Contrast.GLASS) {
+                        return "pf-v6-theme-glass";
+                    }
+                    return null;
+                },
+                "(prefers-contrast: more)",
+                Contrast.SYSTEM, Contrast.HIGH_CONTRAST,
+                Contrast::fromIdentifier, Contrast::identifier,
+                Contrast.values());
+
+        // Theme toggle group
+        ToggleGroup themeToggleGroup = toggleGroup(single)
+                .addItems(asList(Theme.values()), theme ->
+                        toggleGroupItem(theme.identifier(), theme.text)
+                                .store(THEME_KEY, theme))
+                .onSingleSelect((e, item, selected) -> {
+                    Theme theme = item.get(THEME_KEY);
+                    if (theme != themeManager.value) {
+                        themeManager.apply(theme);
+                    }
+                });
+        themeToggleGroup.select(themeManager.value.identifier());
+
+        // Color scheme toggle group
+        ToggleGroup colorToggleGroup = toggleGroup(single)
+                .addItems(asList(Color.values()), color ->
+                        toggleGroupItem(color.identifier(), color.text)
+                                .store(COLOR_KEY, color))
+                .onSingleSelect((e, item, selected) -> {
+                    Color color = item.get(COLOR_KEY);
+                    if (color != colorManager.value) {
+                        colorManager.apply(color);
+                    }
+                });
+        colorToggleGroup.select(colorManager.value.identifier());
+
+        // Contrast mode toggle group
+        ToggleGroup contrastToggleGroup = toggleGroup(single)
+                .addItems(asList(Contrast.values()), contrast ->
+                        toggleGroupItem(contrast.identifier(), contrast.text)
+                                .store(CONTRAST_KEY, contrast))
+                .onSingleSelect((e, item, selected) -> {
+                    Contrast contrast = item.get(CONTRAST_KEY);
+                    if (contrast != contrastManager.value) {
+                        contrastManager.apply(contrast);
+                    }
+                });
+        contrastToggleGroup.select(contrastManager.value.identifier());
+
         MenuToggle menuToggle = menuToggle().icon(colorManager.value.icon());
         singleSelect = singleSelect(menuToggle)
                 .noDefaultSelectHandler()
                 .addMenu(singleSelectMenu()
-                        .onSingleSelect((e, menuItem, selected) -> {
-                            Color color = menuItem.get(COLOR_KEY);
-                            if (color != colorManager.value) {
-                                colorManager.apply(color);
-                                menuToggle.icon(color.icon());
-                            }
-                        })
-                        .addContent(menuContent));
-        singleSelect.select(colorManager.value.identifier());
+                        .addContent(menuContent()
+                                .addGroup(menuGroup("Theme")
+                                        .add(div().css(component(menu, search))
+                                                .add(themeToggleGroup)))
+                                .addDivider()
+                                .addGroup(menuGroup("Color scheme")
+                                        .add(div().css(component(menu, search))
+                                                .add(colorToggleGroup)))
+                                .addDivider()
+                                .addGroup(menuGroup("Contrast mode")
+                                        .add(div().css(component(menu, search))
+                                                .add(contrastToggleGroup)))));
         add(singleSelect);
     }
 
@@ -115,6 +168,7 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
 
     @Override
     public void detach(MutationRecord mutationRecord) {
+        themeManager.cleanup();
         colorManager.cleanup();
         contrastManager.cleanup();
     }
@@ -123,29 +177,6 @@ public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> imp
 
     public ThemeSelector placement(Placement placement) {
         singleSelect.placement(placement);
-        return this;
-    }
-
-    public ThemeSelector withContrast() {
-        if (!hasContrast) {
-            ToggleGroup toggleGroup = toggleGroup(single)
-                    .addItems(asList(Contrast.values()), contrast ->
-                            toggleGroupItem(contrast.identifier(), contrast.text)
-                                    .store(CONTRAST_KEY, contrast))
-                    .onSingleSelect((e, menuItem, selected) -> {
-                        Contrast contrast = menuItem.get(CONTRAST_KEY);
-                        if (contrast != contrastManager.value) {
-                            contrastManager.apply(contrast);
-                        }
-                    });
-            menuContent
-                    .addDivider()
-                    .addGroup(menuGroup("High contrast")
-                            .add(div().css(component(menu, search)) // just a fake MenuSearch component
-                                    .add(toggleGroup)));
-            toggleGroup.select(contrastManager.value.identifier());
-            hasContrast = true;
-        }
         return this;
     }
 

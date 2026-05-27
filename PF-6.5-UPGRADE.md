@@ -11,13 +11,13 @@ Items marked ⚠️ are potentially breaking or high-impact. Items marked 🆕 a
 
 These are cross-cutting concerns that affect many components.
 
-- [ ] 🆕 **Project Felt theme support** — New theme variant applied via a single CSS class. Evaluate whether PatternFly Java needs a theme API or just CSS class application support.
-- [ ] 🆕 **Glass mode** — New contrast mode adding transparency/depth to components. Multiple components gained glass-related modifiers (`isGlass`, `noGlass`, `isNoPlainOnGlass`). Needs a `glass` modifier in `Classes`/`Modifiers` and per-component support (see component sections below).
-- [ ] 🔧 **High contrast mode (full release)** — Graduated from beta. Enabled via a CSS class. Verify PatternFly Java can apply it.
-- [ ] 🔧 **Link style changes** — Links now have subtle gray dotted underline that becomes active on hover/focus. CSS-only change, verify no Java impact.
-- [ ] 🔧 **Navigation active item style** — Active items now use a vertical "accent" line. CSS-only, but verify nav component markup is compatible.
-- [ ] 🔧 **Control borders** — More boldly outlined. CSS-only change.
-- [ ] 🆕 **Global SCSS variable for image path** — `$pf-v6-global--image-path` added (#8400). May affect how the Java showcase or build references PF assets.
+- [x] 🆕 **Project Felt theme support** — Added `Theme` enum and `ThemeManager<Theme>` with CSS class `pf-v6-theme-felt`. ThemeSelector now includes a Theme toggle group (Default / Project Felt).
+- [x] 🆕 **Glass mode** — Added `Contrast.GLASS` value mapping to CSS class `pf-v6-theme-glass`. Added `glass` and `noPlainOnGlass` constants to `Classes.java` and `Glass`/`NoPlainOnGlass` modifier interfaces to `Modifiers.java`. Per-component support tracked in section 3.
+- [x] 🔧 **High contrast mode (full release)** — Graduated from beta. `Contrast.HIGH_CONTRAST` maps to `pf-v6-theme-high-contrast`. ThemeSelector exposes all contrast modes (System / Default / High contrast / Glass).
+- [x] 🔧 **Link style changes** — CSS-only change, no Java impact. Verified no markup changes needed.
+- [x] 🔧 **Navigation active item style** — CSS-only, nav component markup is compatible. No Java changes needed.
+- [x] 🔧 **Control borders** — CSS-only change. No Java changes needed.
+- [x] 🆕 **Global SCSS variable for image path** — SCSS build concern, not applicable to Java components.
 
 ---
 
@@ -186,9 +186,9 @@ These are fixes in PatternFly React that may also affect the Java implementation
 
 ## 7 — Design Token Updates
 
-- [ ] 🔧 **Token updates from Figma** — (#8097, #8237, #8407). Review token changes and update Java token enums if auto-generated.
-- [ ] 🔧 **Sticky column background token** — (#8332). Table sticky column token updated.
-- [ ] 🔧 **Unified theme tokens applied** to Card, Nav, ToggleGroup, Button, NotificationBadge, JumpLinks, Progress, Breadcrumbs, Table, ClipboardCopy, Menu/MenuToggle. CSS-only changes — verify no markup impact.
+- [x] 🔧 **Token updates from Figma** — (#8097, #8237, #8407). Updated `@patternfly/react-tokens` from 6.4.0 to 6.5.1; Token.java regenerated (1,014 → 1,072 tokens).
+- [x] 🔧 **Sticky column background token** — (#8332). Included in the react-tokens 6.5.1 update.
+- [x] 🔧 **Unified theme tokens applied** to Card, Nav, ToggleGroup, Button, NotificationBadge, JumpLinks, Progress, Breadcrumbs, Table, ClipboardCopy, Menu/MenuToggle. CSS-only changes — no markup impact confirmed.
 
 ---
 

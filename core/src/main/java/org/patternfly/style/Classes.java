@@ -131,6 +131,7 @@ public interface Classes {
     String fullHeight = "full-height";
     String fullWidth = "full-width";
     String gallery = "gallery";
+    String glass = "glass";
     String global = "global";
     String grid = "grid";
     String group = "group";
@@ -189,6 +190,7 @@ public interface Classes {
     String noOffset = "no-offset";
     String noPadding = "no-padding";
     String noPaddingTop = "no-padding-top";
+    String noPlainOnGlass = "no-plain-on-glass";
     String noSidebar = "no-sidebar";
     String notificationDrawer = "notification-drawer";
     String notify = "notify";
