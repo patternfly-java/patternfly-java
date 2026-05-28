@@ -6,12 +6,12 @@
     {
       "name": "pf-compare",
       "path": "skills/pf-compare/SKILL.md",
-      "description": "Compare a PatternFly component against its PatternFly Java implementation"
+      "description": "Compare a PatternFly component against its PatternFly Java implementation to identify variation coverage gaps and DOM/CSS differences. Use when asked to /pf-compare, compare PF component, check PFJ completeness, find missing PF variations, gap analysis, or generate a component comparison report."
     },
     {
       "name": "pf-align",
       "path": "skills/pf-align/SKILL.md",
-      "description": "Align PatternFly Java with PatternFly by implementing missing variations and fixing DOM/CSS differences"
+      "description": "Align a PatternFly Java component with PatternFly by implementing action items from pf-compare reports. Use when asked to /pf-align, align component, implement missing variations, fix PFJ component, apply pf-compare recommendations, add missing PFJ variations, sync with PatternFly, bring component up to date, implement pf-compare action items, or implement changes from a comparison report."
     }
   ]
 }

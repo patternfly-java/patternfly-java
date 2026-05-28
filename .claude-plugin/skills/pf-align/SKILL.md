@@ -1,9 +1,15 @@
 ---
 name: pf-align
-description: Align PatternFly Java components with PatternFly by implementing action items from pf-compare reports
-author: Harald Pehl
-license: Apache-2.0
-version: 0.1.0
+description: >-
+  This skill should be used when aligning a PatternFly Java component with its
+  PatternFly counterpart by implementing action items from pf-compare reports.
+  Triggers include /pf-align, "align component", "implement missing variations",
+  "fix PFJ component", "apply pf-compare recommendations", "add missing PFJ
+  variations", "sync with PatternFly", "bring component up to date",
+  "implement pf-compare action items", or any request to implement changes
+  identified by a comparison report.
+metadata:
+  version: "0.1.0"
 ---
 
 # /pf-align — PatternFly Java Alignment
@@ -12,17 +18,12 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 ## Tools
 
-**Pre-allowed tools:**
-- Read
-- Write
-- Edit
-- Bash
+### Chrome DevTools MCP (require approval on first use)
 
-**Chrome DevTools MCP tools:**
-- new_page
-- select_page
-- evaluate_script
-- close_page
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__new_page** — Open new browser tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
 
 ## Arguments
 
@@ -57,7 +58,9 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 **Locate component files:**
 - Component class: `components/src/main/java/org/patternfly/component/<component>/<Component>.java`
 - Showcase file: `showcase/src/main/java/org/patternfly/showcase/component/<Component>Component.java`
-- If either not found → ERROR (class not found)
+- For compound names (e.g., `description-list`), convert to PascalCase: `DescriptionList.java`, `DescriptionListComponent.java`
+- If not found at expected path, search with: `find components/src -name "<Component>.java" -path "*/component/*"`
+- If still not found → ERROR (class not found)
 
 **Verify showcase server:**
 - Check `http://localhost:<port>/` is accessible
@@ -172,25 +175,20 @@ Read showcase/src/main/java/org/patternfly/showcase/component/<Component>Compone
 new_page({ url: <pf_url from YAML> })
 ```
 
-**Construct variation slug:**
-- Convert title to kebab-case: "Primary disabled" → "primary-disabled"
-- Remove special chars: "Primary (disabled)" → "primary-disabled"
+**Construct variation slug from title:**
+1. Lowercase the entire string
+2. Remove parentheses and their contents: "Primary (disabled)" → "primary"
+3. Replace spaces, underscores, and non-alphanumeric chars with hyphens
+4. Collapse consecutive hyphens into one
+5. Trim leading/trailing hyphens
 
-**Extract HTML:**
-```javascript
-evaluate_script({
-  function: `
-    (componentSlug, variationSlug) => {
-      const prefix = 'ws-core-c-' + componentSlug + '-';
-      const container = document.getElementById(prefix + variationSlug);
-      if (!container) return null;
-      const preview = container.querySelector('.ws-preview-html');
-      return preview ? preview.innerHTML.trim() : null;
-    }
-  `,
-  args: [<component>, <variation-slug>]
-})
-```
+Examples:
+- "Primary disabled" → "primary-disabled"
+- "Link (disabled)" → "link"
+- "Call to action" → "call-to-action"
+- "Stateful toggle" → "stateful-toggle"
+
+**Extract HTML:** Read the script from `references/extract-variation-html.js` and pass it to `evaluate_script` with `args: [<component>, <variation-slug>]`.
 
 **Handle extraction failure:**
 - If HTML is null → ERROR (HTML extraction failed)
@@ -209,86 +207,7 @@ evaluate_script({
 - For `fix_attribute`: Check if ARIA method exists in component class
 - If already implemented → Skip with message
 
-**Handle by type:**
-
-#### Type: add_variation
-
-1. **Translate HTML to Java:**
-   - Use Code Generation Reference (see section below)
-   - Read component class patterns first
-   - Match existing method names and modifiers
-   - Preserve fluent API style
-
-2. **Generate snippet ID:**
-   - Format: `<component>-<variation-slug>` (e.g., `button-primary-disabled`)
-
-3. **Generate snippet code:**
-   ```java
-   addSnippet(new Snippet("<snippet-id>", "<title>",
-       code("<snippet-id>"), () ->
-       // @code-start:<snippet-id>
-       <translated-java-code>
-       // @code-end:<snippet-id>
-   ));
-   ```
-
-4. **Insert location:**
-   - Before `startApiDocs()` call in showcase file
-   - After existing snippets
-   - Maintain spacing/indentation
-
-#### Type: fix_css
-
-1. **Identify modifier method:**
-   - Extract class name from description (e.g., `.pf-m-danger` → `danger()`)
-   - Check if method exists in component class
-
-2. **Generate modifier method:**
-   ```java
-   public <Component> danger() {
-       return css(modifier("danger"));
-   }
-   ```
-
-3. **Insert location:**
-   - In `// ------------------------------------------------------ builder` section
-   - After existing modifier methods
-   - Alphabetically sorted
-
-#### Type: fix_structure
-
-1. **Identify affected method:**
-   - Parse description for target (e.g., "Icon placement" → icon-related methods)
-   - Read existing implementation
-
-2. **Generate wrapper code:**
-   ```java
-   // Wrap icon in span with class
-   return span().css(component(button, icon))
-       .add(<existing-icon-code>);
-   ```
-
-3. **Insert/update location:**
-   - In relevant builder method or add method
-   - Preserve existing logic
-   - Update section markers if needed
-
-#### Type: fix_attribute
-
-1. **Identify ARIA method:**
-   - Extract attribute from description (e.g., `aria-label` → `ariaLabel()`)
-
-2. **Generate ARIA method:**
-   ```java
-   public <Component> ariaLabel(String label) {
-       return aria(Aria.label, label);
-   }
-   ```
-
-3. **Insert location:**
-   - In `// ------------------------------------------------------ aria` section
-   - After existing ARIA methods
-   - Alphabetically sorted
+**Handle by type:** Read `references/code-generation.md` now, before generating any code. Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
 
 **For all types:**
 - Preserve existing imports
@@ -301,7 +220,7 @@ evaluate_script({
 
 **Run build:**
 ```bash
-mvn compile -Dquickly -P showcase
+mvn verify -Dquickly -P showcase
 ```
 
 **Handle build failure:**
@@ -312,7 +231,7 @@ mvn compile -Dquickly -P showcase
 - Continue to next item or exit
 
 **On success:**
-- Print: "Build passed ✓"
+- Print: "Build passed."
 - Continue to Step 8
 
 ### Step 8: Show Diff & Approve
@@ -366,9 +285,10 @@ Alignment complete for <component>:
 
 Next steps:
   1. Review changes: git diff
-  2. Run tests: mvn test -Dtest=<Component>Test
-  3. Commit: git add -A && git commit -m "feat: Align <component> with PatternFly"
-  4. Update report: /pf-compare <component> --update
+  2. Full build: mvn clean verify -P showcase
+  3. Run tests: mvn test -Dtest=<Component>Test
+  4. Commit: git add -A && git commit -m "feat: Align <component> with PatternFly"
+  5. Update report: /pf-compare <component> --update
 ```
 
 **Files changed:**
@@ -378,75 +298,10 @@ Next steps:
 **Suggest next steps:**
 - If --item was used and other items remain → Suggest running without filter
 - If all items processed → Suggest running /pf-compare --update to verify
-- If showcase not running → Suggest starting showcase server
 
 ## Code Generation Reference
 
-### HTML-to-Java Translation Table
-
-**Common Button patterns:**
-
-| PatternFly HTML | PFJ Builder API |
-|-----------------|-----------------|
-| `<button class="pf-c-button pf-m-primary">Text</button>` | `button("Text").primary()` |
-| `<button class="pf-c-button pf-m-danger" disabled>Text</button>` | `button("Text").danger().disabled()` |
-| `<button class="pf-c-button"><span class="pf-c-button__icon">...</span>Text</button>` | `button("Text").icon(...)` |
-| `<button aria-label="Close">X</button>` | `button("X").ariaLabel("Close")` |
-| `<div>...</div>` wrapper | `div().add(...)` |
-
-**Text content:**
-- Literal text → First argument to factory method: `button("Click me")`
-- No text → Empty string: `button()`
-
-**CSS classes:**
-- `.pf-m-*` → Modifier method: `.pf-m-primary` → `.primary()`
-- `.pf-c-button__*` → Component part (usually handled internally)
-
-**Boolean attributes:**
-- `disabled` → `.disabled()`
-- `readonly` → `.readonly()`
-- Presence = true, absence = false
-
-**ARIA attributes:**
-- `aria-label="X"` → `.ariaLabel("X")`
-- `aria-hidden="true"` → `.ariaHidden(true)`
-
-**Icons:**
-- FontAwesome: `fas fa-times` → `fas("times")`
-- PatternFly: `pf-icon pf-icon-close` → `icon("close")`
-
-**Containers:**
-- `<div>` → `div()`
-- `<span>` → `span()`
-- `<section>` → `section()`
-
-### General Translation Principles
-
-1. **Always read component class first:**
-   - Identify existing factory methods
-   - Match naming conventions
-   - Reuse existing modifiers
-
-2. **Layout wrappers:**
-   - Use `div()` for generic containers
-   - Use `flex()` for flex layouts
-   - Use `flexItem()` for flex children
-
-3. **Icons:**
-   - Import: `import static org.patternfly.icon.IconSets.*`
-   - FontAwesome: `fas("icon-name")`
-   - PatternFly: `patternfly("icon-name")`
-
-4. **Unknown patterns:**
-   - If HTML structure is unfamiliar → Ask user for clarification
-   - If modifier not found → Create new modifier method
-   - If component part unclear → Examine existing component code
-
-5. **Preserve existing style:**
-   - Match indentation (4 spaces)
-   - Match method chaining style
-   - Match comment formatting
-   - Use existing import patterns
+For HTML-to-Java translation patterns, read `references/code-generation.md`. For the expected input report format, see `examples/sample-report-input.md`.
 
 ## Error Handling
 
@@ -466,17 +321,17 @@ Next steps:
 ## Anti-Patterns
 
 **DON'T:**
-- ❌ Generate code without reading existing component patterns first
-- ❌ Modify code outside the scope of the action item
-- ❌ Skip the build verification step
-- ❌ Proceed without user approval after showing diff
-- ❌ Hardcode HTML-to-Java translations (always read component class)
-- ❌ Overwrite user changes (check git status first)
+- Generate code without reading existing component patterns first
+- Modify code outside the scope of the action item
+- Skip the build verification step
+- Proceed without user approval after showing diff
+- Hardcode HTML-to-Java translations (always read component class)
+- Overwrite user changes (check git status first)
 
 **DO:**
-- ✅ Read component class before translating HTML
-- ✅ Preserve existing code style and patterns
-- ✅ Run build after every change
-- ✅ Ask for approval before finalizing
-- ✅ Skip items that are already implemented
-- ✅ Provide clear error messages and next steps
+- Read component class before translating HTML
+- Preserve existing code style and patterns
+- Run build after every change
+- Ask for approval before finalizing
+- Skip items that are already implemented
+- Provide clear error messages and next steps

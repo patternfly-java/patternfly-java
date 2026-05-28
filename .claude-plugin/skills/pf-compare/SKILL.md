@@ -1,12 +1,13 @@
 ---
 name: pf-compare
 description: >-
-  Compare a PatternFly component against its PatternFly Java implementation.
-  Use when the user says /pf-compare, "compare PF component", "check PFJ
-  completeness", "compare button component", or wants to identify gaps between
-  PatternFly and PatternFly Java component implementations.
-author: "Harald Pehl <harald.pehl@gmail.com>"
-license: Apache-2.0
+  This skill should be used when comparing a PatternFly component against its
+  PatternFly Java (PFJ) implementation. Triggers include /pf-compare,
+  "compare PF component", "check PFJ completeness", "compare button component",
+  "what's missing in the Java card", "gap analysis for alert",
+  "generate comparison report for tabs", "find missing PF variations",
+  or any request to identify variation coverage gaps or DOM/CSS differences
+  between PatternFly and PatternFly Java.
 metadata:
   version: "0.1.0"
 ---
@@ -17,12 +18,6 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java impleme
 
 ## Tools
 
-### Pre-allowed (no permission prompt)
-
-- **Read** — Read existing comparison reports
-- **Write** — Create comparison report files
-- **Bash** — Check localhost reachability (`curl`), create directories (`mkdir`)
-
 ### Chrome DevTools MCP (require approval on first use)
 
 - **mcp__plugin_chrome-devtools-mcp_chrome-devtools__navigate_page** — Navigate browser tabs
@@ -30,6 +25,7 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java impleme
 - **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
 - **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
 - **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages** — List open browser tabs
 - **mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_snapshot** — Capture page accessibility snapshots
 
 ## Arguments
@@ -38,7 +34,7 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java impleme
 /pf-compare <component> [--port <port>]
 ```
 
-- **component** (required) — URL slug of the component (e.g., `button`, `card`, `data-list`)
+- **component** (required) — URL slug of a single component (e.g., `button`, `card`, `data-list`). One component per invocation.
 - **--port** (optional) — PFJ local dev server port (default: `1234`)
 
 Parse from the ARGUMENTS string. If no component is provided, ask the user which component to compare.
@@ -72,25 +68,7 @@ Run in order. Stop on failure.
 
 1. Open `PF_URL` in a new Chrome tab via `new_page`.
 
-2. Use `evaluate_script` with the following JS function (pass `COMPONENT` as an argument via `args`):
-
-```javascript
-(componentSlug) => {
-  const prefix = 'ws-core-c-' + componentSlug + '-';
-  const containers = document.querySelectorAll('div[id^="' + prefix + '"]');
-  const variations = [];
-  for (const container of containers) {
-    const id = container.id;
-    const slug = id.replace(prefix, '');
-    const heading = document.getElementById(slug);
-    const title = heading ? heading.textContent.trim() : slug.replace(/-/g, ' ');
-    const preview = container.querySelector('.ws-preview-html');
-    const html = preview ? preview.innerHTML.trim() : '';
-    variations.push({ slug, title, html });
-  }
-  return variations;
-}
-```
+2. Read the script from `references/extract-pf-variations.js` and pass it to `evaluate_script` with `args: [COMPONENT]`.
 
 3. Store the result as `PF_VARIATIONS` — an array of `{ slug, title, html }`.
 
@@ -102,27 +80,7 @@ Run in order. Stop on failure.
 
 1. Open `PFJ_URL` in a new Chrome tab via `new_page`.
 
-2. Use `evaluate_script` with the following JS function:
-
-```javascript
-() => {
-  const headings = document.querySelectorAll('h3.ws-heading');
-  const snippets = [];
-  for (const h3 of headings) {
-    const id = h3.id;
-    const title = h3.textContent.trim();
-    const stack = h3.parentElement?.parentElement?.parentElement;
-    if (!stack) continue;
-    const children = stack.children;
-    if (children.length < 2) continue;
-    const previewItem = children[1];
-    const previewDiv = previewItem?.firstElementChild;
-    const html = previewDiv ? previewDiv.innerHTML.trim() : '';
-    snippets.push({ id, title, html });
-  }
-  return snippets;
-}
-```
+2. Read the script from `references/extract-pfj-snippets.js` and pass it to `evaluate_script` (no args needed).
 
 3. Store the result as `PFJ_SNIPPETS` — an array of `{ id, title, html }`.
 
@@ -160,10 +118,7 @@ For each entry in `MATCHED`, compare the `html` fields. Focus on:
 
 ### Filtering rules
 
-- Only compare classes with prefix `pf-v6-` or `pf-m-`.
-- Ignore dynamic IDs (patterns: `id="xxx-id-NNN"`, `data-pfcsce`, `on-detach-uid`).
-- Ignore SVG internals (only compare the wrapping `<svg>` element classes).
-- Ignore whitespace and formatting differences.
+Read `references/ignore-patterns.md` for the full list of patterns to ignore during comparison (dynamic IDs, SVG internals, whitespace, non-PF classes, version-dependent constants).
 
 ### Output per matched pair
 
@@ -214,74 +169,15 @@ Full report: docs/pf-compare/<COMPONENT>.md
    mkdir -p docs/pf-compare
    ```
 
-2. Detect the PF version by switching to the PF tab and running `evaluate_script`:
+2. Detect the PF version by switching to the PF tab and running the script from `references/detect-pf-version.js` via `evaluate_script`.
 
-```javascript
-() => {
-  const allButtons = document.querySelectorAll('button');
-  const releaseBtn = Array.from(allButtons).find(b => b.textContent.includes('Release'));
-  return releaseBtn ? releaseBtn.textContent.trim() : 'unknown';
-}
-```
-
-3. Generate the report file with the following structure:
-
-```markdown
----
-component: <COMPONENT>
-date: <YYYY-MM-DD>
-pf_version: <PF_VERSION>
-pf_url: <PF_URL>
-pfj_url: <PFJ_URL>
-completeness:
-  pf_total: <N>
-  pfj_total: <M>
-  matched: <K>
-  missing_in_pfj:
-    - slug1
-    - slug2
-  extra_in_pfj:
-    - id1
----
-
-# PF Compare: <COMPONENT>
-
-## Completeness
-
-| # | PF Variation | PFJ Snippet | Status |
-|---|---|---|---|
-| 1 | PF title | PFJ title | matched |
-| 2 | PF title | --- | missing_in_pfj |
-
-## DOM Comparison
-
-### <Variation Title>
-
-**Status:** differences_found
-
-#### Missing CSS Classes
-- `.pf-m-xxx` on `<element>` — present in PF, absent in PFJ
-
-#### Extra CSS Classes
-- `.pf-m-xxx` on `<element>` — present in PFJ, absent in PF
-
-#### Structural Differences
-- description
-
-#### Attribute Differences
-- description
-
-## Action Items
-
-1. **Add variation:** title — implement this PF variation in PFJ
-2. **Fix CSS:** variation — add missing class `.pf-m-xxx`
-3. **Fix structure:** variation — description
-4. **Fix attribute:** variation — description
-```
+3. Generate the report file using the template from `references/report-template.md`. Read that file and fill in the placeholders with actual data.
 
 4. Write the report to `docs/pf-compare/<COMPONENT>.md`.
 
 5. Report: "Detailed report saved to `docs/pf-compare/<COMPONENT>.md`"
+
+For sample report output, see `examples/button.md` and `examples/card.md`.
 
 ---
 
