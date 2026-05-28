@@ -42,6 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Standardize pnpm 11.3.0 as the package manager across all npm packages, replacing a dev pre-release version in charts, core, and finder
 - Split `IconSpecs` into separate top-level enum classes per icon set with automatic chunking (configurable via `node generate.mjs <chunkSize>`) to fix J2CL static initializer exceeding the 64KB bytecode limit
 - Improve `/pf-compare` and `/pf-align` skills with progressive disclosure, extracted JS scripts and templates to references/, added example reports, enriched trigger phrases, and standardized tool naming
 - Replace FontAwesome icons with Red Hat brand icons across all components (close, carets, status icons, utility icons)
