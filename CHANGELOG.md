@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add `/pf-compare` skill as a project plugin (`.claude-plugin/`) for comparing PatternFly components against their PatternFly Java implementations using Chrome DevTools MCP browser automation
 - Add Red Hat brand icon sets (rhUi, rhMicrons, rhStandard) with 1,136 new icons alongside existing FontAwesome icons
 - Add `rhIcons.mjs` adapter script for RH icon generation with multi-path SVG flattening
 - Add dynamic lookup support for `rhUi`, `rhMicrons`, and `rhStandard` prefixes in `PredefinedIcon.predefinedIcon(String)`
