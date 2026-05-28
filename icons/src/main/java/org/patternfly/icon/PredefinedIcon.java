@@ -65,23 +65,7 @@ public final class PredefinedIcon implements
      * @throws IllegalArgumentException if the group or icon name is unknown.
      */
     public static PredefinedIcon predefinedIcon(String name) {
-        String group = "fas";
-        String iconName = name;
-        if (name.contains(".")) {
-            group = name.substring(0, name.indexOf('.'));
-            iconName = name.substring(name.indexOf('.') + 1);
-        }
-        IconSpec iconSpec = switch (group) {
-            case "fab" -> IconSpecs.fab.valueOf(iconName).iconSpec;
-            case "far" -> IconSpecs.far.valueOf(iconName).iconSpec;
-            case "fas" -> IconSpecs.fas.valueOf(iconName).iconSpec;
-            case "patternfly" -> IconSpecs.patternfly.valueOf(iconName).iconSpec;
-            case "rhMicrons" -> IconSpecs.rhMicrons.valueOf(iconName).iconSpec;
-            case "rhStandard" -> IconSpecs.rhStandard.valueOf(iconName).iconSpec;
-            case "rhUi" -> IconSpecs.rhUi.valueOf(iconName).iconSpec;
-            default -> throw new IllegalArgumentException("Unknown icon: '" + name + "'");
-        };
-        return new PredefinedIcon(iconSpec);
+        return new PredefinedIcon(IconSpecLookup.find(name));
     }
 
     // ------------------------------------------------------ instance
