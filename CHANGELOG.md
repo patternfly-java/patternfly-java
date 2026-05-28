@@ -60,6 +60,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Fix showcase production build (`pnpm run prod`) failure caused by Parcel LightningCSS rejecting relative `url()` in PatternFly v6 CSS custom properties
 - Fix Progress danger status icon using wrong icon (`closeCircle` → `errorFill`)
 - Fix Drawer panel missing `inert` attribute when collapsed for accessibility
 - Fix Form required asterisk orphaning by keeping asterisk inside label text span
