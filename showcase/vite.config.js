@@ -55,6 +55,7 @@ export default defineConfig({
         outDir: resolve(__dirname, 'target/showcase'),
         emptyOutDir: false,
         cssMinify: 'esbuild',
+        chunkSizeWarningLimit: 2200,
         rollupOptions: {
             input: {
                 index: resolve(__dirname, 'src/web/index.html'),

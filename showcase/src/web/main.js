@@ -38,3 +38,9 @@ import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
 
 window["hljs"] = hljs; // 'export' hljs for J2CL
+
+// Load J2CL-compiled showcase app
+const script = document.createElement("script");
+script.src = "/showcase.js";
+script.defer = true;
+document.body.appendChild(script);
