@@ -1,0 +1,12 @@
+{
+  "name": "patternfly-java",
+  "version": "0.1.0",
+  "description": "Skills for developing PatternFly Java components",
+  "skills": [
+    {
+      "name": "pf-compare",
+      "path": "skills/pf-compare/SKILL.md",
+      "description": "Compare a PatternFly component against its PatternFly Java implementation"
+    }
+  ]
+}

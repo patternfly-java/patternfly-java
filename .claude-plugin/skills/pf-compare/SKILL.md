@@ -1,0 +1,311 @@
+---
+name: pf-compare
+description: >-
+  Compare a PatternFly component against its PatternFly Java implementation.
+  Use when the user says /pf-compare, "compare PF component", "check PFJ
+  completeness", "compare button component", or wants to identify gaps between
+  PatternFly and PatternFly Java component implementations.
+author: "Harald Pehl <harald.pehl@gmail.com>"
+license: Apache-2.0
+metadata:
+  version: "0.1.0"
+---
+
+# /pf-compare — PatternFly Component Comparison
+
+Compares a PatternFly (React/HTML) component against its PatternFly Java implementation to identify variation coverage gaps and DOM/CSS structural differences.
+
+## Tools
+
+### Pre-allowed (no permission prompt)
+
+- **Read** — Read existing comparison reports
+- **Write** — Create comparison report files
+- **Bash** — Check localhost reachability (`curl`), create directories (`mkdir`)
+
+### Chrome DevTools MCP (require approval on first use)
+
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__navigate_page** — Navigate browser tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__new_page** — Open new browser tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
+- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_snapshot** — Capture page accessibility snapshots
+
+## Arguments
+
+```
+/pf-compare <component> [--port <port>]
+```
+
+- **component** (required) — URL slug of the component (e.g., `button`, `card`, `data-list`)
+- **--port** (optional) — PFJ local dev server port (default: `1234`)
+
+Parse from the ARGUMENTS string. If no component is provided, ask the user which component to compare.
+
+---
+
+## Workflow — Step 1: Pre-flight Checks
+
+Run in order. Stop on failure.
+
+1. **Parse arguments**: Extract `COMPONENT` and optional `--port` (default `1234`). If no component is provided, ask the user.
+
+2. **Resolve PFJ showcase URL** — try in order:
+   - Run: `curl -s -o /dev/null -w "%{http_code}" http://localhost:<port>/components/<COMPONENT>`
+   - If HTTP 200, set `PFJ_URL = http://localhost:<port>/components/<COMPONENT>`
+   - Otherwise, use the published showcase: set `PFJ_URL = https://patternfly-java.github.io/components/<COMPONENT>`
+     - Note: The published PFJ showcase is a single-page app with client-side routing. `curl` will return 404 for deep links, but the page loads correctly in a browser. Do NOT use curl to verify this URL — trust it and verify via browser navigation in Step 3.
+
+3. **Verify PF site**:
+   - Run: `curl -s -o /dev/null -w "%{http_code}" -L https://www.patternfly.org/components/<COMPONENT>/html`
+   - Note the `-L` flag to follow redirects (PF site uses 302 redirects to add trailing slashes).
+   - If not 200, stop with: "Could not reach PF showcase at `https://www.patternfly.org/components/<COMPONENT>/html`. Verify the component name."
+
+4. **Set variables**: `PF_URL`, `PFJ_URL`, `COMPONENT`
+
+5. **Print**: "Pre-flight OK. Comparing PF (`PF_URL`) against PFJ (`PFJ_URL`)."
+
+---
+
+## Workflow — Step 2: Extract PF Variations
+
+1. Open `PF_URL` in a new Chrome tab via `new_page`.
+
+2. Use `evaluate_script` with the following JS function (pass `COMPONENT` as an argument via `args`):
+
+```javascript
+(componentSlug) => {
+  const prefix = 'ws-core-c-' + componentSlug + '-';
+  const containers = document.querySelectorAll('div[id^="' + prefix + '"]');
+  const variations = [];
+  for (const container of containers) {
+    const id = container.id;
+    const slug = id.replace(prefix, '');
+    const heading = document.getElementById(slug);
+    const title = heading ? heading.textContent.trim() : slug.replace(/-/g, ' ');
+    const preview = container.querySelector('.ws-preview-html');
+    const html = preview ? preview.innerHTML.trim() : '';
+    variations.push({ slug, title, html });
+  }
+  return variations;
+}
+```
+
+3. Store the result as `PF_VARIATIONS` — an array of `{ slug, title, html }`.
+
+4. Report: "Extracted N PF variations: (list of titles)"
+
+---
+
+## Workflow — Step 3: Extract PFJ Snippets
+
+1. Open `PFJ_URL` in a new Chrome tab via `new_page`.
+
+2. Use `evaluate_script` with the following JS function:
+
+```javascript
+() => {
+  const headings = document.querySelectorAll('h3.ws-heading');
+  const snippets = [];
+  for (const h3 of headings) {
+    const id = h3.id;
+    const title = h3.textContent.trim();
+    const stack = h3.parentElement?.parentElement?.parentElement;
+    if (!stack) continue;
+    const children = stack.children;
+    if (children.length < 2) continue;
+    const previewItem = children[1];
+    const previewDiv = previewItem?.firstElementChild;
+    const html = previewDiv ? previewDiv.innerHTML.trim() : '';
+    snippets.push({ id, title, html });
+  }
+  return snippets;
+}
+```
+
+3. Store the result as `PFJ_SNIPPETS` — an array of `{ id, title, html }`.
+
+4. Report: "Extracted M PFJ snippets: (list of titles)"
+
+---
+
+## Workflow — Step 4: Match Variations
+
+Perform AI-assisted semantic matching between `PF_VARIATIONS` and `PFJ_SNIPPETS`. Apply rules in order:
+
+1. **Exact match** (case-insensitive title comparison) — automatic match.
+2. **Semantic match** (e.g., "Variations" matches "Variant examples") — match with a note explaining the reasoning.
+3. **No match** — mark as `missing_in_pfj`.
+
+After matching, check for unmatched PFJ snippets — mark as `extra_in_pfj`.
+
+Produce three lists:
+
+- **MATCHED** — array of `{ pf: { slug, title, html }, pfj: { id, title, html } }`
+- **MISSING_IN_PFJ** — PF variations with no PFJ counterpart
+- **EXTRA_IN_PFJ** — PFJ snippets with no PF counterpart
+
+Report the matching table showing each PF variation, its matched PFJ snippet (or "---"), and the match type.
+
+---
+
+## Workflow — Step 5: Compare DOM/CSS for Matched Variations
+
+For each entry in `MATCHED`, compare the `html` fields. Focus on:
+
+1. **CSS class differences** — PF-specific classes (`pf-v6-c-*`, `pf-m-*`, `pf-v6-l-*`). Report missing and extra classes.
+2. **Structural differences** — Element tag hierarchy. Report missing or extra wrapper elements.
+3. **Attribute differences** — ARIA attributes, `type`, `role`, `tabindex`. Report missing or extra attributes.
+
+### Filtering rules
+
+- Only compare classes with prefix `pf-v6-` or `pf-m-`.
+- Ignore dynamic IDs (patterns: `id="xxx-id-NNN"`, `data-pfcsce`, `on-detach-uid`).
+- Ignore SVG internals (only compare the wrapping `<svg>` element classes).
+- Ignore whitespace and formatting differences.
+
+### Output per matched pair
+
+```json
+{
+  "variation": "<PF title>",
+  "status": "ok | differences_found",
+  "missingClasses": [{ "class": "pf-m-xxx", "element": "<tag>", "context": "..." }],
+  "extraClasses": [{ "class": "pf-m-xxx", "element": "<tag>", "context": "..." }],
+  "structuralDiffs": ["description"],
+  "attributeDiffs": ["description"]
+}
+```
+
+Store as `COMPARISON_RESULTS`.
+
+---
+
+## Workflow — Step 6: Print Inline Summary
+
+Print the following summary directly in the conversation:
+
+```
+## PF Compare: <COMPONENT>
+
+### Completeness: <MATCHED count>/<PF total> variations (<percentage>%)
+
+Missing in PFJ:
+  - title 1
+  - title 2
+
+Extra in PFJ:
+  - title 1
+
+### DOM Comparison (matched variations):
+  variation: N class differences, M structural issues
+  variation: OK
+
+Full report: docs/pf-compare/<COMPONENT>.md
+```
+
+---
+
+## Workflow — Step 7: Write Detailed Report
+
+1. Create the output directory:
+   ```
+   mkdir -p docs/pf-compare
+   ```
+
+2. Detect the PF version by switching to the PF tab and running `evaluate_script`:
+
+```javascript
+() => {
+  const allButtons = document.querySelectorAll('button');
+  const releaseBtn = Array.from(allButtons).find(b => b.textContent.includes('Release'));
+  return releaseBtn ? releaseBtn.textContent.trim() : 'unknown';
+}
+```
+
+3. Generate the report file with the following structure:
+
+```markdown
+---
+component: <COMPONENT>
+date: <YYYY-MM-DD>
+pf_version: <PF_VERSION>
+pf_url: <PF_URL>
+pfj_url: <PFJ_URL>
+completeness:
+  pf_total: <N>
+  pfj_total: <M>
+  matched: <K>
+  missing_in_pfj:
+    - slug1
+    - slug2
+  extra_in_pfj:
+    - id1
+---
+
+# PF Compare: <COMPONENT>
+
+## Completeness
+
+| # | PF Variation | PFJ Snippet | Status |
+|---|---|---|---|
+| 1 | PF title | PFJ title | matched |
+| 2 | PF title | --- | missing_in_pfj |
+
+## DOM Comparison
+
+### <Variation Title>
+
+**Status:** differences_found
+
+#### Missing CSS Classes
+- `.pf-m-xxx` on `<element>` — present in PF, absent in PFJ
+
+#### Extra CSS Classes
+- `.pf-m-xxx` on `<element>` — present in PFJ, absent in PF
+
+#### Structural Differences
+- description
+
+#### Attribute Differences
+- description
+
+## Action Items
+
+1. **Add variation:** title — implement this PF variation in PFJ
+2. **Fix CSS:** variation — add missing class `.pf-m-xxx`
+3. **Fix structure:** variation — description
+4. **Fix attribute:** variation — description
+```
+
+4. Write the report to `docs/pf-compare/<COMPONENT>.md`.
+
+5. Report: "Detailed report saved to `docs/pf-compare/<COMPONENT>.md`"
+
+---
+
+## Workflow — Step 8: Cleanup
+
+1. Use `list_pages` to find the PF and PFJ tabs opened during the workflow.
+2. Close them with `close_page` (keep at least one tab open in the browser).
+3. Print completion message with next steps:
+   - Review the report at `docs/pf-compare/<COMPONENT>.md`
+   - Use the report as input for a future `/pf-align` skill
+   - Run `/pf-compare` on another component
+
+---
+
+## Error Handling
+
+- **Component not found**: If curl returns non-200 for both PFJ URLs, report clearly and suggest checking the component slug or starting the dev server.
+- **No variations extracted**: If PF or PFJ returns zero variations/snippets, warn the user that the page structure may have changed and the JS selectors may need updating.
+- **Chrome DevTools unavailable**: If MCP tools fail, report the error and suggest ensuring Chrome is running with DevTools MCP connected.
+- **Partial data**: If only some comparisons succeed, still produce the report with available data and note which comparisons failed.
+
+## Anti-Patterns
+
+- **Blocking on cosmetic differences**: Do not report whitespace, formatting, or dynamic ID differences as issues.
+- **Comparing non-PF classes**: Only compare classes prefixed with `pf-v6-` or `pf-m-`. Ignore application-specific or utility classes.
+- **Deep SVG comparison**: Do not traverse SVG internals. Only compare the wrapping `<svg>` element's classes.
+- **Overwriting reports without asking**: If a report already exists at the target path, note it in the output but proceed with overwriting (the file is regenerable).
