@@ -17,6 +17,7 @@ package org.patternfly.component.page;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.style.Modifiers.Fill;
+import org.patternfly.style.Modifiers.Glass;
 import org.patternfly.style.Modifiers.NoFill;
 import org.patternfly.style.Modifiers.Secondary;
 
@@ -38,6 +39,7 @@ import static org.patternfly.style.Classes.section;
 public class PageSection extends PageSectionBuilder<HTMLElement, PageSection> implements
         Fill<HTMLElement, PageSection>,
         ElementContainerDelegate<HTMLElement, PageSection>,
+        Glass<HTMLElement, PageSection>,
         NoFill<HTMLElement, PageSection>,
         Secondary<HTMLElement, PageSection> {
 

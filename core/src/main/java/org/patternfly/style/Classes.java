@@ -275,6 +275,7 @@ public interface Classes {
     String step = "step";
     String steps = "steps";
     String sticky = "sticky";
+    String stickyHeader = "sticky-header";
     String subnav = "subnav";
     String subtab = "subtab";
     String success = "success";

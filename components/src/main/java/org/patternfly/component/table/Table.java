@@ -141,6 +141,16 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
 
     // ------------------------------------------------------ builder
 
+    /** Same as {@linkplain #stickyHeader(boolean) stickyHeader(true)} */
+    public Table stickyHeader() {
+        return stickyHeader(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(stickyHeader)} */
+    public Table stickyHeader(boolean stickyHeader) {
+        return toggleModifier(that(), element(), Classes.stickyHeader, stickyHeader);
+    }
+
     /** Same as {@linkplain #noBorders(boolean) borders(true)} */
     public Table noBorders() {
         return noBorders(true);

@@ -37,6 +37,8 @@ import static org.patternfly.style.Breakpoints.breakpoints;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.toolbar;
 import static org.patternfly.style.TypedModifier.swap;
+import static org.patternfly.style.Variable.componentVar;
+import static org.patternfly.style.Variables.Height;
 
 /**
  * A toolbar allows a user to manage and manipulate a data set. Data can be presented in any valid presentation, a table, a
@@ -104,6 +106,18 @@ public class Toolbar extends BaseComponent<HTMLDivElement, Toolbar> implements
     /** Insets at various breakpoints. */
     public Toolbar inset(Breakpoints<Inset> inset) {
         return css(inset.modifiers());
+    }
+
+    /**
+     * Same as {@code heights(breakpoints(default_, height))}
+     */
+    public Toolbar heights(String height) {
+        return heights(breakpoints(default_, height));
+    }
+
+    /** Responsive heights at various breakpoints. */
+    public Toolbar heights(Breakpoints<String> heights) {
+        return componentVar(component(toolbar), Height).applyTo(this).set(heights);
     }
 
     @Override

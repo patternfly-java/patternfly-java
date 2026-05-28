@@ -22,6 +22,7 @@ import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.IconPosition.start;
@@ -60,8 +61,8 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
 
     final Button button;
     final HTMLElement iconContainer;
-    private final String moreText;
-    private final String lessText;
+    private String moreText;
+    private String lessText;
 
     ExpandableSectionToggle(String moreText, String lessText) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(expandableSection, toggle)).element());
@@ -88,6 +89,32 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
     }
 
     // ------------------------------------------------------ builder
+
+    public ExpandableSectionToggle moreText(String moreText) {
+        this.moreText = moreText;
+        return this;
+    }
+
+    public ExpandableSectionToggle lessText(String lessText) {
+        this.lessText = lessText;
+        return this;
+    }
+
+    public ExpandableSectionToggle hideIcon() {
+        button.removeIcon();
+        return this;
+    }
+
+    public ExpandableSectionToggle showIcon() {
+        button.iconAndText(iconContainer, button.text(), start);
+        return this;
+    }
+
+    public ExpandableSectionToggle icon(Element icon) {
+        removeChildrenFrom(iconContainer);
+        iconContainer.appendChild(icon);
+        return this;
+    }
 
     @Override
     public ExpandableSectionToggle that() {

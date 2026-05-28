@@ -29,6 +29,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `ariaDescribedBy(String)` to Radio and Checkbox
 - Add `hideStatusIcon()` to Progress
 - Add `ariaLabel(String)` to ExpandableSection
+- Add `Glass` modifier to PageSection for sticky glass sections
+- Add `add()` variant to Label for `.pf-m-add` modifier
+- Add `form()` styling to MenuToggle for form context usage
+- Add `nav()` variant to Tabs for navigation-style tabs
+- Add `tabListAriaLabel(String)` to Tabs for inner tab list accessibility
+- Add `moreText(String)`, `lessText(String)`, `hideIcon()`, `showIcon()`, and `icon(Element)` to ExpandableSectionToggle
+- Add `stickyHeader()` to Table with `stickyHeader` CSS constant
+- Add `heights(String)` and `heights(Breakpoints<String>)` to Toolbar for responsive height support
 
 ### Changed
 

@@ -42,7 +42,7 @@ These are cross-cutting concerns that affect many components.
 ### Table
 - [x] 🔧 **Plain variant** — New `isPlain` prop (#7925, #12112). Table now implements `Plain` modifier interface.
 - [x] 🔧 **Container queries support** — (#8054). CSS-only, no markup changes needed.
-- [ ] 🔧 **Dynamic sticky styling** — (#8321, #12348). New sticky behavior for table headers. Sticky cell support exists in CSS (`.pf-v6-c-table__sticky-cell`) but no Java builder methods yet. Showcase snippets marked as nyi().
+- [x] 🔧 **Dynamic sticky styling** — (#8321, #12348). Added `stickyHeader()` and `stickyHeader(boolean)` methods to Table. Added `stickyHeader` CSS constant to Classes.
 - [x] 🔧 **Indeterminate checkbox for select-all header** — (#12411). Already implemented in `Table.select()` — sets `checkbox.indeterminate = true` for partial selection.
 
 ### DataList
@@ -50,8 +50,8 @@ These are cross-cutting concerns that affect many components.
 - [x] 🔧 **`isNoPlainOnGlass` prop** — (#12292). DataList now implements `NoPlainOnGlass` modifier interface.
 
 ### Tabs
-- [ ] 🔧 **Nav variant** — New `.pf-m-nav` modifier (#7924, #12111). Add nav variant support. `Classes.nav` constant exists but no `nav()` method on Tabs yet. Note: PF CSS does not yet contain `.pf-m-nav` for Tabs.
-- [ ] 🔧 **`tabListAriaLabel` prop** — (#12193). Current `ariaLabel()` applies to outer container, not the inner `role=tablist` element. Need a dedicated method for the tab list.
+- [x] 🔧 **Nav variant** — New `.pf-m-nav` modifier (#7924, #12111). Added `nav()` and `nav(boolean)` methods to Tabs.
+- [x] 🔧 **`tabListAriaLabel` prop** — (#12193). Added `tabListAriaLabel(String)` method that applies aria-label to the inner `role=tablist` element.
 - [x] 🔧 **Updated `aria-selected` and label attributes** — (#7975). Already correctly implemented — `aria-selected` is set/updated on tab buttons in `Tab.select()`.
 
 ### Drawer
@@ -71,8 +71,8 @@ These are cross-cutting concerns that affect many components.
 
 ### ExpandableSection
 - [x] 🔧 **Aria labeling props** — (#12071). Added `ariaLabel(String)` method that applies aria-label to the toggle button.
-- [ ] 🔧 **Functional `toggleContent`** — (#12063). Toggle already supports `moreText`/`lessText` at construction, but no runtime update method exists.
-- [ ] 🔧 **More control over toggle icon** — (#12051). Icon container is private; no public API to hide/replace/customize the toggle icon.
+- [x] 🔧 **Functional `toggleContent`** — (#12063). Added `moreText(String)` and `lessText(String)` builder methods to ExpandableSectionToggle.
+- [x] 🔧 **More control over toggle icon** — (#12051). Added `hideIcon()`, `showIcon()`, and `icon(Element)` methods to ExpandableSectionToggle.
 
 ### Banner
 - [x] 🔧 **Pill variant** — New `.pf-m-pill` modifier (#8353). Banner now implements `Pill` modifier interface.
@@ -89,7 +89,7 @@ These are cross-cutting concerns that affect many components.
 
 ### Toolbar
 - [x] 🔧 **Dynamic sticky support** — (#8321, #12375). Already implements `Sticky` interface with `sticky()` and `sticky(boolean)` methods.
-- [ ] 🔧 **Responsive height via breakpoints** — (#8295, #12347). Has `inset(Breakpoints<Inset>)` but no height breakpoint support yet.
+- [x] 🔧 **Responsive height via breakpoints** — (#8295, #12347). Added `heights(String)` and `heights(Breakpoints<String>)` methods using CSS variable pattern.
 
 ### Card
 - [x] 🔧 **`isGlass` prop** — (#12290). Card now implements `Glass` modifier interface.
@@ -100,7 +100,7 @@ These are cross-cutting concerns that affect many components.
 - [ ] 🔧 **Updated for Compass usage** — (#8303, #12372). Compass itself is deferred (section 8). Defer this too.
 
 ### Page
-- [ ] 🔧 **Glass mode support for sticky sections** — (#8345, #12293). `Glass` modifier exists in core but not applied to `PageSection`. Need to add.
+- [x] 🔧 **Glass mode support for sticky sections** — (#8345, #12293). PageSection now implements `Glass` modifier interface.
 - [x] 🔧 **Dynamic sticky section support** — (#12409). Already implemented via `PageSectionBuilder.sticky(Breakpoints<Sticky>)`.
 - [ ] 🔧 **Responsive docked nav support** — (#12327). Docked Navigation itself is deferred (section 8). Defer this too.
 
@@ -111,7 +111,7 @@ These are cross-cutting concerns that affect many components.
 - [x] 🔧 **Disabled visual appearance** — (#8030, #12140). Already implemented — `TreeViewItem` implements `Disabled` interface, applies `.pf-m-disabled` on `<li>` and disables child buttons/inputs.
 
 ### MenuToggle
-- [ ] 🔧 **Form styling support** — (#12326). Add styling for use within forms.
+- [x] 🔧 **Form styling support** — (#12326). Added `form()` and `form(boolean)` methods to MenuToggle.
 
 ### ClipboardCopy
 - [ ] 🔧 **Text input callbacks and props** — (#12180). ClipboardCopy component does not exist yet. Defer.
@@ -121,7 +121,7 @@ These are cross-cutting concerns that affect many components.
 
 ### Label
 - [x] 🔧 **`LabelColor` and `LabelStatus` enums** — (#12338). Colors handled via existing `Color` enum; status via `Severity` enum with `status(Severity)` method.
-- [ ] 🔧 **Render add-variant as button** — (#12192). No "add" variant exists in Label. Evaluate if needed.
+- [x] 🔧 **Render add-variant as button** — (#12192). Added `add()` and `add(boolean)` methods to Label for `.pf-m-add` modifier.
 
 ### TextInputGroup
 - [x] 🔧 **`default` as `validated` option** — (#12349). `ValidationStatus.default_` already exists with null modifier, supported by `Validatable` interface.
@@ -158,7 +158,7 @@ These are cross-cutting concerns that affect many components.
 These are fixes in PatternFly React that may also affect the Java implementation.
 
 - [x] 🔧 **DrawerPanelContent styles overriding** — (#12039). Inline `overflow-anchor` style is intentional for bottom-drawer resize. Low risk, no change needed.
-- [ ] 🔧 **Nav horizontal overflow resizeObserver** — (#12070). Known issue ("Horizontal navigation doesn't shrink!" TODO in Navigation.java). Needs ScrollButtons investigation.
+- [x] 🔧 **Nav horizontal overflow resizeObserver** — (#12070). Investigated: ScrollButtons already handles resize events. The shrink issue is CSS-level (`white-space: nowrap`, no `flex-shrink`), not a Java API gap.
 - [x] 🔧 **PageSidebar flash on non-mobile** — (#12040). Java sidebar starts expanded by default — no flash issue.
 - [x] 🔧 **ExpandableSection nested bug** — (#8009). Already handled — retry mechanism with 10 attempts and explicit detached-mode support with null checks.
 - [x] 🔧 **TypeaheadSelect state sync** — (#12147). N/A — TypeaheadSelect component does not exist in Java implementation.

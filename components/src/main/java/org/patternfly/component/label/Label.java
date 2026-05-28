@@ -217,6 +217,16 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         return toggleModifier(that(), element(), Classes.filled, filled);
     }
 
+    /** Same as {@linkplain #add(boolean) add(true)} */
+    public Label add() {
+        return add(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(add)} */
+    public Label add(boolean add) {
+        return toggleModifier(that(), element(), Classes.add, add);
+    }
+
     /** Same as {@linkplain #outline(boolean) outline(true)} */
     public Label outline() {
         return outline(true);

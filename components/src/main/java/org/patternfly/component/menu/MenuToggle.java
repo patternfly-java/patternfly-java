@@ -58,6 +58,7 @@ import static org.patternfly.style.Classes.danger;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.menuToggle;
 import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.toggle;
 
@@ -346,6 +347,16 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     public MenuToggle iconAndText(Element icon, String text, IconPosition iconPosition) {
         icon(icon);
         return text(text);
+    }
+
+    /** Same as {@linkplain #form(boolean) form(true)} */
+    public MenuToggle form() {
+        return form(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(form)} */
+    public MenuToggle form(boolean form) {
+        return toggleModifier(that(), element(), Classes.form, form);
     }
 
     public MenuToggle small() {

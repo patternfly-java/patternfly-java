@@ -338,6 +338,16 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
         return this;
     }
 
+    /** Same as {@linkplain #nav(boolean) nav(true)} */
+    public Tabs nav() {
+        return nav(true);
+    }
+
+    /** Adds/removes {@linkplain Classes#modifier(String) modifier(nav)} */
+    public Tabs nav(boolean nav) {
+        return toggleModifier(this, mainContainer.element(), Classes.nav, nav);
+    }
+
     /** Same as {@linkplain #noBorderBottom(boolean) noBorderBottom(true)} */
     public Tabs noBorderBottom() {
         return noBorderBottom(true);
@@ -444,6 +454,12 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
      */
     public Tabs ariaLabel(String label) {
         return aria(Aria.label, label);
+    }
+
+    /** Provides an accessible label for the inner tab list element ({@code role=tablist}). */
+    public Tabs tabListAriaLabel(String label) {
+        tabsContainer.aria(Aria.label, label);
+        return this;
     }
 
     /**
