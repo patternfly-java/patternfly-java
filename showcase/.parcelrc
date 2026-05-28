@@ -16,5 +16,11 @@
 
 {
   "extends": "@parcel/config-default",
-  "resolvers": ["@parcel/resolver-glob", "parcel-resolver-ignore", "..."]
+  "resolvers": ["@parcel/resolver-glob", "parcel-resolver-ignore", "..."],
+  "transformers": {
+    "*.css": ["@parcel/transformer-postcss"]
+  },
+  "optimizers": {
+    "*.css": ["@parcel/optimizer-cssnano"]
+  }
 }
