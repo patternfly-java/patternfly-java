@@ -42,6 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Migrate showcase and charts build tooling from Parcel to Vite, removing LightningCSS workarounds for `@container anchored()` rules and relative `url()` in CSS custom properties
 - Standardize pnpm 11.3.0 as the package manager across all npm packages, replacing a dev pre-release version in charts, core, and finder
 - Split `IconSpecs` into separate top-level enum classes per icon set with automatic chunking (configurable via `node generate.mjs <chunkSize>`) to fix J2CL static initializer exceeding the 64KB bytecode limit
 - Improve `/pf-compare` and `/pf-align` skills with progressive disclosure, extracted JS scripts and templates to references/, added example reports, enriched trigger phrases, and standardized tool naming
@@ -60,7 +61,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fix showcase production build (`pnpm run prod`) failure caused by Parcel LightningCSS rejecting relative `url()` in PatternFly v6 CSS custom properties
 - Fix Progress danger status icon using wrong icon (`closeCircle` → `errorFill`)
 - Fix Drawer panel missing `inert` attribute when collapsed for accessibility
 - Fix Form required asterisk orphaning by keeping asterisk inside label text span
