@@ -42,6 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Improve `/pf-compare` and `/pf-align` skills with progressive disclosure, extracted JS scripts and templates to references/, added example reports, enriched trigger phrases, and standardized tool naming
 - Replace FontAwesome icons with Red Hat brand icons across all components (close, carets, status icons, utility icons)
 - Migrate showcase icon references from FontAwesome 5 to Red Hat brand icon sets (rhUi)
 - Update `Severity` and `ValidationStatus` enums to use rhUi status icons
