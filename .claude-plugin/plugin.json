@@ -7,6 +7,11 @@
       "name": "pf-compare",
       "path": "skills/pf-compare/SKILL.md",
       "description": "Compare a PatternFly component against its PatternFly Java implementation"
+    },
+    {
+      "name": "pf-align",
+      "path": "skills/pf-align/SKILL.md",
+      "description": "Align PatternFly Java with PatternFly by implementing missing variations and fixing DOM/CSS differences"
     }
   ]
 }
