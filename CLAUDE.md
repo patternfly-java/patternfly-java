@@ -15,7 +15,7 @@ PatternFly Java is a pure Java implementation of [PatternFly](https://www.patter
 | `mvn test -Dtest=ModifierTest` | Run a single test class |
 | `mvn test -Dtest=ModifierTest#testModifiers` | Run a single test method |
 | `mvn j2cl:watch -P showcase` | Watch J2CL compilation for showcase dev |
-| `cd showcase && npm run watch` | Watch CSS/HTML and serve showcase locally |
+| `cd showcase && pnpm run watch` | Watch CSS/HTML and serve showcase locally |
 | `mvn clean package -P showcase,prod` | Build production showcase |
 
 Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.

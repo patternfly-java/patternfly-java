@@ -24,7 +24,7 @@ In another shell run
 
 ```shell
 cd showcase
-npm run watch
+pnpm run watch
 ```
 
 This will open a browser at http://localhost:1234.
@@ -36,7 +36,7 @@ To build the showcase for production, run the following command in the root dire
 ```shell
 mvn clean package -P showcase,prod
 cd showcase
-mvn com.github.eirslett:frontend-maven-plugin:npm@http-server
+mvn com.github.eirslett:frontend-maven-plugin:corepack@http-server
 
 ```
 After a successful build, open https://localhost:8080
