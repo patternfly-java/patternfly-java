@@ -58,9 +58,9 @@ import static org.patternfly.style.Classes.danger;
 import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.menuToggle;
 import static org.patternfly.style.Classes.modifier;
-import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.toggle;
+import static org.patternfly.style.Modifiers.toggleModifier;
 
 /**
  * The menu toggle component pairs with the menu OR the panel component to create a more customizable dropdown and select
