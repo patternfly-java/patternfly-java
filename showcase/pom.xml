@@ -115,9 +115,6 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>.parcel-cache</directory>
-                        </fileset>
-                        <fileset>
                             <directory>src/main/java</directory>
                             <includes>
                                 <include>org/patternfly/showcase/Code.java</include>

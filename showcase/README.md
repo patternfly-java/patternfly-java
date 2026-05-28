@@ -4,8 +4,7 @@ The [showcase](https://patternfly-java.github.io/) for PatternFly Java is inspir
 
 ## Development
 
-In the development mode, the Java code is transpiled to JavaScript using J2CL. The HTML and CSS are transpiled to JavaScript
-using Parcel. Changes to HTML and CSS will be detected by Parcel, and the browser reloads the page automatically.
+In the development mode, the Java code is transpiled to JavaScript using J2CL. The HTML and CSS are bundled using Vite. Changes to HTML and CSS will be detected by Vite, and the browser reloads the page automatically.
 Changes to the Java code will be detected by the J2CL Maven plugin, but you need to reload the browser manually.
 
 To start the showcase in development mode, run the following command in the root directory:

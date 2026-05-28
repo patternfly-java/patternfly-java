@@ -156,12 +156,7 @@
     inset: auto;
 }
 
-/*
-Arrow correction after CSS flip (requires @container anchored() support).
-LightningCSS can't parse these yet (parcel-bundler/lightningcss#1176) — the
-packager/optimizer also fails, not just the transformer. So these rules must be
-injected at runtime via adoptedStyleSheets (see showcase/src/web/main.js).
-Uncomment once lightningcss supports @container anchored().
+/* Arrow correction after CSS flip (requires @container anchored() support) */
 
 @container anchored(fallback: flip-block) {
     .pf-v6-c-tooltip[popover].pf-m-css-positioning.pf-m-top .pf-v6-c-tooltip__arrow {
@@ -250,4 +245,3 @@ Uncomment once lightningcss supports @container anchored().
         --pf-v6-c-popover__arrow--Rotate: var(--pf-v6-c-popover__arrow--m-left--Rotate);
     }
 }
-*/

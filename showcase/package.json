@@ -1,19 +1,9 @@
 {
   "name": "patternfly-java-showcase",
   "private": true,
-  "parcelIgnore": [
-    "showcase.js"
-  ],
-  "source": [
-    "src/web/dev.html",
-    "src/web/index.html"
-  ],
   "scripts": {
-    "start:parcel": "parcel watch src/web/dev.html --dist-dir target/showcase --port 1235 --watch-dir ..",
-    "start:server": "node server.js 1234 1235",
-    "open:browser": "wait-on http://localhost:1234 && open http://localhost:1234",
-    "watch": "concurrently \"pnpm run start:parcel\" \"pnpm run start:server\" \"pnpm run open:browser\"",
-    "prod": "parcel build src/web/index.html src/web/404.html --dist-dir target/showcase",
+    "watch": "vite",
+    "prod": "vite build",
     "http-server": "http-server target/showcase --ssl --cert cert.pem",
     "images:clean": "rm -rf src/web/images/*",
     "images:download": "node images.js"
@@ -24,25 +14,11 @@
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.16.4",
-    "@parcel/core": "^2.16.4",
-    "@parcel/optimizer-cssnano": "^2.16.4",
-    "@parcel/reporter-cli": "^2.16.4",
-    "@parcel/resolver-glob": "^2.16.4",
-    "@parcel/transformer-css": "^2.16.4",
-    "@parcel/transformer-postcss": "^2.16.4",
-    "autoprefixer": "^10.5.0",
     "basic-ftp": "^6.0.1",
-    "concurrently": "^9.2.1",
-    "express": "^5.2.1",
-    "http-proxy-middleware": "^4.0.0",
+    "esbuild": "^0.28.0",
     "http-server": "^14.1.1",
-    "open": "^11.0.0",
-    "parcel": "^2.16.4",
-    "parcel-resolver-ignore": "^2.2.1",
-    "postcss": "^8.5.15",
     "puppeteer": "^25.1.0",
-    "wait-on": "^9.0.10"
+    "vite": "^8.0.14"
   },
   "packageManager": "pnpm@11.3.0"
 }
