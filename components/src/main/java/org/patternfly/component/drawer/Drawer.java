@@ -138,6 +138,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         element().classList.remove(modifier(expanded));
         if (panel != null) {
             panel.element().hidden = true;
+            panel.element().setAttribute("inert", "");
         }
         if (fireEvent) {
             toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
@@ -150,6 +151,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         element().classList.add(modifier(expanded));
         if (panel != null) {
             panel.element().hidden = false;
+            panel.element().removeAttribute("inert");
         }
         if (fireEvent) {
             toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));

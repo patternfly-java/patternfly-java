@@ -45,6 +45,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Expand `Contrast` enum from 3 values (System/On/Off) to 4 values (System/Default/High contrast/Glass)
 - Graduate high contrast mode from beta to full release
 
+### Fixed
+
+- Fix Progress danger status icon using wrong icon (`closeCircle` → `errorFill`)
+- Fix Drawer panel missing `inert` attribute when collapsed for accessibility
+- Fix Form required asterisk orphaning by keeping asterisk inside label text span
+
 ## [0.8.3] - 2026-05-20
 
 ### Fixed

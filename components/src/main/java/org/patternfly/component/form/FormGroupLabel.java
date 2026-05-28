@@ -104,7 +104,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
             ((HTMLLabelElement) labelElement).htmlFor = formGroup.identifier();
         }
         if (formGroup.required) {
-            labelElement.appendChild(span().css(component(form, Classes.label, Classes.required))
+            textElement.appendChild(span().css(component(form, Classes.label, Classes.required))
                     .aria(hidden, true)
                     .html(fromSafeConstant("&#42;"))
                     .element());

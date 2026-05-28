@@ -56,7 +56,7 @@ import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.core.Roles.progressbar;
 import static org.patternfly.core.Validation.verifyEnum;
 import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
-import static org.patternfly.icon.IconSets.rhUi.closeCircle;
+import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.icon.IconSets.rhUi.warningFill;
 import static org.patternfly.style.Classes.bar;
 import static org.patternfly.style.Classes.component;
@@ -229,7 +229,7 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
             if (!hideStatusIcon) {
                 switch (status) {
                     case danger:
-                        failSafeIconContainer().appendChild(closeCircle().element());
+                        failSafeIconContainer().appendChild(errorFill().element());
                         break;
                     case warning:
                         failSafeIconContainer().appendChild(warningFill().element());
