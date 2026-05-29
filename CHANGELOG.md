@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add comparison report for accordion component (`docs/pf-compare/accordion.md`)
 - Add `docked()` modifier to Navigation for docked/icon-only navigation
 - Add `ariaLabel(String)` to NavigationGroup for title-less grouped navigation sections
 - Add `ariaLabel(String)` to NavigationItem for icon-only navigation items
@@ -26,6 +27,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Fix accordion toggle using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) to match PatternFly's angle-down chevron
+- Fix accordion DOM structure by wrapping toggle button in `<dt>`/`<h>` element instead of appending bare button
+- Add `pf-m-toggle-start` CSS class to accordion root when toggle icon position is start
+- Add `pf-m-bordered` to accordion Large showcase example to match PatternFly's "Large bordered" variation
+- Add `role="region"` and `tabindex="0"` to fixed accordion expandable content for accessibility
+- Add missing Javadoc to `AccordionItemBody`
 - Fix expandable navigation group using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) causing arrows to point left when expanded and appear thinner than PatternFly
 - Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
 - Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
