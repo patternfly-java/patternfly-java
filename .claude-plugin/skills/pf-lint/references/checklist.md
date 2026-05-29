@@ -142,7 +142,27 @@ Each rule has an ID, severity (ERROR or WARN), and applies to a file classificat
 
 ---
 
-## 7. Code formatting
+## 7. Class declaration formatting
+
+| ID | Sev | Applies to | Rule |
+|---|---|---|---|
+| `decl-implements-format` | ERROR | Component, Sub-component | When implementing more than one interface, each interface is on its own line with 8-space indent, `implements` is on the same line as `extends`, and a newline follows it. The opening brace `{` is on the last interface line. |
+| `decl-implements-order` | WARN | Component, Sub-component | Interfaces in the `implements` clause are listed in alphabetical order |
+| `decl-modifiers-import` | WARN | Component, Sub-component | Nested interfaces from `org.patternfly.style.Modifiers` (e.g., `Compact`, `Disabled`, `Plain`) are imported as regular nested-class imports (`import org.patternfly.style.Modifiers.Compact`), not static imports. Only utility methods like `toggleModifier` use static imports. |
+
+**Example:**
+```java
+public class Card extends BaseComponent<HTMLDivElement, Card> implements
+        Compact<HTMLDivElement, Card>,
+        Disabled<HTMLDivElement, Card>,
+        FullHeight<HTMLDivElement, Card>,
+        Glass<HTMLDivElement, Card>,
+        Plain<HTMLDivElement, Card> {
+```
+
+---
+
+## 8. General code formatting
 
 | ID | Sev | Applies to | Rule |
 |---|---|---|---|
@@ -155,7 +175,7 @@ Each rule has an ID, severity (ERROR or WARN), and applies to a file classificat
 
 ---
 
-## 8. Component store
+## 9. Component store
 
 | ID | Sev | Applies to | Rule |
 |---|---|---|---|
