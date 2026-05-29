@@ -8,8 +8,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add `docked()` modifier to Navigation for docked/icon-only navigation
+- Add `ariaLabel(String)` to NavigationGroup for title-less grouped navigation sections
+- Add `ariaLabel(String)` to NavigationItem for icon-only navigation items
+- Add showcase demos for grouped no titles, horizontal overflow, horizontal subnav overflow, and docked navigation variations
 - Add template component package (`org.patternfly.component.template`) as a blueprint for new component development
 - Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
+
+### Changed
+
+- Wrap expandable navigation group button text in `span.pf-v6-c-nav__link-text` to match PatternFly DOM structure
+- Switch ExpandableNavigationGroup from `ElementTextMethods` to `ElementTextDelegate`
+- Move formatting, linting, and enforcer plugins to opt-in Maven profiles (`format`, `check`) so `mvn install` runs without validation overhead
+- Consolidate generated file exclusions into a shared Maven property
+- Upgrade pnpm from 11.3.0 to 11.4.0
+
+### Fixed
+
+- Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
+- Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
+- Apply pf-lint fixes to card component and switch to `insert_final_newline=true`
 
 ## [0.9.0] - 2026-05-28
 
