@@ -1,7 +1,8 @@
 *.bak
 *.iml
 .classpath
-.claude
+.claude/*
+!.claude/skills/
 .DS_Store
 .idea
 .jbang

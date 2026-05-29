@@ -92,7 +92,7 @@ element().css(modifier("danger"));
 
 ## Skills
 
-Project-scoped skills available via the `patternfly-java` plugin (`.claude-plugin/`):
+Project-scoped skills in `.claude/skills/`:
 
 | Skill | Purpose |
 |-------|---------|
