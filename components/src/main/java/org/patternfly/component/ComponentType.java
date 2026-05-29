@@ -17,6 +17,9 @@ package org.patternfly.component;
 
 public enum ComponentType {
 
+    // Internal component used for the template component
+    _Template("_tpl", "PF6/Component/_Template"),
+
     Accordion("ac", "PF6/Component/Accordion"),
 
     ActionList("al", "PF6/Component/ActionList"),

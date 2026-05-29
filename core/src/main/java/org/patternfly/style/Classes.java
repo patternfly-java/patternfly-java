@@ -25,6 +25,7 @@ public interface Classes {
     // ------------------------------------------------------ constants (a-z)
 
     // TODO Cleanup and remove unused classes
+    String _template = "_template";
     String accordion = "accordion";
     String action = "action";
     String actionGroup = "action-group";

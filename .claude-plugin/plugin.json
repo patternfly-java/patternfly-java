@@ -12,6 +12,11 @@
       "name": "pf-align",
       "path": "skills/pf-align/SKILL.md",
       "description": "Align a PatternFly Java component with PatternFly by implementing action items from pf-compare reports. Use when asked to /pf-align, align component, implement missing variations, fix PFJ component, apply pf-compare recommendations, add missing PFJ variations, sync with PatternFly, bring component up to date, implement pf-compare action items, or implement changes from a comparison report."
+    },
+    {
+      "name": "pf-lint",
+      "path": "skills/pf-lint/SKILL.md",
+      "description": "Verify that a PatternFly Java component follows project conventions for documentation, code structure, naming, and formatting. Use when asked to /pf-lint, lint component, verify component structure, check component format, validate component, check code structure, verify PFJ component, lint PFJ code, check component conventions, review component code, check naming conventions, audit component, check section order, or verify section separators."
     }
   ]
 }
