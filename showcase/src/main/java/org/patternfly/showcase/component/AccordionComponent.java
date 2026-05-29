@@ -126,11 +126,11 @@ public class AccordionComponent extends SnippetPage {
                 // @code-end:accordion-bordered
         ));
 
-        addSnippet(new Snippet("accordion-large", "Large",
+        addSnippet(new Snippet("accordion-large", "Large bordered",
                 code("accordion-large"), () ->
                 // @code-start:accordion-large
                 div()
-                        .add(accordion().singleExpand().large()
+                        .add(accordion().singleExpand().large().bordered()
                                 .addItem(accordionItem("accordion-large-0", "Item one").expanded()
                                         .add(p().text(LoremIpsum.paragraphs(5))))
                                 .addItem(accordionItem("accordion-large-1", "Item two")

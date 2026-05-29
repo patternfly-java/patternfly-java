@@ -171,6 +171,11 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
 
     public Accordion iconPosition(IconPosition iconPosition) {
         this.iconPosition = iconPosition;
+        if (iconPosition == IconPosition.start) {
+            classList().add(modifier("toggle-start"));
+        } else {
+            classList().remove(modifier("toggle-start"));
+        }
         return this;
     }
 

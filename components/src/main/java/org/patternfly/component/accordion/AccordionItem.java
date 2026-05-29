@@ -29,7 +29,7 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
-import org.patternfly.core.Dataset;
+import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -45,7 +45,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.accordion;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
@@ -176,21 +176,21 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
     // ------------------------------------------------------ internal
 
     void appendTo(Accordion accordion) {
-        HTMLContainerBuilder<? extends HTMLElement> toggle = accordion.dl ? dt() : h(accordion.headingLevel);
-        toggle.data(Dataset.identifier, identifier)
+        HTMLContainerBuilder<? extends HTMLElement> toggleWrapper = accordion.dl ? dt() : h(accordion.headingLevel);
+        toggleWrapper
                 .add(toggleElement = button(ButtonType.button).css(component(Classes.accordion, Classes.toggle))
                         .on(click, e -> toggle(accordion))
                         .run(toggleButton -> {
                             if (accordion.iconPosition == start) {
                                 toggleButton
                                         .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                                                .add(caretRight().element()))
+                                                .add(caretDown().element()))
                                         .add(textElement);
                             } else {
                                 toggleButton
                                         .add(textElement)
                                         .add(span().css(component(Classes.accordion, Classes.toggle, icon))
-                                                .add(caretRight().element()));
+                                                .add(caretDown().element()));
                             }
                         })
                         .element());
@@ -200,6 +200,8 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
                 .aria(labelledBy, textElement.id);
         if (accordion.fixed) {
             content.css(modifier(Classes.fixed));
+            content.attr("role", Roles.region);
+            content.attr("tabindex", "0");
         }
         content.addAll(bodies);
         contentElement = content.element();
@@ -210,7 +212,7 @@ public class AccordionItem extends AccordionSubComponent<HTMLElement, AccordionI
             Expandable.collapse(element(), toggleElement, contentElement, true);
         }
 
-        element().appendChild(toggleElement);
+        element().appendChild(toggleWrapper.element());
         element().appendChild(contentElement);
         accordion.element().appendChild(this.element());
     }
