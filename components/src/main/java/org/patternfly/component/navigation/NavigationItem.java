@@ -125,6 +125,11 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         return this;
     }
 
+    public NavigationItem ariaLabel(String label) {
+        anchorElement.setAttribute("aria-label", label);
+        return this;
+    }
+
     @Override
     public <T> NavigationItem store(String key, T value) {
         data.put(key, value);

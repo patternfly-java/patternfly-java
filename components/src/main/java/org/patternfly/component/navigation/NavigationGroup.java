@@ -24,6 +24,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
 import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.HasIdentifier;
@@ -90,7 +91,11 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
 
-        element().appendChild(headingElement = h(2).css(component(nav, section, title)).element());
+        String titleId = Id.unique(identifier, "title");
+        element().appendChild(headingElement = h(2).css(component(nav, section, title))
+                .id(titleId)
+                .element());
+        element().setAttribute("aria-labelledby", titleId);
         element().appendChild(ul = ul().css(component(nav, list))
                 .attr(role, Roles.list)
                 .element());
@@ -140,6 +145,13 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     // ------------------------------------------------------ builder
+
+    public NavigationGroup ariaLabel(String label) {
+        failSafeRemoveFromParent(headingElement);
+        element().removeAttribute("aria-labelledby");
+        element().setAttribute("aria-label", label);
+        return this;
+    }
 
     @Override
     public NavigationGroup that() {

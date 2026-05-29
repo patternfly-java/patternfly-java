@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.By;
 import org.jboss.elemento.ElementContainerDelegate;
-import org.jboss.elemento.ElementTextMethods;
+import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.AddItemHandler;
@@ -57,7 +57,6 @@ import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.section;
 import static org.jboss.elemento.Elements.span;
-import static org.jboss.elemento.Elements.textNode;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.divider.Divider.divider;
@@ -76,11 +75,12 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.subnav;
+import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggle;
 
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
         ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup>,
-        ElementTextMethods<HTMLLIElement, ExpandableNavigationGroup>,
+        ElementTextDelegate<HTMLLIElement, ExpandableNavigationGroup>,
         HasIdentifier<HTMLLIElement, ExpandableNavigationGroup>,
         HasItems<HTMLLIElement, ExpandableNavigationGroup, NavigationItem> {
 
@@ -104,6 +104,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     private final Map<String, NavigationItem> items;
     private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private final HTMLButtonElement buttonElement;
+    private final HTMLElement linkTextElement;
     private final HTMLElement section;
     private final HTMLUListElement ul;
     private final AurHandler<ExpandableNavigationGroup, NavigationItem> aur;
@@ -123,7 +124,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
                 .id(titleId)
                 .aria(Aria.expanded, false)
                 .on(click, e -> toggle())
-                .add("")
+                .add(linkTextElement = span().css(component(nav, link, text)).element())
                 .add(span().css(component(nav, toggle))
                         .add(span().css(component(nav, toggle, icon))
                                 .add(caretRight())))
@@ -140,6 +141,11 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     @Override
     public Element containerDelegate() {
         return buttonElement;
+    }
+
+    @Override
+    public Element textDelegate() {
+        return linkTextElement;
     }
 
     // ------------------------------------------------------ add
@@ -201,12 +207,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     }
 
     // ------------------------------------------------------ builder
-
-    @Override
-    public ExpandableNavigationGroup text(String text) {
-        textNode(buttonElement, text);
-        return this;
-    }
 
     @Override
     public ExpandableNavigationGroup that() {
@@ -288,11 +288,6 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         }
     }
 
-    @Override
-    public String text() {
-        return textNode(buttonElement);
-    }
-
     // ------------------------------------------------------ internal
 
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
@@ -353,11 +348,13 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
         element().classList.add(modifier(expanded));
         buttonElement.setAttribute(Aria.expanded, true);
         section.removeAttribute(hidden);
+        section.removeAttribute("inert");
     }
 
     void collapse() {
         element().classList.remove(modifier("expanded"));
         buttonElement.setAttribute(Aria.expanded, false);
         section.hidden = true;
+        section.setAttribute("inert", "");
     }
 }

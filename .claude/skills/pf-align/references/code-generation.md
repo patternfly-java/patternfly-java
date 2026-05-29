@@ -143,3 +143,5 @@
 2. **Unknown patterns:** If HTML structure is unfamiliar, ask user for clarification. If modifier not found, create new modifier method. If component part unclear, examine existing component code.
 
 3. **Preserve existing style** -- match indentation (4 spaces), method chaining style, comment formatting, and import patterns.
+
+4. **ElementTextDelegate vs ElementTextMethods:** When a component delegates text to a child element (e.g., a `<span>` inside a `<button>`), implement `ElementTextDelegate` and provide a `textDelegate()` method returning the child element. Only use `ElementTextMethods` when the component element itself IS the text element. The same pattern applies to `ElementContainerDelegate` / `containerDelegate()` for DOM child delegation.

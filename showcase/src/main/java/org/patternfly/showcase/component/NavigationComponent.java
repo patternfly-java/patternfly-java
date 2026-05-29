@@ -33,6 +33,8 @@ import static org.patternfly.component.navigation.ExpandableNavigationGroup.expa
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.primary;
 import static org.patternfly.component.navigation.NavigationType.Horizontal.secondary;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
@@ -166,6 +168,26 @@ public class NavigationComponent extends SnippetPage {
                 // @code-end:nav-horizontal-sub
         ));
 
+        addSnippet(new Snippet("nav-grouped-no-titles", "Grouped, no titles",
+                code("nav-grouped-no-titles"), () ->
+                // @code-start:nav-grouped-no-titles
+                div().css("ws-react-c-navigation")
+                        .add(navigation(grouped)
+                                .addGroup(navigationGroup("nav-gnt-0")
+                                        .ariaLabel("Section one")
+                                        .addItem(navigationItem("nav-gnt-00", "Link 1", "#item-00"))
+                                        .addItem(navigationItem("nav-gnt-01", "Link 2", "#item-01"))
+                                        .addItem(navigationItem("nav-gnt-02", "Link 3", "#item-02")))
+                                .add(divider(hr))
+                                .addGroup(navigationGroup("nav-gnt-1")
+                                        .ariaLabel("Section two")
+                                        .addItem(navigationItem("nav-gnt-10", "Section 2, link 1", "#item-10"))
+                                        .addItem(navigationItem("nav-gnt-11", "Link 2", "#item-11"))
+                                        .addItem(navigationItem("nav-gnt-12", "Link 3", "#item-12"))))
+                        .element()
+                // @code-end:nav-grouped-no-titles
+        ));
+
         addSnippet(new Snippet("nav-flyout", "Flyout",
                 code("nav-flyout"), () ->
                 // @code-start:nav-flyout
@@ -178,6 +200,53 @@ public class NavigationComponent extends SnippetPage {
                 // @code-start:nav-drilldown
                 nyi().element()
                 // @code-end:nav-drilldown
+        ));
+
+        addSnippet(new Snippet("nav-horizontal-overflow", "Horizontal overflow",
+                code("nav-horizontal-overflow"), () ->
+                // @code-start:nav-horizontal-overflow
+                div().css("ws-react-c-navigation")
+                        .add(navigation(primary)
+                                .addItems(range(1, 11).boxed().collect(toList()), index ->
+                                        navigationItem("nav-ho-" + index, "Horizontal nav item " + index)))
+                        .element()
+                // @code-end:nav-horizontal-overflow
+        ));
+
+        addSnippet(new Snippet("nav-horizontal-sub-overflow", "Horizontal subnav overflow",
+                code("nav-horizontal-sub-overflow"), () ->
+                // @code-start:nav-horizontal-sub-overflow
+                div().css("ws-react-c-navigation")
+                        .add(navigation(secondary)
+                                .addItems(range(1, 11).boxed().collect(toList()), index ->
+                                        navigationItem("nav-hso-" + index, "Horizontal subnav item " + index)))
+                        .element()
+                // @code-end:nav-horizontal-sub-overflow
+        ));
+
+        addSnippet(new Snippet("nav-docked", "Docked",
+                code("nav-docked"), () ->
+                // @code-start:nav-docked
+                div().css("ws-react-c-navigation")
+                        .add(navigation(flat).docked()
+                                .addItem(navigationItem("nav-docked-0")
+                                        .icon(cube())
+                                        .ariaLabel("Cubes")
+                                        .href("#item-0"))
+                                .addItem(navigationItem("nav-docked-1")
+                                        .icon(folder())
+                                        .ariaLabel("Folder")
+                                        .href("#item-1"))
+                                .addItem(navigationItem("nav-docked-2")
+                                        .icon(cloud())
+                                        .ariaLabel("Cloud")
+                                        .href("#item-2"))
+                                .addItem(navigationItem("nav-docked-3")
+                                        .icon(link())
+                                        .ariaLabel("Code")
+                                        .href("#item-3")))
+                        .element()
+                // @code-end:nav-docked
         ));
 
         addSnippet(new Snippet("nav-item-icons", "With item icons",

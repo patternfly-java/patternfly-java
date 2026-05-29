@@ -304,6 +304,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
 
     // ------------------------------------------------------ builder
 
+    public Navigation docked() {
+        return css(modifier("docked"));
+    }
+
     @Override
     public Navigation that() {
         return this;
