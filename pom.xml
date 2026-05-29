@@ -272,34 +272,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <configuration>
-                        <rules>
-                            <bannedRepositories>
-                                <message>To build this project, don't use maven repositories over HTTP. Please use HTTPS
-                                    in your settings.xml or run the build with property insecure.repositories=WARN
-                                </message>
-                                <level>ERROR</level>
-                                <bannedRepositories>
-                                    <bannedRepository>http://*</bannedRepository>
-                                </bannedRepositories>
-                                <bannedPluginRepositories>
-                                    <bannedPluginRepository>http://*</bannedPluginRepository>
-                                </bannedPluginRepositories>
-                            </bannedRepositories>
-                            <requireMavenVersion>
-                                <message>To build this project Maven ${maven.min.version} (or greater) is required.
-                                    Please install it.
-                                </message>
-                                <version>${maven.min.version}</version>
-                            </requireMavenVersion>
-                            <requireJavaVersion>
-                                <message>To build this project JDK ${maven.compiler.source} (or greater) is required.
-                                    Please install it.
-                                </message>
-                                <version>${maven.compiler.source}</version>
-                            </requireJavaVersion>
-                        </rules>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -440,6 +412,34 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-enforcer-plugin</artifactId>
+                        <configuration>
+                            <rules>
+                                <bannedRepositories>
+                                    <message>To build this project, don't use maven repositories over HTTP. Please use HTTPS
+                                        in your settings.xml or run the build with property insecure.repositories=WARN
+                                    </message>
+                                    <level>ERROR</level>
+                                    <bannedRepositories>
+                                        <bannedRepository>http://*</bannedRepository>
+                                    </bannedRepositories>
+                                    <bannedPluginRepositories>
+                                        <bannedPluginRepository>http://*</bannedPluginRepository>
+                                    </bannedPluginRepositories>
+                                </bannedRepositories>
+                                <requireMavenVersion>
+                                    <message>To build this project Maven ${maven.min.version} (or greater) is required.
+                                        Please install it.
+                                    </message>
+                                    <version>${maven.min.version}</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <message>To build this project JDK ${maven.compiler.source} (or greater) is required.
+                                        Please install it.
+                                    </message>
+                                    <version>${maven.compiler.source}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>enforcer-enforce</id>
