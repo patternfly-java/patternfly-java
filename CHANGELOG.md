@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Add icon identity comparison (SVG viewBox check) to `/pf-compare` skill to catch icon mismatches between PatternFly and PFJ
 - Wrap expandable navigation group button text in `span.pf-v6-c-nav__link-text` to match PatternFly DOM structure
 - Switch ExpandableNavigationGroup from `ElementTextMethods` to `ElementTextDelegate`
 - Move formatting, linting, and enforcer plugins to opt-in Maven profiles (`format`, `check`) so `mvn install` runs without validation overhead
@@ -25,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Fix expandable navigation group using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) causing arrows to point left when expanded and appear thinner than PatternFly
 - Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
 - Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
 - Apply pf-lint fixes to card component and switch to `insert_final_newline=true`
