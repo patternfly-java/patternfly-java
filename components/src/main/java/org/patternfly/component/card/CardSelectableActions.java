@@ -39,6 +39,10 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.selectable;
 
+/**
+ * Container for selectable action controls (checkboxes or radios) in the {@linkplain CardHeader header} of a
+ * {@linkplain Card card}.
+ */
 public class CardSelectableActions extends CardSubComponent<HTMLDivElement, CardSelectableActions> implements Attachable {
 
     // ------------------------------------------------------ factory
@@ -77,9 +81,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
             String radioName = card.name;
             if (radioName == null) {
                 radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                logger.error(
-                        "Name is undefined for clickable card %o. You must provide a common name for all clickable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
-                        card.element(), radioName);
+                logger.error("Name is undefined for clickable card %o. You must provide a common name"
+                        + " for all clickable cards using Card.name(String). Fallback to generated"
+                        + " name '%s', which will cause selection issues!", card.element(), radioName);
             }
             add(radio = radio(selectId, radioName).standalone(false));
             radio.inputElement().css(screenReader);
@@ -96,8 +100,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 String radioName = card.name;
                 if (radioName == null) {
                     radioName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    logger.error(
-                            "Name is undefined for single selectable card %o. You must provide a common name for all single selectable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
+                    logger.error("Name is undefined for single selectable card %o. You must provide"
+                            + " a common name for all single selectable cards using Card.name(String)."
+                            + " Fallback to generated name '%s', which will cause selection issues!",
                             card.element(), radioName);
                 }
                 add(radio = radio(selectId, radioName)
@@ -111,8 +116,9 @@ public class CardSelectableActions extends CardSubComponent<HTMLDivElement, Card
                 String checkboxName = card.name;
                 if (checkboxName == null) {
                     checkboxName = Id.unique(ComponentType.Card.id, "name", "fallback");
-                    logger.error(
-                            "Name is undefined for multi-select card %o. You must provide a common name for all selectable cards using Card.name(String). Fallback to generated name '%s', which will cause selection issues!",
+                    logger.error("Name is undefined for multi-select card %o. You must provide"
+                            + " a common name for all selectable cards using Card.name(String)."
+                            + " Fallback to generated name '%s', which will cause selection issues!",
                             card.element(), checkboxName);
                 }
                 add(checkbox = checkbox(selectId, checkboxName)

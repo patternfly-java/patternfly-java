@@ -84,7 +84,7 @@ element().css(modifier("danger"));
 ## Formatting & Code Quality
 
 - 4 spaces indent, 128 char max line length, LF line endings, UTF-8
-- **No final newline** (`insert_final_newline = false`)
+- **Final newline required** (`insert_final_newline = true`)
 - Import order enforced: `java.` → `javax.` → `jakarta.` → `org.` → `io.` → `com.`, then static imports
 - Checkstyle: WildFly rules
 - License headers: Apache 2.0 (enforced by build)

@@ -24,6 +24,9 @@ import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 
+/**
+ * The footer section of a {@linkplain Card card}, typically used for actions or supplementary information.
+ */
 public class CardFooter extends CardSubComponent<HTMLDivElement, CardFooter> implements
         ElementTextMethods<HTMLDivElement, CardFooter> {
 

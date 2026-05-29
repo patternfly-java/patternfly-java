@@ -29,6 +29,9 @@ import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.title;
 
+/**
+ * The title element of a {@linkplain Card card}, rendered as a heading or plain text within the card or card header.
+ */
 public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> implements
         ElementContainerDelegate<HTMLDivElement, CardTitle>,
         ElementTextDelegate<HTMLDivElement, CardTitle> {

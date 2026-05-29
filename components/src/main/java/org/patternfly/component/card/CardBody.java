@@ -25,6 +25,9 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 
+/**
+ * The body section of a {@linkplain Card card}, used to hold the main content.
+ */
 public class CardBody extends CardSubComponent<HTMLDivElement, CardBody> implements
         ElementTextMethods<HTMLDivElement, CardBody>,
         NoFill<HTMLDivElement, CardBody> {

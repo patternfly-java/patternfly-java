@@ -26,6 +26,9 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 
+/**
+ * Container for action controls in the {@linkplain CardHeader header} of a {@linkplain Card card}.
+ */
 public class CardActions extends CardSubComponent<HTMLDivElement, CardActions>
         implements NoOffset<HTMLDivElement, CardActions> {
 

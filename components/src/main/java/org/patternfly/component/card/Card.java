@@ -204,7 +204,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
         return css(modifier(clickable));
     }
 
-    /** Same as {@linkplain #clickable(String, boolean) clickable(String, false)} */
+    /** Same as {@linkplain #clickable(String, boolean) clickable(to, false)} */
     public Card clickable(String to) {
         return clickable(to, false);
     }
@@ -275,9 +275,8 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 
     public void select(boolean selected, boolean fireEvent) {
         if (selectionMode == null) {
-            logger.warn(
-                    "Card %o is not selectable. Please add a call to Card.selectable(SelectionMode), before calling Card.select().",
-                    element());
+            logger.warn("Card %o is not selectable. Please add a call to Card.selectable(SelectionMode),"
+                    + " before calling Card.select().", element());
             return;
         }
         if (header != null && header.actions != null && header.actions.selectableActions != null) {

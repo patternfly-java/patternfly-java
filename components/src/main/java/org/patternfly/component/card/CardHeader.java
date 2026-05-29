@@ -43,6 +43,9 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.toggleRight;
 
+/**
+ * The header section of a {@linkplain Card card}, containing title, actions, and expandable toggle controls.
+ */
 public class CardHeader extends CardSubComponent<HTMLDivElement, CardHeader> implements
         Attachable,
         ElementContainerDelegate<HTMLDivElement, CardHeader> {

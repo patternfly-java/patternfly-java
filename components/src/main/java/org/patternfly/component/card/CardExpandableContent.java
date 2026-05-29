@@ -24,6 +24,9 @@ import static org.patternfly.style.Classes.card;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
 
+/**
+ * The expandable content section of a {@linkplain Card card} that can be toggled via the card header.
+ */
 public class CardExpandableContent extends CardSubComponent<HTMLDivElement, CardExpandableContent> implements
         NoFill<HTMLDivElement, CardExpandableContent> {
 
