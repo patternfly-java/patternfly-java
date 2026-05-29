@@ -49,7 +49,7 @@ Each rule has an ID, severity (ERROR or WARN), and applies to a file classificat
 
 | ID | Sev | Applies to | Rule |
 |---|---|---|---|
-| `section-format` | ERROR | Component, Sub-component | Section separators use format: `// ------------------------------------------------------ <name>` (exactly `//` + space + 54 dashes + space + name) |
+| `section-format` | ERROR | Component, Sub-component | Section separators use format: `// ------------------------------------------------------ <name>` (exactly `//` + space + 54 dashes + space + name; the prefix before the name is always 60 characters wide) |
 | `section-blank-before` | WARN | Component, Sub-component | Exactly one blank line before each section separator |
 | `section-blank-after` | WARN | Component, Sub-component | Exactly one blank line after each section separator |
 
@@ -151,6 +151,7 @@ Each rule has an ID, severity (ERROR or WARN), and applies to a file classificat
 | `fmt-no-final-newline` | WARN | All | File does not end with a trailing newline (`insert_final_newline = false`) |
 | `fmt-import-order` | WARN | All | Imports follow: `java.*` → `javax.*` → `jakarta.*` → `org.*` → `io.*` → `com.*` → `elemental2.*`, then blank line, then static imports |
 | `fmt-no-star-import` | ERROR | All | No wildcard/star imports |
+| `fmt-license-header` | WARN | All | File starts with Apache 2.0 license header (also enforced by the build, so typically caught there) |
 
 ---
 

@@ -16,7 +16,7 @@
     {
       "name": "pf-lint",
       "path": "skills/pf-lint/SKILL.md",
-      "description": "Verify that a PatternFly Java component follows project conventions for documentation, code structure, naming, and formatting. Use when asked to /pf-lint, lint component, verify component structure, check component format, validate component, check code structure, verify PFJ component, lint PFJ code, check component conventions, review component code, check naming conventions, audit component, check section order, or verify section separators."
+      "description": "Verify that a PatternFly Java component follows project conventions for documentation, code structure, naming, and formatting. This skill should be used when the user asks to /pf-lint, lint component, verify component structure, check component format, validate component, check code structure, verify PFJ component, lint PFJ code, check component conventions, review component code, check naming conventions, audit component, check section order, or verify section separators."
     }
   ]
 }

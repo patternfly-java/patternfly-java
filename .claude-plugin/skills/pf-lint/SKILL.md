@@ -110,6 +110,10 @@ A template component that follows all conventions is available at:
 
 ```
 components/src/main/java/org/patternfly/component/template/
+├── TemplateComponent.java      — Component (extends BaseComponent)
+├── TemplateSubComponent.java   — SubComponent base (package-private, abstract)
+├── TemplateItem.java           — Sub-component (extends TemplateSubComponent)
+└── package-info.java           — Package-level Javadoc
 ```
 
 Compare against the template when a rule is ambiguous.

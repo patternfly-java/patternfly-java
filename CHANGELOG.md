@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add template component package (`org.patternfly.component.template`) as a blueprint for new component development
+- Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
+
 ## [0.9.0] - 2026-05-28
 
 ### Added
