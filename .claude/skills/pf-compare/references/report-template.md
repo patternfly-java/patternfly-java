@@ -47,10 +47,14 @@ completeness:
 #### Attribute Differences
 - description
 
+#### Icon Differences
+- `<context class>` — PF uses viewBox `0 0 W H`, PFJ uses viewBox `0 0 W H` (different icon set/glyph)
+
 ## Action Items
 
 1. **Add variation:** title — implement this PF variation in PFJ
 2. **Fix CSS:** variation — add missing class `.pf-m-xxx`
 3. **Fix structure:** variation — description
 4. **Fix attribute:** variation — description
+5. **Fix icon:** variation — replace icon to match PF (check viewBox and icon set)
 ```

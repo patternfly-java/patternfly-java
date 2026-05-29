@@ -64,7 +64,7 @@ import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.hidden;
 import static org.patternfly.core.Attributes.role;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Classes.expanded;
@@ -127,7 +127,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
                 .add(linkTextElement = span().css(component(nav, link, text)).element())
                 .add(span().css(component(nav, toggle))
                         .add(span().css(component(nav, toggle, icon))
-                                .add(caretRight())))
+                                .add(caretDown())))
                 .element());
         element().appendChild(section = section().css(component(nav, subnav))
                 .aria(labelledBy, titleId)

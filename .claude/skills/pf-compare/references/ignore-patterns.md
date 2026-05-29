@@ -17,8 +17,10 @@ These attributes contain auto-generated values that differ between renders:
 
 ## SVG Internals
 
-- Do not traverse child elements of `<svg>` tags
-- Only compare the wrapping `<svg>` element's CSS classes
+- Do not compare SVG path data (`d` attribute) character-by-character
+- Do not compare internal SVG structure (nested `<g>`, `<defs>`, etc.)
+- **DO compare icon identity**: check the `viewBox` attribute on `<svg>` elements — a different viewBox usually means a different icon is used (e.g., `0 0 20 20` vs `0 0 32 32` indicates different icon sets)
+- Compare the wrapping `<svg>` element's CSS classes
 
 ## Non-PF Classes
 

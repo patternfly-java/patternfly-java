@@ -115,6 +115,7 @@ For each entry in `MATCHED`, compare the `html` fields. Focus on:
 1. **CSS class differences** — PF-specific classes (`pf-v6-c-*`, `pf-m-*`, `pf-v6-l-*`). Report missing and extra classes.
 2. **Structural differences** — Element tag hierarchy. Report missing or extra wrapper elements.
 3. **Attribute differences** — ARIA attributes, `type`, `role`, `tabindex`. Report missing or extra attributes.
+4. **Icon differences** — Compare `viewBox` attributes on `<svg>` elements. A mismatched viewBox indicates a different icon (e.g., PF uses `rhMicrons` with viewBox `0 0 20 20` while PFJ uses `rhUi` with viewBox `0 0 32 32`). Report as an icon mismatch with both viewBox values and the containing element's CSS class for context.
 
 ### Filtering rules
 
@@ -129,7 +130,8 @@ Read `references/ignore-patterns.md` for the full list of patterns to ignore dur
   "missingClasses": [{ "class": "pf-m-xxx", "element": "<tag>", "context": "..." }],
   "extraClasses": [{ "class": "pf-m-xxx", "element": "<tag>", "context": "..." }],
   "structuralDiffs": ["description"],
-  "attributeDiffs": ["description"]
+  "attributeDiffs": ["description"],
+  "iconDiffs": [{ "element": "<context class>", "pfViewBox": "0 0 W H", "pfjViewBox": "0 0 W H" }]
 }
 ```
 
