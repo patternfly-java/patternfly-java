@@ -101,6 +101,7 @@
         <version.license.plugin>5.0.0</version.license.plugin>
 
         <!-- Build related -->
+        <generated.file.excludes>**/IconSets.java,**/IconSpec*.java,**/showcase/Code.java,**/showcase/Documentation.java,**/showcase/ResourceBundle.java</generated.file.excludes>
         <encoding>UTF-8</encoding>
         <github.org>patternfly-java</github.org>
         <github.name>patternfly-java</github.name>
@@ -173,13 +174,7 @@
                         <groups>java.,javax.,jakarta.,org.,io.,com.</groups>
                         <removeUnused>true</removeUnused>
                         <staticAfter>true</staticAfter>
-                        <excludes>
-                            <exclude>**/IconSets.java</exclude>
-                            <exclude>**/IconSpec*.java</exclude>
-                            <exclude>**/showcase/Code.java</exclude>
-                            <exclude>**/showcase/Documentation.java</exclude>
-                            <exclude>**/showcase/ResourceBundle.java</exclude>
-                        </excludes>
+                        <excludes>${generated.file.excludes}</excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -237,6 +232,7 @@
                                     <exclude>**/pnpm-lock.yaml</exclude>
                                     <exclude>**/src/demo/java/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
+                                    <!-- Generated files — also excluded via ${generated.file.excludes} in impsort and checkstyle -->
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSpec*.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
@@ -262,7 +258,7 @@
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        <excludes>**/*$logger.java,**/*$bundle.java,**/IconSets.java,**/IconSpec*.java,**/showcase/Code.java,**/showcase/Documentation.java,**/showcase/ResourceBundle.java</excludes>
+                        <excludes>**/*$logger.java,**/*$bundle.java,${generated.file.excludes}</excludes>
                         <useFile/>
                     </configuration>
                     <dependencies>
