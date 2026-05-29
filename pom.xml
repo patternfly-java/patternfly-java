@@ -173,6 +173,13 @@
                         <groups>java.,javax.,jakarta.,org.,io.,com.</groups>
                         <removeUnused>true</removeUnused>
                         <staticAfter>true</staticAfter>
+                        <excludes>
+                            <exclude>**/IconSets.java</exclude>
+                            <exclude>**/IconSpec*.java</exclude>
+                            <exclude>**/showcase/Code.java</exclude>
+                            <exclude>**/showcase/Documentation.java</exclude>
+                            <exclude>**/showcase/ResourceBundle.java</exclude>
+                        </excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -231,9 +238,10 @@
                                     <exclude>**/src/demo/java/**</exclude>
                                     <exclude>**/src/main/java/org/patternfly/core/Version.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/icon/IconSets.java</exclude>
-                                    <exclude>**/src/main/java/org/patternfly/icon/IconSpecs.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/icon/IconSpec*.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/popper/popper.js</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/Code.java</exclude>
+                                    <exclude>**/src/main/java/org/patternfly/showcase/Documentation.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/showcase/ResourceBundle.java</exclude>
                                     <exclude>**/src/main/java/org/patternfly/token/Token.java</exclude>
                                     <exclude>**/src/main/resources/META-INF/externs/**</exclude>
@@ -254,7 +262,7 @@
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        <excludes>**/*$logger.java,**/*$bundle.java,**/IconSets.java,**/IconSpecs.java</excludes>
+                        <excludes>**/*$logger.java,**/*$bundle.java,**/IconSets.java,**/IconSpec*.java,**/showcase/Code.java,**/showcase/Documentation.java,**/showcase/ResourceBundle.java</excludes>
                         <useFile/>
                     </configuration>
                     <dependencies>
@@ -354,92 +362,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.ec4j.maven</groupId>
-                <artifactId>editorconfig-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>editorconfig-format</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>editorconfig-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>net.revelc.code</groupId>
-                <artifactId>impsort-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>impsort-sort</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>sort</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>impsort-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>license-format</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>license-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>checkstyle-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforcer-enforce</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
@@ -470,6 +392,124 @@
 
     <profiles>
         <profile>
+            <id>format</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.ec4j.maven</groupId>
+                        <artifactId>editorconfig-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>editorconfig-format</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.revelc.code</groupId>
+                        <artifactId>impsort-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>impsort-sort</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>sort</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>license-format</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>check</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforcer-enforce</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.ec4j.maven</groupId>
+                        <artifactId>editorconfig-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>editorconfig-check</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.revelc.code</groupId>
+                        <artifactId>impsort-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>impsort-check</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>license-check</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>checkstyle-check</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>apidoc</id>
             <modules>
                 <module>apidoc</module>
@@ -483,11 +523,6 @@
                 </property>
             </activation>
             <properties>
-                <checkstyle.skip>true</checkstyle.skip>
-                <editorconfig.skip>true</editorconfig.skip>
-                <enforcer.skip>true</enforcer.skip>
-                <impsort.skip>true</impsort.skip>
-                <license.skip>true</license.skip>
                 <maven.javadoc.skip>true</maven.javadoc.skip>
                 <skipITs>true</skipITs>
                 <skipTests>true</skipTests>

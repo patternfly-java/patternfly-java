@@ -10,8 +10,12 @@ PatternFly Java is a pure Java implementation of [PatternFly](https://www.patter
 
 | Command | Purpose |
 |---------|---------|
-| `mvn clean verify` | Full build with all checks (format, checkstyle, tests) |
-| `mvn verify -Dquickly` | Quick build (skip tests, checkstyle, javadoc) |
+| `mvn clean verify` | Full build (tests, javadoc — no formatting/linting) |
+| `mvn verify -Dquickly` | Quick build (skip tests, javadoc) |
+| `mvn process-sources -P format,showcase` | Auto-format sources (editorconfig, imports, license headers) |
+| `mvn process-sources -P check,showcase` | Validate sources (enforcer, checkstyle, editorconfig, imports, license) |
+| `./format.sh` | Shortcut for `mvn process-sources -P format,showcase` |
+| `./check.sh` | Shortcut for `mvn process-sources -P check,showcase` |
 | `mvn test -Dtest=ModifierTest` | Run a single test class |
 | `mvn test -Dtest=ModifierTest#testModifiers` | Run a single test method |
 | `mvn j2cl:watch -P showcase` | Watch J2CL compilation for showcase dev |
