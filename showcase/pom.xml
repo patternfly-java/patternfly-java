@@ -39,6 +39,7 @@
         <!-- Build related -->
         <j2cl.compilationLevel>BUNDLE_JAR</j2cl.compilationLevel>
         <j2cl.incremental>true</j2cl.incremental>
+        <j2cl.phase>prepare-package</j2cl.phase>
         <j2cl.sourcemaps>true</j2cl.sourcemaps>
     </properties>
 
@@ -208,6 +209,7 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <phase>${j2cl.phase}</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
@@ -218,6 +220,17 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>skip-j2cl</id>
+            <activation>
+                <property>
+                    <name>j2cl.skip</name>
+                </property>
+            </activation>
+            <properties>
+                <j2cl.phase>none</j2cl.phase>
+            </properties>
+        </profile>
         <profile>
             <id>prod</id>
             <properties>

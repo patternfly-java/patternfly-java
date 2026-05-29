@@ -519,6 +519,7 @@
                 </property>
             </activation>
             <properties>
+                <j2cl.skip>true</j2cl.skip>
                 <maven.javadoc.skip>true</maven.javadoc.skip>
                 <skipITs>true</skipITs>
                 <skipTests>true</skipTests>
