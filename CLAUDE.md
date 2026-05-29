@@ -90,6 +90,16 @@ element().css(modifier("danger"));
 - License headers: Apache 2.0 (enforced by build)
 - All checks run on `mvn clean verify`
 
+## Skills
+
+Project-scoped skills available via the `patternfly-java` plugin (`.claude-plugin/`):
+
+| Skill | Purpose |
+|-------|---------|
+| `/pf-compare <component>` | Compare a PatternFly component against its Java implementation to identify coverage gaps and DOM/CSS differences |
+| `/pf-align <component>` | Implement action items from a `/pf-compare` report to align the Java implementation with PatternFly |
+| `/pf-lint <component>` | Verify that a component follows project conventions for documentation, code structure, naming, and formatting |
+
 ## Key Dependencies
 
 - **Elemento** (2.4.11) - Base builder API and DOM utilities
