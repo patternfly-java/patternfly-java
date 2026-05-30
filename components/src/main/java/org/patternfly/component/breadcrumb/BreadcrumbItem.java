@@ -43,6 +43,11 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 
+/**
+ * An item in a {@link Breadcrumb} component representing a level in the navigation hierarchy.
+ *
+ * @see <a href="https://www.patternfly.org/components/breadcrumb">https://www.patternfly.org/components/breadcrumb</a>
+ */
 public class BreadcrumbItem extends BreadcrumbSubComponent<HTMLLIElement, BreadcrumbItem> implements
         ComponentContext<HTMLLIElement, BreadcrumbItem>,
         ElementTextDelegate<HTMLLIElement, BreadcrumbItem>,

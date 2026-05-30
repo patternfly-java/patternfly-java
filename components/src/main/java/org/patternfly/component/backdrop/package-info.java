@@ -20,6 +20,12 @@
  * from interacting with the page content until the modal is dismissed. The backdrop is typically used internally by
  * modal and overlay components.
  *
+ * <h2>Usage</h2>
+ *
+ * {@snippet :
+ * Backdrop backdrop = backdrop();
+ * }
+ *
  * @see org.patternfly.component.backdrop.Backdrop
  * @see <a href="https://www.patternfly.org/components/backdrop">PatternFly Backdrop</a>
  */

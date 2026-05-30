@@ -29,8 +29,8 @@ import static org.patternfly.style.Classes.component;
 /**
  * Container for action controls in the {@linkplain CardHeader header} of a {@linkplain Card card}.
  */
-public class CardActions extends CardSubComponent<HTMLDivElement, CardActions>
-        implements NoOffset<HTMLDivElement, CardActions> {
+public class CardActions extends CardSubComponent<HTMLDivElement, CardActions> implements
+        NoOffset<HTMLDivElement, CardActions> {
 
     // ------------------------------------------------------ factory
 

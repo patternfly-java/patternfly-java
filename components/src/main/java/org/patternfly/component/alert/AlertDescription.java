@@ -24,6 +24,11 @@ import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 
+/**
+ * The description content of an {@link Alert} component.
+ *
+ * @see <a href="https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
+ */
 public class AlertDescription extends AlertSubComponent<HTMLDivElement, AlertDescription> implements
         ElementTextMethods<HTMLDivElement, AlertDescription> {
 

@@ -85,10 +85,11 @@ import static org.patternfly.style.Variable.componentVar;
  * @see <a href= "https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
  */
 public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
+        Attachable,
         Closeable<HTMLDivElement, Alert>,
         ComponentContext<HTMLDivElement, Alert>,
         ComponentIcon<HTMLDivElement, Alert>,
-        Expandable<HTMLDivElement, Alert>, Attachable,
+        Expandable<HTMLDivElement, Alert>,
         HasIdentifier<HTMLDivElement, Alert>,
         Inline<HTMLDivElement, Alert>,
         Plain<HTMLDivElement, Alert> {
@@ -113,7 +114,6 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     int timeout;
     boolean expandable;
     Button closeButton;
-    private double timeoutHandle;
     private final String identifier;
     private final Severity severity;
     private final String title;
@@ -122,6 +122,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
     private final HTMLParagraphElement titleElement;
     private final Map<String, Object> data;
     private final List<CloseHandler<Alert>> closeHandler;
+    private double timeoutHandle;
     private Button toggleButton;
     private AlertDescription description;
     private ToggleHandler<Alert> toggleHandler;
@@ -140,6 +141,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         this.timeout = NO_TIMEOUT;
         this.expandable = false;
         this.closeHandler = new ArrayList<>();
+        storeComponent();
 
         add(iconContainer = div().css(component(alert, icon))
                 .add(severity.icon.get().element())

@@ -62,8 +62,6 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
 
     // ------------------------------------------------------ factory
 
-    private static AlertGroup toast;
-
     /**
      * Creates a new alert group of the given type without a timeout.
      * <p>
@@ -98,6 +96,7 @@ public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> impl
 
     // ------------------------------------------------------ instance
 
+    private static AlertGroup toast;
     private final AlertGroupType type;
     private final Map<String, Alert> items;
     private final int timeout;

@@ -50,8 +50,9 @@ import static org.patternfly.style.Classes.modifier;
  *
  * @see <a href= "https://www.patternfly.org/components/back-to-top">https://www.patternfly.org/components/back-to-top</a>
  */
-public class BackToTop extends BaseComponent<HTMLElement, BackToTop>
-        implements ElementTextMethods<HTMLElement, BackToTop>, Attachable {
+public class BackToTop extends BaseComponent<HTMLElement, BackToTop> implements
+        Attachable,
+        ElementTextMethods<HTMLElement, BackToTop> {
 
     // ------------------------------------------------------ factory
 

@@ -27,6 +27,11 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.style.Classes.actionGroup;
 import static org.patternfly.style.Classes.component;
 
+/**
+ * A group of action buttons displayed in an {@link Alert} component.
+ *
+ * @see <a href="https://www.patternfly.org/components/alert">https://www.patternfly.org/components/alert</a>
+ */
 public class AlertActionGroup extends AlertSubComponent<HTMLDivElement, AlertActionGroup> {
 
     // ------------------------------------------------------ factory
