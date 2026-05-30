@@ -36,7 +36,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix expandable navigation group using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) causing arrows to point left when expanded and appear thinner than PatternFly
 - Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
 - Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
-- Apply pf-lint fixes to card component and switch to `insert_final_newline=true`
+- Fix component convention violations across alert, backdrop, backtotop, breadcrumb, and card (implements formatting/ordering, field ordering, missing Javadoc, missing `storeComponent()`)
+- Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
 
 ## [0.9.0] - 2026-05-28
 
