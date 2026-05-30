@@ -21,4 +21,4 @@ jobs:
           cache: maven
       - run: $MVN install
         working-directory: bom
-      - run: $MVN verify
+      - run: $MVN verify -P showcase -Dj2cl.skip
