@@ -224,7 +224,7 @@
             <id>skip-j2cl</id>
             <activation>
                 <property>
-                    <name>j2cl.skip</name>
+                    <name>skipJ2CL</name>
                 </property>
             </activation>
             <properties>
