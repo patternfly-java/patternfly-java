@@ -8,13 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add comparison report for accordion component (`docs/pf-compare/accordion.md`)
+- Add comparison reports for accordion, button, card, drawer, table, and tabs components
+- Add component status dashboard (`docs/pf-status/summary.md`)
 - Add `docked()` modifier to Navigation for docked/icon-only navigation
 - Add `ariaLabel(String)` to NavigationGroup for title-less grouped navigation sections
 - Add `ariaLabel(String)` to NavigationItem for icon-only navigation items
 - Add showcase demos for grouped no titles, horizontal overflow, horizontal subnav overflow, and docked navigation variations
 - Add template component package (`org.patternfly.component.template`) as a blueprint for new component development
 - Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
+- Add `/pf-update` skill for tracking PatternFly release changes and generating prioritized work plans
+- Add `/pf-status` skill for showing unified component status dashboard across lint, compare, align, and update dimensions
 
 ### Changed
 
@@ -24,6 +27,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Move formatting, linting, and enforcer plugins to opt-in Maven profiles (`format`, `check`) so `mvn install` runs without validation overhead
 - Consolidate generated file exclusions into a shared Maven property
 - Upgrade pnpm from 11.3.0 to 11.4.0
+- Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to the new `tools.jackson.core` group ID and `JsonMapper` builder API
+- Merge PF 6.5 upgrade findings into skill-based update report (`docs/pf-update/6.5.0.md`) with implementation status tracking
 
 ### Fixed
 

@@ -14,7 +14,7 @@ stats:
 
 | Component | Lint | Compare | Align | Update |
 |-----------|------|---------|-------|--------|
-| navigation | clean (May 29) | 59% (10/17) | — | outdated (6.5.0) |
+| navigation | clean (Jun 1) | 59% (10/17) | — | outdated (6.5.0) |
 | accordion | clean (Jun 1) | 100% (6/6) | — | outdated (6.5.0) |
 | alert | clean (May 30) | — | — | outdated (6.5.0) |
 | banner | clean (May 30) | — | — | outdated (6.5.0) |
@@ -73,4 +73,13 @@ stats:
 - **Compared:** 2/52 (4%)
 - **Aligned:** 0/52 (0%)
 - **Update checked:** 52/52 (100%)
-- **Outdated:** 26 components need `/pf-compare` re-run
+- **Outdated:** 26 components need `/pf-compare` re-run after PF 6.5.0
+- **PF 6.5.0 implementation:** 38/46 done, 6 deferred, 1 open
+
+## Next Steps
+
+Components ready for `/pf-compare` (outdated after PF 6.5.0): accordion, alert, banner, breadcrumb, button, card, drawer, expandable, form, icon, jumplinks, label, menu, modal, navigation, notification, page, panel, progress, table, tabs, togglegroup, toolbar, tree, truncate, wizard
+
+Components ready for `/pf-align`: navigation (7 missing variations)
+
+Open implementation items from PF 6.5.0 update: Hero component (beta — decide whether to implement)
