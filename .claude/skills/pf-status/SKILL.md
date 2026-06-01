@@ -2,18 +2,18 @@
 name: pf-status
 description: >-
   Show the overall status of PatternFly Java components across lint, compare,
-  and align dimensions. This skill should be used when the user asks to
+  align, and update dimensions. This skill should be used when the user asks to
   "/pf-status", "component status", "show status", "what's been linted",
-  "what's been compared", "what needs alignment", "component overview",
-  "show progress", "which components are done", "what's left to do",
-  or "dashboard".
+  "what's been compared", "what needs alignment", "what's outdated",
+  "component overview", "show progress", "which components are done",
+  "what's left to do", or "dashboard".
 metadata:
   version: "0.1.0"
 ---
 
 # /pf-status — PatternFly Java Component Status Dashboard
 
-Aggregates status from `/pf-lint`, `/pf-compare`, and `/pf-align` report files to show a unified overview of all components. Does not read component source code — only existing report files.
+Aggregates status from `/pf-lint`, `/pf-compare`, `/pf-align`, and `/pf-update` report files to show a unified overview of all components. Does not read component source code — only existing report files.
 
 ## Arguments
 
@@ -78,9 +78,9 @@ If the file does not exist, the compare status is "not compared".
 
 For each component, check if `docs/pf-align/<COMPONENT>.md` exists.
 
-If the file exists, parse its YAML frontmatter and content to determine alignment progress. The align report format is not yet finalized — `/pf-align` has not produced output yet. Treat any existing file as "in progress" unless its frontmatter explicitly contains `status: done`. If no file exists, the align status is "not started".
+If the file exists, parse its YAML frontmatter and content to determine alignment progress. Check `/pf-align` SKILL.md for the current report format. Treat any existing file as "in progress" unless its frontmatter explicitly contains `status: done`. If no file exists, the align status is "not started".
 
-### Step 4.5: Read update status
+### Step 5: Read update status
 
 Find the most recent update report by listing `docs/pf-update/` and selecting the file with the highest version number (semver sort). If the directory does not exist or is empty, treat all components as "not checked".
 
@@ -94,7 +94,7 @@ For each component in `components_affected`, check if a compare report at `docs/
 
 Components NOT in `components_affected` are "current" (no changes detected for them).
 
-### Step 5: Determine status values
+### Step 6: Determine status values
 
 For each component, derive these status labels:
 
@@ -113,7 +113,7 @@ For each component, derive these status labels:
 | | `outdated (<version>)` — changes detected in PF `<version>`, compare not yet re-run |
 | | `—` — no update report exists |
 
-### Step 6: Output
+### Step 7: Output
 
 #### Overview mode (no component argument)
 
@@ -144,9 +144,10 @@ Components ready for `/pf-align`: navigation (7 missing variations)
 ```
 
 Sort the table by actionability:
-1. Components with partial compare coverage (gaps to close)
-2. Components not yet compared (next candidates for `/pf-compare`)
-3. Components fully compared and aligned (done)
+1. Outdated components (need `/pf-compare` re-run after a PF release)
+2. Components with partial compare coverage (gaps to close)
+3. Components not yet compared (next candidates for `/pf-compare`)
+4. Components fully compared and aligned (done)
 
 #### Detail mode (component argument given)
 
@@ -187,7 +188,7 @@ The "Suggested Next Action" should recommend the logical next step:
 - If outdated → "Run `/pf-compare <component>` to check PF `<version>` changes"
 - If fully aligned → "Up to date"
 
-### Step 7: Write persistent report
+### Step 8: Write persistent report
 
 Write the overview table (from Step 6, overview mode) to `docs/pf-status/summary.md`.
 

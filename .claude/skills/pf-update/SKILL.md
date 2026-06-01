@@ -4,7 +4,7 @@ description: >-
   Track PatternFly release changes and generate a prioritized work plan for
   updating PatternFly Java. This skill should be used when the user asks to
   "/pf-update", "check PF release", "what changed in PatternFly",
-  "update PatternFly Java", "PF changelog", "new PF version",
+  "update PatternFly Java", "upgrade PatternFly Java", "PF changelog", "new PF version",
   "what's new in PatternFly", "check for PF updates", "PF release notes",
   "sync with PatternFly", or any request to analyze a PatternFly release
   for PFJ impact.
@@ -53,7 +53,7 @@ Store as `PFJ_VERSION`.
 
 **Auto-detect (no args):**
 ```bash
-gh api repos/patternfly/patternfly/releases --jq '[.[] | select(.tag_name | test("^v[0-9]")) | .tag_name][0]'
+gh api repos/patternfly/patternfly/releases --per-page 10 --jq '[.[] | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$")) | .tag_name][0]'
 ```
 Note: Use this instead of `/releases/latest` because the latest release may have a non-standard tag like `patch-v*` or `prerelease-v*`. This finds the most recent release with a clean `vX.Y.Z` tag.
 
@@ -324,9 +324,9 @@ Create GitHub issues for these work items? (yes/no/select)
 
 ## Anti-Patterns
 
-- **Don't auto-run `/pf-compare`** — just recommend it in the work plan
-- **Don't modify PFJ source code** — this skill is read-only analysis
-- **Don't fetch CHANGELOG.md files** — GitHub Releases are sufficient
-- **Don't create issues without asking** — always confirm first
-- **Don't deep-parse PR diffs** — work from PR titles and conventional commit metadata only
+- **Don't auto-run `/pf-compare`** — just recommend it in the work plan; the user decides when to run comparisons
+- **Don't modify PFJ source code** — this skill is read-only analysis only
+- **Don't fetch CHANGELOG.md files** — GitHub Releases are sufficient and more structured
+- **Don't create issues without asking** — always confirm first to avoid issue spam
+- **Don't deep-parse PR diffs** — titles and conventional commit metadata provide sufficient signal without API rate cost
 - **Don't include chore/deps/CI PRs** — they're noise for PFJ purposes

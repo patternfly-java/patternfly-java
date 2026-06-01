@@ -207,7 +207,7 @@ Examples:
 - For `fix_attribute`: Check if ARIA method exists in component class
 - If already implemented → Skip with message
 
-**Handle by type:** Read `references/code-generation.md` now, before generating any code. Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
+**IMPORTANT: Read `references/code-generation.md` before generating any code.** Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
 
 **For all types:**
 - Preserve existing imports
@@ -310,7 +310,7 @@ For HTML-to-Java translation patterns, read `references/code-generation.md`. For
 | Report not found | Print error: "Report not found at docs/pf-compare/<component>.md. Run /pf-compare <component> first." Exit. |
 | Component class not found | Print error: "Component class not found at <path>. Verify component name." Exit. |
 | Showcase file not found | Print error: "Showcase file not found at <path>. Component may not have demo page." Exit. |
-| Showcase not running | Print error: "Showcase server not accessible at http://localhost:<port>. Start with: cd showcase && npm run watch". Exit. |
+| Showcase not running | Print error: "Showcase server not accessible at http://localhost:<port>. Start with: cd showcase && pnpm run watch". Exit. |
 | Chrome DevTools unavailable | Print error: "Chrome DevTools MCP not available. Ensure chrome-devtools-mcp is running." Exit. |
 | HTML extraction failed | Print warning: "Could not extract HTML for '<title>'. Selector tried: ws-core-c-<component>-<variation-slug>. Skip item." Continue. |
 | Build failure | Ask to revert changes. If yes, revert. If no, keep changes. Continue. |
