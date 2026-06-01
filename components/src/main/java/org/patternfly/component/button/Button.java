@@ -35,6 +35,8 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
+import static org.patternfly.style.Modifiers.toggleModifier;
+
 import org.patternfly.style.Modifiers.Circle;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
@@ -56,6 +58,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.style.Classes.block;
 import static org.patternfly.style.Classes.button;
+import static org.patternfly.style.Classes.clicked;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.control;
 import static org.patternfly.style.Classes.count;
@@ -273,8 +276,26 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         return css(modifier(block));
     }
 
+    public Button clicked() {
+        return css(modifier(clicked));
+    }
+
     public Button callToAction() {
         return css(modifier(display, lg));
+    }
+
+    public Button ariaDisabled() {
+        return ariaDisabled(true);
+    }
+
+    public Button ariaDisabled(boolean disabled) {
+        toggleModifier(this, element(), Classes.ariaDisabled, disabled);
+        aria(Aria.disabled, disabled);
+        return this;
+    }
+
+    public Button ariaLabel(String label) {
+        return aria(Aria.label, label);
     }
 
     @Override

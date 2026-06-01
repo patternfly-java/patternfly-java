@@ -22,22 +22,29 @@ import org.patternfly.showcase.SnippetPage;
 
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.IconPosition.end;
 import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.icon.IconSets.fas.arrowRight;
+import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.bell;
-import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.icon.IconSets.fas.upload;
 import static org.patternfly.icon.IconSets.rhUi.addCircle;
-import static org.patternfly.icon.IconSets.rhUi.close;
+import static org.patternfly.icon.IconSets.rhMicrons.close;
+import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.icon.IconSets.rhUi.externalLink;
+import static org.patternfly.icon.IconSets.rhUi.settings;
+import static org.patternfly.icon.IconSets.rhUi.star;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.Gap.sm;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
+import org.patternfly.style.Classes;
+
+import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.NotificationStatus.attention;
 import static org.patternfly.style.NotificationStatus.read;
@@ -226,6 +233,124 @@ public class ButtonComponent extends SnippetPage {
                                 .add(button("Issues").link().disabled().addBadge(badge(10).read())))
                         .element()
                 // @code-end:button-count
+        ));
+
+        addSnippet(new Snippet("button-circle", "Circle buttons",
+                code("button-circle"), () ->
+                // @code-start:button-circle
+                flex().columnGap(sm)
+                        .add(button().icon(addCircle()).primary().circle())
+                        .add(button().icon(addCircle()).secondary().circle())
+                        .add(button().icon(addCircle()).danger().circle())
+                        .add(button().icon(addCircle()).link().circle())
+                        .element()
+                // @code-end:button-circle
+        ));
+
+        addSnippet(new Snippet("button-clicked", "Clicked buttons",
+                code("button-clicked"), () ->
+                // @code-start:button-clicked
+                div()
+                        .add(flex().columnGap(sm)
+                                .add(button("Primary").primary().clicked())
+                                .add(button("Secondary").secondary().clicked())
+                                .add(button("Danger secondary").secondary().danger().clicked())
+                                .add(button("Tertiary").tertiary().clicked())
+                                .add(button("Danger").danger().clicked())
+                                .add(button("Warning").warning().clicked()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Link").link().clicked())
+                                .add(button("Inline link").inline().link().clicked())
+                                .add(button().icon(close()).plain().clicked()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Control").control().clicked())
+                                .add(button().icon(copy()).control().clicked()))
+                        .element()
+                // @code-end:button-clicked
+        ));
+
+        addSnippet(new Snippet("button-aria-disabled", "Aria-disabled",
+                code("button-aria-disabled"), () ->
+                // @code-start:button-aria-disabled
+                div()
+                        .add(flex().columnGap(sm)
+                                .add(button("Primary").primary().ariaDisabled())
+                                .add(button("Secondary").secondary().ariaDisabled())
+                                .add(button("Tertiary").tertiary().ariaDisabled())
+                                .add(button("Danger").danger().ariaDisabled())
+                                .add(button("Warning").warning().ariaDisabled()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Link").link().ariaDisabled())
+                                .add(button("Inline link").inline().link().ariaDisabled())
+                                .add(button().icon(close()).plain().ariaDisabled()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Control").control().ariaDisabled()))
+                        .element()
+                // @code-end:button-aria-disabled
+        ));
+
+        addSnippet(new Snippet("button-inline-span", "Inline link as span",
+                code("button-inline-span"), () ->
+                // @code-start:button-inline-span
+                div()
+                        .add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ")
+                        .add(span().css(Classes.component(Classes.button),
+                                        modifier(Classes.inline), modifier(Classes.link))
+                                .attr("role", "button")
+                                .attr("tabindex", "0")
+                                .add(span().css(Classes.component(Classes.button, Classes.text))
+                                        .text("This is long button text that needs to be a span so that it will wrap inline with the text around it.")))
+                        .add(" Sed hendrerit nisi in cursus maximus.")
+                        .element()
+                // @code-end:button-inline-span
+        ));
+
+        addSnippet(new Snippet("button-types", "Types",
+                code("button-types"), () ->
+                // @code-start:button-types
+                flex().columnGap(sm)
+                        .add(button("Submit").primary().attr("type", "submit"))
+                        .add(button("Reset").secondary().attr("type", "reset"))
+                        .add(button("Default").tertiary().attr("type", "button"))
+                        .element()
+                // @code-end:button-types
+        ));
+
+        addSnippet(new Snippet("button-no-padding", "Plain with no padding",
+                code("button-no-padding"), () ->
+                // @code-start:button-no-padding
+                flex().columnGap(sm)
+                        .add(button().icon(close()).plain().noPadding())
+                        .element()
+                // @code-end:button-no-padding
+        ));
+
+        addSnippet(new Snippet("button-favorite", "Favorite",
+                code("button-favorite"), () ->
+                // @code-start:button-favorite
+                flex().columnGap(sm)
+                        .add(button().icon(star()).plain().ariaLabel("Favorite"))
+                        .add(button().icon(star()).plain().ariaLabel("Favorited").clicked())
+                        .element()
+                // @code-end:button-favorite
+        ));
+
+        addSnippet(new Snippet("button-settings", "Settings",
+                code("button-settings"), () ->
+                // @code-start:button-settings
+                flex().columnGap(sm)
+                        .add(button().icon(settings()).plain().ariaLabel("Settings"))
+                        .element()
+                // @code-end:button-settings
+        ));
+
+        addSnippet(new Snippet("button-hamburger", "Hamburger",
+                code("button-hamburger"), () ->
+                // @code-start:button-hamburger
+                flex().columnGap(sm)
+                        .add(button().icon(bars()).plain().ariaLabel("Menu"))
+                        .element()
+                // @code-end:button-hamburger
         ));
 
         startApiDocs(Button.class);
