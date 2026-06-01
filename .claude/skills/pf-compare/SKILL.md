@@ -84,7 +84,9 @@ Run in order. Stop on failure.
 
 3. Store the result as `PFJ_SNIPPETS` — an array of `{ id, title, html }`.
 
-4. Report: "Extracted M PFJ snippets: (list of titles)"
+4. If `PFJ_SNIPPETS` is empty, warn the user that the PFJ page may not have loaded correctly and suggest checking `PFJ_URL` in a browser manually before continuing.
+
+5. Report: "Extracted M PFJ snippets: (list of titles)"
 
 ---
 

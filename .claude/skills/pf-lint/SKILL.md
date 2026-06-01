@@ -7,7 +7,8 @@ description: >-
   structure", "check component format", "validate component", "check code
   structure", "verify PFJ component", "lint PFJ code", "check component
   conventions", "review component code", "check naming conventions",
-  "audit component", "check section order", or "verify section separators".
+  "audit component", "check section order", "verify section separators",
+  "check Javadoc", or "check factory methods".
 metadata:
   version: "0.1.0"
 ---
@@ -95,7 +96,7 @@ If `--fix` was passed, apply fixes for violations that can be resolved mechanica
 
 For violations that require judgment (missing Javadoc content, architectural issues), report them as `MANUAL` and skip.
 
-After fixing, re-run the checks and report the final state.
+After fixing, verify fixed files compile with `mvn compile -pl components`, then re-run the checks and report the final state.
 
 ### Step 5: Update lint summary
 
