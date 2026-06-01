@@ -1,0 +1,44 @@
+name: Publish Docs
+
+on:
+  push:
+    paths:
+      - 'showcase/markdown/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-docs:
+    name: Publish Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: pnpm install
+        working-directory: showcase
+      - run: pnpm run markdown
+        working-directory: showcase
+      - uses: actions/checkout@v6
+        with:
+          repository: patternfly-java/patternfly-java.github.io
+          ref: gh-pages
+          token: ${{ secrets.PUBLISH_CONTENT }}
+          path: gh-pages
+      - name: Update markdown files
+        run: |
+          mkdir -p gh-pages/markdown
+          cp showcase/src/web/markdown/*.json gh-pages/markdown/
+      - name: Push to gh-pages
+        working-directory: gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add markdown/
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "docs: update markdown documentation"
+          git push

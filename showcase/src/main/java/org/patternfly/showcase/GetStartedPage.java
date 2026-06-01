@@ -15,12 +15,13 @@
  */
 package org.patternfly.showcase;
 
+import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Route;
 
 @Route(value = "/get-started", title = "Get started")
-public class GetStartedPage extends DocumentationPage {
+public class GetStartedPage extends MarkdownPage {
 
-    public GetStartedPage() {
-        super("get-started");
+    public static LoadData<MarkdownData> loader() {
+        return (place, parameter) -> Markdown.load("get-started");
     }
 }

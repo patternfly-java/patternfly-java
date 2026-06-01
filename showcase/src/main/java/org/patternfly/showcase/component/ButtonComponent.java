@@ -19,6 +19,7 @@ import org.jboss.elemento.router.Route;
 import org.patternfly.component.button.Button;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.style.Classes;
 
 import static org.jboss.elemento.Elements.br;
 import static org.jboss.elemento.Elements.div;
@@ -31,8 +32,8 @@ import static org.patternfly.icon.IconSets.fas.arrowRight;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.icon.IconSets.fas.upload;
-import static org.patternfly.icon.IconSets.rhUi.addCircle;
 import static org.patternfly.icon.IconSets.rhMicrons.close;
+import static org.patternfly.icon.IconSets.rhUi.addCircle;
 import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.icon.IconSets.rhUi.externalLink;
 import static org.patternfly.icon.IconSets.rhUi.settings;
@@ -42,8 +43,6 @@ import static org.patternfly.layout.flex.Gap.sm;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
 import static org.patternfly.showcase.Data.components;
-import org.patternfly.style.Classes;
-
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.NotificationStatus.attention;

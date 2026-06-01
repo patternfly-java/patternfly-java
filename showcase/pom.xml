@@ -119,7 +119,6 @@
                             <directory>src/main/java</directory>
                             <includes>
                                 <include>org/patternfly/showcase/Code.java</include>
-                                <include>org/patternfly/showcase/Documentation.java</include>
                             </includes>
                         </fileset>
                     </filesets>
@@ -137,19 +136,6 @@
                         </goals>
                         <configuration>
                             <script>${project.basedir}/code.java</script>
-                            <args>
-                                <arg>${project.basedir}</arg>
-                            </args>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-doc</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <script>${project.basedir}/doc.java</script>
                             <args>
                                 <arg>${project.basedir}</arg>
                             </args>
@@ -183,6 +169,16 @@
                         </goals>
                         <configuration>
                             <arguments>pnpm install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>process-markdown</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>corepack</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>pnpm run markdown</arguments>
                         </configuration>
                     </execution>
                     <execution>

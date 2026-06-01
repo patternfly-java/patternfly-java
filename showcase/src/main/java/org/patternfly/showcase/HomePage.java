@@ -15,12 +15,13 @@
  */
 package org.patternfly.showcase;
 
+import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Route;
 
 @Route("/")
-public class HomePage extends DocumentationPage {
+public class HomePage extends MarkdownPage {
 
-    public HomePage() {
-        super("home");
+    public static LoadData<MarkdownData> loader() {
+        return (place, parameter) -> Markdown.load("home");
     }
 }

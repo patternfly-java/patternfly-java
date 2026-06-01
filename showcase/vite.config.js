@@ -16,8 +16,10 @@
 import {defineConfig} from 'vite';
 import {resolve} from 'path';
 import {existsSync, createReadStream} from 'fs';
+import {execSync} from 'child_process';
 
 const j2clDir = resolve(__dirname, 'target/showcase');
+const markdownDir = resolve(__dirname, 'markdown');
 
 function serveJ2cl() {
     return {
@@ -38,9 +40,26 @@ function serveJ2cl() {
     };
 }
 
+function markdownPlugin() {
+    return {
+        name: 'markdown',
+        buildStart() {
+            execSync('node markdown.mjs', {stdio: 'inherit'});
+        },
+        configureServer(server) {
+            server.watcher.add(markdownDir);
+            server.watcher.on('change', (file) => {
+                if (file.startsWith(markdownDir) && file.endsWith('.md')) {
+                    execSync('node markdown.mjs', {stdio: 'inherit'});
+                }
+            });
+        }
+    };
+}
+
 export default defineConfig({
     root: 'src/web',
-    plugins: [serveJ2cl()],
+    plugins: [serveJ2cl(), markdownPlugin()],
     server: {
         port: 1234,
         open: '/',

@@ -35,8 +35,6 @@ import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
-import static org.patternfly.style.Modifiers.toggleModifier;
-
 import org.patternfly.style.Modifiers.Circle;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Inline;
@@ -72,6 +70,7 @@ import static org.patternfly.style.Classes.small;
 import static org.patternfly.style.Classes.stateful;
 import static org.patternfly.style.Classes.tertiary;
 import static org.patternfly.style.Classes.warning;
+import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.md;
 

@@ -15,13 +15,14 @@
  */
 package org.patternfly.showcase;
 
-import org.jboss.elemento.router.LoadData;
-import org.jboss.elemento.router.Route;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-@Route(value = "/icons", title = "Icons")
-public class IconsPage extends MarkdownPage {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class MarkdownData {
 
-    public static LoadData<MarkdownData> loader() {
-        return (place, parameter) -> Markdown.load("icons");
-    }
+    public String id;
+    public String title;
+    public String html;
+    public TocEntry[] toc;
 }

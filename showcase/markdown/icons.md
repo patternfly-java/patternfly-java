@@ -1,3 +1,8 @@
+---
+id: icons
+title: Icons
+---
+
 # Icons
 
 PatternFly Java comes with predefined icons for

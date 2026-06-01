@@ -1,3 +1,8 @@
+---
+id: get-started
+title: Get started
+---
+
 # Get started
 
 PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
@@ -105,6 +110,6 @@ PatternFly Java consists of these Maven modules (a-z):
 | patternfly-java-layouts    | Layouts               |
 | patternfly-java-tokens     | Tokens                |
 
-Here’s the dependency graph of these maven modules and their external dependencies:
+Here's the dependency graph of these maven modules and their external dependencies:
 
 ![Dependency graph](https://raw.githubusercontent.com/patternfly-java/patternfly-java/main/dependency-graph.png)

@@ -15,12 +15,13 @@
  */
 package org.patternfly.showcase;
 
+import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Route;
 
 @Route(value = "/api-design", title = "API design")
-public class ApiDesignPage extends DocumentationPage {
+public class ApiDesignPage extends MarkdownPage {
 
-    public ApiDesignPage() {
-        super("api-design");
+    public static LoadData<MarkdownData> loader() {
+        return (place, parameter) -> Markdown.load("api-design");
     }
 }

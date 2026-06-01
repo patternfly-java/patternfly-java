@@ -1,3 +1,8 @@
+---
+id: tokens
+title: Tokens
+---
+
 # Tokens
 
 PatternFly Java comes with predefined enum constants for all PatternFly design [tokens](https://www.patternfly.org/tokens/about-tokens). They are defined in the enum class [`org.patternfly.token.Token`](https://patternfly-java.github.io/apidocs/org/patternfly/token/Token.html):

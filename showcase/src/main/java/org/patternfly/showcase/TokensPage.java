@@ -15,12 +15,13 @@
  */
 package org.patternfly.showcase;
 
+import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Route;
 
 @Route(value = "/tokens", title = "Tokens")
-public class TokensPage extends DocumentationPage {
+public class TokensPage extends MarkdownPage {
 
-    public TokensPage() {
-        super("tokens");
+    public static LoadData<MarkdownData> loader() {
+        return (place, parameter) -> Markdown.load("tokens");
     }
 }

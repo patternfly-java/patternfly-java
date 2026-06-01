@@ -20,11 +20,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 import tools.jackson.databind.json.JsonMapper;
 
 import static java.time.ZoneId.systemDefault;
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
 
 class User {
 

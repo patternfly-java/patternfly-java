@@ -1,3 +1,8 @@
+---
+id: api-design
+title: API design
+---
+
 # API design
 
 PatternFly Java integrates with and builds upon Elemento's [builder API](https://hal-console.gitbook.io/elemento/builder-api). Static factory methods are used to create the components, and public instances methods add child elements and modify the component.

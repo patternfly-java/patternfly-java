@@ -15,7 +15,7 @@
  */
 package org.patternfly.showcase;
 
-import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.gwtproject.safehtml.shared.SafeHtmlUtils;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.By;
 import org.jboss.elemento.IsElement;
@@ -30,47 +30,27 @@ import elemental2.dom.MutationRecord;
 import static java.util.Collections.singletonList;
 import static org.jboss.elemento.By.AttributeOperator.STARTS_WITH;
 import static org.jboss.elemento.Elements.querySelectorAll;
+import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.showcase.ApiDoc.API_DOC_BASE;
 import static org.patternfly.showcase.ApiDoc.API_DOC_TARGET;
-import static org.patternfly.showcase.Documentation.doc;
-import static org.patternfly.style.Classes.component;
-import static org.patternfly.style.Classes.title;
-import static org.patternfly.style.Size._2xl;
-import static org.patternfly.style.Size._4xl;
-import static org.patternfly.style.Size.lg;
 
-public abstract class DocumentationPage implements Page, IsElement<HTMLElement>, Attachable {
+public abstract class MarkdownPage implements Page, IsElement<HTMLElement>, Attachable {
 
     private final HTMLElement root;
 
-    DocumentationPage(String doc) {
-        this.root = pageSection().css("markdown")
-                .add(content().html(new SafeHtmlBuilder().appendHtmlConstant(doc(doc)).toSafeHtml()))
-                .element();
+    protected MarkdownPage() {
+        this.root = pageSection().css("markdown").element();
         Attachable.register(this, this);
     }
 
     @Override
     public void attach(MutationRecord mutationRecord) {
-        // post process API doc links
         for (HTMLElement element : querySelectorAll(root,
                 By.element("a").and(By.attribute("href", STARTS_WITH, API_DOC_BASE)))) {
-            // exclude the links from being handled by the place manager!
             element.setAttribute("target", API_DOC_TARGET);
         }
-        // adjust headers to match the custom pages
-        for (HTMLElement element : querySelectorAll(root, By.element("h1"))) {
-            element.classList.add(component(title), _4xl.modifier());
-        }
-        for (HTMLElement element : querySelectorAll(root, By.element("h2"))) {
-            element.classList.add(component(title), _2xl.modifier());
-        }
-        for (HTMLElement element : querySelectorAll(root, By.element("h3"))) {
-            element.classList.add(component(title), lg.modifier());
-        }
-        Highlight.highlightAll();
     }
 
     @Override
@@ -80,6 +60,10 @@ public abstract class DocumentationPage implements Page, IsElement<HTMLElement>,
 
     @Override
     public Iterable<HTMLElement> elements(Place place, Parameter parameter, LoadedData data) {
+        MarkdownData md = data.get();
+        removeChildrenFrom(root);
+        root.appendChild(
+                content().html(SafeHtmlUtils.fromSafeConstant(md.html)).element());
         return singletonList(root);
     }
 }
