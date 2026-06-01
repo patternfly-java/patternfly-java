@@ -32,6 +32,7 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Key.Enter;
 import static org.patternfly.component.label.Label.label;
 
+/** Base class for filter input components within a {@link TextInputGroup}. */
 public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends BaseSearchInput<T> {
 
     // ------------------------------------------------------ instance

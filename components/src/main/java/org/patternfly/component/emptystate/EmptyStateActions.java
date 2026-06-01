@@ -22,6 +22,7 @@ import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.emptyState;
 
+/** A container for action buttons within an {@link EmptyState} component. */
 public class EmptyStateActions extends EmptyStateSubComponent<HTMLDivElement, EmptyStateActions> {
 
     // ------------------------------------------------------ factory

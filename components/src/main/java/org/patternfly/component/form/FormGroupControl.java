@@ -38,6 +38,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
+/** The control area within a {@link FormGroup}, containing the actual input element. */
 public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
         Attachable {

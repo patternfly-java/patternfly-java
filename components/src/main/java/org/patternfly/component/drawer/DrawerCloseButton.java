@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.drawer;
 
+/** The close button within a {@link DrawerPanelHead}. */
 public class DrawerCloseButton extends DrawerSubComponent<HTMLDivElement, DrawerCloseButton> {
 
     // ------------------------------------------------------ factory

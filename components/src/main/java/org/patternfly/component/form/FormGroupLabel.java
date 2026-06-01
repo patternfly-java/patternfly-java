@@ -53,6 +53,7 @@ import static org.patternfly.style.Classes.plain;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.util;
 
+/** The label area within a {@link FormGroup}, containing the field label and optional help. */
 public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable,
         ElementTextDelegate<HTMLElement, FormGroupLabel> {
 

@@ -24,6 +24,7 @@ import elemental2.dom.HTMLOptionElement;
 
 import static org.jboss.elemento.Elements.option;
 
+/** An individual option within a {@link FormSelect} dropdown. */
 public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, FormSelectOption>
         implements Disabled<HTMLOptionElement, FormSelectOption>, HasValue<String> {
 
@@ -42,7 +43,7 @@ public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, 
     public static final String SUB_COMPONENT_ID = "fso";
     public static final String SUB_COMPONENT_NAME = "FormSelectOption";
 
-    public FormSelectOption(String label, String value) {
+    FormSelectOption(String label, String value) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, option().apply(o -> {
             o.label = label;
             o.value = value;

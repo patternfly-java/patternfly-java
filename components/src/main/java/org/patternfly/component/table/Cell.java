@@ -30,6 +30,7 @@ import elemental2.dom.HTMLTableCellElement;
 
 import static org.patternfly.style.TypedModifier.swap;
 
+/** Base class for table cells in a {@link Table} component. */
 public abstract class Cell<B extends TypedBuilder<HTMLTableCellElement, B>> extends
         TableSubComponent<HTMLTableCellElement, B> implements
         ComponentContext<HTMLTableCellElement, B>, Center<HTMLTableCellElement, B>,

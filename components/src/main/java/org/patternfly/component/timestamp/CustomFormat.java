@@ -22,6 +22,7 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
+/** A custom date/time format configuration for a {@link Timestamp} component. */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class CustomFormat implements FormatOptions {
 

@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.td;
 
+/** A data cell within a table row in a {@link Table} component. */
 public class Td extends Cell<Td> {
 
     // ------------------------------------------------------ factory

@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.notificationDrawer;
 
+/** The body content of a {@link NotificationDrawerItem}. */
 public class NotificationDrawerItemBody extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerItemBody>
         implements ElementTextMethods<HTMLElement, NotificationDrawerItemBody> {
 

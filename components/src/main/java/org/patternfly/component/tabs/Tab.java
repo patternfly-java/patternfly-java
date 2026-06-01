@@ -83,6 +83,7 @@ import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 // TODO Horizontal tabs don't shrink!
+/** An individual tab within a {@link Tabs} component. */
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,
         ComponentContext<HTMLElement, Tab>,

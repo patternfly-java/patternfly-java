@@ -36,6 +36,7 @@ import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.utilities;
 
+/** A wrapper for form control elements such as inputs, selects, and text areas within a {@link Form}. */
 public abstract class FormControl<E extends HTMLElement, B extends BaseComponent<E, B>> extends BaseComponent<E, B>
         implements Disabled<E, B>, Required<E, B>, Validatable<E, B> {
 

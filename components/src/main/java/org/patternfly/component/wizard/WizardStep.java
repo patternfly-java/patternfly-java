@@ -43,6 +43,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.wizard;
 
+/** An individual step within a {@link Wizard} component. */
 public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> implements
         ComponentContext<HTMLElement, WizardStep>,
         Disabled<HTMLElement, WizardStep>,

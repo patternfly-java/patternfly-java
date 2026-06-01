@@ -21,6 +21,7 @@ import java.util.List;
 
 import static java.util.Collections.addAll;
 
+/** A container for step markers on a {@link Slider} component. */
 public class SliderSteps implements Iterable<SliderStep> {
 
     // ------------------------------------------------------ factory

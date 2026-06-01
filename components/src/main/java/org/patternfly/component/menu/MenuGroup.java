@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.title;
 
+/** A group of related items within a {@link Menu} component. */
 public class MenuGroup extends MenuSubComponent<HTMLElement, MenuGroup> implements
         ElementTextDelegate<HTMLElement, MenuGroup> {
 

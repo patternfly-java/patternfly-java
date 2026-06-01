@@ -41,6 +41,7 @@ import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.icons;
 import static org.patternfly.style.Classes.modifier;
 
+/** A group of related actions within an {@link ActionList} component. */
 public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, ActionListGroup> implements
         ComponentContext<HTMLDivElement, ActionListGroup>,
         HasIdentifier<HTMLDivElement, ActionListGroup>,

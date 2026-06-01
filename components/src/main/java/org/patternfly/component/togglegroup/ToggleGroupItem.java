@@ -56,6 +56,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggleGroup;
 
+/** An individual toggle button within a {@link ToggleGroup} component. */
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
         ComponentContext<HTMLDivElement, ToggleGroupItem>,
         ComponentIcon<HTMLDivElement, ToggleGroupItem>,

@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.emptyState;
 import static org.patternfly.style.Classes.footer;
 
+/** The footer area of an {@link EmptyState} component, typically containing {@link EmptyStateActions}. */
 public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, EmptyStateFooter> implements
         ElementTextMethods<HTMLDivElement, EmptyStateFooter> {
 
@@ -35,7 +36,7 @@ public class EmptyStateFooter extends EmptyStateSubComponent<HTMLDivElement, Emp
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_ID = "esb";
+    public static final String SUB_COMPONENT_ID = "esf";
     public static final String SUB_COMPONENT_NAME = "EmptyStateFooter";
 
     EmptyStateFooter() {

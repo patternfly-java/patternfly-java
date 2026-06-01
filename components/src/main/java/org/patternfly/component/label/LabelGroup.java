@@ -77,6 +77,12 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.overflow;
 
+/**
+ * A group of labels that can be used to display a collection of {@link Label} components.
+ *
+ * @see <a href=
+ *      "https://www.patternfly.org/components/label#label-group">https://www.patternfly.org/components/label#label-group</a>
+ */
 public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implements
         Attachable,
         Closeable<HTMLDivElement, LabelGroup>,

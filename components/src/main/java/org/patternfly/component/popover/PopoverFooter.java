@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.popover;
 
+/** The footer area of a {@link Popover} component. */
 public class PopoverFooter extends PopoverSubComponent<HTMLDivElement, PopoverFooter> implements
         ElementTextMethods<HTMLDivElement, PopoverFooter> {
 

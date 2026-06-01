@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.wizard;
 
+/** The button container within a {@link WizardFooter}. */
 public enum WizardFooterButtons {
 
     back, next, cancel

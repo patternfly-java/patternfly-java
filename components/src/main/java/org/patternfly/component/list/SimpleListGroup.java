@@ -49,6 +49,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.simpleList;
 import static org.patternfly.style.Classes.title;
 
+/** A group of related items within a {@link SimpleList} component. */
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
         ElementContainerDelegate<HTMLElement, SimpleListGroup>,
         ElementTextDelegate<HTMLElement, SimpleListGroup>,

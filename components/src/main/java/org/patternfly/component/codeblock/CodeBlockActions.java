@@ -22,6 +22,7 @@ import elemental2.dom.HTMLDivElement;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 
+/** A container for action buttons displayed in the header of a {@link CodeBlock}. */
 public class CodeBlockActions extends CodeBlockSubComponent<HTMLDivElement, CodeBlockActions> {
 
     // ------------------------------------------------------ factory

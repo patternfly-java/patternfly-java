@@ -104,6 +104,7 @@ import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Size.md;
 
+/** An individual item within a {@link TreeView} component. */
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
         Compact<HTMLLIElement, TreeViewItem>,
         ComponentContext<HTMLLIElement, TreeViewItem>,

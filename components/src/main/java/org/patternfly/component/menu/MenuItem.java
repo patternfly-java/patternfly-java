@@ -94,6 +94,7 @@ import static org.patternfly.style.Classes.select;
 import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size.lg;
 
+/** An individual selectable item within a {@link Menu} component. */
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Attachable,
         ComponentContext<HTMLElement, MenuItem>,

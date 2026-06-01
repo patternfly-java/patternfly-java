@@ -37,6 +37,7 @@ import static org.patternfly.style.Classes.inline;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.toggle;
 
+/** The toggle control that expands and collapses an {@link ExpandableSection} component. */
 public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLElement, ExpandableSectionToggle> implements
         ElementContainerDelegate<HTMLElement, ExpandableSectionToggle> {
 

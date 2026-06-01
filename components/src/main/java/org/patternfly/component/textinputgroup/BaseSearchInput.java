@@ -27,6 +27,7 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
 
+/** Base class for search input components within a {@link TextInputGroup}. */
 public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends BaseTextInputGroup<T> {
 
     // ------------------------------------------------------ instance

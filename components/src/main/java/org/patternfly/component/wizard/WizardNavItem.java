@@ -49,6 +49,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.wizard;
 
+/** An individual navigation item within a {@link WizardNav}. */
 public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem> implements
         ComponentContext<HTMLElement, WizardNavItem>,
         ComponentIcon<HTMLElement, WizardNavItem>,

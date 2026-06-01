@@ -23,6 +23,7 @@ import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.TypedModifier.swap;
 
+/** A text wrapper element within a {@link Table} cell. */
 public class TableText extends TableSubComponent<HTMLElement, TableText> {
 
     // ------------------------------------------------------ factory

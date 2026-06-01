@@ -33,6 +33,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.section;
 
+/** A titled section within a {@link Form} that groups related form groups. */
 public class FormSection extends FormSubComponent<HTMLElement, FormSection> implements
         ElementTextDelegate<HTMLElement, FormSection> {
 

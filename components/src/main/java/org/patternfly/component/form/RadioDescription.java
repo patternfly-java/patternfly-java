@@ -24,6 +24,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.radio;
 
+/** A description label for a {@link Radio} component. */
 public class RadioDescription extends RadioSubComponent<HTMLElement, RadioDescription>
         implements ElementTextMethods<HTMLElement, RadioDescription> {
 

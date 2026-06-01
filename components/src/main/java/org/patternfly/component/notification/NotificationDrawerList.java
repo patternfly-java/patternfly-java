@@ -36,6 +36,7 @@ import static org.patternfly.core.Roles.list;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.notificationDrawer;
 
+/** A list of notification items within a {@link NotificationDrawer}. */
 public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerList> implements
         HasItems<HTMLElement, NotificationDrawerList, NotificationDrawerItem> {
 

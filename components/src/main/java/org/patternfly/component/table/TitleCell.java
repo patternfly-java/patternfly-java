@@ -49,6 +49,7 @@ import static org.patternfly.style.Classes.titleCell;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.treeView;
 
+/** A title cell with expandable toggle support in a tree view {@link Table}. */
 public class TitleCell extends Cell<TitleCell> implements
         ComponentIcon<HTMLTableCellElement, TitleCell>,
         ElementContainerDelegate<HTMLTableCellElement, TitleCell>,
@@ -69,7 +70,7 @@ public class TitleCell extends Cell<TitleCell> implements
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_ID = "tc";
+    public static final String SUB_COMPONENT_ID = "ttc";
     public static final String SUB_COMPONENT_NAME = "TitleCell";
     Tr tr;
     private final HTMLElement mainContainer;

@@ -38,6 +38,7 @@ import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.term;
 
+/** The term element within a {@link DescriptionListGroup}. */
 public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement, DescriptionListTerm> implements
         ComponentIcon<HTMLElement, DescriptionListTerm>,
         ElementContainerDelegate<HTMLElement, DescriptionListTerm>,
@@ -55,7 +56,7 @@ public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_ID = "dlg";
+    public static final String SUB_COMPONENT_ID = "dlt";
     public static final String SUB_COMPONENT_NAME = "DescriptionListTerm";
     private final HTMLElement textElement;
     private HTMLElement iconContainer;

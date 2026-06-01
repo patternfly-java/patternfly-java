@@ -31,6 +31,7 @@ import static org.jboss.elemento.Elements.setVisible;
 import static org.patternfly.component.label.LabelGroup.labelGroup;
 import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
 
+/** A group of filter labels within the {@link Toolbar} filter content area. */
 public class ToolbarFilterLabelGroup<T> extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterLabelGroup<T>> {
 
     // ------------------------------------------------------ factory

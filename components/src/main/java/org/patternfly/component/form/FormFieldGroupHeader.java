@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
+/** The header area of a {@link FormFieldGroup}, typically containing a title and description. */
 public class FormFieldGroupHeader extends FormSubComponent<HTMLElement, FormFieldGroupHeader> {
 
     // ------------------------------------------------------ factory

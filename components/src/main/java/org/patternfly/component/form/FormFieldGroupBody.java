@@ -23,6 +23,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fieldGroup;
 import static org.patternfly.style.Classes.form;
 
+/** The body content area of a {@link FormFieldGroup}. */
 public class FormFieldGroupBody extends FormSubComponent<HTMLElement, FormFieldGroupBody> {
 
     // ------------------------------------------------------ factory

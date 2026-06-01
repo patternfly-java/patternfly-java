@@ -37,6 +37,7 @@ import static org.patternfly.style.Classes.popover;
 import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 
+/** The header area of a {@link PopperPopover} component. */
 @Deprecated
 public class PopperPopoverHeader extends PopperPopoverSubComponent<HTMLElement, PopperPopoverHeader> implements
         ElementContainerDelegate<HTMLElement, PopperPopoverHeader>,

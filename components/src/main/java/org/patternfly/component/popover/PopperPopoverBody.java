@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.popover;
 
+/** The body content area of a {@link PopperPopover} component. */
 @Deprecated
 public class PopperPopoverBody extends PopperPopoverSubComponent<HTMLDivElement, PopperPopoverBody> implements
         ElementTextMethods<HTMLDivElement, PopperPopoverBody> {

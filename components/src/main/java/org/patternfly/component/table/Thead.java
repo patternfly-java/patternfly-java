@@ -23,6 +23,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.thead;
 
+/** A table header section within a {@link Table} component. */
 public class Thead extends TableSubComponent<HTMLTableSectionElement, Thead> {
 
     // ------------------------------------------------------ factory

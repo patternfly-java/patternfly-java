@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
+/** The body content within a {@link TabContent}. */
 public class TabContentBody extends TabSubComponent<HTMLElement, TabContentBody> implements
         ElementTextMethods<HTMLElement, TabContentBody>,
         Padding<HTMLElement, TabContentBody> {

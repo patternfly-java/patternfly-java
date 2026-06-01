@@ -44,6 +44,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
 
+/** A table body section within a {@link Table} component. */
 public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
         Ordered<HTMLTableSectionElement, Tbody, Tr> {
 

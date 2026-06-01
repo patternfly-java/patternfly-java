@@ -35,6 +35,7 @@ import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.th;
 
+/** A header cell within a table row in a {@link Table} component. */
 public class Th extends Cell<Th> implements Attachable {
 
     // ------------------------------------------------------ factory

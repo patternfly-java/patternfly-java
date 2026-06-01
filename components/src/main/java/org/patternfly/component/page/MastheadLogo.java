@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.logo;
 import static org.patternfly.style.Classes.masthead;
 
+/** The logo element within a {@link MastheadBrand}. */
 public class MastheadLogo extends MastheadSubComponent<HTMLElement, MastheadLogo> implements
         ElementHTMLMethods<HTMLElement, MastheadLogo> {
 

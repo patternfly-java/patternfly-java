@@ -22,6 +22,7 @@ import org.patternfly.core.ComponentContext;
 
 import elemental2.dom.HTMLElement;
 
+/** A context object for sharing state across steps in a {@link Wizard} component. */
 public class WizardContext implements ComponentContext<HTMLElement, WizardContext> {
 
     private final Wizard wizard;

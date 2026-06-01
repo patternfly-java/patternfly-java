@@ -31,6 +31,7 @@ import static org.patternfly.style.Classes.actionList;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
+/** An individual item within an {@link ActionList} component. */
 public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem> implements
         HasIdentifier<HTMLDivElement, ActionListItem>,
         ComponentContext<HTMLDivElement, ActionListItem> {

@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.hint;
 import static org.patternfly.style.Classes.title;
 
+/** The title area of a {@link Hint} component. */
 public class HintTitle extends HintSubComponent<HTMLDivElement, HintTitle> implements
         ElementTextMethods<HTMLDivElement, HintTitle> {
 

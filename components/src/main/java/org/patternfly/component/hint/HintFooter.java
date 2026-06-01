@@ -22,6 +22,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.hint;
 
+/** The footer area of a {@link Hint} component. */
 public class HintFooter extends HintSubComponent<HTMLDivElement, HintFooter> {
 
     // ------------------------------------------------------ factory

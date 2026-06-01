@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.Classes.wizard;
 
+/** The title within the header of a {@link Wizard} component. */
 public class WizardHeaderTitle extends WizardSubComponent<HTMLElement, WizardHeaderTitle> implements
         ElementTextDelegate<HTMLElement, WizardHeaderTitle> {
 

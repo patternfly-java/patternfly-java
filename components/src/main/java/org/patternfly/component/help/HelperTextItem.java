@@ -44,6 +44,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 
+/** An individual helper text item within a {@link HelperText} component. */
 public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTextItem> implements
         ComponentIcon<HTMLElement, HelperTextItem>,
         ComponentIconAndText<HTMLElement, HelperTextItem>,

@@ -39,6 +39,7 @@ import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
+/** An individual action button within a {@link CodeBlockActions} container. */
 public class CodeBlockAction extends CodeBlockSubComponent<HTMLDivElement, CodeBlockAction> implements
         ComponentIcon<HTMLDivElement, CodeBlockAction> {
 

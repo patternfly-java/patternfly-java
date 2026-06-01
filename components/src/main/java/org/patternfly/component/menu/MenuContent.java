@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
 
+/** The scrollable content area of a {@link Menu} component. */
 public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> implements Attachable {
 
     // ------------------------------------------------------ factory

@@ -30,6 +30,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.modalBox;
 
+/** The footer area of a {@link Modal} component, typically containing action buttons. */
 public class ModalFooter extends ModalSubComponent<HTMLElement, ModalFooter> implements Attachable {
 
     // ------------------------------------------------------ factory

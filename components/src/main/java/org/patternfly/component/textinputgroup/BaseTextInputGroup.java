@@ -51,6 +51,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.textInput;
 import static org.patternfly.style.Classes.textInputGroup;
 
+/** Base class for text input group components. */
 public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extends BaseComponent<HTMLElement, T> implements
         ComponentIcon<HTMLElement, T>,
         Disabled<HTMLElement, T>,

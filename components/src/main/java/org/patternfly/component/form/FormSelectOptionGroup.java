@@ -23,6 +23,7 @@ import elemental2.dom.HTMLOptGroupElement;
 
 import static org.jboss.elemento.Elements.optgroup;
 
+/** A group of related options within a {@link FormSelect} dropdown. */
 public class FormSelectOptionGroup extends FormSelectSubComponent<HTMLOptGroupElement, FormSelectOptionGroup> implements
         Disabled<HTMLOptGroupElement, FormSelectOptionGroup> {
 

@@ -27,6 +27,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.slider;
 
+/** A container for action elements in a {@link Slider} component. */
 public class SliderActions extends SliderSubComponent<HTMLDivElement, SliderActions> {
 
     // ------------------------------------------------------ factory

@@ -24,6 +24,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 
+/** An alert message displayed within a {@link Form} component. */
 public class FormAlert extends FormSubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ factory

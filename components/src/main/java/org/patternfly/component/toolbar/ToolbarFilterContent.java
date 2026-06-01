@@ -40,6 +40,7 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.toolbar;
 
+/** A content area for active filters within a {@link Toolbar} component. */
 public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterContent> implements
         HasItems<HTMLDivElement, ToolbarFilterContent, ToolbarItem> {
 

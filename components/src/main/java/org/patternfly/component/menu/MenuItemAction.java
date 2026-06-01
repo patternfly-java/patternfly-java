@@ -41,6 +41,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.menu;
 
+/** An action element associated with a {@link MenuItem}. */
 public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction> implements
         HasIdentifier<HTMLElement, MenuItemAction>,
         ComponentIcon<HTMLElement, MenuItemAction> {

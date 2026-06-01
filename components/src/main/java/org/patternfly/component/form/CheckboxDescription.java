@@ -24,6 +24,7 @@ import static org.jboss.elemento.Elements.span;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 
+/** A description label for a {@link Checkbox} component. */
 public class CheckboxDescription extends CheckboxSubComponent<HTMLElement, CheckboxDescription>
         implements ElementTextMethods<HTMLElement, CheckboxDescription> {
 

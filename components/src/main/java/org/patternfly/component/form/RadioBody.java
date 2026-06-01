@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.radio;
 
+/** The body content of a {@link Radio} component. */
 public class RadioBody extends RadioSubComponent<HTMLElement, RadioBody> implements ElementTextMethods<HTMLElement, RadioBody> {
 
     // ------------------------------------------------------ factory

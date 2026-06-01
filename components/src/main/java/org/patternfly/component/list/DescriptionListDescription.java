@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.descriptionList;
 
+/** The description content within a {@link DescriptionListGroup}. */
 public class DescriptionListDescription extends DescriptionListSubComponent<HTMLElement, DescriptionListDescription> implements
         ElementContainerDelegate<HTMLElement, DescriptionListDescription>,
         ElementTextDelegate<HTMLElement, DescriptionListDescription> {
@@ -44,7 +45,7 @@ public class DescriptionListDescription extends DescriptionListSubComponent<HTML
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_ID = "dlg";
+    public static final String SUB_COMPONENT_ID = "dld";
     public static final String SUB_COMPONENT_NAME = "DescriptionListDescription";
 
     private final HTMLElement textElement;

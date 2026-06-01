@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.brand;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.masthead;
 
+/** The brand/logo area within a {@link Masthead} component. */
 public class MastheadBrand extends MastheadSubComponent<HTMLElement, MastheadBrand> implements
         ElementTextMethods<HTMLElement, MastheadBrand> {
 

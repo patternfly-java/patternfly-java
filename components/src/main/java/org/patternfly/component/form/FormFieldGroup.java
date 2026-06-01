@@ -47,6 +47,7 @@ import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.toggle;
 
+/** A group of related form fields within a {@link Form} component. */
 public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup>
         implements Expandable<HTMLElement, FormFieldGroup>, Attachable {
 

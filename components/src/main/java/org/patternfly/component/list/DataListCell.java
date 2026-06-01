@@ -39,6 +39,7 @@ import static org.patternfly.style.Classes.flex;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.TypedModifier.swap;
 
+/** A content cell within a {@link DataListItem}. */
 public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell> implements
         ComponentIcon<HTMLElement, DataListCell>,
         ElementTextMethods<HTMLElement, DataListCell>,
@@ -52,7 +53,7 @@ public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell
 
     // ------------------------------------------------------ instance
 
-    public static final String SUB_COMPONENT_ID = "dlc";
+    public static final String SUB_COMPONENT_ID = "dlcl";
     public static final String SUB_COMPONENT_NAME = "DataListCell";
     private Element icon;
 

@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.panel;
 
+/** The main content area of a {@link Panel} component. */
 public class PanelMain extends PanelSubComponent<HTMLElement, PanelMain> implements
         ElementContainerDelegate<HTMLElement, PanelMain>,
         ElementTextDelegate<HTMLElement, PanelMain> {

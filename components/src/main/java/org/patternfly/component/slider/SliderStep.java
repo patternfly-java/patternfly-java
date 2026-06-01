@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import org.patternfly.core.Numbers;
 
+/** An individual step marker on a {@link Slider} component. */
 public class SliderStep {
 
     // ------------------------------------------------------ factory
