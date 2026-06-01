@@ -15,14 +15,12 @@
  */
 package org.patternfly.filter;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import static java.time.ZoneId.systemDefault;
 import static java.util.Arrays.asList;
@@ -35,19 +33,14 @@ class User {
     static List<User> users() {
         // users.json generated from
         // https://randomuser.me/api/?results=100&seed=filtertest
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
-                    .withFieldVisibility(Visibility.ANY)
-                    .withGetterVisibility(Visibility.NONE)
-                    .withSetterVisibility(Visibility.NONE)
-                    .withCreatorVisibility(Visibility.NONE));
-            return asList(mapper.readValue(User.class.getResourceAsStream("users.json"), User[].class));
-        } catch (IOException e) {
-            System.err.println("Unable to read users.json: " + e.getMessage());
-            return emptyList();
-        }
+        JsonMapper mapper = JsonMapper.builder()
+                .changeDefaultVisibility(vc -> vc
+                        .withFieldVisibility(Visibility.ANY)
+                        .withGetterVisibility(Visibility.NONE)
+                        .withSetterVisibility(Visibility.NONE)
+                        .withCreatorVisibility(Visibility.NONE))
+                .build();
+        return asList(mapper.readValue(User.class.getResourceAsStream("users.json"), User[].class));
     }
 
     // ------------------------------------------------------ instance
