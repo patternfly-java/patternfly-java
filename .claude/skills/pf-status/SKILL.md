@@ -46,6 +46,8 @@ Aggregates status from `/pf-lint`, `/pf-compare`, `/pf-align`, and `/pf-update` 
 
 List all subdirectories under `components/src/main/java/org/patternfly/component/` to get the canonical component list. Sort alphabetically.
 
+**Exclude `template`** — it is a blueprint component, not a real UI component. Do not include it in the status table or stats.
+
 If a `[component]` argument was given, verify the directory exists. If not, report an error and stop.
 
 ### Step 2: Read lint status

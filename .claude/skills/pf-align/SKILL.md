@@ -32,7 +32,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 ```
 
 **Parameters:**
-- `<component>` (required) — Component name matching report file (e.g., `button`, `card`, `alert`)
+- `<component>` (required) — Component name matching report file (e.g., `button`, `card`, `alert`). **Reject `template`** — it is a blueprint component, not a real UI component.
 - `--port <port>` (optional) — Showcase server port (default: 8888)
 - `--item <number>` (optional) — Process only the specified action item number (default: process all)
 

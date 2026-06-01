@@ -2,44 +2,44 @@
 title: PatternFly Java Component Status
 last_updated: 2026-06-01
 stats:
-  total: 52
+  total: 51
   linted: 51
-  compared: 2
+  compared: 26
   aligned: 0
-  update_checked: 52
-  outdated: 26
+  update_checked: 51
+  outdated: 2
 ---
 
 # PF Status
 
 | Component | Lint | Compare | Align | Update |
 |-----------|------|---------|-------|--------|
-| navigation | clean (Jun 1) | 59% (10/17) | — | outdated (6.5.0) |
 | accordion | clean (Jun 1) | 100% (6/6) | — | outdated (6.5.0) |
-| alert | clean (May 30) | — | — | outdated (6.5.0) |
-| banner | clean (May 30) | — | — | outdated (6.5.0) |
-| breadcrumb | clean (May 30) | — | — | outdated (6.5.0) |
-| button | clean (May 30) | — | — | outdated (6.5.0) |
-| card | clean (May 30) | — | — | outdated (6.5.0) |
-| drawer | clean (Jun 1) | — | — | outdated (6.5.0) |
-| expandable | clean (Jun 1) | — | — | outdated (6.5.0) |
-| form | clean (Jun 1) | — | — | outdated (6.5.0) |
-| icon | clean (Jun 1) | — | — | outdated (6.5.0) |
-| jumplinks | clean (Jun 1) | — | — | outdated (6.5.0) |
-| label | clean (Jun 1) | — | — | outdated (6.5.0) |
-| menu | clean (Jun 1) | — | — | outdated (6.5.0) |
-| modal | clean (Jun 1) | — | — | outdated (6.5.0) |
-| notification | clean (Jun 1) | — | — | outdated (6.5.0) |
-| page | clean (Jun 1) | — | — | outdated (6.5.0) |
-| panel | clean (Jun 1) | — | — | outdated (6.5.0) |
-| progress | clean (Jun 1) | — | — | outdated (6.5.0) |
-| table | clean (Jun 1) | — | — | outdated (6.5.0) |
-| tabs | clean (Jun 1) | — | — | outdated (6.5.0) |
-| togglegroup | clean (Jun 1) | — | — | outdated (6.5.0) |
-| toolbar | clean (Jun 1) | — | — | outdated (6.5.0) |
-| tree | clean (Jun 1) | — | — | outdated (6.5.0) |
-| truncate | clean (Jun 1) | — | — | outdated (6.5.0) |
-| wizard | clean (Jun 1) | — | — | outdated (6.5.0) |
+| navigation | clean (Jun 1) | 59% (10/17) | — | outdated (6.5.0) |
+| table | clean (Jun 1) | 24% (12/50) | — | current |
+| button | clean (May 30) | 50% (9/18) | — | current |
+| menu | clean (Jun 1) | 59% (22/37) | — | current |
+| label | clean (Jun 1) | 60% (15/25) | — | current |
+| toolbar | clean (Jun 1) | 63% (15/24) | — | current |
+| form | clean (Jun 1) | 70% (7/10) | — | current |
+| jumplinks | clean (Jun 1) | 73% (8/11) | — | current |
+| banner | clean (Jun 1) | 75% (3/4) | — | current |
+| panel | clean (Jun 1) | 75% (9/12) | — | current |
+| tree | clean (Jun 1) | 75% (9/12) | — | current |
+| truncate | clean (Jun 1) | 75% (3/4) | — | current |
+| card | clean (May 30) | 77% (24/31) | — | current |
+| page | clean (Jun 1) | 78% (7/9) | — | current |
+| breadcrumb | clean (Jun 1) | 80% (4/5) | — | current |
+| tabs | clean (Jun 1) | 83% (33/40) | — | current |
+| wizard | clean (Jun 1) | 85% (11/13) | — | current |
+| drawer | clean (Jun 1) | 86% (19/22) | — | current |
+| modal | clean (Jun 1) | 88% (14/16) | — | current |
+| progress | clean (Jun 1) | 89% (17/19) | — | current |
+| alert | clean (May 30) | 100% (8/8) | — | current |
+| expandable | clean (Jun 1) | 100% (9/9) | — | current |
+| icon | clean (Jun 1) | 100% (8/8) | — | current |
+| notification | clean (Jun 1) | 100% (3/3) | — | current |
+| togglegroup | clean (Jun 1) | 100% (5/5) | — | current |
 | avatar | clean (May 30) | — | — | current |
 | backdrop | clean (May 30) | — | — | current |
 | backtotop | clean (May 30) | — | — | current |
@@ -61,7 +61,6 @@ stats:
 | slider | clean (Jun 1) | — | — | current |
 | spinner | clean (Jun 1) | — | — | current |
 | switch_ | clean (Jun 1) | — | — | current |
-| template | — | — | — | current |
 | textinputgroup | clean (Jun 1) | — | — | current |
 | timestamp | clean (Jun 1) | — | — | current |
 | title | clean (Jun 1) | — | — | current |
@@ -69,17 +68,15 @@ stats:
 
 ## Stats
 
-- **Linted:** 51/52 (98%)
-- **Compared:** 2/52 (4%)
-- **Aligned:** 0/52 (0%)
-- **Update checked:** 52/52 (100%)
-- **Outdated:** 26 components need `/pf-compare` re-run after PF 6.5.0
+- **Linted:** 51/51 (100%)
+- **Compared:** 26/51 (51%)
+- **Aligned:** 0/51 (0%)
+- **Update checked:** 51/51 (100%) — PF 6.5.0 report covers all
+- **Outdated:** 2 components need `/pf-compare` re-run (accordion, navigation)
 - **PF 6.5.0 implementation:** 38/46 done, 6 deferred, 1 open
 
 ## Next Steps
 
-Components ready for `/pf-compare` (outdated after PF 6.5.0): accordion, alert, banner, breadcrumb, button, card, drawer, expandable, form, icon, jumplinks, label, menu, modal, navigation, notification, page, panel, progress, table, tabs, togglegroup, toolbar, tree, truncate, wizard
-
-Components ready for `/pf-align`: navigation (7 missing variations)
-
-Open implementation items from PF 6.5.0 update: Hero component (beta — decide whether to implement)
+- **Outdated — re-run `/pf-compare`:** accordion, navigation (compared before 6.5.0 update report)
+- **Biggest gaps to close:** table (24%), button (50%), menu (59%), label (60%), toolbar (63%)
+- **Ready for `/pf-compare`:** avatar, backdrop, backtotop, badge, brand, codeblock, content, divider, emptystate, help, hint, inputgroup, list, numberinput, popover, progressstepper, skeleton, skiptocontent, slider, spinner, switch_, textinputgroup, timestamp, title, tooltip

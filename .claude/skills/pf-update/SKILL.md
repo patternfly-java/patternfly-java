@@ -155,6 +155,8 @@ Read `references/scope-mapping.md` for scope normalization rules, discarded scop
 ls -d components/src/main/java/org/patternfly/component/*/ | xargs -n1 basename
 ```
 
+**Exclude `template`** — it is a blueprint component, not a real UI component. Do not match PR scopes to it or include it in affected component lists.
+
 **Bucket PRs into categories:**
 
 1. **Component (existing)** — scope matches a PFJ component directory

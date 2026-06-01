@@ -34,7 +34,7 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java impleme
 /pf-compare <component> [--port <port>]
 ```
 
-- **component** (required) — URL slug of a single component (e.g., `button`, `card`, `data-list`). One component per invocation.
+- **component** (required) — URL slug of a single component (e.g., `button`, `card`, `data-list`). One component per invocation. **Reject `template`** — it is a blueprint component, not a real UI component.
 - **--port** (optional) — PFJ local dev server port (default: `1234`)
 
 Parse from the ARGUMENTS string. If no component is provided, ask the user which component to compare.
