@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add Node-based markdown pipeline (`markdown.mjs`) using remark/rehype with Shiki syntax highlighting, heading anchors, TOC extraction, and PatternFly CSS classes
+- Add runtime markdown loading via `fetch()` with per-page caching using Elemento's `Place.loader()` mechanism
+- Add docs-only CI workflow (`publish-docs.yml`) for publishing markdown changes without J2CL rebuild
 - Add comparison reports for all 26 outdated components covering 100% of PF 6.5 affected components
 - Add component status dashboard (`docs/pf-status/summary.md`)
 - Add `docked()` modifier to Navigation for docked/icon-only navigation
@@ -26,6 +29,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Replace `doc.java` JBang/flexmark generator with Node remark/rehype pipeline, decoupling documentation content from J2CL compilation
+- Move markdown files from `showcase/src/doc/` to `showcase/markdown/` with YAML frontmatter
+- Slim down README from 385 to ~40 lines, linking to showcase for detailed documentation
 - Add icon identity comparison (SVG viewBox check) to `/pf-compare` skill to catch icon mismatches between PatternFly and PFJ
 - Wrap expandable navigation group button text in `span.pf-v6-c-nav__link-text` to match PatternFly DOM structure
 - Switch ExpandableNavigationGroup from `ElementTextMethods` to `ElementTextDelegate`
@@ -34,6 +40,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Upgrade pnpm from 11.3.0 to 11.4.0
 - Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to the new `tools.jackson.core` group ID and `JsonMapper` builder API
 - Merge PF 6.5 upgrade findings into skill-based update report (`docs/pf-update/6.5.0.md`) with implementation status tracking
+
+### Removed
+
+- Remove `doc.java` JBang script and generated `Documentation.java` class, replaced by Node markdown pipeline
+- Remove `DocumentationPage` base class, replaced by `MarkdownPage` with runtime data loading
 
 ### Fixed
 
