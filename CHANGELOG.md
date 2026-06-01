@@ -18,6 +18,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
 - Add `/pf-update` skill for tracking PatternFly release changes and generating prioritized work plans
 - Add `/pf-status` skill for showing unified component status dashboard across lint, compare, align, and update dimensions
+- Add `CardSubtitle` sub-component with `addSubtitle()` on `CardTitle` for card subtitle support
+- Add `clicked()`, `ariaDisabled()`, and `ariaLabel()` methods to Button
+- Add `secondary()`, `pill()`, and `scrollableAutoHeight()` methods to Panel
+- Add `Secondary` modifier interface to Card
+- Add showcase demos for button, card, drawer, tabs, banner, panel, progress, breadcrumb, and truncate variations achieving 100% demo coverage for breadcrumb and truncate
 
 ### Changed
 
@@ -44,6 +49,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix component convention violations across alert, backdrop, backtotop, breadcrumb, and card (implements formatting/ordering, field ordering, missing Javadoc, missing `storeComponent()`)
 - Fix lint violations across all remaining components: add class Javadoc to ~110 sub-components, fix duplicate `SUB_COMPONENT_ID` values in emptystate, list, and table, fix `FormSelectOption` public constructor
 - Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
+- Fix button close icon to use rhMicrons (viewBox 0 0 20 20) matching PatternFly
+- Fix button showcase copy icon from FontAwesome to RH UI
 
 ## [0.9.0] - 2026-05-28
 
