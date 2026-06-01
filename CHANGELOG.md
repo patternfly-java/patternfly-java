@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add comparison reports for accordion, button, card, drawer, table, and tabs components
+- Add comparison reports for all 26 outdated components covering 100% of PF 6.5 affected components
 - Add component status dashboard (`docs/pf-status/summary.md`)
 - Add `docked()` modifier to Navigation for docked/icon-only navigation
 - Add `ariaLabel(String)` to NavigationGroup for title-less grouped navigation sections
