@@ -37,6 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
 - Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
 - Fix component convention violations across alert, backdrop, backtotop, breadcrumb, and card (implements formatting/ordering, field ordering, missing Javadoc, missing `storeComponent()`)
+- Fix lint violations across all remaining components: add class Javadoc to ~110 sub-components, fix duplicate `SUB_COMPONENT_ID` values in emptystate, list, and table, fix `FormSelectOption` public constructor
 - Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
 
 ## [0.9.0] - 2026-05-28
