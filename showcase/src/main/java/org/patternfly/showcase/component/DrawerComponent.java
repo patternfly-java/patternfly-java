@@ -401,6 +401,26 @@ public class DrawerComponent extends SnippetPage {
             // @code-end:drawer-resizable-bottom
         }));
 
+        addSnippet(new Snippet("drawer-pill", "Pill",
+                code("drawer-pill"), () -> {
+            // @code-start:drawer-pill
+            Drawer drawer = drawer();
+            return div()
+                    .add(button("Toggle drawer").css(util("mb-lg"))
+                            .primary()
+                            .onClick((event, btn) -> drawer.toggle()))
+                    .add(drawer.pill()
+                            .addContent(drawerContent()
+                                    .addBody(drawerBody()
+                                            .text(LoremIpsum.paragraphs(20))))
+                            .addPanel(drawerPanel()
+                                    .addHead(drawerPanelHead()
+                                            .add(span().text("drawer-panel"))
+                                            .addCloseButton(drawerCloseButton()))))
+                    .element();
+            // @code-end:drawer-pill
+        }));
+
         startApiDocs(Drawer.class);
         addApiDoc(Drawer.class, component);
         addApiDoc(DrawerBody.class, subcomponent);

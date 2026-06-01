@@ -83,6 +83,12 @@ public class CardTitle extends CardSubComponent<HTMLDivElement, CardTitle> imple
         return titleText;
     }
 
+    // ------------------------------------------------------ add
+
+    public CardTitle addSubtitle(CardSubtitle subtitle) {
+        return add(subtitle);
+    }
+
     // ------------------------------------------------------ builder
 
     @Override

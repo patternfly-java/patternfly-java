@@ -28,7 +28,7 @@ import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.icon.IconSets.fas.arrowRight;
 import static org.patternfly.icon.IconSets.fas.bell;
-import static org.patternfly.icon.IconSets.fas.copy;
+import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.icon.IconSets.fas.upload;
 import static org.patternfly.icon.IconSets.rhUi.addCircle;
 import static org.patternfly.icon.IconSets.rhUi.close;

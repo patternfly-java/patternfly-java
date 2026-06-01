@@ -110,6 +110,28 @@ public class TabsComponent extends SnippetPage {
             // @code-end:tabs-default
         }));
 
+        addSnippet(new Snippet("tabs-secondary", "Secondary tabs",
+                code("tabs-secondary"), () ->
+        {
+            // @code-start:tabs-secondary
+            return div()
+                    .add(tabs().secondary()
+                            .addItem(tab("tabs-secondary-users", "Users")
+                                    .addContent(tabContent().text("Users")))
+                            .addItem(tab("tabs-secondary-containers", "Containers")
+                                    .addContent(tabContent().text("Containers")))
+                            .addItem(tab("tabs-secondary-database", "Database")
+                                    .addContent(tabContent().text("Database")))
+                            .addItem(tab("tabs-secondary-disabled", "Disabled")
+                                    .disabled()
+                                    .addContent(tabContent().text("Disabled")))
+                            .addItem(tab("tabs-secondary-disabled-aria", "ARIA Disabled")
+                                    .ariaDisabled()
+                                    .addContent(tabContent().text("ARIA Disabled"))))
+                    .element();
+            // @code-end:tabs-secondary
+        }));
+
         addSnippet(new Snippet("tabs-vertical", "Vertical tabs",
                 code("tabs-vertical"), () ->
         {

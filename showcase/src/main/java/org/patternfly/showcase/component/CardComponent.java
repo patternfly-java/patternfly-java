@@ -41,6 +41,7 @@ import static org.patternfly.component.card.CardExpandableContent.cardExpandable
 import static org.patternfly.component.card.CardFooter.cardFooter;
 import static org.patternfly.component.card.CardHeader.cardHeader;
 import static org.patternfly.component.card.CardSelectableActions.cardSelectableActions;
+import static org.patternfly.component.card.CardSubtitle.cardSubtitle;
 import static org.patternfly.component.card.CardTitle.cardTitle;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -97,6 +98,19 @@ public class CardComponent extends SnippetPage {
                     .element();
             // @code-end:card-modifiers
         }));
+
+        addSnippet(new Snippet("card-subtitle", "With subtitle",
+                code("card-subtitle"), () ->
+                // @code-start:card-subtitle
+                div()
+                        .add(card()
+                                .addTitle(cardTitle("Title")
+                                        .addSubtitle(cardSubtitle("This is a card subtitle.")))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
+                        .element()
+                // @code-end:card-subtitle
+        ));
 
         addSnippet(new Snippet("card-header-image", "Header images and actions",
                 code("card-header-image"), () -> {

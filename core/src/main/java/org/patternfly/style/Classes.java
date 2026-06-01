@@ -279,6 +279,7 @@ public interface Classes {
     String stickyHeader = "sticky-header";
     String subnav = "subnav";
     String subtab = "subtab";
+    String subtitle = "subtitle";
     String success = "success";
     String svg = "pf-" + Version.PATTERN_FLY_MAJOR_VERSION + "-svg";
     String switch_ = "switch";
