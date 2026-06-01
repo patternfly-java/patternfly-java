@@ -81,6 +81,21 @@ public class BreadcrumbComponent extends SnippetPage {
                 // @code-end:breadcrumb-dropdown
         ));
 
+        addSnippet(new Snippet("breadcrumb-buttons", "With buttons",
+                code("breadcrumb-buttons"), () ->
+                // @code-start:breadcrumb-buttons
+                div()
+                        .add(breadcrumb()
+                                .addItem(breadcrumbItem("breadcrumb-buttons-0", "Section home"))
+                                .addItem(breadcrumbItem("breadcrumb-buttons-1", "Section title"))
+                                .addItem(breadcrumbItem("breadcrumb-buttons-2", "Section title"))
+                                .addItem(breadcrumbItem("breadcrumb-buttons-3", "Section title"))
+                                .addItem(breadcrumbItem("breadcrumb-buttons-4", "Section landing")
+                                        .active()))
+                        .element()
+                // @code-end:breadcrumb-buttons
+        ));
+
         startApiDocs(Breadcrumb.class);
         addApiDoc(Breadcrumb.class, component);
         addApiDoc(BreadcrumbItem.class, subcomponent);

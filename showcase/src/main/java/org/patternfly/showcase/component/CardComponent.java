@@ -35,6 +35,8 @@ import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.brand.Brand.brand;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.card.Card.card;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.card.CardActions.cardActions;
 import static org.patternfly.component.card.CardBody.cardBody;
 import static org.patternfly.component.card.CardExpandableContent.cardExpandableContent;
@@ -390,6 +392,34 @@ public class CardComponent extends SnippetPage {
                                         .addFooter(cardFooter().text("Footer"))))
                         .element()
                 // @code-end:card-expandable-image
+        ));
+
+        addSnippet(new Snippet("card-secondary", "Secondary",
+                code("card-secondary"), () ->
+                // @code-start:card-secondary
+                div()
+                        .add(card().secondary()
+                                .addTitle(cardTitle("Title"))
+                                .addBody(cardBody().text("Body"))
+                                .addFooter(cardFooter().text("Footer")))
+                        .element()
+                // @code-end:card-secondary
+        ));
+
+        addSnippet(new Snippet("card-dividers", "With dividers between sections",
+                code("card-dividers"), () ->
+                // @code-start:card-dividers
+                div()
+                        .add(card()
+                                .addTitle(cardTitle("Title"))
+                                .add(divider(hr))
+                                .addBody(cardBody().text("Body"))
+                                .add(divider(hr))
+                                .addBody(cardBody().text("Body"))
+                                .add(divider(hr))
+                                .addFooter(cardFooter().text("Footer")))
+                        .element()
+                // @code-end:card-dividers
         ));
 
         startApiDocs(Card.class);

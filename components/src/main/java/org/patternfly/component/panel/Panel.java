@@ -17,6 +17,7 @@ package org.patternfly.component.panel;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
+import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers;
 
 import elemental2.dom.HTMLDivElement;
@@ -108,6 +109,18 @@ public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modif
 
     public Panel scrollable() {
         return css(modifier(scrollable));
+    }
+
+    public Panel scrollableAutoHeight() {
+        return css(modifier(scrollable), modifier("scrollable-auto-height"));
+    }
+
+    public Panel secondary() {
+        return css(modifier(Classes.secondary));
+    }
+
+    public Panel pill() {
+        return css(modifier(Classes.pill));
     }
 
     @Override

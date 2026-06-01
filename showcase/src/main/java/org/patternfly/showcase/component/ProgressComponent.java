@@ -164,6 +164,19 @@ public class ProgressComponent extends SnippetPage {
                 // @code-end:progress-inside-success
         ));
 
+        addSnippet(new Snippet("progress-inside-warning", "Inside warning",
+                code("progress-inside-warning"), () ->
+                // @code-start:progress-inside-warning
+                div()
+                        .add(progress()
+                                .status(warning)
+                                .measureLocation(inside)
+                                .title("Title")
+                                .value(60))
+                        .element()
+                // @code-end:progress-inside-warning
+        ));
+
         addSnippet(new Snippet("progress-outside-failure", "Outside failure",
                 code("progress-outside-failure"), () ->
                 // @code-start:progress-outside-failure

@@ -154,6 +154,21 @@ public class BannerComponent extends SnippetPage {
                 // @code-end:banner-status
         ));
 
+        addSnippet(new Snippet("banner-pill", "Pill",
+                code("banner-pill"), () ->
+                // @code-start:banner-pill
+                div()
+                        .add(banner("Default pill banner").pill())
+                        .add(br())
+                        .add(banner("Blue pill banner", blue).pill())
+                        .add(br())
+                        .add(banner("Red pill banner", red).pill())
+                        .add(br())
+                        .add(banner("Green pill banner", green).pill())
+                        .element()
+                // @code-end:banner-pill
+        ));
+
         startApiDocs(Banner.class);
         addApiDoc(Banner.class, component);
     }

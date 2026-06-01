@@ -65,6 +65,20 @@ public class TruncateComponent extends SnippetPage {
                 // @code-end:truncate-start
         ));
 
+        addSnippet(new Snippet("truncate-max-chars", "Based on max characters",
+                code("truncate-max-chars"), () -> {
+            // @code-start:truncate-max-chars
+            String fullText = LoremIpsum.words();
+            int maxChars = 20;
+            String truncatedText = fullText.length() > maxChars
+                    ? fullText.substring(0, maxChars) + "..."
+                    : fullText;
+            return div()
+                    .add(truncate(truncatedText))
+                    .element();
+            // @code-end:truncate-max-chars
+        }));
+
         startApiDocs(Truncate.class);
         addApiDoc(Truncate.class, component);
         addApiDoc(TruncatePosition.class, modifier);

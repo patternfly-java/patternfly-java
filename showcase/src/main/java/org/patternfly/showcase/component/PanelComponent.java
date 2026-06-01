@@ -166,6 +166,24 @@ public class PanelComponent extends SnippetPage {
                 // @code-end:panel-scrollable-header-footer
         ));
 
+        addSnippet(new Snippet("panel-secondary", "Secondary",
+                code("panel-secondary"), () ->
+                // @code-start:panel-secondary
+                panel().secondary()
+                        .addMain("Main content")
+                        .element()
+                // @code-end:panel-secondary
+        ));
+
+        addSnippet(new Snippet("panel-pill", "Pill",
+                code("panel-pill"), () ->
+                // @code-start:panel-pill
+                panel().pill()
+                        .addMain("Pill panel content")
+                        .element()
+                // @code-end:panel-pill
+        ));
+
         startApiDocs(Panel.class);
         addApiDoc(Panel.class, component);
         addApiDoc(PanelFooter.class, subcomponent);
