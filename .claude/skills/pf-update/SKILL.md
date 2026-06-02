@@ -202,8 +202,8 @@ Skipped: D PRs (chore/deps/CI/docs/irrelevant scopes)
 Multiple PRs affecting the same component are grouped together. The highest priority PR determines the group's position in the sorted list.
 
 **Determine suggested action for each group:**
-1. Check if a compare report exists: `docs/pf-compare/<component>.md`
-2. Check if an align report exists: `docs/pf-align/<component>.md`
+1. Check if a compare report exists: `docs/pf-compare/<component>.json`
+2. Check if an align report exists: `docs/pf-align/<component>.json`
 
 | State | Suggested action |
 |-------|-----------------|
@@ -263,9 +263,17 @@ Full report: docs/pf-update/<VERSION>.md
 
 3. Fill in all placeholders with actual data from steps 2–5.
 
-4. Write to `docs/pf-update/<VERSION>.md` (or `docs/pf-update/<FROM>..<TO>.md` for ranges).
+4. Write the markdown report to `docs/pf-update/<VERSION>.md` (or `docs/pf-update/<FROM>..<TO>.md` for ranges).
 
-5. Report: "Detailed report saved to `docs/pf-update/<VERSION>.md`"
+5. **Write the JSON companion report** to `docs/pf-update/<VERSION>.json` (or `docs/pf-update/<FROM>..<TO>.json` for ranges). Use the schema from `references/report-schema.json`. The JSON includes:
+   - Version, date, pfjVersion, sourceRepos
+   - Stats (totalPrs, relevantPrs, skippedPrs, breaking, features, fixes, etc.)
+   - componentsAffected and newComponents arrays
+   - Full workItems array with number, priority, component, change, source, action, status
+   - unclassifiedPrs array
+   - issuesCreated count
+
+6. Report: "Reports saved to `docs/pf-update/<VERSION>.md` and `docs/pf-update/<VERSION>.json`"
 
 ---
 
@@ -303,9 +311,9 @@ Create GitHub issues for these work items? (yes/no/select)
    c. **Or add comment** (if duplicate found):
    Use `gh issue comment` to add the new PR findings.
 
-4. After all issues are created, update the report file:
-   - Set `issues_created` in YAML frontmatter to the count
-   - Append issue links to the "GitHub Issues" section in the body
+4. After all issues are created, update both report files:
+   - In the `.md` file: set `issues_created` in YAML frontmatter and append issue links to the "GitHub Issues" section
+   - In the `.json` file: set `issuesCreated` to the count
 
 5. Report: "Created N issues, commented on M existing issues."
 

@@ -1,0 +1,205 @@
+{
+  "component": "button",
+  "date": "2026-05-28",
+  "pfVersion": "Release 6.1",
+  "pfUrl": "https://www.patternfly.org/components/button/html",
+  "pfjUrl": "http://localhost:1234/components/button",
+  "completeness": {
+    "pfTotal": 12,
+    "pfjTotal": 10,
+    "matched": 9,
+    "missingInPfj": ["call-to-action", "progress", "count"],
+    "extraInPfj": ["custom-icon-layout"]
+  },
+  "variations": [
+    { "slug": "variations", "title": "Variations", "html": "<div class=\"ws-core-c-button-variations\">...</div>" },
+    { "slug": "disabled", "title": "Disabled", "html": "<div class=\"ws-core-c-button-disabled\">...</div>" },
+    { "slug": "small", "title": "Small", "html": "<div class=\"ws-core-c-button-small\">...</div>" },
+    { "slug": "call-to-action", "title": "Call to action", "html": "<div class=\"ws-core-c-button-call-to-action\">...</div>" },
+    { "slug": "block-level", "title": "Block level", "html": "<div class=\"ws-core-c-button-block-level\">...</div>" },
+    { "slug": "links", "title": "Links", "html": "<div class=\"ws-core-c-button-links\">...</div>" },
+    { "slug": "inline-link", "title": "Inline link", "html": "<div class=\"ws-core-c-button-inline-link\">...</div>" },
+    { "slug": "danger", "title": "Danger", "html": "<div class=\"ws-core-c-button-danger\">...</div>" },
+    { "slug": "progress", "title": "Progress", "html": "<div class=\"ws-core-c-button-progress\">...</div>" },
+    { "slug": "count", "title": "Count", "html": "<div class=\"ws-core-c-button-count\">...</div>" },
+    { "slug": "plain", "title": "Plain", "html": "<div class=\"ws-core-c-button-plain\">...</div>" },
+    { "slug": "control", "title": "Control", "html": "<div class=\"ws-core-c-button-control\">...</div>" }
+  ],
+  "snippets": [
+    { "id": "button-variations", "title": "Button variations", "html": "<div id=\"button-variations\">...</div>" },
+    { "id": "disabled-buttons", "title": "Disabled buttons", "html": "<div id=\"disabled-buttons\">...</div>" },
+    { "id": "small-buttons", "title": "Small buttons", "html": "<div id=\"small-buttons\">...</div>" },
+    { "id": "block-level", "title": "Block level", "html": "<div id=\"block-level\">...</div>" },
+    { "id": "link-buttons", "title": "Link buttons", "html": "<div id=\"link-buttons\">...</div>" },
+    { "id": "inline-link", "title": "Inline link", "html": "<div id=\"inline-link\">...</div>" },
+    { "id": "danger-buttons", "title": "Danger buttons", "html": "<div id=\"danger-buttons\">...</div>" },
+    { "id": "plain-buttons", "title": "Plain buttons", "html": "<div id=\"plain-buttons\">...</div>" },
+    { "id": "control-buttons", "title": "Control buttons", "html": "<div id=\"control-buttons\">...</div>" },
+    { "id": "custom-icon-layout", "title": "Custom icon layout", "html": "<div id=\"custom-icon-layout\">...</div>" }
+  ],
+  "matches": [
+    {
+      "pfVariation": { "slug": "variations", "title": "Variations" },
+      "pfjSnippet": { "id": "button-variations", "title": "Button variations" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "disabled", "title": "Disabled" },
+      "pfjSnippet": { "id": "disabled-buttons", "title": "Disabled buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "small", "title": "Small" },
+      "pfjSnippet": { "id": "small-buttons", "title": "Small buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "call-to-action", "title": "Call to action" },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": { "slug": "block-level", "title": "Block level" },
+      "pfjSnippet": { "id": "block-level", "title": "Block level" },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "links", "title": "Links" },
+      "pfjSnippet": { "id": "link-buttons", "title": "Link buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "inline-link", "title": "Inline link" },
+      "pfjSnippet": { "id": "inline-link", "title": "Inline link" },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "danger", "title": "Danger" },
+      "pfjSnippet": { "id": "danger-buttons", "title": "Danger buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "progress", "title": "Progress" },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": { "slug": "count", "title": "Count" },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": { "slug": "plain", "title": "Plain" },
+      "pfjSnippet": { "id": "plain-buttons", "title": "Plain buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "control", "title": "Control" },
+      "pfjSnippet": { "id": "control-buttons", "title": "Control buttons" },
+      "matchType": "semantic",
+      "status": "matched"
+    }
+  ],
+  "comparisons": [
+    {
+      "variation": "Variations",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Disabled",
+      "status": "differences_found",
+      "missingClasses": [
+        { "class": "pf-m-aria-disabled", "element": "<button>", "context": "present in PF, absent in PFJ" }
+      ],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [
+        "aria-disabled=\"true\" on <button> — present in PF, absent in PFJ"
+      ],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Danger",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Plain",
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF wraps icon in <span class=\"pf-v6-c-button__icon\">, PFJ places icon directly in button"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Call to action",
+      "description": "implement call-to-action button variant",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Progress",
+      "description": "implement progress/loading button variant",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Count",
+      "description": "implement button with count badge",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "fix_css",
+      "title": "Disabled",
+      "description": "add .pf-m-aria-disabled modifier class",
+      "category": "dom_css_fixes",
+      "variations": ["Disabled"]
+    },
+    {
+      "number": 5,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "add aria-disabled attribute support",
+      "category": "dom_css_fixes",
+      "variations": ["Disabled"]
+    },
+    {
+      "number": 6,
+      "type": "fix_structure",
+      "title": "Plain",
+      "description": "wrap icon in span.pf-v6-c-button__icon",
+      "category": "dom_css_fixes",
+      "variations": ["Plain"]
+    }
+  ]
+}

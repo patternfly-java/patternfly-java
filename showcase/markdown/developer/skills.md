@@ -19,15 +19,16 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java (PFJ) i
 /pf-compare card
 ```
 
-Produces a report listing:
+Produces a markdown report and a JSON companion file:
 - Variations present in PatternFly but missing in PFJ
 - DOM structure differences
 - CSS class mismatches
 - Action items for alignment
+- Raw HTML from both PF and PFJ (in JSON, used by `/pf-align`)
 
 ### /pf-align
 
-Implements action items from a `/pf-compare` report. Extracts reference HTML from PatternFly documentation, translates it to the Java builder API, and integrates it into the existing component.
+Implements action items from a `/pf-compare` report. Reads the JSON companion file for structured data and cached HTML. Falls back to the markdown report if the JSON is not available. Translates reference HTML to the Java builder API and integrates it into the existing component.
 
 ```bash
 /pf-align button
@@ -63,7 +64,7 @@ Verifies that a PFJ component follows the project's conventions for documentatio
 /pf-lint card
 ```
 
-Checks include:
+Writes per-component JSON reports to `docs/pf-lint/<component>.json`. Checks include:
 - Section markers and order (`factory`, `instance`, `add`, `builder`, `aria`, `events`, `api`, `internal`)
 - Javadoc completeness and format
 - Factory method naming
@@ -79,7 +80,7 @@ Shows a unified status dashboard across lint, compare, align, and update dimensi
 /pf-status button
 ```
 
-Reads existing report files from previous skill runs — does not analyze source code directly.
+Reads JSON report files from previous skill runs — does not analyze source code directly. Writes a unified `docs/pf-status/summary.json`.
 
 ### /pf-update
 
@@ -90,7 +91,7 @@ Tracks PatternFly release changes and generates a prioritized work plan for upda
 /pf-update 6.5.0
 ```
 
-Fetches the PatternFly changelog from GitHub, classifies changes by relevance to PFJ, and produces a prioritized list of tasks. Can optionally create GitHub issues for the work.
+Fetches the PatternFly changelog from GitHub, classifies changes by relevance to PFJ, and produces a prioritized list of tasks (`.md` + `.json`). Can optionally create GitHub issues for the work.
 
 ## Workflow
 
@@ -112,31 +113,34 @@ The skills form a pipeline where each skill's output feeds into the next:
      │              │               │             │
      │              │               │             │
      ▼              ▼               ▼             ▼
-  docs/pf-update/ docs/pf-compare/ docs/pf-align/ docs/pf-lint/
+  .json + .md    .json + .md      .json        .json + summary.md
                                                       │
                          ┌────────────────────────────┘
                          ▼
-                    /pf-status (reads all report directories)
+                    /pf-status (reads .json from all docs/pf-*/)
+                         │
+                         ▼
+                    summary.json + summary.md
 ```
 
 ### Data Flow
 
-- **`/pf-update`** analyzes PatternFly release changelogs and writes a prioritized work plan to `docs/pf-update/`. This identifies *which* components need attention.
-- **`/pf-compare`** takes a component name, opens both the PatternFly docs and PFJ showcase in a browser, extracts DOM/CSS data, and writes a gap analysis to `docs/pf-compare/`. This identifies *what* is missing or different.
-- **`/pf-align`** reads the `/pf-compare` report for a component and implements the action items — adding missing variations, fixing DOM structure, and correcting CSS classes. It writes a completion report to `docs/pf-align/`.
-- **`/pf-lint`** verifies the component follows project conventions (section order, Javadoc, naming, formatting) and writes results to `docs/pf-lint/`.
-- **`/pf-status`** is read-only — it aggregates reports from all four `docs/pf-*/` directories into a single dashboard. It never modifies source code or reports.
+- **`/pf-update`** analyzes PatternFly release changelogs and writes a prioritized work plan to `docs/pf-update/` (`.md` + `.json`). This identifies *which* components need attention.
+- **`/pf-compare`** takes a component name, opens both the PatternFly docs and PFJ showcase in a browser, extracts DOM/CSS data, and writes a gap analysis to `docs/pf-compare/` (`.md` + `.json`). This identifies *what* is missing or different.
+- **`/pf-align`** reads the `/pf-compare` JSON report for a component and implements the action items — adding missing variations, fixing DOM structure, and correcting CSS classes. The JSON contains cached HTML, so browser extraction can often be skipped. Writes a completion report to `docs/pf-align/<component>.json`.
+- **`/pf-lint`** verifies the component follows project conventions (section order, Javadoc, naming, formatting) and writes per-component results to `docs/pf-lint/<component>.json` plus an aggregate `summary.md`.
+- **`/pf-status`** is read-only — it aggregates JSON reports from all four `docs/pf-*/` directories into a single dashboard (`summary.json` + `summary.md`). It never modifies source code.
 
 ### Dependencies
 
 | Skill | Requires | Produces |
 |-------|----------|----------|
 | `/pf-dev-env` | Nothing | Running dev servers (J2CL + Vite) |
-| `/pf-update` | Nothing (fetches from GitHub) | `docs/pf-update/<version>.md` |
-| `/pf-compare` | Dev env running (for browser access) | `docs/pf-compare/<component>.md` |
-| `/pf-align` | A `/pf-compare` report for the component | `docs/pf-align/<component>.md` |
-| `/pf-lint` | Nothing (reads source code directly) | `docs/pf-lint/summary.md` |
-| `/pf-status` | Report files from other skills | Terminal output only |
+| `/pf-update` | Nothing (fetches from GitHub) | `docs/pf-update/<version>.md` + `.json` |
+| `/pf-compare` | Dev env running (for browser access) | `docs/pf-compare/<component>.md` + `.json` |
+| `/pf-align` | `docs/pf-compare/<component>.json` | `docs/pf-align/<component>.json` |
+| `/pf-lint` | Nothing (reads source code directly) | `docs/pf-lint/<component>.json` + `summary.md` |
+| `/pf-status` | JSON reports from other skills | `docs/pf-status/summary.json` + `summary.md` |
 
 ### Independent vs. Sequential
 

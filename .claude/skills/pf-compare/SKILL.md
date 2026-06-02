@@ -171,9 +171,18 @@ Full report: docs/pf-compare/<COMPONENT>.md
 
 4. Write the report to `docs/pf-compare/<COMPONENT>.md`.
 
-5. Report: "Detailed report saved to `docs/pf-compare/<COMPONENT>.md`"
+5. **Write the JSON companion report** to `docs/pf-compare/<COMPONENT>.json`. This file contains the same data from Steps 2–6 in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
+   - Metadata: component, date, pfVersion, pfUrl, pfjUrl
+   - Completeness counts and missing/extra lists
+   - Full `PF_VARIATIONS` array (slug, title, html) from Step 2
+   - Full `PFJ_SNIPPETS` array (id, title, html) from Step 3
+   - Match results from Step 4 (pfVariation, pfjSnippet, matchType, status)
+   - `COMPARISON_RESULTS` from Step 5 (variation, status, missingClasses, extraClasses, structuralDiffs, attributeDiffs, iconDiffs)
+   - Action items with number, type, title, description, category, and affected variations
 
-For sample report output, see `examples/button.md` and `examples/card.md`.
+6. Report: "Reports saved to `docs/pf-compare/<COMPONENT>.md` and `docs/pf-compare/<COMPONENT>.json`"
+
+For sample report output, see `examples/button.md`, `examples/button.json`, and `examples/card.md`.
 
 ---
 
@@ -183,6 +192,7 @@ For sample report output, see `examples/button.md` and `examples/card.md`.
 2. Close them with `close_page` (keep at least one tab open in the browser).
 3. Print completion message with next steps:
    - Review the report at `docs/pf-compare/<COMPONENT>.md`
+   - JSON data available at `docs/pf-compare/<COMPONENT>.json` (used by `/pf-align`)
    - Use the report as input for a future `/pf-align` skill
    - Run `/pf-compare` on another component
 

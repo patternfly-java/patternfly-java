@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PF Update Report",
+  "description": "Analysis of a PatternFly release and its impact on PatternFly Java.",
+  "type": "object",
+  "required": ["version", "date", "pfjVersion", "stats", "componentsAffected", "newComponents", "workItems"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "PatternFly version analyzed (e.g., '6.5.0')"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Report generation date (YYYY-MM-DD)"
+    },
+    "pfjVersion": {
+      "type": "string",
+      "description": "Current PFJ PatternFly dependency version from pom.xml"
+    },
+    "sourceRepos": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "GitHub repos analyzed (e.g., ['patternfly/patternfly', 'patternfly/patternfly-react'])"
+    },
+    "stats": {
+      "type": "object",
+      "required": ["totalPrs", "relevantPrs", "skippedPrs"],
+      "properties": {
+        "totalPrs": { "type": "integer" },
+        "relevantPrs": { "type": "integer" },
+        "skippedPrs": { "type": "integer" },
+        "breaking": { "type": "integer" },
+        "features": { "type": "integer" },
+        "fixes": { "type": "integer" },
+        "newComponents": { "type": "integer" },
+        "tokenChanges": { "type": "integer" },
+        "iconChanges": { "type": "integer" },
+        "workItems": { "type": "integer" },
+        "done": { "type": "integer" },
+        "deferred": { "type": "integer" },
+        "open": { "type": "integer" }
+      }
+    },
+    "componentsAffected": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Existing PFJ component names with relevant changes"
+    },
+    "newComponents": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "New components detected in the release"
+    },
+    "workItems": {
+      "type": "array",
+      "description": "Prioritized work plan items",
+      "items": {
+        "type": "object",
+        "required": ["number", "priority", "component", "change", "action"],
+        "properties": {
+          "number": { "type": "integer" },
+          "priority": {
+            "type": "string",
+            "enum": ["P1", "P2", "P3", "P4", "P5"],
+            "description": "P1=breaking, P2=feat, P3=fix, P4=new component, P5=tokens/icons"
+          },
+          "component": { "type": "string" },
+          "change": { "type": "string", "description": "Short description of the change" },
+          "source": {
+            "type": "string",
+            "description": "PR URL or reference"
+          },
+          "action": { "type": "string", "description": "Suggested next action" },
+          "status": {
+            "type": "string",
+            "enum": ["open", "done", "deferred"],
+            "description": "Current status of this work item"
+          }
+        }
+      }
+    },
+    "unclassifiedPrs": {
+      "type": "array",
+      "description": "PRs that couldn't be classified into a component",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "issuesCreated": {
+      "type": "integer",
+      "description": "Number of GitHub issues created for work items"
+    }
+  }
+}

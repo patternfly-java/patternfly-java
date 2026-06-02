@@ -57,6 +57,8 @@ Classify every `.java` file in the package:
 
 If the package has no sub-components, skip the SubComponent base and Sub-component classifications entirely.
 
+**Read template component as baseline:** Before running checks, read the template component files at `components/src/main/java/org/patternfly/component/template/` (`TemplateComponent.java`, `TemplateSubComponent.java`, `TemplateItem.java`, `package-info.java`). Use these as the reference implementation for all convention checks — they define the expected section order, Javadoc format, naming patterns, and code structure.
+
 ### Step 2: Run checks
 
 Run every check from `references/checklist.md` against each classified file. For each violation, record:
@@ -98,16 +100,21 @@ For violations that require judgment (missing Javadoc content, architectural iss
 
 After fixing, verify fixed files compile with `mvn compile -pl components` and pass formatting checks with `./check.sh`, then re-run the checks and report the final state.
 
-### Step 5: Update lint summary
+### Step 5: Write lint report
 
-After linting (and optionally fixing), update the persistent report at `docs/pf-lint/summary.md`. If the file or directory does not exist, create `docs/pf-lint/` and initialize `summary.md` with the summary table header and the component's row.
+After linting (and optionally fixing), write a per-component JSON report and update the aggregate summary.
 
-1. **Summary table**: Add or update the row for the component with the current date, file count, error/warning counts, whether issues were fixed, and status (`clean` if 0 remaining issues, `issues` otherwise).
-2. **Fixed Issues Log**: If issues were found and fixed, add a section under `## Fixed Issues Log` with the component name, date, and a table of all issues that were fixed (file, severity, rule, detail).
+1. **Create output directory** if needed: `mkdir -p docs/pf-lint`
 
-If the component was already linted before, update its existing row and log entry. If it was clean (0 errors, 0 warnings), no log entry is needed — just the summary row.
+2. **Write per-component JSON report** to `docs/pf-lint/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
+   - Component name, date, file count, error/warning counts, fixed status, overall status
+   - Full violations array with file, line, severity, rule, detail, and whether each was fixed
 
-When linting multiple components in one invocation, update all of them in a single edit.
+3. **Update aggregate summary** at `docs/pf-lint/summary.md`. Add or update the row for the component with the current date, file count, error/warning counts, whether issues were fixed, and status (`clean` if 0 remaining issues, `issues` otherwise). If the file does not exist, initialize it with the summary table header.
+
+If the component was already linted before, overwrite its `.json` file and update its row in the summary table.
+
+When linting multiple components in one invocation, write all JSON files and update all rows in a single edit.
 
 ## Reference material
 

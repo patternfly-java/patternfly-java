@@ -77,27 +77,10 @@ Start the development environment. Idempotent — if processes are already runni
 
 ### Step 1: Parse Arguments
 
-Extract these values from the user's prompt — the block below describes the logical parsing structure, not a script to execute:
-
-```bash
-PORT=1234
-SUBCOMMAND="start"
-
-for arg in "$@"; do
-  case "$arg" in
-    start|stop|status) SUBCOMMAND="$arg" ;;
-    --port) NEXT_IS_PORT=true ;;
-    *)
-      if [ "$NEXT_IS_PORT" = true ]; then
-        PORT="$arg"
-        NEXT_IS_PORT=false
-      fi
-      ;;
-  esac
-done
-```
-
-**Restart:** If the user asks to "restart", treat it as `stop` followed by `start`.
+Extract from the user's prompt:
+- **SUBCOMMAND** — one of `start` (default), `stop`, or `status`
+- **PORT** — from `--port <number>` (default: `1234`)
+- **Restart** — treat as `stop` followed by `start`
 
 ### Step 2: Check If Already Running
 
