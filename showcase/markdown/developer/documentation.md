@@ -106,8 +106,8 @@ This executes `markdown.mjs`, which:
 
 1. Walks the `showcase/markdown/` directory recursively
 2. Parses each `.md` file (frontmatter, GFM, syntax highlighting)
-3. Writes JSON files to `src/web/markdown/`, preserving the directory structure
-4. Generates `src/web/markdown/manifest.json` with the full navigation tree
+3. Writes JSON files to `src/web/public/markdown/`, preserving the directory structure
+4. Generates `src/web/public/markdown/manifest.json` with the full navigation tree
 
 ### JSON Output
 

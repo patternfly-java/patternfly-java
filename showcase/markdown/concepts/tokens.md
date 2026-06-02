@@ -41,3 +41,8 @@ HTMLElement container = div()
         .style("font-size", globalFontSizeSm.var)
         .element();
 ```
+
+## Resources
+
+- [PatternFly tokens](https://www.patternfly.org/tokens/all-patternfly-tokens) — Browse all available tokens on the PatternFly website
+- [`Token` Javadoc](https://patternfly-java.github.io/apidocs/org/patternfly/token/Token.html) — Full list of available token enum constants

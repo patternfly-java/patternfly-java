@@ -49,4 +49,11 @@ DescriptionList dl = descriptionList()
                 .addDescription(descriptionListDescription("2 annotations")));
 ```
 
-See also the PatternFly website about [icons](https://www.patternfly.org/design-foundations/icons#all-icons) to get an overview of the available icons.
+## Custom Icons
+
+If you need an icon that's not included in the predefined sets, you can create a custom icon using Elemento's SVG builder API. Wrap your SVG markup in an `svg()` builder and use it wherever a `PredefinedIcon` is accepted.
+
+## Resources
+
+- [PatternFly icons](https://www.patternfly.org/design-foundations/icons#all-icons) — Browse all available icons on the PatternFly website
+- [`IconSets` Javadoc](https://patternfly-java.github.io/apidocs/org/patternfly/icon/IconSets.html) — Full API reference for predefined icon sets

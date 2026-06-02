@@ -5,7 +5,13 @@ title: PatternFly Java
 
 # PatternFly Java
 
-PatternFly Java is a 💯 Java implementation of [PatternFly](https://www.patternfly.org/) without any JavaScript dependencies (except for the charts – see below). Its goal is to provide an easy-to-use, elegant, and efficient API to build complex web applications with PatternFly in Java. PatternFly Java integrates with and builds upon Elemento's [builder API](https://hal-console.gitbook.io/elemento/builder-api). It works with both GWT and J2CL. The following code snippet gives a taste of what PatternFly Java looks like:
+Build enterprise web applications in pure Java with [PatternFly](https://www.patternfly.org/) components — no JavaScript required.
+
+PatternFly Java is a 💯 Java implementation of PatternFly that integrates with and builds upon Elemento's [builder API](https://hal-console.gitbook.io/elemento/builder-api). It works with both GWT and J2CL, giving you a type-safe, fluent API to create complex web applications entirely in Java.
+
+## A Taste of the API
+
+The following code snippet shows how PatternFly Java lets you build a complete page layout with just a few lines of Java:
 
 ```java
 body().add(page()
@@ -38,7 +44,26 @@ body().add(page()
                                         .add("."))))));
 ```
 
-PatternFly Java aims to provide almost complete support for all components, charts, extensions, and layouts. This showcase demonstrates all currently supported components and layouts. To get all the details about using PatternFly Java, look at the [API documentation](https://patternfly-java.github.io/apidocs/).
+Static factory methods, method chaining, and type-safe builders make it easy to create components, compose layouts, and wire up event handlers — all with full IDE support.
+
+## What You Get
+
+PatternFly Java aims to provide almost complete support for PatternFly's design system:
+
+- **50+ Components** — Alerts, buttons, cards, dropdowns, modals, tables, tabs, and many more. Browse the component demos in the sidebar.
+- **Charts** — Area, bar, donut, line, pie, and other chart types via the [`@patternfly-java/charts`](https://www.npmjs.com/package/@patternfly-java/charts) NPM package.
+- **Layouts** — Bullseye, flex, gallery, grid, level, split, and stack layouts for responsive page design.
+- **Extensions** — Code editor and finder extensions for specialized use cases.
+- **Design Tokens** — All PatternFly [design tokens](https://www.patternfly.org/tokens/about-tokens) available as type-safe Java enum constants.
+- **Icons** — FontAwesome, PatternFly, and Red Hat icon sets with convenient factory methods.
+
+## Get Started
+
+Ready to try PatternFly Java? Here's how to begin:
+
+- **[Get started](/get-started)** — Add PatternFly Java to your Maven project
+- **[API documentation](https://patternfly-java.github.io/apidocs/)** — Full Javadoc reference
+- **[GitHub](https://github.com/patternfly-java/patternfly-java)** — Source code, issues, and discussions
 
 ## Charts
 

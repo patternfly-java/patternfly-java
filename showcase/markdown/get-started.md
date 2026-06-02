@@ -5,7 +5,11 @@ title: Get started
 
 # Get started
 
-PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM
+PatternFly Java is available on [Maven Central](https://central.sonatype.com/search?q=g%3Aorg.patternfly). The easiest way is to import its BOM and add a dependency for your compilation target.
+
+## Maven Setup
+
+Import the BOM in your `pom.xml`. Replace `${patternfly-java.version}` with the [latest version](https://central.sonatype.com/search?q=g%3Aorg.patternfly) from Maven Central:
 
 ```xml
 <dependencyManagement>
@@ -13,7 +17,7 @@ PatternFly Java is available on [Maven Central](https://central.sonatype.com/sea
         <dependency>
             <groupId>org.patternfly</groupId>
             <artifactId>patternfly-java-bom</artifactId>
-            <version>0.9.1-SNAPSHOT</version>
+            <version>${patternfly-java.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -21,7 +25,7 @@ PatternFly Java is available on [Maven Central](https://central.sonatype.com/sea
 </dependencyManagement>
 ```
 
-and add a dependency to either
+Then add a dependency to either
 
 ```xml
 <dependency>

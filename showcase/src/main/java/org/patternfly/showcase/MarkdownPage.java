@@ -63,7 +63,7 @@ public class MarkdownPage implements Page, IsElement<HTMLElement>, Attachable {
         MarkdownData md = data.get();
         removeChildrenFrom(root);
         root.appendChild(
-                content().html(SafeHtmlUtils.fromSafeConstant(md.html)).element());
+                content().editorial().html(SafeHtmlUtils.fromSafeConstant(md.html)).element());
         return singletonList(root);
     }
 }
