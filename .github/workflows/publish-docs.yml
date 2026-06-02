@@ -32,7 +32,7 @@ jobs:
       - name: Update markdown files
         run: |
           mkdir -p gh-pages/markdown
-          cp showcase/src/web/markdown/*.json gh-pages/markdown/
+          cp showcase/src/web/public/markdown/*.json gh-pages/markdown/
       - name: Push to gh-pages
         working-directory: gh-pages
         run: |

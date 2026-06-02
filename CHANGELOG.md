@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Move showcase markdown classes (`Markdown`, `MarkdownData`, `MarkdownManifest`, `MarkdownPage`, `TocEntry`, `ManifestItem`) to dedicated `org.patternfly.showcase.markdown` package
+- Standardize frontend-maven-plugin execution IDs and configurations across modules
 - Migrate showcase documentation from Java-generated pages to manifest-driven Node markdown pipeline with YAML frontmatter, replacing `doc.java`, `DocumentationPage`, and 9 boilerplate page classes
 - Slim down README from 385 to ~40 lines, linking to showcase for detailed documentation
 - Migrate all skill reports from markdown to structured JSON with JSON Schema validation and examples
@@ -40,7 +42,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Add Closure Compiler externs for markdown JsInterop types (`MarkdownData`, `TocEntry`, `ManifestItem`)
+- Fix markdown output directory for Vite production builds
 - Fix charts/npm lockfile out of sync with package.json, causing showcase publish workflow to fail
+- Suppress showcase audit vulnerabilities from upstream NPM dependencies
 - Fix accordion alignment: correct toggle icon (`rhMicrons.caretDown`), wrap button in `<dt>`/`<h>`, add `pf-m-toggle-start`, `pf-m-bordered`, `role="region"`, and missing Javadoc
 - Fix navigation alignment: correct expandable group icon, add `inert` on collapsed subnav, add `id`/`aria-labelledby` to sections, remove extra dividers and incorrect ARIA attributes on scroll buttons
 - Fix icon usage across components: button close/copy icons, scroll button icons, navigation demo icons — switch to correct rhMicrons/rhUi sets
