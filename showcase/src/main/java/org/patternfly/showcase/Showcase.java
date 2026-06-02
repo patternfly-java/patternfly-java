@@ -117,6 +117,9 @@ public final class Showcase {
                 .addItem(ni(placeManager.place("/api-design")))
                 .addItem(ni(placeManager.place("/icons")))
                 .addItem(ni(placeManager.place("/tokens")))
+                .addItem(ni(placeManager.place("/building")))
+                .addItem(ni(placeManager.place("/ci-cd")))
+                .addItem(ni(placeManager.place("/releasing")))
                 .addItem(ni(placeManager.place("/get-involved")));
 
         body().add(page()
