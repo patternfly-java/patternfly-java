@@ -15,9 +15,6 @@
  */
 package org.patternfly.showcase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
@@ -50,21 +47,9 @@ public final class MarkdownManifest {
     // ------------------------------------------------------ instance
 
     private final ManifestItem[] items;
-    private final Map<String, ManifestItem> byRoute;
 
     private MarkdownManifest(ManifestItem[] items) {
         this.items = items;
-        this.byRoute = new HashMap<>();
-        indexItems(items);
-    }
-
-    private void indexItems(ManifestItem[] items) {
-        for (ManifestItem item : items) {
-            byRoute.put(item.route, item);
-            if ("group".equals(item.type) && item.children != null) {
-                indexItems(item.children);
-            }
-        }
     }
 
     // ------------------------------------------------------ places
