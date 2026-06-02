@@ -228,6 +228,17 @@
             </properties>
         </profile>
         <profile>
+            <id>skip-j2cl-quickly</id>
+            <activation>
+                <property>
+                    <name>quickly</name>
+                </property>
+            </activation>
+            <properties>
+                <j2cl.phase>none</j2cl.phase>
+            </properties>
+        </profile>
+        <profile>
             <id>prod</id>
             <properties>
                 <j2cl.compilationLevel>ADVANCED_OPTIMIZATIONS</j2cl.compilationLevel>
