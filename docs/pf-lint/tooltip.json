@@ -1,0 +1,27 @@
+{
+  "component": "tooltip",
+  "date": "2026-06-02",
+  "files": 5,
+  "errors": 0,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Tooltip.java",
+      "line": 149,
+      "severity": "WARN",
+      "rule": "section-order",
+      "detail": "The containerDelegate(), textDelegate(), attach(), and detach() overrides at lines 149-179 are between the 'instance' and 'builder' sections, outside any named section. Consider placing them in the 'builder' or 'api' section.",
+      "fixed": false
+    },
+    {
+      "file": "Tooltip.java",
+      "line": 236,
+      "severity": "WARN",
+      "rule": "name-aria-prefix",
+      "detail": "ARIA method at line 236 is named aria(TriggerAria) instead of following the aria<Attribute>() naming convention. This is an intentional design choice for a specialized TriggerAria enum parameter.",
+      "fixed": false
+    }
+  ]
+}

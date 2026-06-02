@@ -1,0 +1,19 @@
+{
+  "component": "spinner",
+  "date": "2026-06-02",
+  "files": 2,
+  "errors": 1,
+  "warnings": 0,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Spinner.java",
+      "line": 64,
+      "severity": "ERROR",
+      "rule": "ctor-visibility",
+      "detail": "Constructor is 'protected' but should be package-private (no access modifier)",
+      "fixed": false
+    }
+  ]
+}

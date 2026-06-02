@@ -8,62 +8,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add building, CI/CD, and releasing documentation pages to the showcase
-- Add Node-based markdown pipeline (`markdown.mjs`) using remark/rehype with Shiki syntax highlighting, heading anchors, TOC extraction, and PatternFly CSS classes
-- Add runtime markdown loading via `fetch()` with per-page caching using Elemento's `Place.loader()` mechanism
+- Add nested markdown directory structure with manifest-driven routing, Node-based remark/rehype pipeline with Shiki highlighting, and runtime loading via Elemento's `Place.loader()`
+- Add showcase documentation: Concepts (API design, icons, tokens) and Developer (skills, markdown system, building, CI/CD, releasing)
 - Add docs-only CI workflow (`publish-docs.yml`) for publishing markdown changes without J2CL rebuild
-- Add comparison reports for all 26 outdated components covering 100% of PF 6.5 affected components
-- Add component status dashboard (`docs/pf-status/summary.md`)
-- Add `docked()` modifier to Navigation for docked/icon-only navigation
-- Add `ariaLabel(String)` to NavigationGroup for title-less grouped navigation sections
-- Add `ariaLabel(String)` to NavigationItem for icon-only navigation items
-- Add showcase demos for grouped no titles, horizontal overflow, horizontal subnav overflow, and docked navigation variations
+- Add Navigation improvements: `docked()` modifier, `ariaLabel()` on NavigationGroup and NavigationItem for icon-only and title-less sections
+- Add showcase demos for button, card, drawer, tabs, banner, panel, progress, breadcrumb, truncate, and navigation variations
 - Add template component package (`org.patternfly.component.template`) as a blueprint for new component development
-- Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
-- Add `/pf-update` skill for tracking PatternFly release changes and generating prioritized work plans
-- Add `/pf-status` skill for showing unified component status dashboard across lint, compare, align, and update dimensions
-- Add `CardSubtitle` sub-component with `addSubtitle()` on `CardTitle` for card subtitle support
+- Add project skills: `/pf-lint`, `/pf-update`, `/pf-status`, `/pf-dev-env` with structured JSON reports, JSON Schema validation, and skill interaction documentation
+- Add `CardSubtitle` sub-component with `addSubtitle()` on `CardTitle`
 - Add `clicked()`, `ariaDisabled()`, and `ariaLabel()` methods to Button
 - Add `secondary()`, `pill()`, and `scrollableAutoHeight()` methods to Panel
 - Add `Secondary` modifier interface to Card
-- Add showcase demos for button, card, drawer, tabs, banner, panel, progress, breadcrumb, and truncate variations achieving 100% demo coverage for breadcrumb and truncate
 
 ### Changed
 
-- Replace `doc.java` JBang/flexmark generator with Node remark/rehype pipeline, decoupling documentation content from J2CL compilation
-- Move markdown files from `showcase/src/doc/` to `showcase/markdown/` with YAML frontmatter
+- Migrate showcase documentation from Java-generated pages to manifest-driven Node markdown pipeline with YAML frontmatter, replacing `doc.java`, `DocumentationPage`, and 9 boilerplate page classes
 - Slim down README from 385 to ~40 lines, linking to showcase for detailed documentation
-- Add icon identity comparison (SVG viewBox check) to `/pf-compare` skill to catch icon mismatches between PatternFly and PFJ
-- Wrap expandable navigation group button text in `span.pf-v6-c-nav__link-text` to match PatternFly DOM structure
-- Switch ExpandableNavigationGroup from `ElementTextMethods` to `ElementTextDelegate`
-- Move formatting, linting, and enforcer plugins to opt-in Maven profiles (`format`, `check`) so `mvn install` runs without validation overhead
-- Consolidate generated file exclusions into a shared Maven property
+- Migrate all skill reports from markdown to structured JSON with JSON Schema validation and examples
+- Refactor navigation internals: wrap expandable group text in `span.pf-v6-c-nav__link-text`, switch to `ElementTextDelegate`, lazy text element creation
+- Move formatting, linting, and enforcer plugins to opt-in Maven profiles (`format`, `check`) with consolidated generated file exclusions
+- Import PatternFly.org styles from npm package instead of stale local copies
+- Replace link-list showcase index pages with `_meta.yaml` navigation groups
 - Upgrade pnpm from 11.3.0 to 11.4.0
-- Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to the new `tools.jackson.core` group ID and `JsonMapper` builder API
-- Merge PF 6.5 upgrade findings into skill-based update report (`docs/pf-update/6.5.0.md`) with implementation status tracking
+- Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to `tools.jackson.core` group ID and `JsonMapper` builder API
 
 ### Removed
 
-- Remove `doc.java` JBang script and generated `Documentation.java` class, replaced by Node markdown pipeline
-- Remove `DocumentationPage` base class, replaced by `MarkdownPage` with runtime data loading
+- Remove markdown-format skill reports (26 comparison reports, lint summary, status summary, update report), replaced by structured JSON
 
 ### Fixed
 
-- Fix accordion toggle using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) to match PatternFly's angle-down chevron
-- Fix accordion DOM structure by wrapping toggle button in `<dt>`/`<h>` element instead of appending bare button
-- Add `pf-m-toggle-start` CSS class to accordion root when toggle icon position is start
-- Add `pf-m-bordered` to accordion Large showcase example to match PatternFly's "Large bordered" variation
-- Add `role="region"` and `tabindex="0"` to fixed accordion expandable content for accessibility
-- Add missing Javadoc to `AccordionItemBody`
-- Fix expandable navigation group using wrong icon (`rhUi.caretRight` → `rhMicrons.caretDown`) causing arrows to point left when expanded and appear thinner than PatternFly
-- Add `inert` attribute on collapsed expandable navigation subnav sections for accessibility
-- Add `id` and `aria-labelledby` to NavigationGroup sections and headings for accessibility
-- Fix component convention violations across alert, backdrop, backtotop, breadcrumb, and card (implements formatting/ordering, field ordering, missing Javadoc, missing `storeComponent()`)
-- Fix lint violations across all remaining components: add class Javadoc to ~110 sub-components, fix duplicate `SUB_COMPONENT_ID` values in emptystate, list, and table, fix `FormSelectOption` public constructor
-- Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
-- Fix button close icon to use rhMicrons (viewBox 0 0 20 20) matching PatternFly
-- Fix button showcase copy icon from FontAwesome to RH UI
+- Fix accordion alignment: correct toggle icon (`rhMicrons.caretDown`), wrap button in `<dt>`/`<h>`, add `pf-m-toggle-start`, `pf-m-bordered`, `role="region"`, and missing Javadoc
+- Fix navigation alignment: correct expandable group icon, add `inert` on collapsed subnav, add `id`/`aria-labelledby` to sections, remove extra dividers and incorrect ARIA attributes on scroll buttons
+- Fix icon usage across components: button close/copy icons, scroll button icons, navigation demo icons — switch to correct rhMicrons/rhUi sets
+- Fix component convention violations: formatting/ordering, missing Javadoc on ~110 sub-components, duplicate `SUB_COMPONENT_ID` values, `FormSelectOption` public constructor
 - Fix `-Dquickly` not skipping J2CL compilation when combined with `-P showcase`
+- Fix heading autolinks and duplicate index navigation items in showcase
 
 ## [0.9.0] - 2026-05-28
 

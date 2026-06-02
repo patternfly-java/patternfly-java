@@ -1,0 +1,43 @@
+{
+  "component": "form",
+  "date": "2026-06-02",
+  "files": 29,
+  "errors": 2,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "FormGroupControl.java",
+      "line": 42,
+      "severity": "ERROR",
+      "rule": "inherit-sub",
+      "detail": "FormGroupControl extends SubComponent directly instead of the package's FormSubComponent base class",
+      "fixed": false
+    },
+    {
+      "file": "FormSection.java",
+      "line": 91,
+      "severity": "ERROR",
+      "rule": "section-format",
+      "detail": "Section name is 'internals' but should be 'internal' (no trailing 's')",
+      "fixed": false
+    },
+    {
+      "file": "FormSelectOption.java",
+      "line": 53,
+      "severity": "WARN",
+      "rule": "section-builder-that",
+      "detail": "that() method appears between the instance and builder sections; it should be the last method inside the builder section",
+      "fixed": false
+    },
+    {
+      "file": "FormSelectOptionGroup.java",
+      "line": 48,
+      "severity": "WARN",
+      "rule": "section-builder-that",
+      "detail": "that() method appears between the instance and add sections; it should be the last method inside the builder section",
+      "fixed": false
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PF Align Report",
+  "description": "Alignment results for a PatternFly Java component — tracks which action items from pf-compare were processed.",
+  "type": "object",
+  "required": ["component", "date", "compareReport", "status", "items"],
+  "properties": {
+    "component": {
+      "type": "string",
+      "description": "Component name (e.g., 'button', 'navigation')"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the alignment was run (YYYY-MM-DD)"
+    },
+    "compareReport": {
+      "type": "string",
+      "description": "Path to the pf-compare JSON report used as input (e.g., 'docs/pf-compare/button.json')"
+    },
+    "compareDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the compare report used"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["done", "in_progress", "partial"],
+      "description": "'done' if all items processed, 'partial' if some skipped/failed, 'in_progress' if interrupted"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer", "description": "Total action items from compare report" },
+        "implemented": { "type": "integer", "description": "Items successfully implemented" },
+        "skipped": { "type": "integer", "description": "Items skipped (already implemented or user declined)" },
+        "failed": { "type": "integer", "description": "Items that failed (build error, extraction error)" },
+        "remaining": { "type": "integer", "description": "Items not yet processed" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "Status of each action item from the compare report",
+      "items": {
+        "type": "object",
+        "required": ["number", "type", "title", "result"],
+        "properties": {
+          "number": { "type": "integer", "description": "Action item number from compare report" },
+          "type": {
+            "type": "string",
+            "enum": ["add_variation", "fix_css", "fix_structure", "fix_attribute", "fix_icon", "implement_feature"]
+          },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "result": {
+            "type": "string",
+            "enum": ["implemented", "skipped_existing", "skipped_user", "failed", "pending"],
+            "description": "Outcome of processing this item"
+          },
+          "filesModified": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Files changed for this item (relative paths)"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for skip or failure"
+          }
+        }
+      }
+    }
+  }
+}

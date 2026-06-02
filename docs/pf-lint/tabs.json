@@ -1,0 +1,19 @@
+{
+  "component": "tabs",
+  "date": "2026-06-02",
+  "files": 8,
+  "errors": 0,
+  "warnings": 1,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "TabsToggle.java",
+      "line": 69,
+      "severity": "WARN",
+      "rule": "section-blank-after",
+      "detail": "Two blank lines after 'builder' section separator (lines 69-70); expected exactly one",
+      "fixed": false
+    }
+  ]
+}

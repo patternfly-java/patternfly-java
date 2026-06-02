@@ -102,8 +102,9 @@ Project-scoped skills in `.claude/skills/`:
 |-------|---------|
 | `/pf-compare <component>` | Compare a PatternFly component against its Java implementation to identify coverage gaps and DOM/CSS differences |
 | `/pf-align <component>` | Implement action items from a `/pf-compare` report to align the Java implementation with PatternFly |
+| `/pf-dev-env [start\|stop\|status]` | Start, stop, or check the local development environment (J2CL watch + Vite dev server) |
 | `/pf-lint <component>` | Verify that a component follows project conventions for documentation, code structure, naming, and formatting |
-| `/pf-status [component]` | Show unified status dashboard across lint, compare, and align dimensions for all or one component |
+| `/pf-status [component]` | Show unified status dashboard across lint, compare, align, and update dimensions for all or one component |
 | `/pf-update [version]` | Analyze a PatternFly release to find changes relevant to PFJ and generate a prioritized work plan |
 
 ## Key Dependencies

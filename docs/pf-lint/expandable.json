@@ -1,0 +1,19 @@
+{
+  "component": "expandable",
+  "date": "2026-06-02",
+  "files": 5,
+  "errors": 0,
+  "warnings": 1,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "ExpandableSection.java",
+      "line": 94,
+      "severity": "WARN",
+      "rule": "field-logger-first",
+      "detail": "Logger field is declared at line 94 but should be the first static final field in the instance section; currently preceded by WIRE_ATTEMPTS (line 91), WIRE_INTERVAL (line 92), and DEFAULT_TRUNCATE (line 93)",
+      "fixed": false
+    }
+  ]
+}

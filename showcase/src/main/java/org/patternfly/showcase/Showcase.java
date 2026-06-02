@@ -18,7 +18,6 @@ package org.patternfly.showcase;
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
-import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
 import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
 import org.patternfly.component.navigation.Navigation;
@@ -29,11 +28,15 @@ import org.patternfly.style.Classes;
 import static elemental2.dom.DomGlobal.location;
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.body;
+import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
+import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
@@ -57,6 +60,7 @@ import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
+import static org.patternfly.token.Token.globalSpacerXs;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fullHeight;
 import static org.patternfly.style.Classes.modifier;
@@ -67,7 +71,7 @@ import static org.patternfly.style.Variables.Height;
 
 public final class Showcase {
 
-    private static final String MAIN_ID = "pfj-main-id";
+    private static final String MAIN_ID = "ws-page-main";
     private static final Logger logger = Logger.getLogger(Showcase.class.getName());
     private static PlaceManager placeManager;
 
@@ -78,7 +82,13 @@ public final class Showcase {
     @GWT3EntryPoint
     public void onModuleLoad() {
         Logger.initFrom(location);
+        MarkdownManifest.load().then(manifest -> {
+            init(manifest);
+            return null;
+        });
+    }
 
+    private void init(MarkdownManifest manifest) {
         Navigation navigation = navigation(expandable);
         placeManager = new PlaceManager()
                 .root(By.id(MAIN_ID))
@@ -86,43 +96,49 @@ public final class Showcase {
                 .title(title -> "PatternFly Java • " + title)
                 .notFound(NotFound::new)
                 .register(new AnnotatedPlaces())
+                .register(manifest.places())
                 .afterPlace((pm, place) -> navigation.select(place.route));
 
         navigation
-                .addItem(ni(placeManager.place("/get-started")))
-                .addGroup(expandableNavigationGroup("components", "Components")
-                        .addItem(ni(placeManager.place("/components/all-components")))
-                        .addItems(topLevelComponents(), component ->
-                                navigationItem(component.route, component.title, component.route))
-                        .insertGroupAfter(expandableNavigationGroup("forms", "Forms")
-                                        .addItems(groupComponents("forms"), sc ->
-                                                navigationItem(sc.route, sc.title, sc.route)),
-                                "/components/expandable-section")
-                        .insertGroupAfter(expandableNavigationGroup("menus", "Menus")
-                                        .addItems(groupComponents("menus"), sc ->
-                                                navigationItem(sc.route, sc.title, sc.route)),
-                                "/components/masthead"))
-                .addGroup(expandableNavigationGroup("extensions", "Extensions")
-                        .addItem(ni(placeManager.place("/extensions/about-extensions"), "About extensions"))
-                        .addItems(extensions(), extension ->
-                                navigationItem(extension.route, extension.title, extension.route)))
-                .addGroup(expandableNavigationGroup("charts", "Charts")
-                        .addItem(ni(placeManager.place("/charts/about-charts"), "About charts"))
-                        .addItems(charts(), chart ->
-                                navigationItem(chart.route, chart.title, chart.route)))
-                .addGroup(expandableNavigationGroup("layouts", "Layouts")
-                        .addItem(ni(placeManager.place("/layouts/about-layouts"), "About layouts"))
-                        .addItems(layouts(), layout ->
-                                navigationItem(layout.route, layout.title, layout.route)))
-                .addItem(ni(placeManager.place("/api-design")))
-                .addItem(ni(placeManager.place("/icons")))
-                .addItem(ni(placeManager.place("/tokens")))
-                .addItem(ni(placeManager.place("/building")))
-                .addItem(ni(placeManager.place("/ci-cd")))
-                .addItem(ni(placeManager.place("/releasing")))
-                .addItem(ni(placeManager.place("/get-involved")));
+                .addGroup(navigationGroup("learn", "Learn")
+                        .add(manifest.navItem(placeManager, "/get-started"))
+                        .addGroup(manifest.navGroup(placeManager, "concepts")))
+                .add(divider(hr)
+                        .style("margin-top", globalSpacerXs.var)
+                        .style("margin-bottom", globalSpacerXs.var))
+                .addGroup(navigationGroup("design-develop", "Design and develop")
+                        .addGroup(expandableNavigationGroup("components", "Components")
+                                .addItem(ni("/components/all-components"))
+                                .addItems(topLevelComponents(), component ->
+                                        navigationItem(component.route, component.title, component.route))
+                                .insertGroupAfter(expandableNavigationGroup("forms", "Forms")
+                                                .addItems(groupComponents("forms"), sc ->
+                                                        navigationItem(sc.route, sc.title, sc.route)),
+                                        "/components/expandable-section")
+                                .insertGroupAfter(expandableNavigationGroup("menus", "Menus")
+                                                .addItems(groupComponents("menus"), sc ->
+                                                        navigationItem(sc.route, sc.title, sc.route)),
+                                        "/components/masthead"))
+                        .addGroup(expandableNavigationGroup("extensions", "Extensions")
+                                .addItem(ni("/extensions/about-extensions", "About extensions"))
+                                .addItems(extensions(), extension ->
+                                        navigationItem(extension.route, extension.title, extension.route)))
+                        .addGroup(expandableNavigationGroup("charts", "Charts")
+                                .addItem(ni("/charts/about-charts", "About charts"))
+                                .addItems(charts(), chart ->
+                                        navigationItem(chart.route, chart.title, chart.route)))
+                        .addGroup(expandableNavigationGroup("layouts", "Layouts")
+                                .addItem(ni("/layouts/about-layouts", "About layouts"))
+                                .addItems(layouts(), layout ->
+                                        navigationItem(layout.route, layout.title, layout.route))))
+                .add(divider(hr)
+                        .style("margin-top", globalSpacerXs.var)
+                        .style("margin-bottom", globalSpacerXs.var))
+                .addGroup(navigationGroup("contribute", "Contribute")
+                        .addGroup(manifest.navGroup(placeManager, "developer"))
+                        .add(manifest.navItem(placeManager, "/get-involved")));
 
-        body().add(page()
+        body().add(div().id("ws-router").add(page().id("ws-page")
                 .addSkipToContent(skipToContent(MAIN_ID))
                 .addMasthead(masthead()
                         .addMain(mastheadMain()
@@ -146,7 +162,7 @@ public final class Showcase {
                                 .addNavigation(navigation)))
                 .addMain(pageMain(MAIN_ID))
                 .add(backToTop().css("ws-back-to-top")
-                        .scrollableSelector(By.id(MAIN_ID))));
+                        .scrollableSelector(By.id(MAIN_ID)))));
 
         placeManager.start();
         logger.info("PatternFly version:      %s", Version.PATTERN_FLY_VERSION);
@@ -155,11 +171,11 @@ public final class Showcase {
 
     // ------------------------------------------------------ internal
 
-    private static NavigationItem ni(Place place) {
-        return ni(place, place.title);
+    private NavigationItem ni(String route) {
+        return ni(route, placeManager.place(route).title);
     }
 
-    private static NavigationItem ni(Place place, String text) {
-        return navigationItem(place.route, text, place.route);
+    private NavigationItem ni(String route, String text) {
+        return navigationItem(route, text, route);
     }
 }

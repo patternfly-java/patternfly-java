@@ -6,8 +6,8 @@ description: >-
   "compare PF component", "check PFJ completeness", "compare button component",
   "what's missing in the Java card", "gap analysis for alert",
   "generate comparison report for tabs", "find missing PF variations",
-  or any request to identify variation coverage gaps or DOM/CSS differences
-  between PatternFly and PatternFly Java.
+  "coverage report", "DOM differences", or any request to identify variation
+  coverage gaps or DOM/CSS differences between PatternFly and PatternFly Java.
 metadata:
   version: "0.1.0"
 ---
@@ -18,15 +18,7 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java impleme
 
 ## Tools
 
-### Chrome DevTools MCP (require approval on first use)
-
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__navigate_page** — Navigate browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__new_page** — Open new browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages** — List open browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_snapshot** — Capture page accessibility snapshots
+Uses Chrome DevTools MCP tools for browser interaction (navigate_page, new_page, select_page, evaluate_script, close_page, list_pages, take_snapshot). Requires approval on first use.
 
 ## Arguments
 
@@ -179,9 +171,18 @@ Full report: docs/pf-compare/<COMPONENT>.md
 
 4. Write the report to `docs/pf-compare/<COMPONENT>.md`.
 
-5. Report: "Detailed report saved to `docs/pf-compare/<COMPONENT>.md`"
+5. **Write the JSON companion report** to `docs/pf-compare/<COMPONENT>.json`. This file contains the same data from Steps 2–6 in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
+   - Metadata: component, date, pfVersion, pfUrl, pfjUrl
+   - Completeness counts and missing/extra lists
+   - Full `PF_VARIATIONS` array (slug, title, html) from Step 2
+   - Full `PFJ_SNIPPETS` array (id, title, html) from Step 3
+   - Match results from Step 4 (pfVariation, pfjSnippet, matchType, status)
+   - `COMPARISON_RESULTS` from Step 5 (variation, status, missingClasses, extraClasses, structuralDiffs, attributeDiffs, iconDiffs)
+   - Action items with number, type, title, description, category, and affected variations
 
-For sample report output, see `examples/button.md` and `examples/card.md`.
+6. Report: "Reports saved to `docs/pf-compare/<COMPONENT>.md` and `docs/pf-compare/<COMPONENT>.json`"
+
+For sample report output, see `examples/button.md`, `examples/button.json`, and `examples/card.md`.
 
 ---
 
@@ -191,6 +192,7 @@ For sample report output, see `examples/button.md` and `examples/card.md`.
 2. Close them with `close_page` (keep at least one tab open in the browser).
 3. Print completion message with next steps:
    - Review the report at `docs/pf-compare/<COMPONENT>.md`
+   - JSON data available at `docs/pf-compare/<COMPONENT>.json` (used by `/pf-align`)
    - Use the report as input for a future `/pf-align` skill
    - Run `/pf-compare` on another component
 
@@ -199,7 +201,7 @@ For sample report output, see `examples/button.md` and `examples/card.md`.
 ## Error Handling
 
 - **Component not found**: If curl returns non-200 for both PFJ URLs, report clearly and suggest checking the component slug or starting the dev server.
-- **No variations extracted**: If PF or PFJ returns zero variations/snippets, warn the user that the page structure may have changed and the JS selectors may need updating.
+- **No variations extracted**: If PF or PFJ returns zero variations/snippets, warn the user that the page structure may have changed and the JS selectors may need updating. Empty PFJ results are most commonly caused by DOM structure changes in the showcase layout, not by missing components — check `references/extract-pfj-snippets.js` for the expected DOM traversal.
 - **Chrome DevTools unavailable**: If MCP tools fail, report the error and suggest ensuring Chrome is running with DevTools MCP connected.
 - **Partial data**: If only some comparisons succeed, still produce the report with available data and note which comparisons failed.
 

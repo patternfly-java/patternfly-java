@@ -1,0 +1,353 @@
+{
+  "component": "progress-stepper",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/progress-stepper/html",
+  "pfjUrl": "http://localhost:1234/components/progress-stepper",
+  "completeness": {
+    "pfTotal": 15,
+    "pfjTotal": 0,
+    "matched": 0,
+    "missingInPfj": [
+      "basic",
+      "basic-with-descriptions",
+      "vertical-horizontal-responsive",
+      "center-aligned-with-descriptions",
+      "center-aligned-vertical",
+      "vertical-with-descriptions",
+      "compact",
+      "compact-vertical",
+      "compact-vertical-responsive",
+      "compact-vertical-centered",
+      "compact-centered",
+      "basic-with-an-issue",
+      "basic-with-a-failure",
+      "basic-in-process",
+      "with-help-text"
+    ],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "basic",
+      "title": "Basic",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "basic-with-descriptions",
+      "title": "Basic with descriptions",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "vertical-horizontal-responsive",
+      "title": "Vertical, horizontal responsive",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-vertical-on-lg pf-m-horizontal-on-2xl\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "center-aligned-with-descriptions",
+      "title": "Center aligned with descriptions",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-center\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "center-aligned-vertical",
+      "title": "Center aligned, vertical",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-center pf-m-vertical\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "vertical-with-descriptions",
+      "title": "Vertical with descriptions",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-vertical\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "compact",
+      "title": "Compact",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-compact\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-c-spinner pf-m-xs\" role=\"progressbar\" viewBox=\"0 0 100 100\" aria-label=\"Loading...\">\n          <circle class=\"pf-v6-c-spinner__path\" cx=\"50\" cy=\"50\" r=\"45\" fill=\"none\"></circle>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">In process</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "compact-vertical",
+      "title": "Compact, vertical",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-vertical pf-m-compact\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "compact-vertical-responsive",
+      "title": "Compact, vertical responsive",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-vertical-on-lg pf-m-horizontal-on-xl pf-m-compact\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "compact-vertical-centered",
+      "title": "Compact, vertical, centered",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-center pf-m-vertical pf-m-compact\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "compact-centered",
+      "title": "Compact, centered",
+      "html": "<ol class=\"pf-v6-c-progress-stepper pf-m-center pf-m-compact\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the first thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the second thing to happen</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n      <div class=\"pf-v6-c-progress-stepper__step-description\">This is the last thing to happen</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "basic-with-an-issue",
+      "title": "Basic with an issue",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-warning\" role=\"listitem\" aria-label=\"step with issue,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"m31.874 28.514-15.011-27a1.001 1.001 0 0 0-1.748 0l-15.011 27A1 1 0 0 0 .978 30H31a1 1 0 0 0 .874-1.486ZM14.5 12a1.5 1.5 0 0 1 3 0v5a1.5 1.5 0 0 1-3 0v-5ZM16 26.001a2 2 0 1 1-.001-3.999A2 2 0 0 1 16 26.001Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Fourth step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Fifth step</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "basic-with-a-failure",
+      "title": "Basic with a failure",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">First step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Second step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Third step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current pf-m-danger\" role=\"listitem\" aria-label=\"current step,step with failure,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm-1.5 8a1.5 1.5 0 1 1 3 0v7a1.5 1.5 0 1 1-3 0V9ZM16 25.001a2 2 0 1 1-.001-3.999A2 2 0 0 1 16 25.001Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Fourth step</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Fifth step</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "basic-in-process",
+      "title": "Basic in process",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Successful completion</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-c-spinner pf-m-xs\" role=\"progressbar\" viewBox=\"0 0 100 100\" aria-label=\"Loading...\">\n          <circle class=\"pf-v6-c-spinner__path\" cx=\"50\" cy=\"50\" r=\"45\" fill=\"none\"></circle>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">In process</div>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-pending\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Pending</div>\n    </div>\n  </li>\n</ol>"
+    },
+    {
+      "slug": "with-help-text",
+      "title": "With help text",
+      "html": "<ol class=\"pf-v6-c-progress-stepper\" role=\"list\">\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-success\" role=\"listitem\" aria-label=\"completed step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <button class=\"pf-v6-c-progress-stepper__step-title pf-m-help-text\" type=\"button\">First step</button>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-danger\" role=\"listitem\" aria-label=\"step with failure,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm-1.5 8a1.5 1.5 0 1 1 3 0v7a1.5 1.5 0 1 1-3 0V9ZM16 25.001a2 2 0 1 1-.001-3.999A2 2 0 0 1 16 25.001Z\"></path>\n        </svg>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <button class=\"pf-v6-c-progress-stepper__step-title pf-m-help-text\" type=\"button\">Second step</button>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-current\" role=\"listitem\" aria-label=\"current step,in process step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\">\n        <i class=\"pf-v6-pficon pf-v6-pficon-resources-full\" aria-hidden=\"true\"></i>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <button class=\"pf-v6-c-progress-stepper__step-title pf-m-help-text\" type=\"button\">Third step</button>\n    </div>\n  </li>\n  <li class=\"pf-v6-c-progress-stepper__step pf-m-pending\" role=\"listitem\" aria-label=\"pending step,\">\n    <div class=\"pf-v6-c-progress-stepper__step-connector\">\n      <span class=\"pf-v6-c-progress-stepper__step-icon\"></span>\n    </div>\n    <div class=\"pf-v6-c-progress-stepper__step-main\">\n      <div class=\"pf-v6-c-progress-stepper__step-title\">Fourth step</div>\n    </div>\n  </li>\n</ol>"
+    }
+  ],
+  "snippets": [],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "basic",
+        "title": "Basic"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "basic-with-descriptions",
+        "title": "Basic with descriptions"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical-horizontal-responsive",
+        "title": "Vertical, horizontal responsive"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "center-aligned-with-descriptions",
+        "title": "Center aligned with descriptions"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "center-aligned-vertical",
+        "title": "Center aligned, vertical"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical-with-descriptions",
+        "title": "Vertical with descriptions"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "compact",
+        "title": "Compact"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "compact-vertical",
+        "title": "Compact, vertical"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "compact-vertical-responsive",
+        "title": "Compact, vertical responsive"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "compact-vertical-centered",
+        "title": "Compact, vertical, centered"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "compact-centered",
+        "title": "Compact, centered"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "basic-with-an-issue",
+        "title": "Basic with an issue"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "basic-with-a-failure",
+        "title": "Basic with a failure"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "basic-in-process",
+        "title": "Basic in process"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-help-text",
+        "title": "With help text"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Basic",
+      "description": "implement Basic variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Basic with descriptions",
+      "description": "implement Basic with descriptions variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Vertical, horizontal responsive",
+      "description": "implement Vertical, horizontal responsive variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Center aligned with descriptions",
+      "description": "implement Center aligned with descriptions variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "add_variation",
+      "title": "Center aligned, vertical",
+      "description": "implement Center aligned, vertical variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 6,
+      "type": "add_variation",
+      "title": "Vertical with descriptions",
+      "description": "implement Vertical with descriptions variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 7,
+      "type": "add_variation",
+      "title": "Compact",
+      "description": "implement Compact variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 8,
+      "type": "add_variation",
+      "title": "Compact, vertical",
+      "description": "implement Compact, vertical variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 9,
+      "type": "add_variation",
+      "title": "Compact, vertical responsive",
+      "description": "implement Compact, vertical responsive variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 10,
+      "type": "add_variation",
+      "title": "Compact, vertical, centered",
+      "description": "implement Compact, vertical, centered variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 11,
+      "type": "add_variation",
+      "title": "Compact, centered",
+      "description": "implement Compact, centered variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 12,
+      "type": "add_variation",
+      "title": "Basic with an issue",
+      "description": "implement Basic with an issue variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 13,
+      "type": "add_variation",
+      "title": "Basic with a failure",
+      "description": "implement Basic with a failure variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 14,
+      "type": "add_variation",
+      "title": "Basic in process",
+      "description": "implement Basic in process variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 15,
+      "type": "add_variation",
+      "title": "With help text",
+      "description": "implement With help text variation in PFJ",
+      "category": "missing_variations"
+    }
+  ]
+}

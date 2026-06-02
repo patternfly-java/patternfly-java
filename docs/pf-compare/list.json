@@ -1,0 +1,177 @@
+{
+  "component": "list",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/list/html",
+  "pfjUrl": "http://localhost:1234/components/list",
+  "completeness": {
+    "pfTotal": 7,
+    "pfjTotal": 0,
+    "matched": 0,
+    "missingInPfj": [
+      "unordered",
+      "ordered",
+      "inline",
+      "plain",
+      "with-horizontal-rules",
+      "with-small-icons",
+      "with-large-icons"
+    ],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "unordered",
+      "title": "Unordered",
+      "html": "<ul class=\"pf-v6-c-list\" role=\"list\">\n  <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n  <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n  <li>\n    Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.\n    <ul class=\"pf-v6-c-list\" role=\"list\">\n      <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n      <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n      <li>\n        Ut venenatis, nisl scelerisque.\n        <ol class=\"pf-v6-c-list\" role=\"list\">\n          <li>Donec blandit a lorem id convallis.</li>\n          <li>Cras gravida arcu at diam gravida gravida.</li>\n          <li>Integer in volutpat libero.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li>Ut non enim metus.</li>\n</ul>"
+    },
+    {
+      "slug": "ordered",
+      "title": "Ordered",
+      "html": "<ol class=\"pf-v6-c-list\" role=\"list\">\n  <li>Donec blandit a lorem id convallis.</li>\n  <li>Cras gravida arcu at diam gravida gravida.</li>\n  <li>Integer in volutpat libero.</li>\n  <li>Donec a diam tellus.</li>\n  <li>\n    Etiam auctor nisl et.\n    <ul class=\"pf-v6-c-list\" role=\"list\">\n      <li>Donec blandit a lorem id convallis.</li>\n      <li>Cras gravida arcu at diam gravida gravida.</li>\n      <li>\n        Integer in volutpat libero.\n        <ol class=\"pf-v6-c-list\" role=\"list\">\n          <li>Donec blandit a lorem id convallis.</li>\n          <li>Cras gravida arcu at diam gravida gravida.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li>Aenean nec tortor orci.</li>\n  <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n  <li>Vivamus maximus ultricies pulvinar.</li>\n</ol>"
+    },
+    {
+      "slug": "inline",
+      "title": "Inline",
+      "html": "<ul class=\"pf-v6-c-list pf-m-inline\" role=\"list\">\n  <li>Inline list item 1</li>\n  <li>Inline list item 2</li>\n  <li>Inline list item 3</li>\n</ul>"
+    },
+    {
+      "slug": "plain",
+      "title": "Plain",
+      "html": "<ul class=\"pf-v6-c-list pf-m-plain\" role=\"list\">\n  <li>Donec blandit a lorem id convallis.</li>\n  <li>Integer in volutpat libero.</li>\n  <li>\n    Donec a diam tellus.\n    <ul class=\"pf-v6-c-list\" role=\"list\">\n      <li>Donec blandit a lorem id convallis.</li>\n      <li>Cras gravida arcu at diam gravida gravida.</li>\n      <li>Integer in volutpat libero.</li>\n    </ul>\n  </li>\n  <li>Aenean nec tortor orci.</li>\n  <li>Vivamus maximus ultricies pulvinar.</li>\n</ul>"
+    },
+    {
+      "slug": "with-horizontal-rules",
+      "title": "With horizontal rules",
+      "html": "<ul class=\"pf-v6-c-list pf-m-plain pf-m-bordered\" role=\"list\">\n  <li>Donec blandit a lorem id convallis.</li>\n  <li>Integer in volutpat libero.</li>\n  <li>Donec a diam tellus.</li>\n  <li>Aenean nec tortor orci.</li>\n  <li>Vivamus maximus ultricies pulvinar.</li>\n</ul>"
+    },
+    {
+      "slug": "with-small-icons",
+      "title": "With small icons",
+      "html": "<ul class=\"pf-v6-c-list pf-m-plain\" role=\"list\">\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-book-open fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item one</span>\n  </li>\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-key fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item two</span>\n  </li>\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-desktop fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item three</span>\n  </li>\n</ul>"
+    },
+    {
+      "slug": "with-large-icons",
+      "title": "With large icons",
+      "html": "<ul class=\"pf-v6-c-list pf-m-plain pf-m-icon-lg\" role=\"list\">\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-book-open fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item one</span>\n  </li>\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-key fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item two</span>\n  </li>\n  <li class=\"pf-v6-c-list__item\">\n    <span class=\"pf-v6-c-list__item-icon\">\n      <i class=\"fas fa-desktop fa-fw\" aria-hidden=\"true\"></i>\n    </span>\n    <span class=\"pf-v6-c-list__item-text\">List item three</span>\n  </li>\n</ul>"
+    }
+  ],
+  "snippets": [],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "unordered",
+        "title": "Unordered"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "ordered",
+        "title": "Ordered"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "inline",
+        "title": "Inline"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "plain",
+        "title": "Plain"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-horizontal-rules",
+        "title": "With horizontal rules"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-small-icons",
+        "title": "With small icons"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-large-icons",
+        "title": "With large icons"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Unordered",
+      "description": "implement Unordered variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Ordered",
+      "description": "implement Ordered variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Inline",
+      "description": "implement Inline variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Plain",
+      "description": "implement Plain variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "add_variation",
+      "title": "With horizontal rules",
+      "description": "implement With horizontal rules variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 6,
+      "type": "add_variation",
+      "title": "With small icons",
+      "description": "implement With small icons variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 7,
+      "type": "add_variation",
+      "title": "With large icons",
+      "description": "implement With large icons variation in PFJ",
+      "category": "missing_variations"
+    }
+  ]
+}

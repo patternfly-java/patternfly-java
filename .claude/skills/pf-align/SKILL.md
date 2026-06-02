@@ -6,8 +6,9 @@ description: >-
   Triggers include /pf-align, "align component", "implement missing variations",
   "fix PFJ component", "apply pf-compare recommendations", "add missing PFJ
   variations", "sync with PatternFly", "bring component up to date",
-  "implement pf-compare action items", or any request to implement changes
-  identified by a comparison report.
+  "implement pf-compare action items", "implement comparison findings",
+  "fix alignment issues", or any request to implement changes identified
+  by a comparison report.
 metadata:
   version: "0.1.0"
 ---
@@ -18,12 +19,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 ## Tools
 
-### Chrome DevTools MCP (require approval on first use)
-
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__new_page** — Open new browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
+Uses Chrome DevTools MCP tools for browser interaction (new_page, select_page, evaluate_script, close_page). Requires approval on first use.
 
 ## Arguments
 
@@ -33,7 +29,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 **Parameters:**
 - `<component>` (required) — Component name matching report file (e.g., `button`, `card`, `alert`). **Reject `template`** — it is a blueprint component, not a real UI component.
-- `--port <port>` (optional) — Showcase server port (default: 8888)
+- `--port <port>` (optional) — Showcase server port (default: 1234)
 - `--item <number>` (optional) — Process only the specified action item number (default: process all)
 
 **Examples:**
@@ -48,12 +44,12 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 ### Step 1: Pre-flight Checks
 
 **Parse arguments:**
-- Extract component name, port (default 8888), item filter
+- Extract component name, port (default 1234), item filter
 - Validate component name is not empty
 
 **Check report exists:**
-- Path: `docs/pf-compare/<COMPONENT>.md`
-- If not found → ERROR (report not found)
+- Path: `docs/pf-compare/<COMPONENT>.json`
+- If not found → ERROR: "JSON report not found at `docs/pf-compare/<COMPONENT>.json`. Run `/pf-compare <COMPONENT>` first."
 
 **Locate component files:**
 - Component class: `components/src/main/java/org/patternfly/component/<component>/<Component>.java`
@@ -68,59 +64,28 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 ### Step 2: Parse Report
 
-**Read report file:**
-```bash
-Read docs/pf-compare/<COMPONENT>.md
-```
+**Read the JSON report:**
 
-**Extract YAML frontmatter:**
-```yaml
-component: button
-pf_url: https://www.patternfly.org/components/button
-pfj_url: http://localhost:8888/#button
-completeness:
-  missing_in_pfj: [...]
-  extra_in_pfj: [...]
-```
+Read and parse `docs/pf-compare/<COMPONENT>.json`. The JSON follows the schema at `.claude/skills/pf-compare/references/report-schema.json` (see also `examples/sample-report-input.json` for a concrete example). Extract:
+- `pfUrl`, `pfjUrl` — needed if browser extraction is required
+- `variations` — array of `{ slug, title, html }` with raw PF HTML (used in Step 5)
+- `actionItems` — array of `{ number, type, title, description, category, variations }` (already structured)
 
-**Parse Action Items section:**
+**Action item types:**
+- `add_variation` — New component variation (HTML from `variations` array or browser extraction)
+- `fix_css` — Missing CSS class/modifier (component class change)
+- `fix_structure` — HTML structure mismatch (component class change)
+- `fix_attribute` — Missing HTML attribute (component class change)
+- `fix_icon` — Wrong icon set or viewBox (component/showcase change)
+- `implement_feature` — Larger feature not yet implemented
 
-Look for `## Action Items` heading and extract numbered items:
-
-```markdown
-1. **Add variation:** Primary — implement primary button variant
-2. **Fix CSS:** .pf-m-danger — add danger modifier class
-3. **Fix structure:** Icon placement — wrap icon in span.pf-c-button__icon
-4. **Fix attribute:** aria-label — add aria-label attribute support
-```
-
-**Item format:**
-```
-<number>. **<type>:** <title> — <description>
-```
-
-**Types:**
-- `Add variation` — New component variation (HTML extraction required)
-- `Fix CSS` — Missing CSS class/modifier (component class change)
-- `Fix structure` — HTML structure mismatch (component class change)
-- `Fix attribute` — Missing HTML attribute (component class change)
-
-**Store parsed items:**
-```javascript
-{
-  number: 1,
-  type: "add_variation",
-  title: "Primary",
-  description: "implement primary button variant",
-  raw: "1. **Add variation:** Primary — implement primary button variant"
-}
-```
+Store the `variations` array for HTML lookup in Step 5.
 
 ### Step 3: Present Action Items
 
 **Print numbered list:**
 ```
-Found 4 action items in docs/pf-compare/button.md:
+Found 4 action items in docs/pf-compare/button.json:
   1. Add variation: Primary — implement primary button variant
   2. Fix CSS: .pf-m-danger — add danger modifier class
   3. Fix structure: Icon placement — wrap icon in span.pf-c-button__icon
@@ -170,9 +135,13 @@ Read showcase/src/main/java/org/patternfly/showcase/component/<Component>Compone
 
 **Only for `add_variation` items.**
 
+**Look up HTML from the JSON report:** Search the `variations` array (loaded in Step 2) by title (case-insensitive) or by slug. If found and HTML is non-empty, use it directly. Print: "Using HTML from compare report for '<title>'"
+
+**Fall back to browser extraction** only if the variation's HTML is missing or empty in the JSON report:
+
 **Open PatternFly page:**
 ```javascript
-new_page({ url: <pf_url from YAML> })
+new_page({ url: <pfUrl from JSON> })
 ```
 
 **Construct variation slug from title:**
@@ -188,7 +157,7 @@ Examples:
 - "Call to action" → "call-to-action"
 - "Stateful toggle" → "stateful-toggle"
 
-**Extract HTML:** Read the script from `references/extract-variation-html.js` and pass it to `evaluate_script` with `args: [<component>, <variation-slug>]`.
+**Extract HTML:** Read the script from `references/extract-variation-html.js`. The script is an arrow function `(componentSlug, variationSlug) => { ... }`. Pass the function body to `evaluate_script` using the `function` parameter and provide `args: [<component>, <variation-slug>]` — the Chrome DevTools MCP `evaluate_script` tool invokes the function with the args array as positional arguments.
 
 **Handle extraction failure:**
 - If HTML is null → ERROR (HTML extraction failed)
@@ -201,13 +170,13 @@ Examples:
 
 ### Step 6: Generate Code
 
+**IMPORTANT: Read `references/code-generation.md` before generating any code.** Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
+
 **Pre-check implementation:**
 - For `add_variation`: Check if snippet ID exists in showcase file
 - For `fix_css`: Check if modifier method exists in component class
 - For `fix_attribute`: Check if ARIA method exists in component class
 - If already implemented → Skip with message
-
-**IMPORTANT: Read `references/code-generation.md` before generating any code.** Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
 
 **For all types:**
 - Preserve existing imports
@@ -269,7 +238,20 @@ git checkout components/src/main/java/org/patternfly/component/<component>/<Comp
 git checkout showcase/src/main/java/org/patternfly/showcase/component/<Component>Component.java
 ```
 
-### Step 9: Cleanup & Summary
+### Step 9: Write Align Report
+
+**Create output directory** if needed: `mkdir -p docs/pf-align`
+
+**Write JSON report** to `docs/pf-align/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
+- Component name and date
+- Path and date of the compare report used as input
+- Overall status: `done` (all items processed), `partial` (some skipped/failed), `in_progress` (interrupted)
+- Summary counts: total, implemented, skipped, failed, remaining
+- Per-item results: number, type, title, result (implemented/skipped_existing/skipped_user/failed/pending), filesModified, reason
+
+If a previous align report exists, overwrite it.
+
+### Step 10: Cleanup & Summary
 
 **Close Chrome tabs:**
 ```javascript
@@ -282,6 +264,7 @@ Alignment complete for <component>:
   Processed: 3 items
   Skipped: 1 item (already implemented)
   Remaining: 0 items
+  Report: docs/pf-align/<component>.json
 
 Next steps:
   1. Review changes: git diff
@@ -301,13 +284,13 @@ Next steps:
 
 ## Code Generation Reference
 
-For HTML-to-Java translation patterns, read `references/code-generation.md`. For the expected input report format, see `examples/sample-report-input.md`.
+For HTML-to-Java translation patterns, read `references/code-generation.md`. For the expected input report format, see `examples/sample-report-input.json`.
 
 ## Error Handling
 
 | Scenario | Action |
 |----------|--------|
-| Report not found | Print error: "Report not found at docs/pf-compare/<component>.md. Run /pf-compare <component> first." Exit. |
+| Report not found | Print error: "JSON report not found at docs/pf-compare/<component>.json. Run /pf-compare <component> first." Exit. |
 | Component class not found | Print error: "Component class not found at <path>. Verify component name." Exit. |
 | Showcase file not found | Print error: "Showcase file not found at <path>. Component may not have demo page." Exit. |
 | Showcase not running | Print error: "Showcase server not accessible at http://localhost:<port>. Start with: cd showcase && pnpm run watch". Exit. |

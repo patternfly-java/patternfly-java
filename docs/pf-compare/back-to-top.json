@@ -1,0 +1,45 @@
+{
+  "component": "back-to-top",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/back-to-top/html",
+  "pfjUrl": "http://localhost:1234/components/back-to-top",
+  "completeness": {
+    "pfTotal": 1,
+    "pfjTotal": 0,
+    "matched": 0,
+    "missingInPfj": [
+      "basic"
+    ],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "basic",
+      "title": "Basic",
+      "html": "<div class=\"pf-v6-c-back-to-top\">\n  <a class=\"pf-v6-c-button pf-m-primary\" href=\"#\">\n    <span class=\"pf-v6-c-button__text\">Back to top</span>\n    <span class=\"pf-v6-c-button__icon pf-m-end\">\n      <svg class=\"pf-v6-svg\" viewBox=\"0 0 320 512\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n        <path d=\"M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z\"></path>\n      </svg>\n    </span>\n  </a>\n</div>"
+    }
+  ],
+  "snippets": [],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "basic",
+        "title": "Basic"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Basic",
+      "description": "implement Basic variation in PFJ",
+      "category": "missing_variations"
+    }
+  ]
+}

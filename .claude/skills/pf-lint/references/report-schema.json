@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PF Lint Report",
+  "description": "Lint results for a single PatternFly Java component.",
+  "type": "object",
+  "required": ["component", "date", "files", "errors", "warnings", "status", "violations"],
+  "properties": {
+    "component": {
+      "type": "string",
+      "description": "Component package name (e.g., 'card', 'navigation')"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the lint was run (YYYY-MM-DD)"
+    },
+    "files": {
+      "type": "integer",
+      "description": "Number of Java files checked"
+    },
+    "errors": {
+      "type": "integer",
+      "description": "Number of ERROR severity violations"
+    },
+    "warnings": {
+      "type": "integer",
+      "description": "Number of WARN severity violations"
+    },
+    "fixed": {
+      "type": "string",
+      "enum": ["all", "partial", "none", "—"],
+      "description": "Whether violations were auto-fixed"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["clean", "issues"],
+      "description": "'clean' if 0 remaining issues after fixing, 'issues' otherwise"
+    },
+    "violations": {
+      "type": "array",
+      "description": "All violations found (before fixing)",
+      "items": {
+        "type": "object",
+        "required": ["file", "severity", "rule", "detail"],
+        "properties": {
+          "file": { "type": "string", "description": "Java filename (e.g., 'Alert.java')" },
+          "line": { "type": "integer", "description": "Line number or start of range" },
+          "lineEnd": { "type": "integer", "description": "End of line range (if applicable)" },
+          "severity": { "type": "string", "enum": ["ERROR", "WARN"] },
+          "rule": { "type": "string", "description": "Rule ID from checklist.md (e.g., 'doc-class-javadoc')" },
+          "detail": { "type": "string", "description": "What is wrong and what is expected" },
+          "fixed": { "type": "boolean", "description": "Whether this violation was auto-fixed" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,822 @@
+{
+  "component": "expandable-section",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/expandable-section/html",
+  "pfjUrl": "http://localhost:1234/components/expandable-section",
+  "completeness": {
+    "pfTotal": 9,
+    "pfjTotal": 8,
+    "matched": 4,
+    "missingInPfj": [
+      "expanded",
+      "indented",
+      "disclosure-variation-expanded",
+      "disclosure-variation-indented",
+      "truncate-expansion-expanded"
+    ],
+    "extraInPfj": [
+      "es-basic",
+      "es-dynamic-text",
+      "es-detached-after",
+      "es-custom-toggle"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "hidden",
+      "title": "Hidden",
+      "html": "<div class=\"pf-v6-c-expandable-section\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"hidden-toggle\" type=\"button\" aria-expanded=\"false\" aria-controls=\"hidden-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show more hidden example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"hidden-content\" role=\"region\" aria-labelledby=\"hidden-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "expanded",
+      "title": "Expanded",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-expanded\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"expanded-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"expanded-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show less expanded example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"expanded-content\" role=\"region\" aria-labelledby=\"expanded-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "indented",
+      "title": "Indented",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-indented\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"indented-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"indented-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show less indented example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"indented-content\" role=\"region\" aria-labelledby=\"indented-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "disclosure-variation-hidden",
+      "title": "Disclosure variation (hidden)",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-display-lg pf-m-limit-width\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"disclosure-variation-hidden-toggle\" type=\"button\" aria-expanded=\"false\" aria-controls=\"disclosure-variation-hidden-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show more disclosure variation example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"disclosure-variation-hidden-content\" role=\"region\" aria-labelledby=\"disclosure-variation-hidden-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "disclosure-variation-expanded",
+      "title": "Disclosure variation (expanded)",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-display-lg pf-m-limit-width\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"disclosure-variation-expanded-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"disclosure-variation-expanded-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show less disclosure variation example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"disclosure-variation-expanded-content\" role=\"region\" aria-labelledby=\"disclosure-variation-expanded-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "disclosure-variation-indented",
+      "title": "Disclosure variation (indented)",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-display-lg pf-m-limit-width pf-m-indented\">\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-link\" id=\"disclosure-variation-indented-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"disclosure-variation-indented-content\">\n      <span class=\"pf-v6-c-button__icon pf-m-start\">\n        <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n          <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n            <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n          </svg>\n        </span>\n      </span>\n      <span class=\"pf-v6-c-button__text\">Show less disclosure variation indented example content</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"disclosure-variation-indented-content\" role=\"region\" aria-labelledby=\"disclosure-variation-indented-toggle\">This content is visible only when the component is expanded.</div>\n</div>"
+    },
+    {
+      "slug": "detached",
+      "title": "Detached",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\">\n  <div class=\"pf-v6-l-stack__item\">\n    <div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-detached pf-m-expand-top\">\n      <div class=\"pf-v6-c-expandable-section__content\" id=\"detached-toggle-content\" role=\"region\" aria-labelledby=\"detached-toggle-toggle\">This content is visible only when the component is expanded.</div>\n    </div>\n  </div>\n\n  <div class=\"pf-v6-l-stack__item\">\n    <div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-detached pf-m-expand-top\">\n      <div class=\"pf-v6-c-expandable-section__toggle\">\n        <button class=\"pf-v6-c-button pf-m-link\" id=\"detached-toggle-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"detached-toggle-content\">\n          <span class=\"pf-v6-c-button__icon pf-m-start\">\n            <span class=\"pf-v6-c-expandable-section__toggle-icon\">\n              <svg class=\"pf-v6-svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n                <path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path>\n              </svg>\n            </span>\n          </span>\n          <span class=\"pf-v6-c-button__text\">Show less detached example content</span>\n        </button>\n      </div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "truncate-expansion-hidden",
+      "title": "Truncate expansion (hidden)",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-truncate\">\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"truncated-expansion-hidden-content\" role=\"region\" aria-labelledby=\"truncated-expansion-hidden-toggle\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus, diam vitae eleifend consequat, metus sapien posuere quam, ut tincidunt nunc enim eget sapien. Mauris ac dui imperdiet dolor dignissim efficitur laoreet quis erat. Proin turpis leo, malesuada eget urna et, tristique mollis odio. Ut mattis nulla lorem, elementum hendrerit nunc molestie vitae. Proin massa sem, bibendum id urna in, viverra porta neque. Ut ut mi ac lacus rhoncus mollis id quis sem. Suspendisse non justo elementum, dictum eros nec, hendrerit sapien. Mauris aliquet, est sit amet tincidunt vehicula, purus est hendrerit arcu, vitae egestas odio lorem ut lacus. In et neque non metus viverra rhoncus quis non purus. Integer id venenatis tortor. Nulla sollicitudin convallis tellus, at porta eros volutpat in. Curabitur rhoncus rhoncus nisi, sit amet tincidunt dolor efficitur vitae. Integer purus neque, porta non odio lobortis, accumsan elementum risus. Pellentesque viverra id lacus a cursus. Etiam eu pulvinar risus. Etiam ultrices nec urna id consequat.</div>\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-inline pf-m-link\" id=\"truncated-expansion-hidden-toggle\" type=\"button\" aria-expanded=\"false\" aria-controls=\"truncated-expansion-hidden-content\">\n      <span class=\"pf-v6-c-button__text\">Show more truncated content</span>\n    </button>\n  </div>\n</div>"
+    },
+    {
+      "slug": "truncate-expansion-expanded",
+      "title": "Truncate expansion (expanded)",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-truncate\">\n  <div class=\"pf-v6-c-expandable-section__content\" id=\"truncate-expansion-expanded-content\" role=\"region\" aria-labelledby=\"truncate-expansion-expanded-toggle\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus, diam vitae eleifend consequat, metus sapien posuere quam, ut tincidunt nunc enim eget sapien. Mauris ac dui imperdiet dolor dignissim efficitur laoreet quis erat. Proin turpis leo, malesuada eget urna et, tristique mollis odio. Ut mattis nulla lorem, elementum hendrerit nunc molestie vitae. Proin massa sem, bibendum id urna in, viverra porta neque. Ut ut mi ac lacus rhoncus mollis id quis sem. Suspendisse non justo elementum, dictum eros nec, hendrerit sapien. Mauris aliquet, est sit amet tincidunt vehicula, purus est hendrerit arcu, vitae egestas odio lorem ut lacus. In et neque non metus viverra rhoncus quis non purus. Integer id venenatis tortor. Nulla sollicitudin convallis tellus, at porta eros volutpat in. Curabitur rhoncus rhoncus nisi, sit amet tincidunt dolor efficitur vitae. Integer purus neque, porta non odio lobortis, accumsan elementum risus. Pellentesque viverra id lacus a cursus. Etiam eu pulvinar risus. Etiam ultrices nec urna id consequat.</div>\n  <div class=\"pf-v6-c-expandable-section__toggle\">\n    <button class=\"pf-v6-c-button pf-m-inline pf-m-link\" id=\"truncate-expansion-expanded-toggle\" type=\"button\" aria-expanded=\"true\" aria-controls=\"truncate-expansion-expanded-content\">\n      <span class=\"pf-v6-c-button__text\">Show less truncated content</span>\n    </button>\n  </div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "es-basic",
+      "title": "Basic",
+      "html": "<div class=\"pf-v6-c-expandable-section\" data-pfcsexs=\"a65ca90c-03cc-4cb6-ba9b-f04f6aca079c\" on-detach-uid=\"d-id-43 d-id-45\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-42-toggle\" aria-controls=\"exs-id-42-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-42-content\" aria-labelledby=\"exs-id-42-toggle\">This content is visible only when the component is expanded.</div></div>"
+    },
+    {
+      "id": "es-dynamic-text",
+      "title": "Basic with dynamic toggle text",
+      "html": "<div class=\"pf-v6-c-expandable-section\" data-pfcsexs=\"02259aeb-fc17-4ae7-bea0-dd3d852198a1\" on-detach-uid=\"d-id-61 d-id-63\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-60-toggle\" aria-controls=\"exs-id-60-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-60-content\" aria-labelledby=\"exs-id-60-toggle\">This content is visible only when the component is expanded.</div></div>"
+    },
+    {
+      "id": "es-detached-before",
+      "title": "Detached (before)",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\"><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section pf-m-detached pf-m-expand-top\" data-pfcsexs=\"3b8b9ea1-e79c-4e22-9d55-839f20d6be3b\" on-detach-uid=\"d-id-78 d-id-80\"><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"es-detached-before-0-content\" aria-labelledby=\"es-detached-before-0-toggle\">This content is visible only when the component is expanded.</div></div></div><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section\" data-pfcsexs=\"6ea5db87-53eb-4dcb-b75c-8f983924d7f2\" on-detach-uid=\"d-id-81 d-id-83\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"es-detached-before-0-toggle\" aria-controls=\"es-detached-before-0-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div></div></div></div>"
+    },
+    {
+      "id": "es-detached-after",
+      "title": "Detached (after)",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\"><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section\" data-pfcsexs=\"0757ce66-3765-4e62-9447-600579b37e64\" on-detach-uid=\"d-id-98 d-id-100\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"es-detached-after-0-toggle\" aria-controls=\"es-detached-after-0-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div></div></div><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section pf-m-detached\" data-pfcsexs=\"9d0d65e2-55ad-418a-8bba-43c15663374a\" on-detach-uid=\"d-id-101 d-id-103\"><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"es-detached-after-0-content\" aria-labelledby=\"es-detached-after-0-toggle\">This content is visible only when the component is expanded.</div></div></div></div>"
+    },
+    {
+      "id": "es-disclosure",
+      "title": "Disclosure variation",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-display-lg pf-m-limit-width\" data-pfcsexs=\"f022cfe0-ad2f-4dc5-a6e1-c58239e08b6d\" on-detach-uid=\"d-id-119 d-id-121\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-118-toggle\" aria-controls=\"exs-id-118-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-118-content\" aria-labelledby=\"exs-id-118-toggle\">This content is visible only when the component is expanded.</div></div>"
+    },
+    {
+      "id": "es-indented",
+      "title": "Indented",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-indented\" data-pfcsexs=\"86ecc86b-915a-495c-a1f0-dcc05f9736ae\" on-detach-uid=\"d-id-137 d-id-139\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-136-toggle\" aria-controls=\"exs-id-136-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-136-content\" aria-labelledby=\"exs-id-136-toggle\">This content is visible only when the component is expanded.</div></div>"
+    },
+    {
+      "id": "es-custom-toggle",
+      "title": "With custom toggle content",
+      "html": "<div class=\"pf-v6-c-expandable-section\" data-pfcsexs=\"0f1ced9d-db67-4b07-8081-3ef171865bd1\" on-detach-uid=\"d-id-155 d-id-157\"><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-154-toggle\" aria-controls=\"exs-id-154-content\"><span class=\"pf-v6-c-button__icon\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"caret-right\"><!--Red Hat, Inc. MIT--><path d=\"M11 30a.999.999 0 0 1-.707-1.707L22.586 16 10.293 3.707a.999.999 0 1 1 1.414-1.414l12.646 12.646a1.501 1.501 0 0 1 0 2.121L11.707 29.706a.997.997 0 0 1-.707.293Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\"><div><span>You can also use icons </span><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"check-circle-fill\"><!--Red Hat, Inc. MIT--><path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path></svg><span> or badges </span><span class=\"pf-v6-c-badge pf-m-read\">4</span><span> !</span></div></span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-154-content\" aria-labelledby=\"exs-id-154-toggle\">This content is visible only when the component is expanded.</div></div>"
+    },
+    {
+      "id": "es-truncate",
+      "title": "Truncate",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-truncate pf-m-expand-top\" data-pfcsexs=\"0a02513b-b6fd-42ef-9c84-6456a0b430b9\" on-detach-uid=\"d-id-173 d-id-175\"><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" role=\"region\" id=\"exs-id-172-content\" aria-labelledby=\"exs-id-172-toggle\" style=\"--pf-v6-c-expandable-section--m-truncate__content--LineClamp: 2;\">At vero eos et accusam et justo duo dolores et ea rebum. Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Cras bibendum nisi quis turpis aliquet tempus. Duis tempor maximus nulla at varius. Duis volutpat rhoncus massa, quis convallis nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit diam, condimentum dapibus lobortis vitae, suscipit sodales eros. Nulla a tortor posuere, tempor turpis non, lacinia velit. Nulla pellentesque quam ut faucibus faucibus. Sed ac fringilla eros. Ut ut volutpat nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus tempus lacus ac semper luctus. Vivamus varius nisl in sapien sagittis, vel condimentum lectus rutrum. Aliquam aliquet blandit erat nec hendrerit. At vero eos et accusam et justo duo dolores et ea rebum. Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Cras bibendum nisi quis turpis aliquet tempus. Duis tempor maximus nulla at varius. Duis volutpat rhoncus massa, quis convallis nisl.</div><div class=\"pf-v6-c-expandable-section__toggle\"><button class=\"pf-v6-c-button pf-v6-c-expandable-section__toggle pf-m-link pf-m-inline\" type=\"button\" aria-expanded=\"false\" id=\"exs-id-172-toggle\" aria-controls=\"exs-id-172-content\"><span class=\"pf-v6-c-button__text\">Show more</span></button></div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "hidden",
+        "title": "Hidden"
+      },
+      "pfjSnippet": {
+        "id": "es-indented",
+        "title": "Indented"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "disclosure-variation-hidden",
+        "title": "Disclosure variation (hidden)"
+      },
+      "pfjSnippet": {
+        "id": "es-disclosure",
+        "title": "Disclosure variation"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "detached",
+        "title": "Detached"
+      },
+      "pfjSnippet": {
+        "id": "es-detached-before",
+        "title": "Detached (before)"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "truncate-expansion-hidden",
+        "title": "Truncate expansion (hidden)"
+      },
+      "pfjSnippet": {
+        "id": "es-truncate",
+        "title": "Truncate"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "expanded",
+        "title": "Expanded"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "indented",
+        "title": "Indented"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "disclosure-variation-expanded",
+        "title": "Disclosure variation (expanded)"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "disclosure-variation-indented",
+        "title": "Disclosure variation (indented)"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "truncate-expansion-expanded",
+        "title": "Truncate expansion (expanded)"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-start",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-indented",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-m-indented pf-v6-c-expandable-section\"> \u2014 not in PF",
+        "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-controls=\"hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-labelledby=\"hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-controls=\"exs-id-136-content\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-labelledby=\"exs-id-136-toggle\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [
+        {
+          "element": "pf-v6-svg",
+          "pfViewBox": "0 0 20 20",
+          "pfjViewBox": "0 0 32 32"
+        }
+      ],
+      "variation": "Hidden"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-start",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+        "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-controls=\"disclosure-variation-hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-labelledby=\"disclosure-variation-hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-controls=\"exs-id-118-content\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-labelledby=\"exs-id-118-toggle\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [
+        {
+          "element": "pf-v6-svg",
+          "pfViewBox": "0 0 20 20",
+          "pfjViewBox": "0 0 32 32"
+        }
+      ],
+      "variation": "Disclosure variation (hidden)"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-expanded",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-m-start",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-detached pf-m-expand-top pf-m-expanded pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-m-detached pf-m-expand-top pf-v6-c-expandable-section\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-expandable-section\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-controls=\"detached-toggle-content\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-expanded=\"true\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-labelledby=\"detached-toggle-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-controls=\"es-detached-before-0-content\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-expanded=\"false\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-labelledby=\"es-detached-before-0-toggle\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [
+        {
+          "element": "pf-v6-svg",
+          "pfViewBox": "0 0 20 20",
+          "pfjViewBox": "0 0 32 32"
+        }
+      ],
+      "variation": "Detached"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-expand-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-truncate pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-inline pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-m-expand-top pf-m-truncate pf-v6-c-expandable-section\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-controls=\"truncated-expansion-hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-labelledby=\"truncated-expansion-hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-controls=\"exs-id-172-content\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-labelledby=\"exs-id-172-toggle\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Truncate expansion (hidden)"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Expanded",
+      "description": "implement Expanded variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Indented",
+      "description": "implement Indented variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Disclosure variation (expanded)",
+      "description": "implement Disclosure variation (expanded) variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Disclosure variation (indented)",
+      "description": "implement Disclosure variation (indented) variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "add_variation",
+      "title": "Truncate expansion (expanded)",
+      "description": "implement Truncate expansion (expanded) variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 6,
+      "type": "fix_css",
+      "title": "Hidden",
+      "description": "add missing class pf-m-start on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PF has <div class=\"pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PFJ has <div class=\"pf-m-indented pf-v6-c-expandable-section\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_structure",
+      "title": "Hidden",
+      "description": "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_attribute",
+      "title": "Hidden",
+      "description": "aria-controls=\"hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_attribute",
+      "title": "Hidden",
+      "description": "aria-labelledby=\"hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_attribute",
+      "title": "Hidden",
+      "description": "aria-controls=\"exs-id-136-content\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_attribute",
+      "title": "Hidden",
+      "description": "aria-labelledby=\"exs-id-136-toggle\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_icon",
+      "title": "Hidden",
+      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 20 20, PFJ viewBox=0 0 32 32",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hidden"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_css",
+      "title": "Disclosure variation (hidden)",
+      "description": "add missing class pf-m-start on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_structure",
+      "title": "Disclosure variation (hidden)",
+      "description": "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_structure",
+      "title": "Disclosure variation (hidden)",
+      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_structure",
+      "title": "Disclosure variation (hidden)",
+      "description": "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_structure",
+      "title": "Disclosure variation (hidden)",
+      "description": "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_attribute",
+      "title": "Disclosure variation (hidden)",
+      "description": "aria-controls=\"disclosure-variation-hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "Disclosure variation (hidden)",
+      "description": "aria-labelledby=\"disclosure-variation-hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_attribute",
+      "title": "Disclosure variation (hidden)",
+      "description": "aria-controls=\"exs-id-118-content\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_attribute",
+      "title": "Disclosure variation (hidden)",
+      "description": "aria-labelledby=\"exs-id-118-toggle\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_icon",
+      "title": "Disclosure variation (hidden)",
+      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 20 20, PFJ viewBox=0 0 32 32",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disclosure variation (hidden)"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_css",
+      "title": "Detached",
+      "description": "add missing class pf-m-expanded on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_css",
+      "title": "Detached",
+      "description": "add missing class pf-m-start on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 30,
+      "type": "fix_structure",
+      "title": "Detached",
+      "description": "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 31,
+      "type": "fix_structure",
+      "title": "Detached",
+      "description": "PF has <div class=\"pf-m-detached pf-m-expand-top pf-m-expanded pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 32,
+      "type": "fix_structure",
+      "title": "Detached",
+      "description": "PFJ has <button class=\"pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 33,
+      "type": "fix_structure",
+      "title": "Detached",
+      "description": "PFJ has <div class=\"pf-m-detached pf-m-expand-top pf-v6-c-expandable-section\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 34,
+      "type": "fix_structure",
+      "title": "Detached",
+      "description": "PFJ has <div class=\"pf-v6-c-expandable-section\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 35,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-controls=\"detached-toggle-content\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 36,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-expanded=\"true\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 37,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-labelledby=\"detached-toggle-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 38,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-controls=\"es-detached-before-0-content\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 39,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-expanded=\"false\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 40,
+      "type": "fix_attribute",
+      "title": "Detached",
+      "description": "aria-labelledby=\"es-detached-before-0-toggle\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 41,
+      "type": "fix_icon",
+      "title": "Detached",
+      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 20 20, PFJ viewBox=0 0 32 32",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Detached"
+      ]
+    },
+    {
+      "number": 42,
+      "type": "fix_structure",
+      "title": "Truncate expansion (hidden)",
+      "description": "PF has <button class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 43,
+      "type": "fix_structure",
+      "title": "Truncate expansion (hidden)",
+      "description": "PF has <div class=\"pf-m-truncate pf-v6-c-expandable-section\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 44,
+      "type": "fix_structure",
+      "title": "Truncate expansion (hidden)",
+      "description": "PFJ has <button class=\"pf-m-inline pf-m-link pf-v6-c-button pf-v6-c-expandable-section__toggle\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 45,
+      "type": "fix_structure",
+      "title": "Truncate expansion (hidden)",
+      "description": "PFJ has <div class=\"pf-m-expand-top pf-m-truncate pf-v6-c-expandable-section\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 46,
+      "type": "fix_attribute",
+      "title": "Truncate expansion (hidden)",
+      "description": "aria-controls=\"truncated-expansion-hidden-content\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 47,
+      "type": "fix_attribute",
+      "title": "Truncate expansion (hidden)",
+      "description": "aria-labelledby=\"truncated-expansion-hidden-toggle\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 48,
+      "type": "fix_attribute",
+      "title": "Truncate expansion (hidden)",
+      "description": "aria-controls=\"exs-id-172-content\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    },
+    {
+      "number": 49,
+      "type": "fix_attribute",
+      "title": "Truncate expansion (hidden)",
+      "description": "aria-labelledby=\"exs-id-172-toggle\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Truncate expansion (hidden)"
+      ]
+    }
+  ]
+}

@@ -1,30 +1,51 @@
 ---
 component: menu
-date: 2026-06-01
+date: 2026-06-02
 pf_version: Release 6.5.1
 pf_url: https://www.patternfly.org/components/menus/menu/html
-pfj_url: http://localhost:1234/components/menus/menu
+pfj_url: http://localhost:1234/components/menu
 completeness:
   pf_total: 37
-  pfj_total: 23
-  matched: 22
-  not_implemented_in_pfj:
-    - drilldown
-    - drilldown-level-two
-    - drilldown-level-three
-    - drilldown-level-four
-    - drilldown-with-breadcrumbs---level-1
-    - drilldown-with-breadcrumbs---level-2
-    - drilldown-with-breadcrumbs---level-3
-    - drilldown-with-breadcrumbs---level-4
+  pfj_total: 0
+  matched: 0
   missing_in_pfj:
+    - basic
+    - danger-menu-item
+    - with-icons
+    - with-checkbox
+    - scrollable
+    - scrollable-with-custom-menu-height
     - with-flyout
     - with-flyout-menu-top
     - with-flyout-menu-left
     - with-flyout-menu-left-top
+    - drilldown
+    - drilldown-level-two
+    - drilldown-level-three
+    - drilldown-level-four
     - scrollable-drilldown
     - width-modified-drilldown
+    - drilldown-with-breadcrumbs---level-1
+    - drilldown-with-breadcrumbs---level-2
+    - drilldown-with-breadcrumbs---level-3
+    - drilldown-with-breadcrumbs---level-4
+    - scrollable-menu-with-header-and-footer
+    - scrollable-menu-with-search-and-footer
+    - with-filtering
+    - with-links
+    - with-separators
+    - with-titled-groups
+    - with-description
+    - with-actions
+    - with-favorites
+    - option-single-select
+    - option-multi-select
+    - view-more
+    - loading
+    - footer
+    - plain
     - plain-with-search-and-footer
+    - plain-scrollable-with-search-and-footer
   extra_in_pfj: []
 ---
 
@@ -34,147 +55,82 @@ completeness:
 
 | # | PF Variation | PFJ Snippet | Status |
 |---|---|---|---|
-| 1 | Basic | Basic menu | matched (exact) |
-| 2 | Danger menu item | Danger menu item | matched (exact) |
-| 3 | With icons | With icons | matched (exact) |
-| 4 | With checkbox | Item checkbox | matched (semantic) |
-| 5 | Scrollable | Scrollable menus | matched (semantic) |
-| 6 | Scrollable with custom menu height | Scrollable menu with custom height | matched (semantic) |
+| 1 | Basic | --- | missing_in_pfj |
+| 2 | Danger menu item | --- | missing_in_pfj |
+| 3 | With icons | --- | missing_in_pfj |
+| 4 | With checkbox | --- | missing_in_pfj |
+| 5 | Scrollable | --- | missing_in_pfj |
+| 6 | Scrollable with custom menu height | --- | missing_in_pfj |
 | 7 | With flyout | --- | missing_in_pfj |
 | 8 | With flyout menu top | --- | missing_in_pfj |
 | 9 | With flyout menu left | --- | missing_in_pfj |
 | 10 | With flyout menu left top | --- | missing_in_pfj |
-| 11 | Drilldown | With drilldown | matched (semantic — PFJ has snippet but not yet implemented) |
-| 12 | Drilldown level two | With drilldown | matched (semantic — PFJ drilldown snippet covers multiple levels) |
-| 13 | Drilldown level three | With drilldown | matched (semantic — PFJ drilldown snippet covers multiple levels) |
-| 14 | Drilldown level four | With drilldown | matched (semantic — PFJ drilldown snippet covers multiple levels) |
+| 11 | Drilldown | --- | missing_in_pfj |
+| 12 | Drilldown level two | --- | missing_in_pfj |
+| 13 | Drilldown level three | --- | missing_in_pfj |
+| 14 | Drilldown level four | --- | missing_in_pfj |
 | 15 | Scrollable drilldown | --- | missing_in_pfj |
 | 16 | Width modified drilldown | --- | missing_in_pfj |
-| 17 | Drilldown with breadcrumbs - level 1 | With drilldown breadcrumbs | matched (semantic — PFJ has snippet but not yet implemented) |
-| 18 | Drilldown with breadcrumbs - level 2 | With drilldown breadcrumbs | matched (semantic — PFJ has snippet but not yet implemented) |
-| 19 | Drilldown with breadcrumbs - level 3 | With drilldown breadcrumbs | matched (semantic — PFJ has snippet but not yet implemented) |
-| 20 | Drilldown with breadcrumbs - level 4 | With drilldown breadcrumbs | matched (semantic — PFJ has snippet but not yet implemented) |
-| 21 | Scrollable menu with header and footer | Menu footer | matched (semantic — PFJ footer demo covers scrollable menu with header/footer) |
-| 22 | Scrollable menu with search and footer | Filtering with search input | matched (semantic — PFJ filtering demo covers search with scrollable content) |
-| 23 | With filtering | Filtering with search input | matched (exact) |
-| 24 | With links | With links | matched (exact) |
-| 25 | With separator(s) | Separated items | matched (semantic) |
-| 26 | With titled groups | Titled groups of items | matched (semantic) |
-| 27 | With description | With descriptions | matched (exact) |
-| 28 | With actions | With action | matched (semantic) |
-| 29 | With favorites | With favorites | matched (exact) |
-| 30 | Option single select | Option single select menu | matched (semantic) |
-| 31 | Option multi-select | Option multi select menu | matched (semantic) |
-| 32 | View more | With view more | matched (semantic) |
-| 33 | Loading | With view more | matched (semantic — PFJ "view more" snippet includes loading state) |
-| 34 | Footer | Menu footer | matched (exact) |
-| 35 | Plain | Scrollable menus | matched (semantic — PFJ scrollable menus demo includes plain variant) |
+| 17 | Drilldown with breadcrumbs - level 1 | --- | missing_in_pfj |
+| 18 | Drilldown with breadcrumbs - level 2 | --- | missing_in_pfj |
+| 19 | Drilldown with breadcrumbs - level 3 | --- | missing_in_pfj |
+| 20 | Drilldown with breadcrumbs - level 4 | --- | missing_in_pfj |
+| 21 | Scrollable menu with header and footer | --- | missing_in_pfj |
+| 22 | Scrollable menu with search and footer | --- | missing_in_pfj |
+| 23 | With filtering | --- | missing_in_pfj |
+| 24 | With links | --- | missing_in_pfj |
+| 25 | With separator(s) | --- | missing_in_pfj |
+| 26 | With titled groups | --- | missing_in_pfj |
+| 27 | With description | --- | missing_in_pfj |
+| 28 | With actions | --- | missing_in_pfj |
+| 29 | With favorites | --- | missing_in_pfj |
+| 30 | Option single select | --- | missing_in_pfj |
+| 31 | Option multi-select | --- | missing_in_pfj |
+| 32 | View more | --- | missing_in_pfj |
+| 33 | Loading | --- | missing_in_pfj |
+| 34 | Footer | --- | missing_in_pfj |
+| 35 | Plain | --- | missing_in_pfj |
 | 36 | Plain with search and footer | --- | missing_in_pfj |
-| 37 | Plain scrollable with search and footer | Filtering with search input | matched (semantic — PFJ filtering demo covers plain scrollable with search) |
+| 37 | Plain scrollable with search and footer | --- | missing_in_pfj |
 
 ## DOM Comparison
 
-### Basic / Basic menu
-
-**Status:** ok — Both render `<div>` with `pf-v6-c-menu` class containing `pf-v6-c-menu__content` with a `<ul>` list of menu items using `pf-v6-c-menu__list-item` and `pf-v6-c-menu__item`.
-
-### Danger menu item / Danger menu item
-
-**Status:** ok — Both apply `pf-m-danger` modifier to the menu list item.
-
-### With icons / With icons
-
-**Status:** ok — Both include `pf-v6-c-menu__item-icon` within menu items.
-
-### With checkbox / Item checkbox
-
-**Status:** ok — Both use `pf-v6-c-menu__item-check` with a `pf-v6-c-check` component inside menu items.
-
-### Scrollable / Scrollable menus
-
-**Status:** ok — Both apply `pf-m-scrollable` modifier to the menu.
-
-### Scrollable with custom menu height / Scrollable menu with custom height
-
-**Status:** ok — Both use `--pf-v6-c-menu__content--MaxHeight` CSS variable to set custom max height.
-
-### With flyout
-
-**Status:** missing_in_pfj — PF shows flyout menus that appear on hover/click of a parent menu item using `pf-m-flyout` modifier. This is a complex interactive pattern with positioning logic.
-
-### Drilldown / With drilldown
-
-**Status:** not_implemented — PFJ has the snippet placeholder but shows a warning that drilldown is not yet implemented. PF uses `pf-m-drilldown` modifier with nested menu panels and transition animations.
-
-### Drilldown with breadcrumbs / With drilldown breadcrumbs
-
-**Status:** not_implemented — PFJ has the snippet placeholder but shows a warning. PF shows breadcrumb navigation above drilldown menus for quick level jumping.
-
-### Scrollable menu with header and footer / Menu footer
-
-**Status:** ok — PFJ footer demo shows scrollable menu with header and footer sections.
-
-### With filtering / Filtering with search input
-
-**Status:** ok — Both include `pf-v6-c-menu__search` with a search input above the menu list.
-
-### With links / With links
-
-**Status:** ok — Both use `<a>` elements inside menu items instead of `<button>`.
-
-### With separator(s) / Separated items
-
-**Status:** ok — Both use `<li>` with `pf-v6-c-divider` role="separator" between menu groups.
-
-### With titled groups / Titled groups of items
-
-**Status:** ok — Both use `pf-v6-c-menu__group` with `pf-v6-c-menu__group-title` for section headings.
-
-### With description / With descriptions
-
-**Status:** ok — Both use `pf-v6-c-menu__item-description` below the main item text.
-
-### With actions / With action
-
-**Status:** ok — Both use `pf-v6-c-menu__item-action` for action buttons alongside menu items.
-
-### With favorites / With favorites
-
-**Status:** ok — Both use `pf-v6-c-menu__item-action` with `pf-m-favorite` modifier and star icon for favoriting items.
-
-### Option single select / Option single select menu
-
-**Status:** ok — Both use `pf-v6-c-menu__item-select-icon` with a check icon for selected state.
-
-### Option multi-select / Option multi select menu
-
-**Status:** ok — Both support multiple selected items with check icons.
-
-### View more / With view more
-
-**Status:** ok — Both include a "View more" action at the bottom of the menu list.
-
-### Loading / With view more
-
-**Status:** ok — PFJ "view more" demo includes the loading spinner state.
-
-### Footer / Menu footer
-
-**Status:** ok — Both use `pf-v6-c-menu__footer` for footer content below the menu list.
-
-### Plain / Scrollable menus
-
-**Status:** ok — Both apply `pf-m-plain` modifier to remove the menu border/shadow.
-
-### Plain with search and footer
-
-**Status:** missing_in_pfj — PF shows a plain menu with search input and footer combined. PFJ does not have a dedicated demo for this combination with `pf-m-plain`.
-
 ## Action Items
 
-1. **Implement feature:** Flyout menus — implement `pf-m-flyout` modifier with nested menu positioning for `With flyout`, `With flyout menu top`, `With flyout menu left`, `With flyout menu left top` variations
-2. **Implement feature:** Drilldown menus — implement `pf-m-drilldown` modifier with nested menu panels, transition animations, and drill-in/drill-out navigation for `Drilldown` level 1-4 variations
-3. **Implement feature:** Scrollable drilldown — implement scrollable drilldown menu with `pf-m-scrollable` combined with `pf-m-drilldown`
-4. **Implement feature:** Width modified drilldown — implement custom width drilldown using `--pf-v6-c-menu--Width` CSS variable
-5. **Implement feature:** Drilldown with breadcrumbs — implement breadcrumb navigation above drilldown menus for quick level jumping
-6. **Add variation:** Plain with search and footer — add demo showing `pf-m-plain` menu with search input and footer
+1. **Add variation:** Basic — implement Basic variation in PFJ
+2. **Add variation:** Danger menu item — implement Danger menu item variation in PFJ
+3. **Add variation:** With icons — implement With icons variation in PFJ
+4. **Add variation:** With checkbox — implement With checkbox variation in PFJ
+5. **Add variation:** Scrollable — implement Scrollable variation in PFJ
+6. **Add variation:** Scrollable with custom menu height — implement Scrollable with custom menu height variation in PFJ
+7. **Add variation:** With flyout — implement With flyout variation in PFJ
+8. **Add variation:** With flyout menu top — implement With flyout menu top variation in PFJ
+9. **Add variation:** With flyout menu left — implement With flyout menu left variation in PFJ
+10. **Add variation:** With flyout menu left top — implement With flyout menu left top variation in PFJ
+11. **Add variation:** Drilldown — implement Drilldown variation in PFJ
+12. **Add variation:** Drilldown level two — implement Drilldown level two variation in PFJ
+13. **Add variation:** Drilldown level three — implement Drilldown level three variation in PFJ
+14. **Add variation:** Drilldown level four — implement Drilldown level four variation in PFJ
+15. **Add variation:** Scrollable drilldown — implement Scrollable drilldown variation in PFJ
+16. **Add variation:** Width modified drilldown — implement Width modified drilldown variation in PFJ
+17. **Add variation:** Drilldown with breadcrumbs - level 1 — implement Drilldown with breadcrumbs - level 1 variation in PFJ
+18. **Add variation:** Drilldown with breadcrumbs - level 2 — implement Drilldown with breadcrumbs - level 2 variation in PFJ
+19. **Add variation:** Drilldown with breadcrumbs - level 3 — implement Drilldown with breadcrumbs - level 3 variation in PFJ
+20. **Add variation:** Drilldown with breadcrumbs - level 4 — implement Drilldown with breadcrumbs - level 4 variation in PFJ
+21. **Add variation:** Scrollable menu with header and footer — implement Scrollable menu with header and footer variation in PFJ
+22. **Add variation:** Scrollable menu with search and footer — implement Scrollable menu with search and footer variation in PFJ
+23. **Add variation:** With filtering — implement With filtering variation in PFJ
+24. **Add variation:** With links — implement With links variation in PFJ
+25. **Add variation:** With separator(s) — implement With separator(s) variation in PFJ
+26. **Add variation:** With titled groups — implement With titled groups variation in PFJ
+27. **Add variation:** With description — implement With description variation in PFJ
+28. **Add variation:** With actions — implement With actions variation in PFJ
+29. **Add variation:** With favorites — implement With favorites variation in PFJ
+30. **Add variation:** Option single select — implement Option single select variation in PFJ
+31. **Add variation:** Option multi-select — implement Option multi-select variation in PFJ
+32. **Add variation:** View more — implement View more variation in PFJ
+33. **Add variation:** Loading — implement Loading variation in PFJ
+34. **Add variation:** Footer — implement Footer variation in PFJ
+35. **Add variation:** Plain — implement Plain variation in PFJ
+36. **Add variation:** Plain with search and footer — implement Plain with search and footer variation in PFJ
+37. **Add variation:** Plain scrollable with search and footer — implement Plain scrollable with search and footer variation in PFJ

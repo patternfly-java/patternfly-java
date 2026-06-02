@@ -1,0 +1,203 @@
+{
+  "component": "tooltip",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/tooltip/html",
+  "pfjUrl": "http://localhost:1234/components/tooltip",
+  "completeness": {
+    "pfTotal": 7,
+    "pfjTotal": 4,
+    "matched": 0,
+    "missingInPfj": [
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "left-with-top-and-bottom-positions",
+      "bottom-with-left-and-right-positions",
+      "left-aligned-text"
+    ],
+    "extraInPfj": [
+      "tooltip-basic",
+      "tooltip-dynamic",
+      "tooltip-placements",
+      "tooltip-auto"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "top",
+      "title": "Top",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-top\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-top-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "right",
+      "title": "Right",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-right\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-right-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "bottom",
+      "title": "Bottom",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-bottom\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-bottom-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "left",
+      "title": "Left",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-left\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-left-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "left-with-top-and-bottom-positions",
+      "title": "Left with top and bottom positions",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-left-top\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-left-top-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>\n<br>\n<div class=\"pf-v6-c-tooltip pf-m-left-bottom\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-left-bottom-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "bottom-with-left-and-right-positions",
+      "title": "Bottom with left and right positions",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-bottom-left\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-bottom-left-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>\n<br>\n<div class=\"pf-v6-c-tooltip pf-m-bottom-right\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content\" id=\"tooltip-bottom-right-content\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    },
+    {
+      "slug": "left-aligned-text",
+      "title": "Left aligned text",
+      "html": "<div class=\"pf-v6-c-tooltip pf-m-top\" role=\"tooltip\">\n  <div class=\"pf-v6-c-tooltip__arrow\"></div>\n\n  <div class=\"pf-v6-c-tooltip__content pf-m-text-align-left\" id=\"tooltip-text-align-left-example\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.</div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "tooltip-basic",
+      "title": "Basic",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\" id=\"tooltip-basic-button\" style=\"anchor-name: --overlay-id-43;\"><span class=\"pf-v6-c-button__text\">I have a tooltip</span></button><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-42\" on-detach-uid=\"d-id-45\" popover=\"manual\" style=\"position-anchor: --overlay-id-43; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor</div></div>"
+    },
+    {
+      "id": "tooltip-dynamic",
+      "title": "Dynamic content",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\" id=\"tooltip-dynamic-button\" style=\"anchor-name: --overlay-id-61;\"><span class=\"pf-v6-c-button__text\">Copy to clipboard</span></button><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-60\" on-detach-uid=\"d-id-63\" popover=\"manual\" style=\"position-anchor: --overlay-id-61; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">Copy to clipboard</div></div>"
+    },
+    {
+      "id": "tooltip-placements",
+      "title": "Placements",
+      "html": "<button class=\"pf-v6-c-button pf-m-secondary\" type=\"button\" id=\"tooltip-placements-bottom-button\" style=\"anchor-name: --overlay-id-79;\"><span class=\"pf-v6-c-button__text\">Bottom</span></button><div class=\"pf-v6-c-tooltip pf-m-bottom pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-78\" on-detach-uid=\"d-id-81\" popover=\"manual\" style=\"position-anchor: --overlay-id-79; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">Bottom tooltip</div></div><button class=\"pf-v6-c-button pf-m-secondary\" type=\"button\" id=\"tooltip-placements-left-button\" style=\"anchor-name: --overlay-id-83;\"><span class=\"pf-v6-c-button__text\">Left</span></button><div class=\"pf-v6-c-tooltip pf-m-left pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-82\" on-detach-uid=\"d-id-85\" popover=\"manual\" style=\"position-anchor: --overlay-id-83; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">Left tooltip</div></div><button class=\"pf-v6-c-button pf-m-secondary\" type=\"button\" id=\"tooltip-placements-right-button\" style=\"anchor-name: --overlay-id-87;\"><span class=\"pf-v6-c-button__text\">Right</span></button><div class=\"pf-v6-c-tooltip pf-m-right pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-86\" on-detach-uid=\"d-id-89\" popover=\"manual\" style=\"position-anchor: --overlay-id-87; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">Right tooltip</div></div>"
+    },
+    {
+      "id": "tooltip-auto",
+      "title": "Auto placement",
+      "html": "<div class=\"pfj-tooltip-box\"><button class=\"pf-v6-c-button pfj-tooltip-button pf-m-primary\" type=\"button\" id=\"tooltip-auto-button\" style=\"anchor-name: --overlay-id-106;\"><span class=\"pf-v6-c-button__text\">Tooltip</span></button><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-105\" on-detach-uid=\"d-id-108\" popover=\"manual\" style=\"position-anchor: --overlay-id-106; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">ipsum dolor sit amet lorem ipsum dolor sit amet consetetur</div></div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "top",
+        "title": "Top"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "right",
+        "title": "Right"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "bottom",
+        "title": "Bottom"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "left",
+        "title": "Left"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "left-with-top-and-bottom-positions",
+        "title": "Left with top and bottom positions"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "bottom-with-left-and-right-positions",
+        "title": "Bottom with left and right positions"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "left-aligned-text",
+        "title": "Left aligned text"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Top",
+      "description": "implement Top variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Right",
+      "description": "implement Right variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Bottom",
+      "description": "implement Bottom variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Left",
+      "description": "implement Left variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "add_variation",
+      "title": "Left with top and bottom positions",
+      "description": "implement Left with top and bottom positions variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 6,
+      "type": "add_variation",
+      "title": "Bottom with left and right positions",
+      "description": "implement Bottom with left and right positions variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 7,
+      "type": "add_variation",
+      "title": "Left aligned text",
+      "description": "implement Left aligned text variation in PFJ",
+      "category": "missing_variations"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "component": "modal",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/modal/html",
+  "pfjUrl": "http://localhost:1234/components/modal",
+  "completeness": {
+    "pfTotal": 0,
+    "pfjTotal": 16,
+    "matched": 0,
+    "missingInPfj": [],
+    "extraInPfj": [
+      "modal-basic",
+      "modal-scrollable",
+      "modal-static-description",
+      "modal-top",
+      "modal-small",
+      "modal-medium",
+      "modal-large",
+      "modal-custom-width",
+      "modal-custom-hf",
+      "modal-no-hf",
+      "modal-title-icon",
+      "modal-custom-icon",
+      "modal-wizard",
+      "modal-dropdown",
+      "modal-help",
+      "modal-form"
+    ]
+  },
+  "variations": [],
+  "snippets": [
+    {
+      "id": "modal-basic",
+      "title": "Basic modals",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show basic modal</span></button>"
+    },
+    {
+      "id": "modal-scrollable",
+      "title": "Scrollable modals",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show modal</span></button>"
+    },
+    {
+      "id": "modal-static-description",
+      "title": "With a static description",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show modal with description</span></button>"
+    },
+    {
+      "id": "modal-top",
+      "title": "Top aligned",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show top aligned modal</span></button>"
+    },
+    {
+      "id": "modal-small",
+      "title": "Small modal",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show small modal</span></button>"
+    },
+    {
+      "id": "modal-medium",
+      "title": "Medium modal",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show medium modal</span></button>"
+    },
+    {
+      "id": "modal-large",
+      "title": "Large modal",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show large modal</span></button>"
+    },
+    {
+      "id": "modal-custom-width",
+      "title": "Custom width modal",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show custom width modal</span></button>"
+    },
+    {
+      "id": "modal-custom-hf",
+      "title": "Custom header and footer",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show custom header/footer modal</span></button>"
+    },
+    {
+      "id": "modal-no-hf",
+      "title": "No header or footer",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show no header/footer modal</span></button>"
+    },
+    {
+      "id": "modal-title-icon",
+      "title": "Title icon",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show title icon modal</span></button>"
+    },
+    {
+      "id": "modal-custom-icon",
+      "title": "Custom title icon",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show custom title icon modal</span></button>"
+    },
+    {
+      "id": "modal-wizard",
+      "title": "With wizard",
+      "html": "<div class=\"pf-v6-c-alert__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"warning-fill\"><!--Red Hat, Inc. MIT--><path d=\"m31.874 28.514-15.011-27a1.001 1.001 0 0 0-1.748 0l-15.011 27A1 1 0 0 0 .978 30H31a1 1 0 0 0 .874-1.486ZM14.5 12a1.5 1.5 0 0 1 3 0v5a1.5 1.5 0 0 1-3 0v-5ZM16 26.001a2 2 0 1 1-.001-3.999A2 2 0 0 1 16 26.001Z\"></path></svg></div><p class=\"pf-v6-c-alert__title\"><span class=\"pf-v6-screen-reader\">warning alert:</span>Not yet implemented</p>"
+    },
+    {
+      "id": "modal-dropdown",
+      "title": "With dropdown",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show dropdown modal</span></button>"
+    },
+    {
+      "id": "modal-help",
+      "title": "With help",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show with help modal</span></button>"
+    },
+    {
+      "id": "modal-form",
+      "title": "With form",
+      "html": "<button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Show with form</span></button>"
+    }
+  ],
+  "matches": [],
+  "comparisons": [],
+  "actionItems": []
+}

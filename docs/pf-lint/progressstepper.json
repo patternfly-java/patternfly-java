@@ -1,0 +1,91 @@
+{
+  "component": "progressstepper",
+  "date": "2026-06-02",
+  "files": 4,
+  "errors": 5,
+  "warnings": 5,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "ProgressStep.java",
+      "line": 53,
+      "severity": "ERROR",
+      "rule": "pkg-subcomponent-base",
+      "detail": "No abstract SubComponent base class exists in the progressstepper package; ProgressStep extends SubComponent directly instead of a shared base like ProgressStepperSubComponent",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 53,
+      "severity": "ERROR",
+      "rule": "inherit-sub",
+      "detail": "ProgressStep extends SubComponent directly instead of a package-private abstract base class",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 66,
+      "severity": "ERROR",
+      "rule": "section-format",
+      "detail": "Instance section separator uses 55 dashes instead of the required 54: '// ------------------------------------------------------- instance'",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 262,
+      "severity": "ERROR",
+      "rule": "section-format",
+      "detail": "Non-standard section '// ------------------------------------------ package-private' uses wrong dash count and non-standard section name; should use 'internal' with 54 dashes",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 129,
+      "severity": "ERROR",
+      "rule": "section-order",
+      "detail": "Sections appear out of order: 'aria' (line 124) appears before 'builder' (line 129); expected order is builder then aria",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 58,
+      "severity": "WARN",
+      "rule": "section-blank-after",
+      "detail": "No blank line after the 'factory' section separator on line 57",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 53,
+      "severity": "WARN",
+      "rule": "decl-implements-format",
+      "detail": "Implements clause formatting: ElementTextDelegate and HasIdentifier are on the same line as 'implements', then ComponentIcon on the next line; each interface should be on its own line with 8-space indent",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 108,
+      "severity": "WARN",
+      "rule": "section-builder-that",
+      "detail": "that() method appears outside any section header, before aria and builder sections; should be the last method inside the builder section",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStep.java",
+      "line": 70,
+      "severity": "WARN",
+      "rule": "field-logger-first",
+      "detail": "Static Logger field appears after SUB_COMPONENT_ID/SUB_COMPONENT_NAME public static final constants; Logger should be the first static field",
+      "fixed": false
+    },
+    {
+      "file": "ProgressStepper.java",
+      "line": 63,
+      "severity": "WARN",
+      "rule": "doc-class-see",
+      "detail": "@see link URL has trailing slash 'progress-stepper/' instead of 'progress-stepper' (minor inconsistency with other components)",
+      "fixed": false
+    }
+  ]
+}

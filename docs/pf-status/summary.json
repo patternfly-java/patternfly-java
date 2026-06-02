@@ -1,0 +1,373 @@
+{
+  "date": "2026-06-02",
+  "stats": {
+    "total": 51,
+    "linted": 51,
+    "lintClean": 20,
+    "lintIssues": 31,
+    "compared": 51,
+    "aligned": 0,
+    "updateChecked": 51,
+    "outdated": 0,
+    "updateVersion": "6.5.0"
+  },
+  "components": [
+    {
+      "name": "accordion",
+      "lint": "clean",
+      "compare": "83% (5/6)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "alert",
+      "lint": "issues",
+      "compare": "75% (6/8)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "avatar",
+      "lint": "clean",
+      "compare": "33% (2/6)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "backtotop",
+      "lint": "clean",
+      "compare": "0% (0/1)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "badge",
+      "lint": "clean",
+      "compare": "67% (2/3)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "button",
+      "lint": "issues",
+      "compare": "83% (15/18)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "card",
+      "lint": "clean",
+      "compare": "42% (13/31)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "codeblock",
+      "lint": "clean",
+      "compare": "67% (2/3)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "content",
+      "lint": "clean",
+      "compare": "50% (2/4)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "divider",
+      "lint": "clean",
+      "compare": "64% (7/11)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "drawer",
+      "lint": "issues",
+      "compare": "0% (0/22)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "expandable",
+      "lint": "issues",
+      "compare": "44% (4/9)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "form",
+      "lint": "issues",
+      "compare": "0% (0/10)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "help",
+      "lint": "issues",
+      "compare": "75% (3/4)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "hint",
+      "lint": "clean",
+      "compare": "67% (2/3)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "inputgroup",
+      "lint": "clean",
+      "compare": "0% (0/1)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "jumplinks",
+      "lint": "clean",
+      "compare": "0% (0/11)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "label",
+      "lint": "issues",
+      "compare": "0% (0/25)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "list",
+      "lint": "issues",
+      "compare": "0% (0/7)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "menu",
+      "lint": "issues",
+      "compare": "0% (0/37)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "navigation",
+      "lint": "issues",
+      "compare": "82% (14/17)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "notification",
+      "lint": "issues",
+      "compare": "50% (1/2)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "numberinput",
+      "lint": "issues",
+      "compare": "86% (6/7)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "page",
+      "lint": "issues",
+      "compare": "56% (5/9)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "panel",
+      "lint": "issues",
+      "compare": "0% (0/12)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "progress",
+      "lint": "issues",
+      "compare": "0% (0/19)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "progressstepper",
+      "lint": "issues",
+      "compare": "0% (0/15)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "skeleton",
+      "lint": "clean",
+      "compare": "0% (0/5)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "slider",
+      "lint": "issues",
+      "compare": "83% (5/6)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "switch_",
+      "lint": "issues",
+      "compare": "60% (3/5)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "table",
+      "lint": "issues",
+      "compare": "46% (23/50)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "tabs",
+      "lint": "issues",
+      "compare": "32% (13/40)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "textinputgroup",
+      "lint": "issues",
+      "compare": "0% (0/19)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "timestamp",
+      "lint": "issues",
+      "compare": "0% (0/1)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "title",
+      "lint": "clean",
+      "compare": "0% (0/3)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "togglegroup",
+      "lint": "clean",
+      "compare": "40% (2/5)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "toolbar",
+      "lint": "issues",
+      "compare": "12% (3/24)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "tooltip",
+      "lint": "issues",
+      "compare": "0% (0/7)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "tree",
+      "lint": "issues",
+      "compare": "33% (4/12)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "backdrop",
+      "lint": "clean",
+      "compare": "n/a (0/0)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "banner",
+      "lint": "clean",
+      "compare": "100% (4/4)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "brand",
+      "lint": "issues",
+      "compare": "100% (2/2)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "breadcrumb",
+      "lint": "clean",
+      "compare": "100% (5/5)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "emptystate",
+      "lint": "clean",
+      "compare": "100% (6/6)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "icon",
+      "lint": "issues",
+      "compare": "100% (8/8)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "modal",
+      "lint": "issues",
+      "compare": "n/a (0/0)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "popover",
+      "lint": "issues",
+      "compare": "n/a (0/0)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "skiptocontent",
+      "lint": "clean",
+      "compare": "n/a (0/0)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "spinner",
+      "lint": "issues",
+      "compare": "100% (4/4)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "truncate",
+      "lint": "clean",
+      "compare": "100% (4/4)",
+      "align": "\u2014",
+      "update": "current"
+    },
+    {
+      "name": "wizard",
+      "lint": "issues",
+      "compare": "n/a (0/0)",
+      "align": "\u2014",
+      "update": "current"
+    }
+  ]
+}

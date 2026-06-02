@@ -1,0 +1,19 @@
+{
+  "component": "help",
+  "date": "2026-06-02",
+  "files": 4,
+  "errors": 1,
+  "warnings": 0,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "HelperText.java",
+      "line": 87,
+      "severity": "ERROR",
+      "rule": "section-order",
+      "detail": "Section 'aria' (line 87) appears before 'builder' (line 97), but the required order is: factory → instance → add → builder → aria → events → api → internal",
+      "fixed": false
+    }
+  ]
+}

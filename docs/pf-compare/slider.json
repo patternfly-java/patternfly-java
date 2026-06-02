@@ -1,0 +1,992 @@
+{
+  "component": "slider",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/slider/html",
+  "pfjUrl": "http://localhost:1234/components/slider",
+  "completeness": {
+    "pfTotal": 6,
+    "pfjTotal": 6,
+    "matched": 5,
+    "missingInPfj": [
+      "disabled"
+    ],
+    "extraInPfj": [
+      "slider-discrete"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "discrete",
+      "title": "Discrete",
+      "html": "<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 62.5%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">2</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">4</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">6</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">8</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"8\" aria-valuenow=\"5\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "continuous",
+      "title": "Continuous",
+      "html": "<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n</div>\n\n<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0%</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">100%</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "value-input",
+      "title": "Value input",
+      "html": "<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 62.5%; --pf-v6-c-slider__value--c-form-control--width-chars: 1;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">2</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">4</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">6</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">8</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"8\" aria-valuenow=\"5\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n  <div class=\"pf-v6-c-slider__value\">\n    <span class=\"pf-v6-c-form-control\">\n      <input type=\"number\" value=\"5\" aria-label=\"Slider value input\">\n    </span>\n  </div>\n</div>\n\n<br>\n\n<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0%</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">50%</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">100%</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n  <div class=\"pf-v6-c-slider__value\">\n    <div class=\"pf-v6-c-input-group\">\n      <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n        <span class=\"pf-v6-c-form-control\">\n          <input type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n        </span>\n      </div>\n      <div class=\"pf-v6-c-input-group__item pf-m-box\">\n        <span class=\"pf-v6-c-input-group__text\">%</span>\n      </div>\n    </div>\n  </div>\n</div>\n\n<br>\n\n<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n  <div class=\"pf-v6-c-slider__value\">\n    <div class=\"pf-v6-c-input-group\">\n      <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n        <span class=\"pf-v6-c-form-control\">\n          <input type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n        </span>\n      </div>\n      <div class=\"pf-v6-c-input-group__item pf-m-box\">\n        <span class=\"pf-v6-c-input-group__text\">%</span>\n      </div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "thumb-value-input",
+      "title": "Thumb value input",
+      "html": "<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n    <div class=\"pf-v6-c-slider__value pf-m-floating\">\n      <div class=\"pf-v6-c-input-group\">\n        <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n          <span class=\"pf-v6-c-form-control\">\n            <input type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n          </span>\n        </div>\n        <div class=\"pf-v6-c-input-group__item pf-m-box\">\n          <span class=\"pf-v6-c-input-group__text\">%</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "actions",
+      "title": "Actions",
+      "html": "<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__actions\">\n    <button class=\"pf-v6-c-button pf-m-plain\" type=\"button\" aria-label=\"Minus\">\n      <span class=\"pf-v6-c-button__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n  </div>\n  <div class=\"pf-v6-c-slider__actions\">\n    <button class=\"pf-v6-c-button pf-m-plain\" type=\"button\" aria-label=\"Plus\">\n      <span class=\"pf-v6-c-button__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n</div>\n\n<br>\n<br>\n\n<div class=\"pf-v6-c-slider pf-m-disabled\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" aria-disabled=\"true\"></div>\n    <div class=\"pf-v6-c-slider__value pf-m-floating\">\n      <div class=\"pf-v6-c-input-group\">\n        <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n          <span class=\"pf-v6-c-form-control pf-m-disabled\">\n            <input disabled=\"\" type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n          </span>\n        </div>\n        <div class=\"pf-v6-c-input-group__item pf-m-disabled pf-m-box\">\n          <span class=\"pf-v6-c-input-group__text\">%</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"pf-v6-c-slider__actions\">\n    <button class=\"pf-v6-c-button pf-m-plain\" type=\"button\" aria-label=\"Locked\">\n      <span class=\"pf-v6-c-button__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n</div>\n\n<br>\n<br>\n\n<div class=\"pf-v6-c-slider\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" tabindex=\"0\"></div>\n    <div class=\"pf-v6-c-slider__value pf-m-floating\">\n      <div class=\"pf-v6-c-input-group\">\n        <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n          <span class=\"pf-v6-c-form-control\">\n            <input type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n          </span>\n        </div>\n        <div class=\"pf-v6-c-input-group__item pf-m-box\">\n          <span class=\"pf-v6-c-input-group__text\">%</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"pf-v6-c-slider__actions\">\n    <button class=\"pf-v6-c-button pf-m-plain\" type=\"button\" aria-label=\"Lock\">\n      <span class=\"pf-v6-c-button__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 576 512\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M423.5 0C339.5.3 272 69.5 272 153.5V224H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48h-48v-71.1c0-39.6 31.7-72.5 71.3-72.9 40-.4 72.7 32.1 72.7 72v80c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24v-80C576 68 507.5-.3 423.5 0z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n</div>"
+    },
+    {
+      "slug": "disabled",
+      "title": "Disabled",
+      "html": "<div class=\"pf-v6-c-slider pf-m-disabled\" style=\"--pf-v6-c-slider--value: 62.5%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">2</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">4</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">6</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">8</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"8\" aria-valuenow=\"5\" aria-label=\"Value\" aria-disabled=\"true\"></div>\n  </div>\n</div>\n\n<br>\n<br>\n\n<div class=\"pf-v6-c-slider pf-m-disabled\" style=\"--pf-v6-c-slider--value: 50%;\">\n  <div class=\"pf-v6-c-slider__main\">\n    <div class=\"pf-v6-c-slider__rail\">\n      <div class=\"pf-v6-c-slider__rail-track\"></div>\n    </div>\n    <div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\">\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">0%</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step pf-m-active\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">50%</div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n      </div>\n      <div class=\"pf-v6-c-slider__step\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\">\n        <div class=\"pf-v6-c-slider__step-tick\"></div>\n        <div class=\"pf-v6-c-slider__step-label\">100%</div>\n      </div>\n    </div>\n    <div class=\"pf-v6-c-slider__thumb\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Value\" aria-disabled=\"true\"></div>\n  </div>\n  <div class=\"pf-v6-c-slider__value\">\n    <div class=\"pf-v6-c-input-group\">\n      <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n        <span class=\"pf-v6-c-form-control pf-m-disabled\">\n          <input disabled=\"\" type=\"number\" value=\"50\" aria-label=\"Slider value input\">\n        </span>\n      </div>\n      <div class=\"pf-v6-c-input-group__item pf-m-disabled pf-m-box\">\n        <span class=\"pf-v6-c-input-group__text\">%</span>\n      </div>\n    </div>\n  </div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "slider-discrete",
+      "title": "Discrete",
+      "html": "<h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><div class=\"pf-v6-c-slider\" data-pfcssld=\"91e500f7-b623-4261-a286-afc424843eb1\" on-detach-uid=\"d-id-42 d-id-44\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"12.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">2</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"37.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"50\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">4</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"62.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">6</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"87.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">8</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"4\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><small>(min = 0, max = 200, step = 50)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"5f2e9249-5fa7-4c92-b8ad-3f07699564c1\" on-detach-uid=\"d-id-45 d-id-47\" style=\"--pf-v6-c-slider--value: 25%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"50\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"150\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"200\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">200</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"200\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>25</span></h4><small>(min = -25, max = 75, step = 10, boundaries not shown)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"921f6603-4f7e-4320-8eaf-ca0d2a84d582\" on-detach-uid=\"d-id-48 d-id-50\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-15\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 10%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 20%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 30%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"15\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 40%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"35\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 60%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"45\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 70%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"55\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 80%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"65\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 90%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"-25\" aria-valuemax=\"75\" aria-valuenow=\"25\" aria-valuetext=\"25\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><small>(min = -25, max = 75, step = 10, boundaries shown)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"e0ce8647-4399-4c6c-904d-2432459548a4\" on-detach-uid=\"d-id-51 d-id-53\" style=\"--pf-v6-c-slider--value: 75%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">-25</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-15\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 10%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 20%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 30%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"15\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 40%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"35\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 60%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"45\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 70%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"55\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 80%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"65\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 90%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">75</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"-25\" aria-valuemax=\"75\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><small>(min = -25, max = 75, step = 10, boundaries shown, ticks not shown)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"4870889b-3d9b-47b9-9c51-f23322f4e801\" on-detach-uid=\"d-id-54 d-id-56\" style=\"--pf-v6-c-slider--value: 75%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"-25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">-25</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">75</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"-25\" aria-valuemax=\"75\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>3</span></h4><small>(max = 5, custom steps)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"e29025b4-ea0e-41d6-a564-27867ece3d74\" on-detach-uid=\"d-id-57 d-id-59\" style=\"--pf-v6-c-slider--value: 60%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">A</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"1\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 20%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">B</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"2\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 40%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">C</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"3\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 60%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">D</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"4\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 80%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">E</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">F</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"5\" aria-valuenow=\"3\" aria-valuetext=\"D\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>25</span></h4><small>(min = 12, max = 86, custom steps with non linear data)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"caafadce-e953-4be3-87f6-eae38b26a224\" on-detach-uid=\"d-id-60 d-id-62\" style=\"--pf-v6-c-slider--value: 17.57%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"12\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">12</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"15\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 4.05%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">15</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 17.57%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">25</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"54\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 56.76%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">54</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"67\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 74.32%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">67</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"86\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">86</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"12\" aria-valuemax=\"86\" aria-valuenow=\"25\" aria-valuetext=\"25\"></div></div></div><br>"
+    },
+    {
+      "id": "slider-continuous",
+      "title": "Continuous",
+      "html": "<h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><div class=\"pf-v6-c-slider\" data-pfcssld=\"a638d210-c75f-47f8-98ca-8b2af063a396\" on-detach-uid=\"d-id-77 d-id-79\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">100</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div></div><br><h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><small>(with tooltip over thumb)</small><div class=\"pf-v6-c-slider\" data-pfcssld=\"0d7f6c2d-73ae-4f8d-af98-4f93d8d4a966\" on-detach-uid=\"d-id-80 d-id-82\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0%</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">100%</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\" style=\"anchor-name: --overlay-id-228;\"></div></div><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-227\" on-detach-uid=\"d-id-230\" popover=\"manual\" style=\"position-anchor: --overlay-id-228; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">50</div></div></div>"
+    },
+    {
+      "id": "slider-value-input",
+      "title": "Value input",
+      "html": "<div class=\"pf-v6-c-slider\" data-pfcssld=\"e84636d4-2fa8-4ab5-bc80-9c221a10179a\" on-detach-uid=\"d-id-97 d-id-99\" style=\"--pf-v6-c-slider--value: 62.5%; --pf-v6-c-slider__value--c-form-control--width-chars: 4;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"12.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">2</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"37.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"50\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">4</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"62.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">6</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"87.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">8</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"62.5\" aria-valuetext=\"5\"></div></div><div class=\"pf-v6-c-slider__value\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-100\" name=\"id-100\" aria-invalid=\"false\"></span></div></div><br><div class=\"pf-v6-c-slider\" data-pfcssld=\"0c9644fa-5f78-483e-90e3-d7820e9373be\" on-detach-uid=\"d-id-101 d-id-103\" style=\"--pf-v6-c-slider--value: 50%; --pf-v6-c-slider__value--c-form-control--width-chars: 2;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0%</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"50\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">50%</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">100%</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50%\"></div></div><div class=\"pf-v6-c-slider__value\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item pf-m-fill\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-104\" name=\"id-104\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item pf-m-box\"><span class=\"pf-v6-c-input-group__text\">%</span></div></div></div></div><br><div class=\"pf-v6-c-slider\" data-pfcssld=\"55d260e0-ec66-4040-919a-0895b43d662b\" on-detach-uid=\"d-id-105 d-id-107\" style=\"--pf-v6-c-slider--value: 50%; --pf-v6-c-slider__value--c-form-control--width-chars: 2;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">100</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div><div class=\"pf-v6-c-slider__value\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item pf-m-fill\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-108\" name=\"id-108\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item pf-m-box\"><span class=\"pf-v6-c-input-group__text\">%</span></div></div></div></div>"
+    },
+    {
+      "id": "slider-thumb-value-input",
+      "title": "Thumb value input",
+      "html": "<div class=\"pf-v6-c-slider\" data-pfcssld=\"8838ee67-b122-476f-8d0d-bbcf7241b6d7\" on-detach-uid=\"d-id-123 d-id-125\" style=\"--pf-v6-c-slider--value: 50%; --pf-v6-c-slider__value--c-form-control--width-chars: 2;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">100</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div><div class=\"pf-v6-c-slider__value pf-m-floating\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item pf-m-fill\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-126\" name=\"id-126\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item pf-m-box\"><span class=\"pf-v6-c-input-group__text\">%</span></div></div></div></div></div>"
+    },
+    {
+      "id": "slider-actions",
+      "title": "Actions",
+      "html": "<h4 class=\"pf-v6-c-content--h4\">Slider value is <span>50</span></h4><div class=\"pf-v6-c-slider\" data-pfcssld=\"eb05391c-396b-4e4e-a637-3970b64ed331\" on-detach-uid=\"d-id-141 d-id-143\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__actions\"><button class=\"pf-v6-c-button pf-m-plain\" type=\"button\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">100</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div><div class=\"pf-v6-c-slider__actions\"><button class=\"pf-v6-c-button pf-m-plain\" type=\"button\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div><br><div class=\"pf-v6-c-slider\" data-pfcssld=\"4847ff88-9159-40fe-ae3d-b184fff26ad0\" on-detach-uid=\"d-id-144 d-id-146\" style=\"--pf-v6-c-slider--value: 50%; --pf-v6-c-slider__value--c-form-control--width-chars: 2;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-label\">100</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"0\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"false\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"50\"></div></div><div class=\"pf-v6-c-slider__value\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item pf-m-fill\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-147\" name=\"id-147\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item pf-m-box\"><span class=\"pf-v6-c-input-group__text\">%</span></div></div></div><div class=\"pf-v6-c-slider__actions\"><button class=\"pf-v6-c-button pf-m-plain\" type=\"button\" style=\"width: 16px;\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 576 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"lock-open\"><!--FontAwesome. CC-BY-4.0--><path d=\"M384 96c0-35.3 28.7-64 64-64s64 28.7 64 64l0 32c0 17.7 14.3 32 32 32s32-14.3 32-32l0-32c0-70.7-57.3-128-128-128S320 25.3 320 96l0 64-160 0c-35.3 0-64 28.7-64 64l0 224c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64l-32 0 0-64z\"></path></svg></span></button></div></div>"
+    },
+    {
+      "id": "slider-disabled",
+      "title": "Discrete",
+      "html": "<h4 class=\"pf-v6-c-content--h4\">Slider value is <span>4</span></h4><div class=\"pf-v6-c-slider pf-m-disabled\" data-pfcssld=\"f36ffd57-8685-41d2-9586-828b4ba0912a\" on-detach-uid=\"d-id-162 d-id-164\" style=\"--pf-v6-c-slider--value: 50%;\"><div class=\"pf-v6-c-slider__main\"><div class=\"pf-v6-c-slider__rail\"><div class=\"pf-v6-c-slider__rail-track\"></div></div><div class=\"pf-v6-c-slider__steps\" aria-hidden=\"true\"><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"0\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 0%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">0</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"12.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 12.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"25\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 25%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">2</div></div><div class=\"pf-v6-c-slider__step pf-m-active\" data-slider-step-value=\"37.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 37.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"50\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 50%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">4</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"62.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 62.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"75\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 75%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">6</div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"87.5\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 87.5%;\"><div class=\"pf-v6-c-slider__step-tick\"></div></div><div class=\"pf-v6-c-slider__step\" data-slider-step-value=\"100\" style=\"--pf-v6-c-slider__step--InsetInlineStart: 100%;\"><div class=\"pf-v6-c-slider__step-tick\"></div><div class=\"pf-v6-c-slider__step-label\">8</div></div></div><div class=\"pf-v6-c-slider__thumb\" tabindex=\"-1\" role=\"slider\" aria-label=\"Value\" aria-disabled=\"true\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-valuetext=\"4\"></div></div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "discrete",
+        "title": "Discrete"
+      },
+      "pfjSnippet": {
+        "id": "slider-disabled",
+        "title": "Discrete"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "continuous",
+        "title": "Continuous"
+      },
+      "pfjSnippet": {
+        "id": "slider-continuous",
+        "title": "Continuous"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "value-input",
+        "title": "Value input"
+      },
+      "pfjSnippet": {
+        "id": "slider-value-input",
+        "title": "Value input"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "thumb-value-input",
+        "title": "Thumb value input"
+      },
+      "pfjSnippet": {
+        "id": "slider-thumb-value-input",
+        "title": "Thumb value input"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "actions",
+        "title": "Actions"
+      },
+      "pfjSnippet": {
+        "id": "slider-actions",
+        "title": "Actions"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "disabled",
+        "title": "Disabled"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-disabled",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-content--h4",
+          "element": "<h4>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-v6-c-slider\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-disabled pf-v6-c-slider\"> \u2014 not in PF",
+        "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-valuemax=\"8\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-valuenow=\"5\" on <div> \u2014 present in PF, absent in PFJ",
+        "tabindex=\"0\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuemax=\"100\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuenow=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"4\" on <div> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"-1\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Discrete"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-content--h4",
+          "element": "<h4>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__arrow",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-v6-c-slider__step-tick\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+        "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+        "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Continuous"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [
+        "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-valuemax=\"8\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-valuenow=\"5\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "aria-valuenow=\"62.5\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"5\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"50%\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Value input"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-active",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__step",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__step-label",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__steps",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PFJ has <div class=\"pf-m-active pf-v6-c-slider__step\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__step\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__step-label\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__steps\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-hidden=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Thumb value input"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-disabled",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-m-floating",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-active",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-content--h4",
+          "element": "<h4>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__step",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__step-label",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-slider__steps",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-disabled pf-v6-c-slider\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-floating pf-v6-c-slider__value\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-active pf-v6-c-slider__step\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-input-group\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__step\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__step-label\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__steps\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-slider__value\"> \u2014 not in PF",
+        "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-disabled=\"true\" on <div> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Lock\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Locked\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Minus\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Plus\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-hidden=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [
+        {
+          "element": "pf-v6-svg",
+          "pfViewBox": "0 0 448 512",
+          "pfjViewBox": "0 0 576 512"
+        }
+      ],
+      "variation": "Actions"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Disabled",
+      "description": "implement Disabled variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "fix_structure",
+      "title": "Discrete",
+      "description": "PF has <div class=\"pf-v6-c-slider\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "fix_structure",
+      "title": "Discrete",
+      "description": "PFJ has <div class=\"pf-m-disabled pf-v6-c-slider\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_structure",
+      "title": "Discrete",
+      "description": "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-valuemax=\"8\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-valuenow=\"5\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "tabindex=\"0\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-disabled=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-valuemax=\"100\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-valuenow=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "aria-valuetext=\"4\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_attribute",
+      "title": "Discrete",
+      "description": "tabindex=\"-1\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Discrete"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_structure",
+      "title": "Continuous",
+      "description": "PF has <div class=\"pf-v6-c-slider__step-tick\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_structure",
+      "title": "Continuous",
+      "description": "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_structure",
+      "title": "Continuous",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_structure",
+      "title": "Continuous",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_structure",
+      "title": "Continuous",
+      "description": "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_attribute",
+      "title": "Continuous",
+      "description": "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_attribute",
+      "title": "Continuous",
+      "description": "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_attribute",
+      "title": "Continuous",
+      "description": "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_attribute",
+      "title": "Continuous",
+      "description": "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Continuous"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuemax=\"8\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuenow=\"5\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuenow=\"62.5\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuetext=\"5\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 30,
+      "type": "fix_attribute",
+      "title": "Value input",
+      "description": "aria-valuetext=\"50%\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Value input"
+      ]
+    },
+    {
+      "number": 31,
+      "type": "fix_structure",
+      "title": "Thumb value input",
+      "description": "PFJ has <div class=\"pf-m-active pf-v6-c-slider__step\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 32,
+      "type": "fix_structure",
+      "title": "Thumb value input",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__step\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 33,
+      "type": "fix_structure",
+      "title": "Thumb value input",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__step-label\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 34,
+      "type": "fix_structure",
+      "title": "Thumb value input",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__steps\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 35,
+      "type": "fix_attribute",
+      "title": "Thumb value input",
+      "description": "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 36,
+      "type": "fix_attribute",
+      "title": "Thumb value input",
+      "description": "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 37,
+      "type": "fix_attribute",
+      "title": "Thumb value input",
+      "description": "aria-hidden=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 38,
+      "type": "fix_attribute",
+      "title": "Thumb value input",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 39,
+      "type": "fix_attribute",
+      "title": "Thumb value input",
+      "description": "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Thumb value input"
+      ]
+    },
+    {
+      "number": 40,
+      "type": "fix_css",
+      "title": "Actions",
+      "description": "add missing class pf-m-disabled on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 41,
+      "type": "fix_css",
+      "title": "Actions",
+      "description": "add missing class pf-m-floating on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 42,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PF has <div class=\"pf-m-disabled pf-v6-c-slider\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 43,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PF has <div class=\"pf-m-floating pf-v6-c-slider__value\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 44,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-m-active pf-v6-c-slider__step\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 45,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 46,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-v6-c-input-group\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 47,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__step\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 48,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__step-label\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 49,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__steps\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 50,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <div class=\"pf-v6-c-slider__value\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 51,
+      "type": "fix_structure",
+      "title": "Actions",
+      "description": "PFJ has <h4 class=\"pf-v6-c-content--h4\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 52,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-disabled=\"true\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 53,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-label=\"Lock\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 54,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-label=\"Locked\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 55,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-label=\"Minus\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 56,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-label=\"Plus\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 57,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-label=\"Slider value input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 58,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-disabled=\"false\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 59,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-hidden=\"true\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 60,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 61,
+      "type": "fix_attribute",
+      "title": "Actions",
+      "description": "aria-valuetext=\"50\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    },
+    {
+      "number": 62,
+      "type": "fix_icon",
+      "title": "Actions",
+      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 448 512, PFJ viewBox=0 0 576 512",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Actions"
+      ]
+    }
+  ]
+}

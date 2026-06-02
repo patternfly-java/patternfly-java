@@ -1,0 +1,631 @@
+{
+  "component": "divider",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/divider/html",
+  "pfjUrl": "http://localhost:1234/components/divider",
+  "completeness": {
+    "pfTotal": 11,
+    "pfjTotal": 9,
+    "matched": 7,
+    "missingInPfj": [
+      "md-inset-no-inset-on-md-3xl-inset-on-lg-lg-inset-on-xl",
+      "vertical-md-inset-no-inset-on-md-lg-inset-on-lg-sm-inset-on-xl",
+      "vertical-on-lg",
+      "horizontal-on-lg"
+    ],
+    "extraInPfj": [
+      "divider-inset-breakpoints",
+      "divider-orientation-switch"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "hr",
+      "title": "hr",
+      "html": "<hr class=\"pf-v6-c-divider\">"
+    },
+    {
+      "slug": "li",
+      "title": "li",
+      "html": "<ul role=\"list\">\n  <li>List item one</li>\n  <li class=\"pf-v6-c-divider\" role=\"presentation\"></li>\n  <li>List item two</li>\n</ul>"
+    },
+    {
+      "slug": "div",
+      "title": "div",
+      "html": "<div class=\"pf-v6-c-divider\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "inset-medium",
+      "title": "Inset medium",
+      "html": "<hr class=\"pf-v6-c-divider pf-m-inset-md\">"
+    },
+    {
+      "slug": "md-inset-no-inset-on-md-3xl-inset-on-lg-lg-inset-on-xl",
+      "title": "Md inset, no inset on md, 3xl inset on lg, lg inset on xl",
+      "html": "<hr class=\"pf-v6-c-divider pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-3xl-on-lg pf-m-inset-lg-on-xl\">"
+    },
+    {
+      "slug": "vertical",
+      "title": "Vertical",
+      "html": "<div class=\"pf-v6-c-divider pf-m-vertical\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "vertical-inset-medium",
+      "title": "Vertical, inset medium",
+      "html": "<div class=\"pf-v6-c-divider pf-m-vertical pf-m-inset-md\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "vertical-md-inset-no-inset-on-md-lg-inset-on-lg-sm-inset-on-xl",
+      "title": "Vertical, md inset, no inset on md, lg inset on lg, sm inset on xl",
+      "html": "<div class=\"pf-v6-c-divider pf-m-vertical pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-lg-on-lg pf-m-inset-sm-on-xl\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "vertical-on-lg",
+      "title": "Vertical on lg",
+      "html": "<div class=\"pf-v6-c-divider pf-m-horizontal pf-m-vertical-on-lg\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "horizontal-on-lg",
+      "title": "Horizontal on lg",
+      "html": "<div class=\"pf-v6-c-divider pf-m-horizontal-on-lg pf-m-vertical\" role=\"separator\"></div>"
+    },
+    {
+      "slug": "in-flex-layout",
+      "title": "In flex layout",
+      "html": "<strong>Horizontal</strong>\n<br>\n<br>\n<div class=\"pf-v6-l-flex\">\n  <div class=\"pf-v6-l-flex__item\">item 1</div>\n\n  <div class=\"pf-v6-c-divider pf-m-vertical\" role=\"separator\"></div>\n  <div class=\"pf-v6-l-flex__item\">item 1</div>\n</div>\n<br>\n<br>\n<strong>Vertical</strong>\n<br>\n<br>\n<div class=\"pf-v6-l-flex pf-m-column\">\n  <div class=\"pf-v6-l-flex__item\">item 1</div>\n\n  <div class=\"pf-v6-c-divider\" role=\"separator\"></div>\n  <div class=\"pf-v6-l-flex__item\">item 1</div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "divider-hr",
+      "title": "Using hr",
+      "html": "<hr class=\"pf-v6-c-divider\" role=\"separator\">"
+    },
+    {
+      "id": "divider-li",
+      "title": "Using li",
+      "html": "<ul role=\"list\"><li>List item one</li><li class=\"pf-v6-c-divider\" role=\"separator\"></li><li>List item two</li></ul>"
+    },
+    {
+      "id": "divider-div",
+      "title": "Using div",
+      "html": "<div class=\"pf-v6-c-divider\" role=\"separator\"></div>"
+    },
+    {
+      "id": "divider-inset-md",
+      "title": "Inset medium",
+      "html": "<hr class=\"pf-v6-c-divider pf-m-inset-md\" role=\"separator\">"
+    },
+    {
+      "id": "divider-inset-breakpoints",
+      "title": "Inset at various breakpoints",
+      "html": "<hr class=\"pf-v6-c-divider pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-3xl-on-lg pf-m-inset-lg-on-xl\" role=\"separator\">"
+    },
+    {
+      "id": "divider-orientation-vertical",
+      "title": "Vertical in flex layout",
+      "html": "<div class=\"pf-v6-l-flex\"><div class=\"pf-v6-l-flex__item\">First item</div><hr class=\"pf-v6-c-divider pf-m-vertical\" role=\"separator\"><div class=\"pf-v6-l-flex__item\">Second item</div></div>"
+    },
+    {
+      "id": "divider-orientation-vertical-inset-md",
+      "title": "Vertical in flex layout, inset medium",
+      "html": "<div class=\"pf-v6-l-flex\"><div class=\"pf-v6-l-flex__item\">First item</div><hr class=\"pf-v6-c-divider pf-m-vertical pf-m-inset-md\" role=\"separator\"><div class=\"pf-v6-l-flex__item\">Second item</div></div>"
+    },
+    {
+      "id": "divider-orientation-vertical-inset-breakpoints",
+      "title": "Vertical in flex layout, inset at various breakpoints",
+      "html": "<div class=\"pf-v6-l-flex\"><div class=\"pf-v6-l-flex__item\">First item</div><hr class=\"pf-v6-c-divider pf-m-vertical pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-sm-on-lg pf-m-inset-xs-on-xl\" role=\"separator\"><div class=\"pf-v6-l-flex__item\">Second item</div></div>"
+    },
+    {
+      "id": "divider-orientation-switch",
+      "title": "Switch orientation at various breakpoints",
+      "html": "<div class=\"pf-v6-l-flex\"><div class=\"pf-v6-l-flex__item\">First item</div><hr class=\"pf-v6-c-divider pf-m-vertical pf-m-horizontal-on-sm pf-m-vertical-on-md pf-m-horizontal-on-lg pf-m-vertical-on-xl pf-m-horizontal-on-2xl\" role=\"separator\"><div class=\"pf-v6-l-flex__item\">Second item</div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "hr",
+        "title": "hr"
+      },
+      "pfjSnippet": {
+        "id": "divider-hr",
+        "title": "Using hr"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "li",
+        "title": "li"
+      },
+      "pfjSnippet": {
+        "id": "divider-li",
+        "title": "Using li"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "div",
+        "title": "div"
+      },
+      "pfjSnippet": {
+        "id": "divider-div",
+        "title": "Using div"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "inset-medium",
+        "title": "Inset medium"
+      },
+      "pfjSnippet": {
+        "id": "divider-inset-md",
+        "title": "Inset medium"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical",
+        "title": "Vertical"
+      },
+      "pfjSnippet": {
+        "id": "divider-orientation-vertical",
+        "title": "Vertical in flex layout"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical-inset-medium",
+        "title": "Vertical, inset medium"
+      },
+      "pfjSnippet": {
+        "id": "divider-orientation-vertical-inset-md",
+        "title": "Vertical in flex layout, inset medium"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "in-flex-layout",
+        "title": "In flex layout"
+      },
+      "pfjSnippet": {
+        "id": "divider-orientation-vertical-inset-breakpoints",
+        "title": "Vertical in flex layout, inset at various breakpoints"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "md-inset-no-inset-on-md-3xl-inset-on-lg-lg-inset-on-xl",
+        "title": "Md inset, no inset on md, 3xl inset on lg, lg inset on xl"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical-md-inset-no-inset-on-md-lg-inset-on-lg-sm-inset-on-xl",
+        "title": "Vertical, md inset, no inset on md, lg inset on lg, sm inset on xl"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "vertical-on-lg",
+        "title": "Vertical on lg"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "horizontal-on-lg",
+        "title": "Horizontal on lg"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [
+        "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "hr"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [
+        "role=\"presentation\" on <li> \u2014 present in PF, absent in PFJ",
+        "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "li"
+    },
+    {
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "div"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [
+        "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Inset medium"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-v6-l-flex",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-l-flex__item",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-v6-l-flex\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-l-flex__item\"> \u2014 not in PF",
+        "PFJ has <hr class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+        "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Vertical"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-v6-l-flex",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-l-flex__item",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-inset-md pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-v6-l-flex\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-l-flex__item\"> \u2014 not in PF",
+        "PFJ has <hr class=\"pf-m-inset-md pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+        "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Vertical, inset medium"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-column",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-inset-md",
+          "element": "<hr>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-inset-none-on-md",
+          "element": "<hr>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-inset-sm-on-lg",
+          "element": "<hr>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-inset-xs-on-xl",
+          "element": "<hr>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+        "PFJ has <hr class=\"pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-sm-on-lg pf-m-inset-xs-on-xl pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+        "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "In flex layout"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Md inset, no inset on md, 3xl inset on lg, lg inset on xl",
+      "description": "implement Md inset, no inset on md, 3xl inset on lg, lg inset on xl variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Vertical, md inset, no inset on md, lg inset on lg, sm inset on xl",
+      "description": "implement Vertical, md inset, no inset on md, lg inset on lg, sm inset on xl variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Vertical on lg",
+      "description": "implement Vertical on lg variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Horizontal on lg",
+      "description": "implement Horizontal on lg variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "fix_attribute",
+      "title": "hr",
+      "description": "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "hr"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_attribute",
+      "title": "li",
+      "description": "role=\"presentation\" on <li> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "li"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_attribute",
+      "title": "li",
+      "description": "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "li"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_attribute",
+      "title": "Inset medium",
+      "description": "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Inset medium"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_structure",
+      "title": "Vertical",
+      "description": "PF has <div class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_structure",
+      "title": "Vertical",
+      "description": "PFJ has <div class=\"pf-v6-l-flex\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_structure",
+      "title": "Vertical",
+      "description": "PFJ has <div class=\"pf-v6-l-flex__item\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_structure",
+      "title": "Vertical",
+      "description": "PFJ has <hr class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_attribute",
+      "title": "Vertical",
+      "description": "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_attribute",
+      "title": "Vertical",
+      "description": "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_structure",
+      "title": "Vertical, inset medium",
+      "description": "PF has <div class=\"pf-m-inset-md pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_structure",
+      "title": "Vertical, inset medium",
+      "description": "PFJ has <div class=\"pf-v6-l-flex\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_structure",
+      "title": "Vertical, inset medium",
+      "description": "PFJ has <div class=\"pf-v6-l-flex__item\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_structure",
+      "title": "Vertical, inset medium",
+      "description": "PFJ has <hr class=\"pf-m-inset-md pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_attribute",
+      "title": "Vertical, inset medium",
+      "description": "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_attribute",
+      "title": "Vertical, inset medium",
+      "description": "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Vertical, inset medium"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_css",
+      "title": "In flex layout",
+      "description": "add missing class pf-m-column on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "In flex layout"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_structure",
+      "title": "In flex layout",
+      "description": "PF has <div class=\"pf-m-vertical pf-v6-c-divider\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "In flex layout"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_structure",
+      "title": "In flex layout",
+      "description": "PFJ has <hr class=\"pf-m-inset-md pf-m-inset-none-on-md pf-m-inset-sm-on-lg pf-m-inset-xs-on-xl pf-m-vertical pf-v6-c-divider\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "In flex layout"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "In flex layout",
+      "description": "role=\"separator\" on <div> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "In flex layout"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_attribute",
+      "title": "In flex layout",
+      "description": "role=\"separator\" on <hr> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "In flex layout"
+      ]
+    }
+  ]
+}

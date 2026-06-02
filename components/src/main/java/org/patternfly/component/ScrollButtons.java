@@ -17,7 +17,6 @@ package org.patternfly.component;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.patternfly.component.button.Button;
-import org.patternfly.core.Aria;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.ObservableValue;
 
@@ -35,12 +34,11 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.resize;
 import static org.jboss.elemento.EventType.scroll;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.LanguageDirection.languageDirection;
 import static org.patternfly.core.ObservableValue.ov;
-import static org.patternfly.icon.IconSets.rhUi.caretLeft;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretLeft;
+import static org.patternfly.icon.IconSets.rhMicrons.caretRight;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.scrollable;
 
@@ -82,14 +80,12 @@ public class ScrollButtons {
                 .add(scrollBack = button().icon(caretLeft())
                         .plain()
                         .disabled()
-                        .aria(hidden, true)
                         .aria(label, "Scroll back"))
                 .element();
         scrollForwardContainer = div().css(css)
                 .add(scrollForward = button().icon(caretRight())
                         .plain()
                         .disabled()
-                        .aria(hidden, true)
                         .aria(label, "Scroll forward"))
                 .element();
         setVisible(scrollBackContainer, false);
@@ -116,14 +112,8 @@ public class ScrollButtons {
             setVisible(scrollBackContainer, current);
             setVisible(scrollForwardContainer, current);
         });
-        disableBackScrollButton.subscribe((current, __) -> {
-            scrollBack.disabled(current);
-            scrollBack.aria(Aria.disabled, current);
-        });
-        disableForwardScrollButton.subscribe((current, __) -> {
-            scrollForward.disabled(current);
-            scrollForward.aria(Aria.disabled, current);
-        });
+        disableBackScrollButton.subscribe((current, __) -> scrollBack.disabled(current));
+        disableForwardScrollButton.subscribe((current, __) -> scrollForward.disabled(current));
         resizeHandler = bind(window, resize.name, e -> updateScrollState());
         updateScrollState();
     }

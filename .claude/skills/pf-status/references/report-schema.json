@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PF Status Report",
+  "description": "Unified status dashboard for all PatternFly Java components across lint, compare, align, and update dimensions.",
+  "type": "object",
+  "required": ["date", "stats", "components"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Report generation date (YYYY-MM-DD)"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "linted": { "type": "integer" },
+        "compared": { "type": "integer" },
+        "aligned": { "type": "integer" },
+        "updateChecked": { "type": "integer" },
+        "outdated": { "type": "integer" }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "Per-component status across all dimensions",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "lint": {
+            "type": ["object", "null"],
+            "description": "Null if not yet linted",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "status": { "type": "string", "enum": ["clean", "issues"] },
+              "errors": { "type": "integer" },
+              "warnings": { "type": "integer" }
+            }
+          },
+          "compare": {
+            "type": ["object", "null"],
+            "description": "Null if not yet compared",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "pfVersion": { "type": "string" },
+              "pfTotal": { "type": "integer" },
+              "pfjTotal": { "type": "integer" },
+              "matched": { "type": "integer" },
+              "percentage": { "type": "integer" },
+              "missingInPfj": { "type": "array", "items": { "type": "string" } },
+              "extraInPfj": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "align": {
+            "type": ["object", "null"],
+            "description": "Null if not started",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "status": { "type": "string", "enum": ["done", "in_progress", "partial"] },
+              "implemented": { "type": "integer" },
+              "total": { "type": "integer" }
+            }
+          },
+          "update": {
+            "type": ["object", "null"],
+            "description": "Null if no update report exists",
+            "properties": {
+              "status": { "type": "string", "enum": ["current", "outdated"] },
+              "version": { "type": "string", "description": "PF version from update report" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

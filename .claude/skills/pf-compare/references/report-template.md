@@ -1,6 +1,6 @@
 # Report Template
 
-Use this template when generating the comparison report in Step 7.
+Use this template when generating the markdown comparison report in Step 7. A companion JSON file (`<COMPONENT>.json`) is written alongside this markdown report using the schema from `report-schema.json` — see `examples/button.json` for the expected format.
 
 ```markdown
 ---

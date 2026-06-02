@@ -1,0 +1,82 @@
+{
+  "component": "badge",
+  "date": "2026-05-28",
+  "pfVersion": "Release 6.1",
+  "pfUrl": "https://www.patternfly.org/components/badge/html",
+  "pfjUrl": "http://localhost:1234/components/badge",
+  "completeness": {
+    "pfTotal": 3,
+    "pfjTotal": 2,
+    "matched": 2,
+    "missingInPfj": ["with-tooltip"],
+    "extraInPfj": []
+  },
+  "variations": [
+    { "slug": "read", "title": "Read", "html": "<div class=\"ws-core-c-badge-read\"><span class=\"pf-v6-c-badge pf-m-read\">7</span></div>" },
+    { "slug": "unread", "title": "Unread", "html": "<div class=\"ws-core-c-badge-unread\"><span class=\"pf-v6-c-badge\">7</span></div>" },
+    { "slug": "with-tooltip", "title": "With tooltip", "html": "<div class=\"ws-core-c-badge-with-tooltip\"><span class=\"pf-v6-c-badge\">7</span></div>" }
+  ],
+  "snippets": [
+    { "id": "read-badges", "title": "Read badges", "html": "<div id=\"read-badges\"><span class=\"pf-v6-c-badge pf-m-read\">7</span></div>" },
+    { "id": "unread-badges", "title": "Unread badges", "html": "<div id=\"unread-badges\"><span class=\"pf-v6-c-badge\">7</span></div>" }
+  ],
+  "matches": [
+    {
+      "pfVariation": { "slug": "read", "title": "Read" },
+      "pfjSnippet": { "id": "read-badges", "title": "Read badges" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "unread", "title": "Unread" },
+      "pfjSnippet": { "id": "unread-badges", "title": "Unread badges" },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": { "slug": "with-tooltip", "title": "With tooltip" },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "variation": "Read",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Unread",
+      "status": "differences_found",
+      "missingClasses": [
+        { "class": "pf-m-overflow", "element": "<span>", "context": "present in PF, absent in PFJ" }
+      ],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "With tooltip",
+      "description": "implement badge with tooltip on hover",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "fix_css",
+      "title": "Unread",
+      "description": "add .pf-m-overflow modifier class",
+      "category": "dom_css_fixes",
+      "variations": ["Unread"]
+    }
+  ]
+}

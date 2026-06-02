@@ -1,0 +1,550 @@
+{
+  "component": "hint",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/hint/html",
+  "pfjUrl": "http://localhost:1234/components/hint",
+  "completeness": {
+    "pfTotal": 3,
+    "pfjTotal": 3,
+    "matched": 2,
+    "missingInPfj": [
+      "actions-with-no-offset"
+    ],
+    "extraInPfj": [
+      "hint-with-action"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "hint-with-title",
+      "title": "Hint with title",
+      "html": "<div class=\"pf-v6-c-hint\">\n  <div class=\"pf-v6-c-hint__actions\">\n    <button class=\"pf-v6-c-menu-toggle pf-m-plain\" type=\"button\" aria-expanded=\"false\" aria-label=\"Hint with title example actions\" id=\"hint-with-title-example-hint\">\n      <span class=\"pf-v6-c-menu-toggle__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M12.25 5c0-2.068 1.683-3.75 3.75-3.75S19.75 2.932 19.75 5 18.067 8.75 16 8.75 12.25 7.068 12.25 5ZM16 12.25c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Zm0 11c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-hint__title\">Do more with Find it Fix it capabilities</div>\n  <div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div>\n</div>\n\n<br>\n\n<div class=\"pf-v6-c-hint\">\n  <div class=\"pf-v6-c-hint__actions\">\n    <button class=\"pf-v6-c-menu-toggle pf-m-plain\" type=\"button\" aria-expanded=\"false\" aria-label=\"Hint with title and footer example actions\" id=\"hint-with-title-and-actions-example-hint\">\n      <span class=\"pf-v6-c-menu-toggle__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M12.25 5c0-2.068 1.683-3.75 3.75-3.75S19.75 2.932 19.75 5 18.067 8.75 16 8.75 12.25 7.068 12.25 5ZM16 12.25c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Zm0 11c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-hint__title\">Do more with Find it Fix it capabilities</div>\n  <div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div>\n  <div class=\"pf-v6-c-hint__footer\">\n    <button class=\"pf-v6-c-button pf-m-inline pf-m-link\" type=\"button\">\n      <span class=\"pf-v6-c-button__text\">Try it for 90 days</span>\n    </button>\n  </div>\n</div>"
+    },
+    {
+      "slug": "default-with-no-title",
+      "title": "Default with no title",
+      "html": "<div class=\"pf-v6-c-hint\">\n  <div class=\"pf-v6-c-hint__body\">\n    Welcome to the new documentation experience.\n    <a href=\"#\">Learn more about the improved features</a>.\n  </div>\n</div>\n\n<br>\n\n<div class=\"pf-v6-c-hint\">\n  <div class=\"pf-v6-c-hint__actions\">\n    <button class=\"pf-v6-c-menu-toggle pf-m-plain\" type=\"button\" aria-expanded=\"false\" aria-label=\"Hint without title example actions\" id=\"hint-with-no-title-example-hint\">\n      <span class=\"pf-v6-c-menu-toggle__icon\">\n        <svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\">\n          <path d=\"M12.25 5c0-2.068 1.683-3.75 3.75-3.75S19.75 2.932 19.75 5 18.067 8.75 16 8.75 12.25 7.068 12.25 5ZM16 12.25c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Zm0 11c-2.067 0-3.75 1.682-3.75 3.75s1.683 3.75 3.75 3.75 3.75-1.682 3.75-3.75-1.683-3.75-3.75-3.75Z\"></path>\n        </svg>\n      </span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div>\n  <div class=\"pf-v6-c-hint__footer\">\n    <button class=\"pf-v6-c-button pf-m-inline pf-m-link\" type=\"button\">\n      <span class=\"pf-v6-c-button__text\">Try it for 90 days</span>\n    </button>\n  </div>\n</div>"
+    },
+    {
+      "slug": "actions-with-no-offset",
+      "title": "Actions with no offset",
+      "html": "<div class=\"pf-v6-c-hint\">\n  <div class=\"pf-v6-c-hint__actions pf-m-no-offset\">\n    <button class=\"pf-v6-c-button pf-m-primary\" type=\"button\">\n      <span class=\"pf-v6-c-button__text\">Action</span>\n    </button>\n  </div>\n  <div class=\"pf-v6-c-hint__title\">Do more with Find it Fix it capabilities</div>\n  <div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "hint-basic",
+      "title": "Basic with title",
+      "html": "<div class=\"pf-v6-c-hint\"><div class=\"pf-v6-c-hint__actions\"><button type=\"button\" class=\"pf-v6-c-menu-toggle pf-m-plain\" aria-expanded=\"false\" aria-label=\"Column actions\" on-detach-uid=\"d-id-44\" style=\"anchor-name: --overlay-id-42;\"><span class=\"pf-v6-c-menu-toggle__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"ellipsis-vertical\"><!--Red Hat, Inc. MIT--><path d=\"M16 9c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4Zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2Zm0 9c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4Zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2Zm0 5c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4Zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2Z\"></path></svg></span></button><div class=\"pf-v6-c-overlay pf-m-bottom-left pf-m-css-positioning\" popover=\"manual\" style=\"position-anchor: --overlay-id-42; margin: 0px;\"><div class=\"pf-v6-c-menu\" data-pfcsmu=\"1137746a-4f11-4ece-8a6d-8d230c4e9830\" on-detach-uid=\"d-id-46 d-id-48\" style=\"--pf-v6-c-menu--TransitionDuration: 0;\"><div class=\"pf-v6-c-menu__content\" on-detach-uid=\"d-id-50\"><ul class=\"pf-v6-c-menu__list\" data-pfcsmuml=\"9c8e7731-7f47-4ff8-9a56-54aac387c00a\" on-detach-uid=\"d-id-51 d-id-53\" role=\"menu\"><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-item-0\" on-detach-uid=\"d-id-55\"><button type=\"button\" tabindex=\"0\" class=\"pf-v6-c-menu__item\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Action</span></span></button></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-item-1\" on-detach-uid=\"d-id-57\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-item-1\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Link</span></span></a></li><li class=\"pf-v6-c-menu__list-item pf-m-disabled\" role=\"none\" data-identifier=\"hint-basic-item-2\" on-detach-uid=\"d-id-59\"><button type=\"button\" tabindex=\"-1\" class=\"pf-v6-c-menu__item\" disabled=\"\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Disabled action</span></span></button></li><li class=\"pf-v6-c-menu__list-item pf-m-disabled\" role=\"none\" data-identifier=\"hint-basic-item-3\" on-detach-uid=\"d-id-61\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-item-3\" aria-disabled=\"true\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Disabled link</span></span></a></li><li class=\"pf-v6-c-divider\" role=\"separator\"></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-item-4\" on-detach-uid=\"d-id-63\"><button type=\"button\" tabindex=\"-1\" class=\"pf-v6-c-menu__item\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Separated action</span></span></button></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-item-5\" on-detach-uid=\"d-id-65\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-item-5\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Separated link</span></span></a></li></ul></div></div></div></div><div class=\"pf-v6-c-hint__title\">Do more with Find it Fix it capabilities</div><div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div><div class=\"pf-v6-c-hint__footer\"><button class=\"pf-v6-c-button pf-m-link pf-m-inline\" type=\"button\"><span class=\"pf-v6-c-button__text\">Try it for 90 days</span></button></div></div>"
+    },
+    {
+      "id": "hint-basic-no-title",
+      "title": "Basic without title",
+      "html": "<div class=\"pf-v6-c-hint\"><div class=\"pf-v6-c-hint__body\">Welcome to the new documentation experience. <button class=\"pf-v6-c-button pf-m-link pf-m-inline\" type=\"button\"><span class=\"pf-v6-c-button__text\">Learn more about the improved features.</span></button></div></div><br><div class=\"pf-v6-c-hint\"><div class=\"pf-v6-c-hint__actions\"><button type=\"button\" class=\"pf-v6-c-menu-toggle pf-m-plain\" aria-expanded=\"false\" aria-label=\"Column actions\" on-detach-uid=\"d-id-82\" style=\"anchor-name: --overlay-id-80;\"><span class=\"pf-v6-c-menu-toggle__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"ellipsis-vertical\"><!--Red Hat, Inc. MIT--><path d=\"M16 9c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4Zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2Zm0 9c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4Zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2Zm0 5c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4Zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2Z\"></path></svg></span></button><div class=\"pf-v6-c-overlay pf-m-bottom-left pf-m-css-positioning\" popover=\"manual\" style=\"position-anchor: --overlay-id-80; margin: 0px;\"><div class=\"pf-v6-c-menu\" data-pfcsmu=\"e224ef57-1ddd-4177-8aa8-a9ac7f1ed2d3\" on-detach-uid=\"d-id-84 d-id-86\" style=\"--pf-v6-c-menu--TransitionDuration: 0;\"><div class=\"pf-v6-c-menu__content\" on-detach-uid=\"d-id-88\"><ul class=\"pf-v6-c-menu__list\" data-pfcsmuml=\"13a2ed46-157d-447a-9ce4-f04972825f56\" on-detach-uid=\"d-id-89 d-id-91\" role=\"menu\"><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-no-title-item-0\" on-detach-uid=\"d-id-93\"><button type=\"button\" tabindex=\"0\" class=\"pf-v6-c-menu__item\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Action</span></span></button></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-no-title-item-1\" on-detach-uid=\"d-id-95\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-no-title-item-1\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Link</span></span></a></li><li class=\"pf-v6-c-menu__list-item pf-m-disabled\" role=\"none\" data-identifier=\"hint-basic-no-title-item-2\" on-detach-uid=\"d-id-97\"><button type=\"button\" tabindex=\"-1\" class=\"pf-v6-c-menu__item\" disabled=\"\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Disabled action</span></span></button></li><li class=\"pf-v6-c-menu__list-item pf-m-disabled\" role=\"none\" data-identifier=\"hint-basic-no-title-item-3\" on-detach-uid=\"d-id-99\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-no-title-item-3\" aria-disabled=\"true\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Disabled link</span></span></a></li><li class=\"pf-v6-c-divider\" role=\"separator\"></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-no-title-item-4\" on-detach-uid=\"d-id-101\"><button type=\"button\" tabindex=\"-1\" class=\"pf-v6-c-menu__item\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Separated action</span></span></button></li><li class=\"pf-v6-c-menu__list-item\" role=\"none\" data-identifier=\"hint-basic-no-title-item-5\" on-detach-uid=\"d-id-103\"><a tabindex=\"-1\" class=\"pf-v6-c-menu__item\" href=\"#hint-basic-no-title-item-5\" role=\"menuitem\"><span class=\"pf-v6-c-menu__item-main\"><span class=\"pf-v6-c-menu__item-text\">Separated link</span></span></a></li></ul></div></div></div></div><div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div><div class=\"pf-v6-c-hint__footer\"><button class=\"pf-v6-c-button pf-m-link pf-m-inline\" type=\"button\"><span class=\"pf-v6-c-button__text\">Try it for 90 days</span></button></div></div>"
+    },
+    {
+      "id": "hint-with-action",
+      "title": "With actions",
+      "html": "<div class=\"pf-v6-c-check\"><input type=\"checkbox\" class=\"pf-v6-c-check__input\" id=\"no-offset\" name=\"no-offset\"><label class=\"pf-v6-c-check__label\" for=\"no-offset\">No actions offset</label></div><div class=\"pf-v6-c-hint pf-v6-u-mt-sm\"><div class=\"pf-v6-c-hint__actions\"><button class=\"pf-v6-c-button pf-m-primary\" type=\"button\"><span class=\"pf-v6-c-button__text\">Action</span></button></div><div class=\"pf-v6-c-hint__title\">Do more with Find it Fix it capabilities</div><div class=\"pf-v6-c-hint__body\">Upgrade to Red Hat Smart Management to remediate all your systems across regions and geographies.</div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "hint-with-title",
+        "title": "Hint with title"
+      },
+      "pfjSnippet": {
+        "id": "hint-basic",
+        "title": "Basic with title"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "default-with-no-title",
+        "title": "Default with no title"
+      },
+      "pfjSnippet": {
+        "id": "hint-basic-no-title",
+        "title": "Basic without title"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "actions-with-no-offset",
+        "title": "Actions with no offset"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-bottom-left",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-disabled",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-divider",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item",
+          "element": "<button>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item-main",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item-text",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__list",
+          "element": "<ul>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__list-item",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-overlay",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PFJ has <div class=\"pf-m-bottom-left pf-m-css-positioning pf-v6-c-overlay\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-menu\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-menu__content\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-label=\"Hint with title and footer example actions\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Hint with title example actions\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"true\" on <a> \u2014 present in PFJ, absent in PF",
+        "aria-label=\"Column actions\" on <button> \u2014 present in PFJ, absent in PF",
+        "role=\"menu\" on <ul> \u2014 present in PFJ, absent in PF",
+        "role=\"menuitem\" on <a> \u2014 present in PFJ, absent in PF",
+        "role=\"menuitem\" on <button> \u2014 present in PFJ, absent in PF",
+        "role=\"none\" on <li> \u2014 present in PFJ, absent in PF",
+        "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"-1\" on <a> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"-1\" on <button> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"0\" on <button> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Hint with title"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [
+        {
+          "class": "pf-m-bottom-left",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-disabled",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-divider",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item",
+          "element": "<button>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item-main",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__item-text",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__list",
+          "element": "<ul>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-menu__list-item",
+          "element": "<li>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-overlay",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PFJ has <div class=\"pf-m-bottom-left pf-m-css-positioning pf-v6-c-overlay\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-menu\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-label=\"Hint without title example actions\" on <button> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"true\" on <a> \u2014 present in PFJ, absent in PF",
+        "aria-label=\"Column actions\" on <button> \u2014 present in PFJ, absent in PF",
+        "role=\"menu\" on <ul> \u2014 present in PFJ, absent in PF",
+        "role=\"menuitem\" on <a> \u2014 present in PFJ, absent in PF",
+        "role=\"menuitem\" on <button> \u2014 present in PFJ, absent in PF",
+        "role=\"none\" on <li> \u2014 present in PFJ, absent in PF",
+        "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"-1\" on <a> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"-1\" on <button> \u2014 present in PFJ, absent in PF",
+        "tabindex=\"0\" on <button> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Default with no title"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Actions with no offset",
+      "description": "implement Actions with no offset variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "fix_structure",
+      "title": "Hint with title",
+      "description": "PFJ has <div class=\"pf-m-bottom-left pf-m-css-positioning pf-v6-c-overlay\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "fix_structure",
+      "title": "Hint with title",
+      "description": "PFJ has <div class=\"pf-v6-c-menu\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_structure",
+      "title": "Hint with title",
+      "description": "PFJ has <div class=\"pf-v6-c-menu__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "aria-label=\"Hint with title and footer example actions\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "aria-label=\"Hint with title example actions\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "aria-disabled=\"true\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "aria-label=\"Column actions\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "role=\"menu\" on <ul> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "role=\"menuitem\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "role=\"menuitem\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "role=\"none\" on <li> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "tabindex=\"-1\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "tabindex=\"-1\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_attribute",
+      "title": "Hint with title",
+      "description": "tabindex=\"0\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hint with title"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_structure",
+      "title": "Default with no title",
+      "description": "PFJ has <div class=\"pf-m-bottom-left pf-m-css-positioning pf-v6-c-overlay\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_structure",
+      "title": "Default with no title",
+      "description": "PFJ has <div class=\"pf-v6-c-menu\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "aria-label=\"Hint without title example actions\" on <button> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "aria-disabled=\"true\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "aria-label=\"Column actions\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "role=\"menu\" on <ul> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "role=\"menuitem\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "role=\"menuitem\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "role=\"none\" on <li> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "role=\"separator\" on <li> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "tabindex=\"-1\" on <a> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "tabindex=\"-1\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_attribute",
+      "title": "Default with no title",
+      "description": "tabindex=\"0\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default with no title"
+      ]
+    }
+  ]
+}
