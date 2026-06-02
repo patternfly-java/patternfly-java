@@ -21,7 +21,7 @@ import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkRehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
 import rehypeShiki from '@shikijs/rehype';
 import rehypeStringify from 'rehype-stringify';
 import YAML from 'yaml';
@@ -94,7 +94,6 @@ async function createProcessor() {
         .use(extractToc)
         .use(remarkRehype, {allowDangerousHtml: true})
         .use(rehypeSlug)
-        .use(rehypeAutolinkHeadings, {behavior: 'wrap'})
         .use(addHeadingClasses)
         .use(rehypeShiki, {
             theme: 'github-light',

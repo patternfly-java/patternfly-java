@@ -30,7 +30,7 @@ import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.fetch;
 import static org.jboss.elemento.router.Place.place;
-import static org.jboss.elemento.router.Places.places;
+
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
 
@@ -70,7 +70,7 @@ public final class MarkdownManifest {
     // ------------------------------------------------------ places
 
     public Places places() {
-        Places allPlaces = places();
+        Places allPlaces = Places.places();
         addPlaces(allPlaces, items);
         return allPlaces;
     }
@@ -115,10 +115,6 @@ public final class MarkdownManifest {
         }
         org.patternfly.component.navigation.ExpandableNavigationGroup navGroup =
                 expandableNavigationGroup(group.id, group.title);
-        if (group.hasContent) {
-            Place place = pm.place(group.route);
-            navGroup.addItem(navigationItem(place.route, place.title, place.route));
-        }
         if (group.children != null) {
             for (ManifestItem child : group.children) {
                 if ("page".equals(child.type)) {
