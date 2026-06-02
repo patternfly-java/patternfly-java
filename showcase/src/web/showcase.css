@@ -42,6 +42,36 @@
     left: 600px;
 }
 
+/* ------------------------------------------------------ demo styling */
+
+#ws-core-c-back-to-top-basic {
+    height: 300px;
+    position: relative;
+}
+
+.ws-back-to-top {
+    z-index: var(--pf-t--global--z-index--2xl);
+}
+
+#ws-react-c-label-filled-labels .pf-v6-c-label,
+#ws-react-c-label-outlined-labels .pf-v6-c-label,
+#ws-react-c-label-compact-labels .pf-v6-c-label {
+    margin-inline-end: var(--pf-t--global--spacer--sm);
+    margin-block-end: var(--pf-t--global--spacer--sm);
+}
+
+.truncate-example-resize {
+    width: 320px;
+    resize: horizontal;
+    overflow: auto;
+    min-width: 161px;
+    max-width: 100%;
+    padding: var(--pf-t--global--spacer--md);
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
+}
+
+/* ------------------------------------------------------ code highlighting */
+
 .hljs {
     background-color: var(--pf-t--global--background--color--200) !important;
 }

@@ -28,6 +28,7 @@ import org.patternfly.style.Classes;
 import static elemental2.dom.DomGlobal.location;
 import static org.gwtproject.safehtml.shared.SafeHtmlUtils.fromSafeConstant;
 import static org.jboss.elemento.Elements.body;
+import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
@@ -70,7 +71,7 @@ import static org.patternfly.style.Variables.Height;
 
 public final class Showcase {
 
-    private static final String MAIN_ID = "pfj-main-id";
+    private static final String MAIN_ID = "ws-page-main";
     private static final Logger logger = Logger.getLogger(Showcase.class.getName());
     private static PlaceManager placeManager;
 
@@ -137,7 +138,7 @@ public final class Showcase {
                         .addGroup(manifest.navGroup(placeManager, "developer"))
                         .add(manifest.navItem(placeManager, "/get-involved")));
 
-        body().add(page()
+        body().add(div().id("ws-router").add(page().id("ws-page")
                 .addSkipToContent(skipToContent(MAIN_ID))
                 .addMasthead(masthead()
                         .addMain(mastheadMain()
@@ -161,7 +162,7 @@ public final class Showcase {
                                 .addNavigation(navigation)))
                 .addMain(pageMain(MAIN_ID))
                 .add(backToTop().css("ws-back-to-top")
-                        .scrollableSelector(By.id(MAIN_ID))));
+                        .scrollableSelector(By.id(MAIN_ID)))));
 
         placeManager.start();
         logger.info("PatternFly version:      %s", Version.PATTERN_FLY_VERSION);

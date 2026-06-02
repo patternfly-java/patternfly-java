@@ -17,6 +17,7 @@
 allowBuilds:
   esbuild: true
   puppeteer: false
+  sharp: true
 
 ignoredBuiltDependencies:
   - puppeteer

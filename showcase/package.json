@@ -15,6 +15,7 @@
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {
+    "@patternfly/documentation-framework": "^6.44.0",
     "@shikijs/rehype": "^4.1.0",
     "esbuild": "^0.28.0",
     "http-server": "^14.1.1",
