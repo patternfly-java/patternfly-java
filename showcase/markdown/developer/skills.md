@@ -28,7 +28,7 @@ Produces a markdown report and a JSON companion file:
 
 ### /pf-align
 
-Implements action items from a `/pf-compare` report. Reads the JSON companion file for structured data and cached HTML. Falls back to the markdown report if the JSON is not available. Translates reference HTML to the Java builder API and integrates it into the existing component.
+Implements action items from a `/pf-compare` report. Reads the JSON companion file for structured data and cached HTML. Falls back to browser extraction only when a specific variation's HTML is missing from the JSON. Translates reference HTML to the Java builder API and integrates it into the existing component.
 
 ```bash
 /pf-align button
@@ -64,12 +64,12 @@ Verifies that a PFJ component follows the project's conventions for documentatio
 /pf-lint card
 ```
 
-Writes per-component JSON reports to `docs/pf-lint/<component>.json`. Checks include:
+Writes per-component JSON reports to `docs/pf-lint/<component>.json` and an aggregate `docs/pf-lint/summary.md`. Checks include:
 - Section markers and order (`factory`, `instance`, `add`, `builder`, `aria`, `events`, `api`, `internal`)
 - Javadoc completeness and format
 - Factory method naming
 - Modifier interface usage
-- Import order and formatting
+- Constructor visibility and placement
 
 ### /pf-status
 
@@ -80,7 +80,7 @@ Shows a unified status dashboard across lint, compare, align, and update dimensi
 /pf-status button
 ```
 
-Reads JSON report files from previous skill runs — does not analyze source code directly. Writes a unified `docs/pf-status/summary.json`.
+Reads JSON report files from previous skill runs — does not analyze source code directly. Writes `docs/pf-status/summary.json` and `docs/pf-status/summary.md`.
 
 ### /pf-update
 
@@ -139,7 +139,7 @@ The skills form a pipeline where each skill's output feeds into the next:
 | `/pf-update` | Nothing (fetches from GitHub) | `docs/pf-update/<version>.md` + `.json` |
 | `/pf-compare` | Dev env running (for browser access) | `docs/pf-compare/<component>.md` + `.json` |
 | `/pf-align` | `docs/pf-compare/<component>.json` | `docs/pf-align/<component>.json` |
-| `/pf-lint` | Nothing (reads source code directly) | `docs/pf-lint/<component>.json` + `summary.md` |
+| `/pf-lint` | Nothing (reads source code directly) | `docs/pf-lint/<component>.json` + `docs/pf-lint/summary.md` |
 | `/pf-status` | JSON reports from other skills | `docs/pf-status/summary.json` + `summary.md` |
 
 ### Independent vs. Sequential
