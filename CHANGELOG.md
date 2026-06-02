@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Fix charts/npm lockfile out of sync with package.json, causing showcase publish workflow to fail
 - Fix accordion alignment: correct toggle icon (`rhMicrons.caretDown`), wrap button in `<dt>`/`<h>`, add `pf-m-toggle-start`, `pf-m-bordered`, `role="region"`, and missing Javadoc
 - Fix navigation alignment: correct expandable group icon, add `inert` on collapsed subnav, add `id`/`aria-labelledby` to sections, remove extra dividers and incorrect ARIA attributes on scroll buttons
 - Fix icon usage across components: button close/copy icons, scroll button icons, navigation demo icons — switch to correct rhMicrons/rhUi sets
