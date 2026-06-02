@@ -32,7 +32,10 @@ import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
+import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
@@ -56,6 +59,7 @@ import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
+import static org.patternfly.token.Token.globalSpacerXs;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fullHeight;
 import static org.patternfly.style.Classes.modifier;
@@ -95,34 +99,43 @@ public final class Showcase {
                 .afterPlace((pm, place) -> navigation.select(place.route));
 
         navigation
-                .addItem(manifest.navItem(placeManager, "/get-started"))
-                .addGroup(manifest.navGroup(placeManager, "concepts"))
-                .addGroup(expandableNavigationGroup("components", "Components")
-                        .addItem(ni("/components/all-components"))
-                        .addItems(topLevelComponents(), component ->
-                                navigationItem(component.route, component.title, component.route))
-                        .insertGroupAfter(expandableNavigationGroup("forms", "Forms")
-                                        .addItems(groupComponents("forms"), sc ->
-                                                navigationItem(sc.route, sc.title, sc.route)),
-                                "/components/expandable-section")
-                        .insertGroupAfter(expandableNavigationGroup("menus", "Menus")
-                                        .addItems(groupComponents("menus"), sc ->
-                                                navigationItem(sc.route, sc.title, sc.route)),
-                                "/components/masthead"))
-                .addGroup(expandableNavigationGroup("extensions", "Extensions")
-                        .addItem(ni("/extensions/about-extensions", "About extensions"))
-                        .addItems(extensions(), extension ->
-                                navigationItem(extension.route, extension.title, extension.route)))
-                .addGroup(expandableNavigationGroup("charts", "Charts")
-                        .addItem(ni("/charts/about-charts", "About charts"))
-                        .addItems(charts(), chart ->
-                                navigationItem(chart.route, chart.title, chart.route)))
-                .addGroup(expandableNavigationGroup("layouts", "Layouts")
-                        .addItem(ni("/layouts/about-layouts", "About layouts"))
-                        .addItems(layouts(), layout ->
-                                navigationItem(layout.route, layout.title, layout.route)))
-                .addGroup(manifest.navGroup(placeManager, "developer"))
-                .addItem(manifest.navItem(placeManager, "/get-involved"));
+                .addGroup(navigationGroup("learn", "Learn")
+                        .add(manifest.navItem(placeManager, "/get-started"))
+                        .addGroup(manifest.navGroup(placeManager, "concepts")))
+                .add(divider(hr)
+                        .style("margin-top", globalSpacerXs.var)
+                        .style("margin-bottom", globalSpacerXs.var))
+                .addGroup(navigationGroup("design-develop", "Design and develop")
+                        .addGroup(expandableNavigationGroup("components", "Components")
+                                .addItem(ni("/components/all-components"))
+                                .addItems(topLevelComponents(), component ->
+                                        navigationItem(component.route, component.title, component.route))
+                                .insertGroupAfter(expandableNavigationGroup("forms", "Forms")
+                                                .addItems(groupComponents("forms"), sc ->
+                                                        navigationItem(sc.route, sc.title, sc.route)),
+                                        "/components/expandable-section")
+                                .insertGroupAfter(expandableNavigationGroup("menus", "Menus")
+                                                .addItems(groupComponents("menus"), sc ->
+                                                        navigationItem(sc.route, sc.title, sc.route)),
+                                        "/components/masthead"))
+                        .addGroup(expandableNavigationGroup("extensions", "Extensions")
+                                .addItem(ni("/extensions/about-extensions", "About extensions"))
+                                .addItems(extensions(), extension ->
+                                        navigationItem(extension.route, extension.title, extension.route)))
+                        .addGroup(expandableNavigationGroup("charts", "Charts")
+                                .addItem(ni("/charts/about-charts", "About charts"))
+                                .addItems(charts(), chart ->
+                                        navigationItem(chart.route, chart.title, chart.route)))
+                        .addGroup(expandableNavigationGroup("layouts", "Layouts")
+                                .addItem(ni("/layouts/about-layouts", "About layouts"))
+                                .addItems(layouts(), layout ->
+                                        navigationItem(layout.route, layout.title, layout.route))))
+                .add(divider(hr)
+                        .style("margin-top", globalSpacerXs.var)
+                        .style("margin-bottom", globalSpacerXs.var))
+                .addGroup(navigationGroup("contribute", "Contribute")
+                        .addGroup(manifest.navGroup(placeManager, "developer"))
+                        .add(manifest.navItem(placeManager, "/get-involved")));
 
         body().add(page()
                 .addSkipToContent(skipToContent(MAIN_ID))

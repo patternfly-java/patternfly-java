@@ -80,6 +80,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     private final String identifier;
     private final Map<String, NavigationItem> items;
+    private final Map<String, ExpandableNavigationGroup> expandableGroups;
     private final HTMLHeadingElement headingElement;
     private final HTMLUListElement ul;
     private final AurHandler<NavigationGroup, NavigationItem> aur;
@@ -90,6 +91,7 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
                 .element());
         this.identifier = identifier;
         this.items = new LinkedHashMap<>();
+        this.expandableGroups = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
 
         String titleId = Id.unique(identifier, "title");
@@ -126,6 +128,13 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
 
     public NavigationGroup add(Divider divider) {
         ul.appendChild(divider.element());
+        return this;
+    }
+
+    public NavigationGroup addGroup(ExpandableNavigationGroup group) {
+        group.collapse();
+        expandableGroups.put(group.identifier(), group);
+        ul.appendChild(group.element());
         return this;
     }
 
@@ -244,6 +253,28 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     }
 
     NavigationItem findItem(String id) {
-        return items.get(id);
+        NavigationItem item = items.get(id);
+        if (item == null) {
+            for (ExpandableNavigationGroup group : expandableGroups.values()) {
+                item = group.findItem(id);
+                if (item != null) {
+                    break;
+                }
+            }
+        }
+        return item;
+    }
+
+    ExpandableNavigationGroup findGroup(String id) {
+        ExpandableNavigationGroup group = expandableGroups.get(id);
+        if (group == null) {
+            for (ExpandableNavigationGroup nestedGroup : expandableGroups.values()) {
+                group = nestedGroup.findGroup(id);
+                if (group != null) {
+                    break;
+                }
+            }
+        }
+        return group;
     }
 }

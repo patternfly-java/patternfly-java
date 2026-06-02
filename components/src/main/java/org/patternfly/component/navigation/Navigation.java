@@ -224,7 +224,7 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation add(NavigationGroup group) {
-        if (type == flat || type == expandable || type instanceof Horizontal) {
+        if (type == flat || type instanceof Horizontal) {
             logger.warn("addGroup(NavigationGroup) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
@@ -508,19 +508,16 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private NavigationItem findItem(String id) {
         NavigationItem item = items.get(id);
         if (item == null) {
-            if (type == grouped) {
-                for (NavigationGroup group : groups.values()) {
-                    item = group.findItem(id);
-                    if (item != null) {
-                        break;
-                    }
+            for (NavigationGroup group : groups.values()) {
+                item = group.findItem(id);
+                if (item != null) {
+                    return item;
                 }
-            } else if (type == expandable) {
-                for (ExpandableNavigationGroup group : expandableGroups.values()) {
-                    item = group.findItem(id);
-                    if (item != null) {
-                        break;
-                    }
+            }
+            for (ExpandableNavigationGroup group : expandableGroups.values()) {
+                item = group.findItem(id);
+                if (item != null) {
+                    return item;
                 }
             }
         }
@@ -530,6 +527,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     private ExpandableNavigationGroup findGroup(String id) {
         ExpandableNavigationGroup group = expandableGroups.get(id);
         if (group == null) {
+            for (NavigationGroup section : groups.values()) {
+                group = section.findGroup(id);
+                if (group != null) {
+                    return group;
+                }
+            }
             for (ExpandableNavigationGroup nestedGroup : expandableGroups.values()) {
                 group = nestedGroup.findGroup(id);
                 if (group != null) {
