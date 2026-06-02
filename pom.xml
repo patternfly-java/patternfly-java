@@ -148,6 +148,7 @@
                             <exclude>**/.parcel-cache/**</exclude>
                             <exclude>**/node/**</exclude>
                             <exclude>**/node_modules/**</exclude>
+                            <exclude>docs/**</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -240,6 +241,7 @@
                                     <exclude>README.md</exclude>
                                     <exclude>degraph-style.json</exclude>
                                     <exclude>dependency-graph.dot</exclude>
+                                    <exclude>docs/**</exclude>
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
