@@ -53,6 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improve all 6 skills based on skill-reviewer feedback: clarify script invocation, condense tool listings, add trigger phrases, add error handling guidance, inline frontmatter formats, add first-run file creation instructions
 - Import PatternFly.org styles from npm package instead of stale local copies
 - Replace link-list showcase index pages with `_meta.yaml` navigation groups
+- Make NavigationItem text element lazy — text span only created when text is set, eliminating empty spans in icon-only (docked) navigation items
 
 ### Removed
 
@@ -76,6 +77,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
 - Fix button close icon to use rhMicrons (viewBox 0 0 20 20) matching PatternFly
 - Fix button showcase copy icon from FontAwesome to RH UI
+- Fix scroll button icons using wrong icon set (`rhUi` → `rhMicrons`) to match PatternFly's viewBox
+- Remove incorrect `aria-hidden` and `aria-disabled` attributes from navigation scroll buttons
+- Remove extra divider separators from expandable navigation subnav lists to match PatternFly
+- Fix showcase navigation demos to use Red Hat UI icons instead of FontAwesome
 - Fix `-Dquickly` not skipping J2CL compilation when combined with `-P showcase`
 - Fix heading autolinks and duplicate index navigation items in showcase
 
