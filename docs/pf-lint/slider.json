@@ -1,0 +1,43 @@
+{
+  "component": "slider",
+  "date": "2026-06-02",
+  "files": 7,
+  "errors": 1,
+  "warnings": 3,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Slider.java",
+      "line": 104,
+      "severity": "WARN",
+      "rule": "doc-class-see",
+      "detail": "@see link points to 'https://www.patternfly.org/components/slider#sliderstepobject' instead of the canonical 'https://www.patternfly.org/components/slider'",
+      "fixed": false
+    },
+    {
+      "file": "Slider.java",
+      "line": 547,
+      "severity": "ERROR",
+      "rule": "section-order",
+      "detail": "Non-standard section 'event handler' appears after 'internal'. Only standard sections (factory, instance, add, builder, aria, events, api, internal) are allowed",
+      "fixed": false
+    },
+    {
+      "file": "SliderActions.java",
+      "line": 47,
+      "severity": "WARN",
+      "rule": "section-blank-after",
+      "detail": "Extra blank line after constructor closing brace (line 48 is blank before the section separator at line 51)",
+      "fixed": false
+    },
+    {
+      "file": "SliderActions.java",
+      "line": 31,
+      "severity": "WARN",
+      "rule": "doc-class-javadoc",
+      "detail": "Sub-component class Javadoc uses a plain comment ('/** ... */') but does not end with a period",
+      "fixed": false
+    }
+  ]
+}

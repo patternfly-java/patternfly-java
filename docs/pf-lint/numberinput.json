@@ -1,0 +1,13 @@
+{
+  "component": "numberinput",
+  "date": "2026-06-02",
+  "files": 3,
+  "errors": 0,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {"file": "NumberInput.java", "line": 64, "severity": "WARN", "rule": "decl-implements-order", "detail": "Interfaces: Disabled, HasValue — only two interfaces, on same line as implements; Disabled before HasValue is alphabetically correct", "fixed": false},
+    {"file": "NumberInput.java", "line": 97, "severity": "WARN", "rule": "field-order", "detail": "Non-final private fields min/max at lines 97-98 have inline initializers mixed with uninitialized fields; field disabled at line 99 and string fields at 100-101 follow — order is generally correct but mixing initialized and uninitialized non-final privates is noted", "fixed": false}
+  ]
+}

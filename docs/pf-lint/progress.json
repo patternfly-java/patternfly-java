@@ -1,0 +1,27 @@
+{
+  "component": "progress",
+  "date": "2026-06-02",
+  "files": 4,
+  "errors": 0,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Progress.java",
+      "line": 312,
+      "severity": "WARN",
+      "rule": "section-blank-before",
+      "detail": "No blank line before the 'api' section separator on line 313; the 'events' section's last method ends on line 312 with no gap",
+      "fixed": false
+    },
+    {
+      "file": "Progress.java",
+      "line": 108,
+      "severity": "WARN",
+      "rule": "field-order",
+      "detail": "Private non-final fields (min, max, step, hideStatusIcon, status, label, helperText, titleElement, iconContainer) are interleaved; private final 'changeHandler' list appears after them but should come before non-final private fields",
+      "fixed": false
+    }
+  ]
+}

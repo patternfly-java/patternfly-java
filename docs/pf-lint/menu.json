@@ -1,0 +1,13 @@
+{
+  "component": "menu",
+  "date": "2026-06-02",
+  "files": 43,
+  "errors": 0,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {"file": "MenuItem.java", "line": 157, "severity": "WARN", "rule": "field-order", "detail": "Public static final constants SUB_COMPONENT_ID/SUB_COMPONENT_NAME at lines 157-158 declared after private static final Logger at line 154; public static final should precede private static final (Logger-first exception applies only when Logger is the first static final field)", "fixed": false},
+    {"file": "Menu.java", "line": 559, "severity": "WARN", "rule": "fmt-line-length", "detail": "Multiple lines in the keyboard navigation section exceed 128 characters (e.g., lines 559, 560, 561)", "fixed": false}
+  ]
+}

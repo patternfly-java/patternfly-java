@@ -1,0 +1,137 @@
+{
+  "component": "badge",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/badge/html",
+  "pfjUrl": "http://localhost:1234/components/badge",
+  "completeness": {
+    "pfTotal": 3,
+    "pfjTotal": 2,
+    "matched": 2,
+    "missingInPfj": [
+      "disabled"
+    ],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "read",
+      "title": "Read",
+      "html": "<span class=\"pf-v6-c-badge pf-m-read\">7</span>\n<span class=\"pf-v6-c-badge pf-m-read\">24</span>\n<span class=\"pf-v6-c-badge pf-m-read\">240</span>\n<span class=\"pf-v6-c-badge pf-m-read\">999+</span>"
+    },
+    {
+      "slug": "unread",
+      "title": "Unread",
+      "html": "<span class=\"pf-v6-c-badge pf-m-unread\">\n  7\n  <span class=\"pf-v6-screen-reader\">unread messages</span>\n</span>\n<span class=\"pf-v6-c-badge pf-m-unread\">\n  24\n  <span class=\"pf-v6-screen-reader\">unread messages</span>\n</span>\n<span class=\"pf-v6-c-badge pf-m-unread\">\n  240\n  <span class=\"pf-v6-screen-reader\">unread messages</span>\n</span>\n<span class=\"pf-v6-c-badge pf-m-unread\">\n  999+\n  <span class=\"pf-v6-screen-reader\">unread messages</span>\n</span>"
+    },
+    {
+      "slug": "disabled",
+      "title": "Disabled",
+      "html": "<span class=\"pf-v6-c-badge pf-m-disabled pf-m-read\">7</span>\n<span class=\"pf-v6-c-badge pf-m-disabled pf-m-read\">24</span>\n<span class=\"pf-v6-c-badge pf-m-unread pf-m-disabled\">240</span>\n<span class=\"pf-v6-c-badge pf-m-unread pf-m-disabled\">999+</span>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "badge-read",
+      "title": "Badge (read)",
+      "html": "<span class=\"pf-v6-c-badge pf-m-read\">7</span> <span class=\"pf-v6-c-badge pf-m-read\">24</span> <span class=\"pf-v6-c-badge pf-m-read\">423</span> <span class=\"pf-v6-c-badge pf-m-read\">999+</span><br><span class=\"pf-v6-c-badge pf-m-read\">7 apples</span> <span class=\"pf-v6-c-badge pf-m-read\">24 apples</span> <span class=\"pf-v6-c-badge pf-m-read\">423 apples</span> <span class=\"pf-v6-c-badge pf-m-read\">More apples than you can ever eat</span>"
+    },
+    {
+      "id": "badge-unread",
+      "title": "Badge (unread)",
+      "html": "<span class=\"pf-v6-c-badge pf-m-unread\">7</span> <span class=\"pf-v6-c-badge pf-m-unread\">24</span> <span class=\"pf-v6-c-badge pf-m-unread\">423</span> <span class=\"pf-v6-c-badge pf-m-unread\">999+</span><br><span class=\"pf-v6-c-badge pf-m-unread\">7 apples</span> <span class=\"pf-v6-c-badge pf-m-unread\">24 apples</span> <span class=\"pf-v6-c-badge pf-m-unread\">423 apples</span> <span class=\"pf-v6-c-badge pf-m-unread\">More apples than you can ever eat</span>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "read",
+        "title": "Read"
+      },
+      "pfjSnippet": {
+        "id": "badge-read",
+        "title": "Badge (read)"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "unread",
+        "title": "Unread"
+      },
+      "pfjSnippet": {
+        "id": "badge-unread",
+        "title": "Badge (unread)"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "disabled",
+        "title": "Disabled"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Read"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-v6-screen-reader",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF has <span class=\"pf-v6-screen-reader\"> \u2014 missing in PFJ"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Unread"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Disabled",
+      "description": "implement Disabled variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "fix_css",
+      "title": "Unread",
+      "description": "add missing class pf-v6-screen-reader on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Unread"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "fix_structure",
+      "title": "Unread",
+      "description": "PF has <span class=\"pf-v6-screen-reader\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Unread"
+      ]
+    }
+  ]
+}

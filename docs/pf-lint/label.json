@@ -1,0 +1,19 @@
+{
+  "component": "label",
+  "date": "2026-06-02",
+  "files": 5,
+  "errors": 0,
+  "warnings": 1,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Label.java",
+      "line": 393,
+      "severity": "WARN",
+      "rule": "section-blank-after",
+      "detail": "Two blank lines after 'api' section separator (lines 394-395); expected exactly one blank line",
+      "fixed": false
+    }
+  ]
+}

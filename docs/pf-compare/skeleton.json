@@ -1,0 +1,133 @@
+{
+  "component": "skeleton",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/skeleton/html",
+  "pfjUrl": "http://localhost:1234/components/skeleton",
+  "completeness": {
+    "pfTotal": 5,
+    "pfjTotal": 0,
+    "matched": 0,
+    "missingInPfj": [
+      "default",
+      "percentage-width-modifiers",
+      "percentage-height-modifiers",
+      "text-modifiers",
+      "static-height-width-and-shape-modifiers"
+    ],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "default",
+      "title": "Default",
+      "html": "<div class=\"pf-v6-c-skeleton\">\n  <span class=\"pf-v6-screen-reader\">Loading default content</span>\n</div>"
+    },
+    {
+      "slug": "percentage-width-modifiers",
+      "title": "Percentage width modifiers",
+      "html": "<div class=\"pf-v6-c-skeleton pf-m-width-25\">\n  <span class=\"pf-v6-screen-reader\">Loading percentage with modifiers content</span>\n</div>\n<br>\n<div class=\"pf-v6-c-skeleton pf-m-width-33\"></div>\n<br>\n<div class=\"pf-v6-c-skeleton pf-m-width-50\"></div>\n<br>\n<div class=\"pf-v6-c-skeleton pf-m-width-66\"></div>\n<br>\n<div class=\"pf-v6-c-skeleton pf-m-width-75\"></div>\n<br>\n<div class=\"pf-v6-c-skeleton\"></div>"
+    },
+    {
+      "slug": "percentage-height-modifiers",
+      "title": "Percentage height modifiers",
+      "html": "<div class=\"pf-v6-c-skeleton pf-m-height-25\">\n  <span class=\"pf-v6-screen-reader\">Loading percentage height modifiers content</span>\n</div>\n<div class=\"pf-v6-c-skeleton pf-m-height-33\"></div>\n<div class=\"pf-v6-c-skeleton pf-m-height-50\"></div>\n<div class=\"pf-v6-c-skeleton pf-m-height-66\"></div>\n<div class=\"pf-v6-c-skeleton pf-m-height-75\"></div>\n<div class=\"pf-v6-c-skeleton pf-m-height-100\"></div>"
+    },
+    {
+      "slug": "text-modifiers",
+      "title": "Text modifiers",
+      "html": "--pf-v6-global--FontSize--4xl\n<div class=\"pf-v6-c-skeleton pf-m-text-4xl\">\n  <span class=\"pf-v6-screen-reader\">Loading text modifiers content</span>\n</div>\n<br>--pf-v6-global--FontSize--3xl\n<div class=\"pf-v6-c-skeleton pf-m-text-3xl\"></div>\n<br>--pf-v6-global--FontSize--2xl\n<div class=\"pf-v6-c-skeleton pf-m-text-2xl\"></div>\n<br>--pf-v6-global--FontSize--xl\n<div class=\"pf-v6-c-skeleton pf-m-text-xl\"></div>\n<br>--pf-v6-global--FontSize--lg\n<div class=\"pf-v6-c-skeleton pf-m-text-lg\"></div>\n<br>--pf-v6-global--FontSize--md\n<div class=\"pf-v6-c-skeleton pf-m-text-md\"></div>\n<br>--pf-v6-global--FontSize--sm\n<div class=\"pf-v6-c-skeleton pf-m-text-sm\"></div>"
+    },
+    {
+      "slug": "static-height-width-and-shape-modifiers",
+      "title": "Static height width and shape modifiers",
+      "html": "Small circle\n<div class=\"pf-v6-c-skeleton pf-m-circle pf-m-width-sm\">\n  <span class=\"pf-v6-screen-reader\">Loading circle content</span>\n</div>\n<br>Medium circle\n<div class=\"pf-v6-c-skeleton pf-m-circle pf-m-width-md\"></div>\n<br>Large circle\n<div class=\"pf-v6-c-skeleton pf-m-circle pf-m-width-lg\"></div>\n<br>Small square\n<div class=\"pf-v6-c-skeleton pf-m-square pf-m-width-sm\">\n  <span class=\"pf-v6-screen-reader\">Loading square content</span>\n</div>\n<br>Medium square\n<div class=\"pf-v6-c-skeleton pf-m-square pf-m-width-md\"></div>\n<br>Large square\n<div class=\"pf-v6-c-skeleton pf-m-square pf-m-width-lg\"></div>\n<br>Small rectangle\n<div class=\"pf-v6-c-skeleton pf-m-height-sm pf-m-width-md\">\n  <span class=\"pf-v6-screen-reader\">Loading rectangle content</span>\n</div>\n<br>Medium rectangle\n<div class=\"pf-v6-c-skeleton pf-m-height-md pf-m-width-lg\"></div>\n<br>Large rectangle\n<div class=\"pf-v6-c-skeleton pf-m-height-lg\"></div>"
+    }
+  ],
+  "snippets": [],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "default",
+        "title": "Default"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "percentage-width-modifiers",
+        "title": "Percentage width modifiers"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "percentage-height-modifiers",
+        "title": "Percentage height modifiers"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "text-modifiers",
+        "title": "Text modifiers"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "static-height-width-and-shape-modifiers",
+        "title": "Static height width and shape modifiers"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Default",
+      "description": "implement Default variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Percentage width modifiers",
+      "description": "implement Percentage width modifiers variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "add_variation",
+      "title": "Percentage height modifiers",
+      "description": "implement Percentage height modifiers variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 4,
+      "type": "add_variation",
+      "title": "Text modifiers",
+      "description": "implement Text modifiers variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 5,
+      "type": "add_variation",
+      "title": "Static height width and shape modifiers",
+      "description": "implement Static height width and shape modifiers variation in PFJ",
+      "category": "missing_variations"
+    }
+  ]
+}

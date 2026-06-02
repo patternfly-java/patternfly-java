@@ -1,0 +1,27 @@
+{
+  "component": "toolbar",
+  "date": "2026-06-02",
+  "files": 14,
+  "errors": 0,
+  "warnings": 2,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "ToolbarContent.java",
+      "line": 81,
+      "severity": "WARN",
+      "rule": "section-order",
+      "detail": "The containerDelegate() override at line 81 is between the 'instance' and 'add' sections, outside any named section. Consider placing it in the 'builder' or 'api' section.",
+      "fixed": false
+    },
+    {
+      "file": "ToolbarToggleGroup.java",
+      "line": 68,
+      "severity": "WARN",
+      "rule": "fmt-line-length",
+      "detail": "Line 68 exceeds 128 characters in the constructor's div().css(...) chain.",
+      "fixed": false
+    }
+  ]
+}

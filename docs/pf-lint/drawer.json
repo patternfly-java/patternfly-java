@@ -1,0 +1,27 @@
+{
+  "component": "drawer",
+  "date": "2026-06-02",
+  "files": 11,
+  "errors": 1,
+  "warnings": 1,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Drawer.java",
+      "line": 45,
+      "severity": "ERROR",
+      "rule": "doc-class-see",
+      "detail": "Javadoc @see link includes a fragment '#with-focus-trap' — should link to 'https://www.patternfly.org/components/drawer' without fragment",
+      "fixed": false
+    },
+    {
+      "file": "DrawerPanel.java",
+      "line": 119,
+      "severity": "WARN",
+      "rule": "field-order",
+      "detail": "Private final field 'resizeHandler' (line 119) is declared after private non-final fields (lines 103-118); private final fields should precede private non-final fields",
+      "fixed": false
+    }
+  ]
+}

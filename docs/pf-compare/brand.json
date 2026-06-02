@@ -1,0 +1,85 @@
+{
+  "component": "brand",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/brand/html",
+  "pfjUrl": "http://localhost:1234/components/brand",
+  "completeness": {
+    "pfTotal": 2,
+    "pfjTotal": 2,
+    "matched": 2,
+    "missingInPfj": [],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "basic",
+      "title": "Basic",
+      "html": "<div class=\"show-light\">\n  <img class=\"pf-v6-c-brand\" src=\"/assets/images/PF-HorizontalLogo-Color.svg\" alt=\"PatternFly logo\">\n</div>\n\n<div class=\"show-dark\">\n  <img class=\"pf-v6-c-brand\" src=\"/assets/images/PF-HorizontalLogo-Reverse.svg\" alt=\"PatternFly logo\">\n</div>"
+    },
+    {
+      "slug": "responsive",
+      "title": "Responsive",
+      "html": "<div class=\"show-light\">\n  <picture class=\"pf-v6-c-brand pf-m-picture\" style=\"--pf-v6-c-brand--Width: 37px; --pf-v6-c-brand--Width-on-md: 220px;\">\n    <source media=\"(min-width: 768px)\" srcset=\"/assets/images/PF-HorizontalLogo-Color.svg\">\n    <source srcset=\"/assets/images/PF-IconLogo-color.svg\">\n    <img src=\"/assets/images/PF-HorizontalLogo-Color.svg\" alt=\"Fallback patternFly default logo\">\n  </picture>\n</div>\n\n<div class=\"show-dark\">\n  <picture class=\"pf-v6-c-brand pf-m-picture\" style=\"--pf-v6-c-brand--Width: 37px; --pf-v6-c-brand--Width-on-md: 220px;\">\n    <source media=\"(min-width: 768px)\" srcset=\"/assets/images/PF-HorizontalLogo-Reverse.svg\">\n    <source srcset=\"/assets/images/PF-IconLogo-Reverse.svg\">\n    <img src=\"/assets/images/PF-HorizontalLogo-Color.svg\" alt=\"Fallback patternFly default logo\">\n  </picture>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "brand-basic",
+      "title": "Basic",
+      "html": "<img class=\"pf-v6-c-brand\" src=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg\" alt=\"PatternFly logo\">"
+    },
+    {
+      "id": "brand-responsive",
+      "title": "Responsive",
+      "html": "<picture class=\"pf-v6-c-brand pf-m-picture\" style=\"--pf-v6-c-brand--Width: 40px; --pf-v6-c-brand--Width-on-sm: 60px; --pf-v6-c-brand--Width-on-md: 220px;\"><source srcset=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg\" media=\"(min-width: 1200px)\"><source srcset=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg\" media=\"(min-width: 992px)\"><source srcset=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg\" media=\"(min-width: 768px)\"><source srcset=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-IconLogo-color.svg\" media=\"(min-width: 576px)\"><source srcset=\"https://www.patternfly.org/assets/images/pf-c-brand__logo.svg\" media=\"(min-width: 320px)\"><img src=\"https://raw.githubusercontent.com/patternfly/patternfly/refs/heads/main/static/assets/images/PF-HorizontalLogo-Color.svg\" alt=\"PatternFly fallback logo\"></picture>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "basic",
+        "title": "Basic"
+      },
+      "pfjSnippet": {
+        "id": "brand-basic",
+        "title": "Basic"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "responsive",
+        "title": "Responsive"
+      },
+      "pfjSnippet": {
+        "id": "brand-responsive",
+        "title": "Responsive"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Basic"
+    },
+    {
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Responsive"
+    }
+  ],
+  "actionItems": []
+}

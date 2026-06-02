@@ -1,0 +1,19 @@
+{
+  "component": "icon",
+  "date": "2026-06-02",
+  "files": 3,
+  "errors": 0,
+  "warnings": 1,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "Icon.java",
+      "line": 52,
+      "severity": "WARN",
+      "rule": "decl-implements-order",
+      "detail": "Interfaces not in alphabetical order: 'Inline' appears before 'ComponentProgress'; expected order is ComponentProgress, Inline",
+      "fixed": false
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "component": "popover",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/popover/html",
+  "pfjUrl": "http://localhost:1234/components/popover",
+  "completeness": {
+    "pfTotal": 0,
+    "pfjTotal": 0,
+    "matched": 0,
+    "missingInPfj": [],
+    "extraInPfj": []
+  },
+  "variations": [],
+  "snippets": [],
+  "matches": [],
+  "comparisons": [],
+  "actionItems": []
+}

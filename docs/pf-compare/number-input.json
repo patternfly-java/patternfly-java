@@ -1,0 +1,1070 @@
+{
+  "component": "number-input",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/number-input/html",
+  "pfjUrl": "http://localhost:1234/components/number-input",
+  "completeness": {
+    "pfTotal": 7,
+    "pfjTotal": 8,
+    "matched": 6,
+    "missingInPfj": [
+      "with-unit-and-upper-threshold-reached"
+    ],
+    "extraInPfj": [
+      "number-input-custom-increment-decrement",
+      "number-input-custom-increment-decrement-thresholds"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "default",
+      "title": "Default",
+      "html": "<div class=\"pf-v6-c-number-input\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"90\" name=\"number-input-default-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "with-unit",
+      "title": "With unit",
+      "html": "<div class=\"pf-v6-c-number-input\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"90\" name=\"number-input-unit-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n  <span class=\"pf-v6-c-number-input__unit\">%</span>\n</div>\n<br>\n<br>\n<div class=\"pf-v6-c-number-input\">\n  <span class=\"pf-v6-c-number-input__unit\">$</span>\n\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"1.00\" name=\"number-input-unit2-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "with-unit-and-lower-threshold-reached",
+      "title": "With unit and lower threshold reached",
+      "html": "<div class=\"pf-v6-c-number-input\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\" disabled=\"\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"0\" min=\"0\" name=\"number-input-unit-lower-threshold-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n  <span class=\"pf-v6-c-number-input__unit\">%</span>\n</div>"
+    },
+    {
+      "slug": "with-unit-and-upper-threshold-reached",
+      "title": "With unit and upper threshold reached",
+      "html": "<div class=\"pf-v6-c-number-input\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"100\" max=\"100\" name=\"number-input-unit-upper-threshold-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\" disabled=\"\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n  <span class=\"pf-v6-c-number-input__unit\">%</span>\n</div>"
+    },
+    {
+      "slug": "disabled",
+      "title": "Disabled",
+      "html": "<div class=\"pf-v6-c-number-input\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\" disabled=\"\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control pf-m-disabled\">\n        <input disabled=\"\" type=\"number\" value=\"100\" name=\"number-input-disabled-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\" disabled=\"\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n  <span class=\"pf-v6-c-number-input__unit\">%</span>\n</div>"
+    },
+    {
+      "slug": "with-status",
+      "title": "With status",
+      "html": "<div class=\"pf-v6-c-number-input pf-m-status\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"90\" name=\"number-input-status-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<div class=\"pf-v6-c-number-input pf-m-status\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control pf-m-warning\">\n        <input type=\"number\" value=\"90\" name=\"number-input-status-warning-name\" aria-label=\"Number input\">\n        <span class=\"pf-v6-c-form-control__utilities\">\n          <span class=\"pf-v6-c-form-control__icon pf-m-status\">\n            <i class=\"fas fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "slug": "varying-sizes",
+      "title": "Varying sizes",
+      "html": "<div class=\"pf-v6-c-number-input\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 1;\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"1\" name=\"number-input-sizes-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<div class=\"pf-v6-c-number-input\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 10;\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"1234567890\" name=\"number-input-sizes2-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<div class=\"pf-v6-c-number-input\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 5;\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"5\" name=\"number-input-sizes3-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<div class=\"pf-v6-c-number-input\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 5;\">\n  <div class=\"pf-v6-c-input-group\">\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-minus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"pf-v6-c-input-group__item pf-m-fill\">\n      <span class=\"pf-v6-c-form-control\">\n        <input type=\"number\" value=\"12345\" name=\"number-input-sizes4-name\" aria-label=\"Number input\">\n      </span>\n    </div>\n    <div class=\"pf-v6-c-input-group__item\">\n      <button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\">\n        <span class=\"pf-v6-c-button__icon\">\n          <span class=\"pf-v6-c-number-input__icon\">\n            <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>\n          </span>\n        </span>\n      </button>\n    </div>\n  </div>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "number-input-default",
+      "title": "Default",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"5067c083-4e40-4588-9bcd-0cea9a911b43\" on-detach-uid=\"d-id-43\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-42\" name=\"id-42\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-with-unit",
+      "title": "With unit",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"02c5f970-69d9-48a6-aa59-e9297ef5399b\" on-detach-uid=\"d-id-59\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-58\" name=\"id-58\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div><div class=\"pf-v6-c-number-input__unit\">%</div></div><br><br><div class=\"pf-v6-c-number-input\" data-pfcsni=\"b68f6d91-555b-474a-8a24-0f8b4a4d57ab\" on-detach-uid=\"d-id-61\"><div class=\"pf-v6-c-number-input__unit\">$</div><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-60\" name=\"id-60\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-with-unit-and-thresholds",
+      "title": "With unit and thresholds",
+      "html": "With a minimum value of 0 and maximum value of 10<br><div class=\"pf-v6-c-number-input\" data-pfcsni=\"f27f51f0-aac7-4590-9e92-297601577588\" on-detach-uid=\"d-id-77\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control pf-m-disabled\" type=\"button\" aria-label=\"Minus\" aria-disabled=\"true\" disabled=\"\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-76\" name=\"id-76\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\" aria-disabled=\"false\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div><div class=\"pf-v6-c-number-input__unit\">%</div></div>"
+    },
+    {
+      "id": "number-input-disabled",
+      "title": "Disabled",
+      "html": "<div class=\"pf-v6-c-number-input pf-m-disabled\" data-pfcsni=\"0d5a7a31-a556-4275-81c6-50bd5a46b2ac\" on-detach-uid=\"d-id-93\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control pf-m-disabled\" type=\"button\" aria-label=\"Minus\" aria-disabled=\"true\" disabled=\"\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control pf-m-disabled\"><input type=\"number\" id=\"id-92\" name=\"id-92\" aria-invalid=\"false\" disabled=\"\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control pf-m-disabled\" type=\"button\" aria-label=\"Plus\" aria-disabled=\"true\" disabled=\"\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-with-status",
+      "title": "With status",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"db6eb967-e479-4eb3-b523-300541f5993f\" on-detach-uid=\"d-id-109\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control pf-m-success\"><input type=\"number\" id=\"id-108\" name=\"id-108\" aria-invalid=\"false\"><span class=\"pf-v6-c-form-control__utilities\"><span class=\"pf-v6-c-form-control__icon pf-m-status\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 32 32\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"check-circle-fill\"><!--Red Hat, Inc. MIT--><path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path></svg></span></span></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-varying-sizes",
+      "title": "Varying sizes",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"7357bccc-39a4-4a2d-882c-99303bced499\" on-detach-uid=\"d-id-125\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 1;\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-124\" name=\"id-124\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div><br><br><div class=\"pf-v6-c-number-input\" data-pfcsni=\"5a56e1c4-1f1d-44dc-88de-be752de4539d\" on-detach-uid=\"d-id-127\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 10;\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-126\" name=\"id-126\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div><br><br><div class=\"pf-v6-c-number-input\" data-pfcsni=\"dd4652d1-5a72-4fd6-a1a0-a16e807ce9f5\" on-detach-uid=\"d-id-129\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 5;\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-128\" name=\"id-128\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div><br><br><div class=\"pf-v6-c-number-input\" data-pfcsni=\"04ce00d5-d0e1-4c3d-93d2-4d1841aee505\" on-detach-uid=\"d-id-131\" style=\"--pf-v6-c-number-input--c-form-control--width-chars: 5;\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-130\" name=\"id-130\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-custom-increment-decrement",
+      "title": "Custom increment/decrement",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"4f55735d-aaeb-49ab-9cf8-bcc070b977cb\" on-detach-uid=\"d-id-147\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Minus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-146\" name=\"id-146\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    },
+    {
+      "id": "number-input-custom-increment-decrement-thresholds",
+      "title": "Custom increment/decrement and thresholds",
+      "html": "<div class=\"pf-v6-c-number-input\" data-pfcsni=\"3094e4b5-9224-4bed-9376-de5a73e7cc34\" on-detach-uid=\"d-id-163\"><div class=\"pf-v6-c-input-group\"><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control pf-m-disabled\" type=\"button\" aria-label=\"Minus\" aria-disabled=\"true\" disabled=\"\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"minus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z\"></path></svg></span></button></div><div class=\"pf-v6-c-input-group__item\"><span class=\"pf-v6-c-form-control\"><input type=\"number\" id=\"id-162\" name=\"id-162\" aria-invalid=\"false\"></span></div><div class=\"pf-v6-c-input-group__item\"><button class=\"pf-v6-c-button pf-m-control\" type=\"button\" aria-label=\"Plus\" aria-disabled=\"false\"><span class=\"pf-v6-c-button__icon\"><svg class=\"pf-v6-svg\" viewBox=\"0 0 448 512\" width=\"1em\" height=\"1em\" fill=\"currentColor\" role=\"img\" aria-hidden=\"true\" data-icon-name=\"plus\"><!--FontAwesome. CC-BY-4.0--><path d=\"M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z\"></path></svg></span></button></div></div></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "default",
+        "title": "Default"
+      },
+      "pfjSnippet": {
+        "id": "number-input-default",
+        "title": "Default"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-unit",
+        "title": "With unit"
+      },
+      "pfjSnippet": {
+        "id": "number-input-with-unit",
+        "title": "With unit"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-unit-and-lower-threshold-reached",
+        "title": "With unit and lower threshold reached"
+      },
+      "pfjSnippet": {
+        "id": "number-input-with-unit-and-thresholds",
+        "title": "With unit and thresholds"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "disabled",
+        "title": "Disabled"
+      },
+      "pfjSnippet": {
+        "id": "number-input-disabled",
+        "title": "Disabled"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-status",
+        "title": "With status"
+      },
+      "pfjSnippet": {
+        "id": "number-input-with-status",
+        "title": "With status"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "varying-sizes",
+        "title": "Varying sizes"
+      },
+      "pfjSnippet": {
+        "id": "number-input-varying-sizes",
+        "title": "Varying sizes"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "with-unit-and-upper-threshold-reached",
+        "title": "With unit and upper threshold reached"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Default"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "With unit"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-disabled",
+          "element": "<button>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"false\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "With unit and lower threshold reached"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__unit",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-v6-c-number-input\"> \u2014 missing in PFJ",
+        "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-m-disabled pf-v6-c-number-input\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Disabled"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-m-warning",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-success",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+        "PF has <div class=\"pf-m-status pf-v6-c-number-input\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-v6-c-form-control\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-v6-c-number-input\"> \u2014 not in PF",
+        "PFJ has <span class=\"pf-m-success pf-v6-c-form-control\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "With status"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fill",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-number-input__icon",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-svg",
+          "element": "<svg>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+        "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+        "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Varying sizes"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "With unit and upper threshold reached",
+      "description": "implement With unit and upper threshold reached variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "fix_css",
+      "title": "Default",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "fix_css",
+      "title": "Default",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_structure",
+      "title": "Default",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_css",
+      "title": "With unit",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_css",
+      "title": "With unit",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_structure",
+      "title": "With unit",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_attribute",
+      "title": "With unit",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_attribute",
+      "title": "With unit",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_attribute",
+      "title": "With unit",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_attribute",
+      "title": "With unit",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_attribute",
+      "title": "With unit",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_css",
+      "title": "With unit and lower threshold reached",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_css",
+      "title": "With unit and lower threshold reached",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_structure",
+      "title": "With unit and lower threshold reached",
+      "description": "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_structure",
+      "title": "With unit and lower threshold reached",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_structure",
+      "title": "With unit and lower threshold reached",
+      "description": "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_structure",
+      "title": "With unit and lower threshold reached",
+      "description": "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-disabled=\"false\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 30,
+      "type": "fix_attribute",
+      "title": "With unit and lower threshold reached",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With unit and lower threshold reached"
+      ]
+    },
+    {
+      "number": 31,
+      "type": "fix_css",
+      "title": "Disabled",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 32,
+      "type": "fix_css",
+      "title": "Disabled",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 33,
+      "type": "fix_css",
+      "title": "Disabled",
+      "description": "add missing class pf-v6-c-number-input__unit on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 34,
+      "type": "fix_structure",
+      "title": "Disabled",
+      "description": "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 35,
+      "type": "fix_structure",
+      "title": "Disabled",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 36,
+      "type": "fix_structure",
+      "title": "Disabled",
+      "description": "PF has <div class=\"pf-v6-c-number-input\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 37,
+      "type": "fix_structure",
+      "title": "Disabled",
+      "description": "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 38,
+      "type": "fix_structure",
+      "title": "Disabled",
+      "description": "PFJ has <div class=\"pf-m-disabled pf-v6-c-number-input\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 39,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 40,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 41,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 42,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 43,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 44,
+      "type": "fix_attribute",
+      "title": "Disabled",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Disabled"
+      ]
+    },
+    {
+      "number": 45,
+      "type": "fix_css",
+      "title": "With status",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 46,
+      "type": "fix_css",
+      "title": "With status",
+      "description": "add missing class pf-m-warning on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 47,
+      "type": "fix_css",
+      "title": "With status",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 48,
+      "type": "fix_structure",
+      "title": "With status",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 49,
+      "type": "fix_structure",
+      "title": "With status",
+      "description": "PF has <div class=\"pf-m-status pf-v6-c-number-input\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 50,
+      "type": "fix_structure",
+      "title": "With status",
+      "description": "PF has <span class=\"pf-v6-c-form-control\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 51,
+      "type": "fix_structure",
+      "title": "With status",
+      "description": "PFJ has <div class=\"pf-v6-c-number-input\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 52,
+      "type": "fix_structure",
+      "title": "With status",
+      "description": "PFJ has <span class=\"pf-m-success pf-v6-c-form-control\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 53,
+      "type": "fix_attribute",
+      "title": "With status",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 54,
+      "type": "fix_attribute",
+      "title": "With status",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 55,
+      "type": "fix_attribute",
+      "title": "With status",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 56,
+      "type": "fix_attribute",
+      "title": "With status",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 57,
+      "type": "fix_attribute",
+      "title": "With status",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "With status"
+      ]
+    },
+    {
+      "number": 58,
+      "type": "fix_css",
+      "title": "Varying sizes",
+      "description": "add missing class pf-m-fill on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 59,
+      "type": "fix_css",
+      "title": "Varying sizes",
+      "description": "add missing class pf-v6-c-number-input__icon on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 60,
+      "type": "fix_structure",
+      "title": "Varying sizes",
+      "description": "PF has <div class=\"pf-m-fill pf-v6-c-input-group__item\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 61,
+      "type": "fix_attribute",
+      "title": "Varying sizes",
+      "description": "aria-hidden=\"true\" on <i> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 62,
+      "type": "fix_attribute",
+      "title": "Varying sizes",
+      "description": "aria-label=\"Number input\" on <input> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 63,
+      "type": "fix_attribute",
+      "title": "Varying sizes",
+      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 64,
+      "type": "fix_attribute",
+      "title": "Varying sizes",
+      "description": "aria-invalid=\"false\" on <input> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    },
+    {
+      "number": 65,
+      "type": "fix_attribute",
+      "title": "Varying sizes",
+      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Varying sizes"
+      ]
+    }
+  ]
+}

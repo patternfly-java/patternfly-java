@@ -1,0 +1,363 @@
+{
+  "version": "6.5.0",
+  "date": "2026-06-02",
+  "pfjVersion": "6.5.2",
+  "sourceRepos": [
+    "patternfly/patternfly",
+    "patternfly/patternfly-react"
+  ],
+  "stats": {
+    "totalPrs": 420,
+    "relevantPrs": 115,
+    "skippedPrs": 305,
+    "breaking": 0,
+    "features": 72,
+    "fixes": 42,
+    "newComponents": 2,
+    "tokenChanges": 10,
+    "iconChanges": 15,
+    "workItems": 30,
+    "done": 0,
+    "deferred": 0,
+    "open": 30
+  },
+  "componentsAffected": [
+    "accordion",
+    "alert",
+    "banner",
+    "breadcrumb",
+    "button",
+    "card",
+    "drawer",
+    "expandable",
+    "form",
+    "icon",
+    "jumplinks",
+    "label",
+    "menu",
+    "modal",
+    "navigation",
+    "notification",
+    "page",
+    "panel",
+    "progress",
+    "table",
+    "tabs",
+    "togglegroup",
+    "toolbar",
+    "tree",
+    "truncate",
+    "wizard"
+  ],
+  "newComponents": [
+    "compass",
+    "hero"
+  ],
+  "workItems": [
+    {
+      "number": 1,
+      "priority": "P2",
+      "component": "button",
+      "change": "New: circle variant, plain variant; unified tokens and icons",
+      "source": "https://github.com/patternfly/patternfly/pull/7922, https://github.com/patternfly/patternfly/pull/8305, https://github.com/patternfly/patternfly/pull/8165, https://github.com/patternfly/patternfly-react/pull/12092",
+      "action": "Run `/pf-compare button`",
+      "status": "open"
+    },
+    {
+      "number": 2,
+      "priority": "P2",
+      "component": "card",
+      "change": "New: unified theme tokens, isGlass, CardDescription, clickable/selectable border styles",
+      "source": "https://github.com/patternfly/patternfly/pull/8219, https://github.com/patternfly/patternfly/pull/7921, https://github.com/patternfly/patternfly/pull/8301, https://github.com/patternfly/patternfly-react/pull/12290, https://github.com/patternfly/patternfly-react/pull/12105",
+      "action": "Run `/pf-compare card`",
+      "status": "open"
+    },
+    {
+      "number": 3,
+      "priority": "P2",
+      "component": "drawer",
+      "change": "New: pill variant, glass panel, plain section, no-glass variant, glass support",
+      "source": "https://github.com/patternfly/patternfly/pull/7945, https://github.com/patternfly/patternfly/pull/7963, https://github.com/patternfly/patternfly/pull/8318, https://github.com/patternfly/patternfly-react/pull/12091, https://github.com/patternfly/patternfly-react/pull/12305",
+      "action": "Run `/pf-compare drawer`",
+      "status": "open"
+    },
+    {
+      "number": 4,
+      "priority": "P2",
+      "component": "table",
+      "change": "New: plain variant, container queries, dynamic sticky, indeterminate checkbox select-all",
+      "source": "https://github.com/patternfly/patternfly/pull/7925, https://github.com/patternfly/patternfly/pull/8054, https://github.com/patternfly/patternfly-react/pull/12348, https://github.com/patternfly/patternfly-react/pull/12411",
+      "action": "Run `/pf-compare table`",
+      "status": "open"
+    },
+    {
+      "number": 5,
+      "priority": "P2",
+      "component": "tabs",
+      "change": "New: nav variant, unified design icons/tokens, tabListAriaLabel prop",
+      "source": "https://github.com/patternfly/patternfly/pull/7924, https://github.com/patternfly/patternfly/pull/8216, https://github.com/patternfly/patternfly-react/pull/12193",
+      "action": "Run `/pf-compare tabs`",
+      "status": "open"
+    },
+    {
+      "number": 6,
+      "priority": "P2",
+      "component": "navigation",
+      "change": "New: unified theme, docked nav layout, responsive docked nav",
+      "source": "https://github.com/patternfly/patternfly/pull/8193, https://github.com/patternfly/patternfly/pull/8020, https://github.com/patternfly/patternfly-react/pull/12175, https://github.com/patternfly/patternfly-react/pull/12327",
+      "action": "Run `/pf-compare navigation`",
+      "status": "open"
+    },
+    {
+      "number": 7,
+      "priority": "P2",
+      "component": "toolbar",
+      "change": "New: responsive height, dynamic sticky styles",
+      "source": "https://github.com/patternfly/patternfly/pull/8295, https://github.com/patternfly/patternfly/pull/8321, https://github.com/patternfly/patternfly-react/pull/12375, https://github.com/patternfly/patternfly-react/pull/12347",
+      "action": "Run `/pf-compare toolbar`",
+      "status": "open"
+    },
+    {
+      "number": 8,
+      "priority": "P2",
+      "component": "page",
+      "change": "New: glass mode sticky sections, dynamic sticky, docked nav support",
+      "source": "https://github.com/patternfly/patternfly/pull/8345, https://github.com/patternfly/patternfly-react/pull/12293, https://github.com/patternfly/patternfly-react/pull/12409",
+      "action": "Run `/pf-compare page`",
+      "status": "open"
+    },
+    {
+      "number": 9,
+      "priority": "P2",
+      "component": "wizard",
+      "change": "New: warning step status, plain styling",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12041, https://github.com/patternfly/patternfly/pull/8215, https://github.com/patternfly/patternfly-react/pull/12289",
+      "action": "Run `/pf-compare wizard`",
+      "status": "open"
+    },
+    {
+      "number": 10,
+      "priority": "P2",
+      "component": "expandable",
+      "change": "New: aria labeling, functional toggleContent, toggle icon control",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12071, https://github.com/patternfly/patternfly-react/pull/12063, https://github.com/patternfly/patternfly-react/pull/12051",
+      "action": "Run `/pf-compare expandable`",
+      "status": "open"
+    },
+    {
+      "number": 11,
+      "priority": "P2",
+      "component": "progress",
+      "change": "New: hideStatusIcon flag",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12038",
+      "action": "Run `/pf-compare progress`",
+      "status": "open"
+    },
+    {
+      "number": 12,
+      "priority": "P2",
+      "component": "menu",
+      "change": "New: menu toggle form styling, dropdown container with ouiaId; techdebt: remove disableHover",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12326, https://github.com/patternfly/patternfly-react/pull/12022, https://github.com/patternfly/patternfly-react/pull/12064",
+      "action": "Run `/pf-compare menu`",
+      "status": "open"
+    },
+    {
+      "number": 13,
+      "priority": "P2",
+      "component": "togglegroup",
+      "change": "New: unified theme updates, full width variant",
+      "source": "https://github.com/patternfly/patternfly/pull/8154, https://github.com/patternfly/patternfly/pull/8326, https://github.com/patternfly/patternfly-react/pull/12374",
+      "action": "Run `/pf-compare togglegroup`",
+      "status": "open"
+    },
+    {
+      "number": 14,
+      "priority": "P2",
+      "component": "accordion",
+      "change": "New: isPlain, isNoPlainOnGlass props",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12288",
+      "action": "Run `/pf-compare accordion`",
+      "status": "open"
+    },
+    {
+      "number": 15,
+      "priority": "P2",
+      "component": "tree",
+      "change": "New: disabled TreeViewListItems support",
+      "source": "https://github.com/patternfly/patternfly/pull/8030, https://github.com/patternfly/patternfly-react/pull/12140",
+      "action": "Run `/pf-compare tree`",
+      "status": "open"
+    },
+    {
+      "number": 16,
+      "priority": "P2",
+      "component": "notification",
+      "change": "New: NotificationBadge plain variant",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12139",
+      "action": "Run `/pf-compare notification`",
+      "status": "open"
+    },
+    {
+      "number": 17,
+      "priority": "P2",
+      "component": "banner",
+      "change": "New: pill variant",
+      "source": "https://github.com/patternfly/patternfly/pull/8353",
+      "action": "Run `/pf-compare banner`",
+      "status": "open"
+    },
+    {
+      "number": 18,
+      "priority": "P2",
+      "component": "panel",
+      "change": "New: compass panel features integrated",
+      "source": "https://github.com/patternfly/patternfly/pull/8303, https://github.com/patternfly/patternfly-react/pull/12372",
+      "action": "Run `/pf-compare panel`",
+      "status": "open"
+    },
+    {
+      "number": 19,
+      "priority": "P2",
+      "component": "icon",
+      "change": "New: rh-standard icon styling, opt-out support",
+      "source": "https://github.com/patternfly/patternfly/pull/8280, https://github.com/patternfly/patternfly-react/pull/12320",
+      "action": "Run `/pf-compare icon`",
+      "status": "open"
+    },
+    {
+      "number": 20,
+      "priority": "P2",
+      "component": "form",
+      "change": "New: aria-describedBy for radio/checkbox",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12042",
+      "action": "Run `/pf-compare form`",
+      "status": "open"
+    },
+    {
+      "number": 21,
+      "priority": "P3",
+      "component": "alert",
+      "change": "Fix: updated icons for unified theme",
+      "source": "https://github.com/patternfly/patternfly/pull/8170",
+      "action": "Run `/pf-compare alert`",
+      "status": "open"
+    },
+    {
+      "number": 22,
+      "priority": "P3",
+      "component": "modal",
+      "change": "Fix: icons updated for unified theme",
+      "source": "https://github.com/patternfly/patternfly/pull/8200",
+      "action": "Run `/pf-compare modal`",
+      "status": "open"
+    },
+    {
+      "number": 23,
+      "priority": "P3",
+      "component": "jumplinks",
+      "change": "Fix: accent line adjusted for unified theme",
+      "source": "https://github.com/patternfly/patternfly/pull/8248",
+      "action": "Run `/pf-compare jumplinks`",
+      "status": "open"
+    },
+    {
+      "number": 24,
+      "priority": "P3",
+      "component": "label",
+      "change": "Fix: add variant labels rendered as buttons",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12192",
+      "action": "Run `/pf-compare label`",
+      "status": "open"
+    },
+    {
+      "number": 25,
+      "priority": "P3",
+      "component": "breadcrumb",
+      "change": "Fix: tokens and icons updated",
+      "source": "https://github.com/patternfly/patternfly/pull/8259",
+      "action": "Run `/pf-compare breadcrumb`",
+      "status": "open"
+    },
+    {
+      "number": 26,
+      "priority": "P3",
+      "component": "truncate",
+      "change": "Fix: resize observer removed",
+      "source": "https://github.com/patternfly/patternfly-react/pull/12055",
+      "action": "Run `/pf-compare truncate`",
+      "status": "open"
+    },
+    {
+      "number": 27,
+      "priority": "P4",
+      "component": "compass",
+      "change": "New component: generative UI component with navigation, panels, and responsive layout",
+      "source": "https://github.com/patternfly/patternfly/pull/7927, https://github.com/patternfly/patternfly-react/pull/12093",
+      "action": "Evaluate whether to implement",
+      "status": "open"
+    },
+    {
+      "number": 28,
+      "priority": "P4",
+      "component": "hero",
+      "change": "New component: hero section for glass/compass layouts",
+      "source": "https://github.com/patternfly/patternfly/pull/7980, https://github.com/patternfly/patternfly-react/pull/12131",
+      "action": "Evaluate whether to implement",
+      "status": "open"
+    },
+    {
+      "number": 29,
+      "priority": "P5",
+      "component": "tokens",
+      "change": "Glass theme, unified theme tokens, glass/felt backgrounds, token updates from Figma",
+      "source": "https://github.com/patternfly/patternfly/pull/7973, https://github.com/patternfly/patternfly/pull/8062, https://github.com/patternfly/patternfly/pull/8096, https://github.com/patternfly/patternfly/pull/8354",
+      "action": "Update `tokens` module",
+      "status": "open"
+    },
+    {
+      "number": 30,
+      "priority": "P5",
+      "component": "icons",
+      "change": "Icon set swapping, RH micron close/carets/status icons, RH standard icons, RHDS 2.2.0, high contrast",
+      "source": "https://github.com/patternfly/patternfly/pull/8123, https://github.com/patternfly/patternfly/pull/8174, https://github.com/patternfly/patternfly/pull/8176, https://github.com/patternfly/patternfly-react/pull/12245, https://github.com/patternfly/patternfly-react/pull/12387",
+      "action": "Update `icons` module",
+      "status": "open"
+    }
+  ],
+  "unclassifiedPrs": [
+    {
+      "title": "added gradient border and pulse animation",
+      "url": "https://github.com/patternfly/patternfly/pull/7926"
+    },
+    {
+      "title": "added dynamic sticky header styles",
+      "url": "https://github.com/patternfly/patternfly/pull/8290"
+    },
+    {
+      "title": "added batch 6 (CC)",
+      "url": "https://github.com/patternfly/patternfly-react/pull/11868"
+    },
+    {
+      "title": "added batch 7 (CC)",
+      "url": "https://github.com/patternfly/patternfly-react/pull/11869"
+    },
+    {
+      "title": "update anchor link text decoration styles",
+      "url": "https://github.com/patternfly/patternfly/pull/7948"
+    },
+    {
+      "title": "fix decoration color for links",
+      "url": "https://github.com/patternfly/patternfly/pull/7965"
+    },
+    {
+      "title": "make plain and no-plain-on-glass work together",
+      "url": "https://github.com/patternfly/patternfly/pull/8266"
+    },
+    {
+      "title": "change no-plain to no-plain-on-glass",
+      "url": "https://github.com/patternfly/patternfly/pull/8249"
+    }
+  ],
+  "issuesCreated": 0
+}

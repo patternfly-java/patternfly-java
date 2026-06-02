@@ -1,0 +1,755 @@
+{
+  "component": "content",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/content/html",
+  "pfjUrl": "http://localhost:1234/components/content",
+  "completeness": {
+    "pfTotal": 4,
+    "pfjTotal": 8,
+    "matched": 2,
+    "missingInPfj": [
+      "basic",
+      "long-formeditorial-content-in-content-wrapper"
+    ],
+    "extraInPfj": [
+      "content-headings",
+      "content-body",
+      "content-ul",
+      "content-ol",
+      "content-plain-list",
+      "content-dl"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "basic",
+      "title": "Basic",
+      "html": "<h1 class=\"pf-v6-c-content--h1 pf-m-page-title\">Hello world</h1>\n<p class=\"pf-v6-c-content--p\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub works as well!</p>\n<h2 class=\"pf-v6-c-content--h2\">Second level</h2>\n<p class=\"pf-v6-c-content--p\">\n  Curabitur accumsan turpis pharetra\n  <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.\n</p>\n<ul class=\"pf-v6-c-content--ul\">\n  <li class=\"pf-v6-c-content--li\">In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n  <li class=\"pf-v6-c-content--li\">Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n  <li class=\"pf-v6-c-content--li\">\n    Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.\n    <ul class=\"pf-v6-c-content--ul\">\n      <li class=\"pf-v6-c-content--li\">In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n      <li class=\"pf-v6-c-content--li\">Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n      <li class=\"pf-v6-c-content--li\">\n        Ut venenatis, nisl scelerisque.\n        <ol class=\"pf-v6-c-content--ol\">\n          <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n          <li class=\"pf-v6-c-content--li\">Integer in volutpat libero.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li\">Ut non enim metus.</li>\n</ul>\n<h3 class=\"pf-v6-c-content--h3\">Third level</h3>\n<p class=\"pf-v6-c-content--p\">\n  Quisque ante lacus, malesuada ac auctor vitae, congue\n  <a class=\"pf-v6-c-content--a\" href=\"#\">non ante</a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.\n</p>\n<ol class=\"pf-v6-c-content--ol\">\n  <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n  <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n  <li class=\"pf-v6-c-content--li\">Integer in volutpat libero.</li>\n  <li class=\"pf-v6-c-content--li\">Donec a diam tellus.</li>\n  <li class=\"pf-v6-c-content--li\">\n    Etiam auctor nisl et.\n    <ul class=\"pf-v6-c-content--ul\">\n      <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n      <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n      <li class=\"pf-v6-c-content--li\">\n        Integer in volutpat libero.\n        <ol class=\"pf-v6-c-content--ol\">\n          <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li\">Aenean nec tortor orci.</li>\n  <li class=\"pf-v6-c-content--li\">Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n  <li class=\"pf-v6-c-content--li\">Vivamus maximus ultricies pulvinar.</li>\n</ol>\n<blockquote class=\"pf-v6-c-content--blockquote\">Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>\n<p class=\"pf-v6-c-content--p\">\n  Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et\n  <em>justo sodales</em> elementum. Maecenas ultrices lacus quis neque consectetur, et lobortis nisi molestie.\n</p>\n<hr class=\"pf-v6-c-content--hr\">\n<h3 class=\"pf-v6-c-content--h3\">Plain list example</h3>\n<ol class=\"pf-v6-c-content--ol pf-m-plain\">\n  <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n  <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n  <li class=\"pf-v6-c-content--li\">Integer in volutpat libero.</li>\n  <li class=\"pf-v6-c-content--li\">Donec a diam tellus.</li>\n  <li class=\"pf-v6-c-content--li\">\n    Etiam auctor nisl et.\n    <ul class=\"pf-v6-c-content--ul\">\n      <li class=\"pf-v6-c-content--li\">Regular list</li>\n      <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n      <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n      <li class=\"pf-v6-c-content--li\">\n        Integer in volutpat libero.\n        <ol class=\"pf-v6-c-content--ol pf-m-plain\">\n          <li class=\"pf-v6-c-content--li\">Nested plain list</li>\n          <li class=\"pf-v6-c-content--li\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li\">Cras gravida arcu at diam gravida gravida.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li\">Aenean nec tortor orci.</li>\n  <li class=\"pf-v6-c-content--li\">Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n  <li class=\"pf-v6-c-content--li\">Vivamus maximus ultricies pulvinar.</li>\n</ol>\n<hr class=\"pf-v6-c-content--hr\">\n<h3 class=\"pf-v6-c-content--h3\">Visited link example</h3>\n<p class=\"pf-v6-c-content--p\">\n  <a class=\"pf-v6-c-content--a pf-m-plain\" href=\"\">Visited link</a>\n</p>\n<hr class=\"pf-v6-c-content--hr\">\n<p class=\"pf-v6-c-content--p\">\n  Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum\n  commodo.\n</p>\n<dl class=\"pf-v6-c-content--dl\">\n  <dt class=\"pf-v6-c-content--dt\">Web</dt>\n  <dd class=\"pf-v6-c-content--dd\">The part of the internet that contains websites and web pages</dd>\n  <dt class=\"pf-v6-c-content--dt\">HTML</dt>\n  <dd class=\"pf-v6-c-content--dd\">A markup language for creating web pages</dd>\n  <dt class=\"pf-v6-c-content--dt\">CSS</dt>\n  <dd class=\"pf-v6-c-content--dd\">A technology to make HTML look better</dd>\n</dl>\n<p class=\"pf-v6-c-content--p\">\n  Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla.\n  Nulla facilisi. Nullam ac erat ante.\n</p>\n<h4 class=\"pf-v6-c-content--h4\">Fourth level</h4>\n<p class=\"pf-v6-c-content--p\">\n  Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum\n  ex efficitur.\n</p>\n<p class=\"pf-v6-c-content--p\">\n  Maecenas eleifend sollicitudin dui, faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris\n  eu est maximus est porta condimentum in eu justo. Nulla id iaculis sapien.\n</p>\n<small class=\"pf-v6-c-content--small\">Sometimes you need small text to display things like date created</small>\n<p class=\"pf-v6-c-content--p\">\n  Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis\n  lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus,\n  mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex\n  sodales quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum.\n  Proin tempor cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.\n</p>\n<h5 class=\"pf-v6-c-content--h5\">Fifth level</h5>\n<p class=\"pf-v6-c-content--p\">\n  Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet\n  ligula mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend\n  justo. Nam et sollicitudin odio.\n</p>\n<h6 class=\"pf-v6-c-content--h6\">Sixth level</h6>\n<p class=\"pf-v6-c-content--p\">\n  Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan.\n  Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis.\n  Nunc vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui,\n  sed varius sapien odio vitae est. Etiam at cursus metus.\n</p>"
+    },
+    {
+      "slug": "plain-html-in-content-wrapper",
+      "title": "Plain HTML in content wrapper",
+      "html": "<div class=\"pf-v6-c-content\">\n  <h1 class=\"pf-m-page-title\">Hello world</h1>\n  <p class=\"\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub works as well!</p>\n  <h2>Second level</h2>\n  <p>\n    Curabitur accumsan turpis pharetra\n    <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.\n  </p>\n  <ul>\n    <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n    <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n    <li>\n      Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.\n      <ul>\n        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n        <li>\n          Ut venenatis, nisl scelerisque.\n          <ol>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n            <li>Integer in volutpat libero.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Ut non enim metus.</li>\n  </ul>\n  <h3>Third level</h3>\n  <p>\n    Quisque ante lacus, malesuada ac auctor vitae, congue\n    <a href=\"#\">non ante</a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.\n  </p>\n  <ol>\n    <li>Donec blandit a lorem id convallis.</li>\n    <li>Cras gravida arcu at diam gravida gravida.</li>\n    <li>Integer in volutpat libero.</li>\n    <li>Donec a diam tellus.</li>\n    <li>\n      Etiam auctor nisl et.\n      <ul>\n        <li>Donec blandit a lorem id convallis.</li>\n        <li>Cras gravida arcu at diam gravida gravida.</li>\n        <li>\n          Integer in volutpat libero.\n          <ol>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Aenean nec tortor orci.</li>\n    <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n    <li>Vivamus maximus ultricies pulvinar.</li>\n  </ol>\n  <blockquote class=\"\">Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>\n  <p>\n    Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et\n    <em>justo sodales</em> elementum. Maecenas ultrices lacus quis neque consectetur, et lobortis nisi molestie.\n  </p>\n  <hr>\n  <h3>Plain list example</h3>\n  <ol class=\"pf-m-plain\">\n    <li>Donec blandit a lorem id convallis.</li>\n    <li>Cras gravida arcu at diam gravida gravida.</li>\n    <li>Integer in volutpat libero.</li>\n    <li>Donec a diam tellus.</li>\n    <li>\n      Etiam auctor nisl et.\n      <ul>\n        <li>Regular list</li>\n        <li>Donec blandit a lorem id convallis.</li>\n        <li>Cras gravida arcu at diam gravida gravida.</li>\n        <li>\n          Integer in volutpat libero.\n          <ol class=\"pf-m-plain\">\n            <li>Nested plain list</li>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Aenean nec tortor orci.</li>\n    <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n    <li>Vivamus maximus ultricies pulvinar.</li>\n  </ol>\n  <hr>\n  <h3>Visited link example</h3>\n  <p>\n    <a class=\"pf-m-plain\" href=\"\">Visited link</a>\n  </p>\n  <hr>\n  <p>\n    Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum\n    commodo.\n  </p>\n  <dl>\n    <dt>Web</dt>\n    <dd>The part of the internet that contains websites and web pages</dd>\n    <dt>HTML</dt>\n    <dd>A markup language for creating web pages</dd>\n    <dt>CSS</dt>\n    <dd>A technology to make HTML look better</dd>\n  </dl>\n  <p>\n    Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla.\n    Nulla facilisi. Nullam ac erat ante.\n  </p>\n  <h4>Fourth level</h4>\n  <p>\n    Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum\n    ex efficitur.\n  </p>\n  <p>\n    Maecenas eleifend sollicitudin dui, faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris\n    eu est maximus est porta condimentum in eu justo. Nulla id iaculis sapien.\n  </p>\n  <small>Sometimes you need small text to display things like date created</small>\n  <p>\n    Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis\n    lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus,\n    mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex\n    sodales quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum.\n    Proin tempor cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.\n  </p>\n  <h5>Fifth level</h5>\n  <p>\n    Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet\n    ligula mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend\n    justo. Nam et sollicitudin odio.\n  </p>\n  <h6>Sixth level</h6>\n  <p>\n    Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan.\n    Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis.\n    Nunc vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui,\n    sed varius sapien odio vitae est. Etiam at cursus metus.\n  </p>\n</div>"
+    },
+    {
+      "slug": "long-formeditorial-content",
+      "title": "Long-form/editorial content",
+      "html": "<h1 class=\"pf-v6-c-content--h1 pf-m-page-title pf-m-editorial\">Hello world</h1>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub works as well!</p>\n<h2 class=\"pf-v6-c-content--h2 pf-m-editorial\">Second level</h2>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Curabitur accumsan turpis pharetra\n  <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.\n</p>\n<ul class=\"pf-v6-c-content--ul pf-m-editorial\">\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">\n    Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.\n    <ul class=\"pf-v6-c-content--ul pf-m-editorial\">\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">\n        Ut venenatis, nisl scelerisque.\n        <ol class=\"pf-v6-c-content--ol pf-m-editorial\">\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Integer in volutpat libero.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Ut non enim metus.</li>\n</ul>\n<h3 class=\"pf-v6-c-content--h3 pf-m-editorial\">Third level</h3>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Quisque ante lacus, malesuada ac auctor vitae, congue\n  <a class=\"pf-v6-c-content--a pf-m-editorial\" href=\"#\">non ante</a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.\n</p>\n<ol class=\"pf-v6-c-content--ol pf-m-editorial\">\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Integer in volutpat libero.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec a diam tellus.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">\n    Etiam auctor nisl et.\n    <ul class=\"pf-v6-c-content--ul pf-m-editorial\">\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">\n        Integer in volutpat libero.\n        <ol class=\"pf-v6-c-content--ol pf-m-editorial\">\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Aenean nec tortor orci.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Vivamus maximus ultricies pulvinar.</li>\n</ol>\n<blockquote class=\"pf-v6-c-content--blockquote pf-m-editorial\">Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et\n  <em>justo sodales</em> elementum. Maecenas ultrices lacus quis neque consectetur, et lobortis nisi molestie.\n</p>\n<hr class=\"pf-v6-c-content--hr pf-m-editorial\">\n<h3 class=\"pf-v6-c-content--h3 pf-m-editorial\">Plain list example</h3>\n<ol class=\"pf-v6-c-content--ol pf-m-plain pf-m-editorial\">\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Integer in volutpat libero.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec a diam tellus.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">\n    Etiam auctor nisl et.\n    <ul class=\"pf-v6-c-content--ul pf-m-editorial\">\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Regular list</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n      <li class=\"pf-v6-c-content--li pf-m-editorial\">\n        Integer in volutpat libero.\n        <ol class=\"pf-v6-c-content--ol pf-m-plain pf-m-editorial\">\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Nested plain list</li>\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Donec blandit a lorem id convallis.</li>\n          <li class=\"pf-v6-c-content--li pf-m-editorial\">Cras gravida arcu at diam gravida gravida.</li>\n        </ol>\n      </li>\n    </ul>\n  </li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Aenean nec tortor orci.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n  <li class=\"pf-v6-c-content--li pf-m-editorial\">Vivamus maximus ultricies pulvinar.</li>\n</ol>\n<hr class=\"pf-v6-c-content--hr pf-m-editorial\">\n<h3 class=\"pf-v6-c-content--h3 pf-m-editorial\">Visited link example</h3>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  <a class=\"pf-v6-c-content--a pf-m-plain pf-m-editorial\" href=\"\">Visited link</a>\n</p>\n<hr class=\"pf-v6-c-content--hr pf-m-editorial\">\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum\n  commodo.\n</p>\n<dl class=\"pf-v6-c-content--dl pf-m-editorial\">\n  <dt class=\"pf-v6-c-content--dt pf-m-editorial\">Web</dt>\n  <dd class=\"pf-v6-c-content--dd pf-m-editorial\">The part of the internet that contains websites and web pages</dd>\n  <dt class=\"pf-v6-c-content--dt pf-m-editorial\">HTML</dt>\n  <dd class=\"pf-v6-c-content--dd pf-m-editorial\">A markup language for creating web pages</dd>\n  <dt class=\"pf-v6-c-content--dt pf-m-editorial\">CSS</dt>\n  <dd class=\"pf-v6-c-content--dd pf-m-editorial\">A technology to make HTML look better</dd>\n</dl>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla.\n  Nulla facilisi. Nullam ac erat ante.\n</p>\n<h4 class=\"pf-v6-c-content--h4 pf-m-editorial\">Fourth level</h4>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum\n  ex efficitur.\n</p>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Maecenas eleifend sollicitudin dui, faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris\n  eu est maximus est porta condimentum in eu justo. Nulla id iaculis sapien.\n</p>\n<small class=\"pf-v6-c-content--small pf-m-editorial\">Sometimes you need small text to display things like date created</small>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis\n  lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus,\n  mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex\n  sodales quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum.\n  Proin tempor cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.\n</p>\n<h5 class=\"pf-v6-c-content--h5 pf-m-editorial\">Fifth level</h5>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet\n  ligula mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend\n  justo. Nam et sollicitudin odio.\n</p>\n<h6 class=\"pf-v6-c-content--h6 pf-m-editorial\">Sixth level</h6>\n<p class=\"pf-v6-c-content--p pf-m-editorial\">\n  Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan.\n  Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis.\n  Nunc vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui,\n  sed varius sapien odio vitae est. Etiam at cursus metus.\n</p>"
+    },
+    {
+      "slug": "long-formeditorial-content-in-content-wrapper",
+      "title": "Long-form/editorial content in content wrapper",
+      "html": "<div class=\"pf-v6-c-content pf-m-editorial\">\n  <h1 class=\"pf-m-page-title\">Hello world</h1>\n  <p class=\"\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub works as well!</p>\n  <h2>Second level</h2>\n  <p>\n    Curabitur accumsan turpis pharetra\n    <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.\n  </p>\n  <ul>\n    <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n    <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n    <li>\n      Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.\n      <ul>\n        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>\n        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>\n        <li>\n          Ut venenatis, nisl scelerisque.\n          <ol>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n            <li>Integer in volutpat libero.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Ut non enim metus.</li>\n  </ul>\n  <h3>Third level</h3>\n  <p>\n    Quisque ante lacus, malesuada ac auctor vitae, congue\n    <a href=\"#\">non ante</a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.\n  </p>\n  <ol>\n    <li>Donec blandit a lorem id convallis.</li>\n    <li>Cras gravida arcu at diam gravida gravida.</li>\n    <li>Integer in volutpat libero.</li>\n    <li>Donec a diam tellus.</li>\n    <li>\n      Etiam auctor nisl et.\n      <ul>\n        <li>Donec blandit a lorem id convallis.</li>\n        <li>Cras gravida arcu at diam gravida gravida.</li>\n        <li>\n          Integer in volutpat libero.\n          <ol>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Aenean nec tortor orci.</li>\n    <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n    <li>Vivamus maximus ultricies pulvinar.</li>\n  </ol>\n  <blockquote class=\"\">Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>\n  <p>\n    Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et\n    <em>justo sodales</em> elementum. Maecenas ultrices lacus quis neque consectetur, et lobortis nisi molestie.\n  </p>\n  <hr>\n  <h3>Plain list example</h3>\n  <ol class=\"pf-m-plain\">\n    <li>Donec blandit a lorem id convallis.</li>\n    <li>Cras gravida arcu at diam gravida gravida.</li>\n    <li>Integer in volutpat libero.</li>\n    <li>Donec a diam tellus.</li>\n    <li>\n      Etiam auctor nisl et.\n      <ul>\n        <li>Regular list</li>\n        <li>Donec blandit a lorem id convallis.</li>\n        <li>Cras gravida arcu at diam gravida gravida.</li>\n        <li>\n          Integer in volutpat libero.\n          <ol class=\"pf-m-plain\">\n            <li>Nested plain list</li>\n            <li>Donec blandit a lorem id convallis.</li>\n            <li>Cras gravida arcu at diam gravida gravida.</li>\n          </ol>\n        </li>\n      </ul>\n    </li>\n    <li>Aenean nec tortor orci.</li>\n    <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>\n    <li>Vivamus maximus ultricies pulvinar.</li>\n  </ol>\n  <hr>\n  <h3>Visited link example</h3>\n  <p>\n    <a class=\"pf-m-plain\" href=\"\">Visited link</a>\n  </p>\n  <hr>\n  <p>\n    Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum\n    commodo.\n  </p>\n  <dl>\n    <dt>Web</dt>\n    <dd>The part of the internet that contains websites and web pages</dd>\n    <dt>HTML</dt>\n    <dd>A markup language for creating web pages</dd>\n    <dt>CSS</dt>\n    <dd>A technology to make HTML look better</dd>\n  </dl>\n  <p>\n    Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla.\n    Nulla facilisi. Nullam ac erat ante.\n  </p>\n  <h4>Fourth level</h4>\n  <p>\n    Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum\n    ex efficitur.\n  </p>\n  <p>\n    Maecenas eleifend sollicitudin dui, faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris\n    eu est maximus est porta condimentum in eu justo. Nulla id iaculis sapien.\n  </p>\n  <small>Sometimes you need small text to display things like date created</small>\n  <p>\n    Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis\n    lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus,\n    mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex\n    sodales quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum.\n    Proin tempor cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.\n  </p>\n  <h5>Fifth level</h5>\n  <p>\n    Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet\n    ligula mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend\n    justo. Nam et sollicitudin odio.\n  </p>\n  <h6>Sixth level</h6>\n  <p>\n    Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan.\n    Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis.\n    Nunc vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui,\n    sed varius sapien odio vitae est. Etiam at cursus metus.\n  </p>\n</div>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "content-wrapper",
+      "title": "Content as wrapper",
+      "html": "<div class=\"pf-v6-c-content\"><p class=\"pf-v6-c-content--p\">Content with a component of type 'p' still renders the same when wrapped with a Content.</p><p>If located within a wrapping Content, html elements are styled as well!</p></div>"
+    },
+    {
+      "id": "content-headings",
+      "title": "Headings",
+      "html": "<div class=\"pf-v6-c-content\"><h1 class=\"pf-v6-c-content--h1\">Hello World</h1><h2 class=\"pf-v6-c-content--h2\">Second Level</h2><h3 class=\"pf-v6-c-content--h3\">Third Level</h3><h4 class=\"pf-v6-c-content--h4\">Forth Level</h4><h5 class=\"pf-v6-c-content--h5\">Fifth Level</h5><h6 class=\"pf-v6-c-content--h6\">Sixth Level</h6></div>"
+    },
+    {
+      "id": "content-body",
+      "title": "Body",
+      "html": "<div class=\"pf-v6-c-content\"><p>Cras bibendum nisi quis turpis aliquet tempus. Duis tempor maximus nulla at varius. Duis volutpat rhoncus massa, quis convallis nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit diam, condimentum dapibus lobortis vitae, suscipit sodales eros.</p><p>Cras bibendum nisi quis turpis aliquet tempus. Duis tempor maximus nulla at varius. Duis volutpat rhoncus massa, quis convallis nisl. <a href=\"#\">Cras bibendum nisi quis turpis aliquet tempus.</a> Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Cras bibendum nisi quis turpis aliquet tempus.</p><blockquote>Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Cras bibendum nisi quis turpis aliquet tempus.</blockquote><small>Duis volutpat rhoncus massa, quis convallis nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit diam, condimentum dapibus lobortis vitae, suscipit sodales eros.</small></div>"
+    },
+    {
+      "id": "content-ul",
+      "title": "Unordered list",
+      "html": "<div class=\"pf-v6-c-content\"><ul><li>est lorem ipsum dolor sit amet lorem ipsum dolor sit</li><li>aliquyam erat sed diam voluptua at vero eos et accusam</li><li>dolor sit amet lorem ipsum dolor sit amet consetetur sadipscing<ul><li>voluptua at vero eos et accusam et justo duo dolores</li><li>ipsum dolor sit amet lorem ipsum dolor sit amet consetetur</li></ul></li><li>diam voluptua at vero eos et accusam et justo duo</li></ul></div>"
+    },
+    {
+      "id": "content-ol",
+      "title": "Ordered list",
+      "html": "<div class=\"pf-v6-c-content\"><ol><li>sit amet lorem ipsum dolor sit amet consetetur sadipscing elitr</li><li>at vero eos et accusam et justo duo dolores et</li><li>ea rebum stet clita kasd gubergren no sea takimata sanctus</li><li>diam nonumy eirmod tempor invidunt ut labore et dolore magna</li><li>et ea rebum stet clita kasd gubergren no sea takimata</li><li>sed diam nonumy eirmod tempor invidunt ut labore et dolore</li><li>stet clita kasd gubergren no sea takimata sanctus est lorem</li></ol></div>"
+    },
+    {
+      "id": "content-plain-list",
+      "title": "Plain list",
+      "html": "<div class=\"pf-v6-c-content\"><h3>Plain unordered list</h3><ul class=\"pf-m-plain\"><li>rebum stet clita kasd gubergren no sea takimata sanctus est</li><li>eirmod tempor invidunt ut labore et dolore magna aliquyam erat</li><li>kasd gubergren no sea takimata sanctus est lorem ipsum dolor</li><li>ut labore et dolore magna aliquyam erat sed diam voluptua</li></ul><h3>Plain ordered list</h3><ol class=\"pf-m-plain\"><li>clita kasd gubergren no sea takimata sanctus est lorem ipsum</li><li>invidunt ut labore et dolore magna aliquyam erat sed diam</li><li>no sea takimata sanctus est lorem ipsum dolor sit amet</li><li>et dolore magna aliquyam erat sed diam voluptua at vero</li><li>gubergren no sea takimata sanctus est lorem ipsum dolor sit</li><li>labore et dolore magna aliquyam erat sed diam voluptua at</li><li>nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</li></ol></div>"
+    },
+    {
+      "id": "content-dl",
+      "title": "Description list",
+      "html": "<div class=\"pf-v6-c-content\"><dl><dt>Web</dt><dd>The part of the Internet that contains websites and web pages</dd><dt>HTML</dt><dd>A markup language for creating web pages</dd><dt>CSS</dt><dd>A technology to make HTML look better</dd></dl></div>"
+    },
+    {
+      "id": "content-editorial",
+      "title": "Editorial content",
+      "html": "<div class=\"pf-v6-c-content pf-m-editorial\"><h1 class=\"pf-v6-c-content--h1\">Example of editorial content via components</h1><p class=\"pf-v6-c-content--p\">Duis volutpat rhoncus massa, quis convallis nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit diam, condimentum dapibus lobortis vitae, suscipit sodales eros. Nulla a tortor posuere, tempor turpis non, lacinia velit.</p></div><br><div class=\"pf-v6-c-content pf-m-editorial\"><h1>Example of editorial content via wrapper</h1><p>Nam velit diam, condimentum dapibus lobortis vitae, suscipit sodales eros. Nulla a tortor posuere, tempor turpis non, lacinia velit. Nulla pellentesque quam ut faucibus faucibus. Sed ac fringilla eros.</p></div>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "plain-html-in-content-wrapper",
+        "title": "Plain HTML in content wrapper"
+      },
+      "pfjSnippet": {
+        "id": "content-wrapper",
+        "title": "Content as wrapper"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "long-formeditorial-content",
+        "title": "Long-form/editorial content"
+      },
+      "pfjSnippet": {
+        "id": "content-editorial",
+        "title": "Editorial content"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "basic",
+        "title": "Basic"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    },
+    {
+      "pfVariation": {
+        "slug": "long-formeditorial-content-in-content-wrapper",
+        "title": "Long-form/editorial content in content wrapper"
+      },
+      "pfjSnippet": null,
+      "matchType": "none",
+      "status": "missing_in_pfj"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-page-title",
+          "element": "<h1>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-m-plain",
+          "element": "<ol>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-c-content--p",
+          "element": "<p>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <a class=\"pf-m-plain\"> \u2014 missing in PFJ",
+        "PF has <h1 class=\"pf-m-page-title\"> \u2014 missing in PFJ",
+        "PF has <ol class=\"pf-m-plain\"> \u2014 missing in PFJ",
+        "PFJ has <p class=\"pf-v6-c-content--p\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Plain HTML in content wrapper"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-page-title",
+          "element": "<h1>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-m-plain",
+          "element": "<ol>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--a",
+          "element": "<a>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--blockquote",
+          "element": "<blockquote>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--dd",
+          "element": "<dd>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--dl",
+          "element": "<dl>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--dt",
+          "element": "<dt>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--h2",
+          "element": "<h2>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--h3",
+          "element": "<h3>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--h4",
+          "element": "<h4>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--h5",
+          "element": "<h5>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--h6",
+          "element": "<h6>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--hr",
+          "element": "<hr>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--li",
+          "element": "<li>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--ol",
+          "element": "<ol>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--small",
+          "element": "<small>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-content--ul",
+          "element": "<ul>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-v6-c-content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <a class=\"pf-m-editorial pf-m-plain pf-v6-c-content--a\"> \u2014 missing in PFJ",
+        "PF has <a class=\"pf-m-editorial pf-v6-c-content--a\"> \u2014 missing in PFJ",
+        "PF has <blockquote class=\"pf-m-editorial pf-v6-c-content--blockquote\"> \u2014 missing in PFJ",
+        "PF has <dd class=\"pf-m-editorial pf-v6-c-content--dd\"> \u2014 missing in PFJ",
+        "PF has <dl class=\"pf-m-editorial pf-v6-c-content--dl\"> \u2014 missing in PFJ",
+        "PF has <dt class=\"pf-m-editorial pf-v6-c-content--dt\"> \u2014 missing in PFJ",
+        "PF has <h1 class=\"pf-m-editorial pf-m-page-title pf-v6-c-content--h1\"> \u2014 missing in PFJ",
+        "PF has <h2 class=\"pf-m-editorial pf-v6-c-content--h2\"> \u2014 missing in PFJ",
+        "PF has <h3 class=\"pf-m-editorial pf-v6-c-content--h3\"> \u2014 missing in PFJ",
+        "PF has <h4 class=\"pf-m-editorial pf-v6-c-content--h4\"> \u2014 missing in PFJ",
+        "PF has <h5 class=\"pf-m-editorial pf-v6-c-content--h5\"> \u2014 missing in PFJ",
+        "PF has <h6 class=\"pf-m-editorial pf-v6-c-content--h6\"> \u2014 missing in PFJ",
+        "PF has <hr class=\"pf-m-editorial pf-v6-c-content--hr\"> \u2014 missing in PFJ",
+        "PF has <li class=\"pf-m-editorial pf-v6-c-content--li\"> \u2014 missing in PFJ",
+        "PF has <ol class=\"pf-m-editorial pf-m-plain pf-v6-c-content--ol\"> \u2014 missing in PFJ",
+        "PF has <ol class=\"pf-m-editorial pf-v6-c-content--ol\"> \u2014 missing in PFJ",
+        "PF has <p class=\"pf-m-editorial pf-v6-c-content--p\"> \u2014 missing in PFJ",
+        "PF has <small class=\"pf-m-editorial pf-v6-c-content--small\"> \u2014 missing in PFJ",
+        "PF has <ul class=\"pf-m-editorial pf-v6-c-content--ul\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-editorial pf-v6-c-content\"> \u2014 not in PF",
+        "PFJ has <h1 class=\"pf-v6-c-content--h1\"> \u2014 not in PF",
+        "PFJ has <p class=\"pf-v6-c-content--p\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": [],
+      "variation": "Long-form/editorial content"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Basic",
+      "description": "implement Basic variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 2,
+      "type": "add_variation",
+      "title": "Long-form/editorial content in content wrapper",
+      "description": "implement Long-form/editorial content in content wrapper variation in PFJ",
+      "category": "missing_variations"
+    },
+    {
+      "number": 3,
+      "type": "fix_css",
+      "title": "Plain HTML in content wrapper",
+      "description": "add missing class pf-m-page-title on <h1>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_css",
+      "title": "Plain HTML in content wrapper",
+      "description": "add missing class pf-m-plain on <ol>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_structure",
+      "title": "Plain HTML in content wrapper",
+      "description": "PF has <a class=\"pf-m-plain\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_structure",
+      "title": "Plain HTML in content wrapper",
+      "description": "PF has <h1 class=\"pf-m-page-title\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_structure",
+      "title": "Plain HTML in content wrapper",
+      "description": "PF has <ol class=\"pf-m-plain\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_structure",
+      "title": "Plain HTML in content wrapper",
+      "description": "PFJ has <p class=\"pf-v6-c-content--p\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Plain HTML in content wrapper"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-m-page-title on <h1>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-m-plain on <ol>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--a on <a>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--blockquote on <blockquote>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--dd on <dd>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--dl on <dl>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--dt on <dt>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--h2 on <h2>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--h3 on <h3>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--h4 on <h4>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--h5 on <h5>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--h6 on <h6>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--hr on <hr>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--li on <li>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--ol on <ol>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--small on <small>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_css",
+      "title": "Long-form/editorial content",
+      "description": "add missing class pf-v6-c-content--ul on <ul>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <a class=\"pf-m-editorial pf-m-plain pf-v6-c-content--a\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <a class=\"pf-m-editorial pf-v6-c-content--a\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <blockquote class=\"pf-m-editorial pf-v6-c-content--blockquote\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <dd class=\"pf-m-editorial pf-v6-c-content--dd\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 30,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <dl class=\"pf-m-editorial pf-v6-c-content--dl\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 31,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <dt class=\"pf-m-editorial pf-v6-c-content--dt\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 32,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h1 class=\"pf-m-editorial pf-m-page-title pf-v6-c-content--h1\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 33,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h2 class=\"pf-m-editorial pf-v6-c-content--h2\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 34,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h3 class=\"pf-m-editorial pf-v6-c-content--h3\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 35,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h4 class=\"pf-m-editorial pf-v6-c-content--h4\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 36,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h5 class=\"pf-m-editorial pf-v6-c-content--h5\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 37,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <h6 class=\"pf-m-editorial pf-v6-c-content--h6\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 38,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <hr class=\"pf-m-editorial pf-v6-c-content--hr\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 39,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <li class=\"pf-m-editorial pf-v6-c-content--li\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 40,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <ol class=\"pf-m-editorial pf-m-plain pf-v6-c-content--ol\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 41,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <ol class=\"pf-m-editorial pf-v6-c-content--ol\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 42,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <p class=\"pf-m-editorial pf-v6-c-content--p\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 43,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <small class=\"pf-m-editorial pf-v6-c-content--small\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 44,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PF has <ul class=\"pf-m-editorial pf-v6-c-content--ul\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 45,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PFJ has <div class=\"pf-m-editorial pf-v6-c-content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 46,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PFJ has <h1 class=\"pf-v6-c-content--h1\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    },
+    {
+      "number": 47,
+      "type": "fix_structure",
+      "title": "Long-form/editorial content",
+      "description": "PFJ has <p class=\"pf-v6-c-content--p\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Long-form/editorial content"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,748 @@
+{
+  "component": "truncate",
+  "date": "2026-06-02",
+  "pfVersion": "Release 6.5.1",
+  "pfUrl": "https://www.patternfly.org/components/truncate/html",
+  "pfjUrl": "http://localhost:1234/components/truncate",
+  "completeness": {
+    "pfTotal": 4,
+    "pfjTotal": 4,
+    "matched": 4,
+    "missingInPfj": [],
+    "extraInPfj": []
+  },
+  "variations": [
+    {
+      "slug": "default",
+      "title": "Default",
+      "html": "<div class=\"pf-v6-c-truncate--example\">\n  <span class=\"pf-v6-c-truncate\" tabindex=\"0\">\n    <span class=\"pf-v6-c-truncate__start\">redhat_logo_black_and_white_reversed_simple_with_fedora_container.zip</span>\n  </span>\n</div>"
+    },
+    {
+      "slug": "middle",
+      "title": "Middle",
+      "html": "<div class=\"pf-v6-c-truncate--example\">\n  <span class=\"pf-v6-c-truncate\" tabindex=\"0\">\n    <span class=\"pf-v6-c-truncate__start\">redhat_logo_black_and_white_reversed_simple_</span>\n    <span class=\"pf-v6-c-truncate__end\">with_fedora_container.zip</span>\n  </span>\n</div>"
+    },
+    {
+      "slug": "start",
+      "title": "Start",
+      "html": "<div class=\"pf-v6-c-truncate--example\">\n  <span class=\"pf-v6-c-truncate\" tabindex=\"0\">\n    <span class=\"pf-v6-c-truncate__end\">redhat_logo_black_and_white_reversed_simple_with_fedora_container.zip</span>\n  </span>\n</div>"
+    },
+    {
+      "slug": "based-on-max-characters",
+      "title": "Based on max characters",
+      "html": "<div>Truncated at end position:</div>\n<span class=\"pf-v6-c-truncate pf-m-fixed\" tabindex=\"0\">\n  <span class=\"pf-v6-c-truncate__text\">redhat_logo_black_and_white_reversed_simple_with_</span>\n  <span class=\"pf-v6-c-truncate__omission\" aria-hidden=\"true\">\u2026</span>\n  <span class=\"pf-v6-screen-reader\">fedora_container.zip</span>\n</span>\n<br>\n<br>\n<div>Truncated at middle position:</div>\n<span class=\"pf-v6-c-truncate pf-m-fixed\" tabindex=\"0\">\n  <span class=\"pf-v6-c-truncate__text\">redhat_logo_black_and_</span>\n  <span class=\"pf-v6-screen-reader\">white_reversed_simple_with_</span>\n\n  <span class=\"pf-v6-c-truncate__omission\" aria-hidden=\"true\">\u2026</span>\n  <span class=\"pf-v6-c-truncate__text\">fedora_container.zip</span>\n</span>\n<br>\n<br>\n<div>Truncated at start position:</div>\n<span class=\"pf-v6-c-truncate pf-m-fixed\" tabindex=\"0\">\n  <span class=\"pf-v6-screen-reader\">redhat_logo_black_</span>\n\n  <span class=\"pf-v6-c-truncate__omission\" aria-hidden=\"true\">\u2026</span>\n  <span class=\"pf-v6-c-truncate__text\">and_white_reversed_simple_with_fedora_container.zip</span>\n</span>"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "truncate-default",
+      "title": "Default",
+      "html": "<span class=\"pf-v6-c-truncate\" style=\"anchor-name: --overlay-id-43;\"><span class=\"pf-v6-c-truncate__start\">consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut</span><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-42\" on-detach-uid=\"d-id-45\" popover=\"manual\" style=\"position-anchor: --overlay-id-43; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut</div></div></span>"
+    },
+    {
+      "id": "truncate-middle",
+      "title": "Middle",
+      "html": "<span class=\"pf-v6-c-truncate\" style=\"anchor-name: --overlay-id-61;\"><span class=\"pf-v6-c-truncate__start\">redhat_logo_black_and_white_reversed_simple_with_fedora_contai</span><span class=\"pf-v6-c-truncate__end\">ner.zip</span><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-60\" on-detach-uid=\"d-id-63\" popover=\"manual\" style=\"position-anchor: --overlay-id-61; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">redhat_logo_black_and_white_reversed_simple_with_fedora_container.zip</div></div></span>"
+    },
+    {
+      "id": "truncate-start",
+      "title": "Start",
+      "html": "<span class=\"pf-v6-c-truncate\" style=\"anchor-name: --overlay-id-79;\"><span class=\"pf-v6-c-truncate__end\">dolore magna aliquyam erat sed diam voluptua at vero eos\u200e</span><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-78\" on-detach-uid=\"d-id-81\" popover=\"manual\" style=\"position-anchor: --overlay-id-79; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">dolore magna aliquyam erat sed diam voluptua at vero eos</div></div></span>"
+    },
+    {
+      "id": "truncate-max-chars",
+      "title": "Based on max characters",
+      "html": "<span class=\"pf-v6-c-truncate\" style=\"anchor-name: --overlay-id-97;\"><span class=\"pf-v6-c-truncate__start\">est lorem ipsum dolo...</span><div class=\"pf-v6-c-tooltip pf-m-top pf-m-css-positioning\" role=\"tooltip\" aria-live=\"polite\" id=\"tt-id-96\" on-detach-uid=\"d-id-99\" popover=\"manual\" style=\"position-anchor: --overlay-id-97; margin: 15px;\"><div class=\"pf-v6-c-tooltip__arrow\"></div><div class=\"pf-v6-c-tooltip__content\">est lorem ipsum dolo...</div></div></span>"
+    }
+  ],
+  "matches": [
+    {
+      "pfVariation": {
+        "slug": "default",
+        "title": "Default"
+      },
+      "pfjSnippet": {
+        "id": "truncate-default",
+        "title": "Default"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "middle",
+        "title": "Middle"
+      },
+      "pfjSnippet": {
+        "id": "truncate-middle",
+        "title": "Middle"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "start",
+        "title": "Start"
+      },
+      "pfjSnippet": {
+        "id": "truncate-start",
+        "title": "Start"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
+        "slug": "based-on-max-characters",
+        "title": "Based on max characters"
+      },
+      "pfjSnippet": {
+        "id": "truncate-max-chars",
+        "title": "Based on max characters"
+      },
+      "matchType": "exact",
+      "status": "matched"
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-v6-c-truncate--example",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__arrow",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+        "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+        "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Default"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-v6-c-truncate--example",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__arrow",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+        "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+        "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Middle"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-v6-c-truncate--example",
+          "element": "<div>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__arrow",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+        "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+        "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Start"
+    },
+    {
+      "status": "differences_found",
+      "missingClasses": [
+        {
+          "class": "pf-m-fixed",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-truncate__omission",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-c-truncate__text",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        },
+        {
+          "class": "pf-v6-screen-reader",
+          "element": "<span>",
+          "context": "present in PF, absent in PFJ"
+        }
+      ],
+      "extraClasses": [
+        {
+          "class": "pf-m-css-positioning",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-m-top",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__arrow",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-tooltip__content",
+          "element": "<div>",
+          "context": "present in PFJ, absent in PF"
+        },
+        {
+          "class": "pf-v6-c-truncate__start",
+          "element": "<span>",
+          "context": "present in PFJ, absent in PF"
+        }
+      ],
+      "structuralDiffs": [
+        "PF has <span class=\"pf-m-fixed pf-v6-c-truncate\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-v6-c-truncate__omission\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-v6-c-truncate__text\"> \u2014 missing in PFJ",
+        "PF has <span class=\"pf-v6-screen-reader\"> \u2014 missing in PFJ",
+        "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+        "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+        "PFJ has <span class=\"pf-v6-c-truncate\"> \u2014 not in PF",
+        "PFJ has <span class=\"pf-v6-c-truncate__start\"> \u2014 not in PF"
+      ],
+      "attributeDiffs": [
+        "aria-hidden=\"true\" on <span> \u2014 present in PF, absent in PFJ",
+        "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+        "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+        "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF"
+      ],
+      "iconDiffs": [],
+      "variation": "Based on max characters"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "fix_css",
+      "title": "Default",
+      "description": "add missing class pf-v6-c-truncate--example on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 2,
+      "type": "fix_structure",
+      "title": "Default",
+      "description": "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "fix_structure",
+      "title": "Default",
+      "description": "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_structure",
+      "title": "Default",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_structure",
+      "title": "Default",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 8,
+      "type": "fix_attribute",
+      "title": "Default",
+      "description": "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Default"
+      ]
+    },
+    {
+      "number": 9,
+      "type": "fix_css",
+      "title": "Middle",
+      "description": "add missing class pf-v6-c-truncate--example on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 10,
+      "type": "fix_structure",
+      "title": "Middle",
+      "description": "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 11,
+      "type": "fix_structure",
+      "title": "Middle",
+      "description": "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 12,
+      "type": "fix_structure",
+      "title": "Middle",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 13,
+      "type": "fix_structure",
+      "title": "Middle",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 14,
+      "type": "fix_attribute",
+      "title": "Middle",
+      "description": "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 15,
+      "type": "fix_attribute",
+      "title": "Middle",
+      "description": "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 16,
+      "type": "fix_attribute",
+      "title": "Middle",
+      "description": "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Middle"
+      ]
+    },
+    {
+      "number": 17,
+      "type": "fix_css",
+      "title": "Start",
+      "description": "add missing class pf-v6-c-truncate--example on <div>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 18,
+      "type": "fix_structure",
+      "title": "Start",
+      "description": "PF has <div class=\"pf-v6-c-truncate--example\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 19,
+      "type": "fix_structure",
+      "title": "Start",
+      "description": "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 20,
+      "type": "fix_structure",
+      "title": "Start",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 21,
+      "type": "fix_structure",
+      "title": "Start",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 22,
+      "type": "fix_attribute",
+      "title": "Start",
+      "description": "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 23,
+      "type": "fix_attribute",
+      "title": "Start",
+      "description": "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 24,
+      "type": "fix_attribute",
+      "title": "Start",
+      "description": "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Start"
+      ]
+    },
+    {
+      "number": 25,
+      "type": "fix_css",
+      "title": "Based on max characters",
+      "description": "add missing class pf-m-fixed on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 26,
+      "type": "fix_css",
+      "title": "Based on max characters",
+      "description": "add missing class pf-v6-c-truncate__omission on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 27,
+      "type": "fix_css",
+      "title": "Based on max characters",
+      "description": "add missing class pf-v6-c-truncate__text on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 28,
+      "type": "fix_css",
+      "title": "Based on max characters",
+      "description": "add missing class pf-v6-screen-reader on <span>",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 29,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PF has <span class=\"pf-m-fixed pf-v6-c-truncate\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 30,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PF has <span class=\"pf-v6-c-truncate__omission\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 31,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PF has <span class=\"pf-v6-c-truncate__text\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 32,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PF has <span class=\"pf-v6-screen-reader\"> \u2014 missing in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 33,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PFJ has <div class=\"pf-m-css-positioning pf-m-top pf-v6-c-tooltip\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 34,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__arrow\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 35,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PFJ has <div class=\"pf-v6-c-tooltip__content\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 36,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PFJ has <span class=\"pf-v6-c-truncate\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 37,
+      "type": "fix_structure",
+      "title": "Based on max characters",
+      "description": "PFJ has <span class=\"pf-v6-c-truncate__start\"> \u2014 not in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 38,
+      "type": "fix_attribute",
+      "title": "Based on max characters",
+      "description": "aria-hidden=\"true\" on <span> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 39,
+      "type": "fix_attribute",
+      "title": "Based on max characters",
+      "description": "tabindex=\"0\" on <span> \u2014 present in PF, absent in PFJ",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 40,
+      "type": "fix_attribute",
+      "title": "Based on max characters",
+      "description": "aria-live=\"polite\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    },
+    {
+      "number": 41,
+      "type": "fix_attribute",
+      "title": "Based on max characters",
+      "description": "role=\"tooltip\" on <div> \u2014 present in PFJ, absent in PF",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Based on max characters"
+      ]
+    }
+  ]
+}

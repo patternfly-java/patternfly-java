@@ -1,0 +1,56 @@
+# PatternFly Java Lint Summary
+
+| Component | Date | Files | Errors | Warnings | Fixed | Status |
+|-----------|------|-------|--------|----------|-------|--------|
+| accordion | 2026-06-02 | 6 | 0 | 0 | — | clean |
+| alert | 2026-06-02 | 7 | 1 | 0 | — | issues |
+| avatar | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| backdrop | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| backtotop | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| badge | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| banner | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| brand | 2026-06-02 | 2 | 0 | 1 | — | issues |
+| breadcrumb | 2026-06-02 | 4 | 0 | 0 | — | clean |
+| button | 2026-06-02 | 2 | 0 | 1 | — | issues |
+| card | 2026-06-02 | 11 | 0 | 0 | — | clean |
+| codeblock | 2026-06-02 | 6 | 0 | 0 | — | clean |
+| content | 2026-06-02 | 3 | 0 | 0 | — | clean |
+| divider | 2026-06-02 | 3 | 0 | 0 | — | clean |
+| drawer | 2026-06-02 | 11 | 1 | 1 | — | issues |
+| emptystate | 2026-06-02 | 6 | 0 | 0 | — | clean |
+| expandable | 2026-06-02 | 5 | 0 | 1 | — | issues |
+| form | 2026-06-02 | 29 | 2 | 2 | — | issues |
+| help | 2026-06-02 | 4 | 1 | 0 | — | issues |
+| hint | 2026-06-02 | 7 | 0 | 0 | — | clean |
+| icon | 2026-06-02 | 3 | 0 | 1 | — | issues |
+| inputgroup | 2026-06-02 | 5 | 0 | 0 | — | clean |
+| jumplinks | 2026-06-02 | 5 | 0 | 0 | — | clean |
+| label | 2026-06-02 | 5 | 0 | 1 | — | issues |
+| list | 2026-06-02 | 24 | 1 | 5 | — | issues |
+| menu | 2026-06-02 | 43 | 0 | 2 | — | issues |
+| modal | 2026-06-02 | 8 | 2 | 3 | — | issues |
+| navigation | 2026-06-02 | 8 | 1 | 4 | — | issues |
+| notification | 2026-06-02 | 9 | 3 | 2 | — | issues |
+| numberinput | 2026-06-02 | 3 | 0 | 2 | — | issues |
+| page | 2026-06-02 | 22 | 4 | 2 | — | issues |
+| panel | 2026-06-02 | 5 | 1 | 0 | — | issues |
+| popover | 2026-06-02 | 11 | 1 | 2 | — | issues |
+| progress | 2026-06-02 | 4 | 0 | 2 | — | issues |
+| progressstepper | 2026-06-02 | 4 | 5 | 5 | — | issues |
+| skeleton | 2026-06-02 | 3 | 0 | 0 | — | clean |
+| skiptocontent | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| slider | 2026-06-02 | 7 | 1 | 3 | — | issues |
+| spinner | 2026-06-02 | 2 | 1 | 0 | — | issues |
+| switch_ | 2026-06-02 | 2 | 0 | 1 | — | issues |
+| table | 2026-06-02 | 15 | 0 | 1 | — | issues |
+| tabs | 2026-06-02 | 8 | 0 | 1 | — | issues |
+| textinputgroup | 2026-06-02 | 9 | 0 | 3 | — | issues |
+| timestamp | 2026-06-02 | 7 | 2 | 2 | — | issues |
+| title | 2026-06-02 | 2 | 0 | 0 | — | clean |
+| togglegroup | 2026-06-02 | 4 | 0 | 0 | — | clean |
+| toolbar | 2026-06-02 | 14 | 0 | 2 | — | issues |
+| tooltip | 2026-06-02 | 5 | 0 | 2 | — | issues |
+| tree | 2026-06-02 | 5 | 0 | 3 | — | issues |
+| truncate | 2026-06-02 | 3 | 0 | 0 | — | clean |
+| wizard | 2026-06-02 | 19 | 1 | 4 | — | issues |
+| **TOTAL** | | **392** | **29** | **67** | | **20 clean / 31 issues** |

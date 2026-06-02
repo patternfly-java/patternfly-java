@@ -1,0 +1,51 @@
+{
+  "component": "wizard",
+  "date": "2026-06-02",
+  "files": 19,
+  "errors": 1,
+  "warnings": 4,
+  "fixed": "—",
+  "status": "issues",
+  "violations": [
+    {
+      "file": "WizardHeader.java",
+      "line": 55,
+      "severity": "ERROR",
+      "rule": "section-order",
+      "detail": "Section 'builder' (line 55) appears before 'add' (line 62). Required order is: factory -> instance -> add -> builder -> aria -> events -> api -> internal.",
+      "fixed": false
+    },
+    {
+      "file": "WizardFooter.java",
+      "line": 39,
+      "severity": "WARN",
+      "rule": "section-factory",
+      "detail": "No 'factory' section exists. The comment at line 39 says 'No factory methods here!' but a factory section separator is conventionally still present (even if empty with a comment).",
+      "fixed": false
+    },
+    {
+      "file": "WizardNav.java",
+      "line": 49,
+      "severity": "WARN",
+      "rule": "section-factory",
+      "detail": "No 'factory' section exists. The comment at line 49 says 'No factory methods here!' but a factory section separator is conventionally still present (even if empty with a comment).",
+      "fixed": false
+    },
+    {
+      "file": "WizardNavItem.java",
+      "line": 60,
+      "severity": "WARN",
+      "rule": "section-factory",
+      "detail": "No 'factory' section exists. The comment at line 60 says 'No factory methods here!' but a factory section separator is conventionally still present (even if empty with a comment).",
+      "fixed": false
+    },
+    {
+      "file": "WizardFooter.java",
+      "line": 56,
+      "severity": "WARN",
+      "rule": "store-lookup-timing",
+      "detail": "lookupComponent() is called inside an onClick lambda registered in the constructor. While this is technically safe (the lambda executes only after DOM attachment), the pattern is worth noting for consistency review.",
+      "fixed": false
+    }
+  ]
+}
