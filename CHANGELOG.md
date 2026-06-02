@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add nested markdown directory structure with recursive folder support, `index.md` for folder content, and `_meta.yaml` for folder-only groups
+- Add `manifest.json` generation for automatic route registration and navigation building
+- Add "Concepts" documentation section with API design, icons, and tokens pages
+- Add skills documentation page covering `/pf-compare`, `/pf-align`, `/pf-lint`, `/pf-status`, and `/pf-update` workflows
+- Add documentation page explaining the showcase markdown system, directory conventions, and contribution rules
 - Add building, CI/CD, and releasing documentation pages to the showcase
 - Add Node-based markdown pipeline (`markdown.mjs`) using remark/rehype with Shiki syntax highlighting, heading anchors, TOC extraction, and PatternFly CSS classes
 - Add runtime markdown loading via `fetch()` with per-page caching using Elemento's `Place.loader()` mechanism
@@ -30,6 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Replace per-page Java classes with manifest-driven programmatic route registration using Elemento's `Places` API
+- Reorganize showcase documentation into user-facing ("Concepts") and contributor-facing ("Developer") groups
 - Replace `doc.java` JBang/flexmark generator with Node remark/rehype pipeline, decoupling documentation content from J2CL compilation
 - Move markdown files from `showcase/src/doc/` to `showcase/markdown/` with YAML frontmatter
 - Slim down README from 385 to ~40 lines, linking to showcase for detailed documentation
@@ -44,6 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
+- Remove 9 boilerplate markdown page classes, replaced by manifest-driven `MarkdownPage` with programmatic route registration
 - Remove `doc.java` JBang script and generated `Documentation.java` class, replaced by Node markdown pipeline
 - Remove `DocumentationPage` base class, replaced by `MarkdownPage` with runtime data loading
 
