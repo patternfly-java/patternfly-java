@@ -33,7 +33,7 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 - **layouts** - Page layouts (Page, Sidebar, etc.)
 - **icons** - IconSets (FontAwesome, PatternFly, Red Hat icons)
 - **tokens** - PatternFly design tokens as enum constants
-- **charts** - Chart web components wrapper (NPM package)
+- **charts** - Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle
 - **extensions/codeeditor**, **extensions/finder** - Extensions
 - **gwt**, **j2cl** - Compilation target support
 - **showcase** - Interactive demo website (activated via `-P showcase` profile)

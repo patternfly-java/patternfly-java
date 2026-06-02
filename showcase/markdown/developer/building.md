@@ -46,7 +46,7 @@ The project is organized into these modules:
 | **layouts** | Page layouts (Page, Sidebar, etc.) |
 | **icons** | Icon sets (FontAwesome, PatternFly, Red Hat icons) |
 | **tokens** | PatternFly design tokens as enum constants |
-| **charts** | Chart web components wrapper (NPM package) |
+| **charts** | Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle |
 | **extensions/codeeditor** | Code editor extension |
 | **extensions/finder** | Finder extension |
 | **gwt** | GWT compilation target support |

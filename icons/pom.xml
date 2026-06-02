@@ -62,14 +62,14 @@
                 <executions>
                     <execution>
                         <id>install-node-and-corepack</id>
-                        <phase>generate-sources</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>install-node-and-corepack</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>pnpm-install</id>
-                        <phase>generate-sources</phase>
+                        <id>install-packages</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>corepack</goal>
                         </goals>
