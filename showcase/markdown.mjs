@@ -27,7 +27,7 @@ import rehypeStringify from 'rehype-stringify';
 import YAML from 'yaml';
 
 const MARKDOWN_DIR = resolve(import.meta.dirname, 'markdown');
-const OUTPUT_DIR = resolve(import.meta.dirname, 'src/web/markdown');
+const OUTPUT_DIR = resolve(import.meta.dirname, 'src/web/public/markdown');
 
 const PF_HEADING_CLASSES = {
     h1: 'pf-v6-c-title pf-m-4xl',
