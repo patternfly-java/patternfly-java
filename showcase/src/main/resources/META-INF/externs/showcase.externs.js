@@ -159,6 +159,54 @@ Layout.prototype.clazz
 /** @type {string} */
 Layout.prototype.summary
 
+// ------------------------------------------------------ manifest item
+
+/** @constructor */
+function ManifestItem() {
+}
+
+/** @type {string} */
+ManifestItem.prototype.type
+
+/** @type {string} */
+ManifestItem.prototype.id
+
+/** @type {string} */
+ManifestItem.prototype.route
+
+/** @type {string} */
+ManifestItem.prototype.title
+
+/** @type {number} */
+ManifestItem.prototype.order
+
+/** @type {boolean} */
+ManifestItem.prototype.hasContent
+
+/** @type {string} */
+ManifestItem.prototype.contentId
+
+/** @type {!Array<!ManifestItem>} */
+ManifestItem.prototype.children
+
+// ------------------------------------------------------ markdown data
+
+/** @constructor */
+function MarkdownData() {
+}
+
+/** @type {string} */
+MarkdownData.prototype.id
+
+/** @type {string} */
+MarkdownData.prototype.title
+
+/** @type {string} */
+MarkdownData.prototype.html
+
+/** @type {!Array<!TocEntry>} */
+MarkdownData.prototype.toc
+
 // ------------------------------------------------------ location data
 
 /** @constructor */
@@ -329,6 +377,21 @@ Track.prototype.writer
 
 /** @type {string} */
 Track.prototype.length
+
+// ------------------------------------------------------ toc entry
+
+/** @constructor */
+function TocEntry() {
+}
+
+/** @type {string} */
+TocEntry.prototype.id
+
+/** @type {string} */
+TocEntry.prototype.text
+
+/** @type {number} */
+TocEntry.prototype.level
 
 // ------------------------------------------------------ user
 
