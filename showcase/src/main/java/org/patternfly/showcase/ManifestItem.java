@@ -15,13 +15,18 @@
  */
 package org.patternfly.showcase;
 
-import org.jboss.elemento.router.LoadData;
-import org.jboss.elemento.router.Route;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 
-@Route(value = "/icons", title = "Icons")
-public class IconsPage extends MarkdownPage {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class ManifestItem {
 
-    public static LoadData<MarkdownData> loader() {
-        return (place, parameter) -> Markdown.load("icons");
-    }
+    public String type;
+    public String id;
+    public String route;
+    public String title;
+    public int order;
+    public boolean hasContent;
+    public String contentId;
+    public ManifestItem[] children;
 }

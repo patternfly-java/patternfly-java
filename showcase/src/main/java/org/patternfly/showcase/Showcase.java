@@ -18,7 +18,6 @@ package org.patternfly.showcase;
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
-import org.jboss.elemento.router.Place;
 import org.jboss.elemento.router.PlaceManager;
 import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
 import org.patternfly.component.navigation.Navigation;
@@ -78,7 +77,13 @@ public final class Showcase {
     @GWT3EntryPoint
     public void onModuleLoad() {
         Logger.initFrom(location);
+        MarkdownManifest.load().then(manifest -> {
+            init(manifest);
+            return null;
+        });
+    }
 
+    private void init(MarkdownManifest manifest) {
         Navigation navigation = navigation(expandable);
         placeManager = new PlaceManager()
                 .root(By.id(MAIN_ID))
@@ -86,12 +91,14 @@ public final class Showcase {
                 .title(title -> "PatternFly Java • " + title)
                 .notFound(NotFound::new)
                 .register(new AnnotatedPlaces())
+                .register(manifest.places())
                 .afterPlace((pm, place) -> navigation.select(place.route));
 
         navigation
-                .addItem(ni(placeManager.place("/get-started")))
+                .addItem(manifest.navItem(placeManager, "/get-started"))
+                .addGroup(manifest.navGroup(placeManager, "concepts"))
                 .addGroup(expandableNavigationGroup("components", "Components")
-                        .addItem(ni(placeManager.place("/components/all-components")))
+                        .addItem(ni("/components/all-components"))
                         .addItems(topLevelComponents(), component ->
                                 navigationItem(component.route, component.title, component.route))
                         .insertGroupAfter(expandableNavigationGroup("forms", "Forms")
@@ -103,24 +110,19 @@ public final class Showcase {
                                                 navigationItem(sc.route, sc.title, sc.route)),
                                 "/components/masthead"))
                 .addGroup(expandableNavigationGroup("extensions", "Extensions")
-                        .addItem(ni(placeManager.place("/extensions/about-extensions"), "About extensions"))
+                        .addItem(ni("/extensions/about-extensions", "About extensions"))
                         .addItems(extensions(), extension ->
                                 navigationItem(extension.route, extension.title, extension.route)))
                 .addGroup(expandableNavigationGroup("charts", "Charts")
-                        .addItem(ni(placeManager.place("/charts/about-charts"), "About charts"))
+                        .addItem(ni("/charts/about-charts", "About charts"))
                         .addItems(charts(), chart ->
                                 navigationItem(chart.route, chart.title, chart.route)))
                 .addGroup(expandableNavigationGroup("layouts", "Layouts")
-                        .addItem(ni(placeManager.place("/layouts/about-layouts"), "About layouts"))
+                        .addItem(ni("/layouts/about-layouts", "About layouts"))
                         .addItems(layouts(), layout ->
                                 navigationItem(layout.route, layout.title, layout.route)))
-                .addItem(ni(placeManager.place("/api-design")))
-                .addItem(ni(placeManager.place("/icons")))
-                .addItem(ni(placeManager.place("/tokens")))
-                .addItem(ni(placeManager.place("/building")))
-                .addItem(ni(placeManager.place("/ci-cd")))
-                .addItem(ni(placeManager.place("/releasing")))
-                .addItem(ni(placeManager.place("/get-involved")));
+                .addGroup(manifest.navGroup(placeManager, "developer"))
+                .addItem(manifest.navItem(placeManager, "/get-involved"));
 
         body().add(page()
                 .addSkipToContent(skipToContent(MAIN_ID))
@@ -155,11 +157,11 @@ public final class Showcase {
 
     // ------------------------------------------------------ internal
 
-    private static NavigationItem ni(Place place) {
-        return ni(place, place.title);
+    private NavigationItem ni(String route) {
+        return ni(route, placeManager.place(route).title);
     }
 
-    private static NavigationItem ni(Place place, String text) {
-        return navigationItem(place.route, text, place.route);
+    private NavigationItem ni(String route, String text) {
+        return navigationItem(route, text, route);
     }
 }

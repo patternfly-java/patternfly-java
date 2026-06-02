@@ -36,11 +36,11 @@ import static org.patternfly.component.page.PageSection.pageSection;
 import static org.patternfly.showcase.ApiDoc.API_DOC_BASE;
 import static org.patternfly.showcase.ApiDoc.API_DOC_TARGET;
 
-public abstract class MarkdownPage implements Page, IsElement<HTMLElement>, Attachable {
+public class MarkdownPage implements Page, IsElement<HTMLElement>, Attachable {
 
     private final HTMLElement root;
 
-    protected MarkdownPage() {
+    MarkdownPage() {
         this.root = pageSection().css("markdown").element();
         Attachable.register(this, this);
     }
