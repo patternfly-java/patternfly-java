@@ -27,6 +27,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `/pf-lint` skill for verifying component conventions (documentation, code structure, naming, formatting)
 - Add `/pf-update` skill for tracking PatternFly release changes and generating prioritized work plans
 - Add `/pf-status` skill for showing unified component status dashboard across lint, compare, align, and update dimensions
+- Add `/pf-dev-env` skill for managing local development environment (J2CL watch + Vite dev server) with idempotent start/stop/status, external process detection, and pre-flight build
+- Add skill interaction documentation with data flow diagram and dependency table to showcase developer docs
 - Add `CardSubtitle` sub-component with `addSubtitle()` on `CardTitle` for card subtitle support
 - Add `clicked()`, `ariaDisabled()`, and `ariaLabel()` methods to Button
 - Add `secondary()`, `pill()`, and `scrollableAutoHeight()` methods to Panel
@@ -48,6 +50,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Upgrade pnpm from 11.3.0 to 11.4.0
 - Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to the new `tools.jackson.core` group ID and `JsonMapper` builder API
 - Merge PF 6.5 upgrade findings into skill-based update report (`docs/pf-update/6.5.0.md`) with implementation status tracking
+- Improve all 6 skills based on skill-reviewer feedback: clarify script invocation, condense tool listings, add trigger phrases, add error handling guidance, inline frontmatter formats, add first-run file creation instructions
+- Import PatternFly.org styles from npm package instead of stale local copies
+- Replace link-list showcase index pages with `_meta.yaml` navigation groups
 
 ### Removed
 
@@ -72,6 +77,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix button close icon to use rhMicrons (viewBox 0 0 20 20) matching PatternFly
 - Fix button showcase copy icon from FontAwesome to RH UI
 - Fix `-Dquickly` not skipping J2CL compilation when combined with `-P showcase`
+- Fix heading autolinks and duplicate index navigation items in showcase
 
 ## [0.9.0] - 2026-05-28
 

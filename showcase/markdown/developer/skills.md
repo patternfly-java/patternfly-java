@@ -35,6 +35,25 @@ Implements action items from a `/pf-compare` report. Extracts reference HTML fro
 
 Use this after running `/pf-compare` to bring a component up to date with PatternFly.
 
+### /pf-dev-env
+
+Manages the local development environment for the PatternFly Java showcase. The dev environment consists of two processes: J2CL watch (`mvn j2cl:watch -P showcase`) and Vite dev server (`cd showcase && pnpm run watch`).
+
+```bash
+/pf-dev-env           # Start the dev environment (default)
+/pf-dev-env start     # Same as above
+/pf-dev-env stop      # Stop both processes
+/pf-dev-env status    # Check if processes are running
+/pf-dev-env --port 3000  # Use a custom port (default: 1234)
+```
+
+Features:
+- Runs a pre-flight build (`mvn verify -Dquickly -P showcase`) before starting
+- Detects externally-started processes (if you already started `mvn j2cl:watch` or `pnpm run watch` in another terminal)
+- Starts only the missing process if one is already running
+- Opens the browser automatically when ready
+- Idempotent — running `start` when already running reports current state
+
 ### /pf-lint
 
 Verifies that a PFJ component follows the project's conventions for documentation, code structure, naming, and formatting.
@@ -77,8 +96,54 @@ Fetches the PatternFly changelog from GitHub, classifies changes by relevance to
 
 A typical component maintenance workflow:
 
-1. **`/pf-update`** — Check if a new PatternFly release has changes relevant to PFJ
-2. **`/pf-compare <component>`** — Compare a specific component to find gaps
-3. **`/pf-align <component>`** — Implement the missing variations and fixes
-4. **`/pf-lint <component>`** — Verify the result follows project conventions
-5. **`/pf-status`** — Review overall progress across all components
+1. **`/pf-dev-env`** — Start the local development environment
+2. **`/pf-update`** — Check if a new PatternFly release has changes relevant to PFJ
+3. **`/pf-compare <component>`** — Compare a specific component to find gaps
+4. **`/pf-align <component>`** — Implement the missing variations and fixes
+5. **`/pf-lint <component>`** — Verify the result follows project conventions
+6. **`/pf-status`** — Review overall progress across all components
+
+## How Skills Interact
+
+The skills form a pipeline where each skill's output feeds into the next:
+
+```
+/pf-update ──→ /pf-compare ──→ /pf-align ──→ /pf-lint
+     │              │               │             │
+     │              │               │             │
+     ▼              ▼               ▼             ▼
+  docs/pf-update/ docs/pf-compare/ docs/pf-align/ docs/pf-lint/
+                                                      │
+                         ┌────────────────────────────┘
+                         ▼
+                    /pf-status (reads all report directories)
+```
+
+### Data Flow
+
+- **`/pf-update`** analyzes PatternFly release changelogs and writes a prioritized work plan to `docs/pf-update/`. This identifies *which* components need attention.
+- **`/pf-compare`** takes a component name, opens both the PatternFly docs and PFJ showcase in a browser, extracts DOM/CSS data, and writes a gap analysis to `docs/pf-compare/`. This identifies *what* is missing or different.
+- **`/pf-align`** reads the `/pf-compare` report for a component and implements the action items — adding missing variations, fixing DOM structure, and correcting CSS classes. It writes a completion report to `docs/pf-align/`.
+- **`/pf-lint`** verifies the component follows project conventions (section order, Javadoc, naming, formatting) and writes results to `docs/pf-lint/`.
+- **`/pf-status`** is read-only — it aggregates reports from all four `docs/pf-*/` directories into a single dashboard. It never modifies source code or reports.
+
+### Dependencies
+
+| Skill | Requires | Produces |
+|-------|----------|----------|
+| `/pf-dev-env` | Nothing | Running dev servers (J2CL + Vite) |
+| `/pf-update` | Nothing (fetches from GitHub) | `docs/pf-update/<version>.md` |
+| `/pf-compare` | Dev env running (for browser access) | `docs/pf-compare/<component>.md` |
+| `/pf-align` | A `/pf-compare` report for the component | `docs/pf-align/<component>.md` |
+| `/pf-lint` | Nothing (reads source code directly) | `docs/pf-lint/summary.md` |
+| `/pf-status` | Report files from other skills | Terminal output only |
+
+### Independent vs. Sequential
+
+Some skills can run independently:
+
+- **`/pf-lint`** can run anytime — it checks source conventions, not PatternFly alignment.
+- **`/pf-update`** can run anytime — it only reads the PatternFly GitHub changelog.
+- **`/pf-dev-env`** should be started before any skill that uses browser interaction (`/pf-compare`).
+
+The **`/pf-compare` → `/pf-align`** sequence is strictly ordered: alignment requires a comparison report as input.

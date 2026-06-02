@@ -96,11 +96,11 @@ If `--fix` was passed, apply fixes for violations that can be resolved mechanica
 
 For violations that require judgment (missing Javadoc content, architectural issues), report them as `MANUAL` and skip.
 
-After fixing, verify fixed files compile with `mvn compile -pl components`, then re-run the checks and report the final state.
+After fixing, verify fixed files compile with `mvn compile -pl components` and pass formatting checks with `./check.sh`, then re-run the checks and report the final state.
 
 ### Step 5: Update lint summary
 
-After linting (and optionally fixing), update the persistent report at `docs/pf-lint/summary.md`:
+After linting (and optionally fixing), update the persistent report at `docs/pf-lint/summary.md`. If the file or directory does not exist, create `docs/pf-lint/` and initialize `summary.md` with the summary table header and the component's row.
 
 1. **Summary table**: Add or update the row for the component with the current date, file count, error/warning counts, whether issues were fixed, and status (`clean` if 0 remaining issues, `issues` otherwise).
 2. **Fixed Issues Log**: If issues were found and fixed, add a section under `## Fixed Issues Log` with the component name, date, and a table of all issues that were fixed (file, severity, rule, detail).

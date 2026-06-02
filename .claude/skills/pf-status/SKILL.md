@@ -3,9 +3,10 @@ name: pf-status
 description: >-
   Show the overall status of PatternFly Java components across lint, compare,
   align, and update dimensions. This skill should be used when the user asks to
-  "/pf-status", "component status", "show status", "what's been linted",
-  "what's been compared", "what needs alignment", "what's outdated",
-  "component overview", "show progress", "which components are done",
+  "/pf-status", "component status", "show status", "PFJ status",
+  "what's been linted", "what's been compared", "what needs alignment",
+  "what's outdated", "component overview", "show progress",
+  "show component progress", "which components are done",
   "what's left to do", or "dashboard".
 metadata:
   version: "0.1.0"
@@ -39,6 +40,7 @@ Aggregates status from `/pf-lint`, `/pf-compare`, `/pf-align`, and `/pf-update` 
 | Lint summary | `docs/pf-lint/summary.md` | Markdown table with YAML frontmatter |
 | Compare reports | `docs/pf-compare/<COMPONENT>.md` | YAML frontmatter per component |
 | Align reports | `docs/pf-align/<COMPONENT>.md` | YAML frontmatter per component (may not exist yet) |
+| Update reports | `docs/pf-update/<VERSION>.md` | YAML frontmatter with version, date, affected components |
 
 ## Workflow
 
@@ -74,13 +76,13 @@ If the file exists, parse the YAML frontmatter to extract:
 - `completeness.missing_in_pfj` (array)
 - `completeness.extra_in_pfj` (array)
 
-If the file does not exist, the compare status is "not compared".
+If frontmatter is missing or unparseable, treat the dimension as "unknown" and note the error in the output. If the file does not exist, the compare status is "not compared".
 
 ### Step 4: Read align status
 
 For each component, check if `docs/pf-align/<COMPONENT>.md` exists.
 
-If the file exists, parse its YAML frontmatter and content to determine alignment progress. Check `/pf-align` SKILL.md for the current report format. Treat any existing file as "in progress" unless its frontmatter explicitly contains `status: done`. If no file exists, the align status is "not started".
+If the file exists, parse its YAML frontmatter to determine alignment progress. The expected frontmatter includes a `status` field (e.g., `status: done` or `status: in_progress`). Treat any existing file as "in progress" unless its frontmatter explicitly contains `status: done`. If frontmatter is missing or unparseable, treat the dimension as "unknown" and note the error in the output. If no file exists, the align status is "not started".
 
 ### Step 5: Read update status
 
@@ -214,4 +216,4 @@ stats:
 
 Follow with the full markdown table and stats section.
 
-Only write the persistent report in overview mode (no component argument). In detail mode, skip report generation to avoid the cost of reading all 49 components for a single-component query.
+Only write the persistent report in overview mode (no component argument). In detail mode, skip report generation to avoid the cost of reading all components for a single-component query.

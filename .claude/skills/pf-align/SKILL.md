@@ -6,8 +6,9 @@ description: >-
   Triggers include /pf-align, "align component", "implement missing variations",
   "fix PFJ component", "apply pf-compare recommendations", "add missing PFJ
   variations", "sync with PatternFly", "bring component up to date",
-  "implement pf-compare action items", or any request to implement changes
-  identified by a comparison report.
+  "implement pf-compare action items", "implement comparison findings",
+  "fix alignment issues", or any request to implement changes identified
+  by a comparison report.
 metadata:
   version: "0.1.0"
 ---
@@ -18,12 +19,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 ## Tools
 
-### Chrome DevTools MCP (require approval on first use)
-
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__new_page** — Open new browser tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page** — Switch between tabs
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__evaluate_script** — Run JS in the page context
-- **mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page** — Close browser tabs
+Uses Chrome DevTools MCP tools for browser interaction (new_page, select_page, evaluate_script, close_page). Requires approval on first use.
 
 ## Arguments
 
@@ -33,7 +29,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 
 **Parameters:**
 - `<component>` (required) — Component name matching report file (e.g., `button`, `card`, `alert`). **Reject `template`** — it is a blueprint component, not a real UI component.
-- `--port <port>` (optional) — Showcase server port (default: 8888)
+- `--port <port>` (optional) — Showcase server port (default: 1234)
 - `--item <number>` (optional) — Process only the specified action item number (default: process all)
 
 **Examples:**
@@ -48,7 +44,7 @@ This skill implements action items from `/pf-compare` reports to align PatternFl
 ### Step 1: Pre-flight Checks
 
 **Parse arguments:**
-- Extract component name, port (default 8888), item filter
+- Extract component name, port (default 1234), item filter
 - Validate component name is not empty
 
 **Check report exists:**
@@ -77,7 +73,7 @@ Read docs/pf-compare/<COMPONENT>.md
 ```yaml
 component: button
 pf_url: https://www.patternfly.org/components/button
-pfj_url: http://localhost:8888/#button
+pfj_url: http://localhost:1234/#button
 completeness:
   missing_in_pfj: [...]
   extra_in_pfj: [...]
@@ -188,7 +184,7 @@ Examples:
 - "Call to action" → "call-to-action"
 - "Stateful toggle" → "stateful-toggle"
 
-**Extract HTML:** Read the script from `references/extract-variation-html.js` and pass it to `evaluate_script` with `args: [<component>, <variation-slug>]`.
+**Extract HTML:** Read the script from `references/extract-variation-html.js`. The script is an arrow function `(componentSlug, variationSlug) => { ... }`. Pass the function body to `evaluate_script` using the `function` parameter and provide `args: [<component>, <variation-slug>]` — the Chrome DevTools MCP `evaluate_script` tool invokes the function with the args array as positional arguments.
 
 **Handle extraction failure:**
 - If HTML is null → ERROR (HTML extraction failed)
@@ -201,13 +197,13 @@ Examples:
 
 ### Step 6: Generate Code
 
+**IMPORTANT: Read `references/code-generation.md` before generating any code.** Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
+
 **Pre-check implementation:**
 - For `add_variation`: Check if snippet ID exists in showcase file
 - For `fix_css`: Check if modifier method exists in component class
 - For `fix_attribute`: Check if ARIA method exists in component class
 - If already implemented → Skip with message
-
-**IMPORTANT: Read `references/code-generation.md` before generating any code.** Find the insertion pattern matching the item type (`add_variation`, `fix_css`, `fix_structure`, `fix_attribute`) and apply the corresponding template. Use the HTML-to-Java translation table from the same file.
 
 **For all types:**
 - Preserve existing imports

@@ -6,8 +6,8 @@ description: >-
   "/pf-update", "check PF release", "what changed in PatternFly",
   "update PatternFly Java", "upgrade PatternFly Java", "PF changelog", "new PF version",
   "what's new in PatternFly", "check for PF updates", "PF release notes",
-  "sync with PatternFly", or any request to analyze a PatternFly release
-  for PFJ impact.
+  "PF upgrade", "sync with PatternFly", or any request to analyze a
+  PatternFly release for PFJ impact.
 metadata:
   version: "0.1.0"
 ---
@@ -155,7 +155,7 @@ Read `references/scope-mapping.md` for scope normalization rules, discarded scop
 ls -d components/src/main/java/org/patternfly/component/*/ | xargs -n1 basename
 ```
 
-**Exclude `template`** — it is a blueprint component, not a real UI component. Do not match PR scopes to it or include it in affected component lists.
+**Exclude `template`** — it is a blueprint component used as a reference for project conventions, not a real UI component. Do not match PR scopes to it or include it in affected component lists. See also the discarded scopes list in `references/scope-mapping.md`.
 
 **Bucket PRs into categories:**
 
