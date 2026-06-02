@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
+package org.patternfly.showcase.markdown;
 
 import org.gwtproject.safehtml.shared.SafeHtmlUtils;
 import org.jboss.elemento.Attachable;

@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
+package org.patternfly.showcase.markdown;
 
 import org.jboss.elemento.router.LoadData;
 import org.jboss.elemento.router.Place;
@@ -27,7 +27,6 @@ import jsinterop.base.Js;
 
 import static elemental2.dom.DomGlobal.fetch;
 import static org.jboss.elemento.router.Place.place;
-
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
 

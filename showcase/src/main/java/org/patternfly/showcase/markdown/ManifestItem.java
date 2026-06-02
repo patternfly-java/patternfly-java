@@ -13,15 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.showcase;
+package org.patternfly.showcase.markdown;
 
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
-public class TocEntry {
+public class ManifestItem {
 
+    public String type;
     public String id;
-    public String text;
-    public int level;
+    public String route;
+    public String title;
+    public int order;
+    public boolean hasContent;
+    public String contentId;
+    public ManifestItem[] children;
 }

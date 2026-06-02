@@ -23,6 +23,7 @@ import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
 import org.patternfly.core.Version;
+import org.patternfly.showcase.markdown.MarkdownManifest;
 import org.patternfly.style.Classes;
 
 import static elemental2.dom.DomGlobal.location;
@@ -31,12 +32,12 @@ import static org.jboss.elemento.Elements.body;
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.component.backtotop.BackToTop.backToTop;
 import static org.patternfly.component.button.Button.button;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
 import static org.patternfly.component.navigation.Navigation.navigation;
 import static org.patternfly.component.navigation.NavigationGroup.navigationGroup;
 import static org.patternfly.component.navigation.NavigationItem.navigationItem;
-import static org.patternfly.component.divider.Divider.divider;
-import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.page.Masthead.masthead;
 import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
@@ -60,7 +61,6 @@ import static org.patternfly.showcase.Data.extensions;
 import static org.patternfly.showcase.Data.groupComponents;
 import static org.patternfly.showcase.Data.layouts;
 import static org.patternfly.showcase.Data.topLevelComponents;
-import static org.patternfly.token.Token.globalSpacerXs;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fullHeight;
 import static org.patternfly.style.Classes.modifier;
@@ -68,6 +68,7 @@ import static org.patternfly.style.Classes.static_;
 import static org.patternfly.style.Placement.bottomEnd;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Height;
+import static org.patternfly.token.Token.globalSpacerXs;
 
 public final class Showcase {
 
