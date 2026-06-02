@@ -79,22 +79,34 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>dev.jbang</groupId>
-                <artifactId>jbang-maven-plugin</artifactId>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>install-node-and-corepack</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-node-and-corepack</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-packages</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>corepack</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>pnpm install</arguments>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>generate-version</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>corepack</goal>
                         </goals>
                         <configuration>
-                            <script>${project.basedir}/version.java</script>
-                            <args>
-                                <arg>${project.basedir}</arg>
-                                <arg>${project.version}</arg>
-                                <arg>${version.patternfly}</arg>
-                            </args>
+                            <arguments>pnpm run generate-version ${project.basedir} ${project.version} ${version.patternfly}</arguments>
                         </configuration>
                     </execution>
                 </executions>

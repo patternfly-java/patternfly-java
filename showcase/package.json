@@ -2,6 +2,7 @@
   "name": "patternfly-java-showcase",
   "private": true,
   "scripts": {
+    "code": "node code.mjs",
     "markdown": "node markdown.mjs",
     "watch": "vite",
     "prod": "vite build",
@@ -11,8 +12,7 @@
   },
   "dependencies": {
     "@github/relative-time-element": "^5.0.0",
-    "@patternfly/patternfly": "^6.5.2",
-    "highlight.js": "^11.11.1"
+    "@patternfly/patternfly": "^6.5.2"
   },
   "devDependencies": {
     "@patternfly/documentation-framework": "^6.44.0",
@@ -30,5 +30,5 @@
     "vite": "^8.0.16",
     "yaml": "^2.9.0"
   },
-  "packageManager": "pnpm@11.5.0"
+  "packageManager": "pnpm@11.5.1"
 }

@@ -72,8 +72,22 @@
 
 /* ------------------------------------------------------ code highlighting */
 
-.hljs {
-    background-color: var(--pf-t--global--background--color--200) !important;
+.markdown pre {
+    padding: var(--pf-t--global--spacer--md);
+    border-radius: var(--pf-t--global--border--radius--small);
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
+    background-color: var(--pf-t--global--background--color--secondary--default) !important;
+    overflow-x: auto;
+}
+
+.pf-v6-theme-dark .markdown pre.shiki,
+.pf-v6-theme-dark .markdown pre.shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: transparent !important;
+}
+
+.pf-v6-theme-dark .markdown pre:not(.shiki) {
+    color: var(--pf-t--global--text--color--regular);
 }
 
 .markdown table {
@@ -84,21 +98,21 @@
 }
 
 .markdown table tr {
-    background-color: #fff;
-    border-top: 1px solid #d0d7deb3;
+    background-color: var(--pf-t--global--background--color--primary--default);
+    border-top: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
 }
 
 .markdown table tr:nth-child(2n) {
-    background-color: #f6f8fa;
+    background-color: var(--pf-t--global--background--color--secondary--default);
 }
 
 .markdown table th {
     padding: 6px 13px;
-    border: 1px solid #d0d7de;
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
     font-weight: 600;
 }
 
 .markdown table td {
     padding: 6px 13px;
-    border: 1px solid #d0d7de;
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
 }

@@ -128,6 +128,7 @@ The showcase module uses Node for markdown processing, CSS bundling, and local d
 
 | Script | Command | Purpose |
 |--------|---------|---------|
+| `code` | `node code.mjs` | Extract `@code-start`/`@code-end` snippets from showcase Java sources into a generated `Code.java` class |
 | `markdown` | `node markdown.mjs` | Process `showcase/markdown/*.md` into JSON files with syntax highlighting and table of contents |
 | `watch` | `vite` | Start Vite dev server for CSS/HTML hot reloading |
 | `prod` | `vite build` | Build optimized production bundle |

@@ -96,7 +96,11 @@ async function createProcessor() {
         .use(rehypeSlug)
         .use(addHeadingClasses)
         .use(rehypeShiki, {
-            theme: 'github-light',
+            themes: {
+                light: 'github-light',
+                dark: 'github-dark',
+            },
+            defaultColor: 'light',
             langs: ['java', 'xml', 'javascript', 'json', 'html', 'css', 'bash'],
         })
         .use(rehypeStringify, {allowDangerousHtml: true});

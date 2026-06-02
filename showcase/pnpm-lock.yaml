@@ -22,9 +22,6 @@ importers:
       '@patternfly/patternfly':
         specifier: ^6.5.2
         version: 6.5.2
-      highlight.js:
-        specifier: ^11.11.1
-        version: 11.11.1
     devDependencies:
       '@patternfly/documentation-framework':
         specifier: ^6.44.0
@@ -2913,10 +2910,6 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
-
-  highlight.js@11.11.1:
-    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
-    engines: {node: '>=12.0.0'}
 
   homedir-polyfill@1.0.3:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
@@ -8486,8 +8479,6 @@ snapshots:
       '@types/hast': 3.0.4
 
   he@1.2.0: {}
-
-  highlight.js@11.11.1: {}
 
   homedir-polyfill@1.0.3:
     dependencies:
