@@ -41,18 +41,36 @@ function serveJ2cl() {
 }
 
 function markdownPlugin() {
+    let reprocessing = false;
+
+    function reprocess() {
+        if (reprocessing) return;
+        reprocessing = true;
+        try {
+            execSync('node markdown.mjs', {stdio: 'inherit'});
+        } finally {
+            reprocessing = false;
+        }
+    }
+
+    function isMarkdownSource(file) {
+        return file.startsWith(markdownDir) && (file.endsWith('.md') || file.endsWith('.yaml'));
+    }
+
     return {
         name: 'markdown',
         buildStart() {
-            execSync('node markdown.mjs', {stdio: 'inherit'});
+            reprocess();
         },
         configureServer(server) {
             server.watcher.add(markdownDir);
-            server.watcher.on('change', (file) => {
-                if (file.startsWith(markdownDir) && file.endsWith('.md')) {
-                    execSync('node markdown.mjs', {stdio: 'inherit'});
-                }
-            });
+            for (const event of ['change', 'add', 'unlink']) {
+                server.watcher.on(event, (file) => {
+                    if (isMarkdownSource(file)) {
+                        reprocess();
+                    }
+                });
+            }
         }
     };
 }

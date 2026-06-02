@@ -159,18 +159,21 @@ cd showcase && pnpm run watch
 
 ### Markdown Pipeline
 
-The `markdown` script transforms `showcase/markdown/*.md` files into JSON:
+The `markdown` script recursively walks `showcase/markdown/` and transforms `.md` files into JSON:
 
 1. Parses markdown with remark (GFM + frontmatter support)
-2. Extracts YAML frontmatter (`id`, `title`)
+2. Extracts YAML frontmatter (`id`, `title`, `order`)
 3. Generates a table of contents from h2/h3 headings
 4. Converts to HTML with rehype
 5. Adds slug IDs and autolinks to headings
 6. Applies PatternFly CSS classes to headings
 7. Syntax-highlights code blocks (Java, XML, JavaScript, JSON, HTML, CSS, Bash)
-8. Writes JSON to `showcase/src/web/markdown/{id}.json`
+8. Writes JSON to `showcase/src/web/markdown/`, preserving the directory structure
+9. Generates `showcase/src/web/markdown/manifest.json` with the navigation tree
 
-The Vite dev server watches the `markdown/` directory and regenerates JSON on changes. During a Maven `package` build, the `pnpm run markdown` command is executed automatically in the `prepare-package` phase via the frontend-maven-plugin.
+The Vite dev server watches the `markdown/` directory for changes, additions, and deletions (`.md` and `.yaml` files) and regenerates JSON automatically. During a Maven `package` build, `pnpm run markdown` runs automatically in the `prepare-package` phase.
+
+See the [Documentation](/developer/documentation) page for details on the directory structure, frontmatter fields, and folder conventions.
 
 ### Full Showcase Build
 
