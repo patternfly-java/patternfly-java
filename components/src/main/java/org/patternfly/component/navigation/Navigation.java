@@ -228,7 +228,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
             logger.warn("addGroup(NavigationGroup) is not supported for type '%s' in navigation %o", type, element());
             return this;
         }
-        internalAddGroup(group, grp -> itemsContainer.appendChild(grp.element()));
+        removeEmptyItemsContainer();
+        internalAddGroup(group, grp -> element().appendChild(grp.element()));
         return this;
     }
 
@@ -250,7 +251,11 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation add(Divider divider) {
-        itemsContainer.appendChild(divider.element());
+        if (type == expandable && !groups.isEmpty()) {
+            element().appendChild(divider.element());
+        } else {
+            itemsContainer.appendChild(divider.element());
+        }
         return this;
     }
 
@@ -271,7 +276,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupBefore(NavigationGroup group, String beforeIdentifier) {
-        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, beforeIdentifier));
+        removeEmptyItemsContainer();
+        HTMLElement element = Elements.querySelector(element(), By.data(Dataset.identifier, beforeIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertBefore(grp.element(), element));
         }
@@ -279,7 +285,8 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     public Navigation insertGroupAfter(NavigationGroup group, String afterIdentifier) {
-        HTMLElement element = Elements.querySelector(itemsContainer, By.data(Dataset.identifier, afterIdentifier));
+        removeEmptyItemsContainer();
+        HTMLElement element = Elements.querySelector(element(), By.data(Dataset.identifier, afterIdentifier));
         if (element != null) {
             internalAddGroup(group, grp -> insertAfter(grp.element(), element));
         }
@@ -446,6 +453,12 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     // ------------------------------------------------------ internal
+
+    private void removeEmptyItemsContainer() {
+        if (type == expandable && itemsContainer != element() && !itemsContainer.hasChildNodes()) {
+            failSafeRemoveFromParent(itemsContainer);
+        }
+    }
 
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
         items.put(item.identifier(), item);

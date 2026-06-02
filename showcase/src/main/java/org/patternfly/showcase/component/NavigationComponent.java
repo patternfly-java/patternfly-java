@@ -40,10 +40,10 @@ import static org.patternfly.component.navigation.NavigationType.Horizontal.seco
 import static org.patternfly.component.navigation.NavigationType.Vertical.expandable;
 import static org.patternfly.component.navigation.NavigationType.Vertical.flat;
 import static org.patternfly.component.navigation.NavigationType.Vertical.grouped;
-import static org.patternfly.icon.IconSets.fas.cloud;
-import static org.patternfly.icon.IconSets.fas.cube;
-import static org.patternfly.icon.IconSets.fas.folder;
-import static org.patternfly.icon.IconSets.fas.link;
+import static org.patternfly.icon.IconSets.rhUi.cloud;
+import static org.patternfly.icon.IconSets.rhUi.code;
+import static org.patternfly.icon.IconSets.rhUi.cubes;
+import static org.patternfly.icon.IconSets.rhUi.folder;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.other;
 import static org.patternfly.showcase.ApiDoc.Type.subcomponent;
@@ -95,7 +95,6 @@ public class NavigationComponent extends SnippetPage {
                         .add(navigation(expandable)
                                 .addGroup(expandableNavigationGroup("nav-exp-0", "Expandable group 1")
                                         .addItem(navigationItem("nav-exp-00", "Subnav 1 link 1", "#item-00"))
-                                        .addDivider()
                                         .addItem(navigationItem("nav-exp-01", "Subnav 1 link 2", "#item-01"))
                                         .addItem(navigationItem("nav-exp-02", "Subnav 1 link 3", "#item-02")))
                                 .addGroup(expandableNavigationGroup("nav-exp-1", "Expandable group 2")
@@ -135,7 +134,6 @@ public class NavigationComponent extends SnippetPage {
                                 .addItem(navigationItem("nav-mixed-0", "Link 1 (not expandable)", "#item-0"))
                                 .addGroup(expandableNavigationGroup("nav-mixed-0", "Expandable section title 1")
                                         .addItem(navigationItem("nav-mixed-00", "Mixed link 1", "#item-00"))
-                                        .addDivider()
                                         .addItem(navigationItem("nav-mixed-01", "Mixed link 2", "#item-01"))
                                         .addItem(navigationItem("nav-mixed-02", "Mixed link 3", "#item-02")))
                                 .addGroup(expandableNavigationGroup("nav-mixed-1", "Expandable section title 2")
@@ -230,7 +228,7 @@ public class NavigationComponent extends SnippetPage {
                 div().css("ws-react-c-navigation")
                         .add(navigation(flat).docked()
                                 .addItem(navigationItem("nav-docked-0")
-                                        .icon(cube())
+                                        .icon(cubes())
                                         .ariaLabel("Cubes")
                                         .href("#item-0"))
                                 .addItem(navigationItem("nav-docked-1")
@@ -242,7 +240,7 @@ public class NavigationComponent extends SnippetPage {
                                         .ariaLabel("Cloud")
                                         .href("#item-2"))
                                 .addItem(navigationItem("nav-docked-3")
-                                        .icon(link())
+                                        .icon(code())
                                         .ariaLabel("Code")
                                         .href("#item-3")))
                         .element()
@@ -255,7 +253,7 @@ public class NavigationComponent extends SnippetPage {
                 div().css("ws-react-c-navigation")
                         .add(navigation(expandable)
                                 .addItem(navigationItem("nav-item-icons-0")
-                                        .icon(cube())
+                                        .icon(cubes())
                                         .text("Link 1")
                                         .href("#item-0"))
                                 .addItem(navigationItem("nav-item-icons-1")
@@ -267,7 +265,7 @@ public class NavigationComponent extends SnippetPage {
                                         .text("Link 3")
                                         .href("#item-2"))
                                 .addItem(navigationItem("nav-item-icons-3")
-                                        .icon(link())
+                                        .icon(code())
                                         .text("Link 4")
                                         .href("#item-3")))
                         .element()

@@ -78,7 +78,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     final HTMLAnchorElement anchorElement;
     private final String identifier;
     private final Map<String, Object> data;
-    private final HTMLElement textElement;
+    private HTMLElement textElement;
     private HTMLElement iconContainer;
 
     NavigationItem(String identifier) {
@@ -88,10 +88,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         this.identifier = identifier;
         this.data = new HashMap<>();
 
-        element().appendChild(anchorElement = a().css(component(nav, link))
-                .add(textElement = span().css(component(nav, link, text))
-                        .element())
-                .element());
+        element().appendChild(anchorElement = a().css(component(nav, link)).element());
     }
 
     @Override
@@ -101,7 +98,7 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
 
     @Override
     public Element textDelegate() {
-        return textElement;
+        return failSafeTextElement();
     }
 
     // ------------------------------------------------------ builder
@@ -181,6 +178,13 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
     }
 
     // ------------------------------------------------------ internal
+
+    private HTMLElement failSafeTextElement() {
+        if (textElement == null) {
+            anchorElement.appendChild(textElement = span().css(component(nav, link, text)).element());
+        }
+        return textElement;
+    }
 
     private HTMLElement failSafeIconContainer() {
         if (iconContainer == null) {
