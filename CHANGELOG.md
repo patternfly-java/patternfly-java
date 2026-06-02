@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add building, CI/CD, and releasing documentation pages to the showcase
 - Add Node-based markdown pipeline (`markdown.mjs`) using remark/rehype with Shiki syntax highlighting, heading anchors, TOC extraction, and PatternFly CSS classes
 - Add runtime markdown loading via `fetch()` with per-page caching using Elemento's `Place.loader()` mechanism
 - Add docs-only CI workflow (`publish-docs.yml`) for publishing markdown changes without J2CL rebuild
@@ -62,6 +63,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add persistent lint tracking (`docs/pf-lint/summary.md`) and update pf-lint skill to maintain summary after each run
 - Fix button close icon to use rhMicrons (viewBox 0 0 20 20) matching PatternFly
 - Fix button showcase copy icon from FontAwesome to RH UI
+- Fix `-Dquickly` not skipping J2CL compilation when combined with `-P showcase`
 
 ## [0.9.0] - 2026-05-28
 
