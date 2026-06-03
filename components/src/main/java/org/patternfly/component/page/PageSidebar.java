@@ -18,17 +18,20 @@ package org.patternfly.component.page;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.Expandable;
 import org.patternfly.handler.ToggleHandler;
-
+import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.aside;
+import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.style.Classes.collapsed;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expanded;
+import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.page;
 import static org.patternfly.style.Classes.sidebar;
@@ -36,7 +39,9 @@ import static org.patternfly.style.Classes.sidebar;
 /**
  * Container for the page sidebar.
  */
-public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> implements Expandable<HTMLElement, PageSidebar> {
+public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> implements
+        ElementContainerDelegate<HTMLElement, PageSidebar>,
+        Expandable<HTMLElement, PageSidebar> {
 
     // ------------------------------------------------------ factory
 
@@ -54,6 +59,7 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
 
     private boolean keepExpanded;
     private final List<ToggleHandler<PageSidebar>> toggleHandler;
+    private final HTMLElement sidebarMain;
 
     PageSidebar() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, aside().css(component(page, sidebar), modifier(expanded))
@@ -61,6 +67,13 @@ public class PageSidebar extends PageSubComponent<HTMLElement, PageSidebar> impl
                 .element());
         this.keepExpanded = false;
         this.toggleHandler = new ArrayList<>();
+        this.sidebarMain = div().css(component(page, sidebar, main)).element();
+        element().appendChild(sidebarMain);
+    }
+
+    @Override
+    public Element containerDelegate() {
+        return sidebarMain;
     }
 
     // ------------------------------------------------------ add
