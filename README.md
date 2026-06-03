@@ -34,7 +34,7 @@ Then add `patternfly-java-gwt` (GWT) or `patternfly-java-j2cl` (J2CL) as a depen
 - [Showcase](https://patternfly-java.github.io/) - Interactive demos of all components and layouts
 - [API Documentation](https://patternfly-java.github.io/apidocs/) - Javadoc
 - [Get Started](https://patternfly-java.github.io/get-started) - Installation and setup
-- [API Design](https://patternfly-java.github.io/api-design) - How the fluent builder API works
+- [API Design](https://patternfly-java.github.io/concepts/api-design) - How the fluent builder API works
 - [Contributing](CONTRIBUTING.md) - How to contribute
 
 ## Get Involved
