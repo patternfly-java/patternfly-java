@@ -29,15 +29,12 @@ import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.badge.Badge.badge;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.icon.IconSets.fas.arrowRight;
-import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.icon.IconSets.fas.upload;
 import static org.patternfly.icon.IconSets.rhMicrons.close;
 import static org.patternfly.icon.IconSets.rhUi.addCircle;
 import static org.patternfly.icon.IconSets.rhUi.copy;
 import static org.patternfly.icon.IconSets.rhUi.externalLink;
-import static org.patternfly.icon.IconSets.rhUi.settings;
-import static org.patternfly.icon.IconSets.rhUi.star;
 import static org.patternfly.layout.flex.Flex.flex;
 import static org.patternfly.layout.flex.Gap.sm;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -112,13 +109,21 @@ public class ButtonComponent extends SnippetPage {
         addSnippet(new Snippet("button-small", "Small buttons",
                 code("button-small"),
                 // @code-start:button-small
-                () -> flex().columnGap(sm)
-                        .add(button("Primary").primary().small())
-                        .add(button("Secondary").secondary().small())
-                        .add(button("Danger secondary").secondary().danger().small())
-                        .add(button("Tertiary").tertiary().small())
-                        .add(button("Danger").danger().small())
-                        .add(button("Warning").warning().small())
+                () -> div()
+                        .add(flex().columnGap(sm)
+                                .add(button("Primary").primary().small())
+                                .add(button("Secondary").secondary().small())
+                                .add(button("Danger secondary").secondary().danger().small())
+                                .add(button("Tertiary").tertiary().small())
+                                .add(button("Danger").danger().small())
+                                .add(button("Warning").warning().small()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Link").link().small())
+                                .add(button("Inline link").inline().link().small())
+                                .add(button().icon(close()).plain().small()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button("Control").control().small())
+                                .add(button().icon(copy()).control().small()))
                         .element()
                 // @code-end:button-small
         ));
@@ -191,7 +196,8 @@ public class ButtonComponent extends SnippetPage {
                         .add(button("Link to docs", "https://www.patternfly.org/", "_blank").primary())
                         .add(button("Secondary link to docs", "https://www.patternfly.org/", "_blank").secondary())
                         .add(button("Tertiary link to docs", "https://www.patternfly.org/", "_blank").tertiary()
-                                .disabled())
+                                .disabled().attr("tabindex", "0"))
+                        .add(button("Danger link to docs", "https://www.patternfly.org/", "_blank").link().danger())
                         .add(button("Jump to lifecycle in developer contributions",
                                 "https://www.patternfly.org/get-started/contribute/developer-contributions#lifecycle").link())
                         .element()
@@ -237,11 +243,17 @@ public class ButtonComponent extends SnippetPage {
         addSnippet(new Snippet("button-circle", "Circle buttons",
                 code("button-circle"), () ->
                 // @code-start:button-circle
-                flex().columnGap(sm)
-                        .add(button().icon(addCircle()).primary().circle())
-                        .add(button().icon(addCircle()).secondary().circle())
-                        .add(button().icon(addCircle()).danger().circle())
-                        .add(button().icon(addCircle()).link().circle())
+                div()
+                        .add(flex().columnGap(sm)
+                                .add(button().icon(addCircle()).primary().circle())
+                                .add(button().icon(addCircle()).secondary().circle())
+                                .add(button().icon(addCircle()).danger().circle())
+                                .add(button().icon(addCircle()).link().circle()))
+                        .add(flex().columnGap(sm).css(util("mt-lg"))
+                                .add(button().primary().circle().progress(true))
+                                .add(button().secondary().circle().progress(true))
+                                .add(button().danger().circle().progress(true))
+                                .add(button().link().circle().progress(true)))
                         .element()
                 // @code-end:button-circle
         ));
@@ -315,6 +327,23 @@ public class ButtonComponent extends SnippetPage {
                 // @code-end:button-types
         ));
 
+        addSnippet(new Snippet("button-stateful", "Stateful",
+                code("button-stateful"), () ->
+                // @code-start:button-stateful
+                div()
+                        .add("Read").add(br())
+                        .add(flex().columnGap(sm).css(util("mb-sm"))
+                                .add(button().stateful(read).iconAndText(bell(), "10 items", start)))
+                        .add("Unread").add(br())
+                        .add(flex().columnGap(sm).css(util("mb-sm"))
+                                .add(button().stateful(unread).iconAndText(bell(), "10 items", start)))
+                        .add("Attention").add(br())
+                        .add(flex().columnGap(sm)
+                                .add(button().stateful(attention).iconAndText(bell(), "10 items", start)))
+                        .element()
+                // @code-end:button-stateful
+        ));
+
         addSnippet(new Snippet("button-no-padding", "Plain with no padding",
                 code("button-no-padding"), () ->
                 // @code-start:button-no-padding
@@ -328,8 +357,8 @@ public class ButtonComponent extends SnippetPage {
                 code("button-favorite"), () ->
                 // @code-start:button-favorite
                 flex().columnGap(sm)
-                        .add(button().icon(star()).plain().ariaLabel("Favorite"))
-                        .add(button().icon(star()).plain().ariaLabel("Favorited").clicked())
+                        .add(button().favorite().ariaLabel("Not starred"))
+                        .add(button().favorite().favorited(true).ariaLabel("Starred"))
                         .element()
                 // @code-end:button-favorite
         ));
@@ -338,7 +367,7 @@ public class ButtonComponent extends SnippetPage {
                 code("button-settings"), () ->
                 // @code-start:button-settings
                 flex().columnGap(sm)
-                        .add(button().icon(settings()).plain().ariaLabel("Settings"))
+                        .add(button().settings().ariaLabel("Settings"))
                         .element()
                 // @code-end:button-settings
         ));
@@ -347,7 +376,7 @@ public class ButtonComponent extends SnippetPage {
                 code("button-hamburger"), () ->
                 // @code-start:button-hamburger
                 flex().columnGap(sm)
-                        .add(button().icon(bars()).plain().ariaLabel("Menu"))
+                        .add(button().hamburger().ariaLabel("Menu"))
                         .element()
                 // @code-end:button-hamburger
         ));

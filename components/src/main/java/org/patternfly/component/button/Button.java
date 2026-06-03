@@ -53,7 +53,12 @@ import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
+import static org.jboss.elemento.svg.SVG.path;
+import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.component.spinner.Spinner.spinner;
+import static org.patternfly.icon.IconSets.rhUi.settingsFill;
+import static org.patternfly.icon.IconSets.rhUi.star;
+import static org.patternfly.icon.IconSets.rhUi.starFill;
 import static org.patternfly.style.Classes.block;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.clicked;
@@ -269,6 +274,52 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
 
     public Button stateful(NotificationStatus status) {
         return css(modifier(stateful), status.modifier());
+    }
+
+    public Button settings() {
+        plain();
+        icon(settingsFill());
+        return css(modifier(Classes.settings));
+    }
+
+    public Button hamburger() {
+        plain();
+        removeIcon();
+        failSafeIconElement()
+                .appendChild(svg()
+                        .attr("viewBox", "0 0 10 10")
+                        .css("pf-v6-c-button--hamburger-icon", Classes.svg)
+                        .attr("width", "1em")
+                        .attr("height", "1em")
+                        .add(path().css("pf-v6-c-button--hamburger-icon--top")
+                                .attr("d", "M1,1 L9,1"))
+                        .add(path().css("pf-v6-c-button--hamburger-icon--middle")
+                                .attr("d", "M1,5 L9,5"))
+                        .add(path().css("pf-v6-c-button--hamburger-icon--arrow")
+                                .attr("d", "M1,5 L1,5 L1,5"))
+                        .add(path().css("pf-v6-c-button--hamburger-icon--bottom")
+                                .attr("d", "M9,9 L1,9"))
+                        .element());
+        return css(modifier(Classes.hamburger));
+    }
+
+    public Button favorite() {
+        plain();
+        removeIcon();
+        failSafeIconElement()
+                .appendChild(span().css("pf-v6-c-button__icon-favorite")
+                        .add(star())
+                        .element());
+        failSafeIconElement()
+                .appendChild(span().css("pf-v6-c-button__icon-favorited")
+                        .add(starFill())
+                        .element());
+        return css(modifier(Classes.favorite));
+    }
+
+    public Button favorited(boolean favorited) {
+        toggleModifier(this, element(), Classes.favorited, favorited);
+        return this;
     }
 
     public Button block() {

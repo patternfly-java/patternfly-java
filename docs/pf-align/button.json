@@ -1,0 +1,85 @@
+{
+  "component": "button",
+  "date": "2026-06-03",
+  "compareReport": "docs/pf-compare/button.json",
+  "compareDate": "2026-06-03",
+  "status": "done",
+  "summary": {
+    "total": 7,
+    "implemented": 7,
+    "skipped": 0,
+    "failed": 0,
+    "remaining": 0
+  },
+  "items": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "title": "Stateful",
+      "result": "implemented",
+      "filesModified": [
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 2,
+      "type": "implement_feature",
+      "title": "Hamburger",
+      "result": "implemented",
+      "filesModified": [
+        "core/src/main/java/org/patternfly/style/Classes.java",
+        "components/src/main/java/org/patternfly/component/button/Button.java",
+        "components/src/main/java/org/patternfly/component/page/MastheadToggle.java",
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "implement_feature",
+      "title": "Favorite",
+      "result": "implemented",
+      "filesModified": [
+        "components/src/main/java/org/patternfly/component/button/Button.java",
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_css",
+      "title": "Settings",
+      "result": "implemented",
+      "filesModified": [
+        "core/src/main/java/org/patternfly/style/Classes.java",
+        "components/src/main/java/org/patternfly/component/button/Button.java",
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_demo",
+      "title": "Small buttons",
+      "result": "implemented",
+      "filesModified": [
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_demo",
+      "title": "Links as buttons",
+      "result": "implemented",
+      "filesModified": [
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    },
+    {
+      "number": 7,
+      "type": "fix_demo",
+      "title": "Circle buttons",
+      "result": "implemented",
+      "filesModified": [
+        "showcase/src/main/java/org/patternfly/showcase/component/ButtonComponent.java"
+      ]
+    }
+  ]
+}

@@ -27,7 +27,6 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.page.Page.page;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.label;
-import static org.patternfly.icon.IconSets.rhUi.menuBars;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.masthead;
 import static org.patternfly.style.Classes.toggle;
@@ -57,8 +56,7 @@ public class MastheadToggle extends MastheadSubComponent<HTMLDivElement, Masthea
     MastheadToggle() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(masthead, toggle)).element());
         add(toggleButton = button()
-                .plain()
-                .icon(menuBars())
+                .hamburger()
                 .aria(label, "Global Navigation")
                 .aria(expanded, true)); // expanded by default
     }

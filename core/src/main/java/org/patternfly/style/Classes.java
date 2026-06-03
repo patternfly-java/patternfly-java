@@ -76,6 +76,7 @@ public interface Classes {
     String codeBlock = "code-block";
     String codeEditor = "code-editor";
     String col = "col";
+    String collapse = "collapse";
     String collapsed = "collapsed";
     String compact = "compact";
     String container = "container";
@@ -104,6 +105,7 @@ public interface Classes {
     String emptyState = "empty-state";
     String end = "end";
     String error = "error";
+    String expand = "expand";
     String expandable = "expandable"; // TODO Is this still used in PF6?
     String expandableContent = "expandable-content";
     String expandableSection = "expandable-section";
@@ -139,6 +141,7 @@ public interface Classes {
     String group = "group";
     String guides = "guides";
     String gutter = "gutter";
+    String hamburger = "hamburger";
     String handle = "handle";
     String hasPopup = "haspopup";
     String head = "head";
@@ -251,6 +254,7 @@ public interface Classes {
     String selectable = "selectable";
     String selected = "selected";
     String separator = "separator";
+    String settings = "settings";
     String shadowBottom = "shadow-bottom";
     String shadowTop = "shadow-top";
     String shortcuts = "shortcuts";

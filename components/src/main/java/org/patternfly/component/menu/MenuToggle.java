@@ -50,6 +50,7 @@ import static org.jboss.elemento.Elements.insertBefore;
 import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.icon.IconSets.rhUi.caretDown;
+import static org.patternfly.icon.IconSets.rhUi.settingsFill;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.controls;
@@ -361,6 +362,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
 
     public MenuToggle small() {
         return css(modifier(small));
+    }
+
+    public MenuToggle settings() {
+        icon(settingsFill());
+        return css(modifier(Classes.settings));
     }
 
     public MenuToggle validated(ValidationStatus status) {

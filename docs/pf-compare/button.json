@@ -1,22 +1,17 @@
 {
   "component": "button",
-  "date": "2026-06-02",
+  "date": "2026-06-03",
   "pfVersion": "Release 6.5.1",
   "pfUrl": "https://www.patternfly.org/components/button/html",
   "pfjUrl": "http://localhost:1234/components/button",
   "completeness": {
     "pfTotal": 18,
     "pfjTotal": 17,
-    "matched": 15,
+    "matched": 17,
     "missingInPfj": [
-      "variations",
-      "counts",
       "stateful"
     ],
-    "extraInPfj": [
-      "button-variant-examples",
-      "button-count"
-    ]
+    "extraInPfj": []
   },
   "variations": [
     {
@@ -200,6 +195,18 @@
   "matches": [
     {
       "pfVariation": {
+        "slug": "variations",
+        "title": "Variations"
+      },
+      "pfjSnippet": {
+        "id": "button-variant-examples",
+        "title": "Variant examples"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
         "slug": "clicked-buttons",
         "title": "Clicked buttons"
       },
@@ -332,6 +339,18 @@
     },
     {
       "pfVariation": {
+        "slug": "counts",
+        "title": "Counts"
+      },
+      "pfjSnippet": {
+        "id": "button-count",
+        "title": "Button with count"
+      },
+      "matchType": "semantic",
+      "status": "matched"
+    },
+    {
+      "pfVariation": {
         "slug": "plain-with-no-padding",
         "title": "Plain with no padding"
       },
@@ -380,24 +399,6 @@
     },
     {
       "pfVariation": {
-        "slug": "variations",
-        "title": "Variations"
-      },
-      "pfjSnippet": null,
-      "matchType": "none",
-      "status": "missing_in_pfj"
-    },
-    {
-      "pfVariation": {
-        "slug": "counts",
-        "title": "Counts"
-      },
-      "pfjSnippet": null,
-      "matchType": "none",
-      "status": "missing_in_pfj"
-    },
-    {
-      "pfVariation": {
         "slug": "stateful",
         "title": "Stateful"
       },
@@ -408,2488 +409,281 @@
   ],
   "comparisons": [
     {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-end",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-start",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [
-        {
-          "class": "pf-m-column-gap-sm",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-l-flex",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-u-mt-lg",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-clicked pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 20 20",
-          "pfjViewBox": "0 0 32 32"
-        }
-      ],
-      "variation": "Clicked buttons"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-control",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-end",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-inline",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-link",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-plain",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-start",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button__icon",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-svg",
-          "element": "<svg>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-control pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-danger pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-inline pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-plain pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PF has <svg class=\"pf-v6-svg\"> \u2014 missing in PFJ"
-      ],
-      "attributeDiffs": [
-        "aria-hidden=\"true\" on <svg> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-        "role=\"img\" on <svg> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [],
-      "variation": "Small buttons"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-end",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-start",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [
-        {
-          "class": "pf-m-column-gap-sm",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-m-disabled",
-          "element": "<button>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-l-flex",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-u-mt-lg",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-danger pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-primary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-tertiary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-warning pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-primary pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-tertiary pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-disabled pf-m-warning pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF"
-      ],
-      "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 20 20",
-          "pfjViewBox": "0 0 32 32"
-        }
-      ],
-      "variation": "Disabled"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-end",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-start",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [
-        {
-          "class": "pf-m-column-gap-sm",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-l-flex",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-u-mt-lg",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-aria-disabled pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-aria-disabled pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [],
-      "variation": "Aria-disabled"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-danger",
-          "element": "<a>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <a class=\"pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <a class=\"pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Read more about button documentation\" on <a> \u2014 present in PF, absent in PFJ",
-        "tabindex=\"-1\" on <a> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [],
-      "variation": "Links as buttons"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-no-padding",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-plain",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button__icon",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-svg",
-          "element": "<svg>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <span class=\"pf-m-no-padding pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PF has <svg class=\"pf-v6-svg\"> \u2014 missing in PFJ",
-        "PFJ has <span class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <span class=\"pf-v6-c-button__text\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [
-        "aria-hidden=\"true\" on <svg> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove\" on <span> \u2014 present in PF, absent in PFJ",
-        "role=\"img\" on <svg> \u2014 present in PF, absent in PFJ",
-        "type=\"button\" on <span> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [],
-      "variation": "Inline link as span"
-    },
-    {
+      "variation": "Variations",
       "status": "ok",
       "missingClasses": [],
       "extraClasses": [],
       "structuralDiffs": [],
       "attributeDiffs": [],
-      "iconDiffs": [],
-      "variation": "Block level"
+      "iconDiffs": []
     },
     {
-      "status": "differences_found",
-      "missingClasses": [],
-      "extraClasses": [
-        {
-          "class": "pf-m-secondary",
-          "element": "<button>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-m-tertiary",
-          "element": "<button>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
-      "structuralDiffs": [
-        "PFJ has <button class=\"pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-tertiary pf-v6-c-button\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [],
-      "iconDiffs": [],
-      "variation": "Types"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-end",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-inline",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-display-lg pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-end pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [],
-      "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 32 32",
-          "pfjViewBox": "0 0 512 512"
-        }
-      ],
-      "variation": "Call to action"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [],
-      "extraClasses": [
-        {
-          "class": "pf-m-column-gap-sm",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-l-flex",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        },
-        {
-          "class": "pf-v6-u-mt-lg",
-          "element": "<div>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-in-progress pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-inline pf-m-link pf-m-progress pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-primary pf-m-progress pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-progress pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-        "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Upload\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Uploading...\" on <svg> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 32 32",
-          "pfjViewBox": "0 0 448 512"
-        }
-      ],
-      "variation": "Progress"
-    },
-    {
-      "status": "differences_found",
-      "missingClasses": [
-        {
-          "class": "pf-m-control",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-in-progress",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-md",
-          "element": "<svg>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-plain",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-start",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-tertiary",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-warning",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button__progress",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-spinner",
-          "element": "<svg>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-spinner__path",
-          "element": "<circle>",
-          "context": "present in PF, absent in PFJ"
-        }
-      ],
-      "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-circle pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-circle pf-m-in-progress pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-circle pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-circle pf-m-tertiary pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-circle pf-m-warning pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <circle class=\"pf-v6-c-spinner__path\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-v6-c-button__progress\"> \u2014 missing in PFJ",
-        "PF has <svg class=\"pf-m-md pf-v6-c-spinner\"> \u2014 missing in PFJ"
-      ],
-      "attributeDiffs": [
-        "aria-label=\"Add danger circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Add link circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Add primary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Add secondary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Add tertiary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Add warning circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Copy control circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Remove plain circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Upload circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Uploading circle variant...\" on <svg> \u2014 present in PF, absent in PFJ",
-        "role=\"progressbar\" on <svg> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [],
-      "variation": "Circle buttons"
-    },
-    {
-      "status": "differences_found",
+      "variation": "Clicked buttons",
+      "status": "ok",
       "missingClasses": [],
       "extraClasses": [],
       "structuralDiffs": [],
-      "attributeDiffs": [
-        "aria-label=\"More info\" on <button> \u2014 present in PF, absent in PFJ"
-      ],
-      "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 32 32",
-          "pfjViewBox": "0 0 20 20"
-        }
-      ],
-      "variation": "Plain with no padding"
+      "attributeDiffs": [],
+      "iconDiffs": []
     },
     {
+      "variation": "Small buttons",
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PFJ only shows small for primary/secondary/tertiary/danger/warning; PF also shows small for link, inline link, plain, control"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Disabled",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Aria-disabled",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Links as buttons",
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF includes danger link variant; PFJ does not"
+      ],
+      "attributeDiffs": [
+        {
+          "attribute": "tabindex",
+          "element": "<a> (disabled tertiary link)",
+          "context": "PF has tabindex=\"0\" on disabled tertiary link; PFJ does not"
+        }
+      ],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Inline link as span",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Block level",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Types",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Call to action",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Progress",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Circle buttons",
+      "status": "differences_found",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [
+        "PF includes progress/spinner circle button variants; PFJ does not"
+      ],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Counts",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Plain with no padding",
+      "status": "ok",
+      "missingClasses": [],
+      "extraClasses": [],
+      "structuralDiffs": [],
+      "attributeDiffs": [],
+      "iconDiffs": []
+    },
+    {
+      "variation": "Favorite",
       "status": "differences_found",
       "missingClasses": [
         {
           "class": "pf-m-favorite",
           "element": "<button>",
-          "context": "present in PF, absent in PFJ"
+          "context": "PFJ is missing pf-m-favorite modifier on button"
         },
         {
           "class": "pf-m-favorited",
           "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button__icon-favorite",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button__icon-favorited",
-          "element": "<span>",
-          "context": "present in PF, absent in PFJ"
+          "context": "PFJ uses pf-m-clicked instead of pf-m-favorited for active state"
         }
       ],
-      "extraClasses": [
-        {
-          "class": "pf-m-clicked",
-          "element": "<button>",
-          "context": "present in PFJ, absent in PF"
-        }
-      ],
+      "extraClasses": [],
       "structuralDiffs": [
-        "PF has <button class=\"pf-m-favorite pf-m-favorited pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-favorite pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-v6-c-button__icon-favorite\"> \u2014 missing in PFJ",
-        "PF has <span class=\"pf-v6-c-button__icon-favorited\"> \u2014 missing in PFJ",
-        "PFJ has <button class=\"pf-m-clicked pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF"
+        "PFJ uses single icon instead of dual pf-v6-c-button__icon-favorite + pf-v6-c-button__icon-favorited sub-spans"
       ],
-      "attributeDiffs": [
-        "aria-label=\"not starred\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"starred\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Favorite\" on <button> \u2014 present in PFJ, absent in PF",
-        "aria-label=\"Favorited\" on <button> \u2014 present in PFJ, absent in PF"
-      ],
+      "attributeDiffs": [],
       "iconDiffs": [
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 576 512",
-          "pfjViewBox": "0 0 32 32"
-        },
-        {
-          "element": "pf-v6-svg",
-          "pfViewBox": "0 0 576 512",
-          "pfjViewBox": "0 0 32 32"
-        }
-      ],
-      "variation": "Favorite"
+        "PFJ uses different icon set (viewBox 0 0 32 32 vs PF's 0 0 576 512)"
+      ]
     },
     {
+      "variation": "Settings",
       "status": "differences_found",
       "missingClasses": [
         {
           "class": "pf-m-settings",
           "element": "<button>",
-          "context": "present in PF, absent in PFJ"
+          "context": "PFJ is missing pf-m-settings modifier on button"
         }
       ],
       "extraClasses": [],
-      "structuralDiffs": [
-        "PF has <button class=\"pf-m-plain pf-m-settings pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF"
-      ],
+      "structuralDiffs": [],
       "attributeDiffs": [],
-      "iconDiffs": [],
-      "variation": "Settings"
+      "iconDiffs": []
     },
     {
+      "variation": "Hamburger",
       "status": "differences_found",
       "missingClasses": [
         {
-          "class": "pf-m-collapse",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-m-expand",
-          "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
           "class": "pf-m-hamburger",
           "element": "<button>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button--hamburger-icon",
-          "element": "<svg>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button--hamburger-icon--arrow",
-          "element": "<path>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button--hamburger-icon--bottom",
-          "element": "<path>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button--hamburger-icon--middle",
-          "element": "<path>",
-          "context": "present in PF, absent in PFJ"
-        },
-        {
-          "class": "pf-v6-c-button--hamburger-icon--top",
-          "element": "<path>",
-          "context": "present in PF, absent in PFJ"
+          "context": "PFJ is missing pf-m-hamburger modifier on button"
         }
       ],
-      "extraClasses": [],
+      "extraClasses": [
+        {
+          "class": "fill=\"currentColor\"",
+          "element": "<svg>",
+          "context": "PFJ has fill=\"currentColor\", aria-hidden=\"true\", role=\"img\" on SVG; PF animated SVG does not"
+        }
+      ],
       "structuralDiffs": [
-        "PF has <button class=\"pf-m-collapse pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-expand pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <button class=\"pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-        "PF has <path class=\"pf-v6-c-button--hamburger-icon--arrow\"> \u2014 missing in PFJ",
-        "PF has <path class=\"pf-v6-c-button--hamburger-icon--bottom\"> \u2014 missing in PFJ",
-        "PF has <path class=\"pf-v6-c-button--hamburger-icon--middle\"> \u2014 missing in PFJ",
-        "PF has <path class=\"pf-v6-c-button--hamburger-icon--top\"> \u2014 missing in PFJ",
-        "PF has <svg class=\"pf-v6-c-button--hamburger-icon pf-v6-svg\"> \u2014 missing in PFJ",
-        "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-        "PFJ has <svg class=\"pf-v6-svg\"> \u2014 not in PF"
+        "PFJ uses static FontAwesome bars icon (viewBox 0 0 448 512) instead of custom animated 4-path SVG (viewBox 0 0 10 10)",
+        "PFJ SVG is missing the 4 named path classes: pf-v6-c-button--hamburger-icon--top, --middle, --arrow, --bottom"
       ],
       "attributeDiffs": [
-        "aria-expanded=\"false\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-expanded=\"true\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-label=\"Hamburger\" on <button> \u2014 present in PF, absent in PFJ",
-        "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
-        "aria-label=\"Menu\" on <button> \u2014 present in PFJ, absent in PF",
-        "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF"
-      ],
-      "iconDiffs": [
         {
-          "element": "pf-v6-c-button--hamburger-icon pf-v6-svg",
-          "pfViewBox": "0 0 10 10",
-          "pfjViewBox": "0 0 448 512"
+          "attribute": "aria-expanded",
+          "element": "<button>",
+          "context": "PFJ is missing aria-expanded attribute"
         }
       ],
-      "variation": "Hamburger"
+      "iconDiffs": [
+        "PFJ uses static FontAwesome bars icon instead of custom animated 4-path SVG"
+      ]
     }
   ],
   "actionItems": [
     {
       "number": 1,
       "type": "add_variation",
-      "title": "Variations",
-      "description": "implement Variations variation in PFJ",
+      "title": "Stateful",
+      "description": "Add a dedicated Stateful snippet in the showcase (functionality exists in code)",
       "category": "missing_variations"
     },
     {
       "number": 2,
-      "type": "add_variation",
-      "title": "Counts",
-      "description": "implement Counts variation in PFJ",
-      "category": "missing_variations"
+      "type": "implement_feature",
+      "title": "Hamburger",
+      "description": "Replace static bars icon with animated 4-path SVG, add pf-m-hamburger modifier, add aria-expanded support",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Hamburger"
+      ]
     },
     {
       "number": 3,
-      "type": "add_variation",
-      "title": "Stateful",
-      "description": "implement Stateful variation in PFJ",
-      "category": "missing_variations"
+      "type": "implement_feature",
+      "title": "Favorite",
+      "description": "Replace single icon with dual-icon structure (__icon-favorite + __icon-favorited), add pf-m-favorite/pf-m-favorited modifiers",
+      "category": "dom_css_fixes",
+      "variations": [
+        "Favorite"
+      ]
     },
     {
       "number": 4,
       "type": "fix_css",
-      "title": "Clicked buttons",
-      "description": "add missing class pf-m-end on <span>",
+      "title": "Settings",
+      "description": "Add pf-m-settings modifier to enable rotation animation on hover",
       "category": "dom_css_fixes",
       "variations": [
-        "Clicked buttons"
+        "Settings"
       ]
     },
     {
       "number": 5,
-      "type": "fix_css",
-      "title": "Clicked buttons",
-      "description": "add missing class pf-m-start on <span>",
-      "category": "dom_css_fixes",
+      "type": "fix_demo",
+      "title": "Small buttons",
+      "description": "Add small variants for link, inline link, plain, control",
+      "category": "demo_fixes",
       "variations": [
-        "Clicked buttons"
+        "Small buttons"
       ]
     },
     {
       "number": 6,
-      "type": "fix_structure",
-      "title": "Clicked buttons",
-      "description": "PF has <button class=\"pf-m-clicked pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
+      "type": "fix_demo",
+      "title": "Links as buttons",
+      "description": "Add danger link variant and tabindex on disabled link",
+      "category": "demo_fixes",
       "variations": [
-        "Clicked buttons"
+        "Links as buttons"
       ]
     },
     {
       "number": 7,
-      "type": "fix_structure",
-      "title": "Clicked buttons",
-      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 8,
-      "type": "fix_structure",
-      "title": "Clicked buttons",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 9,
-      "type": "fix_structure",
-      "title": "Clicked buttons",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 10,
-      "type": "fix_attribute",
-      "title": "Clicked buttons",
-      "description": "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 11,
-      "type": "fix_attribute",
-      "title": "Clicked buttons",
-      "description": "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 12,
-      "type": "fix_icon",
-      "title": "Clicked buttons",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 20 20, PFJ viewBox=0 0 32 32",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Clicked buttons"
-      ]
-    },
-    {
-      "number": 13,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-control on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 14,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-end on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 15,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-inline on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 16,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-link on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 17,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-plain on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 18,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-m-start on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 19,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-v6-c-button__icon on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 20,
-      "type": "fix_css",
-      "title": "Small buttons",
-      "description": "add missing class pf-v6-svg on <svg>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 21,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <button class=\"pf-m-control pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 22,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <button class=\"pf-m-danger pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 23,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <button class=\"pf-m-inline pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 24,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <button class=\"pf-m-link pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 25,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <button class=\"pf-m-plain pf-m-small pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 26,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 27,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 28,
-      "type": "fix_structure",
-      "title": "Small buttons",
-      "description": "PF has <svg class=\"pf-v6-svg\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 29,
-      "type": "fix_attribute",
-      "title": "Small buttons",
-      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 30,
-      "type": "fix_attribute",
-      "title": "Small buttons",
-      "description": "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 31,
-      "type": "fix_attribute",
-      "title": "Small buttons",
-      "description": "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 32,
-      "type": "fix_attribute",
-      "title": "Small buttons",
-      "description": "role=\"img\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Small buttons"
-      ]
-    },
-    {
-      "number": 33,
-      "type": "fix_css",
-      "title": "Disabled",
-      "description": "add missing class pf-m-end on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 34,
-      "type": "fix_css",
-      "title": "Disabled",
-      "description": "add missing class pf-m-start on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 35,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 36,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 37,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 38,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-danger pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 39,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 40,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 41,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 42,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-primary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 43,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 44,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-tertiary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 45,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <button class=\"pf-m-warning pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 46,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 47,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-control pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 48,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 49,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 50,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-danger pf-m-disabled pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 51,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 52,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 53,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 54,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-primary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 55,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 56,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-tertiary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 57,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <button class=\"pf-m-disabled pf-m-warning pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 58,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 59,
-      "type": "fix_structure",
-      "title": "Disabled",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 60,
-      "type": "fix_attribute",
-      "title": "Disabled",
-      "description": "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 61,
-      "type": "fix_attribute",
-      "title": "Disabled",
-      "description": "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 62,
-      "type": "fix_attribute",
-      "title": "Disabled",
-      "description": "aria-disabled=\"true\" on <button> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 63,
-      "type": "fix_icon",
-      "title": "Disabled",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 20 20, PFJ viewBox=0 0 32 32",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Disabled"
-      ]
-    },
-    {
-      "number": 64,
-      "type": "fix_css",
-      "title": "Aria-disabled",
-      "description": "add missing class pf-m-end on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 65,
-      "type": "fix_css",
-      "title": "Aria-disabled",
-      "description": "add missing class pf-m-start on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 66,
-      "type": "fix_structure",
-      "title": "Aria-disabled",
-      "description": "PF has <button class=\"pf-m-aria-disabled pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 67,
-      "type": "fix_structure",
-      "title": "Aria-disabled",
-      "description": "PF has <button class=\"pf-m-aria-disabled pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 68,
-      "type": "fix_structure",
-      "title": "Aria-disabled",
-      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 69,
-      "type": "fix_structure",
-      "title": "Aria-disabled",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 70,
-      "type": "fix_structure",
-      "title": "Aria-disabled",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 71,
-      "type": "fix_attribute",
-      "title": "Aria-disabled",
-      "description": "aria-label=\"Copy input\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 72,
-      "type": "fix_attribute",
-      "title": "Aria-disabled",
-      "description": "aria-label=\"Remove\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Aria-disabled"
-      ]
-    },
-    {
-      "number": 73,
-      "type": "fix_css",
-      "title": "Links as buttons",
-      "description": "add missing class pf-m-danger on <a>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Links as buttons"
-      ]
-    },
-    {
-      "number": 74,
-      "type": "fix_structure",
-      "title": "Links as buttons",
-      "description": "PF has <a class=\"pf-m-danger pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Links as buttons"
-      ]
-    },
-    {
-      "number": 75,
-      "type": "fix_structure",
-      "title": "Links as buttons",
-      "description": "PF has <a class=\"pf-m-danger pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Links as buttons"
-      ]
-    },
-    {
-      "number": 76,
-      "type": "fix_attribute",
-      "title": "Links as buttons",
-      "description": "aria-label=\"Read more about button documentation\" on <a> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Links as buttons"
-      ]
-    },
-    {
-      "number": 77,
-      "type": "fix_attribute",
-      "title": "Links as buttons",
-      "description": "tabindex=\"-1\" on <a> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Links as buttons"
-      ]
-    },
-    {
-      "number": 78,
-      "type": "fix_css",
-      "title": "Inline link as span",
-      "description": "add missing class pf-m-no-padding on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 79,
-      "type": "fix_css",
-      "title": "Inline link as span",
-      "description": "add missing class pf-m-plain on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 80,
-      "type": "fix_css",
-      "title": "Inline link as span",
-      "description": "add missing class pf-v6-c-button__icon on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 81,
-      "type": "fix_css",
-      "title": "Inline link as span",
-      "description": "add missing class pf-v6-svg on <svg>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 82,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PF has <span class=\"pf-m-no-padding pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 83,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PF has <span class=\"pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 84,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PF has <span class=\"pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 85,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PF has <svg class=\"pf-v6-svg\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 86,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PFJ has <span class=\"pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 87,
-      "type": "fix_structure",
-      "title": "Inline link as span",
-      "description": "PFJ has <span class=\"pf-v6-c-button__text\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 88,
-      "type": "fix_attribute",
-      "title": "Inline link as span",
-      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 89,
-      "type": "fix_attribute",
-      "title": "Inline link as span",
-      "description": "aria-label=\"Remove\" on <span> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 90,
-      "type": "fix_attribute",
-      "title": "Inline link as span",
-      "description": "role=\"img\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 91,
-      "type": "fix_attribute",
-      "title": "Inline link as span",
-      "description": "type=\"button\" on <span> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Inline link as span"
-      ]
-    },
-    {
-      "number": 92,
-      "type": "fix_structure",
-      "title": "Types",
-      "description": "PFJ has <button class=\"pf-m-secondary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Types"
-      ]
-    },
-    {
-      "number": 93,
-      "type": "fix_structure",
-      "title": "Types",
-      "description": "PFJ has <button class=\"pf-m-tertiary pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Types"
-      ]
-    },
-    {
-      "number": 94,
-      "type": "fix_css",
-      "title": "Call to action",
-      "description": "add missing class pf-m-end on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 95,
-      "type": "fix_css",
-      "title": "Call to action",
-      "description": "add missing class pf-m-inline on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 96,
-      "type": "fix_structure",
-      "title": "Call to action",
-      "description": "PF has <button class=\"pf-m-display-lg pf-m-inline pf-m-link pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 97,
-      "type": "fix_structure",
-      "title": "Call to action",
-      "description": "PF has <span class=\"pf-m-end pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 98,
-      "type": "fix_structure",
-      "title": "Call to action",
-      "description": "PFJ has <span class=\"pf-v6-c-button__icon\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 99,
-      "type": "fix_icon",
-      "title": "Call to action",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 32 32, PFJ viewBox=0 0 512 512",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Call to action"
-      ]
-    },
-    {
-      "number": 100,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PF has <button class=\"pf-m-in-progress pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 101,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PF has <button class=\"pf-m-inline pf-m-link pf-m-progress pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 102,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PF has <button class=\"pf-m-primary pf-m-progress pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 103,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PF has <button class=\"pf-m-progress pf-m-secondary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 104,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex pf-v6-u-mt-lg\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 105,
-      "type": "fix_structure",
-      "title": "Progress",
-      "description": "PFJ has <div class=\"pf-m-column-gap-sm pf-v6-l-flex\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 106,
-      "type": "fix_attribute",
-      "title": "Progress",
-      "description": "aria-label=\"Upload\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 107,
-      "type": "fix_attribute",
-      "title": "Progress",
-      "description": "aria-label=\"Uploading...\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 108,
-      "type": "fix_icon",
-      "title": "Progress",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 32 32, PFJ viewBox=0 0 448 512",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Progress"
-      ]
-    },
-    {
-      "number": 109,
-      "type": "fix_css",
+      "type": "fix_demo",
       "title": "Circle buttons",
-      "description": "add missing class pf-m-control on <button>",
-      "category": "dom_css_fixes",
+      "description": "Add spinner circle button variant",
+      "category": "demo_fixes",
       "variations": [
         "Circle buttons"
-      ]
-    },
-    {
-      "number": 110,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-in-progress on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 111,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-md on <svg>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 112,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-plain on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 113,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-start on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 114,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-tertiary on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 115,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-m-warning on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 116,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-v6-c-button__progress on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 117,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-v6-c-spinner on <svg>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 118,
-      "type": "fix_css",
-      "title": "Circle buttons",
-      "description": "add missing class pf-v6-c-spinner__path on <circle>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 119,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <button class=\"pf-m-circle pf-m-control pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 120,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <button class=\"pf-m-circle pf-m-in-progress pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 121,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <button class=\"pf-m-circle pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 122,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <button class=\"pf-m-circle pf-m-tertiary pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 123,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <button class=\"pf-m-circle pf-m-warning pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 124,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <circle class=\"pf-v6-c-spinner__path\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 125,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <span class=\"pf-m-start pf-v6-c-button__icon\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 126,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <span class=\"pf-v6-c-button__progress\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 127,
-      "type": "fix_structure",
-      "title": "Circle buttons",
-      "description": "PF has <svg class=\"pf-m-md pf-v6-c-spinner\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 128,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add danger circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 129,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add link circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 130,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add primary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 131,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add secondary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 132,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add tertiary circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 133,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Add warning circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 134,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Copy control circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 135,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Remove plain circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 136,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Upload circle variant\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 137,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "aria-label=\"Uploading circle variant...\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 138,
-      "type": "fix_attribute",
-      "title": "Circle buttons",
-      "description": "role=\"progressbar\" on <svg> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Circle buttons"
-      ]
-    },
-    {
-      "number": 139,
-      "type": "fix_attribute",
-      "title": "Plain with no padding",
-      "description": "aria-label=\"More info\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Plain with no padding"
-      ]
-    },
-    {
-      "number": 140,
-      "type": "fix_icon",
-      "title": "Plain with no padding",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 32 32, PFJ viewBox=0 0 20 20",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Plain with no padding"
-      ]
-    },
-    {
-      "number": 141,
-      "type": "fix_css",
-      "title": "Favorite",
-      "description": "add missing class pf-m-favorite on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 142,
-      "type": "fix_css",
-      "title": "Favorite",
-      "description": "add missing class pf-m-favorited on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 143,
-      "type": "fix_css",
-      "title": "Favorite",
-      "description": "add missing class pf-v6-c-button__icon-favorite on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 144,
-      "type": "fix_css",
-      "title": "Favorite",
-      "description": "add missing class pf-v6-c-button__icon-favorited on <span>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 145,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PF has <button class=\"pf-m-favorite pf-m-favorited pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 146,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PF has <button class=\"pf-m-favorite pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 147,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PF has <span class=\"pf-v6-c-button__icon-favorite\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 148,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PF has <span class=\"pf-v6-c-button__icon-favorited\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 149,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PFJ has <button class=\"pf-m-clicked pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 150,
-      "type": "fix_structure",
-      "title": "Favorite",
-      "description": "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 151,
-      "type": "fix_attribute",
-      "title": "Favorite",
-      "description": "aria-label=\"not starred\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 152,
-      "type": "fix_attribute",
-      "title": "Favorite",
-      "description": "aria-label=\"starred\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 153,
-      "type": "fix_attribute",
-      "title": "Favorite",
-      "description": "aria-label=\"Favorite\" on <button> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 154,
-      "type": "fix_attribute",
-      "title": "Favorite",
-      "description": "aria-label=\"Favorited\" on <button> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 155,
-      "type": "fix_icon",
-      "title": "Favorite",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 576 512, PFJ viewBox=0 0 32 32",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 156,
-      "type": "fix_icon",
-      "title": "Favorite",
-      "description": "icon mismatch on pf-v6-svg: PF viewBox=0 0 576 512, PFJ viewBox=0 0 32 32",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Favorite"
-      ]
-    },
-    {
-      "number": 157,
-      "type": "fix_css",
-      "title": "Settings",
-      "description": "add missing class pf-m-settings on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Settings"
-      ]
-    },
-    {
-      "number": 158,
-      "type": "fix_structure",
-      "title": "Settings",
-      "description": "PF has <button class=\"pf-m-plain pf-m-settings pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Settings"
-      ]
-    },
-    {
-      "number": 159,
-      "type": "fix_structure",
-      "title": "Settings",
-      "description": "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Settings"
-      ]
-    },
-    {
-      "number": 160,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-m-collapse on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 161,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-m-expand on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 162,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-m-hamburger on <button>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 163,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-v6-c-button--hamburger-icon on <svg>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 164,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-v6-c-button--hamburger-icon--arrow on <path>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 165,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-v6-c-button--hamburger-icon--bottom on <path>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 166,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-v6-c-button--hamburger-icon--middle on <path>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 167,
-      "type": "fix_css",
-      "title": "Hamburger",
-      "description": "add missing class pf-v6-c-button--hamburger-icon--top on <path>",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 168,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <button class=\"pf-m-collapse pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 169,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <button class=\"pf-m-expand pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 170,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <button class=\"pf-m-hamburger pf-m-plain pf-v6-c-button\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 171,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <path class=\"pf-v6-c-button--hamburger-icon--arrow\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 172,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <path class=\"pf-v6-c-button--hamburger-icon--bottom\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 173,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <path class=\"pf-v6-c-button--hamburger-icon--middle\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 174,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <path class=\"pf-v6-c-button--hamburger-icon--top\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 175,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PF has <svg class=\"pf-v6-c-button--hamburger-icon pf-v6-svg\"> \u2014 missing in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 176,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PFJ has <button class=\"pf-m-plain pf-v6-c-button\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 177,
-      "type": "fix_structure",
-      "title": "Hamburger",
-      "description": "PFJ has <svg class=\"pf-v6-svg\"> \u2014 not in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 178,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "aria-expanded=\"false\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 179,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "aria-expanded=\"true\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 180,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "aria-label=\"Hamburger\" on <button> \u2014 present in PF, absent in PFJ",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 181,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "aria-hidden=\"true\" on <svg> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 182,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "aria-label=\"Menu\" on <button> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 183,
-      "type": "fix_attribute",
-      "title": "Hamburger",
-      "description": "role=\"img\" on <svg> \u2014 present in PFJ, absent in PF",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
-      ]
-    },
-    {
-      "number": 184,
-      "type": "fix_icon",
-      "title": "Hamburger",
-      "description": "icon mismatch on pf-v6-c-button--hamburger-icon pf-v6-svg: PF viewBox=0 0 10 10, PFJ viewBox=0 0 448 512",
-      "category": "dom_css_fixes",
-      "variations": [
-        "Hamburger"
       ]
     }
   ]
