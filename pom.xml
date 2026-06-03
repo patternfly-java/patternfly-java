@@ -404,6 +404,9 @@
         </profile>
         <profile>
             <id>check</id>
+            <modules>
+                <module>snippet-tests</module>
+            </modules>
             <build>
                 <plugins>
                     <plugin>

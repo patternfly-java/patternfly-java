@@ -38,13 +38,13 @@
  * import static org.patternfly.component.icon.IconSize.sm;
  * import static org.patternfly.component.icon.IconSize.xl;
  * import static org.patternfly.icon.IconSets.rhUi.checkCircleFill;
- * import static org.patternfly.icon.IconSets.fas.cog;
+ * import static org.patternfly.icon.IconSets.fas.gear;
  * import static org.patternfly.icon.IconSets.rhUi.errorFill;
  * import static org.patternfly.style.Status.danger;
  * import static org.patternfly.style.Status.success;
  *
  * // Basic icons
- * Icon settingsIcon = icon(cog());
+ * Icon settingsIcon = icon(gear());
  *
  * // Icons with sizes
  * Icon smallIcon = icon(checkCircleFill()).size(sm);

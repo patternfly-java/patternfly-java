@@ -49,7 +49,7 @@
  * import static org.patternfly.icon.IconSets.fas.cube;
  * import static org.patternfly.icon.IconSets.fas.flag;
  * import static org.patternfly.icon.IconSets.fas.globe;
- * import static org.patternfly.icon.IconSets.fas.plusCircle;
+ * import static org.patternfly.icon.IconSets.fas.circlePlus;
  * import static org.patternfly.icon.IconSets.patternfly.key;
  *
  * DescriptionList dl = descriptionList()
@@ -66,7 +66,7 @@
  *         .addGroup(descriptionListGroup()
  *                 .addTerm(descriptionListTerm("Pod selector").icon(globe()))
  *                 .addDescription(descriptionListDescription()
- *                         .add(button().iconAndText(plusCircle(), "app=MyApp", start)
+ *                         .add(button().iconAndText(circlePlus(), "app=MyApp", start)
  *                                 .inline().link())))
  *         .addGroup(descriptionListGroup()
  *                 .addTerm(descriptionListTerm("Annotation").icon(flag()))

@@ -52,6 +52,7 @@ The project is organized into these modules:
 | **gwt** | GWT compilation target support |
 | **j2cl** | J2CL compilation target support |
 | **showcase** | Interactive demo website (activated via `-P showcase`) |
+| **snippet-tests** | Build-time validation of inline JavaDoc code snippets (activated via `-P check`, not deployed) |
 | **apidoc** | API documentation aggregation (activated via `-P apidoc`) |
 
 The BOM lives in a separate Maven reactor and must be installed before building the main project. All build scripts and CI workflows handle this automatically.
@@ -63,7 +64,7 @@ The BOM lives in a separate Maven reactor and must be installed before building 
 | Profile | Activation | Purpose |
 |---------|-----------|---------|
 | `format` | `-P format` | Auto-format sources: editorconfig, import sorting, license headers |
-| `check` | `-P check` | Validate sources: enforcer, checkstyle, editorconfig, import sorting, license headers |
+| `check` | `-P check` | Validate sources: enforcer, checkstyle, editorconfig, import sorting, license headers, snippet validation |
 | `showcase` | `-P showcase` | Include the showcase module in the build |
 | `quick-build` | `-Dquickly` | Skip tests, javadoc, and integration tests |
 | `skip-j2cl` | `-DskipJ2CL` | Disable J2CL compilation (showcase only) |
@@ -115,7 +116,7 @@ mvn clean package -P showcase,prod
 | Script | Purpose |
 |--------|---------|
 | `format.sh` | Shortcut for `mvn process-sources -P format,showcase` |
-| `check.sh` | Shortcut for `mvn process-sources -P check,showcase` |
+| `check.sh` | Shortcut for `mvn test -P check,showcase` |
 | `release.sh` | Orchestrate a release (see [Releasing](/releasing)) |
 | `unrelease.sh` | Roll back a failed release (see [Releasing](/releasing)) |
 | `versionBump.sh` | Bump version across all POMs and NPM packages |

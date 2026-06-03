@@ -32,7 +32,7 @@
  * <p>Create a tooltip attached to a trigger element:
  *
  * {@snippet :
- * import static org.jboss.elemento.By;
+ * import org.jboss.elemento.By;
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.tooltip.Tooltip.tooltip;
  *
@@ -43,7 +43,7 @@
  * <p>Create a tooltip with placement and dynamic content:
  *
  * {@snippet :
- * import static org.jboss.elemento.By;
+ * import org.jboss.elemento.By;
  * import static org.patternfly.component.tooltip.Tooltip.tooltip;
  * import static org.patternfly.style.Placement.bottom;
  *

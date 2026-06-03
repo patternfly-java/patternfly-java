@@ -13,9 +13,9 @@ PatternFly Java is a pure Java implementation of [PatternFly](https://www.patter
 | `mvn clean verify` | Full build (tests, javadoc — no formatting/linting) |
 | `mvn verify -Dquickly` | Quick build (skip tests, javadoc) |
 | `mvn process-sources -P format,showcase` | Auto-format sources (editorconfig, imports, license headers) |
-| `mvn process-sources -P check,showcase` | Validate sources (enforcer, checkstyle, editorconfig, imports, license) |
+| `mvn test -P check,showcase` | Validate sources (enforcer, checkstyle, editorconfig, imports, license, snippet validation) |
 | `./format.sh` | Shortcut for `mvn process-sources -P format,showcase` |
-| `./check.sh` | Shortcut for `mvn process-sources -P check,showcase` |
+| `./check.sh` | Shortcut for `mvn test -P check,showcase` |
 | `mvn test -Dtest=ModifierTest` | Run a single test class |
 | `mvn test -Dtest=ModifierTest#testModifiers` | Run a single test method |
 | `mvn j2cl:watch -P showcase` | Watch J2CL compilation for showcase dev |
@@ -36,6 +36,7 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 - **charts** - Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle
 - **extensions/codeeditor**, **extensions/finder** - Extensions
 - **gwt**, **j2cl** - Compilation target support
+- **snippet-tests** - Build-time validation of inline JavaDoc code snippets (activated via `-P check` profile, not deployed)
 - **showcase** - Interactive demo website (activated via `-P showcase` profile)
 
 ## Architecture & Patterns
