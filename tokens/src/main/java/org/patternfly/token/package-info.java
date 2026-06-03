@@ -34,14 +34,14 @@
  * import static org.patternfly.token.Token.*;
  *
  * // Access token properties
- * String name = color_blue_10.name;     // "--pf-t--global--color--blue--10"
- * String value = color_blue_10.value;   // "#cfe7ff"
- * String var = color_blue_10.var;       // "var(--pf-t--global--color--blue--10)"
+ * String name = colorBlue10.name;     // "--pf-t--color--blue--10"
+ * String value = colorBlue10.value;   // "#e0f0ff"
+ * String var = colorBlue10.var;       // "var(--pf-t--color--blue--10)"
  *
  * // Use in styles
  * div().css(modifier("custom"))
- *      .style("color", color_blue_50.var)
- *      .style("background-color", color_blue_10.var);
+ *      .style("color", colorBlue50.var)
+ *      .style("background-color", colorBlue10.var);
  * }
  *
  * @see <a href="https://www.patternfly.org/tokens/about-tokens">PatternFly Design Tokens</a>
