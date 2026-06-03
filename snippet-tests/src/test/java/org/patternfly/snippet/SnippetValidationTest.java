@@ -49,6 +49,15 @@ class SnippetValidationTest {
             "import\\s+static\\s+([\\w.]+)\\.([\\w]+)\\s*;");
     private static final Pattern IMPORT_CLASS = Pattern.compile(
             "import\\s+([\\w.]+)\\s*;");
+    private static final Pattern FIELD_ACCESS = Pattern.compile(
+            "(?:^|[=(,\\s])([a-z]\\w*)\\.");
+    private static final Pattern METHOD_CALL = Pattern.compile(
+            "(?:^|[=(,\\s])([a-z]\\w*)\\s*\\(");
+
+    private static final Set<String> JAVA_KEYWORDS = Set.of(
+            "if", "else", "for", "while", "do", "switch", "case", "break", "continue",
+            "return", "new", "this", "super", "null", "true", "false", "var",
+            "int", "long", "double", "float", "boolean", "char", "byte", "short", "void");
 
     @Test
     void validateSnippetImports() throws IOException {
@@ -111,7 +120,7 @@ class SnippetValidationTest {
             }
         }
 
-        // Validate regular class imports
+        // Validate regular class imports (non-static)
         Matcher classMatcher = IMPORT_CLASS.matcher(snippet.code);
         while (classMatcher.find()) {
             String className = classMatcher.group(1);
@@ -123,53 +132,82 @@ class SnippetValidationTest {
             }
         }
 
-        // For snippets with wildcard imports, check that unqualified identifiers
-        // used as the first token on a line (likely factory methods or enum constants)
-        // exist in the imported members
+        // Validate identifiers used with field access (e.g., colorBlue10.var)
         if (!knownMembers.isEmpty()) {
-            validateIdentifiers(snippet, knownMembers, errors);
+            validateFieldAccess(snippet, knownMembers, errors);
         }
     }
 
-    private void validateIdentifiers(Snippet snippet, Set<String> knownMembers, List<String> errors) {
-        // Extract the snippet body (lines after import statements)
-        String[] lines = snippet.code.split("\n");
-        for (String line : lines) {
+    private void validateFieldAccess(Snippet snippet, Set<String> knownMembers, List<String> errors) {
+        Set<String> localVars = collectLocalVariables(snippet.code);
+
+        for (String line : snippet.code.split("\n")) {
             String trimmed = line.trim();
-            if (trimmed.isEmpty() || trimmed.startsWith("import ") || trimmed.startsWith("//")
-                    || trimmed.startsWith("*") || trimmed.startsWith(".")) {
+            if (trimmed.isEmpty() || trimmed.startsWith("import ") || trimmed.startsWith("//")) {
                 continue;
             }
 
-            // Look for identifiers that appear to be static method calls or enum constant references
-            // Pattern: identifier at start of expression (after optional type declaration)
-            Pattern callPattern = Pattern.compile("(?:^|[=(,\\s])([a-z]\\w*)\\s*[.(]");
-            Matcher callMatcher = callPattern.matcher(trimmed);
+            // Strip string literals to avoid false positives
+            String withoutStrings = trimmed.replaceAll("\"[^\"]*\"", "\"\"");
+
+            // Check identifiers used with '.' (field access) — these must be
+            // static fields or enum constants, so they should exist in known members.
+            // Skip local variables and common pseudo-code identifiers.
+            Matcher fieldMatcher = FIELD_ACCESS.matcher(withoutStrings);
+            while (fieldMatcher.find()) {
+                String identifier = fieldMatcher.group(1);
+                if (JAVA_KEYWORDS.contains(identifier) || knownMembers.contains(identifier)
+                        || localVars.contains(identifier)) {
+                    continue;
+                }
+                errors.add(snippet.location() + ": Identifier '" + identifier
+                        + "' not found in any imported class. Similar: "
+                        + findSimilar(identifier, knownMembers));
+            }
+
+            // Check identifiers used with '(' (method call) — only flag if
+            // the identifier is a snake_case variant of a known member
+            Matcher callMatcher = METHOD_CALL.matcher(withoutStrings);
             while (callMatcher.find()) {
                 String identifier = callMatcher.group(1);
-                if (isJavaKeywordOrCommon(identifier)) {
+                if (JAVA_KEYWORDS.contains(identifier) || knownMembers.contains(identifier)
+                        || localVars.contains(identifier)) {
                     continue;
                 }
-                if (knownMembers.contains(identifier)) {
-                    continue;
-                }
-                // Only flag identifiers that look like they should come from a wildcard import
-                // (lowercase start, used as a function call or standalone reference)
-                // Skip if it could be a local variable or method parameter
-                if (looksLikeImportedIdentifier(identifier, snippet.code, knownMembers)) {
+                String camelCase = snakeToCamel(identifier);
+                if (!camelCase.equals(identifier) && knownMembers.contains(camelCase)) {
                     errors.add(snippet.location() + ": Identifier '" + identifier
-                            + "' not found in any imported class. Did you mean one of: "
-                            + findSimilar(identifier, knownMembers) + "?");
+                            + "' not found. Did you mean: " + camelCase + "?");
                 }
             }
         }
     }
 
-    private boolean looksLikeImportedIdentifier(String identifier, String code, Set<String> knownMembers) {
-        // If the identifier contains underscores and a camelCase version exists in known members,
-        // it's likely a naming error (e.g., color_blue_10 instead of colorBlue10)
-        String camelCase = snakeToCamel(identifier);
-        return !camelCase.equals(identifier) && knownMembers.contains(camelCase);
+    private Set<String> collectLocalVariables(String code) {
+        Set<String> vars = new HashSet<>();
+
+        // Match variable declarations: "Type name =" or "var name ="
+        Pattern varDecl = Pattern.compile(
+                "(?:^|\\s)(?:[A-Z]\\w+(?:<[^>]+>)?|var)\\s+([a-z]\\w*)\\s*[=;,)]", Pattern.MULTILINE);
+        Matcher matcher = varDecl.matcher(code);
+        while (matcher.find()) {
+            vars.add(matcher.group(1));
+        }
+
+        // Match lambda parameters: "(name, name2) ->" or "name ->"
+        Pattern lambdaParams = Pattern.compile(
+                "(?:\\(([a-z]\\w*(?:\\s*,\\s*[a-z]\\w*)*)\\)|([a-z]\\w*))\\s*->");
+        Matcher lambdaMatcher = lambdaParams.matcher(code);
+        while (lambdaMatcher.find()) {
+            String group = lambdaMatcher.group(1) != null ? lambdaMatcher.group(1) : lambdaMatcher.group(2);
+            for (String param : group.split("\\s*,\\s*")) {
+                vars.add(param.trim());
+            }
+        }
+
+        // Common pseudo-code identifiers used in snippets (browser APIs, etc.)
+        vars.addAll(Set.of("console", "window", "document"));
+        return vars;
     }
 
     private String snakeToCamel(String snake) {
@@ -190,12 +228,13 @@ class SnippetValidationTest {
     }
 
     private String findSimilar(String identifier, Set<String> knownMembers) {
+        // Check snake_case → camelCase conversion first
         String camelCase = snakeToCamel(identifier);
         if (knownMembers.contains(camelCase)) {
             return camelCase;
         }
-        // Find members with similar prefix
-        String prefix = identifier.length() > 4 ? identifier.substring(0, 4) : identifier;
+        // Find members with a similar prefix
+        String prefix = identifier.length() > 5 ? identifier.substring(0, 5) : identifier;
         List<String> similar = new ArrayList<>();
         for (String member : knownMembers) {
             if (member.toLowerCase().startsWith(prefix.toLowerCase()) && similar.size() < 3) {
@@ -205,11 +244,13 @@ class SnippetValidationTest {
         return similar.isEmpty() ? "(no similar names found)" : String.join(", ", similar);
     }
 
+    // ------------------------------------------------------ reflection helpers
+
     private Class<?> resolveClass(String className) {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
-            // Try nested class: replace last dot with $ (e.g., IconSets.fas -> IconSets$fas)
+            // Try nested class: replace last '.' with '$' (e.g., IconSets.fas → IconSets$fas)
             int lastDot = className.lastIndexOf('.');
             if (lastDot > 0) {
                 String nested = className.substring(0, lastDot) + "$" + className.substring(lastDot + 1);
@@ -257,15 +298,7 @@ class SnippetValidationTest {
         return false;
     }
 
-    private boolean isJavaKeywordOrCommon(String identifier) {
-        return Set.of(
-                "if", "else", "for", "while", "do", "switch", "case", "break", "continue",
-                "return", "new", "this", "super", "null", "true", "false", "var",
-                "int", "long", "double", "float", "boolean", "char", "byte", "short", "void",
-                "console", "window", "document", "event", "value", "item", "selected",
-                "string", "list", "map", "set"
-        ).contains(identifier.toLowerCase());
-    }
+    // ------------------------------------------------------ snippet extraction
 
     private List<Snippet> extractSnippets(String content, Path file) {
         List<Snippet> snippets = new ArrayList<>();
@@ -281,7 +314,6 @@ class SnippetValidationTest {
             int snippetStart = startMatcher.end();
             lineNumber += countNewlines(content, pos, startMatcher.start());
 
-            // Find matching closing brace — track nesting depth
             int depth = 1;
             int i = snippetStart;
             while (i < content.length() && depth > 0) {
@@ -296,7 +328,6 @@ class SnippetValidationTest {
 
             if (depth == 0) {
                 String snippetCode = content.substring(snippetStart, i - 1);
-                // Strip leading " * " from each line (JavaDoc comment prefix)
                 snippetCode = stripJavadocPrefix(snippetCode);
                 snippets.add(new Snippet(file, lineNumber, snippetCode));
             }
