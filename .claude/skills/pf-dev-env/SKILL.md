@@ -33,7 +33,7 @@ All operations are idempotent. Detects externally-started processes — if you a
 
 **Input:** Subcommand (`start`, `stop`, `status`) and optional port
 
-**Output:** Running J2CL watch + Vite dev server
+**Output:** Status messages and, for `start`, running J2CL watch + Vite dev server processes
 
 **Feeds into:** `pf-compare` and `pf-align` require a running showcase dev server
 
@@ -102,7 +102,7 @@ If only one process is running, continue to start the missing one (skip its star
 
 ### Step 3: Pre-flight Build
 
-Only run if J2CL watch is not already running (the build ensures a clean state for J2CL).
+Only run if J2CL watch is not already running (the build ensures a clean state for J2CL). The `-P showcase` profile is required because J2CL watch compiles the showcase module.
 
 ```bash
 if [ -z "$J2CL_PID" ]; then
@@ -122,21 +122,21 @@ Run this using the **Bash** tool with a **timeout of 300000** (5 minutes).
 
 Skip if J2CL is already running (detected in Step 2).
 
-```bash
-echo "Starting J2CL watch..."
-```
+Run using the **Bash** tool with **`run_in_background: true`**. This process runs indefinitely.
 
-Run `mvn j2cl:watch -P showcase` using the **Bash** tool with **`run_in_background: true`**. This process runs indefinitely.
+```bash
+mvn j2cl:watch -P showcase
+```
 
 ### Step 5: Start Vite Dev Server
 
 Skip if Vite is already running (detected in Step 2).
 
-```bash
-echo "Starting Vite dev server..."
-```
+Run using the **Bash** tool with **`run_in_background: true`**. This process runs indefinitely.
 
-Run `cd showcase && pnpm run watch -- --port $PORT` using the **Bash** tool with **`run_in_background: true`**. This process runs indefinitely.
+```bash
+cd showcase && pnpm run watch -- --port $PORT
+```
 
 ### Step 6: Wait for Readiness
 

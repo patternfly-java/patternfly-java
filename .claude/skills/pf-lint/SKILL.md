@@ -57,7 +57,7 @@ Classify every `.java` file in the package:
 
 If the package has no sub-components, skip the SubComponent base and Sub-component classifications entirely.
 
-**Read template component as baseline:** Before running checks, read the template component files at `components/src/main/java/org/patternfly/component/template/` (`TemplateComponent.java`, `TemplateSubComponent.java`, `TemplateItem.java`, `package-info.java`). Use these as the reference implementation for all convention checks — they define the expected section order, Javadoc format, naming patterns, and code structure.
+**Read template baseline (critical):** Before running any checks, read the template component files at `components/src/main/java/org/patternfly/component/template/` (`TemplateComponent.java`, `TemplateSubComponent.java`, `TemplateItem.java`, `package-info.java`). These are the reference implementation for all convention checks — they define the expected section order, Javadoc format, naming patterns, and code structure. All subsequent checks compare against these files.
 
 ### Step 2: Run checks
 
@@ -98,7 +98,7 @@ If `--fix` was passed, apply fixes for violations that can be resolved mechanica
 
 For violations that require judgment (missing Javadoc content, architectural issues), report them as `MANUAL` and skip.
 
-After fixing, verify fixed files compile with `mvn compile -pl components` and pass formatting checks with `./check.sh`, then re-run the checks and report the final state.
+After fixing, verify fixed files compile with `mvn verify -Dquickly` and pass formatting checks with `./check.sh`, then re-run the checks and report the final state.
 
 ### Step 5: Write lint report
 

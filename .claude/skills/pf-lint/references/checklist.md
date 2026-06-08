@@ -169,7 +169,7 @@ public class Card extends BaseComponent<HTMLDivElement, Card> implements
 | `fmt-indent` | WARN | All | 4-space indentation, no tabs |
 | `fmt-line-length` | WARN | All | Lines do not exceed 128 characters |
 | `fmt-final-newline` | WARN | All | File ends with exactly one trailing newline (`insert_final_newline = true`) |
-| `fmt-import-order` | WARN | All | Imports follow: `java.*` → `javax.*` → `jakarta.*` → `org.*` → `io.*` → `com.*` → `elemental2.*`, then blank line, then static imports |
+| `fmt-import-order` | WARN | All | Imports follow: `java.*` → `javax.*` → `jakarta.*` → `org.*` (includes `org.patternfly.*`, `org.jboss.*`) → `io.*` → `com.*`, then blank line, then static imports |
 | `fmt-no-star-import` | ERROR | All | No wildcard/star imports |
 | `fmt-license-header` | WARN | All | File starts with Apache 2.0 license header (also enforced by the build, so typically caught there) |
 

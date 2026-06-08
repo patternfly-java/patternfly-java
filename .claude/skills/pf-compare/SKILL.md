@@ -6,7 +6,7 @@ description: >-
   "compare PF component", "check PFJ completeness", "compare button component",
   "what's missing in the Java card", "gap analysis for alert",
   "generate comparison report for tabs", "find missing PF variations",
-  "coverage report", "DOM differences", or any request to identify variation
+  "PF coverage report", "DOM differences", or any request to identify variation
   coverage gaps or DOM/CSS differences between PatternFly and PatternFly Java.
 metadata:
   version: "0.2.0"
@@ -153,6 +153,8 @@ For each matched section, compare `PF_ELEMENTS` and `PFJ_ELEMENTS`. Classify eac
 | **P4** | Icon differences | SVG elements with different `viewBox` values. This usually indicates different icon sets (FontAwesome vs Red Hat icons). |
 | **P5** | Cosmetic / showcase-only | Element count differences from showcase layout (flex wrappers, spacing elements), text content differences, or differences in non-functional attributes. |
 
+For detailed normalization rules and what `normalize-dom.js` strips vs. keeps, see `references/ignore-patterns.md`.
+
 **Guidelines for the AI comparison:**
 - Compare elements by their `classes` array (component class signature). Two elements "match" if they share the same primary `pf-v6-c-*` class.
 - Do NOT report differences in element count alone — only report what specifically differs.
@@ -220,7 +222,7 @@ Full report: reports/pf-compare/<COMPONENT>.md
 4. Write the report to `reports/pf-compare/<COMPONENT>.md`.
 
 5. **Write the JSON companion report** to `reports/pf-compare/<COMPONENT>.json`. This file contains the same data in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
-   - Metadata: skillVersion (from `metadata.version` in this SKILL.md, currently `"0.2.0"`), component, date, pfVersion, pfUrl, pfjUrl
+   - Metadata: skillVersion (from `metadata.version` in this SKILL.md), component, date, pfVersion, pfUrl, pfjUrl
    - Section coverage: pfCount, pfjCount, matched, missingInPfj, extraInPfj
    - Full `variations` array from Step 4a — each entry has `{ slug, title, html }` where `slug` is the PF section ID, `title` is the section heading, and `html` is the raw (pre-normalization) PF preview innerHTML. This array is consumed by `/pf-align` for reference HTML.
    - Action items with number, type, priority, title, description, category, and affected variations

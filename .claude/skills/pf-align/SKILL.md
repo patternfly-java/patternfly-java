@@ -23,7 +23,7 @@ Implements action items from `/pf-compare` reports. Simple fixes (CSS modifiers,
 /pf-align <component> [--item <number>]
 ```
 
-- **component** (required) — Component name matching the report file (e.g., `button`, `card`). **Reject `template`**.
+- **component** (required) — Component name matching the report file (e.g., `button`, `card`). **Reject `template`** — it is a blueprint component used as a reference for project conventions, not a real UI component.
 - **--item** (optional) — Process only the specified action item number (default: process all)
 
 ---
@@ -89,13 +89,13 @@ Read `references/code-generation.md` for the insertion pattern.
 **fix_css**:
 1. Extract modifier name from description (e.g., `.pf-m-danger` → `danger`)
 2. Check if modifier method already exists in component class
-3. If missing: generate modifier method, insert in `// --- builder` section
+3. If missing: generate modifier method, insert in `// ------------------------------------------------------ builder` section
 4. Show diff, ask for approval
 
 **fix_attribute**:
 1. Extract attribute from description (e.g., `aria-label` → `ariaLabel`)
 2. Check if ARIA method already exists in component class
-3. If missing: generate ARIA method, insert in `// --- aria` section
+3. If missing: generate ARIA method, insert in `// ------------------------------------------------------ aria` section
 4. Show diff, ask for approval
 
 ### Complex items (add_variation, fix_structure, fix_icon, implement_feature)

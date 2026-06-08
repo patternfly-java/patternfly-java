@@ -16,6 +16,7 @@
     },
     "stats": {
       "type": "object",
+      "required": ["total", "linted", "compared", "updateChecked", "outdated"],
       "properties": {
         "total": { "type": "integer" },
         "linted": { "type": "integer" },

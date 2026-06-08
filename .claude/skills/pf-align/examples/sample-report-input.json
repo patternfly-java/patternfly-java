@@ -66,16 +66,18 @@
     {
       "number": 1,
       "type": "add_variation",
+      "priority": "P1",
       "title": "With tooltip",
       "description": "implement badge with tooltip on hover",
-      "category": "missing_variations"
+      "category": "missing_sections"
     },
     {
       "number": 2,
       "type": "fix_css",
+      "priority": "P2",
       "title": "Unread",
       "description": "add .pf-m-overflow modifier class",
-      "category": "dom_css_fixes",
+      "category": "dom_differences",
       "variations": ["Unread"]
     }
   ]

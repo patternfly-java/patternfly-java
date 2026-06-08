@@ -53,7 +53,7 @@ Store as `PFJ_VERSION`.
 
 **Auto-detect (no args):**
 ```bash
-gh api repos/patternfly/patternfly/releases --per-page 10 --jq '[.[] | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$")) | .tag_name][0]'
+gh api repos/patternfly/patternfly/releases --per-page 25 --jq '[.[] | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$")) | .tag_name][0]'
 ```
 Note: Use this instead of `/releases/latest` because the latest release may have a non-standard tag like `patch-v*` or `prerelease-v*`. This finds the most recent release with a clean `vX.Y.Z` tag.
 
@@ -74,10 +74,10 @@ gh api repos/patternfly/patternfly-react/releases/tags/v<TARGET_VERSION> --jq '.
 ```
 
 **For version range:**
-Fetch all releases from both repos:
+Fetch all releases from both repos. Note: `--paginate` with `--jq` outputs one JSON fragment per page, so use `[.[] | ...]` inside `--jq` and pipe through `jq -s 'add'` to flatten into a single array:
 ```bash
-gh api repos/patternfly/patternfly/releases --paginate --jq '.[] | select(.tag_name | test("^v")) | {tag_name, body}'
-gh api repos/patternfly/patternfly-react/releases --paginate --jq '.[] | select(.tag_name | test("^v")) | {tag_name, body}'
+gh api repos/patternfly/patternfly/releases --paginate --jq '[.[] | select(.tag_name | test("^v")) | {tag_name, body}]' | jq -s 'add'
+gh api repos/patternfly/patternfly-react/releases --paginate --jq '[.[] | select(.tag_name | test("^v")) | {tag_name, body}]' | jq -s 'add'
 ```
 Filter to releases with tags between `v<FROM_VERSION>` (exclusive) and `v<TO_VERSION>` (inclusive) using semver comparison. Merge the PR lists from all matching releases.
 
@@ -168,7 +168,7 @@ ls -d components/src/main/java/org/patternfly/component/*/ | xargs -n1 basename
 
 **Detect new icon sets:**
 ```bash
-ls icons/src/main/java/org/patternfly/icon/IconSpecs*.java | sed 's/.*IconSpecs\(.*\)\.java/\1/' | tr '[:upper:]' '[:lower:]'
+ls icons/src/main/java/org/patternfly/icon/IconSpecs*.java | sed -n 's/.*IconSpecs\(.\{1,\}\)\.java/\1/p' | tr '[:upper:]' '[:lower:]'
 ```
 Compare PR titles mentioning icon set names against this list.
 
@@ -203,7 +203,6 @@ Multiple PRs affecting the same component are grouped together. The highest prio
 
 **Determine suggested action for each group:**
 1. Check if a compare report exists: `reports/pf-compare/<component>.json`
-2. Check if an align report exists: `reports/pf-align/<component>.json`
 
 | State | Suggested action |
 |-------|-----------------|

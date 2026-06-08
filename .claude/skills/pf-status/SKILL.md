@@ -43,6 +43,8 @@ All skill reports use JSON as the primary structured format. Markdown reports ex
 | Compare reports | `reports/pf-compare/<COMPONENT>.json` | Per-component JSON (see pf-compare `references/report-schema.json`) |
 | Update reports | `reports/pf-update/<VERSION>.json` | Per-version JSON (see pf-update `references/report-schema.json`) |
 
+**Note:** `/pf-align` does not produce reports and is not a data source. Action item counts referenced in suggestions (e.g., "7 action items") are derived from the compare report's `actionItems` array length.
+
 ## Workflow
 
 ### Step 1: Enumerate components
@@ -137,7 +139,7 @@ Print a summary table to the conversation:
 ## Next Steps
 
 Components ready for `/pf-compare`: button, card, ... (up to 10)
-Components ready for `/pf-align`: navigation (7 action items from compare report)
+Components ready for `/pf-align`: navigation (7 action items from compare report's `actionItems` array)
 ```
 
 Sort the table by actionability:
@@ -177,7 +179,7 @@ Run `/pf-align accordion` to address DOM/CSS differences found in the compare re
 The "Suggested Next Action" should recommend the logical next step:
 - If not linted → "Run `/pf-lint accordion`"
 - If linted but not compared → "Run `/pf-compare accordion`"
-- If compared with gaps → "Run `/pf-align accordion` to address N action items"
+- If compared with gaps → "Run `/pf-align accordion` to address N action items" (N = length of compare report's `actionItems` array)
 - If outdated → "Run `/pf-compare <component>` to check PF `<version>` changes"
 - If compared at 100% with no action items → "Up to date"
 

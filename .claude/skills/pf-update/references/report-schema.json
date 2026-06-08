@@ -3,7 +3,7 @@
   "title": "PF Update Report",
   "description": "Analysis of a PatternFly release and its impact on PatternFly Java.",
   "type": "object",
-  "required": ["skillVersion", "version", "date", "pfjVersion", "stats", "componentsAffected", "newComponents", "workItems"],
+  "required": ["skillVersion", "version", "date", "pfjVersion", "sourceRepos", "stats", "componentsAffected", "newComponents", "workItems"],
   "properties": {
     "skillVersion": {
       "type": "string",
