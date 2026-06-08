@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@patternfly/patternfly':
-        specifier: ^6.4.0
-        version: 6.4.0
+        specifier: ^6.5.2
+        version: 6.5.2
 
 packages:
 
-  '@patternfly/patternfly@6.4.0':
-    resolution: {integrity: sha512-4drFhg74sEc/fftark5wZevODIog17qR4pwLCdB3j5iK3Uu5oMA2SdLhsEeEQggalfnFzve/Km87MdVR0ghhvQ==}
+  '@patternfly/patternfly@6.5.2':
+    resolution: {integrity: sha512-yZ71+1gt1VGzUN5amjDNd9NvttTnSOm9M0JeBL0YX1KaWXW1bmDPzTWEM+vQXuC4LVK0msHmR5hKB7KVpamAkA==}
 
 snapshots:
 
-  '@patternfly/patternfly@6.4.0': {}
+  '@patternfly/patternfly@6.5.2': {}
