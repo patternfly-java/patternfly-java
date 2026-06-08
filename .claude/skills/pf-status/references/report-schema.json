@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "PF Status Report",
-  "description": "Unified status dashboard for all PatternFly Java components across lint, compare, align, and update dimensions.",
+  "description": "Unified status dashboard for all PatternFly Java components across lint, compare, and update dimensions.",
   "type": "object",
   "required": ["date", "stats", "components"],
   "properties": {
@@ -16,7 +16,6 @@
         "total": { "type": "integer" },
         "linted": { "type": "integer" },
         "compared": { "type": "integer" },
-        "aligned": { "type": "integer" },
         "updateChecked": { "type": "integer" },
         "outdated": { "type": "integer" }
       }
@@ -51,16 +50,6 @@
               "percentage": { "type": "integer" },
               "missingInPfj": { "type": "array", "items": { "type": "string" } },
               "extraInPfj": { "type": "array", "items": { "type": "string" } }
-            }
-          },
-          "align": {
-            "type": ["object", "null"],
-            "description": "Null if not started",
-            "properties": {
-              "date": { "type": "string", "format": "date" },
-              "status": { "type": "string", "enum": ["done", "in_progress", "partial"] },
-              "implemented": { "type": "integer" },
-              "total": { "type": "integer" }
             }
           },
           "update": {

@@ -2,9 +2,9 @@
 name: pf-status
 description: >-
   Show the overall status of PatternFly Java components across lint, compare,
-  align, and update dimensions. This skill should be used when the user asks to
+  and update dimensions. This skill should be used when the user asks to
   "/pf-status", "component status", "show status", "PFJ status",
-  "what's been linted", "what's been compared", "what needs alignment",
+  "what's been linted", "what's been compared",
   "what's outdated", "component overview", "show progress",
   "show component progress", "which components are done",
   "what's left to do", or "dashboard".
@@ -14,7 +14,7 @@ metadata:
 
 # /pf-status — PatternFly Java Component Status Dashboard
 
-Aggregates status from `/pf-lint`, `/pf-compare`, `/pf-align`, and `/pf-update` report files to show a unified overview of all components. Does not read component source code — only existing report files.
+Aggregates status from `/pf-lint`, `/pf-compare`, and `/pf-update` report files to show a unified overview of all components. Does not read component source code — only existing report files.
 
 ## Arguments
 
@@ -41,7 +41,6 @@ All skill reports use JSON as the primary structured format. Markdown reports ex
 | Component list | `components/src/main/java/org/patternfly/component/` | Directory listing |
 | Lint reports | `reports/pf-lint/<COMPONENT>.json` | Per-component JSON (see pf-lint `references/report-schema.json`) |
 | Compare reports | `reports/pf-compare/<COMPONENT>.json` | Per-component JSON (see pf-compare `references/report-schema.json`) |
-| Align reports | `reports/pf-align/<COMPONENT>.json` | Per-component JSON (see pf-align `references/report-schema.json`) |
 | Update reports | `reports/pf-update/<VERSION>.json` | Per-version JSON (see pf-update `references/report-schema.json`) |
 
 ## Workflow
@@ -82,19 +81,7 @@ If the file exists, read the JSON and extract:
 
 If the file does not exist, the compare status is "not compared".
 
-### Step 4: Read align status
-
-For each component, check if `reports/pf-align/<COMPONENT>.json` exists.
-
-If the file exists, read the JSON and extract:
-- `date`
-- `status` (`done`, `in_progress`, or `partial`)
-- `summary.implemented`
-- `summary.total`
-
-If no file exists, the align status is "not started".
-
-### Step 5: Read update status
+### Step 4: Read update status
 
 Find the most recent update report by listing `reports/pf-update/*.json` and selecting the file with the highest version number (semver sort). If the directory does not exist or has no `.json` files, treat all components as "not checked".
 
@@ -108,7 +95,7 @@ For each component in `componentsAffected`, check if a compare report at `report
 
 Components NOT in `componentsAffected` are "current" (no changes detected for them).
 
-### Step 6: Determine status values
+### Step 5: Determine status values
 
 For each component, derive these status labels:
 
@@ -120,14 +107,11 @@ For each component, derive these status labels:
 | **Compare** | `100% (N/N)` — all PF variations matched |
 | | `<X>% (M/N)` — partial match (matched/pf_total) |
 | | `—` — not yet compared |
-| **Align** | `done` — all action items from compare report implemented |
-| | `in progress` — some action items implemented |
-| | `—` — not started (no align report or no compare report) |
 | **Update** | `current` — no relevant changes since last compare, or compare re-run after update |
 | | `outdated (<version>)` — changes detected in PF `<version>`, compare not yet re-run |
 | | `—` — no update report exists |
 
-### Step 7: Output
+### Step 6: Output
 
 #### Overview mode (no component argument)
 
@@ -136,25 +120,24 @@ Print a summary table to the conversation:
 ```markdown
 # PF Status
 
-| Component | Lint | Compare | Align | Update |
-|-----------|------|---------|-------|--------|
-| accordion | clean (Jun 1) | 100% (6/6) | — | current |
-| navigation | clean (Jun 1) | 59% (10/17) | — | outdated (6.5.0) |
-| button | clean (May 30) | — | — | — |
-| ... | | | | |
+| Component | Lint | Compare | Update |
+|-----------|------|---------|--------|
+| accordion | clean (Jun 1) | 100% (6/6) | current |
+| navigation | clean (Jun 1) | 59% (10/17) | outdated (6.5.0) |
+| button | clean (May 30) | — | — |
+| ... | | | |
 
 ## Stats
 
 - **Linted:** 49/49 (100%)
 - **Compared:** 2/49 (4%)
-- **Aligned:** 0/49 (0%)
 - **Update checked:** <count>/<total> (<percentage>%)
 - **Outdated:** <count> components need `/pf-compare` re-run
 
 ## Next Steps
 
 Components ready for `/pf-compare`: button, card, ... (up to 10)
-Components ready for `/pf-align`: navigation (7 missing variations)
+Components ready for `/pf-align`: navigation (7 action items from compare report)
 ```
 
 Sort the table by actionability:
@@ -182,9 +165,6 @@ Print a detailed status card:
 - **Missing in PFJ:** none
 - **Extra in PFJ:** none
 
-## Align
-- **Status:** not started
-
 ## Update
 - **Status:** outdated (6.5.0)
 - **Last checked:** 2026-06-01
@@ -197,12 +177,11 @@ Run `/pf-align accordion` to address DOM/CSS differences found in the compare re
 The "Suggested Next Action" should recommend the logical next step:
 - If not linted → "Run `/pf-lint accordion`"
 - If linted but not compared → "Run `/pf-compare accordion`"
-- If compared with gaps → "Run `/pf-align accordion` to implement N missing variations"
-- If compared at 100% → "Run `/pf-align accordion` to address DOM/CSS differences" (if any exist in the compare report)
+- If compared with gaps → "Run `/pf-align accordion` to address N action items"
 - If outdated → "Run `/pf-compare <component>` to check PF `<version>` changes"
-- If fully aligned → "Up to date"
+- If compared at 100% with no action items → "Up to date"
 
-### Step 8: Write persistent report
+### Step 7: Write persistent report
 
 Only write the persistent report in overview mode (no component argument). In detail mode, skip report generation to avoid the cost of reading all components for a single-component query.
 
@@ -220,7 +199,6 @@ stats:
   total: <count>
   linted: <count>
   compared: <count>
-  aligned: <count>
   update_checked: <count>
   outdated: <count>
 ---
