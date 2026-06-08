@@ -1,6 +1,6 @@
 # Report Template
 
-Use this template when generating the markdown comparison report in Step 7. A companion JSON file (`<COMPONENT>.json`) is written alongside this markdown report using the schema from `report-schema.json` — see `examples/button.json` for the expected format.
+Use this template when generating the markdown comparison report. A companion JSON file (`<COMPONENT>.json`) is written alongside this markdown report using the schema from `report-schema.json`.
 
 ```markdown
 ---
@@ -9,52 +9,52 @@ date: <YYYY-MM-DD>
 pf_version: <PF_VERSION>
 pf_url: <PF_URL>
 pfj_url: <PFJ_URL>
-completeness:
-  pf_total: <N>
-  pfj_total: <M>
+sections:
+  pf_count: <N>
+  pfj_count: <M>
   matched: <K>
   missing_in_pfj:
-    - slug1
-    - slug2
+    - title1
+    - title2
   extra_in_pfj:
-    - id1
+    - title1
 ---
 
 # PF Compare: <COMPONENT>
 
-## Completeness
+## Section Coverage
 
-| # | PF Variation | PFJ Snippet | Status |
-|---|---|---|---|
-| 1 | PF title | PFJ title | matched |
-| 2 | PF title | --- | missing_in_pfj |
+| # | PF Section | PFJ Section | Group | Status |
+|---|------------|-------------|-------|--------|
+| 1 | PF title | PFJ title | Examples | matched |
+| 2 | PF title | --- | Examples | missing_in_pfj |
 
-## DOM Comparison
+## DOM Differences
 
-### <Variation Title>
+### <Section Title>
 
-**Status:** differences_found
+**Status:** ok | differences_found
 
-#### Missing CSS Classes
-- `.pf-m-xxx` on `<element>` — present in PF, absent in PFJ
+#### P1: Missing Component Elements
+- `pf-v6-c-button__icon` — present in PF, absent in PFJ
 
-#### Extra CSS Classes
-- `.pf-m-xxx` on `<element>` — present in PFJ, absent in PF
+#### P2: Modifier Differences
+- `pf-m-danger` on `<button>` — present in PF, absent in PFJ
 
-#### Structural Differences
-- description
+#### P3: Attribute Differences
+- Plain button: PF has `aria-label="Remove"`, PFJ has none
 
-#### Attribute Differences
-- description
+#### P4: Icon Differences
+- CTA link button: PF viewBox `0 0 32 32`, PFJ viewBox `0 0 512 512`
 
-#### Icon Differences
-- `<context class>` — PF uses viewBox `0 0 W H`, PFJ uses viewBox `0 0 W H` (different icon set/glyph)
+#### P5: Cosmetic Differences
+- PF shows 20 elements, PFJ shows 16 (different showcase layout)
 
 ## Action Items
 
-1. **Add variation:** title — implement this PF variation in PFJ
-2. **Fix CSS:** variation — add missing class `.pf-m-xxx`
-3. **Fix structure:** variation — description
-4. **Fix attribute:** variation — description
-5. **Fix icon:** variation — replace icon to match PF (check viewBox and icon set)
+1. **[P1] Add variation:** title — description
+2. **[P2] Fix CSS:** title — description
+3. **[P3] Fix attribute:** title — description
+4. **[P4] Fix icon:** title — description
+5. **[P5] Cosmetic:** title — description (low priority)
 ```

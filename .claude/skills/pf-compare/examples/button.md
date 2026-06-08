@@ -1,73 +1,78 @@
 ---
 component: button
-date: 2026-05-28
-pf_version: Release 6.1
-pf_url: https://www.patternfly.org/components/button/html
+date: 2026-06-08
+pf_version: Release 6.5.1
+pf_url: https://www.patternfly.org/components/button
 pfj_url: http://localhost:1234/components/button
-completeness:
-  pf_total: 12
-  pfj_total: 10
-  matched: 9
+sections:
+  pf_count: 17
+  pfj_count: 18
+  matched: 16
   missing_in_pfj:
-    - call-to-action
-    - progress
-    - count
+    - Custom component
   extra_in_pfj:
-    - custom-icon-layout
+    - Types
 ---
 
 # PF Compare: button
 
-## Completeness
+## Section Coverage
 
-| # | PF Variation | PFJ Snippet | Status |
-|---|---|---|---|
-| 1 | Variations | Button variations | matched |
-| 2 | Disabled | Disabled buttons | matched |
-| 3 | Small | Small buttons | matched |
-| 4 | Call to action | --- | missing_in_pfj |
-| 5 | Block level | Block level | matched |
-| 6 | Links | Link buttons | matched |
-| 7 | Inline link | Inline link | matched |
-| 8 | Danger | Danger buttons | matched |
-| 9 | Progress | --- | missing_in_pfj |
-| 10 | Count | --- | missing_in_pfj |
-| 11 | Plain | Plain buttons | matched |
-| 12 | Control | Control buttons | matched |
-| -- | --- | Custom icon layout | extra_in_pfj |
+| # | PF Section | PFJ Section | Group | Status |
+|---|------------|-------------|-------|--------|
+| 1 | Variant examples | Variant examples | Examples | matched |
+| 2 | Disabled buttons | Disabled buttons | Examples | matched |
+| 3 | Small buttons | Small buttons | Examples | matched |
+| 4 | Call to action (CTA) buttons | Call to action (CTA) buttons | Examples | matched |
+| 5 | Block level buttons | Block level buttons | Examples | matched |
+| 6 | Progress indicators | Progress indicators | Examples | matched |
+| 7 | Links as buttons | Links as buttons | Examples | matched |
+| 8 | Inline link as span | Inline link as span | Examples | matched |
+| 9 | Custom component | --- | Examples | missing_in_pfj |
+| 10 | Aria-disabled examples | Aria-disabled | Examples | matched |
+| 11 | Button with count | Button with count | Examples | matched |
+| 12 | Plain with no padding | Plain with no padding | Examples | matched |
+| 13 | Stateful | Stateful | Examples | matched |
+| 14 | Circle buttons | Circle buttons | Examples | matched |
+| 15 | Favorite | Favorite | Animated examples | matched |
+| 16 | Settings | Settings | Animated examples | matched |
+| 17 | Hamburger | Hamburger | Animated examples | matched |
+| -- | --- | Types | --- | extra_in_pfj |
 
-## DOM Comparison
+## DOM Differences
 
-### Variations
-
-**Status:** ok
-
-### Disabled
-
-**Status:** differences_found
-
-#### Missing CSS Classes
-- `.pf-m-aria-disabled` on `<button>` — present in PF, absent in PFJ
-
-#### Attribute Differences
-- `aria-disabled="true"` on `<button>` — present in PF, absent in PFJ
-
-### Danger
-
-**Status:** ok
-
-### Plain
+### Variant examples
 
 **Status:** differences_found
 
-#### Structural Differences
-- PF wraps icon in `<span class="pf-v6-c-button__icon">`, PFJ places icon directly in button
+#### P3: Attribute Differences
+- Plain button: PF has `aria-label="Remove"`, PFJ has none
+
+### Disabled buttons
+
+**Status:** ok
+
+### Hamburger
+
+**Status:** differences_found
+
+#### P3: Attribute Differences
+- Hamburger button: PF has `aria-expanded="false"`, PFJ has none
+- Hamburger button: PF has `aria-label="Hamburger"`, PFJ has `aria-label="Menu"`
+
+### Favorite
+
+**Status:** differences_found
+
+#### P4: Icon Differences
+- Unfavorited button: PF viewBox `0 0 576 512` (FontAwesome star), PFJ viewBox `0 0 32 32` (Red Hat star)
+
+#### P3: Attribute Differences
+- PF has `aria-label="not starred"` (lowercase), PFJ has `aria-label="Not starred"` (capitalized)
 
 ## Action Items
 
-1. **Add variation:** Call to action — implement call-to-action button variant
-2. **Add variation:** Progress — implement progress/loading button variant
-3. **Add variation:** Count — implement button with count badge
-4. **Fix CSS:** Disabled — add `.pf-m-aria-disabled` modifier class
-5. **Fix attribute:** Disabled — add `aria-disabled` attribute support
-6. **Fix structure:** Plain — wrap icon in `span.pf-v6-c-button__icon`
+1. **[P1] Add variation:** Custom component — PF has a 'Custom component' section demonstrating button rendered as a custom element; PFJ has no equivalent section
+2. **[P3] Fix attribute:** Hamburger aria-expanded — PF hamburger button has `aria-expanded="false"`, PFJ has none; add `aria-expanded` attribute toggled on open/close
+3. **[P3] Fix attribute:** Favorite aria-label casing — PFJ capitalizes aria-label ("Not starred"/"Starred"), PF uses lowercase; align casing with PF
+4. **[P4] Fix icon:** Favorite icon set — PFJ uses Red Hat star icon (viewBox `0 0 32 32`), PF uses FontAwesome star (viewBox `0 0 576 512`); switch to FontAwesome for consistency

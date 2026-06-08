@@ -1,33 +1,38 @@
 # Ignore Patterns for DOM Comparison
 
-Patterns to ignore when comparing PF and PFJ HTML output in Step 5.
+Patterns to ignore when comparing PF and PFJ HTML output. The `normalize-dom.js` script handles most filtering during extraction.
 
-## Dynamic IDs
+## Stripped by `normalize-dom.js`
 
-These attributes contain auto-generated values that differ between renders:
-- `id="xxx-id-NNN"` -- Elemento/GWT generated element IDs
-- `data-pfcsce` -- PatternFly internal tracking attribute
-- `on-detach-uid` -- Elemento detach lifecycle attribute
+These are filtered out during normalization and never reach the comparison step:
 
-## Whitespace and Formatting
+- **Non-PF classes** — only `pf-v6-c-*`, `pf-v6-l-*`, and `pf-m-*` classes are kept
+- **Dynamic IDs** — all `id` attributes are stripped
+- **Style attributes** — `style` is stripped
+- **OUIA attributes** — `data-ouia-*` (test automation attributes)
+- **Elemento attributes** — `data-pfcsce`, `on-detach-uid`
+- **SVG internals** — SVG elements are collapsed to `{ tag: "svg", svgViewBox: "..." }`; no path data, nested groups, or defs are compared
 
-- Whitespace differences between tags
-- Attribute ordering differences
-- Self-closing vs explicit closing tags (`<br/>` vs `<br></br>`)
+## Kept by `normalize-dom.js`
 
-## SVG Internals
+These survive normalization and are available for comparison:
 
-- Do not compare SVG path data (`d` attribute) character-by-character
-- Do not compare internal SVG structure (nested `<g>`, `<defs>`, etc.)
-- **DO compare icon identity**: check the `viewBox` attribute on `<svg>` elements — a different viewBox usually means a different icon is used (e.g., `0 0 20 20` vs `0 0 32 32` indicates different icon sets)
-- Compare the wrapping `<svg>` element's CSS classes
+- **PF classes** — `pf-v6-c-*` (component), `pf-v6-l-*` (layout)
+- **PF modifiers** — `pf-m-*`
+- **Semantic attributes** — `role`, `type`, `tabindex`, `disabled`, `hidden`, `href`, `target`
+- **ARIA attributes** — all `aria-*` attributes
+- **SVG viewBox** — used to detect different icons (e.g., `0 0 20 20` vs `0 0 32 32`)
+- **Direct text content** — truncated to 50 characters
 
-## Non-PF Classes
+## AI Comparison Guidelines
 
-- Only compare classes with prefix `pf-v6-` or `pf-m-`
-- Ignore application-specific classes (e.g., `showcase-*`)
-- Ignore utility/framework classes (e.g., `ws-*`)
+The AI comparison step interprets the normalized element lists. When classifying differences:
+
+- **Whitespace and formatting** — not visible in normalized output, ignore
+- **Element count differences** — may indicate showcase layout choices (PF often wraps examples in flex containers), not missing features
+- **Icon viewBox differences** — usually means different icon sets (FontAwesome vs Red Hat icons), classify as P4
+- **Text content differences** — often showcase placeholder text, classify as P5 unless it indicates a functional difference
 
 ## Version-Dependent Constants
 
-The `pf-v6-` prefix is tied to PatternFly v6. If the project upgrades to a new major version, update this prefix and the `ws-core-c-` selector prefix used in the extraction scripts.
+The `pf-v6-` class prefix and `ws-react-c-` ID prefix are tied to PatternFly v6. If the project upgrades to a new major version, update these prefixes in the extraction and normalization scripts.

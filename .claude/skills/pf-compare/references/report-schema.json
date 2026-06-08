@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "PF Compare Report",
-  "description": "Structured comparison report between a PatternFly component and its PatternFly Java implementation.",
+  "description": "Comparison report between a PatternFly component and its PatternFly Java implementation.",
   "type": "object",
-  "required": ["component", "date", "pfVersion", "pfUrl", "pfjUrl", "completeness", "variations", "snippets", "matches", "comparisons", "actionItems"],
+  "required": ["component", "date", "pfVersion", "pfUrl", "pfjUrl", "sections", "variations", "actionItems"],
   "properties": {
     "component": {
       "type": "string",
@@ -21,182 +21,75 @@
     "pfUrl": {
       "type": "string",
       "format": "uri",
-      "description": "PatternFly documentation URL used for comparison"
+      "description": "PF React showcase URL (e.g., https://www.patternfly.org/components/button)"
     },
     "pfjUrl": {
       "type": "string",
       "format": "uri",
-      "description": "PatternFly Java showcase URL used for comparison"
+      "description": "PFJ showcase URL (e.g., http://localhost:1234/components/button)"
     },
-    "completeness": {
+    "sections": {
       "type": "object",
-      "required": ["pfTotal", "pfjTotal", "matched", "missingInPfj", "extraInPfj"],
+      "description": "Section coverage summary",
+      "required": ["pfCount", "pfjCount", "matched", "missingInPfj", "extraInPfj"],
       "properties": {
-        "pfTotal": { "type": "integer", "description": "Total PF variations found" },
-        "pfjTotal": { "type": "integer", "description": "Total PFJ snippets found" },
-        "matched": { "type": "integer", "description": "Number of matched variation/snippet pairs" },
+        "pfCount": { "type": "integer", "description": "Number of example sections in PF" },
+        "pfjCount": { "type": "integer", "description": "Number of example sections in PFJ" },
+        "matched": { "type": "integer", "description": "Number of matched section pairs" },
         "missingInPfj": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "PF variation slugs with no PFJ counterpart"
+          "description": "PF section titles with no PFJ counterpart"
         },
         "extraInPfj": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "PFJ snippet IDs with no PF counterpart"
+          "description": "PFJ section titles with no PF counterpart"
         }
       }
     },
     "variations": {
       "type": "array",
-      "description": "All PF variations extracted from the PatternFly documentation page",
+      "description": "PF section data with raw HTML (consumed by pf-align for reference HTML)",
       "items": {
         "type": "object",
         "required": ["slug", "title", "html"],
         "properties": {
-          "slug": { "type": "string", "description": "URL slug identifier (e.g., 'call-to-action')" },
-          "title": { "type": "string", "description": "Human-readable variation title" },
-          "html": { "type": "string", "description": "Raw HTML extracted from the PF variation example" }
-        }
-      }
-    },
-    "snippets": {
-      "type": "array",
-      "description": "All PFJ snippets extracted from the showcase page",
-      "items": {
-        "type": "object",
-        "required": ["id", "title", "html"],
-        "properties": {
-          "id": { "type": "string", "description": "Snippet identifier" },
-          "title": { "type": "string", "description": "Human-readable snippet title" },
-          "html": { "type": "string", "description": "Raw HTML extracted from the PFJ showcase snippet" }
-        }
-      }
-    },
-    "matches": {
-      "type": "array",
-      "description": "Matching results between PF variations and PFJ snippets",
-      "items": {
-        "type": "object",
-        "required": ["pfVariation", "matchType", "status"],
-        "properties": {
-          "pfVariation": {
-            "type": "object",
-            "required": ["slug", "title"],
-            "properties": {
-              "slug": { "type": "string" },
-              "title": { "type": "string" }
-            }
-          },
-          "pfjSnippet": {
-            "type": ["object", "null"],
-            "description": "Null when status is 'missing_in_pfj'",
-            "properties": {
-              "id": { "type": "string" },
-              "title": { "type": "string" }
-            }
-          },
-          "matchType": {
-            "type": "string",
-            "enum": ["exact", "semantic", "none"],
-            "description": "How the match was determined"
-          },
-          "status": {
-            "type": "string",
-            "enum": ["matched", "missing_in_pfj"],
-            "description": "Match result"
-          },
-          "note": {
-            "type": "string",
-            "description": "Optional note explaining semantic match reasoning"
-          }
-        }
-      }
-    },
-    "comparisons": {
-      "type": "array",
-      "description": "DOM/CSS comparison results for matched variation/snippet pairs",
-      "items": {
-        "type": "object",
-        "required": ["variation", "status"],
-        "properties": {
-          "variation": { "type": "string", "description": "PF variation title" },
-          "status": {
-            "type": "string",
-            "enum": ["ok", "differences_found", "not_implemented"],
-            "description": "Comparison outcome"
-          },
-          "missingClasses": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["class", "element"],
-              "properties": {
-                "class": { "type": "string" },
-                "element": { "type": "string" },
-                "context": { "type": "string" }
-              }
-            }
-          },
-          "extraClasses": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["class", "element"],
-              "properties": {
-                "class": { "type": "string" },
-                "element": { "type": "string" },
-                "context": { "type": "string" }
-              }
-            }
-          },
-          "structuralDiffs": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "attributeDiffs": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "iconDiffs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["element"],
-              "properties": {
-                "element": { "type": "string" },
-                "pfViewBox": { "type": "string" },
-                "pfjViewBox": { "type": "string" }
-              }
-            }
-          }
+          "slug": { "type": "string", "description": "Section URL slug from heading ID" },
+          "title": { "type": "string", "description": "Section heading title" },
+          "html": { "type": "string", "description": "Raw innerHTML of the PF preview container" }
         }
       }
     },
     "actionItems": {
       "type": "array",
-      "description": "Prioritized list of actions to align PFJ with PF",
+      "description": "Prioritized list of differences to address",
       "items": {
         "type": "object",
-        "required": ["number", "type", "title", "description"],
+        "required": ["number", "type", "priority", "title", "description"],
         "properties": {
-          "number": { "type": "integer", "description": "Sequential item number" },
+          "number": { "type": "integer", "description": "Sequential action item number" },
           "type": {
             "type": "string",
             "enum": ["add_variation", "fix_css", "fix_structure", "fix_attribute", "fix_icon", "implement_feature"],
             "description": "Type of action required"
           },
+          "priority": {
+            "type": "string",
+            "enum": ["P1", "P2", "P3", "P4", "P5"],
+            "description": "P1=missing elements, P2=modifiers, P3=attributes, P4=icons, P5=cosmetic"
+          },
           "title": { "type": "string", "description": "Short title identifying the target" },
-          "description": { "type": "string", "description": "What needs to be done" },
+          "description": { "type": "string", "description": "What needs to be done and why" },
           "category": {
             "type": "string",
-            "enum": ["missing_variations", "dom_css_fixes", "feature_implementation"],
-            "description": "Grouping category from the report"
+            "enum": ["missing_sections", "dom_differences", "feature_implementation"],
+            "description": "Grouping category"
           },
           "variations": {
             "type": "array",
             "items": { "type": "string" },
-            "description": "PF variation titles this item applies to (for fix items affecting multiple variations)"
+            "description": "Section titles affected by this action item"
           }
         }
       }

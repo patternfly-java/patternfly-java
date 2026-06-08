@@ -66,10 +66,10 @@ Uses Chrome DevTools MCP tools for browser interaction (new_page, select_page, e
 
 **Read the JSON report:**
 
-Read and parse `docs/pf-compare/<COMPONENT>.json`. The JSON follows the schema at `.claude/skills/pf-compare/references/report-schema.json` (see also `examples/sample-report-input.json` for a concrete example). Extract:
-- `pfUrl`, `pfjUrl` — needed if browser extraction is required
+Read and parse `docs/pf-compare/<COMPONENT>.json`. The JSON follows the schema at `.claude/skills/pf-compare/references/report-schema.json` (see also `examples/button.json` for a concrete example). Extract:
+- `pfUrl`, `pfjUrl` — needed if browser extraction is required (note: `pfUrl` now points to the React variant, e.g., `https://www.patternfly.org/components/button`)
 - `variations` — array of `{ slug, title, html }` with raw PF HTML (used in Step 5)
-- `actionItems` — array of `{ number, type, title, description, category, variations }` (already structured)
+- `actionItems` — array of `{ number, type, priority, title, description, category, variations }` (already structured; `priority` is P1-P5)
 
 **Action item types:**
 - `add_variation` — New component variation (HTML from `variations` array or browser extraction)
@@ -157,7 +157,7 @@ Examples:
 - "Call to action" → "call-to-action"
 - "Stateful toggle" → "stateful-toggle"
 
-**Extract HTML:** Read the script from `references/extract-variation-html.js`. The script is an arrow function `(componentSlug, variationSlug) => { ... }`. Pass the function body to `evaluate_script` using the `function` parameter and provide `args: [<component>, <variation-slug>]` — the Chrome DevTools MCP `evaluate_script` tool invokes the function with the args array as positional arguments.
+**Extract HTML:** Read the script from `references/extract-variation-html.js`. The script is an arrow function `(componentSlug, sectionSlug) => { ... }`. Pass the function body to `evaluate_script` using the `function` parameter and provide `args: [<component>, <section-slug>]` — the Chrome DevTools MCP `evaluate_script` tool invokes the function with the args array as positional arguments. The script looks for `div#ws-react-c-{component}-{section-slug}` on the PF React showcase page.
 
 **Handle extraction failure:**
 - If HTML is null → ERROR (HTML extraction failed)
@@ -295,7 +295,7 @@ For HTML-to-Java translation patterns, read `references/code-generation.md`. For
 | Showcase file not found | Print error: "Showcase file not found at <path>. Component may not have demo page." Exit. |
 | Showcase not running | Print error: "Showcase server not accessible at http://localhost:<port>. Start with: cd showcase && pnpm run watch". Exit. |
 | Chrome DevTools unavailable | Print error: "Chrome DevTools MCP not available. Ensure chrome-devtools-mcp is running." Exit. |
-| HTML extraction failed | Print warning: "Could not extract HTML for '<title>'. Selector tried: ws-core-c-<component>-<variation-slug>. Skip item." Continue. |
+| HTML extraction failed | Print warning: "Could not extract HTML for '<title>'. Selector tried: ws-react-c-<component>-<section-slug>. Skip item." Continue. |
 | Build failure | Ask to revert changes. If yes, revert. If no, keep changes. Continue. |
 | Already implemented | Print: "Item N already implemented (found <snippet-id> / <method-name>). Skip." Continue. |
 | Unknown pattern | Print: "Unknown HTML pattern in '<title>'. Manual implementation needed. Skip item." Continue. |

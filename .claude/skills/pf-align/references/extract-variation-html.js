@@ -13,14 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-// Extracts the rendered HTML preview for a specific variation from
-// the PatternFly component showcase page.
-// Expected DOM: div#ws-core-c-{component}-{variation} > div.ws-preview-html
-// The "ws-core-c-" prefix is the PatternFly workshop/showcase convention.
-(componentSlug, variationSlug) => {
-  const prefix = 'ws-core-c-' + componentSlug + '-';
-  const container = document.getElementById(prefix + variationSlug);
-  if (!container) return null;
-  const preview = container.querySelector('.ws-preview-html');
-  return preview ? preview.innerHTML.trim() : null;
+// Extracts the rendered HTML preview for a specific section from
+// the PatternFly React component showcase page.
+// Expected DOM: div#ws-react-c-{component}-{section-slug}
+// The "ws-react-c-" prefix is the PatternFly React showcase convention.
+(componentSlug, sectionSlug) => {
+  const id = 'ws-react-c-' + componentSlug + '-' + sectionSlug;
+  const container = document.getElementById(id);
+  return container ? container.innerHTML.trim() : null;
 }
