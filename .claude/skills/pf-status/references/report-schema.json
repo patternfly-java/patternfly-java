@@ -3,8 +3,12 @@
   "title": "PF Status Report",
   "description": "Unified status dashboard for all PatternFly Java components across lint, compare, and update dimensions.",
   "type": "object",
-  "required": ["date", "stats", "components"],
+  "required": ["skillVersion", "date", "stats", "components"],
   "properties": {
+    "skillVersion": {
+      "type": "string",
+      "description": "Version of the pf-status skill that generated this report (from SKILL.md metadata.version)"
+    },
     "date": {
       "type": "string",
       "format": "date",

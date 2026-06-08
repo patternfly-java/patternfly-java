@@ -220,7 +220,7 @@ Full report: reports/pf-compare/<COMPONENT>.md
 4. Write the report to `reports/pf-compare/<COMPONENT>.md`.
 
 5. **Write the JSON companion report** to `reports/pf-compare/<COMPONENT>.json`. This file contains the same data in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
-   - Metadata: component, date, pfVersion, pfUrl, pfjUrl
+   - Metadata: skillVersion (from `metadata.version` in this SKILL.md, currently `"0.2.0"`), component, date, pfVersion, pfUrl, pfjUrl
    - Section coverage: pfCount, pfjCount, matched, missingInPfj, extraInPfj
    - Full `variations` array from Step 4a — each entry has `{ slug, title, html }` where `slug` is the PF section ID, `title` is the section heading, and `html` is the raw (pre-normalization) PF preview innerHTML. This array is consumed by `/pf-align` for reference HTML.
    - Action items with number, type, priority, title, description, category, and affected variations

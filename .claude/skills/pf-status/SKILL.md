@@ -187,7 +187,7 @@ Only write the persistent report in overview mode (no component argument). In de
 
 Create the directory `reports/pf-status/` if it does not exist.
 
-1. **Write `reports/pf-status/summary.json`** using the schema from `references/report-schema.json`. Include the date, stats, and full per-component status array.
+1. **Write `reports/pf-status/summary.json`** using the schema from `references/report-schema.json`. Include skillVersion (from `metadata.version` in this SKILL.md), date, stats, and full per-component status array.
 
 2. **Write `reports/pf-status/summary.md`** with the markdown table and stats section for human reading. Use this YAML frontmatter:
 

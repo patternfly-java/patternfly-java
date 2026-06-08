@@ -3,8 +3,12 @@
   "title": "PF Lint Report",
   "description": "Lint results for a single PatternFly Java component.",
   "type": "object",
-  "required": ["component", "date", "files", "errors", "warnings", "status", "violations"],
+  "required": ["skillVersion", "component", "date", "files", "errors", "warnings", "status", "violations"],
   "properties": {
+    "skillVersion": {
+      "type": "string",
+      "description": "Version of the pf-lint skill that generated this report (from SKILL.md metadata.version)"
+    },
     "component": {
       "type": "string",
       "description": "Component package name (e.g., 'card', 'navigation')"

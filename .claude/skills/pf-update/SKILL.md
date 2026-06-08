@@ -266,7 +266,7 @@ Full report: reports/pf-update/<VERSION>.md
 4. Write the markdown report to `reports/pf-update/<VERSION>.md` (or `reports/pf-update/<FROM>..<TO>.md` for ranges).
 
 5. **Write the JSON companion report** to `reports/pf-update/<VERSION>.json` (or `reports/pf-update/<FROM>..<TO>.json` for ranges). Use the schema from `references/report-schema.json`. The JSON includes:
-   - Version, date, pfjVersion, sourceRepos
+   - skillVersion (from `metadata.version` in this SKILL.md), version, date, pfjVersion, sourceRepos
    - Stats (totalPrs, relevantPrs, skippedPrs, breaking, features, fixes, etc.)
    - componentsAffected and newComponents arrays
    - Full workItems array with number, priority, component, change, source, action, status

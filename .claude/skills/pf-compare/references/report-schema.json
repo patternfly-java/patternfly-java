@@ -3,8 +3,12 @@
   "title": "PF Compare Report",
   "description": "Comparison report between a PatternFly component and its PatternFly Java implementation.",
   "type": "object",
-  "required": ["component", "date", "pfVersion", "pfUrl", "pfjUrl", "sections", "variations", "actionItems"],
+  "required": ["skillVersion", "component", "date", "pfVersion", "pfUrl", "pfjUrl", "sections", "variations", "actionItems"],
   "properties": {
+    "skillVersion": {
+      "type": "string",
+      "description": "Version of the pf-compare skill that generated this report (from SKILL.md metadata.version)"
+    },
     "component": {
       "type": "string",
       "description": "Component URL slug (e.g., 'button', 'data-list')"
