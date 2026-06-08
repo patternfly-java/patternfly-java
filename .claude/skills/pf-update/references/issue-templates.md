@@ -24,7 +24,7 @@ Use for P1 (breaking), P2 (feature), and P3 (fix) work items on existing PFJ com
 ### Suggested Actions
 
 1. Run `/pf-compare <COMPONENT>` to identify gaps
-2. Review the compare report at `docs/pf-compare/<COMPONENT>.md`
+2. Review the compare report at `reports/pf-compare/<COMPONENT>.md`
 3. Run `/pf-align <COMPONENT>` to implement changes
 
 ### Source

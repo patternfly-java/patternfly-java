@@ -39,10 +39,10 @@ All skill reports use JSON as the primary structured format. Markdown reports ex
 | Source | Path | Format |
 |--------|------|--------|
 | Component list | `components/src/main/java/org/patternfly/component/` | Directory listing |
-| Lint reports | `docs/pf-lint/<COMPONENT>.json` | Per-component JSON (see pf-lint `references/report-schema.json`) |
-| Compare reports | `docs/pf-compare/<COMPONENT>.json` | Per-component JSON (see pf-compare `references/report-schema.json`) |
-| Align reports | `docs/pf-align/<COMPONENT>.json` | Per-component JSON (see pf-align `references/report-schema.json`) |
-| Update reports | `docs/pf-update/<VERSION>.json` | Per-version JSON (see pf-update `references/report-schema.json`) |
+| Lint reports | `reports/pf-lint/<COMPONENT>.json` | Per-component JSON (see pf-lint `references/report-schema.json`) |
+| Compare reports | `reports/pf-compare/<COMPONENT>.json` | Per-component JSON (see pf-compare `references/report-schema.json`) |
+| Align reports | `reports/pf-align/<COMPONENT>.json` | Per-component JSON (see pf-align `references/report-schema.json`) |
+| Update reports | `reports/pf-update/<VERSION>.json` | Per-version JSON (see pf-update `references/report-schema.json`) |
 
 ## Workflow
 
@@ -56,7 +56,7 @@ If a `[component]` argument was given, verify the directory exists. If not, repo
 
 ### Step 2: Read lint status
 
-For each component, check if `docs/pf-lint/<COMPONENT>.json` exists.
+For each component, check if `reports/pf-lint/<COMPONENT>.json` exists.
 
 If the file exists, read the JSON and extract:
 - `date`
@@ -69,7 +69,7 @@ If no JSON file exists for a component, treat it as "not linted".
 
 ### Step 3: Read compare status
 
-For each component, check if `docs/pf-compare/<COMPONENT>.json` exists.
+For each component, check if `reports/pf-compare/<COMPONENT>.json` exists.
 
 If the file exists, read the JSON and extract:
 - `date`
@@ -84,7 +84,7 @@ If the file does not exist, the compare status is "not compared".
 
 ### Step 4: Read align status
 
-For each component, check if `docs/pf-align/<COMPONENT>.json` exists.
+For each component, check if `reports/pf-align/<COMPONENT>.json` exists.
 
 If the file exists, read the JSON and extract:
 - `date`
@@ -96,7 +96,7 @@ If no file exists, the align status is "not started".
 
 ### Step 5: Read update status
 
-Find the most recent update report by listing `docs/pf-update/*.json` and selecting the file with the highest version number (semver sort). If the directory does not exist or has no `.json` files, treat all components as "not checked".
+Find the most recent update report by listing `reports/pf-update/*.json` and selecting the file with the highest version number (semver sort). If the directory does not exist or has no `.json` files, treat all components as "not checked".
 
 If a JSON report exists, read it and extract:
 - `version` — the PF version analyzed
@@ -104,7 +104,7 @@ If a JSON report exists, read it and extract:
 - `componentsAffected` — array of component names with changes
 - `newComponents` — array of new component names
 
-For each component in `componentsAffected`, check if a compare report at `docs/pf-compare/<COMPONENT>.json` exists AND has a `date` that is equal to or later than the update report's `date`. If so, the component is "current" (compare was re-run after the update). Otherwise it is "outdated".
+For each component in `componentsAffected`, check if a compare report at `reports/pf-compare/<COMPONENT>.json` exists AND has a `date` that is equal to or later than the update report's `date`. If so, the component is "current" (compare was re-run after the update). Otherwise it is "outdated".
 
 Components NOT in `componentsAffected` are "current" (no changes detected for them).
 
@@ -206,11 +206,11 @@ The "Suggested Next Action" should recommend the logical next step:
 
 Only write the persistent report in overview mode (no component argument). In detail mode, skip report generation to avoid the cost of reading all components for a single-component query.
 
-Create the directory `docs/pf-status/` if it does not exist.
+Create the directory `reports/pf-status/` if it does not exist.
 
-1. **Write `docs/pf-status/summary.json`** using the schema from `references/report-schema.json`. Include the date, stats, and full per-component status array.
+1. **Write `reports/pf-status/summary.json`** using the schema from `references/report-schema.json`. Include the date, stats, and full per-component status array.
 
-2. **Write `docs/pf-status/summary.md`** with the markdown table and stats section for human reading. Use this YAML frontmatter:
+2. **Write `reports/pf-status/summary.md`** with the markdown table and stats section for human reading. Use this YAML frontmatter:
 
 ```yaml
 ---

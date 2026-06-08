@@ -16,7 +16,7 @@
     },
     "compareReport": {
       "type": "string",
-      "description": "Path to the pf-compare JSON report used as input (e.g., 'docs/pf-compare/button.json')"
+      "description": "Path to the pf-compare JSON report used as input (e.g., 'reports/pf-compare/button.json')"
     },
     "compareDate": {
       "type": "string",

@@ -202,8 +202,8 @@ Skipped: D PRs (chore/deps/CI/docs/irrelevant scopes)
 Multiple PRs affecting the same component are grouped together. The highest priority PR determines the group's position in the sorted list.
 
 **Determine suggested action for each group:**
-1. Check if a compare report exists: `docs/pf-compare/<component>.json`
-2. Check if an align report exists: `docs/pf-align/<component>.json`
+1. Check if a compare report exists: `reports/pf-compare/<component>.json`
+2. Check if an align report exists: `reports/pf-align/<component>.json`
 
 | State | Suggested action |
 |-------|-----------------|
@@ -247,7 +247,7 @@ Print to the conversation:
 ### Unclassified (review manually)
 - "<title>" — <PR link>
 
-Full report: docs/pf-update/<VERSION>.md
+Full report: reports/pf-update/<VERSION>.md
 ```
 
 ---
@@ -256,16 +256,16 @@ Full report: docs/pf-update/<VERSION>.md
 
 1. Create the output directory:
    ```bash
-   mkdir -p docs/pf-update
+   mkdir -p reports/pf-update
    ```
 
 2. Read the template from `references/report-template.md`.
 
 3. Fill in all placeholders with actual data from steps 2–5.
 
-4. Write the markdown report to `docs/pf-update/<VERSION>.md` (or `docs/pf-update/<FROM>..<TO>.md` for ranges).
+4. Write the markdown report to `reports/pf-update/<VERSION>.md` (or `reports/pf-update/<FROM>..<TO>.md` for ranges).
 
-5. **Write the JSON companion report** to `docs/pf-update/<VERSION>.json` (or `docs/pf-update/<FROM>..<TO>.json` for ranges). Use the schema from `references/report-schema.json`. The JSON includes:
+5. **Write the JSON companion report** to `reports/pf-update/<VERSION>.json` (or `reports/pf-update/<FROM>..<TO>.json` for ranges). Use the schema from `references/report-schema.json`. The JSON includes:
    - Version, date, pfjVersion, sourceRepos
    - Stats (totalPrs, relevantPrs, skippedPrs, breaking, features, fixes, etc.)
    - componentsAffected and newComponents arrays
@@ -273,7 +273,7 @@ Full report: docs/pf-update/<VERSION>.md
    - unclassifiedPrs array
    - issuesCreated count
 
-6. Report: "Reports saved to `docs/pf-update/<VERSION>.md` and `docs/pf-update/<VERSION>.json`"
+6. Report: "Reports saved to `reports/pf-update/<VERSION>.md` and `reports/pf-update/<VERSION>.json`"
 
 ---
 

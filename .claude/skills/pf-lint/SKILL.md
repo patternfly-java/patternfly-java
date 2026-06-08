@@ -104,13 +104,13 @@ After fixing, verify fixed files compile with `mvn compile -pl components` and p
 
 After linting (and optionally fixing), write a per-component JSON report and update the aggregate summary.
 
-1. **Create output directory** if needed: `mkdir -p docs/pf-lint`
+1. **Create output directory** if needed: `mkdir -p reports/pf-lint`
 
-2. **Write per-component JSON report** to `docs/pf-lint/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
+2. **Write per-component JSON report** to `reports/pf-lint/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
    - Component name, date, file count, error/warning counts, fixed status, overall status
    - Full violations array with file, line, severity, rule, detail, and whether each was fixed
 
-3. **Update aggregate summary** at `docs/pf-lint/summary.md`. Add or update the row for the component with the current date, file count, error/warning counts, whether issues were fixed, and status (`clean` if 0 remaining issues, `issues` otherwise). If the file does not exist, initialize it with the summary table header.
+3. **Update aggregate summary** at `reports/pf-lint/summary.md`. Add or update the row for the component with the current date, file count, error/warning counts, whether issues were fixed, and status (`clean` if 0 remaining issues, `issues` otherwise). If the file does not exist, initialize it with the summary table header.
 
 If the component was already linted before, overwrite its `.json` file and update its row in the summary table.
 

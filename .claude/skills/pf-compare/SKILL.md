@@ -201,7 +201,7 @@ Extra in PFJ:
   section: OK
   section: P4 (1 icon diff)
 
-Full report: docs/pf-compare/<COMPONENT>.md
+Full report: reports/pf-compare/<COMPONENT>.md
 ```
 
 ---
@@ -210,22 +210,22 @@ Full report: docs/pf-compare/<COMPONENT>.md
 
 1. Create the output directory:
    ```
-   mkdir -p docs/pf-compare
+   mkdir -p reports/pf-compare
    ```
 
 2. Detect the PF version by switching to the PF tab and running the script from `references/detect-pf-version.js` via `evaluate_script`.
 
 3. Generate the report file using the template from `references/report-template.md`. Read that file and fill in the placeholders with actual data.
 
-4. Write the report to `docs/pf-compare/<COMPONENT>.md`.
+4. Write the report to `reports/pf-compare/<COMPONENT>.md`.
 
-5. **Write the JSON companion report** to `docs/pf-compare/<COMPONENT>.json`. This file contains the same data in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
+5. **Write the JSON companion report** to `reports/pf-compare/<COMPONENT>.json`. This file contains the same data in structured form. Use the schema from `references/report-schema.json` and match the format in `examples/button.json`. The JSON includes:
    - Metadata: component, date, pfVersion, pfUrl, pfjUrl
    - Section coverage: pfCount, pfjCount, matched, missingInPfj, extraInPfj
    - Full `variations` array from Step 4a — each entry has `{ slug, title, html }` where `slug` is the PF section ID, `title` is the section heading, and `html` is the raw (pre-normalization) PF preview innerHTML. This array is consumed by `/pf-align` for reference HTML.
    - Action items with number, type, priority, title, description, category, and affected variations
 
-6. Report: "Reports saved to `docs/pf-compare/<COMPONENT>.md` and `docs/pf-compare/<COMPONENT>.json`"
+6. Report: "Reports saved to `reports/pf-compare/<COMPONENT>.md` and `reports/pf-compare/<COMPONENT>.json`"
 
 ---
 
@@ -234,8 +234,8 @@ Full report: docs/pf-compare/<COMPONENT>.md
 1. Use `list_pages` to find the PF and PFJ tabs opened during the workflow.
 2. Close them with `close_page` (keep at least one tab open in the browser).
 3. Print completion message with next steps:
-   - Review the report at `docs/pf-compare/<COMPONENT>.md`
-   - JSON data available at `docs/pf-compare/<COMPONENT>.json` (used by `/pf-align`)
+   - Review the report at `reports/pf-compare/<COMPONENT>.md`
+   - JSON data available at `reports/pf-compare/<COMPONENT>.json` (used by `/pf-align`)
    - Use the report as input for a future `/pf-align` skill
    - Run `/pf-compare` on another component
 

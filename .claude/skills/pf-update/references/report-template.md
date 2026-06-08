@@ -1,6 +1,6 @@
 # Report Template
 
-Use this template when writing the markdown report to `docs/pf-update/<VERSION>.md`. A companion JSON file (`<VERSION>.json`) is written alongside this markdown report using the schema from `report-schema.json`.
+Use this template when writing the markdown report to `reports/pf-update/<VERSION>.md`. A companion JSON file (`<VERSION>.json`) is written alongside this markdown report using the schema from `report-schema.json`.
 
 ## YAML Frontmatter
 

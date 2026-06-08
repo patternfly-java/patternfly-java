@@ -48,8 +48,8 @@ Uses Chrome DevTools MCP tools for browser interaction (new_page, select_page, e
 - Validate component name is not empty
 
 **Check report exists:**
-- Path: `docs/pf-compare/<COMPONENT>.json`
-- If not found → ERROR: "JSON report not found at `docs/pf-compare/<COMPONENT>.json`. Run `/pf-compare <COMPONENT>` first."
+- Path: `reports/pf-compare/<COMPONENT>.json`
+- If not found → ERROR: "JSON report not found at `reports/pf-compare/<COMPONENT>.json`. Run `/pf-compare <COMPONENT>` first."
 
 **Locate component files:**
 - Component class: `components/src/main/java/org/patternfly/component/<component>/<Component>.java`
@@ -66,7 +66,7 @@ Uses Chrome DevTools MCP tools for browser interaction (new_page, select_page, e
 
 **Read the JSON report:**
 
-Read and parse `docs/pf-compare/<COMPONENT>.json`. The JSON follows the schema at `.claude/skills/pf-compare/references/report-schema.json` (see also `examples/button.json` for a concrete example). Extract:
+Read and parse `reports/pf-compare/<COMPONENT>.json`. The JSON follows the schema at `.claude/skills/pf-compare/references/report-schema.json` (see also `examples/button.json` for a concrete example). Extract:
 - `pfUrl`, `pfjUrl` — needed if browser extraction is required (note: `pfUrl` now points to the React variant, e.g., `https://www.patternfly.org/components/button`)
 - `variations` — array of `{ slug, title, html }` with raw PF HTML (used in Step 5)
 - `actionItems` — array of `{ number, type, priority, title, description, category, variations }` (already structured; `priority` is P1-P5)
@@ -85,7 +85,7 @@ Store the `variations` array for HTML lookup in Step 5.
 
 **Print numbered list:**
 ```
-Found 4 action items in docs/pf-compare/button.json:
+Found 4 action items in reports/pf-compare/button.json:
   1. Add variation: Primary — implement primary button variant
   2. Fix CSS: .pf-m-danger — add danger modifier class
   3. Fix structure: Icon placement — wrap icon in span.pf-c-button__icon
@@ -240,9 +240,9 @@ git checkout showcase/src/main/java/org/patternfly/showcase/component/<Component
 
 ### Step 9: Write Align Report
 
-**Create output directory** if needed: `mkdir -p docs/pf-align`
+**Create output directory** if needed: `mkdir -p reports/pf-align`
 
-**Write JSON report** to `docs/pf-align/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
+**Write JSON report** to `reports/pf-align/<COMPONENT>.json`. Use the schema from `references/report-schema.json`. Include:
 - Component name and date
 - Path and date of the compare report used as input
 - Overall status: `done` (all items processed), `partial` (some skipped/failed), `in_progress` (interrupted)
@@ -264,7 +264,7 @@ Alignment complete for <component>:
   Processed: 3 items
   Skipped: 1 item (already implemented)
   Remaining: 0 items
-  Report: docs/pf-align/<component>.json
+  Report: reports/pf-align/<component>.json
 
 Next steps:
   1. Review changes: git diff
@@ -290,7 +290,7 @@ For HTML-to-Java translation patterns, read `references/code-generation.md`. For
 
 | Scenario | Action |
 |----------|--------|
-| Report not found | Print error: "JSON report not found at docs/pf-compare/<component>.json. Run /pf-compare <component> first." Exit. |
+| Report not found | Print error: "JSON report not found at reports/pf-compare/<component>.json. Run /pf-compare <component> first." Exit. |
 | Component class not found | Print error: "Component class not found at <path>. Verify component name." Exit. |
 | Showcase file not found | Print error: "Showcase file not found at <path>. Component may not have demo page." Exit. |
 | Showcase not running | Print error: "Showcase server not accessible at http://localhost:<port>. Start with: cd showcase && pnpm run watch". Exit. |
