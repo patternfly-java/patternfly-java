@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.9.1] - 2026-06-08
+
 ### Added
 
 - Add manifest-driven markdown documentation system with nested directory structure, Node-based remark/rehype pipeline with Shiki highlighting, and showcase pages for API design, icons, tokens, building, CI/CD, and releasing
@@ -1089,7 +1091,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.3...v0.9.0
 [0.8.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.2...v0.8.3
 [0.8.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.8.1...v0.8.2
