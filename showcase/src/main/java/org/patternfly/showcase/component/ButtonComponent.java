@@ -71,11 +71,11 @@ public class ButtonComponent extends SnippetPage {
                                 .add(button().iconAndText(externalLink(), "Link", end).link())
                                 .add(button("Inline link").inline().link())
                                 .add(button("Danger link").link().danger())
-                                .add(button().icon(close()).plain())
+                                .add(button().icon(close()).plain().ariaLabel("Action"))
                                 .add(button().iconAndText(close(), "Plain with text", start).plain()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control").control())
-                                .add(button().icon(copy()).control()))
+                                .add(button().icon(copy()).control().ariaLabel("Copy")))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button().stateful(read).iconAndText(bell(), "Stateful read", start))
                                 .add(button().stateful(unread).iconAndText(bell(), "Stateful unread", start))
@@ -99,10 +99,10 @@ public class ButtonComponent extends SnippetPage {
                                 .add(button().iconAndText(addCircle(), "Link disabled").link().disabled())
                                 .add(button("Inline link disabled").inline().link().disabled())
                                 .add(button("Danger link disabled").link().danger().disabled())
-                                .add(button().icon(close()).plain().disabled()))
+                                .add(button().icon(close()).plain().ariaLabel("Action").disabled()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control disabled").control().disabled())
-                                .add(button().icon(copy()).control().disabled()))
+                                .add(button().icon(copy()).control().ariaLabel("Copy").disabled()))
                         .element()
                 // @code-end:button-disabled
         ));
@@ -121,10 +121,10 @@ public class ButtonComponent extends SnippetPage {
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Link").link().small())
                                 .add(button("Inline link").inline().link().small())
-                                .add(button().icon(close()).plain().small()))
+                                .add(button().icon(close()).plain().ariaLabel("Action").small()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control").control().small())
-                                .add(button().icon(copy()).control().small()))
+                                .add(button().icon(copy()).control().ariaLabel("Copy").small()))
                         .element()
                 // @code-end:button-small
         ));
@@ -182,7 +182,7 @@ public class ButtonComponent extends SnippetPage {
                                             }
                                         })))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
-                                .add(button().icon(upload()).plain()
+                                .add(button().icon(upload()).plain().ariaLabel("Upload")
                                         .onClick((event, button) -> button.toggleProgress())))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Pause loading logs").link().inline().progress(true)
@@ -256,10 +256,10 @@ public class ButtonComponent extends SnippetPage {
                 // @code-start:button-circle
                 div()
                         .add(flex().columnGap(sm)
-                                .add(button().icon(addCircle()).primary().circle())
-                                .add(button().icon(addCircle()).secondary().circle())
-                                .add(button().icon(addCircle()).danger().circle())
-                                .add(button().icon(addCircle()).link().circle()))
+                                .add(button().icon(addCircle()).primary().circle().ariaLabel("Add"))
+                                .add(button().icon(addCircle()).secondary().circle().ariaLabel("Add"))
+                                .add(button().icon(addCircle()).danger().circle().ariaLabel("Add"))
+                                .add(button().icon(addCircle()).link().circle().ariaLabel("Add")))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button().primary().circle().progress(true))
                                 .add(button().secondary().circle().progress(true))
@@ -283,10 +283,10 @@ public class ButtonComponent extends SnippetPage {
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Link").link().clicked())
                                 .add(button("Inline link").inline().link().clicked())
-                                .add(button().icon(close()).plain().clicked()))
+                                .add(button().icon(close()).plain().ariaLabel("Action").clicked()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control").control().clicked())
-                                .add(button().icon(copy()).control().clicked()))
+                                .add(button().icon(copy()).control().ariaLabel("Copy").clicked()))
                         .element()
                 // @code-end:button-clicked
         ));
@@ -304,7 +304,7 @@ public class ButtonComponent extends SnippetPage {
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Link").link().ariaDisabled())
                                 .add(button("Inline link").inline().link().ariaDisabled())
-                                .add(button().icon(close()).plain().ariaDisabled()))
+                                .add(button().icon(close()).plain().ariaLabel("Action").ariaDisabled()))
                         .add(flex().columnGap(sm).css(util("mt-lg"))
                                 .add(button("Control").control().ariaDisabled()))
                         .element()
@@ -319,6 +319,7 @@ public class ButtonComponent extends SnippetPage {
                         .add(span().css(Classes.component(Classes.button),
                                         modifier(Classes.inline), modifier(Classes.link))
                                 .attr("role", "button")
+                                .attr("type", "button")
                                 .attr("tabindex", "0")
                                 .add(span().css(Classes.component(Classes.button, Classes.text))
                                         .text("This is long button text that needs to be a span so that it will wrap inline with the text around it.")))
@@ -399,7 +400,7 @@ public class ButtonComponent extends SnippetPage {
                 code("button-no-padding"), () ->
                 // @code-start:button-no-padding
                 flex().columnGap(sm)
-                        .add(button().icon(close()).plain().noPadding())
+                        .add(button().icon(close()).plain().ariaLabel("More info").noPadding())
                         .element()
                 // @code-end:button-no-padding
         ));

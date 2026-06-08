@@ -209,13 +209,13 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         switch (position) {
             case start:
                 failSafeIconElement().classList.add(modifier(Classes.start));
-                icon(icon);
+                failSafeIconElement().appendChild(icon);
                 text(text);
                 break;
             case end:
                 text(text);
                 failSafeIconElement().classList.add(modifier(Classes.end));
-                icon(icon);
+                failSafeIconElement().appendChild(icon);
                 break;
         }
         return this;
@@ -300,6 +300,7 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
                         .add(path().css("pf-v6-c-button--hamburger-icon--bottom")
                                 .attr("d", "M9,9 L1,9"))
                         .element());
+        ariaExpanded(false);
         return css(modifier(Classes.hamburger));
     }
 
@@ -342,6 +343,10 @@ public class Button extends BaseComponent<HTMLElement, Button> implements
         toggleModifier(this, element(), Classes.ariaDisabled, disabled);
         aria(Aria.disabled, disabled);
         return this;
+    }
+
+    public Button ariaExpanded(boolean expanded) {
+        return aria(Aria.expanded, expanded);
     }
 
     public Button ariaLabel(String label) {
