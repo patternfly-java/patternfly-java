@@ -52,7 +52,7 @@ public interface ComponentProgress<E extends Element, B extends TypedBuilder<E, 
     }
 
     default B progress(boolean inProgress) {
-        return progress(inProgress, "Loading...", null);
+        return progress(inProgress, "Loading..." /* TODO i18n */, null);
     }
 
     default B progress(boolean inProgress, String label) {
@@ -60,7 +60,7 @@ public interface ComponentProgress<E extends Element, B extends TypedBuilder<E, 
     }
 
     default B progress(boolean inProgress, Consumer<Spinner> spinnerConsumer) {
-        return progress(inProgress, "Loading...", spinnerConsumer);
+        return progress(inProgress, "Loading..." /* TODO i18n */, spinnerConsumer);
     }
 
     B progress(boolean inProgress, String label, Consumer<Spinner> spinnerConsumer);

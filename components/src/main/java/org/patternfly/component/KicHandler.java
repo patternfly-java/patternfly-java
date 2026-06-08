@@ -63,47 +63,37 @@ public class KicHandler<C extends BaseComponent<HTMLElement, C>> {
     }
 
     public C onKeydown(ChangeHandler<C, String> changeHandler) {
-        boolean firstHandler = keydownHandlers.isEmpty();
-        keydownHandlers.add(changeHandler);
-        if (firstHandler) {
-            inputElement.addEventListener(keydown.name,
-                    e -> keydownHandlers.forEach(ch -> ch.onChange(e, component.that(), value())));
-        }
-        return component.that();
+        return on(keydownHandlers, keydown.name, changeHandler);
     }
 
     public C onKeyup(ChangeHandler<C, String> changeHandler) {
-        boolean firstHandler = keyupHandlers.isEmpty();
-        keyupHandlers.add(changeHandler);
-        if (firstHandler) {
-            inputElement.addEventListener(keyup.name,
-                    e -> keyupHandlers.forEach(ch -> ch.onChange(e, component.that(), value())));
-        }
-        return component.that();
+        return on(keyupHandlers, keyup.name, changeHandler);
     }
 
     public C onInput(ChangeHandler<C, String> changeHandler) {
-        boolean firstHandler = inputHandlers.isEmpty();
-        inputHandlers.add(changeHandler);
-        if (firstHandler) {
-            inputElement.addEventListener(input.name,
-                    e -> inputHandlers.forEach(ch -> ch.onChange(e, component.that(), value())));
-        }
-        return component.that();
+        return on(inputHandlers, input.name, changeHandler);
     }
 
     public C onChange(ChangeHandler<C, String> changeHandler) {
-        boolean firstHandler = changeHandlers.isEmpty();
-        changeHandlers.add(changeHandler);
-        if (firstHandler) {
-            inputElement.addEventListener(change.name,
-                    e -> changeHandlers.forEach(ch -> ch.onChange(e, component.that(), value())));
-        }
-        return component.that();
+        return on(changeHandlers, change.name, changeHandler);
     }
 
     public void fireIfChanged(String value) {
         ChangeHandler.fireIfChanged(component.that(), value(), value, changeHandlers);
+    }
+
+    private C on(List<ChangeHandler<C, String>> handlers, String eventType, ChangeHandler<C, String> handler) {
+        boolean firstHandler = handlers.isEmpty();
+        handlers.add(handler);
+        if (firstHandler) {
+            eventTarget().addEventListener(eventType,
+                    e -> handlers.forEach(ch -> ch.onChange(e, component.that(), value())));
+        }
+        return component.that();
+    }
+
+    private HTMLElement eventTarget() {
+        return inputElement != null ? inputElement : textAreaElement;
     }
 
     private String value() {

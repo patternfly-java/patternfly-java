@@ -27,7 +27,6 @@ import org.jboss.elemento.HTMLElementDataMethods;
 import org.jboss.elemento.HTMLElementStyleMethods;
 import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.jboss.elemento.logger.Logger;
 import org.patternfly.core.OuiaSupport;
 
 import elemental2.dom.HTMLElement;
@@ -49,7 +48,6 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
         HTMLElementStyleMethods<E, B>,
         HTMLElementVisibilityMethods<E, B> {
 
-    private static final Logger logger = Logger.getLogger(ComponentDelegate.class.getName());
     private final ComponentType componentType;
     E delegate;
 
@@ -70,7 +68,8 @@ public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBu
     @Override
     public E element() {
         if (delegate == null) {
-            logger.error("No delegate defined for component %s", componentType().componentName);
+            throw new IllegalStateException(
+                    "No delegate defined for component " + componentType().componentName);
         }
         return delegate;
     }

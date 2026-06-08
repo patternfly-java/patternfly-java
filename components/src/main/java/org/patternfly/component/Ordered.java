@@ -88,6 +88,8 @@ public interface Ordered<E extends Element, C extends HasItems<E, C, S>, S exten
                 return s1.element().dataset.get(DATA_ORDER).compareTo(s2.element().dataset.get(DATA_ORDER));
             } else if (s1.element().dataset.has(DATA_ORDER)) {
                 return -1;
+            } else if (s2.element().dataset.has(DATA_ORDER)) {
+                return 1;
             } else {
                 return 0;
             }

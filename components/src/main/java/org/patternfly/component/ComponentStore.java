@@ -31,10 +31,18 @@ import static org.jboss.elemento.Id.uuid;
 import static org.jboss.elemento.logger.Level.DEBUG;
 
 /**
- * The component store is an internal store for PatternFly (sub)components. It is used to share references between components
- * and their subcomponents. (Sub)components can store a reference to themselves using {@link #storeComponent(BaseComponent)}
- * resp. {@link #storeSubComponent(SubComponent)} and subcomponents can look up their parent component using
- * #lookupComponent(ComponentType, HTMLElement, boolean).
+ * Internal, package-private store for wiring parent-child relationships between PatternFly components via DOM traversal.
+ * Components store references using data attributes on their DOM elements and look up parents using
+ * {@code closest()} queries.
+ * <p>
+ * Multiple instances of the same {@link ComponentType} can coexist (e.g. several Cards on one page). This distinguishes
+ * {@code ComponentStore} from {@link ComponentRegistry}, which holds at most one instance per type (singletons like
+ * Page or Masthead).
+ * <p>
+ * <strong>Lifecycle:</strong> Entries are removed via Elemento's {@code onDetach} / {@code MutationObserver} callbacks.
+ * If a component's DOM element is removed without triggering a detach event (e.g. by setting {@code innerHTML = ""}
+ * on a parent), the corresponding map entry will not be cleaned up. This is a known trade-off: weak references would
+ * break lookups since there are no other strong references to the stored components.
  */
 final class ComponentStore {
 

@@ -80,13 +80,13 @@ public class ScrollButtons {
                 .add(scrollBack = button().icon(caretLeft())
                         .plain()
                         .disabled()
-                        .aria(label, "Scroll back"))
+                        .aria(label, "Scroll back")) // TODO i18n
                 .element();
         scrollForwardContainer = div().css(css)
                 .add(scrollForward = button().icon(caretRight())
                         .plain()
                         .disabled()
-                        .aria(label, "Scroll forward"))
+                        .aria(label, "Scroll forward")) // TODO i18n
                 .element();
         setVisible(scrollBackContainer, false);
         setVisible(scrollForwardContainer, false);
@@ -132,7 +132,7 @@ public class ScrollButtons {
     }
 
     public void updateScrollState() {
-        // debounce scroll event!
+        clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout((__) -> {
             boolean overflowOnLeft = !isElementInView(itemsContainer,
                     ((HTMLElement) itemsContainer.firstElementChild), false);

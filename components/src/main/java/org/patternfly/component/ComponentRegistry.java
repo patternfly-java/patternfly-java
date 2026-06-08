@@ -23,14 +23,18 @@ import org.jboss.elemento.TypedBuilder;
 import elemental2.dom.HTMLElement;
 
 /**
- * The component registry is a singleton that manages the registration and lookup of PatternFly (sub)components per
- * {@link ComponentType} and name. Only one (sub)component of each type can be registered. Use this class to get singleton
- * instances of PatternFly (sub)components such as {@link org.patternfly.component.page.Page},
+ * Public, type-keyed singleton registry for PatternFly components that exist at most once per page. Use this class
+ * to register and look up global components such as {@link org.patternfly.component.page.Page},
  * {@link org.patternfly.component.page.Masthead}, or {@link org.patternfly.component.notification.NotificationDrawerList}.
  * <p>
- * The registration must be done by calling {@link #registerComponent(ComponentType, BaseComponent)} or
- * {@link #registerSubComponent(ComponentType, String, SubComponent)}. The lookup is done by calling
+ * This is distinct from {@link ComponentStore}, which is an internal, package-private store for wiring parent-child
+ * relationships via DOM traversal and supports multiple instances of the same {@link ComponentType}.
+ * <p>
+ * Registration is done by calling {@link #registerComponent(ComponentType, BaseComponent)} or
+ * {@link #registerSubComponent(ComponentType, String, SubComponent)}. Lookup is done by calling
  * {@link #lookupComponent(ComponentType)} and {@link #lookupSubComponent(ComponentType, String)}.
+ * When a registered component is removed from the DOM, call {@link #unregisterComponent(ComponentType)} or
+ * {@link #unregisterSubComponent(ComponentType, String)} to prevent stale references.
  */
 public class ComponentRegistry {
 
@@ -63,6 +67,14 @@ public class ComponentRegistry {
 
     public void registerSubComponent(ComponentType type, String name, SubComponent<?, ?> subComponent) {
         subComponents.put(subComponentKey(type, name), subComponent);
+    }
+
+    public void unregisterComponent(ComponentType type) {
+        components.remove(type);
+    }
+
+    public void unregisterSubComponent(ComponentType type, String name) {
+        subComponents.remove(subComponentKey(type, name));
     }
 
     @SuppressWarnings("unchecked")

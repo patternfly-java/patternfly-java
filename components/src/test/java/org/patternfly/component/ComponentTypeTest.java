@@ -15,13 +15,23 @@
  */
 package org.patternfly.component;
 
-import org.jboss.elemento.TypedBuilder;
+import java.util.HashSet;
+import java.util.Set;
 
-import elemental2.dom.HTMLElement;
+import org.junit.jupiter.api.Test;
 
-public interface Validatable<E extends HTMLElement, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B> {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    B validated(ValidationStatus status);
+class ComponentTypeTest {
 
-    void resetValidation();
+    @Test
+    void uniqueIds() {
+        ComponentType[] values = ComponentType.values();
+        Set<String> ids = new HashSet<>();
+        for (ComponentType type : values) {
+            ids.add(type.id);
+        }
+        assertEquals(values.length, ids.size(),
+                "ComponentType.id values must be unique");
+    }
 }

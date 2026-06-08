@@ -1,156 +1,152 @@
 # Code Review: `org.patternfly.component` Package
 
-**Date:** 2026-05-10
+**Date:** 2026-06-08 (updated), originally 2026-05-10
 **Scope:** All 33 Java files in `org.patternfly.component` (top-level package only, not individual component sub-packages)
 **Method:** Manual review using Claude Code (Opus 4.6), reading every file in the package
-**Branch:** `main` (commit `cbea6a1b`)
+**Branch:** `main` (commit `250f87b5`)
 
 ---
 
 ## HIGH Severity
 
-### H1 — `KicHandler` NPE when constructed with `HTMLTextAreaElement`
+### H1 — `KicHandler` NPE when constructed with `HTMLTextAreaElement` — FIXED
 
-**File:** `KicHandler.java:69,79,89,99`
+**File:** `KicHandler.java`
 
-All four event registration methods (`onKeydown`, `onKeyup`, `onInput`, `onChange`) unconditionally call `inputElement.addEventListener(...)`. When the `KicHandler` is constructed with an `HTMLTextAreaElement`, `inputElement` is `null`, so any of these methods will throw a `NullPointerException`. Only the `value()` method correctly handles both element types.
+All four event registration methods used `inputElement` unconditionally. When constructed with `HTMLTextAreaElement`, this caused NPE.
 
-**Fix:** Use a local variable or helper that resolves the correct element (`inputElement` or `textAreaElement`) and attach listeners to that element instead.
-
----
-
-### H2 — `ComponentStore` static maps may leak component references
-
-**File:** `ComponentStore.java:43-45`
-
-Three static `HashMap`s (`components`, `componentDelegates`, `subComponents`) hold references to all stored components. Entries are removed via `onDetach` callbacks (DOM `MutationObserver`). If a component's DOM element is removed without triggering a detach event (e.g., parent's `innerHTML = ""`, or the observer is not connected), the map retains stale references indefinitely. In a long-running SPA this constitutes a memory leak.
-
-**Fix:** Consider periodic cleanup, weak references, or documenting the requirement that removal must go through proper Elemento detach paths.
+**Resolution:** Extracted `eventTarget()` helper that returns the correct element, and a generic `on()` method that eliminates the duplicated registration pattern (also fixes M6).
 
 ---
 
-### H3 — `BaseComponent` / `BaseComponentSVG` near-duplication
+### H2 — `ComponentStore` static maps may leak component references — DOCUMENTED
+
+**File:** `ComponentStore.java`
+
+Static maps rely on Elemento's `onDetach` / `MutationObserver` for cleanup. Bypassing detach (e.g. `innerHTML = ""`) will leak entries.
+
+**Resolution:** Added Javadoc documenting the lifecycle contract and explaining why weak references aren't viable (they'd break lookups).
+
+---
+
+### H3 — `BaseComponent` / `BaseComponentSVG` near-duplication — DOCUMENTED
 
 **Files:** `BaseComponent.java`, `BaseComponentSVG.java`
 
-Both classes implement the same pattern: store `componentType` + `element`, call `ouia()` in the constructor, implement `componentType()` and `element()`. The only difference is `HTMLElement` vs `SVGElement` and the set of mixin interfaces. `BaseComponentSVG` also lacks `registerComponent()`, `storeComponent()`, and `lookupComponent()` methods — it's unclear whether this is intentional or an oversight.
+Both classes share a similar structure but can't be unified because `HTMLElement` and `SVGElement` have disjoint type hierarchies and require different mixin interface sets. `BaseComponentSVG` intentionally lacks `ComponentStore`/`ComponentRegistry` support since only `Spinner` uses it.
 
-**Fix:** Extract shared constructor logic/accessors into a common helper or composition pattern. Evaluate whether `BaseComponentSVG` should also support the component store.
+**Resolution:** Added Javadoc cross-references explaining the rationale for the separation.
 
 ---
 
 ## MEDIUM Severity
 
-### M1 — `ScrollButtons.updateScrollState()` doesn't cancel previous timeout (broken debounce)
+### M1 — `ScrollButtons.updateScrollState()` doesn't cancel previous timeout (broken debounce) — FIXED
 
-**File:** `ScrollButtons.java:146`
+**File:** `ScrollButtons.java`
 
-Each call to `updateScrollState()` creates a new `setTimeout` without clearing the previous `scrollTimeout`. Rapid scrolling queues up many overlapping timeout callbacks. The field name `scrollTimeout` and the `clearTimeout` call in `detach()` suggest debouncing was intended.
+Each call created a new `setTimeout` without clearing the previous one.
 
-**Fix:** Add `clearTimeout(scrollTimeout);` at the top of `updateScrollState()`.
-
----
-
-### M2 — `ComponentDelegate.element()` returns `null` instead of failing fast
-
-**File:** `ComponentDelegate.java:66-69`
-
-When `delegate` is null, `element()` logs an error but still returns `null`. Any caller that chains (e.g., `.element().classList`) gets an NPE with no clear cause.
-
-**Fix:** Throw `IllegalStateException` instead of returning null, since a delegate-less `ComponentDelegate` is always a programming error.
+**Resolution:** Added `clearTimeout(scrollTimeout)` at the top of `updateScrollState()`.
 
 ---
 
-### M3 — `Ordered.defaultOrder()` comparator violates the `Comparator` contract
+### M2 — `ComponentDelegate.element()` returns `null` instead of failing fast — FIXED
 
-**File:** `Ordered.java:86-95`
+**File:** `ComponentDelegate.java`
 
-When `s2` has a `DATA_ORDER` attribute but `s1` doesn't, the comparator returns `0` (equal). It should return `1` (s1 sorts after s2) for symmetry. A comparator where `compare(a,b) = -1` but `compare(b,a) = 0` breaks the contract and can cause incorrect `TreeSet` behavior.
+When `delegate` is null, `element()` logged an error but returned `null`, causing downstream NPEs.
 
-**Fix:** Add an `else if (s2.element().dataset.has(DATA_ORDER))` branch returning `1`.
+**Resolution:** Now throws `IllegalStateException` since a delegate-less `ComponentDelegate` is always a programming error. Removed unused `Logger` field.
 
 ---
 
-### M4 — Two overlapping component registries with unclear boundaries
+### M3 — `Ordered.defaultOrder()` comparator violates the `Comparator` contract — FIXED
+
+**File:** `Ordered.java`
+
+When `s2` had `DATA_ORDER` but `s1` didn't, the comparator returned `0` instead of `1`.
+
+**Resolution:** Added `else if (s2.element().dataset.has(DATA_ORDER))` branch returning `1`.
+
+---
+
+### M4 — Two overlapping component registries with unclear boundaries — DOCUMENTED
 
 **Files:** `ComponentStore.java`, `ComponentRegistry.java`
 
-`ComponentStore` provides DOM-traversal-based lookup using data attributes and `closest()`. `ComponentRegistry` provides type-keyed singleton lookup via a static map. Both are used for parent-child component wiring, but the distinction is not documented. `ComponentStore` is package-private; `ComponentRegistry` is public.
-
-**Fix:** Add Javadoc clarifying when to use each, or consider consolidating if the separation isn't load-bearing.
-
----
-
-### M5 — `ComponentRegistry` singleton has no cleanup/unregister mechanism
-
-**File:** `ComponentRegistry.java:50-51`
-
-Components registered via `registerComponent()` are never unregistered. Unlike `ComponentStore` (which uses `onDetach`), `ComponentRegistry` has no removal path. If a Page or Masthead is replaced, the old reference is silently overwritten for top-level components, but sub-component entries keyed by `type+name` can accumulate.
-
-**Fix:** Add `unregisterComponent()` / `unregisterSubComponent()` methods, or tie lifecycle to `onDetach`.
+**Resolution:** Added Javadoc to both classes clarifying their distinct purposes:
+- `ComponentStore`: internal, package-private, DOM-traversal-based parent-child wiring, multiple instances per type.
+- `ComponentRegistry`: public, type-keyed singleton lookup for global components (Page, Masthead).
 
 ---
 
-### M6 — `KicHandler` event registration pattern repeated 4 times
+### M5 — `ComponentRegistry` singleton has no cleanup/unregister mechanism — FIXED
 
-**File:** `KicHandler.java:65-101`
+**File:** `ComponentRegistry.java`
 
-`onKeydown`, `onKeyup`, `onInput`, `onChange` all follow the identical pattern: check if first handler, add to list, conditionally register DOM listener. This is a DRY violation.
+**Resolution:** Added `unregisterComponent(ComponentType)` and `unregisterSubComponent(ComponentType, String)` methods.
 
-**Fix:** Extract a private helper method like `registerHandler(List, EventType)`.
+---
+
+### M6 — `KicHandler` event registration pattern repeated 4 times — FIXED
+
+**File:** `KicHandler.java`
+
+**Resolution:** Addressed as part of H1 — the `on()` helper method eliminates the repeated pattern.
 
 ---
 
 ## LOW Severity
 
-### L1 — `TemplateComponent` passes `null` as `ComponentType`
+### L1 — `TemplateComponent` passes `null` as `ComponentType` — FIXED (prior)
 
-**File:** `TemplateComponent.java:43`
+**File:** `TemplateComponent.java`
 
-`super((ComponentType) null, div().element())` will throw `NullPointerException` from `requireNonNull` in `BaseComponent`'s constructor. This is a copy-paste template shipped in the compiled artifact.
-
-**Fix:** Either exclude from the build, move to a test/resource directory, or assign a placeholder `ComponentType`.
+Now correctly passes `ComponentType._Template`.
 
 ---
 
-### L2 — `Severity.asValidationStatus()` has unreachable code
+### L2 — `Severity.asValidationStatus()` has unreachable code — FIXED (prior)
 
-**File:** `Severity.java:59-72`
+**File:** `Severity.java`
 
-The old-style `switch` (with `//noinspection EnhancedSwitchMigration`) covers all enum values, making the final `return ValidationStatus.default_` dead code. A modern switch expression would make exhaustiveness explicit.
-
----
-
-### L3 — Redundant `public` on `Validatable` interface method
-
-**File:** `Validatable.java:26`
-
-`public void resetValidation()` — interface methods are implicitly public. Minor style inconsistency with the rest of the codebase.
+Now uses modern switch expression syntax.
 
 ---
 
-### L4 — Hardcoded English strings
+### L3 — Redundant `public` on `Validatable` interface method — FIXED
 
-**Files:** `ScrollButtons.java:86,93` (`"Scroll back"`, `"Scroll forward"`), `ComponentProgress.java:55` (`"Loading..."`)
+**File:** `Validatable.java`
 
-ARIA labels and progress text are hardcoded in English. Not a problem today but would need extraction if i18n is ever required.
+**Resolution:** Removed redundant `public` modifier from `resetValidation()`.
 
 ---
 
-### L5 — `ComponentType.id` uniqueness not enforced
+### L4 — Hardcoded English strings — DOCUMENTED
+
+**Files:** `ScrollButtons.java`, `ComponentProgress.java`
+
+ARIA labels and progress text are hardcoded in English.
+
+**Resolution:** Added `// TODO i18n` markers. No code change — i18n is not currently supported.
+
+---
+
+### L5 — `ComponentType.id` uniqueness not enforced — FIXED
 
 **File:** `ComponentType.java`
 
-The `id` field (e.g., `"ac"`, `"al"`, `"at"`) is used as a key in dataset attributes and store lookups. Uniqueness is guaranteed only by visual inspection. A collision would cause silent lookup failures.
-
-**Fix:** Add a unit test or static initializer that validates all `id` values are unique.
+**Resolution:** Added `ComponentTypeTest.uniqueIds()` unit test that validates all `id` values are unique.
 
 ---
 
 ## Summary
 
-| Severity | Count | Key Items |
-|----------|-------|-----------|
-| HIGH     | 3     | `KicHandler` NPE (H1), `ComponentStore` leak (H2), base class duplication (H3) |
-| MEDIUM   | 6     | Broken debounce (M1), null delegate (M2), comparator contract (M3), registry overlap (M4), no cleanup (M5), DRY violation (M6) |
-| LOW      | 5     | Template crash (L1), dead code (L2), redundant public (L3), hardcoded strings (L4), id uniqueness (L5) |
+| Severity | Count | Status |
+|----------|-------|--------|
+| HIGH     | 3     | 1 fixed (H1), 2 documented (H2, H3) |
+| MEDIUM   | 6     | 4 fixed (M1, M2, M3, M5), 1 documented (M4), 1 fixed via H1 (M6) |
+| LOW      | 5     | 4 fixed (L1, L2, L3, L5), 1 documented (L4) |
+
+**All 14 issues addressed.** 9 fixed with code changes, 5 documented with Javadoc or TODO markers.
