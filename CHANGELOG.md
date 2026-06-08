@@ -36,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Replace link-list showcase index pages with `_meta.yaml` navigation groups
 - Replace JBang code generation (`version.java`, `code.java`) with Node scripts (`version.mjs`, `code.mjs`) using maven-frontend-plugin, removing the JBang build dependency
 - Remove highlight.js dependency, replaced by Shiki in the Node markdown pipeline
-- Upgrade pnpm from 11.3.0 to 11.5.1
+- Upgrade pnpm from 11.3.0 to 11.5.2
 - Upgrade Jackson from 2.x to 3.x in test dependencies, migrating to `tools.jackson.core` group ID and `JsonMapper` builder API
 
 ### Removed
