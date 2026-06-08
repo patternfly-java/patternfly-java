@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "avatar",
   "date": "2026-06-02",
   "files": 2,
   "errors": 0,
   "warnings": 0,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "clean",
   "violations": []
 }

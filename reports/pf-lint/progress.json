@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "progress",
   "date": "2026-06-02",
   "files": 4,
   "errors": 0,
   "warnings": 2,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
     {

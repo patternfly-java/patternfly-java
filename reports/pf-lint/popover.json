@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "popover",
   "date": "2026-06-02",
   "files": 11,
   "errors": 1,
   "warnings": 2,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
     {

@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "switch_",
   "date": "2026-06-02",
   "files": 2,
   "errors": 0,
   "warnings": 1,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
     {

@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "wizard",
   "date": "2026-06-02",
   "files": 19,
   "errors": 1,
   "warnings": 4,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
     {

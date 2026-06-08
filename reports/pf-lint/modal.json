@@ -1,16 +1,52 @@
 {
+  "skillVersion": "0.1.0",
   "component": "modal",
   "date": "2026-06-02",
   "files": 8,
   "errors": 2,
   "warnings": 3,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
-    {"file": "Modal.java", "line": 80, "severity": "ERROR", "rule": "inherit-component", "detail": "Modal extends ComponentDelegate instead of BaseComponent or BaseComponentSVG", "fixed": false},
-    {"file": "Modal.java", "line": 291, "severity": "ERROR", "rule": "name-builder-return", "detail": "onClose() returns null instead of this on line 292", "fixed": false},
-    {"file": "ModalHeader.java", "line": 50, "severity": "WARN", "rule": "field-order", "detail": "Public static final SUB_COMPONENT_ID/SUB_COMPONENT_NAME at lines 51-52 declared after private static final Logger at line 50; public static final should precede private static final", "fixed": false},
-    {"file": "ModalHeaderTitle.java", "line": 55, "severity": "WARN", "rule": "field-order", "detail": "Package-private field 'severity' at line 55 declared between private final 'textElement' and private non-final 'failSafeIconElement'; package-private fields should come before private fields", "fixed": false},
-    {"file": "ModalHeader.java", "line": 53, "severity": "WARN", "rule": "field-order", "detail": "Package-private field 'title' at line 53 declared after private static Logger and public static constants; package-private non-final should come before private fields", "fixed": false}
+    {
+      "file": "Modal.java",
+      "line": 80,
+      "severity": "ERROR",
+      "rule": "inherit-component",
+      "detail": "Modal extends ComponentDelegate instead of BaseComponent or BaseComponentSVG",
+      "fixed": false
+    },
+    {
+      "file": "Modal.java",
+      "line": 291,
+      "severity": "ERROR",
+      "rule": "name-builder-return",
+      "detail": "onClose() returns null instead of this on line 292",
+      "fixed": false
+    },
+    {
+      "file": "ModalHeader.java",
+      "line": 50,
+      "severity": "WARN",
+      "rule": "field-order",
+      "detail": "Public static final SUB_COMPONENT_ID/SUB_COMPONENT_NAME at lines 51-52 declared after private static final Logger at line 50; public static final should precede private static final",
+      "fixed": false
+    },
+    {
+      "file": "ModalHeaderTitle.java",
+      "line": 55,
+      "severity": "WARN",
+      "rule": "field-order",
+      "detail": "Package-private field 'severity' at line 55 declared between private final 'textElement' and private non-final 'failSafeIconElement'; package-private fields should come before private fields",
+      "fixed": false
+    },
+    {
+      "file": "ModalHeader.java",
+      "line": 53,
+      "severity": "WARN",
+      "rule": "field-order",
+      "detail": "Package-private field 'title' at line 53 declared after private static Logger and public static constants; package-private non-final should come before private fields",
+      "fixed": false
+    }
   ]
 }

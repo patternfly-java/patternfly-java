@@ -1,10 +1,11 @@
 {
+  "skillVersion": "0.1.0",
   "component": "help",
   "date": "2026-06-02",
   "files": 4,
   "errors": 1,
   "warnings": 0,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
     {
@@ -12,7 +13,7 @@
       "line": 87,
       "severity": "ERROR",
       "rule": "section-order",
-      "detail": "Section 'aria' (line 87) appears before 'builder' (line 97), but the required order is: factory → instance → add → builder → aria → events → api → internal",
+      "detail": "Section 'aria' (line 87) appears before 'builder' (line 97), but the required order is: factory \u2192 instance \u2192 add \u2192 builder \u2192 aria \u2192 events \u2192 api \u2192 internal",
       "fixed": false
     }
   ]

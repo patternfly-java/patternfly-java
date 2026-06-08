@@ -1,16 +1,52 @@
 {
+  "skillVersion": "0.1.0",
   "component": "navigation",
   "date": "2026-06-02",
   "files": 8,
   "errors": 1,
   "warnings": 4,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "issues",
   "violations": [
-    {"file": "NavigationItem.java", "line": 181, "severity": "ERROR", "rule": "section-format", "detail": "Duplicate 'internal' section separator; second '// ------------------------------------------------------ internal' at line 181 when first is at line 169", "fixed": false},
-    {"file": "NavigationItem.java", "line": 126, "severity": "WARN", "rule": "name-aria-prefix", "detail": "ariaLabel() method is in the 'builder' section instead of a separate 'aria' section", "fixed": false},
-    {"file": "NavigationGroup.java", "line": 159, "severity": "WARN", "rule": "name-aria-prefix", "detail": "ariaLabel() method is in the 'builder' section instead of a separate 'aria' section", "fixed": false},
-    {"file": "Navigation.java", "line": 92, "severity": "WARN", "rule": "decl-implements-order", "detail": "Interfaces: HasItems listed before Attachable; Attachable sorts before HasItems alphabetically", "fixed": false},
-    {"file": "NavigationGroup.java", "line": 232, "severity": "WARN", "rule": "section-blank-after", "detail": "Extra blank line at line 233 after removeItem() before closing brace of clear()", "fixed": false}
+    {
+      "file": "NavigationItem.java",
+      "line": 181,
+      "severity": "ERROR",
+      "rule": "section-format",
+      "detail": "Duplicate 'internal' section separator; second '// ------------------------------------------------------ internal' at line 181 when first is at line 169",
+      "fixed": false
+    },
+    {
+      "file": "NavigationItem.java",
+      "line": 126,
+      "severity": "WARN",
+      "rule": "name-aria-prefix",
+      "detail": "ariaLabel() method is in the 'builder' section instead of a separate 'aria' section",
+      "fixed": false
+    },
+    {
+      "file": "NavigationGroup.java",
+      "line": 159,
+      "severity": "WARN",
+      "rule": "name-aria-prefix",
+      "detail": "ariaLabel() method is in the 'builder' section instead of a separate 'aria' section",
+      "fixed": false
+    },
+    {
+      "file": "Navigation.java",
+      "line": 92,
+      "severity": "WARN",
+      "rule": "decl-implements-order",
+      "detail": "Interfaces: HasItems listed before Attachable; Attachable sorts before HasItems alphabetically",
+      "fixed": false
+    },
+    {
+      "file": "NavigationGroup.java",
+      "line": 232,
+      "severity": "WARN",
+      "rule": "section-blank-after",
+      "detail": "Extra blank line at line 233 after removeItem() before closing brace of clear()",
+      "fixed": false
+    }
   ]
 }
