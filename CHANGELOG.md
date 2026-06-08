@@ -16,6 +16,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add template component package (`org.patternfly.component.template`) as a blueprint for new component development
 - Add project skills: `/pf-lint`, `/pf-update`, `/pf-status`, `/pf-dev-env` with structured JSON reports, JSON Schema validation, and skill interaction documentation
 - Add `CardSubtitle` sub-component with `addSubtitle()` on `CardTitle`
+- Add animated button variants: `hamburger()`, `favorite()`/`favorited()`, and `settings()` with SVG-based animations
+- Add `ariaExpanded()` method to Button for hamburger state management
+- Add build-time validation for inline JavaDoc code snippets via `snippet-tests` module
 - Add `clicked()`, `ariaDisabled()`, and `ariaLabel()` methods to Button
 - Add `secondary()`, `pill()`, and `scrollableAutoHeight()` methods to Panel
 - Add `Secondary` modifier interface to Card
@@ -50,6 +53,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix navigation alignment: correct expandable group icon, add `inert` on collapsed subnav, add `id`/`aria-labelledby` to sections, remove extra dividers and incorrect ARIA attributes on scroll buttons
 - Fix icon usage across components: button close/copy icons, scroll button icons, navigation demo icons — switch to correct rhMicrons/rhUi sets
 - Fix component convention violations: formatting/ordering, missing Javadoc on ~110 sub-components, duplicate `SUB_COMPONENT_ID` values, `FormSelectOption` public constructor
+- Fix `Button.iconAndText()` dropping `pf-m-start`/`pf-m-end` icon position modifiers due to `removeIcon()` cycle
+- Fix `PageSidebar` missing `sidebar-main` wrapper for glass contrast mode
+- Add `aria-label` attributes to icon-only buttons across showcase demos for accessibility
 - Fix `-Dquickly` not skipping J2CL compilation when combined with `-P showcase`
 - Fix heading autolinks and duplicate index navigation items in showcase
 
