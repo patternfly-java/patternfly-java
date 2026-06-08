@@ -23,15 +23,14 @@ import org.jboss.elemento.IsElement;
 import org.patternfly.component.content.Content;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
+import org.patternfly.layout.stack.StackItem;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
-import static org.jboss.elemento.Elements.wrapHtmlElement;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.content.Content.content;
 import static org.patternfly.component.content.ContentType.h3;
@@ -55,11 +54,13 @@ import static org.patternfly.style.Classes.main;
 
 public class Snippet implements IsElement<HTMLElement> {
 
+    private static final String DEMO_DATA = "pfjDemo";
+
     final String id;
     final String title;
     private final Supplier<HTMLElement> demoSupplier;
     private final HTMLElement root;
-    private final HTMLElement preview;
+    private final StackItem preview;
 
     public Snippet(String id, String title, String code, Supplier<HTMLElement> demo) {
         this(id, title, (Content) null, code, demo);
@@ -96,9 +97,7 @@ public class Snippet implements IsElement<HTMLElement> {
                                 stackItem.add(content(p).css("ws-p")).add(description);
                             }
                         }))
-                .add(preview = stackItem()
-                        .add(demo.get())
-                        .element())
+                .addItem(preview = stackItem().add(demoElement()))
                 .addItem(stackItem()
                         .add(codeEditor = codeEditor().css("ws-code-editor")
                                 .addHeader(codeEditorHeader().plain()
@@ -132,7 +131,7 @@ public class Snippet implements IsElement<HTMLElement> {
 
     private void undo() {
         removeChildrenFrom(preview);
-        preview.appendChild(demoSupplier.get());
+        preview.add(demoElement());
     }
 
     @Override
@@ -141,7 +140,13 @@ public class Snippet implements IsElement<HTMLElement> {
     }
 
     public Snippet style(String style) {
-        wrapHtmlElement(preview).style(style);
+        preview.style(style);
         return this;
+    }
+
+    private HTMLElement demoElement() {
+        HTMLElement element = demoSupplier.get();
+        element.dataset.set(DEMO_DATA, "");
+        return element;
     }
 }
