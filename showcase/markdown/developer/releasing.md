@@ -98,10 +98,11 @@ The `versionBump.sh` script updates version strings across the project:
 |---------|-----------|
 | All `pom.xml` files | `mvn versions:set` |
 | `bom/pom.xml` | `mvn versions:set` (separate reactor) |
-| `showcase/src/doc/*.md` | `sed` replacement |
 | `core/npm/package.json` | `npm version` |
 | `charts/npm/package.json` | `npm version` |
 | `extensions/finder/npm/package.json` | `npm version` |
+
+The documentation uses a placeholder version (`\{\{version\}\}`) instead of a concrete version string, so no version bumping is needed for markdown files.
 
 The script is called by `release.sh` twice: once for the release version and once for the next snapshot version.
 
