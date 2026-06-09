@@ -307,6 +307,10 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         return nextColumn != null;
     }
 
+    FinderColumn createNextColumn() {
+        return nextColumn != null ? nextColumn.get() : null;
+    }
+
     void makePinnable() {
         insertAfter(button().css(component(finder, item, pin))
                 .on(click, this::togglePin)

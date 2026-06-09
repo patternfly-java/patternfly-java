@@ -16,21 +16,26 @@
 package org.patternfly.extension.finder;
 
 /**
- * A lightweight segment of a {@link FinderPath} containing only string identifiers. Use this type for encoding, parsing, and
- * routing. For live references to {@link FinderColumn} and {@link FinderItem}, use {@link ResolvedFinderSegment}.
+ * A segment of a {@link ResolvedFinderPath} containing live references to the {@link FinderColumn} and selected
+ * {@link FinderItem}. The {@code item} field is {@code null} when the column is loaded but has no selected item.
+ * <p>
+ * For a lightweight string-based segment, use {@link FinderSegment}.
  */
-public class FinderSegment {
+public class ResolvedFinderSegment {
 
-    public final String columnId;
-    public final String itemId;
+    public final FinderColumn column;
+    public final FinderItem item;
 
-    FinderSegment(String columnId, String itemId) {
-        this.columnId = columnId;
-        this.itemId = itemId;
+    ResolvedFinderSegment(FinderColumn column, FinderItem item) {
+        this.column = column;
+        this.item = item;
     }
 
     @Override
     public String toString() {
-        return itemId != null ? columnId + "=" + itemId : columnId;
+        if (item != null) {
+            return column.identifier() + "=" + item.identifier();
+        }
+        return column.identifier();
     }
 }

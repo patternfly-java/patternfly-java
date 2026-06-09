@@ -15,6 +15,7 @@
  */
 package org.patternfly.extension.finder;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -38,6 +39,9 @@ import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Dataset;
+import org.jboss.elemento.flow.Flow;
+import org.jboss.elemento.flow.FlowContext;
+import org.jboss.elemento.flow.Task;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
 
@@ -45,6 +49,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
+import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.requestAnimationFrame;
 import static org.jboss.elemento.Elements.div;
@@ -177,17 +182,57 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     // ------------------------------------------------------ api
 
-    public FinderPath path() {
-        List<FinderSegment> segments = new LinkedList<>();
+    public ResolvedFinderPath path() {
+        List<ResolvedFinderSegment> segments = new LinkedList<>();
         for (FinderColumn column : items.values()) {
             FinderItem selectedItem = column.selectedItem();
             if (selectedItem != null) {
-                segments.add(new FinderSegment(column, selectedItem));
+                segments.add(new ResolvedFinderSegment(column, selectedItem));
             } else {
+                segments.add(new ResolvedFinderSegment(column, null));
                 break;
             }
         }
-        return new FinderPath(segments);
+        return new ResolvedFinderPath(segments);
+    }
+
+    /**
+     * Selects items along the given finder path, handling async column loading at each level. The first column in the path must
+     * already be present in this finder. Each item selection may trigger creation and async loading of the next column (via
+     * {@link FinderItem#nextColumn(java.util.function.Supplier)}).
+     * <p>
+     * Select and preview events are fired for every item in the path. If a segment cannot be resolved (column not found, item
+     * not found after loading), the promise resolves with a partial {@link ResolvedFinderPath} containing only the successfully
+     * selected segments.
+     *
+     * @param path the finder path to select
+     * @return a {@link Promise} that resolves with the {@link ResolvedFinderPath} of successfully selected items
+     */
+    public Promise<ResolvedFinderPath> select(FinderPath path) {
+        if (path == null || path.isEmpty()) {
+            return Promise.resolve(path());
+        }
+        FlowContext context = new FlowContext();
+        List<Task<FlowContext>> tasks = new ArrayList<>();
+        for (FinderSegment segment : path) {
+            tasks.add(ctx -> selectSegment(segment.columnId, segment.itemId, ctx));
+        }
+        return Flow.sequential(context, tasks)
+                .failFast(true)
+                .then(ctx -> Promise.resolve(path()));
+    }
+
+    /**
+     * Parses and selects items along the given finder path string, handling async column loading at each level. The path must
+     * use the format produced by {@link FinderPath#toString()}: {@code col1=item1/col2=item2/col3}. The last segment may omit
+     * the item identifier to represent a column with no selected item.
+     *
+     * @param path the encoded finder path string
+     * @return a {@link Promise} that resolves with the {@link ResolvedFinderPath} of successfully selected items
+     * @see #select(FinderPath)
+     */
+    public Promise<ResolvedFinderPath> select(String path) {
+        return select(FinderPath.parse(path));
     }
 
     @Override
@@ -242,6 +287,40 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     }
 
     // ------------------------------------------------------ internal
+
+    private Promise<FlowContext> selectSegment(String columnId, String itemId, FlowContext context) {
+        FinderColumn column = items.get(columnId);
+        if (column == null) {
+            return context.reject("Column not found: " + columnId);
+        }
+        return column.load().then(__ -> {
+            if (itemId == null) {
+                markActive(column);
+                return context.resolve();
+            }
+            FinderItem item = column.findItem(itemId);
+            if (item == null) {
+                return context.reject("Item not found: " + itemId + " in column " + columnId);
+            }
+            select(column);
+            column.select(item);
+            if (item.hasNext()) {
+                FinderColumn nextCol = item.createNextColumn();
+                if (nextCol != null) {
+                    addColumnWithoutLoad(nextCol);
+                }
+            }
+            item.previewItem(this, column, item);
+            return context.resolve();
+        });
+    }
+
+    private void addColumnWithoutLoad(FinderColumn column) {
+        column.finder = this;
+        cc.add(column.element());
+        items.put(column.identifier(), column);
+        aur.added(column);
+    }
 
     void select(FinderColumn column) {
         markActive(column);

@@ -37,6 +37,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>patternfly-java-components</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-flow</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

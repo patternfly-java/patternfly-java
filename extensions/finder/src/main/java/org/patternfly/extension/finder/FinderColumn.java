@@ -115,6 +115,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     private FinderColumnSearch search;
     private Comparator<FinderItem> comparator;
     private AsyncItems<FinderColumn, FinderItem> asyncItems;
+    private Promise<Iterable<FinderItem>> loadPromise;
 
     FinderColumn(String identifier) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(FinderClasses.finder, column))
@@ -311,6 +312,10 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     @Override
     public Promise<Iterable<FinderItem>> load() {
         if (status == pending && asyncItems != null) {
+            if (loadPromise != null) {
+                return loadPromise;
+            }
+
             // show a loading indicator after a given timeout
             FinderItem[] loadingItem = new FinderItem[1];
             double handle = setTimeout(__ -> {
@@ -320,9 +325,10 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
             }, LOADING_TIMEOUT);
 
             // load items
-            return asyncItems.apply(this)
+            loadPromise = asyncItems.apply(this)
                     .then(items -> {
                         status = resolved;
+                        loadPromise = null;
                         clearTimeout(handle);
                         failSafeRemoveFromParent(loadingItem[0]);
                         for (FinderItem child : items) {
@@ -332,6 +338,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
                     })
                     .catch_(error -> {
                         status = rejected;
+                        loadPromise = null;
                         clearTimeout(handle);
                         failSafeRemoveFromParent(loadingItem[0]);
                         logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
@@ -340,6 +347,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
                         ul.add(errorItem);
                         return Promise.reject(error);
                     });
+            return loadPromise;
         } else {
             return Promise.resolve(emptyList());
         }
@@ -358,6 +366,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     public void reset() {
         if (status == resolved || status == rejected) {
             status = pending;
+            loadPromise = null;
             internalClear();
         }
     }
