@@ -67,12 +67,6 @@ public final class MarkdownManifest {
                         place(item.route).title(item.title).loader(markdownLoader(markdownId)),
                         MarkdownPage::new);
             } else if ("group".equals(item.type)) {
-                if (item.hasContent) {
-                    String contentId = item.contentId;
-                    places.add(
-                            place(item.route).title(item.title).loader(markdownLoader(contentId)),
-                            MarkdownPage::new);
-                }
                 if (item.children != null) {
                     addPlaces(places, item.children);
                 }

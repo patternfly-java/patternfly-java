@@ -26,7 +26,5 @@ public class ManifestItem {
     public String route;
     public String title;
     public int order;
-    public boolean hasContent;
-    public String contentId;
     public ManifestItem[] children;
 }

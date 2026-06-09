@@ -18,12 +18,12 @@ showcase/markdown/
 ├── get-started.md             → /get-started
 ├── icons.md                   → /icons
 ├── developer/                 → Navigation group "Developer"
-│   ├── index.md               → /developer (group has own content)
+│   ├── index.yaml             → Group metadata (title, order)
 │   ├── api-design.md          → /developer/api-design
 │   ├── building.md            → /developer/building
 │   └── ...
 └── reference/                 → Navigation group "Reference"
-    ├── _meta.yaml             → Group metadata (no own content)
+    ├── index.yaml             → Group metadata (title, order)
     ├── page-a.md              → /reference/page-a
     └── page-b.md              → /reference/page-b
 ```
@@ -67,32 +67,16 @@ The reason top-level items and new folders need manual placement is to control t
 
 ## Folders
 
-Folders create expandable navigation groups. A folder can optionally have its own content page.
+Folders create expandable navigation groups. Groups are expand/collapse toggles only — they cannot have their own content page.
 
-### Folder with Content
-
-Place an `index.md` file in the folder. The frontmatter of `index.md` provides the group title and order:
-
-```
-developer/
-├── index.md          ← group title comes from here
-├── api-design.md
-└── building.md
-```
-
-When a folder has `index.md`, clicking the group in the navigation shows the index content.
-
-### Folder without Content
-
-If there's no `index.md`, create a `_meta.yaml` file to set the group title and order:
+Create a `index.yaml` file in the folder to set the group title and order:
 
 ```yaml
-# _meta.yaml
-title: Reference
-order: 10
+title: Developer
+order: 5
 ```
 
-Without `_meta.yaml`, the folder name is title-cased automatically (e.g., `my-folder` → `My Folder`).
+Without `index.yaml`, the folder name is title-cased automatically (e.g., `my-folder` → `My Folder`).
 
 ## Build Pipeline
 
@@ -133,7 +117,7 @@ The `manifest.json` file describes the navigation tree:
   { "type": "page", "id": "get-started", "route": "/get-started", "title": "Get started", "order": 1 },
   {
     "type": "group", "id": "developer", "route": "/developer",
-    "title": "Developer", "order": 5, "hasContent": true, "contentId": "developer/index",
+    "title": "Developer", "order": 5,
     "children": [
       { "type": "page", "id": "developer/api-design", "route": "/developer/api-design", "title": "API design", "order": 0 }
     ]

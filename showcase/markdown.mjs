@@ -140,7 +140,7 @@ function titleCase(str) {
 }
 
 function readMeta(dirPath) {
-    const metaPath = join(dirPath, '_meta.yaml');
+    const metaPath = join(dirPath, 'index.yaml');
     if (existsSync(metaPath)) {
         return YAML.parse(readFileSync(metaPath, 'utf-8')) || {};
     }
@@ -152,8 +152,7 @@ async function walkDirectory(processor, dirPath, parentRoute) {
     const items = [];
     let count = 0;
 
-    const mdFiles = entries.filter(e => e.endsWith('.md') && e !== 'index.md' && !(parentRoute === '' && e === 'home.md'));
-    const indexFile = entries.includes('index.md') ? join(dirPath, 'index.md') : null;
+    const mdFiles = entries.filter(e => e.endsWith('.md') && !(parentRoute === '' && e === 'home.md'));
     const subdirs = entries.filter(e => {
         const full = join(dirPath, e);
         return statSync(full).isDirectory();
@@ -197,31 +196,11 @@ async function walkDirectory(processor, dirPath, parentRoute) {
             : `${parentRoute}/${dir}`;
 
         const meta = readMeta(dirFullPath);
-        const indexPath = join(dirFullPath, 'index.md');
-        const hasIndex = existsSync(indexPath);
 
         let groupTitle = titleCase(dir);
         let groupOrder = 0;
-        let hasContent = false;
 
-        if (hasIndex) {
-            const indexData = await processFile(processor, indexPath);
-            groupTitle = indexData.title;
-            groupOrder = indexData.order;
-            hasContent = true;
-
-            const relId = relative(MARKDOWN_DIR, indexPath).replace(/\.md$/, '');
-            const outputPath = resolve(OUTPUT_DIR, `${relId}.json`);
-            mkdirSync(resolve(outputPath, '..'), {recursive: true});
-            writeFileSync(outputPath, JSON.stringify({
-                id: relId,
-                title: indexData.title,
-                html: indexData.html,
-                toc: indexData.toc,
-            }, null, 2), 'utf-8');
-            console.log(`  ${relative(MARKDOWN_DIR, indexPath)} → markdown/${relId}.json`);
-            count++;
-        } else if (meta) {
+        if (meta) {
             groupTitle = meta.title || groupTitle;
             groupOrder = meta.order ?? 0;
         }
@@ -236,10 +215,6 @@ async function walkDirectory(processor, dirPath, parentRoute) {
             title: groupTitle,
             order: groupOrder,
         };
-        if (hasContent) {
-            group.hasContent = true;
-            group.contentId = relative(MARKDOWN_DIR, indexPath).replace(/\.md$/, '');
-        }
         if (result.items.length > 0) {
             group.children = result.items;
         }
