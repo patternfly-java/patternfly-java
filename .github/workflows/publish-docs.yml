@@ -31,8 +31,8 @@ jobs:
           path: gh-pages
       - name: Update markdown files
         run: |
-          mkdir -p gh-pages/markdown
-          cp showcase/src/web/public/markdown/*.json gh-pages/markdown/
+          rm -rf gh-pages/markdown
+          cp -r showcase/src/web/public/markdown gh-pages/markdown
       - name: Push to gh-pages
         working-directory: gh-pages
         run: |
