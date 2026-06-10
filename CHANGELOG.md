@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Change `Finder.select(FinderPath)` to fire select and preview events only for the deepest resolved item instead of every intermediate segment during path restoration
 - Fire `SelectHandler` on ArrowLeft keyboard navigation so consumers are notified when focus moves back to a previously selected item
-- Upgrade Elemento from 2.4.11 to 2.5.1
+- Upgrade Elemento from 2.4.11 to 2.5.2
 
 ### Fixed
 
