@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add finder path restoration with `Finder.select(String)` and `Finder.select(FinderPath)` for async column loading and programmatic path selection
+
+### Changed
+
+- Change `Finder.select(FinderPath)` to fire select and preview events only for the deepest resolved item instead of every intermediate segment during path restoration
+- Fire `SelectHandler` on ArrowLeft keyboard navigation so consumers are notified when focus moves back to a previously selected item
+
+### Fixed
+
+- Improve finder path selection resilience by stopping on missing columns or items instead of continuing with stale state
+- Fix code review findings across `org.patternfly.component` package
+- Fix markdown directory tree copy in publish-docs workflow
+
 ## [0.9.1] - 2026-06-08
 
 ### Added
