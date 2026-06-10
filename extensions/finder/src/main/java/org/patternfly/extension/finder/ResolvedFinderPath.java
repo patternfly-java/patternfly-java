@@ -24,7 +24,8 @@ import static java.util.stream.Collectors.toList;
 
 /**
  * A resolved finder path containing live references to {@link FinderColumn} and {@link FinderItem} instances. Produced by
- * {@link Finder#path()} to inspect the current state of the finder.
+ * {@link Finder#path()} (full selection) or {@link Finder#activePath()} (up to the active column) to inspect the current state
+ * of the finder.
  * <p>
  * For a lightweight string-based path suitable for URL routing and serialization, use {@link FinderPath}.
  */

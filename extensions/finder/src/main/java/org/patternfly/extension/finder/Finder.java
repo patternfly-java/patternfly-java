@@ -87,6 +87,7 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     private final Map<String, FinderColumn> items;
     private final AurHandler<Finder, FinderColumn> aur;
     private final HTMLContainerBuilder<HTMLDivElement> cc; // columns container
+    private FinderColumn activeColumn;
     private HandlerRegistration keydownHandler;
 
     Finder() {
@@ -185,6 +186,16 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     // ------------------------------------------------------ api
 
+    /**
+     * Returns the full selection path across all columns, regardless of which column is currently active. The path includes a
+     * segment for every column that has a selected item, stopping at the first column without a selection.
+     * <p>
+     * Use this method when you need the complete selection state of the finder. If you need the path only up to the currently
+     * active (focused) column — for example to synchronise the browser URL during keyboard navigation — use
+     * {@link #activePath()} instead.
+     *
+     * @see #activePath()
+     */
     public ResolvedFinderPath path() {
         List<ResolvedFinderSegment> segments = new LinkedList<>();
         for (FinderColumn column : items.values()) {
@@ -193,6 +204,34 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                 segments.add(new ResolvedFinderSegment(column, selectedItem));
             } else {
                 segments.add(new ResolvedFinderSegment(column, null));
+                break;
+            }
+        }
+        return new ResolvedFinderPath(segments);
+    }
+
+    /**
+     * Returns the selection path up to and including the currently active (focused) column. Columns to the right of the active
+     * column are excluded even if they still have selected items. This is useful for synchronising the browser URL during
+     * arrow-left keyboard navigation, where columns to the right are preserved in the DOM but should no longer be reflected in
+     * the URL.
+     * <p>
+     * When no arrow-left navigation has occurred, the active column is the deepest column with a selection, so this method
+     * returns the same result as {@link #path()}.
+     *
+     * @see #path()
+     */
+    public ResolvedFinderPath activePath() {
+        List<ResolvedFinderSegment> segments = new LinkedList<>();
+        for (FinderColumn column : items.values()) {
+            FinderItem selectedItem = column.selectedItem();
+            if (selectedItem != null) {
+                segments.add(new ResolvedFinderSegment(column, selectedItem));
+            } else {
+                segments.add(new ResolvedFinderSegment(column, null));
+                break;
+            }
+            if (column == activeColumn) {
                 break;
             }
         }
@@ -375,6 +414,7 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
             c.active(false);
         }
         column.active(true);
+        activeColumn = column;
     }
 
     private void handleKeydown(KeyboardEvent event) {
